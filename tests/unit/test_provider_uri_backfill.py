@@ -356,6 +356,8 @@ def test_run_dry_run_no_mutation(tmp_path, monkeypatch):
     )
     monkeypatch.setattr(bf, "fetch_deezer_isrc", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    # Keyless Apple iTunes fallback is network → stub it off in these tests.
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     out = tmp_path / "coverage.md"
@@ -417,6 +419,8 @@ def test_run_apply_writes_uri(tmp_path, monkeypatch):
         },
     )
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    # Keyless Apple iTunes fallback is network → stub it off in these tests.
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     rc = bf.main(
@@ -469,6 +473,8 @@ def test_run_apply_odesli_429_does_not_block_youtube(tmp_path, monkeypatch):
     monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)
     monkeypatch.setattr(bf, "youtube_search_id", lambda *a, **k: "dQw4w9WgXcQ")
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    # Keyless Apple iTunes fallback is network → stub it off in these tests.
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
     monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
 
     rc = bf.main(
@@ -521,6 +527,8 @@ def test_run_apply_flushes_partial_progress_on_crash(tmp_path, monkeypatch):
 
     monkeypatch.setattr(bf, "fetch_odesli", flaky_odesli)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    # Keyless Apple iTunes fallback is network → stub it off in these tests.
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     with pytest.raises(RuntimeError):
@@ -543,3 +551,381 @@ def test_run_apply_flushes_partial_progress_on_crash(tmp_path, monkeypatch):
     assert doc["songs"][0]["uri_tidal"] == "tidal://track/42"
     assert doc["songs"][1].get("uri_tidal") is None
     assert doc["version"] == "1.1"  # bumped once on the first flush
+
+
+# ===========================================================================
+# #1687-followup: hit-rate levers (userCountry, iTunes+gate, odesli-YT-first)
+# ===========================================================================
+
+
+# --- Lever 1: userCountry=DE reaches Odesli --------------------------------
+def test_fetch_odesli_sends_user_country_de():
+    import urllib.parse
+
+    seen = {}
+
+    def getter(url):
+        seen["url"] = url
+        return {"ok": True}
+
+    bf.fetch_odesli("x" * 22, sleep=0, getter=getter)
+    assert "userCountry=DE" in seen["url"]
+    # Spotify track URL is still the query subject.
+    assert "open.spotify.com/track/" in urllib.parse.unquote(seen["url"])
+
+
+# --- fuzzy title/artist matching (verify-gate primitive) -------------------
+def test_titles_match_equal_and_diacritics():
+    assert bf.titles_match("Świętokrzyskie", "Swietokrzyskie")
+    assert bf.titles_match("Beyoncé", "Beyonce")
+    assert bf.titles_match("Zażółć", "Zazolc")  # ż/ó/ł folded
+
+
+def test_titles_match_strips_qualifiers():
+    assert bf.titles_match("Song (Remastered 2011)", "Song")
+    assert bf.titles_match("Song - Radio Edit", "Song")
+    assert bf.titles_match("Song feat. Other", "Song")
+
+
+def test_titles_match_rejects_different():
+    assert not bf.titles_match("Bohemian Rhapsody", "Stairway to Heaven")
+    assert not bf.titles_match("", "Song")
+
+
+def test_strip_diacritics_polish():
+    # Uppercase folds map to lowercase ASCII (matching lowercases anyway).
+    assert (
+        bf.strip_diacritics("Łódź żółć ćma ń ą ę ś ź ó") == "lodz zolc cma n a e s z o"
+    )
+
+
+# --- Lever 2: Apple iTunes fallback + verify-gate ---------------------------
+def test_itunes_fallback_resolves_apple_id_with_gate():
+    def getter(url):
+        return {
+            "results": [
+                {
+                    "trackId": 555001,
+                    "trackName": "Jolka, Jolka Pamiętasz (Remastered)",
+                    "artistName": "Budka Suflera",
+                }
+            ]
+        }
+
+    # Gate is fuzzy: a stray "(Remastered)" qualifier is stripped before compare,
+    # so title+artist still pass and the numeric trackId is returned.
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Budka Suflera", "title": "Jolka, Jolka Pamiętasz"}, getter=getter
+    )
+    assert aid == "555001"
+    assert bf.apple_uri(aid) == "applemusic://track/555001"
+
+
+def test_itunes_gate_rejects_wrong_title():
+    # iTunes returns a *different* song by a same-ish name → gate must reject,
+    # so no Apple URI is set on a niche-catalogue mismatch.
+    def getter(url):
+        return {
+            "results": [
+                {
+                    "trackId": 999,
+                    "trackName": "Completely Different Song",
+                    "artistName": "Some Other Band",
+                }
+            ]
+        }
+
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Budka Suflera", "title": "Jolka Jolka"}, getter=getter
+    )
+    assert aid is None
+
+
+def test_itunes_diacritic_variant_matches():
+    # Catalogue row carries accents; the storefront index stores ASCII. The
+    # folded query variant is what actually returns the result.
+    calls = []
+
+    def getter(url):
+        calls.append(url)
+        # Only the diacritic-folded query ("Zeromski ...") returns a hit.
+        if "Zeromski" in url or "zeromski" in url.lower():
+            return {
+                "results": [
+                    {
+                        "trackId": 42042,
+                        "trackName": "Ballada",
+                        "artistName": "Zeromski",
+                    }
+                ]
+            }
+        return {"results": []}
+
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Żeromski", "title": "Ballada"}, getter=getter
+    )
+    assert aid == "42042"
+
+
+def test_itunes_alt_artists_fallback():
+    # Primary artist does not match the storefront credit, but an alt_artist
+    # does → gate passes on the alt.
+    def getter(url):
+        return {
+            "results": [
+                {
+                    "trackId": 77,
+                    "trackName": "Eve Of Destruction",
+                    "artistName": "P.F. Sloan",
+                }
+            ]
+        }
+
+    aid = bf.resolve_apple_via_itunes(
+        {
+            "artist": "Barry McGuire",
+            "title": "Eve Of Destruction",
+            "alt_artists": ["P.F. Sloan", "The Turtles"],
+        },
+        getter=getter,
+    )
+    assert aid == "77"
+
+
+def test_itunes_returns_none_on_no_results():
+    assert (
+        bf.resolve_apple_via_itunes(
+            {"artist": "A", "title": "T"}, getter=lambda u: {"results": []}
+        )
+        is None
+    )
+
+
+def test_itunes_search_never_raises_on_http_error():
+    import urllib.error
+
+    def getter(url):
+        raise urllib.error.HTTPError(url, 500, "boom", {}, None)
+
+    assert bf.itunes_search("q", getter=getter) == []
+    assert (
+        bf.resolve_apple_via_itunes({"artist": "A", "title": "T"}, getter=getter)
+        is None
+    )
+
+
+# --- Lever 3: YouTube Odesli-first + oembed verify --------------------------
+def test_odesli_youtube_video_id_extracts():
+    payload = {
+        "linksByPlatform": {
+            "youtube": {"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&foo=1"}
+        }
+    }
+    assert bf.odesli_youtube_video_id(payload) == "dQw4w9WgXcQ"
+    # youtu.be short form + youtubeMusic key.
+    assert (
+        bf.odesli_youtube_video_id(
+            {
+                "linksByPlatform": {
+                    "youtubeMusic": {"url": "https://youtu.be/abcDEF12345"}
+                }
+            }
+        )
+        == "abcDEF12345"
+    )
+    assert bf.odesli_youtube_video_id({}) is None
+
+
+def test_youtube_oembed_verify_pass_and_fail():
+    def ok(url):
+        return {
+            "title": "Rick Astley - Never Gonna Give You Up (Official Music Video)",
+            "author_name": "Rick Astley",
+        }
+
+    assert bf.youtube_oembed_verify(
+        "dQw4w9WgXcQ", "Rick Astley", "Never Gonna Give You Up", getter=ok
+    )
+
+    def cover(url):
+        return {
+            "title": "Never Gonna Give You Up (Live Cover)",
+            "author_name": "Some Cover Band",
+        }
+
+    # Wrong artist → gate fails (filters covers/live re-uploads).
+    assert not bf.youtube_oembed_verify(
+        "dQw4w9WgXcQ", "Rick Astley", "Never Gonna Give You Up", getter=cover
+    )
+
+
+def test_youtube_oembed_verify_network_error_false():
+    import urllib.error
+
+    def getter(url):
+        raise urllib.error.HTTPError(url, 404, "nf", {}, None)
+
+    assert not bf.youtube_oembed_verify("x" * 11, "A", "T", getter=getter)
+
+
+def test_run_youtube_odesli_first_pass_skips_search_list(tmp_path, monkeypatch):
+    # Odesli returns a YouTube link that oembed confirms → uri_youtube_music is
+    # filled at 0 quota; the paid search.list must NOT be called.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "ytfirst",
+        [
+            {
+                "artist": "Rick Astley",
+                "title": "Never Gonna Give You Up",
+                "uri": "spotify:track:" + "a" * 22,
+            }
+        ],
+    )
+
+    monkeypatch.setattr(
+        bf,
+        "fetch_odesli",
+        lambda *a, **k: {
+            "linksByPlatform": {
+                "youtube": {"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+            }
+        },
+    )
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "youtube_oembed_verify", lambda *a, **k: True)
+
+    search_calls = {"n": 0}
+
+    def boom_search(*a, **k):
+        search_calls["n"] += 1
+        return "SHOULDNOTBE1"
+
+    monkeypatch.setattr(bf, "youtube_search_id", boom_search)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    song = json.loads(f.read_text())["songs"][0]
+    assert song["uri_youtube_music"] == "https://music.youtube.com/watch?v=dQw4w9WgXcQ"
+    assert search_calls["n"] == 0  # quota saved — no search.list call
+
+
+def test_run_youtube_oembed_fail_falls_back_to_search_list(tmp_path, monkeypatch):
+    # Odesli has a YouTube link but oembed rejects it (cover) → fall back to the
+    # paid search.list path, which fills the URI.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "ytfallback",
+        [
+            {
+                "artist": "Rick Astley",
+                "title": "Never Gonna Give You Up",
+                "uri": "spotify:track:" + "a" * 22,
+            }
+        ],
+    )
+
+    monkeypatch.setattr(
+        bf,
+        "fetch_odesli",
+        lambda *a, **k: {
+            "linksByPlatform": {
+                "youtube": {"url": "https://www.youtube.com/watch?v=coverVID1234"}
+            }
+        },
+    )
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "youtube_oembed_verify", lambda *a, **k: False)
+
+    search_calls = {"n": 0}
+
+    def real_search(*a, **k):
+        search_calls["n"] += 1
+        return "dQw4w9WgXcQ"
+
+    monkeypatch.setattr(bf, "youtube_search_id", real_search)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    song = json.loads(f.read_text())["songs"][0]
+    assert song["uri_youtube_music"] == "https://music.youtube.com/watch?v=dQw4w9WgXcQ"
+    assert search_calls["n"] == 1  # oembed failed → paid path used
+
+
+def test_run_apply_itunes_fills_apple_when_odesli_lacks_it(tmp_path, monkeypatch):
+    # Odesli returns Tidal only (no Apple) → the iTunes fallback fills Apple.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "apple",
+        [
+            {
+                "artist": "Budka Suflera",
+                "title": "Jolka Jolka",
+                "uri": "spotify:track:" + "a" * 22,
+            }
+        ],
+    )
+
+    monkeypatch.setattr(
+        bf,
+        "fetch_odesli",
+        lambda *a, **k: {
+            "linksByPlatform": {"tidal": {"entityUniqueId": "TIDAL_SONG::7"}},
+            "entitiesByUniqueId": {"TIDAL_SONG::7": {"id": "7"}},
+        },
+    )
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: "808080")
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    song = json.loads(f.read_text())["songs"][0]
+    assert song["uri_tidal"] == "tidal://track/7"
+    assert song["uri_apple_music"] == "applemusic://track/808080"
