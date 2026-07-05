@@ -1363,6 +1363,19 @@
         </div>
     </div>
 
+    <!-- #1719: "Start New Game" confirmation modal (destructive: forgets speaker/playlists/settings) -->
+    <div id="new-game-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="new-game-modal-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2 id="new-game-modal-title" data-i18n="admin.newGameConfirmTitle">Start New Game?</h2>
+            <p data-i18n="admin.newGameConfirmMessage">Forget your speaker + playlists and start fresh setup?</p>
+            <div class="modal-actions">
+                <button id="new-game-confirm-btn" class="btn btn-danger" data-i18n="admin.startNewGame">Start New Game</button>
+                <button id="new-game-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Force-reset confirmation modal (#777 follow-up — emergency escape hatch) -->
     <div id="reset-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
         <div class="modal-backdrop"></div>
