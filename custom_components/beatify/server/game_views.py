@@ -28,6 +28,9 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
+from custom_components.beatify.game.playlist import (
+    async_discover_playlists_detailed,
+)
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
@@ -49,6 +52,47 @@ if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def _resolve_and_load_playlist(
+    playlist_dir: Path,
+    playlist_path: str,
+    cached_songs: list[dict[str, Any]] | None,
+) -> tuple[list[dict[str, Any]] | None, str | None]:
+    """Resolve, security-check, and load one playlist's songs — off event loop.
+
+    #1766: consolidates the path-traversal ``resolve()``/``is_relative_to``
+    guard, the ``exists()`` stat, and (only on a discovery-cache miss) the file
+    read + ``json.loads`` into a single executor job, keeping these blocking
+    syscalls off the loop at the latency-sensitive Start tap. On a cache hit
+    ``cached_songs`` (already parsed by ``async_discover_playlists_detailed``)
+    is returned without touching disk.
+
+    Returns ``(songs, warning)``; ``songs`` is ``None`` when the path is
+    invalid / missing / unreadable and ``warning`` explains why.
+    """
+    full_path = playlist_dir / playlist_path
+    # Security: prevent path traversal attacks.
+    try:
+        full_path = full_path.resolve()
+        if not full_path.is_relative_to(playlist_dir.resolve()):
+            return None, f"Invalid playlist path: {playlist_path}"
+    except (OSError, ValueError):
+        return None, f"Invalid playlist path: {playlist_path}"
+
+    if not full_path.exists():
+        return None, f"Playlist not found: {playlist_path}"
+
+    if cached_songs is not None:
+        return cached_songs, None
+
+    # Cache miss (discovery hasn't run, or the file changed since the last
+    # discovery signature) → read + parse here in the same executor job.
+    try:
+        data = json.loads(_read_file(full_path))
+    except (OSError, ValueError) as err:
+        return None, f"Failed to load {playlist_path}: {err}"
+    return data.get("songs", []), None
 
 
 def _validate_provider(provider: str) -> str:
@@ -216,52 +260,51 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         warnings: list[str] = []
         playlist_dir = Path(self.hass.config.path("beatify/playlists"))
 
+        # #1766: reuse the #1704 discovery cache. ``songs_by_path`` already holds
+        # each playlist's parsed song list (built in one off-loop executor job,
+        # memoised by on-disk signature), so a Start tap seconds after discovery
+        # skips re-reading + re-parsing (~600 songs/playlist, several per game)
+        # json.loads on the event loop. Cache misses fall back to an executor
+        # read+parse inside _resolve_and_load_playlist.
+        _, songs_by_path = await async_discover_playlists_detailed(self.hass)
+
         for playlist_path in playlist_paths:
-            try:
-                full_path = playlist_dir / playlist_path
-                # Security: Prevent path traversal attacks
-                try:
-                    full_path = full_path.resolve()
-                    if not full_path.is_relative_to(playlist_dir.resolve()):
-                        warnings.append(f"Invalid playlist path: {playlist_path}")
-                        continue
-                except ValueError:
-                    warnings.append(f"Invalid playlist path: {playlist_path}")
-                    continue
+            # #1766: discovery keys songs_by_path by the un-resolved absolute
+            # path string (str(playlist_dir / <rel>)); match that here.
+            cached_songs = songs_by_path.get(str(playlist_dir / playlist_path))
+            # #1766: resolve()/exists() (and any cache-miss read+parse) run in a
+            # single executor job instead of on the event loop.
+            playlist_songs, warning = await self.hass.async_add_executor_job(
+                _resolve_and_load_playlist,
+                playlist_dir,
+                playlist_path,
+                cached_songs,
+            )
+            if warning is not None:
+                warnings.append(warning)
+            if playlist_songs is None:
+                continue
 
-                if not full_path.exists():
-                    warnings.append(f"Playlist not found: {playlist_path}")
-                    continue
-
-                # Read file in executor to avoid blocking event loop
-                file_content = await self.hass.async_add_executor_job(
-                    _read_file, full_path
-                )
-                playlist_data = json.loads(file_content)
-
-                for song in playlist_data.get("songs", []):
-                    has_uri = any(
-                        song.get(k)
-                        for k in (
-                            "uri",
-                            "uri_spotify",
-                            "uri_youtube_music",
-                            "uri_tidal",
-                            "uri_deezer",
-                            "uri_apple_music",
-                        )
+            for song in playlist_songs:
+                has_uri = any(
+                    song.get(k)
+                    for k in (
+                        "uri",
+                        "uri_spotify",
+                        "uri_youtube_music",
+                        "uri_tidal",
+                        "uri_deezer",
+                        "uri_apple_music",
                     )
-                    if "year" in song and has_uri:
-                        tagged = dict(song)
-                        tagged["_playlist_source"] = playlist_path
-                        songs.append(tagged)
-                    else:
-                        warnings.append(
-                            f"Invalid song in {playlist_path}: missing year or uri"
-                        )
-
-            except (OSError, ValueError) as err:
-                warnings.append(f"Failed to load {playlist_path}: {err}")
+                )
+                if "year" in song and has_uri:
+                    tagged = dict(song)
+                    tagged["_playlist_source"] = playlist_path
+                    songs.append(tagged)
+                else:
+                    warnings.append(
+                        f"Invalid song in {playlist_path}: missing year or uri"
+                    )
 
         if not songs:
             return _json_error(

@@ -110,6 +110,11 @@ def start_game_env():
 
     # Playlist file read runs in an executor; return the valid content.
     async def _executor(func, *args):
+        # #1766: StartGameView now loads playlist songs off-loop via
+        # _resolve_and_load_playlist, which returns (songs, warning) instead of
+        # raw file content. Other executor calls keep the raw-content contract.
+        if getattr(func, "__name__", "") == "_resolve_and_load_playlist":
+            return json.loads(_VALID_PLAYLIST).get("songs", []), None
         return _VALID_PLAYLIST
 
     hass.async_add_executor_job = AsyncMock(side_effect=_executor)
@@ -212,6 +217,11 @@ def _twin_start_game_env(media_player: str, entries: list[MagicMock]):
     hass.config.path.return_value = "/tmp/beatify/playlists"
 
     async def _executor(func, *args):
+        # #1766: StartGameView now loads playlist songs off-loop via
+        # _resolve_and_load_playlist, which returns (songs, warning) instead of
+        # raw file content. Other executor calls keep the raw-content contract.
+        if getattr(func, "__name__", "") == "_resolve_and_load_playlist":
+            return json.loads(_VALID_PLAYLIST).get("songs", []), None
         return _VALID_PLAYLIST
 
     hass.async_add_executor_job = AsyncMock(side_effect=_executor)
@@ -312,3 +322,87 @@ class TestNativeTwinRemapAtStart:
         assert resp.status == 200
         # A normal (non-twin) MA entity_id is used as-is.
         assert game_state.media_player == "media_player.esszimmer"
+
+
+# ---------------------------------------------------------------------------
+# #1766: start-game reuses the #1704 discovery cache + loads off the loop
+# ---------------------------------------------------------------------------
+
+
+class TestResolveAndLoadPlaylist:
+    """The per-playlist load helper runs resolve/exists (+ any read) off-loop
+    and reuses discovery's already-parsed songs on a cache hit."""
+
+    def test_cache_hit_returns_cached_songs_without_reading(self, tmp_path):
+        # A real file exists, but the cached parse must be returned verbatim
+        # (identity) — proving no re-read/re-parse happened on a cache hit.
+        from custom_components.beatify.server.game_views import (
+            _resolve_and_load_playlist,
+        )
+
+        pl = tmp_path / "p.json"
+        pl.write_text(
+            json.dumps({"songs": [{"year": 1999, "uri": "spotify:track:onfile"}]})
+        )
+        cached = [{"year": 2001, "uri": "spotify:track:fromcache"}]
+
+        songs, warning = _resolve_and_load_playlist(tmp_path, "p.json", cached)
+
+        assert warning is None
+        assert songs is cached  # reused discovery's parse, ignored the file
+
+    def test_cache_miss_falls_back_to_read_and_parse(self, tmp_path):
+        from custom_components.beatify.server.game_views import (
+            _resolve_and_load_playlist,
+        )
+
+        pl = tmp_path / "p.json"
+        pl.write_text(
+            json.dumps({"songs": [{"year": 1999, "uri": "spotify:track:onfile"}]})
+        )
+
+        songs, warning = _resolve_and_load_playlist(tmp_path, "p.json", None)
+
+        assert warning is None
+        assert songs == [{"year": 1999, "uri": "spotify:track:onfile"}]
+
+    def test_missing_file_returns_warning(self, tmp_path):
+        from custom_components.beatify.server.game_views import (
+            _resolve_and_load_playlist,
+        )
+
+        songs, warning = _resolve_and_load_playlist(tmp_path, "nope.json", None)
+
+        assert songs is None
+        assert "not found" in warning.lower()
+
+    def test_path_traversal_is_blocked(self, tmp_path):
+        from custom_components.beatify.server.game_views import (
+            _resolve_and_load_playlist,
+        )
+
+        songs, warning = _resolve_and_load_playlist(tmp_path, "../../etc/passwd", None)
+
+        assert songs is None
+        assert "Invalid playlist path" in warning
+
+
+class TestStartGameUsesDiscoveryCache:
+    """StartGameView routes playlist loading through the memoised #1704
+    discovery entry point rather than re-reading each file itself (#1766)."""
+
+    async def test_start_game_calls_discovery(self, start_game_env):
+        view, hass, body = start_game_env
+
+        discover = AsyncMock(return_value=([], {}))
+        with patch(
+            "custom_components.beatify.server.game_views."
+            "async_discover_playlists_detailed",
+            discover,
+        ):
+            resp = await view.post(_make_request(hass, body))
+
+        assert resp.status == 200
+        # The Start tap went through the shared discovery cache (one off-loop
+        # parse) instead of re-reading/parsing playlists inline on the loop.
+        discover.assert_awaited_once()

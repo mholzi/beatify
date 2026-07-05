@@ -511,8 +511,12 @@ class BeatifyWebSocketHandler:
             "Player disconnected: %s (is_admin: %s)", player_name, player.is_admin
         )
 
-        # Broadcast disconnect state immediately
-        await self.broadcast_state()
+        # #1763: setting connected=False is a non-phase-changing flag update.
+        # A mass Wi-Fi blip disconnects N players back-to-back; routing this
+        # through the 50ms debounce coalesces them into a single broadcast
+        # instead of N full-state fan-outs. Phase transitions triggered below
+        # (early-reveal, admin-disconnect pause) keep their immediate broadcasts.
+        await self.debounced_broadcast_state()
 
         # #928: a mid-round disconnect can itself complete the round. If
         # everyone still active has already submitted, the departing player

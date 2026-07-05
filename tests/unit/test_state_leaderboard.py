@@ -179,8 +179,36 @@ class TestLeaderboardPayload:
         assert entry["name"] == "Alice"
         assert entry["score"] == 42
         assert entry["streak"] == 3
-        assert entry["is_admin"] is True
         assert entry["connected"] is False
+
+    def test_entry_is_slimmed_to_client_read_fields(self):
+        # #1765: the per-frame leaderboard entry drops fields no client reads
+        # off a leaderboard entry (is_admin, eliminated_round — both taken from
+        # the players rows instead) while keeping the ones clients still render
+        # directly (rank/name/score/streak/rank_change/connected/eliminated).
+        _add(
+            self.state,
+            "Alice",
+            score=42,
+            streak=3,
+            is_admin=True,
+            connected=True,
+        )
+
+        (entry,) = self.state.get_leaderboard()
+
+        assert set(entry) == {
+            "rank",
+            "name",
+            "score",
+            "streak",
+            "rank_change",
+            "connected",
+            "eliminated",
+        }
+        # Dropped: duplicated from the players rows, unused off leaderboard.
+        assert "is_admin" not in entry
+        assert "eliminated_round" not in entry
 
     def test_ties_break_by_name_for_stable_display(self):
         # Equal scores -> alphabetical name order, equal rank.

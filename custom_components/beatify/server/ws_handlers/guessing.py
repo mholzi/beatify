@@ -128,7 +128,11 @@ async def handle_submit(
     # transition to REVEAL and broadcast via the round_end callback,
     # avoiding a redundant double broadcast.
     if not game_state.check_all_guesses_complete():
-        await handler.broadcast_state()
+        # #1763: in-round submit-progress is non-phase-changing → coalesce via
+        # the 50ms debounce so an N-player round can't fan out N full-state
+        # broadcasts (O(N^2)). The round-end REVEAL broadcast stays immediate
+        # (round_end callback below).
+        await handler.debounced_broadcast_state()
 
     _LOGGER.debug(
         "Early reveal check: phase=%s, artist_challenge=%s",
@@ -254,7 +258,8 @@ async def handle_steal(
         # Issue #842 Phase 4: announce the steal (use case 23).
         await game_state.announce_steal_used(player.name, result["target"])
         if not game_state.check_all_guesses_complete():
-            await handler.broadcast_state()
+            # #1763: non-phase-changing in-round update → debounce.
+            await handler.debounced_broadcast_state()
         await game_state.trigger_early_reveal_if_complete()
     else:
         await ws.send_json(
@@ -386,7 +391,11 @@ async def handle_artist_guess(
     await ws.send_json(response)
 
     if result.get("first"):
-        await handler.broadcast_state()
+        # #1763: "first correct artist" flag is a non-phase-changing PLAYING
+        # update → debounce. debounced_broadcast_state re-reads state at fire
+        # time, so a subsequent immediate REVEAL broadcast is never overwritten
+        # with stale data.
+        await handler.debounced_broadcast_state()
 
     await game_state.trigger_early_reveal_if_complete()
 
@@ -603,7 +612,8 @@ async def handle_title_artist_guess(
     # when the early-reveal path is about to broadcast via the round_end
     # callback. Only broadcast here when the round is NOT yet complete.
     if not game_state.check_all_guesses_complete():
-        await handler.broadcast_state()
+        # #1763: non-phase-changing in-round update → debounce.
+        await handler.debounced_broadcast_state()
 
     await game_state.trigger_early_reveal_if_complete()
 
@@ -699,7 +709,10 @@ async def handle_title_artist_vote(
     _LOGGER.debug(
         "Title/artist vote by %s on %s -> %s", player.name, nearmiss_id, accept
     )
-    await handler.broadcast_state()
+    # #1763: REVEAL vote tallies are per-player (N voters → N broadcasts) and
+    # non-phase-changing → debounce. The auto-advance out of REVEAL is a
+    # separate immediate path.
+    await handler.debounced_broadcast_state()
 
 
 async def handle_title_artist_override(
@@ -770,4 +783,5 @@ async def handle_title_artist_override(
 
     game_state.set_title_artist_override(nearmiss_id, accept)
     _LOGGER.info("Title/artist override on %s -> %s", nearmiss_id, accept)
-    await handler.broadcast_state()
+    # #1763: non-phase-changing REVEAL update → debounce.
+    await handler.debounced_broadcast_state()

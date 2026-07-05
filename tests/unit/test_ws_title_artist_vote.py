@@ -94,7 +94,8 @@ class TestVoteHandler:
             {"type": "title_artist_vote", "nearmiss_id": "Alice:title", "accept": True},
         )
         assert gs.get_near_misses()[0]["votes_yes"] == 1
-        handler.broadcast_state.assert_awaited()
+        # #1763: vote tallies are coalesced through the debounced broadcast.
+        handler.debounced_broadcast_state.assert_awaited()
         gs._cancel_auto_advance()
 
     async def test_self_vote_rejected(self):
@@ -158,7 +159,8 @@ class TestOverrideHandler:
             gs._challenge_manager.title_artist_challenge.overrides["Alice:title"]
             is True
         )
-        handler.broadcast_state.assert_awaited()
+        # #1763: override updates are coalesced through the debounced broadcast.
+        handler.debounced_broadcast_state.assert_awaited()
         gs._cancel_auto_advance()
 
     async def test_override_rejected_for_non_admin(self):

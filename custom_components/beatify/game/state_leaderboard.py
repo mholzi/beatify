@@ -62,17 +62,29 @@ class LeaderboardMixin:
             if player.previous_rank is not None:
                 rank_change = player.previous_rank - current_rank
 
+            # #1765: slim the per-frame (PLAYING/REVEAL) leaderboard entry.
+            # ``is_admin`` and ``eliminated_round`` were duplicated here but no
+            # client reads them off a leaderboard entry — every consumer
+            # (player-utils.renderLeaderboardEntry, dashboard.renderLeaderboard /
+            # renderRevealLeaderboard, admin) takes the host crown and the
+            # "Eliminated · Round N" copy from the ``players`` rows instead — so
+            # they are dropped to shrink each broadcast frame.
+            #
+            # KEPT deliberately (still read directly off leaderboard entries, so
+            # dropping them WOULD break a client — out of scope for a backend-only
+            # change): ``score``/``streak`` (rendered per row), ``connected``
+            # (away badge), ``eliminated`` (dashboard skull prefix + Sudden-Death
+            # survivor filter), plus ``rank``/``name``/``rank_change``.
             entry = {
                 "rank": current_rank,
                 "name": player.name,
                 "score": player.score,
                 "streak": player.streak,
-                "is_admin": player.is_admin,
                 "rank_change": rank_change,
                 "connected": player.connected,
-                # Issue #827: Sudden Death cut-line rendering
+                # Issue #827: Sudden Death cut-line rendering (dashboard reads
+                # entry.eliminated for the 💀 prefix + survivor filter).
                 "eliminated": player.eliminated,
-                "eliminated_round": player.eliminated_round,
             }
             leaderboard.append(entry)
 
