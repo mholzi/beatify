@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "polish",
     "rock"
@@ -28,7 +28,7 @@
         "it": "applemusic://track/1498899659"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qvFZnn-EYQU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/131445752",
       "uri_deezer": "deezer://track/876022152",
       "alt_artists": [],
       "fun_fact": "Artur Rojek is part of Poland's rock scene, and 'Bez końca' (2020) features on this Polish rock playlist.",
@@ -54,7 +54,7 @@
         "it": "applemusic://track/1715321071"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=op2cyrTP-NE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/529664799",
       "uri_deezer": "deezer://track/4058537141",
       "alt_artists": [],
       "fun_fact": "Dziwna Wiosna is part of Poland's rock scene, and 'Światła miasta' (2026) features on this Polish rock playlist.",
@@ -80,7 +80,7 @@
         "it": "applemusic://track/6771776896"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1SCC3VPwRMw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/526809056",
       "uri_deezer": "deezer://track/4036046531",
       "alt_artists": [],
       "fun_fact": "Męskie Granie Orkiestra is part of Poland's rock scene, and 'Tańczę' (2026) features on this Polish rock playlist.",
@@ -106,7 +106,7 @@
         "it": "applemusic://track/514798857"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WD7dDfZD1_8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/458731220",
       "uri_deezer": "deezer://track/18507201",
       "alt_artists": [],
       "fun_fact": "Rezerwat is part of Poland's rock scene, and 'Zaopiekuj sie mną' (2005) features on this Polish rock playlist.",
@@ -132,7 +132,7 @@
         "it": "applemusic://track/1495625502"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PumLjLN9fzw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/128624318",
       "uri_deezer": "deezer://track/855275862",
       "alt_artists": [],
       "fun_fact": "KARAŚ/ROGUCKI is part of Poland's rock scene, and 'Kilka westchnień' (2020) features on this Polish rock playlist.",
@@ -158,7 +158,7 @@
         "it": "applemusic://track/1388421757"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kpTak7flT4A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89275095",
       "uri_deezer": "deezer://track/503929042",
       "alt_artists": [],
       "fun_fact": "Robert Gawlinski is part of Poland's rock scene, and 'O Sobie Samym' (2018) features on this Polish rock playlist.",
@@ -184,7 +184,7 @@
         "it": "applemusic://track/697065413"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JZ1h5gFhlsg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10827898",
       "uri_deezer": "deezer://track/3295214",
       "alt_artists": [],
       "fun_fact": "Republika is a Polish new wave and rock band formed in Torun in 1981 and led by Grzegorz Ciechowski, and 'Śmierć W Bikini' (2001) features on this Polish rock playlist.",
@@ -210,7 +210,7 @@
         "it": "applemusic://track/1160877366"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lWXSUuosxtk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/65537416",
       "uri_deezer": "deezer://track/114010984",
       "alt_artists": [],
       "fun_fact": "Breakout is a Polish blues-rock band led by Tadeusz Nalepa, active from the late 1960s, and 'Kiedy byłem małym chłopcem' (2005) features on this Polish rock playlist.",
@@ -236,7 +236,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wQ2-YLzW7Ms",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58809796",
       "uri_deezer": "deezer://track/121736770",
       "alt_artists": [],
       "fun_fact": "Happysad is a Polish rock band formed in Skarzysko-Kamienna, and 'Damy radę' (2016) features on this Polish rock playlist.",
@@ -262,7 +262,7 @@
         "it": "applemusic://track/6764868482"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=h88L9KFvR8w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/520418877",
       "uri_deezer": "deezer://track/3996824851",
       "alt_artists": [],
       "fun_fact": "Jędrzej Wise is part of Poland's rock scene, and 'Bez oka miś' (2026) features on this Polish rock playlist.",
@@ -288,7 +288,7 @@
         "it": "applemusic://track/1762050364"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8tpY2X2wWyQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/380283046",
       "uri_deezer": "deezer://track/2924687611",
       "alt_artists": [],
       "fun_fact": "Hurt is part of Poland's rock scene, and 'Załoga G' (2005) features on this Polish rock playlist.",
@@ -314,7 +314,7 @@
         "it": "applemusic://track/6769816256"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n4z_9n358Qw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/526030278",
       "uri_deezer": "deezer://track/4024261111",
       "alt_artists": [],
       "fun_fact": "LemON is part of Poland's rock scene, and 'Siedem życzeń' (2009) features on this Polish rock playlist.",
@@ -340,7 +340,7 @@
         "it": "applemusic://track/1469027984"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=G_Lsdk88AYM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111567927",
       "uri_deezer": "deezer://track/697981872",
       "alt_artists": [],
       "fun_fact": "Róże Europy is a Polish rock band active since the late 1980s, and 'Jedwab' (2015) features on this Polish rock playlist.",
@@ -366,7 +366,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=f_EXFzvj2vI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/525898080",
       "uri_deezer": "deezer://track/4029293241",
       "alt_artists": [],
       "fun_fact": "ZIEMBUL is part of Poland's rock scene, and 'Działam' (2026) features on this Polish rock playlist.",
@@ -418,7 +418,7 @@
         "it": "applemusic://track/905833010"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bix1tb6rVeU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89024753",
       "uri_deezer": "deezer://track/501721802",
       "alt_artists": [],
       "fun_fact": "Wilki is a Polish rock band led by Robert Gawlinski, and 'Son Of The Blue Sky' (2018) features on this Polish rock playlist.",
@@ -444,7 +444,7 @@
         "it": "applemusic://track/1334712668"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=soTn9p3Adpw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/84336859",
       "uri_deezer": "deezer://track/458821712",
       "alt_artists": [],
       "fun_fact": "Lao Che is a Polish rock band known for its concept albums, and 'Nie raj' (2018) features on this Polish rock playlist.",
@@ -470,7 +470,7 @@
         "it": "applemusic://track/1501148303"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QRxH-II0OsA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/132862867",
       "uri_deezer": "deezer://track/890831482",
       "alt_artists": [],
       "fun_fact": "Męskie Granie Orkiestra is part of Poland's rock scene, and 'Początek' (2018) features on this Polish rock playlist.",
@@ -496,7 +496,7 @@
         "it": "applemusic://track/6763656555"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0LSXaBjdO48",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/518934835",
       "uri_deezer": null,
       "alt_artists": [],
       "fun_fact": "Insekt is part of Poland's rock scene, and 'Nikt Tego Nie Puści W Twoim Radio' (2026) features on this Polish rock playlist.",
@@ -730,7 +730,7 @@
         "it": "applemusic://track/1485674445"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8igBzhNflNg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/120747826",
       "uri_deezer": "deezer://track/782048432",
       "alt_artists": [],
       "fun_fact": "Sztywny Pal Azji is a Polish rock band active since the 1980s, and 'Wieża radości, wieża samotności' (2019) features on this Polish rock playlist.",
@@ -756,7 +756,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LAtmbRgGKxg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/29863054",
       "uri_deezer": "deezer://track/78573361",
       "alt_artists": [],
       "fun_fact": "Urszula is a Polish rock singer active since the 1980s, and 'Luz - Blues, W Niebie Same Dziury' (2014) features on this Polish rock playlist.",
@@ -782,7 +782,7 @@
         "it": "applemusic://track/6768723207"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nnj88k9VtbI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/524020349",
       "uri_deezer": "deezer://track/4019885731",
       "alt_artists": [],
       "fun_fact": "Łzy is part of Poland's rock scene, and 'Endorfiny Granat - DZIEŃ' (2026) features on this Polish rock playlist.",
@@ -808,7 +808,7 @@
         "it": "applemusic://track/1442951383"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=z-2mO3KTVHg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34793549",
       "uri_deezer": "deezer://track/85904751",
       "alt_artists": [],
       "fun_fact": "Yugopolis is part of Poland's rock scene, and 'Ostatnia Nocka' (2014) features on this Polish rock playlist.",
@@ -860,7 +860,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=frMejru65Vg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/212447327",
       "uri_deezer": "deezer://track/1621168952",
       "alt_artists": [],
       "fun_fact": "T.Love is a Polish rock band led by Muniek Staszczyk, and 'Pochodnia' (2022) features on this Polish rock playlist.",
@@ -886,7 +886,7 @@
         "it": "applemusic://track/1097930204"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1YtRuAd7ti4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58810247",
       "uri_deezer": "deezer://track/121736958",
       "alt_artists": [],
       "fun_fact": "Pidżama Porno is a Polish punk rock band led by Krzysztof Grabowski, and 'Nikt tak pięknie nie mówił, że się boi miłości' (2016) features on this Polish rock playlist.",
@@ -912,7 +912,7 @@
         "it": "applemusic://track/1511556419"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hZg2fm-3vDI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/140165671",
       "uri_deezer": "deezer://track/950273412",
       "alt_artists": [],
       "fun_fact": "Myslovitz is a Polish rock band from the town of Myslowice, and 'Chłopcy' (2020) features on this Polish rock playlist.",
@@ -938,7 +938,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sCzJW2P-aA8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102929276",
       "uri_deezer": "deezer://track/622389002",
       "alt_artists": [],
       "fun_fact": "Golden Life is a Polish rock band from Gdansk, and 'Oprocz - Blekitnego Nieba' (1993) features on this Polish rock playlist.",
@@ -964,7 +964,7 @@
         "it": "applemusic://track/1485672134"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nYMiNuJJyYM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/121305116",
       "uri_deezer": "deezer://track/791995322",
       "alt_artists": [],
       "fun_fact": "Chłopcy z Placu Broni is a Polish rock band from Lodz, and 'Kocham wolność' (2011) features on this Polish rock playlist.",
@@ -990,7 +990,7 @@
         "it": "applemusic://track/1604203594"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sOrXHaOqLL8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/121191081",
       "uri_deezer": "deezer://track/1616487602",
       "alt_artists": [],
       "fun_fact": "Obywatel G.C. is part of Poland's rock scene, and 'Tak ... Tak ... To Ja' (2017) features on this Polish rock playlist.",
@@ -1016,7 +1016,7 @@
         "it": "applemusic://track/1394567916"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ViLjJ7LV-AI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89968612",
       "uri_deezer": "deezer://track/509116072",
       "alt_artists": [],
       "fun_fact": "Human is part of Poland's rock scene, and 'Polski' (2018) features on this Polish rock playlist.",
@@ -1042,7 +1042,7 @@
         "it": "applemusic://track/1572008783"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UbtKux8mrC0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/187176234",
       "uri_deezer": "deezer://track/1400723062",
       "alt_artists": [],
       "fun_fact": "Muchy is part of Poland's rock scene, and 'Szaroróżowe' (2021) features on this Polish rock playlist.",
@@ -1068,7 +1068,7 @@
         "it": "applemusic://track/1455495091"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZrhjFzEQ_hY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/83503108",
       "uri_deezer": "deezer://track/451344802",
       "alt_artists": [],
       "fun_fact": "Budka Suflera is a long-running Polish rock band founded in Lublin in 1974, and 'Ratujmy co się da' (2010) features on this Polish rock playlist.",
@@ -1094,7 +1094,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=an-rlW6pRWo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32580343",
       "uri_deezer": "deezer://track/81811428",
       "alt_artists": [],
       "fun_fact": "T.Love is a Polish rock band led by Muniek Staszczyk, and 'Warszawa' (2014) features on this Polish rock playlist.",
@@ -1120,7 +1120,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vU6D-FBzvfo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/455587714",
       "uri_deezer": "deezer://track/3642707952",
       "alt_artists": [],
       "fun_fact": "Kasia Lins is part of Poland's rock scene, and 'Śmierć w bikini' (2025) features on this Polish rock playlist.",
@@ -1146,7 +1146,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_vw2K0AgFF0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58810037",
       "uri_deezer": "deezer://track/121737452",
       "alt_artists": [],
       "fun_fact": "Kult is a Polish rock band led by Kazik Staszewski, and 'Arahja' (2016) features on this Polish rock playlist.",
@@ -1172,7 +1172,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=E3fqn1aBZ5Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144631746",
       "uri_deezer": "deezer://track/988498082",
       "alt_artists": [],
       "fun_fact": "Myslovitz is a Polish rock band from the town of Myslowice, and 'Z twarzą Marilyn Monroe' (1996) features on this Polish rock playlist.",
@@ -1198,7 +1198,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6039139",
       "uri_deezer": "deezer://track/10246097",
       "alt_artists": [],
       "fun_fact": "Maanam is a Polish rock band fronted by Kora, one of the defining acts of 1980s Polish rock, and 'Cykady na Cykladach' (2011) features on this Polish rock playlist.",
@@ -1224,7 +1224,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/53739079",
       "uri_deezer": "deezer://track/135717558",
       "alt_artists": [],
       "fun_fact": "Voo Voo is a Polish rock band led by Wojciech Waglewski, and 'Jak Gdyby Nigdy Nic' (2015) features on this Polish rock playlist.",
