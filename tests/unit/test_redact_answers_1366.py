@@ -10,6 +10,7 @@ connection gets a redacted copy.
 
 from __future__ import annotations
 
+import json
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import DOMAIN
@@ -111,8 +112,15 @@ class TestRedactStateForPlayer:
 def _make_ws() -> AsyncMock:
     ws = AsyncMock()
     ws.send_json = AsyncMock()
+    # #1711: broadcast now serializes once and sends via send_str(json_string).
+    ws.send_str = AsyncMock()
     ws.closed = False
     return ws
+
+
+def _sent_payload(ws: AsyncMock) -> dict:
+    """Decode the JSON string the broadcast sent to this WS (#1711)."""
+    return json.loads(ws.send_str.call_args[0][0])
 
 
 class TestBroadcastRedaction:
@@ -133,8 +141,8 @@ class TestBroadcastRedaction:
         msg = build_state_message(gs)
         await handler.broadcast(msg)
 
-        admin_payload = admin_ws.send_json.call_args[0][0]
-        player_payload = player_ws.send_json.call_args[0][0]
+        admin_payload = _sent_payload(admin_ws)
+        player_payload = _sent_payload(player_ws)
 
         # Spectator admin keeps the answers.
         assert admin_payload["admin_song"]["year"] == 1968
@@ -159,8 +167,8 @@ class TestBroadcastRedaction:
             {"artist": "The Beatles", "title": "Hey Jude", "album_art": "/art.png"}
         )
 
-        admin_payload = admin_ws.send_json.call_args[0][0]
-        player_payload = player_ws.send_json.call_args[0][0]
+        admin_payload = _sent_payload(admin_ws)
+        player_payload = _sent_payload(player_ws)
         assert admin_payload["song"]["artist"] == "The Beatles"
         assert player_payload["song"]["artist"] == REDACTED_PLACEHOLDER
         assert player_payload["song"]["title"] == REDACTED_PLACEHOLDER

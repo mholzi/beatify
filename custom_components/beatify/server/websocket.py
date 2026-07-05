@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import time
 from typing import TYPE_CHECKING
@@ -78,6 +79,12 @@ class BeatifyWebSocketHandler:
         self.connections: set[web.WebSocketResponse] = set()
         self._admin_disconnect_task: asyncio.Task | None = None
         self._analytics: AnalyticsStorage | None = None
+        # #1702: game_ids whose terminal end sequence (finalize_game +
+        # record_game + advance_to_end) has already been claimed. An admin has
+        # two admin-capable sockets (participant WS + spectator _admin_ws); on
+        # the final round both can pass the REVEAL/last_round checks. The claim
+        # (see _claim_game_end) makes the end run exactly once per game.
+        self._recorded_game_ids: set[str] = set()
         # Debouncing for concurrent player joins (Issue #41)
         self._broadcast_debounce_task: asyncio.Task | None = None
         self._broadcast_debounce_delay = 0.05  # 50ms
@@ -125,6 +132,22 @@ class BeatifyWebSocketHandler:
         """
         if self._analytics:
             self._analytics.record_error(error_type, message)
+
+    def _claim_game_end(self, game_id: str | None) -> bool:
+        """Claim the one-shot game-end for ``game_id`` (#1702).
+
+        Returns ``True`` exactly once per game — for the first admin socket to
+        reach the terminal branch — and ``False`` for any concurrent or repeat
+        caller, so ``record_game`` (double stats) and ``advance_to_end`` (double
+        podium TTS) run at most once per game. The check + insert has no
+        ``await`` between them, so two admin sockets in the same tick can't both
+        win. ``rematch_game`` / ``create_game`` mint a fresh ``game_id``, so a
+        later game is claimable again.
+        """
+        if game_id is None or game_id in self._recorded_game_ids:
+            return False
+        self._recorded_game_ids.add(game_id)
+        return True
 
     # ------------------------------------------------------------------
     # Rate limiting
@@ -313,11 +336,20 @@ class BeatifyWebSocketHandler:
 
         admin_ws = game_state._admin_ws if game_state else None
 
+        # #1711: there are at most two payload variants per broadcast (the
+        # admin/spectator copy and the redacted player copy). Serialize each to a
+        # JSON string ONCE here instead of letting aiohttp's ws.send_json run
+        # json.dumps per connection on the event loop. When no redaction applied
+        # (_redact_for_player returns the same object), both variants are one
+        # string, so we dump only once.
+        player_json = json.dumps(player_message)
+        admin_json = player_json if player_message is message else json.dumps(message)
+
         # Build list of send tasks for all open connections
         tasks = []
         for ws in list(targets):
             if not ws.closed:
-                payload = message if ws is admin_ws else player_message
+                payload = admin_json if ws is admin_ws else player_json
                 tasks.append(self._safe_send(ws, payload))
 
         # Execute all sends in parallel
@@ -352,17 +384,20 @@ class BeatifyWebSocketHandler:
                 return {**message, "song": song}
         return message
 
-    async def _safe_send(self, ws: web.WebSocketResponse, message: dict) -> None:
+    async def _safe_send(self, ws: web.WebSocketResponse, message: str) -> None:
         """
-        Send message to a single WebSocket, catching errors.
+        Send a pre-serialized JSON string to a single WebSocket, catching errors.
+
+        #1711: takes an already-``json.dumps``-ed string and uses ``send_str`` so
+        the same payload isn't re-serialized once per connection.
 
         Args:
             ws: WebSocket connection
-            message: Message to send
+            message: JSON string to send
 
         """
         try:
-            await ws.send_json(message)
+            await ws.send_str(message)
         except (ConnectionError, RuntimeError) as err:
             _LOGGER.warning("Failed to send to WebSocket: %s", err)
 
@@ -472,9 +507,21 @@ class BeatifyWebSocketHandler:
 
         # Admin disconnect: pause game after grace period (Story 7-1)
         if player.is_admin:
+            # #1703: snapshot the game identity so a grace timer that outlives
+            # the game (rematch / new game / dismiss) can't pause an unrelated
+            # later game.
+            armed_game_id = game_state.game_id
 
             async def pause_after_timeout() -> None:
                 await asyncio.sleep(LOBBY_DISCONNECT_GRACE_PERIOD)
+                # #1703: bail if the game changed identity while we waited.
+                if game_state.game_id != armed_game_id:
+                    _LOGGER.debug(
+                        "Admin-disconnect pause skipped — game changed (%s→%s)",
+                        armed_game_id,
+                        game_state.game_id,
+                    )
+                    return
                 # Check if admin still present and disconnected (#1664 PR-2:
                 # resolve by stable player_id, not by display name)
                 admin = game_state.get_player_by_session_id(player.player_id)
@@ -484,6 +531,13 @@ class BeatifyWebSocketHandler:
                         await self.broadcast_state()
                         _LOGGER.info("Game paused due to admin disconnect")
 
+            # #1703: cancel any still-pending disconnect-pause task before
+            # overwriting the handle. Without this, a superseded task keeps
+            # running and its grace timer can fire against a later game — e.g.
+            # after a rematch (which preserves player records with the admin
+            # marked disconnected), pausing the brand-new LOBBY.
+            if self._admin_disconnect_task and not self._admin_disconnect_task.done():
+                self._admin_disconnect_task.cancel()
             # Store task for cancellation on reconnect
             self._admin_disconnect_task = asyncio.create_task(pause_after_timeout())
         # Story 11.3: Regular players persist indefinitely - no removal timeout

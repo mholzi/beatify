@@ -156,6 +156,10 @@ class RevealAutoAdvanceMixin:
                 timer_seconds,
                 elapsed,
             )
+            # #1697: honors the round-start lock transitively — start_round()
+            # acquires _round_start_lock and no-ops (returns True) if a manual
+            # admin_next_round already advanced to PLAYING, so this auto-advance
+            # can't pull a second song / double-increment the round.
             success = await self.start_round()
             # #1360: when the playlist is exhausted, start_round() flips the
             # phase to END and returns False (a bare _set_phase(END), NOT the

@@ -32,6 +32,31 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
+async def _finalize_and_end(
+    handler: BeatifyWebSocketHandler, game_state: GameState
+) -> None:
+    """Record game stats + run the game-end ceremony exactly once (#1702).
+
+    The final-round terminal path is reachable from two admin-capable sockets
+    (participant WS + spectator ``_admin_ws``) at the same time. Gating on the
+    handler's one-shot claim keyed by ``game_id`` makes ``finalize_game`` /
+    ``record_game`` (double stats) and ``advance_to_end`` (double podium TTS)
+    fire at most once per game. The loser skips straight to the broadcast its
+    caller performs.
+    """
+    if not handler._claim_game_end(game_state.game_id):
+        _LOGGER.debug("Game-end already claimed for %s — skipping", game_state.game_id)
+        return
+
+    stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
+    if stats_service:
+        game_summary = game_state.finalize_game()
+        await stats_service.record_game(game_summary, difficulty=game_state.difficulty)
+        _LOGGER.debug("Game stats recorded")
+
+    await game_state.advance_to_end()
+
+
 async def handle_admin_connect(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
@@ -193,16 +218,17 @@ async def admin_next_round(
         # override + majority, rescore) before the round advances or the game
         # ends, so accepted near-misses count toward the leaderboard.
         await game_state.resolve_title_artist_if_pending()
+        # #1702: a second admin-capable socket (participant WS + spectator
+        # _admin_ws) may have advanced/ended the game while we awaited above.
+        # Re-check before driving the round forward; if it already left REVEAL,
+        # just re-broadcast the current state.
+        if game_state.phase != GamePhase.REVEAL:
+            await handler.broadcast_state()
+            return
         if game_state.last_round:
-            stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
-            if stats_service:
-                game_summary = game_state.finalize_game()
-                await stats_service.record_game(
-                    game_summary, difficulty=game_state.difficulty
-                )
-                _LOGGER.debug("Game stats recorded for natural end")
-
-            await game_state.advance_to_end()
+            # #1702: finalize + record + advance run exactly once per game even
+            # if both admin sockets reach here.
+            await _finalize_and_end(handler, game_state)
             await handler.broadcast_state()
         else:
             success = await game_state.start_round()
@@ -219,15 +245,7 @@ async def admin_next_round(
                 )
                 await handler.broadcast_state()
             else:
-                stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
-                if stats_service:
-                    game_summary = game_state.finalize_game()
-                    await stats_service.record_game(
-                        game_summary, difficulty=game_state.difficulty
-                    )
-                    _LOGGER.debug("Game stats recorded (no songs remaining)")
-
-                await game_state.advance_to_end()
+                await _finalize_and_end(handler, game_state)
                 await handler.broadcast_state()
     else:
         await ws.send_json(
@@ -335,13 +353,16 @@ async def admin_end_game(
 
     await game_state.stop_media()
 
-    stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
-    if stats_service:
-        game_summary = game_state.finalize_game()
-        await stats_service.record_game(game_summary, difficulty=game_state.difficulty)
-        _LOGGER.debug("Game stats recorded for early end")
+    # #1698: in title/artist mode, scoring for the current round is deferred
+    # until the vote window is finalized. admin_next_round resolves it first;
+    # admin_end_game must too, otherwise ending during REVEAL with the window
+    # open snapshots totals that miss the entire last round (wrong podium /
+    # winner). No-op outside title/artist mode or when nothing is pending.
+    await game_state.resolve_title_artist_if_pending()
 
-    await game_state.advance_to_end()
+    # #1702: record + end ceremony run once per game (shared claim with the
+    # next_round terminal path).
+    await _finalize_and_end(handler, game_state)
     _LOGGER.info(
         "Admin ended game early at round %d - players preserved for rematch",
         game_state.round,
@@ -428,6 +449,12 @@ async def admin_rematch_game(
             }
         )
         return
+
+    # #1703: cancel any pending admin-disconnect pause task before the rematch.
+    # rematch_game() preserves player records (admin may still be marked
+    # disconnected), so a leftover grace timer would otherwise fire and pause
+    # the brand-new LOBBY. cleanup_game_tasks previously ran only on dismiss.
+    await handler.cleanup_game_tasks()
 
     player_count = len(game_state.players)
     game_state.rematch_game()
