@@ -109,8 +109,17 @@ class TestSpeedMultiplier:
     def test_at_deadline(self):
         assert calculate_speed_multiplier(30.0, 30.0) == pytest.approx(1.0)
 
-    def test_halfway(self):
-        assert calculate_speed_multiplier(15.0, 30.0) == pytest.approx(1.5)
+    def test_grace_window_holds_max(self):
+        # #1722: the first third (10s of a 30s round) stays at the full 2.0x so
+        # listening to recognise the song isn't punished.
+        assert calculate_speed_multiplier(5.0, 30.0) == pytest.approx(2.0)
+        assert calculate_speed_multiplier(10.0, 30.0) == pytest.approx(2.0)
+
+    def test_decays_after_grace(self):
+        # #1722: past the 10s grace edge the multiplier decays linearly over the
+        # remaining 20s; 15s → 2.0 - 0.25 = 1.75, 20s → 1.5.
+        assert calculate_speed_multiplier(15.0, 30.0) == pytest.approx(1.75)
+        assert calculate_speed_multiplier(20.0, 30.0) == pytest.approx(1.5)
 
     def test_over_deadline_clamped(self):
         # More than round_duration → clamped to 1.0
@@ -125,9 +134,11 @@ class TestSpeedMultiplier:
         assert calculate_speed_multiplier(5.0, 0.0) == pytest.approx(1.0)
 
     def test_custom_duration(self):
+        # #1722: grace scales with the round (20s of a 60s round).
         assert calculate_speed_multiplier(0.0, 60.0) == pytest.approx(2.0)
+        assert calculate_speed_multiplier(20.0, 60.0) == pytest.approx(2.0)
         assert calculate_speed_multiplier(60.0, 60.0) == pytest.approx(1.0)
-        assert calculate_speed_multiplier(30.0, 60.0) == pytest.approx(1.5)
+        assert calculate_speed_multiplier(40.0, 60.0) == pytest.approx(1.5)
 
 
 # ---------------------------------------------------------------------------
@@ -154,15 +165,24 @@ class TestRoundScore:
         assert final == 0  # 0 * 2.0 = 0
 
     def test_close_guess_with_speed_bonus(self):
+        # #1722: 15s → 1.75x (post-grace decay); round(5 * 1.75) = round(8.75) = 9.
         final, base, multiplier = calculate_round_score(1983, 1985, 15.0, 30.0)
         assert base == 5
-        assert multiplier == pytest.approx(1.5)
-        assert final == 7  # int(5 * 1.5) = 7
+        assert multiplier == pytest.approx(1.75)
+        assert final == 9
 
     def test_hard_difficulty(self):
         final, base, _ = calculate_round_score(1983, 1985, 0.0, 30.0, "hard")
         assert base == 3  # hard: ±2 → 3pts
         assert final == 6  # 3 * 2.0 = 6
+
+    def test_low_tier_keeps_speed_bonus(self):
+        # #1722 regression: with int() a 1-point accuracy tier was speed-immune
+        # (int(1 * 1.75) == 1). round() now credits the bonus. Normal ±4 = 1pt.
+        final, base, multiplier = calculate_round_score(1981, 1985, 15.0, 30.0)
+        assert base == 1
+        assert multiplier == pytest.approx(1.75)
+        assert final == 2  # round(1 * 1.75) = 2, not 1
 
 
 # ---------------------------------------------------------------------------
