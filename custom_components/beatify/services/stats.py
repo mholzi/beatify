@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import copy
 import json
 import logging
 import os
@@ -149,15 +150,22 @@ class StatsService:
                     self._stats_file.parent.mkdir, 0o755, True, True
                 )
 
-                # Snapshot the stats dict, then do the (potentially expensive)
-                # json.dumps AND the file write together in the executor thread
-                # so neither blocks the event loop. With unbounded history the
-                # serialization alone could stall the loop on every save
-                # (#1402). The snapshot is a shallow copy taken on the loop
-                # thread so the executor serializes a stable view.
+                # Take a REAL snapshot on the loop thread before dispatching to
+                # the executor. json.dumps runs in the executor while the loop
+                # keeps mutating self._stats (record_song_result mutates
+                # _stats["songs"] in place, record_game appends/deletes games),
+                # so handing over a live reference would let json.dumps iterate
+                # a dict that changes size — raising RuntimeError mid-serialize
+                # and leaving the batch unwritten (#1762, regression from
+                # #1708's debounce which makes the collision more likely). A
+                # deepcopy is bounded (MAX_DETAILED_GAMES games) and costs a few
+                # ms on the loop thread, cheaply buying the executor a stable,
+                # immutable view. The expensive json.dumps AND the file write
+                # still run together in the executor so neither blocks the loop
+                # (#1402).
                 stats_path = self._stats_file
                 temp_path = stats_path.with_suffix(".json.tmp")
-                snapshot = self._stats
+                snapshot = copy.deepcopy(self._stats)
 
                 def _serialize_and_write() -> None:
                     content = json.dumps(snapshot, indent=2)
@@ -169,6 +177,15 @@ class StatsService:
                 _LOGGER.debug("Stats saved to %s", self._stats_file)
             except OSError as err:
                 _LOGGER.error("Failed to save stats: %s", err)
+            except (RuntimeError, ValueError) as err:
+                # Defense-in-depth: the deepcopy above should already prevent a
+                # "dictionary changed size during iteration" RuntimeError (and
+                # any serialization ValueError), but if one still slips through
+                # the batch is not on disk. Flag dirty so the done-callback path
+                # (_handle_save_done) retries rather than silently dropping it
+                # (#1762).
+                _LOGGER.error("Failed to serialize stats, will retry: %s", err)
+                self._save_dirty = True
 
     def schedule_save(self) -> None:
         """
