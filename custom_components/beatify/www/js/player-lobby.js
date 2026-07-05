@@ -193,10 +193,19 @@ var currentJoinUrl = null;
  */
 export function renderQRCode(joinUrl) {
     if (!joinUrl) return;
-    currentJoinUrl = joinUrl;
 
     var container = document.getElementById('player-qr-code');
     if (!container) return;
+
+    // #1764: renderQRCode fires on EVERY state broadcast (player-core:660),
+    // outside the #1706/#1707 coalescers. Without a guard a 20-player
+    // submission burst = 20 full Reed-Solomon encodes + DOM rebuilds per phone
+    // per round for a URL that never changes. Skip when the URL is unchanged
+    // and a QR is already in the DOM. A new game_id yields a different join_url
+    // (so the guard falls through and re-renders); container.firstChild being
+    // null (DOM rebuilt/cleared) also forces a re-render.
+    if (joinUrl === currentJoinUrl && container.firstChild) return;
+    currentJoinUrl = joinUrl;
 
     container.innerHTML = '';
 
