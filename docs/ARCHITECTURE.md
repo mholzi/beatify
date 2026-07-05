@@ -19,7 +19,7 @@ A self-hosted multiplayer music trivia game that runs as a Home Assistant integr
                 │ Beatify back-  │   game/state.py (~916 LOC orchestrator) +
                 │ end (HA inte-  │   game/state_*.py (14 mixins)
                 │ gration)       │   server/ws_handlers/ (package, ~40 message types)
-                └───────┬────────┘   services/{media_player,tts,playlist}
+                └───────┬────────┘   services/{media_player,tts,lights,stats}
                         │
                 ┌───────▼────────┐
                 │ Music Assistant│   external HA add-on
@@ -69,6 +69,7 @@ custom_components/beatify/
 │   ├── challenges.py       # Artist Challenge / Movie Quiz
 │   ├── powerups.py         # Steal power-up
 │   ├── playlist.py         # Playlist loading + filtering + provider URI resolution
+│   ├── player.py           # PlayerSession (score/streak/elimination state)
 │   ├── player_registry.py  # Player roster + reconnect reclaim
 │   ├── highlights.py       # End-of-game highlights reel (#75)
 │   ├── share.py            # End-game share card
@@ -91,9 +92,14 @@ custom_components/beatify/
 │   ├── stats_views.py      # analytics dashboard data
 │   ├── setup_state.py      # persisted wizard/setup state
 │   ├── serializers.py, base.py
+├── services/               # backend side-effect services (see §4, §10)
+│   ├── media_player.py     # provider URI dispatch + playback (#768/#805/#808)
+│   ├── tts.py              # TTS announcements (tts.speak; #793)
+│   ├── lights.py           # party-lights phase orchestration
+│   └── stats.py            # analytics/stats side-effects
 ├── playlists/              # 49 bundled playlists, 5,381 songs
 │   ├── *.json              # 17 default packs (era / greatest-hits / movie)
-│   ├── community/          # 30 community packs (genre / region), separate browse tab
+│   ├── community/          # 32 community packs (genre / region), separate browse tab
 │   ├── user/               # host-saved mixes land here as <slug>.json (Community tab)
 │   └── mix/                # transient Mixer output (internal, auto-cleaned)
 ├── translations/           # HA-internal (config flow, services)
@@ -114,9 +120,9 @@ custom_components/beatify/
     └── css/
         └── styles.min.css
 
-tests/                      # 58 pytest files (unit + integration)
+tests/                      # ~55 pytest files (unit + integration)
 custom_components/beatify/www/js/__tests__/
-└── *.test.js               # 45 Vitest JS unit tests
+└── *.test.js               # ~45+ Vitest JS unit suites
 
 scripts/
 ├── playlist_schema.json    # authoritative playlist JSON schema (CI-validated)
@@ -136,6 +142,7 @@ scripts/
 5. **Challenges & Crowd Court** (`state_challenge`, `state_vote_window`) — Artist Challenge, Movie Quiz, and the Title & Artist close-call vote window (#1180/#1243).
 6. **Roster** (`state_player`) — admin (host) + 0..N guests, reclaim-by-name on reconnect (#790).
 7. **Pause/resume** (`state_pause`), **setup** (`state_setup`), **TTS** (`state_tts`), **serialization** (`state_serialization`).
+8. **Sudden Death** (`state.py` `_apply_sudden_death_elimination`, #827/#1472) — an opt-in elimination mode: after each round's scoring (from **round 2** onward), the surviving player with the **lowest round score** is eliminated for the rest of the game; a tie for last is broken by submission speed (slowest — or a non-submitter — is out). Never eliminates the last survivor (the game ends with a `last_one_standing` 💀 highlight instead). Requires a **3-player minimum**: the wizard disables the toggle below 3, and the LOBBY→PLAYING transition (`server/game_views.py`) auto-disables it as a server-side backstop. Can be armed at game start or toggled live from the reveal screen (`set_sudden_death`).
 
 **Round-flow defensive coding:** every `asyncio.create_task` in the round flow carries an `add_done_callback` that surfaces unretrieved exceptions with a stack trace (fixed the #816 class of silent freezes).
 
@@ -206,8 +213,8 @@ End-to-end from the host's "+ Add custom playlist" tap: `playlist-requests.js` P
 
 ## 11. Test strategy
 
-- **`tests/`** — 58 pytest files (unit + integration): state mixins, scoring, playlist filtering, provider URI dispatch, WS handlers end-to-end via mocked HA.
-- **`www/js/__tests__/`** — 45 Vitest JS unit tests (player tour, wizard, game logic).
+- **`tests/`** — ~55 pytest files (unit + integration): state mixins, scoring, playlist filtering, provider URI dispatch, WS handlers end-to-end via mocked HA.
+- **`www/js/__tests__/`** — ~45+ Vitest JS unit suites (player tour, wizard, game logic).
 - **Burn-in CI** — flaky-test detection reruns the suite weekly.
 - **HACS validation** — `validate.yml` runs `hacs/action` + `hassfest` on every push; the playlist schema gate runs `validate_playlists.py`.
 
