@@ -75,7 +75,7 @@ export function updateEndView(data) {
 
     renderHighlights(data.highlights);
 
-    renderShareTab(data.share_data);
+    renderShareTab(data.share_data, currentPlayer);
 
     // Show admin or player controls
     var adminControls = document.getElementById('end-admin-controls');
@@ -266,11 +266,61 @@ function renderHighlights(highlights) {
 // ============================================
 
 /**
+ * #1664 item 3: structured parse of the server-built emoji share grid.
+ *
+ * The share card used to inline-regex the grid text in the middle of the canvas
+ * draw, mixing parsing with rendering. This pulls the parse into one pure,
+ * unit-tested function. It mirrors the fixed line layout of build_emoji_grid()
+ * in game/share.py; where a line is missing/reordered it simply leaves that
+ * field blank (the card already tolerates empty stats) rather than throwing.
+ *
+ * @param {string} emojiGrid - a per-player grid string from share_data.emoji_grids
+ * @returns {{playerName: string, score: string, isWinner: boolean, correct: string, exact: string, streak: string}}
+ */
+export function parseShareStats(emojiGrid) {
+    var stats = { playerName: '', score: '', isWinner: false, correct: '', exact: '', streak: '' };
+    if (!emojiGrid || typeof emojiGrid !== 'string') return stats;
+
+    var lines = emojiGrid.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (line === '') continue;
+
+        // "👑 name: 10pts" — the crown prefixes the player's own line.
+        if (line.indexOf('👑') !== -1) {
+            stats.isWinner = true;
+            var pm = line.match(/(?:👑\s*)?([^:]+?):\s*(\d+)\s*pts?/i);
+            if (pm) {
+                stats.playerName = pm[1].trim();
+                stats.score = pm[2];
+            }
+            continue;
+        }
+        // "  3/10 correct | 🔥 Best Streak: 4"
+        if (/correct/i.test(line)) {
+            var cm = line.match(/(\d+\/\d+)\s*correct/i);
+            if (cm) stats.correct = cm[1];
+            var sm = line.match(/Streak:\s*(\d+)/i);
+            if (sm) stats.streak = sm[1];
+            continue;
+        }
+        // "🎯 2 Exact | 💰 1/3 Bets"
+        if (/exact/i.test(line)) {
+            var em = line.match(/(\d+)\s*Exact/i);
+            if (em) stats.exact = em[1];
+        }
+    }
+    return stats;
+}
+
+/**
  * Render shareable result card (Issue #120, #216)
  * Shows the vinyl card inline as a PNG preview and wires the Share button.
  * @param {Object|null} shareData - Share data from state with emoji_grids, playlist_name, total_rounds
+ * @param {Object|null} currentPlayer - The current player's final-leaderboard entry
+ *   (authoritative name/score/best_streak). Optional — falls back to the grid parse.
  */
-function renderShareTab(shareData) {
+function renderShareTab(shareData, currentPlayer) {
     var container = document.getElementById('share-container');
     if (!container) return;
 
@@ -293,8 +343,23 @@ function renderShareTab(shareData) {
 
     container.classList.remove('hidden');
 
+    // #1664 item 3: build the card from structured stats instead of re-parsing
+    // text at draw time. The end-view leaderboard entry (currentPlayer) is the
+    // authoritative source for name/score/best_streak (same server values the
+    // emoji grid was built from); the grid only backfills the scored/exact
+    // counts the leaderboard payload doesn't carry.
+    var gridStats = parseShareStats(myGrid);
+    var stats = {
+        playerName: (currentPlayer && currentPlayer.name) || gridStats.playerName || 'Beatify Player',
+        score: currentPlayer ? String(currentPlayer.score) : (gridStats.score || '0'),
+        isWinner: gridStats.isWinner,
+        correct: gridStats.correct,
+        exact: gridStats.exact,
+        streak: currentPlayer ? String(currentPlayer.best_streak || 0) : gridStats.streak
+    };
+
     // Render the vinyl card into the inline <img> preview.
-    renderVisualCard(myGrid, shareData.playlist_name).then(function(canvas) {
+    renderVisualCard(stats, shareData.playlist_name).then(function(canvas) {
         var img = document.getElementById('share-card-image');
         if (img && canvas) {
             img.src = canvas.toDataURL('image/png');
@@ -316,51 +381,28 @@ function renderShareTab(shareData) {
  * Returns a Promise<HTMLCanvasElement> so callers can either preview it inline
  * (via toDataURL) or export it (via toBlob + exportCanvas).
  *
- * @param {string} emojiGrid - The emoji grid text (source of truth for stats)
+ * #1664 item 3: takes an already-structured `stats` object (built by
+ * renderShareTab from the leaderboard entry + parseShareStats) instead of a raw
+ * grid string, so this function no longer parses text mid-draw.
+ *
+ * @param {{playerName: string, score: string, isWinner: boolean, correct: string, exact: string, streak: string}} stats
  * @param {string} playlistName - Name of the playlist
  * @returns {Promise<HTMLCanvasElement>}
  */
-function renderVisualCard(emojiGrid, playlistName) {
+function renderVisualCard(stats, playlistName) {
     var W = 800, H = 800;
     var canvas = document.createElement('canvas');
     canvas.width = W;
     canvas.height = H;
     var ctx = canvas.getContext('2d');
 
-    // ── Parse emojiGrid to extract stats, player name, and score ──
-    var lines = emojiGrid.split('\n').filter(function(l) { return l.trim() !== ''; });
-    var playerLine = '';
-    var statsCorrect = '', statsStreak = '', statsExact = '', statsBets = '';
-    for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
-        if (line.match(/👑/)) {
-            playerLine = line;
-        } else if (line.match(/correct/i)) {
-            var correctMatch = line.match(/(\d+\/\d+)\s*correct/i);
-            var streakMatch = line.match(/Streak:\s*(\d+)/i);
-            if (correctMatch) statsCorrect = correctMatch[1];
-            if (streakMatch) statsStreak = streakMatch[1];
-        } else if (line.match(/exact/i)) {
-            var exactMatch = line.match(/(\d+)\s*Exact/i);
-            var betsMatch = line.match(/(\d+\/\d+)\s*Bets/i);
-            if (exactMatch) statsExact = exactMatch[1];
-            if (betsMatch) statsBets = betsMatch[1];
-        }
-    }
-
-    // playerLine is "👑 jkjk: 10pts" (or without crown for non-winners)
-    var playerName = '';
-    var score = '0';
-    var isWinner = false;
-    if (playerLine) {
-        isWinner = playerLine.indexOf('👑') !== -1;
-        var m = playerLine.match(/(?:👑\s*)?([^:]+?):\s*(\d+)\s*pts?/i);
-        if (m) {
-            playerName = m[1].trim();
-            score = m[2];
-        }
-    }
-    if (!playerName) playerName = 'Beatify Player';
+    // Structured stats — no text parsing here anymore (see renderShareTab).
+    var playerName = stats.playerName || 'Beatify Player';
+    var score = stats.score || '0';
+    var isWinner = stats.isWinner;
+    var statsCorrect = stats.correct;
+    var statsExact = stats.exact;
+    var statsStreak = stats.streak;
 
     // Wait for web fonts (Outfit + Inter) so the drawn text matches DESIGN.md
     var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();

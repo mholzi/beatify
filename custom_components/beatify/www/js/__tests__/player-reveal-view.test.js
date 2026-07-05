@@ -78,6 +78,8 @@ vi.mock('../player-utils.js', () => ({
     AnimationUtils: {},
     triggerConfetti: () => {},
     stopConfetti: () => {},
+    // #1664 item 3: player-reveal.js now unifies TA-mode detection on this helper.
+    isTitleArtistMode: (data) => !!(data && data.title_artist_mode),
 }));
 vi.mock('../player-game.js', () => ({
     updateLeaderboard: () => {},

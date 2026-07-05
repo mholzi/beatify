@@ -155,6 +155,24 @@ export function escapeHtml(text) {
     return div.innerHTML;
 }
 
+/**
+ * #1664 item 3: single source of truth for "are we in Title & Artist mode?".
+ *
+ * The server ships the top-level `title_artist_mode` flag on EVERY serialized
+ * payload (see game/serializers.py — set in the base state dict before phase
+ * branching, so it's present in PLAYING *and* REVEAL). player-game.js and the
+ * TV dashboard already keyed off this flag; player-reveal.js instead sniffed
+ * `title_artist_challenge.correct_title`, which diverged from the others on the
+ * edge where the mode is on but the challenge payload is momentarily absent.
+ * Unify every mode check on the authoritative flag.
+ *
+ * @param {Object} data - server state payload
+ * @returns {boolean} True when Title & Artist mode is active
+ */
+export function isTitleArtistMode(data) {
+    return !!(data && data.title_artist_mode);
+}
+
 // ============================================
 // Score Animation Utilities (Story 13.2)
 // ============================================

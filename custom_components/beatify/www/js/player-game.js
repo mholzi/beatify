@@ -12,7 +12,7 @@ import {
     initLeaderboardObserver, renderLazyLeaderboardRange,
     renderLeaderboardEntry, calculateInitialVisibleRange,
     setupLeaderboardResizeHandler, setEnergyLevel,
-    triggerConfetti, stopConfetti
+    triggerConfetti, stopConfetti, isTitleArtistMode
 } from './player-utils.js';
 
 // #1279 step 6/6: self-contained game clusters extracted to ./player-game/.
@@ -130,14 +130,31 @@ export function updateGameView(data) {
 
         var newSrc = data.song.album_art || '/beatify/static/img/no-artwork.svg';
 
-        albumCover.onload = function() {
+        // #1664 item 3: clean up the load/error listeners on every re-render.
+        // updateGameView() runs on each state_update, so without deregistering
+        // we either leak listeners (addEventListener) or leave a handler wired
+        // to a stale closure. Hold the refs on the element and remove any left
+        // from a previous render before re-attaching; `once` auto-removes the
+        // one that actually fires (the other is cleared by the next render).
+        if (albumCover._beatifyOnLoad) {
+            albumCover.removeEventListener('load', albumCover._beatifyOnLoad);
+        }
+        if (albumCover._beatifyOnError) {
+            albumCover.removeEventListener('error', albumCover._beatifyOnError);
+        }
+
+        var onAlbumLoad = function() {
             if (albumLoading) albumLoading.classList.add('hidden');
         };
-
-        albumCover.onerror = function() {
+        var onAlbumError = function() {
             albumCover.src = '/beatify/static/img/no-artwork.svg';
             if (albumLoading) albumLoading.classList.add('hidden');
         };
+
+        albumCover._beatifyOnLoad = onAlbumLoad;
+        albumCover._beatifyOnError = onAlbumError;
+        albumCover.addEventListener('load', onAlbumLoad, { once: true });
+        albumCover.addEventListener('error', onAlbumError, { once: true });
 
         albumCover.src = newSrc;
     }
@@ -265,7 +282,7 @@ function syncNoBonusFiller(data) {
     var hasMovie = !!(data && data.movie_challenge && data.movie_challenge.options);
     // #1180: in Title & Artist mode the "no bonus — nail the year" filler makes
     // no sense (there's no year; the T&I input card is the task). Hide it.
-    var taMode = !!(data && data.title_artist_mode);
+    var taMode = isTitleArtistMode(data);
     filler.classList.toggle('hidden', hasArtist || hasMovie || taMode);
 }
 
@@ -899,7 +916,7 @@ export function resetSubmissionState() {
  * @param {Object} data - State data from server (carries top-level title_artist_mode)
  */
 export function renderTitleArtistInput(data) {
-    var on = !!(data && data.title_artist_mode);
+    var on = isTitleArtistMode(data);
     titleArtistMode = on;
 
     var taContainer = document.getElementById('title-artist-container');
