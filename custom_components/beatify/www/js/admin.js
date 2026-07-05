@@ -24,6 +24,9 @@ import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js
 // #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
+// #1715: in-flight guard for in-game Next/Skip/Stop/Volume controls (debounce
+// double-taps that would otherwise skip a whole round).
+import { createControlGuard } from './admin/control-guard.js';
 
 // #1663 item 1: non-blocking notices replace the old blocking alert(). Transient
 // notices → neon top-toast; setup/validation errors → inline panel-banner docked
@@ -745,6 +748,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Issue #108: Rematch modal setup
     setupRematchModal();
 
+    // #1719: "Start New Game" confirmation modal setup
+    setupNewGameModal();
+
     // #777 follow-up: emergency reset button + modal
     setupResetModal();
 
@@ -1252,6 +1258,83 @@ async function startGameplay() {
     }
 }
 
+// ==========================================
+// #1716: focus management for admin confirmation dialogs
+// ==========================================
+// The admin aria-modal dialogs (End Game, Rematch, Start New Game) opened with
+// classList.remove('hidden') but never moved focus in, trapped Tab, or restored
+// focus on close — focus stayed on the trigger behind the backdrop, so the next
+// Enter/Tab operated on the obscured page. This mirrors, for admin.js's own
+// dialogs, the centralized dialog focus behaviour tracked in #1716 (the shared
+// player-utils/registry part is handled separately). Escape-to-close is already
+// provided by the consolidated setupModalEscapeHandler() + registerModalClose().
+
+var _modalFocusState = Object.create(null); // modalId -> { prevFocus, keydownHandler }
+
+function _focusablesIn(container) {
+    if (!container) return [];
+    var sel = 'a[href], button:not([disabled]), textarea:not([disabled]), ' +
+        'input:not([disabled]):not([type="hidden"]), select:not([disabled]), ' +
+        '[tabindex]:not([tabindex="-1"])';
+    return Array.prototype.slice.call(container.querySelectorAll(sel))
+        .filter(function (el) {
+            // Skip elements that are hidden (no layout box). activeElement is
+            // always eligible so an already-focused control isn't dropped.
+            return el === document.activeElement || el.offsetParent !== null;
+        });
+}
+
+/**
+ * Move focus into a just-opened modal, trap Tab within its .modal-content, and
+ * remember the previously-focused element for restore on close.
+ * @param {string} modalId
+ * @param {string} [preferredBtnId] control to focus first (usually Cancel)
+ */
+function activateModalFocus(modalId, preferredBtnId) {
+    var modal = document.getElementById(modalId);
+    if (!modal || _modalFocusState[modalId]) return;
+    var content = modal.querySelector('.modal-content') || modal;
+    var state = { prevFocus: document.activeElement, keydownHandler: null };
+
+    var target = preferredBtnId ? document.getElementById(preferredBtnId) : null;
+    if (!target || target.disabled) {
+        target = _focusablesIn(content)[0] || content;
+    }
+    if (target && typeof target.focus === 'function') target.focus();
+
+    state.keydownHandler = function (e) {
+        if (e.key !== 'Tab') return;
+        var focusables = _focusablesIn(content);
+        if (focusables.length === 0) { e.preventDefault(); return; }
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    };
+    modal.addEventListener('keydown', state.keydownHandler);
+    _modalFocusState[modalId] = state;
+}
+
+/** Tear down the Tab-trap and restore focus to the pre-open trigger. */
+function deactivateModalFocus(modalId) {
+    var state = _modalFocusState[modalId];
+    if (!state) return;
+    var modal = document.getElementById(modalId);
+    if (modal && state.keydownHandler) {
+        modal.removeEventListener('keydown', state.keydownHandler);
+    }
+    delete _modalFocusState[modalId];
+    if (state.prevFocus && typeof state.prevFocus.focus === 'function' &&
+        document.contains(state.prevFocus)) {
+        state.prevFocus.focus();
+    }
+}
+
 /**
  * Show end game confirmation modal (Story 9.10)
  */
@@ -1259,6 +1342,7 @@ function showEndGameModal() {
     const modal = document.getElementById('end-game-modal');
     if (modal) {
         modal.classList.remove('hidden');
+        activateModalFocus('end-game-modal', 'end-game-cancel-btn'); // #1716
     }
 }
 
@@ -1269,6 +1353,7 @@ function closeEndGameModal() {
     const modal = document.getElementById('end-game-modal');
     if (modal) {
         modal.classList.add('hidden');
+        deactivateModalFocus('end-game-modal'); // #1716
     }
 }
 
@@ -1345,6 +1430,7 @@ function showRematchModal() {
     var modal = document.getElementById('rematch-modal');
     if (modal) {
         modal.classList.remove('hidden');
+        activateModalFocus('rematch-modal', 'rematch-cancel-btn'); // #1716
     }
 }
 
@@ -1355,6 +1441,7 @@ function closeRematchModal() {
     var modal = document.getElementById('rematch-modal');
     if (modal) {
         modal.classList.add('hidden');
+        deactivateModalFocus('rematch-modal'); // #1716
     }
 }
 
@@ -2279,6 +2366,9 @@ function handleAdminStateUpdate(data) {
     // render is deferred and coalesced. renderAdminState re-assigns the same
     // value when it flushes — idempotent.
     adminState.currentGame = data;
+    // #1715: a fresh state broadcast means the last in-game control command was
+    // processed — release the in-flight guard so Next/Stop/Volume are live again.
+    releaseAllAdminControls();
     _scheduleAdminRender(data);
 }
 
@@ -2898,23 +2988,93 @@ function showAdminPausedView(data) {
 // ---- Admin game controls (sent via WS) ----
 // (#1279 step 3: sendAdminCommand moved to ./admin/api.js — imported above.)
 
+// #1715: in-flight guard shared by all in-game controls. next_round/stop_song
+// have no client-side ack that resets the button, so a laggy double-tap of Next
+// sent the command twice and skipped a round. Disable the tapped control on
+// send; re-enable it on the next WS state broadcast (releaseAll() in
+// handleAdminStateUpdate) or a safety timeout — mirroring the start
+// (_startInFlight) / rematch (rematchInProgress) guards.
+const _controlGuard = createControlGuard();
+var ADMIN_CONTROL_GUARD_MS = 4000; // Next/Stop: cleared far sooner by the WS state broadcast
+var ADMIN_VOLUME_GUARD_MS = 300;   // Volume: short debounce so repeat presses still ramp
+
+// Exposed so unit tests / re-render code can reset a stuck guard if needed.
+function releaseAllAdminControls() {
+    _controlGuard.releaseAll();
+}
+
 function adminNextRound() {
-    sendAdminCommand({ type: 'admin', action: 'next_round' });
+    _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
+        function () { return sendAdminCommand({ type: 'admin', action: 'next_round' }); },
+        ADMIN_CONTROL_GUARD_MS);
 }
 
 function adminStopSong() {
-    sendAdminCommand({ type: 'admin', action: 'stop_song' });
+    _controlGuard.run('stop_song', ['admin-stop-song'],
+        function () { return sendAdminCommand({ type: 'admin', action: 'stop_song' }); },
+        ADMIN_CONTROL_GUARD_MS);
 }
 
 function adminVolumeUp() {
-    sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'up' });
+    _controlGuard.run('vol_up', ['admin-vol-up'],
+        function () { return sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'up' }); },
+        ADMIN_VOLUME_GUARD_MS);
 }
 
 function adminVolumeDown() {
-    sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'down' });
+    _controlGuard.run('vol_down', ['admin-vol-down'],
+        function () { return sendAdminCommand({ type: 'admin', action: 'set_volume', direction: 'down' }); },
+        ADMIN_VOLUME_GUARD_MS);
 }
 
+// #1719: "Start New Game" (adminDismissGame) destructively wipes the saved
+// speaker/playlists/settings and relaunches the wizard — yet it sat next to
+// Rematch on the end screen with NO confirmation, while both End Game and
+// Rematch are gated by confirm modals. One stray tap silently forgot the host's
+// whole setup. Gate the wipe behind the same confirm-modal pattern; the actual
+// clearing now lives in confirmDismissGame().
+
+/** Show the "Start New Game" confirmation modal (#1719). */
+function showNewGameModal() {
+    var modal = document.getElementById('new-game-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        activateModalFocus('new-game-modal', 'new-game-cancel-btn'); // #1716
+    }
+}
+
+/** Close the "Start New Game" confirmation modal (#1719). */
+function closeNewGameModal() {
+    var modal = document.getElementById('new-game-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        deactivateModalFocus('new-game-modal'); // #1716
+    }
+}
+
+/** Entry point wired to the "Start New Game" button — asks first (#1719). */
 function adminDismissGame() {
+    showNewGameModal();
+}
+
+/** Wire the new-game confirmation modal (#1719). */
+function setupNewGameModal() {
+    var confirmBtn = document.getElementById('new-game-confirm-btn');
+    var cancelBtn = document.getElementById('new-game-cancel-btn');
+    var backdrop = document.querySelector('#new-game-modal .modal-backdrop');
+
+    confirmBtn?.addEventListener('click', function () {
+        closeNewGameModal();
+        confirmDismissGame();
+    });
+    cancelBtn?.addEventListener('click', closeNewGameModal);
+    backdrop?.addEventListener('click', closeNewGameModal);
+
+    registerModalClose('new-game-modal', closeNewGameModal);
+}
+
+/** Actually forget speaker/playlists/settings + relaunch the wizard (#1719). */
+function confirmDismissGame() {
     if (isAdminWsOpen()) {
         sendAdminWs({ type: 'admin', action: 'dismiss_game' });
     }
