@@ -50,6 +50,9 @@ import {
 // #1663 item 1: non-blocking toast replaces the blocking alert() (host-cannot-leave).
 import { showToast } from './notify.js';
 
+// #1664 item 2: retry game-status on transient errors before showing not-found.
+import { fetchGameStatusWithRetry } from './player-game-status.js';
+
 var utils = window.BeatifyUtils || {};
 var debug = utils.debug || function() {};
 
@@ -233,9 +236,10 @@ function showConnectionLostView() {
 // ============================================
 
 /**
- * Check game status with the server
+ * Check game status with the server.
+ * Exported for #1664 retry coverage in __tests__/player-check-game-status.test.js.
  */
-async function checkGameStatus() {
+export async function checkGameStatus() {
     if (!state.gameId) {
         showView('not-found-view');
         return;
@@ -246,40 +250,47 @@ async function checkGameStatus() {
         return;
     }
 
-    try {
-        var response = await fetch('/beatify/api/game-status?game=' + encodeURIComponent(state.gameId));
-        var data = await response.json();
+    // #1664 item 2: silently retry transport/server errors (network blip, 5xx,
+    // JSON-parse failure) a few times BEFORE falling back to not-found. During
+    // the retries the current (loading) view stays put — no flash. Returns the
+    // parsed data, or null once every attempt has failed.
+    var data = await fetchGameStatusWithRetry(state.gameId);
 
-        if (!data.exists) {
-            showView('not-found-view');
-            return;
-        }
-
-        if (data.phase === 'END') {
-            showView('ended-view');
-            return;
-        }
-
-        var adminName = sessionStorage.getItem('beatify_admin_name');
-        if (adminName) {
-            return;
-        }
-
-        var sessionCookie = getSessionCookie();
-        if (sessionCookie) {
-            connectWithSession();
-            return;
-        }
-
-        if (data.can_join) {
-            showView('join-view');
-        } else {
-            showView('in-progress-view');
-        }
-
-    } catch (err) {
-        console.error('Failed to check game status:', err);
+    if (data === null) {
+        // Every attempt hit a transport/server error → keep the previous
+        // fallback behaviour and show not-found.
+        console.error('Failed to check game status after retries');
         showView('not-found-view');
+        return;
+    }
+
+    // A successful HTTP-200 {exists:false} is a legitimate "game does not exist"
+    // answer from the server — show not-found immediately, no retry involved.
+    if (!data.exists) {
+        showView('not-found-view');
+        return;
+    }
+
+    if (data.phase === 'END') {
+        showView('ended-view');
+        return;
+    }
+
+    var adminName = sessionStorage.getItem('beatify_admin_name');
+    if (adminName) {
+        return;
+    }
+
+    var sessionCookie = getSessionCookie();
+    if (sessionCookie) {
+        connectWithSession();
+        return;
+    }
+
+    if (data.can_join) {
+        showView('join-view');
+    } else {
+        showView('in-progress-view');
     }
 }
 
