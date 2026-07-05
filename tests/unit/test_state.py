@@ -483,7 +483,7 @@ class TestRevealStartedAt:
         state.reveal_started_at = 1_700_000_000_000
         # Mark at least one player as submitted so idle_halt isn't set.
         state.add_player("Alice", MagicMock())
-        state.players["Alice"].submitted = True
+        state.get_player("Alice").submitted = True
 
         payload = GameStateSerializer.serialize(state)
         assert payload["reveal_auto_advance"] == 30
@@ -497,7 +497,7 @@ class TestRevealStartedAt:
         state.phase = GamePhase.REVEAL
         state.reveal_started_at = None
         state.add_player("Alice", MagicMock())
-        state.players["Alice"].submitted = True
+        state.get_player("Alice").submitted = True
 
         payload = GameStateSerializer.serialize(state)
         assert payload["reveal_auto_advance"] == 0
@@ -550,7 +550,7 @@ class TestAddPlayer:
         ok, err = self.state.add_player("Alice", MagicMock())
         assert ok is True
         assert err is None
-        assert "Alice" in self.state.players
+        assert self.state.get_player("Alice") is not None
 
     def test_add_duplicate_name_rejected(self):
         # ws.closed must be explicitly False — bare MagicMock attributes are
@@ -610,18 +610,18 @@ class TestAddPlayer:
         ws2 = MagicMock()
         self.state.add_player("Alice", ws1)
         # Simulate disconnect
-        self.state.players["Alice"].connected = False
+        self.state.get_player("Alice").connected = False
         # Reconnect with same name
         ok, err = self.state.add_player("Alice", ws2)
         assert ok is True
         assert err is None
-        assert self.state.players["Alice"].ws == ws2
-        assert self.state.players["Alice"].connected is True
+        assert self.state.get_player("Alice").ws == ws2
+        assert self.state.get_player("Alice").connected is True
 
     def test_player_name_trimmed(self):
         ok, err = self.state.add_player("  Bob  ", MagicMock())
         assert ok is True
-        assert "Bob" in self.state.players
+        assert self.state.get_player("Bob") is not None
 
 
 # ---------------------------------------------------------------------------
@@ -679,24 +679,24 @@ class TestAllSubmitted:
         assert self.state.all_submitted() is False
 
     def test_partial_submissions_returns_false(self):
-        self.state.players["Alice"].submitted = True
+        self.state.get_player("Alice").submitted = True
         assert self.state.all_submitted() is False
 
     def test_all_submitted_returns_true(self):
-        self.state.players["Alice"].submitted = True
-        self.state.players["Bob"].submitted = True
+        self.state.get_player("Alice").submitted = True
+        self.state.get_player("Bob").submitted = True
         assert self.state.all_submitted() is True
 
     def test_disconnected_player_excluded(self):
-        self.state.players["Bob"].connected = False
-        self.state.players["Alice"].submitted = True
+        self.state.get_player("Bob").connected = False
+        self.state.get_player("Alice").submitted = True
         assert self.state.all_submitted() is True
 
     def test_stale_connected_ghost_excluded(self):
         # #928: a player whose WebSocket is already closed but whose
         # `connected` flag has not been cleared must not block all-submitted.
-        self.state.players["Bob"].ws.closed = True
-        self.state.players["Alice"].submitted = True
+        self.state.get_player("Bob").ws.closed = True
+        self.state.get_player("Alice").submitted = True
         assert self.state.all_submitted() is True
 
     def test_no_players_returns_false(self):
@@ -717,8 +717,8 @@ class TestLeaderboard:
     def test_sorted_by_score_descending(self):
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.players["Alice"].score = 50
-        self.state.players["Bob"].score = 80
+        self.state.get_player("Alice").score = 50
+        self.state.get_player("Bob").score = 80
         lb = self.state.get_leaderboard()
         assert lb[0]["name"] == "Bob"
         assert lb[1]["name"] == "Alice"
@@ -726,8 +726,8 @@ class TestLeaderboard:
     def test_tied_scores_same_rank(self):
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.players["Alice"].score = 50
-        self.state.players["Bob"].score = 50
+        self.state.get_player("Alice").score = 50
+        self.state.get_player("Bob").score = 50
         lb = self.state.get_leaderboard()
         assert lb[0]["rank"] == 1
         assert lb[1]["rank"] == 1
@@ -736,9 +736,9 @@ class TestLeaderboard:
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
         self.state.add_player("Carol", MagicMock())
-        self.state.players["Alice"].score = 100
-        self.state.players["Bob"].score = 50
-        self.state.players["Carol"].score = 50
+        self.state.get_player("Alice").score = 100
+        self.state.get_player("Bob").score = 50
+        self.state.get_player("Carol").score = 50
         lb = self.state.get_leaderboard()
         ranks = {e["name"]: e["rank"] for e in lb}
         assert ranks["Alice"] == 1
@@ -764,27 +764,27 @@ class TestGetAverageScore:
 
     def test_single_player(self):
         self.state.add_player("Alice", MagicMock())
-        self.state.players["Alice"].score = 40
-        self.state.players["Alice"].rounds_played = 1
+        self.state.get_player("Alice").score = 40
+        self.state.get_player("Alice").rounds_played = 1
         assert self.state.get_average_score() == 40
 
     def test_multiple_players(self):
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.players["Alice"].score = 40
-        self.state.players["Alice"].rounds_played = 1
-        self.state.players["Bob"].score = 60
-        self.state.players["Bob"].rounds_played = 1
+        self.state.get_player("Alice").score = 40
+        self.state.get_player("Alice").rounds_played = 1
+        self.state.get_player("Bob").score = 60
+        self.state.get_player("Bob").rounds_played = 1
         assert self.state.get_average_score() == 50
 
     def test_excludes_unscored_late_joiners(self):
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.players["Alice"].score = 40
-        self.state.players["Alice"].rounds_played = 1
+        self.state.get_player("Alice").score = 40
+        self.state.get_player("Alice").rounds_played = 1
         # Bob is a late joiner with no rounds played
-        self.state.players["Bob"].score = 40
-        self.state.players["Bob"].rounds_played = 0
+        self.state.get_player("Bob").score = 40
+        self.state.get_player("Bob").rounds_played = 0
         assert self.state.get_average_score() == 40
 
 
@@ -807,34 +807,34 @@ class TestUseSteal:
         assert result["error"] == ERR_NO_STEAL_AVAILABLE
 
     def test_target_not_submitted(self):
-        self.state.players["Alice"].steal_available = True
+        self.state.get_player("Alice").steal_available = True
         result = self.state.use_steal("Alice", "Bob")
         assert result["success"] is False
         assert result["error"] == ERR_TARGET_NOT_SUBMITTED
 
     def test_cannot_steal_self(self):
-        self.state.players["Alice"].steal_available = True
+        self.state.get_player("Alice").steal_available = True
         result = self.state.use_steal("Alice", "Alice")
         assert result["success"] is False
         assert result["error"] == ERR_CANNOT_STEAL_SELF
 
     def test_successful_steal(self):
-        self.state.players["Alice"].steal_available = True
-        self.state.players["Bob"].submitted = True
-        self.state.players["Bob"].current_guess = 1990
+        self.state.get_player("Alice").steal_available = True
+        self.state.get_player("Bob").submitted = True
+        self.state.get_player("Bob").current_guess = 1990
         result = self.state.use_steal("Alice", "Bob")
         assert result["success"] is True
         assert result["year"] == 1990
-        assert self.state.players["Alice"].current_guess == 1990
-        assert self.state.players["Alice"].submitted is True
-        assert self.state.players["Alice"].steal_available is False
-        assert self.state.players["Alice"].steal_used is True
+        assert self.state.get_player("Alice").current_guess == 1990
+        assert self.state.get_player("Alice").submitted is True
+        assert self.state.get_player("Alice").steal_available is False
+        assert self.state.get_player("Alice").steal_used is True
 
     def test_steal_wrong_phase(self):
         self.state.phase = GamePhase.REVEAL
-        self.state.players["Alice"].steal_available = True
-        self.state.players["Bob"].submitted = True
-        self.state.players["Bob"].current_guess = 1990
+        self.state.get_player("Alice").steal_available = True
+        self.state.get_player("Bob").submitted = True
+        self.state.get_player("Bob").current_guess = 1990
         result = self.state.use_steal("Alice", "Bob")
         assert result["success"] is False
         assert result["error"] == ERR_INVALID_ACTION
@@ -1004,8 +1004,8 @@ class TestFinalizeGame:
         _create_fresh_game(self.state, songs=make_songs(5))
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.players["Alice"].score = 120
-        self.state.players["Bob"].score = 80
+        self.state.get_player("Alice").score = 120
+        self.state.get_player("Bob").score = 80
         self.state.round = 5
 
     def test_winner_is_highest_scorer(self):
@@ -1083,7 +1083,7 @@ class TestGetState:
     def test_end_state_has_winner(self):
         _create_fresh_game(self.state)
         self.state.add_player("Alice", MagicMock())
-        self.state.players["Alice"].score = 100
+        self.state.get_player("Alice").score = 100
         self.state.phase = GamePhase.END
         state = self.state.get_state()
         assert "winner" in state
@@ -1178,11 +1178,11 @@ class TestRematchGame:
         """Players must be preserved across rematch (scores reset)."""
         _create_fresh_game(self.state)
         self.state.add_player("Alice", MagicMock())
-        self.state.players["Alice"].score = 200
+        self.state.get_player("Alice").score = 200
         self.state.phase = GamePhase.END
         self.state.rematch_game()
-        assert "Alice" in self.state.players
-        assert self.state.players["Alice"].score == 0  # reset for new game
+        assert self.state.get_player("Alice") is not None
+        assert self.state.get_player("Alice").score == 0  # reset for new game
 
     def test_rematch_preserves_songs(self):
         """Songs must be restored so gameplay can start immediately."""
@@ -1697,13 +1697,13 @@ class TestTitleArtistMode:
         gs.add_player("Alice", _make_ws_for_state())
         gs.add_player("Bob", _make_ws_for_state())
         # Year guesses in for both (the existing all_submitted gate)
-        gs.players["Alice"].submit_guess(1965, 1.0)
-        gs.players["Bob"].submit_guess(1965, 1.0)
+        gs.get_player("Alice").submit_guess(1965, 1.0)
+        gs.get_player("Bob").submit_guess(1965, 1.0)
         # Only Alice submitted her title/artist guess
-        gs.players["Alice"].has_title_artist_guess = True
+        gs.get_player("Alice").has_title_artist_guess = True
         assert gs.check_all_guesses_complete() is False
         # Now Bob too
-        gs.players["Bob"].has_title_artist_guess = True
+        gs.get_player("Bob").has_title_artist_guess = True
         assert gs.check_all_guesses_complete() is True
 
 
@@ -2153,8 +2153,8 @@ class TestComputeWinners:
         state = make_game_state()
         state.add_player("Alice", MagicMock())
         state.add_player("Bob", MagicMock())
-        state.players["Alice"].score = 120
-        state.players["Bob"].score = 80
+        state.get_player("Alice").score = 120
+        state.get_player("Bob").score = 80
         winners, top = state.compute_winners()
         assert [w.name for w in winners] == ["Alice"]
         assert top == 120
@@ -2163,8 +2163,8 @@ class TestComputeWinners:
         state = make_game_state()
         state.add_player("Alice", MagicMock())
         state.add_player("Bob", MagicMock())
-        state.players["Alice"].score = 100
-        state.players["Bob"].score = 100
+        state.get_player("Alice").score = 100
+        state.get_player("Bob").score = 100
         winners, top = state.compute_winners()
         assert {w.name for w in winners} == {"Alice", "Bob"}
         assert top == 100
@@ -2180,8 +2180,8 @@ class TestComputeWinners:
         state = make_game_state()
         state.add_player("Alice", MagicMock())
         state.add_player("Bob", MagicMock())
-        state.players["Alice"].score = 100
-        state.players["Bob"].score = 100
+        state.get_player("Alice").score = 100
+        state.get_player("Bob").score = 100
         state.round = 3
 
         summary = state.finalize_game()

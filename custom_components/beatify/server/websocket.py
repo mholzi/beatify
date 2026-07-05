@@ -439,15 +439,12 @@ class BeatifyWebSocketHandler:
         if not game_state:
             return
 
-        # Find player by WebSocket
-        player_name = None
-        player = None
-        for name, p in list(game_state.players.items()):
-            if p.ws == ws:
-                player_name = name
-                player = p
-                player.connected = False
-                break
+        # Find player by WebSocket (#1664 PR-2: players keyed by player_id now,
+        # so resolve via the WS lookup and read the display name off the object)
+        player = game_state.get_player_by_ws(ws)
+        player_name = player.name if player else None
+        if player is not None:
+            player.connected = False
 
         # Issue #477: Clear admin spectator WS if it disconnected
         if game_state._admin_ws is ws:
@@ -478,14 +475,14 @@ class BeatifyWebSocketHandler:
 
             async def pause_after_timeout() -> None:
                 await asyncio.sleep(LOBBY_DISCONNECT_GRACE_PERIOD)
-                # Check if admin still disconnected
-                if player_name in game_state.players:
-                    admin = game_state.players[player_name]
-                    if not admin.connected:
-                        # pause_game() is async and handles media stop internally
-                        if await game_state.pause_game("admin_disconnected"):
-                            await self.broadcast_state()
-                            _LOGGER.info("Game paused due to admin disconnect")
+                # Check if admin still present and disconnected (#1664 PR-2:
+                # resolve by stable player_id, not by display name)
+                admin = game_state.get_player_by_session_id(player.player_id)
+                if admin is not None and not admin.connected:
+                    # pause_game() is async and handles media stop internally
+                    if await game_state.pause_game("admin_disconnected"):
+                        await self.broadcast_state()
+                        _LOGGER.info("Game paused due to admin disconnect")
 
             # Store task for cancellation on reconnect
             self._admin_disconnect_task = asyncio.create_task(pause_after_timeout())

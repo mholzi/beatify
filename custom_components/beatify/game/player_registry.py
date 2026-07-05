@@ -32,13 +32,49 @@ class PlayerRegistry:
 
     def __init__(self) -> None:
         """Initialize empty registry."""
-        self.players: dict[str, PlayerSession] = {}
-        self._sessions: dict[str, str] = {}  # session_id → player_name
+        # #1664 PR-2: ``players`` is now keyed by ``player_id`` (== session_id),
+        # the stable server-issued identifier — NOT the display name. The name
+        # is a mutable display attribute tracked by ``_name_index`` purely as a
+        # non-authoritative uniqueness / lookup hint.
+        self._players: dict[str, PlayerSession] = {}  # player_id → PlayerSession
+        # name.lower() → player_id (display / uniqueness hint, not authoritative)
+        self._name_index: dict[str, str] = {}
+        # session_id → player_id — reconnect gate (see clear_all_sessions):
+        # clearing this map invalidates session-based reconnect while leaving
+        # the players themselves intact (Story 11.6 leftover-session semantics).
+        self._sessions: dict[str, str] = {}
         self._reactions_this_phase: set[str] = set()
+
+    @property
+    def players(self) -> dict[str, PlayerSession]:
+        """Player dict keyed by ``player_id`` (== session_id)."""
+        return self._players
+
+    @players.setter
+    def players(self, value: dict[str, PlayerSession]) -> None:
+        """Replace the player dict and rebuild the derived indexes.
+
+        Callers assign a fresh dict (typically ``{}`` on teardown). Keeping the
+        ``_name_index`` / ``_sessions`` maps consistent here avoids stale
+        lookups after a wholesale replacement.
+        """
+        self._players = value
+        self._rebuild_indexes()
+
+    def _rebuild_indexes(self) -> None:
+        """Rebuild ``_name_index`` and ``_sessions`` from ``_players``."""
+        self._name_index = {
+            player.name.lower(): player_id
+            for player_id, player in self._players.items()
+        }
+        self._sessions = {
+            player.session_id: player_id for player_id, player in self._players.items()
+        }
 
     def reset(self) -> None:
         """Clear all players, sessions, and reactions."""
-        self.players.clear()
+        self._players.clear()
+        self._name_index.clear()
         self._sessions.clear()
         self._reactions_this_phase.clear()
 
@@ -82,25 +118,36 @@ class PlayerRegistry:
         if phase == GamePhase.END:
             return False, ERR_GAME_ENDED
 
-        # Check for reconnection - case-insensitive match
-        for existing_name, existing_player in self.players.items():
-            if existing_name.lower() == name.lower():
-                if not existing_player.connected:
-                    existing_player.ws = ws
-                    existing_player.connected = True
-                    _LOGGER.info("Player reconnected: %s", existing_name)
-                    return True, None
-                # #646: Check if the old WS is actually dead (race condition
-                # where _handle_disconnect hasn't run yet after browser reload)
-                if existing_player.ws is None or existing_player.ws.closed:
-                    _LOGGER.info(
-                        "Player %s: stale connected flag, old WS closed — allowing rejoin",
-                        existing_name,
-                    )
-                    existing_player.ws = ws
-                    existing_player.connected = True
-                    return True, None
-                return False, ERR_NAME_TAKEN
+        # #1664 PR-2: name-based reconnect FALLBACK (deprecated).
+        # The authoritative reconnect path is session_id-based
+        # (``get_player_by_session_id`` → ``handle_reconnect``). This
+        # case-insensitive name match is kept as an explicit backward-compat
+        # fallback for clients that rejoin by name without a valid session_id
+        # (old cookies, cleared storage). It will be removed in PR-5 once prod
+        # logs confirm it is unused.
+        existing_id = self._name_index.get(name.lower())
+        existing_player = self.players.get(existing_id) if existing_id else None
+        if existing_player is not None:
+            if not existing_player.connected:
+                existing_player.ws = ws
+                existing_player.connected = True
+                _LOGGER.info(
+                    "name-based reconnect fallback (deprecated) for %s",
+                    existing_player.name,
+                )
+                return True, None
+            # #646: Check if the old WS is actually dead (race condition
+            # where _handle_disconnect hasn't run yet after browser reload)
+            if existing_player.ws is None or existing_player.ws.closed:
+                _LOGGER.info(
+                    "name-based reconnect fallback (deprecated) for %s: "
+                    "stale connected flag, old WS closed — allowing rejoin",
+                    existing_player.name,
+                )
+                existing_player.ws = ws
+                existing_player.connected = True
+                return True, None
+            return False, ERR_NAME_TAKEN
 
         # Check player limit
         if len(self.players) >= MAX_PLAYERS:
@@ -116,8 +163,10 @@ class PlayerRegistry:
         player = PlayerSession(
             name=name, ws=ws, score=initial_score, streak=0, joined_late=joined_late
         )
-        self.players[name] = player
-        self._sessions[player.session_id] = name
+        # #1664 PR-2: key by player_id (== session_id), not the display name.
+        self._players[player.player_id] = player
+        self._name_index[name.lower()] = player.player_id
+        self._sessions[player.session_id] = player.player_id
 
         # Log join with score info
         if joined_late and initial_score > 0:
@@ -137,21 +186,19 @@ class PlayerRegistry:
         return True, None
 
     def get_player(self, name: str) -> PlayerSession | None:
-        """Get player by name (case-insensitive to match add_player reconnection)."""
-        player = self.players.get(name)
-        if player is not None:
-            return player
-        # Fallback: case-insensitive lookup (#413)
-        name_lower = name.lower()
-        for existing_name, existing_player in self.players.items():
-            if existing_name.lower() == name_lower:
-                return existing_player
-        return None
+        """Get player by display name (case-insensitive via ``_name_index``).
+
+        #1664 PR-2 / F6: name lookup is now uniformly case-insensitive across
+        ``get_player`` / ``remove_player`` / ``set_admin`` — all resolve through
+        the same ``_name_index`` (name.lower() → player_id).
+        """
+        player_id = self._name_index.get(name.lower())
+        return self.players.get(player_id) if player_id else None
 
     def get_player_by_session_id(self, session_id: str) -> PlayerSession | None:
-        """Get player by session ID."""
-        name = self._sessions.get(session_id)
-        return self.players.get(name) if name else None
+        """Get player by session ID (authoritative reconnect path)."""
+        player_id = self._sessions.get(session_id)
+        return self.players.get(player_id) if player_id else None
 
     def get_player_by_ws(self, ws: web.WebSocketResponse) -> PlayerSession | None:
         """Get player by WebSocket connection."""
@@ -174,12 +221,15 @@ class PlayerRegistry:
         return True
 
     def remove_player(self, name: str) -> None:
-        """Remove player from game."""
-        if name in self.players:
-            player = self.players[name]
-            self._sessions.pop(player.session_id, None)
-            del self.players[name]
-            _LOGGER.info("Player removed: %s", name)
+        """Remove player from game (by display name, case-insensitive — F6)."""
+        player_id = self._name_index.get(name.lower())
+        player = self.players.get(player_id) if player_id else None
+        if player_id is None or player is None:
+            return
+        self._sessions.pop(player.session_id, None)
+        self._name_index.pop(player.name.lower(), None)
+        del self._players[player_id]
+        _LOGGER.info("Player removed: %s", player.name)
 
     def clear_all_sessions(self) -> None:
         """Clear all session mappings for game reset."""
@@ -233,15 +283,15 @@ class PlayerRegistry:
 
     def set_admin(self, name: str) -> bool:
         """
-        Set a player as admin.
+        Set a player as admin (by display name, case-insensitive — F6).
 
         Returns:
             True if admin was set, False if player not found
 
         """
-        player = self.players.get(name)
+        player = self.get_player(name)
         if player:
             player.is_admin = True
-            _LOGGER.info("Admin set: %s", name)
+            _LOGGER.info("Admin set: %s", player.name)
             return True
         return False

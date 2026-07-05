@@ -431,16 +431,11 @@ async def handle_leave(
     game_state: GameState,
 ) -> None:
     """Handle intentional leave game (Story 11.5)."""
-    player = None
-    player_name = None
-    for name, p in list(game_state.players.items()):
-        if p.ws == ws:
-            player = p
-            player_name = name
-            break
-
+    # #1664 PR-2: players keyed by player_id — resolve by WS, use display name
+    player = game_state.get_player_by_ws(ws)
     if not player:
         return
+    player_name = player.name
 
     if player.is_admin:
         await ws.send_json(

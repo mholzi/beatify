@@ -59,7 +59,12 @@ class PlayerLifecycleMixin:
 
     @property
     def players(self) -> dict[str, PlayerSession]:
-        """Player dict — delegated to PlayerRegistry."""
+        """Player dict keyed by player_id (== session_id) — delegated to PlayerRegistry.
+
+        #1664 PR-2: the key is the stable ``player_id`` now, not the display
+        name. Name-based access goes through ``get_player`` / ``remove_player``
+        / ``set_admin`` (case-insensitive via the registry name index).
+        """
         return self._player_registry.players
 
     @players.setter

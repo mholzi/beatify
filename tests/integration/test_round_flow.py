@@ -78,9 +78,9 @@ class TestSingleRoundScoring:
         state.set_round_end_callback(_broadcast)
 
         _begin_round(state, year=1990)
-        state.players["Alice"].submit_guess(1990, state._now())  # exact
-        state.players["Bob"].submit_guess(1985, state._now())  # 5 off
-        state.players["Carol"].submit_guess(2010, state._now())  # 20 off
+        state.get_player("Alice").submit_guess(1990, state._now())  # exact
+        state.get_player("Bob").submit_guess(1985, state._now())  # 5 off
+        state.get_player("Carol").submit_guess(2010, state._now())  # 20 off
 
         await state.end_round()
 
@@ -89,9 +89,9 @@ class TestSingleRoundScoring:
         broadcast.assert_called_once()
 
         # Strict scoring order: exact > near > far.
-        alice = state.players["Alice"]
-        bob = state.players["Bob"]
-        carol = state.players["Carol"]
+        alice = state.get_player("Alice")
+        bob = state.get_player("Bob")
+        carol = state.get_player("Carol")
         assert alice.years_off == 0
         assert bob.years_off == 5
         assert carol.years_off == 20
@@ -104,16 +104,16 @@ class TestSingleRoundScoring:
         in the shareable round_results card (#120)."""
         state = _setup_started_game("Alice", "Bob")
         _begin_round(state, year=2000)
-        state.players["Alice"].submit_guess(2000, state._now())
+        state.get_player("Alice").submit_guess(2000, state._now())
         # Bob stays silent.
 
         await state.end_round()
 
-        bob = state.players["Bob"]
+        bob = state.get_player("Bob")
         assert bob.submitted is False
         assert bob.score == 0
         assert bob.round_results[-1] == "missed"
-        assert state.players["Alice"].round_results[-1] == "exact"
+        assert state.get_player("Alice").round_results[-1] == "exact"
 
 
 # ---------------------------------------------------------------------------
@@ -132,14 +132,14 @@ class TestMultiRoundLeaderboard:
         # Round 1: Bob nails it, Alice is far off -> Bob leads.
         _begin_round(state, year=1990)
         state._store_previous_ranks()
-        state.players["Bob"].submit_guess(1990, state._now())
-        state.players["Alice"].submit_guess(1950, state._now())
+        state.get_player("Bob").submit_guess(1990, state._now())
+        state.get_player("Alice").submit_guess(1950, state._now())
         await state.end_round()
 
         round1 = {e["name"]: e for e in state.get_leaderboard()}
         assert round1["Bob"]["rank"] == 1
         assert round1["Alice"]["rank"] == 2
-        bob_r1 = state.players["Bob"].score
+        bob_r1 = state.get_player("Bob").score
 
         # Round 2: Alice nails it (Bob far off). Her exact guess earns the same
         # as Bob's round-1 exact, so the two pull level on cumulative score.
@@ -147,13 +147,13 @@ class TestMultiRoundLeaderboard:
             player.reset_round()
         _begin_round(state, year=2000)
         state._store_previous_ranks()  # snapshot: Bob 1st, Alice 2nd
-        state.players["Alice"].submit_guess(2000, state._now())
-        state.players["Bob"].submit_guess(1900, state._now())
+        state.get_player("Alice").submit_guess(2000, state._now())
+        state.get_player("Bob").submit_guess(1900, state._now())
         await state.end_round()
 
         # Cumulative: scores are summed across rounds, not replaced.
-        assert state.players["Bob"].score == bob_r1  # round-2 far miss added 0
-        assert state.players["Alice"].score == bob_r1  # round-2 exact == Bob's r1
+        assert state.get_player("Bob").score == bob_r1  # round-2 far miss added 0
+        assert state.get_player("Alice").score == bob_r1  # round-2 exact == Bob's r1
 
         # Movement reflects the round-1 ranks as the baseline snapshot.
         final = {e["name"]: e for e in state.get_leaderboard()}
@@ -170,8 +170,8 @@ class TestMultiRoundLeaderboard:
         stat block and ranks players by their accumulated score."""
         state = _setup_started_game("Alice", "Bob")
         _begin_round(state, year=1990)
-        state.players["Alice"].submit_guess(1990, state._now())
-        state.players["Bob"].submit_guess(1995, state._now())
+        state.get_player("Alice").submit_guess(1990, state._now())
+        state.get_player("Bob").submit_guess(1995, state._now())
         await state.end_round()
 
         board = state.get_final_leaderboard()

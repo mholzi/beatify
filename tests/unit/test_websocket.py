@@ -120,7 +120,7 @@ class TestJoin:
 
         await handler._handle_message(ws, {"type": "join", "name": "Alice"})
 
-        assert "Alice" in game_state.players
+        assert game_state.get_player("Alice") is not None
         # Should receive join_ack, then state
         calls = ws.send_json.call_args_list
         types = [c[0][0]["type"] for c in calls]
@@ -191,8 +191,8 @@ class TestJoin:
             {"type": "join", "name": "Host", "is_admin": True, "ha_token": "t"},
         )
 
-        assert "Host" in game_state.players
-        assert game_state.players["Host"].is_admin is True
+        assert game_state.get_player("Host") is not None
+        assert game_state.get_player("Host").is_admin is True
 
     async def test_admin_join_without_ha_token_rejected(self):
         """#998: an is_admin claim with no HA token is rejected."""
@@ -205,7 +205,7 @@ class TestJoin:
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
         assert msg["code"] == ERR_UNAUTHORIZED
-        assert "Host" not in game_state.players
+        assert game_state.get_player("Host") is None
 
     async def test_second_admin_join_rejected(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -223,7 +223,7 @@ class TestJoin:
         assert msg["type"] == "error"
         assert msg["code"] == ERR_ADMIN_EXISTS
         # Intruder should have been removed
-        assert "Intruder" not in game_state.players
+        assert game_state.get_player("Intruder") is None
 
     async def test_admin_reconnect_during_pause(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -233,7 +233,7 @@ class TestJoin:
         game_state.add_player("Player2", _make_ws())
         game_state.start_game()
         # Simulate admin disconnect and game pause
-        game_state.players["Host"].connected = False
+        game_state.get_player("Host").connected = False
         game_state.phase = GamePhase.PAUSED
         game_state.disconnected_admin_name = "Host"
         game_state._previous_phase = GamePhase.PLAYING
@@ -263,7 +263,7 @@ class TestJoin:
         game_state.set_admin("Ben")
         # Simulate the WS drop that triggers Levtos's flow: connected=False
         # but no pause yet (grace period running or never fired).
-        game_state.players["Ben"].connected = False
+        game_state.get_player("Ben").connected = False
         game_state.phase = GamePhase.REVEAL
         assert not game_state.disconnected_admin_name
 
@@ -274,8 +274,8 @@ class TestJoin:
         )
 
         # Ben should still be admin, still in players, no error sent.
-        assert "Ben" in game_state.players
-        assert game_state.players["Ben"].is_admin is True
+        assert game_state.get_player("Ben") is not None
+        assert game_state.get_player("Ben").is_admin is True
         # Phase stays REVEAL — reclaim doesn't auto-resume from REVEAL
         assert game_state.phase == GamePhase.REVEAL
         # No error was sent on the new ws
@@ -307,7 +307,7 @@ class TestJoin:
         # Either ERR_ADMIN_EXISTS (existing admin found) or ERR_INVALID_ACTION
         # (phase check) is acceptable — both mean "no, you're not admin".
         assert msg["code"] in (ERR_ADMIN_EXISTS, ERR_INVALID_ACTION)
-        assert "Intruder" not in game_state.players
+        assert game_state.get_player("Intruder") is None
 
 
 # ---------------------------------------------------------------------------
@@ -328,8 +328,8 @@ class TestSubmit:
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985})
 
-        assert game_state.players["Alice"].submitted is True
-        assert game_state.players["Alice"].current_guess == 1985
+        assert game_state.get_player("Alice").submitted is True
+        assert game_state.get_player("Alice").current_guess == 1985
         # Should receive submit_ack
         ack = next(
             c[0][0]
@@ -364,7 +364,7 @@ class TestSubmit:
         game_state.add_player("Alice", ws)
         game_state.phase = GamePhase.PLAYING
         game_state.deadline = int(game_state._now() * 1000) + 60_000
-        game_state.players["Alice"].submitted = True
+        game_state.get_player("Alice").submitted = True
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985})
 
@@ -432,7 +432,7 @@ class TestSubmit:
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985, "bet": True})
 
-        assert game_state.players["Alice"].bet is True
+        assert game_state.get_player("Alice").bet is True
 
 
 # ---------------------------------------------------------------------------
@@ -444,8 +444,8 @@ class TestReconnect:
     async def test_successful_reconnect(self):
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
-        session_id = game_state.players["Alice"].session_id
-        game_state.players["Alice"].connected = False
+        session_id = game_state.get_player("Alice").session_id
+        game_state.get_player("Alice").connected = False
 
         new_ws = _make_ws()
         await handler._handle_message(
@@ -456,8 +456,8 @@ class TestReconnect:
         types = [c[0][0]["type"] for c in new_ws.send_json.call_args_list]
         assert "reconnect_ack" in types
         assert "state" in types
-        assert game_state.players["Alice"].connected is True
-        assert game_state.players["Alice"].ws is new_ws
+        assert game_state.get_player("Alice").connected is True
+        assert game_state.get_player("Alice").ws is new_ws
 
     async def test_reconnect_no_session_id(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -480,7 +480,7 @@ class TestReconnect:
     async def test_reconnect_ended_game(self):
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
-        session_id = game_state.players["Alice"].session_id
+        session_id = game_state.get_player("Alice").session_id
         game_state.phase = GamePhase.END
 
         new_ws = _make_ws()
@@ -507,7 +507,7 @@ class TestLeave:
         await handler._handle_message(ws, {"type": "leave"})
 
         # Player should be removed
-        assert "Alice" not in game_state.players
+        assert game_state.get_player("Alice") is None
         # Should receive "left" message
         left_msg = next(
             c[0][0] for c in ws.send_json.call_args_list if c[0][0]["type"] == "left"
@@ -525,7 +525,7 @@ class TestLeave:
         assert msg["type"] == "error"
         assert msg["code"] == ERR_ADMIN_CANNOT_LEAVE
         # Admin should still be in game
-        assert "Host" in game_state.players
+        assert game_state.get_player("Host") is not None
 
     async def test_leave_unknown_player_silent(self):
         handler, game_state, ws = _make_handler_and_game()
@@ -569,9 +569,9 @@ class TestSteal:
         game_state.add_player("Alice", ws)
         game_state.add_player("Bob", _make_ws())
         game_state.phase = GamePhase.PLAYING
-        game_state.players["Alice"].steal_available = True
-        game_state.players["Bob"].submitted = True
-        game_state.players["Bob"].current_guess = 1990
+        game_state.get_player("Alice").steal_available = True
+        game_state.get_player("Bob").submitted = True
+        game_state.get_player("Bob").current_guess = 1990
         handler.connections.add(ws)
 
         await handler._handle_message(ws, {"type": "steal", "target": "Bob"})
@@ -1295,7 +1295,7 @@ class TestTitleArtistGuess:
         )
         assert ack["title_status"] == "exact"
         assert ack["artist_status"] == "exact"
-        assert game_state.players["Alice"].has_title_artist_guess is True
+        assert game_state.get_player("Alice").has_title_artist_guess is True
 
     async def test_empty_fields_allowed_as_skipped(self):
         handler, game_state, ws = self._playing_game()

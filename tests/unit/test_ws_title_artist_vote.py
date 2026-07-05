@@ -113,7 +113,7 @@ class TestVoteHandler:
         handler, gs = _make_handler_game()
         bob_ws = _ws()
         gs.add_player("Bob", bob_ws)
-        gs.players["Bob"].connected = True
+        gs.get_player("Bob").connected = True
         # phase is LOBBY
         await handler._handle_message(
             bob_ws,
@@ -215,4 +215,4 @@ class TestHostAdvanceResolves:
         assert gs.is_title_artist_voting_open() is False
         assert ta.resolved is True
         # Alice's accepted near-miss banked partial title (5) + exact artist (5).
-        assert gs.players["Alice"].score == 10
+        assert gs.get_player("Alice").score == 10

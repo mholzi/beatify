@@ -58,7 +58,7 @@ async def _playing_game_with_player():
 
     ws = _ws()
     gs.add_player("Alice", ws)
-    gs.players["Alice"].connected = True
+    gs.get_player("Alice").connected = True
     await gs.start_round()
     assert gs.phase == GamePhase.PLAYING
     # Round is still PLAYING, but the deadline has elapsed.
@@ -95,6 +95,6 @@ class TestLateGuessRejected:
         # Handler answered with the round-expired error ...
         assert ERR_ROUND_EXPIRED in _sent_codes(ws)
         # ... and never marked the guess as submitted (no points/bonus banked).
-        assert getattr(gs.players["Alice"], flag) is False
+        assert getattr(gs.get_player("Alice"), flag) is False
 
         gs._cancel_auto_advance()
