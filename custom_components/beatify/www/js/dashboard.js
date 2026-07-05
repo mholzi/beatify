@@ -849,12 +849,25 @@
         }
 
         // Update album art (blurred - AC 10.4.3)
+        // #1767: unchanged-src short-circuit (mirrors handleMetadataUpdate +
+        // player-game.js/player-reveal.js). renderPlayingView runs on EVERY changed
+        // PLAYING broadcast (each vote/submission tick passes the #1705 coalescer);
+        // reassigning albumArt.src — even to the same URL — re-runs the image load
+        // algorithm (re-decode + paint) on weak TV hardware. Track the last
+        // requested URL on the element (album_art can be relative, so the resolved
+        // .src is unreliable) and skip when unchanged.
         var albumArt = document.getElementById('dashboard-album-art');
         if (albumArt) {
-            albumArt.src = song.album_art || '/beatify/static/img/no-artwork.svg';
-            albumArt.onerror = function() {
-                this.src = '/beatify/static/img/no-artwork.svg';
-            };
+            var newArtSrc = song.album_art || '/beatify/static/img/no-artwork.svg';
+            if (albumArt._beatifyRequestedSrc !== newArtSrc) {
+                albumArt._beatifyRequestedSrc = newArtSrc;
+                albumArt.onerror = function() {
+                    // Reset so a later retry with the same URL re-attempts the load.
+                    this._beatifyRequestedSrc = null;
+                    this.src = '/beatify/static/img/no-artwork.svg';
+                };
+                albumArt.src = newArtSrc;
+            }
         }
 
         // Start countdown — #1705: (re)start ONLY when the round's deadline
@@ -1087,12 +1100,21 @@
         var players = data.players || [];
 
         // Update album art (clear - no blur)
+        // #1767: unchanged-src short-circuit (see renderPlayingView). renderRevealView
+        // reruns on every changed REVEAL broadcast during vote-heavy phases; skip the
+        // src reassignment (re-decode + paint) when the requested URL is unchanged.
         var albumArt = document.getElementById('reveal-album-art');
         if (albumArt) {
-            albumArt.src = song.album_art || '/beatify/static/img/no-artwork.svg';
-            albumArt.onerror = function() {
-                this.src = '/beatify/static/img/no-artwork.svg';
-            };
+            var newRevealArtSrc = song.album_art || '/beatify/static/img/no-artwork.svg';
+            if (albumArt._beatifyRequestedSrc !== newRevealArtSrc) {
+                albumArt._beatifyRequestedSrc = newRevealArtSrc;
+                albumArt.onerror = function() {
+                    // Reset so a later retry with the same URL re-attempts the load.
+                    this._beatifyRequestedSrc = null;
+                    this.src = '/beatify/static/img/no-artwork.svg';
+                };
+                albumArt.src = newRevealArtSrc;
+            }
         }
 
         // Update song info
