@@ -88,13 +88,13 @@
     "timeRemaining": "{seconds}s over",
     "bet": "Driedubbel of niets",
     "betShort": "×3",
+    "betActive": "Inzet actief!",
     "noBonusThisRound": "Geen bonus deze ronde — raad het jaar",
     "lockedIn": "Vergrendeld · wachten op anderen",
     "lockedInWaitingCount": "Vergrendeld · wachten op {count} meer",
     "lockedInAllSubmitted": "Vergrendeld · iedereen klaar",
     "waitingForOthers": "Wachten op anderen",
     "allSubmitted": "Iedereen klaar",
-    "betActive": "Inzet actief!",
     "guessArtist": "Raad de artiest",
     "artistPlaceholder": "Naam van artiest",
     "paused": "Spel gepauzeerd",
@@ -324,6 +324,26 @@
     "skipRound": "Overslaan",
     "mediaPlayers": "Mediaspelers",
     "playlists": "Afspeellijsten",
+    "playlistTabList": "Playlists",
+    "playlistTabMix": "Mix",
+    "mixTitle": "Slimme playlist-mixer",
+    "mixSubtitle": "Kies tags — Beatify stelt direct een ontdubbelde set samen uit je catalogus.",
+    "mixTargetCount": "Aantal nummers doel",
+    "mixPreviewEmpty": "Selecteer tags om je mix te bekijken.",
+    "mixPreviewNone": "Geen playlists komen overeen met deze tags.",
+    "mixPreview": "≈ {songs} nummers uit {playlists} playlists · duplicaten verwijderd",
+    "mixPreviewTracks": "Tracklist bekijken",
+    "mixPreviewLoading": "Voorbeeld laden…",
+    "mixTracklistHeading": "{count} nummers in deze mix",
+    "mixTracklistEmpty": "Geen nummers om te bekijken.",
+    "mixStart": "Mix starten",
+    "mixAssembling": "Samenstellen…",
+    "mixSaveCommunity": "Opslaan als community-playlist",
+    "mixNoTags": "Geen getagde playlists gevonden om uit te mixen.",
+    "mixNoTagsSelected": "Selecteer minstens één tag.",
+    "mixNoMediaPlayer": "Selecteer eerst een mediaspeler.",
+    "mixFailed": "Kon de mix niet samenstellen.",
+    "mixStartUnavailable": "Mix samengesteld, maar het spel kon niet worden gestart.",
     "selectPlaylist": "Kies afspeellijst",
     "selectMediaPlayer": "Kies speaker",
     "selectMediaPlayerHint": "Kies een mediaspeler",
@@ -365,6 +385,8 @@
     "stopSong": "Stop nummer",
     "connectionLost": "Verbinding verloren — opnieuw verbinden...",
     "connectionDisrupted": "Verbinding verstoord — herlaad de pagina.",
+    "wsAuthFailed": "Home Assistant heeft het toegangstoken geweigerd. Opnieuw authenticeren…",
+    "companionLocalNetworkRequired": "Beatify-admin vereist lokale netwerktoegang vanuit de Companion-app — open Beatify in een externe browser of maak verbinding met je thuis-wifi.",
     "confirmIntro": "Ronde starten",
     "next": "Volgende",
     "nextRound": "Volgende ronde",
@@ -599,7 +621,8 @@
     "suddenDeathMode": "Sudden Death",
     "suddenDeathModeHint": "De laatste van elke ronde valt af. Wie overblijft, wint.",
     "suddenDeathDisabledTooltip": "Sudden Death heeft minstens 3 spelers nodig.",
-    "suddenDeathLive": "Sudden Death"  },
+    "suddenDeathLive": "Sudden Death"
+  },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
     "subtitle": "Analytics",
@@ -849,6 +872,7 @@
     "ADMIN_EXISTS": "Er is al een host",
     "ALREADY_SUBMITTED": "Al verstuurd",
     "CONNECTION_LOST": "Verbinding verbroken",
+    "EMPTY_MIX": "Geen nummers komen overeen met de geselecteerde tags voor deze provider. Probeer minder of andere tags.",
     "GAME_ALREADY_STARTED": "Er is al een spel bezig. Beëindig het voordat je een nieuwe start.",
     "GAME_ENDED": "Het spel is afgelopen",
     "GAME_FULL": "Het spel zit vol",
@@ -858,17 +882,21 @@
     "INVALID_ACTION": "Ongeldige actie",
     "INVALID_FORMAT": "Dat lijkt geen geldige Spotify-playlist-URL te zijn.",
     "MEDIA_PLAYER_UNAVAILABLE": "Mediaspeler niet beschikbaar",
+    "MIX_INVALID": "De samengestelde mix is niet gevalideerd. Probeer het opnieuw met andere tags.",
     "NAME_INVALID": "Ongeldige naam",
     "NAME_TAKEN": "Naam is al in gebruik",
     "NOT_ADMIN": "Beheerrechten vereist",
     "NOT_IN_GAME": "Niet in spel",
     "NO_SONGS_REMAINING": "Geen nummers meer over",
+    "NO_TAGS": "Kies minstens één tag om een mix te maken.",
     "PLAYLIST_NOT_FOUND": "Playlist niet gevonden. Klopt de URL en is de playlist openbaar?",
     "RATE_LIMITED": "Te veel verzoeken — wacht een minuut en probeer opnieuw.",
     "RECONNECTING": "Opnieuw verbinden...",
     "ROUND_EXPIRED": "De ronde is verlopen",
+    "SAVE_FAILED": "Kon de mix niet opslaan. Probeer het opnieuw.",
     "SESSION_NOT_FOUND": "Sessie verlopen",
     "SESSION_TAKEOVER": "Sessie overgenomen door een ander tabblad",
+    "UNAUTHORIZED": "Je hebt daar geen toestemming voor.",
     "UNKNOWN": "Er is een fout opgetreden",
     "askHostNewGame": "Vraag de host om een nieuw spel te starten.",
     "startNotPossible": "Starten niet mogelijk",
@@ -1065,6 +1093,166 @@
     "titleArtistTitle": "Raad het nummer",
     "titleArtistCaption": "Soms: typ de titel & artiest",
     "titleArtistHint": "Bijna? De zaal stemt 👍/👎."
+  },
+  "playlistHub": {
+    "title": "Playlist-hub",
+    "loading": "Laden…",
+    "close": "Sluiten",
+    "retry": "Opnieuw",
+    "seeAll": "Alles bekijken",
+    "by": "van",
+    "bundledBy": "Beatify-team",
+    "songs": "nummers",
+    "played": "gespeeld",
+    "players": "spelers",
+    "min": "min",
+    "local": "Lokaal",
+    "search": {
+      "placeholder": "Zoek playlists, artiesten, jaren…"
+    },
+    "tabs": {
+      "bundled": "Meegeleverd",
+      "community": "Community",
+      "mine": "Mijne"
+    },
+    "chips": {
+      "all": "Alle genres",
+      "pop": "Pop",
+      "rock": "Rock",
+      "hiphop": "Hip-Hop",
+      "metal": "Metal",
+      "jazz": "Jazz",
+      "electronic": "Elektronisch",
+      "latin": "Latin",
+      "schlager": "Schlager",
+      "soul": "Soul / R&B",
+      "other": "Overig"
+    },
+    "shelves": {
+      "yourMostPlayed": "Meest gespeeld",
+      "recentlyPlayed": "Onlangs gespeeld",
+      "editorsPicks": "Redactiekeuze",
+      "fromCommunity": "Uit de community",
+      "popularIn": "Populair in",
+      "recentlyAdded": "Onlangs toegevoegd",
+      "regional": "Regionaal & speciaal",
+      "searchResults": "Resultaten"
+    },
+    "community": {
+      "tag": "COMMUNITY",
+      "banner": {
+        "title": "Niks voor jou hier? Vraag een playlist aan.",
+        "sub": "Beschrijf het genre, tijdperk, de sfeer. Een maintainer levert 'm in 24–48 u."
+      }
+    },
+    "mine": {
+      "requests": "AANVRAGEN",
+      "done": "KLAAR",
+      "inFlight": "ONDERWEG",
+      "untitled": "Naamloze aanvraag",
+      "submitted": "Ingediend",
+      "empty": {
+        "title": "Nog geen aanvragen",
+        "body": "Mis je een genre, tijdperk of regionale scene? Vraag het aan. Een maintainer voegt het toe in 24–48 u."
+      },
+      "request": {
+        "title": "Playlist aanvragen",
+        "sub": "Plak een Spotify-playlist-URL en dien in.",
+        "cta": "Aanvraag starten"
+      },
+      "newRequest": {
+        "title": "Nog een playlist aanvragen",
+        "sub": "Plak een Spotify-URL, wij regelen de rest."
+      },
+      "meanwhile": {
+        "title": "Bekijk ondertussen community-playlists",
+        "sub": "Door gebruikers samengesteld, met één tik te installeren."
+      },
+      "generator": {
+        "title": "Of maak je eigen met een LLM",
+        "sub": "Spotify-URL → prompt kopiëren → in je LLM uitvoeren → terugplakken → valideren → indienen.",
+        "subShort": "Spotify-URL → prompt → JSON → valideren → indienen."
+      },
+      "step": {
+        "submitted": "Ingediend",
+        "reviewed": "Beoordeeld",
+        "building": "In aanbouw",
+        "inBundled": "Geleverd"
+      }
+    },
+    "status": {
+      "pending": "In behandeling",
+      "building": "In aanbouw",
+      "done": "Klaar",
+      "declined": "Afgewezen"
+    },
+    "detail": {
+      "add": "Aan ronde toevoegen",
+      "remove": "Uit ronde verwijderen",
+      "added": "Toegevoegd",
+      "language": "Taal",
+      "tags": "Tags",
+      "streaming": "Streamingdekking"
+    },
+    "sources": {
+      "bundled": "Meegeleverd",
+      "community": "Community"
+    },
+    "empty": {
+      "noSearch": {
+        "title": "Geen resultaten voor",
+        "body": "Niets komt hier overeen. Probeer een andere zoekopdracht of bekijk het andere tabblad.",
+        "searchOther": "Zoeken",
+        "request": "Deze playlist aanvragen",
+        "clear": "Zoekopdracht wissen"
+      },
+      "noFilter": {
+        "title": "Geen playlists komen overeen",
+        "body": "Verwijder het filter of vraag dit genre aan.",
+        "clear": "Genrefilter wissen",
+        "request": "Dit genre aanvragen"
+      },
+      "communityEmpty": {
+        "title": "Geen community-playlists geïnstalleerd",
+        "body": "Community-playlists worden met Beatify meegeleverd. Werk de integratie bij om de nieuwste te krijgen."
+      }
+    },
+    "error": {
+      "title": "Kon playlists niet laden"
+    },
+    "time": {
+      "justNow": "zojuist",
+      "minutesAgo": "{n} min geleden",
+      "hoursAgo": "{n} u geleden",
+      "daysAgo": "{n} d geleden",
+      "weeksAgo": "{n} w geleden"
+    },
+    "cta": {
+      "start": "Doorgaan",
+      "pickSome": "Kies er een paar →",
+      "back": "Terug"
+    },
+    "pill": {
+      "add": "Toevoegen",
+      "added": "Toegevoegd",
+      "ariaAdd": "Aan ronde toevoegen",
+      "ariaRemove": "Uit ronde verwijderen"
+    },
+    "sections": {
+      "byCountry": "Per land",
+      "byStyle": "Per stijl",
+      "countries": "landen",
+      "styles": "stijlen"
+    },
+    "selected": {
+      "title": "Je geselecteerde playlists",
+      "subtitleOne": "1 playlist geselecteerd",
+      "subtitleN": "{n} playlists geselecteerd",
+      "empty": "Nog geen playlists geselecteerd",
+      "remove": "Verwijderen",
+      "removeAria": "{name} verwijderen",
+      "openAria": "Geselecteerde playlists tonen"
+    }
   },
   "playlistGenerator": {
     "title": "Playlist-generator",
