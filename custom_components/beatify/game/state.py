@@ -612,6 +612,13 @@ class GameState(
             self._challenge_manager if self.title_artist_mode else None
         )
         for player in self.players.values():
+            # #1748: an eliminated player (Sudden Death) is out of the game — do
+            # not accumulate any further score for them. Their frozen totals must
+            # stand, so skip the per-player scoring pass entirely. (The intro
+            # speed-rank pool in _score_intro_round independently excludes
+            # eliminated players so survivors' ranks are unaffected.)
+            if player.eliminated:
+                continue
             try:
                 ScoringService.score_player_round(
                     player,
@@ -754,9 +761,17 @@ class GameState(
         self._score_round(correct_year)
 
         # Issue #827: Sudden Death — after scoring, eliminate the lowest
-        # round-scoring survivor (from round 2 on). Runs before REVEAL so the
+        # round-delta survivor (from round 2 on). Runs before REVEAL so the
         # elimination is part of the reveal broadcast.
-        self._apply_sudden_death_elimination()
+        #
+        # #1747: in the deferred title/artist near-miss path, _score_round has
+        # NOT scored anyone yet (per-player scores depend on the post-vote-window
+        # near-miss resolution). Running elimination now would read stale
+        # round_score / round-delta values and cut the wrong player. Defer it too
+        # — _finalize_title_artist_window runs it once after the deferred scoring
+        # pass. Only the non-deferred path eliminates here.
+        if not self._title_artist_scoring_deferred():
+            self._apply_sudden_death_elimination()
 
         # Phase 3: highlights, round analytics, persisted song-result stats
         await self._record_round_stats(correct_year)
@@ -804,17 +819,85 @@ class GameState(
         """Players still in the game (not yet eliminated). Issue #827."""
         return [p for p in self.players.values() if not p.eliminated]
 
+    def _title_artist_scoring_deferred(self) -> bool:
+        """Whether this round's scoring is deferred past the vote window (#1180).
+
+        In title/artist mode with vote-eligible near-misses, per-player scoring
+        depends on the final near-miss resolution, which only happens after the
+        REVEAL vote window closes — so ``_score_round`` skips the main scoring
+        loop and ``_finalize_title_artist_window`` runs the single post-resolve
+        pass instead. Single source of truth for that predicate so the scoring
+        pass (``_score_round``) and the Sudden Death elimination gate
+        (``_end_round_unlocked``, #1747) can never disagree on whether scores are
+        final yet.
+        """
+        return self.title_artist_mode and self.has_near_misses()
+
+    @staticmethod
+    def _sudden_death_round_delta(player: PlayerSession) -> int:
+        """Full leaderboard delta a player earned this round (#1751).
+
+        The Sudden Death elimination metric. Bare ``round_score`` is only the
+        accuracy×speed×bet component; the round gain the TV actually shows also
+        includes the streak, artist, movie and intro bonuses — exactly the sum
+        ``score_player_round`` adds to ``player.score``. Comparing that same sum
+        here keeps the OUT call consistent with the visible leaderboard delta: a
+        player who scored 0 on the year but won the movie quiz is no longer cut
+        ahead of a survivor whose leaderboard actually moved less.
+        """
+        return (
+            player.round_score
+            + player.streak_bonus
+            + player.artist_bonus
+            + player.movie_bonus
+            + player.intro_bonus
+        )
+
+    @staticmethod
+    def _sudden_death_order_key(
+        player: PlayerSession,
+    ) -> tuple[tuple[bool, int], int, tuple[bool, float]]:
+        """Rank a player from *least* to *most* eliminable (#1750).
+
+        Used with ``max()`` to pick the loser among the players tied for the
+        lowest round delta. Closest-Wins zeros every non-closest submitter's
+        round_score, so from round 2 the tie for last is essentially everyone
+        but the closest — breaking it purely by submission speed would eliminate
+        an accurate-but-deliberate player ahead of a wildly-wrong instant
+        tapper. Mirroring #1721 (accuracy survives Closest-Wins voiding),
+        accuracy decides first. Higher tuple = more eliminable:
+
+          1. accuracy — a non-submitter (``years_off`` is None) is least
+             accurate; otherwise a larger ``years_off`` is worse. (``years_off``
+             is None for everyone in title/artist mode too, so this key ties out
+             there and the next one decides.)
+          2. base_score — the mode-agnostic accuracy signal (year accuracy score
+             or title+artist points); lower is worse, so negate for ``max``.
+          3. submission speed — a non-submitter is slowest of all, then the
+             latest ``submission_time`` loses.
+        """
+        return (
+            (player.years_off is None, player.years_off or 0),
+            -player.base_score,
+            (player.submission_time is None, player.submission_time or 0.0),
+        )
+
     def _apply_sudden_death_elimination(self) -> list[str]:
-        """Eliminate the lowest round-scoring survivor(s). Issue #827.
+        """Eliminate the lowest round-delta survivor. Issue #827.
 
         Runs after scoring, from round 2 onward (round 1 never eliminates).
-        Among non-eliminated players, the one with the lowest *round* score
-        (this round's delta, not cumulative) is eliminated. A tie for last is
-        broken by submission speed: the slowest (latest) submitter is out, and
-        a non-submitter counts as the slowest of all. Returns the names
-        eliminated this round (empty when nothing happens).
+        Among the eligible survivors, the player with the lowest *round delta*
+        (this round's full leaderboard gain, not cumulative — #1751) is
+        eliminated. A tie for last is broken by accuracy first, then submission
+        speed (#1750): the least-accurate / slowest submitter is out, and a
+        non-submitter counts as slowest of all. Mid-round joiners get one grace
+        round (#1752) — they are excluded from the candidate pool for the round
+        they joined. Returns the names eliminated this round (empty when nothing
+        happens).
 
-        Caller holds ``_score_lock`` (invoked from ``_end_round_unlocked``).
+        Caller holds ``_score_lock`` (invoked from ``_end_round_unlocked`` for
+        the normal path, or ``_finalize_title_artist_window`` for the deferred
+        title/artist near-miss path — #1747).
         """
         if not self.sudden_death_mode or self.round < 2:
             return []
@@ -825,22 +908,30 @@ class GameState(
         if len(survivors) <= 1:
             return []
 
-        min_round_score = min(p.round_score for p in survivors)
-        tied_for_last = [p for p in survivors if p.round_score == min_round_score]
+        # #1752: a mid-round joiner never played the round they joined (missed →
+        # round_score 0, submission_time None), which would make them prime
+        # elimination fodder in a round they never saw. Grant one grace round by
+        # excluding them from this round's candidate pool.
+        candidates = [p for p in survivors if p.joined_round != self.round]
+        if not candidates:
+            return []
 
-        # Slowest among the tied: a non-submitter (submission_time is None) is
-        # the slowest of all; otherwise the latest submission_time loses.
-        loser = max(
-            tied_for_last,
-            key=lambda p: (p.submission_time is None, p.submission_time or 0.0),
-        )
+        # #1751: compare the full round delta, not bare round_score.
+        min_delta = min(self._sudden_death_round_delta(p) for p in candidates)
+        tied_for_last = [
+            p for p in candidates if self._sudden_death_round_delta(p) == min_delta
+        ]
+
+        # #1750: among the players tied for last, break by accuracy first, then
+        # submission speed (a non-submitter counts as slowest of all).
+        loser = max(tied_for_last, key=self._sudden_death_order_key)
         loser.eliminated = True
         loser.eliminated_round = self.round
         _LOGGER.info(
-            "Sudden Death: eliminated %s in round %d (round score %d)",
+            "Sudden Death: eliminated %s in round %d (round delta %d)",
             loser.name,
             self.round,
-            loser.round_score,
+            self._sudden_death_round_delta(loser),
         )
         return [loser.name]
 

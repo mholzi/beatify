@@ -384,6 +384,9 @@ def _score_intro_round(
         1
         for p in all_players
         if p is not player
+        # #1748: an eliminated player (Sudden Death) is out of the game and must
+        # not occupy a slot in the intro speed ranking that survivors compete for.
+        and not p.eliminated
         and _intro_qualified(
             p,
             cutoff=cutoff,
@@ -648,7 +651,14 @@ class ScoringService:
         milestone counter cannot be decremented (callers that don't track
         achievements may pass ``None``).
         """
-        submitted = [p for p in players if p.submitted and p.current_guess is not None]
+        # #1748: an eliminated player (Sudden Death) must not enter the
+        # closest-distance calculation — a stale-client submission from someone
+        # already OUT could otherwise become "closest" and zero every survivor.
+        submitted = [
+            p
+            for p in players
+            if p.submitted and p.current_guess is not None and not p.eliminated
+        ]
         if not submitted:
             return
 
