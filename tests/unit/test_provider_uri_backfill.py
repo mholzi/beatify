@@ -219,6 +219,65 @@ def test_fetch_odesli_404_returns_none():
     assert bf.fetch_odesli("x" * 22, sleep=0, getter=getter) is None
 
 
+def test_fetch_odesli_429_exhausted_returns_none_not_raises():
+    # #1687: a 429 that outlasts every backoff retry must SKIP (return None),
+    # never re-raise — a raise aborts the whole run + discards partial progress.
+    import urllib.error
+
+    calls = {"n": 0}
+
+    def getter(url):
+        calls["n"] += 1
+        raise urllib.error.HTTPError(url, 429, "rate", {}, None)
+
+    slept = []
+    out = bf.fetch_odesli(
+        "x" * 22,
+        sleep=0.01,
+        max_retries=2,
+        getter=getter,
+        sleeper=lambda s: slept.append(s),
+    )
+    assert out is None  # skipped, not raised
+    assert calls["n"] == 3  # initial try + 2 retries
+    assert len(slept) == 2  # backed off on each retryable 429
+
+
+def test_fetch_odesli_other_http_error_returns_none():
+    import urllib.error
+
+    def getter(url):
+        raise urllib.error.HTTPError(url, 500, "boom", {}, None)
+
+    assert bf.fetch_odesli("x" * 22, sleep=0, getter=getter) is None
+
+
+def test_fetch_odesli_network_error_returns_none():
+    import urllib.error
+
+    def getter(url):
+        raise urllib.error.URLError("no route")
+
+    assert bf.fetch_odesli("x" * 22, sleep=0, getter=getter) is None
+
+
+# --- version bump (matches backfill_tidal.py) ------------------------------
+@pytest.mark.parametrize(
+    "old,new",
+    [
+        ("1.0", "1.1"),
+        ("0.1", "0.2"),
+        ("1.9", "1.10"),
+        ("1.15", "1.16"),
+        ("2", "2.1"),
+        ("", "1.1"),
+        (None, "1.1"),
+    ],
+)
+def test_bump_version(old, new):
+    assert bf.bump_version(old) == new
+
+
 def test_fetch_deezer_isrc_maps_id():
     out = bf.fetch_deezer_isrc("USRE19901615", getter=lambda u: {"id": 2268878307})
     assert out == "2268878307"
@@ -374,6 +433,113 @@ def test_run_apply_writes_uri(tmp_path, monkeypatch):
         ]
     )
     assert rc == 0
-    song = json.loads(f.read_text())["songs"][0]
+    doc = json.loads(f.read_text())
+    song = doc["songs"][0]
     assert song["uri_tidal"] == "tidal://track/42"
     assert song["uri_deezer"] == "deezer://track/99"
+    # #1687 bug 2: --apply bumps the modified playlist's version (minor +1).
+    assert doc["version"] == "1.1"
+
+
+def _write_playlist(pl_dir: Path, name: str, songs: list[dict], version="1.0") -> Path:
+    doc = {"name": name, "version": version, "tags": [], "songs": songs}
+    f = pl_dir / f"{name}.json"
+    f.write_text(json.dumps(doc))
+    return f
+
+
+def test_run_apply_odesli_429_does_not_block_youtube(tmp_path, monkeypatch):
+    # #1687 bug 1: a persistent Odesli 429 (fetch_odesli -> None) must NOT stop
+    # the independent YouTube phase, which fills uri_youtube_music regardless.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "yt",
+        [
+            {
+                "artist": "Rick Astley",
+                "title": "Never Gonna",
+                "uri": "spotify:track:" + "a" * 22,
+            }
+        ],
+    )
+
+    # Odesli hard-rate-limited: skips every song (returns None), never raises.
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "youtube_search_id", lambda *a, **k: "dQw4w9WgXcQ")
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "coverage.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    doc = json.loads(f.read_text())
+    song = doc["songs"][0]
+    # YouTube filled despite Odesli being down; Odesli providers stay empty.
+    assert song["uri_youtube_music"] == "https://music.youtube.com/watch?v=dQw4w9WgXcQ"
+    assert song.get("uri_tidal") is None
+    assert song.get("uri_deezer") is None
+    assert doc["version"] == "1.1"  # file modified → version bumped
+
+
+def test_run_apply_flushes_partial_progress_on_crash(tmp_path, monkeypatch):
+    # #1687 bug 1: progress is flushed per song, so an abort mid-run keeps every
+    # song resolved BEFORE the crash instead of discarding the whole wave.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "two",
+        [
+            {"artist": "A", "title": "1", "uri": "spotify:track:" + "a" * 22},
+            {"artist": "B", "title": "2", "uri": "spotify:track:" + "b" * 22},
+        ],
+    )
+
+    calls = {"n": 0}
+
+    def flaky_odesli(*a, **k):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return {
+                "linksByPlatform": {"tidal": {"entityUniqueId": "TIDAL_SONG::42"}},
+                "entitiesByUniqueId": {"TIDAL_SONG::42": {"id": "42"}},
+            }
+        raise RuntimeError("simulated mid-run abort")
+
+    monkeypatch.setattr(bf, "fetch_odesli", flaky_odesli)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    with pytest.raises(RuntimeError):
+        bf.main(
+            [
+                "--repo-root",
+                str(tmp_path),
+                "--apply",
+                "--output",
+                str(tmp_path / "coverage.md"),
+                "--state",
+                str(tmp_path / "state.json"),
+                "--odesli-sleep",
+                "0",
+            ]
+        )
+
+    doc = json.loads(f.read_text())
+    # Song 1 was flushed before the crash on song 2; nothing lost.
+    assert doc["songs"][0]["uri_tidal"] == "tidal://track/42"
+    assert doc["songs"][1].get("uri_tidal") is None
+    assert doc["version"] == "1.1"  # bumped once on the first flush
