@@ -765,6 +765,116 @@ class TestScheduleSaveDirtyFlag:
         assert save_count >= 2
 
 
+# ---------------------------------------------------------------------------
+# TestSaveSnapshotIsolation — save() must serialize a real snapshot, not a live
+# reference, so concurrent loop mutations can't crash json.dumps (#1762)
+# ---------------------------------------------------------------------------
+
+
+class TestSaveSnapshotIsolation:
+    @pytest.mark.asyncio
+    async def test_concurrent_mutation_during_dump_does_not_lose_batch(self, tmp_path):
+        """A mutation of self._stats while json.dumps runs must NOT raise
+        'dictionary changed size during iteration' nor lose the batch — the
+        executor must operate on an immutable deepcopy taken on the loop thread
+        (#1762)."""
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        # Seed a realistic store with per-song entries (the dict record_song_result
+        # mutates in place) plus a couple of games.
+        for i in range(5):
+            service._stats["songs"][f"song-{i}"] = {
+                "times_played": i,
+                "correct_guesses": i,
+                "total_guesses": i,
+            }
+        service._stats["games"] = [{"id": f"g{i}"} for i in range(3)]
+        service._stats["all_time"]["games_played"] = 3
+
+        real_dumps = _json.dumps
+
+        def _mutating_dumps(obj, *args, **kwargs):
+            # Simulate the event loop mutating the LIVE store while the executor
+            # serializes: record_song_result adds/updates song keys, record_game
+            # appends/pops games. If ``obj`` were a live reference to
+            # self._stats this iteration would raise RuntimeError.
+            service._stats["songs"]["song-late"] = {"times_played": 99}
+            del service._stats["songs"]["song-0"]
+            service._stats["games"].append({"id": "g-late"})
+            return real_dumps(obj, *args, **kwargs)
+
+        with patch(
+            "custom_components.beatify.services.stats.json.dumps",
+            side_effect=_mutating_dumps,
+        ):
+            # Must not raise despite the concurrent mutation.
+            await service.save()
+
+        # The batch was written (not silently dropped) and reflects the snapshot
+        # taken BEFORE the mid-dump mutation.
+        assert stats_path.exists()
+        data = _json.loads(stats_path.read_text())
+        assert "song-late" not in data["songs"]
+        assert "song-0" in data["songs"]
+        assert len(data["games"]) == 3
+        # A clean save leaves no retry pending.
+        assert service._save_dirty is False
+
+    @pytest.mark.asyncio
+    async def test_snapshot_is_deepcopy_not_reference(self, tmp_path):
+        """The object handed to json.dumps must be a distinct deepcopy, so
+        nested containers aren't shared with the live store (#1762)."""
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+        service._stats["songs"]["s1"] = {"times_played": 1}
+
+        captured: dict = {}
+        real_dumps = _json.dumps
+
+        def _capturing_dumps(obj, *args, **kwargs):
+            captured["obj"] = obj
+            return real_dumps(obj, *args, **kwargs)
+
+        with patch(
+            "custom_components.beatify.services.stats.json.dumps",
+            side_effect=_capturing_dumps,
+        ):
+            await service.save()
+
+        snap = captured["obj"]
+        assert snap is not service._stats
+        assert snap["songs"] is not service._stats["songs"]
+        assert snap["songs"]["s1"] is not service._stats["songs"]["s1"]
+        # Mutating the live store after the snapshot must not touch the copy.
+        service._stats["songs"]["s1"]["times_played"] = 999
+        assert snap["songs"]["s1"]["times_played"] == 1
+
+    @pytest.mark.asyncio
+    async def test_serialize_runtimeerror_sets_dirty_for_retry(self, tmp_path):
+        """Defense-in-depth: if serialization still raises RuntimeError/ValueError,
+        save() must not propagate and must flag _save_dirty so the done-callback
+        retries instead of dropping the batch (#1762)."""
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        def _boom(*_args, **_kwargs):
+            raise RuntimeError("dictionary changed size during iteration")
+
+        with patch(
+            "custom_components.beatify.services.stats.json.dumps",
+            side_effect=_boom,
+        ):
+            # Must swallow the error, not raise.
+            await service.save()
+
+        assert service._save_dirty is True
+
+
 class TestScheduleSaveDebounce:
     """#1708: per-round saves are debounced into a single write; game end and
     unload flush explicitly."""
