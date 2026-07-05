@@ -106,6 +106,18 @@ class PlayerSession:
     )  # Per-round: who stole this player's answer
 
     @property
+    def player_id(self) -> str:
+        """Stable identifier for this player (alias of ``session_id``).
+
+        Read-only alias introduced for the name-identity refactor (#1664,
+        PR-1). ``session_id`` is already a server-issued, stable UUID; this
+        property simply exposes it under the ``player_id`` name that will
+        become the primary key in later refactor steps. Purely additive — no
+        behaviour change, no new state.
+        """
+        return self.session_id
+
+    @property
     def is_active(self) -> bool:
         """True only if the player is genuinely still connected.
 

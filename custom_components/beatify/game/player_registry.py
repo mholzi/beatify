@@ -192,6 +192,8 @@ class PlayerRegistry:
         return [
             {
                 "name": p.name,
+                # #1664 PR-1: stable id alias (== session_id), additive enabler
+                "player_id": p.player_id,
                 "score": p.score,
                 "connected": p.connected,
                 "streak": p.streak,
