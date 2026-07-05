@@ -321,26 +321,77 @@ def _score_movie_challenge(
     return player.movie_bonus
 
 
+def _intro_qualified(
+    player: PlayerSession,
+    *,
+    cutoff: float,
+    correct_year: int | None,
+    difficulty: str,
+    title_artist_manager: Any | None,
+) -> bool:
+    """Whether ``player`` qualifies for the intro speed bonus (#1720).
+
+    A submission must be both *in time* (before the 15s cutoff) and
+    *accuracy-positive*. Accuracy is recomputed from stable submit-time inputs
+    (``current_guess`` / the title-artist manager) rather than read off
+    ``player.base_score``: the per-player scoring loop runs sequentially, so a
+    not-yet-scored player's ``base_score`` may still hold a previous round's
+    value. Recomputing keeps the speed ranking order-independent.
+
+    Year mode: accuracy score (== ``base_score``) must be > 0.
+    Title/artist mode: title + artist points (== ``base_score``) must be > 0.
+    """
+    if player.submission_time is None or player.submission_time >= cutoff:
+        return False
+    if title_artist_manager is not None:
+        title_pts, artist_pts = title_artist_manager.title_artist_points(player.name)
+        return (title_pts + artist_pts) > 0
+    if correct_year is None or player.current_guess is None:
+        return False
+    return calculate_accuracy_score(player.current_guess, correct_year, difficulty) > 0
+
+
 def _score_intro_round(
     player: PlayerSession,
     *,
     is_intro_round: bool,
     intro_round_start_time: float | None,
     all_players: list[PlayerSession],
+    correct_year: int | None,
+    difficulty: str,
+    title_artist_manager: Any | None,
 ) -> int:
-    """Return intro bonus points. Mutates player.intro_bonus and player.intro_speed_bonuses."""
+    """Return intro bonus points. Mutates player.intro_bonus and player.intro_speed_bonuses.
+
+    #1720: only accuracy-qualified submitters compete for (and receive) the
+    tiered 5/3/1 intro bonus. A fast-but-wrong tap no longer farms guaranteed
+    points nor displaces a slower-but-correct recognizer in the speed ranking.
+    """
     player.intro_bonus = 0
     if not (is_intro_round and intro_round_start_time and player.submission_time):
         return 0
     cutoff = intro_round_start_time + INTRO_DURATION_SECONDS
-    if player.submission_time >= cutoff:
+    if not _intro_qualified(
+        player,
+        cutoff=cutoff,
+        correct_year=correct_year,
+        difficulty=difficulty,
+        title_artist_manager=title_artist_manager,
+    ):
         return 0
     player.intro_speed_bonuses += 1
     rank = sum(
         1
         for p in all_players
-        if p.submission_time is not None
-        and p.submission_time < cutoff
+        if p is not player
+        and _intro_qualified(
+            p,
+            cutoff=cutoff,
+            correct_year=correct_year,
+            difficulty=difficulty,
+            title_artist_manager=title_artist_manager,
+        )
+        and p.submission_time is not None
         and p.submission_time < player.submission_time
     )
     if rank < len(INTRO_BONUS_TIERS):
@@ -626,7 +677,14 @@ class ScoringService:
                 # set streak=0 and saved the real previous_streak for players
                 # who scored 0 — overwriting previous_streak with the now-0
                 # streak here would wipe their "lost X-streak" reveal display.
-                if lost > 0:
+                # #1721: additionally keep the streak (and its steal/milestone/
+                # best_streak side-effects) alive when the player was ACCURATE
+                # this round (base_score > 0). Closest-Wins still voids their
+                # round POINTS above, but an accurate guess must not break a
+                # streak just because someone else landed closer — otherwise
+                # streaks, the Steal unlock, milestone bonuses and the 🔥
+                # highlight become dead content in this mode.
+                if lost > 0 and p.base_score <= 0:
                     # _apply_streak incremented streak for this scoring round,
                     # so the pre-round streak is (streak - 1). Roll back the
                     # side-effects that the now-voided round produced:
@@ -810,6 +868,9 @@ class ScoringService:
                     is_intro_round=is_intro_round,
                     intro_round_start_time=intro_round_start_time,
                     all_players=all_players,
+                    correct_year=correct_year,
+                    difficulty=difficulty,
+                    title_artist_manager=title_artist_manager,
                 )
                 player.score += player.movie_bonus + player.intro_bonus
             else:
@@ -865,6 +926,9 @@ class ScoringService:
                 is_intro_round=is_intro_round,
                 intro_round_start_time=intro_round_start_time,
                 all_players=all_players,
+                correct_year=correct_year,
+                difficulty=difficulty,
+                title_artist_manager=None,
             )
 
             player.score += (
