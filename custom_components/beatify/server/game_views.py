@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import functools
 import json
 import logging
 from pathlib import Path
@@ -38,6 +39,7 @@ from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_state_message,
 )
+from custom_components.beatify.server.ws_handlers.admin import _finalize_and_end
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     get_platform_capabilities,
@@ -644,6 +646,12 @@ class StartGameplayView(BeatifyAdminView):
         ws_handler = data.get("ws_handler")
         if ws_handler:
             game_state.set_round_end_callback(ws_handler.broadcast_state)
+            # #1753: wire the terminal game-end one-shot so the unattended REVEAL
+            # auto-advance final round records stats + runs the podium ceremony
+            # through the same claim as the admin sockets.
+            game_state.set_game_end_callback(
+                functools.partial(_finalize_and_end, ws_handler, game_state)
+            )
             # Set metadata update callback for fast transitions (Issue #42)
             game_state.set_metadata_update_callback(
                 ws_handler.broadcast_metadata_update
