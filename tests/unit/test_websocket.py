@@ -987,6 +987,45 @@ class TestPlayerOnboarded:
         assert alice.onboarded is True, "onboarded must survive reset_round()"
 
 
+class TestPlayerIdAlias:
+    """#1664 PR-1: stable ``player_id`` alias exposed additively.
+
+    ``player_id`` is a read-only alias of the already-existing ``session_id``.
+    PR-1 only exposes it (property + state broadcast) so later refactor steps
+    can migrate the registry primary key off the display name. No behaviour
+    change here.
+    """
+
+    async def test_player_id_property_equals_session_id(self):
+        """PlayerSession.player_id is a read-only alias of session_id."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        alice = game_state.get_player("Alice")
+        assert alice is not None
+        assert alice.player_id == alice.session_id
+
+    async def test_players_state_includes_player_id(self):
+        """get_players_state() exposes player_id == session_id per player."""
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        rows = game_state.get_players_state()
+        alice_row = next(r for r in rows if r["name"] == "Alice")
+        alice = game_state.get_player("Alice")
+        assert "player_id" in alice_row
+        assert alice_row["player_id"] == alice.session_id
+
+    async def test_reveal_players_state_includes_player_id(self):
+        """REVEAL-phase serializer also exposes player_id == session_id."""
+        from custom_components.beatify.game.serializers import GameStateSerializer
+
+        handler, game_state, ws = _make_handler_and_game()
+        await handler._handle_message(ws, {"type": "join", "name": "Alice"})
+        rows = GameStateSerializer.get_reveal_players_state(game_state)
+        alice_row = next(r for r in rows if r["name"] == "Alice")
+        alice = game_state.get_player("Alice")
+        assert alice_row["player_id"] == alice.session_id
+
+
 # ---------------------------------------------------------------------------
 # admin_next_round — recovery from PAUSED (#805)
 # ---------------------------------------------------------------------------

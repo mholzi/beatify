@@ -255,6 +255,8 @@ class GameStateSerializer:
         for p in gs.players.values():
             player_data = {
                 "name": p.name,
+                # #1664 PR-1: stable id alias (== session_id), additive enabler
+                "player_id": p.player_id,
                 "score": p.score,
                 "streak": p.streak,
                 "is_admin": p.is_admin,
