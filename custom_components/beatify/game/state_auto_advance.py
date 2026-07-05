@@ -54,11 +54,18 @@ The mixin relies on attributes / methods the host class owns and that live on
 * ``self.start_round`` — the next-round trigger the auto-advance fires.
 * ``self._on_round_end`` — the async WebSocket broadcast callback mirrored after
   the auto-advance ``start_round`` so the new PLAYING state reaches clients.
+* ``self._on_game_end`` — the terminal game-end callback (#1753), wired by the
+  WS handler to ``_finalize_and_end`` (claim + record_game + advance_to_end).
+  The auto-advance final round routes through it so the unattended end records
+  stats + fires the podium TTS through the SAME one-shot claim as the two admin
+  sockets. Falls back to ``self.advance_to_end`` when unset (REST/service path
+  or tests).
 * ``self.advance_to_end`` — the terminal game-end ceremony (party-light
   celebration + winner/podium TTS + END transition; lives on
   ``RevealTransitionMixin``). Run when the auto-advance carries the final round
-  and ``start_round`` exhausts the playlist (#1360), so the unattended end fires
-  the same ceremony + broadcast as the manual ``admin_next_round`` game-end.
+  and ``start_round`` exhausts the playlist (#1360) and no ``_on_game_end`` is
+  wired, so the unattended end still fires the same ceremony + broadcast as the
+  manual ``admin_next_round`` game-end.
 
 It carries no state of its own. ``GamePhase`` is imported lazily inside the
 methods that need it (``# noqa: PLC0415``) to avoid a top-level circular import
@@ -168,16 +175,28 @@ class RevealAutoAdvanceMixin:
             # without intervention here the game ends with: no party-light
             # celebration, no announce_winner/announce_podium TTS, and — because
             # success is False — no broadcast, leaving every client frozen on
-            # REVEAL. Run the proper terminal ceremony so the unattended end
-            # mirrors the manual end. advance_to_end() re-sets END idempotently
-            # (a same-phase write), celebrates the lights and fires the winner /
-            # podium announcements; the broadcast below then pushes END.
+            # REVEAL.
+            #
+            # #1753: route through the shared game-end gate (_on_game_end =
+            # ws_handler._finalize_and_end) rather than calling advance_to_end()
+            # directly. The old direct call (a) never recorded stats on the
+            # unattended final round and (b) never claimed the game_id, so a
+            # concurrently-parked admin_next_round could still win the claim and
+            # fire a SECOND record_game + advance_to_end (double podium TTS).
+            # The gate claims once, records stats, and runs advance_to_end (which
+            # re-sets END idempotently, celebrates the lights, announces the
+            # winner/podium); whichever terminal path claims first wins. When no
+            # handler is wired (REST/service path or tests) fall back to the bare
+            # ceremony so the unattended end still fires.
             if not success and self.phase == GamePhase.END:
                 _LOGGER.info(
                     "REVEAL auto-advance reached the final round — running "
                     "game-end ceremony"
                 )
-                await self.advance_to_end()
+                if self._on_game_end is not None:
+                    await self._on_game_end()
+                else:
+                    await self.advance_to_end()
                 success = True
             # start_round() only fires sync state-callbacks via
             # _notify_state_callbacks; the async WebSocket broadcast

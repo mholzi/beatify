@@ -136,18 +136,36 @@ class BeatifyWebSocketHandler:
     def _claim_game_end(self, game_id: str | None) -> bool:
         """Claim the one-shot game-end for ``game_id`` (#1702).
 
-        Returns ``True`` exactly once per game — for the first admin socket to
-        reach the terminal branch — and ``False`` for any concurrent or repeat
+        Returns ``True`` exactly once per game — for the first terminal path to
+        reach the game-end (either admin socket or the unattended REVEAL
+        auto-advance, #1753) — and ``False`` for any concurrent or repeat
         caller, so ``record_game`` (double stats) and ``advance_to_end`` (double
         podium TTS) run at most once per game. The check + insert has no
-        ``await`` between them, so two admin sockets in the same tick can't both
-        win. ``rematch_game`` / ``create_game`` mint a fresh ``game_id``, so a
-        later game is claimable again.
+        ``await`` between them, so two callers in the same tick can't both win.
+        ``rematch_game`` / ``create_game`` mint a fresh ``game_id``, so a later
+        game is claimable again.
+
+        #1754: only one game is ever active per handler, so the claim set is
+        pruned to just the current ``game_id`` on each successful claim — it can
+        never grow unbounded across a long-lived handler's many games.
         """
         if game_id is None or game_id in self._recorded_game_ids:
             return False
-        self._recorded_game_ids.add(game_id)
+        # Bound the set: drop any stale predecessor id, keep only this claim.
+        self._recorded_game_ids = {game_id}
         return True
+
+    def _release_game_end(self, game_id: str | None) -> None:
+        """Release a claimed game-end so the terminal sequence can be retried (#1754).
+
+        ``_finalize_and_end`` claims BEFORE its side effects (``record_game``
+        storage I/O + ``advance_to_end``). If either raises, the claim would
+        otherwise be burned: every retry hits "already claimed" and returns
+        without advancing, stranding the game in REVEAL/PAUSED. Discarding the
+        id on failure lets the next tap re-run the end sequence.
+        """
+        if game_id is not None:
+            self._recorded_game_ids.discard(game_id)
 
     # ------------------------------------------------------------------
     # Rate limiting

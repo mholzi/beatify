@@ -7,6 +7,7 @@ to play music guessing games.
 
 from __future__ import annotations
 
+import functools
 import json
 import logging
 from pathlib import Path
@@ -63,6 +64,7 @@ from .server.views import (
     UsageView,
 )
 from .server.websocket import BeatifyWebSocketHandler
+from .server.ws_handlers.admin import _finalize_and_end
 from .services.media_player import async_get_media_players
 from .services.stats import StatsService
 
@@ -155,6 +157,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Set up round end callback for timer expiry (Story 4.5)
     game_state.set_round_end_callback(ws_handler.broadcast_state)
+
+    # #1753: wire the terminal game-end one-shot so the unattended REVEAL
+    # auto-advance final round records stats + runs the podium ceremony through
+    # the same claim as the admin sockets (no double record / double podium TTS).
+    game_state.set_game_end_callback(
+        functools.partial(_finalize_and_end, ws_handler, game_state)
+    )
 
     # Set up metadata update callback for fast transitions (Issue #42)
     game_state.set_metadata_update_callback(ws_handler.broadcast_metadata_update)

@@ -330,6 +330,14 @@ class GameState(
         # Callback for round end (Story 4.5)
         self._on_round_end: Callable[[], Awaitable[None]] | None = None
 
+        # #1753: callback for the terminal game-end. Wired by the WS handler to
+        # `_finalize_and_end` so the unattended REVEAL auto-advance final round
+        # runs the SAME one-shot (claim + record_game + advance_to_end) as the
+        # two admin sockets — recording stats + firing the podium TTS exactly
+        # once. When unset (REST/service path or tests) the auto-advance falls
+        # back to `advance_to_end` directly.
+        self._on_game_end: Callable[[], Awaitable[None]] | None = None
+
         # Volume control (Story 6.4)
         self.volume_level: float = 0.5  # Default 50%
 
@@ -554,6 +562,22 @@ class GameState(
 
         """
         self._on_round_end = callback
+
+    def set_game_end_callback(self, callback: Callable[[], Awaitable[None]]) -> None:
+        """Set the terminal game-end callback (#1753).
+
+        The WS handler wires this to ``_finalize_and_end`` so the unattended
+        REVEAL auto-advance final round records stats + runs the podium ceremony
+        through the SAME one-shot claim as the two admin sockets, instead of
+        calling ``advance_to_end`` directly (which skipped ``record_game`` and
+        the game-end claim).
+
+        Args:
+            callback: Async function running the finalize + record + end-ceremony
+                one-shot for the current game.
+
+        """
+        self._on_game_end = callback
 
     def set_metadata_update_callback(
         self, callback: Callable[[dict[str, Any]], Awaitable[None]]
