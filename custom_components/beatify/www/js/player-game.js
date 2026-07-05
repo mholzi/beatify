@@ -38,8 +38,17 @@ import {
     renderMovieChallenge, resetMovieChallengeState
 } from './player-game/movie-challenge.js';
 
+// #1663 item 1: non-blocking toast replaces the blocking alert() (connection lost).
+import { showToast } from './notify.js';
+
 var utils = window.BeatifyUtils || {};
 var debug = utils.debug || function() {};
+
+// #1663 item 2: the last leaderboard we rendered, kept so the steal modal can
+// enrich each target with its live rank + score (mini-leaderboard rows). The
+// get_steal_targets response only carries names; the scores already arrive with
+// every state_update, so we cache them here rather than round-tripping the server.
+var lastLeaderboard = [];
 
 // ============================================
 // Game View (Story 4.2)
@@ -142,6 +151,8 @@ export function updateGameView(data) {
     renderSubmissionTracker(data.players);
 
     if (data.leaderboard) {
+        // #1663 item 2: remember standings so the steal modal can show rank+score.
+        lastLeaderboard = data.leaderboard;
         updateLeaderboard(data, 'leaderboard-list');
     }
 
@@ -1036,7 +1047,7 @@ function handleStealClick() {
  * Open steal modal with available targets
  * @param {Array} targets - Array of player names who have submitted
  */
-function openStealModal(targets) {
+function openStealModal(targets, leaderboard) {
     var modal = document.getElementById('steal-modal');
     var targetList = document.getElementById('steal-target-list');
 
@@ -1044,16 +1055,57 @@ function openStealModal(targets) {
 
     targetList.innerHTML = '';
 
+    // #1663 item 2: default to the cached standings; an explicit leaderboard
+    // (e.g. carried on the steal_targets response) overrides it.
+    var standings = leaderboard || lastLeaderboard;
+
     if (!targets || targets.length === 0) {
         var noTargets = document.createElement('p');
         noTargets.className = 'steal-no-targets';
         noTargets.textContent = utils.t('steal.waitForSubmit');
         targetList.appendChild(noTargets);
     } else {
+        // #1663 item 2 (Variant B — Mini-Leaderboard-Row): enrich each target
+        // with its live rank + score from the cached leaderboard. The overall
+        // leader (rank 1) gets a crown + glow so the player can steal
+        // strategically. Falls back to a plain name row if standings are absent
+        // (e.g. leaderboard not yet received).
+        var byName = {};
+        standings.forEach(function(e) { if (e && e.name != null) byName[e.name] = e; });
+
         targets.forEach(function(target) {
+            var entry = byName[target] || null;
             var btn = document.createElement('button');
-            btn.className = 'steal-target-btn';
-            btn.textContent = target;
+            btn.className = 'steal-target-btn steal-target-row';
+            var isLeader = !!entry && Number(entry.rank) === 1;
+            if (isLeader) btn.classList.add('steal-target-row--leader');
+            btn.setAttribute('aria-label', buildStealTargetAria(target, entry, isLeader));
+
+            var rankEl = document.createElement('span');
+            rankEl.className = 'steal-target-rank';
+            rankEl.setAttribute('aria-hidden', 'true');
+            rankEl.textContent = (entry && entry.rank != null) ? String(entry.rank) : '–';
+            btn.appendChild(rankEl);
+
+            if (isLeader) {
+                var crown = document.createElement('span');
+                crown.className = 'steal-target-crown';
+                crown.setAttribute('aria-hidden', 'true');
+                crown.textContent = '👑';
+                btn.appendChild(crown);
+            }
+
+            var nameEl = document.createElement('span');
+            nameEl.className = 'steal-target-name';
+            nameEl.textContent = target;
+            btn.appendChild(nameEl);
+
+            var scoreEl = document.createElement('span');
+            scoreEl.className = 'steal-target-score';
+            scoreEl.setAttribute('aria-hidden', 'true');
+            scoreEl.textContent = entry ? formatStealScore(entry.score) : '';
+            btn.appendChild(scoreEl);
+
             btn.addEventListener('click', function() {
                 selectStealTarget(target);
             });
@@ -1062,6 +1114,34 @@ function openStealModal(targets) {
     }
 
     modal.classList.remove('hidden');
+}
+
+/**
+ * #1663 item 2: locale-aware score formatting for steal rows (e.g. 1240 → 1.240
+ * in de). Falls back to the raw number if Intl is unavailable.
+ * @param {number} score
+ * @returns {string}
+ */
+function formatStealScore(score) {
+    var n = Number(score) || 0;
+    try { return n.toLocaleString(); } catch (e) { return String(n); }
+}
+
+/**
+ * #1663 item 2: screen-reader label combining rank, name, score and leader
+ * status into one phrase so the enriched rows aren't just visual.
+ * @param {string} name
+ * @param {Object|null} entry - leaderboard entry {rank, score} or null
+ * @param {boolean} isLeader
+ * @returns {string}
+ */
+function buildStealTargetAria(name, entry, isLeader) {
+    if (!entry) return name;
+    var parts = [name];
+    if (entry.rank != null) parts.push('#' + entry.rank);
+    if (entry.score != null) parts.push(formatStealScore(entry.score));
+    if (isLeader) parts.push(utils.t('leaderboard.leader') || 'leader');
+    return parts.join(' · ');
 }
 
 /**
@@ -1128,10 +1208,11 @@ export function handleStealAck(data) {
 
 /**
  * Handle steal targets response from server
- * @param {Object} data - Response data with targets array
+ * @param {Object} data - Response data with targets array (and optionally a
+ *   leaderboard override; otherwise the cached standings are used — #1663 item 2)
  */
 export function handleStealTargets(data) {
-    openStealModal(data.targets || []);
+    openStealModal(data.targets || [], data.leaderboard);
 }
 
 /**
@@ -1450,7 +1531,8 @@ async function handleEndGame() {
     if (!confirmed) return;
     if (!debounceAdminAction()) return;
     if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
-        alert(utils.t('errors.CONNECTION_LOST'));
+        // #1663 item 1: transient connection error → non-blocking toast.
+        showToast(utils.t('errors.CONNECTION_LOST'));
         return;
     }
 

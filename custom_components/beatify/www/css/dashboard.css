@@ -274,6 +274,20 @@
     }
 }
 
+/* #1663 item 3 (A11y — Reduced-Motion gate): honour prefers-reduced-motion for
+   the player-join cue. The animated slide-in / is-new pop is dropped; the
+   static accent-background on .is-new stays as a non-motion "new player"
+   indicator (a short fade in place of the pop). */
+@media (prefers-reduced-motion: reduce) {
+    .dashboard-player-card,
+    .dashboard-player-card.is-new {
+        animation: none;
+    }
+    .dashboard-player-card.is-new {
+        transition: background-color var(--transition-normal, 300ms) ease;
+    }
+}
+
 /* ==========================================
    Playing View (AC 10.4.3)
    ========================================== */

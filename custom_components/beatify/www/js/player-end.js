@@ -7,6 +7,8 @@ import {
     state, escapeHtml, showConfirmModal,
     AnimationQueue, triggerConfetti, stopConfetti, showView
 } from './player-utils.js';
+// #1663 item 1: non-blocking toast replaces the blocking alert() (rematch failed).
+import { showToast } from './notify.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -115,7 +117,7 @@ export function updateEndView(data) {
                     })
                     .catch(function(err) {
                         console.error('[Player] Rematch failed:', err);
-                        alert(err.message || 'Failed to start rematch');
+                        showToast(err.message || 'Failed to start rematch');
                         rematchBtn.disabled = false;
                         rematchBtn.textContent = origText;
                     });

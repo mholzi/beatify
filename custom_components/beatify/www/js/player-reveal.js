@@ -340,6 +340,21 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
         return 'c' + ((h % 4) + 1);
     }
 
+    // #1663 item 3 (A11y — Icon+Text Status): map each guess to an accuracy
+    // state carrying BOTH a glyph and a word, so the result no longer relies on
+    // the cyan-glow colour alone (exact = ◎, near = ≈, off = ✕). "Near" is
+    // "scored but not exact" — round_score>0 means the guess was close enough to
+    // earn points, which is the same threshold the scoring engine uses.
+    function accuracyStatus(item) {
+        if (item && item.years_off === 0) {
+            return { glyph: '◎', word: utils.t('reveal.correct') || 'Correct!', cls: 'exact' };
+        }
+        if (item && (item.round_score || 0) > 0) {
+            return { glyph: '≈', word: utils.t('reveal.close') || 'Close!', cls: 'near' };
+        }
+        return { glyph: '✕', word: utils.t('reveal.wrong') || 'Wrong', cls: 'off' };
+    }
+
     var dotsHtml = '';
     for (var k = 0; k < allGuesses.length; k++) {
         var g = allGuesses[k];
@@ -352,11 +367,18 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
         var score = g.round_score || 0;
         var scoreCls = score > 0 ? 'dotaxis-score--pos' : 'dotaxis-score--zero';
         var scoreText = score > 0 ? '+' + score : '+0';
+        // #1663 item 3: fold the accuracy WORD into the dot's accessible label so
+        // a screen-reader user hears "Anna — 1985 (Close!) (+8)" rather than a
+        // bare colour cue.
+        var dotAcc = accuracyStatus(g);
+        var dotLabel = escapeHtml(g.name) + ' — ' + g.guess + ' (' + dotAcc.word + ') (' + scoreText + ')';
 
         dotsHtml +=
             '<div class="dotaxis-dot dotaxis-dot--' + cls + glowCls + meCls + '" ' +
+                'role="img" ' +
                 'style="left:' + p + '%" ' +
-                'title="' + escapeHtml(g.name) + ' — ' + g.guess + ' (' + scoreText + ')">' +
+                'aria-label="' + dotLabel + '" ' +
+                'title="' + dotLabel + '">' +
             initial +
             '</div>' +
             '<div class="dotaxis-score ' + scoreCls + '" style="left:' + p + '%">' + scoreText + '</div>';
@@ -374,11 +396,19 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
         var medal = m < 3 ? '<span class="dotaxis-legend-medal">' + medals[m] + '</span>' : '';
         var meMark = (currentPlayerName && item.name === currentPlayerName)
             ? ' <span class="dotaxis-legend-me">' + utils.t('analytics.youMarker') + '</span>' : '';
+        // #1663 item 3: icon+text accuracy chip per legend row — glyph + word,
+        // colour is only reinforcement.
+        var acc = accuracyStatus(item);
+        var accChip =
+            ' <span class="dotaxis-legend-acc dotaxis-legend-acc--' + acc.cls + '">' +
+                '<span class="dotaxis-legend-acc-glyph" aria-hidden="true">' + acc.glyph + '</span>' +
+                escapeHtml(acc.word) +
+            '</span>';
         legendHtml +=
             '<span class="dotaxis-legend-entry">' +
                 medal +
                 '<span class="dotaxis-legend-dot dotaxis-dot--' + lcls + '"></span>' +
-                escapeHtml(item.name || '?') + meMark +
+                escapeHtml(item.name || '?') + meMark + accChip +
             '</span>';
     }
 

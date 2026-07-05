@@ -857,6 +857,7 @@
     "SESSION_TAKEOVER": "Sessie overgenomen door een ander tabblad",
     "UNKNOWN": "Er is een fout opgetreden",
     "askHostNewGame": "Vraag de host om een nieuw spel te starten.",
+    "startNotPossible": "Starten niet mogelijk",
     "askHostQr": "Vraag de host om een nieuwe QR-code.",
     "checkNetwork": "Controleer of je met het netwerk verbonden bent",
     "connectionLost": "Verbinding verbroken. Vernieuw de pagina.",

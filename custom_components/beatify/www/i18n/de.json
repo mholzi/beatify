@@ -884,6 +884,7 @@
     "UNAUTHORIZED": "Dazu bist du nicht berechtigt.",
     "UNKNOWN": "Ein Fehler ist aufgetreten",
     "askHostNewGame": "Bitte den Gastgeber ein neues Spiel zu starten.",
+    "startNotPossible": "Start nicht möglich",
     "askHostQr": "Bitte den Gastgeber um einen neuen QR-Code.",
     "checkNetwork": "Stelle sicher, dass du mit dem Netzwerk verbunden bist",
     "connectionLost": "Verbindung verloren. Bitte neu laden.",
