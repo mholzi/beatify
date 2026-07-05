@@ -8,7 +8,7 @@ import {
     prefersReducedMotion, animateValue, animateScoreChange, showPointsPopup,
     previousState, isPreviousStateInitialized, isStreakMilestone,
     AnimationUtils, updatePreviousState,
-    triggerConfetti, stopConfetti
+    triggerConfetti, stopConfetti, isTitleArtistMode
 } from './player-utils.js';
 
 import { renderArtistReveal, renderMovieReveal } from './player-game.js';
@@ -160,7 +160,11 @@ export function updateRevealView(data) {
     // emotion ("BINGO" + "You said × N years × Actually <year>") and the
     // year chip row don't apply — hide them and let the Title & Artist reveal
     // carry the round result. The mode-agnostic score row stays.
-    var taMode = !!(data.title_artist_challenge && data.title_artist_challenge.correct_title);
+    // #1664 item 3: unified on the top-level `title_artist_mode` flag (via
+    // isTitleArtistMode) — same source player-game.js and the TV dashboard use.
+    // Previously this sniffed `title_artist_challenge.correct_title`, which
+    // diverged when the mode was on but the challenge payload hadn't populated.
+    var taMode = isTitleArtistMode(data);
     var duelEl = document.querySelector('#reveal-view .duel');
     if (duelEl) duelEl.classList.toggle('hidden', taMode);
     if (taMode) {
