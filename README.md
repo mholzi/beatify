@@ -622,7 +622,7 @@ The AI is the typist. The decisions, the architecture, the bug triage, and the "
 <details>
 <summary><strong>What game modes are there? How do you play Title & Artist?</strong></summary>
 <br>
-Two modes, chosen by the host in the setup wizard. <strong>Year</strong> mode is the classic: a song plays and everyone slides to guess the release year, scored by how close you are. <strong>Title &amp; Artist</strong> mode asks you to type the song title (<strong>+10</strong>) and the artist (<strong>+5</strong>) in free text — you don't have to be letter-perfect, since small typos earn partial credit and the forgiveness scales with title length. Genuinely close guesses go to <em>Crowd Court</em>, a live 30-second 👍/👎 vote the whole room can watch on the TV; plainly wrong answers are marked Wrong and scored zero. Movie Quiz and Intro bonuses stack on top of either mode.
+Two modes, chosen by the host in the setup wizard. <strong>Year</strong> mode is the classic: a song plays and everyone slides to guess the release year, scored by how close you are. <strong>Title &amp; Artist</strong> mode asks you to type the song title (<strong>+10</strong>) and the artist (<strong>+5</strong>) in free text — you don't have to be letter-perfect, since small typos earn partial credit and the forgiveness scales with title length. Genuinely close guesses go to <em>Crowd Court</em>, a live 30-second 👍/👎 vote the whole room can watch on the TV; plainly wrong answers are marked Wrong and scored zero. Movie Quiz and Intro bonuses stack on top of either mode. For a high-stakes twist, turn on <strong>Sudden Death</strong> (needs at least 3 players): from round 2 on, the lowest-scoring player each round is eliminated until one winner is left standing — arm it in the wizard or flip it on live from the reveal screen.
 </details>
 
 <details>
@@ -678,6 +678,10 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 <br>
 
 ## What's New
+
+### v4.2.0 — Sudden Death 💀
+- **New game mode: Sudden Death** — an elimination format where, from round 2 on, the lowest-scoring player each round is knocked out until only one is left standing. Ties for last go to the slowest submitter, the TV shows an "OUT" takeover for whoever was just eliminated, and the winner earns a "last one standing" highlight. Needs at least 3 players; arm it in the setup wizard or flip it on live from the reveal screen (#827, #1472)
+- 6 music platforms, 5 languages
 
 ### v4.1.3 — Content & Reliability ☀️
 - **Speaker volume is restored when the game ends (#1516)** — if the host bumps the volume mid-game, Beatify hands the speaker back at its original level, complementing the party-lights state restore

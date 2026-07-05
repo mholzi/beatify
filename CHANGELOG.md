@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Sudden Death mode (#827, #1472).** An opt-in elimination format: after each round (from round 2 on), the surviving player with the lowest round score is knocked out for the rest of the game — last one standing wins. Ties for last go to the slowest submitter. Requires at least 3 players, and can be armed in the setup wizard or toggled live from the reveal screen. The TV shows an "OUT" takeover for players eliminated that round.
+
 ## [4.2.0-rc9] - 2026-06-28
 
 Pre-release — completes the speaker-twin fix so a previously-saved selection can't strand you on a non-streaming speaker. See [docs/release-notes-v4.2.0-rc9.md](docs/release-notes-v4.2.0-rc9.md) for the user-facing notes.
