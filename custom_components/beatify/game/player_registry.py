@@ -253,6 +253,10 @@ class PlayerRegistry:
                 "bet": p.bet,
                 "steal_used": p.steal_used,
                 "onboarded": p.onboarded,
+                # Issue #827: Sudden Death — eliminated players render the
+                # spectator view and a skull badge on leaderboards.
+                "eliminated": p.eliminated,
+                "eliminated_round": p.eliminated_round,
             }
             for p in self.players.values()
         ]
@@ -262,9 +266,12 @@ class PlayerRegistry:
 
         Uses ``is_active`` rather than the raw ``connected`` flag so a stale
         ghost (closed WebSocket not yet cleaned up) can't block early reveal
-        for the whole room — #928.
+        for the whole room — #928. Eliminated players (#827) never submit, so
+        they are excluded from the all-submitted (early reveal) check.
         """
-        active_players = [p for p in self.players.values() if p.is_active]
+        active_players = [
+            p for p in self.players.values() if p.is_active and not p.eliminated
+        ]
         if not active_players:
             return False
         return all(p.submitted for p in active_players)

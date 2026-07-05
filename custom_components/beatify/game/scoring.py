@@ -415,6 +415,24 @@ def _superlative_risk_taker(players: list[PlayerSession]) -> dict[str, Any] | No
     return _award("risk_taker", "🎲", most[0].name, most[1], "bets")
 
 
+def _superlative_last_one_standing(
+    players: list[PlayerSession],
+) -> dict[str, Any] | None:
+    """Issue #827: the sole survivor of a Sudden Death game.
+
+    Awarded only when exactly one player was never eliminated while at least
+    one other player was — i.e. a Sudden Death game that actually ran to its
+    1v1 conclusion.
+    """
+    survivors = [p for p in players if not p.eliminated]
+    eliminated = [p for p in players if p.eliminated]
+    if len(survivors) != 1 or not eliminated:
+        return None
+    return _award(
+        "last_one_standing", "💀", survivors[0].name, len(eliminated), "eliminated"
+    )
+
+
 def _superlative_clutch_player(
     players: list[PlayerSession], rounds_played: int
 ) -> dict[str, Any] | None:
@@ -646,6 +664,7 @@ class ScoringService:
         movie_quiz_enabled: bool = False,
         intro_mode_enabled: bool = False,
         title_artist_mode_enabled: bool = False,
+        sudden_death_mode_enabled: bool = False,
     ) -> list[dict[str, Any]]:
         """Calculate fun awards based on game performance (Story 15.2)."""
         if not players:
@@ -655,6 +674,12 @@ class ScoringService:
         # never qualify (their counters aren't tracked), so the TA-native
         # awards take their slots near the top of the priority order.
         builders = [
+            # Issue #827: the marquee award for a Sudden Death game leads the reel.
+            (
+                _superlative_last_one_standing(players)
+                if sudden_death_mode_enabled
+                else None
+            ),
             _superlative_speed_demon(players),
             _superlative_lucky_streak(players),
             _superlative_perfect_pair(players) if title_artist_mode_enabled else None,

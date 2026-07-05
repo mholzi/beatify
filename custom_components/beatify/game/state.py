@@ -348,6 +348,9 @@ class GameState(
         # Issue #442: Closest Wins mode
         self.closest_wins_mode: bool = False
 
+        # Issue #827: Sudden Death mode (last-place player eliminated per round)
+        self.sudden_death_mode: bool = False
+
         # Issue #477: Admin spectator WebSocket (host without being a player)
         self._admin_ws: web.WebSocketResponse | None = None
 
@@ -726,6 +729,11 @@ class GameState(
         # Phase 2: scoring pass (year/title-artist), closest-wins, round_results
         self._score_round(correct_year)
 
+        # Issue #827: Sudden Death — after scoring, eliminate the lowest
+        # round-scoring survivor (from round 2 on). Runs before REVEAL so the
+        # elimination is part of the reveal broadcast.
+        self._apply_sudden_death_elimination()
+
         # Phase 3: highlights, round analytics, persisted song-result stats
         await self._record_round_stats(correct_year)
 
@@ -763,6 +771,67 @@ class GameState(
             _LOGGER.warning(
                 "No round_end callback set - REVEAL state will not be broadcast!"
             )
+
+    # ------------------------------------------------------------------
+    # Sudden Death mode (Issue #827)
+    # ------------------------------------------------------------------
+
+    def non_eliminated_players(self) -> list[PlayerSession]:
+        """Players still in the game (not yet eliminated). Issue #827."""
+        return [p for p in self.players.values() if not p.eliminated]
+
+    def _apply_sudden_death_elimination(self) -> list[str]:
+        """Eliminate the lowest round-scoring survivor(s). Issue #827.
+
+        Runs after scoring, from round 2 onward (round 1 never eliminates).
+        Among non-eliminated players, the one with the lowest *round* score
+        (this round's delta, not cumulative) is eliminated. A tie for last is
+        broken by submission speed: the slowest (latest) submitter is out, and
+        a non-submitter counts as the slowest of all. Returns the names
+        eliminated this round (empty when nothing happens).
+
+        Caller holds ``_score_lock`` (invoked from ``_end_round_unlocked``).
+        """
+        if not self.sudden_death_mode or self.round < 2:
+            return []
+
+        survivors = self.non_eliminated_players()
+        # Never eliminate the last player standing — the auto-end guard in
+        # start_round carries a 1-survivor game to END instead.
+        if len(survivors) <= 1:
+            return []
+
+        min_round_score = min(p.round_score for p in survivors)
+        tied_for_last = [p for p in survivors if p.round_score == min_round_score]
+
+        # Slowest among the tied: a non-submitter (submission_time is None) is
+        # the slowest of all; otherwise the latest submission_time loses.
+        loser = max(
+            tied_for_last,
+            key=lambda p: (p.submission_time is None, p.submission_time or 0.0),
+        )
+        loser.eliminated = True
+        loser.eliminated_round = self.round
+        _LOGGER.info(
+            "Sudden Death: eliminated %s in round %d (round score %d)",
+            loser.name,
+            self.round,
+            loser.round_score,
+        )
+        return [loser.name]
+
+    def set_sudden_death(self, enabled: bool) -> bool:
+        """Toggle Sudden Death mid-game from the reveal screen. Issue #827.
+
+        Returns the new state. Turning it ON arms eliminations starting next
+        round; the current round's results stand. Turning it OFF stops further
+        cuts but already-eliminated players stay out.
+        """
+        self.sudden_death_mode = bool(enabled)
+        _LOGGER.info(
+            "Sudden Death mode set to %s (live toggle)", self.sudden_death_mode
+        )
+        return self.sudden_death_mode
 
     def _schedule_reveal_advance(self) -> None:
         """Schedule the REVEAL vote window or auto-advance task (#1272).
@@ -843,4 +912,5 @@ class GameState(
             movie_quiz_enabled=self.movie_quiz_enabled,
             intro_mode_enabled=self.intro_mode_enabled,
             title_artist_mode_enabled=self.title_artist_mode,
+            sudden_death_mode_enabled=self.sudden_death_mode,
         )

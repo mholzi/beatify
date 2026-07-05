@@ -53,16 +53,22 @@ export function renderAdminSubmissionDots(players) {
 
     container.innerHTML = players.map(function(p) {
         var initials = (p.name || '?').split(/\s+/).map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+        // Issue #827: eliminated players are out of the round — never count as
+        // submitted, render dimmed with a skull instead of submit state.
         var classes = [
             'player-indicator',
-            p.submitted ? 'is-submitted' : '',
+            (!p.eliminated && p.submitted) ? 'is-submitted' : '',
+            p.eliminated ? 'is-eliminated' : '',
             p.connected === false ? 'player-indicator--disconnected' : ''
         ].filter(Boolean).join(' ');
         var badges = '';
-        if (p.steal_used) badges += '<span class="player-badge player-badge--steal">🥷</span>';
-        if (p.bet) badges += '<span class="player-badge player-badge--bet">🎲</span>';
+        if (!p.eliminated && p.steal_used) badges += '<span class="player-badge player-badge--steal">🥷</span>';
+        if (!p.eliminated && p.bet) badges += '<span class="player-badge player-badge--bet">🎲</span>';
+        var avatarInner = p.eliminated
+            ? '<span class="eliminated-skull">💀</span>'
+            : '<span class="player-initials">' + escapeHtml(initials) + '</span>';
         return '<div class="' + classes + '">' + badges +
-            '<div class="player-avatar"><span class="player-initials">' + escapeHtml(initials) + '</span></div>' +
+            '<div class="player-avatar">' + avatarInner + '</div>' +
             '<span class="player-name">' + escapeHtml(p.name) + '</span></div>';
     }).join('');
 }
@@ -80,6 +86,9 @@ export function renderAdminLeaderboard(leaderboard, containerId) {
     leaderboard.forEach(function(entry) {
         var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
         var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+        // Issue #827: dim eliminated players + skull-prefix their name.
+        var eliminatedClass = entry.eliminated ? 'is-eliminated' : '';
+        var skullPrefix = entry.eliminated ? '💀 ' : '';
         var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
         var streakIndicator = '';
         if (entry.streak >= 2) {
@@ -90,9 +99,9 @@ export function renderAdminLeaderboard(leaderboard, containerId) {
         if (entry.rank_change > 0) changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
         else if (entry.rank_change < 0) changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
 
-        html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + '">' +
+        html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
             '<span class="entry-rank">#' + entry.rank + '</span>' +
-            '<span class="entry-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +
+            '<span class="entry-name">' + skullPrefix + escapeHtml(entry.name) + awayBadge + '</span>' +
             '<span class="entry-meta">' + streakIndicator + changeIndicator + '</span>' +
             '<span class="entry-score">' + entry.score + '</span>' +
         '</div>';
