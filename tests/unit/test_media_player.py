@@ -10,6 +10,7 @@ import pytest
 from custom_components.beatify.services.media_player import (
     MediaPlayerService,
     async_get_media_players,
+    async_get_media_players_with_remap,
     async_get_native_twin_remap,
     proxy_album_art,
 )
@@ -2377,3 +2378,45 @@ class TestNativeTwinRemap:
             remap = await async_get_native_twin_remap(hass)
 
         assert remap == {}
+
+
+class TestSingleWalkEquivalence:
+    """#1709: the single-walk combined path returns the SAME player list and
+    remap as calling async_get_media_players + async_get_native_twin_remap."""
+
+    @pytest.mark.asyncio
+    async def test_combined_matches_individual_functions(self):
+        entries = [
+            _make_registry_entry(
+                "media_player.esszimmer",
+                "music_assistant",
+                "RINCON_C43875ED053801400",
+            ),
+            _make_registry_entry(
+                "media_player.unnamed_room",
+                "sonos",
+                "RINCON_C43875ED053801400",
+            ),
+            _make_registry_entry(
+                "media_player.kitchen_sonos",
+                "sonos",
+                "RINCON_STANDALONE",
+            ),
+        ]
+        hass, registry = _make_discovery_hass(entries)
+
+        with patch(
+            "homeassistant.helpers.entity_registry.async_get",
+            return_value=registry,
+        ):
+            players_indiv = await async_get_media_players(hass)
+            remap_indiv = await async_get_native_twin_remap(hass)
+            players_combined, remap_combined = await async_get_media_players_with_remap(
+                hass
+            )
+
+        assert players_combined == players_indiv
+        assert remap_combined == remap_indiv
+        assert remap_combined == {"media_player.unnamed_room": "media_player.esszimmer"}
+        ids = {p["entity_id"] for p in players_combined}
+        assert ids == {"media_player.esszimmer", "media_player.kitchen_sonos"}

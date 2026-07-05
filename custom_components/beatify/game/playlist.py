@@ -100,6 +100,12 @@ class PlaylistManager:
             if uri in seen_uris:
                 continue
             seen_uris.add(uri)
+            # #1710: provider + storefront are immutable for this manager, so a
+            # song's resolved URI never changes. Cache it on the song now so
+            # get_next_song/_pick_from_pool filter against a precomputed key each
+            # round instead of re-resolving get_song_uri() for the whole pool.
+            # Only ever set for pooled songs, and always the truthy `uri` above.
+            song["_precomputed_uri"] = uri
             source = song.get("_playlist_source", "__default__")
             buckets.setdefault(source, []).append(song)
 
@@ -135,14 +141,11 @@ class PlaylistManager:
         if not self._multi_playlist:
             return self._pick_from_pool(self._songs)
 
-        # Balanced: pick a random non-exhausted playlist, then a song
+        # Balanced: pick a random non-exhausted playlist, then a song.
+        # #1710: filter against the precomputed URI cached in __init__ instead
+        # of re-resolving get_song_uri() for every song every round.
         active_buckets = {
-            k: [
-                s
-                for s in v
-                if get_song_uri(s, self._provider, self._storefront)
-                not in self._played_uris
-            ]
+            k: [s for s in v if s["_precomputed_uri"] not in self._played_uris]
             for k, v in self._buckets.items()
         }
         active_buckets = {k: v for k, v in active_buckets.items() if v}
@@ -153,26 +156,19 @@ class PlaylistManager:
         chosen_key = random.choice(list(active_buckets.keys()))  # noqa: S311
         song = random.choice(active_buckets[chosen_key])  # noqa: S311
         song_copy = song.copy()
-        song_copy["_resolved_uri"] = get_song_uri(
-            song, self._provider, self._storefront
-        )
+        song_copy["_resolved_uri"] = song["_precomputed_uri"]
         return song_copy
 
     def _pick_from_pool(self, pool: list[dict[str, Any]]) -> dict[str, Any] | None:
         """Pick a random unplayed song from a flat pool."""
-        available = [
-            s
-            for s in pool
-            if get_song_uri(s, self._provider, self._storefront)
-            not in self._played_uris
-        ]
+        # #1710: pool songs carry a precomputed URI (set in __init__); use it
+        # instead of re-resolving get_song_uri() for the whole pool each round.
+        available = [s for s in pool if s["_precomputed_uri"] not in self._played_uris]
         if not available:
             return None
         song = random.choice(available)  # noqa: S311
         song_copy = song.copy()
-        song_copy["_resolved_uri"] = get_song_uri(
-            song, self._provider, self._storefront
-        )
+        song_copy["_resolved_uri"] = song["_precomputed_uri"]
         return song_copy
 
     def mark_played(self, uri: str) -> None:
