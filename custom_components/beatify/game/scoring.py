@@ -47,6 +47,12 @@ from custom_components.beatify.game.text_match import (
 POINTS_EXACT = 10
 POINTS_WRONG = 0
 
+# #1722: the speed bonus holds at its maximum for an initial grace window so a
+# player isn't punished for actually listening to the song before committing to
+# a year. After the grace it decays linearly to 1.0x at the deadline.
+SPEED_MULTIPLIER_MAX = 2.0
+SPEED_GRACE_FRACTION = 1.0 / 3.0
+
 # A won bet (exact year) multiplies the round score by this (#1004).
 BET_WIN_MULTIPLIER = 3
 
@@ -95,13 +101,15 @@ def calculate_speed_multiplier(elapsed_time: float, round_duration: float) -> fl
     """
     Calculate speed bonus multiplier based on submission timing.
 
-    Formula: speed_multiplier = 2.0 - (1.0 * submission_time_ratio)
-    - Instant submission (0s): 2.0x multiplier (double points!)
-    - At deadline (30s): 1.0x multiplier (no bonus)
+    #1722: a grace window keeps the multiplier at its maximum for the first
+    third of the round, so listening to recognise the song isn't penalised.
+    - Instant .. grace edge (round_duration / 3): 2.0x (double points!)
+    - Grace edge .. deadline: linear decay 2.0x → 1.0x
+    - At / past the deadline: 1.0x (no bonus)
 
     Args:
         elapsed_time: Seconds elapsed since round started when player submitted
-        round_duration: Total round duration in seconds (default 30)
+        round_duration: Total round duration in seconds
 
     Returns:
         Multiplier between 1.0 and 2.0
@@ -110,14 +118,16 @@ def calculate_speed_multiplier(elapsed_time: float, round_duration: float) -> fl
     if round_duration <= 0:
         return 1.0
 
-    # Calculate ratio (0.0 = instant, 1.0 = at deadline)
-    submission_time_ratio = elapsed_time / round_duration
+    grace = round_duration * SPEED_GRACE_FRACTION
 
-    # Clamp to valid range [0.0, 1.0]
-    submission_time_ratio = max(0.0, min(1.0, submission_time_ratio))
+    # Full multiplier during the grace window (and for any early / negative time).
+    if elapsed_time <= grace:
+        return SPEED_MULTIPLIER_MAX
 
-    # Formula: 2.0x at instant, 1.0x at deadline (linear)
-    return 2.0 - (1.0 * submission_time_ratio)
+    # Linear decay from the max at the grace edge to 1.0x at the deadline.
+    decay_ratio = (elapsed_time - grace) / (round_duration - grace)
+    decay_ratio = max(0.0, min(1.0, decay_ratio))
+    return SPEED_MULTIPLIER_MAX - ((SPEED_MULTIPLIER_MAX - 1.0) * decay_ratio)
 
 
 def calculate_round_score(
@@ -143,7 +153,10 @@ def calculate_round_score(
     """
     base_score = calculate_accuracy_score(guess, actual, difficulty)
     speed_multiplier = calculate_speed_multiplier(elapsed_time, round_duration)
-    final_score = int(base_score * speed_multiplier)
+    # #1722: round rather than truncate — int() dropped the speed bonus entirely
+    # for the 1-point accuracy tier (int(1 * 1.9) == 1) and shaved fractional
+    # bonuses off every other tier.
+    final_score = round(base_score * speed_multiplier)
     return final_score, base_score, speed_multiplier
 
 
