@@ -743,12 +743,14 @@ class TestScheduleSaveDirtyFlag:
         service._hass.async_add_executor_job = AsyncMock(side_effect=_gated_executor)
 
         service._stats["all_time"]["games_played"] = 1
-        service.schedule_save()  # starts save #1 (gated)
+        # #1708: schedule_save() is now debounced; _schedule_save_now() owns the
+        # immediate fire-and-forget + dirty-flag coalescing this test exercises.
+        service._schedule_save_now()  # starts save #1 (gated)
         await asyncio.sleep(0)  # let the task reach the gate
 
         # Mutate AFTER save #1 snapshotted, and re-schedule.
         service._stats["all_time"]["games_played"] = 2
-        service.schedule_save()  # in flight -> sets dirty flag
+        service._schedule_save_now()  # in flight -> sets dirty flag
         assert service._save_dirty is True
 
         release.set()  # let save #1 finish -> done-callback re-schedules
@@ -761,6 +763,86 @@ class TestScheduleSaveDirtyFlag:
         data = _json.loads(stats_path.read_text())
         assert data["all_time"]["games_played"] == 2
         assert save_count >= 2
+
+
+class TestScheduleSaveDebounce:
+    """#1708: per-round saves are debounced into a single write; game end and
+    unload flush explicitly."""
+
+    @pytest.mark.asyncio
+    async def test_rapid_saves_coalesce_into_single_timer(self):
+        from custom_components.beatify.services.stats import (
+            STATS_SAVE_DEBOUNCE_SECONDS,
+        )
+
+        service = _make_service()
+        service._hass.loop = MagicMock()
+        handles = [MagicMock(name=f"h{i}") for i in range(3)]
+        service._hass.loop.call_later.side_effect = handles
+
+        with patch.object(service, "_schedule_save_now") as now:
+            service.schedule_save()
+            service.schedule_save()
+            service.schedule_save()
+
+            # Each call schedules a fresh timer and cancels the previous one, so
+            # only the most recent timer survives — a burst of rounds ends in a
+            # single pending write, not one per round.
+            assert service._hass.loop.call_later.call_count == 3
+            handles[0].cancel.assert_called_once()
+            handles[1].cancel.assert_called_once()
+            handles[2].cancel.assert_not_called()
+            assert service._save_handle is handles[2]
+            # No actual save has started yet — it is debounced.
+            now.assert_not_called()
+
+        # Firing the debounce callback kicks off exactly one immediate save.
+        delay, fire = service._hass.loop.call_later.call_args.args
+        assert delay == STATS_SAVE_DEBOUNCE_SECONDS
+        with patch.object(service, "_schedule_save_now") as now:
+            fire()
+            now.assert_called_once()
+        assert service._save_handle is None
+
+    @pytest.mark.asyncio
+    async def test_flush_cancels_pending_debounce_and_saves(self):
+        service = _make_service()
+        service._hass.loop = MagicMock()
+        handle = MagicMock()
+        service._hass.loop.call_later.return_value = handle
+
+        with patch.object(service, "save", new_callable=AsyncMock) as save:
+            service.schedule_save()
+            assert service._save_handle is handle
+            await service.async_flush()
+
+        handle.cancel.assert_called_once()
+        save.assert_awaited_once()
+        assert service._save_handle is None
+
+    @pytest.mark.asyncio
+    async def test_shutdown_flushes_pending(self):
+        service = _make_service()
+        service._hass.loop = MagicMock()
+
+        with patch.object(service, "save", new_callable=AsyncMock) as save:
+            service.schedule_save()
+            await service.async_shutdown()
+
+        save.assert_awaited_once()
+        assert service._save_handle is None
+
+    @pytest.mark.asyncio
+    async def test_record_game_flushes_immediately(self):
+        service = _make_service()
+        service._hass.loop = MagicMock()
+
+        with patch.object(service, "save", new_callable=AsyncMock) as save:
+            await service.record_game(_make_game_summary())
+
+        # Game end is a flush point: written now, not left on the debounce timer.
+        save.assert_awaited()
+        assert service._save_handle is None
 
 
 # ---------------------------------------------------------------------------

@@ -26,6 +26,14 @@ _LOGGER = logging.getLogger(__name__)
 # running weighted sum, so dropping detailed entries does not skew it.
 MAX_DETAILED_GAMES = 500
 
+# Debounce window for per-round stat saves. record_song_result runs once per
+# round (~30s) and each call would otherwise rewrite the entire growing
+# stats.json via json.dumps (#1708). We coalesce rapid saves into a single
+# write scheduled STATS_SAVE_DEBOUNCE_SECONDS in the future; any save requested
+# before the timer fires resets it. Game end and unload flush explicitly so no
+# data is lost. Mirrors AnalyticsStorage's error-save debounce (#1388).
+STATS_SAVE_DEBOUNCE_SECONDS = 30.0
+
 
 class StatsService:
     """Service for tracking game statistics."""
@@ -46,10 +54,14 @@ class StatsService:
         self._all_time_avg_cache: float | None = None
         self._save_task: asyncio.Task | None = None
         self._save_lock = asyncio.Lock()
-        # Dirty flag: set on every schedule_save(); the save's done-callback
-        # re-schedules if it was set again while a save was in flight, so
-        # mutations made during a save are never silently dropped (#1402).
+        # Dirty flag: set on every _schedule_save_now(); the save's
+        # done-callback re-schedules if it was set again while a save was in
+        # flight, so mutations made during a save are never silently dropped
+        # (#1402).
         self._save_dirty = False
+        # Pending debounce timer for schedule_save() (#1708). None when no save
+        # is queued; a call_later handle otherwise.
+        self._save_handle: asyncio.TimerHandle | None = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -160,9 +172,31 @@ class StatsService:
 
     def schedule_save(self) -> None:
         """
-        Schedule non-blocking save.
+        Schedule a debounced non-blocking save (#1708).
 
-        Uses fire-and-forget pattern to avoid blocking game operations.
+        record_song_result runs once per round (~30s). Writing the whole
+        (growing) stats.json on every round hammers the disk and runs
+        json.dumps of the full store in the event loop. Instead we coalesce:
+        the save is deferred STATS_SAVE_DEBOUNCE_SECONDS into the future and any
+        call arriving before the timer fires resets it, so a burst of rounds
+        results in a single write. Game end (record_game) and unload
+        (async_shutdown) flush explicitly so nothing is lost.
+        """
+        if self._save_handle is not None:
+            self._save_handle.cancel()
+
+        def _fire() -> None:
+            self._save_handle = None
+            self._schedule_save_now()
+
+        self._save_handle = self._hass.loop.call_later(
+            STATS_SAVE_DEBOUNCE_SECONDS, _fire
+        )
+
+    def _schedule_save_now(self) -> None:
+        """
+        Kick off an immediate non-blocking save (fire-and-forget).
+
         Coalesces rapid calls: if a save is already in flight, the call sets a
         dirty flag and the in-flight save's done-callback re-schedules a fresh
         save. Without this, the save task snapshots ``self._stats`` at the
@@ -177,14 +211,33 @@ class StatsService:
         self._save_task = asyncio.create_task(self.save())
         self._save_task.add_done_callback(self._handle_save_done)
 
+    async def async_flush(self) -> None:
+        """
+        Cancel any pending debounced save and persist immediately (#1708).
+
+        Used on game end and unload so the last coalesced batch of per-round
+        updates is written even though its debounce timer hasn't fired yet.
+        Idempotent: a no-op beyond a harmless extra write if nothing is dirty.
+        """
+        if self._save_handle is not None:
+            self._save_handle.cancel()
+            self._save_handle = None
+        await self.save()
+
+    async def async_shutdown(self) -> None:
+        """Flush pending stats on unload so debounced rounds aren't lost."""
+        await self.async_flush()
+
     def _handle_save_done(self, task: asyncio.Task) -> None:
         """Log save-task errors and re-schedule if mutated mid-save (#1402)."""
         if (exc := task.exception()) is not None:
             _LOGGER.error("Unhandled error in stats save task: %s", exc)
-        # A schedule_save() arrived while this save was in flight — its
-        # mutations may not be on disk yet, so kick off another save.
+        # A _schedule_save_now() arrived while this save was in flight — its
+        # mutations may not be on disk yet, so kick off another immediate save.
+        # (Use the non-debounced path: the data is already committed to being
+        # written; don't restart a fresh debounce window, #1708.)
         if self._save_dirty:
-            self.schedule_save()
+            self._schedule_save_now()
 
     async def record_game(self, game_summary: dict, difficulty: str = "normal") -> dict:
         """
@@ -323,8 +376,10 @@ class StatsService:
         if len(games_list) > MAX_DETAILED_GAMES:
             del games_list[:-MAX_DETAILED_GAMES]
 
-        # Schedule deferred save (non-blocking)
-        self.schedule_save()
+        # Game end is a natural flush point: persist immediately (cancelling any
+        # pending per-round debounce) so a completed game is never lost to a
+        # crash/unload before the debounce timer fires (#1708).
+        await self.async_flush()
 
         _LOGGER.info(
             "Recorded game %s: %.2f avg pts/round, %d players, %d rounds",

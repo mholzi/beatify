@@ -354,3 +354,71 @@ class TestPlaylistManagerAmazonMusic:
         ]
         pm = PlaylistManager(songs, provider=PROVIDER_AMAZON_MUSIC)
         assert pm.get_total_count() == 1
+
+
+class TestPrecomputedUriEquivalence:
+    """#1710: the URI cached in __init__ equals the on-the-fly get_song_uri
+    result, and the full play-through behaviour is unchanged."""
+
+    def test_precomputed_uri_matches_on_the_fly_spotify(self):
+        songs = [
+            {"uri_spotify": "spotify:track:aaaaaaaaaaaaaaaaaaaaaa", "title": "A"},
+            {"uri": "spotify:track:bbbbbbbbbbbbbbbbbbbbbb", "title": "B"},
+        ]
+        pm = PlaylistManager(songs, provider=PROVIDER_SPOTIFY)
+        for song in pm._songs:
+            assert song["_precomputed_uri"] == get_song_uri(
+                song, PROVIDER_SPOTIFY, None
+            )
+
+    def test_precomputed_uri_matches_on_the_fly_apple_storefront(self):
+        songs = [
+            {
+                "uri_apple_music": "applemusic://track/legacy",
+                "uri_apple_music_by_region": {"gb": "applemusic://track/gbid"},
+                "title": "A",
+            },
+        ]
+        pm = PlaylistManager(songs, provider=PROVIDER_APPLE_MUSIC, storefront="gb")
+        song = pm._songs[0]
+        assert (
+            song["_precomputed_uri"]
+            == get_song_uri(song, PROVIDER_APPLE_MUSIC, "gb")
+            == "applemusic://track/gbid"
+        )
+
+    def test_resolved_uri_equals_precomputed(self):
+        songs = [
+            {"uri_spotify": "spotify:track:aaaaaaaaaaaaaaaaaaaaaa", "title": "A"},
+        ]
+        pm = PlaylistManager(songs, provider=PROVIDER_SPOTIFY)
+        picked = pm.get_next_song()
+        assert picked is not None
+        assert picked["_resolved_uri"] == "spotify:track:aaaaaaaaaaaaaaaaaaaaaa"
+
+    def test_multi_playlist_play_through_unchanged(self):
+        songs = [
+            {
+                "uri_spotify": "spotify:track:aaaaaaaaaaaaaaaaaaaaaa",
+                "title": "A",
+                "_playlist_source": "p1",
+            },
+            {
+                "uri_spotify": "spotify:track:bbbbbbbbbbbbbbbbbbbbbb",
+                "title": "B",
+                "_playlist_source": "p2",
+            },
+        ]
+        pm = PlaylistManager(songs, provider=PROVIDER_SPOTIFY)
+        assert pm._multi_playlist is True
+        played: list[str] = []
+        for _ in range(2):
+            song = pm.get_next_song()
+            assert song is not None
+            played.append(song["_resolved_uri"])
+            pm.mark_played(song["_resolved_uri"])
+        assert set(played) == {
+            "spotify:track:aaaaaaaaaaaaaaaaaaaaaa",
+            "spotify:track:bbbbbbbbbbbbbbbbbbbbbb",
+        }
+        assert pm.get_next_song() is None

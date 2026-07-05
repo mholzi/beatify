@@ -128,6 +128,7 @@ def _patch_heavy_helpers(monkeypatch):
     # carry just the attributes async_setup_entry reads/wires.
     stats = MagicMock()
     stats.load = AsyncMock()
+    stats.async_shutdown = AsyncMock()  # #1708: flushed on unload
     stats.games_played = 0
     monkeypatch.setattr(beatify_init, "StatsService", MagicMock(return_value=stats))
 

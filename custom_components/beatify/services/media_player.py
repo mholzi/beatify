@@ -1539,44 +1539,63 @@ class MediaPlayerService:
             return False, msg
 
 
-async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
+def _collect_ma_twin_maps(
+    ent_reg: Any,
+) -> tuple[dict[str, str], dict[str, str]]:
+    """Walk the entity registry ONCE and derive both Music Assistant twin maps.
+
+    #1709: ``async_get_media_players`` and ``async_get_native_twin_remap`` used
+    to iterate ``ent_reg.entities`` 3-4 times per status request to rebuild
+    essentially the same data. This single pass builds them both:
+
+    - ``ma_by_unique_id``: ``{unique_id: ma_entity_id}`` for every
+      music_assistant-owned media_player (its keys are the MA unique-id set used
+      to hide native twins from the picker, #1627/#1628).
+    - ``native_twin_remap``: ``{native_entity_id: ma_entity_id}`` for every
+      native-platform media_player that shares a unique_id with an MA twin
+      (#1627 follow-up — heals stale saved selections).
+
+    A native entity can appear before its MA twin in the registry, so natives
+    are collected in the same pass and resolved against the completed MA map
+    afterwards (no second full registry walk).
     """
-    Get all available media player entities with platform and capability info.
+    ma_by_unique_id: dict[str, str] = {}
+    native_media_players: list[tuple[str, str]] = []  # (entity_id, unique_id)
+    for entry in ent_reg.entities.values():
+        if entry.domain != "media_player" or not entry.unique_id:
+            continue
+        if entry.platform == "music_assistant":
+            ma_by_unique_id[entry.unique_id] = entry.entity_id
+        else:
+            native_media_players.append((entry.entity_id, entry.unique_id))
 
-    Filters out unsupported platforms (raw Cast devices without Music Assistant).
+    native_twin_remap = {
+        entity_id: ma_by_unique_id[unique_id]
+        for entity_id, unique_id in native_media_players
+        if unique_id in ma_by_unique_id
+    }
+    return ma_by_unique_id, native_twin_remap
 
-    Returns:
-        List of media player dicts with entity_id, friendly_name, state,
-        platform, supports_spotify, supports_apple_music, playback_method,
-        warning, caveat fields.
 
+def _build_media_player_list(
+    hass: HomeAssistant, ma_by_unique_id: dict[str, str]
+) -> list[dict[str, Any]]:
+    """Build the compatible-player list from live states + precomputed twin map.
+
+    Factored out of :func:`async_get_media_players` (#1709) so the player list
+    and the native-twin remap can be produced from a single registry walk (see
+    :func:`async_get_media_players_with_remap`). ``ma_by_unique_id`` keys are the
+    MA unique-id set used to drop native twins (#1627/#1628).
     """
-    # Late import: homeassistant.helpers.entity_registry is not available in
-    # the test environment without a full HA setup, so we import it here to
-    # avoid ImportError during unit tests.  (noqa: PLC0415)
+    # Late import mirrors the callers: entity_registry isn't importable in the
+    # unit-test env without a full HA setup. (noqa: PLC0415)
     from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
 
-    # Get entity registry to check which platform created each entity
     ent_reg = er.async_get(hass)
-
-    # #1627: A speaker exposed through Music Assistant appears in the registry
-    # twice with the SAME unique_id — once on its native platform (e.g. sonos)
-    # and once on music_assistant. Both are the same physical speaker, but only
-    # the MA twin can stream Beatify's provider URIs (spotify:track:… etc.); the
-    # native twin throws "UPnP Error 800" and the game pauses with
-    # media_player_error. Collect the unique_ids owned by an MA media_player so
-    # we can drop the native twins below (even when the native platform — sonos
-    # — is itself "supported").
-    ma_unique_ids = {
-        entry.unique_id
-        for entry in ent_reg.entities.values()
-        if entry.domain == "media_player"
-        and entry.platform == "music_assistant"
-        and entry.unique_id
-    }
 
     media_players = []
     for state in hass.states.async_all("media_player"):
+        # async_get is an O(1) dict lookup, not a registry walk.
         entity_entry = ent_reg.async_get(state.entity_id)
         platform = entity_entry.platform if entity_entry else "unknown"
 
@@ -1601,7 +1620,7 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
         if (
             platform != "music_assistant"
             and entity_entry is not None
-            and entity_entry.unique_id in ma_unique_ids
+            and entity_entry.unique_id in ma_by_unique_id
         ):
             _LOGGER.debug(
                 "Skipping native twin of MA player: %s (platform=%s, unique_id=%s)",
@@ -1632,6 +1651,57 @@ async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
     return media_players
 
 
+async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:
+    """
+    Get all available media player entities with platform and capability info.
+
+    Filters out unsupported platforms (raw Cast devices without Music Assistant).
+
+    Returns:
+        List of media player dicts with entity_id, friendly_name, state,
+        platform, supports_spotify, supports_apple_music, playback_method,
+        warning, caveat fields.
+
+    """
+    # Late import: homeassistant.helpers.entity_registry is not available in
+    # the test environment without a full HA setup, so we import it here to
+    # avoid ImportError during unit tests.  (noqa: PLC0415)
+    from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
+    # Get entity registry to check which platform created each entity
+    ent_reg = er.async_get(hass)
+
+    # #1627: A speaker exposed through Music Assistant appears in the registry
+    # twice with the SAME unique_id — once on its native platform (e.g. sonos)
+    # and once on music_assistant. Both are the same physical speaker, but only
+    # the MA twin can stream Beatify's provider URIs (spotify:track:… etc.); the
+    # native twin throws "UPnP Error 800" and the game pauses with
+    # media_player_error. Collect the unique_ids owned by an MA media_player so
+    # we can drop the native twins below (even when the native platform — sonos
+    # — is itself "supported"). Single registry walk (#1709).
+    ma_by_unique_id, _ = _collect_ma_twin_maps(ent_reg)
+    return _build_media_player_list(hass, ma_by_unique_id)
+
+
+async def async_get_media_players_with_remap(
+    hass: HomeAssistant,
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
+    """Return the player list AND the native→MA twin remap from ONE walk (#1709).
+
+    Callers that need both (e.g. the status path) should prefer this over
+    calling :func:`async_get_media_players` and
+    :func:`async_get_native_twin_remap` back to back, which repeats the entity
+    registry walk. Behaviour of the two returned values is identical to calling
+    those functions individually.
+    """
+    from homeassistant.helpers import entity_registry as er  # noqa: PLC0415
+
+    ent_reg = er.async_get(hass)
+    ma_by_unique_id, native_twin_remap = _collect_ma_twin_maps(ent_reg)
+    players = _build_media_player_list(hass, ma_by_unique_id)
+    return players, native_twin_remap
+
+
 async def async_get_native_twin_remap(hass: HomeAssistant) -> dict[str, str]:
     """Map each native-platform media_player entity_id to the Music Assistant
     entity_id for the same physical speaker (same unique_id). #1627 follow-up.
@@ -1656,23 +1726,6 @@ async def async_get_native_twin_remap(hass: HomeAssistant) -> dict[str, str]:
 
     ent_reg = er.async_get(hass)
 
-    # unique_id → MA media_player entity_id for every MA-owned media_player.
-    ma_by_unique_id = {
-        entry.unique_id: entry.entity_id
-        for entry in ent_reg.entities.values()
-        if entry.domain == "media_player"
-        and entry.platform == "music_assistant"
-        and entry.unique_id
-    }
-
-    remap: dict[str, str] = {}
-    for entry in ent_reg.entities.values():
-        if (
-            entry.domain == "media_player"
-            and entry.platform != "music_assistant"
-            and entry.unique_id
-            and entry.unique_id in ma_by_unique_id
-        ):
-            remap[entry.entity_id] = ma_by_unique_id[entry.unique_id]
-
+    # Single registry walk (#1709): previously two full passes (MA map + remap).
+    _, remap = _collect_ma_twin_maps(ent_reg)
     return remap

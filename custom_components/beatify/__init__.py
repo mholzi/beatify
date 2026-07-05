@@ -356,6 +356,10 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             analytics = domain_data.get("analytics")
             if analytics is not None:
                 await analytics.async_shutdown()
+            # Flush any pending debounced per-round stats save before teardown (#1708)
+            stats = domain_data.get("stats")
+            if stats is not None:
+                await stats.async_shutdown()
 
         _LOGGER.info("Beatify integration unloaded")
     else:
