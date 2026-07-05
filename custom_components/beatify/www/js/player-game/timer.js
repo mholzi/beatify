@@ -21,6 +21,11 @@
 
 import { state } from '../player-utils.js';
 
+// #1756: localize the screen-reader countdown cues (time-up + Ns-remaining)
+// instead of hardcoding English. Matches the window.BeatifyUtils access pattern
+// used across the player-game modules (e.g. movie-challenge.js).
+var utils = (typeof window !== 'undefined' && window.BeatifyUtils) || {};
+
 // ============================================
 // Countdown Timer (Story 4.2)
 // ============================================
@@ -191,9 +196,16 @@ export function startCountdown(deadline, secondsRemaining) {
         if (remaining === 10 || remaining === 5 || remaining === 0) {
             var announcer = document.getElementById('timer-announcer');
             if (announcer) {
+                // #1756: localized via utils.t (with EN fallbacks), so de/es/fr/nl
+                // screen-reader users hear the cue in their language.
+                var t = utils.t ? utils.t.bind(utils) : function (k, p) {
+                    return (p && typeof p.count !== 'undefined')
+                        ? p.count + ' seconds remaining'
+                        : "Time's up!";
+                };
                 announcer.textContent = remaining === 0
-                    ? "Time's up!"
-                    : remaining + ' seconds remaining';
+                    ? t('errors.timesUp', "Time's up!")
+                    : t('errors.secondsRemaining', { count: remaining });
             }
         }
 

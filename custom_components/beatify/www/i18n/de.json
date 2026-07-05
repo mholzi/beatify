@@ -734,7 +734,9 @@
     "wakeLockBody": "Verhindert, dass sich das TV-Display während des Spiels abschaltet.",
     "wakeLockActivate": "Aktivieren",
     "wakeLockDismiss": "Schließen",
-    "reconnecting": "Verbinde erneut…"
+    "reconnecting": "Verbinde erneut…",
+    "qrUnavailable": "Scannen nicht möglich – gib die Webadresse unten ein",
+    "joinAddressLabel": "Beitrittsadresse"
   },
   "launcher": {
     "title": "Beatify",
@@ -913,6 +915,10 @@
     "submissionFailed": "Übertragung fehlgeschlagen",
     "thanksForPlaying": "Danke fürs Mitspielen!",
     "timesUp": "Zeit abgelaufen!",
+    "secondsRemaining": "Noch {count} Sekunden",
+    "sessionTakeoverTitle": "Du spielst auf einem anderen Gerät",
+    "sessionTakeoverHint": "Dieser Bildschirm ist jetzt inaktiv, weil du das Spiel auf einem anderen Gerät oder Tab geöffnet hast.",
+    "sessionTakeoverJoin": "Hier erneut beitreten",
     "PROVIDER_NOT_SUPPORTED": "{speaker} kann {provider} nicht abspielen. Wechsle zu einem Music-Assistant-Lautsprecher.",
     "UNSUPPORTED_PLAYER": "{speaker} ist kein unterstützter Lautsprecher-Typ. Nutze Music Assistant.",
     "joinTimeout": "Verbindung fehlgeschlagen. Bitte versuche es erneut."

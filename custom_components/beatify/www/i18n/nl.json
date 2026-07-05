@@ -735,7 +735,9 @@
     "wakeLockBody": "Voorkomt dat het tv-scherm tijdens het spel uitschakelt.",
     "wakeLockActivate": "Activeren",
     "wakeLockDismiss": "Sluiten",
-    "reconnecting": "Opnieuw verbinden…"
+    "reconnecting": "Opnieuw verbinden…",
+    "qrUnavailable": "Scannen niet beschikbaar – voer het webadres hieronder in",
+    "joinAddressLabel": "Deelnameadres"
   },
   "launcher": {
     "title": "Beatify",
@@ -914,6 +916,10 @@
     "submissionFailed": "Versturen mislukt",
     "thanksForPlaying": "Bedankt voor het spelen van Beatify!",
     "timesUp": "Tijd is om!",
+    "secondsRemaining": "Nog {count} seconden",
+    "sessionTakeoverTitle": "Je bent op een ander apparaat gestart",
+    "sessionTakeoverHint": "Dit scherm is nu inactief omdat je het spel op een ander apparaat of tabblad hebt geopend.",
+    "sessionTakeoverJoin": "Hier opnieuw deelnemen",
     "PROVIDER_NOT_SUPPORTED": "{speaker} kan {provider} niet afspelen. Schakel over naar een Music Assistant-speaker.",
     "UNSUPPORTED_PLAYER": "{speaker} is geen ondersteund speakertype. Gebruik Music Assistant.",
     "joinTimeout": "Verbinden mislukt. Probeer het opnieuw."

@@ -735,7 +735,9 @@
     "wakeLockBody": "Evita que la pantalla del TV se apague durante la partida.",
     "wakeLockActivate": "Activar",
     "wakeLockDismiss": "Cerrar",
-    "reconnecting": "Reconectando…"
+    "reconnecting": "Reconectando…",
+    "qrUnavailable": "Escaneo no disponible: introduce la dirección web de abajo",
+    "joinAddressLabel": "Dirección para unirse"
   },
   "launcher": {
     "title": "Beatify",
@@ -914,6 +916,10 @@
     "submissionFailed": "Error al enviar",
     "thanksForPlaying": "Gracias por jugar Beatify!",
     "timesUp": "¡Tiempo agotado!",
+    "secondsRemaining": "Quedan {count} segundos",
+    "sessionTakeoverTitle": "Te uniste en otro dispositivo",
+    "sessionTakeoverHint": "Esta pantalla ahora está inactiva porque abriste el juego en otro dispositivo o pestaña.",
+    "sessionTakeoverJoin": "Unirse aquí de nuevo",
     "PROVIDER_NOT_SUPPORTED": "{speaker} no puede reproducir {provider}. Cambia a un altavoz de Music Assistant.",
     "UNSUPPORTED_PLAYER": "{speaker} no es un tipo de altavoz compatible. Usa Music Assistant.",
     "joinTimeout": "No se pudo conectar. Intentalo de nuevo."
