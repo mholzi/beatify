@@ -2252,6 +2252,16 @@ async function renderRequestsList() {
  * unchanged.
  */
 function renderAdminState(data) {
+    // #1765: re-attach the per-player fields (score/connected/eliminated/…) the
+    // server no longer duplicates into every slim in-round leaderboard entry,
+    // joining from data.players by name so every admin leaderboard render is
+    // unchanged. Hydrate into a shallow copy (non-destructive → the END final
+    // leaderboard passes through) and store that as the current game.
+    if (data && data.leaderboard) {
+        data = Object.assign({}, data, {
+            leaderboard: utils.hydrateLeaderboard(data.leaderboard, data.players)
+        });
+    }
     adminState.currentGame = data;
 
     // Restore adminState.isPlaying state from player list (survives page reload)

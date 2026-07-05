@@ -483,12 +483,59 @@ window.BeatifyUtils = (function() {
     }
 
     // ==========================================================================
+    // Leaderboard hydration (#1765)
+    // ==========================================================================
+
+    /**
+     * Re-attach per-player fields to a slim in-round leaderboard.
+     *
+     * #1765: the server now sends the PLAYING/REVEAL leaderboard as
+     * ``{rank, name, rank_change}`` only — score, streak, is_admin, connected,
+     * eliminated and eliminated_round are already carried in the same frame's
+     * ``players`` array, so they no longer ride along in every leaderboard
+     * entry. This joins them back by name on receipt so all downstream render
+     * code (standings, TV rows, admin cards, steal modal) is unchanged.
+     *
+     * Non-destructive: a field already present on an entry wins, so the
+     * END-phase final leaderboard (which keeps its full stat block) passes
+     * through untouched and this is safe to call in any phase.
+     *
+     * @param {Array} leaderboard - Leaderboard entries (slim or full).
+     * @param {Array} players - Same frame's players array.
+     * @returns {Array} Entries with the per-player fields re-attached.
+     */
+    function hydrateLeaderboard(leaderboard, players) {
+        if (!Array.isArray(leaderboard)) return leaderboard;
+        var byName = {};
+        (players || []).forEach(function(p) {
+            if (p && p.name != null) byName[p.name] = p;
+        });
+        return leaderboard.map(function(entry) {
+            var p = entry ? byName[entry.name] : null;
+            if (!p) return entry;
+            // Object.assign(base, entry): entry wins on overlap, so rank/
+            // rank_change (and any full-leaderboard fields) are preserved.
+            return Object.assign({
+                score: p.score,
+                streak: p.streak,
+                is_admin: p.is_admin,
+                connected: p.connected,
+                eliminated: p.eliminated,
+                eliminated_round: p.eliminated_round
+            }, entry);
+        });
+    }
+
+    // ==========================================================================
     // Public API
     // ==========================================================================
 
     return {
         // Debug
         debug: debug,
+
+        // Leaderboard (#1765)
+        hydrateLeaderboard: hydrateLeaderboard,
 
         // i18n
         waitForI18n: waitForI18n,
