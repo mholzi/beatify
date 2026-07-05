@@ -26,11 +26,23 @@ from aiohttp import StreamReader
 from aiohttp.test_utils import make_mocked_request
 
 from custom_components.beatify.const import PROVIDER_DEEZER, PROVIDER_DEFAULT
-from custom_components.beatify.server.base import _read_file
 from custom_components.beatify.server.mix_views import (
     MixPlaylistView,
     _assemble_mix_songs,
 )
+
+
+def _songs_by_path(pdir: Path) -> dict:
+    """Build the ``{path: parsed songs}`` map discovery now hands to the mixer.
+
+    #1704: ``_assemble_mix_songs`` no longer re-reads files — it consumes the
+    songs already parsed by ``async_discover_playlists``. Mirror that here by
+    parsing every catalogue file once.
+    """
+    return {
+        str(f): json.loads(f.read_text(encoding="utf-8")).get("songs", [])
+        for f in pdir.glob("**/*.json")
+    }
 
 
 def _uri(tag: str) -> str:
@@ -158,7 +170,7 @@ class TestAssembleMixSongs:
         # "pop" union: both pop lists match (3 + 2 songs = 5 raw), track0001 is a
         # dup → 4 unique. Rock list has no "pop" tag → excluded.
         songs, matched = _assemble_mix_songs(
-            meta, {"pop"}, 100, "spotify", _read_file, pdir
+            meta, {"pop"}, 100, "spotify", _songs_by_path(pdir)
         )
         assert matched == 2
         uris = {s["uri"] for s in songs}
@@ -176,7 +188,9 @@ class TestAssembleMixSongs:
             self._meta(str(pdir / "80s-pop.json"), ["1980s", "pop"]),
             self._meta(str(pdir / "90s-pop.json"), ["1990s", "pop"]),
         ]
-        songs, _ = _assemble_mix_songs(meta, {"pop"}, 2, "spotify", _read_file, pdir)
+        songs, _ = _assemble_mix_songs(
+            meta, {"pop"}, 2, "spotify", _songs_by_path(pdir)
+        )
         assert len(songs) == 2  # capped below the 4 available
 
     def test_skips_invalid_playlists(self, tmp_path):
@@ -185,7 +199,7 @@ class TestAssembleMixSongs:
             self._meta(str(pdir / "80s-pop.json"), ["1980s", "pop"], valid=False),
         ]
         songs, matched = _assemble_mix_songs(
-            meta, {"pop"}, 100, "spotify", _read_file, pdir
+            meta, {"pop"}, 100, "spotify", _songs_by_path(pdir)
         )
         assert matched == 0
         assert songs == []
@@ -212,7 +226,7 @@ class TestAssembleMixSongs:
         )
         meta = [self._meta(str(pdir / "mixed.json"), ["pop"])]
         songs, matched = _assemble_mix_songs(
-            meta, {"pop"}, 100, "spotify", _read_file, pdir
+            meta, {"pop"}, 100, "spotify", _songs_by_path(pdir)
         )
         assert matched == 1
         uris = {s["uri"] for s in songs}
@@ -237,7 +251,7 @@ class TestAssembleMixSongs:
             self._meta(str(mix_dir / "__mix__-deadbeef.json"), ["pop"]),
         ]
         songs, matched = _assemble_mix_songs(
-            meta, {"pop"}, 100, "spotify", _read_file, pdir
+            meta, {"pop"}, 100, "spotify", _songs_by_path(pdir)
         )
         assert matched == 1  # only the real 80s list, transient excluded
         uris = {s["uri"] for s in songs}

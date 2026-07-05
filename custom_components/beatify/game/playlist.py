@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
+    DOMAIN,
     PLAYLIST_DIR,
     PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
@@ -639,26 +640,58 @@ def filter_songs_for_provider(
     return (filtered, skipped)
 
 
-async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
-    """Discover all playlist files in the playlist directory."""
-    playlist_dir = get_playlist_directory(hass)
+# hass.data[DOMAIN] key holding the memoised discovery result (#1704).
+_DISCOVERY_CACHE_KEY = "_playlist_discovery_cache"
+
+# Signature entry per playlist file: (absolute path, mtime_ns, size). The whole
+# tuple of these — sorted, over every *.json under the playlist dir — is the
+# cache key. It changes on add / delete (path set changes) AND on in-place edit
+# (mtime_ns / size change), so a save / mix / delete self-invalidates the cache
+# with no explicit hook needed in those write paths (#1704).
+_DiscoverySig = tuple[tuple[str, int, int], ...]
+
+
+def _discover_playlists_sync(
+    playlist_dir: Path, cached_sig: _DiscoverySig | None
+) -> tuple[list[dict], dict[str, list[dict[str, Any]]], _DiscoverySig] | None:
+    """Walk + read + parse + validate + count every playlist, in ONE executor job.
+
+    #1704: previously only the raw file reads ran in the executor while
+    ``json.loads`` + ``validate_playlist`` (~6 regexes/song) + 5 provider-count
+    passes ran on the event loop on every ``/api/status`` request. This does the
+    whole job off-loop and returns finished dicts.
+
+    Returns ``None`` when ``cached_sig`` matches the current on-disk signature
+    (i.e. nothing changed → the caller reuses its cached result). Otherwise
+    returns ``(metas, songs_by_path, signature)`` where ``metas`` is the public
+    discovery payload (unchanged shape) and ``songs_by_path`` maps each playlist
+    path to its parsed song list so callers (the mixer) can reuse the parse
+    instead of re-reading the file.
+    """
+    if not playlist_dir.exists():
+        empty_sig: _DiscoverySig = ()
+        if cached_sig == empty_sig:
+            return None
+        return [], {}, empty_sig
+
+    # Offload blocking glob to executor to avoid scandir in event loop (#516).
+    json_files = sorted(playlist_dir.glob("**/*.json"))
+
+    sig_parts: list[tuple[str, int, int]] = []
+    for f in json_files:
+        try:
+            st = f.stat()
+        except OSError:
+            continue
+        sig_parts.append((str(f), st.st_mtime_ns, st.st_size))
+    signature: _DiscoverySig = tuple(sig_parts)
+
+    # Cache hit: nothing added/removed/edited since the last full parse.
+    if cached_sig is not None and cached_sig == signature:
+        return None
+
     playlists: list[dict] = []
-
-    loop = asyncio.get_running_loop()
-
-    # #1402 B3: `exists()` is a blocking syscall — run it in the executor.
-    if not await loop.run_in_executor(None, playlist_dir.exists):
-        _LOGGER.debug("Playlist directory does not exist: %s", playlist_dir)
-        return playlists
-
-    def _read_file(path: Path) -> str:
-        """Read file contents (runs in executor)."""
-        return path.read_text(encoding="utf-8")
-
-    # Offload blocking glob to executor to avoid scandir in event loop (#516)
-    json_files = await loop.run_in_executor(
-        None, lambda: list(playlist_dir.glob("**/*.json"))
-    )
+    songs_by_path: dict[str, list[dict[str, Any]]] = {}
     for json_file in json_files:
         try:
             rel = json_file.relative_to(playlist_dir)
@@ -667,15 +700,14 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                 if rel.parts and rel.parts[0] in ("community", "user")
                 else "bundled"
             )
-            content = await loop.run_in_executor(None, _read_file, json_file)
-            data = json.loads(content)
+            data = json.loads(json_file.read_text(encoding="utf-8"))
             rejected_songs: list[dict[str, Any]] = []
             is_valid, errors = validate_playlist(data, rejected_songs=rejected_songs)
 
             # Count songs per provider (Story 17.1), validating URI patterns (#708).
             songs = data.get("songs", [])
 
-            def _count(field: str, pattern: str) -> int:
+            def _count(field: str, pattern: str, songs: list = songs) -> int:
                 n = 0
                 for s in songs:
                     v = s.get(field)
@@ -712,9 +744,13 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                 )
                 continue
 
+            path_str = str(json_file)
+            # #1704: retain the parsed songs so the mixer reuses this parse
+            # instead of re-reading + re-parsing every tag file a second time.
+            songs_by_path[path_str] = songs
             playlists.append(
                 {
-                    "path": str(json_file),
+                    "path": path_str,
                     "filename": json_file.name,
                     "name": data.get("name", json_file.stem),
                     "source": source,
@@ -773,9 +809,57 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
                     "rejected_songs": [],
                 }
             )
+        except OSError as e:  # pragma: no cover - I/O edge (file vanished mid-walk)
+            _LOGGER.debug("Skipping unreadable playlist %s: %s", json_file, e)
+            continue
 
     _LOGGER.debug("Found %d playlists", len(playlists))
-    return playlists
+    return playlists, songs_by_path, signature
+
+
+async def async_discover_playlists_detailed(
+    hass: HomeAssistant,
+) -> tuple[list[dict], dict[str, list[dict[str, Any]]]]:
+    """Discover playlists, returning both the metas and the parsed songs per path.
+
+    #1704: memoised. The entire walk/read/parse/validate/count runs in ONE
+    executor job (never on the event loop) and the result is cached in
+    ``hass.data[DOMAIN]`` keyed by an on-disk signature (path set + each file's
+    mtime + size). A cache hit re-uses the parsed result; any save / mix / delete
+    changes the signature and transparently invalidates it — no explicit hook in
+    the write paths, and no staleness.
+    """
+    playlist_dir = get_playlist_directory(hass)
+    domain_data = hass.data.setdefault(DOMAIN, {})
+    cache = domain_data.get(_DISCOVERY_CACHE_KEY)
+    cached_sig: _DiscoverySig | None = cache["sig"] if cache else None
+
+    # Offload the whole walk/read/parse/validate/count to the executor (matches
+    # the original discovery, which used loop.run_in_executor(None, …) for its
+    # glob + reads — #516/#1402 B3). Doing it in one job keeps the event loop
+    # free of the ~47 json.loads + validate + 50k regex evals per request.
+    loop = asyncio.get_running_loop()
+    result = await loop.run_in_executor(
+        None, _discover_playlists_sync, playlist_dir, cached_sig
+    )
+
+    if result is None:
+        # Signature unchanged → serve the memoised parse.
+        return cache["metas"], cache["songs_by_path"]
+
+    metas, songs_by_path, signature = result
+    domain_data[_DISCOVERY_CACHE_KEY] = {
+        "sig": signature,
+        "metas": metas,
+        "songs_by_path": songs_by_path,
+    }
+    return metas, songs_by_path
+
+
+async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
+    """Discover all playlist files in the playlist directory (memoised, #1704)."""
+    metas, _ = await async_discover_playlists_detailed(hass)
+    return metas
 
 
 async def async_load_and_validate_playlist(
