@@ -589,8 +589,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
                 const s = raw ? JSON.parse(raw) : {};
                 const hasPlaylist = Array.isArray(s.selectedPlaylists) && s.selectedPlaylists.length > 0;
-                return hasPlayer && hasPlaylist;
-            } catch (e) { return false; }
+                if (hasPlayer && hasPlaylist) return true;
+            } catch (e) { /* fall through to server flag */ }
+            // #1663: server-side fallback — a configured instance opened on a
+            // new device (empty localStorage) still reports as configured.
+            return adminState.setupComplete === true;
         },
     };
     // Home-view: End game delegates to existing endGame()
@@ -787,6 +790,29 @@ async function loadStatus() {
 
         const status = await response.json();
 
+        // #1663: server-side setup flag. If this device has never been
+        // configured locally (fresh browser) but the server has a saved setup,
+        // seed localStorage from it so isConfigured() + hydrateFromStorage()
+        // (both localStorage-based) light up exactly as on the original device.
+        adminState.setupComplete = status.setup_complete === true;
+        if (status.saved_setup && typeof status.saved_setup === 'object') {
+            try {
+                const hasLocal = !!localStorage.getItem(STORAGE_LAST_PLAYER)
+                    || !!localStorage.getItem(STORAGE_GAME_SETTINGS);
+                if (!hasLocal) {
+                    if (status.saved_setup.last_player) {
+                        localStorage.setItem(STORAGE_LAST_PLAYER, status.saved_setup.last_player);
+                    }
+                    if (status.saved_setup.game_settings) {
+                        localStorage.setItem(
+                            STORAGE_GAME_SETTINGS,
+                            JSON.stringify(status.saved_setup.game_settings)
+                        );
+                    }
+                }
+            } catch (e) { /* private mode — fall back to server flag only */ }
+        }
+
         // #935 follow-up: the server embeds the active game's admin token in
         // the page (<meta name="beatify-admin-token">). Capture it before the
         // WS connects below, so an admin that *reconnected* to an existing
@@ -966,6 +992,36 @@ function showLobbyView(gameData) {
 // ==========================================
 
 /**
+ * Persist the host's setup (speaker + game settings) server-side (#1663).
+ *
+ * The wizard only ever wrote these to localStorage, so a configured instance
+ * looked unconfigured on a new device. Mirroring them to the server (verbatim
+ * blob) lets any device re-hydrate them via /beatify/api/status. Best-effort:
+ * a failed POST never blocks the game — the localStorage copy still works on
+ * this device.
+ */
+async function persistSetupToServer() {
+    try {
+        const lastPlayer = localStorage.getItem(STORAGE_LAST_PLAYER);
+        const rawSettings = localStorage.getItem(STORAGE_GAME_SETTINGS);
+        if (!lastPlayer && !rawSettings) return;  // nothing configured yet
+        await BeatifyAuth.fetch('/beatify/api/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                last_player: lastPlayer || null,
+                game_settings: rawSettings ? JSON.parse(rawSettings) : null,
+            }),
+        });
+    } catch (e) {
+        console.warn('[Beatify] setup persist failed (non-fatal):', e);
+    }
+}
+// Exposed so wizard.js can persist the host's picks the moment setup finishes,
+// even before the first game starts.
+window.BeatifyPersistSetup = persistSetupToServer;
+
+/**
  * Start a new game
  */
 async function startGame() {
@@ -1056,11 +1112,16 @@ async function startGame() {
             }
             // #864: prefer i18n-by-code over the backend's English message.
             // Matches the playlist-request pattern at line ~2964.
+            // #1663: pass the whole error body as interpolation params so codes
+            // like PROVIDER_NOT_SUPPORTED render concretely ("Speaker X can't
+            // play Apple Music") from the {speaker}/{provider} details. If the
+            // localized string still has an unfilled {placeholder} (older
+            // backend without details), keep the backend's plain message.
             let msg = data.message || 'Failed to start game';
             if (data.code && window.BeatifyI18n) {
                 const key = 'errors.' + String(data.code).toUpperCase();
-                const t = BeatifyI18n.t(key);
-                if (t && t !== key) msg = t;
+                const t = BeatifyI18n.t(key, data);
+                if (t && t !== key && !/\{[a-z_]+\}/i.test(t)) msg = t;
             }
             showError(msg);
             return;
@@ -1077,6 +1138,10 @@ async function startGame() {
 
         showLobbyView(data);
         _requestWakeLock(); // #622: keep screen on during game
+
+        // #1663: a successful start means this instance is fully configured —
+        // mirror the picks to the server so a new device recognises it.
+        persistSetupToServer();
 
         // Issue #477: Connect admin WebSocket for real-time updates
         connectAdminWebSocket();

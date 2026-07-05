@@ -58,6 +58,7 @@ from .server.views import (
     StartGameView,
     StatsView,
     StatusView,
+    SetupView,
     UsageView,
 )
 from .server.websocket import BeatifyWebSocketHandler
@@ -211,6 +212,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.http.register_view(BeatifyAuthRefreshView(hass))
         hass.http.register_view(StatusView(hass))
         hass.http.register_view(CapabilitiesView(hass))
+        hass.http.register_view(SetupView(hass))  # #1663 — server-side setup flag
         hass.http.register_view(LightsView(hass))  # Issue #331
         hass.http.register_view(AlbumArtView(hass))  # Issue #933 — remote album art
         hass.http.register_view(PreviewLightsView(hass))  # Issue #408

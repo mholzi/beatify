@@ -50,6 +50,7 @@ export const adminState = {
     currentView: 'setup',
     currentGame: null,
     cachedQRUrl: null,
+    setupComplete: false,               // #1663: server-side "is configured?" flag
 
     // --- game settings ---
     selectedLanguage: 'en',             // Story 12.4

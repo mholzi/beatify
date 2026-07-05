@@ -285,7 +285,8 @@
     "weeksShort": "wks",
     "moreAwards": "more",
     "playerNotFound": "Player not found",
-    "autoAdvanceAria": "Next round countdown"
+    "autoAdvanceAria": "Next round countdown",
+    "reportBtnError": "Couldn't send report — please try again."
   },
   "leaderboard": {
     "title": "Leaderboard",
@@ -894,7 +895,10 @@
     "gameNotFoundHint": "This game doesn't exist or the link is incorrect.",
     "submissionFailed": "Submission failed",
     "thanksForPlaying": "Thanks for playing Beatify!",
-    "timesUp": "Time's up!"
+    "timesUp": "Time's up!",
+    "PROVIDER_NOT_SUPPORTED": "{speaker} can't play {provider}. Switch to a Music Assistant speaker.",
+    "UNSUPPORTED_PLAYER": "{speaker} isn't a supported speaker type. Use Music Assistant.",
+    "joinTimeout": "Couldn't connect. Please try again."
   },
   "highlights": {
     "highlight_exact_match": "{player} nailed '{song}' — {year}!",

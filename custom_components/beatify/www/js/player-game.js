@@ -528,6 +528,23 @@ export function updateLeaderboardSummary(leaderboard, summaryId) {
 }
 
 /**
+ * Clear the leaderboard summary badges (#1663).
+ *
+ * updateLeaderboardSummary() early-returns on an empty leaderboard, so a
+ * rematch left the previous game's leader text ("Alice: 500") stuck in the
+ * summary until the first round of the new game repainted it. Call this on
+ * rematch so the fresh lobby starts with no stale leader.
+ * @param {string} [summaryId] - Optional specific summary element ID
+ */
+export function resetLeaderboardSummary(summaryId) {
+    var summaryIds = summaryId ? [summaryId] : ['leaderboard-summary', 'reveal-leaderboard-summary'];
+    summaryIds.forEach(function(id) {
+        var summaryEl = document.getElementById(id);
+        if (summaryEl) summaryEl.textContent = '';
+    });
+}
+
+/**
  * Setup reveal leaderboard toggle behavior (collapsible section pattern)
  */
 export function setupRevealLeaderboardToggle() {

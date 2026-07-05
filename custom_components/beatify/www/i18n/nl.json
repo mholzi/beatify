@@ -285,7 +285,8 @@
     "weeksShort": "wk",
     "moreAwards": "meer",
     "playerNotFound": "Speler niet gevonden",
-    "autoAdvanceAria": "Aftellen tot de volgende ronde"
+    "autoAdvanceAria": "Aftellen tot de volgende ronde",
+    "reportBtnError": "Melding kon niet worden verzonden — probeer het opnieuw."
   },
   "leaderboard": {
     "title": "Scorebord",
@@ -867,7 +868,10 @@
     "gameNotFoundHint": "Dit spel bestaat niet of de link klopt niet.",
     "submissionFailed": "Versturen mislukt",
     "thanksForPlaying": "Bedankt voor het spelen van Beatify!",
-    "timesUp": "Tijd is om!"
+    "timesUp": "Tijd is om!",
+    "PROVIDER_NOT_SUPPORTED": "{speaker} kan {provider} niet afspelen. Schakel over naar een Music Assistant-speaker.",
+    "UNSUPPORTED_PLAYER": "{speaker} is geen ondersteund speakertype. Gebruik Music Assistant.",
+    "joinTimeout": "Verbinden mislukt. Probeer het opnieuw."
   },
   "highlights": {
     "highlight_exact_match": "{player} had '{song}' perfect — {year}!",

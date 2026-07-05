@@ -285,7 +285,8 @@
     "weeksShort": "sem",
     "moreAwards": "mas",
     "playerNotFound": "Jugador no encontrado",
-    "autoAdvanceAria": "Cuenta atrás para la siguiente ronda"
+    "autoAdvanceAria": "Cuenta atrás para la siguiente ronda",
+    "reportBtnError": "No se pudo enviar el informe — intentalo de nuevo."
   },
   "leaderboard": {
     "title": "Clasificacion",
@@ -867,7 +868,10 @@
     "gameNotFoundHint": "Este juego no existe o el enlace es incorrecto.",
     "submissionFailed": "Error al enviar",
     "thanksForPlaying": "Gracias por jugar Beatify!",
-    "timesUp": "¡Tiempo agotado!"
+    "timesUp": "¡Tiempo agotado!",
+    "PROVIDER_NOT_SUPPORTED": "{speaker} no puede reproducir {provider}. Cambia a un altavoz de Music Assistant.",
+    "UNSUPPORTED_PLAYER": "{speaker} no es un tipo de altavoz compatible. Usa Music Assistant.",
+    "joinTimeout": "No se pudo conectar. Intentalo de nuevo."
   },
   "highlights": {
     "highlight_exact_match": "¡{player} clavó '{song}' — {year}!",
