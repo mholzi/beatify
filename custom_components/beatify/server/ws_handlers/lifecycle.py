@@ -37,6 +37,33 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
+def _undo_admin_claim(
+    game_state: GameState, name: str, was_existing_player: bool
+) -> None:
+    """Undo the ``add_player`` side effects when an admin claim is rejected.
+
+    #1696 (security / data-loss): ``add_player`` runs *before* the admin-claim
+    checks. For a disconnected name it takes the reconnection path and
+    re-attaches the pre-existing ``PlayerSession`` (with its score + session_id
+    intact). If a rejection branch then fires, blindly calling
+    ``remove_player(name)`` would delete that whole record — letting an
+    unauthenticated visitor erase a real player's score by sending
+    ``{join, name:<disconnected player>, is_admin:true}``.
+
+    So: only fully remove a *brand-new* player (``was_existing_player`` False).
+    For a reconnected existing player, merely revert the reconnection
+    (``connected=False``, ``ws=None``) — restoring the prior disconnected state
+    without touching score/session.
+    """
+    if was_existing_player:
+        player = game_state.get_player(name)
+        if player is not None:
+            player.connected = False
+            player.ws = None
+    else:
+        game_state.remove_player(name)
+
+
 async def handle_join(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
@@ -86,7 +113,7 @@ async def handle_join(
                 authed,
             )
             if not authed:
-                game_state.remove_player(name)
+                _undo_admin_claim(game_state, name, was_existing_player)
                 await ws.send_json(
                     {
                         "type": "error",
@@ -131,7 +158,7 @@ async def handle_join(
                         if await game_state.resume_game():
                             _LOGGER.info("Game resumed by admin reconnection")
                 else:
-                    game_state.remove_player(name)
+                    _undo_admin_claim(game_state, name, was_existing_player)
                     await ws.send_json(
                         {
                             "type": "error",
@@ -147,7 +174,7 @@ async def handle_join(
                     if p.name != name
                 )
                 if existing_admin:
-                    game_state.remove_player(name)
+                    _undo_admin_claim(game_state, name, was_existing_player)
                     await ws.send_json(
                         {
                             "type": "error",
@@ -163,7 +190,7 @@ async def handle_join(
                         name,
                         game_state.phase.value,
                     )
-                    game_state.remove_player(name)
+                    _undo_admin_claim(game_state, name, was_existing_player)
                     await ws.send_json(
                         {
                             "type": "error",
