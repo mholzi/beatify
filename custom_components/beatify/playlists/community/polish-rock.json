@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "polish",
     "rock"
@@ -43,15 +43,15 @@
       "artist": "Dziwna Wiosna",
       "title": "Światła miasta",
       "isrc": "PLC592600073",
-      "uri_apple_music": "applemusic://track/1715321071",
+      "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1715321071",
-        "de": "applemusic://track/1715321071",
-        "gb": "applemusic://track/1715321071",
-        "fr": "applemusic://track/1715321071",
-        "es": "applemusic://track/1715321071",
-        "nl": "applemusic://track/1715321071",
-        "it": "applemusic://track/1715321071"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=op2cyrTP-NE",
       "uri_tidal": "tidal://track/529664799",
@@ -563,15 +563,15 @@
       "artist": "Szymon Wydra",
       "title": "Wciąż mamy moc",
       "isrc": "QZWFP2603209",
-      "uri_apple_music": "applemusic://track/1443770343",
+      "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443770343",
-        "de": "applemusic://track/1443798438",
-        "gb": "applemusic://track/1443770343",
-        "fr": "applemusic://track/1443798438",
-        "es": "applemusic://track/1443798438",
-        "nl": "applemusic://track/1443798438",
-        "it": "applemusic://track/1443798438"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SpBWPZN1uCg",
       "uri_tidal": null,
