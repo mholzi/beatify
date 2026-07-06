@@ -66,6 +66,12 @@ class GameStateConfig:
     # tied players (reusing the #1472 elimination machinery) instead of declaring
     # a shared winner. Opt-in at game start (wizard). Default off.
     finale_tiebreaker_enabled: bool = False
+    # Issue #1724: Comeback Token — after the halfway round completes, each
+    # bottom-third player without a steal is handed one (reusing unlock_steal),
+    # at most once per player per game. Rubber-banding so a trailing player gets
+    # the catch-up power-up its effect is designed for. Opt-in at game start
+    # (wizard). Default off = the streak-only steal unlock, unchanged.
+    comeback_token_enabled: bool = False
     # Issue #1180: Title & Artist guessing mode. Owned by ChallengeManager;
     # listed here for reset symmetry. GameState exposes a delegation property,
     # and _apply_config skips manager-delegated names (see field_names()).

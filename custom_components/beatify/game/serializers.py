@@ -52,6 +52,8 @@ class GameStateSerializer:
             "closest_wins_mode": gs.closest_wins_mode,
             # Issue #1726: Ramp-up (difficulty-arc) ordering
             "rampup_order_enabled": gs.rampup_order_enabled,
+            # Issue #1724: Comeback Token (catch-up steal for trailing players)
+            "comeback_token_enabled": gs.comeback_token_enabled,
             # Issue #827: Sudden Death mode (drives wizard chip, player view,
             # leaderboard cut-line, admin live toggle)
             "sudden_death_mode": gs.sudden_death_mode,
@@ -305,6 +307,12 @@ class GameStateSerializer:
                 "stole_from": p.stole_from,
                 "was_stolen_by": p.was_stolen_by.copy() if p.was_stolen_by else [],
                 "steal_available": p.steal_available,
+                # Issue #1724: True when this player's steal was handed to them
+                # as a Comeback Token (catch-up grant), so the client can label
+                # the reused steal UI as a comeback gift rather than a streak
+                # unlock. Purely a cue — the steal itself is driven by
+                # steal_available above.
+                "comeback_token_granted": p.comeback_token_granted,
                 # Issue #827: Sudden Death state
                 "eliminated": p.eliminated,
                 "eliminated_round": p.eliminated_round,

@@ -109,6 +109,11 @@ class PlayerSession:
     # Steal power-up tracking (Story 15.3)
     steal_available: bool = False  # True if steal unlocked and not yet used
     steal_used: bool = False  # True if steal was used this game (max 1 per game)
+    # Comeback Token tracking (Issue #1724) - CUMULATIVE, NOT reset per round.
+    # True once this player has been handed a catch-up steal after the halfway
+    # round, so the grant fires at most once per player per game even if they
+    # stay in the bottom third.
+    comeback_token_granted: bool = False
     stole_from: str | None = None  # Per-round: who was stolen from
     was_stolen_by: list[str] = field(
         default_factory=list
@@ -219,6 +224,8 @@ class PlayerSession:
         # Reset steal tracking
         self.steal_available = False
         self.steal_used = False
+        # Reset comeback token tracking (Issue #1724)
+        self.comeback_token_granted = False
 
         # Reset intro mode cumulative tracking (Issue #23)
         self.intro_speed_bonuses = 0

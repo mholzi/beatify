@@ -179,6 +179,10 @@ class VoteWindowMixin:
             # host-advance and window-expiry races both resolve through here).
             # Caller-held _score_lock is required by _apply_sudden_death_elimination.
             self._apply_sudden_death_elimination()
+            # #1724: the deferred scores are now final too, so run the halfway
+            # comeback-token grant that _end_round_unlocked deferred for this
+            # path. Idempotent per game via the per-player granted flag.
+            self._maybe_grant_comeback_tokens()
 
     async def _score_title_artist_round(self) -> None:
         """Run the deferred title/artist scoring pass. Caller holds the lock.

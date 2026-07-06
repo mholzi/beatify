@@ -447,6 +447,8 @@
     "finaleDoubleHint": "Double le score de chaque joueur lors de la dernière manche, pour qu'un joueur en retard puisse encore renverser la partie. Une bannière « Finale ×2 » s'affiche à la dernière manche.",
     "finaleTiebreaker": "Départage final",
     "finaleTiebreakerHint": "Si la partie se termine sur une égalité en tête alors qu'il reste des chansons, un départage en mort subite se joue uniquement entre les joueurs à égalité au lieu d'une victoire partagée.",
+    "comebackToken": "Jeton de remontée",
+    "comebackTokenHint": "Après la manche de mi-parcours, offrez au tiers de joueurs en retard un pouvoir de Vol unique, pour combler plus facilement un écart en milieu de partie. Les joueurs disposant déjà d'un vol ne sont pas concernés.",
     "roundsHint": "Nombre total de manches dans la partie, basé sur les playlists sélectionnées.",
     "languageHint": "Définit la langue pour tous les joueurs pendant la partie.",
     "timerHint": "Nombre de secondes dont les joueurs disposent pour soumettre leur réponse à chaque manche.",

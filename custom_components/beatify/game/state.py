@@ -375,6 +375,10 @@ class GameState(
         self._finale_playoff_rounds: int = 0
         self._finale_playoff_active: bool = False
 
+        # Issue #1724: Comeback Token — opt-in catch-up steal for trailing
+        # players after the halfway round.
+        self.comeback_token_enabled: bool = False
+
         # Issue #477: Admin spectator WebSocket (host without being a player)
         self._admin_ws: web.WebSocketResponse | None = None
 
@@ -806,6 +810,10 @@ class GameState(
         # pass. Only the non-deferred path eliminates here.
         if not self._title_artist_scoring_deferred():
             self._apply_sudden_death_elimination()
+            # Issue #1724: after the halfway round's scores are final, hand the
+            # trailing third a one-time catch-up steal. Deferred to the
+            # title/artist path (below) when scoring isn't final yet.
+            self._maybe_grant_comeback_tokens()
 
         # Phase 3: highlights, round analytics, persisted song-result stats
         await self._record_round_stats(correct_year)
@@ -968,6 +976,89 @@ class GameState(
             self._sudden_death_round_delta(loser),
         )
         return [loser.name]
+
+    # ------------------------------------------------------------------
+    # Comeback Token (Issue #1724)
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _halfway_round(total_rounds: int) -> int:
+        """Round number after which comeback tokens are granted (#1724).
+
+        The midpoint round: ``ceil(total_rounds / 2)``. For an even game
+        (10 rounds) that is round 5 — half the game still remains. For an odd
+        game (9 rounds) that is round 5, the true middle round, leaving rounds
+        6-9 to spend the token. Always strictly less than ``total_rounds`` for
+        ``total_rounds >= 2``, so trailing players get at least one round of
+        runway; a 1-round game has no meaningful halfway and never grants.
+        """
+        return (total_rounds + 1) // 2
+
+    def _maybe_grant_comeback_tokens(self) -> list[str]:
+        """Grant a one-time catch-up steal to the trailing third (#1724).
+
+        Fires exactly once per game — right after the halfway round's scores
+        are final (see :meth:`_halfway_round`). Rubber-banding: the Steal
+        power-up normally unlocks at a 3-streak, i.e. it is handed to players
+        already winning, while its effect helps strugglers. The Comeback Token
+        instead hands a steal to the players who are behind.
+
+        Bottom third: the ``floor(n / 3)`` lowest-ranked of the still-active
+        (non-eliminated) players, ranked by cumulative score descending with
+        name as a stable tiebreak — the same ordering the leaderboard renders,
+        so the cut-line is consistent and deterministic. A player already
+        holding or having spent a steal is skipped (``unlock_steal`` returns
+        False), and each player is granted at most once per game via the
+        ``comeback_token_granted`` flag — even if they stay in the bottom third
+        (defensive: the trigger already fires only once).
+
+        No-op — normal behavior byte-for-byte unchanged — when the setting is
+        off, it is not the halfway round, the game is too short to have a
+        meaningful halfway (``total_rounds < 2``), or the active pool is too
+        small for a non-empty bottom third (``n < 3``).
+
+        Returns the names granted a token this call (empty when nothing
+        happens). Caller holds ``_score_lock`` (same contract as
+        :meth:`_apply_sudden_death_elimination`).
+        """
+        if not self.comeback_token_enabled:
+            return []
+        if self.total_rounds < 2:
+            return []
+        if self.round != self._halfway_round(self.total_rounds):
+            return []
+
+        # Rank the still-active players; eliminated players (Sudden Death) are
+        # out of the game and cannot use a steal, so they never count toward or
+        # receive a token.
+        active = self.non_eliminated_players()
+        third = len(active) // 3
+        if third <= 0:
+            return []
+
+        ranked = sorted(active, key=lambda p: (-p.score, p.name))
+        bottom = ranked[-third:]
+
+        granted: list[str] = []
+        for player in bottom:
+            if player.comeback_token_granted:
+                continue
+            # unlock_steal skips players who already have / have used a steal,
+            # so a bottom-third player who earned a steal via streak keeps it
+            # and is not double-counted.
+            if player.unlock_steal():
+                player.comeback_token_granted = True
+                granted.append(player.name)
+
+        if granted:
+            _LOGGER.info(
+                "Comeback Token: granted a catch-up steal to %s after round %d "
+                "(halfway of %d)",
+                ", ".join(granted),
+                self.round,
+                self.total_rounds,
+            )
+        return granted
 
     def set_sudden_death(self, enabled: bool) -> bool:
         """Toggle Sudden Death mid-game from the reveal screen. Issue #827.
