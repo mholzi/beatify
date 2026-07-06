@@ -50,6 +50,8 @@ class GameStateSerializer:
             "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode
             "closest_wins_mode": gs.closest_wins_mode,
+            # Issue #1726: Ramp-up (difficulty-arc) ordering
+            "rampup_order_enabled": gs.rampup_order_enabled,
             # Issue #827: Sudden Death mode (drives wizard chip, player view,
             # leaderboard cut-line, admin live toggle)
             "sudden_death_mode": gs.sudden_death_mode,

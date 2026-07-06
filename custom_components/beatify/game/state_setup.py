@@ -119,6 +119,7 @@ class GameSetupMixin:
         sudden_death_mode: bool = False,
         title_artist_mode: bool = False,
         reveal_auto_advance: int = 0,
+        rampup_order_enabled: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -137,6 +138,8 @@ class GameSetupMixin:
             intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
             closest_wins_mode: Whether only the closest guess(es) earn points
             title_artist_mode: Whether title/artist guessing replaces the year guess
+            rampup_order_enabled: Whether to order songs into a difficulty arc
+                instead of uniform random (#1726). Opt-in; default False.
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -172,8 +175,12 @@ class GameSetupMixin:
         # _detect_storefront is read-only, so it is safe to run pre-mutation.
         storefront = self._detect_storefront()
 
-        # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with provider)
-        playlist_manager = PlaylistManager(songs, provider, storefront=storefront)
+        # Initialize PlaylistManager for song selection (Epic 4, Story 17.2: with
+        # provider). #1726: when ramp-up ordering is opted in, the manager also
+        # gets a difficulty-lookup so it can arrange the songs into an arc.
+        playlist_manager = self._build_playlist_manager(
+            songs, provider, storefront, rampup_order_enabled
+        )
 
         # #709: if the chosen provider has zero playable songs, fail fast with
         # a clear error rather than silently starting a game that will stall.
@@ -282,6 +289,8 @@ class GameSetupMixin:
 
         # Issue #442: Set closest wins mode
         self.closest_wins_mode = closest_wins_mode
+        # Issue #1726: Set ramp-up (difficulty-arc) ordering mode
+        self.rampup_order_enabled = rampup_order_enabled
         # Issue #827: Set sudden death mode
         self.sudden_death_mode = sudden_death_mode
         self.is_intro_round = False
@@ -421,6 +430,7 @@ class GameSetupMixin:
             "closest_wins_mode": self.closest_wins_mode,
             "sudden_death_mode": self.sudden_death_mode,
             "title_artist_mode": self.title_artist_mode,
+            "rampup_order_enabled": self.rampup_order_enabled,  # #1726
         }
 
         self._reset_game_internals()
@@ -433,10 +443,12 @@ class GameSetupMixin:
         # #808 follow-up: re-detect storefront for the rematch (in case
         # HA's country config changed) and re-attach it.
         self.storefront = self._detect_storefront()
-        self._playlist_manager = PlaylistManager(
+        # #1726: rebuild with the same ramp-up choice the host made at create.
+        self._playlist_manager = self._build_playlist_manager(
             preserved["songs"],
             preserved["provider"],
-            storefront=self.storefront,
+            self.storefront,
+            preserved["rampup_order_enabled"],
         )
         # #1377: derive total_rounds from the filtered/deduped playable pool
         # (exactly like create_game, state_setup.py), not the raw song list.
@@ -467,6 +479,38 @@ class GameSetupMixin:
             len(self.players),
             self.total_rounds,
             self.game_id,
+        )
+
+    def _build_playlist_manager(
+        self,
+        songs: list[dict[str, Any]],
+        provider: str,
+        storefront: str | None,
+        rampup_order_enabled: bool,
+    ) -> PlaylistManager:
+        """Construct a :class:`PlaylistManager`, wiring ramp-up ordering (#1726).
+
+        Shared by ``create_game`` and ``rematch_game`` so both build the manager
+        the same way. When ``rampup_order_enabled`` is True a difficulty-lookup
+        (backed by the connected StatsService via ``get_song_difficulty``) is
+        passed so the manager can arrange songs into a difficulty arc; otherwise
+        the manager keeps its historic uniform-random behaviour untouched.
+        """
+        from .playlist import SONG_ORDER_RAMPUP  # noqa: PLC0415
+
+        if not rampup_order_enabled:
+            return PlaylistManager(songs, provider, storefront=storefront)
+
+        def _difficulty_lookup(uri: str) -> int | None:
+            rating = self.get_song_difficulty(uri)
+            return rating["stars"] if rating else None
+
+        return PlaylistManager(
+            songs,
+            provider,
+            storefront=storefront,
+            song_order=SONG_ORDER_RAMPUP,
+            difficulty_lookup=_difficulty_lookup,
         )
 
     def _detect_storefront(self) -> str | None:

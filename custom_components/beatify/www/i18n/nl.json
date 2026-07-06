@@ -440,6 +440,8 @@
     "titleArtistMode": "Titel- & Artiest-modus",
     "titleArtistModeHint": "Spelers typen de songtitel en artiest in plaats van het jaar te raden. Vervangt de jaarronde — de artiest-challenge en 'dichtstbij wint' gelden niet, maar de filmquiz en intro-modus blijven actief.",
     "closestWinsHint": "Alleen de speler met de dichtstbijzijnde gok scoort punten per ronde. Alles-of-niets-duel.",
+    "rampupOrder": "Oplopende volgorde",
+    "rampupOrderHint": "Rangschik nummers op moeilijkheid in plaats van willekeurig: makkelijke rondes eerst, het moeilijkste bekende nummer bewaard voor de finale. Valt terug op willekeurig totdat nummers genoeg speelgeschiedenis hebben.",
     "roundsHint": "Totaal aantal rondes in het spel, gebaseerd op de geselecteerde afspeellijsten.",
     "languageHint": "Stelt de taal in voor alle spelers tijdens het spel.",
     "timerHint": "Hoeveel seconden spelers hebben om hun antwoord in te dienen per ronde.",

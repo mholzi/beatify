@@ -7,6 +7,7 @@ import json
 import logging
 import random
 import re
+from collections.abc import Callable
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -46,6 +47,15 @@ _URI_FIELDS = [
 ]
 
 
+# Song ordering modes (#1726).
+SONG_ORDER_RANDOM = "random"
+SONG_ORDER_RAMPUP = "rampup"
+
+# Difficulty assumed for songs with no known rating (< MIN_PLAYS_FOR_DIFFICULTY
+# plays / no stats). 2 == "medium" on the 1..4 star scale (#1726).
+_UNKNOWN_DIFFICULTY = 2
+
+
 class PlaylistManager:
     """Manages song selection and played tracking.
 
@@ -53,6 +63,15 @@ class PlaylistManager:
     picks a random playlist first (equal weight), then a random unplayed
     song from that playlist. This ensures equal representation regardless
     of playlist size. Cross-playlist duplicates are deduplicated by URI.
+
+    Song ordering (#1726). By default (``song_order="random"``) selection is
+    uniform random — the historic behaviour, kept byte-for-byte. When
+    ``song_order="rampup"`` and a ``difficulty_lookup`` is supplied, the
+    manager pre-computes a fixed *difficulty arc*: songs are bucketed by their
+    known difficulty (1=easy … 4=extreme; unknown → medium=2), the arc runs
+    easy → hard so early rounds are gentle and the final third is hardest, and
+    the single hardest KNOWN song is reserved for the finale (last round). If
+    no song has a known difficulty the arc degrades to uniform random.
     """
 
     def __init__(
@@ -60,6 +79,8 @@ class PlaylistManager:
         songs: list[dict[str, Any]],
         provider: str = PROVIDER_DEFAULT,
         storefront: str | None = None,
+        song_order: str = SONG_ORDER_RANDOM,
+        difficulty_lookup: Callable[[str], int | None] | None = None,
     ) -> None:
         """Initialize with list of songs from loaded playlists.
 
@@ -70,6 +91,11 @@ class PlaylistManager:
                 (e.g. "us", "de"). Songs explicitly unavailable in that
                 region (per ``uri_apple_music_by_region``) are filtered out
                 up-front so they never appear in playback (#808 follow-up).
+            song_order: ``"random"`` (default, uniform) or ``"rampup"``
+                (difficulty-arc ordering, #1726).
+            difficulty_lookup: Optional callable mapping a resolved song URI to
+                its known difficulty in stars (1..4) or ``None`` when there is
+                not enough data. Only consulted when ``song_order="rampup"``.
 
         """
         self._provider = provider
@@ -132,13 +158,82 @@ class PlaylistManager:
                 storefront,
             )
 
+        # #1726: pre-compute the ramp-up difficulty arc once, up-front. Left as
+        # None for the default uniform-random mode (or when no difficulty is
+        # known), so get_next_song falls through to the historic random path.
+        self._song_order = song_order
+        self._difficulty_lookup = difficulty_lookup
+        self._rampup_order: list[dict[str, Any]] | None = None
+        if song_order == SONG_ORDER_RAMPUP and difficulty_lookup is not None:
+            self._rampup_order = self._build_rampup_order()
+            if self._rampup_order is None:
+                _LOGGER.info(
+                    "Ramp-up ordering requested but no song has a known "
+                    "difficulty yet — using uniform random order (#1726)"
+                )
+            else:
+                _LOGGER.info(
+                    "Ramp-up ordering active: %d songs arranged easy→hard, "
+                    "hardest known reserved for the finale (#1726)",
+                    len(self._rampup_order),
+                )
+
+    def _build_rampup_order(self) -> list[dict[str, Any]] | None:
+        """Arrange the flat song pool into a difficulty arc (#1726).
+
+        Buckets every song by its known difficulty (1..4; unknown → medium=2),
+        shuffles within each bucket, then concatenates easy → hard so early
+        rounds are gentle and the final third is hardest. The single hardest
+        KNOWN song is pulled out and appended last, reserving it for the
+        finale. Returns ``None`` when NO song has a known difficulty, signalling
+        the caller to degrade to uniform random.
+        """
+        assert self._difficulty_lookup is not None  # noqa: S101 — guarded by caller
+        buckets: dict[int, list[dict[str, Any]]] = {1: [], 2: [], 3: [], 4: []}
+        known: list[tuple[dict[str, Any], int]] = []
+        for song in self._songs:
+            stars = self._difficulty_lookup(song["_precomputed_uri"])
+            if stars is not None:
+                known.append((song, stars))
+            effective = stars if stars is not None else _UNKNOWN_DIFFICULTY
+            buckets[effective].append(song)
+
+        # No usable difficulty signal at all → let the caller fall back to
+        # uniform random (identical to the historic behaviour).
+        if not known:
+            return None
+
+        order: list[dict[str, Any]] = []
+        for level in (1, 2, 3, 4):
+            bucket = buckets[level]
+            random.shuffle(bucket)  # noqa: S311 — cosmetic within equal difficulty
+            order.extend(bucket)
+
+        # Reserve the single hardest KNOWN song for the finale. Pick randomly
+        # among ties, then move it to the very end (identity-based removal so a
+        # duplicate title elsewhere is never dropped).
+        max_stars = max(stars for _, stars in known)
+        finale = random.choice(  # noqa: S311
+            [song for song, stars in known if stars == max_stars]
+        )
+        order = [song for song in order if song is not finale]
+        order.append(finale)
+        return order
+
     def get_next_song(self) -> dict[str, Any] | None:
-        """Get random unplayed song with balanced playlist selection.
+        """Get next unplayed song for the active ordering mode.
 
         Returns:
             Song dict with _resolved_uri added, or None if all songs played
 
         """
+        # #1726: ramp-up mode walks the pre-computed difficulty arc in order,
+        # skipping any song already played (or skipped mid-round). Only taken
+        # when the arc was built; otherwise the uniform-random path below is
+        # unchanged.
+        if self._rampup_order is not None:
+            return self._pick_from_rampup_order()
+
         if not self._multi_playlist:
             return self._pick_from_pool(self._songs)
 
@@ -159,6 +254,21 @@ class PlaylistManager:
         song_copy = song.copy()
         song_copy["_resolved_uri"] = song["_precomputed_uri"]
         return song_copy
+
+    def _pick_from_rampup_order(self) -> dict[str, Any] | None:
+        """Return the next unplayed song from the ramp-up arc (#1726).
+
+        Walks the fixed difficulty arc computed in __init__ and returns the
+        first song whose precomputed URI has not been played yet, so skipped
+        songs (no URI / playback failure → mark_played) simply advance the arc.
+        """
+        assert self._rampup_order is not None  # noqa: S101 — guarded by caller
+        for song in self._rampup_order:
+            if song["_precomputed_uri"] not in self._played_uris:
+                song_copy = song.copy()
+                song_copy["_resolved_uri"] = song["_precomputed_uri"]
+                return song_copy
+        return None
 
     def _pick_from_pool(self, pool: list[dict[str, Any]]) -> dict[str, Any] | None:
         """Pick a random unplayed song from a flat pool."""

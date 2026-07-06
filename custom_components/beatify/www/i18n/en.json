@@ -440,6 +440,8 @@
     "titleArtistMode": "Title & Artist Mode",
     "titleArtistModeHint": "Players type the song title and artist instead of guessing the year. Replaces the year round — the artist challenge and closest-wins don't apply, but movie quiz and intro mode still do.",
     "closestWinsHint": "Only the player with the closest guess scores points each round. All-or-nothing showdown.",
+    "rampupOrder": "Ramp-up Ordering",
+    "rampupOrderHint": "Order songs by difficulty instead of at random: easy rounds first, the hardest known song saved for the finale. Falls back to random until songs have enough play history.",
     "roundsHint": "Total number of rounds in the game, based on the selected playlists.",
     "languageHint": "Sets the language for all players during the game.",
     "timerHint": "How many seconds players have to submit their guess each round.",

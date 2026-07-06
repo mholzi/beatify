@@ -144,6 +144,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
         sudden_death_mode = bool(body.get("sudden_death_mode", False))  # Issue #827
         title_artist_mode = body.get("title_artist_mode", False)  # #1180
+        rampup_order_enabled = bool(
+            body.get("rampup_order_enabled", False)
+        )  # Issue #1726
         reveal_auto_advance = body.get("reveal_auto_advance", 0)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
         tts_config = body.get("tts")  # Issue #447
@@ -377,6 +380,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "closest_wins_mode": closest_wins_mode,  # Issue #442
             "sudden_death_mode": sudden_death_mode,  # Issue #827
             "title_artist_mode": title_artist_mode,  # #1180
+            "rampup_order_enabled": rampup_order_enabled,  # Issue #1726
             "reveal_auto_advance": reveal_auto_advance,  # #1012
         }
         if round_duration is not None:

@@ -1125,6 +1125,7 @@ async function startGame() {
                 closest_wins_mode: bonusFlags.closest_wins_mode,  // Issue #442 (#1180: suppressed in TA mode)
                 sudden_death_mode: suddenDeathMode,  // Issue #827
                 title_artist_mode: adminState.titleArtistModeEnabled,  // #1180
+                rampup_order_enabled: adminState.rampupOrderEnabled,  // Issue #1726
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })

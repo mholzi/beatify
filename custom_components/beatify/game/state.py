@@ -356,6 +356,9 @@ class GameState(
         # Issue #442: Closest Wins mode
         self.closest_wins_mode: bool = False
 
+        # Issue #1726: Ramp-up (difficulty-arc) song ordering
+        self.rampup_order_enabled: bool = False
+
         # Issue #827: Sudden Death mode (last-place player eliminated per round)
         self.sudden_death_mode: bool = False
 

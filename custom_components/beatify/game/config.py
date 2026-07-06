@@ -50,6 +50,10 @@ class GameStateConfig:
 
     # Mode flags
     closest_wins_mode: bool = False
+    # Issue #1726: Ramp-up ordering — songs arranged into a difficulty arc
+    # (easy early, hardest known reserved for the finale) instead of uniform
+    # random. Opt-in at game start (wizard). Default off = uniform random.
+    rampup_order_enabled: bool = False
     # Issue #827: Sudden Death — last-place player eliminated each round.
     # Can be set at game start (wizard) or toggled live from the reveal screen.
     sudden_death_mode: bool = False
