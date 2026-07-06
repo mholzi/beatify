@@ -4,8 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc11] - 2026-07-06
+
+Pre-release — a gameplay-tension pass on top of the Mix & Match / Sudden Death cycle: four opt-in modes that keep trailing players in the game and reward taking a risk, plus a fairness fix to the side challenges. See the GitHub release for the user-facing notes.
+
+### Added
+- **Ramp-up ordering (#1726, opt-in).** A new setup-wizard toggle orders songs into a difficulty arc — easier early rounds building to harder ones, with the hardest known song saved for the finale — using the per-song difficulty stats the integration already tracks. Off by default (uniform random unchanged); falls back to random until songs have enough play history.
+- **Finale mechanic (#1725, opt-in).** Two independent toggles: **Finale ×2** doubles the accuracy score in the last round (with a "Finale ×2" banner) so a late gap is still winnable, and a **sudden-death tiebreaker** runs a one-round playoff among players tied for first (when songs remain) instead of declaring a shared winner. Default off; normal end-game unchanged.
+- **Comeback token (#1724, opt-in).** After the halfway round, the bottom third of still-active players who don't already have a Steal each receive one (max one per player per game) — rubber-banding the power-up toward the players its effect actually helps. Off by default.
+- **Difficulty-scaled betting (#1727, opt-in).** The bet payout now scales with song difficulty (easy ×2 / normal ×3 / hard ×5) instead of a flat ×3, so betting on a Hard track is no longer strictly bad play; the current payout is shown on the bet toggle. Off by default (flat ×3 unchanged).
+
 ### Changed
 - **Unified side-challenge scoring (#1723).** The movie quiz is now winner-takes-all like the artist challenge: only the single fastest correct guesser earns +5, everyone else earns 0. This **removes the movie quiz's 2nd/3rd-place bonus tiers** ([5, 3, 1]), which let one fast phone sweep every round in larger groups. Both side challenges now behave identically.
+- **More Tidal coverage** backfilled across the catalogue.
 
 ## [4.2.0-rc10] - 2026-07-05
 
