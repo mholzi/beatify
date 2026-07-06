@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "schlager",
     "party",
@@ -311,7 +311,7 @@
         "it": "applemusic://track/1891364268"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=V1picOnkqJU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/514696503",
       "uri_deezer": "deezer://track/3952478221",
       "alt_artists": [
         "Justin Flieger"
@@ -339,7 +339,7 @@
         "it": "applemusic://track/1882994210"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=X3WzMDNb6lw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/506693469",
       "uri_deezer": "deezer://track/3898152331",
       "alt_artists": [
         "bozi"
