@@ -55,6 +55,10 @@ class GameStateSerializer:
             # Issue #827: Sudden Death mode (drives wizard chip, player view,
             # leaderboard cut-line, admin live toggle)
             "sudden_death_mode": gs.sudden_death_mode,
+            # Issue #1725: Finale ×2 + finale sudden-death tiebreaker opt-ins
+            # (drive the wizard chip + the finish banner)
+            "finale_double_enabled": gs.finale_double_enabled,
+            "finale_tiebreaker_enabled": gs.finale_tiebreaker_enabled,
             # #1180: Title & Artist guessing mode (player UI renders inputs)
             "title_artist_mode": gs.title_artist_mode,
             "is_intro_round": gs.is_intro_round,
@@ -109,6 +113,11 @@ class GameStateSerializer:
             state["seconds_remaining"] = max(0, round(gs.deadline / 1000 - gs._now()))
         state["last_round"] = gs.last_round
         state["songs_remaining"] = gs.songs_remaining
+        # Issue #1725: Finale ×2 is live this round (last round + opt-in) — drives
+        # the "Finale ×2" finish banner. Playoff flag lets the client badge a
+        # tiebreaker round.
+        state["finale_double_active"] = gs.finale_double_enabled and gs.last_round
+        state["finale_playoff_active"] = gs._finale_playoff_active
         # Submission tracking (Story 4.4)
         state["submitted_count"] = sum(1 for p in gs.players.values() if p.submitted)
         state["all_submitted"] = gs.all_submitted()
@@ -152,6 +161,10 @@ class GameStateSerializer:
         state["round"] = gs.round
         state["total_rounds"] = gs.total_rounds
         state["last_round"] = gs.last_round
+        # Issue #1725: mirror the PLAYING-phase finale flags so the reveal card
+        # can keep the "Finale ×2" / playoff badge visible.
+        state["finale_double_active"] = gs.finale_double_enabled and gs.last_round
+        state["finale_playoff_active"] = gs._finale_playoff_active
         # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
         if gs.current_song:
             state["song"] = {

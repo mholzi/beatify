@@ -147,6 +147,12 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         rampup_order_enabled = bool(
             body.get("rampup_order_enabled", False)
         )  # Issue #1726
+        finale_double_enabled = bool(
+            body.get("finale_double_enabled", False)
+        )  # Issue #1725
+        finale_tiebreaker_enabled = bool(
+            body.get("finale_tiebreaker_enabled", False)
+        )  # Issue #1725
         reveal_auto_advance = body.get("reveal_auto_advance", 0)  # #1012
         party_lights_config = body.get("party_lights")  # Issue #331
         tts_config = body.get("tts")  # Issue #447
@@ -381,6 +387,8 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "sudden_death_mode": sudden_death_mode,  # Issue #827
             "title_artist_mode": title_artist_mode,  # #1180
             "rampup_order_enabled": rampup_order_enabled,  # Issue #1726
+            "finale_double_enabled": finale_double_enabled,  # Issue #1725
+            "finale_tiebreaker_enabled": finale_tiebreaker_enabled,  # Issue #1725
             "reveal_auto_advance": reveal_auto_advance,  # #1012
         }
         if round_duration is not None:

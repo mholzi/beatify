@@ -129,6 +129,11 @@ _UNIVERSAL_PHASE_TARGETS: frozenset[GamePhase] = frozenset(
     {GamePhase.LOBBY, GamePhase.END}
 )
 
+# Issue #1725: hard cap on consecutive finale sudden-death playoff rounds so a
+# stubborn tie (e.g. nobody submitting) can never loop forever — once hit, the
+# game falls back to today's shared-winner behavior.
+FINALE_PLAYOFF_MAX_ROUNDS = 5
+
 
 class GameState(
     ChallengeMixin,
@@ -361,6 +366,14 @@ class GameState(
 
         # Issue #827: Sudden Death mode (last-place player eliminated per round)
         self.sudden_death_mode: bool = False
+
+        # Issue #1725: Finale ×2 (double the last round's score) + finale
+        # sudden-death tiebreaker (playoff among tied leaders when songs remain).
+        self.finale_double_enabled: bool = False
+        self.finale_tiebreaker_enabled: bool = False
+        # Runtime bookkeeping for the tiebreaker playoff (reset per game).
+        self._finale_playoff_rounds: int = 0
+        self._finale_playoff_active: bool = False
 
         # Issue #477: Admin spectator WebSocket (host without being a player)
         self._admin_ws: web.WebSocketResponse | None = None
@@ -646,6 +659,24 @@ class GameState(
                     self.round,
                     err,
                 )
+                continue
+            # Issue #1725: Finale ×2 — on the last round, double the round score
+            # so a trailing player can still swing the game. Applied here (right
+            # after the per-player pass, before Closest-Wins zeroing in
+            # _score_round) so the extra half survives Closest-Wins the same way
+            # the original half does: for a non-closest player Closest-Wins later
+            # subtracts the (now doubled) round_score back out to 0, and the
+            # closest player keeps the doubled total. Only the year/title-artist
+            # accuracy component is doubled (round_score); streak/artist/movie/
+            # intro bonuses are left single. No-op for a missed round
+            # (round_score 0) or when the flag is off / it isn't the last round,
+            # so normal scoring stays byte-for-byte unchanged.
+            if self.finale_double_enabled and self.last_round and player.round_score:
+                bonus = player.round_score
+                player.score += bonus
+                player.round_score += bonus
+                if player.round_scores:
+                    player.round_scores[-1] = player.round_score
 
     async def _fetch_metadata_async(self, uri: str) -> None:
         """
@@ -950,6 +981,86 @@ class GameState(
             "Sudden Death mode set to %s (live toggle)", self.sudden_death_mode
         )
         return self.sudden_death_mode
+
+    # ------------------------------------------------------------------
+    # Finale sudden-death tiebreaker (Issue #1725)
+    # ------------------------------------------------------------------
+
+    async def maybe_start_finale_playoff(self) -> bool:
+        """Arm + start a finale tiebreaker playoff round, if one is warranted.
+
+        Called at the game-end decision point (the ``_finalize_and_end`` WS
+        chokepoint) BEFORE stats are finalized. When the game is about to end on
+        a **tie for first** while **unplayed songs remain** and the host opted
+        in (``finale_tiebreaker_enabled``), rather than declaring a shared winner
+        this eliminates every non-tied player (reusing the #1472 ``eliminated``
+        flag / :meth:`non_eliminated_players`) and starts one more round among
+        ONLY the tied leaders. The tied players' scores then diverge and the next
+        end-check resolves to a single winner.
+
+        Returns ``True`` when a playoff round was started (the game continues in
+        PLAYING and the caller should re-broadcast instead of finalizing), or
+        ``False`` — keeping today's shared-winner behavior — in every other case:
+
+        * the setting is off,
+        * we are not at a genuine round boundary (only fires from REVEAL, where
+          the just-played round's scores are final),
+        * there is no tie for first (a single clear winner),
+        * ``0`` unplayed songs remain (a naturally-completed playlist → shared
+          winner, exactly the issue's fallback), or
+        * the ``FINALE_PLAYOFF_MAX_ROUNDS`` recursion cap is hit (a stubborn tie
+          falls back to a shared winner instead of looping forever).
+
+        Interacts cleanly with Sudden Death: :meth:`compute_winners` already
+        ranks survivors-first when Sudden Death has cut anyone, so the playoff
+        runs among the tied *survivors*; during the playoff round the normal
+        per-round Sudden-Death cut (if enabled) still applies and simply helps
+        break the tie faster.
+        """
+        if not self.finale_tiebreaker_enabled:
+            return False
+        # Only from REVEAL: the round that just ended has final scores, so a tie
+        # detected now is real. Force-ending from PLAYING (a round mid-flight)
+        # or re-entering from END is deliberately not a playoff trigger.
+        if self.phase != GamePhase.REVEAL:
+            return False
+        if self._finale_playoff_rounds >= FINALE_PLAYOFF_MAX_ROUNDS:
+            _LOGGER.info(
+                "Finale tiebreaker: playoff cap (%d) reached — shared winner stands",
+                FINALE_PLAYOFF_MAX_ROUNDS,
+            )
+            return False
+        if self.songs_remaining < 1:
+            return False
+        winners, _top = self.compute_winners()
+        if len(winners) <= 1:
+            return False
+
+        # Arm the playoff: freeze everyone who is NOT tied for first out of the
+        # game (reusing the Sudden-Death `eliminated` flag so scoring skips them
+        # and the leaderboard renders them below the cut-line). Leave
+        # `eliminated_round` unset so they are not mislabelled as a Sudden-Death
+        # "eliminated this round" cut.
+        winner_names = {w.name for w in winners}
+        for player in self.players.values():
+            if player.name not in winner_names and not player.eliminated:
+                player.eliminated = True
+        self._finale_playoff_rounds += 1
+        self._finale_playoff_active = True
+        _LOGGER.info(
+            "Finale tiebreaker: %d-way tie for first (%s) with songs remaining — "
+            "starting playoff round %d (of max %d)",
+            len(winners),
+            ", ".join(sorted(winner_names)),
+            self._finale_playoff_rounds,
+            FINALE_PLAYOFF_MAX_ROUNDS,
+        )
+        started = await self.start_round()
+        if not started:
+            # start_round couldn't launch (e.g. it paused / exhausted under us).
+            # Drop the active flag; the caller will finalize as usual.
+            self._finale_playoff_active = False
+        return started
 
     def _schedule_reveal_advance(self) -> None:
         """Schedule the REVEAL vote window or auto-advance task (#1272).

@@ -57,6 +57,15 @@ class GameStateConfig:
     # Issue #827: Sudden Death — last-place player eliminated each round.
     # Can be set at game start (wizard) or toggled live from the reveal screen.
     sudden_death_mode: bool = False
+    # Issue #1725: Finale ×2 — on the last round, each player's round score is
+    # doubled before it is committed, so a trailing player can still swing the
+    # game. Opt-in at game start (wizard). Default off = normal scoring.
+    finale_double_enabled: bool = False
+    # Issue #1725: Finale sudden-death tiebreaker — if the game ends on a tie for
+    # first while unplayed songs remain, a one-round playoff runs among ONLY the
+    # tied players (reusing the #1472 elimination machinery) instead of declaring
+    # a shared winner. Opt-in at game start (wizard). Default off.
+    finale_tiebreaker_enabled: bool = False
     # Issue #1180: Title & Artist guessing mode. Owned by ChallengeManager;
     # listed here for reset symmetry. GameState exposes a delegation property,
     # and _apply_config skips manager-delegated names (see field_names()).

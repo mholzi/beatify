@@ -130,6 +130,20 @@ export function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Finale ×2 toggle (Issue #1725)
+    document.getElementById('finale-double-toggle')?.addEventListener('change', function() {
+        adminState.finaleDoubleEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
+    // Finale Tiebreaker toggle (Issue #1725)
+    document.getElementById('finale-tiebreaker-toggle')?.addEventListener('change', function() {
+        adminState.finaleTiebreakerEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Title & Artist Mode toggle (#1180)
     document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
         adminState.titleArtistModeEnabled = this.checked;
@@ -230,6 +244,20 @@ export async function loadSavedSettings() {
                 if (rampupToggle) rampupToggle.checked = settings.rampupOrder;
             }
 
+            // Apply Finale ×2 (Issue #1725)
+            if (typeof settings.finaleDouble === 'boolean') {
+                adminState.finaleDoubleEnabled = settings.finaleDouble;
+                const finaleDoubleToggle = document.getElementById('finale-double-toggle');
+                if (finaleDoubleToggle) finaleDoubleToggle.checked = settings.finaleDouble;
+            }
+
+            // Apply Finale Tiebreaker (Issue #1725)
+            if (typeof settings.finaleTiebreaker === 'boolean') {
+                adminState.finaleTiebreakerEnabled = settings.finaleTiebreaker;
+                const finaleTbToggle = document.getElementById('finale-tiebreaker-toggle');
+                if (finaleTbToggle) finaleTbToggle.checked = settings.finaleTiebreaker;
+            }
+
             // Apply Title & Artist mode (#1180)
             if (typeof settings.titleArtistMode === 'boolean') {
                 adminState.titleArtistModeEnabled = settings.titleArtistMode;
@@ -267,6 +295,8 @@ export function saveGameSettings() {
             closestWinsMode: adminState.closestWinsModeEnabled,  // Issue #442
             titleArtistMode: adminState.titleArtistModeEnabled,  // #1180
             rampupOrder: adminState.rampupOrderEnabled,  // Issue #1726
+            finaleDouble: adminState.finaleDoubleEnabled,  // Issue #1725
+            finaleTiebreaker: adminState.finaleTiebreakerEnabled,  // Issue #1725
             provider: adminState.selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -296,8 +326,12 @@ export function updateGameSettingsSummary() {
     // Issue #1726: ramp-up ordering is independent of the year-round bonuses
     // (it just reorders songs), so its icon shows regardless of TA mode.
     const rampupIcon = adminState.rampupOrderEnabled ? ' • 📈' : '';
+    // Issue #1725: finale mechanics are mode-agnostic (end-game tension), so
+    // their icons show regardless of TA mode.
+    const finaleDoubleIcon = adminState.finaleDoubleEnabled ? ' • ✨' : '';
+    const finaleTbIcon = adminState.finaleTiebreakerEnabled ? ' • ⚔️' : '';
 
-    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}`;
 }
 
 /**

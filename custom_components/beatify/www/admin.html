@@ -542,6 +542,36 @@
                     </div>
                     <p class="setting-hint" data-i18n="admin.rampupOrderHint">Order songs by difficulty instead of at random: easy rounds first, the hardest known song saved for the finale. Falls back to random until songs have enough play history.</p>
                 </div>
+
+                <!-- Finale ×2 - Inline toggle (Issue #1725) -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">✨</span>
+                            <span data-i18n="admin.finaleDouble">Finale ×2</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="finale-double-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.finaleDoubleHint">Double every player's score on the final round, so a trailing player can still swing the game. A "Finale ×2" banner shows on the last round.</p>
+                </div>
+
+                <!-- Finale Tiebreaker - Inline toggle (Issue #1725) -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">⚔️</span>
+                            <span data-i18n="admin.finaleTiebreaker">Finale Tiebreaker</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="finale-tiebreaker-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.finaleTiebreakerHint">If the game ends on a tie for first while songs remain, play a sudden-death playoff among only the tied players instead of a shared win.</p>
+                </div>
             </div>
         </section>
 

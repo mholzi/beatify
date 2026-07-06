@@ -50,7 +50,19 @@ async def _finalize_and_end(
     I/O + ``advance_to_end``). If either raises, the claim is released so a
     retry can re-run the terminal sequence instead of stranding the game in
     REVEAL/PAUSED — then the error propagates to the caller.
+
+    #1725: before claiming/finalizing, offer a finale sudden-death tiebreaker.
+    When the host opted in and the game would end on a tie for first with
+    unplayed songs left, ``maybe_start_finale_playoff`` eliminates the non-tied
+    players and starts one more playoff round; the game stays in PLAYING and we
+    return WITHOUT finalizing, so the caller re-broadcasts the live round. On a
+    clear winner / 0 songs left / cap reached it's a no-op and the normal
+    finalize path runs.
     """
+    if await game_state.maybe_start_finale_playoff():
+        _LOGGER.info("Finale tiebreaker armed — playoff round started, not ending")
+        return
+
     if not handler._claim_game_end(game_state.game_id):
         _LOGGER.debug("Game-end already claimed for %s — skipping", game_state.game_id)
         return
