@@ -790,13 +790,13 @@
   },
   "movieChallenge": {
     "whichMovie": "¿En qué película aparece esta canción?",
-    "youGotIt": "¡Correcto! #{rank} — +{bonus} puntos",
+    "youGotIt": "¡Correcto! +{bonus} puntos",
     "alreadyGuessed": "¡Ya respondiste!",
-    "someoneFaster": "Correcto, pero otros fueron más rápidos",
+    "someoneFaster": "Correcto, pero alguien fue más rápido",
     "wrongGuess": "Casi...",
     "theMovieWas": "La película era",
     "noWinner": "Nadie adivinó la película",
-    "winnersTitle": "Ganadores del Quiz de Películas"
+    "winnersTitle": "Ganador del Quiz de Películas"
   },
   "titleArtist": {
     "titleLabel": "Título de la canción",

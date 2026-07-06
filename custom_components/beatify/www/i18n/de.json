@@ -789,9 +789,9 @@
   },
   "movieChallenge": {
     "whichMovie": "In welchem Film kommt dieser Song vor?",
-    "youGotIt": "Richtig! #{rank} — +{bonus} Punkte",
+    "youGotIt": "Richtig! +{bonus} Punkte",
     "alreadyGuessed": "Bereits geraten!",
-    "someoneFaster": "Richtig, aber andere waren schneller",
+    "someoneFaster": "Richtig, aber jemand war schneller",
     "wrongGuess": "Leider falsch...",
     "theMovieWas": "Der Film war",
     "noWinner": "Niemand hat den Film erraten",

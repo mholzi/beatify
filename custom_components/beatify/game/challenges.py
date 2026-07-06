@@ -10,7 +10,7 @@ from typing import Any
 from custom_components.beatify.const import (
     ARTIST_PARTIAL_POINTS,
     ARTIST_POINTS,
-    MOVIE_BONUS_TIERS,
+    CHALLENGE_BONUS_POINTS,
     TITLE_PARTIAL_POINTS,
     TITLE_POINTS,
 )
@@ -62,6 +62,17 @@ class ArtistChallenge:
             result["correct_artist"] = self.correct_artist
         return result
 
+    def get_player_bonus(self, player_name: str) -> int:
+        """
+        Winner-takes-all bonus for a player (Issue #1723).
+
+        The single fastest correct guesser (the ``winner``) earns
+        ``CHALLENGE_BONUS_POINTS``; everyone else earns 0. Mirrors
+        ``MovieChallenge.get_player_bonus`` so both side challenges share the
+        same "first correct by time gets +N" shape.
+        """
+        return CHALLENGE_BONUS_POINTS if self.winner == player_name else 0
+
 
 @dataclass
 class MovieChallenge:
@@ -92,15 +103,21 @@ class MovieChallenge:
         return result
 
     def _build_results(self) -> dict[str, Any]:
-        """Build movie quiz results for reveal display."""
+        """Build movie quiz results for reveal display (Issue #1723).
+
+        Winner-takes-all: only the single fastest correct guesser is surfaced
+        as the winner (with ``CHALLENGE_BONUS_POINTS``), mirroring the artist
+        challenge. ``correct_guesses`` is kept sorted fastest-first, so index 0
+        is the winner; later-correct guessers earned 0 and are not shown.
+        """
         winners = []
-        for i, guess in enumerate(self.correct_guesses):
-            bonus = MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
+        if self.correct_guesses:
+            fastest = self.correct_guesses[0]
             winners.append(
                 {
-                    "name": guess["name"],
-                    "time": round(guess["time"], 2),
-                    "bonus": bonus,
+                    "name": fastest["name"],
+                    "time": round(fastest["time"], 2),
+                    "bonus": CHALLENGE_BONUS_POINTS,
                 }
             )
         return {
@@ -112,18 +129,23 @@ class MovieChallenge:
 
     def get_player_bonus(self, player_name: str) -> int:
         """
-        Get the bonus points for a specific player.
+        Winner-takes-all bonus for a player (Issue #1723).
+
+        The single fastest correct guesser (index 0 of the time-sorted
+        ``correct_guesses``) earns ``CHALLENGE_BONUS_POINTS``; every later or
+        incorrect guesser earns 0. Ties in submission time are broken
+        deterministically by insertion order (the stable sort keeps the earlier
+        submitter first).
 
         Args:
             player_name: Name of the player
 
         Returns:
-            Bonus points (5/3/1/0 based on speed rank)
+            Bonus points (CHALLENGE_BONUS_POINTS for the fastest, else 0)
 
         """
-        for i, guess in enumerate(self.correct_guesses):
-            if guess["name"] == player_name:
-                return MOVIE_BONUS_TIERS[i] if i < len(MOVIE_BONUS_TIERS) else 0
+        if self.correct_guesses and self.correct_guesses[0]["name"] == player_name:
+            return CHALLENGE_BONUS_POINTS
         return 0
 
 
@@ -495,8 +517,10 @@ class ChallengeManager:
         """
         Submit movie guess for bonus points (Issue #28).
 
-        Uses server-side timing. Correct guesses are ranked by speed
-        for tiered bonus scoring (5/3/1 points).
+        Uses server-side timing. Correct guesses are ranked by speed, but only
+        the single fastest correct guesser earns CHALLENGE_BONUS_POINTS —
+        winner-takes-all (Issue #1723). ``rank`` is still reported so the client
+        can tell the winner from later-correct players.
 
         Args:
             player_name: Name of player guessing
@@ -560,7 +584,8 @@ class ChallengeManager:
                 for i, g in enumerate(self.movie_challenge.correct_guesses)
                 if g["name"] == player_name
             )
-            bonus = MOVIE_BONUS_TIERS[rank] if rank < len(MOVIE_BONUS_TIERS) else 0
+            # Winner-takes-all: only the fastest correct guess (rank 0) pays.
+            bonus = CHALLENGE_BONUS_POINTS if rank == 0 else 0
             result["rank"] = rank + 1  # 1-indexed for display
             result["bonus"] = bonus
             _LOGGER.info(

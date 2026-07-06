@@ -31,12 +31,12 @@ VOLUME_STEP = 0.1
 # Key = streak count, Value = bonus points
 STREAK_MILESTONES: dict[int, int] = {3: 20, 5: 50, 10: 100, 15: 150, 20: 250, 25: 400}
 
-# Artist challenge bonus (Story 20.1)
-ARTIST_BONUS_POINTS = 5
-
-# Movie quiz bonus tiers by speed rank (Issue #28)
-# Index 0 = fastest correct, index 1 = 2nd fastest, etc.
-MOVIE_BONUS_TIERS: list[int] = [5, 3, 1]
+# Side-challenge bonus (Story 20.1 artist quiz, Issue #28 movie quiz).
+# Both side challenges are winner-takes-all (Issue #1723): the single fastest
+# correct guesser earns this bonus, everyone else earns 0. The movie quiz used
+# to pay tiered [5, 3, 1] by speed rank, but that let one fast phone sweep every
+# round in larger groups, so it was unified DOWN to match the artist challenge.
+CHALLENGE_BONUS_POINTS = 5
 
 # Title & Artist guessing mode (Issue #1180)
 # Full-credit points for an exact or fuzzy match per field.

@@ -789,13 +789,13 @@
   },
   "movieChallenge": {
     "whichMovie": "Which movie features this song?",
-    "youGotIt": "Correct! #{rank} — +{bonus} points",
+    "youGotIt": "Correct! +{bonus} points",
     "alreadyGuessed": "Already guessed!",
-    "someoneFaster": "Correct, but others were faster",
+    "someoneFaster": "Correct, but someone was faster",
     "wrongGuess": "Not quite...",
     "theMovieWas": "The movie was",
     "noWinner": "No one guessed the movie",
-    "winnersTitle": "Movie Quiz Winners"
+    "winnersTitle": "Movie Quiz Winner"
   },
   "titleArtist": {
     "titleLabel": "Song title",

@@ -117,10 +117,14 @@ export function handleMovieGuessAck(data) {
         disableAllMovieButtons();
 
     } else if (data.correct) {
+        // Winner-takes-all (#1723): only the single fastest correct guess
+        // (bonus > 0) is a "win"; later-correct players get 0 and see the
+        // "someone was faster" message, mirroring the artist challenge.
+        var isFastest = data.bonus > 0;
         if (btn) {
             btn.classList.remove('is-loading');
             btn.classList.add('is-correct');
-            if (data.bonus > 0) {
+            if (isFastest) {
                 var badge = document.createElement('span');
                 badge.className = 'movie-rank-badge';
                 badge.textContent = '+' + data.bonus;
@@ -128,10 +132,14 @@ export function handleMovieGuessAck(data) {
             }
         }
         disableAllMovieButtons();
-        var bonusText = (utils.t('movieChallenge.youGotIt') || 'Correct! #{rank} — +{bonus} points')
-            .replace('{rank}', data.rank || 1)
-            .replace('{bonus}', data.bonus || 0);
-        showMovieResult(bonusText, true);
+        var resultText;
+        if (isFastest) {
+            resultText = (utils.t('movieChallenge.youGotIt') || 'Correct! +{bonus} points')
+                .replace('{bonus}', data.bonus);
+        } else {
+            resultText = utils.t('movieChallenge.someoneFaster') || 'Correct, but someone was faster';
+        }
+        showMovieResult(resultText, isFastest);
         movieChallengeComplete = true;
 
     } else {

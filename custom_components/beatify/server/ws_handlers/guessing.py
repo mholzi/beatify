@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING
 from aiohttp import web
 
 from custom_components.beatify.const import (
-    ARTIST_BONUS_POINTS,
+    CHALLENGE_BONUS_POINTS,
     ERR_ALREADY_SUBMITTED,
     ERR_ELIMINATED,
     ERR_INVALID_ACTION,
@@ -382,7 +382,7 @@ async def handle_artist_guess(
     if result["correct"]:
         response["first"] = result["first"]
         if result["first"]:
-            response["bonus_points"] = ARTIST_BONUS_POINTS
+            response["bonus_points"] = CHALLENGE_BONUS_POINTS
         else:
             response["winner"] = result["winner"]
 

@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Changed
+- **Unified side-challenge scoring (#1723).** The movie quiz is now winner-takes-all like the artist challenge: only the single fastest correct guesser earns +5, everyone else earns 0. This **removes the movie quiz's 2nd/3rd-place bonus tiers** ([5, 3, 1]), which let one fast phone sweep every round in larger groups. Both side challenges now behave identically.
+
 ## [4.2.0-rc10] - 2026-07-05
 
 Pre-release — adds the Sudden Death game mode and a broad reliability / performance / accessibility pass on top of the Mix & Match cycle. See the GitHub release for the user-facing notes.

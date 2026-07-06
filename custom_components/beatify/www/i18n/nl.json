@@ -790,13 +790,13 @@
   },
   "movieChallenge": {
     "whichMovie": "In welke film komt dit nummer voor?",
-    "youGotIt": "Correct! #{rank} — +{bonus} punten",
+    "youGotIt": "Correct! +{bonus} punten",
     "alreadyGuessed": "Al geraden!",
-    "someoneFaster": "Correct, maar anderen waren sneller",
+    "someoneFaster": "Correct, maar iemand was sneller",
     "wrongGuess": "Bijna...",
     "theMovieWas": "De film was",
     "noWinner": "Niemand heeft de film geraden",
-    "winnersTitle": "Winnaars filmquiz"
+    "winnersTitle": "Winnaar filmquiz"
   },
   "titleArtist": {
     "titleLabel": "Songtitel",
