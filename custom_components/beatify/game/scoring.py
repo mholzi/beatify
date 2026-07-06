@@ -13,7 +13,6 @@ from typing import TYPE_CHECKING, Any
 from .types import RoundAnalytics, _get_decade_label
 
 from custom_components.beatify.const import (
-    ARTIST_BONUS_POINTS,
     DIFFICULTY_DEFAULT,
     DIFFICULTY_EASY,
     DIFFICULTY_HARD,
@@ -299,11 +298,13 @@ def _score_artist_challenge(
     player: PlayerSession,
     artist_challenge: Any | None,
 ) -> int:
-    """Return artist bonus points and set player.artist_bonus. Mutates player."""
+    """Return artist bonus points and set player.artist_bonus. Mutates player.
+
+    Winner-takes-all (Issue #1723): delegates to the challenge's shared
+    ``get_player_bonus`` so the artist and movie challenges award identically.
+    """
     player.artist_bonus = (
-        ARTIST_BONUS_POINTS
-        if artist_challenge and artist_challenge.winner == player.name
-        else 0
+        artist_challenge.get_player_bonus(player.name) if artist_challenge else 0
     )
     return player.artist_bonus
 
