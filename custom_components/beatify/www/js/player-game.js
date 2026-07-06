@@ -75,6 +75,16 @@ export function updateGameView(data) {
     if (lastRoundBanner) {
         if (data.last_round) {
             lastRoundBanner.classList.remove('hidden');
+            // Issue #1725: on the final round with Finale ×2 active, upgrade the
+            // banner copy to advertise the doubled points; otherwise the plain
+            // "Final Round!" label.
+            if (data.finale_double_active) {
+                lastRoundBanner.textContent = utils.t('game.finaleDouble');
+                lastRoundBanner.classList.add('arc-chip--finale');
+            } else {
+                lastRoundBanner.textContent = utils.t('game.finalRound');
+                lastRoundBanner.classList.remove('arc-chip--finale');
+            }
         } else {
             lastRoundBanner.classList.add('hidden');
         }

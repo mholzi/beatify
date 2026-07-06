@@ -120,6 +120,8 @@ class GameSetupMixin:
         title_artist_mode: bool = False,
         reveal_auto_advance: int = 0,
         rampup_order_enabled: bool = False,
+        finale_double_enabled: bool = False,
+        finale_tiebreaker_enabled: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -140,6 +142,11 @@ class GameSetupMixin:
             title_artist_mode: Whether title/artist guessing replaces the year guess
             rampup_order_enabled: Whether to order songs into a difficulty arc
                 instead of uniform random (#1726). Opt-in; default False.
+            finale_double_enabled: Whether the last round's score is doubled
+                (#1725). Opt-in; default False.
+            finale_tiebreaker_enabled: Whether an end-game tie for first with
+                songs remaining triggers a sudden-death playoff (#1725). Opt-in;
+                default False.
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -293,6 +300,11 @@ class GameSetupMixin:
         self.rampup_order_enabled = rampup_order_enabled
         # Issue #827: Set sudden death mode
         self.sudden_death_mode = sudden_death_mode
+        # Issue #1725: Finale ×2 + finale sudden-death tiebreaker (opt-in)
+        self.finale_double_enabled = finale_double_enabled
+        self.finale_tiebreaker_enabled = finale_tiebreaker_enabled
+        self._finale_playoff_rounds = 0
+        self._finale_playoff_active = False
         self.is_intro_round = False
         self.intro_stopped = False
         self._round_manager._intro_round_start_time = None
@@ -431,9 +443,15 @@ class GameSetupMixin:
             "sudden_death_mode": self.sudden_death_mode,
             "title_artist_mode": self.title_artist_mode,
             "rampup_order_enabled": self.rampup_order_enabled,  # #1726
+            "finale_double_enabled": self.finale_double_enabled,  # #1725
+            "finale_tiebreaker_enabled": self.finale_tiebreaker_enabled,  # #1725
         }
 
         self._reset_game_internals()
+        # #1725: the playoff counters are runtime state, not config fields, so
+        # _reset_game_internals doesn't touch them — clear them for the rematch.
+        self._finale_playoff_rounds = 0
+        self._finale_playoff_active = False
 
         # Restore preserved settings for seamless rematch
         for attr, value in preserved.items():

@@ -1126,6 +1126,8 @@ async function startGame() {
                 sudden_death_mode: suddenDeathMode,  // Issue #827
                 title_artist_mode: adminState.titleArtistModeEnabled,  // #1180
                 rampup_order_enabled: adminState.rampupOrderEnabled,  // Issue #1726
+                finale_double_enabled: adminState.finaleDoubleEnabled,  // Issue #1725
+                finale_tiebreaker_enabled: adminState.finaleTiebreakerEnabled,  // Issue #1725
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })
