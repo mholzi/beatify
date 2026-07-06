@@ -188,6 +188,7 @@ export function applyStoredGameSettings(adminState, s) {
     if (typeof s.introMode === 'boolean') adminState.introModeEnabled = s.introMode;
     if (typeof s.closestWinsMode === 'boolean') adminState.closestWinsModeEnabled = s.closestWinsMode;
     if (typeof s.titleArtistMode === 'boolean') adminState.titleArtistModeEnabled = s.titleArtistMode;
+    if (typeof s.rampupOrder === 'boolean') adminState.rampupOrderEnabled = s.rampupOrder;
 }
 
 // --- admin-state dirty-check (#1584 / #1659) -------------------------------

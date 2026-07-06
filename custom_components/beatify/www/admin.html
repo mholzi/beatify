@@ -527,6 +527,21 @@
                     </div>
                     <p class="setting-hint" data-i18n="admin.closestWinsHint">Only the player with the closest guess scores points each round. All-or-nothing showdown.</p>
                 </div>
+
+                <!-- Ramp-up Ordering - Inline toggle (Issue #1726) -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">📈</span>
+                            <span data-i18n="admin.rampupOrder">Ramp-up Ordering</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="rampup-order-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.rampupOrderHint">Order songs by difficulty instead of at random: easy rounds first, the hardest known song saved for the finale. Falls back to random until songs have enough play history.</p>
+                </div>
             </div>
         </section>
 

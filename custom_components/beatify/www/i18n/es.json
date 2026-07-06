@@ -440,6 +440,8 @@
     "titleArtistMode": "Modo Título y Artista",
     "titleArtistModeHint": "Los jugadores escriben el título y el artista en lugar de adivinar el año. Reemplaza la ronda de año — el desafío del artista y «el más cercano gana» no se aplican, pero el cuestionario de películas y el modo intro sí.",
     "closestWinsHint": "Solo el jugador con la respuesta más cercana gana puntos en cada ronda. Duelo de todo o nada.",
+    "rampupOrder": "Orden progresivo",
+    "rampupOrderHint": "Ordena las canciones por dificultad en lugar de al azar: rondas fáciles primero y la canción más difícil conocida reservada para la final. Vuelve al orden aleatorio hasta que las canciones tengan suficiente historial de juego.",
     "roundsHint": "Número total de rondas en el juego, basado en las playlists seleccionadas.",
     "languageHint": "Establece el idioma para todos los jugadores durante la partida.",
     "timerHint": "Cuántos segundos tienen los jugadores para enviar su respuesta en cada ronda.",

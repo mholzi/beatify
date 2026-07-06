@@ -123,6 +123,13 @@ export function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Ramp-up Ordering toggle (Issue #1726)
+    document.getElementById('rampup-order-toggle')?.addEventListener('change', function() {
+        adminState.rampupOrderEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Title & Artist Mode toggle (#1180)
     document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
         adminState.titleArtistModeEnabled = this.checked;
@@ -216,6 +223,13 @@ export async function loadSavedSettings() {
                 if (closestToggle) closestToggle.checked = settings.closestWinsMode;
             }
 
+            // Apply ramp-up ordering (Issue #1726)
+            if (typeof settings.rampupOrder === 'boolean') {
+                adminState.rampupOrderEnabled = settings.rampupOrder;
+                const rampupToggle = document.getElementById('rampup-order-toggle');
+                if (rampupToggle) rampupToggle.checked = settings.rampupOrder;
+            }
+
             // Apply Title & Artist mode (#1180)
             if (typeof settings.titleArtistMode === 'boolean') {
                 adminState.titleArtistModeEnabled = settings.titleArtistMode;
@@ -252,6 +266,7 @@ export function saveGameSettings() {
             introMode: adminState.introModeEnabled,  // Issue #23
             closestWinsMode: adminState.closestWinsModeEnabled,  // Issue #442
             titleArtistMode: adminState.titleArtistModeEnabled,  // #1180
+            rampupOrder: adminState.rampupOrderEnabled,  // Issue #1726
             provider: adminState.selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -278,8 +293,11 @@ export function updateGameSettingsSummary() {
     const introIcon = (yearRoundActive && adminState.introModeEnabled) ? ' • ⚡' : '';  // Issue #23
     const closestIcon = (yearRoundActive && adminState.closestWinsModeEnabled) ? ' • 🎯' : '';  // Issue #442
     const taIcon = adminState.titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
+    // Issue #1726: ramp-up ordering is independent of the year-round bonuses
+    // (it just reorders songs), so its icon shows regardless of TA mode.
+    const rampupIcon = adminState.rampupOrderEnabled ? ' • 📈' : '';
 
-    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}`;
 }
 
 /**

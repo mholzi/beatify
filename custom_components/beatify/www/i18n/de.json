@@ -440,6 +440,8 @@
     "titleArtistMode": "Titel- & Interpreten-Modus",
     "titleArtistModeHint": "Spieler tippen Songtitel und Interpret, statt das Jahr zu raten. Ersetzt die Jahres-Runde — Künstler-Challenge und Nächster-gewinnt entfallen, Film-Quiz und Intro-Modus bleiben.",
     "closestWinsHint": "Nur der Spieler mit dem nächsten Tipp bekommt pro Runde Punkte. Alles-oder-nichts-Duell.",
+    "rampupOrder": "Schwierigkeits-Steigerung",
+    "rampupOrderHint": "Songs nach Schwierigkeit ordnen statt zufällig: leichte Runden zuerst, der schwerste bekannte Song fürs Finale reserviert. Fällt auf Zufall zurück, solange Songs noch nicht genug gespielt wurden.",
     "roundsHint": "Gesamtzahl der Runden im Spiel, basierend auf den ausgewählten Playlists.",
     "languageHint": "Legt die Sprache für alle Spieler während des Spiels fest.",
     "timerHint": "Wie viele Sekunden die Spieler pro Runde haben, um ihren Tipp abzugeben.",

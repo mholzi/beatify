@@ -66,6 +66,7 @@ export const adminState = {
     introModeEnabled: false,            // Issue #23
     closestWinsModeEnabled: false,      // Issue #442
     titleArtistModeEnabled: false,      // #1180
+    rampupOrderEnabled: false,          // Issue #1726
 
     // --- lobby / admin-as-player (#477) ---
     previousLobbyPlayers: [],           // Story 16.8
