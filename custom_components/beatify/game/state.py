@@ -379,6 +379,11 @@ class GameState(
         # players after the halfway round.
         self.comeback_token_enabled: bool = False
 
+        # Issue #1727: Difficulty-aware bet scaling — the won-bet payout scales
+        # with difficulty (easy 2x / normal 3x / hard 5x) instead of a flat 3x,
+        # so betting stays worthwhile on Hard. Opt-in; default off = flat 3x.
+        self.difficulty_bet_scaling_enabled: bool = False
+
         # Issue #477: Admin spectator WebSocket (host without being a player)
         self._admin_ws: web.WebSocketResponse | None = None
 
@@ -654,6 +659,7 @@ class GameState(
                     streak_achievements=self.streak_achievements,
                     bet_tracking=self.bet_tracking,
                     title_artist_manager=title_artist_manager,
+                    difficulty_bet_scaling_enabled=self.difficulty_bet_scaling_enabled,
                 )
             except (KeyError, AttributeError, TypeError, ValueError) as err:
                 _LOGGER.error(

@@ -7,12 +7,19 @@ import pytest
 from unittest.mock import MagicMock
 
 from custom_components.beatify.game.scoring import (
+    BET_WIN_MULTIPLIER,
     ScoringService,
     apply_bet_multiplier,
+    bet_win_multiplier,
     calculate_accuracy_score,
     calculate_round_score,
     calculate_speed_multiplier,
     calculate_streak_bonus,
+)
+from custom_components.beatify.const import (
+    DIFFICULTY_EASY,
+    DIFFICULTY_HARD,
+    DIFFICULTY_NORMAL,
 )
 from custom_components.beatify.game.player import PlayerSession
 
@@ -224,6 +231,88 @@ class TestBetMultiplier:
         score, outcome = apply_bet_multiplier(50, True, is_exact=True)
         assert score == 150
         assert outcome == "won"
+
+    def test_explicit_multiplier_overrides_default(self):
+        # #1727: a difficulty-scaled multiplier is passed through unchanged.
+        score, outcome = apply_bet_multiplier(10, True, is_exact=True, multiplier=5)
+        assert score == 50
+        assert outcome == "won"
+
+    def test_explicit_multiplier_lost_still_forfeits(self):
+        # A non-exact bet forfeits regardless of the multiplier.
+        score, outcome = apply_bet_multiplier(8, True, is_exact=False, multiplier=5)
+        assert score == 0
+        assert outcome == "lost"
+
+
+# ---------------------------------------------------------------------------
+# bet_win_multiplier (#1727 — difficulty-aware bet payout)
+# ---------------------------------------------------------------------------
+
+
+class TestBetWinMultiplier:
+    """The won-bet payout scales with difficulty only when opted in (#1727).
+
+    Off (default) → flat 3x on every difficulty (unchanged pre-#1727 behaviour).
+    On → easy 2x / normal 3x / hard 5x, unknown difficulty falls back to 3x.
+    """
+
+    def test_default_is_flat_three(self):
+        assert BET_WIN_MULTIPLIER == 3
+
+    @pytest.mark.parametrize(
+        "difficulty",
+        [DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD, "unknown"],
+    )
+    def test_scaling_off_is_flat_three(self, difficulty):
+        assert bet_win_multiplier(difficulty, scaling_enabled=False) == 3
+
+    def test_scaling_off_is_default(self):
+        # scaling_enabled defaults to False → flat 3x.
+        assert bet_win_multiplier(DIFFICULTY_HARD) == 3
+
+    @pytest.mark.parametrize(
+        "difficulty,expected",
+        [
+            (DIFFICULTY_EASY, 2),
+            (DIFFICULTY_NORMAL, 3),
+            (DIFFICULTY_HARD, 5),
+        ],
+    )
+    def test_scaling_on_scales_per_difficulty(self, difficulty, expected):
+        assert bet_win_multiplier(difficulty, scaling_enabled=True) == expected
+
+    def test_scaling_on_unknown_difficulty_falls_back(self):
+        # An unrecognised difficulty must not crash — falls back to flat 3x.
+        assert bet_win_multiplier("brutal", scaling_enabled=True) == 3
+
+    @pytest.mark.parametrize(
+        "difficulty,scaling,base,expected_score",
+        [
+            # Off: flat 3x everywhere.
+            (DIFFICULTY_EASY, False, 10, 30),
+            (DIFFICULTY_HARD, False, 10, 30),
+            # On: difficulty-scaled payout.
+            (DIFFICULTY_EASY, True, 10, 20),
+            (DIFFICULTY_NORMAL, True, 10, 30),
+            (DIFFICULTY_HARD, True, 10, 50),
+        ],
+    )
+    def test_end_to_end_won_bet_math(self, difficulty, scaling, base, expected_score):
+        mult = bet_win_multiplier(difficulty, scaling_enabled=scaling)
+        score, outcome = apply_bet_multiplier(
+            base, True, is_exact=True, multiplier=mult
+        )
+        assert score == expected_score
+        assert outcome == "won"
+
+    def test_end_to_end_lost_bet_forfeits_on_hard_when_scaled(self):
+        # The whole point of #1727: even the boosted Hard payout only pays on an
+        # exact guess; a miss still forfeits the round score.
+        mult = bet_win_multiplier(DIFFICULTY_HARD, scaling_enabled=True)
+        score, outcome = apply_bet_multiplier(3, True, is_exact=False, multiplier=mult)
+        assert score == 0
+        assert outcome == "lost"
 
 
 # ---------------------------------------------------------------------------

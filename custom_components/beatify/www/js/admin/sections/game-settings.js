@@ -151,6 +151,13 @@ export function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Difficulty Bet Scaling toggle (Issue #1727)
+    document.getElementById('difficulty-bet-scaling-toggle')?.addEventListener('change', function() {
+        adminState.difficultyBetScalingEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Title & Artist Mode toggle (#1180)
     document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
         adminState.titleArtistModeEnabled = this.checked;
@@ -272,6 +279,13 @@ export async function loadSavedSettings() {
                 if (comebackToggle) comebackToggle.checked = settings.comebackToken;
             }
 
+            // Apply Difficulty Bet Scaling (Issue #1727)
+            if (typeof settings.difficultyBetScaling === 'boolean') {
+                adminState.difficultyBetScalingEnabled = settings.difficultyBetScaling;
+                const betScalingToggle = document.getElementById('difficulty-bet-scaling-toggle');
+                if (betScalingToggle) betScalingToggle.checked = settings.difficultyBetScaling;
+            }
+
             // Apply Title & Artist mode (#1180)
             if (typeof settings.titleArtistMode === 'boolean') {
                 adminState.titleArtistModeEnabled = settings.titleArtistMode;
@@ -312,6 +326,7 @@ export function saveGameSettings() {
             finaleDouble: adminState.finaleDoubleEnabled,  // Issue #1725
             finaleTiebreaker: adminState.finaleTiebreakerEnabled,  // Issue #1725
             comebackToken: adminState.comebackTokenEnabled,  // Issue #1724
+            difficultyBetScaling: adminState.difficultyBetScalingEnabled,  // Issue #1727
             provider: adminState.selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -348,8 +363,11 @@ export function updateGameSettingsSummary() {
     // Issue #1724: comeback token is mode-agnostic (rubber-banding), so its icon
     // shows regardless of TA mode.
     const comebackIcon = adminState.comebackTokenEnabled ? ' • 🎁' : '';
+    // Issue #1727: difficulty bet scaling only affects the year-round bet, so
+    // its icon shows only when year rounds are active (not in TA mode).
+    const betScalingIcon = (yearRoundActive && adminState.difficultyBetScalingEnabled) ? ' • 🎲' : '';
 
-    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}${betScalingIcon}`;
 }
 
 /**

@@ -447,6 +447,8 @@
     "finaleDoubleHint": "Verdoppelt in der letzten Runde die Punkte aller Spieler, damit auch ein zurückliegender Spieler das Spiel noch drehen kann. In der letzten Runde erscheint ein \"Finale ×2\"-Banner.",
     "finaleTiebreaker": "Finale-Stechen",
     "finaleTiebreakerHint": "Endet das Spiel unentschieden an der Spitze und sind noch Songs übrig, entscheidet ein Sudden-Death-Stechen nur zwischen den gleichauf liegenden Spielern statt eines geteilten Siegs.",
+    "difficultyBetScaling": "Wett-Skalierung",
+    "difficultyBetScalingHint": "Skaliert den Gewinn einer Wette mit der Schwierigkeit (leicht ×2, normal ×3, schwer ×5) statt pauschal ×3, damit Wetten auch auf Schwer lohnend bleiben, wo ein exaktes Jahr selten ist. Eine verlorene Wette verfällt weiterhin.",
     "comebackToken": "Comeback-Token",
     "comebackTokenHint": "Nach der Halbzeitrunde erhält das hintere Drittel der Spieler einmalig ein Steal-Power-up, damit ein Rückstand leichter aufzuholen ist. Spieler, die bereits einen Steal haben, bleiben unberührt.",
     "roundsHint": "Gesamtzahl der Runden im Spiel, basierend auf den ausgewählten Playlists.",

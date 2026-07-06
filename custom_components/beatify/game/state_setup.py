@@ -123,6 +123,7 @@ class GameSetupMixin:
         finale_double_enabled: bool = False,
         finale_tiebreaker_enabled: bool = False,
         comeback_token_enabled: bool = False,
+        difficulty_bet_scaling_enabled: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -151,6 +152,9 @@ class GameSetupMixin:
             comeback_token_enabled: Whether bottom-third players are handed a
                 one-time catch-up steal after the halfway round (#1724). Opt-in;
                 default False.
+            difficulty_bet_scaling_enabled: Whether the won-bet payout scales
+                with difficulty (easy 2x / normal 3x / hard 5x) instead of a flat
+                3x (#1727). Opt-in; default False = flat 3x, unchanged.
 
         Returns:
             dict with game_id, join_url, song_count, phase
@@ -311,6 +315,8 @@ class GameSetupMixin:
         self._finale_playoff_active = False
         # Issue #1724: Comeback Token — opt-in catch-up steal for trailing players
         self.comeback_token_enabled = comeback_token_enabled
+        # Issue #1727: Difficulty-aware bet scaling (opt-in; default flat 3x)
+        self.difficulty_bet_scaling_enabled = difficulty_bet_scaling_enabled
         self.is_intro_round = False
         self.intro_stopped = False
         self._round_manager._intro_round_start_time = None
@@ -452,6 +458,7 @@ class GameSetupMixin:
             "finale_double_enabled": self.finale_double_enabled,  # #1725
             "finale_tiebreaker_enabled": self.finale_tiebreaker_enabled,  # #1725
             "comeback_token_enabled": self.comeback_token_enabled,  # #1724
+            "difficulty_bet_scaling_enabled": self.difficulty_bet_scaling_enabled,  # #1727
         }
 
         self._reset_game_internals()
