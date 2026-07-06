@@ -15,6 +15,9 @@ from .types import RoundAnalytics, _get_decade_label
 from custom_components.beatify.const import (
     ARTIST_BONUS_POINTS,
     DIFFICULTY_DEFAULT,
+    DIFFICULTY_EASY,
+    DIFFICULTY_HARD,
+    DIFFICULTY_NORMAL,
     DIFFICULTY_SCORING,
     INTRO_BONUS_TIERS,
     INTRO_DURATION_SECONDS,
@@ -54,7 +57,47 @@ SPEED_MULTIPLIER_MAX = 2.0
 SPEED_GRACE_FRACTION = 1.0 / 3.0
 
 # A won bet (exact year) multiplies the round score by this (#1004).
+# This is the flat, difficulty-agnostic payout — the default that applies when
+# difficulty-aware bet scaling is OFF (byte-for-byte the pre-#1727 behaviour).
 BET_WIN_MULTIPLIER = 3
+
+# #1727: difficulty-aware bet payout. The exact-year probability is exactly what
+# difficulty modulates, so a flat 3x makes betting strictly bad play on Hard
+# (rare exact guess, whole round forfeited on a miss) — Risk Taker + bet_tracking
+# go dead. When the opt-in ``difficulty_bet_scaling_enabled`` setting is on, the
+# payout scales with how hard an exact guess is: easy 2x / normal 3x / hard 5x.
+# Unknown difficulties fall back to the flat BET_WIN_MULTIPLIER.
+BET_WIN_MULTIPLIER_BY_DIFFICULTY: dict[str, int] = {
+    DIFFICULTY_EASY: 2,
+    DIFFICULTY_NORMAL: 3,
+    DIFFICULTY_HARD: 5,
+}
+
+
+def bet_win_multiplier(
+    difficulty: str = DIFFICULTY_DEFAULT,
+    *,
+    scaling_enabled: bool = False,
+) -> int:
+    """Return the active bet-win payout multiplier (#1727).
+
+    When ``scaling_enabled`` is False the flat ``BET_WIN_MULTIPLIER`` (3x)
+    applies on every difficulty — identical to the pre-#1727 behaviour. When
+    True the payout is read from ``BET_WIN_MULTIPLIER_BY_DIFFICULTY`` (easy 2x /
+    normal 3x / hard 5x), falling back to the flat value for an unknown
+    difficulty.
+
+    Args:
+        difficulty: Difficulty level (easy/normal/hard).
+        scaling_enabled: Whether difficulty-aware bet scaling is opted in.
+
+    Returns:
+        The multiplier a won (exact-year) bet applies to the round score.
+
+    """
+    if not scaling_enabled:
+        return BET_WIN_MULTIPLIER
+    return BET_WIN_MULTIPLIER_BY_DIFFICULTY.get(difficulty, BET_WIN_MULTIPLIER)
 
 
 def calculate_accuracy_score(
@@ -164,12 +207,13 @@ def apply_bet_multiplier(
     round_score: int,
     bet: bool,  # noqa: FBT001
     is_exact: bool,  # noqa: FBT001
+    multiplier: int = BET_WIN_MULTIPLIER,
 ) -> tuple[int, str | None]:
     """
     Apply bet multiplier to round score (Story 5.3, redesigned #1004).
 
     Betting is a real "exact or nothing" gamble:
-    - If bet and the guess is the EXACT year: round_score x BET_WIN_MULTIPLIER,
+    - If bet and the guess is the EXACT year: round_score x multiplier,
       outcome="won".
     - If bet and the guess is not exact: score becomes 0, outcome="lost" —
       the player forfeits the points a close guess would otherwise have
@@ -180,6 +224,10 @@ def apply_bet_multiplier(
         round_score: Points earned before bet (accuracy x speed)
         bet: Whether player placed a bet
         is_exact: Whether the guess matched the correct year exactly
+        multiplier: Payout multiplier for a won bet. Defaults to the flat
+            ``BET_WIN_MULTIPLIER`` (3x). #1727: the caller passes a
+            difficulty-scaled value via :func:`bet_win_multiplier` when the
+            opt-in ``difficulty_bet_scaling_enabled`` setting is on.
 
     Returns:
         Tuple of (final_score, bet_outcome)
@@ -190,7 +238,7 @@ def apply_bet_multiplier(
         return round_score, None
 
     if is_exact:
-        return round_score * BET_WIN_MULTIPLIER, "won"
+        return round_score * multiplier, "won"
     return 0, "lost"
 
 
@@ -869,12 +917,17 @@ class ScoringService:
         streak_achievements: dict[str, int],
         bet_tracking: dict[str, int],
         title_artist_manager: Any | None = None,
+        difficulty_bet_scaling_enabled: bool = False,
     ) -> None:
         """Score a single player for the current round. Mutates player in-place.
 
         When ``title_artist_manager`` is provided (title/artist mode, #1180),
         the round score is title points + artist points and the year-based
         scoring path is bypassed entirely.
+
+        #1727: when ``difficulty_bet_scaling_enabled`` is True the won-bet payout
+        scales with difficulty (easy 2x / normal 3x / hard 5x); when False the
+        flat 3x applies on every difficulty (unchanged).
         """
         if title_artist_manager is not None:
             if player.submitted:
@@ -938,7 +991,12 @@ class ScoringService:
             player.years_off = abs(player.current_guess - correct_year)
             player.missed_round = False
             player.round_score, player.bet_outcome = apply_bet_multiplier(
-                speed_score, player.bet, player.years_off == 0
+                speed_score,
+                player.bet,
+                player.years_off == 0,
+                bet_win_multiplier(
+                    difficulty, scaling_enabled=difficulty_bet_scaling_enabled
+                ),
             )
 
             _apply_streak(player, speed_score, streak_achievements)

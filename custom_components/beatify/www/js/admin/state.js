@@ -70,6 +70,7 @@ export const adminState = {
     finaleDoubleEnabled: false,         // Issue #1725
     finaleTiebreakerEnabled: false,     // Issue #1725
     comebackTokenEnabled: false,        // Issue #1724
+    difficultyBetScalingEnabled: false, // Issue #1727
 
     // --- lobby / admin-as-player (#477) ---
     previousLobbyPlayers: [],           // Story 16.8

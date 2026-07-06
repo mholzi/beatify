@@ -447,6 +447,8 @@
     "finaleDoubleHint": "Double le score de chaque joueur lors de la dernière manche, pour qu'un joueur en retard puisse encore renverser la partie. Une bannière « Finale ×2 » s'affiche à la dernière manche.",
     "finaleTiebreaker": "Départage final",
     "finaleTiebreakerHint": "Si la partie se termine sur une égalité en tête alors qu'il reste des chansons, un départage en mort subite se joue uniquement entre les joueurs à égalité au lieu d'une victoire partagée.",
+    "difficultyBetScaling": "Mise selon la difficulté",
+    "difficultyBetScalingHint": "Adapte le gain d'un pari gagné à la difficulté (facile ×2, normal ×3, difficile ×5) au lieu d'un ×3 fixe, pour que parier reste intéressant en Difficile, où trouver l'année exacte est rare. Un pari manqué fait toujours perdre la manche.",
     "comebackToken": "Jeton de remontée",
     "comebackTokenHint": "Après la manche de mi-parcours, offrez au tiers de joueurs en retard un pouvoir de Vol unique, pour combler plus facilement un écart en milieu de partie. Les joueurs disposant déjà d'un vol ne sont pas concernés.",
     "roundsHint": "Nombre total de manches dans la partie, basé sur les playlists sélectionnées.",

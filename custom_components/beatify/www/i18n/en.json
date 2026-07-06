@@ -447,6 +447,8 @@
     "finaleDoubleHint": "Double every player's score on the final round, so a trailing player can still swing the game. A \"Finale ×2\" banner shows on the last round.",
     "finaleTiebreaker": "Finale Tiebreaker",
     "finaleTiebreakerHint": "If the game ends on a tie for first while songs remain, play a sudden-death playoff among only the tied players instead of a shared win.",
+    "difficultyBetScaling": "Difficulty Bet Scaling",
+    "difficultyBetScalingHint": "Scale a won bet's payout with difficulty (easy ×2, normal ×3, hard ×5) instead of a flat ×3, so betting stays worthwhile on Hard where an exact year is rare. A missed bet still forfeits the round.",
     "comebackToken": "Comeback Token",
     "comebackTokenHint": "After the halfway round, hand the trailing third of players a one-time Steal power-up, so a mid-game gap is easier to close. Players already holding a steal are unaffected.",
     "roundsHint": "Total number of rounds in the game, based on the selected playlists.",

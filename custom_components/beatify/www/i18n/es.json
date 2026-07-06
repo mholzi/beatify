@@ -447,6 +447,8 @@
     "finaleDoubleHint": "Duplica la puntuación de cada jugador en la ronda final, para que un jugador rezagado aún pueda dar la vuelta al juego. En la última ronda se muestra un cartel \"Final ×2\".",
     "finaleTiebreaker": "Desempate final",
     "finaleTiebreakerHint": "Si el juego termina con empate en el primer puesto y quedan canciones, se juega un desempate a muerte súbita solo entre los jugadores empatados en lugar de una victoria compartida.",
+    "difficultyBetScaling": "Escala de apuesta por dificultad",
+    "difficultyBetScalingHint": "Escala la recompensa de una apuesta ganada con la dificultad (fácil ×2, normal ×3, difícil ×5) en lugar de un ×3 fijo, para que apostar siga mereciendo la pena en Difícil, donde acertar el año exacto es raro. Una apuesta fallida sigue perdiendo la ronda.",
     "comebackToken": "Ficha de remontada",
     "comebackTokenHint": "Tras la ronda de la mitad, entrega al tercio rezagado de jugadores un potenciador de Robo por única vez, para que una diferencia a mitad de partida sea más fácil de cerrar. Los jugadores que ya tienen un robo no se ven afectados.",
     "roundsHint": "Número total de rondas en el juego, basado en las playlists seleccionadas.",

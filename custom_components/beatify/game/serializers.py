@@ -14,6 +14,7 @@ import logging
 from typing import TYPE_CHECKING, Any
 
 from .playlist import get_playback_uri
+from .scoring import bet_win_multiplier
 
 if TYPE_CHECKING:
     from .state import GameState
@@ -54,6 +55,15 @@ class GameStateSerializer:
             "rampup_order_enabled": gs.rampup_order_enabled,
             # Issue #1724: Comeback Token (catch-up steal for trailing players)
             "comeback_token_enabled": gs.comeback_token_enabled,
+            # Issue #1727: Difficulty-aware bet scaling. Expose the opt-in flag
+            # plus the *active* won-bet payout multiplier so the player bet
+            # toggle can show what a bet is worth (3x when off, 2/3/5x when on)
+            # without duplicating the multiplier map in the frontend.
+            "difficulty_bet_scaling_enabled": gs.difficulty_bet_scaling_enabled,
+            "bet_win_multiplier": bet_win_multiplier(
+                gs.difficulty,
+                scaling_enabled=gs.difficulty_bet_scaling_enabled,
+            ),
             # Issue #827: Sudden Death mode (drives wizard chip, player view,
             # leaderboard cut-line, admin live toggle)
             "sudden_death_mode": gs.sudden_death_mode,

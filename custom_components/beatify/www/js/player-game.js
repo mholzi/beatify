@@ -100,6 +100,11 @@ export function updateGameView(data) {
         }
     }
 
+    // Issue #1727: surface the active bet payout on the bet toggle. The server
+    // sends the live multiplier (3x flat when difficulty bet scaling is off,
+    // 2/3/5x per difficulty when on) so players see what a bet is worth.
+    renderBetPayout(data);
+
     // Issue #23: Show/hide intro round badge + splash overlay
     var introBadge = document.getElementById('intro-badge');
     var introSplash = document.getElementById('intro-splash');
@@ -335,6 +340,32 @@ function findMe(players) {
     return players.find(function(p) {
         return p.name === state.playerName;
     }) || null;
+}
+
+/**
+ * Issue #1727: render the active bet payout multiplier on the bet toggle.
+ *
+ * The server sends `bet_win_multiplier` — the live payout a won (exact-year)
+ * bet applies to the round score: a flat 3x when difficulty bet scaling is off,
+ * or 2/3/5x (easy/normal/hard) when the opt-in setting is on. Showing it lets
+ * players see what they are betting for, which is the whole point of #1727 on
+ * Hard where the payout is boosted to 5x.
+ *
+ * The `.bet-label` starts as a static `data-i18n="game.betShort"` string; once
+ * we set it from live state we drop the i18n binding so a later language switch
+ * doesn't clobber the dynamic value. When no multiplier is present (older
+ * server / never sent) the static i18n label is left untouched.
+ * @param {Object} data - State data from server
+ */
+export function renderBetPayout(data) {
+    var mult = data && data.bet_win_multiplier;
+    if (typeof mult !== 'number' || mult <= 0) return;
+    var toggle = document.getElementById('bet-toggle');
+    if (!toggle) return;
+    var label = toggle.querySelector('.bet-label');
+    if (!label) return;
+    label.removeAttribute('data-i18n');
+    label.textContent = '×' + mult;
 }
 
 /**

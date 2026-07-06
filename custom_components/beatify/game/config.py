@@ -72,6 +72,11 @@ class GameStateConfig:
     # the catch-up power-up its effect is designed for. Opt-in at game start
     # (wizard). Default off = the streak-only steal unlock, unchanged.
     comeback_token_enabled: bool = False
+    # Issue #1727: Difficulty-aware bet scaling — the won-bet payout scales with
+    # difficulty (easy 2x / normal 3x / hard 5x) instead of a flat 3x, so betting
+    # stays worthwhile on Hard where an exact guess is rare. Opt-in at game start
+    # (wizard). Default off = flat 3x, byte-for-byte unchanged.
+    difficulty_bet_scaling_enabled: bool = False
     # Issue #1180: Title & Artist guessing mode. Owned by ChallengeManager;
     # listed here for reset symmetry. GameState exposes a delegation property,
     # and _apply_config skips manager-delegated names (see field_names()).
