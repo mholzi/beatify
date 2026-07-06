@@ -122,6 +122,7 @@ class GameSetupMixin:
         rampup_order_enabled: bool = False,
         finale_double_enabled: bool = False,
         finale_tiebreaker_enabled: bool = False,
+        comeback_token_enabled: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -146,6 +147,9 @@ class GameSetupMixin:
                 (#1725). Opt-in; default False.
             finale_tiebreaker_enabled: Whether an end-game tie for first with
                 songs remaining triggers a sudden-death playoff (#1725). Opt-in;
+                default False.
+            comeback_token_enabled: Whether bottom-third players are handed a
+                one-time catch-up steal after the halfway round (#1724). Opt-in;
                 default False.
 
         Returns:
@@ -305,6 +309,8 @@ class GameSetupMixin:
         self.finale_tiebreaker_enabled = finale_tiebreaker_enabled
         self._finale_playoff_rounds = 0
         self._finale_playoff_active = False
+        # Issue #1724: Comeback Token — opt-in catch-up steal for trailing players
+        self.comeback_token_enabled = comeback_token_enabled
         self.is_intro_round = False
         self.intro_stopped = False
         self._round_manager._intro_round_start_time = None
@@ -445,6 +451,7 @@ class GameSetupMixin:
             "rampup_order_enabled": self.rampup_order_enabled,  # #1726
             "finale_double_enabled": self.finale_double_enabled,  # #1725
             "finale_tiebreaker_enabled": self.finale_tiebreaker_enabled,  # #1725
+            "comeback_token_enabled": self.comeback_token_enabled,  # #1724
         }
 
         self._reset_game_internals()

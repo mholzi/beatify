@@ -261,17 +261,19 @@ describe('applyStoredGameSettings — settings → adminState hydration', () => 
             introModeEnabled: false, closestWinsModeEnabled: false,
             titleArtistModeEnabled: false, rampupOrderEnabled: false,
             finaleDoubleEnabled: false, finaleTiebreakerEnabled: false,
+            comebackTokenEnabled: false,
         };
         applyStoredGameSettings(adminState, {
             artistChallenge: true, movieQuiz: true, introMode: true,
             closestWinsMode: true, titleArtistMode: true, rampupOrder: true,
-            finaleDouble: true, finaleTiebreaker: true,
+            finaleDouble: true, finaleTiebreaker: true, comebackToken: true,
         });
         expect(adminState).toMatchObject({
             artistChallengeEnabled: true, movieQuizEnabled: true,
             introModeEnabled: true, closestWinsModeEnabled: true,
             titleArtistModeEnabled: true, rampupOrderEnabled: true,  // #1726
             finaleDoubleEnabled: true, finaleTiebreakerEnabled: true,  // #1725
+            comebackTokenEnabled: true,  // #1724
         });
     });
 

@@ -144,6 +144,13 @@ export function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Comeback Token toggle (Issue #1724)
+    document.getElementById('comeback-token-toggle')?.addEventListener('change', function() {
+        adminState.comebackTokenEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Title & Artist Mode toggle (#1180)
     document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
         adminState.titleArtistModeEnabled = this.checked;
@@ -258,6 +265,13 @@ export async function loadSavedSettings() {
                 if (finaleTbToggle) finaleTbToggle.checked = settings.finaleTiebreaker;
             }
 
+            // Apply Comeback Token (Issue #1724)
+            if (typeof settings.comebackToken === 'boolean') {
+                adminState.comebackTokenEnabled = settings.comebackToken;
+                const comebackToggle = document.getElementById('comeback-token-toggle');
+                if (comebackToggle) comebackToggle.checked = settings.comebackToken;
+            }
+
             // Apply Title & Artist mode (#1180)
             if (typeof settings.titleArtistMode === 'boolean') {
                 adminState.titleArtistModeEnabled = settings.titleArtistMode;
@@ -297,6 +311,7 @@ export function saveGameSettings() {
             rampupOrder: adminState.rampupOrderEnabled,  // Issue #1726
             finaleDouble: adminState.finaleDoubleEnabled,  // Issue #1725
             finaleTiebreaker: adminState.finaleTiebreakerEnabled,  // Issue #1725
+            comebackToken: adminState.comebackTokenEnabled,  // Issue #1724
             provider: adminState.selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -330,8 +345,11 @@ export function updateGameSettingsSummary() {
     // their icons show regardless of TA mode.
     const finaleDoubleIcon = adminState.finaleDoubleEnabled ? ' • ✨' : '';
     const finaleTbIcon = adminState.finaleTiebreakerEnabled ? ' • ⚔️' : '';
+    // Issue #1724: comeback token is mode-agnostic (rubber-banding), so its icon
+    // shows regardless of TA mode.
+    const comebackIcon = adminState.comebackTokenEnabled ? ' • 🎁' : '';
 
-    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}`;
 }
 
 /**

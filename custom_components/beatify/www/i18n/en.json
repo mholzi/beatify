@@ -447,6 +447,8 @@
     "finaleDoubleHint": "Double every player's score on the final round, so a trailing player can still swing the game. A \"Finale ×2\" banner shows on the last round.",
     "finaleTiebreaker": "Finale Tiebreaker",
     "finaleTiebreakerHint": "If the game ends on a tie for first while songs remain, play a sudden-death playoff among only the tied players instead of a shared win.",
+    "comebackToken": "Comeback Token",
+    "comebackTokenHint": "After the halfway round, hand the trailing third of players a one-time Steal power-up, so a mid-game gap is easier to close. Players already holding a steal are unaffected.",
     "roundsHint": "Total number of rounds in the game, based on the selected playlists.",
     "languageHint": "Sets the language for all players during the game.",
     "timerHint": "How many seconds players have to submit their guess each round.",

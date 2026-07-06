@@ -191,6 +191,7 @@ export function applyStoredGameSettings(adminState, s) {
     if (typeof s.rampupOrder === 'boolean') adminState.rampupOrderEnabled = s.rampupOrder;
     if (typeof s.finaleDouble === 'boolean') adminState.finaleDoubleEnabled = s.finaleDouble;
     if (typeof s.finaleTiebreaker === 'boolean') adminState.finaleTiebreakerEnabled = s.finaleTiebreaker;
+    if (typeof s.comebackToken === 'boolean') adminState.comebackTokenEnabled = s.comebackToken;
 }
 
 // --- admin-state dirty-check (#1584 / #1659) -------------------------------
