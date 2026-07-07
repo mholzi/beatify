@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "schlager",
     "party",
@@ -869,7 +869,7 @@
         "it": "applemusic://track/6768697176"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5SXdEjVpHxY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/437172835",
       "uri_deezer": null,
       "alt_artists": [
         "Specktakel",
@@ -899,7 +899,7 @@
         "it": "applemusic://track/1878166562"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DWbn3WpKLhg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/433385004",
       "uri_deezer": "deezer://track/3348931221",
       "alt_artists": [
         "Marvin Kleinen"
