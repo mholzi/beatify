@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "schlager",
     "party",
@@ -955,7 +955,7 @@
         "it": "applemusic://track/6768697709"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=muanMtynQV0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/430782930",
       "uri_deezer": "deezer://track/3329770641",
       "alt_artists": [
         "Julian Sommer"
