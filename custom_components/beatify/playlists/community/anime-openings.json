@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "anime",
     "japanese",
@@ -2333,7 +2333,7 @@
         "it": "applemusic://track/208201045"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dWmFeYA9Nj4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/350268480",
       "uri_deezer": "deezer://track/2116054937",
       "fun_fact": "Opening of 'Chobits' (2002) by ROUND TABLE featuring Nino.",
       "fun_fact_de": "Opening von 'Chobits' (2002) von ROUND TABLE featuring Nino.",
@@ -2408,7 +2408,7 @@
         "it": "applemusic://track/1538966061"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0Ob_NVJ09Mw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144953171",
       "uri_deezer": "deezer://track/976093112",
       "fun_fact": "Opening 2 of 'Bleach' (2005) by UVERworld.",
       "fun_fact_de": "Opening 2 von 'Bleach' (2005) von UVERworld.",
@@ -2433,7 +2433,7 @@
         "it": "applemusic://track/1536475736"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0FRnEHwZroM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144498318",
       "uri_deezer": "deezer://track/976282242",
       "fun_fact": "Opening 4 of 'Naruto' (2004) by FLOW.",
       "fun_fact_de": "Opening 4 von 'Naruto' (2004) von FLOW.",
@@ -2483,7 +2483,7 @@
         "it": "applemusic://track/1746903724"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=33PRAngMcSI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/363770477",
       "uri_deezer": "deezer://track/2806493382",
       "fun_fact": "Opening of 'Kuroko's Basketball' (2013) by OLDCODEX.",
       "fun_fact_de": "Opening von 'Kuroko's Basketball' (2013) von OLDCODEX.",
@@ -2508,7 +2508,7 @@
         "it": "applemusic://track/1793063511"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=74nQhJzUZec",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/362453049",
       "uri_deezer": "deezer://track/2793587022",
       "fun_fact": "Opening 1 of 'Kuroko's Basketball' (2012) by GRANRODEO.",
       "fun_fact_de": "Opening 1 von 'Kuroko's Basketball' (2012) von GRANRODEO.",
@@ -2533,7 +2533,7 @@
         "it": "applemusic://track/1679484430"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XPerYFKqk60",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/454733112",
       "uri_deezer": "deezer://track/2212229337",
       "fun_fact": "Opening of 'Blood Blockade Battlefront' (2015) by BUMP OF CHICKEN.",
       "fun_fact_de": "Opening von 'Blood Blockade Battlefront' (2015) von BUMP OF CHICKEN.",
