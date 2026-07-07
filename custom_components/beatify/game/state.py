@@ -117,7 +117,11 @@ class GamePhase(Enum):
 # Same-phase forward writes (LOBBY→LOBBY re-init, PLAYING→PLAYING next round)
 # are covered by the same-phase exemption, not by this table.
 _VALID_PHASE_TRANSITIONS: dict[GamePhase, frozenset[GamePhase]] = {
-    GamePhase.LOBBY: frozenset({GamePhase.PLAYING}),
+    # LOBBY -> PAUSED is legitimate: if the very first round's playback fails
+    # (e.g. the speaker is unreachable), the playback-failure handler pauses the
+    # game while it is still in LOBBY (the PLAYING transition never completes).
+    # See state_lifecycle playback-failure path (#768/#1627 speaker fails).
+    GamePhase.LOBBY: frozenset({GamePhase.PLAYING, GamePhase.PAUSED}),
     GamePhase.PLAYING: frozenset({GamePhase.REVEAL, GamePhase.PAUSED}),
     GamePhase.REVEAL: frozenset({GamePhase.PLAYING, GamePhase.PAUSED}),
     GamePhase.PAUSED: frozenset(),

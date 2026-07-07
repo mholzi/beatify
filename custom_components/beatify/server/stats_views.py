@@ -13,10 +13,10 @@ from homeassistant.components.http import HomeAssistantView
 from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.server.base import (
     RateLimitMixin,
-    _apply_cache_tokens,
     _apply_html_lang,
     _get_html,
     _json_error,
+    async_apply_cache_tokens,
 )
 
 if TYPE_CHECKING:
@@ -45,7 +45,7 @@ class DashboardView(HomeAssistantView):
             return web.Response(text="Dashboard page not found", status=500)
         return web.Response(
             text=_apply_html_lang(
-                _apply_cache_tokens(html_content, self.hass), self.hass
+                await async_apply_cache_tokens(self.hass, html_content), self.hass
             ),
             content_type="text/html",
         )
@@ -177,7 +177,9 @@ class AnalyticsPageView(HomeAssistantView):
         if content is None:
             return web.Response(text="Analytics page not found", status=404)
         return web.Response(
-            text=_apply_html_lang(_apply_cache_tokens(content, self.hass), self.hass),
+            text=_apply_html_lang(
+                await async_apply_cache_tokens(self.hass, content), self.hass
+            ),
             content_type="text/html",
         )
 

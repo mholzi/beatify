@@ -4,6 +4,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **No blocking I/O on the HTML serve path.** The asset cache-buster fingerprint is now primed in an executor instead of being recomputed inline on the event loop, so serving the admin/player/dashboard/analytics pages (or `sw.js`) no longer trips Home Assistant's blocking-call detector (`scandir` inside the event loop) when the fingerprint cache's TTL expires.
+- **Sudden Death no longer logs a spurious phase-transition warning.** When the first round's playback fails (e.g. an unreachable speaker), the game pauses straight from `LOBBY`; that `LOBBY -> PAUSED` edge is now a recognised transition instead of an "Unexpected phase transition" warning (#768/#1627, #1273).
+
 ## [4.2.0-rc11] - 2026-07-06
 
 Pre-release — a gameplay-tension pass on top of the Mix & Match / Sudden Death cycle: four opt-in modes that keep trailing players in the game and reward taking a risk, plus a fairness fix to the side challenges. See the GitHub release for the user-facing notes.
