@@ -25,12 +25,12 @@ from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.playlist import async_discover_playlists
 from custom_components.beatify.server.base import (
     RateLimitMixin,
-    _apply_cache_tokens,
     _apply_html_lang,
     _get_html,
     _get_version,
     _json_error,
     _read_file,
+    async_apply_cache_tokens,
 )
 from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
@@ -126,7 +126,9 @@ class AdminView(HomeAssistantView):
             _LOGGER.error("Admin page not found: %s", html_path)
             return web.Response(text="Admin page not found", status=500)
         return _html_response(
-            _apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass)
+            _apply_html_lang(
+                await async_apply_cache_tokens(self.hass, html_content), self.hass
+            )
         )
 
 
@@ -149,7 +151,9 @@ class LauncherView(HomeAssistantView):
             _LOGGER.error("Launcher page not found: %s", html_path)
             return web.Response(text="Launcher page not found", status=500)
         return _html_response(
-            _apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass)
+            _apply_html_lang(
+                await async_apply_cache_tokens(self.hass, html_content), self.hass
+            )
         )
 
 
@@ -172,7 +176,9 @@ class PlayerView(HomeAssistantView):
             _LOGGER.error("Player page not found: %s", html_path)
             return web.Response(text="Player page not found", status=500)
         return _html_response(
-            _apply_html_lang(_apply_cache_tokens(html_content, self.hass), self.hass)
+            _apply_html_lang(
+                await async_apply_cache_tokens(self.hass, html_content), self.hass
+            )
         )
 
 
@@ -501,7 +507,7 @@ class SwJsView(HomeAssistantView):
         # waiting for HTTP cache to expire on the SW bootstrap itself. Tokens
         # ({{ASSET_VER}}) are substituted at serve time (#1266).
         return web.Response(
-            text=_apply_cache_tokens(content, self.hass),
+            text=await async_apply_cache_tokens(self.hass, content),
             content_type="application/javascript",
             headers=_NO_CACHE_HEADERS,
         )

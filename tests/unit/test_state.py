@@ -1833,6 +1833,9 @@ class TestSetPhaseSSOT:
         [
             # Forward edges from the table.
             (GamePhase.LOBBY, GamePhase.PLAYING),
+            # LOBBY -> PAUSED: first-round playback failure (unreachable speaker)
+            # pauses the game while it is still in LOBBY (#768/#1627).
+            (GamePhase.LOBBY, GamePhase.PAUSED),
             (GamePhase.PLAYING, GamePhase.REVEAL),
             (GamePhase.PLAYING, GamePhase.PAUSED),
             (GamePhase.REVEAL, GamePhase.PLAYING),

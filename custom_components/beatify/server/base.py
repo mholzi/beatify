@@ -153,6 +153,42 @@ def _apply_cache_tokens(text: str, hass: HomeAssistant) -> str:
     return text.replace(_VERSION_TOKEN, version)
 
 
+async def _async_prime_asset_fingerprint(hass: HomeAssistant) -> None:
+    """Warm ``_ASSET_FP_CACHE`` via an executor job when it is cold or stale.
+
+    Mirrors the throttle/lock logic in :func:`_get_asset_version`, but performs
+    the actual filesystem sweep (:func:`_compute_asset_fingerprint`, a blocking
+    ``rglob``/``stat`` walk) off the event loop. A no-op when the cache is fresh.
+    """
+    global _ASSET_FP_CACHE  # noqa: PLW0603
+    now = time.monotonic_ns()
+    cache = _ASSET_FP_CACHE
+    if cache is not None and now - cache[0] < _ASSET_FP_TTL_NS:
+        return
+    fingerprint = await hass.async_add_executor_job(
+        _compute_asset_fingerprint, _www_dir()
+    )
+    with _ASSET_FP_LOCK:
+        cache = _ASSET_FP_CACHE
+        if cache is None or time.monotonic_ns() - cache[0] >= _ASSET_FP_TTL_NS:
+            _ASSET_FP_CACHE = (time.monotonic_ns(), fingerprint)
+
+
+async def async_apply_cache_tokens(hass: HomeAssistant, text: str) -> str:
+    """Async form of :func:`_apply_cache_tokens` for the HTTP serve path.
+
+    ``_get_asset_version`` recomputes the asset fingerprint with a blocking
+    ``rglob``/``stat`` sweep on cache miss (once per ``_ASSET_FP_TTL_NS``).
+    Calling the sync form directly from an async view runs that sweep on the
+    event loop, which HA's ``util/loop`` blocking-call detector flags
+    (``scandir``/``read_bytes`` inside the event loop). Priming the fingerprint
+    cache in an executor first keeps the hot serve path non-blocking; the
+    subsequent sync substitution then hits the warm cache.
+    """
+    await _async_prime_asset_fingerprint(hass)
+    return _apply_cache_tokens(text, hass)
+
+
 # #1177 follow-up: PR #1179 set documentElement.lang inside setLanguage(), but
 # on Android Chrome auto-translate runs against the *initial* HTML, before the
 # WebSocket state arrives and triggers setLanguage('de'). The static

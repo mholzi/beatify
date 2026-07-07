@@ -260,3 +260,72 @@ class TestNoHardcodedCacheBusters:
             "hardcoded literal, so it busts on any asset change (#1278):\n  "
             + "\n  ".join(offenders)
         )
+
+
+class TestAsyncApplyCacheTokens:
+    """The async serve-path wrapper must prime the fingerprint OFF the event
+    loop: the sync form's blocking ``rglob``/``stat`` sweep tripped HA's
+    ``util/loop`` blocking-call detector when the throttle TTL expired.
+    ``async_apply_cache_tokens`` offloads that sweep to an executor first, then
+    substitutes against the warm cache."""
+
+    def setup_method(self) -> None:
+        base._ASSET_FP_CACHE = None
+
+    async def test_substitutes_like_sync_form(self) -> None:
+        hass = _FakeHass("9.9.9")
+        out = await base.async_apply_cache_tokens(
+            hass, 'v={{VERSION}} a="?v={{ASSET_VER}}"'
+        )
+        assert "{{VERSION}}" not in out
+        assert "{{ASSET_VER}}" not in out
+        assert "v=9.9.9 " in out
+        assert "?v=9.9.9-" in out
+
+    async def test_fingerprint_sweep_runs_in_executor(self) -> None:
+        # The blocking sweep must be offloaded — record what the executor runs.
+        offloaded: list = []
+
+        class _SpyHass(_FakeHass):
+            async def async_add_executor_job(self, func, *args):  # noqa: ANN001
+                offloaded.append(func)
+                return func(*args)
+
+        await base.async_apply_cache_tokens(_SpyHass("9.9.9"), "{{ASSET_VER}}")
+        assert base._compute_asset_fingerprint in offloaded, (
+            "the blocking fingerprint sweep must run via async_add_executor_job, "
+            "not inline on the event loop"
+        )
+
+    async def test_prime_warms_cache_so_sync_form_does_not_recompute(
+        self, monkeypatch
+    ) -> None:
+        # After the async wrapper primes the cache, the sync substitution that
+        # follows must hit the warm cache and NOT re-run the blocking sweep.
+        await base.async_apply_cache_tokens(_FakeHass("9.9.9"), "{{ASSET_VER}}")
+        assert base._ASSET_FP_CACHE is not None
+
+        calls: list = []
+        real = base._compute_asset_fingerprint
+
+        def _spy(www_dir):  # noqa: ANN001
+            calls.append(www_dir)
+            return real(www_dir)
+
+        monkeypatch.setattr(base, "_compute_asset_fingerprint", _spy)
+        base._apply_cache_tokens("{{ASSET_VER}}", _FakeHass("9.9.9"))
+        assert calls == [], "warm cache must not trigger a blocking recompute"
+
+    async def test_fresh_cache_skips_executor_entirely(self) -> None:
+        # A warm cache is a no-op: no executor job, no sweep — the hot path.
+        await base.async_apply_cache_tokens(_FakeHass("9.9.9"), "{{ASSET_VER}}")
+
+        offloaded: list = []
+
+        class _SpyHass(_FakeHass):
+            async def async_add_executor_job(self, func, *args):  # noqa: ANN001
+                offloaded.append(func)
+                return func(*args)
+
+        await base.async_apply_cache_tokens(_SpyHass("9.9.9"), "{{ASSET_VER}}")
+        assert offloaded == [], "a fresh fingerprint cache must skip the executor"
