@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "schlager",
     "party",
@@ -4112,15 +4112,15 @@
       "year": 2012,
       "isrc": "DEC611200301",
       "uri": "spotify:track:49RTrYhydcQGGm4RxUtVhv",
-      "uri_apple_music": "applemusic://track/1784923514",
+      "uri_apple_music": "applemusic://track/1442233430",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1784923514",
-        "de": "applemusic://track/1784923514",
-        "gb": "applemusic://track/1784923514",
-        "fr": "applemusic://track/1784923514",
-        "es": "applemusic://track/1784923514",
-        "nl": "applemusic://track/1784923514",
-        "it": "applemusic://track/1784923514"
+        "us": "applemusic://track/1442233430",
+        "de": "applemusic://track/1442233430",
+        "gb": "applemusic://track/1442233430",
+        "fr": "applemusic://track/1442233430",
+        "es": "applemusic://track/1442233430",
+        "nl": "applemusic://track/1442233430",
+        "it": "applemusic://track/1442233430"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nqraNWUjasA",
       "uri_tidal": null,
@@ -4839,15 +4839,15 @@
       "year": 2002,
       "isrc": "DEC610800451",
       "uri": "spotify:track:11sqYqOdI6Mt8to9w2HuJV",
-      "uri_apple_music": "applemusic://track/1784937256",
+      "uri_apple_music": "applemusic://track/1813909935",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1784937256",
-        "de": "applemusic://track/1784937256",
-        "gb": "applemusic://track/1784937256",
-        "fr": "applemusic://track/1784937256",
-        "es": "applemusic://track/1784937256",
-        "nl": "applemusic://track/1784937256",
-        "it": "applemusic://track/1784937256"
+        "us": "applemusic://track/1813909935",
+        "de": "applemusic://track/1813909935",
+        "gb": "applemusic://track/1813909935",
+        "fr": "applemusic://track/1813909935",
+        "es": "applemusic://track/1813909935",
+        "nl": "applemusic://track/1813909935",
+        "it": "applemusic://track/1813909935"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YGGnS4QQndo",
       "uri_tidal": null,
