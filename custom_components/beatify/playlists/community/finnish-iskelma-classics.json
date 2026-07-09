@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "finnish",
     "iskelma",
@@ -7453,7 +7453,7 @@
         "it": null
       },
       "uri_deezer": "40489611",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1jxXiPxyXsQ",
+      "uri_youtube_music": null,
       "uri_tidal": null,
       "alt_artists": [
         "Susanna Heikki",
