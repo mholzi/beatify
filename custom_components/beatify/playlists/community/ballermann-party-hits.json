@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "schlager",
     "party",
@@ -840,7 +840,7 @@
         "it": "applemusic://track/1829707910"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bwoYDTB1Qlk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/422002277",
       "uri_deezer": "deezer://track/3265489061",
       "alt_artists": [
         "Der Partycrasher",
@@ -927,7 +927,7 @@
         "it": "applemusic://track/1764503973"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WDVBRvSVLqM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/384274315",
       "uri_deezer": "deezer://track/2970847831",
       "alt_artists": [
         "Malin Brown"
@@ -983,7 +983,7 @@
         "it": "applemusic://track/1774757902"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=S_6IFBcT1ZA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/394192424",
       "uri_deezer": "deezer://track/3051869611",
       "alt_artists": [
         "Fabio Gandolfo"
