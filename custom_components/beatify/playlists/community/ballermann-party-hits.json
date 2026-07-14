@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "schlager",
     "party",
@@ -725,7 +725,7 @@
         "it": "applemusic://track/1878167216"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nPmF7OtXc3U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/430779564",
       "uri_deezer": "deezer://track/3329750091",
       "alt_artists": [
         "Justin Flieger"
@@ -753,7 +753,7 @@
         "it": "applemusic://track/1845097191"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cufilu37DE8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/452977671",
       "uri_deezer": "deezer://track/3466713041",
       "alt_artists": [
         "Lorenz Büffel",
@@ -783,7 +783,7 @@
         "it": "applemusic://track/1812685704"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LL1TdwxmiQU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/436288261",
       "uri_deezer": "deezer://track/3369469331",
       "alt_artists": [
         "Domy Berger"
@@ -811,7 +811,7 @@
         "it": "applemusic://track/1813909265"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xI-ny8ry8ZA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/428102132",
       "uri_deezer": "deezer://track/3309764461",
       "alt_artists": [
         "Calvin Kleinen",
@@ -1011,7 +1011,7 @@
         "it": "applemusic://track/1808696928"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lZYHLLIjQJE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/430781900",
       "uri_deezer": "deezer://track/3329758001",
       "fun_fact": "Lorenz Büffel is a Mallorca party-Schlager star, best known for the anthem \"Johnny Däpp\".",
       "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
@@ -1036,7 +1036,7 @@
         "it": "applemusic://track/1878166283"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DTwUGnlV38k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/426702989",
       "uri_deezer": "deezer://track/3298452871",
       "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
       "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
@@ -1061,7 +1061,7 @@
         "it": "applemusic://track/1732690226"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kfgJtwHOwXg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/267762137",
       "uri_deezer": "deezer://track/2078308317",
       "fun_fact": "A Mallorca / Ballermann party hit (2023).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
@@ -1086,7 +1086,7 @@
         "it": "applemusic://track/1746158280"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XAubdQRDx0o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/349712740",
       "uri_deezer": "deezer://track/2694093702",
       "fun_fact": "A Mallorca / Ballermann party hit (2024).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
@@ -1111,7 +1111,7 @@
         "it": "applemusic://track/1878166016"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=slplhHRuR60",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/423869184",
       "uri_deezer": "deezer://track/3278039971",
       "alt_artists": [
         "bozi"
@@ -1139,7 +1139,7 @@
         "it": "applemusic://track/1878161688"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A5IRWvKVHUQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/413444352",
       "uri_deezer": "deezer://track/3200185401",
       "fun_fact": "\"Wackelkontakt\" by Oimara became a surprise viral hit in 2024.",
       "fun_fact_de": "\"Wackelkontakt\" von Oimara wurde 2024 zum überraschenden viralen Hit.",
@@ -1164,7 +1164,7 @@
         "it": "applemusic://track/1878166367"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=v0npA7hI0oU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/423871523",
       "uri_deezer": "deezer://track/3278043381",
       "alt_artists": [
         "Frenzy"
@@ -1192,7 +1192,7 @@
         "it": "applemusic://track/1815499022"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-TsV2EWIxFk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/374229434",
       "uri_deezer": "deezer://track/2882789562",
       "alt_artists": [
         "Lorenz Büffel"
@@ -1220,7 +1220,7 @@
         "it": "applemusic://track/1764544627"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pResZ4R2GhE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/382988278",
       "uri_deezer": "deezer://track/2960519231",
       "alt_artists": [
         "Tim Toupet"
@@ -1248,7 +1248,7 @@
         "it": "applemusic://track/1878166370"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wFiX3Oi6QmY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/359763637",
       "uri_deezer": "deezer://track/2767030321",
       "alt_artists": [
         "Julian Sommer"
@@ -1276,7 +1276,7 @@
         "it": "applemusic://track/6768697526"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=m-geiNjwELA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/377517009",
       "uri_deezer": "deezer://track/2913236571",
       "alt_artists": [
         "Julian Benz"
@@ -1304,7 +1304,7 @@
         "it": "applemusic://track/1746501190"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qxhLU2Nhp5g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/363683650",
       "uri_deezer": "deezer://track/2805838582",
       "alt_artists": [
         "Mia Julia",
@@ -1333,7 +1333,7 @@
         "it": "applemusic://track/1741357993"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=k2NyzXa1RP4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/358210723",
       "uri_deezer": "deezer://track/2757270301",
       "fun_fact": "DJ Robin is a Ballermann DJ and producer who shot to fame with the 2022 chart-topper \"Layla\".",
       "fun_fact_de": "DJ Robin ist ein Ballermann-DJ und Produzent, der mit dem Nummer-1-Hit \"Layla\" 2022 berühmt wurde.",
@@ -1358,7 +1358,7 @@
         "it": "applemusic://track/1825576211"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=t-QY0V7x1sM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/367937772",
       "uri_deezer": "deezer://track/2836097982",
       "alt_artists": [
         "Julian Sommer"
