@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc13] - 2026-07-14
+
+Pre-release — a UX fix plus a week of catalogue repairs on top of the Gameplay Tension cycle. This is the release-candidate for v4.2.0 "Mix & Match".
+
+### Fixed
+- **The Sudden Death toggle now explains why it is disabled on touch devices (#1799).** The reason (fewer than 3 players) was only shown in a hover tooltip, so on a phone or tablet the toggle just looked broken. It is now stated inline under the toggle.
+- **Repaired broken track URIs** across the catalogue, found by the daily playlist health check — dead Apple Music URIs in hitster-100-en-espanol (#1798), ballermann-party-hits (#1804), trance-classics (#1809) and disco-funk-classics (#1814), a dead YouTube Music URI in anime-openings (#1802), and a broken URI in finnish-iskelma-classics (#1807).
+- **Corrected the release year** for Norman Greenbaum – Spirit In The Sky, 1970 → 1969 (#1812).
+
+### Changed
+- **More Tidal coverage** backfilled across the catalogue (+22 URIs in ballermann-party-hits).
+
 ## [4.2.0-rc12] - 2026-07-07
 
 Pre-release — a small reliability pass that quiets two warnings seen in a live game, on top of the Gameplay Tension cycle.
