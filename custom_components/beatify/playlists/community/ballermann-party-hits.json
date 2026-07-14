@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "schlager",
     "party",
@@ -1510,7 +1510,7 @@
         "it": "applemusic://track/1733692530"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cH5lcXQkx2A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/349692494",
       "uri_deezer": "deezer://track/2694100132",
       "alt_artists": [
         "Knossi"
@@ -1538,7 +1538,7 @@
         "it": "applemusic://track/1729155005"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o2l7I2O2zeA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/344504027",
       "uri_deezer": "deezer://track/2655163012",
       "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
       "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
