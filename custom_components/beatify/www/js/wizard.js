@@ -121,6 +121,15 @@ export function shouldShowPill(localStorage) {
  * @param {boolean} value - the new value for that toggle.
  * @returns {Object} a new flags object with precedence applied.
  */
+// Issue #1799 — the hint line of a mode card. When the mode is gated by an
+// unmet requirement, the line carries the requirement itself instead of the
+// mode description: on touch there is no hover, so the `title` tooltip that
+// used to be the only explanation never shows.
+export function modeHintHtml(disabled, gateText, hintHtml) {
+    if (!disabled) return `<div class="wiz-mode-hint">${hintHtml}</div>`;
+    return `<div class="wiz-mode-hint gated">🔒 ${escapeText(gateText)}</div>`;
+}
+
 export function applyGameModeTogglePrecedence(flags, key, value) {
     const next = { ...flags };
     switch (key) {
@@ -1025,15 +1034,24 @@ function _renderGameModes() {
         }
         // Issue #827 — disabled Sudden Death card: dimmed, non-interactive, with
         // a tooltip explaining the >=3 player requirement.
+        // Issue #1799 — the tooltip is hover-only, so on touch (the primary way
+        // the wizard is used) the requirement was invisible and the dimmed card
+        // read as broken. Swap the hint line for the requirement itself, and
+        // mark it .gated so the CSS can keep it legible against the dimming.
         const disabled = m.key === 'suddenDeath' && suddenDeathDisabled;
         const titleAttr = disabled
             ? ` title="${escapeAttr(_t('admin.suddenDeathDisabledTooltip', 'Needs at least 3 players'))}"`
             : '';
+        const hint = modeHintHtml(
+            disabled,
+            _t('admin.suddenDeathDisabledGate', 'Needs at least 3 players'),
+            _t(m.hintKey, m.hintFallback),
+        );
         return `<div class="wiz-mode-card ${on ? 'on' : ''}${disabled ? ' disabled' : ''}" data-mode="${m.key}" role="button" tabindex="0" aria-disabled="${disabled}"${titleAttr}>
             <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>
             <div class="wiz-mode-body">
                 <div class="wiz-mode-title">${_t(m.titleKey, m.titleFallback)}</div>
-                <div class="wiz-mode-hint">${_t(m.hintKey, m.hintFallback)}</div>
+                ${hint}
             </div>
             <div class="wiz-lvl-toggle"></div>
         </div>`;

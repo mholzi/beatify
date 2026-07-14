@@ -634,6 +634,7 @@
     "suddenDeathMode": "Mort Subite",
     "suddenDeathModeHint": "Le dernier de chaque manche est éliminé. Le dernier en lice gagne.",
     "suddenDeathDisabledTooltip": "La Mort Subite nécessite au moins 3 joueurs.",
+    "suddenDeathDisabledGate": "Au moins 3 joueurs requis",
     "suddenDeathLive": "Mort Subite"
   },
   "analyticsDashboard": {

@@ -634,6 +634,7 @@
     "suddenDeathMode": "Muerte Súbita",
     "suddenDeathModeHint": "El último de cada ronda queda eliminado. Gana el último en pie.",
     "suddenDeathDisabledTooltip": "Muerte Súbita necesita al menos 3 jugadores.",
+    "suddenDeathDisabledGate": "Se necesitan al menos 3 jugadores",
     "suddenDeathLive": "Muerte Súbita"
   },
   "analyticsDashboard": {

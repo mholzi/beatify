@@ -634,6 +634,7 @@
     "suddenDeathMode": "Sudden Death",
     "suddenDeathModeHint": "Der Letzte jeder Runde scheidet aus. Wer übrig bleibt, gewinnt.",
     "suddenDeathDisabledTooltip": "Sudden Death braucht mindestens 3 Spieler.",
+    "suddenDeathDisabledGate": "Mindestens 3 Spieler nötig",
     "suddenDeathLive": "Sudden Death"  },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
