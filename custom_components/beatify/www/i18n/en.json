@@ -634,6 +634,7 @@
     "suddenDeathMode": "Sudden Death",
     "suddenDeathModeHint": "Last-place player is eliminated each round. Last one standing wins.",
     "suddenDeathDisabledTooltip": "Sudden Death needs at least 3 players.",
+    "suddenDeathDisabledGate": "Needs at least 3 players",
     "suddenDeathLive": "Sudden Death"  },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

@@ -634,6 +634,7 @@
     "suddenDeathMode": "Sudden Death",
     "suddenDeathModeHint": "De laatste van elke ronde valt af. Wie overblijft, wint.",
     "suddenDeathDisabledTooltip": "Sudden Death heeft minstens 3 spelers nodig.",
+    "suddenDeathDisabledGate": "Minstens 3 spelers nodig",
     "suddenDeathLive": "Sudden Death"
   },
   "analyticsDashboard": {

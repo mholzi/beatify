@@ -10698,11 +10698,25 @@ body.home-mode .home-view {
 }
 .wiz-mode-card:hover { background: var(--color-dark-surface-hover); }
 /* Issue #827: a mode card disabled by an unmet requirement (e.g. Sudden Death
-   below the 3-player floor) is dimmed and non-interactive. */
+   below the 3-player floor) is dimmed and non-interactive.
+   Issue #1799: the dimming used to sit on the card itself, which also dimmed
+   the line explaining WHY it is blocked — the one line that has to stay
+   readable. Dim the card's own content instead and leave .wiz-mode-hint.gated
+   at full contrast. */
 .wiz-mode-card.disabled {
-    opacity: 0.45;
     cursor: not-allowed;
     pointer-events: none;
+}
+.wiz-mode-card.disabled .wiz-mode-icon,
+.wiz-mode-card.disabled .wiz-mode-title,
+.wiz-mode-card.disabled .wiz-lvl-toggle {
+    opacity: 0.45;
+}
+/* Issue #1799: the gating requirement, shown in place of the mode hint. It is
+   the only visible explanation on touch (no hover → no title tooltip). */
+.wiz-mode-hint.gated {
+    color: var(--color-warning);
+    font-weight: 600;
 }
 .wiz-mode-card.on {
     background: rgba(255, 45, 106, 0.08);
