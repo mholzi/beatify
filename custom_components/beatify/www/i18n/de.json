@@ -143,6 +143,24 @@
     "stolenFrom": "Geklaut von {name}",
     "stolenBy": "Antwort geklaut von {name}"
   },
+  "sabotage": {
+    "available": "Sabotage bereit!",
+    "button": "Sabotage",
+    "selectTarget": "Wen sabotieren?",
+    "selectTargetHint": "Der Effekt ist zufällig — Zeit-Cut, Zwangswette oder Freeze.",
+    "noTargets": "Niemand mehr zum Sabotieren — alle haben abgegeben.",
+    "confirm": "{name} sabotieren? Der Effekt ist zufällig.",
+    "confirmTitle": "Sabotieren?",
+    "confirmButton": "Sabotage",
+    "success": "{name} sabotiert · {effect}",
+    "hit": "Du wurdest von {name} sabotiert! ({effect})",
+    "frozen": "Eingefroren — kurz warten",
+    "effect": {
+      "timer_cut": "Zeit-Cut",
+      "forced_bet": "Zwangswette",
+      "freeze": "Freeze"
+    }
+  },
   "reaction": {
     "fire": "Feuer-Reaktion",
     "laugh": "Lach-Reaktion",
@@ -449,6 +467,8 @@
     "finaleTiebreakerHint": "Endet das Spiel unentschieden an der Spitze und sind noch Songs übrig, entscheidet ein Sudden-Death-Stechen nur zwischen den gleichauf liegenden Spielern statt eines geteilten Siegs.",
     "difficultyBetScaling": "Wett-Skalierung",
     "difficultyBetScalingHint": "Skaliert den Gewinn einer Wette mit der Schwierigkeit (leicht ×2, normal ×3, schwer ×5) statt pauschal ×3, damit Wetten auch auf Schwer lohnend bleiben, wo ein exaktes Jahr selten ist. Eine verlorene Wette verfällt weiterhin.",
+    "sabotage": "Sabotage",
+    "sabotageHint": "Gibt jedem Spieler ein Sabotage-Token pro Spiel. Setze es gegen einen Gegner ein, der noch tippt — der Effekt ist zufällig: Zeit-Cut, erzwungene Doppel-oder-nichts-Wette oder ein kurzer Freeze. Der Saboteur wählt nur das Ziel, nie den Effekt.",
     "comebackToken": "Comeback-Token",
     "comebackTokenHint": "Nach der Halbzeitrunde erhält das hintere Drittel der Spieler einmalig ein Steal-Power-up, damit ein Rückstand leichter aufzuholen ist. Spieler, die bereits einen Steal haben, bleiben unberührt.",
     "roundsHint": "Gesamtzahl der Runden im Spiel, basierend auf den ausgewählten Playlists.",

@@ -12875,6 +12875,59 @@ body.is-ingame .player-header { display: none; }
 .steal-btn-full:active { transform: translateY(2px); box-shadow: 0 0 16px rgba(0, 245, 255, 0.3), 0 2px 0 rgba(0, 0, 0, 0.3); }
 .steal-btn-full .steal-btn-icon { font-size: 18px; }
 
+/* #1665: Sabotage power-up — twin of the steal button, red-tinted. The flex row
+   keeps a lone button full-width and puts them side-by-side when both are up. */
+.powerup-btn-row {
+    display: flex;
+    gap: var(--space-md);
+    margin: 0 var(--space-md) var(--space-md);
+}
+.powerup-btn-row .steal-btn-full,
+.powerup-btn-row .sabotage-btn-full {
+    flex: 1;
+    margin: 0;
+}
+.sabotage-btn-full {
+    background: rgba(255, 45, 85, 0.08);
+    border: 2px solid var(--color-danger, #ff2d55);
+    color: var(--color-danger, #ff2d55);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 0 16px rgba(255, 45, 85, 0.3), 0 4px 0 rgba(0, 0, 0, 0.3);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+.sabotage-btn-full.hidden { display: none; }
+.sabotage-btn-full:active { transform: translateY(2px); box-shadow: 0 0 16px rgba(255, 45, 85, 0.3), 0 2px 0 rgba(0, 0, 0, 0.3); }
+.sabotage-btn-full .sabotage-btn-icon { font-size: 18px; }
+/* #1665: sabotage arc-chip + leaderboard badge + toasts + effect locks */
+.arc-chip--sabotage {
+    color: var(--color-danger, #ff2d55);
+    background: rgba(255, 45, 85, 0.08);
+    border: 1px solid rgba(255, 45, 85, 0.4);
+}
+.player-badge--sabotage {
+    top: -2px;
+    left: 2px;
+    background: linear-gradient(135deg, #ff2d55, #c1121f);
+}
+.sabotage-confirmation {
+    background: linear-gradient(135deg, #ff2d55, #c1121f);
+    box-shadow: 0 4px 20px rgba(255, 45, 85, 0.5);
+}
+.sabotaged-banner {
+    background: linear-gradient(135deg, #ff2d55, #7c1020);
+    box-shadow: 0 4px 20px rgba(255, 45, 85, 0.6);
+}
+.bet-arc--forced { opacity: 0.85; cursor: not-allowed; }
+.submit-arc--frozen { opacity: 0.6; filter: grayscale(0.4); }
+
 /* Submission strip (dots + count) */
 .arc-submission-strip {
     display: flex; align-items: center; justify-content: center; gap: 8px;

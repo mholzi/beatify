@@ -119,6 +119,21 @@ class PlayerSession:
         default_factory=list
     )  # Per-round: who stole this player's answer
 
+    # Sabotage power-up tracking (Issue #1665) — mirrors the steal token.
+    # The saboteur picks a target; the EFFECT is rolled server-side.
+    sabotage_available: bool = False  # Token in hand, not yet spent
+    sabotage_used: bool = False  # Token spent this game (max 1 per game)
+    sabotaged: str | None = None  # Per-round: whom this player hit
+    # Per-round victim state — set on the TARGET when a sabotage lands.
+    sabotaged_by: str | None = None  # Who hit this player this round
+    sabotage_effect: str | None = None  # Which effect was rolled (SABOTAGE_EFFECTS)
+    # Timer-cut: milliseconds shaved off THIS player's effective round deadline.
+    sabotage_deadline_cut_ms: int = 0
+    # Freeze: this player may not submit until this timestamp (``_now`` units).
+    sabotage_freeze_until: float | None = None
+    # Forced bet: the server forces bet=True on this player's submission.
+    sabotage_forced_bet: bool = False
+
     @property
     def player_id(self) -> str:
         """Stable identifier for this player (alias of ``session_id``).
@@ -180,6 +195,15 @@ class PlayerSession:
         # Reset per-round steal fields (Story 15.3)
         self.stole_from = None
         self.was_stolen_by = []
+        # Reset per-round sabotage fields (Issue #1665). The token itself
+        # (``sabotage_available`` / ``sabotage_used``) is game-level and
+        # deliberately NOT reset here — one token per player per game.
+        self.sabotaged = None
+        self.sabotaged_by = None
+        self.sabotage_effect = None
+        self.sabotage_deadline_cut_ms = 0
+        self.sabotage_freeze_until = None
+        self.sabotage_forced_bet = False
 
     def unlock_steal(self) -> bool:
         """Unlock steal power-up if not already used. Returns True if newly unlocked."""
@@ -193,6 +217,19 @@ class PlayerSession:
         self.steal_available = False
         self.steal_used = True
         self.stole_from = target_name
+
+    def unlock_sabotage(self) -> bool:
+        """Hand this player a sabotage token (#1665). True if newly unlocked."""
+        if self.sabotage_used or self.sabotage_available:
+            return False
+        self.sabotage_available = True
+        return True
+
+    def consume_sabotage(self, target_name: str) -> None:
+        """Spend the sabotage token against ``target_name`` (#1665)."""
+        self.sabotage_available = False
+        self.sabotage_used = True
+        self.sabotaged = target_name
 
     def reset_for_new_game(self) -> None:
         """Reset all game-level stats for a new game (Story 15.2)."""
@@ -226,6 +263,9 @@ class PlayerSession:
         self.steal_used = False
         # Reset comeback token tracking (Issue #1724)
         self.comeback_token_granted = False
+        # Reset sabotage tracking (Issue #1665) — the token is per game.
+        self.sabotage_available = False
+        self.sabotage_used = False
 
         # Reset intro mode cumulative tracking (Issue #23)
         self.intro_speed_bonuses = 0

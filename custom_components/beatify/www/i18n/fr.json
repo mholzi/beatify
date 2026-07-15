@@ -143,6 +143,24 @@
     "stolenFrom": "Volé à {name}",
     "stolenBy": "Réponse volée par {name}"
   },
+  "sabotage": {
+    "available": "Sabotage prêt !",
+    "button": "Sabotage",
+    "selectTarget": "Choisis qui saboter",
+    "selectTargetHint": "L'effet est aléatoire — temps réduit, pari forcé ou gel.",
+    "noTargets": "Plus personne à saboter — tout le monde a validé.",
+    "confirm": "Saboter {name} ? L'effet est aléatoire.",
+    "confirmTitle": "Saboter ?",
+    "confirmButton": "Sabotage",
+    "success": "{name} saboté · {effect}",
+    "hit": "Tu as été saboté par {name} ! ({effect})",
+    "frozen": "Gelé — patiente un instant",
+    "effect": {
+      "timer_cut": "Temps réduit",
+      "forced_bet": "Pari forcé",
+      "freeze": "Gel"
+    }
+  },
   "reaction": {
     "fire": "Réaction feu",
     "laugh": "Réaction rire",
@@ -449,6 +467,8 @@
     "finaleTiebreakerHint": "Si la partie se termine sur une égalité en tête alors qu'il reste des chansons, un départage en mort subite se joue uniquement entre les joueurs à égalité au lieu d'une victoire partagée.",
     "difficultyBetScaling": "Mise selon la difficulté",
     "difficultyBetScalingHint": "Adapte le gain d'un pari gagné à la difficulté (facile ×2, normal ×3, difficile ×5) au lieu d'un ×3 fixe, pour que parier reste intéressant en Difficile, où trouver l'année exacte est rare. Un pari manqué fait toujours perdre la manche.",
+    "sabotage": "Sabotage",
+    "sabotageHint": "Donne à chaque joueur un jeton de Sabotage par partie. Utilise-le contre un adversaire encore en train de deviner — l'effet est tiré au hasard : temps réduit, pari forcé quitte ou double, ou un court gel. Le saboteur choisit seulement la cible, jamais l'effet.",
     "comebackToken": "Jeton de remontée",
     "comebackTokenHint": "Après la manche de mi-parcours, offrez au tiers de joueurs en retard un pouvoir de Vol unique, pour combler plus facilement un écart en milieu de partie. Les joueurs disposant déjà d'un vol ne sont pas concernés.",
     "roundsHint": "Nombre total de manches dans la partie, basé sur les playlists sélectionnées.",

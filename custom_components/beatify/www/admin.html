@@ -602,6 +602,21 @@
                     </div>
                     <p class="setting-hint" data-i18n="admin.difficultyBetScalingHint">Scale a won bet's payout with difficulty (easy ×2, normal ×3, hard ×5) instead of a flat ×3, so betting stays worthwhile on Hard where an exact year is rare. A missed bet still forfeits the round.</p>
                 </div>
+
+                <!-- Sabotage - Inline toggle (Issue #1665) -->
+                <div class="setting-group">
+                    <div class="setting-row">
+                        <span class="setting-label">
+                            <span class="setting-icon" aria-hidden="true">💣</span>
+                            <span data-i18n="admin.sabotage">Sabotage</span>
+                        </span>
+                        <label class="toggle-compact">
+                            <input type="checkbox" id="sabotage-toggle">
+                            <span class="toggle-switch-compact"></span>
+                        </label>
+                    </div>
+                    <p class="setting-hint" data-i18n="admin.sabotageHint">Give every player one Sabotage token per game. Spend it on an opponent who is still guessing — the effect is rolled at random: a timer cut, a forced double-or-nothing bet, or a short freeze. The saboteur picks only the target, never the effect.</p>
+                </div>
             </div>
         </section>
 

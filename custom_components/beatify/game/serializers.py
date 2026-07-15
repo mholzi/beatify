@@ -55,6 +55,7 @@ class GameStateSerializer:
             "rampup_order_enabled": gs.rampup_order_enabled,
             # Issue #1724: Comeback Token (catch-up steal for trailing players)
             "comeback_token_enabled": gs.comeback_token_enabled,
+            "sabotage_enabled": gs.sabotage_enabled,  # #1665
             # Issue #1727: Difficulty-aware bet scaling. Expose the opt-in flag
             # plus the *active* won-bet payout multiplier so the player bet
             # toggle can show what a bet is worth (3x when off, 2/3/5x when on)
@@ -323,6 +324,13 @@ class GameStateSerializer:
                 # unlock. Purely a cue — the steal itself is driven by
                 # steal_available above.
                 "comeback_token_granted": p.comeback_token_granted,
+                # Issue #1665: Sabotage — who this player hit, and who hit them
+                # with which rolled effect. Broadcast to everyone on purpose:
+                # the "gotcha" only lands if the table can see it.
+                "sabotage_available": p.sabotage_available,
+                "sabotaged": p.sabotaged,
+                "sabotaged_by": p.sabotaged_by,
+                "sabotage_effect": p.sabotage_effect,
                 # Issue #827: Sudden Death state
                 "eliminated": p.eliminated,
                 "eliminated_round": p.eliminated_round,

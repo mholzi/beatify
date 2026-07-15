@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from typing import TYPE_CHECKING, Any
 
 from ..const import (
@@ -30,8 +31,17 @@ _LOGGER = logging.getLogger(__name__)
 class PlayerRegistry:
     """Manages player add/remove, lookups, sessions, and reactions."""
 
-    def __init__(self) -> None:
-        """Initialize empty registry."""
+    def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
+        """Initialize empty registry.
+
+        Args:
+            time_fn: Clock used for time-based player state (#1665 freeze
+                countdown). Must be the SAME clock GameState hands to
+                PowerUpManager, or the countdown is nonsense. Defaults to
+                ``time.time`` to match ``GameState._now``.
+
+        """
+        self._now: Callable[[], float] = time_fn or time.time
         # #1664 PR-2: ``players`` is now keyed by ``player_id`` (== session_id),
         # the stable server-issued identifier — NOT the display name. The name
         # is a mutable display attribute tracked by ``_name_index`` purely as a
@@ -248,6 +258,17 @@ class PlayerRegistry:
         self._sessions.clear()
         _LOGGER.info("Cleared %d player sessions", session_count)
 
+    def _sabotage_freeze_remaining(self, player: PlayerSession) -> int:
+        """Whole seconds left on this player's sabotage freeze (#1665).
+
+        0 when no freeze is riding on them or it has already lapsed. Server-computed
+        (mirrors ``seconds_remaining``) so the client counts down against its own
+        clock rather than subtracting a server epoch from a skewed ``Date.now()``.
+        """
+        if player.sabotage_freeze_until is None:
+            return 0
+        return max(0, round(player.sabotage_freeze_until - self._now()))
+
     def get_players_state(self) -> list[dict[str, Any]]:
         """Get player list for state broadcast."""
         return [
@@ -263,6 +284,17 @@ class PlayerRegistry:
                 "steal_available": p.steal_available,
                 "bet": p.bet,
                 "steal_used": p.steal_used,
+                # Issue #1665: Sabotage token + the effect currently riding on
+                # this player. ``sabotage_freeze_remaining`` is server-computed
+                # (like ``seconds_remaining``) so the client counts down against
+                # its OWN clock instead of subtracting a server epoch.
+                "sabotage_available": p.sabotage_available,
+                "sabotage_used": p.sabotage_used,
+                "sabotaged": p.sabotaged,
+                "sabotaged_by": p.sabotaged_by,
+                "sabotage_effect": p.sabotage_effect,
+                "sabotage_forced_bet": p.sabotage_forced_bet,
+                "sabotage_freeze_remaining": self._sabotage_freeze_remaining(p),
                 "onboarded": p.onboarded,
                 # Issue #827: Sudden Death — eliminated players render the
                 # spectator view and a skull badge on leaderboards.

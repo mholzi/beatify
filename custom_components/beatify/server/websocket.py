@@ -26,6 +26,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_admin_connect,
     handle_artist_guess,
     handle_get_state,
+    handle_get_sabotage_targets,
     handle_get_steal_targets,
     handle_join,
     handle_leave,
@@ -36,6 +37,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_reconnect,
     handle_report_data,
     handle_round_timeout,
+    handle_sabotage,
     handle_steal,
     handle_submit,
     handle_title_artist_guess,
@@ -100,6 +102,8 @@ class BeatifyWebSocketHandler:
             "get_state": handle_get_state,
             "get_steal_targets": handle_get_steal_targets,
             "steal": handle_steal,
+            "get_sabotage_targets": handle_get_sabotage_targets,  # #1665
+            "sabotage": handle_sabotage,  # #1665
             "reaction": handle_reaction,
             "artist_guess": handle_artist_guess,
             "movie_guess": handle_movie_guess,

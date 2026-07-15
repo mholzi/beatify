@@ -137,11 +137,33 @@ ERR_TARGET_NOT_SUBMITTED = (
     "TARGET_NOT_SUBMITTED"  # Story 15.3 - target hasn't submitted
 )
 ERR_CANNOT_STEAL_SELF = "CANNOT_STEAL_SELF"  # Story 15.3 - cannot target self
+ERR_NO_SABOTAGE_AVAILABLE = "NO_SABOTAGE_AVAILABLE"  # #1665 - no sabotage token
+ERR_CANNOT_SABOTAGE_SELF = "CANNOT_SABOTAGE_SELF"  # #1665 - cannot target self
+ERR_TARGET_ALREADY_SUBMITTED = (
+    "TARGET_ALREADY_SUBMITTED"  # #1665 - target is already locked in
+)
+ERR_TARGET_ALREADY_SABOTAGED = (
+    "TARGET_ALREADY_SABOTAGED"  # #1665 - one hit per target per round
+)
+ERR_FROZEN = "FROZEN"  # #1665 - freeze effect: guess is still locked
 ERR_NO_ARTIST_CHALLENGE = "NO_ARTIST_CHALLENGE"  # Story 20.3 - no artist challenge
 ERR_NO_MOVIE_CHALLENGE = "NO_MOVIE_CHALLENGE"  # Issue #28 - no movie quiz this round
 ERR_NO_TITLE_ARTIST_CHALLENGE = "NO_TITLE_ARTIST_CHALLENGE"  # #1180 - no T&A this round
 ERR_UNAUTHORIZED = "UNAUTHORIZED"  # Issue #477 - invalid admin token
 ERR_ELIMINATED = "ELIMINATED"  # #1748 - Sudden Death: eliminated player may not act
+
+# Sabotage power-up constants (Issue #1665)
+# The effect is rolled server-side on use — the saboteur picks only the target.
+SABOTAGE_TIMER_CUT = "timer_cut"
+SABOTAGE_FORCED_BET = "forced_bet"
+SABOTAGE_FREEZE = "freeze"
+SABOTAGE_EFFECTS: tuple[str, ...] = (
+    SABOTAGE_TIMER_CUT,
+    SABOTAGE_FORCED_BET,
+    SABOTAGE_FREEZE,
+)
+SABOTAGE_TIMER_CUT_SECONDS = 5  # Target loses this much guess time
+SABOTAGE_FREEZE_SECONDS = 3  # Target cannot submit for this long
 
 # Song difficulty rating constants (Story 15.1)
 MIN_PLAYS_FOR_DIFFICULTY = 3  # Minimum plays before showing difficulty rating

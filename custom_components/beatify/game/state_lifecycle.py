@@ -131,6 +131,15 @@ class RoundLifecycleMixin:
             return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
 
         self._set_phase(GamePhase.PLAYING)
+
+        # Issue #1665: hand every player their single sabotage token. Unlike the
+        # steal (unlocked by a streak), the sabotage token exists from round 1 —
+        # a token you have to earn first would rarely be spent in a short game.
+        # No-op when the setting is off, so default games are unchanged.
+        if self.sabotage_enabled:
+            for player in self.players.values():
+                player.unlock_sabotage()
+
         # Round and song selection will be implemented in Epic 4
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None

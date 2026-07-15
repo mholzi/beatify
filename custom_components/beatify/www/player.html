@@ -420,6 +420,11 @@
                         <span aria-hidden="true">🥷</span>
                         <span data-i18n="steal.available">Steal Available!</span>
                     </span>
+                    <!-- #1665: sabotage token available, twin of steal-indicator -->
+                    <span id="sabotage-indicator" class="arc-chip arc-chip--sabotage hidden">
+                        <span aria-hidden="true">💣</span>
+                        <span data-i18n="sabotage.available">Sabotage Ready!</span>
+                    </span>
                     <span id="closest-wins-badge" class="arc-chip arc-chip--closest-wins hidden">
                         <span aria-hidden="true">🎯</span>
                         <span data-i18n="game.closestWins">CLOSEST WINS</span>
@@ -563,11 +568,20 @@
                     <span data-i18n="game.noBonusThisRound">No bonus this round — nail the year</span>
                 </div>
 
-                <!-- Steal power-up button (full width, only when steal available) -->
-                <button id="steal-btn" class="steal-btn-full hidden" type="button">
-                    <span class="steal-btn-icon" aria-hidden="true">🥷</span>
-                    <span class="steal-btn-label" data-i18n="steal.button">Steal Answer</span>
-                </button>
+                <!-- Power-up buttons: Steal + Sabotage twins (#1665). Each shows
+                     only when its token is in hand; the flex row keeps a lone
+                     button full-width and puts them side-by-side when both are up. -->
+                <div class="powerup-btn-row">
+                    <button id="steal-btn" class="steal-btn-full hidden" type="button">
+                        <span class="steal-btn-icon" aria-hidden="true">🥷</span>
+                        <span class="steal-btn-label" data-i18n="steal.button">Steal Answer</span>
+                    </button>
+                    <!-- #1665: Sabotage twin. Picks only the target; effect is random. -->
+                    <button id="sabotage-btn" class="sabotage-btn-full hidden" type="button">
+                        <span class="sabotage-btn-icon" aria-hidden="true">💣</span>
+                        <span class="sabotage-btn-label" data-i18n="sabotage.button">Sabotage</span>
+                    </button>
+                </div>
 
                 <!-- Legacy node kept for existing JS paths (was the inline "Submitted!" stamp) -->
                 <div id="submitted-confirmation" class="submitted-confirmation hidden" aria-hidden="true">
@@ -1050,6 +1064,34 @@
     <div id="steal-confirmation" class="steal-confirmation hidden">
         <span class="steal-confirmation-icon">🥷</span>
         <span id="steal-confirmation-text" class="steal-confirmation-text"></span>
+    </div>
+
+    <!-- Sabotage Target Modal (#1665) — twin of the steal modal. Reuses the
+         .steal-modal styling; the subtitle makes clear the effect is random. -->
+    <div id="sabotage-modal" class="steal-modal sabotage-modal hidden" role="dialog" aria-modal="true"
+         aria-labelledby="sabotage-modal-title">
+        <div class="steal-modal-backdrop"></div>
+        <div class="steal-modal-content">
+            <h2 id="sabotage-modal-title" class="steal-modal-title" data-i18n="sabotage.selectTarget">Pick who to sabotage</h2>
+            <p class="steal-modal-subtitle" data-i18n="sabotage.selectTargetHint">The effect is random — timer cut, forced bet or freeze.</p>
+            <div id="sabotage-target-list" class="steal-target-list">
+                <!-- Populated by JavaScript -->
+            </div>
+            <button id="sabotage-modal-close" class="btn btn-secondary steal-modal-cancel"
+                    aria-label="Cancel sabotage" data-i18n="common.cancel">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Sabotage Confirmation Toast (#1665) — shown to the saboteur -->
+    <div id="sabotage-confirmation" class="steal-confirmation sabotage-confirmation hidden">
+        <span class="steal-confirmation-icon">💣</span>
+        <span id="sabotage-confirmation-text" class="steal-confirmation-text"></span>
+    </div>
+
+    <!-- "You've been sabotaged" banner (#1665) — shown to the target -->
+    <div id="sabotaged-banner" class="steal-confirmation sabotaged-banner hidden">
+        <span class="steal-confirmation-icon">💥</span>
+        <span id="sabotaged-banner-text" class="steal-confirmation-text"></span>
     </div>
 
     <!-- Points Breakdown Bottom Sheet (Round reveal v2) -->

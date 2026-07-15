@@ -15,14 +15,19 @@ from aiohttp import web
 from custom_components.beatify.const import (
     CHALLENGE_BONUS_POINTS,
     ERR_ALREADY_SUBMITTED,
+    ERR_CANNOT_SABOTAGE_SELF,
     ERR_ELIMINATED,
+    ERR_FROZEN,
     ERR_INVALID_ACTION,
     ERR_NO_ARTIST_CHALLENGE,
     ERR_NO_MOVIE_CHALLENGE,
+    ERR_NO_SABOTAGE_AVAILABLE,
     ERR_NO_TITLE_ARTIST_CHALLENGE,
     ERR_NOT_ADMIN,
     ERR_NOT_IN_GAME,
     ERR_ROUND_EXPIRED,
+    ERR_TARGET_ALREADY_SABOTAGED,
+    ERR_TARGET_ALREADY_SUBMITTED,
     YEAR_MAX,
     YEAR_MIN,
 )
@@ -99,6 +104,37 @@ async def handle_submit(
         )
         return
 
+    # Issue #1665: sabotage effects are enforced HERE, on the victim's submit
+    # path — never on the client. The state broadcast is one frame for everyone
+    # (build_state_message → broadcast), so a per-player deadline cannot be
+    # expressed through it; the client is merely *told* about the effect and
+    # renders it, while the server is what actually holds the line.
+    if player.sabotage_freeze_until is not None and (
+        game_state.current_time() < player.sabotage_freeze_until
+    ):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_FROZEN,
+                "message": "Frozen — hold on",
+            }
+        )
+        return
+
+    # Timer-cut: this player's personal deadline is the round deadline minus the
+    # cut. The round itself still ends at the shared deadline for everyone else.
+    if player.sabotage_deadline_cut_ms and game_state.deadline is not None:
+        personal_deadline = game_state.deadline - player.sabotage_deadline_cut_ms
+        if game_state.current_time() * 1000 >= personal_deadline:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_ROUND_EXPIRED,
+                    "message": "Time's up!",
+                }
+            )
+            return
+
     year = data.get("year")
     if not isinstance(year, int) or year < YEAR_MIN or year > YEAR_MAX:
         await ws.send_json(
@@ -111,7 +147,9 @@ async def handle_submit(
         return
 
     bet = data.get("bet", False)
-    player.bet = bool(bet)
+    # Issue #1665: a forced bet is not a suggestion — the victim rides the
+    # double-or-nothing whether or not their client sent the flag.
+    player.bet = bool(bet) or player.sabotage_forced_bet
 
     submission_time = game_state.current_time()
     player.submit_guess(year, submission_time)
@@ -279,6 +317,140 @@ def _get_steal_error_message(error_code: str) -> str:
         "CANNOT_STEAL_SELF": "Cannot steal from yourself",
     }
     return messages.get(error_code, "Steal failed")
+
+
+async def handle_get_sabotage_targets(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle request for available sabotage targets (#1665)."""
+    player = game_state.get_player_by_ws(ws)
+
+    if not player:
+        await ws.send_json(
+            {"type": "error", "code": ERR_NOT_IN_GAME, "message": "Not in game"}
+        )
+        return
+
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
+            }
+        )
+        return
+
+    if not player.sabotage_available:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NO_SABOTAGE_AVAILABLE,
+                "message": "No sabotage available",
+            }
+        )
+        return
+
+    await ws.send_json(
+        {
+            "type": "sabotage_targets",
+            "targets": game_state.get_sabotage_targets(player.name),
+        }
+    )
+
+
+async def handle_sabotage(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle sabotage execution (#1665).
+
+    The client sends only a target — the effect is rolled server-side, so a
+    tampered client cannot pick the mildest one.
+    """
+    player = game_state.get_player_by_ws(ws)
+
+    if not player:
+        await ws.send_json(
+            {"type": "error", "code": ERR_NOT_IN_GAME, "message": "Not in game"}
+        )
+        return
+
+    if player.eliminated:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ELIMINATED,
+                "message": "You have been eliminated",
+            }
+        )
+        return
+
+    target_name = data.get("target")
+    if not target_name:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Target name required",
+            }
+        )
+        return
+
+    result = game_state.use_sabotage(player.name, target_name)
+
+    if not result["success"]:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": result["error"],
+                "message": _get_sabotage_error_message(result["error"]),
+            }
+        )
+        return
+
+    await ws.send_json(
+        {
+            "type": "sabotage_ack",
+            "success": True,
+            "target": result["target"],
+            "effect": result["effect"],
+        }
+    )
+
+    # The victim gets an immediate, addressed hit — a freeze that only shows up
+    # on the next debounced state frame has already eaten part of its own
+    # duration. The broadcast below still carries the same fields for everyone.
+    target = game_state.get_player(result["target"])
+    if target is not None and target.ws is not None:
+        await target.ws.send_json(
+            {
+                "type": "sabotaged",
+                "by": player.name,
+                "effect": result["effect"],
+            }
+        )
+
+    await handler.broadcast_state()
+
+
+def _get_sabotage_error_message(error_code: str) -> str:
+    """Get human-readable message for sabotage error codes (#1665)."""
+    messages = {
+        ERR_NOT_IN_GAME: "Not in game",
+        ERR_INVALID_ACTION: "Cannot sabotage now",
+        ERR_NO_SABOTAGE_AVAILABLE: "No sabotage available",
+        ERR_CANNOT_SABOTAGE_SELF: "Cannot sabotage yourself",
+        ERR_TARGET_ALREADY_SUBMITTED: "Target has already locked in their guess",
+        ERR_TARGET_ALREADY_SABOTAGED: "Target has already been sabotaged this round",
+        ERR_ELIMINATED: "Target has been eliminated",
+    }
+    return messages.get(error_code, "Sabotage failed")
 
 
 async def handle_artist_guess(
