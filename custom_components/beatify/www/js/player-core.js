@@ -28,6 +28,7 @@ import {
     resetSubmissionState,
     handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
     handleStealAck, handleStealTargets,
+    handleSabotageAck, handleSabotageTargets, handleSabotaged,
     showAdminControlBar, hideAdminControlBar,
     showReactionBar, hideReactionBar, setupReactionBar, resetReactionButtons,
     showFloatingReaction,
@@ -933,6 +934,12 @@ function handleServerMessage(data) {
         handleStealTargets(data);
     } else if (data.type === 'steal_ack') {
         handleStealAck(data);
+    } else if (data.type === 'sabotage_targets') {  // #1665
+        handleSabotageTargets(data);
+    } else if (data.type === 'sabotage_ack') {  // #1665
+        handleSabotageAck(data);
+    } else if (data.type === 'sabotaged') {  // #1665 — private hit for the target
+        handleSabotaged(data);
     } else if (data.type === 'artist_guess_ack') {
         handleArtistGuessAck(data);
     } else if (data.type === 'movie_guess_ack') {

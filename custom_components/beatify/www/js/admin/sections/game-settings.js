@@ -158,6 +158,13 @@ export function setupGameSettings() {
         saveGameSettings();
     });
 
+    // Sabotage toggle (Issue #1665)
+    document.getElementById('sabotage-toggle')?.addEventListener('change', function() {
+        adminState.sabotageEnabled = this.checked;
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Title & Artist Mode toggle (#1180)
     document.getElementById('title-artist-mode-toggle')?.addEventListener('change', function() {
         adminState.titleArtistModeEnabled = this.checked;
@@ -286,6 +293,13 @@ export async function loadSavedSettings() {
                 if (betScalingToggle) betScalingToggle.checked = settings.difficultyBetScaling;
             }
 
+            // Apply Sabotage (Issue #1665)
+            if (typeof settings.sabotage === 'boolean') {
+                adminState.sabotageEnabled = settings.sabotage;
+                const sabotageToggle = document.getElementById('sabotage-toggle');
+                if (sabotageToggle) sabotageToggle.checked = settings.sabotage;
+            }
+
             // Apply Title & Artist mode (#1180)
             if (typeof settings.titleArtistMode === 'boolean') {
                 adminState.titleArtistModeEnabled = settings.titleArtistMode;
@@ -327,6 +341,7 @@ export function saveGameSettings() {
             finaleTiebreaker: adminState.finaleTiebreakerEnabled,  // Issue #1725
             comebackToken: adminState.comebackTokenEnabled,  // Issue #1724
             difficultyBetScaling: adminState.difficultyBetScalingEnabled,  // Issue #1727
+            sabotage: adminState.sabotageEnabled,  // Issue #1665
             provider: adminState.selectedProvider
         };
         localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
@@ -366,8 +381,11 @@ export function updateGameSettingsSummary() {
     // Issue #1727: difficulty bet scaling only affects the year-round bet, so
     // its icon shows only when year rounds are active (not in TA mode).
     const betScalingIcon = (yearRoundActive && adminState.difficultyBetScalingEnabled) ? ' • 🎲' : '';
+    // Issue #1665: sabotage is mode-agnostic (hands out a token at game start
+    // regardless of TA/year rounds), so its icon shows unconditionally.
+    const sabotageIcon = adminState.sabotageEnabled ? ' • 💣' : '';
 
-    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}${betScalingIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}${betScalingIcon}${sabotageIcon}`;
 }
 
 /**

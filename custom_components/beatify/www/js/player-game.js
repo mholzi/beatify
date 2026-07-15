@@ -20,6 +20,8 @@ import {
 // per dialog element). Trap Tab within the dialog and restore focus on close.
 var _stealTrap = null;
 var _introSplashTrap = null;
+// #1665: focus trap for the sabotage target picker — twin of _stealTrap.
+var _sabotageTrap = null;
 
 // #1279 step 6/6: self-contained game clusters extracted to ./player-game/.
 // player-game.js stays the public face and re-exports their consumer-facing
@@ -213,6 +215,7 @@ export function updateGameView(data) {
     }
 
     updateStealUI(data.players);
+    updateSabotageUI(data.players);  // #1665
 
     if (data.artist_challenge !== undefined) {
         renderArtistChallenge(data.artist_challenge, 'PLAYING');
@@ -298,6 +301,7 @@ function syncArcChipRow() {
     var childIds = [
         'game-difficulty-badge',
         'steal-indicator',
+        'sabotage-indicator',  // #1665
         'closest-wins-badge',
         'intro-badge',
         'last-round-banner'
@@ -515,6 +519,10 @@ function renderSubmissionTracker(players) {
         } else {
             if (player.steal_used) {
                 badges += '<span class="player-badge player-badge--steal">🥷</span>';
+            }
+            // #1665: a spent sabotage token earns a bomb badge, twin of steal's.
+            if (player.sabotage_used) {
+                badges += '<span class="player-badge player-badge--sabotage">💣</span>';
             }
             if (player.bet) {
                 badges += '<span class="player-badge player-badge--bet">🎲</span>';
@@ -774,6 +782,14 @@ export function setupRevealLeaderboardToggle() {
 var hasSubmitted = false;
 var betActive = false;
 var hasStealAvailable = false;
+// #1665: mirrors hasStealAvailable — gates the sabotage button + click handler.
+var hasSabotageAvailable = false;
+// #1665: while a freeze effect is riding on us, block local submits until this
+// timestamp (ms epoch). The server is authoritative (ERR_FROZEN on submit);
+// this just stops the button from looking tappable during the freeze.
+var sabotageFreezeUntilMs = 0;
+// #1665: a rolled forced-bet locks betActive on and disables the toggle.
+var sabotageForcedBet = false;
 
 // Title & Artist Mode state (#1180)
 var titleArtistMode = false;
@@ -858,6 +874,9 @@ export function initYearSelector() {
     if (betToggle) {
         betToggle.addEventListener('click', function() {
             if (hasSubmitted) return;
+            // #1665: a forced-bet sabotage nails the bet on — the victim can't
+            // toggle it back off (the server forces it on submit anyway).
+            if (sabotageForcedBet) return;
             betActive = !betActive;
             betToggle.classList.toggle('is-active', betActive);
         });
@@ -913,6 +932,25 @@ export function initYearSelector() {
             backdrop.addEventListener('click', closeStealModal);
         }
     }
+
+    // #1665: sabotage wiring — twin of the steal listeners above.
+    var sabotageBtn = document.getElementById('sabotage-btn');
+    if (sabotageBtn) {
+        sabotageBtn.addEventListener('click', handleSabotageClick);
+    }
+
+    var sabotageModalClose = document.getElementById('sabotage-modal-close');
+    if (sabotageModalClose) {
+        sabotageModalClose.addEventListener('click', closeSabotageModal);
+    }
+
+    var sabotageModal = document.getElementById('sabotage-modal');
+    if (sabotageModal) {
+        var sabBackdrop = sabotageModal.querySelector('.steal-modal-backdrop');
+        if (sabBackdrop) {
+            sabBackdrop.addEventListener('click', closeSabotageModal);
+        }
+    }
 }
 
 /**
@@ -921,6 +959,14 @@ export function initYearSelector() {
 export function handleSubmitGuess() {
     if (hasSubmitted) return;
     if (meEliminated) return;  // Issue #827: eliminated players can't submit
+
+    // #1665: freeze effect — the server rejects the submit with ERR_FROZEN, so
+    // reflect that locally instead of firing a doomed request. A short toast
+    // tells the victim why the button just refused them.
+    if (sabotageFreezeUntilMs && Date.now() < sabotageFreezeUntilMs) {
+        showSubmitError(utils.t('sabotage.frozen') || 'Frozen — hold on');
+        return;
+    }
 
     var slider = document.getElementById('year-slider');
     var submitBtn = document.getElementById('submit-btn');
@@ -936,7 +982,7 @@ export function handleSubmitGuess() {
         state.ws.send(JSON.stringify({
             type: 'submit',
             year: year,
-            bet: betActive
+            bet: betActive || sabotageForcedBet  // #1665: forced bet rides along
         }));
     } else {
         showSubmitError(utils.t('errors.connectionLost'));
@@ -1078,6 +1124,13 @@ export function resetSubmissionState() {
 
     hasStealAvailable = false;
     hideStealUI();
+
+    // #1665: clear per-round sabotage state so last round's freeze/forced-bet
+    // never leaks into this one. The token gating is re-derived from state.
+    hasSabotageAvailable = false;
+    sabotageFreezeUntilMs = 0;
+    clearForcedBet();
+    hideSabotageUI();
 
     resetArtistChallengeState();
 
@@ -1454,6 +1507,313 @@ function showStealConfirmation(target, year) {
     setTimeout(function() {
         toast.classList.add('hidden');
     }, 3000);
+}
+
+// ============================================
+// Sabotage Power-up (Issue #1665)
+// ============================================
+// Twin of the Steal power-up above. The saboteur picks only a *target*; the
+// effect (timer-cut / forced-bet / freeze) is rolled server-side, so the client
+// never chooses or predicts it. Enforcement is authoritative on the server's
+// submit path (ws_handlers/guessing.py) — everything here only reflects it.
+
+// #1665: freeze duration mirrored from const.SABOTAGE_FREEZE_SECONDS. Used only
+// for the immediate local reflection; the server holds the real line.
+var SABOTAGE_FREEZE_MS = 3000;
+
+/**
+ * Update sabotage UI based on player state (#1665). Mirror of updateStealUI:
+ * the button shows only while the token is in hand AND we haven't submitted.
+ * @param {Array} players - Array of player objects
+ */
+function updateSabotageUI(players) {
+    if (!state.playerName || !players) return;
+
+    var currentPlayer = players.find(function(p) {
+        return p.name === state.playerName;
+    });
+
+    if (!currentPlayer) return;
+
+    hasSabotageAvailable = currentPlayer.sabotage_available && !hasSubmitted;
+
+    var sabotageIndicator = document.getElementById('sabotage-indicator');
+    var sabotageBtn = document.getElementById('sabotage-btn');
+
+    if (hasSabotageAvailable) {
+        if (sabotageIndicator) sabotageIndicator.classList.remove('hidden');
+        if (sabotageBtn) sabotageBtn.classList.remove('hidden');
+    } else {
+        hideSabotageUI();
+    }
+    syncArcChipRow();
+}
+
+/**
+ * Hide all sabotage UI elements (#1665).
+ */
+function hideSabotageUI() {
+    var sabotageIndicator = document.getElementById('sabotage-indicator');
+    var sabotageBtn = document.getElementById('sabotage-btn');
+
+    if (sabotageIndicator) sabotageIndicator.classList.add('hidden');
+    if (sabotageBtn) sabotageBtn.classList.add('hidden');
+    syncArcChipRow();
+}
+
+/**
+ * Handle sabotage button click - request targets and open modal (#1665).
+ */
+function handleSabotageClick() {
+    if (!hasSabotageAvailable || hasSubmitted) return;
+
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.send(JSON.stringify({ type: 'get_sabotage_targets' }));
+    }
+}
+
+/**
+ * Open sabotage modal with available targets (#1665). Reuses the steal modal's
+ * mini-leaderboard row rendering (rank + score) — the two pickers are visual
+ * twins on purpose. Unlike steal, the copy makes clear the EFFECT is random.
+ * @param {Array} targets - Player names that can still be sabotaged this round
+ * @param {Array} leaderboard - Optional standings override; else cached
+ */
+function openSabotageModal(targets, leaderboard) {
+    var modal = document.getElementById('sabotage-modal');
+    var targetList = document.getElementById('sabotage-target-list');
+
+    if (!modal || !targetList) return;
+
+    targetList.innerHTML = '';
+
+    var standings = leaderboard || lastLeaderboard;
+
+    if (!targets || targets.length === 0) {
+        var noTargets = document.createElement('p');
+        noTargets.className = 'steal-no-targets';
+        noTargets.textContent = utils.t('sabotage.noTargets')
+            || 'No one left to sabotage — everyone has locked in.';
+        targetList.appendChild(noTargets);
+    } else {
+        var byName = {};
+        standings.forEach(function(e) { if (e && e.name != null) byName[e.name] = e; });
+
+        targets.forEach(function(target) {
+            var entry = byName[target] || null;
+            var btn = document.createElement('button');
+            btn.className = 'steal-target-btn steal-target-row';
+            var isLeader = !!entry && Number(entry.rank) === 1;
+            if (isLeader) btn.classList.add('steal-target-row--leader');
+            btn.setAttribute('aria-label', buildStealTargetAria(target, entry, isLeader));
+
+            var rankEl = document.createElement('span');
+            rankEl.className = 'steal-target-rank';
+            rankEl.setAttribute('aria-hidden', 'true');
+            rankEl.textContent = (entry && entry.rank != null) ? String(entry.rank) : '–';
+            btn.appendChild(rankEl);
+
+            if (isLeader) {
+                var crown = document.createElement('span');
+                crown.className = 'steal-target-crown';
+                crown.setAttribute('aria-hidden', 'true');
+                crown.textContent = '👑';
+                btn.appendChild(crown);
+            }
+
+            var nameEl = document.createElement('span');
+            nameEl.className = 'steal-target-name';
+            nameEl.textContent = target;
+            btn.appendChild(nameEl);
+
+            var scoreEl = document.createElement('span');
+            scoreEl.className = 'steal-target-score';
+            scoreEl.setAttribute('aria-hidden', 'true');
+            scoreEl.textContent = entry ? formatStealScore(entry.score) : '';
+            btn.appendChild(scoreEl);
+
+            btn.addEventListener('click', function() {
+                selectSabotageTarget(target);
+            });
+            targetList.appendChild(btn);
+        });
+    }
+
+    modal.classList.remove('hidden');
+    _sabotageTrap = _sabotageTrap || createModalFocusTrap(modal, {
+        contentSelector: '.steal-modal-content'
+    });
+    _sabotageTrap.activate({ onEscape: closeSabotageModal });
+}
+
+/**
+ * Close sabotage modal (#1665).
+ */
+function closeSabotageModal() {
+    var modal = document.getElementById('sabotage-modal');
+    if (modal) modal.classList.add('hidden');
+    if (_sabotageTrap) _sabotageTrap.deactivate();
+}
+
+/**
+ * Select a sabotage target and confirm (#1665). The confirm copy states the
+ * effect is random so the player is never surprised that they couldn't pick it.
+ * @param {string} targetName - Name of player to sabotage
+ */
+async function selectSabotageTarget(targetName) {
+    var confirmMsg = (utils.t('sabotage.confirm') || 'Sabotage {name}? The effect is random.')
+        .replace('{name}', targetName);
+    var confirmed = await showConfirmModal(
+        utils.t('sabotage.confirmTitle') || 'Sabotage?',
+        confirmMsg,
+        utils.t('sabotage.confirmButton') || 'Sabotage',
+        utils.t('common.cancel')
+    );
+    if (!confirmed) {
+        return;
+    }
+
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.send(JSON.stringify({
+            type: 'sabotage',
+            target: targetName
+        }));
+    }
+
+    closeSabotageModal();
+}
+
+/**
+ * Handle sabotage targets response from server (#1665).
+ * @param {Object} data - Response with targets array (+ optional leaderboard)
+ */
+export function handleSabotageTargets(data) {
+    openSabotageModal(data.targets || [], data.leaderboard);
+}
+
+/**
+ * Handle sabotage acknowledgment for the SABOTEUR (#1665). The token is spent;
+ * the effect was rolled server-side and echoed back purely so the saboteur sees
+ * what landed. Mirrors handleStealAck's spend-the-token bookkeeping.
+ * @param {Object} data - Response with { success, target, effect }
+ */
+export function handleSabotageAck(data) {
+    if (data && data.success) {
+        hasSabotageAvailable = false;
+        hideSabotageUI();
+        showSabotageAckToast(data.target, data.effect);
+    }
+}
+
+/**
+ * Handle the private "you were sabotaged" hit for the TARGET (#1665). Reflects
+ * the rolled effect locally — banner + client-side handling — while the server
+ * stays the authority on the submit path.
+ * @param {Object} data - Message with { by, effect }
+ */
+export function handleSabotaged(data) {
+    if (!data) return;
+    applySabotageEffect(data.effect);
+    showSabotageBanner(data.by, data.effect);
+}
+
+/**
+ * Apply the rolled effect to the local UI (#1665). Reflection only:
+ *  - timer_cut  → the server shortens this player's deadline; nothing to lock
+ *                 here, the banner conveys it (timer is server-authoritative).
+ *  - forced_bet → nail the bet toggle on and disable it.
+ *  - freeze     → block local submits for the freeze window.
+ * @param {string} effect - one of SABOTAGE_EFFECTS
+ */
+function applySabotageEffect(effect) {
+    if (effect === 'forced_bet') {
+        sabotageForcedBet = true;
+        betActive = true;
+        var betToggle = document.getElementById('bet-toggle');
+        if (betToggle) {
+            betToggle.classList.add('is-active', 'bet-arc--forced');
+        }
+    } else if (effect === 'freeze') {
+        sabotageFreezeUntilMs = Date.now() + SABOTAGE_FREEZE_MS;
+        var submitBtn = document.getElementById('submit-btn');
+        if (submitBtn && !hasSubmitted) {
+            submitBtn.classList.add('submit-arc--frozen');
+            setTimeout(function() {
+                if (submitBtn) submitBtn.classList.remove('submit-arc--frozen');
+            }, SABOTAGE_FREEZE_MS);
+        }
+    }
+    // timer_cut: no local lock — the server owns the deadline.
+}
+
+/**
+ * Clear the forced-bet lock (#1665). Called on round reset so the toggle is
+ * interactive again next round.
+ */
+function clearForcedBet() {
+    sabotageForcedBet = false;
+    var betToggle = document.getElementById('bet-toggle');
+    if (betToggle) {
+        betToggle.classList.remove('bet-arc--forced');
+    }
+}
+
+/**
+ * Locale-aware label for a rolled effect (#1665).
+ * @param {string} effect
+ * @returns {string}
+ */
+function sabotageEffectLabel(effect) {
+    var key = 'sabotage.effect.' + effect;
+    var label = utils.t(key);
+    if (label && label !== key) return label;
+    // Fallbacks if i18n is missing the key.
+    if (effect === 'timer_cut') return 'Timer cut';
+    if (effect === 'forced_bet') return 'Forced bet';
+    if (effect === 'freeze') return 'Freeze';
+    return 'Sabotaged';
+}
+
+/**
+ * Toast shown to the SABOTEUR confirming the hit + rolled effect (#1665).
+ * @param {string} target
+ * @param {string} effect
+ */
+function showSabotageAckToast(target, effect) {
+    var toast = document.getElementById('sabotage-confirmation');
+    var text = document.getElementById('sabotage-confirmation-text');
+    if (!toast || !text) return;
+
+    var msg = (utils.t('sabotage.success') || 'Sabotaged {name} · {effect}')
+        .replace('{name}', target)
+        .replace('{effect}', sabotageEffectLabel(effect));
+    text.textContent = msg;
+
+    toast.classList.remove('hidden');
+    setTimeout(function() {
+        toast.classList.add('hidden');
+    }, 3000);
+}
+
+/**
+ * Banner shown to the TARGET announcing they were hit + how (#1665).
+ * @param {string} by - saboteur name
+ * @param {string} effect
+ */
+function showSabotageBanner(by, effect) {
+    var banner = document.getElementById('sabotaged-banner');
+    var text = document.getElementById('sabotaged-banner-text');
+    if (!banner || !text) return;
+
+    var msg = (utils.t('sabotage.hit') || "You've been sabotaged by {name}! ({effect})")
+        .replace('{name}', by || '?')
+        .replace('{effect}', sabotageEffectLabel(effect));
+    text.textContent = msg;
+
+    banner.classList.remove('hidden');
+    setTimeout(function() {
+        banner.classList.add('hidden');
+    }, 3500);
 }
 
 // ============================================

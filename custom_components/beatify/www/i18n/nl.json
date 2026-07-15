@@ -143,6 +143,24 @@
     "stolenFrom": "Gestolen van {name}",
     "stolenBy": "Antwoord gestolen door {name}"
   },
+  "sabotage": {
+    "available": "Sabotage klaar!",
+    "button": "Sabotage",
+    "selectTarget": "Kies wie je saboteert",
+    "selectTargetHint": "Het effect is willekeurig — tijdverlies, gedwongen weddenschap of freeze.",
+    "noTargets": "Niemand meer om te saboteren — iedereen heeft ingezonden.",
+    "confirm": "{name} saboteren? Het effect is willekeurig.",
+    "confirmTitle": "Saboteren?",
+    "confirmButton": "Sabotage",
+    "success": "{name} gesaboteerd · {effect}",
+    "hit": "Je bent gesaboteerd door {name}! ({effect})",
+    "frozen": "Bevroren — even wachten",
+    "effect": {
+      "timer_cut": "Tijdverlies",
+      "forced_bet": "Gedwongen weddenschap",
+      "freeze": "Freeze"
+    }
+  },
   "reaction": {
     "fire": "Vuurreactie",
     "laugh": "Lachreactie",
@@ -449,6 +467,8 @@
     "finaleTiebreakerHint": "Als het spel eindigt in een gelijkspel om de eerste plaats terwijl er nog nummers over zijn, wordt er een sudden-death-beslissing gespeeld tussen alleen de gelijk eindigende spelers in plaats van een gedeelde winst.",
     "difficultyBetScaling": "Inzet naar moeilijkheid",
     "difficultyBetScalingHint": "Schaal de uitbetaling van een gewonnen weddenschap mee met de moeilijkheid (makkelijk ×2, normaal ×3, moeilijk ×5) in plaats van een vaste ×3, zodat wedden ook op Moeilijk de moeite waard blijft, waar het exacte jaar zelden is. Een mislukte weddenschap kost nog steeds de ronde.",
+    "sabotage": "Sabotage",
+    "sabotageHint": "Geef elke speler één Sabotage-token per spel. Zet het in tegen een tegenstander die nog aan het raden is — het effect is willekeurig: tijdverlies, een gedwongen dubbel-of-niets-weddenschap of een korte freeze. De saboteur kiest alleen het doelwit, nooit het effect.",
     "comebackToken": "Comeback-token",
     "comebackTokenHint": "Geef na de helft-ronde het achterste derde deel van de spelers eenmalig een Steal-power-up, zodat een achterstand halverwege makkelijker in te lopen is. Spelers die al een steal hebben, blijven ongemoeid.",
     "roundsHint": "Totaal aantal rondes in het spel, gebaseerd op de geselecteerde afspeellijsten.",

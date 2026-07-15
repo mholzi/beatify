@@ -66,8 +66,10 @@ from custom_components.beatify.server.ws_handlers.admin import (
 from custom_components.beatify.server.ws_handlers.guessing import (
     _get_steal_error_message,
     handle_artist_guess,
+    handle_get_sabotage_targets,
     handle_get_steal_targets,
     handle_movie_guess,
+    handle_sabotage,
     handle_steal,
     handle_submit,
     handle_title_artist_guess,
@@ -255,7 +257,9 @@ __all__ = [
     "admin_kick_player",
     # guessing
     "handle_submit",
+    "handle_get_sabotage_targets",
     "handle_get_steal_targets",
+    "handle_sabotage",
     "handle_steal",
     "_get_steal_error_message",
     "handle_artist_guess",

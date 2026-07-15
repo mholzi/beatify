@@ -124,6 +124,7 @@ class GameSetupMixin:
         finale_tiebreaker_enabled: bool = False,
         comeback_token_enabled: bool = False,
         difficulty_bet_scaling_enabled: bool = False,
+        sabotage_enabled: bool = False,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -317,6 +318,8 @@ class GameSetupMixin:
         self.comeback_token_enabled = comeback_token_enabled
         # Issue #1727: Difficulty-aware bet scaling (opt-in; default flat 3x)
         self.difficulty_bet_scaling_enabled = difficulty_bet_scaling_enabled
+        # Issue #1665: Sabotage powerup (opt-in; default off = no tokens)
+        self.sabotage_enabled = sabotage_enabled
         self.is_intro_round = False
         self.intro_stopped = False
         self._round_manager._intro_round_start_time = None
@@ -459,6 +462,7 @@ class GameSetupMixin:
             "finale_tiebreaker_enabled": self.finale_tiebreaker_enabled,  # #1725
             "comeback_token_enabled": self.comeback_token_enabled,  # #1724
             "difficulty_bet_scaling_enabled": self.difficulty_bet_scaling_enabled,  # #1727
+            "sabotage_enabled": self.sabotage_enabled,  # #1665
         }
 
         self._reset_game_internals()

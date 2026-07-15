@@ -77,6 +77,11 @@ class GameStateConfig:
     # stays worthwhile on Hard where an exact guess is rare. Opt-in at game start
     # (wizard). Default off = flat 3x, byte-for-byte unchanged.
     difficulty_bet_scaling_enabled: bool = False
+    # Issue #1665: Sabotage powerup — each player gets one token per game to hit
+    # an opponent who is still guessing. The saboteur picks only the target; the
+    # effect (timer-cut / forced bet / freeze) is rolled server-side on use.
+    # Opt-in at game start (wizard). Default off = no tokens handed out at all.
+    sabotage_enabled: bool = False
     # Issue #1180: Title & Artist guessing mode. Owned by ChallengeManager;
     # listed here for reset symmetry. GameState exposes a delegation property,
     # and _apply_config skips manager-delegated names (see field_names()).

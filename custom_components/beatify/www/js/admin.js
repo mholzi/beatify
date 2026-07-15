@@ -1130,6 +1130,7 @@ async function startGame() {
                 finale_tiebreaker_enabled: adminState.finaleTiebreakerEnabled,  // Issue #1725
                 comeback_token_enabled: adminState.comebackTokenEnabled,  // Issue #1724
                 difficulty_bet_scaling_enabled: adminState.difficultyBetScalingEnabled,  // Issue #1727
+                sabotage_enabled: adminState.sabotageEnabled,  // Issue #1665
                 party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
                 tts: window._ttsConfig ? window._ttsConfig() : null  // Issue #447
             })

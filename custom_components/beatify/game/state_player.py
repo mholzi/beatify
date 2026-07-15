@@ -142,6 +142,16 @@ class PlayerLifecycleMixin:
             stealer_name, target_name, self.players, self.phase, self._now()
         )
 
+    def get_sabotage_targets(self, saboteur_name: str) -> list[str]:
+        """Get list of players who can be sabotaged (#1665). Delegates to PowerUpManager."""
+        return self._powerup_manager.get_sabotage_targets(saboteur_name, self.players)
+
+    def use_sabotage(self, saboteur_name: str, target_name: str) -> dict[str, Any]:
+        """Execute sabotage power-up (#1665). Delegates to PowerUpManager."""
+        return self._powerup_manager.use_sabotage(
+            saboteur_name, target_name, self.players, self.phase, self._now()
+        )
+
     def remove_player(self, name: str) -> None:
         """Remove player from game. Delegates to PlayerRegistry."""
         self._player_registry.remove_player(name)

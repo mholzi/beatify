@@ -321,7 +321,7 @@ class GameState(
         )  # Issue #391: prevent GC of fire-and-forget tasks
 
         # Issue #347: Player management delegated to PlayerRegistry
-        self._player_registry = PlayerRegistry()
+        self._player_registry = PlayerRegistry(self._now)
 
         # Issue #464: Round lifecycle delegated to RoundManager
         self._round_manager = RoundManager(self._now)
@@ -387,6 +387,10 @@ class GameState(
         # with difficulty (easy 2x / normal 3x / hard 5x) instead of a flat 3x,
         # so betting stays worthwhile on Hard. Opt-in; default off = flat 3x.
         self.difficulty_bet_scaling_enabled: bool = False
+
+        # Issue #1665: Sabotage powerup — one token per player per game, spent on
+        # an opponent who is still guessing. Opt-in; default off = no tokens.
+        self.sabotage_enabled: bool = False
 
         # Issue #477: Admin spectator WebSocket (host without being a player)
         self._admin_ws: web.WebSocketResponse | None = None
