@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "schlager",
     "party",
@@ -1406,7 +1406,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=7ICiUTFl0H0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/356880385",
       "uri_deezer": null,
       "alt_artists": [
         "Julian Benz",
@@ -1435,7 +1435,7 @@
         "it": "applemusic://track/1825575871"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-sWSz7qCvps",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/373515853",
       "uri_deezer": "deezer://track/2877069062",
       "fun_fact": "A Mallorca / Ballermann party hit (2024).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
@@ -1460,7 +1460,7 @@
         "it": "applemusic://track/1783624413"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hh_VsdOgb6U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/357426949",
       "uri_deezer": "deezer://track/2751408821",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -1485,7 +1485,7 @@
         "it": "applemusic://track/1736119505"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_815df1x70w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/351250648",
       "uri_deezer": "deezer://track/2705361842",
       "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
       "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
@@ -1563,7 +1563,7 @@
         "it": "applemusic://track/1721259505"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hycladeLR1w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999801",
       "uri_deezer": "deezer://track/2598569102",
       "fun_fact": "A Mallorca / Ballermann party hit (2024).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
@@ -1588,7 +1588,7 @@
         "it": "applemusic://track/1689300309"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=utNEEh4ZZ-c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/288728239",
       "uri_deezer": "deezer://track/2234741697",
       "alt_artists": [
         "Carolina",
@@ -1618,7 +1618,7 @@
         "it": "applemusic://track/1657550119"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=68UkfvlN8sI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/241555656",
       "uri_deezer": "deezer://track/1853781297",
       "alt_artists": [
         "Anstandslos & Durchgeknallt"
@@ -1646,7 +1646,7 @@
         "it": "applemusic://track/1690151220"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RSEZpGE6yjU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/296994076",
       "uri_deezer": "deezer://track/2300967955",
       "fun_fact": "A Mallorca / Ballermann party hit (2023).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
@@ -1671,7 +1671,7 @@
         "it": "applemusic://track/1707114384"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2jQiOU3FUlE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/302482188",
       "uri_deezer": "deezer://track/2348742575",
       "alt_artists": [
         "Lorenz Büffel"
@@ -1699,7 +1699,7 @@
         "it": "applemusic://track/1714671090"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2pbtrF2prR8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/300781399",
       "uri_deezer": "deezer://track/2334669275",
       "fun_fact": "A Mallorca / Ballermann party hit (2023).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2023).",
@@ -1724,7 +1724,7 @@
         "it": "applemusic://track/1786346039"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JAKVQyIStFM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/236476831",
       "uri_deezer": "deezer://track/15038934",
       "fun_fact": "Die Flippers were one of Germany's most successful Schlager groups, active for over four decades.",
       "fun_fact_de": "Die Flippers waren eine der erfolgreichsten Schlagergruppen Deutschlands, über vier Jahrzehnte aktiv.",
@@ -1749,7 +1749,7 @@
         "it": "applemusic://track/1750465210"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CCvfuTxBhBI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999816",
       "uri_deezer": "deezer://track/2598567802",
       "alt_artists": [
         "Isi Glück"
@@ -1777,7 +1777,7 @@
         "it": "applemusic://track/1701684878"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FM2S_GrjB-Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/282317260",
       "uri_deezer": "deezer://track/2195325947",
       "alt_artists": [
         "Mia Julia"
@@ -1805,7 +1805,7 @@
         "it": "applemusic://track/1709413701"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DTIp_X6WGHo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/247491643",
       "uri_deezer": "deezer://track/1906465027",
       "alt_artists": [
         "Anstandslos & Durchgeknallt"
@@ -1833,7 +1833,7 @@
         "it": "applemusic://track/1734997522"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JQ0eDP0rcc8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/296555197",
       "uri_deezer": "deezer://track/2297987275",
       "alt_artists": [
         "Der Zipfelbube",
@@ -1862,7 +1862,7 @@
         "it": "applemusic://track/1687095080"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=84ut4GWagBM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/289154330",
       "uri_deezer": "deezer://track/2238200727",
       "alt_artists": [
         "Rumbombe",
@@ -1891,7 +1891,7 @@
         "it": "applemusic://track/1701685708"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PkZ7GUXWmMU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/294488588",
       "uri_deezer": "deezer://track/2280880877",
       "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
       "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
@@ -1916,7 +1916,7 @@
         "it": "applemusic://track/1699364895"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dlsQslj7NRc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/296581687",
       "uri_deezer": "deezer://track/2297761205",
       "alt_artists": [
         "Domy Berger"
@@ -1944,7 +1944,7 @@
         "it": "applemusic://track/1401292435"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ixyp4xni1ws",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92789293",
       "uri_deezer": "deezer://track/508848102",
       "fun_fact": "Isi Glück, a former Miss Germany, is one of the leading voices of the Mallorca party scene.",
       "fun_fact_de": "Isi Glück, ehemalige Miss Germany, ist eine der führenden Stimmen der Mallorca-Partyszene.",
