@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "anime",
     "japanese",
@@ -2258,7 +2258,7 @@
         "it": "applemusic://track/1639887721"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9cC8Q8RAEso",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/238790291",
       "uri_deezer": "deezer://track/1831943227",
       "fun_fact": "Theme of the cult OVA 'FLCL' (2000) by alt-rock band the pillows.",
       "fun_fact_de": "Titelsong des Kult-OVA 'FLCL' (2000) von der Alt-Rock-Band the pillows.",
@@ -2283,7 +2283,7 @@
         "it": "applemusic://track/1537515443"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=L1RG1YqWwuo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/145046629",
       "uri_deezer": "deezer://track/975971522",
       "fun_fact": "Opening 5 of 'Bleach' (2006) by YUI.",
       "fun_fact_de": "Opening 5 von 'Bleach' (2006) von YUI.",
@@ -2308,7 +2308,7 @@
         "it": "applemusic://track/1536363700"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=G3_8jgVceBs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/157608004",
       "uri_deezer": null,
       "fun_fact": "Opening 4 of 'Fullmetal Alchemist' (2004) by ASIAN KUNG-FU GENERATION.",
       "fun_fact_de": "Opening 4 von 'Fullmetal Alchemist' (2004) von ASIAN KUNG-FU GENERATION.",
