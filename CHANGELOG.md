@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **New community playlist: 100 Greatest Rock Songs** — a 100-track, six-decade rock compilation (#1828).
+
 ## [4.2.0-rc13] - 2026-07-14
 
 Pre-release — a UX fix plus a week of catalogue repairs on top of the Gameplay Tension cycle. This is the release-candidate for v4.2.0 "Mix & Match".
