@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "schlager",
     "party",
@@ -2463,7 +2463,7 @@
         "it": "applemusic://track/1701686164"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ef7K02HIdGA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/234777608",
       "uri_deezer": "deezer://track/1799764447",
       "alt_artists": [
         "Malle Anja",
@@ -2484,7 +2484,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=JGBUp35-ZqQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/246121474",
       "uri_deezer": null,
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -2509,7 +2509,7 @@
         "it": "applemusic://track/1638973767"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-Ntkbl4HyvE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/242399606",
       "uri_deezer": "deezer://track/1861024137",
       "alt_artists": [
         "Andy Luxx",
@@ -2538,7 +2538,7 @@
         "it": "applemusic://track/1724990223"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HUZfXJaWGnM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/233457205",
       "uri_deezer": "deezer://track/1789665297",
       "alt_artists": [
         "Der Zipfelbube",
@@ -2567,7 +2567,7 @@
         "it": "applemusic://track/1721340406"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5TV9_BTlZrs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999366",
       "uri_deezer": "deezer://track/2598567322",
       "fun_fact": "A Mallorca / Ballermann party hit (2024).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
@@ -2592,7 +2592,7 @@
         "it": "applemusic://track/1688069142"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5H78PJkYZ9w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/239090121",
       "uri_deezer": "deezer://track/1834442237",
       "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
       "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
@@ -2617,7 +2617,7 @@
         "it": "applemusic://track/1672129362"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ucw7_1UD884",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/186512583",
       "uri_deezer": "deezer://track/1394255372",
       "alt_artists": [
         "Mütze Katze"
@@ -2645,7 +2645,7 @@
         "it": "applemusic://track/1610640063"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3FoxrP3P8gk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/218186683",
       "uri_deezer": "deezer://track/1667190232",
       "fun_fact": "Julian Sommer is a new-generation Mallorca party star whose \"Dicht im Flieger\" was a huge 2022 hit.",
       "fun_fact_de": "Julian Sommer ist ein Mallorca-Partystar der neuen Generation; sein \"Dicht im Flieger\" war 2022 ein Riesenhit.",
@@ -2670,7 +2670,7 @@
         "it": "applemusic://track/1736653319"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=H9paxlC_RLk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/232094164",
       "uri_deezer": "deezer://track/1777525717",
       "alt_artists": [
         "Schürze"
@@ -2698,7 +2698,7 @@
         "it": "applemusic://track/1537955655"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RRt3z0jQ8fE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/160077095",
       "uri_deezer": "deezer://track/1342028782",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -2723,7 +2723,7 @@
         "it": "applemusic://track/1721339508"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ww5VZc40O90",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999088",
       "uri_deezer": "deezer://track/2598562402",
       "fun_fact": "A Mallorca / Ballermann party hit (2024).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
@@ -2748,7 +2748,7 @@
         "it": "applemusic://track/715645277"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LHTF9dUfw9c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2965823",
       "uri_deezer": "deezer://track/3164082",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -2773,7 +2773,7 @@
         "it": "applemusic://track/1565934569"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hlFxJhVisJI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/266249344",
       "uri_deezer": "deezer://track/2066569277",
       "alt_artists": [
         "Bierkapitän",
@@ -2802,7 +2802,7 @@
         "it": "applemusic://track/1316559619"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MTTf_Xy5YM0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86240029",
       "uri_deezer": "deezer://track/433037562",
       "alt_artists": [
         "Frenzy"
@@ -2830,7 +2830,7 @@
         "it": "applemusic://track/1487225623"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WzyYnKjWILo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111074381",
       "uri_deezer": "deezer://track/2598568972",
       "alt_artists": [
         "Deejay Matze"
@@ -2858,7 +2858,7 @@
         "it": "applemusic://track/1572266247"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=oztEyij_qDM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111353485",
       "uri_deezer": "deezer://track/2139771297",
       "alt_artists": [
         "Bierkapitän"
@@ -2886,7 +2886,7 @@
         "it": "applemusic://track/1718940251"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Im5cIDzpDuw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/60685588",
       "uri_deezer": "deezer://track/1993429497",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -2911,7 +2911,7 @@
         "it": "applemusic://track/1444398785"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=00W44I0ti-Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/42797955",
       "uri_deezer": "deezer://track/88278237",
       "fun_fact": "Brings is a Cologne band best known for the carnival anthem \"Superjeilezick\".",
       "fun_fact_de": "Brings ist eine Kölner Band, bekannt vor allem durch die Karnevalshymne \"Superjeilezick\".",
@@ -2936,7 +2936,7 @@
         "it": "applemusic://track/1597835130"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=y7kFC3h_gqQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2965824",
       "uri_deezer": "deezer://track/3164083",
       "alt_artists": [
         "Chriss Tuxi"
