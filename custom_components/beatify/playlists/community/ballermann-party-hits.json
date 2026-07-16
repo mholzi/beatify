@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "schlager",
     "party",
@@ -2964,7 +2964,7 @@
         "it": "applemusic://track/399592881"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Vsz3sp1Ja3M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20719830",
       "uri_deezer": "deezer://track/15319294",
       "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
       "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
@@ -2989,7 +2989,7 @@
         "it": "applemusic://track/892357475"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=J-MHp8z9Lx0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/39197057",
       "uri_deezer": "deezer://track/81030852",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -3014,7 +3014,7 @@
         "it": "applemusic://track/1005078029"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4EDnDjZoVso",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47116903",
       "uri_deezer": "deezer://track/102124192",
       "fun_fact": "A Mallorca / Ballermann party hit (2022).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
@@ -3031,7 +3031,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=ozegflGA8jM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336999603",
       "uri_deezer": null,
       "alt_artists": [
         "VFL Eschhofen",
@@ -3052,7 +3052,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=R1khp5lA6Cc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336998913",
       "uri_deezer": null,
       "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
       "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
