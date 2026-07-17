@@ -1,6 +1,6 @@
 {
-  "name": "100 Greatest Rock Songs 🎸",
-  "version": "0.1",
+  "name": "100 Greatest Rock Songs",
+  "version": "0.2",
   "tags": [
     "rock",
     "classic-rock",
@@ -13,7 +13,7 @@
   "language": "en",
   "author": "Community",
   "added_date": "2026-07-16",
-  "description": "A sweeping, six-decade tour of rock's biggest anthems — from The Kinks and Led Zeppelin through grunge, pop-punk and Y2K rock radio staples, all the way to today's genre-blurring rock newcomers.",
+  "description": "122 unique rock tracks spanning 1964–2026, acquired from all 123 entries of the requested Spotify source. One later duplicate recording of “Welcome To The Jungle” was removed while preserving source order.",
   "songs": [
     {
       "year": 2002,
@@ -25,8 +25,14 @@
         "Audioslave"
       ],
       "title": "Can't Stop",
-      "chart_info": {},
-      "certifications": [],
+      "chart_info": {
+        "billboard_peak": 57,
+        "uk_peak": 22,
+        "weeks_on_chart": 12
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ],
       "awards": [],
       "fun_fact": "John Frusciante's staccato intro riff on 'Can't Stop' is built around an unconventional finger-tapping technique borrowed from funk guitarists.",
       "fun_fact_de": "John Frusciantes Stakkato-Intro zu 'Can't Stop' nutzt eine Finger-Tapping-Technik, die er von Funk-Gitarristen übernommen hat.",
@@ -34,7 +40,7 @@
       "fun_fact_fr": "Le riff staccato de John Frusciante sur 'Can't Stop' repose sur une technique de tapping empruntée aux guitaristes funk.",
       "uri_apple_music": "applemusic://track/1694480491",
       "uri_youtube_music": "https://music.youtube.com/watch?v=D4INE2zO9OU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/304865",
       "uri_deezer": "deezer://track/725971",
       "fun_fact_nl": "John Frusciantes staccato-riff in 'Can't Stop' is gebaseerd op een tap-techniek geleend van funkgitaristen.",
       "awards_nl": [],
@@ -73,7 +79,7 @@
       "fun_fact_es": "Escrita para la película Ciudad de ángeles, Iris se convirtió en una de las canciones más escuchadas en la radio estadounidense sin llegar nunca al número 1 del Billboard Hot 100 — no era elegible para la lista en ese momento porque no se lanzó como sencillo comercial.",
       "uri_apple_music": "applemusic://track/1109658204",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NdYWuo9OFAw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1211254",
       "fun_fact_fr": "Écrite pour le film La Cité des anges, Iris est devenue l'une des chansons les plus diffusées de l'histoire de la radio américaine sans jamais atteindre la première place du Billboard Hot 100 — elle n'était alors pas éligible au classement car elle n'était pas sortie en single commercial.",
       "uri_deezer": "deezer://track/4290138",
       "fun_fact_nl": "Geschreven voor de film City of Angels, werd Iris een van de meest gedraaide nummers in de geschiedenis van de Amerikaanse radio zonder ooit de nummer 1 in de Billboard Hot 100 te bereiken — het nummer kwam destijds niet in aanmerking voor de lijst omdat het niet als commerciële single werd uitgebracht.",
@@ -81,7 +87,7 @@
       "isrc": "USWB19800160",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1109658204",
-        "de": null,
+        "de": "applemusic://track/1876962476",
         "gb": "applemusic://track/1109658204",
         "fr": "applemusic://track/1712307299",
         "es": "applemusic://track/267537169",
@@ -122,10 +128,10 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/785232521",
         "de": "applemusic://track/1451206494",
-        "gb": null,
+        "gb": "applemusic://track/1447244207",
         "fr": "applemusic://track/1533659669",
         "es": "applemusic://track/313029675",
-        "nl": null,
+        "nl": "applemusic://track/1447244207",
         "it": "applemusic://track/1533659669"
       }
     },
@@ -144,20 +150,30 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
-      "awards": [],
-      "awards_de": [],
-      "awards_es": [],
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2014)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2014)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2014)"
+      ],
       "fun_fact": "The lyrics echo Muddy Waters' 'You Need Love,' written by Willie Dixon — a similarity that led to a lawsuit decades later, after which Dixon was retroactively added as a co-writer.",
       "fun_fact_de": "Der Text erinnert stark an Muddy Waters' 'You Need Love', geschrieben von Willie Dixon – eine Ähnlichkeit, die Jahrzehnte später zu einer Klage führte, woraufhin Dixon nachträglich als Co-Autor genannt wurde.",
       "fun_fact_es": "La letra recuerda mucho a 'You Need Love' de Muddy Waters, escrita por Willie Dixon — una similitud que décadas después derivó en una demanda, tras la cual Dixon fue añadido retroactivamente como coautor.",
       "uri_apple_music": "applemusic://track/580708471",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HibBnC6SVk8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68705798",
       "fun_fact_fr": "Les paroles rappellent fortement 'You Need Love' de Muddy Waters, écrite par Willie Dixon — une ressemblance qui a mené des décennies plus tard à un procès, à l'issue duquel Dixon a été ajouté rétroactivement comme coauteur.",
       "uri_deezer": "deezer://track/78671026",
       "fun_fact_nl": "De tekst lijkt sterk op 'You Need Love' van Muddy Waters, geschreven door Willie Dixon — een gelijkenis die decennia later tot een rechtszaak leidde, waarna Dixon met terugwerkende kracht als medeauteur werd toegevoegd.",
-      "awards_nl": [],
+      "awards_nl": [
+        "Grammy Hall of Fame (2014)"
+      ],
       "isrc": "USAT21300925",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/580708471",
@@ -167,10 +183,13 @@
         "es": "applemusic://track/580708471",
         "nl": "applemusic://track/580708471",
         "it": "applemusic://track/836967297"
-      }
+      },
+      "awards_fr": [
+        "Grammy Hall of Fame (2014)"
+      ]
     },
     {
-      "year": 2024,
+      "year": 1972,
       "uri": "spotify:track:6A1qZSENVbwBTZSljp1viz",
       "artist": "David Bowie",
       "title": "Starman (Original Single Mix)",
@@ -188,25 +207,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Bowie's label pushed hard for a single from Ziggy Stardust, and Starman's Top of the Pops performance — Bowie draping his arm around guitarist Mick Ronson — became one of the defining images of glam rock on British television.",
-      "fun_fact_de": "Bowies Plattenfirma drängte auf eine Single aus Ziggy Stardust, und Starmans Auftritt bei Top of the Pops – bei dem Bowie seinen Arm um Gitarrist Mick Ronson legte – wurde zu einem der prägenden Bilder des Glam Rock im britischen Fernsehen.",
-      "fun_fact_es": "El sello de Bowie insistió en sacar un sencillo de Ziggy Stardust, y la actuación de Starman en Top of the Pops — con Bowie pasando el brazo sobre el guitarrista Mick Ronson — se convirtió en una de las imágenes definitorias del glam rock en la televisión británica.",
+      "fun_fact": "“Starman (Original Single Mix)” by David Bowie was originally released in 1972; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Starman (Original Single Mix)“ von David Bowie erschien ursprünglich 1972; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Starman (Original Single Mix)», de David Bowie, se publicó originalmente en 1972; el año se basa en datos de grabación y publicación contrastados.",
       "uri_apple_music": "applemusic://track/1736489254",
       "uri_youtube_music": "https://music.youtube.com/watch?v=t365MuktYQs",
       "uri_tidal": null,
-      "fun_fact_fr": "Le label de Bowie a fortement poussé pour tirer un single de Ziggy Stardust, et la prestation de Starman à Top of the Pops — où Bowie passe son bras autour du guitariste Mick Ronson — est devenue l'une des images fondatrices du glam rock à la télévision britannique.",
+      "fun_fact_fr": "« Starman (Original Single Mix) » de David Bowie est sorti à l’origine en 1972 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_deezer": "deezer://track/2173385477",
-      "fun_fact_nl": "Bowies platenlabel drong sterk aan op een single van Ziggy Stardust, en Starmans optreden bij Top of the Pops — waarbij Bowie zijn arm om gitarist Mick Ronson legt — werd een van de beeldbepalende momenten van glamrock op de Britse televisie.",
+      "fun_fact_nl": "“Starman (Original Single Mix)” van David Bowie verscheen oorspronkelijk in 1972; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
       "isrc": "USJT11000017",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1736489254",
         "de": "applemusic://track/926949997",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1736489254",
+        "fr": "applemusic://track/1736489254",
+        "es": "applemusic://track/1736489254",
+        "nl": "applemusic://track/1736489254",
+        "it": "applemusic://track/1736489254"
       }
     },
     {
@@ -224,8 +243,13 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
-      "awards": [],
+      "certifications": [
+        "2x Platinum (US)",
+        "Gold (UK)"
+      ],
+      "awards": [
+        "Grammy nomination"
+      ],
       "awards_de": [],
       "awards_es": [],
       "fun_fact": "Eddie Van Halen wrote Jump's synth riff at home on a four-track recorder. The rest of the band initially resisted releasing a keyboard-led single, worried it strayed too far from their guitar-driven identity.",
@@ -233,20 +257,22 @@
       "fun_fact_es": "Eddie Van Halen escribió el riff de sintetizador de Jump en casa con una grabadora de cuatro pistas. El resto de la banda se resistió al principio a lanzar un sencillo liderado por teclados, temiendo alejarse demasiado de su identidad guitarrera.",
       "uri_apple_music": "applemusic://track/976832495",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SwYN7mTi6HM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3268253",
       "fun_fact_fr": "Eddie Van Halen a écrit le riff de synthé de Jump chez lui sur un enregistreur quatre pistes. Le reste du groupe a d'abord résisté à l'idée de sortir un single porté par les claviers, craignant de s'éloigner trop de leur identité guitare.",
       "uri_deezer": "deezer://track/97098410",
       "fun_fact_nl": "Eddie Van Halen schreef de synthesizerriff van Jump thuis op een vierspoors-recorder. De rest van de band verzette zich aanvankelijk tegen een door keyboards geleide single, uit angst te ver af te wijken van hun gitaargedreven identiteit.",
-      "awards_nl": [],
+      "awards_nl": [
+        "Grammy-nominatie"
+      ],
       "isrc": "USWB11403680",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/976832495",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/977495501",
+        "gb": "applemusic://track/977495501",
+        "fr": "applemusic://track/977495501",
+        "es": "applemusic://track/977495501",
+        "nl": "applemusic://track/977495501",
+        "it": "applemusic://track/977495501"
       }
     },
     {
@@ -281,12 +307,12 @@
       "isrc": "GBAYE9600015",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1764544820",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/787069924",
+        "gb": "applemusic://track/787069924",
+        "fr": "applemusic://track/787069924",
+        "es": "applemusic://track/787069924",
+        "nl": "applemusic://track/787069924",
+        "it": "applemusic://track/787069924"
       }
     },
     {
@@ -333,7 +359,7 @@
       "year": 1997,
       "isrc": "USAT29600042",
       "uri": "spotify:track:2KVwlelhxKUy8LVV6JypH3",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1761838896",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1761838896",
         "de": "applemusic://track/1761838896",
@@ -350,7 +376,12 @@
       "fun_fact_de": "Matchbox Twenty sind eine amerikanische Rockband mit Frontmann Rob Thomas.",
       "fun_fact_es": "Matchbox Twenty es una banda de rock estadounidense liderada por Rob Thomas.",
       "fun_fact_fr": "Matchbox Twenty est un groupe de rock américain mené par Rob Thomas.",
-      "fun_fact_nl": "Matchbox Twenty is een Amerikaanse rockband met frontman Rob Thomas."
+      "fun_fact_nl": "Matchbox Twenty is een Amerikaanse rockband met frontman Rob Thomas.",
+      "alt_artists": [
+        "The Goo Goo Dolls",
+        "Sister Hazel",
+        "Lifehouse"
+      ]
     },
     {
       "year": 1973,
@@ -367,7 +398,9 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
+      "certifications": [
+        "Gold (US)"
+      ],
       "awards": [],
       "awards_de": [],
       "awards_es": [],
@@ -376,7 +409,7 @@
       "fun_fact_es": "La Grange está inspirada en el burdel real Chicken Ranch, cerca de La Grange, Texas — el mismo establecimiento que más tarde inspiró el musical The Best Little Whorehouse in Texas.",
       "uri_apple_music": "applemusic://track/1621071558",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rG6b8gjMEkw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/297952",
       "fun_fact_fr": "La Grange s'inspire du véritable bordel Chicken Ranch, près de La Grange, au Texas — le même établissement qui a plus tard inspiré la comédie musicale The Best Little Whorehouse in Texas.",
       "uri_deezer": "deezer://track/694980152",
       "fun_fact_nl": "La Grange is geïnspireerd op het echte bordeel Chicken Ranch bij La Grange, Texas — dezelfde instelling die later ook de musical The Best Little Whorehouse in Texas inspireerde.",
@@ -384,12 +417,12 @@
       "isrc": "USWB11901049",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1621071558",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1728078888",
+        "gb": "applemusic://track/1728078888",
+        "fr": "applemusic://track/1728078888",
+        "es": "applemusic://track/1728078888",
+        "nl": "applemusic://track/1728078888",
+        "it": "applemusic://track/1728078888"
       }
     },
     {
@@ -449,30 +482,48 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
-      "awards": [],
-      "awards_de": [],
-      "awards_es": [],
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [
+        "Grammy - Record of the Year (1978)",
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1978)",
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1978)",
+        "Salón de la Fama del Grammy (2003)"
+      ],
       "fun_fact": "The meaning of Hotel California has been debated for decades. Band members have described it less as a literal place and more as a metaphor for the excess of the Southern California music industry in the 1970s.",
       "fun_fact_de": "Die Bedeutung von Hotel California wird seit Jahrzehnten diskutiert. Bandmitglieder haben es weniger als konkreten Ort beschrieben, sondern eher als Metapher für den Exzess der südkalifornischen Musikindustrie der 1970er Jahre.",
       "fun_fact_es": "El significado de Hotel California se ha debatido durante décadas. Los miembros de la banda la han descrito menos como un lugar literal y más como una metáfora del exceso de la industria musical del sur de California en los años setenta.",
       "uri_apple_music": "applemusic://track/635770202",
       "uri_youtube_music": "https://music.youtube.com/watch?v=AIRikU5K1cQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20767339",
       "fun_fact_fr": "Le sens de Hotel California est débattu depuis des décennies. Les membres du groupe l'ont décrite non pas comme un lieu réel, mais plutôt comme une métaphore des excès de l'industrie musicale du sud de la Californie dans les années 1970.",
       "uri_deezer": "deezer://track/426703682",
       "fun_fact_nl": "De betekenis van Hotel California wordt al decennia bediscussieerd. Bandleden hebben het minder omschreven als een letterlijke plek en meer als een metafoor voor de overdaad van de muziekindustrie in Zuid-Californië in de jaren zeventig.",
-      "awards_nl": [],
+      "awards_nl": [
+        "Grammy – Opname van het Jaar (1978)",
+        "Grammy Hall of Fame (2003)"
+      ],
       "isrc": "USEE11300353",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/635770202",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      }
+        "de": "applemusic://track/635770202",
+        "gb": "applemusic://track/635770202",
+        "fr": "applemusic://track/635770202",
+        "es": "applemusic://track/635770202",
+        "nl": "applemusic://track/635770202",
+        "it": "applemusic://track/635770202"
+      },
+      "awards_fr": [
+        "Grammy - Enregistrement de l'année (1978)",
+        "Grammy Hall of Fame (2003)"
+      ]
     },
     {
       "artist": "America",
@@ -497,7 +548,12 @@
       "fun_fact_de": "Ein 70er-Klassiker (1972).",
       "fun_fact_es": "Un clásico de los 70 (1972).",
       "fun_fact_fr": "Un classique des années 70 (1972).",
-      "fun_fact_nl": "Een 70's-klassieker (1972)."
+      "fun_fact_nl": "Een 70's-klassieker (1972).",
+      "alt_artists": [
+        "Crosby, Stills & Nash",
+        "Eagles",
+        "Billy Joel"
+      ]
     },
     {
       "artist": "The Doors",
@@ -505,7 +561,7 @@
       "year": 1971,
       "isrc": "USEE19900773",
       "uri": "spotify:track:14XWXWv5FoCbFzLksawpEe",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/640047752",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1712860074",
         "de": "applemusic://track/1712860074",
@@ -522,7 +578,34 @@
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
       "fun_fact_es": "Un clásico de los 70 (1971).",
       "fun_fact_fr": "Un classique des années 70 (1971).",
-      "fun_fact_nl": "Een 70's-klassieker (1971)."
+      "fun_fact_nl": "Een 70's-klassieker (1971).",
+      "alt_artists": [
+        "Jefferson Airplane",
+        "The Velvet Underground",
+        "Love"
+      ],
+      "chart_info": {
+        "billboard_peak": 14,
+        "weeks_on_chart": 10
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_de": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_es": [
+        "Salón de la Fama del Grammy (2009)"
+      ],
+      "awards_fr": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_nl": [
+        "Grammy Hall of Fame (2009)"
+      ]
     },
     {
       "year": 1982,
@@ -556,12 +639,12 @@
       "isrc": "GBAYE9801382",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1716093337",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/979954060",
+        "gb": "applemusic://track/979954060",
+        "fr": "applemusic://track/979954060",
+        "es": "applemusic://track/979954060",
+        "nl": "applemusic://track/979954060",
+        "it": "applemusic://track/979954060"
       }
     },
     {
@@ -588,7 +671,7 @@
       "fun_fact_es": "Escrita principalmente por el baterista Tommy Ramone, el grito de 'Hey ho, let's go' de Blitzkrieg Bop se convirtió en una de las aperturas más reconocibles del punk rock y en un cántico de estadio mucho más allá del punk.",
       "uri_apple_music": "applemusic://track/1127410268",
       "uri_youtube_music": "https://music.youtube.com/watch?v=skdE0KAFCEA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68697205",
       "fun_fact_fr": "Écrit principalement par le batteur Tommy Ramone, le cri 'Hey ho, let's go' de Blitzkrieg Bop est devenu l'une des ouvertures les plus reconnaissables du punk rock et un chant de stade bien au-delà du seul public punk.",
       "uri_deezer": "deezer://track/131744724",
       "fun_fact_nl": "Vooral geschreven door drummer Tommy Ramone, werd de 'Hey ho, let's go'-kreet uit Blitzkrieg Bop een van de meest herkenbare openingen in de punkrock en een stadionkreet die ver buiten de punkscene bekend werd.",
@@ -596,12 +679,12 @@
       "isrc": "USRH11601901",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1127410268",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1127410268",
+        "gb": "applemusic://track/1127410268",
+        "fr": "applemusic://track/1127410268",
+        "es": "applemusic://track/1127410268",
+        "nl": "applemusic://track/1127410268",
+        "it": "applemusic://track/1127410268"
       }
     },
     {
@@ -636,12 +719,12 @@
       "isrc": "NLA322500071",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1805821602",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1805821602",
+        "gb": "applemusic://track/1805821602",
+        "fr": "applemusic://track/1805821602",
+        "es": "applemusic://track/1805821602",
+        "nl": "applemusic://track/1805821602",
+        "it": "applemusic://track/1805821602"
       }
     },
     {
@@ -697,29 +780,29 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Iron Man's lumbering riff was shaped by guitarist Tony Iommi's own workplace accident, which cost him two fingertips and led him to design prosthetic caps and downtune his guitar — inadvertently helping invent the sound of heavy metal.",
-      "fun_fact_de": "Das schwerfällige Riff von Iron Man wurde durch einen Arbeitsunfall von Gitarrist Tony Iommi geprägt, bei dem er zwei Fingerkuppen verlor und daraufhin Prothesenkappen entwarf und seine Gitarre tiefer stimmte – wodurch er unbeabsichtigt den Sound des Heavy Metal mitbegründete.",
-      "fun_fact_es": "El riff pesado de Iron Man se moldeó a partir de un accidente laboral del guitarrista Tony Iommi, que le hizo perder las puntas de dos dedos y lo llevó a diseñar prótesis y a afinar su guitarra más grave — ayudando sin querer a inventar el sonido del heavy metal.",
+      "fun_fact": "Tony Iommi played with prosthetic fingertip caps after a factory accident. Geezer Butler wrote the song's science-fiction lyrics after Ozzy Osbourne said the riff sounded like 'a big iron bloke.'",
+      "fun_fact_de": "Tony Iommi spielte nach einem Fabrikunfall mit prothetischen Fingerkuppen. Geezer Butler schrieb den Science-Fiction-Text, nachdem Ozzy Osbourne gesagt hatte, das Riff klinge wie „ein großer eiserner Kerl“.",
+      "fun_fact_es": "Tony Iommi tocaba con prótesis en las puntas de los dedos tras un accidente en una fábrica. Geezer Butler escribió la letra de ciencia ficción después de que Ozzy Osbourne dijera que el riff sonaba como «un gran tipo de hierro».",
       "uri_apple_music": "applemusic://track/787845531",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pOfBdvuky1s",
       "uri_tidal": null,
-      "fun_fact_fr": "Le riff pesant d'Iron Man a été façonné par l'accident du travail du guitariste Tony Iommi, qui lui a coûté le bout de deux doigts et l'a conduit à concevoir des embouts prothétiques et à accorder sa guitare plus bas — contribuant sans le vouloir à inventer le son du heavy metal.",
+      "fun_fact_fr": "Tony Iommi jouait avec des embouts de doigts prothétiques après un accident d'usine. Geezer Butler a écrit les paroles de science-fiction après qu'Ozzy Osbourne eut dit que le riff évoquait « un grand type en fer ».",
       "uri_deezer": "deezer://track/3788156072",
-      "fun_fact_nl": "De logge riff van Iron Man werd gevormd door een werkongeluk van gitarist Tony Iommi, waarbij hij de topjes van twee vingers verloor. Dit zette hem aan tot het ontwerpen van kunstvingertoppen en het lager stemmen van zijn gitaar — waarmee hij onbedoeld mee het geluid van heavy metal uitvond.",
+      "fun_fact_nl": "Tony Iommi speelde na een fabrieksongeluk met prothetische vingertoppen. Geezer Butler schreef de sciencefictiontekst nadat Ozzy Osbourne zei dat de riff klonk als 'een grote ijzeren kerel'.",
       "awards_nl": [],
       "isrc": "GBAJE7000085",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/787845531",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1452843406",
+        "gb": "applemusic://track/1452843406",
+        "fr": "applemusic://track/1452843406",
+        "es": "applemusic://track/1452843406",
+        "nl": "applemusic://track/1452843406",
+        "it": "applemusic://track/1452843406"
       }
     },
     {
-      "year": 2005,
+      "year": 2003,
       "uri": "spotify:track:756CJtQRFSxEx9jV4P9hpA",
       "artist": "The Darkness",
       "alt_artists": [
@@ -731,15 +814,15 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "fun_fact": "Justin Hawkins recorded the falsetto vocals on 'I Believe in a Thing Called Love' as a single take — the band wanted a '70s glam-rock revival single.",
-      "fun_fact_de": "Justin Hawkins sang das Falsett von 'I Believe in a Thing Called Love' in einem Take — die Band wollte eine 70er-Glam-Rock-Revival-Single.",
-      "fun_fact_es": "Justin Hawkins grabó el falsete de 'I Believe in a Thing Called Love' en una sola toma — la banda buscaba un revival del glam rock setentero.",
-      "fun_fact_fr": "Justin Hawkins a enregistré le falsetto de 'I Believe in a Thing Called Love' en une seule prise — le groupe voulait un single glam-rock 70s.",
+      "fun_fact": "“I Believe in a Thing Called Love” by The Darkness was originally released in 2003; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„I Believe in a Thing Called Love“ von The Darkness erschien ursprünglich 2003; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«I Believe in a Thing Called Love», de The Darkness, se publicó originalmente en 2003; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« I Believe in a Thing Called Love » de The Darkness est sorti à l’origine en 2003 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_apple_music": "applemusic://track/1694366726",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZbxkV9vCZuU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/822750",
-      "fun_fact_nl": "Justin Hawkins nam de falset van 'I Believe in a Thing Called Love' in één take op — de band wilde een jaren-'70 glamrock-revivalsingle.",
+      "fun_fact_nl": "“I Believe in a Thing Called Love” van The Darkness verscheen oorspronkelijk in 2003; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
       "isrc": "GBAHS0300702",
       "uri_apple_music_by_region": {
@@ -771,25 +854,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Epic's music video ends with a fish flopping on top of a grand piano — an unscripted moment the band kept in the final cut, which became almost as famous as the song itself.",
-      "fun_fact_de": "Das Musikvideo zu Epic endet mit einem Fisch, der auf einem Flügel zappelt – ein ungeplanter Moment, den die Band im finalen Schnitt beließ und der fast so berühmt wurde wie der Song selbst.",
-      "fun_fact_es": "El videoclip de Epic termina con un pez agitándose sobre un piano de cola — un momento no planeado que la banda decidió conservar en el montaje final y que se hizo casi tan famoso como la propia canción.",
+      "fun_fact": "The video ends with a fish flopping beside the piano. Director Ralph Ziman later said that several fish were used during filming and released afterward.",
+      "fun_fact_de": "Das Video endet mit einem neben dem Klavier zappelnden Fisch. Regisseur Ralph Ziman sagte später, dass beim Dreh mehrere Fische eingesetzt und danach wieder freigelassen wurden.",
+      "fun_fact_es": "El vídeo termina con un pez agitándose junto al piano. El director Ralph Ziman contó después que durante el rodaje se utilizaron varios peces y que luego fueron liberados.",
       "uri_apple_music": "applemusic://track/83385347",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WkqPVMKsN20",
       "uri_tidal": null,
-      "fun_fact_fr": "Le clip d'Epic se termine sur un poisson qui se débat sur un piano à queue — un moment non prévu que le groupe a choisi de garder au montage final et qui est devenu presque aussi célèbre que la chanson elle-même.",
+      "fun_fact_fr": "Le clip se termine par un poisson qui se débat près du piano. Le réalisateur Ralph Ziman a expliqué plus tard que plusieurs poissons avaient été utilisés pendant le tournage puis relâchés.",
       "uri_deezer": "deezer://track/3590156",
-      "fun_fact_nl": "De videoclip van Epic eindigt met een vis die op een vleugel ligt te spartelen — een ongeplande scène die de band in de definitieve montage liet staan en die bijna net zo beroemd werd als het nummer zelf.",
+      "fun_fact_nl": "De video eindigt met een vis die naast de piano spartelt. Regisseur Ralph Ziman zei later dat tijdens de opnamen meerdere vissen werden gebruikt en daarna weer vrijgelaten.",
       "awards_nl": [],
       "isrc": "GBANC8900003",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/83385347",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/83385347",
+        "gb": "applemusic://track/83385347",
+        "fr": "applemusic://track/83385347",
+        "es": "applemusic://track/83385347",
+        "nl": "applemusic://track/83385347",
+        "it": "applemusic://track/83385347"
       }
     },
     {
@@ -848,13 +931,20 @@
       "uri": "spotify:track:2nLtzopw4rPReszdYBJU6h",
       "artist": "Linkin Park",
       "alt_artists": [
-        "Linkin Park",
+        "Papa Roach",
         "Three Days Grace",
         "Breaking Benjamin"
       ],
       "title": "Numb",
-      "chart_info": {},
-      "certifications": [],
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": 14,
+        "weeks_on_chart": 20
+      },
+      "certifications": [
+        "6x Platinum (US)",
+        "Gold (UK)"
+      ],
       "awards": [],
       "fun_fact": "'Numb' was the final single from 'Meteora' and would later be mashed up with Jay-Z's 'Encore' to win a Grammy in 2006.",
       "fun_fact_de": "'Numb' war die letzte Single von 'Meteora' und gewann später als Mashup mit Jay-Zs 'Encore' 2006 einen Grammy.",
@@ -862,7 +952,7 @@
       "fun_fact_fr": "'Numb' fut le dernier single de 'Meteora' et a remporté un Grammy en 2006 dans son mashup avec 'Encore' de Jay-Z.",
       "uri_apple_music": "applemusic://track/1794724432",
       "uri_youtube_music": "https://music.youtube.com/watch?v=5qZQEq_C3vc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/234806",
       "uri_deezer": "deezer://track/677232",
       "fun_fact_nl": "'Numb' was de laatste single van 'Meteora' en won later in 2006 een Grammy als mash-up met Jay-Z's 'Encore'.",
       "awards_nl": [],
@@ -931,7 +1021,7 @@
       }
     },
     {
-      "year": 2004,
+      "year": 1999,
       "uri": "spotify:track:1G391cbiT3v3Cywg8T7DM1",
       "artist": "Red Hot Chili Peppers",
       "alt_artists": [
@@ -943,15 +1033,15 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "fun_fact": "'Scar Tissue' marked John Frusciante's return after his heroin recovery — Anthony Kiedis wrote it as a song of survival.",
-      "fun_fact_de": "'Scar Tissue' markierte John Frusciantes Rückkehr nach Heroin-Entzug — Anthony Kiedis schrieb ihn als Lied des Überlebens.",
-      "fun_fact_es": "'Scar Tissue' marcó el regreso de John Frusciante tras su rehabilitación de la heroína — Anthony Kiedis la escribió como un himno de supervivencia.",
-      "fun_fact_fr": "'Scar Tissue' a marqué le retour de John Frusciante après sa cure de désintoxication — Anthony Kiedis l'a écrite comme une chanson de survie.",
+      "fun_fact": "“Scar Tissue” by Red Hot Chili Peppers was originally released in 1999; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Scar Tissue“ von Red Hot Chili Peppers erschien ursprünglich 1999; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Scar Tissue», de Red Hot Chili Peppers, se publicó originalmente en 1999; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Scar Tissue » de Red Hot Chili Peppers est sorti à l’origine en 1999 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_apple_music": "applemusic://track/1752094881",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tpYdGgzCW-M",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/725254",
-      "fun_fact_nl": "'Scar Tissue' markeerde John Frusciantes terugkeer na zijn heroïneafkick — Anthony Kiedis schreef het als overlevingslied.",
+      "fun_fact_nl": "“Scar Tissue” van Red Hot Chili Peppers verscheen oorspronkelijk in 1999; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
       "isrc": "USWB19900674",
       "uri_apple_music_by_region": {
@@ -1104,12 +1194,12 @@
       "isrc": "USWB10001877",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1545712784",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1755142248",
+        "gb": "applemusic://track/1755142248",
+        "fr": "applemusic://track/1755142248",
+        "es": "applemusic://track/1755142248",
+        "nl": "applemusic://track/1755142248",
+        "it": "applemusic://track/1755142248"
       }
     },
     {
@@ -1118,7 +1208,7 @@
       "year": 1970,
       "isrc": "USAT21300934",
       "uri": "spotify:track:78lgmZwycJ3nzsdgmPPGNx",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/580708280",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1714802067",
         "de": "applemusic://track/1600098678",
@@ -1135,7 +1225,18 @@
       "fun_fact_de": "Led Zeppelin waren eine britische Band, die den Sound des Hard Rock prägte.",
       "fun_fact_es": "Led Zeppelin fue una banda británica que definió el sonido del hard rock.",
       "fun_fact_fr": "Led Zeppelin était un groupe britannique qui a façonné le son du hard rock.",
-      "fun_fact_nl": "Led Zeppelin was een Britse band die het geluid van hardrock vormgaf."
+      "fun_fact_nl": "Led Zeppelin was een Britse band die het geluid van hardrock vormgaf.",
+      "alt_artists": [
+        "Black Sabbath",
+        "Deep Purple"
+      ],
+      "chart_info": {
+        "billboard_peak": 16,
+        "weeks_on_chart": 8
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ]
     },
     {
       "year": 1996,
@@ -1169,12 +1270,12 @@
       "isrc": "NZSQ11500016",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1547435099",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1547435099",
+        "gb": "applemusic://track/1547435099",
+        "fr": "applemusic://track/1547435099",
+        "es": "applemusic://track/1547435099",
+        "nl": "applemusic://track/1547435099",
+        "it": "applemusic://track/1547435099"
       }
     },
     {
@@ -1196,11 +1297,16 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=m2zUrruKjDQ",
       "uri_tidal": "tidal://track/23273347",
       "uri_deezer": "deezer://track/953097",
-      "fun_fact": "A chart hit by The Killers (2007).",
-      "fun_fact_de": "Ein Chart-Hit von The Killers (2007).",
-      "fun_fact_es": "Un éxito de The Killers (2007).",
-      "fun_fact_fr": "Un tube de The Killers (2007).",
-      "fun_fact_nl": "Een chart-hit van The Killers (2007)."
+      "fun_fact": "Released as the Killers' debut single in 2003 and re-released in 2004, 'Mr. Brightside' reached number 10 in both the US and the UK.",
+      "fun_fact_de": "„Mr. Brightside“ erschien 2003 als Debütsingle der Killers und wurde 2004 erneut veröffentlicht; der Song erreichte Platz 10 in den USA und im Vereinigten Königreich.",
+      "fun_fact_es": "Publicado como sencillo debut de The Killers en 2003 y relanzado en 2004, «Mr. Brightside» llegó al número 10 tanto en Estados Unidos como en el Reino Unido.",
+      "fun_fact_fr": "Sorti comme premier single des Killers en 2003 puis réédité en 2004, « Mr. Brightside » a atteint la 10e place aux États-Unis et au Royaume-Uni.",
+      "fun_fact_nl": "'Mr. Brightside' verscheen in 2003 als debuutsingle van The Killers en werd in 2004 opnieuw uitgebracht; het nummer bereikte plaats 10 in zowel de VS als het VK.",
+      "alt_artists": [
+        "Kings of Leon",
+        "Stereophonics",
+        "Weezer"
+      ]
     },
     {
       "year": 2011,
@@ -1234,12 +1340,12 @@
       "isrc": "USNO11100273",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1052966684",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/474616637",
+        "gb": "applemusic://track/474616637",
+        "fr": "applemusic://track/1052966684",
+        "es": "applemusic://track/474616637",
+        "nl": "applemusic://track/474616637",
+        "it": "applemusic://track/474616637"
       }
     },
     {
@@ -1265,7 +1371,20 @@
       "fun_fact_de": "Die Eagles zählen zu den meistverkauften amerikanischen Rockbands aller Zeiten.",
       "fun_fact_es": "Eagles es una de las bandas de rock estadounidenses más vendidas de la historia.",
       "fun_fact_fr": "Les Eagles comptent parmi les groupes de rock américains les plus vendus de tous les temps.",
-      "fun_fact_nl": "The Eagles is een van de best verkochte Amerikaanse rockbands aller tijden."
+      "fun_fact_nl": "The Eagles is een van de best verkochte Amerikaanse rockbands aller tijden.",
+      "alt_artists": [
+        "Fleetwood Mac",
+        "The Doobie Brothers",
+        "Crosby Stills & Nash"
+      ],
+      "chart_info": {
+        "billboard_peak": 12,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "2x Platinum (US)"
+      ]
     },
     {
       "year": 1975,
@@ -1286,25 +1405,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Written by Paul Rodgers and Mick Ralphs, Feel Like Makin' Love became a classic rock radio staple that outlived its relatively modest original chart performance outside the US.",
-      "fun_fact_de": "Geschrieben von Paul Rodgers und Mick Ralphs, wurde Feel Like Makin' Love zu einem festen Bestandteil des Classic-Rock-Radios, obwohl der ursprüngliche Charterfolg außerhalb der USA eher bescheiden war.",
-      "fun_fact_es": "Escrita por Paul Rodgers y Mick Ralphs, Feel Like Makin' Love se convirtió en un clásico habitual de la radio de rock clásico, pese a un rendimiento comercial original bastante modesto fuera de Estados Unidos.",
+      "fun_fact": "Written by Paul Rodgers and Mick Ralphs, the song reached number 10 in the US, number 5 in Canada, number 2 in New Zealand and number 20 in the UK.",
+      "fun_fact_de": "Der von Paul Rodgers und Mick Ralphs geschriebene Song erreichte Platz 10 in den USA, Platz 5 in Kanada, Platz 2 in Neuseeland und Platz 20 im Vereinigten Königreich.",
+      "fun_fact_es": "Escrita por Paul Rodgers y Mick Ralphs, la canción alcanzó el número 10 en Estados Unidos, el 5 en Canadá, el 2 en Nueva Zelanda y el 20 en el Reino Unido.",
       "uri_apple_music": "applemusic://track/968637158",
       "uri_youtube_music": "https://music.youtube.com/watch?v=OEPvv9pjIoQ",
       "uri_tidal": null,
-      "fun_fact_fr": "Écrite par Paul Rodgers et Mick Ralphs, Feel Like Makin' Love est devenue un classique incontournable des radios rock classique, malgré des débuts commerciaux plutôt modestes en dehors des États-Unis.",
+      "fun_fact_fr": "Écrite par Paul Rodgers et Mick Ralphs, la chanson a atteint la 10e place aux États-Unis, la 5e au Canada, la 2e en Nouvelle-Zélande et la 20e au Royaume-Uni.",
       "uri_deezer": "deezer://track/97640852",
-      "fun_fact_nl": "Geschreven door Paul Rodgers en Mick Ralphs, werd Feel Like Makin' Love een vaste waarde op classic-rockradio, ondanks een relatief bescheiden oorspronkelijk chartsucces buiten de Verenigde Staten.",
+      "fun_fact_nl": "Het door Paul Rodgers en Mick Ralphs geschreven nummer bereikte plaats 10 in de VS, 5 in Canada, 2 in Nieuw-Zeeland en 20 in het VK.",
       "awards_nl": [],
       "isrc": "USAT21405193",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/968637158",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1038338052",
+        "gb": "applemusic://track/1038338052",
+        "fr": "applemusic://track/1038338052",
+        "es": "applemusic://track/1038338052",
+        "nl": "applemusic://track/1038338052",
+        "it": "applemusic://track/1038338052"
       }
     },
     {
@@ -1379,21 +1498,21 @@
       "isrc": "USWB11700470",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1229320478",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/322848569",
+        "gb": "applemusic://track/1746833484",
+        "fr": "applemusic://track/322848569",
+        "es": "applemusic://track/1746833484",
+        "nl": "applemusic://track/1746833484",
+        "it": "applemusic://track/1746833484"
       }
     },
     {
       "artist": "Matchbox Twenty",
       "title": "3AM",
-      "year": 2000,
+      "year": 1997,
       "isrc": "USAT29600038",
       "uri": "spotify:track:5vYA1mW9g2Coh1HUFUSmlb",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1794125837",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1794125837",
         "de": "applemusic://track/1794125837",
@@ -1406,11 +1525,16 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=hH4wcNRj9PI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/72189643",
-      "fun_fact": "Matchbox Twenty are an American rock band fronted by Rob Thomas.",
-      "fun_fact_de": "Matchbox Twenty sind eine amerikanische Rockband mit Frontmann Rob Thomas.",
-      "fun_fact_es": "Matchbox Twenty es una banda de rock estadounidense liderada por Rob Thomas.",
-      "fun_fact_fr": "Matchbox Twenty est un groupe de rock américain mené par Rob Thomas.",
-      "fun_fact_nl": "Matchbox Twenty is een Amerikaanse rockband met frontman Rob Thomas."
+      "fun_fact": "“3AM” by Matchbox Twenty was originally released in 1997; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„3AM“ von Matchbox Twenty erschien ursprünglich 1997; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«3AM», de Matchbox Twenty, se publicó originalmente en 1997; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« 3AM » de Matchbox Twenty est sorti à l’origine en 1997 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“3AM” van Matchbox Twenty verscheen oorspronkelijk in 1997; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "alt_artists": [
+        "The Goo Goo Dolls",
+        "Sister Hazel",
+        "Lifehouse"
+      ]
     },
     {
       "year": 1971,
@@ -1431,25 +1555,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Never released as a single, Stairway to Heaven nonetheless became the most requested song in US FM radio history and one of the most scrutinized lyrics in rock.",
-      "fun_fact_de": "Nie als Single veröffentlicht, wurde Stairway to Heaven trotzdem zum meistgewünschten Song in der Geschichte des US-UKW-Radios und zu einem der meistanalysierten Texte des Rock.",
-      "fun_fact_es": "Nunca se lanzó como sencillo, pero Stairway to Heaven se convirtió igualmente en la canción más solicitada en la historia de la radio FM estadounidense y en una de las letras más analizadas del rock.",
+      "fun_fact": "Although it was not commercially released as a US single, 'Stairway to Heaven' became one of the most requested songs on American FM radio.",
+      "fun_fact_de": "Obwohl „Stairway to Heaven“ in den USA nicht als kommerzielle Single erschien, wurde der Song zu einem der meistgewünschten Titel im amerikanischen FM-Radio.",
+      "fun_fact_es": "Aunque no se publicó comercialmente como sencillo en Estados Unidos, «Stairway to Heaven» se convirtió en una de las canciones más solicitadas de la radio FM estadounidense.",
       "uri_apple_music": "applemusic://track/580708180",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QkF3oxziUI4",
       "uri_tidal": null,
-      "fun_fact_fr": "Jamais sortie en single, Stairway to Heaven est pourtant devenue la chanson la plus demandée de l'histoire de la radio FM américaine et l'un des textes de rock les plus décortiqués.",
+      "fun_fact_fr": "Bien qu'il ne soit pas sorti commercialement en single aux États-Unis, « Stairway to Heaven » est devenu l'un des titres les plus demandés sur les radios FM américaines.",
       "uri_deezer": "deezer://track/88003859",
-      "fun_fact_nl": "Stairway to Heaven werd nooit als single uitgebracht, maar werd desondanks het meest aangevraagde nummer in de geschiedenis van de Amerikaanse fm-radio en een van de meest geanalyseerde teksten in de rockmuziek.",
+      "fun_fact_nl": "Hoewel 'Stairway to Heaven' in de VS niet commercieel als single werd uitgebracht, werd het een van de meest aangevraagde nummers op de Amerikaanse FM-radio.",
       "awards_nl": [],
       "isrc": "USAT21300959",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/580708180",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/580708180",
+        "gb": "applemusic://track/580708180",
+        "fr": "applemusic://track/580708180",
+        "es": "applemusic://track/902620521",
+        "nl": "applemusic://track/902620521",
+        "it": "applemusic://track/902620521"
       }
     },
     {
@@ -1475,7 +1599,12 @@
       "fun_fact_de": "Fleetwood Mac wurden in der 'Rumours'-Ära zu einer der prägenden Bands der 70er.",
       "fun_fact_es": "Fleetwood Mac, en su era 'Rumours', fue una de las bandas que definieron los 70.",
       "fun_fact_fr": "Fleetwood Mac, à l'époque de « Rumours », fut l'un des groupes phares des années 70.",
-      "fun_fact_nl": "Fleetwood Mac werd in het 'Rumours'-tijdperk een van de bepalende bands van de jaren 70."
+      "fun_fact_nl": "Fleetwood Mac werd in het 'Rumours'-tijdperk een van de bepalende bands van de jaren 70.",
+      "alt_artists": [
+        "The Rolling Stones",
+        "Eric Clapton",
+        "David Bowie"
+      ]
     },
     {
       "year": 1977,
@@ -1492,7 +1621,9 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
+      "certifications": [
+        "Silver (UK)"
+      ],
       "awards": [],
       "awards_de": [],
       "awards_es": [],
@@ -1501,7 +1632,7 @@
       "fun_fact_es": "Bowie se inspiró al ver a su productor Tony Visconti abrazando a una mujer cerca del Muro de Berlín, junto al estudio. El título aparece deliberadamente entre comillas para señalar que el 'heroísmo' descrito es fugaz e irónico.",
       "uri_apple_music": "applemusic://track/1347894092",
       "uri_youtube_music": "https://music.youtube.com/watch?v=44FId4BpMx0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/482738028",
       "fun_fact_fr": "Bowie s'est inspiré en voyant son producteur Tony Visconti enlacer une femme près du mur de Berlin, à proximité du studio. Le titre est volontairement mis entre guillemets pour signaler que l'« héroïsme » décrit est fugace et ironique.",
       "uri_deezer": "deezer://track/3098519",
       "fun_fact_nl": "Bowie raakte geïnspireerd toen hij zag hoe zijn producer Tony Visconti bij de Berlijnse Muur, vlak bij de studio, een vrouw omhelsde. De titel staat bewust tussen aanhalingstekens om aan te geven dat het beschreven 'heldendom' vluchtig en ironisch bedoeld is.",
@@ -1509,12 +1640,12 @@
       "isrc": "GBCEG8100001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1347894092",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1862239887",
+        "gb": "applemusic://track/1862239887",
+        "fr": "applemusic://track/1862239887",
+        "es": "applemusic://track/1862239887",
+        "nl": "applemusic://track/1862239887",
+        "it": "applemusic://track/1862239887"
       }
     },
     {
@@ -1527,8 +1658,13 @@
         "Pearl Jam"
       ],
       "title": "Under the Bridge",
-      "chart_info": {},
-      "certifications": [],
+      "chart_info": {
+        "billboard_peak": 2,
+        "weeks_on_chart": 26
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
       "fun_fact": "Anthony Kiedis wrote 'Under the Bridge' as a confessional poem about heroin loneliness — he didn't want the band to hear it.",
       "fun_fact_de": "Anthony Kiedis schrieb 'Under the Bridge' als bekenntnishaftes Gedicht über Heroin-Einsamkeit — er wollte es der Band nicht zeigen.",
@@ -1536,7 +1672,7 @@
       "fun_fact_fr": "Anthony Kiedis a écrit 'Under the Bridge' comme un poème confessionnel sur la solitude de l'héroïne — il ne voulait pas le montrer au groupe.",
       "uri_apple_music": "applemusic://track/1695857145",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4UnU3r0M3zg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/304849",
       "uri_deezer": "deezer://track/785176",
       "fun_fact_nl": "Anthony Kiedis schreef 'Under the Bridge' als bekentenisgedicht over heroïne-eenzaamheid — hij wilde het de band niet laten horen.",
       "awards_nl": [],
@@ -1583,12 +1719,12 @@
       "isrc": "USMC19959123",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440840510",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440840510",
+        "gb": "applemusic://track/1440840510",
+        "fr": "applemusic://track/1440840510",
+        "es": "applemusic://track/1440840510",
+        "nl": "applemusic://track/1440840510",
+        "it": "applemusic://track/1440840510"
       }
     },
     {
@@ -1634,7 +1770,7 @@
       }
     },
     {
-      "year": 2003,
+      "year": 1994,
       "uri": "spotify:track:6L89mwZXSOwYl76YXfX13s",
       "artist": "Green Day",
       "alt_artists": [
@@ -1643,18 +1779,23 @@
         "Sum 41"
       ],
       "title": "Basket Case",
-      "chart_info": {},
-      "certifications": [],
+      "chart_info": {
+        "billboard_peak": 0,
+        "weeks_on_chart": 0
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
       "awards": [],
-      "fun_fact": "Billie Joe Armstrong wrote 'Basket Case' about his panic attacks before being diagnosed with anxiety disorder.",
-      "fun_fact_de": "Billie Joe Armstrong schrieb 'Basket Case' über seine Panikattacken vor der Diagnose einer Angststörung.",
-      "fun_fact_es": "Billie Joe Armstrong escribió 'Basket Case' sobre sus ataques de pánico antes de ser diagnosticado con trastorno de ansiedad.",
-      "fun_fact_fr": "Billie Joe Armstrong a écrit 'Basket Case' sur ses crises de panique avant son diagnostic de trouble anxieux.",
+      "fun_fact": "“Basket Case” by Green Day was originally released in 1994; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Basket Case“ von Green Day erschien ursprünglich 1994; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Basket Case», de Green Day, se publicó originalmente en 1994; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Basket Case » de Green Day est sorti à l’origine en 1994 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_apple_music": "applemusic://track/1795704696",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gS86jipcKzw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/225476",
       "uri_deezer": "deezer://track/678044",
-      "fun_fact_nl": "Billie Joe Armstrong schreef 'Basket Case' over zijn paniekaanvallen vóór de diagnose angststoornis.",
+      "fun_fact_nl": "“Basket Case” van Green Day verscheen oorspronkelijk in 1994; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
       "isrc": "USRE19900151",
       "uri_apple_music_by_region": {
@@ -1668,7 +1809,7 @@
       }
     },
     {
-      "year": 2003,
+      "year": 2001,
       "uri": "spotify:track:02tuq9VGMAQpYYp70z2fBI",
       "artist": "Lash",
       "title": "Take Me Away (from Freaky Friday)",
@@ -1686,25 +1827,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Take Me Away was written for the 2003 Disney film Freaky Friday, giving the Canadian band Lash one of their most widely heard songs internationally.",
-      "fun_fact_de": "Take Me Away wurde für den Disney-Film Freaky Friday aus dem Jahr 2003 geschrieben und wurde damit einer der international meistgehörten Songs der kanadischen Band Lash.",
-      "fun_fact_es": "Take Me Away se escribió para la película de Disney Viernes de locos (2003), convirtiéndose en una de las canciones más escuchadas internacionalmente de la banda canadiense Lash.",
+      "fun_fact": "'Take Me Away' was released in 2001 as the debut single by Australian band Lash. Christina Vidal later covered it for the 2003 film Freaky Friday; Lash contributed 'Beauty Queen' to the soundtrack.",
+      "fun_fact_de": "„Take Me Away“ erschien 2001 als Debütsingle der australischen Band Lash. Christina Vidal coverte den Song später für den Film Freaky Friday von 2003; Lash steuerte „Beauty Queen“ zum Soundtrack bei.",
+      "fun_fact_es": "«Take Me Away» se publicó en 2001 como sencillo debut de la banda australiana Lash. Christina Vidal la versionó después para la película Freaky Friday de 2003; Lash aportó «Beauty Queen» a la banda sonora.",
       "uri_apple_music": "applemusic://track/213729609",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LZdoN6HHcaE",
       "uri_tidal": null,
-      "fun_fact_fr": "Take Me Away a été écrite pour le film Disney Freaky Friday (2003), devenant l'une des chansons les plus entendues à l'international du groupe canadien Lash.",
+      "fun_fact_fr": "« Take Me Away » est sorti en 2001 comme premier single du groupe australien Lash. Christina Vidal l'a ensuite repris pour le film Freaky Friday de 2003 ; Lash a contribué « Beauty Queen » à la bande originale.",
       "uri_deezer": "deezer://track/14620565",
-      "fun_fact_nl": "Take Me Away werd geschreven voor de Disney-film Freaky Friday uit 2003 en werd daarmee een van de internationaal meest gehoorde nummers van de Canadese band Lash.",
+      "fun_fact_nl": "'Take Me Away' verscheen in 2001 als debuutsingle van de Australische band Lash. Christina Vidal coverde het later voor de film Freaky Friday uit 2003; Lash leverde 'Beauty Queen' aan de soundtrack.",
       "awards_nl": [],
       "isrc": "AUMU00000652",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/213729609",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/213729609",
+        "gb": "applemusic://track/213729609",
+        "fr": "applemusic://track/213729609",
+        "es": "applemusic://track/213729609",
+        "nl": "applemusic://track/213729609",
+        "it": "applemusic://track/213729609"
       }
     },
     {
@@ -1722,8 +1863,12 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
-      "awards": [],
+      "certifications": [
+        "RIAA Gold"
+      ],
+      "awards": [
+        "Grammy Hall of Fame"
+      ],
       "awards_de": [],
       "awards_es": [],
       "fun_fact": "Smoke on the Water documents a real event: a fire that broke out during a Frank Zappa concert at the Montreux Casino in Switzerland, started by someone firing a flare gun into the ceiling.",
@@ -1731,20 +1876,22 @@
       "fun_fact_es": "Smoke on the Water relata un hecho real: un incendio que se produjo durante un concierto de Frank Zappa en el Casino de Montreux, en Suiza, provocado por alguien que disparó una bengala hacia el techo.",
       "uri_apple_music": "applemusic://track/1099335223",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Q2FzZSBD5LE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4085643",
       "fun_fact_fr": "Smoke on the Water raconte un événement réel : un incendie déclenché pendant un concert de Frank Zappa au Casino de Montreux, en Suisse, provoqué par une fusée de détresse tirée vers le plafond.",
       "uri_deezer": "deezer://track/60840057",
       "fun_fact_nl": "Smoke on the Water beschrijft een echte gebeurtenis: een brand die uitbrak tijdens een concert van Frank Zappa in het Casino van Montreux in Zwitserland, veroorzaakt doordat iemand een lichtkogel het plafond in schoot.",
-      "awards_nl": [],
+      "awards_nl": [
+        "Grammy Hall of Fame"
+      ],
       "isrc": "GBDXG1200006",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1099335223",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440787908",
+        "gb": "applemusic://track/1440787908",
+        "fr": "applemusic://track/1440787908",
+        "es": "applemusic://track/1440787908",
+        "nl": "applemusic://track/1440787908",
+        "it": "applemusic://track/1440787908"
       }
     },
     {
@@ -1796,7 +1943,10 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
+      "certifications": [
+        "Platinum (US)",
+        "Gold (UK)"
+      ],
       "awards": [],
       "awards_de": [],
       "awards_es": [],
@@ -1805,7 +1955,7 @@
       "fun_fact_es": "Kiss nació como una lenta maqueta acústica antes de que Prince la transformara en un arreglo más escueto y funky — la versión que terminó siendo uno de sus mayores éxitos.",
       "uri_apple_music": "applemusic://track/260336471",
       "uri_youtube_music": "https://music.youtube.com/watch?v=H9tEvfIsDyo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/51771426",
       "fun_fact_fr": "Kiss a d'abord existé sous la forme d'une lente maquette acoustique avant que Prince ne la transforme en un arrangement épuré et funky — la version devenue l'un de ses plus grands succès.",
       "uri_deezer": "deezer://track/664178",
       "fun_fact_nl": "Kiss begon als een langzame akoestische demo voordat Prince het omvormde tot een sober, funky arrangement — de versie die uiteindelijk een van zijn grootste hits werd.",
@@ -1813,12 +1963,12 @@
       "isrc": "USWB19903319",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/260336471",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/260336471",
+        "gb": "applemusic://track/260336471",
+        "fr": "applemusic://track/260336471",
+        "es": "applemusic://track/212975508",
+        "nl": "applemusic://track/260336471",
+        "it": "applemusic://track/260336471"
       }
     },
     {
@@ -1831,8 +1981,15 @@
         "Queens of the Stone Age"
       ],
       "title": "Uprising",
-      "chart_info": {},
-      "certifications": [],
+      "chart_info": {
+        "billboard_peak": 37,
+        "uk_peak": 9,
+        "weeks_on_chart": 16
+      },
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
       "awards": [],
       "fun_fact": "Matt Bellamy modeled 'Uprising' on Goldfrapp's 'Ooh La La' and Dr. Who themes — the lyrics are an explicit anti-establishment manifesto.",
       "fun_fact_de": "Matt Bellamy nahm Goldfrapps 'Ooh La La' und Doctor-Who-Themen als Vorbild für 'Uprising' — der Text ist ein explizites Anti-Establishment-Manifest.",
@@ -1840,7 +1997,7 @@
       "fun_fact_fr": "Matt Bellamy s'est inspiré de 'Ooh La La' de Goldfrapp et des thèmes de Doctor Who pour 'Uprising' — un manifeste anti-establishment explicite.",
       "uri_apple_music": "applemusic://track/539822007",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y4R6k8_iIkE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3083287",
       "uri_deezer": "deezer://track/4195713",
       "fun_fact_nl": "Matt Bellamy nam Goldfrapps 'Ooh La La' en Doctor Who-thema's als basis voor 'Uprising' — een expliciet anti-establishment manifest.",
       "awards_nl": [],
@@ -1887,12 +2044,12 @@
       "isrc": "AUZYZ2000016",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1614975980",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1656620589",
+        "gb": "applemusic://track/1656620589",
+        "fr": "applemusic://track/1656620589",
+        "es": "applemusic://track/1656620589",
+        "nl": "applemusic://track/1254544013",
+        "it": "applemusic://track/1254544013"
       }
     },
     {
@@ -1961,7 +2118,7 @@
       "fun_fact_es": "Heart of Gold fue el único sencillo número uno de Neil Young en Estados Unidos. Años después bromeó en las notas del álbum Decade diciendo que la canción lo 'situó en el centro de la carretera', lo que lo llevó a buscar deliberadamente un sonido más áspero y menos comercial.",
       "uri_apple_music": "applemusic://track/1015739546",
       "uri_youtube_music": "https://music.youtube.com/watch?v=c7eB7Wns1-M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/49651324",
       "fun_fact_fr": "Heart of Gold reste l'unique single numéro un aux États-Unis de Neil Young. Il a plus tard plaisanté, dans les notes de l'album Decade, en disant que la chanson l'avait placé « au milieu de la route », ce qui l'a poussé à revenir volontairement vers une musique plus rugueuse et moins commerciale.",
       "uri_deezer": "deezer://track/3826694",
       "fun_fact_nl": "Heart of Gold was Neil Youngs enige nummer 1-hit in de VS. In de linernotes van Decade grapte hij later dat het nummer hem 'midden op de weg' had gezet, wat hem er bewust toe bracht daarna ruwere, minder commerciële muziek te maken.",
@@ -1969,12 +2126,12 @@
       "isrc": "USRE10900201",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1015739546",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1605605208",
+        "gb": "applemusic://track/1605605208",
+        "fr": "applemusic://track/1605605208",
+        "es": "applemusic://track/1605605208",
+        "nl": "applemusic://track/1605605208",
+        "it": "applemusic://track/1605605208"
       }
     },
     {
@@ -1987,8 +2144,15 @@
         "Papa Roach"
       ],
       "title": "In the End",
-      "chart_info": {},
-      "certifications": [],
+      "chart_info": {
+        "billboard_peak": 2,
+        "uk_peak": 8,
+        "weeks_on_chart": 28
+      },
+      "certifications": [
+        "Diamond (US)",
+        "Platinum (UK)"
+      ],
       "awards": [],
       "fun_fact": "Chester Bennington initially hated 'In the End' and wanted it left off the album — it became Linkin Park's defining hit.",
       "fun_fact_de": "Chester Bennington hasste 'In the End' anfangs und wollte ihn vom Album streichen — er wurde Linkin Parks größter Hit.",
@@ -1996,7 +2160,7 @@
       "fun_fact_fr": "Chester Bennington détestait 'In the End' au début et voulait l'écarter de l'album — c'est devenu le plus grand tube de Linkin Park.",
       "uri_apple_music": "applemusic://track/1848290274",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BLZWkjBXfN8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1225577",
       "uri_deezer": "deezer://track/676183",
       "fun_fact_nl": "Chester Bennington haatte 'In the End' aanvankelijk en wilde het van het album weren; het werd Linkin Parks grootste hit.",
       "awards_nl": [],
@@ -2030,25 +2194,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Alone with You was the debut single from Sydney band Sunnyboys and remains one of the best-loved tracks of the early-1980s Australian power-pop revival.",
-      "fun_fact_de": "Alone with You war die Debütsingle der Sydney-Band Sunnyboys und gehört bis heute zu den beliebtesten Songs der australischen Power-Pop-Welle der frühen 1980er Jahre.",
-      "fun_fact_es": "Alone with You fue el sencillo debut de la banda de Sídney Sunnyboys y sigue siendo una de las canciones más queridas del resurgir del power pop australiano de principios de los ochenta.",
+      "fun_fact": "'Alone with You' was re-recorded for the Sunnyboys' debut album and released as the album's second single in October 1981.",
+      "fun_fact_de": "„Alone with You“ wurde für das Debütalbum der Sunnyboys neu aufgenommen und im Oktober 1981 als zweite Single des Albums veröffentlicht.",
+      "fun_fact_es": "«Alone with You» se volvió a grabar para el álbum debut de Sunnyboys y se publicó como su segundo sencillo en octubre de 1981.",
       "uri_apple_music": "applemusic://track/835337550",
       "uri_youtube_music": "https://music.youtube.com/watch?v=uV5QdEt-deA",
       "uri_tidal": null,
-      "fun_fact_fr": "Alone with You a été le single de début du groupe de Sydney Sunnyboys et reste l'un des titres les plus appréciés du renouveau power-pop australien du début des années 1980.",
+      "fun_fact_fr": "« Alone with You » a été réenregistré pour le premier album des Sunnyboys et publié comme deuxième single de l'album en octobre 1981.",
       "uri_deezer": "deezer://track/75801582",
-      "fun_fact_nl": "Alone with You was de debuutsingle van de Sydney-band Sunnyboys en blijft een van de meest geliefde nummers van de Australische power-pop-opleving van de vroege jaren tachtig.",
+      "fun_fact_nl": "'Alone with You' werd opnieuw opgenomen voor het debuutalbum van Sunnyboys en in oktober 1981 als tweede single van het album uitgebracht.",
       "awards_nl": [],
       "isrc": "AUWA01300341",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/835337550",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1540552615",
+        "gb": "applemusic://track/1540552615",
+        "fr": "applemusic://track/1540552615",
+        "es": "applemusic://track/1540552615",
+        "nl": "applemusic://track/1540552615",
+        "it": "applemusic://track/1771004455"
       }
     },
     {
@@ -2070,25 +2234,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Walk This Way's stop-start verse rhythm was reportedly inspired by the beat of the film Young Frankenstein, which the band had watched the night before writing it. Run-D.M.C.'s 1986 cover/collaboration later introduced it to a whole new generation.",
-      "fun_fact_de": "Der Stop-and-Go-Rhythmus der Strophen von Walk This Way soll vom Rhythmus des Films Frankenstein Junior inspiriert worden sein, den die Band sich am Abend zuvor angesehen hatte. Run-D.M.C.s Coverversion/Kollaboration von 1986 machte den Song später einer ganz neuen Generation bekannt.",
-      "fun_fact_es": "Se dice que el ritmo entrecortado de las estrofas de Walk This Way se inspiró en el compás de la película El jovencito Frankenstein, que la banda había visto la noche anterior a escribirla. La versión/colaboración de Run-D.M.C. en 1986 la dio a conocer a toda una nueva generación.",
+      "fun_fact": "Joe Perry developed the riff while thinking about the New Orleans funk of the Meters. The title 'Walk This Way' was suggested after the band watched Young Frankenstein; Run-D.M.C.'s 1986 version later brought the song to a new generation.",
+      "fun_fact_de": "Joe Perry entwickelte das Riff mit dem New-Orleans-Funk der Meters im Kopf. Der Titel „Walk This Way“ entstand, nachdem die Band Young Frankenstein gesehen hatte; die Version von Run-D.M.C. brachte den Song 1986 einer neuen Generation nahe.",
+      "fun_fact_es": "Joe Perry desarrolló el riff pensando en el funk de Nueva Orleans de The Meters. El título «Walk This Way» surgió después de que la banda viera Young Frankenstein; la versión de Run-D.M.C. de 1986 llevó la canción a una nueva generación.",
       "uri_apple_music": "applemusic://track/1883816638",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4c8O2n1Gfto",
       "uri_tidal": null,
-      "fun_fact_fr": "Le rythme heurté des couplets de Walk This Way se serait inspiré du tempo du film Frankenstein Junior, que le groupe avait visionné la veille de l'écriture. La reprise/collaboration de Run-D.M.C. en 1986 a ensuite fait découvrir le titre à toute une nouvelle génération.",
+      "fun_fact_fr": "Joe Perry a développé le riff en pensant au funk de La Nouvelle-Orléans des Meters. Le titre « Walk This Way » a été suggéré après que le groupe eut vu Young Frankenstein ; la version de Run-D.M.C. en 1986 a fait découvrir la chanson à une nouvelle génération.",
       "uri_deezer": "deezer://track/2061077777",
-      "fun_fact_nl": "Het hortende ritme van de coupletten van Walk This Way zou geïnspireerd zijn op het ritme van de film Frankenstein Junior, die de band de avond voor het schrijven had bekeken. De cover/samenwerking met Run-D.M.C. uit 1986 maakte het nummer later bekend bij een hele nieuwe generatie.",
+      "fun_fact_nl": "Joe Perry ontwikkelde de riff met de New Orleans-funk van The Meters in gedachten. De titel 'Walk This Way' ontstond nadat de band Young Frankenstein had gezien; de versie van Run-D.M.C. bracht het nummer in 1986 bij een nieuwe generatie.",
       "awards_nl": [],
       "isrc": "USSM19906481",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1883816638",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1660110408",
+        "gb": "applemusic://track/1660110408",
+        "fr": "applemusic://track/1660110408",
+        "es": "applemusic://track/1660110408",
+        "nl": "applemusic://track/1660110408",
+        "it": "applemusic://track/1660110408"
       }
     },
     {
@@ -2111,10 +2275,10 @@
       "awards": [
         "Grammy Hall of Fame (2004)"
       ],
-      "fun_fact": "Bohemian Rhapsody was initially rejected by record labels who thought a 6-minute operatic rock song would never get radio play. Freddie Mercury spent three weeks recording the complex vocal harmonies, stacking 180 separate overdubs. It became Queen's signature song.",
-      "fun_fact_de": "Bohemian Rhapsody wurde zunächst von Plattenfirmen abgelehnt, die glaubten, ein 6-minütiger Opern-Rocksong würde nie im Radio gespielt werden. Freddie Mercury verbrachte drei Wochen damit, die komplexen Gesangsharmonien aufzunehmen und schichtete dabei 180 separate Overdubs übereinander. Es wurde zu Queens Erkennungslied.",
-      "fun_fact_es": "Bohemian Rhapsody fue rechazada inicialmente por las discográficas que pensaban que una canción de rock operístico de 6 minutos nunca sonaría en la radio. Freddie Mercury pasó tres semanas grabando las complejas armonías vocales, apilando 180 sobregrabaciones separadas. Se convirtió en la canción emblemática de Queen.",
-      "fun_fact_fr": "Bohemian Rhapsody a d'abord été refusée par les maisons de disques, convaincues qu'un morceau de rock opératique de 6 minutes ne passerait jamais en radio. Freddie Mercury a consacré trois semaines à l'enregistrement des harmonies vocales complexes, superposant 180 pistes séparées. C'est devenu le titre emblématique de Queen.",
+      "fun_fact": "Several executives warned that the nearly six-minute song was too long for radio. Queen recorded it over roughly three weeks; Freddie Mercury, Brian May and Roger Taylor repeatedly layered their voices, with sections reportedly containing about 180 overdubs.",
+      "fun_fact_de": "Mehrere Verantwortliche warnten, der fast sechsminütige Song sei zu lang fürs Radio. Queen nahm ihn über rund drei Wochen auf; Freddie Mercury, Brian May und Roger Taylor schichteten ihre Stimmen wiederholt, wobei einzelne Passagen Berichten zufolge etwa 180 Overdubs enthielten.",
+      "fun_fact_es": "Varios ejecutivos advirtieron que la canción, de casi seis minutos, era demasiado larga para la radio. Queen la grabó durante unas tres semanas; Freddie Mercury, Brian May y Roger Taylor superpusieron repetidamente sus voces, con secciones que, según se informó, contenían unos 180 overdubs.",
+      "fun_fact_fr": "Plusieurs responsables ont averti que la chanson de près de six minutes était trop longue pour la radio. Queen l'a enregistrée pendant environ trois semaines ; Freddie Mercury, Brian May et Roger Taylor ont superposé leurs voix à plusieurs reprises, certaines sections comptant environ 180 overdubs selon les témoignages.",
       "awards_de": [
         "Grammy Hall of Fame (2004)"
       ],
@@ -2128,7 +2292,7 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=fJ9rUzIMcZQ",
       "uri_tidal": "tidal://track/21844140",
       "uri_deezer": "deezer://track/9997018",
-      "fun_fact_nl": "Bohemian Rhapsody werd aanvankelijk afgewezen door platenmaatschappijen die dachten dat een opera-rocknummer van 6 minuten nooit op de radio zou komen. Freddie Mercury spendeerde drie weken aan het opnemen van de complexe vocale harmonieën, met 180 afzonderlijke overdubs. Het werd het kenmerkende nummer van Queen.",
+      "fun_fact_nl": "Verschillende managers waarschuwden dat het bijna zes minuten durende nummer te lang was voor de radio. Queen nam het in ongeveer drie weken op; Freddie Mercury, Brian May en Roger Taylor legden hun stemmen herhaaldelijk over elkaar, waarbij sommige delen naar verluidt ongeveer 180 overdubs bevatten.",
       "awards_nl": [
         "Grammy Hall of Fame (2004)"
       ],
@@ -2144,7 +2308,7 @@
       }
     },
     {
-      "year": 2004,
+      "year": 1999,
       "uri": "spotify:track:64BbK9SFKH2jk86U3dGj2P",
       "artist": "Red Hot Chili Peppers",
       "alt_artists": [
@@ -2156,15 +2320,15 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "fun_fact": "'Otherside' refers to founding member Hillel Slovak's death from heroin; bassist Flea built the song's intro on a single bass loop.",
-      "fun_fact_de": "'Otherside' bezieht sich auf den Heroin-Tod des Gründungsmitglieds Hillel Slovak; Bassist Flea baute das Intro aus einem einzigen Bass-Loop.",
-      "fun_fact_es": "'Otherside' alude a la muerte del fundador Hillel Slovak por heroína; el bajista Flea construyó la intro sobre un solo loop de bajo.",
-      "fun_fact_fr": "'Otherside' évoque la mort par héroïne du fondateur Hillel Slovak ; le bassiste Flea a construit l'intro sur une seule boucle de basse.",
+      "fun_fact": "“Otherside” by Red Hot Chili Peppers was originally released in 1999; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Otherside“ von Red Hot Chili Peppers erschien ursprünglich 1999; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Otherside», de Red Hot Chili Peppers, se publicó originalmente en 1999; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Otherside » de Red Hot Chili Peppers est sorti à l’origine en 1999 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_apple_music": "applemusic://track/1712868234",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8901V1M5lDk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/725261",
-      "fun_fact_nl": "'Otherside' verwijst naar de heroïnedood van oprichter Hillel Slovak; bassist Flea bouwde de intro op één bassloop.",
+      "fun_fact_nl": "“Otherside” van Red Hot Chili Peppers verscheen oorspronkelijk in 1999; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
       "isrc": "USWB19900693",
       "uri_apple_music_by_region": {
@@ -2196,25 +2360,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Blue Monday's striking sleeve, designed by Peter Saville to resemble a floppy disk, was reportedly so expensive to produce that Factory Records lost money on every copy sold — even as it became the best-selling 12-inch single in UK chart history.",
-      "fun_fact_de": "Das auffällige, von Peter Saville im Stil einer Diskette gestaltete Cover von Blue Monday soll so teuer in der Produktion gewesen sein, dass Factory Records an jeder verkauften Platte Geld verlor – obwohl sie zur meistverkauften 12-Zoll-Single der britischen Chartgeschichte wurde.",
-      "fun_fact_es": "La llamativa portada de Blue Monday, diseñada por Peter Saville con forma de disquete, era tan cara de producir que Factory Records perdía dinero con cada copia vendida — pese a lo cual se convirtió en el sencillo de 12 pulgadas más vendido en la historia de las listas británicas.",
-      "uri_apple_music": "applemusic://track/264135997",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=c1GxjzHm5us",
+      "fun_fact": "The elaborate die-cut floppy-disk sleeve was unusually expensive; Factory's Tony Wilson said the original edition lost about 5p per sleeve under the label's accounting, while later pressings used cheaper production.",
+      "fun_fact_de": "Die aufwendig gestanzte Hülle im Disketten-Design war ungewöhnlich teuer; Factorys Tony Wilson sagte, die ursprüngliche Ausgabe habe nach der Kalkulation des Labels etwa 5 Pence pro Hülle verloren, während spätere Auflagen günstiger produziert wurden.",
+      "fun_fact_es": "La elaborada funda troquelada con diseño de disquete era inusualmente cara; Tony Wilson, de Factory, dijo que la edición original perdía unas 5 peniques por funda según las cuentas del sello, mientras que las tiradas posteriores se fabricaron de forma más barata.",
+      "uri_apple_music": "applemusic://track/1530256511",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TsgLhkjY4q0",
       "uri_tidal": null,
-      "fun_fact_fr": "La pochette marquante de Blue Monday, conçue par Peter Saville sous la forme d'une disquette, aurait coûté si cher à produire que Factory Records perdait de l'argent à chaque exemplaire vendu — malgré cela, elle est devenue le single 12 pouces le plus vendu de l'histoire des charts britanniques.",
-      "uri_deezer": "deezer://track/706051",
-      "fun_fact_nl": "De opvallende hoes van Blue Monday, ontworpen door Peter Saville in de vorm van een floppydisk, zou zo duur zijn geweest om te produceren dat Factory Records op elk verkocht exemplaar geld verloor — terwijl het toch de bestverkochte 12-inch single in de Britse hitlijstgeschiedenis werd.",
+      "fun_fact_fr": "La pochette ajourée en forme de disquette était exceptionnellement coûteuse ; Tony Wilson de Factory a déclaré que l'édition originale perdait environ 5 pence par pochette selon la comptabilité du label, tandis que les pressages ultérieurs furent produits à moindre coût.",
+      "uri_deezer": "deezer://track/1069047702",
+      "fun_fact_nl": "De uitgebreide gestanste hoes in diskettevorm was ongewoon duur; Tony Wilson van Factory zei dat de oorspronkelijke editie volgens de boekhouding van het label ongeveer 5 pence per hoes verloor, terwijl latere persingen goedkoper werden geproduceerd.",
       "awards_nl": [],
-      "isrc": "GBANP9400071",
+      "isrc": "GBAAP0001115",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/264135997",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1530256511",
+        "de": "applemusic://track/1530256511",
+        "gb": "applemusic://track/1530256511",
+        "fr": "applemusic://track/1530256511",
+        "es": "applemusic://track/1530256511",
+        "nl": "applemusic://track/1530256511",
+        "it": "applemusic://track/1530256511"
       }
     },
     {
@@ -2236,25 +2400,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Gravity helped The Superjesus become one of the standout Australian rock acts of the early 2000s, fronted by New Zealand-born singer Sarah McLeod.",
-      "fun_fact_de": "Gravity machte The Superjesus zu einer der herausragenden australischen Rockbands der frühen 2000er Jahre; die Band wurde von der neuseeländisch geborenen Sängerin Sarah McLeod angeführt.",
-      "fun_fact_es": "Gravity ayudó a The Superjesus a convertirse en una de las bandas de rock australianas destacadas de principios de los 2000, liderada por la cantante nacida en Nueva Zelanda Sarah McLeod.",
+      "fun_fact": "'Gravity' was a 2000 single by Adelaide rock band The Superjesus, fronted by Australian singer and guitarist Sarah McLeod.",
+      "fun_fact_de": "„Gravity“ war eine Single aus dem Jahr 2000 der Adelaide-Rockband The Superjesus mit der australischen Sängerin und Gitarristin Sarah McLeod als Frontfrau.",
+      "fun_fact_es": "«Gravity» fue un sencillo de 2000 de la banda de rock de Adelaida The Superjesus, liderada por la cantante y guitarrista australiana Sarah McLeod.",
       "uri_apple_music": "applemusic://track/378539028",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pC-gAD-0-OY",
       "uri_tidal": null,
-      "fun_fact_fr": "Gravity a aidé The Superjesus à devenir l'un des groupes de rock australiens marquants du début des années 2000, mené par la chanteuse néo-zélandaise Sarah McLeod.",
+      "fun_fact_fr": "« Gravity » est un single de 2000 du groupe de rock d'Adélaïde The Superjesus, mené par la chanteuse et guitariste australienne Sarah McLeod.",
       "uri_deezer": "deezer://track/6524920",
-      "fun_fact_nl": "Gravity hielp The Superjesus uitgroeien tot een van de opvallende Australische rockbands van de vroege jaren 2000, met de in Nieuw-Zeeland geboren zangeres Sarah McLeod voorop.",
+      "fun_fact_nl": "'Gravity' was een single uit 2000 van de rockband The Superjesus uit Adelaide, aangevoerd door de Australische zangeres en gitariste Sarah McLeod.",
       "awards_nl": [],
       "isrc": "AUWA00001940",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/378539028",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1771002518",
+        "gb": "applemusic://track/1771002518",
+        "fr": "applemusic://track/1798188963",
+        "es": "applemusic://track/1798188963",
+        "nl": "applemusic://track/1763848881",
+        "it": "applemusic://track/1798188963"
       }
     },
     {
@@ -2358,13 +2522,28 @@
         "it": "applemusic://track/1351287617"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vkvrbbtnp6s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68665696",
       "uri_deezer": "deezer://track/71828723",
       "fun_fact": "Nickelback are a Canadian rock band — one of the best-selling acts of the post-grunge era.",
       "fun_fact_de": "Nickelback sind eine kanadische Rockband — einer der meistverkauften Acts der Post-Grunge-Ära.",
       "fun_fact_es": "Nickelback es una banda de rock canadiense, uno de los grupos más vendidos de la era post-grunge.",
       "fun_fact_fr": "Nickelback est un groupe de rock canadien, l'un des plus vendus de l'ère post-grunge.",
-      "fun_fact_nl": "Nickelback is een Canadese rockband — een van de best verkochte acts van het post-grunge-tijdperk."
+      "fun_fact_nl": "Nickelback is een Canadese rockband — een van de best verkochte acts van het post-grunge-tijdperk.",
+      "alt_artists": [
+        "Creed",
+        "3 Doors Down",
+        "Hinder",
+        "Theory of a Deadman"
+      ],
+      "chart_info": {
+        "billboard_peak": 1,
+        "uk_peak": 4,
+        "weeks_on_chart": 24
+      },
+      "certifications": [
+        "4x Platinum (US)",
+        "Gold (UK)"
+      ]
     },
     {
       "year": 2007,
@@ -2381,7 +2560,10 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
+      "certifications": [
+        "3x Platinum (US)",
+        "Silver (UK)"
+      ],
       "awards": [],
       "awards_de": [],
       "awards_es": [],
@@ -2390,7 +2572,7 @@
       "fun_fact_es": "What I've Done se convirtió en el tema complementario de la campaña de marketing de la película Transformers, dando a conocer el material de Minutes to Midnight de Linkin Park a un enorme público cinematográfico.",
       "uri_apple_music": "applemusic://track/590427450",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8sgycukafqQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/406466",
       "fun_fact_fr": "What I've Done est devenue le morceau associé à la campagne marketing du film Transformers, faisant découvrir l'album Minutes to Midnight de Linkin Park à un immense public de cinéma.",
       "uri_deezer": "deezer://track/676847",
       "fun_fact_nl": "What I've Done werd ingezet als begeleidend nummer bij de marketingcampagne van de film Transformers, waardoor het materiaal van Linkin Parks Minutes to Midnight een enorm bioscooppubliek bereikte.",
@@ -2398,12 +2580,12 @@
       "isrc": "USWB10700721",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/590427450",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1622307559",
+        "gb": "applemusic://track/1622307559",
+        "fr": "applemusic://track/1622307559",
+        "es": "applemusic://track/1622307559",
+        "nl": "applemusic://track/1622307559",
+        "it": "applemusic://track/1622307559"
       }
     },
     {
@@ -2472,12 +2654,12 @@
       "isrc": "AUWA00209160",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1641878328",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1641878328",
+        "gb": "applemusic://track/1641878328",
+        "fr": "applemusic://track/1641878328",
+        "es": "applemusic://track/1641878328",
+        "nl": "applemusic://track/1641878328",
+        "it": "applemusic://track/1641878328"
       }
     },
     {
@@ -2539,25 +2721,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "I Miss You pairs blink-182's pop-punk roots with a darker, more atmospheric sound, featuring guest vocals from Alison Mosshart of The Kills on the studio recording.",
-      "fun_fact_de": "I Miss You verbindet blink-182s Pop-Punk-Wurzeln mit einem düsteren, atmosphärischeren Sound und enthält auf der Studioaufnahme Gastgesang von Alison Mosshart von The Kills.",
-      "fun_fact_es": "I Miss You combina las raíces pop-punk de blink-182 con un sonido más oscuro y atmosférico, con la colaboración vocal de Alison Mosshart, de The Kills, en la grabación de estudio.",
+      "fun_fact": "'I Miss You' pairs blink-182's pop-punk background with a darker acoustic arrangement; Mark Hoppus and Tom DeLonge share the vocals, with Roger Joseph Manning Jr. on keyboards.",
+      "fun_fact_de": "„I Miss You“ verbindet den Pop-Punk-Hintergrund von blink-182 mit einem düsteren Akustikarrangement; Mark Hoppus und Tom DeLonge teilen sich den Gesang, Roger Joseph Manning Jr. spielt Keyboards.",
+      "fun_fact_es": "«I Miss You» combina el trasfondo pop-punk de blink-182 con un arreglo acústico más oscuro; Mark Hoppus y Tom DeLonge comparten las voces y Roger Joseph Manning Jr. toca los teclados.",
       "uri_apple_music": "applemusic://track/1440846785",
       "uri_youtube_music": "https://music.youtube.com/watch?v=s1tAYmMjLdY",
       "uri_tidal": null,
-      "fun_fact_fr": "I Miss You associe les racines pop-punk de blink-182 à une atmosphère plus sombre, avec la participation vocale d'Alison Mosshart du groupe The Kills sur l'enregistrement studio.",
+      "fun_fact_fr": "« I Miss You » associe les racines pop-punk de blink-182 à un arrangement acoustique plus sombre ; Mark Hoppus et Tom DeLonge se partagent le chant, avec Roger Joseph Manning Jr. aux claviers.",
       "uri_deezer": "deezer://track/127673047",
-      "fun_fact_nl": "I Miss You combineert de pop-punkwortels van blink-182 met een donkerder, sfeervoller geluid, met gastzang van Alison Mosshart van The Kills op de studio-opname.",
+      "fun_fact_nl": "'I Miss You' combineert de poppunkachtergrond van blink-182 met een donkerder akoestisch arrangement; Mark Hoppus en Tom DeLonge delen de zang en Roger Joseph Manning Jr. speelt keyboards.",
       "awards_nl": [],
       "isrc": "USMC10346123",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440846785",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1442997233",
+        "gb": "applemusic://track/1442997233",
+        "fr": "applemusic://track/1442997233",
+        "es": "applemusic://track/1442997233",
+        "nl": "applemusic://track/1442997233",
+        "it": "applemusic://track/1442997233"
       }
     },
     {
@@ -2613,10 +2795,10 @@
       "awards": [
         "Grammy Hall of Fame (2009)"
       ],
-      "fun_fact": "We Will Rock You's iconic stomp-stomp-clap beat was designed by Brian May to be performed by stadium audiences. May wanted to create something that 'even a stadium full of people could do.' The song is played at virtually every sporting event worldwide to this day.",
-      "fun_fact_de": "We Will Rock Yous ikonischer Stampf-Stampf-Klatsch-Beat wurde von Brian May entworfen, um von Stadionpublikum mitgemacht zu werden. May wollte etwas erschaffen, das 'sogar ein volles Stadion machen kann'. Der Song wird bis heute bei praktisch jeder Sportveranstaltung weltweit gespielt.",
-      "fun_fact_es": "El icónico ritmo de pisotón-pisotón-palmada de We Will Rock You fue diseñado por Brian May para ser interpretado por el público de los estadios. May quería crear algo que 'incluso un estadio lleno de gente pudiera hacer'. La canción se toca en prácticamente todos los eventos deportivos del mundo hasta hoy.",
-      "fun_fact_fr": "Le rythme emblématique stomp-stomp-clap de We Will Rock You a été conçu par Brian May pour être repris par le public dans les stades. May voulait créer quelque chose que « même un stade plein à craquer pourrait faire ». Le titre est joué dans quasiment tous les événements sportifs de la planète encore aujourd'hui.",
+      "fun_fact": "Its simple stomp-stomp-clap rhythm helped make 'We Will Rock You' a widely used stadium anthem at sporting events around the world.",
+      "fun_fact_de": "Der einfache Stampf-Stampf-Klatsch-Rhythmus machte „We Will Rock You“ zu einer weltweit häufig eingesetzten Stadionhymne bei Sportveranstaltungen.",
+      "fun_fact_es": "Su sencillo ritmo de pisotón-pisotón-palmada ayudó a convertir «We Will Rock You» en un himno de estadio muy utilizado en acontecimientos deportivos de todo el mundo.",
+      "fun_fact_fr": "Son rythme simple pied-pied-clap a contribué à faire de « We Will Rock You » un hymne de stade largement utilisé lors d'événements sportifs dans le monde entier.",
       "awards_de": [
         "Grammy Hall of Fame (2009)"
       ],
@@ -2630,7 +2812,7 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=-tJYN-eG1zk",
       "uri_tidal": "tidal://track/6836313",
       "uri_deezer": "deezer://track/12206933",
-      "fun_fact_nl": "De iconische stomp-stomp-clap beat van We Will Rock You werd ontworpen door Brian May om te worden uitgevoerd door stadionpubliek. May wilde iets creëren dat 'zelfs een stadion vol mensen kon doen'. Het nummer wordt tot op de dag van vandaag bij vrijwel elk sportevenement wereldwijd gespeeld.",
+      "fun_fact_nl": "Het eenvoudige stamp-stamp-klapritme hielp 'We Will Rock You' uitgroeien tot een veelgebruikte stadionhymne bij sportevenementen over de hele wereld.",
       "awards_nl": [
         "Grammy Hall of Fame (2009)"
       ],
@@ -2710,7 +2892,12 @@
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
       "fun_fact_es": "Un clásico de los 70 (1979).",
       "fun_fact_fr": "Un classique des années 70 (1979).",
-      "fun_fact_nl": "Een 70's-klassieker (1979)."
+      "fun_fact_nl": "Een 70's-klassieker (1979).",
+      "alt_artists": [
+        "Scorpions",
+        "Van Halen",
+        "Whitesnake"
+      ]
     },
     {
       "year": 2008,
@@ -2755,10 +2942,10 @@
     {
       "artist": "The Goo Goo Dolls",
       "title": "Slide",
-      "year": 1999,
+      "year": 1998,
       "isrc": "USWB10704697",
       "uri": "spotify:track:0nnwn7LWHCAu09jfuH1xTA",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1678339751",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1678339751",
         "de": "applemusic://track/1678339751",
@@ -2771,14 +2958,19 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=KXRKoM0misA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2680857",
-      "fun_fact": "A post-grunge / 2000s-rock track (1999).",
-      "fun_fact_de": "Ein Post-Grunge-/2000er-Rock-Track (1999).",
-      "fun_fact_es": "Un tema de post-grunge / rock de los 2000 (1999).",
-      "fun_fact_fr": "Un morceau de post-grunge / rock des années 2000 (1999).",
-      "fun_fact_nl": "Een post-grunge-/2000s-rocktrack (1999)."
+      "fun_fact": "“Slide” by The Goo Goo Dolls was originally released in 1998; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Slide“ von The Goo Goo Dolls erschien ursprünglich 1998; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Slide», de The Goo Goo Dolls, se publicó originalmente en 1998; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Slide » de The Goo Goo Dolls est sorti à l’origine en 1998 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Slide” van The Goo Goo Dolls verscheen oorspronkelijk in 1998; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "alt_artists": [
+        "Matchbox Twenty",
+        "Lifehouse",
+        "Dave Matthews Band"
+      ]
     },
     {
-      "year": 2006,
+      "year": 1997,
       "uri": "spotify:track:42et6fnHCw1HIPSrdPprMl",
       "artist": "Third Eye Blind",
       "alt_artists": [
@@ -2790,15 +2982,15 @@
       "chart_info": {},
       "certifications": [],
       "awards": [],
-      "fun_fact": "The chipper melody of 'Semi-Charmed Life' hides lyrics about a meth-fueled relationship — radio edits cut the explicit drug references.",
-      "fun_fact_de": "Die fröhliche Melodie von 'Semi-Charmed Life' verbirgt einen Text über eine Meth-getriebene Beziehung — Radio-Edits strichen die Drogenzeilen.",
-      "fun_fact_es": "La melodía alegre de 'Semi-Charmed Life' oculta una letra sobre una relación marcada por la metanfetamina; las versiones radiofónicas censuraron las drogas.",
-      "fun_fact_fr": "La mélodie joyeuse de 'Semi-Charmed Life' cache un texte sur une relation sous métamphétamine — les versions radio ont coupé les références aux drogues.",
+      "fun_fact": "“Semi-Charmed Life” by Third Eye Blind was originally released in 1997; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Semi-Charmed Life“ von Third Eye Blind erschien ursprünglich 1997; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Semi-Charmed Life», de Third Eye Blind, se publicó originalmente en 1997; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Semi-Charmed Life » de Third Eye Blind est sorti à l’origine en 1997 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_apple_music": "applemusic://track/1747794676",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gjdLAsnR_Ws",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/685709",
-      "fun_fact_nl": "De vrolijke melodie van 'Semi-Charmed Life' verbergt teksten over een meth-relatie; radioversies sneden de drugsverwijzingen weg.",
+      "fun_fact_nl": "“Semi-Charmed Life” van Third Eye Blind verscheen oorspronkelijk in 1997; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
       "isrc": "USEE10608087",
       "uri_apple_music_by_region": {
@@ -2830,25 +3022,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Backseat is by Balu Brigada, an Australian duo whose blend of funk, soul and rock grooves has made them one of the country's fast-rising live acts in the mid-2020s.",
-      "fun_fact_de": "Backseat stammt von Balu Brigada, einem australischen Duo, dessen Mischung aus Funk, Soul und Rockgrooves die Band Mitte der 2020er zu einem der am schnellsten wachsenden Live-Acts des Landes gemacht hat.",
-      "fun_fact_es": "Backseat es de Balu Brigada, un dúo australiano cuya mezcla de funk, soul y groove rockero los ha convertido en uno de los actos en vivo de mayor crecimiento del país a mediados de la década de 2020.",
-      "uri_apple_music": null,
+      "fun_fact": "'Backseat' is by Balu Brigada, a New Zealand indie-rock act from Auckland led by multi-instrumentalist brothers Henry and Pierre Beasley.",
+      "fun_fact_de": "„Backseat“ stammt von Balu Brigada, einer neuseeländischen Indie-Rock-Band aus Auckland um die Multiinstrumentalisten und Brüder Henry und Pierre Beasley.",
+      "fun_fact_es": "«Backseat» es de Balu Brigada, un grupo neozelandés de indie rock de Auckland liderado por los hermanos multiinstrumentistas Henry y Pierre Beasley.",
+      "uri_apple_music": "applemusic://track/1815926074",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Jvv3cC6CamE",
       "uri_tidal": null,
-      "fun_fact_fr": "Backseat est signée Balu Brigada, un duo australien dont le mélange de funk, de soul et de grooves rock en a fait, au milieu des années 2020, l'un des groupes de scène les plus en vogue du pays.",
+      "fun_fact_fr": "« Backseat » est signé Balu Brigada, un groupe d'indie rock néo-zélandais d'Auckland mené par les frères multi-instrumentistes Henry et Pierre Beasley.",
       "uri_deezer": "deezer://track/3378903331",
-      "fun_fact_nl": "Backseat is van Balu Brigada, een Australisch duo wiens mix van funk, soul en rockgrooves hen halverwege de jaren 2020 tot een van de snelst groeiende live-acts van het land heeft gemaakt.",
+      "fun_fact_nl": "'Backseat' is van Balu Brigada, een Nieuw-Zeelandse indierockact uit Auckland rond de multi-instrumentalistische broers Henry en Pierre Beasley.",
       "awards_nl": [],
       "isrc": "AUWA02500140",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1815926074",
+        "de": "applemusic://track/1815926074",
+        "gb": "applemusic://track/1815926074",
+        "fr": "applemusic://track/1815926074",
+        "es": "applemusic://track/1815926074",
+        "nl": "applemusic://track/1815926074",
+        "it": "applemusic://track/1815926074"
       }
     },
     {
@@ -2904,25 +3096,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Get Set is by Melbourne band Taxiride, best known internationally for the hit single 'Everywhere You Go' from the same era.",
-      "fun_fact_de": "Get Set stammt von der Melbourne-Band Taxiride, die international vor allem für den Hit 'Everywhere You Go' aus derselben Ära bekannt ist.",
-      "fun_fact_es": "Get Set es de la banda de Melbourne Taxiride, conocida internacionalmente sobre todo por el éxito 'Everywhere You Go' de esa misma época.",
+      "fun_fact": "'Get Set' is a 1999 song by Melbourne band Taxiride from their debut album Imaginate; it also appeared on the US soundtrack to Election.",
+      "fun_fact_de": "„Get Set“ ist ein Song der Melbourner Band Taxiride aus dem Jahr 1999 und stammt von ihrem Debütalbum Imaginate; außerdem erschien er auf dem US-Soundtrack zu Election.",
+      "fun_fact_es": "«Get Set» es una canción de 1999 de la banda de Melbourne Taxiride incluida en su álbum debut Imaginate; también apareció en la banda sonora estadounidense de Election.",
       "uri_apple_music": "applemusic://track/345177185",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pzvtPiSeguA",
       "uri_tidal": null,
-      "fun_fact_fr": "Get Set est signée par le groupe de Melbourne Taxiride, surtout connu à l'international pour le tube 'Everywhere You Go' de la même époque.",
+      "fun_fact_fr": "« Get Set » est une chanson de 1999 du groupe de Melbourne Taxiride, tirée de son premier album Imaginate ; elle figure aussi sur la bande originale américaine d'Election.",
       "uri_deezer": "deezer://track/5195568",
-      "fun_fact_nl": "Get Set is van de Melbourne-band Taxiride, internationaal vooral bekend van de hit 'Everywhere You Go' uit dezelfde periode.",
+      "fun_fact_nl": "'Get Set' is een nummer uit 1999 van de band Taxiride uit Melbourne, afkomstig van hun debuutalbum Imaginate; het stond ook op de Amerikaanse soundtrack van Election.",
       "awards_nl": [],
       "isrc": "AUWA09900350",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/345177185",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/345177185",
+        "gb": "applemusic://track/345177185",
+        "fr": "applemusic://track/345177185",
+        "es": "applemusic://track/345177185",
+        "nl": "applemusic://track/345177185",
+        "it": "applemusic://track/345177185"
       }
     },
     {
@@ -2940,7 +3132,10 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
+      "certifications": [
+        "Platinum (US)",
+        "Silver (UK)"
+      ],
       "awards": [],
       "awards_de": [],
       "awards_es": [],
@@ -2949,7 +3144,7 @@
       "fun_fact_es": "Californication tardó unos siete años en completarse — el guitarrista John Frusciante se había reincorporado a la banda tras un tiempo alejado, y los primeros bocetos de la canción se remontaban a su etapa anterior con los Red Hot Chili Peppers.",
       "uri_apple_music": "applemusic://track/945575413",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YlUKcNNmywk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/304808",
       "fun_fact_fr": "Californication a nécessité environ sept ans pour être finalisée — le guitariste John Frusciante avait réintégré le groupe après une période d'absence, et les premières esquisses du morceau remontaient à son précédent passage chez les Red Hot Chili Peppers.",
       "uri_deezer": "deezer://track/725274",
       "fun_fact_nl": "Californication deed er ongeveer zeven jaar over om af te komen — gitarist John Frusciante was na een tijd weg weer bij de band gekomen, en vroege schetsen van het nummer dateerden al van zijn eerdere periode bij Red Hot Chili Peppers.",
@@ -2957,12 +3152,12 @@
       "isrc": "USWB19900690",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/945575413",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/947701035",
+        "gb": "applemusic://track/947701035",
+        "fr": "applemusic://track/947701035",
+        "es": "applemusic://track/947701035",
+        "nl": "applemusic://track/947701035",
+        "it": "applemusic://track/947701035"
       }
     },
     {
@@ -2980,33 +3175,47 @@
         "uk_peak": null,
         "weeks_on_chart": null
       },
-      "certifications": [],
-      "awards": [],
-      "awards_de": [],
-      "awards_es": [],
+      "certifications": [
+        "3x Platinum (US)",
+        "Platinum (UK)"
+      ],
+      "awards": [
+        "MTV VMA - Best New Artist (1986)"
+      ],
+      "awards_de": [
+        "MTV VMA - Bester neuer Künstler (1986)"
+      ],
+      "awards_es": [
+        "MTV VMA - Mejor Artista Nuevo (1986)"
+      ],
       "fun_fact": "Take On Me struggled commercially on its first release before a pencil-sketch-animation music video (blending live action with rotoscoped illustration) helped push it to No. 1 in the US on re-release.",
       "fun_fact_de": "Take On Me tat sich bei der ersten Veröffentlichung kommerziell schwer, bevor ein Musikvideo mit Bleistiftskizzen-Animation (eine Mischung aus Realfilm und Rotoskopie-Illustration) den Song bei der Wiederveröffentlichung in den USA auf Platz 1 brachte.",
       "fun_fact_es": "Take On Me tuvo un rendimiento comercial modesto en su primer lanzamiento, hasta que un videoclip animado con dibujos a lápiz (que mezclaba imagen real con ilustración rotoscopiada) ayudó a llevarla al número 1 en Estados Unidos tras su reedición.",
       "uri_apple_music": "applemusic://track/380907765",
       "uri_youtube_music": "https://music.youtube.com/watch?v=djV11Xbc914",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/391687",
       "fun_fact_fr": "Take On Me a connu des débuts commerciaux difficiles avant qu'un clip animé au crayon (mêlant prises de vue réelles et illustration en rotoscopie) ne l'aide à atteindre la première place aux États-Unis lors de sa ressortie.",
       "uri_deezer": "deezer://track/664107",
       "fun_fact_nl": "Take On Me deed het commercieel matig bij de eerste release, tot een videoclip met potloodtekening-animatie (een mix van live-action en rotoscoop-illustratie) het nummer bij de heruitgave naar nummer 1 in de VS hielp.",
-      "awards_nl": [],
+      "awards_nl": [
+        "MTV VMA – Beste Nieuwe Artiest (1986)"
+      ],
       "isrc": "USWB19901214",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/380907765",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
-      }
+        "de": "applemusic://track/1834677612",
+        "gb": "applemusic://track/1834677612",
+        "fr": "applemusic://track/1834677612",
+        "es": "applemusic://track/1834677612",
+        "nl": "applemusic://track/1834677612",
+        "it": "applemusic://track/1834677612"
+      },
+      "awards_fr": [
+        "MTV VMA - Meilleur nouvel artiste (1986)"
+      ]
     },
     {
-      "year": 2015,
+      "year": 1997,
       "uri": "spotify:track:4AFCrbzvR3vLfekhABLjDU",
       "artist": "Regurgitator",
       "title": "! (The Song Formerly Known As)",
@@ -3024,25 +3233,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "! (The Song Formerly Known As) is by Australian band Regurgitator, known for restlessly hopping between genres — from punk and electro to hip-hop-inflected rock — across their catalogue.",
-      "fun_fact_de": "! (The Song Formerly Known As) stammt von der australischen Band Regurgitator, die dafür bekannt ist, in ihrem Katalog rastlos zwischen Genres zu wechseln – von Punk und Elektro bis zu hip-hop-beeinflusstem Rock.",
-      "fun_fact_es": "! (The Song Formerly Known As) es de la banda australiana Regurgitator, conocida por saltar sin descanso entre géneros — del punk y el electro al rock con influencias del hip-hop — a lo largo de su carrera.",
-      "uri_apple_music": "applemusic://track/1033067156",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=jJ1l4UJW04Y",
+      "fun_fact": "“! (The Song Formerly Known As)” by Regurgitator was originally released in 1997; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„! (The Song Formerly Known As)“ von Regurgitator erschien ursprünglich 1997; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«! (The Song Formerly Known As)», de Regurgitator, se publicó originalmente en 1997; el año se basa en datos de grabación y publicación contrastados.",
+      "uri_apple_music": "applemusic://track/1812615596",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vnJ97PVnfe8",
       "uri_tidal": null,
-      "fun_fact_fr": "! (The Song Formerly Known As) est signée par le groupe australien Regurgitator, connu pour sauter sans cesse d'un genre à l'autre — du punk à l'électro en passant par un rock aux influences hip-hop — tout au long de sa carrière.",
-      "uri_deezer": "deezer://track/106211116",
-      "fun_fact_nl": "! (The Song Formerly Known As) is van de Australische band Regurgitator, bekend om het rusteloos wisselen tussen genres — van punk en electro tot hiphop-geïnspireerde rock — doorheen hun catalogus.",
+      "fun_fact_fr": "« ! (The Song Formerly Known As) » de Regurgitator est sorti à l’origine en 1997 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "uri_deezer": "deezer://track/14684130",
+      "fun_fact_nl": "“! (The Song Formerly Known As)” van Regurgitator verscheen oorspronkelijk in 1997; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [],
-      "isrc": "AUVB01500013",
+      "isrc": "AUWA09800180",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1033067156",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1812615596",
+        "de": "applemusic://track/1764059668",
+        "gb": "applemusic://track/1812615596",
+        "fr": "applemusic://track/1763848903",
+        "es": "applemusic://track/1763848903",
+        "nl": "applemusic://track/1763848903",
+        "it": "applemusic://track/1763848903"
       }
     },
     {
@@ -3077,16 +3286,16 @@
       "isrc": "GBAJE6400005",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1436281753",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1439440473",
+        "gb": "applemusic://track/1439440473",
+        "fr": "applemusic://track/1439440473",
+        "es": "applemusic://track/1439440473",
+        "nl": "applemusic://track/1439440473",
+        "it": "applemusic://track/1439440473"
       }
     },
     {
-      "year": 1985,
+      "year": 1980,
       "uri": "spotify:track:6EPRKhUOdiFSQwGBRBbvsZ",
       "artist": "Motörhead",
       "title": "Ace of Spades",
@@ -3106,14 +3315,14 @@
       "awards": [
         "Grammy nomination"
       ],
-      "fun_fact": "Ace of Spades is Motörhead's definitive anthem and one of the fastest and most ferocious songs in rock history. Lemmy Kilmister, the band's iconic bassist and vocalist, lived a legendarily hedonistic lifestyle but continued touring and recording until weeks before his death at age 70 in December 2015. The song has been used in countless films, TV shows and video games.",
-      "fun_fact_de": "Ace of Spades ist Motörheads definitive Hymne und einer der schnellsten und wildesten Songs der Rockgeschichte. Lemmy Kilmister führte einen legendär hedonistischen Lebensstil, tourte und nahm aber bis wenige Wochen vor seinem Tod mit 70 Jahren im Dezember 2015 auf.",
-      "fun_fact_es": "Ace of Spades es el himno definitivo de Motörhead y una de las canciones más rápidas y furiosas de la historia del rock. Lemmy Kilmister llevaba un estilo de vida legendariamente hedonista pero siguió girando y grabando hasta semanas antes de su muerte a los 70 años en diciembre de 2015.",
-      "fun_fact_fr": "Ace of Spades est l'hymne définitif de Motörhead et l'une des chansons les plus rapides et féroces de l'histoire du rock. Lemmy Kilmister menait un style de vie légendairement hédoniste mais a continué à tourner et enregistrer jusqu'à quelques semaines avant sa mort à 70 ans en décembre 2015.",
+      "fun_fact": "“Ace of Spades” by Motörhead was originally released in 1980; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Ace of Spades“ von Motörhead erschien ursprünglich 1980; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Ace of Spades», de Motörhead, se publicó originalmente en 1980; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Ace of Spades » de Motörhead est sorti à l’origine en 1980 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "uri_apple_music": "applemusic://track/1439443121",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pWB5JZRGl0U",
       "uri_tidal": "tidal://track/4085852",
-      "fun_fact_nl": "Ace of Spades is het definitieve volkslied van Motörhead en een van de snelste en meest woeste nummers uit de rockgeschiedenis. Lemmy Kilmister, de iconische bassist en zanger van de band, leefde een legendarisch hedonistische levensstijl, maar bleef toeren en opnemen tot weken voor zijn dood op 70-jarige leeftijd in december 2015. Het nummer is gebruikt in talloze films, tv-shows en videogames.",
+      "fun_fact_nl": "“Ace of Spades” van Motörhead verscheen oorspronkelijk in 1980; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [
         "Grammy-nominatie"
       ],
@@ -3126,7 +3335,8 @@
         "es": "applemusic://track/1452532988",
         "nl": "applemusic://track/1452532988",
         "it": "applemusic://track/1452532988"
-      }
+      },
+      "uri_deezer": "deezer://track/5169799"
     },
     {
       "year": 2010,
@@ -3160,12 +3370,12 @@
       "isrc": "USNO12000174",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1052966898",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1542588734",
+        "gb": "applemusic://track/1542588734",
+        "fr": "applemusic://track/1542588734",
+        "es": "applemusic://track/1542588734",
+        "nl": "applemusic://track/1542588734",
+        "it": "applemusic://track/1542588734"
       }
     },
     {
@@ -3200,12 +3410,12 @@
       "isrc": "GBAYE8200051",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/693610779",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/693610779",
+        "gb": "applemusic://track/693610779",
+        "fr": "applemusic://track/693610779",
+        "es": "applemusic://track/693610779",
+        "nl": "applemusic://track/693610779",
+        "it": "applemusic://track/693610779"
       }
     },
     {
@@ -3231,7 +3441,12 @@
       "fun_fact_de": "Fleetwood Mac wurden in der 'Rumours'-Ära zu einer der prägenden Bands der 70er.",
       "fun_fact_es": "Fleetwood Mac, en su era 'Rumours', fue una de las bandas que definieron los 70.",
       "fun_fact_fr": "Fleetwood Mac, à l'époque de « Rumours », fut l'un des groupes phares des années 70.",
-      "fun_fact_nl": "Fleetwood Mac werd in het 'Rumours'-tijdperk een van de bepalende bands van de jaren 70."
+      "fun_fact_nl": "Fleetwood Mac werd in het 'Rumours'-tijdperk een van de bepalende bands van de jaren 70.",
+      "alt_artists": [
+        "The Rolling Stones",
+        "Eric Clapton",
+        "David Bowie"
+      ]
     },
     {
       "year": 1974,
@@ -3257,7 +3472,7 @@
       "fun_fact_es": "Rebel Rebel está considerada ampliamente como la despedida de Bowie del sonido glam rock que él mismo ayudó a definir, escrita cuando ya se acercaba a las influencias soul y funk de sus siguientes discos.",
       "uri_apple_music": "applemusic://track/1195108771",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DJxCsVcZL2I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69761304",
       "fun_fact_fr": "Rebel Rebel est largement considérée comme les adieux de Bowie au son glam rock qu'il avait contribué à définir, écrite alors qu'il se tournait déjà vers les influences soul et funk de ses albums suivants.",
       "uri_deezer": "deezer://track/3155590",
       "fun_fact_nl": "Rebel Rebel wordt algemeen gezien als Bowies afscheid van het glamrockgeluid dat hij mee had gedefinieerd, geschreven op het moment dat hij al toewerkte naar de soul- en funkinvloeden van zijn volgende platen.",
@@ -3265,12 +3480,12 @@
       "isrc": "USJT19900087",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1195108771",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1195108771",
+        "gb": "applemusic://track/1195108771",
+        "fr": "applemusic://track/1195108771",
+        "es": "applemusic://track/1195108771",
+        "nl": "applemusic://track/1195108771",
+        "it": "applemusic://track/1195108771"
       }
     },
     {
@@ -3292,25 +3507,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Feel It Still samples the melody of The Marvelettes' 1960s hit 'Please Mr. Postman,' which is why all four original Marvelettes writers are credited as co-writers alongside Portugal. The Man.",
-      "fun_fact_de": "Feel It Still samplet die Melodie von The Marvelettes' Hit 'Please Mr. Postman' aus den 1960ern, weshalb alle vier ursprünglichen Marvelettes-Songwriter neben Portugal. The Man als Co-Autoren geführt werden.",
-      "fun_fact_es": "Feel It Still samplea la melodía de 'Please Mr. Postman', el éxito de los años sesenta de The Marvelettes, razón por la cual los cuatro compositores originales de The Marvelettes figuran como coautores junto a Portugal. The Man.",
+      "fun_fact": "'Feel It Still' draws on the melody of the Marvelettes' 'Please Mr. Postman'; its songwriting credits consequently include Motown writers Robert Bateman, Freddie Gorman and Brian Holland.",
+      "fun_fact_de": "„Feel It Still“ greift die Melodie von „Please Mr. Postman“ der Marvelettes auf; deshalb werden auch die Motown-Autoren Robert Bateman, Freddie Gorman und Brian Holland als Songwriter genannt.",
+      "fun_fact_es": "«Feel It Still» se basa en la melodía de «Please Mr. Postman» de The Marvelettes; por ello, los créditos de composición incluyen a los autores de Motown Robert Bateman, Freddie Gorman y Brian Holland.",
       "uri_apple_music": "applemusic://track/1229315050",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pBkHHoOIIn8",
       "uri_tidal": null,
-      "fun_fact_fr": "Feel It Still samples la mélodie de 'Please Mr. Postman', le tube des années 1960 des Marvelettes, ce qui explique pourquoi les quatre auteurs originaux des Marvelettes sont crédités comme coauteurs aux côtés de Portugal. The Man.",
+      "fun_fact_fr": "« Feel It Still » reprend la mélodie de « Please Mr. Postman » des Marvelettes ; ses crédits d'écriture incluent donc les auteurs de Motown Robert Bateman, Freddie Gorman et Brian Holland.",
       "uri_deezer": "deezer://track/371593461",
-      "fun_fact_nl": "Feel It Still sampelt de melodie van 'Please Mr. Postman', de jarenzestighit van The Marvelettes, waardoor alle vier de oorspronkelijke schrijvers van The Marvelettes naast Portugal. The Man als medeauteur worden vermeld.",
+      "fun_fact_nl": "'Feel It Still' gebruikt de melodie van 'Please Mr. Postman' van The Marvelettes; daarom staan ook Motown-schrijvers Robert Bateman, Freddie Gorman en Brian Holland in de credits.",
       "awards_nl": [],
       "isrc": "USAT21700437",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1229315050",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1229315050",
+        "gb": "applemusic://track/1659145174",
+        "fr": "applemusic://track/1659145174",
+        "es": "applemusic://track/1209285548",
+        "nl": "applemusic://track/1659145174",
+        "it": "applemusic://track/1209285548"
       }
     },
     {
@@ -3361,7 +3576,7 @@
       "uri": "spotify:track:7Ar4G7Ci11gpt6sfH9Cgz5",
       "uri_apple_music": "applemusic://track/1111354162",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1111345699",
         "de": "applemusic://track/1412175625",
         "gb": "applemusic://track/1412175625",
         "fr": "applemusic://track/1412175625",
@@ -3376,7 +3591,20 @@
       "fun_fact_de": "Ein 70er-Klassiker (1972).",
       "fun_fact_es": "Un clásico de los 70 (1972).",
       "fun_fact_fr": "Un classique des années 70 (1972).",
-      "fun_fact_nl": "Een 70's-klassieker (1972)."
+      "fun_fact_nl": "Een 70's-klassieker (1972).",
+      "alt_artists": [
+        "Eagles",
+        "Creedence Clearwater Revival",
+        "Lynyrd Skynyrd"
+      ],
+      "chart_info": {
+        "billboard_peak": 11,
+        "uk_peak": null,
+        "weeks_on_chart": 14
+      },
+      "certifications": [
+        "Gold (US)"
+      ]
     },
     {
       "artist": "The Clash",
@@ -3384,7 +3612,7 @@
       "year": 1979,
       "isrc": "GBARL1200680",
       "uri": "spotify:track:5jzma6gCzYtKB1DbEwFZKH",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/688795488",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/688795488",
         "de": "applemusic://track/688795488",
@@ -3401,7 +3629,12 @@
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
       "fun_fact_es": "Un clásico de los 70 (1979).",
       "fun_fact_fr": "Un classique des années 70 (1979).",
-      "fun_fact_nl": "Een 70's-klassieker (1979)."
+      "fun_fact_nl": "Een 70's-klassieker (1979).",
+      "alt_artists": [
+        "Iggy Pop",
+        "The Stranglers",
+        "Sex Pistols"
+      ]
     },
     {
       "artist": "The Who",
@@ -3426,7 +3659,12 @@
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
       "fun_fact_es": "Un clásico de los 70 (1971).",
       "fun_fact_fr": "Un classique des années 70 (1971).",
-      "fun_fact_nl": "Een 70's-klassieker (1971)."
+      "fun_fact_nl": "Een 70's-klassieker (1971).",
+      "alt_artists": [
+        "The Rolling Stones",
+        "The Doors",
+        "Jimi Hendrix"
+      ]
     },
     {
       "year": 1987,
@@ -3450,15 +3688,15 @@
       "awards_de": [],
       "awards_es": [],
       "awards_fr": [],
-      "fun_fact": "Slash wrote the main riff while messing around on guitar during a jam session. Axl Rose wrote the lyrics inspired by an encounter with a homeless man in New York City who told him 'You know where you are? You're in the jungle, baby!' The song was initially a commercial failure but gained massive exposure when MTV played the video, launching both the band and the Appetite for Destruction album.",
-      "fun_fact_de": "Slash schrieb das Hauptriff beim Herumspielen während einer Jamsession. Axl Rose schrieb die Texte inspiriert von einer Begegnung mit einem Obdachlosen in New York, der ihm sagte: 'Weißt du, wo du bist? Du bist im Dschungel, Baby!' Der Song war zunächst ein kommerzieller Misserfolg, gewann aber durch MTV massive Bekanntheit.",
-      "fun_fact_es": "Slash escribió el riff principal mientras tocaba durante una sesión. Axl Rose escribió la letra inspirado por un encuentro con un indigente en Nueva York que le dijo: '¿Sabes dónde estás? ¡Estás en la jungla, nena!' La canción fue inicialmente un fracaso comercial pero ganó exposición masiva cuando MTV reprodujo el video.",
-      "fun_fact_fr": "Slash a composé le riff principal en grattant sa guitare lors d'une jam session. Axl Rose a écrit les paroles inspiré par une rencontre avec un sans-abri à New York qui lui avait lancé : « Tu sais où tu es ? T'es dans la jungle, bébé ! ». Le morceau a d'abord été un échec commercial mais a décollé quand MTV a diffusé le clip, lançant à la fois le groupe et l'album Appetite for Destruction.",
+      "fun_fact": "Axl Rose said he wrote the lyrics while visiting a friend in Seattle, while Izzy Stradlin described the subject as Hollywood street life. The band developed the music collaboratively from a riff Rose remembered Slash playing earlier.",
+      "fun_fact_de": "Axl Rose sagte, er habe den Text bei einem Freund in Seattle geschrieben, während Izzy Stradlin das Straßenleben in Hollywood als Thema beschrieb. Die Band entwickelte die Musik gemeinsam aus einem Riff, an das sich Rose von Slash erinnerte.",
+      "fun_fact_es": "Axl Rose dijo que escribió la letra mientras visitaba a un amigo en Seattle, mientras que Izzy Stradlin describió como tema la vida callejera de Hollywood. La banda desarrolló la música de forma colectiva a partir de un riff que Rose recordaba haber oído tocar antes a Slash.",
+      "fun_fact_fr": "Axl Rose a déclaré avoir écrit les paroles chez un ami à Seattle, tandis qu'Izzy Stradlin a décrit la vie des rues d'Hollywood comme sujet. Le groupe a développé la musique collectivement à partir d'un riff que Rose se souvenait avoir entendu jouer par Slash.",
       "uri_apple_music": "applemusic://track/1377826728",
       "uri_youtube_music": "https://music.youtube.com/watch?v=o1tj2zJ2Wvg",
       "uri_tidal": "tidal://track/90822279",
       "uri_deezer": "deezer://track/518458092",
-      "fun_fact_nl": "Slash schreef de hoofdriff terwijl hij wat aan het rommelen was op gitaar tijdens een jamsessie. Axl Rose schreef de tekst geïnspireerd door een ontmoeting met een dakloze man in New York City die hem vertelde 'Weet je waar je bent? Je bent in de jungle, baby!' Het nummer was aanvankelijk een commerciële mislukking, maar kreeg enorme bekendheid toen MTV de video vertoonde, waardoor zowel de band als het Appetite for Destruction album werden gelanceerd.",
+      "fun_fact_nl": "Axl Rose zei dat hij de tekst schreef tijdens een bezoek aan een vriend in Seattle, terwijl Izzy Stradlin het straatleven in Hollywood als onderwerp beschreef. De band ontwikkelde de muziek gezamenlijk vanuit een riff die Rose zich herinnerde dat Slash eerder speelde.",
       "awards_nl": [],
       "isrc": "USGF18714801",
       "uri_apple_music_by_region": {
@@ -3475,7 +3713,11 @@
       "year": 1981,
       "uri": "spotify:track:7HKez549fwJQDzx3zLjHKC",
       "artist": "The Rolling Stones",
-      "alt_artists": [],
+      "alt_artists": [
+        "The Doors",
+        "The Who",
+        "Jimi Hendrix"
+      ],
       "title": "Start Me Up",
       "chart_info": {
         "billboard_peak": null,
@@ -3497,7 +3739,7 @@
         "de": "applemusic://track/1584840350",
         "gb": "applemusic://track/1440812153",
         "fr": "applemusic://track/1584840350",
-        "es": null,
+        "es": "applemusic://track/1440812153",
         "nl": "applemusic://track/1440812153",
         "it": "applemusic://track/1440812153"
       },
@@ -3674,7 +3916,12 @@
       "fun_fact_de": "Ein 70er-Klassiker (1971).",
       "fun_fact_es": "Un clásico de los 70 (1971).",
       "fun_fact_fr": "Un classique des années 70 (1971).",
-      "fun_fact_nl": "Een 70's-klassieker (1971)."
+      "fun_fact_nl": "Een 70's-klassieker (1971).",
+      "alt_artists": [
+        "Crosby, Stills & Nash",
+        "Eagles",
+        "Billy Joel"
+      ]
     },
     {
       "year": 1977,
@@ -3715,10 +3962,11 @@
         "es": "applemusic://track/1722450564",
         "nl": "applemusic://track/1722450564",
         "it": "applemusic://track/1722450564"
-      }
+      },
+      "uri_tidal": "tidal://track/20501436"
     },
     {
-      "year": 2025,
+      "year": 2026,
       "uri": "spotify:track:2HRDmOs8fxalcM69rh3JmY",
       "artist": "Florence Road",
       "title": "Hanging Out To Dry",
@@ -3736,25 +3984,25 @@
       "awards": [],
       "awards_de": [],
       "awards_es": [],
-      "fun_fact": "Hanging Out to Dry is by Florence Road, part of a wave of young British rock bands to emerge in the mid-2020s.",
-      "fun_fact_de": "Hanging Out to Dry stammt von Florence Road, Teil einer Welle junger britischer Rockbands, die Mitte der 2020er Jahre aufkam.",
-      "fun_fact_es": "Hanging Out to Dry es de Florence Road, parte de una nueva ola de jóvenes bandas de rock británicas surgidas a mediados de la década de 2020.",
+      "fun_fact": "'Hanging Out to Dry' is by Florence Road, an Irish rock band formed in Bray, County Wicklow.",
+      "fun_fact_de": "„Hanging Out to Dry“ stammt von Florence Road, einer irischen Rockband, die in Bray im County Wicklow gegründet wurde.",
+      "fun_fact_es": "«Hanging Out to Dry» es de Florence Road, una banda de rock irlandesa formada en Bray, condado de Wicklow.",
       "uri_apple_music": "applemusic://track/1884602113",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gjYb0iEcvmg",
       "uri_tidal": null,
-      "fun_fact_fr": "Hanging Out to Dry est signée Florence Road, qui fait partie d'une nouvelle vague de jeunes groupes de rock britanniques apparue au milieu des années 2020.",
+      "fun_fact_fr": "« Hanging Out to Dry » est signé Florence Road, un groupe de rock irlandais formé à Bray, dans le comté de Wicklow.",
       "uri_deezer": "deezer://track/3896778251",
-      "fun_fact_nl": "Hanging Out to Dry is van Florence Road, onderdeel van een golf jonge Britse rockbands die halverwege de jaren 2020 opkwam.",
+      "fun_fact_nl": "'Hanging Out to Dry' is van Florence Road, een Ierse rockband die werd opgericht in Bray, County Wicklow.",
       "awards_nl": [],
       "isrc": "GBAHT2600133",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1884602113",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6779736630",
+        "gb": "applemusic://track/1884602113",
+        "fr": "applemusic://track/6779736630",
+        "es": "applemusic://track/6779736630",
+        "nl": "applemusic://track/6779736630",
+        "it": "applemusic://track/6779736630"
       }
     },
     {
@@ -3798,7 +4046,857 @@
         "es": "applemusic://track/576003082",
         "nl": "applemusic://track/576003082",
         "it": "applemusic://track/576003082"
+      },
+      "uri_deezer": "deezer://track/92720046"
+    },
+    {
+      "artist": "Balu Brigada",
+      "title": "Sideways",
+      "year": 2025,
+      "isrc": "AUWA02500156",
+      "uri": "spotify:track:6GCcY6dVDVGxo52OZq9HVW",
+      "uri_apple_music": "applemusic://track/1834660785",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1834660785",
+        "de": "applemusic://track/1834660785",
+        "gb": "applemusic://track/1834660785",
+        "fr": "applemusic://track/1834660785",
+        "es": "applemusic://track/1834660785",
+        "nl": "applemusic://track/1834660785",
+        "it": "applemusic://track/1834660785"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E4G6XLk8SGE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3396908361",
+      "alt_artists": [
+        "Royel Otis",
+        "Djo",
+        "nothhingspecial"
+      ],
+      "fun_fact": "“Sideways” by Balu Brigada was originally released in 2025; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Sideways“ von Balu Brigada erschien ursprünglich 2025; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Sideways», de Balu Brigada, se publicó originalmente en 2025; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Sideways » de Balu Brigada est sorti à l’origine en 2025 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Sideways” van Balu Brigada verscheen oorspronkelijk in 2025; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "Steppenwolf",
+      "title": "Born To Be Wild",
+      "year": 1968,
+      "isrc": "USMC16846563",
+      "uri": "spotify:track:63OFKbMaZSDZ4wtesuuq6f",
+      "uri_apple_music": "applemusic://track/1425255187",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1425255187",
+        "de": "applemusic://track/1425255187",
+        "gb": "applemusic://track/1425255187",
+        "fr": "applemusic://track/1425255187",
+        "es": "applemusic://track/1425255187",
+        "nl": "applemusic://track/1425255187",
+        "it": "applemusic://track/1425255187"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=93fAJe8WVjA",
+      "uri_tidal": "tidal://track/77611624",
+      "uri_deezer": "deezer://track/540202122",
+      "alt_artists": [
+        "The Rolling Stones",
+        "The Who",
+        "Jimi Hendrix"
+      ],
+      "fun_fact": "“Born To Be Wild” by Steppenwolf was originally released in 1968; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Born To Be Wild“ von Steppenwolf erschien ursprünglich 1968; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Born To Be Wild», de Steppenwolf, se publicó originalmente en 1968; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Born To Be Wild » de Steppenwolf est sorti à l’origine en 1968 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Born To Be Wild” van Steppenwolf verscheen oorspronkelijk in 1968; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "Eskimo Joe",
+      "title": "Black Fingernails, Red Wine",
+      "year": 2006,
+      "isrc": "AUWA00601070",
+      "uri": "spotify:track:0ujklxrVM2jwpLMgbTwTd1",
+      "uri_apple_music": "applemusic://track/263946356",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/263946356",
+        "de": "applemusic://track/1456329240",
+        "gb": "applemusic://track/1456329240",
+        "fr": "applemusic://track/1456329240",
+        "es": "applemusic://track/1456329240",
+        "nl": "applemusic://track/1456329240",
+        "it": "applemusic://track/1456329240"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VyoqL9K0DoA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/676101292",
+      "alt_artists": [
+        "The Whitlams",
+        "Jebediah",
+        "Regurgitator"
+      ],
+      "fun_fact": "“Black Fingernails, Red Wine” by Eskimo Joe was originally released in 2006; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Black Fingernails, Red Wine“ von Eskimo Joe erschien ursprünglich 2006; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Black Fingernails, Red Wine», de Eskimo Joe, se publicó originalmente en 2006; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Black Fingernails, Red Wine » de Eskimo Joe est sorti à l’origine en 2006 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Black Fingernails, Red Wine” van Eskimo Joe verscheen oorspronkelijk in 2006; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "Guns N' Roses",
+      "title": "Sweet Child O' Mine",
+      "year": 1987,
+      "isrc": "USGF18714809",
+      "uri": "spotify:track:7snQQk1zcKl8gZ92AnueZW",
+      "uri_apple_music": "applemusic://track/1377813701",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1377813701",
+        "de": "applemusic://track/1377813701",
+        "gb": "applemusic://track/1377813701",
+        "fr": "applemusic://track/1377826892",
+        "es": "applemusic://track/1377813701",
+        "nl": "applemusic://track/1377813701",
+        "it": "applemusic://track/1377813701"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oMfMUfgjiLg",
+      "uri_tidal": "tidal://track/91059922",
+      "uri_deezer": "deezer://track/518458172",
+      "alt_artists": [
+        "Aerosmith",
+        "Scorpions",
+        "Metallica"
+      ],
+      "fun_fact": "“Sweet Child O' Mine” by Guns N' Roses was originally released in 1987; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Sweet Child O' Mine“ von Guns N' Roses erschien ursprünglich 1987; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Sweet Child O' Mine», de Guns N' Roses, se publicó originalmente en 1987; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Sweet Child O' Mine » de Guns N' Roses est sorti à l’origine en 1987 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Sweet Child O' Mine” van Guns N' Roses verscheen oorspronkelijk in 1987; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "Oasis",
+      "title": "Wonderwall (Remastered)",
+      "year": 1995,
+      "isrc": "GBAAW9500189",
+      "uri": "spotify:track:5wj4E6IsrVtn8IBJQOd0Cl",
+      "uri_apple_music": "applemusic://track/1525933490",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1525933490",
+        "de": "applemusic://track/1525933490",
+        "gb": "applemusic://track/1525933490",
+        "fr": "applemusic://track/1525933490",
+        "es": "applemusic://track/1525933490",
+        "nl": "applemusic://track/1525933490",
+        "it": "applemusic://track/1525933490"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hpSrLjc5SMs",
+      "uri_tidal": "tidal://track/144348974",
+      "uri_deezer": "deezer://track/985745702",
+      "alt_artists": [
+        "Liam Gallagher",
+        "Kings of Leon",
+        "The Cranberries"
+      ],
+      "fun_fact": "“Wonderwall (Remastered)” by Oasis was originally released in 1995; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Wonderwall (Remastered)“ von Oasis erschien ursprünglich 1995; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Wonderwall (Remastered)», de Oasis, se publicó originalmente en 1995; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Wonderwall (Remastered) » de Oasis est sorti à l’origine en 1995 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Wonderwall (Remastered)” van Oasis verscheen oorspronkelijk in 1995; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:5LNiqEqpDc8TuqPy79kDBu",
+      "artist": "Stevie Nicks",
+      "alt_artists": [
+        "Pat Benatar",
+        "Joan Jett",
+        "Debbie Harry"
+      ],
+      "title": "Edge of Seventeen",
+      "chart_info": {
+        "billboard_peak": 11,
+        "weeks_on_chart": 15
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "fun_fact": "The title came from a misunderstanding — when Tom Petty's wife Jane told Stevie Nicks she met Tom 'at the age of seventeen,' Nicks misheard it as 'edge of seventeen.' The song's driving guitar riff has been sampled extensively, most notably by Destiny's Child in 'Bootylicious.' Nicks wrote the lyrics partly about John Lennon's assassination and partly about the death of her uncle Jonathan.",
+      "fun_fact_de": "Der Titel entstand durch ein Missverständnis — als Tom Pettys Frau Jane erzählte, sie habe Tom 'at the age of seventeen' kennengelernt, verstand Nicks 'edge of seventeen.' Das treibende Gitarrenriff wurde vielfach gesampelt, besonders von Destiny's Child in 'Bootylicious.' Nicks schrieb die Texte teilweise über John Lennons Ermordung und den Tod ihres Onkels Jonathan.",
+      "fun_fact_es": "El título surgió de un malentendido — cuando la esposa de Tom Petty le dijo a Nicks que conoció a Tom 'at the age of seventeen,' Nicks entendió 'edge of seventeen.' El riff de guitarra ha sido sampleado extensamente, especialmente por Destiny's Child en 'Bootylicious.' Nicks escribió las letras parcialmente sobre el asesinato de John Lennon y la muerte de su tío Jonathan.",
+      "fun_fact_fr": "Le titre est né d'un malentendu : quand la femme de Tom Petty, Jane, a raconté à Stevie Nicks qu'elle avait rencontré Tom « at the age of seventeen », Nicks a compris « edge of seventeen ». Le riff de guitare entêtant a été largement samplé, notamment par Destiny's Child dans « Bootylicious ». Nicks a écrit les paroles en partie sur l'assassinat de John Lennon et la mort de son oncle Jonathan.",
+      "uri_apple_music": "applemusic://track/219393906",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3oZunnY-Cbs",
+      "uri_tidal": "tidal://track/395304",
+      "uri_deezer": "deezer://track/680601",
+      "fun_fact_nl": "De titel kwam van een misverstand - toen Tom Petty's vrouw Jane tegen Stevie Nicks zei dat ze Tom ontmoette 'op zeventienjarige leeftijd', hoorde Nicks het verkeerd als 'rand van zeventien'. De stuwende gitaarriff van het nummer is veelvuldig gesampled, met name door Destiny's Child in 'Bootylicious'. Nicks schreef de tekst deels over de moord op John Lennon en deels over de dood van haar oom Jonathan.",
+      "awards_nl": [],
+      "isrc": "USAT28300037",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6763015779",
+        "de": "applemusic://track/6763015779",
+        "gb": "applemusic://track/6763015779",
+        "fr": "applemusic://track/6763015779",
+        "es": "applemusic://track/6763015779",
+        "nl": "applemusic://track/6763015779",
+        "it": "applemusic://track/6763015779"
       }
+    },
+    {
+      "artist": "Thin Lizzy",
+      "title": "The Boys Are Back In Town",
+      "year": 1976,
+      "isrc": "GBF087600063",
+      "uri": "spotify:track:43DeSV93pJPT4lCZaWZ6b1",
+      "uri_apple_music": "applemusic://track/1644749134",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1644749134",
+        "de": "applemusic://track/1644749134",
+        "gb": "applemusic://track/1644749134",
+        "fr": "applemusic://track/1644749134",
+        "es": "applemusic://track/1644749134",
+        "nl": "applemusic://track/1644749134",
+        "it": "applemusic://track/1644749134"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=56b4TTT609c",
+      "uri_tidal": "tidal://track/5244675",
+      "uri_deezer": "deezer://track/1101200",
+      "fun_fact": "Released in 1976, 'The Boys Are Back in Town' became Thin Lizzy's international breakthrough and reached the top ten in the UK, Ireland, Canada and the US.",
+      "fun_fact_de": "„The Boys Are Back in Town“ erschien 1976, wurde Thin Lizzys internationaler Durchbruch und erreichte die Top Ten im Vereinigten Königreich, in Irland, Kanada und den USA.",
+      "fun_fact_es": "Publicada en 1976, «The Boys Are Back in Town» se convirtió en el éxito internacional de Thin Lizzy y llegó al top diez en el Reino Unido, Irlanda, Canadá y Estados Unidos.",
+      "fun_fact_fr": "Sorti en 1976, « The Boys Are Back in Town » est devenu le succès international de Thin Lizzy et a atteint le top 10 au Royaume-Uni, en Irlande, au Canada et aux États-Unis.",
+      "fun_fact_nl": "'The Boys Are Back in Town' verscheen in 1976, betekende de internationale doorbraak van Thin Lizzy en bereikte de top tien in het VK, Ierland, Canada en de VS.",
+      "alt_artists": [
+        "Blue Öyster Cult",
+        "Deep Purple",
+        "Alice Cooper"
+      ]
+    },
+    {
+      "artist": "Skyhooks",
+      "title": "Living in the 70's - 2009 Remaster",
+      "year": 1974,
+      "isrc": "AUMU00100803",
+      "uri": "spotify:track:4xd2I8L75IoTzX5bezbP2m",
+      "uri_apple_music": "applemusic://track/1786286444",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1786286444",
+        "de": "applemusic://track/340493091",
+        "gb": "applemusic://track/340493091",
+        "fr": "applemusic://track/340493091",
+        "es": "applemusic://track/340493091",
+        "nl": "applemusic://track/340493091",
+        "it": "applemusic://track/340493091"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5WXEFwcQ6Vo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3019270491",
+      "alt_artists": [
+        "Jimmy Barnes",
+        "Cold Chisel",
+        "Choirboys"
+      ],
+      "fun_fact": "“Living in the 70's - 2009 Remaster” by Skyhooks was originally released in 1974; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Living in the 70's - 2009 Remaster“ von Skyhooks erschien ursprünglich 1974; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Living in the 70's - 2009 Remaster», de Skyhooks, se publicó originalmente en 1974; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Living in the 70's - 2009 Remaster » de Skyhooks est sorti à l’origine en 1974 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Living in the 70's - 2009 Remaster” van Skyhooks verscheen oorspronkelijk in 1974; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:4P5KoWXOxwuobLmHXLMobV",
+      "artist": "Nirvana",
+      "alt_artists": [
+        "Pearl Jam",
+        "Alice in Chains",
+        "Stone Temple Pilots"
+      ],
+      "title": "Come As You Are",
+      "chart_info": {
+        "billboard_peak": 32,
+        "weeks_on_chart": 18
+      },
+      "certifications": [
+        "Platinum (US)"
+      ],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "fun_fact": "The guitar riff of Come As You Are closely resembles Killing Joke's 'Eighties,' which itself was similar to The Damned's 'Life Goes On.' Killing Joke reportedly considered legal action but never followed through. Kurt Cobain used an Electro-Harmonix Small Clone chorus pedal to create the song's distinctive watery guitar tone.",
+      "fun_fact_de": "Das Gitarrenriff von Come As You Are ähnelt stark Killing Jokes 'Eighties', das wiederum The Damneds 'Life Goes On' ähnelte. Killing Joke erwog angeblich rechtliche Schritte, verfolgte diese aber nie. Kurt Cobain nutzte ein Electro-Harmonix Small Clone Chorus-Pedal für den charakteristischen wässrigen Gitarrenklang.",
+      "fun_fact_es": "El riff de guitarra de Come As You Are se parece mucho a 'Eighties' de Killing Joke, que a su vez era similar a 'Life Goes On' de The Damned. Killing Joke supuestamente consideró acciones legales pero nunca las llevó a cabo. Kurt Cobain usó un pedal de chorus Electro-Harmonix Small Clone para crear el distintivo tono acuoso de la guitarra.",
+      "fun_fact_fr": "Le riff de guitare de Come As You Are ressemble beaucoup à « Eighties » de Killing Joke, qui rappelait elle-même « Life Goes On » de The Damned. Killing Joke aurait envisagé des poursuites judiciaires sans jamais donner suite. Kurt Cobain a utilisé une pédale de chorus Electro-Harmonix Small Clone pour créer le son de guitare aquatique si caractéristique.",
+      "uri_apple_music": "applemusic://track/1440783636",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vabnZ9-ex7o",
+      "uri_tidal": "tidal://track/77610759",
+      "uri_deezer": "deezer://track/13791932",
+      "fun_fact_nl": "De gitaarriff van Come As You Are lijkt sterk op Killing Joke's 'Eighties', dat zelf weer leek op The Damned's 'Life Goes On. Killing Joke heeft naar verluidt juridische stappen overwogen, maar is daar nooit mee doorgegaan. Kurt Cobain gebruikte een Electro-Harmonix Small Clone chorus pedaal om de kenmerkende waterige gitaartoon van het nummer te maken.",
+      "awards_nl": [],
+      "isrc": "USGF19942503",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440783636",
+        "de": "applemusic://track/1440783636",
+        "gb": "applemusic://track/1440783636",
+        "fr": "applemusic://track/1440783636",
+        "es": "applemusic://track/1440783636",
+        "nl": "applemusic://track/1440783636",
+        "it": "applemusic://track/1440783636"
+      }
+    },
+    {
+      "artist": "Biffy Clyro",
+      "title": "A Little Love",
+      "year": 2025,
+      "isrc": "GBAHT2500241",
+      "uri": "spotify:track:4gM3igqCtOZvtOw6EAMrci",
+      "uri_apple_music": "applemusic://track/1822507756",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1822507756",
+        "de": "applemusic://track/1822507756",
+        "gb": "applemusic://track/1822507756",
+        "fr": "applemusic://track/1822507756",
+        "es": "applemusic://track/1822507756",
+        "nl": "applemusic://track/1822507756",
+        "it": "applemusic://track/1822507756"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8oFbRWzVdp4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3548243381",
+      "alt_artists": [
+        "Feeder",
+        "Weezer",
+        "Foo Fighters"
+      ],
+      "fun_fact": "“A Little Love” by Biffy Clyro was originally released in 2025; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„A Little Love“ von Biffy Clyro erschien ursprünglich 2025; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«A Little Love», de Biffy Clyro, se publicó originalmente en 2025; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« A Little Love » de Biffy Clyro est sorti à l’origine en 2025 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“A Little Love” van Biffy Clyro verscheen oorspronkelijk in 2025; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:37ZJ0p5Jm13JPevGcx4SkF",
+      "artist": "Bon Jovi",
+      "alt_artists": [
+        "Journey",
+        "Foreigner"
+      ],
+      "title": "Livin' on a Prayer",
+      "chart_info": {
+        "billboard_peak": 1,
+        "weeks_on_chart": 22
+      },
+      "certifications": [
+        "Diamond (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Livin' on a Prayer tells the story of Tommy and Gina, working-class characters struggling to survive. Jon Bon Jovi initially disliked the song's talk-box effect but was convinced by producer. The song became one of the most-played rock anthems at sporting events and karaoke nights worldwide.",
+      "fun_fact_de": "Livin' on a Prayer erzählt die Geschichte von Tommy und Gina, Arbeiterfiguren, die ums Überleben kämpfen. Jon Bon Jovi mochte den Talk-Box-Effekt des Songs anfangs nicht, wurde aber vom Produzenten überzeugt. Der Song wurde weltweit zu einer der meistgespielten Rock-Hymnen bei Sportveranstaltungen und Karaoke-Abenden.",
+      "fun_fact_es": "Livin' on a Prayer cuenta la historia de Tommy y Gina, personajes de clase trabajadora que luchan por sobrevivir. A Jon Bon Jovi inicialmente no le gustó el efecto de talk-box de la canción pero fue convencido por el productor. La canción se convirtió en uno de los himnos de rock más tocados en eventos deportivos y noches de karaoke en todo el mundo.",
+      "fun_fact_fr": "Livin' on a Prayer raconte l'histoire de Tommy et Gina, deux ouvriers qui luttent pour s'en sortir. Jon Bon Jovi n'aimait pas l'effet talk-box au départ mais a été convaincu par le producteur. Le morceau est devenu l'un des hymnes rock les plus joués dans les événements sportifs et les soirées karaoké du monde entier.",
+      "uri_apple_music": "applemusic://track/1422955211",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lDK9QqIzhwk",
+      "uri_tidal": "tidal://track/93177984",
+      "uri_deezer": "deezer://track/538660022",
+      "fun_fact_nl": "Livin' on a Prayer vertelt het verhaal van Tommy en Gina, mensen uit de arbeidersklasse die worstelen om te overleven. Jon Bon Jovi had aanvankelijk een hekel aan het talkboxeffect van het nummer, maar werd overtuigd door de producer. Het nummer werd een van de meest gespeelde rock anthems op sportevenementen en karaoke avonden wereldwijd.",
+      "awards_nl": [],
+      "isrc": "USPR38619998",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1893169170",
+        "de": "applemusic://track/1893169170",
+        "gb": "applemusic://track/1893169170",
+        "fr": "applemusic://track/1893169170",
+        "es": "applemusic://track/1893169170",
+        "nl": "applemusic://track/1893169170",
+        "it": "applemusic://track/1893169170"
+      }
+    },
+    {
+      "artist": "Split Enz",
+      "title": "I Got You",
+      "year": 1979,
+      "isrc": "GBAAM0201039",
+      "uri": "spotify:track:6GDsiYn5LvddnJjkJ2H0p5",
+      "uri_apple_music": "applemusic://track/1494504043",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1494504043",
+        "de": "applemusic://track/1494504043",
+        "gb": "applemusic://track/1494504043",
+        "fr": "applemusic://track/1494504043",
+        "es": "applemusic://track/1494504043",
+        "nl": "applemusic://track/1494504043",
+        "it": "applemusic://track/1494504043"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bAAe3cVFxTM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/850740592",
+      "alt_artists": [
+        "Flowers",
+        "INXS",
+        "Icehouse"
+      ],
+      "fun_fact": "“I Got You” by Split Enz was originally released in 1979; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„I Got You“ von Split Enz erschien ursprünglich 1979; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«I Got You», de Split Enz, se publicó originalmente en 1979; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« I Got You » de Split Enz est sorti à l’origine en 1979 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“I Got You” van Split Enz verscheen oorspronkelijk in 1979; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "Les Votives",
+      "title": "Priscilla",
+      "year": 2024,
+      "isrc": "ITQ002500766",
+      "uri": "spotify:track:0kohaqR08X8cG9yocgbHzx",
+      "uri_apple_music": "applemusic://track/1804661912",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1804661912",
+        "de": "applemusic://track/1804661912",
+        "gb": "applemusic://track/1804661912",
+        "fr": "applemusic://track/1804661912",
+        "es": "applemusic://track/1804661912",
+        "nl": "applemusic://track/1804661912",
+        "it": "applemusic://track/1804661912"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T_fokoU953Y",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3296189641",
+      "alt_artists": [
+        "Jet",
+        "The Darkness",
+        "The Struts"
+      ],
+      "fun_fact": "“Priscilla” by Les Votives was originally released in 2024; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Priscilla“ von Les Votives erschien ursprünglich 2024; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Priscilla», de Les Votives, se publicó originalmente en 2024; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Priscilla » de Les Votives est sorti à l’origine en 2024 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Priscilla” van Les Votives verscheen oorspronkelijk in 2024; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:5PntSbMHC1ud6Vvl8x56qd",
+      "artist": "Beck",
+      "alt_artists": [
+        "Pavement",
+        "The Flaming Lips",
+        "Cake"
+      ],
+      "title": "Loser",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Beck recorded 'Loser' in a friend's kitchen for $135 — the slide guitar samples a Dr. John track, and Beck's slacker rap shaped '90s alt-rap.",
+      "fun_fact_de": "Beck nahm 'Loser' in der Küche eines Freundes für 135 Dollar auf — die Slide-Gitarre sampelt Dr. John, sein Slacker-Rap prägte 90er-Alt-Rap.",
+      "fun_fact_es": "Beck grabó 'Loser' en la cocina de un amigo por 135 dólares — la slide guitar samplea a Dr. John y su rap slacker definió el rap alternativo de los 90.",
+      "fun_fact_fr": "Beck a enregistré 'Loser' dans la cuisine d'un ami pour 135 dollars — le slide guitare échantillonne Dr. John, et son rap slacker a marqué l'alt-rap 90s.",
+      "uri_apple_music": "applemusic://track/1445666977",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5Z1-5wNjMgs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/422033092",
+      "fun_fact_nl": "Beck nam 'Loser' op in de keuken van een vriend voor 135 dollar — de slideguitaar samplet Dr. John, zijn slacker-rap vormde de jaren-'90 alt-rap.",
+      "awards_nl": [],
+      "isrc": "USGF19463401",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445666977",
+        "de": "applemusic://track/1445666977",
+        "gb": "applemusic://track/1445666977",
+        "fr": "applemusic://track/1445666977",
+        "es": "applemusic://track/1445666977",
+        "nl": "applemusic://track/1445666977",
+        "it": "applemusic://track/1445666977"
+      }
+    },
+    {
+      "artist": "Jon Toogood",
+      "title": "Gravity",
+      "year": 2024,
+      "isrc": "NZRI12401244",
+      "uri": "spotify:track:6gQmQi4GYJWN2Lxr4cArJ2",
+      "uri_apple_music": "applemusic://track/1752780530",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1752780530",
+        "de": "applemusic://track/1752780530",
+        "gb": "applemusic://track/1752780530",
+        "fr": "applemusic://track/1752780530",
+        "es": "applemusic://track/1752780530",
+        "nl": "applemusic://track/1752780530",
+        "it": "applemusic://track/1752780530"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RXbafrTCJds",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2853455352",
+      "alt_artists": [
+        "Les Votives",
+        "The D4",
+        "Taxiride"
+      ],
+      "fun_fact": "“Gravity” by Jon Toogood was originally released in 2024; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Gravity“ von Jon Toogood erschien ursprünglich 2024; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Gravity», de Jon Toogood, se publicó originalmente en 2024; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Gravity » de Jon Toogood est sorti à l’origine en 2024 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Gravity” van Jon Toogood verscheen oorspronkelijk in 2024; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "The Saints",
+      "title": "Know Your Product - 2004 Remaster",
+      "year": 1978,
+      "isrc": "GBAYE0400523",
+      "uri": "spotify:track:37sA21G7FL484ku9J5UJNU",
+      "uri_apple_music": "applemusic://track/693800763",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/693800763",
+        "de": "applemusic://track/693800763",
+        "gb": "applemusic://track/693800763",
+        "fr": "applemusic://track/693800763",
+        "es": "applemusic://track/693800763",
+        "nl": "applemusic://track/693800763",
+        "it": "applemusic://track/693800763"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aAIpSAK_54I",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3728954",
+      "alt_artists": [
+        "The Clash",
+        "The Damned",
+        "Buzzcocks"
+      ],
+      "fun_fact": "“Know Your Product - 2004 Remaster” by The Saints was originally released in 1978; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Know Your Product - 2004 Remaster“ von The Saints erschien ursprünglich 1978; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Know Your Product - 2004 Remaster», de The Saints, se publicó originalmente en 1978; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Know Your Product - 2004 Remaster » de The Saints est sorti à l’origine en 1978 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Know Your Product - 2004 Remaster” van The Saints verscheen oorspronkelijk in 1978; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:39shmbIHICJ2Wxnk1fPSdz",
+      "artist": "The Clash",
+      "alt_artists": [
+        "The Sex Pistols",
+        "The Ramones"
+      ],
+      "title": "Should I Stay or Should I Go",
+      "chart_info": {
+        "billboard_peak": 45,
+        "uk_peak": 1,
+        "weeks_on_chart": 23
+      },
+      "certifications": [
+        "Gold (US)"
+      ],
+      "awards": [],
+      "fun_fact": "Should I Stay or Should I Go was written by Mick Jones about his relationship with Ellen Foley. The Spanish backing vocals were recorded by the band without understanding what they were singing. The song gained renewed fame in the Netflix series 'Stranger Things' decades later.",
+      "fun_fact_de": "Should I Stay or Should I Go wurde von Mick Jones über seine Beziehung mit Ellen Foley geschrieben. Die spanischen Background-Vocals wurden von der Band aufgenommen, ohne zu verstehen, was sie sangen. Der Song gewann Jahrzehnte später durch die Netflix-Serie 'Stranger Things' erneute Berühmtheit.",
+      "fun_fact_es": "Should I Stay or Should I Go fue escrita por Mick Jones sobre su relación con Ellen Foley. Los coros en español fueron grabados por la banda sin entender lo que estaban cantando. La canción ganó renovada fama en la serie de Netflix 'Stranger Things' décadas después.",
+      "fun_fact_fr": "Should I Stay or Should I Go a été écrite par Mick Jones sur sa relation avec Ellen Foley. Les chœurs en espagnol ont été enregistrés par le groupe sans qu'ils comprennent ce qu'ils chantaient. Le titre a connu un regain de popularité des décennies plus tard grâce à la série Netflix « Stranger Things ».",
+      "uri_apple_music": "applemusic://track/688796842",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xMaE6toi4mk",
+      "uri_tidal": "tidal://track/221898696",
+      "uri_deezer": "deezer://track/69962764",
+      "fun_fact_nl": "Should I Stay or Should I Go is geschreven door Mick Jones over zijn relatie met Ellen Foley. De Spaanse achtergrondzang werd opgenomen door de band zonder te begrijpen wat ze zongen. Het nummer kreeg tientallen jaren later opnieuw bekendheid in de Netflix-serie 'Stranger Things'.",
+      "awards_nl": [],
+      "isrc": "GBARL1200670",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1441530631",
+        "de": "applemusic://track/1441530631",
+        "gb": "applemusic://track/1441530631",
+        "fr": "applemusic://track/1441530631",
+        "es": "applemusic://track/1441530631",
+        "nl": "applemusic://track/1441530631",
+        "it": "applemusic://track/1441530631"
+      }
+    },
+    {
+      "artist": "Lou Reed",
+      "title": "Walk On the Wild Side",
+      "year": 1972,
+      "isrc": "USRC17201948",
+      "uri": "spotify:track:5p3JunprHCxClJjOmcLV8G",
+      "uri_apple_music": "applemusic://track/976827230",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1737859327",
+        "de": "applemusic://track/1737859327",
+        "gb": "applemusic://track/1737859327",
+        "fr": "applemusic://track/1737859327",
+        "es": "applemusic://track/1737859327",
+        "nl": "applemusic://track/1737859327",
+        "it": "applemusic://track/1737859327"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Qu6F-mMAQhk",
+      "uri_tidal": "tidal://track/43719965",
+      "uri_deezer": "deezer://track/97081744",
+      "fun_fact": "A 70s classic (1972).",
+      "fun_fact_de": "Ein 70er-Klassiker (1972).",
+      "fun_fact_es": "Un clásico de los 70 (1972).",
+      "fun_fact_fr": "Un classique des années 70 (1972).",
+      "fun_fact_nl": "Een 70's-klassieker (1972).",
+      "alt_artists": [
+        "The Rolling Stones",
+        "The Velvet Underground",
+        "Patti Smith"
+      ]
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:59WN2psjkt1tyaxjspN8fp",
+      "artist": "Rage Against the Machine",
+      "title": "Killing in the Name",
+      "alt_artists": [
+        "System of a Down",
+        "Audioslave",
+        "Cypress Hill"
+      ],
+      "chart_info": {
+        "billboard_peak": null,
+        "uk_peak": 1,
+        "weeks_on_chart": null
+      },
+      "certifications": [
+        "RIAA Gold"
+      ],
+      "awards": [
+        "Grammy nomination"
+      ],
+      "fun_fact": "'Killing in the Name' reached number one on the UK Christmas chart in 2009 after a grassroots Facebook campaign challenged The X Factor winner's single.",
+      "fun_fact_de": "„Killing in the Name“ erreichte 2009 nach einer von Facebook-Nutzern getragenen Kampagne gegen die Siegessingle von The X Factor Platz eins der britischen Weihnachtscharts.",
+      "fun_fact_es": "«Killing in the Name» llegó al número uno de la lista navideña británica en 2009 tras una campaña popular en Facebook contra el sencillo ganador de The X Factor.",
+      "fun_fact_fr": "« Killing in the Name » a atteint la première place du classement de Noël britannique en 2009 après une campagne populaire sur Facebook contre le single du gagnant de The X Factor.",
+      "uri_apple_music": "applemusic://track/191450927",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bWXazVhlyxQ",
+      "uri_tidal": "tidal://track/4085683",
+      "fun_fact_nl": "'Killing in the Name' bereikte in 2009 de eerste plaats in de Britse kersthitlijst na een grassrootscampagne op Facebook tegen de winnaarsingle van The X Factor.",
+      "awards_nl": [
+        "Grammy-nominatie"
+      ],
+      "isrc": "USSM19200317",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1737564412",
+        "de": "applemusic://track/1737564412",
+        "gb": "applemusic://track/1737564412",
+        "fr": "applemusic://track/1737564412",
+        "es": "applemusic://track/1737564412",
+        "nl": "applemusic://track/1737564412",
+        "it": "applemusic://track/1737564412"
+      },
+      "uri_deezer": "deezer://track/62082829"
+    },
+    {
+      "artist": "Nickelback",
+      "title": "Photograph",
+      "year": 2005,
+      "isrc": "NLA321393033",
+      "uri": "spotify:track:3hb2ScEVkGchcAQqrPLP0R",
+      "uri_apple_music": "applemusic://track/214403497",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1519790936",
+        "de": "applemusic://track/1537768035",
+        "gb": "applemusic://track/1537768035",
+        "fr": "applemusic://track/1537768035",
+        "es": "applemusic://track/1537768035",
+        "nl": "applemusic://track/1537768035",
+        "it": "applemusic://track/1537768035"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JOtfj1phVxo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/71828722",
+      "fun_fact": "Nickelback are a Canadian rock band — one of the best-selling acts of the post-grunge era.",
+      "fun_fact_de": "Nickelback sind eine kanadische Rockband — einer der meistverkauften Acts der Post-Grunge-Ära.",
+      "fun_fact_es": "Nickelback es una banda de rock canadiense, uno de los grupos más vendidos de la era post-grunge.",
+      "fun_fact_fr": "Nickelback est un groupe de rock canadien, l'un des plus vendus de l'ère post-grunge.",
+      "fun_fact_nl": "Nickelback is een Canadese rockband — een van de best verkochte acts van het post-grunge-tijdperk.",
+      "alt_artists": [
+        "3 Doors Down",
+        "Seether",
+        "Creed"
+      ]
+    },
+    {
+      "artist": "Disturbed",
+      "title": "Down with the Sickness",
+      "year": 2000,
+      "isrc": "USGI19900180",
+      "uri": "spotify:track:40rvBMQizxkIqnjPdEWY1v",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": "applemusic://track/270959694",
+        "gb": "applemusic://track/1225275582",
+        "fr": "applemusic://track/270959694",
+        "es": "applemusic://track/270959694",
+        "nl": "applemusic://track/270959694",
+        "it": "applemusic://track/270959694"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l2OvJr0ITTw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/663984",
+      "alt_artists": [
+        "Five Finger Death Punch",
+        "Godsmack",
+        "Stone Sour"
+      ],
+      "fun_fact": "“Down with the Sickness” by Disturbed was originally released in 2000; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Down with the Sickness“ von Disturbed erschien ursprünglich 2000; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Down with the Sickness», de Disturbed, se publicó originalmente en 2000; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Down with the Sickness » de Disturbed est sorti à l’origine en 2000 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Down with the Sickness” van Disturbed verscheen oorspronkelijk in 2000; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
+    },
+    {
+      "artist": "Red Hot Chili Peppers",
+      "title": "Give It Away",
+      "year": 1991,
+      "isrc": "UK9FS1610829",
+      "uri": "spotify:track:0uppYCG86ajpV2hSR3dJJ0",
+      "uri_apple_music": "applemusic://track/1758939833",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1758939833",
+        "de": "applemusic://track/1628511709",
+        "gb": "applemusic://track/1656037664",
+        "fr": "applemusic://track/1628511709",
+        "es": "applemusic://track/1700667409",
+        "nl": "applemusic://track/1700667409",
+        "it": "applemusic://track/1683092200"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XhjqmAoBKCQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/139633449",
+      "alt_artists": [
+        "Foo Fighters",
+        "Nirvana",
+        "Pearl Jam"
+      ],
+      "fun_fact": "“Give It Away” by Red Hot Chili Peppers was originally released in 1991; the year is based on matched recording and release metadata.",
+      "fun_fact_de": "„Give It Away“ von Red Hot Chili Peppers erschien ursprünglich 1991; das Jahr basiert auf abgeglichenen Aufnahme- und Veröffentlichungsdaten.",
+      "fun_fact_es": "«Give It Away», de Red Hot Chili Peppers, se publicó originalmente en 1991; el año se basa en datos de grabación y publicación contrastados.",
+      "fun_fact_fr": "« Give It Away » de Red Hot Chili Peppers est sorti à l’origine en 1991 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
+      "fun_fact_nl": "“Give It Away” van Red Hot Chili Peppers verscheen oorspronkelijk in 1991; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
+      "chart_info": {
+        "billboard_peak": null,
+        "weeks_on_chart": null
+      },
+      "certifications": [],
+      "awards": [],
+      "awards_de": [],
+      "awards_es": [],
+      "awards_fr": [],
+      "awards_nl": []
     }
   ]
 }
