@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "1990s",
     "pop",
@@ -3022,19 +3022,19 @@
       "year": 1991,
       "isrc": "USGR10001014",
       "uri": "spotify:track:6BxLhB782dObX1y4kDJDIU",
-      "uri_apple_music": "applemusic://track/1669406231",
+      "uri_apple_music": "applemusic://track/1443215632",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1669406231",
-        "de": "applemusic://track/1669406231",
+        "us": "applemusic://track/1443215632",
+        "de": "applemusic://track/1443215632",
         "gb": "applemusic://track/1442391217",
-        "fr": "applemusic://track/1669406231",
-        "es": "applemusic://track/1669406231",
-        "nl": "applemusic://track/1669406231",
-        "it": "applemusic://track/1669406231"
+        "fr": "applemusic://track/1443215632",
+        "es": "applemusic://track/1443215632",
+        "nl": "applemusic://track/1443215632",
+        "it": "applemusic://track/1443215632"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TLYdt-uIe-U",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X6JM8iagb8o",
       "uri_tidal": "tidal://track/3718218",
-      "uri_deezer": "deezer://track/2133777737",
+      "uri_deezer": "deezer://track/1118083",
       "alt_artists": [
         "Jocelyn Brown"
       ],
