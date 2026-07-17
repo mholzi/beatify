@@ -5,7 +5,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
-- **New community playlist: 100 Greatest Rock Songs** — 122 unique tracks spanning six decades, acquired from all 123 source entries with one later duplicate recording removed (#1828).
+- **New community playlist: 100 Greatest Rock Songs** — 122 unique tracks spanning seven decades, acquired from all 123 source entries with one later duplicate recording removed (#1828).
 
 ## [4.2.0-rc13] - 2026-07-14
 
