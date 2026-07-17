@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "canadian",
     "canada",
@@ -497,7 +497,7 @@
         "it": "applemusic://track/1422704118"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SKN2pT2W9ZY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37329163",
       "uri_deezer": "deezer://track/587625262",
       "alt_artists": [
         "Barenaked Ladies",
@@ -534,7 +534,7 @@
         "it": "applemusic://track/1469547671"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zgsa6Tz_rgQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7238595",
       "uri_deezer": "deezer://track/840628272",
       "alt_artists": [
         "Céline Dion",
@@ -571,7 +571,7 @@
         "it": "applemusic://track/70258956"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PH0K6ojmGZA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3029402",
       "uri_deezer": "deezer://track/3822150",
       "alt_artists": [
         "Chilliwack",
@@ -645,7 +645,7 @@
         "it": "applemusic://track/1799228832"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GADRQjY9PEQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2006389",
       "uri_deezer": "deezer://track/2453680",
       "alt_artists": [
         "Crowbar",
@@ -763,7 +763,7 @@
         "it": "applemusic://track/1440771622"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WPeBwVXgR8I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77598509",
       "uri_deezer": "deezer://track/1581773",
       "alt_artists": [
         "Trooper",
@@ -800,7 +800,7 @@
         "it": "applemusic://track/1440823689"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bEp1DtMtfsc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37149244",
       "uri_deezer": "deezer://track/88902735",
       "alt_artists": [
         "Corey Hart",
@@ -837,7 +837,7 @@
         "it": "applemusic://track/280855176"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GWYmjrlxrBE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22720333",
       "uri_deezer": "deezer://track/70662261",
       "alt_artists": [
         "Lighthouse",
@@ -917,7 +917,7 @@
         "it": "applemusic://track/1892366868"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g4nmswsAiDo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/15732366",
       "uri_deezer": "deezer://track/16669291",
       "alt_artists": [
         "54-40",
@@ -954,7 +954,7 @@
         "it": "applemusic://track/1798698394"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=K_f85Zc6u-U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/52684790",
       "uri_deezer": "deezer://track/109843288",
       "alt_artists": [
         "Céline Dion",
@@ -991,7 +991,7 @@
         "it": "applemusic://track/724507037"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ucfu4EaoNRM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2450876",
       "uri_deezer": "deezer://track/3425155",
       "alt_artists": [
         "54-40",
@@ -1028,7 +1028,7 @@
         "it": "applemusic://track/1440815149"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xLFAQuWFcTo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/150610",
       "uri_deezer": "deezer://track/514437462",
       "alt_artists": [
         "Steppenwolf",
@@ -1065,7 +1065,7 @@
         "it": "applemusic://track/342282159"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fT_J-LNqVvw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3247528",
       "uri_deezer": "deezer://track/4736957",
       "alt_artists": [
         "Crowbar",
@@ -1102,7 +1102,7 @@
         "it": "applemusic://track/1744618145"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4eK_mRRwV78",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2045051",
       "uri_deezer": "deezer://track/13268006",
       "alt_artists": [
         "Chilliwack",
@@ -1139,7 +1139,7 @@
         "it": "applemusic://track/320266889"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DvxxdZpMFHg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/49651433",
       "uri_deezer": "deezer://track/4094888",
       "alt_artists": [
         "The Tragically Hip",
@@ -1176,7 +1176,7 @@
         "it": "applemusic://track/1442260218"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=F5I_zaqM8LM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/75440002",
       "uri_deezer": "deezer://track/376207471",
       "alt_artists": [
         "April Wine",
@@ -1213,7 +1213,7 @@
         "it": "applemusic://track/1440823902"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hhRcE9NmftU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77612821",
       "uri_deezer": "deezer://track/88902737",
       "alt_artists": [
         "Corey Hart",
@@ -1250,7 +1250,7 @@
         "it": "applemusic://track/297419042"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cL2IZ6-QvjU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7861567",
       "uri_deezer": "deezer://track/13805977",
       "alt_artists": [
         "Les Colocs",
@@ -1287,7 +1287,7 @@
         "it": "applemusic://track/289849454"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=c7IztmK4osk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/84717669",
       "uri_deezer": "deezer://track/462196092",
       "alt_artists": [
         "Lighthouse",
