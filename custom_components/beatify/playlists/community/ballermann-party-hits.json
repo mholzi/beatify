@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "schlager",
     "party",
@@ -3077,7 +3077,7 @@
         "it": "applemusic://track/724725207"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KGQ65ywSC1I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/24866646",
       "uri_deezer": "deezer://track/51419701",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -3102,7 +3102,7 @@
         "it": "applemusic://track/1502108582"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=L_BUIVGKlrA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/132442925",
       "uri_deezer": "deezer://track/887060442",
       "fun_fact": "A Mallorca / Ballermann party hit (2011).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2011).",
@@ -3127,7 +3127,7 @@
         "it": "applemusic://track/1884053594"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RXanHWN-h00",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79927851",
       "uri_deezer": "deezer://track/417358492",
       "fun_fact": "Jürgen Drews — the self-styled \"König von Mallorca\" — was a legend of German Schlager until his 2023 retirement.",
       "fun_fact_de": "Jürgen Drews — der selbsternannte \"König von Mallorca\" — war bis zu seinem Rückzug 2023 eine Legende des deutschen Schlagers.",
@@ -3144,7 +3144,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=X0qtLof0eeg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16670983",
       "uri_deezer": null,
       "fun_fact": "A Mallorca / Ballermann party hit (2010).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2010).",
@@ -3169,7 +3169,7 @@
         "it": "applemusic://track/1838526767"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bHbNI2I_r1U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79927847",
       "uri_deezer": "deezer://track/417358452",
       "fun_fact": "\"Ein Bett im Kornfeld\" is the timeless 1976 Jürgen Drews classic — here in a 2017 re-recording.",
       "fun_fact_de": "\"Ein Bett im Kornfeld\" ist der zeitlose Jürgen-Drews-Klassiker von 1976 — hier in einer Neuaufnahme von 2017.",
@@ -3194,7 +3194,7 @@
         "it": "applemusic://track/424458112"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DZWgwWh2ZFo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5958368",
       "uri_deezer": "deezer://track/70128395",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -3219,7 +3219,7 @@
         "it": "applemusic://track/1721519674"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=eg1yzyFSaw8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/336998905",
       "uri_deezer": "deezer://track/2598565512",
       "fun_fact": "A Mallorca / Ballermann party hit (2024).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2024).",
@@ -3244,7 +3244,7 @@
         "it": "applemusic://track/1658577200"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5G9IH2pOYUA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79927855",
       "uri_deezer": "deezer://track/417358532",
       "fun_fact": "Jürgen Drews — the self-styled \"König von Mallorca\" — was a legend of German Schlager until his 2023 retirement.",
       "fun_fact_de": "Jürgen Drews — der selbsternannte \"König von Mallorca\" — war bis zu seinem Rückzug 2023 eine Legende des deutschen Schlagers.",
@@ -3269,7 +3269,7 @@
         "it": "applemusic://track/591828475"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y4Qzczb3Zow",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/17511109",
       "uri_deezer": "deezer://track/70557285",
       "fun_fact": "A Mallorca / Ballermann party hit (2013).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2013).",
@@ -3294,7 +3294,7 @@
         "it": "applemusic://track/1444311147"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UAdiG824dtk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66005005",
       "uri_deezer": "deezer://track/139404725",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -3319,7 +3319,7 @@
         "it": "applemusic://track/1565934569"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bo-VESZUZY8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45275978",
       "uri_deezer": "deezer://track/98699294",
       "fun_fact": "A Mallorca / Ballermann party hit (2022).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
@@ -3344,7 +3344,7 @@
         "it": "applemusic://track/269374064"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RLEFFpe0ZDA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2104428",
       "uri_deezer": "deezer://track/2647773",
       "fun_fact": "A Mallorca / Ballermann party hit (2007).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2007).",
@@ -3369,7 +3369,7 @@
         "it": "applemusic://track/1535124794"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jSuT0dg_R-Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79927856",
       "uri_deezer": "deezer://track/1110639402",
       "fun_fact": "Jürgen Drews — the self-styled \"König von Mallorca\" — was a legend of German Schlager until his 2023 retirement.",
       "fun_fact_de": "Jürgen Drews — der selbsternannte \"König von Mallorca\" — war bis zu seinem Rückzug 2023 eine Legende des deutschen Schlagers.",
@@ -3394,7 +3394,7 @@
         "it": "applemusic://track/1892051365"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OP2QTdh0J6s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/61266893",
       "uri_deezer": "deezer://track/2809924",
       "fun_fact": "Brings is a Cologne band best known for the carnival anthem \"Superjeilezick\".",
       "fun_fact_de": "Brings ist eine Kölner Band, bekannt vor allem durch die Karnevalshymne \"Superjeilezick\".",
@@ -3419,7 +3419,7 @@
         "it": "applemusic://track/1462749587"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YB2LQOeRcm0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106021390",
       "uri_deezer": "deezer://track/650269792",
       "fun_fact": "Tim Toupet is a party-Schlager singer known for novelty sing-along hits.",
       "fun_fact_de": "Tim Toupet ist ein Party-Schlager-Sänger, bekannt für humorvolle Mitsing-Hits.",
@@ -3444,7 +3444,7 @@
         "it": "applemusic://track/1783617215"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LsQOn3WNnX8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/103128836",
       "uri_deezer": "deezer://track/624011192",
       "alt_artists": [
         "Mia Julia"
@@ -3472,7 +3472,7 @@
         "it": "applemusic://track/1485631352"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4WOOZONIdhA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/108212644",
       "uri_deezer": "deezer://track/664225902",
       "fun_fact": "Tobee is a Mallorca party-Schlager artist known for catchy party covers and originals.",
       "fun_fact_de": "Tobee ist ein Mallorca-Party-Schlager-Künstler, bekannt für eingängige Party-Cover und Eigenkompositionen.",
@@ -3497,7 +3497,7 @@
         "it": "applemusic://track/1764119273"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=93lYqZztgxY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23240018",
       "uri_deezer": "deezer://track/71847519",
       "fun_fact": "Brings is a Cologne band best known for the carnival anthem \"Superjeilezick\".",
       "fun_fact_de": "Brings ist eine Kölner Band, bekannt vor allem durch die Karnevalshymne \"Superjeilezick\".",
@@ -3522,7 +3522,7 @@
         "it": "applemusic://track/1465285017"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xp-sgjsb0wo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111016963",
       "uri_deezer": "deezer://track/664463032",
       "fun_fact": "A Mallorca / Ballermann party hit (2019).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2019).",
