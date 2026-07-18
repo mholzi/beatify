@@ -1,0 +1,3800 @@
+{
+  "name": "🍁 Québécois 1990-2020",
+  "version": "0.2",
+  "tags": [
+    "quebecois",
+    "quebec",
+    "francophone",
+    "chanson",
+    "folk",
+    "rock",
+    "french"
+  ],
+  "language": "fr",
+  "author": "Beatify Community",
+  "added_date": "2026-07-16",
+  "source": "https://open.spotify.com/playlist/3wkKhYWQAJNwzCbG3NdqLU",
+  "description": "126 unique recordings from all 128 positions in the complete live Spotify source, preserving source order while collapsing two exact-ISRC duplicate rows. The selection spans Québécois and related francophone folk, rock, chanson and pop. Required years and five localized facts are complete; optional provider IDs are included only where artist, title, edition and duration were verified. The source title is retained even though its current contents extend beyond 1990–2020.",
+  "songs": [
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "L'Amérique pleure",
+      "uri": "spotify:track:3WogGiNpaOmYcPwqslBgZG",
+      "year": 2019,
+      "isrc": "CAL541920501",
+      "uri_apple_music": "applemusic://track/1589126538",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1589126538",
+        "de": "applemusic://track/1589126538",
+        "gb": "applemusic://track/1589126538",
+        "fr": "applemusic://track/1589126538",
+        "es": "applemusic://track/1589126538",
+        "nl": "applemusic://track/1589126538",
+        "it": "applemusic://track/1589126538"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sYRp8oP0yiw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1082531032",
+      "alt_artists": [
+        "Charlotte Cardin, CRi",
+        "Philémon Cimon",
+        "Mon Doux Saigneur"
+      ],
+      "fun_fact": "«L'Amérique pleure» is the title single from Les Cowboys Fringants' 2019 album Les Antipodes, one of Quebec's most beloved folk-rock bands.",
+      "fun_fact_de": "«L'Amérique pleure» ist die Titelsingle vom 2019er Album Les Antipodes der Les Cowboys Fringants, einer der beliebtesten Folk-Rock-Bands Québecs.",
+      "fun_fact_es": "«L'Amérique pleure» es el sencillo que da título al álbum Les Antipodes (2019) de Les Cowboys Fringants, una de las bandas de folk-rock más queridas de Quebec.",
+      "fun_fact_fr": "«L'Amérique pleure» est le single-titre de l'album Les Antipodes (2019) des Cowboys Fringants, l'un des groupes folk-rock les plus aimés du Québec.",
+      "fun_fact_nl": "«L'Amérique pleure» is de titelsingle van het album Les Antipodes (2019) van Les Cowboys Fringants, een van Quebecs geliefdste folkrockbands."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Sèche tes pleurs",
+      "uri": "spotify:track:3DlTgKZMiNkPa96dbLlfYO",
+      "year": 1992,
+      "isrc": "CAA509266003",
+      "uri_apple_music": "applemusic://track/1551597580",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551597580",
+        "de": "applemusic://track/1551597580",
+        "gb": "applemusic://track/1551597580",
+        "fr": "applemusic://track/1551597580",
+        "es": "applemusic://track/1551597580",
+        "nl": "applemusic://track/1551597580",
+        "it": "applemusic://track/1551597580"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A5KXY5Ssy5E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128228065",
+      "alt_artists": [
+        "Les Colocs",
+        "Vilain Pingouin",
+        "Lynda Lemay"
+      ],
+      "fun_fact": "«Sèche tes pleurs» appears on Daniel Bélanger's album «Les Insomniaques S'amusent».",
+      "fun_fact_de": "«Sèche tes pleurs» erschien auf dem Album «Les Insomniaques S'amusent» von Daniel Bélanger.",
+      "fun_fact_es": "«Sèche tes pleurs» aparece en el álbum «Les Insomniaques S'amusent» de Daniel Bélanger.",
+      "fun_fact_fr": "«Sèche tes pleurs» figure sur l’album «Les Insomniaques S'amusent» de Daniel Bélanger.",
+      "fun_fact_nl": "«Sèche tes pleurs» staat op het album «Les Insomniaques S'amusent» van Daniel Bélanger."
+    },
+    {
+      "artist": "Pierre Lapointe",
+      "title": "Deux par deux rassemblés",
+      "uri": "spotify:track:6OkdbK4Y1zHsDI4w5y5MY0",
+      "year": 2006,
+      "isrc": "CAA500619602",
+      "uri_apple_music": "applemusic://track/1849697499",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1849697499",
+        "de": "applemusic://track/1849697499",
+        "gb": "applemusic://track/1849697499",
+        "fr": "applemusic://track/1849697499",
+        "es": "applemusic://track/1849697499",
+        "nl": "applemusic://track/1849697499",
+        "it": "applemusic://track/1849697499"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=15rawe3WVWw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3629522802",
+      "alt_artists": [
+        "Éric Lapointe",
+        "Dobacaracol",
+        "TRICOT MACHINE"
+      ],
+      "fun_fact": "«Deux par deux rassemblés» appears on Pierre Lapointe's album «La forêt des mal-aimés».",
+      "fun_fact_de": "«Deux par deux rassemblés» erschien auf dem Album «La forêt des mal-aimés» von Pierre Lapointe.",
+      "fun_fact_es": "«Deux par deux rassemblés» aparece en el álbum «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_fr": "«Deux par deux rassemblés» figure sur l’album «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_nl": "«Deux par deux rassemblés» staat op het album «La forêt des mal-aimés» van Pierre Lapointe."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "I Lost My Baby",
+      "uri": "spotify:track:4tSffeciMCcNIvITmh6QHP",
+      "year": 1996,
+      "isrc": "CAA509696006",
+      "uri_apple_music": "applemusic://track/1551615128",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551615128",
+        "de": "applemusic://track/1551615128",
+        "gb": "applemusic://track/1551615128",
+        "fr": "applemusic://track/1551615128",
+        "es": "applemusic://track/1551615128",
+        "nl": "applemusic://track/1551615128",
+        "it": "applemusic://track/1551615128"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D_GJnIeyukI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128237727",
+      "alt_artists": [
+        "Fred Fortin",
+        "Noir Silence",
+        "Céline Dion"
+      ],
+      "fun_fact": "«I Lost My Baby» appears on Jean Leloup's album «Le Dôme».",
+      "fun_fact_de": "«I Lost My Baby» erschien auf dem Album «Le Dôme» von Jean Leloup.",
+      "fun_fact_es": "«I Lost My Baby» aparece en el álbum «Le Dôme» de Jean Leloup.",
+      "fun_fact_fr": "«I Lost My Baby» figure sur l’album «Le Dôme» de Jean Leloup.",
+      "fun_fact_nl": "«I Lost My Baby» staat op het album «Le Dôme» van Jean Leloup."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Les étoiles filantes",
+      "uri": "spotify:track:23Na3MCF9QaYja7W7mVMxy",
+      "year": 2004,
+      "isrc": "CAZ700400964",
+      "uri_apple_music": "applemusic://track/1048261791",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048261791",
+        "de": "applemusic://track/1048261791",
+        "gb": "applemusic://track/1048261791",
+        "fr": "applemusic://track/1048261791",
+        "es": "applemusic://track/1048261791",
+        "nl": "applemusic://track/1048261791",
+        "it": "applemusic://track/1048261791"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KIe_3vhxmoA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/426561402",
+      "alt_artists": [
+        "Les Trois Accords",
+        "Mes Aïeux",
+        "Stefie Shock"
+      ],
+      "fun_fact": "«Les étoiles filantes» (2004), from La Grand-Messe, is one of Les Cowboys Fringants' most cherished singalongs.",
+      "fun_fact_de": "«Les étoiles filantes» (2004) vom Album La Grand-Messe ist einer der beliebtesten Mitsing-Songs der Cowboys Fringants.",
+      "fun_fact_es": "«Les étoiles filantes» (2004), de La Grand-Messe, es una de las canciones coreadas más queridas de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Les étoiles filantes» (2004), de La Grand-Messe, est l'une des chansons à reprendre en chœur les plus chéries des Cowboys Fringants.",
+      "fun_fact_nl": "«Les étoiles filantes» (2004), van La Grand-Messe, is een van de meest geliefde meezingers van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Mes Aïeux",
+      "title": "Le repos du guerrier",
+      "uri": "spotify:track:10OmfJCAYVzChZMH2CKBMT",
+      "year": 2004,
+      "isrc": "FR6V80311686",
+      "uri_apple_music": "applemusic://track/254869694",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/254869694",
+        "de": "applemusic://track/254869694",
+        "gb": "applemusic://track/254869694",
+        "fr": "applemusic://track/254869694",
+        "es": "applemusic://track/254869694",
+        "nl": "applemusic://track/254869694",
+        "it": "applemusic://track/254869694"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=i6cJ0b0uz6A",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/208868",
+      "alt_artists": [
+        "Les Trois Accords",
+        "Kaïn",
+        "Thomas Hellman"
+      ],
+      "fun_fact": "«Le repos du guerrier» appears on Mes Aïeux's album «En Famille».",
+      "fun_fact_de": "«Le repos du guerrier» erschien auf dem Album «En Famille» von Mes Aïeux.",
+      "fun_fact_es": "«Le repos du guerrier» aparece en el álbum «En Famille» de Mes Aïeux.",
+      "fun_fact_fr": "«Le repos du guerrier» figure sur l’album «En Famille» de Mes Aïeux.",
+      "fun_fact_nl": "«Le repos du guerrier» staat op het album «En Famille» van Mes Aïeux."
+    },
+    {
+      "artist": "Dobacaracol",
+      "title": "Étrange",
+      "uri": "spotify:track:2jdFLgkxWO9HWdufwbOoBU",
+      "year": 2004,
+      "isrc": "CAI250405502",
+      "uri_apple_music": "applemusic://track/1768788296",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1768788296",
+        "de": "applemusic://track/1768788296",
+        "gb": "applemusic://track/1768788296",
+        "fr": "applemusic://track/1768788296",
+        "es": "applemusic://track/1768788296",
+        "nl": "applemusic://track/1768788296",
+        "it": "applemusic://track/1768788296"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lNRcOaBdNjI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2997313761",
+      "alt_artists": [
+        "Les Trois Accords",
+        "Mes Aïeux",
+        "Ariane Moffatt"
+      ],
+      "fun_fact": "«Étrange» appears on Dobacaracol's album «Soley».",
+      "fun_fact_de": "«Étrange» erschien auf dem Album «Soley» von Dobacaracol.",
+      "fun_fact_es": "«Étrange» aparece en el álbum «Soley» de Dobacaracol.",
+      "fun_fact_fr": "«Étrange» figure sur l’album «Soley» de Dobacaracol.",
+      "fun_fact_nl": "«Étrange» staat op het album «Soley» van Dobacaracol."
+    },
+    {
+      "artist": "Les Colocs",
+      "title": "La Rue Principale",
+      "uri": "spotify:track:35CgPaRWgzwlB6f8UUTgNm",
+      "year": 1993,
+      "isrc": "CAI549301002",
+      "uri_apple_music": "applemusic://track/308138217",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/308138217",
+        "de": "applemusic://track/308138217",
+        "gb": "applemusic://track/308138217",
+        "fr": "applemusic://track/308138217",
+        "es": "applemusic://track/308138217",
+        "nl": "applemusic://track/308138217",
+        "it": "applemusic://track/308138217"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0hnc2618F80",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/15397671",
+      "alt_artists": [
+        "Beau Dommage",
+        "Daniel Bélanger",
+        "Lynda Lemay"
+      ],
+      "fun_fact": "«La Rue Principale» was the 1993 breakout hit of Les Colocs, the Montreal band led by André «Dédé» Fortin.",
+      "fun_fact_de": "«La Rue Principale» war 1993 der Durchbruchshit von Les Colocs, der Montrealer Band um André «Dédé» Fortin.",
+      "fun_fact_es": "«La Rue Principale» fue el éxito revelación de 1993 de Les Colocs, la banda de Montreal liderada por André «Dédé» Fortin.",
+      "fun_fact_fr": "«La Rue Principale» fut le succès révélation de 1993 des Colocs, le groupe montréalais mené par André «Dédé» Fortin.",
+      "fun_fact_nl": "«La Rue Principale» was in 1993 de doorbraakhit van Les Colocs, de Montrealse band rond André «Dédé» Fortin."
+    },
+    {
+      "artist": "Vincent Vallières",
+      "title": "On va s'aimer encore",
+      "uri": "spotify:track:3rxHqfRwEgzGogEXZi8vRU",
+      "year": 2009,
+      "isrc": "CAS740913006",
+      "uri_apple_music": "applemusic://track/1458399429",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1458399429",
+        "de": "applemusic://track/1458399429",
+        "gb": "applemusic://track/1458399429",
+        "fr": "applemusic://track/1458399429",
+        "es": "applemusic://track/1458399429",
+        "nl": "applemusic://track/1458399429",
+        "it": "applemusic://track/1458399429"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_ai1plnRMKI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/661492472",
+      "alt_artists": [
+        "Damien Robitaille",
+        "Daniel Lavoie",
+        "Cœur De Pirate"
+      ],
+      "fun_fact": "«On va s'aimer encore» appears on Vincent Vallières's album «Le monde tourne fort».",
+      "fun_fact_de": "«On va s'aimer encore» erschien auf dem Album «Le monde tourne fort» von Vincent Vallières.",
+      "fun_fact_es": "«On va s'aimer encore» aparece en el álbum «Le monde tourne fort» de Vincent Vallières.",
+      "fun_fact_fr": "«On va s'aimer encore» figure sur l’album «Le monde tourne fort» de Vincent Vallières.",
+      "fun_fact_nl": "«On va s'aimer encore» staat op het album «Le monde tourne fort» van Vincent Vallières."
+    },
+    {
+      "artist": "Keith Kouna",
+      "title": "Batiscan",
+      "uri": "spotify:track:6zS9UoeaK1Yj5Sf5kgrXbt",
+      "year": 2012,
+      "isrc": "CAL641219935",
+      "uri_apple_music": "applemusic://track/1573039135",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1573039135",
+        "de": "applemusic://track/1573039135",
+        "gb": "applemusic://track/1573039135",
+        "fr": "applemusic://track/1573039135",
+        "es": "applemusic://track/1573039135",
+        "nl": "applemusic://track/1573039135",
+        "it": "applemusic://track/1573039135"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MocqRzOIy3I",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1409440342",
+      "alt_artists": [
+        "David Jalbert",
+        "Tomás Jensen",
+        "Alex Nevsky"
+      ],
+      "fun_fact": "«Batiscan» appears on Keith Kouna's album «Du plaisir et des bombes».",
+      "fun_fact_de": "«Batiscan» erschien auf dem Album «Du plaisir et des bombes» von Keith Kouna.",
+      "fun_fact_es": "«Batiscan» aparece en el álbum «Du plaisir et des bombes» de Keith Kouna.",
+      "fun_fact_fr": "«Batiscan» figure sur l’album «Du plaisir et des bombes» de Keith Kouna.",
+      "fun_fact_nl": "«Batiscan» staat op het album «Du plaisir et des bombes» van Keith Kouna."
+    },
+    {
+      "artist": "Stefie Shock",
+      "title": "Un homme à la mer - 2023 mix",
+      "uri": "spotify:track:1lFl0MONDoO0DizOJX5pA7",
+      "year": 2023,
+      "isrc": "CAU110310680",
+      "uri_apple_music": "applemusic://track/1666652683",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1666652683",
+        "de": "applemusic://track/1666652683",
+        "gb": "applemusic://track/1666652683",
+        "fr": "applemusic://track/1666652683",
+        "es": "applemusic://track/1666652683",
+        "nl": "applemusic://track/1666652683",
+        "it": "applemusic://track/1666652683"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G0MsmqlX9-8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2120360737",
+      "alt_artists": [
+        "Lisa LeBlanc",
+        "Martin Roberts",
+        "Édith Butler"
+      ],
+      "fun_fact": "«Un homme à la mer - 2023 mix» appears on Stefie Shock's album «Le décor».",
+      "fun_fact_de": "«Un homme à la mer - 2023 mix» erschien auf dem Album «Le décor» von Stefie Shock.",
+      "fun_fact_es": "«Un homme à la mer - 2023 mix» aparece en el álbum «Le décor» de Stefie Shock.",
+      "fun_fact_fr": "«Un homme à la mer - 2023 mix» figure sur l’album «Le décor» de Stefie Shock.",
+      "fun_fact_nl": "«Un homme à la mer - 2023 mix» staat op het album «Le décor» van Stefie Shock."
+    },
+    {
+      "artist": "Martin Léon",
+      "title": "All In",
+      "uri": "spotify:track:7nQzt4j05dWwDJRwYBdAvm",
+      "year": 2010,
+      "isrc": "CAL541012801",
+      "uri_apple_music": "applemusic://track/1715445681",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1715445681",
+        "de": "applemusic://track/1715445681",
+        "gb": "applemusic://track/1715445681",
+        "fr": "applemusic://track/1715445681",
+        "es": "applemusic://track/1715445681",
+        "nl": "applemusic://track/1715445681",
+        "it": "applemusic://track/1715445681"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c9xEWPw09mQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1497899982",
+      "alt_artists": [
+        "Karkwa",
+        "Alexandre Poulin",
+        "Vincent Vallières"
+      ],
+      "fun_fact": "«All In» appears on Martin Léon's album «Les Atomes».",
+      "fun_fact_de": "«All In» erschien auf dem Album «Les Atomes» von Martin Léon.",
+      "fun_fact_es": "«All In» aparece en el álbum «Les Atomes» de Martin Léon.",
+      "fun_fact_fr": "«All In» figure sur l’album «Les Atomes» de Martin Léon.",
+      "fun_fact_nl": "«All In» staat op het album «Les Atomes» van Martin Léon."
+    },
+    {
+      "artist": "Zachary Richard",
+      "title": "Pagayez",
+      "uri": "spotify:track:0JluwSF5Sae1NZzPcBsWbl",
+      "year": 2000,
+      "isrc": "FR07V0000010",
+      "uri_apple_music": "applemusic://track/275105220",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/275105220",
+        "de": "applemusic://track/275105220",
+        "gb": "applemusic://track/275105220",
+        "fr": "applemusic://track/275105220",
+        "es": "applemusic://track/275105220",
+        "nl": "applemusic://track/275105220",
+        "it": "applemusic://track/275105220"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b2IhhwemrWk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/69306838",
+      "alt_artists": [
+        "Patrick Norman",
+        "Okoumé",
+        "Les Respectables"
+      ],
+      "fun_fact": "«Pagayez» appears on Zachary Richard's album «Coeur Fidèle».",
+      "fun_fact_de": "«Pagayez» erschien auf dem Album «Coeur Fidèle» von Zachary Richard.",
+      "fun_fact_es": "«Pagayez» aparece en el álbum «Coeur Fidèle» de Zachary Richard.",
+      "fun_fact_fr": "«Pagayez» figure sur l’album «Coeur Fidèle» de Zachary Richard.",
+      "fun_fact_nl": "«Pagayez» staat op het album «Coeur Fidèle» van Zachary Richard."
+    },
+    {
+      "artist": "Jonathan Painchaud",
+      "title": "Pousse, pousse",
+      "uri": "spotify:track:5rwxYvICaxJ8yTl3F85G5R",
+      "year": 2007,
+      "isrc": "CAU111300147",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fNB9fHfl_Ds",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/66614609",
+      "alt_artists": [
+        "TRICOT MACHINE",
+        "Cœur De Pirate",
+        "Pierre Lapointe"
+      ],
+      "fun_fact": "«Pousse, pousse» appears on Jonathan Painchaud's album «Qu'on se lève».",
+      "fun_fact_de": "«Pousse, pousse» erschien auf dem Album «Qu'on se lève» von Jonathan Painchaud.",
+      "fun_fact_es": "«Pousse, pousse» aparece en el álbum «Qu'on se lève» de Jonathan Painchaud.",
+      "fun_fact_fr": "«Pousse, pousse» figure sur l’album «Qu'on se lève» de Jonathan Painchaud.",
+      "fun_fact_nl": "«Pousse, pousse» staat op het album «Qu'on se lève» van Jonathan Painchaud."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Rêver mieux",
+      "uri": "spotify:track:02wd6Q4Xhp8zeoCOCcPX3j",
+      "year": 2001,
+      "isrc": "CAA500115012",
+      "uri_apple_music": "applemusic://track/1551592645",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551592645",
+        "de": "applemusic://track/1551592645",
+        "gb": "applemusic://track/1551592645",
+        "fr": "applemusic://track/1551592645",
+        "es": "applemusic://track/1551592645",
+        "nl": "applemusic://track/1551592645",
+        "it": "applemusic://track/1551592645"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j0wQ5snYyoo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128233609",
+      "alt_artists": [
+        "Marc Déry",
+        "Patrick Norman",
+        "Zachary Richard"
+      ],
+      "fun_fact": "«Rêver mieux» is the title track of Daniel Bélanger's album of the same name.",
+      "fun_fact_de": "«Rêver mieux» ist der Titelsong des gleichnamigen Albums von Daniel Bélanger.",
+      "fun_fact_es": "«Rêver mieux» es la canción que da título al álbum homónimo de Daniel Bélanger.",
+      "fun_fact_fr": "«Rêver mieux» est la chanson-titre de l’album homonyme de Daniel Bélanger.",
+      "fun_fact_nl": "«Rêver mieux» is de titelsong van het gelijknamige album van Daniel Bélanger."
+    },
+    {
+      "artist": "Alexandre Poulin",
+      "title": "Martin",
+      "uri": "spotify:track:1YofnCrb6OTGiJqgw4T81p",
+      "year": 2010,
+      "isrc": "CAV501038808",
+      "uri_apple_music": "applemusic://track/1878381018",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878381018",
+        "de": "applemusic://track/1878381018",
+        "gb": "applemusic://track/1878381018",
+        "fr": "applemusic://track/1878381018",
+        "es": "applemusic://track/1878381018",
+        "nl": "applemusic://track/1878381018",
+        "it": "applemusic://track/1878381018"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eTtHgTIVRSA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3854901771",
+      "alt_artists": [
+        "Martin Léon",
+        "Karkwa",
+        "Daniel Lavoie"
+      ],
+      "fun_fact": "«Martin» appears on Alexandre Poulin's album «Une lumière allumée».",
+      "fun_fact_de": "«Martin» erschien auf dem Album «Une lumière allumée» von Alexandre Poulin.",
+      "fun_fact_es": "«Martin» aparece en el álbum «Une lumière allumée» de Alexandre Poulin.",
+      "fun_fact_fr": "«Martin» figure sur l’album «Une lumière allumée» de Alexandre Poulin.",
+      "fun_fact_nl": "«Martin» staat op het album «Une lumière allumée» van Alexandre Poulin."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Droit devant",
+      "uri": "spotify:track:2wNdqbWlq6ALI5TtIYRCYh",
+      "year": 2008,
+      "isrc": "CAL540810201",
+      "uri_apple_music": "applemusic://track/1048262119",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048262119",
+        "de": "applemusic://track/1048262119",
+        "gb": "applemusic://track/1048262119",
+        "fr": "applemusic://track/1048262119",
+        "es": "applemusic://track/1048262119",
+        "nl": "applemusic://track/1048262119",
+        "it": "applemusic://track/1048262119"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0Z7IzW4QSxU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374160",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Daniel Lavoie",
+        "Jonathan Painchaud"
+      ],
+      "fun_fact": "«Droit devant» appears on Les Cowboys Fringants's album «L'expédition».",
+      "fun_fact_de": "«Droit devant» erschien auf dem Album «L'expédition» von Les Cowboys Fringants.",
+      "fun_fact_es": "«Droit devant» aparece en el álbum «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Droit devant» figure sur l’album «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«Droit devant» staat op het album «L'expédition» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Pierre Lapointe",
+      "title": "Au 27-100 rue des partances",
+      "uri": "spotify:track:0pmv2ZZWT8HedlxYYblrgL",
+      "year": 2006,
+      "isrc": "CAA500619610",
+      "uri_apple_music": "applemusic://track/1849697515",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1849697515",
+        "de": "applemusic://track/1849697515",
+        "gb": "applemusic://track/1849697515",
+        "fr": "applemusic://track/1849697515",
+        "es": "applemusic://track/1849697515",
+        "nl": "applemusic://track/1849697515",
+        "it": "applemusic://track/1849697515"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DbOGmlM9i9o",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3629522912",
+      "alt_artists": [
+        "Éric Lapointe",
+        "Dobacaracol",
+        "Jonathan Painchaud"
+      ],
+      "fun_fact": "«Au 27-100 rue des partances» appears on Pierre Lapointe's album «La forêt des mal-aimés».",
+      "fun_fact_de": "«Au 27-100 rue des partances» erschien auf dem Album «La forêt des mal-aimés» von Pierre Lapointe.",
+      "fun_fact_es": "«Au 27-100 rue des partances» aparece en el álbum «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_fr": "«Au 27-100 rue des partances» figure sur l’album «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_nl": "«Au 27-100 rue des partances» staat op het album «La forêt des mal-aimés» van Pierre Lapointe."
+    },
+    {
+      "artist": "Mes Aïeux",
+      "title": "Le déni de l'évidence",
+      "uri": "spotify:track:3yvtD8xPOG7AnhB8unsk5u",
+      "year": 2008,
+      "isrc": "CAV500836601",
+      "uri_apple_music": "applemusic://track/300663245",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/300663245",
+        "de": "applemusic://track/300663245",
+        "gb": "applemusic://track/300663245",
+        "fr": "applemusic://track/300663245",
+        "es": "applemusic://track/300663245",
+        "nl": "applemusic://track/300663245",
+        "it": "applemusic://track/300663245"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kezuEjZERR0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2761587",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Damien Robitaille",
+        "TRICOT MACHINE"
+      ],
+      "fun_fact": "«Le déni de l'évidence» appears on Mes Aïeux's album «La ligne orange».",
+      "fun_fact_de": "«Le déni de l'évidence» erschien auf dem Album «La ligne orange» von Mes Aïeux.",
+      "fun_fact_es": "«Le déni de l'évidence» aparece en el álbum «La ligne orange» de Mes Aïeux.",
+      "fun_fact_fr": "«Le déni de l'évidence» figure sur l’album «La ligne orange» de Mes Aïeux.",
+      "fun_fact_nl": "«Le déni de l'évidence» staat op het album «La ligne orange» van Mes Aïeux."
+    },
+    {
+      "artist": "Émile Bilodeau",
+      "title": "Ça va",
+      "uri": "spotify:track:50AZk0JTPGp8JDb7iWPWDd",
+      "year": 2016,
+      "isrc": "CAD431695713",
+      "uri_apple_music": "applemusic://track/1148624912",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1148624912",
+        "de": "applemusic://track/1148624912",
+        "gb": "applemusic://track/1148624912",
+        "fr": "applemusic://track/1148624912",
+        "es": "applemusic://track/1148624912",
+        "nl": "applemusic://track/1148624912",
+        "it": "applemusic://track/1148624912"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VSNW1xOsEmM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/131066320",
+      "alt_artists": [
+        "Charlotte Cardin",
+        "Philippe B",
+        "Louis-Jean Cormier"
+      ],
+      "fun_fact": "«Ça va» appears on Émile Bilodeau's album «Rites de passage».",
+      "fun_fact_de": "«Ça va» erschien auf dem Album «Rites de passage» von Émile Bilodeau.",
+      "fun_fact_es": "«Ça va» aparece en el álbum «Rites de passage» de Émile Bilodeau.",
+      "fun_fact_fr": "«Ça va» figure sur l’album «Rites de passage» de Émile Bilodeau.",
+      "fun_fact_nl": "«Ça va» staat op het album «Rites de passage» van Émile Bilodeau."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "1990",
+      "uri": "spotify:track:2SqZ6pmqXB5szlwEgaeDYW",
+      "year": 1990,
+      "isrc": "CAA509103613",
+      "uri_apple_music": "applemusic://track/1551600096",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551600096",
+        "de": "applemusic://track/1551600096",
+        "gb": "applemusic://track/1551600096",
+        "fr": "applemusic://track/1551600096",
+        "es": "applemusic://track/1551600096",
+        "nl": "applemusic://track/1551600096",
+        "it": "applemusic://track/1551600096"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GQfmaGa7vzE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128236305",
+      "alt_artists": [
+        "Vilain Pingouin",
+        "Roch Voisine",
+        "Daniel Bélanger"
+      ],
+      "fun_fact": "«1990» by Jean Leloup was the eccentric singer-songwriter's breakthrough, from his 1990 album L'amour est sans pitié.",
+      "fun_fact_de": "«1990» von Jean Leloup war der Durchbruch des exzentrischen Songwriters, vom Album L'amour est sans pitié (1990).",
+      "fun_fact_es": "«1990» de Jean Leloup fue el éxito que consagró al excéntrico cantautor, de su álbum L'amour est sans pitié (1990).",
+      "fun_fact_fr": "«1990» de Jean Leloup marqua la consécration de l'excéntrique auteur-compositeur, tiré de l'album L'amour est sans pitié (1990).",
+      "fun_fact_nl": "«1990» van Jean Leloup betekende de doorbraak van de excentrieke singer-songwriter, van het album L'amour est sans pitié (1990)."
+    },
+    {
+      "artist": "Édith Butler, Lisa LeBlanc",
+      "title": "Dans l'bois",
+      "uri": "spotify:track:0LI89ikl3gcJpFepnrfr38",
+      "year": 2021,
+      "isrc": "CA06H2100137",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WA_AlC8u2F4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1435820362",
+      "alt_artists": [
+        "Martin Roberts",
+        "Lalonde Lalonde",
+        "Maude Audet"
+      ],
+      "fun_fact": "«Dans l'bois» appears on Édith Butler, Lisa LeBlanc's album «Le tour du Grand Bois».",
+      "fun_fact_de": "«Dans l'bois» erschien auf dem Album «Le tour du Grand Bois» von Édith Butler, Lisa LeBlanc.",
+      "fun_fact_es": "«Dans l'bois» aparece en el álbum «Le tour du Grand Bois» de Édith Butler, Lisa LeBlanc.",
+      "fun_fact_fr": "«Dans l'bois» figure sur l’album «Le tour du Grand Bois» de Édith Butler, Lisa LeBlanc.",
+      "fun_fact_nl": "«Dans l'bois» staat op het album «Le tour du Grand Bois» van Édith Butler, Lisa LeBlanc."
+    },
+    {
+      "artist": "Thomas Hellman",
+      "title": "L'Admirateur Secret",
+      "uri": "spotify:track:3bTs7LSKlOBt8qUNuoLJxA",
+      "year": 2005,
+      "isrc": "CAJ220421020",
+      "uri_apple_music": "applemusic://track/1638049428",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1638049428",
+        "de": "applemusic://track/1638049428",
+        "gb": "applemusic://track/1638049428",
+        "fr": "applemusic://track/1638049428",
+        "es": "applemusic://track/1638049428",
+        "nl": "applemusic://track/1638049428",
+        "it": "applemusic://track/1638049428"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VoQ0YFBMBmE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1853959977",
+      "alt_artists": [
+        "Ariane Moffatt",
+        "Kaïn",
+        "Dobacaracol"
+      ],
+      "fun_fact": "«L'Admirateur Secret» appears on Thomas Hellman's album «L'Apartement».",
+      "fun_fact_de": "«L'Admirateur Secret» erschien auf dem Album «L'Apartement» von Thomas Hellman.",
+      "fun_fact_es": "«L'Admirateur Secret» aparece en el álbum «L'Apartement» de Thomas Hellman.",
+      "fun_fact_fr": "«L'Admirateur Secret» figure sur l’album «L'Apartement» de Thomas Hellman.",
+      "fun_fact_nl": "«L'Admirateur Secret» staat op het album «L'Apartement» van Thomas Hellman."
+    },
+    {
+      "artist": "Maude Audet",
+      "title": "Tu trembleras encore",
+      "uri": "spotify:track:2lo2Sv1jLOp7aNhGvgt6qQ",
+      "year": 2020,
+      "isrc": "CAD431998012",
+      "uri_apple_music": "applemusic://track/1482953118",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1482953118",
+        "de": "applemusic://track/1482953118",
+        "gb": "applemusic://track/1482953118",
+        "fr": "applemusic://track/1482953118",
+        "es": "applemusic://track/1482953118",
+        "nl": "applemusic://track/1482953118",
+        "it": "applemusic://track/1482953118"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dmIT66XR6qQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/773118112",
+      "alt_artists": [
+        "Mon Doux Saigneur",
+        "Édith Butler, Lisa LeBlanc",
+        "Martin Roberts"
+      ],
+      "fun_fact": "«Tu trembleras encore» appears on Maude Audet's album «Tu ne mourras pas».",
+      "fun_fact_de": "«Tu trembleras encore» erschien auf dem Album «Tu ne mourras pas» von Maude Audet.",
+      "fun_fact_es": "«Tu trembleras encore» aparece en el álbum «Tu ne mourras pas» de Maude Audet.",
+      "fun_fact_fr": "«Tu trembleras encore» figure sur l’album «Tu ne mourras pas» de Maude Audet.",
+      "fun_fact_nl": "«Tu trembleras encore» staat op het album «Tu ne mourras pas» van Maude Audet."
+    },
+    {
+      "artist": "Les Colocs",
+      "title": "Juste une p'tite nuite",
+      "uri": "spotify:track:6g3bKvtd9s8xXoSYJqM0y7",
+      "year": 1993,
+      "isrc": "CAI549301009",
+      "uri_apple_music": "applemusic://track/308138403",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/308138403",
+        "de": "applemusic://track/308138403",
+        "gb": "applemusic://track/308138403",
+        "fr": "applemusic://track/308138403",
+        "es": "applemusic://track/308138403",
+        "nl": "applemusic://track/308138403",
+        "it": "applemusic://track/308138403"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=38arYF35tbQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/15397676",
+      "alt_artists": [
+        "Daniel Bélanger",
+        "Beau Dommage",
+        "Lynda Lemay"
+      ],
+      "fun_fact": "«Juste une p'tite nuite» appears on Les Colocs's album «Les Colocs».",
+      "fun_fact_de": "«Juste une p'tite nuite» erschien auf dem Album «Les Colocs» von Les Colocs.",
+      "fun_fact_es": "«Juste une p'tite nuite» aparece en el álbum «Les Colocs» de Les Colocs.",
+      "fun_fact_fr": "«Juste une p'tite nuite» figure sur l’album «Les Colocs» de Les Colocs.",
+      "fun_fact_nl": "«Juste une p'tite nuite» staat op het album «Les Colocs» van Les Colocs."
+    },
+    {
+      "artist": "Les Respectables",
+      "title": "Amalgame",
+      "uri": "spotify:track:21ATIZAwB9QXBOpTzw2lDM",
+      "year": 1999,
+      "isrc": "CAP689916002",
+      "uri_apple_music": "applemusic://track/253799923",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/253799923",
+        "de": "applemusic://track/253799923",
+        "gb": "applemusic://track/253799923",
+        "fr": "applemusic://track/253799923",
+        "es": "applemusic://track/253799923",
+        "nl": "applemusic://track/253799923",
+        "it": "applemusic://track/253799923"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zuWt7zAP8EY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/45112771",
+      "alt_artists": [
+        "Daniel Boucher",
+        "Patrick Norman",
+        "Zachary Richard"
+      ],
+      "fun_fact": "«Amalgame» appears on Les Respectables's album «$=Bonheur».",
+      "fun_fact_de": "«Amalgame» erschien auf dem Album «$=Bonheur» von Les Respectables.",
+      "fun_fact_es": "«Amalgame» aparece en el álbum «$=Bonheur» de Les Respectables.",
+      "fun_fact_fr": "«Amalgame» figure sur l’album «$=Bonheur» de Les Respectables.",
+      "fun_fact_nl": "«Amalgame» staat op het album «$=Bonheur» van Les Respectables."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Te quitter",
+      "uri": "spotify:track:2cWtM03ZsUQrGhb8RS2NDU",
+      "year": 2001,
+      "isrc": "CAA500115001",
+      "uri_apple_music": "applemusic://track/1551592280",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551592280",
+        "de": "applemusic://track/1551592280",
+        "gb": "applemusic://track/1551592280",
+        "fr": "applemusic://track/1551592280",
+        "es": "applemusic://track/1551592280",
+        "nl": "applemusic://track/1551592280",
+        "it": "applemusic://track/1551592280"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ekieVUVZUek",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128233587",
+      "alt_artists": [
+        "Patrick Norman",
+        "Marc Déry",
+        "Okoumé"
+      ],
+      "fun_fact": "«Te quitter» appears on Daniel Bélanger's album «Rêver Mieux».",
+      "fun_fact_de": "«Te quitter» erschien auf dem Album «Rêver Mieux» von Daniel Bélanger.",
+      "fun_fact_es": "«Te quitter» aparece en el álbum «Rêver Mieux» de Daniel Bélanger.",
+      "fun_fact_fr": "«Te quitter» figure sur l’album «Rêver Mieux» de Daniel Bélanger.",
+      "fun_fact_nl": "«Te quitter» staat op het album «Rêver Mieux» van Daniel Bélanger."
+    },
+    {
+      "artist": "Pierre Lapointe",
+      "title": "Dans la forêt des mal-aimés",
+      "uri": "spotify:track:0b2wZyp1KFMJI2p6i2ae4v",
+      "year": 2006,
+      "isrc": "CAA500619601",
+      "uri_apple_music": "applemusic://track/1849697165",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1849697165",
+        "de": "applemusic://track/1849697165",
+        "gb": "applemusic://track/1849697165",
+        "fr": "applemusic://track/1849697165",
+        "es": "applemusic://track/1849697165",
+        "nl": "applemusic://track/1849697165",
+        "it": "applemusic://track/1849697165"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_o7AMYH4yCc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3629522782",
+      "alt_artists": [
+        "Éric Lapointe",
+        "Dobacaracol",
+        "Thomas Hellman"
+      ],
+      "fun_fact": "«Dans la forêt des mal-aimés» appears on Pierre Lapointe's album «La forêt des mal-aimés».",
+      "fun_fact_de": "«Dans la forêt des mal-aimés» erschien auf dem Album «La forêt des mal-aimés» von Pierre Lapointe.",
+      "fun_fact_es": "«Dans la forêt des mal-aimés» aparece en el álbum «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_fr": "«Dans la forêt des mal-aimés» figure sur l’album «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_nl": "«Dans la forêt des mal-aimés» staat op het album «La forêt des mal-aimés» van Pierre Lapointe."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Plus rien",
+      "uri": "spotify:track:6xWhWAwyqtKPNSrYtN0xpJ",
+      "year": 2004,
+      "isrc": "CAL540405305",
+      "uri_apple_music": "applemusic://track/1048261794",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048261794",
+        "de": "applemusic://track/1048261794",
+        "gb": "applemusic://track/1048261794",
+        "fr": "applemusic://track/1048261794",
+        "es": "applemusic://track/1048261794",
+        "nl": "applemusic://track/1048261794",
+        "it": "applemusic://track/1048261794"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IF-X2m2PCmU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374136",
+      "alt_artists": [
+        "Les Trois Accords",
+        "Mes Aïeux",
+        "Stefie Shock"
+      ],
+      "fun_fact": "«Plus rien» (2004) is an apocalyptic environmental ballad from Les Cowboys Fringants' landmark album La Grand-Messe.",
+      "fun_fact_de": "«Plus rien» (2004) ist eine apokalyptische Umwelt-Ballade vom Meilenstein-Album La Grand-Messe der Cowboys Fringants.",
+      "fun_fact_es": "«Plus rien» (2004) es una balada ecologista apocalíptica del álbum clave La Grand-Messe de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Plus rien» (2004) est une ballade écologiste apocalyptique tirée de l'album marquant La Grand-Messe des Cowboys Fringants.",
+      "fun_fact_nl": "«Plus rien» (2004) is een apocalyptische milieuballad van het mijlpaalalbum La Grand-Messe van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Mes Aïeux",
+      "title": "Dégénérations / Le reel du fossé",
+      "uri": "spotify:track:3WgK1nC3pQmJ9UtBF4oNMR",
+      "year": 2004,
+      "isrc": "FR6V80311681",
+      "uri_apple_music": "applemusic://track/254869658",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/254869658",
+        "de": "applemusic://track/254869658",
+        "gb": "applemusic://track/254869658",
+        "fr": "applemusic://track/254869658",
+        "es": "applemusic://track/254869658",
+        "nl": "applemusic://track/254869658",
+        "it": "applemusic://track/254869658"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6aul1nqWrCA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/208864",
+      "alt_artists": [
+        "Les Trois Accords",
+        "Dumas",
+        "Stefie Shock"
+      ],
+      "fun_fact": "«Dégénérations» by Mes Aïeux (2004) became a trad-folk anthem, chaining together generations of a Québécois family.",
+      "fun_fact_de": "«Dégénérations» von Mes Aïeux (2004) wurde zur Trad-Folk-Hymne, die Generationen einer Québécois-Familie aneinanderreiht.",
+      "fun_fact_es": "«Dégénérations» de Mes Aïeux (2004) se volvió un himno folk tradicional que encadena generaciones de una familia quebequesa.",
+      "fun_fact_fr": "«Dégénérations» de Mes Aïeux (2004) devint un hymne trad-folk enchaînant les générations d'une famille québécoise.",
+      "fun_fact_nl": "«Dégénérations» van Mes Aïeux (2004) werd een trad-folk-hymne die generaties van een Québécois-familie aaneenrijgt."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Intouchable et immortel",
+      "uri": "spotify:track:394g3SnbyFv0JAz6SMZsbG",
+      "year": 2001,
+      "isrc": "CAA500115009",
+      "uri_apple_music": "applemusic://track/1551592638",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551592638",
+        "de": "applemusic://track/1551592638",
+        "gb": "applemusic://track/1551592638",
+        "fr": "applemusic://track/1551592638",
+        "es": "applemusic://track/1551592638",
+        "nl": "applemusic://track/1551592638",
+        "it": "applemusic://track/1551592638"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Wa61zlR_N84",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128233603",
+      "alt_artists": [
+        "Patrick Norman",
+        "Okoumé",
+        "Zachary Richard"
+      ],
+      "fun_fact": "«Intouchable et immortel» appears on Daniel Bélanger's album «Rêver Mieux».",
+      "fun_fact_de": "«Intouchable et immortel» erschien auf dem Album «Rêver Mieux» von Daniel Bélanger.",
+      "fun_fact_es": "«Intouchable et immortel» aparece en el álbum «Rêver Mieux» de Daniel Bélanger.",
+      "fun_fact_fr": "«Intouchable et immortel» figure sur l’album «Rêver Mieux» de Daniel Bélanger.",
+      "fun_fact_nl": "«Intouchable et immortel» staat op het album «Rêver Mieux» van Daniel Bélanger."
+    },
+    {
+      "artist": "Alexandre Poulin",
+      "title": "Fernand",
+      "uri": "spotify:track:327OLzaZRtgzIUPgcRCBKm",
+      "year": 2008,
+      "isrc": "CAV500833510",
+      "uri_apple_music": "applemusic://track/1878379680",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1878379680",
+        "de": "applemusic://track/1878379680",
+        "gb": "applemusic://track/1878379680",
+        "fr": "applemusic://track/1878379680",
+        "es": "applemusic://track/1878379680",
+        "nl": "applemusic://track/1878379680",
+        "it": "applemusic://track/1878379680"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ldAma8XZTLs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3854901651",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Daniel Lavoie",
+        "TRICOT MACHINE"
+      ],
+      "fun_fact": "«Fernand» appears on Alexandre Poulin's album «Alexandre Poulin».",
+      "fun_fact_de": "«Fernand» erschien auf dem Album «Alexandre Poulin» von Alexandre Poulin.",
+      "fun_fact_es": "«Fernand» aparece en el álbum «Alexandre Poulin» de Alexandre Poulin.",
+      "fun_fact_fr": "«Fernand» figure sur l’album «Alexandre Poulin» de Alexandre Poulin.",
+      "fun_fact_nl": "«Fernand» staat op het album «Alexandre Poulin» van Alexandre Poulin."
+    },
+    {
+      "artist": "Tomás Jensen",
+      "title": "Mourir vite",
+      "uri": "spotify:track:5xRIwarbVYc16WJZ5Xx4O8",
+      "year": 2013,
+      "isrc": "CAL641219953",
+      "uri_apple_music": "applemusic://track/1573047681",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1573047681",
+        "de": "applemusic://track/1573047681",
+        "gb": "applemusic://track/1573047681",
+        "fr": "applemusic://track/1573047681",
+        "es": "applemusic://track/1573047681",
+        "nl": "applemusic://track/1573047681",
+        "it": "applemusic://track/1573047681"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MXdtp3yeMc4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1409455662",
+      "alt_artists": [
+        "Sally Folk",
+        "Alex Nevsky",
+        "La Maison Tellier"
+      ],
+      "fun_fact": "«Mourir vite» appears on Tomás Jensen's album «Plus personne».",
+      "fun_fact_de": "«Mourir vite» erschien auf dem Album «Plus personne» von Tomás Jensen.",
+      "fun_fact_es": "«Mourir vite» aparece en el álbum «Plus personne» de Tomás Jensen.",
+      "fun_fact_fr": "«Mourir vite» figure sur l’album «Plus personne» de Tomás Jensen.",
+      "fun_fact_nl": "«Mourir vite» staat op het album «Plus personne» van Tomás Jensen."
+    },
+    {
+      "artist": "Pierre Lapointe",
+      "title": "Au pays des fleurs de la transe",
+      "uri": "spotify:track:3Zzeo84y2KvT5oCOl5GD8P",
+      "year": 2006,
+      "isrc": "CAA500619615",
+      "uri_apple_music": "applemusic://track/1849697649",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1849697649",
+        "de": "applemusic://track/1849697649",
+        "gb": "applemusic://track/1849697649",
+        "fr": "applemusic://track/1849697649",
+        "es": "applemusic://track/1849697649",
+        "nl": "applemusic://track/1849697649",
+        "it": "applemusic://track/1849697649"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l3T2K221ZCo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3629522982",
+      "alt_artists": [
+        "Éric Lapointe",
+        "Dobacaracol",
+        "Jonathan Painchaud"
+      ],
+      "fun_fact": "«Au pays des fleurs de la transe» appears on Pierre Lapointe's album «La forêt des mal-aimés».",
+      "fun_fact_de": "«Au pays des fleurs de la transe» erschien auf dem Album «La forêt des mal-aimés» von Pierre Lapointe.",
+      "fun_fact_es": "«Au pays des fleurs de la transe» aparece en el álbum «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_fr": "«Au pays des fleurs de la transe» figure sur l’album «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_nl": "«Au pays des fleurs de la transe» staat op het album «La forêt des mal-aimés» van Pierre Lapointe."
+    },
+    {
+      "artist": "Céline Dion",
+      "title": "Pour que tu m'aimes encore",
+      "uri": "spotify:track:6mYSphiU3Qg07g37bZlE4c",
+      "year": 1995,
+      "isrc": "CAC229500002",
+      "uri_apple_music": "applemusic://track/1745568921",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1745568921",
+        "de": "applemusic://track/1745568921",
+        "gb": "applemusic://track/1745568921",
+        "fr": "applemusic://track/1745568921",
+        "es": "applemusic://track/1745568921",
+        "nl": "applemusic://track/1745568921",
+        "it": "applemusic://track/1745568921"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AzaTyxMduH4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4762933",
+      "alt_artists": [
+        "Noir Silence",
+        "Fred Fortin",
+        "Lynda Lemay"
+      ],
+      "fun_fact": "«Pour que tu m'aimes encore» (1995), written by Jean-Jacques Goldman for Céline Dion's album D'eux, is her biggest French-language hit.",
+      "fun_fact_de": "«Pour que tu m'aimes encore» (1995), von Jean-Jacques Goldman für Céline Dions Album D'eux geschrieben, ist ihr größter französischsprachiger Hit.",
+      "fun_fact_es": "«Pour que tu m'aimes encore» (1995), escrita por Jean-Jacques Goldman para el álbum D'eux de Céline Dion, es su mayor éxito en francés.",
+      "fun_fact_fr": "«Pour que tu m'aimes encore» (1995), écrite par Jean-Jacques Goldman pour l'album D'eux de Céline Dion, est son plus grand succès francophone.",
+      "fun_fact_nl": "«Pour que tu m'aimes encore» (1995), geschreven door Jean-Jacques Goldman voor Céline Dions album D'eux, is haar grootste Franstalige hit."
+    },
+    {
+      "artist": "Ariane Moffatt",
+      "title": "Montréal",
+      "uri": "spotify:track:0sczR0OFWOGd9U8tECZ47Z",
+      "year": 2005,
+      "isrc": "CAA500519204",
+      "uri_apple_music": "applemusic://track/1551591088",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551591088",
+        "de": "applemusic://track/1551591088",
+        "gb": "applemusic://track/1551591088",
+        "fr": "applemusic://track/1551591088",
+        "es": "applemusic://track/1551591088",
+        "nl": "applemusic://track/1551591088",
+        "it": "applemusic://track/1551591088"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0MsY7wh0rcU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/113480794",
+      "alt_artists": [
+        "Kaïn",
+        "Thomas Hellman",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«Montréal» appears on Ariane Moffatt's album «Le Coeur Dans La Tête».",
+      "fun_fact_de": "«Montréal» erschien auf dem Album «Le Coeur Dans La Tête» von Ariane Moffatt.",
+      "fun_fact_es": "«Montréal» aparece en el álbum «Le Coeur Dans La Tête» de Ariane Moffatt.",
+      "fun_fact_fr": "«Montréal» figure sur l’album «Le Coeur Dans La Tête» de Ariane Moffatt.",
+      "fun_fact_nl": "«Montréal» staat op het album «Le Coeur Dans La Tête» van Ariane Moffatt."
+    },
+    {
+      "artist": "Luce Dufault",
+      "title": "Si demain",
+      "uri": "spotify:track:3agLSsy345XCRVhXXld2tK",
+      "year": 2001,
+      "isrc": "CAL580100002",
+      "uri_apple_music": "applemusic://track/1003906531",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1003906531",
+        "de": "applemusic://track/1003906531",
+        "gb": "applemusic://track/1003906531",
+        "fr": "applemusic://track/1003906531",
+        "es": "applemusic://track/1003906531",
+        "nl": "applemusic://track/1003906531",
+        "it": "applemusic://track/1003906531"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jdcO3Mfqpbc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/102014533",
+      "alt_artists": [
+        "Okoumé",
+        "Marc Déry",
+        "Patrick Norman"
+      ],
+      "fun_fact": "«Si demain» appears on Luce Dufault's album «Top 10 francophone».",
+      "fun_fact_de": "«Si demain» erschien auf dem Album «Top 10 francophone» von Luce Dufault.",
+      "fun_fact_es": "«Si demain» aparece en el álbum «Top 10 francophone» de Luce Dufault.",
+      "fun_fact_fr": "«Si demain» figure sur l’album «Top 10 francophone» de Luce Dufault.",
+      "fun_fact_nl": "«Si demain» staat op het album «Top 10 francophone» van Luce Dufault."
+    },
+    {
+      "artist": "Pierre Lapointe",
+      "title": "Qu'en est-il de la chance?",
+      "uri": "spotify:track:2ilBmiSJttmO2wzMCrtsNd",
+      "year": 2006,
+      "isrc": "CAA500619605",
+      "uri_apple_music": "applemusic://track/1849697504",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1849697504",
+        "de": "applemusic://track/1849697504",
+        "gb": "applemusic://track/1849697504",
+        "fr": "applemusic://track/1849697504",
+        "es": "applemusic://track/1849697504",
+        "nl": "applemusic://track/1849697504",
+        "it": "applemusic://track/1849697504"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NchXMF4jILU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3629522842",
+      "alt_artists": [
+        "Éric Lapointe",
+        "Dobacaracol",
+        "Ariane Moffatt"
+      ],
+      "fun_fact": "«Qu'en est-il de la chance?» appears on Pierre Lapointe's album «La forêt des mal-aimés».",
+      "fun_fact_de": "«Qu'en est-il de la chance?» erschien auf dem Album «La forêt des mal-aimés» von Pierre Lapointe.",
+      "fun_fact_es": "«Qu'en est-il de la chance?» aparece en el álbum «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_fr": "«Qu'en est-il de la chance?» figure sur l’album «La forêt des mal-aimés» de Pierre Lapointe.",
+      "fun_fact_nl": "«Qu'en est-il de la chance?» staat op het album «La forêt des mal-aimés» van Pierre Lapointe."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Toune d'automne",
+      "uri": "spotify:track:1sQ0oafDSZQUElkV5ERvLx",
+      "year": 2002,
+      "isrc": "CAL540102103",
+      "uri_apple_music": "applemusic://track/1048261678",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048261678",
+        "de": "applemusic://track/1048261678",
+        "gb": "applemusic://track/1048261678",
+        "fr": "applemusic://track/1048261678",
+        "es": "applemusic://track/1048261678",
+        "nl": "applemusic://track/1048261678",
+        "it": "applemusic://track/1048261678"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=boK-TEe2_sA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374040",
+      "alt_artists": [
+        "Marc Déry",
+        "Dumas",
+        "Stefie Shock"
+      ],
+      "fun_fact": "«Toune d'automne» appears on Les Cowboys Fringants's album «Break syndical».",
+      "fun_fact_de": "«Toune d'automne» erschien auf dem Album «Break syndical» von Les Cowboys Fringants.",
+      "fun_fact_es": "«Toune d'automne» aparece en el álbum «Break syndical» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Toune d'automne» figure sur l’album «Break syndical» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«Toune d'automne» staat op het album «Break syndical» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Dans un spoutnik",
+      "uri": "spotify:track:0lxeuVFECdmYqKc4TI6xRW",
+      "year": 2001,
+      "isrc": "CAA500115005",
+      "uri_apple_music": "applemusic://track/1551592631",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551592631",
+        "de": "applemusic://track/1551592631",
+        "gb": "applemusic://track/1551592631",
+        "fr": "applemusic://track/1551592631",
+        "es": "applemusic://track/1551592631",
+        "nl": "applemusic://track/1551592631",
+        "it": "applemusic://track/1551592631"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZGKPuLJddJ8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128233595",
+      "alt_artists": [
+        "Patrick Norman",
+        "Zachary Richard",
+        "Okoumé"
+      ],
+      "fun_fact": "«Dans un spoutnik» appears on Daniel Bélanger's album «Rêver Mieux».",
+      "fun_fact_de": "«Dans un spoutnik» erschien auf dem Album «Rêver Mieux» von Daniel Bélanger.",
+      "fun_fact_es": "«Dans un spoutnik» aparece en el álbum «Rêver Mieux» de Daniel Bélanger.",
+      "fun_fact_fr": "«Dans un spoutnik» figure sur l’album «Rêver Mieux» de Daniel Bélanger.",
+      "fun_fact_nl": "«Dans un spoutnik» staat op het album «Rêver Mieux» van Daniel Bélanger."
+    },
+    {
+      "artist": "Daniel Lavoie",
+      "title": "Ils s'aiment",
+      "uri": "spotify:track:4tQBXkkoafrxzE4dphkTGz",
+      "year": 2008,
+      "isrc": "CAZ700903930",
+      "uri_apple_music": "applemusic://track/1606159319",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1606159319",
+        "de": "applemusic://track/1606159319",
+        "gb": "applemusic://track/1606159319",
+        "fr": "applemusic://track/1606159319",
+        "es": "applemusic://track/1606159319",
+        "nl": "applemusic://track/1606159319",
+        "it": "applemusic://track/1606159319"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/77580105",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Vincent Vallières",
+        "Damien Robitaille"
+      ],
+      "fun_fact": "«Ils s'aiment» appears on Daniel Lavoie's album «Lavoie et le Grand Choeur».",
+      "fun_fact_de": "«Ils s'aiment» erschien auf dem Album «Lavoie et le Grand Choeur» von Daniel Lavoie.",
+      "fun_fact_es": "«Ils s'aiment» aparece en el álbum «Lavoie et le Grand Choeur» de Daniel Lavoie.",
+      "fun_fact_fr": "«Ils s'aiment» figure sur l’album «Lavoie et le Grand Choeur» de Daniel Lavoie.",
+      "fun_fact_nl": "«Ils s'aiment» staat op het album «Lavoie et le Grand Choeur» van Daniel Lavoie."
+    },
+    {
+      "artist": "Les Colocs",
+      "title": "Tassez-vous de d'là",
+      "uri": "spotify:track:3w5bSQlQzKFUE3osgrMRBT",
+      "year": 1998,
+      "isrc": "CAA500907703",
+      "uri_apple_music": "applemusic://track/1551611129",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551611129",
+        "de": "applemusic://track/1551611129",
+        "gb": "applemusic://track/1551611129",
+        "fr": "applemusic://track/1551611129",
+        "es": "applemusic://track/1551611129",
+        "nl": "applemusic://track/1551611129",
+        "it": "applemusic://track/1551611129"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NPtiryyxx9c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128234299",
+      "alt_artists": [
+        "Daniel Boucher",
+        "Les Respectables",
+        "Jean Leloup"
+      ],
+      "fun_fact": "«Tassez-vous de d'là» appears on Les Colocs's album «Dehors Novembre».",
+      "fun_fact_de": "«Tassez-vous de d'là» erschien auf dem Album «Dehors Novembre» von Les Colocs.",
+      "fun_fact_es": "«Tassez-vous de d'là» aparece en el álbum «Dehors Novembre» de Les Colocs.",
+      "fun_fact_fr": "«Tassez-vous de d'là» figure sur l’album «Dehors Novembre» de Les Colocs.",
+      "fun_fact_nl": "«Tassez-vous de d'là» staat op het album «Dehors Novembre» van Les Colocs."
+    },
+    {
+      "artist": "Pierre Lapointe",
+      "title": "Au bar des suicidés",
+      "uri": "spotify:track:6dUQz8Uqq6tf6SQrG4Unuy",
+      "year": 2009,
+      "isrc": "CAA500926104",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=R_cEuRIBf-Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128235407",
+      "alt_artists": [
+        "Daniel Lavoie",
+        "Damien Robitaille",
+        "Vincent Vallières"
+      ],
+      "fun_fact": "«Au bar des suicidés» appears on Pierre Lapointe's album «Sentiments humains».",
+      "fun_fact_de": "«Au bar des suicidés» erschien auf dem Album «Sentiments humains» von Pierre Lapointe.",
+      "fun_fact_es": "«Au bar des suicidés» aparece en el álbum «Sentiments humains» de Pierre Lapointe.",
+      "fun_fact_fr": "«Au bar des suicidés» figure sur l’album «Sentiments humains» de Pierre Lapointe.",
+      "fun_fact_nl": "«Au bar des suicidés» staat op het album «Sentiments humains» van Pierre Lapointe."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Le Parapluie",
+      "uri": "spotify:track:6fysEdKrKjCvADBZavBG5n",
+      "year": 1996,
+      "isrc": "CAA509690010",
+      "uri_apple_music": "applemusic://track/1551598986",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551598986",
+        "de": "applemusic://track/1551598986",
+        "gb": "applemusic://track/1551598986",
+        "fr": "applemusic://track/1551598986",
+        "es": "applemusic://track/1551598986",
+        "nl": "applemusic://track/1551598986",
+        "it": "applemusic://track/1551598986"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6FMRj8vAGAc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128233489",
+      "alt_artists": [
+        "Fred Fortin",
+        "Jean Leloup",
+        "Céline Dion"
+      ],
+      "fun_fact": "«Le Parapluie» appears on Daniel Bélanger's album «Quatre Saisons Dans Le Désordre».",
+      "fun_fact_de": "«Le Parapluie» erschien auf dem Album «Quatre Saisons Dans Le Désordre» von Daniel Bélanger.",
+      "fun_fact_es": "«Le Parapluie» aparece en el álbum «Quatre Saisons Dans Le Désordre» de Daniel Bélanger.",
+      "fun_fact_fr": "«Le Parapluie» figure sur l’album «Quatre Saisons Dans Le Désordre» de Daniel Bélanger.",
+      "fun_fact_nl": "«Le Parapluie» staat op het album «Quatre Saisons Dans Le Désordre» van Daniel Bélanger."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "Paradis City",
+      "uri": "spotify:track:3iT4c9MPnaordWrfvTs8MU",
+      "year": 2015,
+      "isrc": "CAD431493504",
+      "uri_apple_music": "applemusic://track/1238762304",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1238762304",
+        "de": "applemusic://track/1238762304",
+        "gb": "applemusic://track/1238762304",
+        "fr": "applemusic://track/1238762304",
+        "es": "applemusic://track/1238762304",
+        "nl": "applemusic://track/1238762304",
+        "it": "applemusic://track/1238762304"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Yy6AG-Vu094",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/93081564",
+      "alt_artists": [
+        "Luce Dufault",
+        "Louis-Jean Cormier",
+        "Patrice Michaud"
+      ],
+      "fun_fact": "«Paradis City» appears on Jean Leloup's album «À Paradis City».",
+      "fun_fact_de": "«Paradis City» erschien auf dem Album «À Paradis City» von Jean Leloup.",
+      "fun_fact_es": "«Paradis City» aparece en el álbum «À Paradis City» de Jean Leloup.",
+      "fun_fact_fr": "«Paradis City» figure sur l’album «À Paradis City» de Jean Leloup.",
+      "fun_fact_nl": "«Paradis City» staat op het album «À Paradis City» van Jean Leloup."
+    },
+    {
+      "artist": "Fred Pellerin",
+      "title": "Plus tard qu'on pense",
+      "uri": "spotify:track:0tfi9aQOVNXoxGWyxQqZhE",
+      "year": 2014,
+      "isrc": "CAS921100074",
+      "uri_apple_music": "applemusic://track/1575429099",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1575429099",
+        "de": "applemusic://track/1575429099",
+        "gb": "applemusic://track/1575429099",
+        "fr": "applemusic://track/1575429099",
+        "es": "applemusic://track/1575429099",
+        "nl": "applemusic://track/1575429099",
+        "it": "applemusic://track/1575429099"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KyxXReCuBow",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1426035252",
+      "alt_artists": [
+        "Joseph Edgar",
+        "Patrice Michaud",
+        "Sally Folk"
+      ],
+      "fun_fact": "«Plus tard qu'on pense» is the title track of Fred Pellerin's album of the same name.",
+      "fun_fact_de": "«Plus tard qu'on pense» ist der Titelsong des gleichnamigen Albums von Fred Pellerin.",
+      "fun_fact_es": "«Plus tard qu'on pense» es la canción que da título al álbum homónimo de Fred Pellerin.",
+      "fun_fact_fr": "«Plus tard qu'on pense» est la chanson-titre de l’album homonyme de Fred Pellerin.",
+      "fun_fact_nl": "«Plus tard qu'on pense» is de titelsong van het gelijknamige album van Fred Pellerin."
+    },
+    {
+      "artist": "Stefie Shock",
+      "title": "L'amour dans le désert - Montuno, Baby",
+      "uri": "spotify:track:0KS8r5nmkoo6VVbsZGVUqA",
+      "year": 2003,
+      "isrc": "CAU110310681",
+      "uri_apple_music": "applemusic://track/323429149",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/323429149",
+        "de": "applemusic://track/323429149",
+        "gb": "applemusic://track/323429149",
+        "fr": "applemusic://track/323429149",
+        "es": "applemusic://track/323429149",
+        "nl": "applemusic://track/323429149",
+        "it": "applemusic://track/323429149"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9HsdY1E9C0w",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/137874851",
+      "alt_artists": [
+        "Dumas",
+        "Marc Déry",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«L'amour dans le désert - Montuno, Baby» appears on Stefie Shock's album «Le décor».",
+      "fun_fact_de": "«L'amour dans le désert - Montuno, Baby» erschien auf dem Album «Le décor» von Stefie Shock.",
+      "fun_fact_es": "«L'amour dans le désert - Montuno, Baby» aparece en el álbum «Le décor» de Stefie Shock.",
+      "fun_fact_fr": "«L'amour dans le désert - Montuno, Baby» figure sur l’album «Le décor» de Stefie Shock.",
+      "fun_fact_nl": "«L'amour dans le désert - Montuno, Baby» staat op het album «Le décor» van Stefie Shock."
+    },
+    {
+      "artist": "Okoumé",
+      "title": "Descendons tous à la rue",
+      "uri": "spotify:track:7KG9oX7B4Dg3lWvQeDFQDE",
+      "year": 2000,
+      "isrc": "CAU111556968",
+      "uri_apple_music": "applemusic://track/1037526788",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1037526788",
+        "de": "applemusic://track/1037526788",
+        "gb": "applemusic://track/1037526788",
+        "fr": "applemusic://track/1037526788",
+        "es": "applemusic://track/1037526788",
+        "nl": "applemusic://track/1037526788",
+        "it": "applemusic://track/1037526788"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-JKYICCphOM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/107202708",
+      "alt_artists": [
+        "Patrick Norman",
+        "Zachary Richard",
+        "Daniel Boucher"
+      ],
+      "fun_fact": "«Descendons tous à la rue» appears on Okoumé's album «Plan B».",
+      "fun_fact_de": "«Descendons tous à la rue» erschien auf dem Album «Plan B» von Okoumé.",
+      "fun_fact_es": "«Descendons tous à la rue» aparece en el álbum «Plan B» de Okoumé.",
+      "fun_fact_fr": "«Descendons tous à la rue» figure sur l’album «Plan B» de Okoumé.",
+      "fun_fact_nl": "«Descendons tous à la rue» staat op het album «Plan B» van Okoumé."
+    },
+    {
+      "artist": "Dobacaracol",
+      "title": "Baiser salé",
+      "uri": "spotify:track:3nXCzntsnk649YfdjUqrJ3",
+      "year": 2004,
+      "isrc": "CAI250405501",
+      "uri_apple_music": "applemusic://track/1768788291",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1768788291",
+        "de": "applemusic://track/1768788291",
+        "gb": "applemusic://track/1768788291",
+        "fr": "applemusic://track/1768788291",
+        "es": "applemusic://track/1768788291",
+        "nl": "applemusic://track/1768788291",
+        "it": "applemusic://track/1768788291"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aOxReeb3-Bk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2997313751",
+      "alt_artists": [
+        "Mes Aïeux",
+        "Les Trois Accords",
+        "Stefie Shock"
+      ],
+      "fun_fact": "«Baiser salé» appears on Dobacaracol's album «Soley».",
+      "fun_fact_de": "«Baiser salé» erschien auf dem Album «Soley» von Dobacaracol.",
+      "fun_fact_es": "«Baiser salé» aparece en el álbum «Soley» de Dobacaracol.",
+      "fun_fact_fr": "«Baiser salé» figure sur l’album «Soley» de Dobacaracol.",
+      "fun_fact_nl": "«Baiser salé» staat op het album «Soley» van Dobacaracol."
+    },
+    {
+      "artist": "Tomás Jensen",
+      "title": "Plus personne",
+      "uri": "spotify:track:6e6fo83uRv0mKp2YZM56Gd",
+      "year": 2013,
+      "isrc": "CAL641219951",
+      "uri_apple_music": "applemusic://track/1573047545",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1573047545",
+        "de": "applemusic://track/1573047545",
+        "gb": "applemusic://track/1573047545",
+        "fr": "applemusic://track/1573047545",
+        "es": "applemusic://track/1573047545",
+        "nl": "applemusic://track/1573047545",
+        "it": "applemusic://track/1573047545"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xfPjOG53eRY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1409455642",
+      "alt_artists": [
+        "Sally Folk",
+        "La Maison Tellier",
+        "Alex Nevsky"
+      ],
+      "fun_fact": "«Plus personne» is the title track of Tomás Jensen's album of the same name.",
+      "fun_fact_de": "«Plus personne» ist der Titelsong des gleichnamigen Albums von Tomás Jensen.",
+      "fun_fact_es": "«Plus personne» es la canción que da título al álbum homónimo de Tomás Jensen.",
+      "fun_fact_fr": "«Plus personne» est la chanson-titre de l’album homonyme de Tomás Jensen.",
+      "fun_fact_nl": "«Plus personne» is de titelsong van het gelijknamige album van Tomás Jensen."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Opium",
+      "uri": "spotify:track:53cU3oW3h1c3ihBQiiXRLu",
+      "year": 1992,
+      "isrc": "CAA509266006",
+      "uri_apple_music": "applemusic://track/1551597598",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551597598",
+        "de": "applemusic://track/1551597598",
+        "gb": "applemusic://track/1551597598",
+        "fr": "applemusic://track/1551597598",
+        "es": "applemusic://track/1551597598",
+        "nl": "applemusic://track/1551597598",
+        "it": "applemusic://track/1551597598"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S6NtAWMgNaw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128228071",
+      "alt_artists": [
+        "Les Colocs",
+        "Vilain Pingouin",
+        "Lynda Lemay"
+      ],
+      "fun_fact": "«Opium» appears on Daniel Bélanger's album «Les Insomniaques S'amusent».",
+      "fun_fact_de": "«Opium» erschien auf dem Album «Les Insomniaques S'amusent» von Daniel Bélanger.",
+      "fun_fact_es": "«Opium» aparece en el álbum «Les Insomniaques S'amusent» de Daniel Bélanger.",
+      "fun_fact_fr": "«Opium» figure sur l’album «Les Insomniaques S'amusent» de Daniel Bélanger.",
+      "fun_fact_nl": "«Opium» staat op het album «Les Insomniaques S'amusent» van Daniel Bélanger."
+    },
+    {
+      "artist": "Beau Dommage",
+      "title": "La Complainte Du Phoque En Alaska - Remastered",
+      "uri": "spotify:track:6JVngSxUtrYkWfFmFWmtm5",
+      "year": 1974,
+      "isrc": "CAE150400171",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JWKpzJrli9c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3393958",
+      "alt_artists": [
+        "Harmonium",
+        "Michel Rivard",
+        "Roch Voisine"
+      ],
+      "fun_fact": "«La Complainte du phoque en Alaska», written by Michel Rivard for Beau Dommage's 1974 debut, is a Québécois classic covered for generations.",
+      "fun_fact_de": "«La Complainte du phoque en Alaska», von Michel Rivard für Beau Dommages Debut 1974 geschrieben, ist ein Québécois-Klassiker über Generationen.",
+      "fun_fact_es": "«La Complainte du phoque en Alaska», escrita por Michel Rivard para el debut de Beau Dommage (1974), es un clásico quebequés versionado por generaciones.",
+      "fun_fact_fr": "«La Complainte du phoque en Alaska», écrite par Michel Rivard pour le premier album de Beau Dommage (1974), est un classique québécois repris de génération en génération.",
+      "fun_fact_nl": "«La Complainte du phoque en Alaska», geschreven door Michel Rivard voor Beau Dommages debuut (1974), is een Québécois-klassieker die generaties lang gecoverd wordt."
+    },
+    {
+      "artist": "Louis-Jean Cormier",
+      "title": "Si tu reviens",
+      "uri": "spotify:track:3YVISWunu7CRwkRNikYubw",
+      "year": 2015,
+      "isrc": "CA60L1530001",
+      "uri_apple_music": "applemusic://track/1525618068",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1525618068",
+        "de": "applemusic://track/1525618068",
+        "gb": "applemusic://track/1525618068",
+        "fr": null,
+        "es": "applemusic://track/1525618068",
+        "nl": "applemusic://track/1525618068",
+        "it": "applemusic://track/1525618068"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LhxPq-GqEuI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2027853997",
+      "alt_artists": [
+        "Luce Dufault",
+        "Patrice Michaud",
+        "Joseph Edgar"
+      ],
+      "fun_fact": "«Si tu reviens» appears on Louis-Jean Cormier's album «Les grandes artères».",
+      "fun_fact_de": "«Si tu reviens» erschien auf dem Album «Les grandes artères» von Louis-Jean Cormier.",
+      "fun_fact_es": "«Si tu reviens» aparece en el álbum «Les grandes artères» de Louis-Jean Cormier.",
+      "fun_fact_fr": "«Si tu reviens» figure sur l’album «Les grandes artères» de Louis-Jean Cormier.",
+      "fun_fact_nl": "«Si tu reviens» staat op het album «Les grandes artères» van Louis-Jean Cormier."
+    },
+    {
+      "artist": "Patrick Norman",
+      "title": "La guitare de Jérémie",
+      "uri": "spotify:track:5JjonyocnVio3NGgYJQDTZ",
+      "year": 2000,
+      "isrc": "CADC41003680",
+      "uri_apple_music": "applemusic://track/1568305004",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1568305004",
+        "de": "applemusic://track/1568305004",
+        "gb": "applemusic://track/1568305004",
+        "fr": "applemusic://track/1568305004",
+        "es": "applemusic://track/1568305004",
+        "nl": "applemusic://track/1568305004",
+        "it": "applemusic://track/1568305004"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1376976052",
+      "alt_artists": [
+        "Okoumé",
+        "Zachary Richard",
+        "Les Respectables"
+      ],
+      "fun_fact": "«La guitare de Jérémie» appears on Patrick Norman's album «Patrick Norman».",
+      "fun_fact_de": "«La guitare de Jérémie» erschien auf dem Album «Patrick Norman» von Patrick Norman.",
+      "fun_fact_es": "«La guitare de Jérémie» aparece en el álbum «Patrick Norman» de Patrick Norman.",
+      "fun_fact_fr": "«La guitare de Jérémie» figure sur l’album «Patrick Norman» de Patrick Norman.",
+      "fun_fact_nl": "«La guitare de Jérémie» staat op het album «Patrick Norman» van Patrick Norman."
+    },
+    {
+      "artist": "Lynda Lemay",
+      "title": "Le Plus fort c'est mon père",
+      "uri": "spotify:track:60KGlmLjrJ2PGYTHGl7kPh",
+      "year": 1994,
+      "isrc": "CAW119400742",
+      "uri_apple_music": "applemusic://track/459096597",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/459096597",
+        "de": "applemusic://track/459096597",
+        "gb": "applemusic://track/459096597",
+        "fr": "applemusic://track/459096597",
+        "es": "applemusic://track/459096597",
+        "nl": "applemusic://track/459096597",
+        "it": "applemusic://track/459096597"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ENePCYsFjXg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/729924",
+      "alt_artists": [
+        "Beau Dommage",
+        "Céline Dion",
+        "Les Colocs"
+      ],
+      "fun_fact": "«Le Plus fort c'est mon père» appears on Lynda Lemay's album «Y».",
+      "fun_fact_de": "«Le Plus fort c'est mon père» erschien auf dem Album «Y» von Lynda Lemay.",
+      "fun_fact_es": "«Le Plus fort c'est mon père» aparece en el álbum «Y» de Lynda Lemay.",
+      "fun_fact_fr": "«Le Plus fort c'est mon père» figure sur l’album «Y» de Lynda Lemay.",
+      "fun_fact_nl": "«Le Plus fort c'est mon père» staat op het album «Y» van Lynda Lemay."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Monsieur",
+      "uri": "spotify:track:6t7SR3bAL3XpqwcFVSCdV9",
+      "year": 2008,
+      "isrc": "CAL540810208",
+      "uri_apple_music": "applemusic://track/1048262131",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048262131",
+        "de": "applemusic://track/1048262131",
+        "gb": "applemusic://track/1048262131",
+        "fr": "applemusic://track/1048262131",
+        "es": "applemusic://track/1048262131",
+        "nl": "applemusic://track/1048262131",
+        "it": "applemusic://track/1048262131"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=io-jJeAtNfA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374174",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Damien Robitaille",
+        "Vincent Vallières"
+      ],
+      "fun_fact": "«Monsieur» appears on Les Cowboys Fringants's album «L'expédition».",
+      "fun_fact_de": "«Monsieur» erschien auf dem Album «L'expédition» von Les Cowboys Fringants.",
+      "fun_fact_es": "«Monsieur» aparece en el álbum «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Monsieur» figure sur l’album «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«Monsieur» staat op het album «L'expédition» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Joseph Edgar",
+      "title": "Espionne russe",
+      "uri": "spotify:track:6Khu8ivxbVt8xHJVfVliLU",
+      "year": 2014,
+      "isrc": "CAQ521300003",
+      "uri_apple_music": "applemusic://track/1599143362",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1599143362",
+        "de": "applemusic://track/1599143362",
+        "gb": "applemusic://track/1599143362",
+        "fr": "applemusic://track/1599143362",
+        "es": "applemusic://track/1599143362",
+        "nl": "applemusic://track/1599143362",
+        "it": "applemusic://track/1599143362"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EFe8tHS0Cqg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1579343352",
+      "alt_artists": [
+        "Patrice Michaud",
+        "Fred Pellerin",
+        "Luce Dufault"
+      ],
+      "fun_fact": "«Espionne russe» appears on Joseph Edgar's album «Gazebo».",
+      "fun_fact_de": "«Espionne russe» erschien auf dem Album «Gazebo» von Joseph Edgar.",
+      "fun_fact_es": "«Espionne russe» aparece en el álbum «Gazebo» de Joseph Edgar.",
+      "fun_fact_fr": "«Espionne russe» figure sur l’album «Gazebo» de Joseph Edgar.",
+      "fun_fact_nl": "«Espionne russe» staat op het album «Gazebo» van Joseph Edgar."
+    },
+    {
+      "artist": "Les Colocs",
+      "title": "Le Répondeur",
+      "uri": "spotify:track:4F2ksqx3Ki2J7WeHhhkOyg",
+      "year": 1998,
+      "isrc": "CAA500907705",
+      "uri_apple_music": "applemusic://track/1551611350",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551611350",
+        "de": "applemusic://track/1551611350",
+        "gb": "applemusic://track/1551611350",
+        "fr": "applemusic://track/1551611350",
+        "es": "applemusic://track/1551611350",
+        "nl": "applemusic://track/1551611350",
+        "it": "applemusic://track/1551611350"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-NS1O1glcYg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128234303",
+      "alt_artists": [
+        "Les Respectables",
+        "Daniel Boucher",
+        "Jean Leloup"
+      ],
+      "fun_fact": "«Le Répondeur» appears on Les Colocs's album «Dehors Novembre».",
+      "fun_fact_de": "«Le Répondeur» erschien auf dem Album «Dehors Novembre» von Les Colocs.",
+      "fun_fact_es": "«Le Répondeur» aparece en el álbum «Dehors Novembre» de Les Colocs.",
+      "fun_fact_fr": "«Le Répondeur» figure sur l’album «Dehors Novembre» de Les Colocs.",
+      "fun_fact_nl": "«Le Répondeur» staat op het album «Dehors Novembre» van Les Colocs."
+    },
+    {
+      "artist": "2Frères",
+      "title": "Léo Gagné",
+      "uri": "spotify:track:5To71vPM7WmMXtUEBphk2c",
+      "year": 2017,
+      "isrc": "CAI601792306",
+      "uri_apple_music": "applemusic://track/1595746442",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1595746442",
+        "de": "applemusic://track/1595746442",
+        "gb": "applemusic://track/1595746442",
+        "fr": "applemusic://track/1595746442",
+        "es": "applemusic://track/1595746442",
+        "nl": "applemusic://track/1595746442",
+        "it": "applemusic://track/1595746442"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0WJfUAEiWNw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1555122432",
+      "alt_artists": [
+        "La Chicane",
+        "Philippe B",
+        "Émile Bilodeau"
+      ],
+      "fun_fact": "«Léo Gagné» appears on 2Frères's album «La route».",
+      "fun_fact_de": "«Léo Gagné» erschien auf dem Album «La route» von 2Frères.",
+      "fun_fact_es": "«Léo Gagné» aparece en el álbum «La route» de 2Frères.",
+      "fun_fact_fr": "«Léo Gagné» figure sur l’album «La route» de 2Frères.",
+      "fun_fact_nl": "«Léo Gagné» staat op het album «La route» van 2Frères."
+    },
+    {
+      "artist": "TRICOT MACHINE",
+      "title": "L'ours",
+      "uri": "spotify:track:5G4ePLj9Xn7JhtFiiwOkeQ",
+      "year": 2007,
+      "isrc": "CAD430790202",
+      "uri_apple_music": "applemusic://track/627076988",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/627076988",
+        "de": "applemusic://track/627076988",
+        "gb": "applemusic://track/627076988",
+        "fr": "applemusic://track/627076988",
+        "es": "applemusic://track/627076988",
+        "nl": "applemusic://track/627076988",
+        "it": "applemusic://track/627076988"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/65802695",
+      "alt_artists": [
+        "Jonathan Painchaud",
+        "Éric Lapointe",
+        "Dobacaracol"
+      ],
+      "fun_fact": "«L'ours» appears on TRICOT MACHINE's album «Tricot machine».",
+      "fun_fact_de": "«L'ours» erschien auf dem Album «Tricot machine» von TRICOT MACHINE.",
+      "fun_fact_es": "«L'ours» aparece en el álbum «Tricot machine» de TRICOT MACHINE.",
+      "fun_fact_fr": "«L'ours» figure sur l’album «Tricot machine» de TRICOT MACHINE.",
+      "fun_fact_nl": "«L'ours» staat op het album «Tricot machine» van TRICOT MACHINE."
+    },
+    {
+      "artist": "Éric Lapointe",
+      "title": "N'importe quoi - Inédit",
+      "uri": "spotify:track:66cC91RWCi5omzOK6YiZ0e",
+      "year": 2006,
+      "isrc": "CAE540600035",
+      "uri_apple_music": "applemusic://track/1715417839",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1715417839",
+        "de": "applemusic://track/1715417839",
+        "gb": "applemusic://track/1715417839",
+        "fr": "applemusic://track/1715417839",
+        "es": "applemusic://track/1715417839",
+        "nl": "applemusic://track/1715417839",
+        "it": "applemusic://track/1715417839"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=suGuppIe7b4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1497676382",
+      "alt_artists": [
+        "Dobacaracol",
+        "Pierre Lapointe",
+        "Ariane Moffatt"
+      ],
+      "fun_fact": "«N'importe quoi - Inédit» appears on Éric Lapointe's album «Lapointe 1994-2006 N'importe qui».",
+      "fun_fact_de": "«N'importe quoi - Inédit» erschien auf dem Album «Lapointe 1994-2006 N'importe qui» von Éric Lapointe.",
+      "fun_fact_es": "«N'importe quoi - Inédit» aparece en el álbum «Lapointe 1994-2006 N'importe qui» de Éric Lapointe.",
+      "fun_fact_fr": "«N'importe quoi - Inédit» figure sur l’album «Lapointe 1994-2006 N'importe qui» de Éric Lapointe.",
+      "fun_fact_nl": "«N'importe quoi - Inédit» staat op het album «Lapointe 1994-2006 N'importe qui» van Éric Lapointe."
+    },
+    {
+      "artist": "Vincent Vallières",
+      "title": "Juliette",
+      "uri": "spotify:track:2RkdDIDq2H3PkbvIOKp2Pb",
+      "year": 2003,
+      "isrc": "CAL820300003",
+      "uri_apple_music": "applemusic://track/1458402224",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1458402224",
+        "de": "applemusic://track/1458402224",
+        "gb": "applemusic://track/1458402224",
+        "fr": "applemusic://track/1458402224",
+        "es": "applemusic://track/1458402224",
+        "nl": "applemusic://track/1458402224",
+        "it": "applemusic://track/1458402224"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WC-bTFZRSu8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/661488232",
+      "alt_artists": [
+        "Stefie Shock",
+        "Dumas",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«Juliette» appears on Vincent Vallières's album «Chacun dans son espace».",
+      "fun_fact_de": "«Juliette» erschien auf dem Album «Chacun dans son espace» von Vincent Vallières.",
+      "fun_fact_es": "«Juliette» aparece en el álbum «Chacun dans son espace» de Vincent Vallières.",
+      "fun_fact_fr": "«Juliette» figure sur l’album «Chacun dans son espace» de Vincent Vallières.",
+      "fun_fact_nl": "«Juliette» staat op het album «Chacun dans son espace» van Vincent Vallières."
+    },
+    {
+      "artist": "La Chicane",
+      "title": "Tu m'manques - Live",
+      "uri": "spotify:track:7xF2cba3FZZuuSM8G7q6gi",
+      "year": 2017,
+      "isrc": "CAA4R1700011",
+      "uri_apple_music": "applemusic://track/1568297786",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1568297786",
+        "de": "applemusic://track/1568297786",
+        "gb": "applemusic://track/1568297786",
+        "fr": "applemusic://track/1568297786",
+        "es": "applemusic://track/1568297786",
+        "nl": "applemusic://track/1568297786",
+        "it": "applemusic://track/1568297786"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I1d8VmiaIlk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1376969672",
+      "alt_artists": [
+        "2Frères",
+        "Philippe B",
+        "Charlotte Cardin"
+      ],
+      "fun_fact": "«Tu m'manques - Live» appears on La Chicane's album «La Chicane 20 ans déja (Live)».",
+      "fun_fact_de": "«Tu m'manques - Live» erschien auf dem Album «La Chicane 20 ans déja (Live)» von La Chicane.",
+      "fun_fact_es": "«Tu m'manques - Live» aparece en el álbum «La Chicane 20 ans déja (Live)» de La Chicane.",
+      "fun_fact_fr": "«Tu m'manques - Live» figure sur l’album «La Chicane 20 ans déja (Live)» de La Chicane.",
+      "fun_fact_nl": "«Tu m'manques - Live» staat op het album «La Chicane 20 ans déja (Live)» van La Chicane."
+    },
+    {
+      "artist": "Édith Butler",
+      "title": "Jerrycan",
+      "uri": "spotify:track:14vbAs0m74bfJkg0N0Xdy2",
+      "year": 2021,
+      "isrc": "CA06H2100136",
+      "uri_apple_music": "applemusic://track/1572369503",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1572369503",
+        "de": "applemusic://track/1572369503",
+        "gb": "applemusic://track/1572369503",
+        "fr": "applemusic://track/1572369503",
+        "es": "applemusic://track/1572369503",
+        "nl": "applemusic://track/1572369503",
+        "it": "applemusic://track/1572369503"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K35TCJ7RCiY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1405338312",
+      "alt_artists": [
+        "Martin Roberts",
+        "Lalonde Lalonde",
+        "Mon Doux Saigneur"
+      ],
+      "fun_fact": "«Jerrycan» appears on Édith Butler's album «Le tour du Grand Bois».",
+      "fun_fact_de": "«Jerrycan» erschien auf dem Album «Le tour du Grand Bois» von Édith Butler.",
+      "fun_fact_es": "«Jerrycan» aparece en el álbum «Le tour du Grand Bois» de Édith Butler.",
+      "fun_fact_fr": "«Jerrycan» figure sur l’album «Le tour du Grand Bois» de Édith Butler.",
+      "fun_fact_nl": "«Jerrycan» staat op het album «Le tour du Grand Bois» van Édith Butler."
+    },
+    {
+      "artist": "Daniel Boucher",
+      "title": "La désise",
+      "uri": "spotify:track:5tolMesLH4lIK2dTrCHmXO",
+      "year": 1999,
+      "isrc": "CAG609998401",
+      "uri_apple_music": "applemusic://track/1863966281",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1863966281",
+        "de": "applemusic://track/1863966281",
+        "gb": "applemusic://track/1863966281",
+        "fr": "applemusic://track/1863966281",
+        "es": "applemusic://track/1863966281",
+        "nl": "applemusic://track/1863966281",
+        "it": "applemusic://track/1863966281"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5VeOmb2It-Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3738115762",
+      "alt_artists": [
+        "Les Respectables",
+        "Patrick Norman",
+        "Zachary Richard"
+      ],
+      "fun_fact": "«La désise» appears on Daniel Boucher's album «Dix mille matins».",
+      "fun_fact_de": "«La désise» erschien auf dem Album «Dix mille matins» von Daniel Boucher.",
+      "fun_fact_es": "«La désise» aparece en el álbum «Dix mille matins» de Daniel Boucher.",
+      "fun_fact_fr": "«La désise» figure sur l’album «Dix mille matins» de Daniel Boucher.",
+      "fun_fact_nl": "«La désise» staat op het album «Dix mille matins» van Daniel Boucher."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Béatitude",
+      "uri": "spotify:track:5rDbOB7sVtgxZljmwafZy1",
+      "year": 2013,
+      "isrc": "CAA501331204",
+      "uri_apple_music": "applemusic://track/1551594223",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551594223",
+        "de": "applemusic://track/1551594223",
+        "gb": "applemusic://track/1551594223",
+        "fr": "applemusic://track/1551594223",
+        "es": "applemusic://track/1551594223",
+        "nl": "applemusic://track/1551594223",
+        "it": "applemusic://track/1551594223"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HOdqp6FqSkw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128227247",
+      "alt_artists": [
+        "Sally Folk",
+        "Alex Nevsky",
+        "Tomás Jensen"
+      ],
+      "fun_fact": "«Béatitude» appears on Daniel Bélanger's album «Chic de ville (avec \"Pour le réveillon\")».",
+      "fun_fact_de": "«Béatitude» erschien auf dem Album «Chic de ville (avec \"Pour le réveillon\")» von Daniel Bélanger.",
+      "fun_fact_es": "«Béatitude» aparece en el álbum «Chic de ville (avec \"Pour le réveillon\")» de Daniel Bélanger.",
+      "fun_fact_fr": "«Béatitude» figure sur l’album «Chic de ville (avec \"Pour le réveillon\")» de Daniel Bélanger.",
+      "fun_fact_nl": "«Béatitude» staat op het album «Chic de ville (avec \"Pour le réveillon\")» van Daniel Bélanger."
+    },
+    {
+      "artist": "Les Trois Accords",
+      "title": "Saskatchewan",
+      "uri": "spotify:track:2zuTXMKi4tDhy7ZYHbQpli",
+      "year": 2003,
+      "isrc": "CAL541416006",
+      "uri_apple_music": "applemusic://track/883802369",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/883802369",
+        "de": "applemusic://track/883802369",
+        "gb": "applemusic://track/883802369",
+        "fr": "applemusic://track/883802369",
+        "es": "applemusic://track/883802369",
+        "nl": "applemusic://track/883802369",
+        "it": "applemusic://track/883802369"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Do-Zo3_VKQs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/79074739",
+      "alt_artists": [
+        "Dumas",
+        "Stefie Shock",
+        "Mes Aïeux"
+      ],
+      "fun_fact": "«Saskatchewan» (2003) is the deadpan comedic hit that launched Les Trois Accords out of Drummondville.",
+      "fun_fact_de": "«Saskatchewan» (2003) ist der trocken-komische Hit, der Les Trois Accords aus Drummondville bekannt machte.",
+      "fun_fact_es": "«Saskatchewan» (2003) es el éxito de humor impasible que lanzó a Les Trois Accords desde Drummondville.",
+      "fun_fact_fr": "«Saskatchewan» (2003) est le succès comique pince-sans-rire qui lança Les Trois Accords, de Drummondville.",
+      "fun_fact_nl": "«Saskatchewan» (2003) is de droogkomische hit waarmee Les Trois Accords uit Drummondville doorbrak."
+    },
+    {
+      "artist": "Sally Folk",
+      "title": "Heureux infidèles",
+      "uri": "spotify:track:0AGQ671Ts51PydmrjW3sfa",
+      "year": 2013,
+      "isrc": "CAA4R1336071",
+      "uri_apple_music": "applemusic://track/1573828707",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1573828707",
+        "de": "applemusic://track/1573828707",
+        "gb": "applemusic://track/1573828707",
+        "fr": "applemusic://track/1573828707",
+        "es": "applemusic://track/1573828707",
+        "nl": "applemusic://track/1573828707",
+        "it": "applemusic://track/1573828707"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tcnblTis0EI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1415226282",
+      "alt_artists": [
+        "Tomás Jensen",
+        "La Maison Tellier",
+        "Alex Nevsky"
+      ],
+      "fun_fact": "«Heureux infidèles» appears on Sally Folk's album «Sally Folk».",
+      "fun_fact_de": "«Heureux infidèles» erschien auf dem Album «Sally Folk» von Sally Folk.",
+      "fun_fact_es": "«Heureux infidèles» aparece en el álbum «Sally Folk» de Sally Folk.",
+      "fun_fact_fr": "«Heureux infidèles» figure sur l’album «Sally Folk» de Sally Folk.",
+      "fun_fact_nl": "«Heureux infidèles» staat op het album «Sally Folk» van Sally Folk."
+    },
+    {
+      "artist": "Les Colocs",
+      "title": "Dehors novembre",
+      "uri": "spotify:track:2BmJfKIH5sMvBOg2BAsPGn",
+      "year": 1998,
+      "isrc": "CAA500907709",
+      "uri_apple_music": "applemusic://track/1551611523",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551611523",
+        "de": "applemusic://track/1551611523",
+        "gb": "applemusic://track/1551611523",
+        "fr": "applemusic://track/1551611523",
+        "es": "applemusic://track/1551611523",
+        "nl": "applemusic://track/1551611523",
+        "it": "applemusic://track/1551611523"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FAiNp13ZH9s",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128234311",
+      "alt_artists": [
+        "Les Respectables",
+        "Daniel Boucher",
+        "Jean Leloup"
+      ],
+      "fun_fact": "«Dehors novembre» is the title track of Les Colocs's album of the same name.",
+      "fun_fact_de": "«Dehors novembre» ist der Titelsong des gleichnamigen Albums von Les Colocs.",
+      "fun_fact_es": "«Dehors novembre» es la canción que da título al álbum homónimo de Les Colocs.",
+      "fun_fact_fr": "«Dehors novembre» est la chanson-titre de l’album homonyme de Les Colocs.",
+      "fun_fact_nl": "«Dehors novembre» is de titelsong van het gelijknamige album van Les Colocs."
+    },
+    {
+      "artist": "Patrice Michaud",
+      "title": "Mécaniques générales",
+      "uri": "spotify:track:2sfTvIxdSJYxStra93Weld",
+      "year": 2014,
+      "isrc": "CAS741346001",
+      "uri_apple_music": "applemusic://track/1459897036",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1459897036",
+        "de": "applemusic://track/1459897036",
+        "gb": "applemusic://track/1459897036",
+        "fr": "applemusic://track/1459897036",
+        "es": "applemusic://track/1459897036",
+        "nl": "applemusic://track/1459897036",
+        "it": "applemusic://track/1459897036"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/668926932",
+      "alt_artists": [
+        "Joseph Edgar",
+        "Fred Pellerin",
+        "Sally Folk"
+      ],
+      "fun_fact": "«Mécaniques générales» appears on Patrice Michaud's album «Le feu de chaque jour».",
+      "fun_fact_de": "«Mécaniques générales» erschien auf dem Album «Le feu de chaque jour» von Patrice Michaud.",
+      "fun_fact_es": "«Mécaniques générales» aparece en el álbum «Le feu de chaque jour» de Patrice Michaud.",
+      "fun_fact_fr": "«Mécaniques générales» figure sur l’album «Le feu de chaque jour» de Patrice Michaud.",
+      "fun_fact_nl": "«Mécaniques générales» staat op het album «Le feu de chaque jour» van Patrice Michaud."
+    },
+    {
+      "artist": "Vincent Vallières",
+      "title": "Ok on part",
+      "uri": "spotify:track:3uNLy7ZDAQ2oCTaynV2QEx",
+      "year": 2003,
+      "isrc": "CAL820300006",
+      "uri_apple_music": "applemusic://track/1458402228",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1458402228",
+        "de": "applemusic://track/1458402228",
+        "gb": "applemusic://track/1458402228",
+        "fr": "applemusic://track/1458402228",
+        "es": "applemusic://track/1458402228",
+        "nl": "applemusic://track/1458402228",
+        "it": "applemusic://track/1458402228"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wuWiQ0PCGwo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/661488262",
+      "alt_artists": [
+        "Dumas",
+        "Stefie Shock",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«Ok on part» appears on Vincent Vallières's album «Chacun dans son espace».",
+      "fun_fact_de": "«Ok on part» erschien auf dem Album «Chacun dans son espace» von Vincent Vallières.",
+      "fun_fact_es": "«Ok on part» aparece en el álbum «Chacun dans son espace» de Vincent Vallières.",
+      "fun_fact_fr": "«Ok on part» figure sur l’album «Chacun dans son espace» de Vincent Vallières.",
+      "fun_fact_nl": "«Ok on part» staat op het album «Chacun dans son espace» van Vincent Vallières."
+    },
+    {
+      "artist": "Loud, Charlotte Cardin",
+      "title": "Sometimes, All The Time",
+      "uri": "spotify:track:6SlLKlIbF057jIOiQA52dT",
+      "year": 2019,
+      "isrc": "CAC0C1800461",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lwsMJrtHJf0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1284099332",
+      "alt_artists": [
+        "Les Cowboys Fringants",
+        "Philémon Cimon",
+        "Mon Doux Saigneur"
+      ],
+      "fun_fact": "«Sometimes, All The Time» appears on Loud, Charlotte Cardin's album «Tout ça pour ça».",
+      "fun_fact_de": "«Sometimes, All The Time» erschien auf dem Album «Tout ça pour ça» von Loud, Charlotte Cardin.",
+      "fun_fact_es": "«Sometimes, All The Time» aparece en el álbum «Tout ça pour ça» de Loud, Charlotte Cardin.",
+      "fun_fact_fr": "«Sometimes, All The Time» figure sur l’album «Tout ça pour ça» de Loud, Charlotte Cardin.",
+      "fun_fact_nl": "«Sometimes, All The Time» staat op het album «Tout ça pour ça» van Loud, Charlotte Cardin."
+    },
+    {
+      "artist": "Harmonium",
+      "title": "Pour Un Instant",
+      "uri": "spotify:track:10pCXoG0FfFqk2ltikjuEf",
+      "year": 1974,
+      "isrc": "CAU160300282",
+      "uri_apple_music": "applemusic://track/1443505675",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443505675",
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/617423192",
+      "alt_artists": [
+        "Michel Rivard",
+        "Roch Voisine",
+        "Vilain Pingouin"
+      ],
+      "fun_fact": "«Pour un instant» (1974) opens Harmonium's self-titled debut and remains a cornerstone of Québec progressive folk.",
+      "fun_fact_de": "«Pour un instant» (1974) eröffnet Harmoniums selbstbetiteltes Debut und bleibt ein Eckpfeiler des Québecer Progressive-Folk.",
+      "fun_fact_es": "«Pour un instant» (1974) abre el debut homónimo de Harmonium y sigue siendo un pilar del folk progresivo quebequés.",
+      "fun_fact_fr": "«Pour un instant» (1974) ouvre le premier album homónyme d'Harmonium et demeure un pilier du folk progressif québécois.",
+      "fun_fact_nl": "«Pour un instant» (1974) opent Harmoniums titelloze debuut en blijft een hoeksteen van de Québecse progressieve folk."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Il y a tant à faire",
+      "uri": "spotify:track:0Jm7WTmz1CB8YXnKdflJ4m",
+      "year": 2016,
+      "isrc": "CAA501639002",
+      "uri_apple_music": "applemusic://track/1615138989",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1615138989",
+        "de": "applemusic://track/1615138989",
+        "gb": "applemusic://track/1615138989",
+        "fr": "applemusic://track/1615138989",
+        "es": "applemusic://track/1615138989",
+        "nl": "applemusic://track/1615138989",
+        "it": "applemusic://track/1615138989"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3W1-kUI4-CA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/136158804",
+      "alt_artists": [
+        "Charlotte Cardin",
+        "Émile Bilodeau",
+        "Philippe B"
+      ],
+      "fun_fact": "«Il y a tant à faire» appears on Daniel Bélanger's album «Paloma».",
+      "fun_fact_de": "«Il y a tant à faire» erschien auf dem Album «Paloma» von Daniel Bélanger.",
+      "fun_fact_es": "«Il y a tant à faire» aparece en el álbum «Paloma» de Daniel Bélanger.",
+      "fun_fact_fr": "«Il y a tant à faire» figure sur l’album «Paloma» de Daniel Bélanger.",
+      "fun_fact_nl": "«Il y a tant à faire» staat op het album «Paloma» van Daniel Bélanger."
+    },
+    {
+      "artist": "Fred Fortin",
+      "title": "Moisi moé'ssi",
+      "uri": "spotify:track:7KCuZqBiTccR0Hwp6yxDni",
+      "year": 1996,
+      "isrc": "CAP780900103",
+      "uri_apple_music": "applemusic://track/1715481692",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1715481692",
+        "de": "applemusic://track/1715481692",
+        "gb": "applemusic://track/1715481692",
+        "fr": "applemusic://track/1715481692",
+        "es": "applemusic://track/1715481692",
+        "nl": "applemusic://track/1715481692",
+        "it": "applemusic://track/1715481692"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J8-GSSazu_8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1498027642",
+      "alt_artists": [
+        "Jean Leloup",
+        "Noir Silence",
+        "Céline Dion"
+      ],
+      "fun_fact": "«Moisi moé'ssi» appears on Fred Fortin's album «Joseph Antoine Frédéric Fortin Perron».",
+      "fun_fact_de": "«Moisi moé'ssi» erschien auf dem Album «Joseph Antoine Frédéric Fortin Perron» von Fred Fortin.",
+      "fun_fact_es": "«Moisi moé'ssi» aparece en el álbum «Joseph Antoine Frédéric Fortin Perron» de Fred Fortin.",
+      "fun_fact_fr": "«Moisi moé'ssi» figure sur l’album «Joseph Antoine Frédéric Fortin Perron» de Fred Fortin.",
+      "fun_fact_nl": "«Moisi moé'ssi» staat op het album «Joseph Antoine Frédéric Fortin Perron» van Fred Fortin."
+    },
+    {
+      "artist": "Roch Voisine",
+      "title": "Hélène",
+      "uri": "spotify:track:32h6T3EUAMZRF5mCe0L1Mq",
+      "year": 1989,
+      "isrc": "CAR561100070",
+      "uri_apple_music": "applemusic://track/254214693",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/254214693",
+        "de": "applemusic://track/254214693",
+        "gb": "applemusic://track/254214693",
+        "fr": "applemusic://track/254214693",
+        "es": "applemusic://track/254214693",
+        "nl": "applemusic://track/254214693",
+        "it": "applemusic://track/254214693"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SSKIvNhoNYo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3026560671",
+      "alt_artists": [
+        "Vilain Pingouin",
+        "Michel Rivard",
+        "Daniel Bélanger"
+      ],
+      "fun_fact": "«Hélène» (1989) turned Roch Voisine into a francophone superstar on both sides of the Atlantic.",
+      "fun_fact_de": "«Hélène» (1989) machte Roch Voisine beiderseits des Atlantiks zum frankophonen Superstar.",
+      "fun_fact_es": "«Hélène» (1989) convirtió a Roch Voisine en una superestrella francófona a ambos lados del Atlántico.",
+      "fun_fact_fr": "«Hélène» (1989) fit de Roch Voisine une superstar francophone des deux côtés de l'Atlantique.",
+      "fun_fact_nl": "«Hélène» (1989) maakte van Roch Voisine een Franstalige superster aan beide kanten van de Atlantische Oceaan."
+    },
+    {
+      "artist": "Ariane Moffatt",
+      "title": "Je Veux Tout",
+      "uri": "spotify:track:6T9H9EuecpuRa68W9clGDt",
+      "year": 2008,
+      "isrc": "CAA500822303",
+      "uri_apple_music": "applemusic://track/1551596657",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551596657",
+        "de": "applemusic://track/1551596657",
+        "gb": "applemusic://track/1551596657",
+        "fr": "applemusic://track/1551596657",
+        "es": "applemusic://track/1551596657",
+        "nl": "applemusic://track/1551596657",
+        "it": "applemusic://track/1551596657"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-_0DeX0YSb0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128226565",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Damien Robitaille",
+        "Daniel Lavoie"
+      ],
+      "fun_fact": "«Je Veux Tout» appears on Ariane Moffatt's album «Tous Les Sens».",
+      "fun_fact_de": "«Je Veux Tout» erschien auf dem Album «Tous Les Sens» von Ariane Moffatt.",
+      "fun_fact_es": "«Je Veux Tout» aparece en el álbum «Tous Les Sens» de Ariane Moffatt.",
+      "fun_fact_fr": "«Je Veux Tout» figure sur l’album «Tous Les Sens» de Ariane Moffatt.",
+      "fun_fact_nl": "«Je Veux Tout» staat op het album «Tous Les Sens» van Ariane Moffatt."
+    },
+    {
+      "artist": "Cœur De Pirate",
+      "title": "Comme des enfants",
+      "uri": "spotify:track:5H3ChVfItCaDpj1vPbigyX",
+      "year": 2008,
+      "isrc": "CAD430890702",
+      "uri_apple_music": "applemusic://track/626982646",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/626982646",
+        "de": "applemusic://track/626982646",
+        "gb": "applemusic://track/626982646",
+        "fr": "applemusic://track/626982646",
+        "es": "applemusic://track/626982646",
+        "nl": "applemusic://track/626982646",
+        "it": "applemusic://track/626982646"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U-fU_V7Boic",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/65802338",
+      "alt_artists": [
+        "Vincent Vallières",
+        "Daniel Lavoie",
+        "TRICOT MACHINE"
+      ],
+      "fun_fact": "«Comme des enfants» (2008) was Cœur de Pirate's breakthrough, the debut single that made Béatrice Martin a star at nineteen.",
+      "fun_fact_de": "«Comme des enfants» (2008) war der Durchbruch von Cœur de Pirate — die Debut-Single, die Béatrice Martin mit neunzehn zum Star machte.",
+      "fun_fact_es": "«Comme des enfants» (2008) fue la revelación de Cœur de Pirate, el sencillo debut que hizo estrella a Béatrice Martin a los diecinueve.",
+      "fun_fact_fr": "«Comme des enfants» (2008) fut la révélation de Cœur de Pirate, le premier single qui fit de Béatrice Martin une vedette à dix-neuf ans.",
+      "fun_fact_nl": "«Comme des enfants» (2008) was de doorbraak van Cœur de Pirate, de debuutsingle die Béatrice Martin op haar negentiende tot ster maakte."
+    },
+    {
+      "artist": "Martin Léon",
+      "title": "Va savoir pourquoi",
+      "uri": "spotify:track:650QMLdmGGlsOQHjnb3K3M",
+      "year": 2010,
+      "isrc": "CAL541012802",
+      "uri_apple_music": "applemusic://track/1715445683",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1715445683",
+        "de": "applemusic://track/1715445683",
+        "gb": "applemusic://track/1715445683",
+        "fr": "applemusic://track/1715445683",
+        "es": "applemusic://track/1715445683",
+        "nl": "applemusic://track/1715445683",
+        "it": "applemusic://track/1715445683"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sUAv1_QKEgA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1497899992",
+      "alt_artists": [
+        "Alexandre Poulin",
+        "Karkwa",
+        "Damien Robitaille"
+      ],
+      "fun_fact": "«Va savoir pourquoi» appears on Martin Léon's album «Les Atomes».",
+      "fun_fact_de": "«Va savoir pourquoi» erschien auf dem Album «Les Atomes» von Martin Léon.",
+      "fun_fact_es": "«Va savoir pourquoi» aparece en el álbum «Les Atomes» de Martin Léon.",
+      "fun_fact_fr": "«Va savoir pourquoi» figure sur l’album «Les Atomes» de Martin Léon.",
+      "fun_fact_nl": "«Va savoir pourquoi» staat op het album «Les Atomes» van Martin Léon."
+    },
+    {
+      "artist": "Kaïn",
+      "title": "Embarque ma belle",
+      "uri": "spotify:track:6higbPkv82W1ZwCeZIVGv3",
+      "year": 2005,
+      "isrc": "CAP680524002",
+      "uri_apple_music": "applemusic://track/196990318",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/196990318",
+        "de": "applemusic://track/196990318",
+        "gb": "applemusic://track/196990318",
+        "fr": "applemusic://track/196990318",
+        "es": "applemusic://track/196990318",
+        "nl": "applemusic://track/196990318",
+        "it": "applemusic://track/196990318"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zZU7wTcg698",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/45114561",
+      "alt_artists": [
+        "Thomas Hellman",
+        "Ariane Moffatt",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«Embarque ma belle» appears on Kaïn's album «Nulle part ailleurs».",
+      "fun_fact_de": "«Embarque ma belle» erschien auf dem Album «Nulle part ailleurs» von Kaïn.",
+      "fun_fact_es": "«Embarque ma belle» aparece en el álbum «Nulle part ailleurs» de Kaïn.",
+      "fun_fact_fr": "«Embarque ma belle» figure sur l’album «Nulle part ailleurs» de Kaïn.",
+      "fun_fact_nl": "«Embarque ma belle» staat op het album «Nulle part ailleurs» van Kaïn."
+    },
+    {
+      "artist": "Vincent Vallières",
+      "title": "Hier au soir",
+      "uri": "spotify:track:5Y8c6swcw9uKKmmtVTtaRR",
+      "year": 2003,
+      "isrc": "CAL820300001",
+      "uri_apple_music": "applemusic://track/1458402220",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1458402220",
+        "de": "applemusic://track/1458402220",
+        "gb": "applemusic://track/1458402220",
+        "fr": "applemusic://track/1458402220",
+        "es": "applemusic://track/1458402220",
+        "nl": "applemusic://track/1458402220",
+        "it": "applemusic://track/1458402220"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NiNfoanV4E0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/661488212",
+      "alt_artists": [
+        "Dumas",
+        "Stefie Shock",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«Hier au soir» appears on Vincent Vallières's album «Chacun dans son espace».",
+      "fun_fact_de": "«Hier au soir» erschien auf dem Album «Chacun dans son espace» von Vincent Vallières.",
+      "fun_fact_es": "«Hier au soir» aparece en el álbum «Chacun dans son espace» de Vincent Vallières.",
+      "fun_fact_fr": "«Hier au soir» figure sur l’album «Chacun dans son espace» de Vincent Vallières.",
+      "fun_fact_nl": "«Hier au soir» staat op het album «Chacun dans son espace» van Vincent Vallières."
+    },
+    {
+      "artist": "Thomas Hellman",
+      "title": "Jusqu'À la Fin du Monde",
+      "uri": "spotify:track:29ntNz6cAyr4NrHRfVikOK",
+      "year": 2005,
+      "isrc": "CAJ220420960",
+      "uri_apple_music": "applemusic://track/1638049219",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1638049219",
+        "de": "applemusic://track/1638049219",
+        "gb": "applemusic://track/1638049219",
+        "fr": "applemusic://track/1638049219",
+        "es": "applemusic://track/1638049219",
+        "nl": "applemusic://track/1638049219",
+        "it": "applemusic://track/1638049219"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CR0C6Tib2zQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1853959917",
+      "alt_artists": [
+        "Ariane Moffatt",
+        "Kaïn",
+        "Dobacaracol"
+      ],
+      "fun_fact": "«Jusqu'À la Fin du Monde» appears on Thomas Hellman's album «L'Apartement».",
+      "fun_fact_de": "«Jusqu'À la Fin du Monde» erschien auf dem Album «L'Apartement» von Thomas Hellman.",
+      "fun_fact_es": "«Jusqu'À la Fin du Monde» aparece en el álbum «L'Apartement» de Thomas Hellman.",
+      "fun_fact_fr": "«Jusqu'À la Fin du Monde» figure sur l’album «L'Apartement» de Thomas Hellman.",
+      "fun_fact_nl": "«Jusqu'À la Fin du Monde» staat op het album «L'Apartement» van Thomas Hellman."
+    },
+    {
+      "artist": "Dumas",
+      "title": "J'erre",
+      "uri": "spotify:track:24WTL2BY3czD58BTwVnucJ",
+      "year": 2003,
+      "isrc": "CAT500352804",
+      "uri_apple_music": "applemusic://track/536319001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/536319001",
+        "de": "applemusic://track/536319001",
+        "gb": "applemusic://track/536319001",
+        "fr": "applemusic://track/536319001",
+        "es": "applemusic://track/536319001",
+        "nl": "applemusic://track/536319001",
+        "it": "applemusic://track/536319001"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PEV1uS6P6y0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/66904445",
+      "alt_artists": [
+        "Stefie Shock",
+        "Les Trois Accords",
+        "Marc Déry"
+      ],
+      "fun_fact": "«J'erre» appears on Dumas's album «Le cours des jours».",
+      "fun_fact_de": "«J'erre» erschien auf dem Album «Le cours des jours» von Dumas.",
+      "fun_fact_es": "«J'erre» aparece en el álbum «Le cours des jours» de Dumas.",
+      "fun_fact_fr": "«J'erre» figure sur l’album «Le cours des jours» de Dumas.",
+      "fun_fact_nl": "«J'erre» staat op het album «Le cours des jours» van Dumas."
+    },
+    {
+      "artist": "Charlotte Cardin, CRi",
+      "title": "Fous N'importe Où",
+      "uri": "spotify:track:1wNStegcXC3X7jn7h7XUKt",
+      "year": 2019,
+      "isrc": "USAT21900388",
+      "uri_apple_music": "applemusic://track/1450432899",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1450432899",
+        "de": "applemusic://track/1450432899",
+        "gb": "applemusic://track/1450432899",
+        "fr": null,
+        "es": "applemusic://track/1450432899",
+        "nl": "applemusic://track/1450432899",
+        "it": "applemusic://track/1450432899"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U-TSnuOGeyw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/623796442",
+      "alt_artists": [
+        "Philémon Cimon",
+        "Les Cowboys Fringants",
+        "Maude Audet"
+      ],
+      "fun_fact": "«Fous n'importe où» (2019) pairs Montreal jazz-pop voice Charlotte Cardin with electronic producer CRi.",
+      "fun_fact_de": "«Fous n'importe où» (2019) vereint die Montrealer Jazz-Pop-Stimme Charlotte Cardin mit dem Elektronik-Produzenten CRi.",
+      "fun_fact_es": "«Fous n'importe où» (2019) une la voz jazz-pop montrealesa de Charlotte Cardin con el productor electrónico CRi.",
+      "fun_fact_fr": "«Fous n'importe où» (2019) unit la voix jazz-pop montréalaise de Charlotte Cardin au producteur électronique CRi.",
+      "fun_fact_nl": "«Fous n'importe où» (2019) verenigt de Montrealse jazzpopstem van Charlotte Cardin met de elektronische producer CRi."
+    },
+    {
+      "artist": "Fred Pellerin",
+      "title": "Mille après mille",
+      "uri": "spotify:track:00EzCwRbXEqUpHmd49wGRV",
+      "year": 2009,
+      "isrc": "CAS920900043",
+      "uri_apple_music": "applemusic://track/1575428932",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1575428932",
+        "de": "applemusic://track/1575428932",
+        "gb": "applemusic://track/1575428932",
+        "fr": "applemusic://track/1575428932",
+        "es": "applemusic://track/1575428932",
+        "nl": "applemusic://track/1575428932",
+        "it": "applemusic://track/1575428932"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8KRsKdKH30k",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1426036652",
+      "alt_artists": [
+        "Damien Robitaille",
+        "Daniel Lavoie",
+        "Vincent Vallières"
+      ],
+      "fun_fact": "«Mille après mille» appears on Fred Pellerin's album «Silence».",
+      "fun_fact_de": "«Mille après mille» erschien auf dem Album «Silence» von Fred Pellerin.",
+      "fun_fact_es": "«Mille après mille» aparece en el álbum «Silence» de Fred Pellerin.",
+      "fun_fact_fr": "«Mille après mille» figure sur l’album «Silence» de Fred Pellerin.",
+      "fun_fact_nl": "«Mille après mille» staat op het album «Silence» van Fred Pellerin."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Les maisons toutes pareilles",
+      "uri": "spotify:track:2XJEwYL3CvljKOLtSKnTS7",
+      "year": 2019,
+      "isrc": "CAL541920502",
+      "uri_apple_music": "applemusic://track/1532141705",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1532141705",
+        "de": "applemusic://track/1532141705",
+        "gb": "applemusic://track/1532141705",
+        "fr": "applemusic://track/1532141705",
+        "es": "applemusic://track/1532141705",
+        "nl": "applemusic://track/1532141705",
+        "it": "applemusic://track/1532141705"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DHNshxGlLUk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1082531042",
+      "alt_artists": [
+        "Philémon Cimon",
+        "Charlotte Cardin, CRi",
+        "Maude Audet"
+      ],
+      "fun_fact": "«Les maisons toutes pareilles» appears on Les Cowboys Fringants's album «Les antipodes».",
+      "fun_fact_de": "«Les maisons toutes pareilles» erschien auf dem Album «Les antipodes» von Les Cowboys Fringants.",
+      "fun_fact_es": "«Les maisons toutes pareilles» aparece en el álbum «Les antipodes» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Les maisons toutes pareilles» figure sur l’album «Les antipodes» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«Les maisons toutes pareilles» staat op het album «Les antipodes» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Louis-Jean Cormier",
+      "title": "Faire semblant",
+      "uri": "spotify:track:5l64GwOobG3FO4QofzI9Vg",
+      "year": 2015,
+      "isrc": "CA60L1530007",
+      "uri_apple_music": "applemusic://track/1525618082",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1525618082",
+        "de": "applemusic://track/1525618082",
+        "gb": "applemusic://track/1525618082",
+        "fr": null,
+        "es": "applemusic://track/1525618082",
+        "nl": "applemusic://track/1525618082",
+        "it": "applemusic://track/1525618082"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SD-oL9fePeg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2027854057",
+      "alt_artists": [
+        "Luce Dufault",
+        "Joseph Edgar",
+        "Patrice Michaud"
+      ],
+      "fun_fact": "«Faire semblant» appears on Louis-Jean Cormier's album «Les grandes artères».",
+      "fun_fact_de": "«Faire semblant» erschien auf dem Album «Les grandes artères» von Louis-Jean Cormier.",
+      "fun_fact_es": "«Faire semblant» aparece en el álbum «Les grandes artères» de Louis-Jean Cormier.",
+      "fun_fact_fr": "«Faire semblant» figure sur l’album «Les grandes artères» de Louis-Jean Cormier.",
+      "fun_fact_nl": "«Faire semblant» staat op het album «Les grandes artères» van Louis-Jean Cormier."
+    },
+    {
+      "artist": "Stefie Shock",
+      "title": "Zobi la mouche",
+      "uri": "spotify:track:17tHXXUyVFsOL9ikd7Ye3d",
+      "year": 2011,
+      "isrc": "CAT501157310",
+      "uri_apple_music": "applemusic://track/540436160",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/540436160",
+        "de": "applemusic://track/540436160",
+        "gb": "applemusic://track/540436160",
+        "fr": "applemusic://track/540436160",
+        "es": "applemusic://track/540436160",
+        "nl": "applemusic://track/540436160",
+        "it": "applemusic://track/540436160"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wHJM_KBhsrI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/66904494",
+      "alt_artists": [
+        "Alexandre Poulin",
+        "David Jalbert",
+        "Karkwa"
+      ],
+      "fun_fact": "«Zobi la mouche» appears on Stefie Shock's album «La mécanique de l'amour».",
+      "fun_fact_de": "«Zobi la mouche» erschien auf dem Album «La mécanique de l'amour» von Stefie Shock.",
+      "fun_fact_es": "«Zobi la mouche» aparece en el álbum «La mécanique de l'amour» de Stefie Shock.",
+      "fun_fact_fr": "«Zobi la mouche» figure sur l’album «La mécanique de l'amour» de Stefie Shock.",
+      "fun_fact_nl": "«Zobi la mouche» staat op het album «La mécanique de l'amour» van Stefie Shock."
+    },
+    {
+      "artist": "Jonathan Painchaud",
+      "title": "Le Kid",
+      "uri": "spotify:track:4MqJ13deDa7p6Zu0JgRK1E",
+      "year": 2007,
+      "isrc": "CAF700733610",
+      "uri_apple_music": "applemusic://track/635284300",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/635284300",
+        "de": "applemusic://track/635284300",
+        "gb": "applemusic://track/635284300",
+        "fr": "applemusic://track/635284300",
+        "es": "applemusic://track/635284300",
+        "nl": "applemusic://track/635284300",
+        "it": "applemusic://track/635284300"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OvM0Qu8c75Q",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/63008407",
+      "alt_artists": [
+        "TRICOT MACHINE",
+        "Cœur De Pirate",
+        "Éric Lapointe"
+      ],
+      "fun_fact": "«Le Kid» appears on Jonathan Painchaud's album «Qu'on se lève».",
+      "fun_fact_de": "«Le Kid» erschien auf dem Album «Qu'on se lève» von Jonathan Painchaud.",
+      "fun_fact_es": "«Le Kid» aparece en el álbum «Qu'on se lève» de Jonathan Painchaud.",
+      "fun_fact_fr": "«Le Kid» figure sur l’album «Qu'on se lève» de Jonathan Painchaud.",
+      "fun_fact_nl": "«Le Kid» staat op het album «Qu'on se lève» van Jonathan Painchaud."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "Je joue de la guitare",
+      "uri": "spotify:track:1qfYg74dFKScrbAOto57O5",
+      "year": 1998,
+      "isrc": "CAA500519318",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4P_HZseRCYY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128237739",
+      "alt_artists": [
+        "Les Respectables",
+        "Daniel Boucher",
+        "Patrick Norman"
+      ],
+      "fun_fact": "«Je joue de la guitare» appears on Jean Leloup's album «Je joue de la guitare (1985-2003)».",
+      "fun_fact_de": "«Je joue de la guitare» erschien auf dem Album «Je joue de la guitare (1985-2003)» von Jean Leloup.",
+      "fun_fact_es": "«Je joue de la guitare» aparece en el álbum «Je joue de la guitare (1985-2003)» de Jean Leloup.",
+      "fun_fact_fr": "«Je joue de la guitare» figure sur l’album «Je joue de la guitare (1985-2003)» de Jean Leloup.",
+      "fun_fact_nl": "«Je joue de la guitare» staat op het album «Je joue de la guitare (1985-2003)» van Jean Leloup."
+    },
+    {
+      "artist": "Pomme, Philémon Cimon",
+      "title": "Comme si j'y croyais - Session live montréalaise",
+      "uri": "spotify:track:5TdTon2wxwpoDOgA6z9eKg",
+      "year": 2018,
+      "isrc": "FRUM71800023",
+      "uri_apple_music": "applemusic://track/1368841830",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1368841830",
+        "de": "applemusic://track/1368841830",
+        "gb": "applemusic://track/1368841830",
+        "fr": "applemusic://track/1368841830",
+        "es": "applemusic://track/1368841830",
+        "nl": "applemusic://track/1368841830",
+        "it": "applemusic://track/1368841830"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yA5RyRIJY7E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/487061862",
+      "alt_artists": [
+        "2Frères",
+        "Les Cowboys Fringants",
+        "La Chicane"
+      ],
+      "fun_fact": "«Comme si j'y croyais - Session live montréalaise» appears on Pomme, Philémon Cimon's album «À peu près (Deluxe)».",
+      "fun_fact_de": "«Comme si j'y croyais - Session live montréalaise» erschien auf dem Album «À peu près (Deluxe)» von Pomme, Philémon Cimon.",
+      "fun_fact_es": "«Comme si j'y croyais - Session live montréalaise» aparece en el álbum «À peu près (Deluxe)» de Pomme, Philémon Cimon.",
+      "fun_fact_fr": "«Comme si j'y croyais - Session live montréalaise» figure sur l’album «À peu près (Deluxe)» de Pomme, Philémon Cimon.",
+      "fun_fact_nl": "«Comme si j'y croyais - Session live montréalaise» staat op het album «À peu près (Deluxe)» van Pomme, Philémon Cimon."
+    },
+    {
+      "artist": "Les Colocs",
+      "title": "Belzébuth",
+      "uri": "spotify:track:3nSWM1tOZFZkfG8Tq6JO0t",
+      "year": 1998,
+      "isrc": "CAA500907701",
+      "uri_apple_music": "applemusic://track/1551611114",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551611114",
+        "de": "applemusic://track/1551611114",
+        "gb": "applemusic://track/1551611114",
+        "fr": "applemusic://track/1551611114",
+        "es": "applemusic://track/1551611114",
+        "nl": "applemusic://track/1551611114",
+        "it": "applemusic://track/1551611114"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vISXH4osr8c",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128234295",
+      "alt_artists": [
+        "Les Respectables",
+        "Daniel Boucher",
+        "Zachary Richard"
+      ],
+      "fun_fact": "«Belzébuth» appears on Les Colocs's album «Dehors novembre».",
+      "fun_fact_de": "«Belzébuth» erschien auf dem Album «Dehors novembre» von Les Colocs.",
+      "fun_fact_es": "«Belzébuth» aparece en el álbum «Dehors novembre» de Les Colocs.",
+      "fun_fact_fr": "«Belzébuth» figure sur l’album «Dehors novembre» de Les Colocs.",
+      "fun_fact_nl": "«Belzébuth» staat op het album «Dehors novembre» van Les Colocs."
+    },
+    {
+      "artist": "Noir Silence",
+      "title": "On jase de toi",
+      "uri": "spotify:track:5SfcfFFIHL32dZIuIe9bGV",
+      "year": 1995,
+      "isrc": "CAY641100083",
+      "uri_apple_music": "applemusic://track/592485522",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/592485522",
+        "de": "applemusic://track/592485522",
+        "gb": "applemusic://track/592485522",
+        "fr": "applemusic://track/592485522",
+        "es": "applemusic://track/592485522",
+        "nl": "applemusic://track/592485522",
+        "it": "applemusic://track/592485522"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MfxkLqQN2QM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/63509376",
+      "alt_artists": [
+        "Céline Dion",
+        "Fred Fortin",
+        "Jean Leloup"
+      ],
+      "fun_fact": "«On jase de toi» appears on Noir Silence's album «Noir Silence (Remasterisé)».",
+      "fun_fact_de": "«On jase de toi» erschien auf dem Album «Noir Silence (Remasterisé)» von Noir Silence.",
+      "fun_fact_es": "«On jase de toi» aparece en el álbum «Noir Silence (Remasterisé)» de Noir Silence.",
+      "fun_fact_fr": "«On jase de toi» figure sur l’album «Noir Silence (Remasterisé)» de Noir Silence.",
+      "fun_fact_nl": "«On jase de toi» staat op het album «Noir Silence (Remasterisé)» van Noir Silence."
+    },
+    {
+      "artist": "La Chicane",
+      "title": "Calvaire",
+      "uri": "spotify:track:1UAf8jsou67W72InevhBIH",
+      "year": 2005,
+      "isrc": "CAY500100017",
+      "uri_apple_music": "applemusic://track/349253350",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/349253350",
+        "de": "applemusic://track/349253350",
+        "gb": "applemusic://track/349253350",
+        "fr": "applemusic://track/349253350",
+        "es": "applemusic://track/349253350",
+        "nl": "applemusic://track/349253350",
+        "it": "applemusic://track/349253350"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DqEaSVqQF1M",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1497668772",
+      "alt_artists": [
+        "Kaïn",
+        "Ariane Moffatt",
+        "Thomas Hellman"
+      ],
+      "fun_fact": "«Calvaire» appears on La Chicane's album «Les Boys III».",
+      "fun_fact_de": "«Calvaire» erschien auf dem Album «Les Boys III» von La Chicane.",
+      "fun_fact_es": "«Calvaire» aparece en el álbum «Les Boys III» de La Chicane.",
+      "fun_fact_fr": "«Calvaire» figure sur l’album «Les Boys III» de La Chicane.",
+      "fun_fact_nl": "«Calvaire» staat op het album «Les Boys III» van La Chicane."
+    },
+    {
+      "artist": "Kaïn",
+      "title": "Mexico",
+      "uri": "spotify:track:2Fit4zvhoTT4KLQj1T7HHQ",
+      "year": 2005,
+      "isrc": "CAP680524004",
+      "uri_apple_music": "applemusic://track/196995391",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/196995391",
+        "de": "applemusic://track/196995391",
+        "gb": "applemusic://track/196995391",
+        "fr": "applemusic://track/196995391",
+        "es": "applemusic://track/196995391",
+        "nl": "applemusic://track/196995391",
+        "it": "applemusic://track/196995391"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D6RT7K9eiRc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/45114581",
+      "alt_artists": [
+        "Ariane Moffatt",
+        "Thomas Hellman",
+        "Les Trois Accords"
+      ],
+      "fun_fact": "«Mexico» appears on Kaïn's album «Nulle part ailleurs».",
+      "fun_fact_de": "«Mexico» erschien auf dem Album «Nulle part ailleurs» von Kaïn.",
+      "fun_fact_es": "«Mexico» aparece en el álbum «Nulle part ailleurs» de Kaïn.",
+      "fun_fact_fr": "«Mexico» figure sur l’album «Nulle part ailleurs» de Kaïn.",
+      "fun_fact_nl": "«Mexico» staat op het album «Nulle part ailleurs» van Kaïn."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "Balade à Toronto",
+      "uri": "spotify:track:7vMxeADyLQ4HDUjUqTZqeD",
+      "year": 2002,
+      "isrc": "CAA500215901",
+      "uri_apple_music": "applemusic://track/1551615406",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551615406",
+        "de": "applemusic://track/1551615406",
+        "gb": "applemusic://track/1551615406",
+        "fr": "applemusic://track/1551615406",
+        "es": "applemusic://track/1551615406",
+        "nl": "applemusic://track/1551615406",
+        "it": "applemusic://track/1551615406"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3B3a1Rtf9js",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128237741",
+      "alt_artists": [
+        "Marc Déry",
+        "Stefie Shock",
+        "Dumas"
+      ],
+      "fun_fact": "«Balade à Toronto» appears on Jean Leloup's album «La vallée des réputations».",
+      "fun_fact_de": "«Balade à Toronto» erschien auf dem Album «La vallée des réputations» von Jean Leloup.",
+      "fun_fact_es": "«Balade à Toronto» aparece en el álbum «La vallée des réputations» de Jean Leloup.",
+      "fun_fact_fr": "«Balade à Toronto» figure sur l’album «La vallée des réputations» de Jean Leloup.",
+      "fun_fact_nl": "«Balade à Toronto» staat op het album «La vallée des réputations» van Jean Leloup."
+    },
+    {
+      "artist": "Vilain Pingouin",
+      "title": "Le train",
+      "uri": "spotify:track:2p3O33eThnhhq1dMWlvR7M",
+      "year": 1990,
+      "isrc": "CAA509003706",
+      "uri_apple_music": "applemusic://track/1621195978",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1621195978",
+        "de": "applemusic://track/1621195978",
+        "gb": "applemusic://track/1621195978",
+        "fr": "applemusic://track/1621195978",
+        "es": "applemusic://track/1621195978",
+        "nl": "applemusic://track/1621195978",
+        "it": "applemusic://track/1621195978"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_n0nfHQVmxo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1732567157",
+      "alt_artists": [
+        "Roch Voisine",
+        "Daniel Bélanger",
+        "Michel Rivard"
+      ],
+      "fun_fact": "«Le train» appears on Vilain Pingouin's album «Vilain Pingouin».",
+      "fun_fact_de": "«Le train» erschien auf dem Album «Vilain Pingouin» von Vilain Pingouin.",
+      "fun_fact_es": "«Le train» aparece en el álbum «Vilain Pingouin» de Vilain Pingouin.",
+      "fun_fact_fr": "«Le train» figure sur l’album «Vilain Pingouin» de Vilain Pingouin.",
+      "fun_fact_nl": "«Le train» staat op het album «Vilain Pingouin» van Vilain Pingouin."
+    },
+    {
+      "artist": "Damien Robitaille",
+      "title": "Homme autonome",
+      "uri": "spotify:track:1on8WGMQgTlRe0Q7bvAAwk",
+      "year": 2009,
+      "isrc": "CAA500926401",
+      "uri_apple_music": "applemusic://track/1551596355",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551596355",
+        "de": "applemusic://track/1551596355",
+        "gb": "applemusic://track/1551596355",
+        "fr": "applemusic://track/1551596355",
+        "es": "applemusic://track/1551596355",
+        "nl": "applemusic://track/1551596355",
+        "it": "applemusic://track/1551596355"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VQzFIgrJE2k",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128227977",
+      "alt_artists": [
+        "Vincent Vallières",
+        "Daniel Lavoie",
+        "Alexandre Poulin"
+      ],
+      "fun_fact": "«Homme autonome» is the title track of Damien Robitaille's album of the same name.",
+      "fun_fact_de": "«Homme autonome» ist der Titelsong des gleichnamigen Albums von Damien Robitaille.",
+      "fun_fact_es": "«Homme autonome» es la canción que da título al álbum homónimo de Damien Robitaille.",
+      "fun_fact_fr": "«Homme autonome» est la chanson-titre de l’album homonyme de Damien Robitaille.",
+      "fun_fact_nl": "«Homme autonome» is de titelsong van het gelijknamige album van Damien Robitaille."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "La Vallée Des Réputations",
+      "uri": "spotify:track:0zXXfu8VbcRwrKLORW9VZA",
+      "year": 2002,
+      "isrc": "CAA500215906",
+      "uri_apple_music": "applemusic://track/1551615420",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551615420",
+        "de": "applemusic://track/1551615420",
+        "gb": "applemusic://track/1551615420",
+        "fr": "applemusic://track/1551615420",
+        "es": "applemusic://track/1551615420",
+        "nl": "applemusic://track/1551615420",
+        "it": "applemusic://track/1551615420"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=f2B_FiUL-rc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128237743",
+      "alt_artists": [
+        "Marc Déry",
+        "Dumas",
+        "Stefie Shock"
+      ],
+      "fun_fact": "«La Vallée Des Réputations» is the title track of Jean Leloup's album of the same name.",
+      "fun_fact_de": "«La Vallée Des Réputations» ist der Titelsong des gleichnamigen Albums von Jean Leloup.",
+      "fun_fact_es": "«La Vallée Des Réputations» es la canción que da título al álbum homónimo de Jean Leloup.",
+      "fun_fact_fr": "«La Vallée Des Réputations» est la chanson-titre de l’album homonyme de Jean Leloup.",
+      "fun_fact_nl": "«La Vallée Des Réputations» is de titelsong van het gelijknamige album van Jean Leloup."
+    },
+    {
+      "artist": "Zachary Richard",
+      "title": "La ballade de Jean Batailleur",
+      "uri": "spotify:track:1xGJ4I1w4QrUE2offAGgsW",
+      "year": 1996,
+      "isrc": "FRS439500300",
+      "uri_apple_music": "applemusic://track/276422253",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/276422253",
+        "de": "applemusic://track/276422253",
+        "gb": "applemusic://track/276422253",
+        "fr": "applemusic://track/276422253",
+        "es": "applemusic://track/276422253",
+        "nl": "applemusic://track/276422253",
+        "it": "applemusic://track/276422253"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ueTZ2622ZtA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/75688046",
+      "alt_artists": [
+        "Jean Leloup",
+        "Fred Fortin",
+        "Noir Silence"
+      ],
+      "fun_fact": "«La ballade de Jean Batailleur» appears on Zachary Richard's album «Cap Enragé».",
+      "fun_fact_de": "«La ballade de Jean Batailleur» erschien auf dem Album «Cap Enragé» von Zachary Richard.",
+      "fun_fact_es": "«La ballade de Jean Batailleur» aparece en el álbum «Cap Enragé» de Zachary Richard.",
+      "fun_fact_fr": "«La ballade de Jean Batailleur» figure sur l’album «Cap Enragé» de Zachary Richard.",
+      "fun_fact_nl": "«La ballade de Jean Batailleur» staat op het album «Cap Enragé» van Zachary Richard."
+    },
+    {
+      "artist": "Mon Doux Saigneur",
+      "title": "Aller",
+      "uri": "spotify:track:2X7X0jEaVxzxQPanxDYsxT",
+      "year": 2020,
+      "isrc": "CAD431998103",
+      "uri_apple_music": "applemusic://track/1488375354",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1488375354",
+        "de": "applemusic://track/1488375354",
+        "gb": "applemusic://track/1488375354",
+        "fr": "applemusic://track/1488375354",
+        "es": "applemusic://track/1488375354",
+        "nl": "applemusic://track/1488375354",
+        "it": "applemusic://track/1488375354"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OzBrdIQIPII",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/811213402",
+      "alt_artists": [
+        "Maude Audet",
+        "Philémon Cimon",
+        "Édith Butler, Lisa LeBlanc"
+      ],
+      "fun_fact": "«Aller» appears on Mon Doux Saigneur's album «Horizon».",
+      "fun_fact_de": "«Aller» erschien auf dem Album «Horizon» von Mon Doux Saigneur.",
+      "fun_fact_es": "«Aller» aparece en el álbum «Horizon» de Mon Doux Saigneur.",
+      "fun_fact_fr": "«Aller» figure sur l’album «Horizon» de Mon Doux Saigneur.",
+      "fun_fact_nl": "«Aller» staat op het album «Horizon» van Mon Doux Saigneur."
+    },
+    {
+      "artist": "Émile Bilodeau",
+      "title": "J'en ai plein mon cass",
+      "uri": "spotify:track:7oG3MWyTJHJJdSgy66hv2O",
+      "year": 2016,
+      "isrc": "CAD431695701",
+      "uri_apple_music": "applemusic://track/1148624351",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1148624351",
+        "de": "applemusic://track/1148624351",
+        "gb": "applemusic://track/1148624351",
+        "fr": "applemusic://track/1148624351",
+        "es": "applemusic://track/1148624351",
+        "nl": "applemusic://track/1148624351",
+        "it": "applemusic://track/1148624351"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oniHC9L0G2E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/131066296",
+      "alt_artists": [
+        "Charlotte Cardin",
+        "Louis-Jean Cormier",
+        "2Frères"
+      ],
+      "fun_fact": "«J'en ai plein mon cass» appears on Émile Bilodeau's album «Rites de passage».",
+      "fun_fact_de": "«J'en ai plein mon cass» erschien auf dem Album «Rites de passage» von Émile Bilodeau.",
+      "fun_fact_es": "«J'en ai plein mon cass» aparece en el álbum «Rites de passage» de Émile Bilodeau.",
+      "fun_fact_fr": "«J'en ai plein mon cass» figure sur l’album «Rites de passage» de Émile Bilodeau.",
+      "fun_fact_nl": "«J'en ai plein mon cass» staat op het album «Rites de passage» van Émile Bilodeau."
+    },
+    {
+      "artist": "Alex Nevsky",
+      "title": "On leur a fait croire",
+      "uri": "spotify:track:7vG6sLSHiFgTebS0TVUAjy",
+      "year": 2013,
+      "isrc": "CAA501332901",
+      "uri_apple_music": "applemusic://track/1551597581",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551597581",
+        "de": "applemusic://track/1551597581",
+        "gb": "applemusic://track/1551597581",
+        "fr": "applemusic://track/1551597581",
+        "es": "applemusic://track/1551597581",
+        "nl": "applemusic://track/1551597581",
+        "it": "applemusic://track/1551597581"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bSNKcMdG_7E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128219955",
+      "alt_artists": [
+        "La Maison Tellier",
+        "Tomás Jensen",
+        "Sally Folk"
+      ],
+      "fun_fact": "«On leur a fait croire» appears on Alex Nevsky's album «Himalaya mon amour».",
+      "fun_fact_de": "«On leur a fait croire» erschien auf dem Album «Himalaya mon amour» von Alex Nevsky.",
+      "fun_fact_es": "«On leur a fait croire» aparece en el álbum «Himalaya mon amour» de Alex Nevsky.",
+      "fun_fact_fr": "«On leur a fait croire» figure sur l’album «Himalaya mon amour» de Alex Nevsky.",
+      "fun_fact_nl": "«On leur a fait croire» staat op het album «Himalaya mon amour» van Alex Nevsky."
+    },
+    {
+      "artist": "Daniel Bélanger",
+      "title": "Les Deux Printemps",
+      "uri": "spotify:track:0Nic6UN7Gkmc0KEGZeD5lL",
+      "year": 1996,
+      "isrc": "CAA509690003",
+      "uri_apple_music": "applemusic://track/1551598534",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551598534",
+        "de": "applemusic://track/1551598534",
+        "gb": "applemusic://track/1551598534",
+        "fr": "applemusic://track/1551598534",
+        "es": "applemusic://track/1551598534",
+        "nl": "applemusic://track/1551598534",
+        "it": "applemusic://track/1551598534"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PpHcmC3GCwk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128233475",
+      "alt_artists": [
+        "Jean Leloup",
+        "Fred Fortin",
+        "Noir Silence"
+      ],
+      "fun_fact": "«Les Deux Printemps» appears on Daniel Bélanger's album «Quatre Saisons Dans Le Désordre».",
+      "fun_fact_de": "«Les Deux Printemps» erschien auf dem Album «Quatre Saisons Dans Le Désordre» von Daniel Bélanger.",
+      "fun_fact_es": "«Les Deux Printemps» aparece en el álbum «Quatre Saisons Dans Le Désordre» de Daniel Bélanger.",
+      "fun_fact_fr": "«Les Deux Printemps» figure sur l’album «Quatre Saisons Dans Le Désordre» de Daniel Bélanger.",
+      "fun_fact_nl": "«Les Deux Printemps» staat op het album «Quatre Saisons Dans Le Désordre» van Daniel Bélanger."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Marine marchande",
+      "uri": "spotify:track:0SxoDa0XQBCBDvJIiCFKa9",
+      "year": 2015,
+      "isrc": "CAL541517009",
+      "uri_apple_music": "applemusic://track/1048237585",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048237585",
+        "de": "applemusic://track/1048237585",
+        "gb": "applemusic://track/1048237585",
+        "fr": "applemusic://track/1048237585",
+        "es": "applemusic://track/1048237585",
+        "nl": "applemusic://track/1048237585",
+        "it": "applemusic://track/1048237585"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c_MrMdh13Ec",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109523454",
+      "alt_artists": [
+        "Louis-Jean Cormier",
+        "Luce Dufault",
+        "Émile Bilodeau"
+      ],
+      "fun_fact": "«Marine marchande» appears on Les Cowboys Fringants's album «Octobre».",
+      "fun_fact_de": "«Marine marchande» erschien auf dem Album «Octobre» von Les Cowboys Fringants.",
+      "fun_fact_es": "«Marine marchande» aparece en el álbum «Octobre» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Marine marchande» figure sur l’album «Octobre» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«Marine marchande» staat op het album «Octobre» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Sally Folk",
+      "title": "C'est moi la plus belle",
+      "uri": "spotify:track:1VTAh3dSRjdTvPYIjcfP3h",
+      "year": 2015,
+      "isrc": "CAA4R1536098",
+      "uri_apple_music": "applemusic://track/1573829263",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1573829263",
+        "de": "applemusic://track/1573829263",
+        "gb": "applemusic://track/1573829263",
+        "fr": "applemusic://track/1573829263",
+        "es": "applemusic://track/1573829263",
+        "nl": "applemusic://track/1573829263",
+        "it": "applemusic://track/1573829263"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZnS_9yKvGbw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1415225382",
+      "alt_artists": [
+        "Louis-Jean Cormier",
+        "Luce Dufault",
+        "Émile Bilodeau"
+      ],
+      "fun_fact": "«C'est moi la plus belle» appears on Sally Folk's album «Deuxième acte».",
+      "fun_fact_de": "«C'est moi la plus belle» erschien auf dem Album «Deuxième acte» von Sally Folk.",
+      "fun_fact_es": "«C'est moi la plus belle» aparece en el álbum «Deuxième acte» de Sally Folk.",
+      "fun_fact_fr": "«C'est moi la plus belle» figure sur l’album «Deuxième acte» de Sally Folk.",
+      "fun_fact_nl": "«C'est moi la plus belle» staat op het album «Deuxième acte» van Sally Folk."
+    },
+    {
+      "artist": "Martin Roberts",
+      "title": "Quand j't'ais p'tit cul",
+      "uri": "spotify:track:3Gu950Tw0cw2PdSJPqDnTE",
+      "year": 2021,
+      "isrc": "QZES62133544",
+      "uri_apple_music": null,
+      "uri_apple_music_by_region": {
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6fSRQv53Kac",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2721767182",
+      "alt_artists": [
+        "Édith Butler, Lisa LeBlanc",
+        "Lalonde Lalonde",
+        "Maude Audet"
+      ],
+      "fun_fact": "«Quand j't'ais p'tit cul» is the title track of Martin Roberts's album of the same name.",
+      "fun_fact_de": "«Quand j't'ais p'tit cul» ist der Titelsong des gleichnamigen Albums von Martin Roberts.",
+      "fun_fact_es": "«Quand j't'ais p'tit cul» es la canción que da título al álbum homónimo de Martin Roberts.",
+      "fun_fact_fr": "«Quand j't'ais p'tit cul» est la chanson-titre de l’album homonyme de Martin Roberts.",
+      "fun_fact_nl": "«Quand j't'ais p'tit cul» is de titelsong van het gelijknamige album van Martin Roberts."
+    },
+    {
+      "artist": "Lalonde Lalonde",
+      "title": "Célibat Vodka",
+      "uri": "spotify:track:4oFLvrAscqq62Yc3TRHN2I",
+      "year": 2021,
+      "isrc": "QZHNA2140852",
+      "uri_apple_music": "applemusic://track/1570898818",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1570898818",
+        "de": "applemusic://track/1570898818",
+        "gb": "applemusic://track/1570898818",
+        "fr": "applemusic://track/1570898818",
+        "es": "applemusic://track/1570898818",
+        "nl": "applemusic://track/1570898818",
+        "it": "applemusic://track/1570898818"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pA085zepaAU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1395489412",
+      "alt_artists": [
+        "Martin Roberts",
+        "Édith Butler, Lisa LeBlanc",
+        "Maude Audet"
+      ],
+      "fun_fact": "«Célibat Vodka» is the title track of Lalonde Lalonde's album of the same name.",
+      "fun_fact_de": "«Célibat Vodka» ist der Titelsong des gleichnamigen Albums von Lalonde Lalonde.",
+      "fun_fact_es": "«Célibat Vodka» es la canción que da título al álbum homónimo de Lalonde Lalonde.",
+      "fun_fact_fr": "«Célibat Vodka» est la chanson-titre de l’album homonyme de Lalonde Lalonde.",
+      "fun_fact_nl": "«Célibat Vodka» is de titelsong van het gelijknamige album van Lalonde Lalonde."
+    },
+    {
+      "artist": "Michel Rivard",
+      "title": "Je voudrais voir la mer",
+      "uri": "spotify:track:49PbjFOCzUYDUbjUJxin8V",
+      "year": 1987,
+      "isrc": "CAS741282910",
+      "uri_apple_music": "applemusic://track/1523945882",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1523945882",
+        "de": "applemusic://track/1523945882",
+        "gb": "applemusic://track/1523945882",
+        "fr": "applemusic://track/1523945882",
+        "es": "applemusic://track/1523945882",
+        "nl": "applemusic://track/1523945882",
+        "it": "applemusic://track/1523945882"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T6mP--kEOnA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1024249012",
+      "alt_artists": [
+        "Roch Voisine",
+        "Vilain Pingouin",
+        "Daniel Bélanger"
+      ],
+      "fun_fact": "«Je voudrais voir la mer» appears on Michel Rivard's album «Un trou dans les nuages».",
+      "fun_fact_de": "«Je voudrais voir la mer» erschien auf dem Album «Un trou dans les nuages» von Michel Rivard.",
+      "fun_fact_es": "«Je voudrais voir la mer» aparece en el álbum «Un trou dans les nuages» de Michel Rivard.",
+      "fun_fact_fr": "«Je voudrais voir la mer» figure sur l’album «Un trou dans les nuages» de Michel Rivard.",
+      "fun_fact_nl": "«Je voudrais voir la mer» staat op het album «Un trou dans les nuages» van Michel Rivard."
+    },
+    {
+      "artist": "Maude Audet",
+      "title": "Gallaway Road",
+      "uri": "spotify:track:3W6azqlvbEjEcvBORrmQh6",
+      "year": 2017,
+      "isrc": "CA8N21200028",
+      "uri_apple_music": "applemusic://track/1271899249",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1271899249",
+        "de": "applemusic://track/1271899249",
+        "gb": "applemusic://track/1271899249",
+        "fr": "applemusic://track/1271899249",
+        "es": "applemusic://track/1271899249",
+        "nl": "applemusic://track/1271899249",
+        "it": "applemusic://track/1271899249"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a75LM3Z6Hbo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/395046612",
+      "alt_artists": [
+        "Philippe B",
+        "La Chicane",
+        "2Frères"
+      ],
+      "fun_fact": "«Gallaway Road» appears on Maude Audet's album «Comme une odeur de déclin».",
+      "fun_fact_de": "«Gallaway Road» erschien auf dem Album «Comme une odeur de déclin» von Maude Audet.",
+      "fun_fact_es": "«Gallaway Road» aparece en el álbum «Comme une odeur de déclin» de Maude Audet.",
+      "fun_fact_fr": "«Gallaway Road» figure sur l’album «Comme une odeur de déclin» de Maude Audet.",
+      "fun_fact_nl": "«Gallaway Road» staat op het album «Comme une odeur de déclin» van Maude Audet."
+    },
+    {
+      "artist": "Lalonde Lalonde",
+      "title": "Ici on vit l'vendredi",
+      "uri": "spotify:track:37gRBbraimZNh2RnmU8aN4",
+      "year": 2021,
+      "isrc": "QZNWU2167753",
+      "uri_apple_music": "applemusic://track/1591238077",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1591238077",
+        "de": "applemusic://track/1591238077",
+        "gb": "applemusic://track/1591238077",
+        "fr": "applemusic://track/1591238077",
+        "es": "applemusic://track/1591238077",
+        "nl": "applemusic://track/1591238077",
+        "it": "applemusic://track/1591238077"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dfv58moRXKs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1527423362",
+      "alt_artists": [
+        "Martin Roberts",
+        "Édith Butler",
+        "Mon Doux Saigneur"
+      ],
+      "fun_fact": "«Ici on vit l'vendredi» is the title track of Lalonde Lalonde's album of the same name.",
+      "fun_fact_de": "«Ici on vit l'vendredi» ist der Titelsong des gleichnamigen Albums von Lalonde Lalonde.",
+      "fun_fact_es": "«Ici on vit l'vendredi» es la canción que da título al álbum homónimo de Lalonde Lalonde.",
+      "fun_fact_fr": "«Ici on vit l'vendredi» est la chanson-titre de l’album homonyme de Lalonde Lalonde.",
+      "fun_fact_nl": "«Ici on vit l'vendredi» is de titelsong van het gelijknamige album van Lalonde Lalonde."
+    },
+    {
+      "artist": "Charlotte Cardin",
+      "title": "Faufile",
+      "uri": "spotify:track:3pgnyg25pkcNlcKuaKnh6b",
+      "year": 2016,
+      "isrc": "CA4IZ1600030",
+      "uri_apple_music": "applemusic://track/1274063182",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1274063182",
+        "de": "applemusic://track/1274063182",
+        "gb": "applemusic://track/1274063182",
+        "fr": "applemusic://track/1274063182",
+        "es": "applemusic://track/1274063182",
+        "nl": "applemusic://track/1274063182",
+        "it": "applemusic://track/1274063182"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/401394412",
+      "alt_artists": [
+        "Émile Bilodeau",
+        "Philippe B",
+        "Luce Dufault"
+      ],
+      "fun_fact": "«Faufile» appears on Charlotte Cardin's album «Big Boy».",
+      "fun_fact_de": "«Faufile» erschien auf dem Album «Big Boy» von Charlotte Cardin.",
+      "fun_fact_es": "«Faufile» aparece en el álbum «Big Boy» de Charlotte Cardin.",
+      "fun_fact_fr": "«Faufile» figure sur l’album «Big Boy» de Charlotte Cardin.",
+      "fun_fact_nl": "«Faufile» staat op het album «Big Boy» van Charlotte Cardin."
+    },
+    {
+      "artist": "Marc Déry",
+      "title": "Ostie Qu'y S'lève Tard",
+      "uri": "spotify:track:3JpfZuoOk1VXhWJbADvwUq",
+      "year": 2002,
+      "isrc": "CAA500216007",
+      "uri_apple_music": "applemusic://track/1551590981",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551590981",
+        "de": "applemusic://track/1551590981",
+        "gb": "applemusic://track/1551590981",
+        "fr": "applemusic://track/1551590981",
+        "es": "applemusic://track/1551590981",
+        "nl": "applemusic://track/1551590981",
+        "it": "applemusic://track/1551590981"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N15Nr1dAogM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128234353",
+      "alt_artists": [
+        "Stefie Shock",
+        "Dumas",
+        "Mes Aïeux"
+      ],
+      "fun_fact": "«Ostie Qu'y S'lève Tard» appears on Marc Déry's album «À L'avenir».",
+      "fun_fact_de": "«Ostie Qu'y S'lève Tard» erschien auf dem Album «À L'avenir» von Marc Déry.",
+      "fun_fact_es": "«Ostie Qu'y S'lève Tard» aparece en el álbum «À L'avenir» de Marc Déry.",
+      "fun_fact_fr": "«Ostie Qu'y S'lève Tard» figure sur l’album «À L'avenir» de Marc Déry.",
+      "fun_fact_nl": "«Ostie Qu'y S'lève Tard» staat op het album «À L'avenir» van Marc Déry."
+    },
+    {
+      "artist": "Maude Audet",
+      "title": "Demande-moi",
+      "uri": "spotify:track:6w7Uk8ppY33i1uD3KHpiO1",
+      "year": 2020,
+      "isrc": "CAD431998002",
+      "uri_apple_music": "applemusic://track/1482953124",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1482953124",
+        "de": "applemusic://track/1482953124",
+        "gb": "applemusic://track/1482953124",
+        "fr": "applemusic://track/1482953124",
+        "es": "applemusic://track/1482953124",
+        "nl": "applemusic://track/1482953124",
+        "it": "applemusic://track/1482953124"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SYXUnY8f2ik",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/773118122",
+      "alt_artists": [
+        "Mon Doux Saigneur",
+        "Martin Roberts",
+        "Édith Butler, Lisa LeBlanc"
+      ],
+      "fun_fact": "«Demande-moi» appears on Maude Audet's album «Tu ne mourras pas».",
+      "fun_fact_de": "«Demande-moi» erschien auf dem Album «Tu ne mourras pas» von Maude Audet.",
+      "fun_fact_es": "«Demande-moi» aparece en el álbum «Tu ne mourras pas» de Maude Audet.",
+      "fun_fact_fr": "«Demande-moi» figure sur l’album «Tu ne mourras pas» de Maude Audet.",
+      "fun_fact_nl": "«Demande-moi» staat op het album «Tu ne mourras pas» van Maude Audet."
+    },
+    {
+      "artist": "Philémon Cimon",
+      "title": "Les pommiers envahis",
+      "uri": "spotify:track:0iYZ8hkEx9POpr0TlS87pl",
+      "year": 2019,
+      "isrc": "CA2HQ1900002",
+      "uri_apple_music": "applemusic://track/1715453100",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1715453100",
+        "de": "applemusic://track/1715453100",
+        "gb": "applemusic://track/1715453100",
+        "fr": "applemusic://track/1715453100",
+        "es": "applemusic://track/1715453100",
+        "nl": "applemusic://track/1715453100",
+        "it": "applemusic://track/1715453100"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V3AchEdfMak",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1497900242",
+      "alt_artists": [
+        "Charlotte Cardin, CRi",
+        "Les Cowboys Fringants",
+        "Maude Audet"
+      ],
+      "fun_fact": "«Les pommiers envahis» appears on Philémon Cimon's album «Pays».",
+      "fun_fact_de": "«Les pommiers envahis» erschien auf dem Album «Pays» von Philémon Cimon.",
+      "fun_fact_es": "«Les pommiers envahis» aparece en el álbum «Pays» de Philémon Cimon.",
+      "fun_fact_fr": "«Les pommiers envahis» figure sur l’album «Pays» de Philémon Cimon.",
+      "fun_fact_nl": "«Les pommiers envahis» staat op het album «Pays» van Philémon Cimon."
+    },
+    {
+      "artist": "Karkwa",
+      "title": "Le pyromane",
+      "uri": "spotify:track:3oQ5BTeDIeOE3E2JdsLuzy",
+      "year": 2010,
+      "isrc": "CAA501027001",
+      "uri_apple_music": "applemusic://track/1880482622",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1880482622",
+        "de": "applemusic://track/1880482622",
+        "gb": "applemusic://track/1880482622",
+        "fr": "applemusic://track/1880482622",
+        "es": "applemusic://track/1880482622",
+        "nl": "applemusic://track/1880482622",
+        "it": "applemusic://track/1880482622"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=70czEeZ3_dw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3870010921",
+      "alt_artists": [
+        "Martin Léon",
+        "Alexandre Poulin",
+        "Daniel Lavoie"
+      ],
+      "fun_fact": "«Le pyromane» appears on Karkwa's album «Les chemins de verre».",
+      "fun_fact_de": "«Le pyromane» erschien auf dem Album «Les chemins de verre» von Karkwa.",
+      "fun_fact_es": "«Le pyromane» aparece en el álbum «Les chemins de verre» de Karkwa.",
+      "fun_fact_fr": "«Le pyromane» figure sur l’album «Les chemins de verre» de Karkwa.",
+      "fun_fact_nl": "«Le pyromane» staat op het album «Les chemins de verre» van Karkwa."
+    },
+    {
+      "artist": "Philippe B",
+      "title": "Explosion",
+      "uri": "spotify:track:0JKO9jlTWf5yzIMSyiS78i",
+      "year": 2017,
+      "isrc": "CAZ841700014",
+      "uri_apple_music": "applemusic://track/1795506114",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1795506114",
+        "de": "applemusic://track/1795506114",
+        "gb": "applemusic://track/1795506114",
+        "fr": "applemusic://track/1795506114",
+        "es": "applemusic://track/1795506114",
+        "nl": "applemusic://track/1795506114",
+        "it": "applemusic://track/1795506114"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dqjsnjc8laQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3168068471",
+      "alt_artists": [
+        "La Chicane",
+        "2Frères",
+        "Pomme, Philémon Cimon"
+      ],
+      "fun_fact": "«Explosion» appears on Philippe B's album «La grande nuit vidéo».",
+      "fun_fact_de": "«Explosion» erschien auf dem Album «La grande nuit vidéo» von Philippe B.",
+      "fun_fact_es": "«Explosion» aparece en el álbum «La grande nuit vidéo» de Philippe B.",
+      "fun_fact_fr": "«Explosion» figure sur l’album «La grande nuit vidéo» de Philippe B.",
+      "fun_fact_nl": "«Explosion» staat op het album «La grande nuit vidéo» van Philippe B."
+    },
+    {
+      "artist": "Lisa LeBlanc",
+      "title": "Pourquoi faire aujourd'hui",
+      "uri": "spotify:track:0vpqlS0843Mu90qyAs30dC",
+      "year": 2021,
+      "isrc": "CAZ842100032",
+      "uri_apple_music": "applemusic://track/1795505648",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1795505648",
+        "de": "applemusic://track/1795505648",
+        "gb": "applemusic://track/1795505648",
+        "fr": "applemusic://track/1795505648",
+        "es": "applemusic://track/1795505648",
+        "nl": "applemusic://track/1795505648",
+        "it": "applemusic://track/1795505648"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mf7YG8DSRl0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3168322551",
+      "alt_artists": [
+        "Édith Butler",
+        "Lalonde Lalonde",
+        "Martin Roberts"
+      ],
+      "fun_fact": "«Pourquoi faire aujourd'hui» appears on Lisa LeBlanc's album «Chiac Disco».",
+      "fun_fact_de": "«Pourquoi faire aujourd'hui» erschien auf dem Album «Chiac Disco» von Lisa LeBlanc.",
+      "fun_fact_es": "«Pourquoi faire aujourd'hui» aparece en el álbum «Chiac Disco» de Lisa LeBlanc.",
+      "fun_fact_fr": "«Pourquoi faire aujourd'hui» figure sur l’album «Chiac Disco» de Lisa LeBlanc.",
+      "fun_fact_nl": "«Pourquoi faire aujourd'hui» staat op het album «Chiac Disco» van Lisa LeBlanc."
+    },
+    {
+      "artist": "La Maison Tellier",
+      "title": "Sur un volcan",
+      "uri": "spotify:track:5w8bF2RGgf9PkXEoEl8SSN",
+      "year": 2013,
+      "isrc": "FR19X1300029",
+      "uri_apple_music": "applemusic://track/687812868",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/687812868",
+        "de": null,
+        "gb": "applemusic://track/687812868",
+        "fr": null,
+        "es": "applemusic://track/687812868",
+        "nl": "applemusic://track/687812868",
+        "it": "applemusic://track/687812868"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1885473517",
+      "alt_artists": [
+        "Sally Folk",
+        "Tomás Jensen",
+        "Alex Nevsky"
+      ],
+      "fun_fact": "«Sur un volcan» appears on La Maison Tellier's album «Beauté pour tous».",
+      "fun_fact_de": "«Sur un volcan» erschien auf dem Album «Beauté pour tous» von La Maison Tellier.",
+      "fun_fact_es": "«Sur un volcan» aparece en el álbum «Beauté pour tous» de La Maison Tellier.",
+      "fun_fact_fr": "«Sur un volcan» figure sur l’album «Beauté pour tous» de La Maison Tellier.",
+      "fun_fact_nl": "«Sur un volcan» staat op het album «Beauté pour tous» van La Maison Tellier."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "Isabelle",
+      "uri": "spotify:track:3JeI4tUr2gqkUChQO9iIAj",
+      "year": 1990,
+      "isrc": "CAA509103603",
+      "uri_apple_music": "applemusic://track/1551599658",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1551599658",
+        "de": "applemusic://track/1551599658",
+        "gb": "applemusic://track/1551599658",
+        "fr": "applemusic://track/1551599658",
+        "es": "applemusic://track/1551599658",
+        "nl": "applemusic://track/1551599658",
+        "it": "applemusic://track/1551599658"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s-EL1GmvImM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/128237709",
+      "alt_artists": [
+        "Vilain Pingouin",
+        "Roch Voisine",
+        "Daniel Bélanger"
+      ],
+      "fun_fact": "«Isabelle» appears on Jean Leloup's album «L'amour est sans pitié».",
+      "fun_fact_de": "«Isabelle» erschien auf dem Album «L'amour est sans pitié» von Jean Leloup.",
+      "fun_fact_es": "«Isabelle» aparece en el álbum «L'amour est sans pitié» de Jean Leloup.",
+      "fun_fact_fr": "«Isabelle» figure sur l’album «L'amour est sans pitié» de Jean Leloup.",
+      "fun_fact_nl": "«Isabelle» staat op het album «L'amour est sans pitié» van Jean Leloup."
+    },
+    {
+      "artist": "La Maison Tellier",
+      "title": "Exposition universelle",
+      "uri": "spotify:track:3oGO1Ko1BoQAj1Fg52DDfx",
+      "year": 2013,
+      "isrc": "FR19X1300033",
+      "uri_apple_music": "applemusic://track/687813033",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/687813033",
+        "de": null,
+        "gb": "applemusic://track/687813033",
+        "fr": null,
+        "es": "applemusic://track/687813033",
+        "nl": "applemusic://track/687813033",
+        "it": "applemusic://track/687813033"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QATEin9z50E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1885473557",
+      "alt_artists": [
+        "Tomás Jensen",
+        "Sally Folk",
+        "Alex Nevsky"
+      ],
+      "fun_fact": "«Exposition universelle» appears on La Maison Tellier's album «Beauté pour tous».",
+      "fun_fact_de": "«Exposition universelle» erschien auf dem Album «Beauté pour tous» von La Maison Tellier.",
+      "fun_fact_es": "«Exposition universelle» aparece en el álbum «Beauté pour tous» de La Maison Tellier.",
+      "fun_fact_fr": "«Exposition universelle» figure sur l’album «Beauté pour tous» de La Maison Tellier.",
+      "fun_fact_nl": "«Exposition universelle» staat op het album «Beauté pour tous» van La Maison Tellier."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "La bonne pomme",
+      "uri": "spotify:track:3mVfAJj3SHlnz3uJ1xnEa1",
+      "year": 2008,
+      "isrc": "CAL540810212",
+      "uri_apple_music": "applemusic://track/1048262285",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048262285",
+        "de": "applemusic://track/1048262285",
+        "gb": "applemusic://track/1048262285",
+        "fr": "applemusic://track/1048262285",
+        "es": "applemusic://track/1048262285",
+        "nl": "applemusic://track/1048262285",
+        "it": "applemusic://track/1048262285"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rx2pK_XFQPE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374182",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "TRICOT MACHINE",
+        "Damien Robitaille"
+      ],
+      "fun_fact": "«La bonne pomme» appears on Les Cowboys Fringants's album «L'expédition».",
+      "fun_fact_de": "«La bonne pomme» erschien auf dem Album «L'expédition» von Les Cowboys Fringants.",
+      "fun_fact_es": "«La bonne pomme» aparece en el álbum «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«La bonne pomme» figure sur l’album «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«La bonne pomme» staat op het album «L'expédition» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "8 secondes",
+      "uri": "spotify:track:6ebkZerhAoM7tnEEvfAFG6",
+      "year": 2004,
+      "isrc": "CAL540405304",
+      "uri_apple_music": "applemusic://track/1048261793",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048261793",
+        "de": "applemusic://track/1048261793",
+        "gb": "applemusic://track/1048261793",
+        "fr": "applemusic://track/1048261793",
+        "es": "applemusic://track/1048261793",
+        "nl": "applemusic://track/1048261793",
+        "it": "applemusic://track/1048261793"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iSHa7Vu4mYU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374134",
+      "alt_artists": [
+        "Les Trois Accords",
+        "Mes Aïeux",
+        "Ariane Moffatt"
+      ],
+      "fun_fact": "«8 secondes» appears on Les Cowboys Fringants's album «La grand-messe».",
+      "fun_fact_de": "«8 secondes» erschien auf dem Album «La grand-messe» von Les Cowboys Fringants.",
+      "fun_fact_es": "«8 secondes» aparece en el álbum «La grand-messe» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«8 secondes» figure sur l’album «La grand-messe» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«8 secondes» staat op het album «La grand-messe» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "Jean Leloup",
+      "title": "Petit papillon",
+      "uri": "spotify:track:735ZWPQyGeACzOaw4bvjpN",
+      "year": 2015,
+      "isrc": "CAD431493503",
+      "uri_apple_music": "applemusic://track/1238762303",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1238762303",
+        "de": "applemusic://track/1238762303",
+        "gb": "applemusic://track/1238762303",
+        "fr": "applemusic://track/1238762303",
+        "es": "applemusic://track/1238762303",
+        "nl": "applemusic://track/1238762303",
+        "it": "applemusic://track/1238762303"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CcQ8wuM-MMU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/93081562",
+      "alt_artists": [
+        "Luce Dufault",
+        "Louis-Jean Cormier",
+        "Charlotte Cardin"
+      ],
+      "fun_fact": "«Petit papillon» appears on Jean Leloup's album «À Paradis City».",
+      "fun_fact_de": "«Petit papillon» erschien auf dem Album «À Paradis City» von Jean Leloup.",
+      "fun_fact_es": "«Petit papillon» aparece en el álbum «À Paradis City» de Jean Leloup.",
+      "fun_fact_fr": "«Petit papillon» figure sur l’album «À Paradis City» de Jean Leloup.",
+      "fun_fact_nl": "«Petit papillon» staat op het album «À Paradis City» van Jean Leloup."
+    },
+    {
+      "artist": "Les Cowboys Fringants",
+      "title": "Entre deux taxis",
+      "uri": "spotify:track:1Dz5IdqyMkhs1gTm3lKIym",
+      "year": 2008,
+      "isrc": "CAL540810203",
+      "uri_apple_music": "applemusic://track/1048262121",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1048262121",
+        "de": "applemusic://track/1048262121",
+        "gb": "applemusic://track/1048262121",
+        "fr": "applemusic://track/1048262121",
+        "es": "applemusic://track/1048262121",
+        "nl": "applemusic://track/1048262121",
+        "it": "applemusic://track/1048262121"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lm4FiytDSoU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/109374164",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Daniel Lavoie",
+        "Jonathan Painchaud"
+      ],
+      "fun_fact": "«Entre deux taxis» appears on Les Cowboys Fringants's album «L'expédition».",
+      "fun_fact_de": "«Entre deux taxis» erschien auf dem Album «L'expédition» von Les Cowboys Fringants.",
+      "fun_fact_es": "«Entre deux taxis» aparece en el álbum «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_fr": "«Entre deux taxis» figure sur l’album «L'expédition» de Les Cowboys Fringants.",
+      "fun_fact_nl": "«Entre deux taxis» staat op het album «L'expédition» van Les Cowboys Fringants."
+    },
+    {
+      "artist": "David Jalbert",
+      "title": "Souvenirs d'enfance",
+      "uri": "spotify:track:1H8Qey7m5IZwlosNInQYU2",
+      "year": 2008,
+      "isrc": "CAM780810001",
+      "uri_apple_music": "applemusic://track/582181884",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/582181884",
+        "de": "applemusic://track/582181884",
+        "gb": "applemusic://track/582181884",
+        "fr": "applemusic://track/582181884",
+        "es": "applemusic://track/582181884",
+        "nl": "applemusic://track/582181884",
+        "it": "applemusic://track/582181884"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nUB0PHRJQ3M",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/62577852",
+      "alt_artists": [
+        "Cœur De Pirate",
+        "Damien Robitaille",
+        "TRICOT MACHINE"
+      ],
+      "fun_fact": "«Souvenirs d'enfance» appears on David Jalbert's album «Des histoires».",
+      "fun_fact_de": "«Souvenirs d'enfance» erschien auf dem Album «Des histoires» von David Jalbert.",
+      "fun_fact_es": "«Souvenirs d'enfance» aparece en el álbum «Des histoires» de David Jalbert.",
+      "fun_fact_fr": "«Souvenirs d'enfance» figure sur l’album «Des histoires» de David Jalbert.",
+      "fun_fact_nl": "«Souvenirs d'enfance» staat op het album «Des histoires» van David Jalbert."
+    }
+  ]
+}
