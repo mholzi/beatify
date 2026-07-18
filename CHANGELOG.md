@@ -5,6 +5,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
+- **New community playlist: Québécois 1990–2020** — 126 unique recordings from all 128 positions in the live source, with two later duplicate encodings removed. Includes complete ISRCs, five-language facts, alternate-artist decoys, and only edition-verified provider mappings (#1827).
 - **New community playlist: 100 Greatest Rock Songs** — 122 unique tracks spanning seven decades, acquired from all 123 source entries with one later duplicate recording removed. A metadata follow-up corrected two original-release years, source artist credits, provider-version matches, and localized fact parity (#1828).
 
 ## [4.2.0-rc13] - 2026-07-14
