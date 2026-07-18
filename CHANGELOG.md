@@ -18,6 +18,7 @@ Pre-release — a UX fix plus a week of catalogue repairs on top of the Gameplay
 - **Corrected the release year** for Norman Greenbaum – Spirit In The Sky, 1970 → 1969 (#1812).
 
 ### Changed
+- **EDM Anthems metadata completion (#1830)** — reconciled the live 105-position source against the catalogue, added three newly unrepresented recordings, removed one duplicate-ISRC encoding, restored exact Spotify credits and ISRCs, replaced generic facts, added alternate-artist decoys, and retained only edition- and duration-verified provider mappings.
 - **More Tidal coverage** backfilled across the catalogue (+22 URIs in ballermann-party-hits).
 
 ## [4.2.0-rc12] - 2026-07-07
