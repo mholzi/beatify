@@ -86,6 +86,15 @@ Settings → Devices & Services → Add Integration → "Beatify"
 
 That's it. Beatify is now installed.
 
+> [!TIP]
+> ### 🎮 Your First Game in 2 Minutes
+> 1. **Open:** In the Home Assistant sidebar, select **Beatify**, then **Open Beatify**.
+> 2. **Set up:** On your first visit, choose a speaker, music service, and playlist in the guided wizard.
+> 3. **Invite:** On **Ready to host**, show the QR code; guests scan it with any phone and enter their name—no app or account needed.
+> 4. **Play:** When everyone appears in the lobby, select **Start game**.
+>
+> Returning hosts skip the wizard and go straight to **Ready to host**. [See the full hosting guide.](#opening-beatify-admin)
+
 ---
 
 <br>
