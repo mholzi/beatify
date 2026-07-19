@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "canadian",
     "canada",
@@ -597,11 +597,11 @@
       "year": 1987,
       "isrc": "CAW111200070",
       "uri": "spotify:track:13lYKkKAYEVCkGAyrFGZjF",
-      "uri_apple_music": "applemusic://track/1696282147",
+      "uri_apple_music": "applemusic://track/1763040701",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1696282147",
-        "de": "applemusic://track/1695871934",
-        "gb": "applemusic://track/1696282147",
+        "us": null,
+        "de": null,
+        "gb": null,
         "fr": null,
         "es": null,
         "nl": null,
@@ -3487,7 +3487,7 @@
         "nl": "applemusic://track/1799321389",
         "it": "applemusic://track/1799321389"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rLyHkcnAFco",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CVHJPE_yi7I",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3257428771",
       "alt_artists": [
