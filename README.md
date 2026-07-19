@@ -2,7 +2,7 @@
 
 # Beatify
 
-<img src="images/beatify-logo.png" alt="Beatify Logo" width="400">
+<img src="images/beatify-gameplay.gif" alt="Beatify gameplay: scan a QR code to join, guess the song, and climb the final ranking" width="800">
 
 ### **Multiplayer Music Trivia Quiz Game for Home Assistant**
 
