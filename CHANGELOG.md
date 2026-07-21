@@ -4,9 +4,25 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc14] - 2026-07-21
+
+Pre-release — cut from current `main`, supersedes rc13. Adds the Sabotage power-up plus a week of new playlists, catalogue repairs and a large Tidal backfill.
+
 ### Added
+- **Sabotage power-up (#1665).** An opt-in mode giving every player one Sabotage token per game, spent on an opponent who is still guessing. The saboteur picks only the target; the effect is rolled server-side (Timer-Cut −5s on the target's personal deadline, Forced-Bet double-or-nothing, or a 3s Freeze) and enforced authoritatively on the submit path. Self-, submitted-, eliminated- and double-sabotage are rejected. Host toggle in the setup wizard, localized in all five languages.
+- **New community playlist: Best Canadian Hits** — top 100 Canadian tracks (#1848).
+- **New community playlist: 100 Greatest Rock Songs** — 122 unique tracks spanning seven decades, acquired from all 123 source entries with one later duplicate recording removed. A metadata follow-up corrected two original-release years, source artist credits, provider-version matches, and localized fact parity (#1828, #1850).
 - **New community playlist: Québécois 1990–2020** — 126 unique recordings from all 128 positions in the live source, with two later duplicate encodings removed. Includes complete ISRCs, five-language facts, alternate-artist decoys, and only edition-verified provider mappings (#1827).
-- **New community playlist: 100 Greatest Rock Songs** — 122 unique tracks spanning seven decades, acquired from all 123 source entries with one later duplicate recording removed. A metadata follow-up corrected two original-release years, source artist credits, provider-version matches, and localized fact parity (#1828).
+- **New community playlist: Deutschrock Best-Of** — 100 tracks (#1832).
+- **Docs site** — an animated gameplay hero (#1856) and a first-game quickstart (#1859).
+
+### Changed
+- **Schlager-Klassiker** grown by 36 old German Schlager classics (#1833).
+- **EDM Anthems metadata completion (#1830)** — reconciled the live source against the catalogue, added newly unrepresented recordings, removed a duplicate-ISRC encoding, restored exact credits and ISRCs, and retained only edition- and duration-verified provider mappings.
+- **More Tidal coverage** — +283 URIs backfilled across the catalogue over 13 waves; Tidal now covers 3,411 of 5,929 songs (57%).
+
+### Fixed
+- **Repaired broken or wrong track URIs** found by the daily playlist health check — 90er-hits (#1846), best-canadian-hits (#1857), movies-100-greatest-themes, and the YouTube Music URI for Summer Nights in summer-party-anthems (#1841).
 
 ## [4.2.0-rc13] - 2026-07-14
 
