@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "rock",
     "classic-rock",
@@ -4612,7 +4612,7 @@
         "it": "applemusic://track/1752780530"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RXbafrTCJds",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/372655582",
       "uri_deezer": "deezer://track/2853455352",
       "alt_artists": [
         "Les Votives",
@@ -4652,7 +4652,7 @@
         "it": "applemusic://track/693800763"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aAIpSAK_54I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2935755",
       "uri_deezer": "deezer://track/3728954",
       "alt_artists": [
         "The Clash",
@@ -4805,7 +4805,7 @@
         "it": "applemusic://track/1537768035"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JOtfj1phVxo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/700189",
       "uri_deezer": "deezer://track/71828722",
       "fun_fact": "Nickelback are a Canadian rock band — one of the best-selling acts of the post-grunge era.",
       "fun_fact_de": "Nickelback sind eine kanadische Rockband — einer der meistverkauften Acts der Post-Grunge-Ära.",
@@ -4835,7 +4835,7 @@
         "it": "applemusic://track/270959694"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=l2OvJr0ITTw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3514687",
       "uri_deezer": "deezer://track/663984",
       "alt_artists": [
         "Five Finger Death Punch",
@@ -4875,7 +4875,7 @@
         "it": "applemusic://track/1683092200"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XhjqmAoBKCQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/304847",
       "uri_deezer": "deezer://track/139633449",
       "alt_artists": [
         "Foo Fighters",
