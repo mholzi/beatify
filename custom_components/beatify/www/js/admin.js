@@ -44,6 +44,7 @@ import {
     escapeHtml,
     acquireWakeLockFirst,
     applyStoredGameSettings,
+    adminHasVisibleView,
     createRenderCoalescer,
     adminStateEqual,
 } from './admin/util.js';
@@ -772,34 +773,74 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Playlist requests setup (Story 44.2, 44.3)
     setupPlaylistRequests();
 
-    // Load saved game settings from localStorage
-    await loadSavedSettings();
+    // #1868: everything from here on can fail — a rejected settings load, a
+    // status call that times out, a game the server has since forgotten. The
+    // `finally` guarantees the page still ends up on a usable view instead of
+    // rendering nothing at all.
+    try {
+        // Load saved game settings from localStorage
+        await loadSavedSettings();
 
-    await loadStatus();
+        await loadStatus();
 
-    // #1098: enter home-mode only after loadStatus() has resolved.
-    // Previously this ran before the status fetch, so adminState.currentGame was always
-    // null at this point — BeatifyHome.enter() would auto-call startSession()
-    // → POST /start-game, hit 409 GAME_IN_LOBBY on an existing lobby, and the
-    // silent recovery would transition LOBBY → PLAYING (auto-starting the
-    // game). Visible regression when navigating Analytics → Admin with a
-    // lobby open.
-    // - If loadStatus found an active LOBBY, it already called showLobbyView()
-    //   which invokes BeatifyHome.renderSession() — no extra enter() needed.
-    // - If there is no active game, adminState.currentGame stays null → enter() runs and
-    //   (for a configured user) creates a fresh LOBBY, as before.
-    // #1365: loadStatus() may already have entered home-mode via showSetupView()
-    // (its else-branch) — that path itself calls BeatifyHome.enter(). Re-running
-    // enter() here fires a SECOND startSession() → duplicate POST /start-game
-    // (the first is still in-flight, so currentGame is null), which 409s and the
-    // recovery auto-starts an empty lobby. Only enter() if home-mode isn't on yet.
-    if (!adminState.currentGame && !document.body.classList.contains('home-mode')) {
-        window.BeatifyHome.enter();
+        // #1098: enter home-mode only after loadStatus() has resolved.
+        // Previously this ran before the status fetch, so adminState.currentGame was always
+        // null at this point — BeatifyHome.enter() would auto-call startSession()
+        // → POST /start-game, hit 409 GAME_IN_LOBBY on an existing lobby, and the
+        // silent recovery would transition LOBBY → PLAYING (auto-starting the
+        // game). Visible regression when navigating Analytics → Admin with a
+        // lobby open.
+        // - If loadStatus found an active LOBBY, it already called showLobbyView()
+        //   which invokes BeatifyHome.renderSession() — no extra enter() needed.
+        // - If there is no active game, adminState.currentGame stays null → enter() runs and
+        //   (for a configured user) creates a fresh LOBBY, as before.
+        // #1365: loadStatus() may already have entered home-mode via showSetupView()
+        // (its else-branch) — that path itself calls BeatifyHome.enter(). Re-running
+        // enter() here fires a SECOND startSession() → duplicate POST /start-game
+        // (the first is still in-flight, so currentGame is null), which 409s and the
+        // recovery auto-starts an empty lobby. Only enter() if home-mode isn't on yet.
+        if (!adminState.currentGame && !document.body.classList.contains('home-mode')) {
+            window.BeatifyHome.enter();
+        }
+
+        // Initialize playlist requests display (Story 44.3, 44.4)
+        initPlaylistRequests();
+    } finally {
+        ensureAdminViewVisible();
     }
-
-    // Initialize playlist requests display (Story 44.3, 44.4)
-    initPlaylistRequests();
 });
+
+/**
+ * Last line of defence against an empty admin page (#1868).
+ *
+ * Runs in the boot path's `finally`, so it fires whatever happened above —
+ * including an exception that skipped the normal routing. If some view is
+ * already showing this is a no-op; the interesting case is the dead end, where
+ * both roots are hidden and the user's only escape was clearing localStorage.
+ *
+ * Recovery is ordered by how much it preserves: the home view first (it is
+ * where a configured user belongs), and the wizard only if that fails, since
+ * reopening the wizard is more disruptive than a lobby card.
+ */
+function ensureAdminViewVisible() {
+    try {
+        if (adminHasVisibleView(document)) return;
+        console.warn('[Beatify] no admin view visible after init — recovering (#1868)');
+        try {
+            window.BeatifyHome?.enter();
+        } catch (e) {
+            console.warn('[Beatify] BeatifyHome.enter failed during recovery:', e);
+        }
+        if (adminHasVisibleView(document)) return;
+        try {
+            window.BeatifyWizard?.show(1);
+        } catch (e) {
+            console.warn('[Beatify] BeatifyWizard.show failed during recovery:', e);
+        }
+    } catch (e) {
+        console.warn('[Beatify] view-visibility guard failed:', e);
+    }
+}
 
 /**
  * Fetch and render current status from the API
@@ -897,6 +938,16 @@ async function loadStatus() {
         const container = document.getElementById('media-players-list');
         if (container) {
             container.innerHTML = '<span class="status-error">Failed to load status</span>';
+        }
+        // #1868: that container lives in the legacy flat layout, which CSS keeps
+        // hidden — so on its own this branch renders an error nobody can see and,
+        // worse, leaves the page on neither view. Route into the home view like
+        // the success path's else-branch does. The user gets the lobby card and
+        // can retry instead of staring at an empty page.
+        try {
+            showSetupView();
+        } catch (e) {
+            console.warn('[Beatify] showSetupView failed after status error:', e);
         }
     }
 }

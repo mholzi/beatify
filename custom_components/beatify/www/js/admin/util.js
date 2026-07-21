@@ -196,6 +196,37 @@ export function normalizeRoundDuration(value) {
 }
 
 /**
+ * True when the admin is showing *something* the user can act on (#1868).
+ *
+ * The admin has two roots and neither is visible by default: `#home-view` is
+ * `display:none` until `body.home-mode` is set, and `#wizard-root` only shows
+ * under `body.wizard-active`. Every boot path is supposed to end in one of
+ * them, but a status call that fails — or one that reports a game the server
+ * has since forgotten — could end in neither, leaving a page with only the
+ * logo, two header buttons and the version footer, and no way back except
+ * clearing localStorage.
+ *
+ * Deliberately reads *state* (body classes, the `hidden` class) rather than
+ * computed layout: the hiding is done by stylesheet rules, which unit tests do
+ * not load, so `getComputedStyle`/`offsetParent` cannot see them there. These
+ * classes are what the boot path actually toggles.
+ *
+ * @param {Document} doc - document to inspect
+ * @returns {boolean} true when a wizard, home view, or game phase is showing
+ */
+export function adminHasVisibleView(doc) {
+    const body = doc && doc.body;
+    if (!body) return false;
+    if (body.classList.contains('wizard-active')) return true;
+    if (body.classList.contains('home-mode')) return true;
+    return ['admin-playing-section', 'admin-reveal-section', 'admin-end-section']
+        .some((id) => {
+            const el = doc.getElementById(id);
+            return !!el && !el.classList.contains('hidden');
+        });
+}
+
+/**
  * Hydrate the scalar game-settings flags from a parsed `beatify_game_settings`
  * object into `adminState`, in place. Single source of truth for the
  * localStorage(camelCase) → adminState mapping so a new mode flag can't be
