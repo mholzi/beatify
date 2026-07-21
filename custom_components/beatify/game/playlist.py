@@ -389,6 +389,79 @@ def _compare_versions(v1: str, v2: str) -> int:
         return 0
 
 
+def _index_bundled_by_name(
+    playlist_files: list[Path], bundled_dir: Path
+) -> dict[str, Path]:
+    """Map ``basename -> relative path`` for the currently shipped playlists (#1864).
+
+    A basename that appears at two different relative paths inside the bundle is
+    left out entirely: we could not tell which runtime copy is the current one,
+    and guessing would delete a good file. (The shipped tree has no such
+    collisions today — this is a guard, not a workaround.)
+    """
+    by_name: dict[str, Path] = {}
+    ambiguous: set[str] = set()
+    for playlist_file in playlist_files:
+        rel = playlist_file.relative_to(bundled_dir)
+        if playlist_file.name in by_name and by_name[playlist_file.name] != rel:
+            ambiguous.add(playlist_file.name)
+        by_name[playlist_file.name] = rel
+    for name in ambiguous:
+        del by_name[name]
+    return by_name
+
+
+def _prune_relocated_playlists(
+    dest_dir: Path, bundled_by_name: dict[str, Path]
+) -> list[str]:
+    """Delete runtime copies of bundled playlists stranded at a former path (#1864).
+
+    ``_copy_bundled_playlists`` only ever creates or version-bumps its
+    destination. When a shipped playlist moves inside the bundle — e.g.
+    ``playlists/gen-z-anthems.json`` to ``playlists/community/gen-z-anthems.json``
+    — the copy at the old path is never removed. It stays discoverable, stays in
+    the picker under the same display name, and stays playable, so a host can
+    pick "Gen Z Anthems" and silently get an outdated copy. On the reporting
+    instance this left 28 files at the legacy flat path, 13 of them duplicates
+    of a current playlist and 8 at an older version (``schlager-klassiker``
+    served 60 songs instead of 96).
+
+    Note the direction is not always "flat is stale" — several playlists moved
+    the other way, so the rule is simply "not where we ship it now".
+
+    Three conditions must all hold before anything is deleted:
+
+    1. The basename is one we currently ship. User-created playlists and
+       retired ones we no longer ship are never touched.
+    2. It sits somewhere other than where we ship it now.
+    3. The current copy is actually present on disk, so we never strand a
+       playlist by deleting the only copy of it.
+
+    Anything under ``user/`` is skipped outright — that subtree belongs to the
+    user (see :func:`_discover_playlists_sync`), even if a file there happens to
+    share a name with a bundled playlist.
+
+    Runs in an executor (blocking I/O). Returns the removed relative paths.
+    """
+    removed: list[str] = []
+    for runtime_file in sorted(dest_dir.glob("**/*.json")):
+        rel = runtime_file.relative_to(dest_dir)
+        if rel.parts and rel.parts[0] == "user":
+            continue
+        canonical = bundled_by_name.get(runtime_file.name)
+        if canonical is None or rel == canonical:
+            continue
+        if not (dest_dir / canonical).exists():
+            continue
+        try:
+            runtime_file.unlink()
+        except OSError as err:
+            _LOGGER.warning("Failed to remove stale playlist %s: %s", rel, err)
+            continue
+        removed.append(str(rel))
+    return removed
+
+
 async def _copy_bundled_playlists(dest_dir: Path) -> None:
     """Copy bundled playlists to destination, updating if bundled version is newer."""
     # Bundled playlists are in custom_components/beatify/playlists/
@@ -458,6 +531,20 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
             _LOGGER.warning(
                 "Failed to process playlist %s: %s", playlist_file.name, err
             )
+
+    # #1864: every current playlist is on disk now, so anything left at a former
+    # path is a stranded duplicate. Runs after the copy loop precisely so the
+    # "current copy exists" check can never fail for a playlist we still ship.
+    bundled_by_name = _index_bundled_by_name(playlist_files, bundled_dir)
+    removed = await loop.run_in_executor(
+        None, _prune_relocated_playlists, dest_dir, bundled_by_name
+    )
+    if removed:
+        _LOGGER.info(
+            "Removed %d stale playlist copy/copies left at a former path: %s",
+            len(removed),
+            ", ".join(removed),
+        )
 
 
 def validate_playlist(
