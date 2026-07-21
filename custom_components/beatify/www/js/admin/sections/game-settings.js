@@ -24,6 +24,7 @@
 
 import { adminState } from '../state.js';
 import { STORAGE_GAME_SETTINGS } from '../constants.js';
+import { normalizeRoundDuration } from '../util.js';
 import { renderPlaylists } from './playlists.js';
 
 /**
@@ -212,10 +213,13 @@ export async function loadSavedSettings() {
                 }
             }
 
-            // Apply timer
-            if (settings.duration) {
-                adminState.selectedDuration = settings.duration;
-                selectChip('.chip[data-duration]', (c) => parseInt(c.dataset.duration, 10) === settings.duration);
+            // Apply timer (#1867: coerce + range-check, and select the chip
+            // from the normalized value so the highlight can't drift from the
+            // value the game will actually use)
+            const storedDuration = normalizeRoundDuration(settings.duration);
+            if (storedDuration !== null) {
+                adminState.selectedDuration = storedDuration;
+                selectChip('.chip[data-duration]', (c) => parseInt(c.dataset.duration, 10) === storedDuration);
             }
 
             // Apply reveal auto-advance (#1012)
