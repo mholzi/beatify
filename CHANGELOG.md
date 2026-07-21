@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **Debug logging no longer cripples the integration (#1866).** Turning on `custom_components.beatify: debug` — the level we ask users for when we need diagnostics — slowed Beatify's own HTTP path by 50–500× (a `/beatify/api/status` call went from 0.03s to 2–15s) and starved the event loop badly enough that the server-side round timer missed its deadline (#1865). The media-player compatibility scan re-emitted its per-entity skip reasons on every status call, and the admin polls that endpoint every ~3s; those reasons are static per entity and are now logged only when they change. Per-request `[Companion-Debug]` and per-frame `[WS-Debug]` records moved to a separate opt-in logger, `custom_components.beatify.debug.wire`, so they are no longer switched on by the documented diagnostics level.
+
 ## [4.2.0-rc14] - 2026-07-21
 
 Pre-release — cut from current `main`, supersedes rc13. Adds the Sabotage power-up plus a week of new playlists, catalogue repairs and a large Tidal backfill.

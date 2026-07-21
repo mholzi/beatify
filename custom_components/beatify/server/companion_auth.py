@@ -42,6 +42,7 @@ import re
 from typing import TYPE_CHECKING
 
 from ..const import DOMAIN
+from ..wire_debug import get_wire_logger
 
 if TYPE_CHECKING:
     from aiohttp import web
@@ -49,6 +50,10 @@ if TYPE_CHECKING:
 
 
 _LOGGER = logging.getLogger(__name__)
+# #1866: per-request / per-frame traffic goes to the opt-in wire logger so
+# `custom_components.beatify: debug` stays usable (it used to cost 50-500x on
+# the HTTP path). See custom_components/beatify/wire_debug.py.
+_WIRE_LOGGER = get_wire_logger()
 
 
 # Companion UAs vary by build — order between "Android" and the app name
@@ -138,7 +143,7 @@ def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> b
     ip_match = is_local_remote(remote)
     trusted = ua_match and ip_match
     # #1662: demoted to DEBUG — these fire on every auth check and flood INFO logs.
-    _LOGGER.debug(
+    _WIRE_LOGGER.debug(
         "[Companion-Debug] HTTP path=%s ua=%r remote=%s ua_match=%s ip_match=%s trusted=%s",
         request.path,
         (ua[:200] if isinstance(ua, str) else ua),
@@ -170,14 +175,14 @@ def is_companion_trusted_meta(meta: dict | None, hass: HomeAssistant) -> bool:
         return False
 
     if not isinstance(meta, dict):
-        _LOGGER.debug("[Companion-Debug] WS meta=None (no signature collected)")
+        _WIRE_LOGGER.debug("[Companion-Debug] WS meta=None (no signature collected)")
         return False
     ua = meta.get("ua")
     remote = meta.get("remote")
     ua_match = is_companion_ua(ua)
     ip_match = is_local_remote(remote)
     trusted = ua_match and ip_match
-    _LOGGER.debug(
+    _WIRE_LOGGER.debug(
         "[Companion-Debug] WS ua=%r remote=%s ua_match=%s ip_match=%s trusted=%s",
         (ua[:200] if isinstance(ua, str) else ua),
         remote,
@@ -212,13 +217,13 @@ def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
             bearer_present = True
             result = hass.auth.async_validate_access_token(token)
             if result is not None:
-                _LOGGER.debug(
+                _WIRE_LOGGER.debug(
                     "[Companion-Debug] HTTP path=%s bearer_valid=True (bypass not consulted)",
                     request.path,
                 )
                 return True
     if bearer_present:
-        _LOGGER.debug(
+        _WIRE_LOGGER.debug(
             "[Companion-Debug] HTTP path=%s bearer_present=True bearer_valid=False (falling back to bypass)",
             request.path,
         )

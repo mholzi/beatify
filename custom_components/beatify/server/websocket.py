@@ -44,6 +44,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_title_artist_override,
     handle_title_artist_vote,
 )
+from custom_components.beatify.wire_debug import get_wire_logger
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -51,6 +52,10 @@ if TYPE_CHECKING:
     from custom_components.beatify.analytics import AnalyticsStorage
 
 _LOGGER = logging.getLogger(__name__)
+# #1866: per-request / per-frame traffic goes to the opt-in wire logger so
+# `custom_components.beatify: debug` stays usable (it used to cost 50-500x on
+# the HTTP path). See custom_components/beatify/wire_debug.py.
+_WIRE_LOGGER = get_wire_logger()
 
 # Free-text guess fields that must be length-capped at the ingest boundary
 # (#1581). aiohttp accepts WS frames up to 4 MB; an unbounded guess would feed a
@@ -226,7 +231,7 @@ class BeatifyWebSocketHandler:
 
         self.connections.add(ws)
         # #1662: demoted to DEBUG — fires on every WS upgrade and floods INFO logs.
-        _LOGGER.debug(
+        _WIRE_LOGGER.debug(
             "[WS-Debug] upgrade path=%s remote=%s ua=%r total=%d",
             request.path,
             request.remote,
@@ -239,7 +244,7 @@ class BeatifyWebSocketHandler:
                 if msg.type == WSMsgType.TEXT:
                     try:
                         parsed = msg.json()
-                        _LOGGER.debug(
+                        _WIRE_LOGGER.debug(
                             "[WS-Debug] recv type=%s keys=%s",
                             parsed.get("type") if isinstance(parsed, dict) else "?",
                             list(parsed.keys()) if isinstance(parsed, dict) else None,
@@ -257,7 +262,7 @@ class BeatifyWebSocketHandler:
 
                     self._record_error(ERROR_WEBSOCKET_DISCONNECT, err_msg)
                 else:
-                    _LOGGER.debug(
+                    _WIRE_LOGGER.debug(
                         "[WS-Debug] non-text msg type=%s",
                         msg.type,
                     )
@@ -265,7 +270,7 @@ class BeatifyWebSocketHandler:
         finally:
             self.connections.discard(ws)
             await self._handle_disconnect(ws)
-            _LOGGER.debug(
+            _WIRE_LOGGER.debug(
                 "[WS-Debug] disconnect path=%s remote=%s total=%d ws_closed=%s close_code=%s",
                 request.path,
                 request.remote,

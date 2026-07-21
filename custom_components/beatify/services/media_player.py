@@ -1577,6 +1577,60 @@ def _collect_ma_twin_maps(
     return ma_by_unique_id, native_twin_remap
 
 
+# #1866: the compatibility scan below runs on EVERY /beatify/api/status call,
+# and the admin polls that endpoint roughly every 3 s. Its per-entity skip
+# reasons ("unsupported platform", "native twin of an MA player") are static for
+# the lifetime of an entity, so re-emitting them per request produced ~10 DEBUG
+# records every 3 s from this one code path. HA writes log records synchronously
+# on the event loop, so that is loop time: with `custom_components.beatify:
+# debug` a status call took 2-15 s instead of 0.03 s and the server-side round
+# timer missed its deadline (#1865).
+#
+# We therefore remember the last line emitted per entity and only log again when
+# it actually changes. Bookkeeping happens ONLY while DEBUG is enabled — if we
+# populated the cache while logging was off, enabling debug later would show
+# nothing until something changed, which is exactly when the user needs it.
+_SCAN_LOG_STATE: dict[str, tuple[Any, ...]] = {}
+
+#: Cache key for the "Found N compatible media players" summary line.
+_SCAN_COUNT_KEY = "__scan_count__"
+
+
+def _log_scan_change(
+    key: str, signature: tuple[Any, ...], msg: str, *args: Any
+) -> None:
+    """Emit a compatibility-scan DEBUG line only when it changed (#1866).
+
+    ``key`` identifies the line (an entity_id, or :data:`_SCAN_COUNT_KEY`) and
+    ``signature`` is the tuple of values that would make the line differ.
+    Building the signature is cheap; the message itself is still formatted
+    lazily by the logging module.
+    """
+    if not _LOGGER.isEnabledFor(logging.DEBUG):
+        return
+    if _SCAN_LOG_STATE.get(key) == signature:
+        return
+    _SCAN_LOG_STATE[key] = signature
+    _LOGGER.debug(msg, *args)
+
+
+def _prune_scan_log_state(live_keys: set[str]) -> None:
+    """Forget remembered scan lines for entities that no longer exist (#1866).
+
+    Without this a removed-and-re-added entity would stay silent, and the dict
+    would grow across HA's lifetime.
+    """
+    if not _SCAN_LOG_STATE:
+        return
+    for stale in [k for k in _SCAN_LOG_STATE if k not in live_keys]:
+        del _SCAN_LOG_STATE[stale]
+
+
+def _reset_scan_log_state() -> None:
+    """Drop all remembered scan lines (test seam — module state must not leak)."""
+    _SCAN_LOG_STATE.clear()
+
+
 def _build_media_player_list(
     hass: HomeAssistant, ma_by_unique_id: dict[str, str]
 ) -> list[dict[str, Any]]:
@@ -1594,7 +1648,10 @@ def _build_media_player_list(
     ent_reg = er.async_get(hass)
 
     media_players = []
+    # #1866: entity_ids seen this pass, so stale cache entries can be dropped.
+    scanned_keys: set[str] = {_SCAN_COUNT_KEY}
     for state in hass.states.async_all("media_player"):
+        scanned_keys.add(state.entity_id)
         # async_get is an O(1) dict lookup, not a registry walk.
         entity_entry = ent_reg.async_get(state.entity_id)
         platform = entity_entry.platform if entity_entry else "unknown"
@@ -1604,11 +1661,15 @@ def _build_media_player_list(
 
         # Skip unsupported platforms (Cast without MA)
         if not capabilities.get("supported"):
-            _LOGGER.debug(
+            reason = capabilities.get("reason", "unknown")
+            # #1866: logged once per entity, not once per status request.
+            _log_scan_change(
+                state.entity_id,
+                ("unsupported", platform, reason),
                 "Skipping unsupported player: %s (platform=%s, reason=%s)",
                 state.entity_id,
                 platform,
-                capabilities.get("reason", "unknown"),
+                reason,
             )
             continue
 
@@ -1622,7 +1683,10 @@ def _build_media_player_list(
             and entity_entry is not None
             and entity_entry.unique_id in ma_by_unique_id
         ):
-            _LOGGER.debug(
+            # #1866: logged once per entity, not once per status request.
+            _log_scan_change(
+                state.entity_id,
+                ("native-twin", platform, entity_entry.unique_id),
                 "Skipping native twin of MA player: %s (platform=%s, unique_id=%s)",
                 state.entity_id,
                 platform,
@@ -1647,7 +1711,14 @@ def _build_media_player_list(
             }
         )
 
-    _LOGGER.debug("Found %d compatible media players", len(media_players))
+    # #1866: only when the count actually moves, not on every poll.
+    _log_scan_change(
+        _SCAN_COUNT_KEY,
+        (len(media_players),),
+        "Found %d compatible media players",
+        len(media_players),
+    )
+    _prune_scan_log_state(scanned_keys)
     return media_players
 
 
