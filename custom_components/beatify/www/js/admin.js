@@ -585,7 +585,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     : `${pls.length} playlists`;
                 const autoAdv = typeof s.revealAutoAdvance === 'number' ? s.revealAutoAdvance : 0;
                 const autoLabel = autoAdv > 0 ? `${autoAdv}s` : 'Off';
-                const mode = `${s.difficulty || 'normal'} · ${s.duration || 45}s · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
+                // #1867: read the duration from adminState — the exact value
+                // start-game sends — not from the stored blob. The two used to
+                // be separate reads, so the chip could advertise 45s while the
+                // payload carried something else and nothing looked wrong.
+                const mode = `${s.difficulty || 'normal'} · ${adminState.selectedDuration}s · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
                 const meta = `${playlistLabel} · ${mode}`;
                 const metaEl = document.getElementById('home-meta');
                 if (metaEl) metaEl.textContent = meta;
@@ -1862,55 +1866,19 @@ async function setLanguage(lang) {
     BeatifyI18n.initPageTranslations();
 }
 
-// ==========================================
-// Timer Selector Functions (Story 13.1)
-// ==========================================
-
-/**
- * Setup timer selector buttons
- */
-function setupTimerSelector() {
-    var timerButtons = document.querySelectorAll('.timer-btn');
-
-    timerButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var duration = parseInt(btn.getAttribute('data-duration'), 10);
-            if (duration && duration !== adminState.selectedDuration) {
-                setTimerDuration(duration);
-            }
-        });
-    });
-}
-
-/**
- * Update timer button states
- * @param {number} duration - Duration in seconds (15, 30, or 45)
- */
-function updateTimerButtons(duration) {
-    var timerButtons = document.querySelectorAll('.timer-btn');
-    timerButtons.forEach(function(btn) {
-        var btnDuration = parseInt(btn.getAttribute('data-duration'), 10);
-        if (btnDuration === duration) {
-            btn.classList.add('timer-btn--active');
-        } else {
-            btn.classList.remove('timer-btn--active');
-        }
-    });
-}
-
-/**
- * Set timer duration
- * @param {number} duration - Duration in seconds (10-60 range)
- */
-function setTimerDuration(duration) {
-    // Validate duration is within valid range (matches backend: 10-60)
-    if (typeof duration !== 'number' || duration < 10 || duration > 60) {
-        duration = 30;
-    }
-
-    adminState.selectedDuration = duration;
-    updateTimerButtons(duration);
-}
+// #1867: the flat-admin timer selector (`setupTimerSelector`,
+// `updateTimerButtons`, `setTimerDuration`) lived here and was removed. It
+// bound to `.timer-btn`, which no longer appears in any template — the wizard
+// uses `.chip[data-duration]` in admin/sections/game-settings.js. So it was
+// unreachable: `setupTimerSelector` had no caller and `setTimerDuration` was
+// only ever called from the listener it installed.
+//
+// It is called out rather than deleted quietly because its "clamp anything
+// non-numeric to exactly 30" line was the prime suspect for #1867's 30s timer,
+// and a reader tracing that bug should learn here that the code could not run.
+// The clamp behaviour it stood for is replaced by `normalizeRoundDuration` in
+// admin/util.js, which returns null instead of substituting a value.
+// The matching `.timer-btn` CSS in styles.css is likewise dead.
 
 // ==========================================
 // Difficulty Selector Functions (Story 14.1)

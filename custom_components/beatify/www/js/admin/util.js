@@ -165,6 +165,37 @@ export function acquireWakeLockFirst(requestWakeLock, action) {
 }
 
 /**
+ * Round-duration bounds. Mirror of `ROUND_DURATION_MIN` / `ROUND_DURATION_MAX`
+ * / `DEFAULT_ROUND_DURATION` in `const.py` — the server rejects anything
+ * outside the range with a 400, so the client must not invent values it will
+ * refuse (#1867).
+ */
+export const ROUND_DURATION_MIN = 10;
+export const ROUND_DURATION_MAX = 60;
+export const DEFAULT_ROUND_DURATION = 45;
+
+/**
+ * Coerce a stored/user round duration to a valid integer, or `null` (#1867).
+ *
+ * Returns `null` — deliberately not a substitute value — when the input is not
+ * a finite number in range. The bug this comes from is a silent substitution:
+ * the (dead) flat-admin `setTimerDuration` clamped anything non-numeric to
+ * exactly 30, so a bad value became a *different valid* value and the game ran
+ * a duration nobody chose. A caller that gets `null` must leave the previous
+ * value alone rather than guess.
+ *
+ * @param {unknown} value - candidate duration in seconds
+ * @returns {number|null} integer seconds within range, or null
+ */
+export function normalizeRoundDuration(value) {
+    const n = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
+    if (typeof n !== 'number' || !Number.isFinite(n)) return null;
+    const seconds = Math.round(n);
+    if (seconds < ROUND_DURATION_MIN || seconds > ROUND_DURATION_MAX) return null;
+    return seconds;
+}
+
+/**
  * Hydrate the scalar game-settings flags from a parsed `beatify_game_settings`
  * object into `adminState`, in place. Single source of truth for the
  * localStorage(camelCase) → adminState mapping so a new mode flag can't be
@@ -179,7 +210,11 @@ export function acquireWakeLockFirst(requestWakeLock, action) {
 export function applyStoredGameSettings(adminState, s) {
     if (!adminState || !s || typeof s !== 'object') return;
     if (s.language) adminState.selectedLanguage = s.language;
-    if (s.duration) adminState.selectedDuration = s.duration;
+    // #1867: coerce + range-check instead of trusting the stored value. A
+    // string "45" from an older build used to land in adminState verbatim and
+    // travel on to the start-game payload as a string.
+    const duration = normalizeRoundDuration(s.duration);
+    if (duration !== null) adminState.selectedDuration = duration;
     if (typeof s.revealAutoAdvance === 'number') adminState.revealAutoAdvance = s.revealAutoAdvance;
     if (s.difficulty) adminState.selectedDifficulty = s.difficulty;
     if (s.provider) adminState.selectedProvider = s.provider;
