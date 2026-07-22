@@ -55,16 +55,14 @@ No apps to download. No accounts to create. Just scan a QR code and play.
 
 ### Step 1: Install
 
-**Via HACS (Recommended)** — One click to add the repository, then install:
+**Via HACS (Recommended)** — Beatify is in the **default HACS store**, so there is nothing to add manually. One click:
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration)
 
-Or manually:
+Or find it yourself:
 ```
-HACS → ⋮ Menu → Custom Repositories
-→ URL: https://github.com/mholzi/beatify
-→ Category: Integration
-→ Install "Beatify"
+HACS → Search for "Beatify"
+→ Download
 → Restart Home Assistant
 ```
 
@@ -385,9 +383,10 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 5,381 songs across 49 curated playlists:
+Beatify comes with 5,929 songs across 53 curated playlists:
 
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
+- 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
 - 🇧🇷 **100% Brasil** — 66 Brazilian hits across the decades
 - 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
@@ -402,15 +401,17 @@ Beatify comes with 5,381 songs across 49 curated playlists:
 - 🎵 **90s Hits** — 115 essential tracks from the decade
 - 🎌 **Anime Openings** — 140 opening themes from Cowboy Bebop to Chainsaw Man
 - 🍺 **Ballermann Party Hits** — 189 Mallorca and Schlager party tracks
+- 🇨🇦 **Best Canadian Hits** — 100 Canadian hits across six decades, from The Guess Who and Rush to The Weeknd
 - 🦒 **Best of Giraffenaffen** — 26 German children's songs
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
 - 🇩🇪 **Deutschpop Klassiker** — 107 German pop classics, incl. the 90s / NDW canon
+- 🇩🇪 **Deutschrock – Best Of** — 100 modern German rock tracks, from Böhse Onkelz to Die Toten Hosen
 - 🕺 **Disco & Funk Classics** — 98 essential disco and funk tracks from the 70s and 80s
 - 🏰 **Disney Classics** — 69 soundtrack singalongs from the Disney canon
 - 🇩🇪 **Disney Hits Deutschland** — 97 German-language Disney songs, with a guess-the-film bonus across 40 films
 - 🎸 **Divorced Dad Rock** — 107 post-grunge, nu-metal and 2000s radio-rock tracks
-- 🎧 **EDM Anthems** — 126 festival and mainstream EDM tracks (2009–2024)
+- 🎧 **EDM Anthems** — 190 festival and mainstream EDM tracks
 - 🎸 **Essential Alternative** — 100 90s/2000s alternative rock essentials
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
 - 🏆 **Eurovision Winners (1956–2025)** — 72 winning songs
@@ -429,7 +430,8 @@ Beatify comes with 5,381 songs across 49 curated playlists:
 - 🇵🇱 **Polskie przeboje wszech czasów** — 100 all-time Polish hits
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
-- 🇩🇪 **Schlager Classics** — 60 German schlager classics
+- 🍁 **Québécois 1990–2020** — 126 French-Canadian tracks from three decades of Quebec pop
+- 🇩🇪 **Schlager Classics** — 96 German schlager classics from the 60s to today
 - 🇨🇭 **Schweizer Hits** — 97 Swiss tracks
 - ☀️ **Sommerklassiker** — 60 international summer hits from 1978–2023
 - 🇳🇱 **Top 100 Dutch Classics** — 104 Nederlandstalig tracks
@@ -622,10 +624,10 @@ Home Assistant
 
 Beatify is built with substantial help from AI coding tools (Claude Code). That's not a confession — it's a feature. Here's what that looks like in practice:
 
-- **Test coverage**: 19 Python test files, JS tests via Vitest, integration tests for the WebSocket protocol — every regression gets a test before the fix lands.
+- **Test coverage**: 69 Python test files, JS tests via Vitest, integration tests for the WebSocket protocol — every regression gets a test before the fix lands.
 - **Architecture is documented in code**: see `custom_components/beatify/services/media_player.py` lines 111–128 — the comment block walks through *why* the provider-URI dispatch was rewritten, names the specific user (Levtos) whose bug report drove the change, and references the original GitHub issues (#768, #805, #808).
-- **800+ closed issues with traceable root causes**, not just "fixed". URI-validation, playback-recovery, and import-flow security got dedicated sweeps in v3.3.x.
-- **Real users, not vanity metrics**: 174 stars, 7 forks (forks = devs reading the code), 289 active HACS installs, top 14% HACS rank, MIT-licensed.
+- **890+ closed issues with traceable root causes**, not just "fixed". URI-validation, playback-recovery, and import-flow security got dedicated sweeps in v3.3.x.
+- **Real users, not vanity metrics**: 216 stars, 10 forks (forks = devs reading the code), 419 active HACS installs, top 11% HACS rank, MIT-licensed.
 
 The AI is the typist. The decisions, the architecture, the bug triage, and the "ship it" call are all human. If something looks off in the code, [open an issue](https://github.com/mholzi/beatify/issues) — that's how the documented bug-fix sweeps started in the first place.
 
