@@ -4,6 +4,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.0-rc17] - 2026-07-22
+
+Pre-release — cut from current `main`, supersedes rc16. Two gameplay changes from the Fable-review backlog, plus documentation for the AI playlist workflow.
+
 ### Added
 - **Streak-Shield (#1666).** Reaching a streak milestone (3, 5, 10, 15, 20, 25 — the same table the streak bonus reads) hands the player a shield. The next wrong answer spends it instead of resetting the streak, so a single slip no longer undoes a long run. At most one shield is held at a time, it survives between rounds but not between games, and it absorbs **every** wrong answer including ones caused by a Sabotage timer-cut or freeze — a shield that failed against the one mechanic built to cause misses would be worse than no shield. The shield protects the run, not the points: no streak bonus is paid for the absorbed round, because the answer was still wrong. The reveal shows a 🛡️ line naming the streak it saved — on the wrong-answer path and the missed-round path alike, localized in all five languages. On a missed round it replaces the "lost your X-streak" notice, which would otherwise mourn a streak the player still has.
 
