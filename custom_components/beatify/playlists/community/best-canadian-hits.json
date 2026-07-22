@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "canadian",
     "canada",
@@ -1398,7 +1398,7 @@
         "it": "applemusic://track/1018515519"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kv8zyBi4ZXk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3029349",
       "uri_deezer": "deezer://track/3822208",
       "alt_artists": [
         "Harmonium",
@@ -1435,7 +1435,7 @@
         "it": "applemusic://track/635780504"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=boJvi-4OcKg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19885091",
       "uri_deezer": "deezer://track/66554980",
       "alt_artists": [
         "Loverboy",
@@ -1472,7 +1472,7 @@
         "it": "applemusic://track/258603521"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yeY-Y4vdHk0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/397811337",
       "uri_deezer": "deezer://track/968137842",
       "alt_artists": [
         "Crowbar",
@@ -1509,7 +1509,7 @@
         "it": "applemusic://track/1271096941"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=O7rm7uBcyNg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77413369",
       "uri_deezer": "deezer://track/394196452",
       "alt_artists": [
         "April Wine",
@@ -1546,7 +1546,7 @@
         "it": "applemusic://track/1422703268"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=BhGB3vwhxHs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37329150",
       "uri_deezer": "deezer://track/89128539",
       "alt_artists": [
         "Barenaked Ladies",
@@ -1583,7 +1583,7 @@
         "it": "applemusic://track/1799311697"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FfHRminbLfM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/421117959",
       "uri_deezer": "deezer://track/3255903411",
       "alt_artists": [
         "Alannah Myles",
@@ -1620,7 +1620,7 @@
         "it": "applemusic://track/1809169436"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=myI3GgEDJ90",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/430686765",
       "uri_deezer": "deezer://track/13166337",
       "alt_artists": [
         "Martha and the Muffins",
@@ -1657,7 +1657,7 @@
         "it": "applemusic://track/570416034"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sPuU_4TbFDM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180398970",
       "uri_deezer": "deezer://track/61315032",
       "alt_artists": [
         "Men Without Hats",
@@ -1731,7 +1731,7 @@
         "it": "applemusic://track/31039264"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pTNJDcYIKSA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34702495",
       "uri_deezer": "deezer://track/61209352",
       "alt_artists": [
         "Barenaked Ladies",
@@ -1768,7 +1768,7 @@
         "it": "applemusic://track/256717191"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qYoiZJxvBQA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10923197",
       "uri_deezer": "deezer://track/13258311",
       "alt_artists": [
         "Glass Tiger",
@@ -1805,7 +1805,7 @@
         "it": "applemusic://track/1682384682"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=AIHHTXwIJes",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/290587119",
       "uri_deezer": "deezer://track/2248707527",
       "alt_artists": [
         "Barenaked Ladies, Ben Grosse",
@@ -1842,7 +1842,7 @@
         "it": "applemusic://track/1826467372"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mxuae-rgY28",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/375367434",
       "uri_deezer": "deezer://track/2892004752",
       "alt_artists": [
         "Frozen Ghost",
@@ -1879,7 +1879,7 @@
         "it": "applemusic://track/283790051"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8Vv3Ve6KQt8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7257441",
       "uri_deezer": "deezer://track/13805976",
       "alt_artists": [
         "Blue Rodeo",
@@ -1960,7 +1960,7 @@
         "it": "applemusic://track/288873658"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=E8orPKUJpdY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21914697",
       "uri_deezer": "deezer://track/67563984",
       "alt_artists": [
         "Gordon Lightfoot",
@@ -1997,7 +1997,7 @@
         "it": "applemusic://track/1799374768"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4fq7J8gqNJk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/15563765",
       "uri_deezer": "deezer://track/3256924071",
       "alt_artists": [
         "Loverboy",
@@ -2034,7 +2034,7 @@
         "it": "applemusic://track/267043876"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qd06ATvtDcU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2925947",
       "uri_deezer": "deezer://track/629548",
       "alt_artists": [
         "Crowbar",
@@ -2071,7 +2071,7 @@
         "it": "applemusic://track/1608979175"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tgj2br-teu4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6102167",
       "uri_deezer": "deezer://track/10303628",
       "alt_artists": [
         "Chilliwack",
@@ -2108,7 +2108,7 @@
         "it": "applemusic://track/1799365262"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CSUKdt-rhb8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/421121543",
       "uri_deezer": "deezer://track/3256742611",
       "alt_artists": [
         "Bryan Adams",
@@ -2145,7 +2145,7 @@
         "it": "applemusic://track/1751197432"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8eBOiKzHcPw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/371774475",
       "uri_deezer": "deezer://track/2860967362",
       "alt_artists": [
         "Chilliwack",
