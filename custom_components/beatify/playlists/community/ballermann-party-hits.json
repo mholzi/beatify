@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "schlager",
     "party",
@@ -4480,7 +4480,7 @@
         "it": "applemusic://track/947808281"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_AEiTxs5tzQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32661728",
       "uri_deezer": "deezer://track/88983775",
       "alt_artists": [
         "Dj Biene"
@@ -4508,7 +4508,7 @@
         "it": "applemusic://track/1701688696"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=V7rIlSiynnk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62097800",
       "uri_deezer": "deezer://track/127244027",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -4532,7 +4532,7 @@
         "it": "applemusic://track/1721010037"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HV-1R3-HzDI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/82006150",
       "uri_deezer": "deezer://track/17104036",
       "fun_fact": "Axel Fischer is a party-Schlager singer best known for the Mallorca hit \"Amsterdam\".",
       "fun_fact_de": "Axel Fischer ist ein Party-Schlager-Sänger, bekannt vor allem durch den Mallorca-Hit \"Amsterdam\".",
@@ -4557,7 +4557,7 @@
         "it": "applemusic://track/1858289932"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qEKuLvKINxI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/405278867",
       "uri_deezer": "deezer://track/3138448611",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -4582,7 +4582,7 @@
         "it": "applemusic://track/1692730461"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=J9BUVx6HjpA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89767701",
       "uri_deezer": "deezer://track/479068622",
       "fun_fact": "A Mallorca / Ballermann party hit (2018).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
@@ -4607,7 +4607,7 @@
         "it": "applemusic://track/1129707655"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y19evaOjO1o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/61269172",
       "uri_deezer": "deezer://track/123355000",
       "fun_fact": "A Mallorca / Ballermann party hit (2016).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2016).",
@@ -4632,7 +4632,7 @@
         "it": "applemusic://track/1862214094"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1Hm3x0YUF48",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86240038",
       "uri_deezer": "deezer://track/462482932",
       "fun_fact": "A Mallorca / Ballermann party hit (2018).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
@@ -4649,7 +4649,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=QIdVNto7mkI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/61998120",
       "uri_deezer": null,
       "alt_artists": [
         "Mia Julia"
@@ -4677,7 +4677,7 @@
         "it": "applemusic://track/1706431616"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Xy7PmR7Bcd8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66005006",
       "uri_deezer": "deezer://track/134521826",
       "alt_artists": [
         "Klaus & Klaus"
@@ -4697,7 +4697,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=hEUMThMU0l4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/105812003",
       "uri_deezer": null,
       "fun_fact": "A Mallorca / Ballermann party hit (2018).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
@@ -4722,7 +4722,7 @@
         "it": "applemusic://track/1454409681"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=f3NiVLswEic",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89525026",
       "uri_deezer": "deezer://track/492254452",
       "fun_fact": "Jürgen Milski rose to fame on Big Brother and became a fixture of the Mallorca party scene.",
       "fun_fact_de": "Jürgen Milski wurde durch Big Brother bekannt und ist seitdem fester Bestandteil der Mallorca-Partyszene.",
@@ -4747,7 +4747,7 @@
         "it": "applemusic://track/1520552835"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QmAs9U5si_Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/178166290",
       "uri_deezer": "deezer://track/65544206",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
@@ -4772,7 +4772,7 @@
         "it": "applemusic://track/1657546903"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xPL0xX28HSo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/29636576",
       "uri_deezer": "deezer://track/78386143",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -4797,7 +4797,7 @@
         "it": "applemusic://track/1062536321"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_OHaEJd3FkM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71920750",
       "uri_deezer": "deezer://track/100769312",
       "alt_artists": [
         "DJ Düse"
@@ -4825,7 +4825,7 @@
         "it": "applemusic://track/1784935801"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MMziNvvnS8U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11215346",
       "uri_deezer": "deezer://track/3694090582",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -4850,7 +4850,7 @@
         "it": "applemusic://track/1813909935"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YGGnS4QQndo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/405278870",
       "uri_deezer": "deezer://track/3138448641",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -4875,7 +4875,7 @@
         "it": "applemusic://track/633432259"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-rq0KKmjxUs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/512571",
       "uri_deezer": "deezer://track/69946270",
       "fun_fact": "Wolfgang Petry's \"Ballermann\" (1998) helped cement the Mallorca beach strip as a party-music institution.",
       "fun_fact_de": "Wolfgang Petrys \"Ballermann\" (1998) trug dazu bei, die Strandmeile Mallorcas als Party-Musik-Institution zu etablieren.",
@@ -4900,7 +4900,7 @@
         "it": "applemusic://track/1884990094"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jq-D7UXroeM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3819886",
       "uri_deezer": "deezer://track/5137423",
       "fun_fact": "DJ Ötzi's party version of \"Sweet Caroline\" is an après-ski and Ballermann sing-along staple.",
       "fun_fact_de": "DJ Ötzis Partyversion von \"Sweet Caroline\" ist ein Après-Ski- und Ballermann-Mitsing-Klassiker.",

@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "canadian",
     "canada",
@@ -1361,7 +1361,7 @@
         "it": "applemusic://track/1497622519"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wPBinohXHLc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77598514",
       "uri_deezer": "deezer://track/971481852",
       "alt_artists": [
         "Loverboy",
