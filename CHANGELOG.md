@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **FAQ for the LLM Playlist Generator ([docs/llm-playlist-generator.md](docs/llm-playlist-generator.md)).** The in-app guide already warns that assistants truncate large playlists, but only inside the generator modal — a user who hits the wall and searches the web, or asks in the forum, finds nothing. This page answers the same questions where they can be found and linked. It also gives the number the in-app hint does not: one finished song is ~920 characters (~260 tokens), so 32 songs land near 8 400 tokens — which is why the ceiling sits at ~30 songs and not somewhere arbitrary. Reported on the HA forum (thread 998895) before the in-app guide existed.
+
 ## [4.2.0-rc16] - 2026-07-22
 
 Pre-release — cut from current `main`, supersedes rc15. One admin fix found by the live-test screenshot stage (the API reported the state as healthy), plus a Tidal backfill wave.
