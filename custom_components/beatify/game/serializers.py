@@ -327,6 +327,13 @@ class GameStateSerializer:
                 "stole_from": p.stole_from,
                 "was_stolen_by": p.was_stolen_by.copy() if p.was_stolen_by else [],
                 "steal_available": p.steal_available,
+                # #1666: Streak-Shield. `streak_shield` is the badge (an
+                # unspent shield is held); `streak_shield_used` is the per-round
+                # event that just absorbed a miss. Both are broadcast because a
+                # shield nobody sees fire looks like a scoring bug — the player
+                # answered wrong and their streak did not drop.
+                "streak_shield": p.streak_shield,
+                "streak_shield_used": p.streak_shield_used_this_round,
                 # Issue #1724: True when this player's steal was handed to them
                 # as a Comeback Token (catch-up grant), so the client can label
                 # the reused steal UI as a comeback gift rather than a streak

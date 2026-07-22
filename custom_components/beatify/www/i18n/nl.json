@@ -316,7 +316,9 @@
     "moreAwards": "meer",
     "playerNotFound": "Speler niet gevonden",
     "autoAdvanceAria": "Aftellen tot de volgende ronde",
-    "reportBtnError": "Melding kon niet worden verzonden — probeer het opnieuw."
+    "reportBtnError": "Melding kon niet worden verzonden — probeer het opnieuw.",
+    "streakShieldUsed": "Schild gebruikt — reeks van {streak} gered!",
+    "streakShieldHeld": "Reeksschild gereed"
   },
   "leaderboard": {
     "title": "Scorebord",

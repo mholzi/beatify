@@ -316,7 +316,9 @@
     "moreAwards": "more",
     "playerNotFound": "Player not found",
     "autoAdvanceAria": "Next round countdown",
-    "reportBtnError": "Couldn't send report — please try again."
+    "reportBtnError": "Couldn't send report — please try again.",
+    "streakShieldUsed": "Shield used — {streak}-streak saved!",
+    "streakShieldHeld": "Streak Shield ready"
   },
   "leaderboard": {
     "title": "Leaderboard",
@@ -655,7 +657,8 @@
     "suddenDeathModeHint": "Last-place player is eliminated each round. Last one standing wins.",
     "suddenDeathDisabledTooltip": "Sudden Death needs at least 3 players.",
     "suddenDeathDisabledGate": "Needs at least 3 players",
-    "suddenDeathLive": "Sudden Death"  },
+    "suddenDeathLive": "Sudden Death"
+  },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
     "subtitle": "Analytics",

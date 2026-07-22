@@ -6632,6 +6632,30 @@ body.theme-dark .result-value.is-bet-lost {
     color: var(--color-error-dark);
 }
 
+/* Streak-Shield (#1666) — the counterpart to .streak-broken above. Same
+   shape on purpose: both explain what just happened to a streak, so they
+   should read as one pair rather than two unrelated notices. Success colours
+   because the run survived. */
+.streak-shield-used {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-success-light);
+    border-radius: var(--radius-md);
+}
+
+.streak-shield-icon {
+    font-size: var(--font-size-xl);
+}
+
+.streak-shield-text {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-success-hover);
+}
+
 .result-score.is-zero {
     color: var(--color-text-light);
     font-size: var(--font-size-2xl);

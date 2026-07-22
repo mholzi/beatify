@@ -106,6 +106,13 @@ class PlayerSession:
     perfect_pairs: int = 0  # Rounds with both title and artist correct (Perfect Pair)
     near_misses: int = 0  # Count of debated near-miss fields, title + artist (So Close)
 
+    # Streak-Shield tracking (#1666). Granted on a streak milestone, spent by
+    # the next wrong answer INSTEAD of resetting the streak. Cumulative across
+    # rounds — deliberately NOT cleared by reset_round, or it would evaporate
+    # before the round it exists to protect.
+    streak_shield: bool = False  # True while an unspent shield is held
+    streak_shield_used_this_round: bool = False  # Per-round: shield absorbed a miss
+
     # Steal power-up tracking (Story 15.3)
     steal_available: bool = False  # True if steal unlocked and not yet used
     steal_used: bool = False  # True if steal was used this game (max 1 per game)
@@ -176,6 +183,10 @@ class PlayerSession:
         self.base_score = 0
         # Reset streak bonus (Story 5.2)
         self.streak_bonus = 0
+        # #1666: only the per-round "did it fire" flag resets. `streak_shield`
+        # itself is cumulative — clearing it here would drop the shield before
+        # the round it exists to protect.
+        self.streak_shield_used_this_round = False
         # Reset artist bonus (Story 20.4)
         self.artist_bonus = 0
         # Reset artist guess tracking (Story 20.9)
@@ -257,6 +268,11 @@ class PlayerSession:
         self.correct_artists = 0
         self.perfect_pairs = 0
         self.near_misses = 0
+
+        # #1666: a shield must not survive into the next game — it is earned
+        # per game, like the steal token below.
+        self.streak_shield = False
+        self.streak_shield_used_this_round = False
 
         # Reset steal tracking
         self.steal_available = False
