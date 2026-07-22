@@ -47,6 +47,15 @@ class GameStateSerializer:
             "players": gs.get_players_state(),
             "language": gs.language,
             "difficulty": gs.difficulty,
+            # #1867: the round timer the server is ACTUALLY counting. Every
+            # other create-game setting was already echoed here; this one was
+            # not, so `round_duration` was write-only from the client's side —
+            # posted once at create, never readable again. A UI could only ever
+            # show its own local intent, which is why a lobby advertising "45S"
+            # over a server running 30.0s looked fine from every screen and
+            # took log archaeology to spot. Emitted in all phases: the lobby
+            # needs it before the first round exists.
+            "round_duration": gs.round_duration,
             # Issue #23: Intro mode (available in all phases)
             "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode
