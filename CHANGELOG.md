@@ -5,6 +5,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
+- **Streak-Shield (#1666).** Reaching a streak milestone (3, 5, 10, 15, 20, 25 — the same table the streak bonus reads) hands the player a shield. The next wrong answer spends it instead of resetting the streak, so a single slip no longer undoes a long run. At most one shield is held at a time, it survives between rounds but not between games, and it absorbs **every** wrong answer including ones caused by a Sabotage timer-cut or freeze — a shield that failed against the one mechanic built to cause misses would be worse than no shield. The shield protects the run, not the points: no streak bonus is paid for the absorbed round, because the answer was still wrong. Both the held shield and the moment it fires are broadcast, so the table can see why a wrong answer did not break the streak.
+
+### Added
 - **FAQ for the LLM Playlist Generator ([docs/llm-playlist-generator.md](docs/llm-playlist-generator.md)).** The in-app guide already warns that assistants truncate large playlists, but only inside the generator modal — a user who hits the wall and searches the web, or asks in the forum, finds nothing. This page answers the same questions where they can be found and linked. It also gives the number the in-app hint does not: one finished song is ~920 characters (~260 tokens), so 32 songs land near 8 400 tokens — which is why the ceiling sits at ~30 songs and not somewhere arbitrary. Reported on the HA forum (thread 998895) before the in-app guide existed.
 
 ### Changed

@@ -288,6 +288,26 @@ def _apply_streak(
         player.streak_bonus = calculate_streak_bonus(player.streak)
         if player.streak == STEAL_UNLOCK_STREAK:
             player.unlock_steal()
+        # #1666: reaching a milestone hands out a shield. Reuses the same
+        # STREAK_MILESTONES table the bonus reads, so "milestone" means one
+        # thing in the game and the two cannot drift apart. At most one shield
+        # is held — a player who reaches 5 while still carrying the shield from
+        # 3 keeps one, not two.
+        if player.streak in STREAK_MILESTONES:
+            player.streak_shield = True
+    elif player.streak_shield:
+        # #1666: spend the shield instead of resetting. The streak COUNTER
+        # survives so the next correct answer continues the run; no streak
+        # bonus is paid for this round, because the answer was still wrong —
+        # `reset_round` already zeroed `streak_bonus` and we leave it there.
+        # The shield protects the run, not the points.
+        #
+        # Applies to every wrong answer, sabotage-induced ones included
+        # (Markus, 2026-07-22): a shield that silently fails against the one
+        # mechanic built to cause misses would be worse than no shield.
+        player.streak_shield = False
+        player.streak_shield_used_this_round = True
+        player.previous_streak = 0
     else:
         player.previous_streak = player.streak
         player.streak = 0
