@@ -36,10 +36,16 @@ function makeClassList(initial = []) {
  * A completed-wizard admin page with nothing routed yet — the reported state.
  * All three phase sections exist in the DOM at all times and carry `hidden`.
  */
-function makeDoc({ bodyClasses = [], visibleSections = [] } = {}) {
+function makeDoc({
+    bodyClasses = [], visibleSections = [], shownHome = false, hideWizard = false,
+} = {}) {
     const els = {
-        'home-view': { classList: makeClassList(['home-view', 'hidden']) },
-        'wizard-root': { classList: makeClassList([]) },
+        // Both containers ship hidden in admin.html; only enter()/show() reveal
+        // them. `shownHome` / `hideWizard` model that second half explicitly.
+        'home-view': {
+            classList: makeClassList(shownHome ? ['home-view'] : ['home-view', 'hidden']),
+        },
+        'wizard-root': { classList: makeClassList(hideWizard ? ['hidden'] : []) },
     };
     for (const id of PHASE_SECTIONS) {
         els[id] = {
@@ -60,7 +66,28 @@ describe('adminHasVisibleView (#1868)', () => {
     });
 
     it('is true once the home view is entered', () => {
-        expect(adminHasVisibleView(makeDoc({ bodyClasses: ['home-mode'] }))).toBe(true);
+        // "Entered" means BOTH: the body class AND the container un-hidden.
+        // `BeatifyHome.enter()` does the two together.
+        expect(adminHasVisibleView(makeDoc({
+            bodyClasses: ['home-mode'], shownHome: true,
+        }))).toBe(true);
+    });
+
+    it('is false when home-mode is set but #home-view is still hidden', () => {
+        // The state this file used to call "visible". `admin.html` ships
+        // `<body class="theme-dark home-mode">` with `#home-view.hidden`, so the
+        // body-class-only check was satisfied by static markup and this guard
+        // could never fire on the page it exists to rescue. Reproduced on
+        // v4.2.0-rc15 by leaving a game in the LOBBY and loading /beatify/admin:
+        // logo, three header buttons, version line, nothing else — the exact
+        // #1868 symptom on a build carrying the #1868 fix.
+        expect(adminHasVisibleView(makeDoc({ bodyClasses: ['home-mode'] }))).toBe(false);
+    });
+
+    it('is false when wizard-active is set but #wizard-root is hidden', () => {
+        expect(adminHasVisibleView(makeDoc({
+            bodyClasses: ['wizard-active'], hideWizard: true,
+        }))).toBe(false);
     });
 
     it('is true while the wizard has the screen', () => {
@@ -107,7 +134,7 @@ describe('recovery ordering (#1868)', () => {
     }
 
     it('does nothing when a view is already up', () => {
-        const doc = makeDoc({ bodyClasses: ['home-mode'] });
+        const doc = makeDoc({ bodyClasses: ['home-mode'], shownHome: true });
         const win = {
             BeatifyHome: { enter: () => { throw new Error('must not be called'); } },
         };
@@ -117,7 +144,15 @@ describe('recovery ordering (#1868)', () => {
     it('prefers the home view — reopening the wizard is more disruptive', () => {
         const doc = makeDoc();
         const win = {
-            BeatifyHome: { enter: () => doc.body.classList.add('home-mode') },
+            // Mirrors the real enter(): body class AND un-hiding the
+            // container. A fake that only set the class made this suite pass
+            // over the very state that shipped the bug.
+            BeatifyHome: {
+                enter: () => {
+                    doc.body.classList.add('home-mode');
+                    doc.getElementById('home-view').classList.remove('hidden');
+                },
+            },
             BeatifyWizard: { show: () => { throw new Error('must not be called'); } },
         };
         expect(recover(win, doc)).toBe('home');
