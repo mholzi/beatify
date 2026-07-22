@@ -316,7 +316,9 @@
     "moreAwards": "weitere",
     "playerNotFound": "Spieler nicht gefunden",
     "autoAdvanceAria": "Countdown bis zur nächsten Runde",
-    "reportBtnError": "Meldung konnte nicht gesendet werden — bitte erneut versuchen."
+    "reportBtnError": "Meldung konnte nicht gesendet werden — bitte erneut versuchen.",
+    "streakShieldUsed": "Schild verbraucht — {streak}er-Serie gerettet!",
+    "streakShieldHeld": "Streak-Schild bereit"
   },
   "leaderboard": {
     "title": "Rangliste",
@@ -655,7 +657,8 @@
     "suddenDeathModeHint": "Der Letzte jeder Runde scheidet aus. Wer übrig bleibt, gewinnt.",
     "suddenDeathDisabledTooltip": "Sudden Death braucht mindestens 3 Spieler.",
     "suddenDeathDisabledGate": "Mindestens 3 Spieler nötig",
-    "suddenDeathLive": "Sudden Death"  },
+    "suddenDeathLive": "Sudden Death"
+  },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
     "subtitle": "Statistik",

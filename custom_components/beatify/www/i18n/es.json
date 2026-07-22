@@ -316,7 +316,9 @@
     "moreAwards": "mas",
     "playerNotFound": "Jugador no encontrado",
     "autoAdvanceAria": "Cuenta atrás para la siguiente ronda",
-    "reportBtnError": "No se pudo enviar el informe — intentalo de nuevo."
+    "reportBtnError": "No se pudo enviar el informe — intentalo de nuevo.",
+    "streakShieldUsed": "¡Escudo usado — racha de {streak} salvada!",
+    "streakShieldHeld": "Escudo de racha listo"
   },
   "leaderboard": {
     "title": "Clasificacion",

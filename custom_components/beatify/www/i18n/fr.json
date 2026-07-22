@@ -316,7 +316,9 @@
     "moreAwards": "plus",
     "playerNotFound": "Joueur introuvable",
     "autoAdvanceAria": "Compte à rebours avant la prochaine manche",
-    "reportBtnError": "Impossible d'envoyer le signalement — reessaie."
+    "reportBtnError": "Impossible d'envoyer le signalement — reessaie.",
+    "streakShieldUsed": "Bouclier utilisé — série de {streak} sauvée !",
+    "streakShieldHeld": "Bouclier de série prêt"
   },
   "leaderboard": {
     "title": "Classement",

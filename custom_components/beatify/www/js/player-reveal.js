@@ -763,6 +763,23 @@ function showRevealEmotion(player, correctYear) {
  * @param {Object} player - Current player data
  * @param {number} correctYear - The correct year
  */
+/**
+ * The "your shield took it" line (#1666).
+ *
+ * Deliberately states the streak it saved rather than a bare "shield used":
+ * the value of the moment is the run that survived, and the number is what
+ * makes it land. Rendered on both the missed-round and the wrong-answer path,
+ * because a shield only ever fires on a round the player got wrong.
+ */
+function renderStreakShieldUsed(player) {
+    var streak = player.streak || 0;
+    var text = utils.t('reveal.streakShieldUsed', { streak: streak });
+    return '<div class="streak-shield-used">' +
+               '<span class="streak-shield-icon">🛡️</span>' +
+               '<span class="streak-shield-text">' + text + '</span>' +
+           '</div>';
+}
+
 function renderPersonalResult(player, correctYear) {
     var resultContent = document.getElementById('result-content');
     if (!resultContent) return;
@@ -779,6 +796,13 @@ function renderPersonalResult(player, correctYear) {
                 '<div class="result-missed-text">' + utils.t('reveal.noSubmission') + '</div>' +
             '</div>';
 
+        // #1666: a shield absorbed this miss — the streak is intact, so the
+        // "lost your streak" line would be a lie. Say what actually happened
+        // instead; a wrong answer that leaves the streak standing with no
+        // explanation reads as a scoring bug.
+        if (player.streak_shield_used) {
+            missedHtml += renderStreakShieldUsed(player);
+        }
         var previousStreak = player.previous_streak || 0;
         if (previousStreak >= 2) {
             missedHtml +=
@@ -880,6 +904,7 @@ function renderPersonalResult(player, correctYear) {
         scoreBreakdown +
         betOutcomeHtml +
         '<div class="result-score" id="personal-result-score">+<span class="score-value">0</span> pts</div>' +
+        (player.streak_shield_used ? renderStreakShieldUsed(player) : '') +
         streakBonusHtml +
         artistBonusHtml +
         (hasBonuses ? '<div class="result-total">' + utils.t('reveal.total') + ': +<span class="total-value">0</span> pts</div>' : '');
