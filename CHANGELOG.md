@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **The admin no longer renders an empty page while a game sits in the lobby (#1868 follow-up).** Loading `/beatify/admin` with a LOBBY game showed the logo, three header buttons and the version line — nothing else. `showLobbyView()` renders into `#home-view`, which ships `hidden` and is un-hidden only by `BeatifyHome.enter()`; on the boot path that finds an existing lobby, `enter()` is deliberately skipped because it would create a second game (#1365), so nothing ever revealed the container. The lobby path now reveals it itself. The guard added for #1868 could not catch this: `adminHasVisibleView` accepted `body.home-mode` as proof a view was up, and `admin.html` ships that class statically — so the predicate returned true on every page load and the recovery never fired. It now requires the mode **and** its container to be visible.
+
 ## [4.2.0-rc15] - 2026-07-22
 
 Pre-release — cut from current `main`, supersedes rc14. A reliability pass on the three bugs found in the rc14 play session (no playback dispatched, the round timer that never fired, the round duration nobody chose), plus the admin boot guard, the stale-playlist cleanup, a debug-logging fix, and a Tidal backfill.

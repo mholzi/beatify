@@ -249,13 +249,21 @@ export function roundDurationLabel(adminState) {
 export function adminHasVisibleView(doc) {
     const body = doc && doc.body;
     if (!body) return false;
-    if (body.classList.contains('wizard-active')) return true;
-    if (body.classList.contains('home-mode')) return true;
-    return ['admin-playing-section', 'admin-reveal-section', 'admin-end-section']
-        .some((id) => {
-            const el = doc.getElementById(id);
-            return !!el && !el.classList.contains('hidden');
-        });
+    const shown = (id) => {
+        const el = doc.getElementById(id);
+        return !!el && !el.classList.contains('hidden');
+    };
+    // A body class alone is NOT evidence that anything renders. `admin.html`
+    // ships `<body class="theme-dark home-mode">` (line 61) while `#home-view`
+    // ships `hidden` (line 206) — so the original `contains('home-mode')` test
+    // was satisfied by static markup on every single page load, and this guard
+    // could never fire on the page it exists to rescue. A LOBBY game rendered
+    // into the still-hidden home view produced exactly the #1868 symptom on a
+    // build that already carried the #1868 fix. Both halves must hold: the mode
+    // is on AND its container is actually not hidden.
+    if (body.classList.contains('wizard-active') && shown('wizard-root')) return true;
+    if (body.classList.contains('home-mode') && shown('home-view')) return true;
+    return ['admin-playing-section', 'admin-reveal-section', 'admin-end-section'].some(shown);
 }
 
 /**

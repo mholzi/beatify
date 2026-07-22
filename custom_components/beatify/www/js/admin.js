@@ -1056,6 +1056,16 @@ function showLobbyView(gameData) {
     adminState.currentView = 'lobby';
     adminState.currentGame = gameData;
     if (window.BeatifyHome) {
+        // Reveal the container BEFORE rendering into it. `renderSession` fills
+        // `#home-view`, which ships `hidden` (admin.html:206) and is un-hidden
+        // only by `BeatifyHome.enter()`. On the boot path that found an existing
+        // LOBBY game, `enter()` is deliberately skipped — it would fire a second
+        // `startSession()` (#1365) — so nothing ever removed `hidden` and the
+        // host got a page with just the logo, three header buttons and the
+        // version line. `enter()` is not the fix here: it auto-creates a game.
+        // Only the two lines that make the view visible belong on this path.
+        document.body.classList.add('home-mode');
+        document.getElementById('home-view')?.classList.remove('hidden');
         window.BeatifyHome.renderSession(gameData);
     }
     // WS push is the primary source; fall back to REST polling if WS is down
