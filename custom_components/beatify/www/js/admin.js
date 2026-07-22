@@ -44,6 +44,7 @@ import {
     escapeHtml,
     acquireWakeLockFirst,
     applyStoredGameSettings,
+    roundDurationLabel,
     adminHasVisibleView,
     createRenderCoalescer,
     adminStateEqual,
@@ -586,11 +587,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                     : `${pls.length} playlists`;
                 const autoAdv = typeof s.revealAutoAdvance === 'number' ? s.revealAutoAdvance : 0;
                 const autoLabel = autoAdv > 0 ? `${autoAdv}s` : 'Off';
-                // #1867: read the duration from adminState — the exact value
-                // start-game sends — not from the stored blob. The two used to
-                // be separate reads, so the chip could advertise 45s while the
-                // payload carried something else and nothing looked wrong.
-                const mode = `${s.difficulty || 'normal'} · ${adminState.selectedDuration}s · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
+                // #1867: once a game exists, show the duration the SERVER is
+                // running (`active_game.round_duration`), not what this browser
+                // intends to send. `round_duration` is fixed at create_game and
+                // no endpoint changes it afterwards, so every settings edit made
+                // after the lobby was minted is inert — yet the chip used to
+                // render the new value as though it had taken effect. Reading
+                // client-side state (the previous fix) could not close that gap
+                // because the wizard rewrites that same state post-create.
+                // When the two disagree, both are shown: the number in force,
+                // and what the next game will use.
+                const mode = `${s.difficulty || 'normal'} · ${roundDurationLabel(adminState)} · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
                 const meta = `${playlistLabel} · ${mode}`;
                 const metaEl = document.getElementById('home-meta');
                 if (metaEl) metaEl.textContent = meta;

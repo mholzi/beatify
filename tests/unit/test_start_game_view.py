@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import json
+import logging
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from custom_components.beatify.const import DOMAIN
+from custom_components.beatify.const import DEFAULT_ROUND_DURATION, DOMAIN
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.views import StartGameView
 
@@ -388,3 +389,51 @@ class TestStartGameReusesDiscoveryParse:
 
         assert resp.status == 200
         hass.async_add_executor_job.assert_not_awaited()
+
+
+class TestRoundDurationProvenanceLog:
+    """start-game must record where the round timer came from (#1867).
+
+    #1867 ran a 30 s timer while every screen said 45 s, and settling it needed
+    the raw request body — which no log held. The only prior trace was
+    "Round N started (%.1fs timer)": the effective value, with no way to tell a
+    host's choice from a server fallback. These pin both halves of that
+    distinction, since the fallback case is precisely the one that means
+    "nobody chose this".
+    """
+
+    async def test_logs_client_value_when_sent(self, start_game_env, caplog):
+        view, hass, body = start_game_env
+        body["round_duration"] = 30
+
+        with caplog.at_level(logging.INFO):
+            resp = await view.post(_make_request(hass, body))
+        assert resp.status == 200
+
+        line = next(
+            r.getMessage()
+            for r in caplog.records
+            if "round_duration=" in r.getMessage()
+        )
+        assert "round_duration=30s" in line
+        assert "client sent 30" in line
+
+    async def test_logs_the_default_and_that_the_client_sent_nothing(
+        self, start_game_env, caplog
+    ):
+        view, hass, body = start_game_env
+        body.pop("round_duration", None)
+
+        with caplog.at_level(logging.INFO):
+            resp = await view.post(_make_request(hass, body))
+        assert resp.status == 200
+
+        line = next(
+            r.getMessage()
+            for r in caplog.records
+            if "round_duration=" in r.getMessage()
+        )
+        assert f"round_duration={DEFAULT_ROUND_DURATION}s" in line
+        # The absent case must be distinguishable from a client that sent the
+        # same number — that difference is the whole point of the line.
+        assert "client sent None" in line

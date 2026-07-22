@@ -201,6 +201,33 @@ export function normalizeRoundDuration(value) {
 }
 
 /**
+ * Label for the round timer in the lobby meta line (#1867).
+ *
+ * Server truth wins whenever a game exists. `round_duration` is set only by
+ * `create_game` and no endpoint changes it for a live game, so anything the
+ * host edits after the lobby was minted does not reach the server — but the
+ * chip used to render that edit as if it had. Showing the server's number
+ * makes the gap visible instead of silent; appending the pending value keeps
+ * the host from reading it as the setting being ignored outright.
+ *
+ * Falls back to local intent when no game exists (nothing to disagree with)
+ * or when the payload predates the server-side echo.
+ *
+ * @param {Object} adminState - shared admin state (`currentGame`, `selectedDuration`)
+ * @returns {string} e.g. `"45s"` or `"45s → 60s next"`
+ */
+export function roundDurationLabel(adminState) {
+    const local = adminState && adminState.selectedDuration;
+    const game = adminState && adminState.currentGame;
+    const raw = game && typeof game === 'object' ? game.round_duration : undefined;
+    if (typeof raw !== 'number' || !Number.isFinite(raw)) return `${local}s`;
+    // The server types round_duration as a float, so 45 can arrive as 45.0.
+    const server = Math.round(raw);
+    if (typeof local !== 'number' || server === local) return `${server}s`;
+    return `${server}s → ${local}s next`;
+}
+
+/**
  * True when the admin is showing *something* the user can act on (#1868).
  *
  * The admin has two roots and neither is visible by default: `#home-view` is

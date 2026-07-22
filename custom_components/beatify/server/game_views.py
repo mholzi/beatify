@@ -13,6 +13,7 @@ from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers import entity_registry as er
 
 from custom_components.beatify.const import (
+    DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
     DIFFICULTY_EASY,
     DIFFICULTY_HARD,
@@ -403,6 +404,18 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         }
         if round_duration is not None:
             create_kwargs["round_duration"] = round_duration
+
+        # #1867: state the round timer's provenance at the one moment it is
+        # decided. The only prior trace was "Round N started (%.1fs timer)",
+        # which shows the effective value but not whether the client asked for
+        # it or the server fell back — the difference between "the host chose
+        # this" and "nobody chose this". Settling #1867 needed the raw payload,
+        # which no log had; one line here makes the next report a lookup.
+        _LOGGER.info(
+            "Game created with round_duration=%ss (client sent %r)",
+            create_kwargs.get("round_duration", DEFAULT_ROUND_DURATION),
+            body.get("round_duration"),
+        )
 
         result = game_state.create_game(**create_kwargs)
         result["warnings"] = warnings
