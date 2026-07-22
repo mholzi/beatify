@@ -1021,6 +1021,45 @@ class MediaPlayerService:
             self.last_failure_reason = "unavailable"
             return False
 
+        # #1863: "still buffering" requires that Music Assistant actually owns
+        # this player. An MA-platform entity reports the queue it is playing
+        # from in `active_queue`; while MA is buffering a track it has already
+        # taken the queue, so `active_queue` is set. A *null* `active_queue`
+        # means MA never accepted the play_media call for this player at all —
+        # the entity is only mirroring whatever the underlying speaker was
+        # doing before the game (in the report: a leftover Spotify context,
+        # `state: paused`, `media_position: 0`). That is a silent failure, not
+        # slow buffering, and the #345 tolerance below would wave it through as
+        # success: the round then starts, the timer arms, and the players get a
+        # silent PLAYING phase with no music and no error.
+        #
+        # Deliberately narrow: only when the attribute is PRESENT and falsy. If
+        # a Music Assistant / HA version does not expose `active_queue` at all
+        # the key is missing, and we keep the old tolerance rather than turning
+        # every slow buffer on that version into a failure.
+        attrs_after = current_state.attributes if current_state else {}
+        if "active_queue" in attrs_after and not attrs_after.get("active_queue"):
+            _LOGGER.error(
+                "MA playback failed after %.1fs for %s — the player reports no "
+                "active Music Assistant queue (state: %s, title %r → %r). MA "
+                "never took ownership of this speaker, so nothing was ever "
+                "dispatched. Check that the speaker is exposed to Music "
+                "Assistant and that your provider is authenticated there. "
+                "(#1863)",
+                MA_PLAYBACK_TIMEOUT,
+                uri,
+                speaker_state,
+                title_before,
+                title_after,
+            )
+            # Systemic, not a per-track catalog gap: MA declined the whole
+            # play_media call, so the next song would fail identically.
+            # Classify as "error" so start_round pauses the game and shows the
+            # recovery banner within seconds instead of silently burning
+            # through the playlist one unplayable song at a time.
+            self.last_failure_reason = "error"
+            return False
+
         # #345 slow-buffer tolerance, narrowed to "title genuinely changed":
         # title is now different from what it was before the call, so MA is
         # making progress on *some* new track. We still don't require the

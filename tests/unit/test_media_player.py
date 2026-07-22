@@ -385,6 +385,108 @@ class TestMANonBlockingPlayback:
         assert result is True
 
     @pytest.mark.asyncio
+    async def test_ma_rejects_when_player_reports_no_active_queue(self):
+        """#1863: the title moved, but the player reports `active_queue: None`.
+
+        That is the reported signature: an MA-platform entity that is only
+        mirroring the underlying speaker's pre-game context (a leftover
+        Spotify session, `state: paused`, `media_position: 0`) because MA
+        never accepted the play_media call. The #345 tolerance used to wave
+        this through as success, so the round started with a live timer and
+        no music. It must be a hard failure instead — and classified as
+        "error", so start_round pauses the game and surfaces the recovery
+        banner rather than silently skipping song after song.
+        """
+        hass = MagicMock()
+        hass.services.async_call = AsyncMock()
+        before = _make_state(
+            "playing",
+            media_title="Old Song",
+            media_position=100,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        before.attributes["active_queue"] = None
+        # Title moved (so the #345 branch would otherwise accept), but the
+        # speaker is paused on a foreign context and MA holds no queue.
+        stale = _make_state(
+            "paused",
+            media_title="Spotify",
+            media_position=0,
+            media_position_updated_at="2020-01-01T00:00:03+00:00",
+        )
+        stale.attributes["active_queue"] = None
+
+        poll = 0
+
+        def progression(*_args):
+            nonlocal poll
+            poll += 1
+            return before if poll <= 1 else stale
+
+        hass.states.get = MagicMock(side_effect=progression)
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            with patch(
+                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                1.0,
+            ):
+                result = await svc.play_song(_make_song(title="New Song"))
+
+        assert result is False
+        assert svc.last_failure_reason == "error"
+
+    @pytest.mark.asyncio
+    async def test_ma_slow_buffer_tolerance_survives_a_populated_queue(self):
+        """#1863 guard-rail: a genuinely buffering MA player keeps its queue.
+
+        The #1863 rejection must key on the queue being *empty*, not on the
+        attribute merely existing — otherwise every MA version that reports
+        `active_queue` would lose the #345 slow-buffer tolerance entirely.
+        """
+        hass = MagicMock()
+        hass.services.async_call = AsyncMock()
+        before = _make_state(
+            "playing",
+            media_title="Old Song",
+            media_position=100,
+            media_position_updated_at="2020-01-01T00:00:00+00:00",
+        )
+        before.attributes["active_queue"] = "RINCON_TEST"
+        partial = _make_state(
+            "playing",
+            media_title="Some Other Song",
+            media_position=0,
+            media_position_updated_at="2020-01-01T00:00:03+00:00",
+        )
+        partial.attributes["active_queue"] = "RINCON_TEST"
+
+        poll = 0
+
+        def progression(*_args):
+            nonlocal poll
+            poll += 1
+            return before if poll <= 1 else partial
+
+        hass.states.get = MagicMock(side_effect=progression)
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        with patch(
+            "custom_components.beatify.services.media_player.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            with patch(
+                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                1.0,
+            ):
+                result = await svc.play_song(_make_song(title="New Song"))
+
+        assert result is True
+
+    @pytest.mark.asyncio
     async def test_ma_returns_false_when_title_unchanged_but_position_advances(self):
         """#795 (was #345 tolerance pre-rc3): if the speaker title is identical
         to before the call but position keeps ticking, the *prior* track is
