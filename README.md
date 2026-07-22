@@ -508,6 +508,13 @@ Beatify uses JSON playlists stored in `config/beatify/playlists/`. The full, aut
 
 Sample playlists are included to get you started immediately.
 
+**Building one with an AI assistant.** The admin has a Playlist Generator that turns a Spotify
+playlist into this format: it hands you a prompt, you run it in ChatGPT / Claude / a local model,
+and you paste the JSON back. Beatify never calls an LLM itself. Assistants truncate large
+playlists — the wall sits near 30 songs and the reason is response length, not a Beatify limit.
+See [LLM Playlist Generator — FAQ](docs/llm-playlist-generator.md) for the batching workaround
+and the usual paste problems.
+
 ---
 
 <br>
