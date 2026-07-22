@@ -26,6 +26,11 @@ are unchanged.
   the RoundManager timer-task handle BEFORE ``end_round`` (#1029) so the
   subsequent ``cancel_timer`` cannot self-cancel the running task mid-REVEAL.
 * ``cancel_timer`` — cancel the round timer (delegates to ``RoundManager``).
+* ``force_end_round_if_overdue`` — the server-side backstop (#1865): ends a
+  round whose deadline has passed by more than the grace period while the
+  phase is still PLAYING. Driven by a periodic tick in ``__init__.py``, so it
+  does not depend on the per-round timer task surviving, and unlike the client
+  watchdog it does not depend on a browser being open.
 * ``_transition_to_reveal`` — REVEAL phase 4 (#1272): fire the combined REVEAL
   announcement BEFORE the visible state change (audio leads), clear per-phase
   reactions, then flip the phase to REVEAL through the ``_set_phase``
@@ -82,6 +87,8 @@ from __future__ import annotations
 
 import asyncio
 import logging
+
+from ..const import ROUND_OVERDUE_GRACE_SECONDS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -218,6 +225,64 @@ class RevealTransitionMixin:
         except asyncio.CancelledError:
             _LOGGER.debug("Timer task cancelled")
             raise
+
+    async def force_end_round_if_overdue(self) -> bool:
+        """End a round the round-timer task failed to end (#1865).
+
+        The round timer is a single ``asyncio`` task that sleeps to the
+        deadline and then calls ``end_round``. Everything downstream of that
+        sleep is a way for the round to never end: the task can be cancelled,
+        it can raise, or it can block in ``announce_time_up`` waiting on a TTS
+        service call. Until now the only thing that noticed was the countdown
+        running in a player's browser (``handle_round_timeout``) — so a host
+        who locked their phone, or a TV-only setup, sat on PLAYING forever.
+
+        This is the same nudge, driven from the server instead. It is called
+        from a periodic tick that is not owned by the round, so it survives
+        the round's own task dying. It does *not* make the round immune to a
+        blocked event loop — nothing in-process can — but a loop that stalls
+        and recovers now gets the round moved on by the next tick rather than
+        needing an open client.
+
+        ``end_round`` is idempotent, so racing the real timer is harmless: the
+        loser no-ops once the phase has moved on.
+
+        Returns:
+            True if this call ended the round, False if there was nothing to do.
+
+        """
+        from .state import GamePhase  # noqa: PLC0415 — avoid circular import
+
+        if self.phase != GamePhase.PLAYING:
+            return False
+        # Also covers the intro-splash case: while a splash is pending the
+        # deadline is only a placeholder and this reports not-passed (#1699).
+        if not self._round_manager.is_deadline_passed():
+            return False
+
+        deadline = self._round_manager.deadline
+        if deadline is None:
+            return False
+        overdue = (int(self._round_manager._now() * 1000) - deadline) / 1000.0
+        # The grace period keeps this a backstop rather than a competitor: the
+        # timer task firing a few hundred milliseconds late is normal, and
+        # ending the round from here first would only add a second code path
+        # to debug for a round that was about to end correctly anyway.
+        if overdue < ROUND_OVERDUE_GRACE_SECONDS:
+            return False
+
+        _LOGGER.warning(
+            "Round %d still PLAYING %.1fs past its deadline — server backstop "
+            "forcing end_round (the round timer task did not fire)",
+            self.round,
+            overdue,
+        )
+        # No broadcast follows: end_round already fires `_on_round_end` (and
+        # swallows its errors) on the way out. The client watchdog calls
+        # `handler.broadcast_state()` on top of it, which is a second push of
+        # the same state — not copied here.
+        await self.end_round()
+        return True
 
     async def _transition_to_reveal(self, correct_year: int | None) -> None:
         """Announce the reveal and flip the phase to REVEAL (#1272).

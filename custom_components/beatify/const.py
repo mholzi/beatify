@@ -16,6 +16,14 @@ MIN_PLAYERS = 2
 DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
+
+# Server-side round backstop (#1865). A periodic tick ends a round whose
+# deadline passed while the phase is still PLAYING, so the game does not depend
+# on the per-round timer task surviving or on a client's countdown nudging it.
+# The grace keeps it a backstop: the timer task running slightly late is normal
+# and should still be the thing that ends the round.
+ROUND_SUPERVISOR_INTERVAL_SECONDS = 2
+ROUND_OVERDUE_GRACE_SECONDS = 2.0
 MAX_NAME_LENGTH = 20
 MIN_NAME_LENGTH = 1
 LOBBY_DISCONNECT_GRACE_PERIOD = 5  # seconds before removing disconnected player
