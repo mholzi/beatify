@@ -7,6 +7,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ### Added
 - **FAQ for the LLM Playlist Generator ([docs/llm-playlist-generator.md](docs/llm-playlist-generator.md)).** The in-app guide already warns that assistants truncate large playlists, but only inside the generator modal — a user who hits the wall and searches the web, or asks in the forum, finds nothing. This page answers the same questions where they can be found and linked. It also gives the number the in-app hint does not: one finished song is ~920 characters (~260 tokens), so 32 songs land near 8 400 tokens — which is why the ceiling sits at ~30 songs and not somewhere arbitrary. Reported on the HA forum (thread 998895) before the in-app guide existed.
 
+### Changed
+- **Crowd-Court resolves as soon as everyone has voted (#1667).** The near-miss vote window in Title & Artist mode held REVEAL for a fixed 30 seconds even when every eligible player had already tapped 👍/👎 — dead air with nothing left to decide. The window now closes as soon as all votes are in. Eligibility follows the rules the vote handler already enforces: active players only (a stale ghost socket cannot hold the room, #928), eliminated players excluded (#827), and nobody counts as a voter on their own near-miss. When nobody *can* vote — a solo game, or a near-miss whose only other players are gone — the timer runs as before rather than resolving instantly. The 30-second window itself is unchanged and stays fixed.
+
 ## [4.2.0-rc16] - 2026-07-22
 
 Pre-release — cut from current `main`, supersedes rc15. One admin fix found by the live-test screenshot stage (the API reported the state as healthy), plus a Tidal backfill wave.
