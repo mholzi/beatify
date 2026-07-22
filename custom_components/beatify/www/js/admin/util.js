@@ -169,8 +169,13 @@ export function acquireWakeLockFirst(requestWakeLock, action) {
  * / `DEFAULT_ROUND_DURATION` in `const.py` — the server rejects anything
  * outside the range with a 400, so the client must not invent values it will
  * refuse (#1867).
+ *
+ * The mirror is hand-maintained, so `round-duration-mirror.test.js` parses
+ * `const.py` and fails if these three drift from it. `MIN` shipped as 10 while
+ * Python has 15, which let 10–14 pass normalisation and then 400 at the server
+ * — exactly the class of value this comment promises not to invent.
  */
-export const ROUND_DURATION_MIN = 10;
+export const ROUND_DURATION_MIN = 15;
 export const ROUND_DURATION_MAX = 60;
 export const DEFAULT_ROUND_DURATION = 45;
 
