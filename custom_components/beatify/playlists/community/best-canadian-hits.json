@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "canadian",
     "canada",
@@ -2970,7 +2970,7 @@
         "it": "applemusic://track/1551611129"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NPtiryyxx9c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62852365",
       "uri_deezer": "deezer://track/128234299",
       "alt_artists": [
         "Barenaked Ladies",
@@ -3007,7 +3007,7 @@
         "it": "applemusic://track/1483507019"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2vP1i7AMlJU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36289922",
       "uri_deezer": "deezer://track/822636512",
       "alt_artists": [
         "Gordon Lightfoot",
@@ -3044,7 +3044,7 @@
         "it": "applemusic://track/627235233"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rQY1alJeNMA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/50578731",
       "uri_deezer": "deezer://track/65802831",
       "alt_artists": [
         "The Payolas",
@@ -3081,7 +3081,7 @@
         "it": "applemusic://track/1525440916"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cEkkGGsPqLU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/150231915",
       "uri_deezer": "deezer://track/1036062732",
       "alt_artists": [
         "Tom Cochrane",
