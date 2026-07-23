@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.6",
+  "version": "0.8",
   "tags": [
     "canadian",
     "canada",
@@ -2182,7 +2182,7 @@
         "it": "applemusic://track/1492312808"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NhxZ8ok3Z2o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/393333",
       "uri_deezer": "deezer://track/2812992",
       "alt_artists": [
         "Crowbar",
@@ -2219,7 +2219,7 @@
         "it": "applemusic://track/68040626"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aXfY9UzDp6M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/250220",
       "uri_deezer": "deezer://track/707427",
       "alt_artists": [
         "The Jeff Healey Band",
@@ -2256,7 +2256,7 @@
         "it": "applemusic://track/1425253293"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=eGkGNCUQtWY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35716952",
       "uri_deezer": "deezer://track/540201372",
       "alt_artists": [
         "The Band",
@@ -2293,7 +2293,7 @@
         "it": "applemusic://track/1719225009"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XDAOEAAflBg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/515755",
       "uri_deezer": "deezer://track/959156",
       "alt_artists": [
         "Frozen Ghost",
@@ -2409,7 +2409,7 @@
         "it": "applemusic://track/1015739710"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=i1zag6DcYIc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/49653875",
       "uri_deezer": "deezer://track/2011032597",
       "alt_artists": [
         "April Wine",
@@ -2446,7 +2446,7 @@
         "it": "applemusic://track/297419069"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xBysvBtXcrA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/263363595",
       "uri_deezer": "deezer://track/4091570",
       "alt_artists": [
         "Céline Dion",
@@ -2483,7 +2483,7 @@
         "it": "applemusic://track/1440656342"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N1pXePsfeMs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35716037",
       "uri_deezer": "deezer://track/1758924227",
       "alt_artists": [
         "La Bottine Souriante",
@@ -2520,7 +2520,7 @@
         "it": "applemusic://track/1440620491"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3oq-7PJ4wug",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35687704",
       "uri_deezer": "deezer://track/7731085",
       "alt_artists": [
         "Bryan Adams",
@@ -2594,7 +2594,7 @@
         "it": "applemusic://track/1826467371"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9vQYSzveXOk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/447856558",
       "uri_deezer": "deezer://track/3458259771",
       "alt_artists": [
         "Émile Bourgault",
@@ -2674,7 +2674,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zHKqPSAchcU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2925956",
       "uri_deezer": "deezer://track/13239440",
       "alt_artists": [
         "Crowbar",
@@ -2711,7 +2711,7 @@
         "it": "applemusic://track/1271097308"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XEbhjdn635Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77413362",
       "uri_deezer": "deezer://track/64937373",
       "alt_artists": [
         "Stampeders",
@@ -2748,7 +2748,7 @@
         "it": "applemusic://track/567061504"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FrpiDeNzNew",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/202039",
       "uri_deezer": "deezer://track/66763371",
       "alt_artists": [
         "Barenaked Ladies",
@@ -2785,7 +2785,7 @@
         "it": "applemusic://track/1751197659"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uHDSk16jDSE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/371774473",
       "uri_deezer": "deezer://track/2860971552",
       "alt_artists": [
         "Chilliwack",
@@ -2822,7 +2822,7 @@
         "it": "applemusic://track/298150881"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YjbWhzs3dyc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5119945",
       "uri_deezer": "deezer://track/15219441",
       "alt_artists": [
         "54-40",
@@ -2859,7 +2859,7 @@
         "it": "applemusic://track/1778092887"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rAgK-qjkjGs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/397811337",
       "uri_deezer": "deezer://track/968137712",
       "alt_artists": [
         "Crowbar",
@@ -2896,7 +2896,7 @@
         "it": "applemusic://track/1473319252"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dxQrwl1rC9A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10565725",
       "uri_deezer": "deezer://track/14552288",
       "alt_artists": [
         "The Tragically Hip",
@@ -2933,7 +2933,7 @@
         "it": "applemusic://track/1481512978"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yAuTUWITF9I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10565729",
       "uri_deezer": "deezer://track/14552292",
       "alt_artists": [
         "Barenaked Ladies, Ben Grosse",
