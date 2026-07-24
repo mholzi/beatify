@@ -1,6 +1,6 @@
 {
   "name": "Best of Giraffenaffen",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "kinderlieder",
     "kids",
@@ -395,7 +395,7 @@
         "it": "applemusic://track/1488854256"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dk36Mjchgh8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968406",
       "uri_deezer": "deezer://track/822652932",
       "alt_artists": [
         "Giraffenaffen"
@@ -423,7 +423,7 @@
         "it": "applemusic://track/1472094384"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qxCDMe_F01U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/112875280",
       "uri_deezer": "deezer://track/709647632",
       "alt_artists": [
         "Anisa Celik",
@@ -452,7 +452,7 @@
         "it": "applemusic://track/1750546220"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vGBPnXu1B5c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968444",
       "uri_deezer": "deezer://track/822657922",
       "alt_artists": [
         "Giraffenaffen"
@@ -480,7 +480,7 @@
         "it": "applemusic://track/1624189986"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QNXVYQI1X08",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/229243465",
       "uri_deezer": "deezer://track/1779682227",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2010).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2010).",
@@ -505,7 +505,7 @@
         "it": "applemusic://track/1512788984"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CZ--4tGZO4U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/140977394",
       "uri_deezer": "deezer://track/957737972",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2020).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2020).",
@@ -530,7 +530,7 @@
         "it": "applemusic://track/1615368685"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22288857",
       "uri_deezer": null,
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2009).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2009).",
@@ -555,7 +555,7 @@
         "it": "applemusic://track/1820429612"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DO1tcoD5FiI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/376071037",
       "uri_deezer": "deezer://track/2896921651",
       "alt_artists": [
         "DIKKA"
@@ -583,7 +583,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=inPn84PQyF8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68061282",
       "uri_deezer": "deezer://track/138225341",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2016).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2016).",
@@ -608,7 +608,7 @@
         "it": "applemusic://track/1887886482"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZAarovnkAM0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/419168251",
       "uri_deezer": "deezer://track/3242580421",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2025).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2025).",
@@ -633,7 +633,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aKl4o76rvOQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/95280207",
       "uri_deezer": "deezer://track/559296952",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2018).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2018).",
@@ -658,7 +658,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WkUlLkSFQ0g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/30924664",
       "uri_deezer": "deezer://track/79494762",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2014).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2014).",
@@ -683,7 +683,7 @@
         "it": "applemusic://track/724179483"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1WFS9fHPTFM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11203917",
       "uri_deezer": "deezer://track/13472681",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2007).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2007).",
@@ -708,7 +708,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xS29W9GikEU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/121098329",
       "uri_deezer": "deezer://track/788629672",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2019).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2019).",
