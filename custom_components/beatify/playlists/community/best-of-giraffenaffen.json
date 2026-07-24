@@ -1,6 +1,6 @@
 {
   "name": "Best of Giraffenaffen",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "kinderlieder",
     "kids",
@@ -29,7 +29,7 @@
         "it": "applemusic://track/1488847430"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2GRYX1vivPo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968448",
       "uri_deezer": "deezer://track/822657962",
       "alt_artists": [
         "Giraffenaffen"
@@ -57,7 +57,7 @@
         "it": "applemusic://track/1488855968"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GdXC0BhtEh4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968487",
       "uri_deezer": "deezer://track/822653432",
       "alt_artists": [
         "Giraffenaffen"
@@ -85,7 +85,7 @@
         "it": "applemusic://track/1488847644"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jn0SHMP05i0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968453",
       "uri_deezer": "deezer://track/822658012",
       "alt_artists": [
         "Giraffenaffen"
@@ -113,7 +113,7 @@
         "it": "applemusic://track/1502086057"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n5I-zwNR-gQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/146645087",
       "uri_deezer": "deezer://track/1005383332",
       "alt_artists": [
         "Giraffenaffen"
@@ -141,7 +141,7 @@
         "it": "applemusic://track/1488854505"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Lx2wfGt0DnE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968414",
       "uri_deezer": "deezer://track/822653012",
       "alt_artists": [
         "Giraffenaffen"
@@ -169,7 +169,7 @@
         "it": "applemusic://track/1698687882"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JKmQFeYFZcM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/315168906",
       "uri_deezer": "deezer://track/2444519415",
       "alt_artists": [
         "Michael Schulte"
@@ -197,7 +197,7 @@
         "it": "applemusic://track/1698687873"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=isHOM3_hZ4s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/315168903",
       "uri_deezer": "deezer://track/2395988385",
       "alt_artists": [
         "DIKKA",
@@ -226,7 +226,7 @@
         "it": "applemusic://track/1698687874"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RztCBPgRQCM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/315168904",
       "uri_deezer": "deezer://track/2444519395",
       "alt_artists": [
         "Loi"
@@ -254,7 +254,7 @@
         "it": "applemusic://track/1620399998"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wQ61xZ0ZK58",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/232041013",
       "uri_deezer": "deezer://track/1776968147",
       "alt_artists": [
         "Giraffenaffen"
@@ -282,7 +282,7 @@
         "it": "applemusic://track/1886517199"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TGwxUWqlxFY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/232041014",
       "uri_deezer": "deezer://track/1776968157",
       "alt_artists": [
         "Giraffenaffen"
@@ -310,7 +310,7 @@
         "it": "applemusic://track/1488855984"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OWWsts3sFVE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968492",
       "uri_deezer": "deezer://track/822653482",
       "alt_artists": [
         "Giraffenaffen"
@@ -338,7 +338,7 @@
         "it": "applemusic://track/1488856239"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Hd1To7UeYZY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968497",
       "uri_deezer": "deezer://track/822653532",
       "alt_artists": [
         "Giraffenaffen"
@@ -366,7 +366,7 @@
         "it": "applemusic://track/1488847642"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9UnZrZEsmsg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123968452",
       "uri_deezer": "deezer://track/822658002",
       "alt_artists": [
         "Giraffenaffen",
