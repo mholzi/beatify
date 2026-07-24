@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.10",
+  "version": "0.11",
   "tags": [
     "canadian",
     "canada",
@@ -3229,7 +3229,7 @@
         "it": "applemusic://track/1823318104"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=W_ioIdX6l9w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/444770246",
       "uri_deezer": "deezer://track/3435223151",
       "alt_artists": [
         "Tate McRae",
@@ -3266,7 +3266,7 @@
         "it": "applemusic://track/1575640579"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=U293vY4u4ME",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/190298637",
       "uri_deezer": "deezer://track/1427468902",
       "alt_artists": [
         "Aysanabee",
@@ -3303,7 +3303,7 @@
         "it": "applemusic://track/1799199474"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fOkm4LJMiK4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/420976098",
       "uri_deezer": "deezer://track/70285703",
       "alt_artists": [
         "Gordon Lightfoot",
@@ -3340,7 +3340,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kaWs4a1DA4g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/29087280",
       "uri_deezer": "deezer://track/77897364",
       "alt_artists": [
         "Drake",
@@ -3414,7 +3414,7 @@
         "it": "applemusic://track/1799266571"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CGBdn6zQU0o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/421057553",
       "uri_deezer": "deezer://track/3256537981",
       "alt_artists": [
         "Loverboy",
