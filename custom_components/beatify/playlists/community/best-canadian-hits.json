@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "canadian",
     "canada",
@@ -3451,7 +3451,7 @@
         "it": "applemusic://track/715719274"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=IQGvqGqVmWo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3725223",
       "uri_deezer": "deezer://track/5808221",
       "alt_artists": [
         "54-40",
@@ -3488,7 +3488,7 @@
         "it": "applemusic://track/1799321389"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CVHJPE_yi7I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/421135594",
       "uri_deezer": "deezer://track/3257428771",
       "alt_artists": [
         "Bryan Adams",
@@ -3525,7 +3525,7 @@
         "it": "applemusic://track/635089394"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=f1Svjcda-84",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21029798",
       "uri_deezer": "deezer://track/66534140",
       "alt_artists": [
         "Bryan Adams",
@@ -3673,7 +3673,7 @@
         "it": "applemusic://track/1545497938"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0cmbxttS-RY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/137443925",
       "uri_deezer": "deezer://track/929158322",
       "alt_artists": [
         "Émile Bourgault",
@@ -3710,7 +3710,7 @@
         "it": "applemusic://track/1706942560"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_QtN6qocpKU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/315101914",
       "uri_deezer": "deezer://track/2444176345",
       "alt_artists": [
         "Aysanabee",
@@ -3747,7 +3747,7 @@
         "it": "applemusic://track/1836254543"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N00LXW8LGLo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/456996562",
       "uri_deezer": "deezer://track/3530692631",
       "alt_artists": [
         "Tate McRae",
