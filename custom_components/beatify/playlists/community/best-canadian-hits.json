@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "canadian",
     "canada",
@@ -3118,7 +3118,7 @@
         "it": "applemusic://track/1677631762"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=eiVNTCVFxuk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/256740569",
       "uri_deezer": "deezer://track/1863874277",
       "alt_artists": [
         "Simple Plan",
@@ -3155,7 +3155,7 @@
         "it": "applemusic://track/438829874"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZkPYd2HzSpE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14903970",
       "uri_deezer": "deezer://track/13547559",
       "alt_artists": [
         "Hedley",
@@ -3192,7 +3192,7 @@
         "it": "applemusic://track/1600965880"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ciOcPFcF1jQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/209669307",
       "uri_deezer": "deezer://track/1594902461",
       "alt_artists": [
         "Aysanabee",
