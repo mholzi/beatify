@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "german",
     "pop",
@@ -31,7 +31,7 @@
       },
       "uri_deezer": "deezer://track/3137302",
       "uri_youtube_music": "https://music.youtube.com/watch?v=X5kmM98iklo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1413281",
       "alt_artists": [
         "Juli",
         "Silbermond",
@@ -68,7 +68,7 @@
       },
       "uri_deezer": "deezer://track/2200204",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4uDtsdF4q7M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11010218",
       "alt_artists": [
         "Seeed",
         "Jan Delay",
@@ -106,7 +106,7 @@
       },
       "uri_deezer": "deezer://track/109701654",
       "uri_youtube_music": "https://music.youtube.com/watch?v=EKldIRCl3Cg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/51700797",
       "alt_artists": [
         "Faber",
         "Bosse",
@@ -140,7 +140,7 @@
       },
       "uri_deezer": "deezer://track/101295588",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WNKIbGMq5jM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45766684",
       "alt_artists": [
         "Marteria",
         "Casper",
