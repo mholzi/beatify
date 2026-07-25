@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "german",
     "pop",
@@ -178,7 +178,7 @@
       },
       "uri_deezer": "deezer://track/672957662",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8Rhrs03u8yg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107829493",
       "alt_artists": [
         "AnnenMayKantereit",
         "Faber",
@@ -214,7 +214,7 @@
       },
       "uri_deezer": "deezer://track/72761680",
       "uri_youtube_music": "https://music.youtube.com/watch?v=haECT-SerHk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22563728",
       "alt_artists": [
         "Andrea Berg",
         "Vanessa Mai",
@@ -290,7 +290,7 @@
       },
       "uri_deezer": "deezer://track/121123256",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WMA9GHORLow",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/57738056",
       "alt_artists": [
         "Faber",
         "Bosse",
@@ -326,7 +326,7 @@
       },
       "uri_deezer": "deezer://track/3090905",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aC872j2-PDw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1570270",
       "alt_artists": [
         "Juli",
         "Silbermond",
@@ -362,7 +362,7 @@
       },
       "uri_deezer": "deezer://track/105710536",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xyno53dCO7Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/50096666",
       "alt_artists": [
         "Bushido",
         "Kool Savas",
@@ -400,7 +400,7 @@
       },
       "uri_deezer": "deezer://track/77045434",
       "uri_youtube_music": "https://music.youtube.com/watch?v=k9EYjn5f_nE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/28801658",
       "alt_artists": [
         "Mark Forster",
         "Tim Bendzko",
@@ -438,7 +438,7 @@
       },
       "uri_deezer": "deezer://track/96460712",
       "uri_youtube_music": "https://music.youtube.com/watch?v=oq0rrYrufYU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/53785115",
       "alt_artists": [
         "Mark Forster",
         "Tim Bendzko",
@@ -476,7 +476,7 @@
       },
       "uri_deezer": "deezer://track/102972232",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xhln61FaG-8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45271563",
       "alt_artists": [
         "LEA",
         "Sarah Connor",
@@ -514,7 +514,7 @@
       },
       "uri_deezer": "deezer://track/121926890",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ad8ukI7Z-b8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58880634",
       "alt_artists": [
         "Wir sind Helden",
         "Silbermond",
@@ -553,7 +553,7 @@
       },
       "uri_deezer": "deezer://track/974881312",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HR00F3VnlcE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/143173766",
       "alt_artists": [
         "Sido",
         "Bushido",
@@ -587,7 +587,7 @@
       },
       "uri_deezer": "deezer://track/121123270",
       "uri_youtube_music": "https://music.youtube.com/watch?v=At07K8AUA9M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/57738063",
       "alt_artists": [
         "Faber",
         "Bosse",
@@ -621,7 +621,7 @@
       },
       "uri_deezer": "deezer://track/77834654",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MtDPKJSsBgc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/29566404",
       "alt_artists": [
         "Tim Bendzko",
         "Andreas Bourani",
@@ -659,7 +659,7 @@
       },
       "uri_deezer": "deezer://track/2160808",
       "uri_youtube_music": "https://music.youtube.com/watch?v=-SHwn6O25CY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3685446",
       "alt_artists": [
         "Wir sind Helden",
         "MIA.",
@@ -698,7 +698,7 @@
       },
       "uri_deezer": "deezer://track/121926884",
       "uri_youtube_music": "https://music.youtube.com/watch?v=KyMT8MDaxqo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58880631",
       "alt_artists": [
         "Wir sind Helden",
         "Silbermond",
@@ -734,7 +734,7 @@
       },
       "uri_deezer": "deezer://track/98348314",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1gDbpWC_9pE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45183696",
       "alt_artists": [
         "Helene Fischer",
         "Yvonne Catterfeld",
@@ -772,7 +772,7 @@
       },
       "uri_deezer": "deezer://track/70079181",
       "uri_youtube_music": "https://music.youtube.com/watch?v=oGhdsruanPg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21988860",
       "alt_artists": [
         "Wir sind Helden",
         "Juli",
@@ -810,7 +810,7 @@
       },
       "uri_deezer": "deezer://track/426347072",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6Mwvi40VSDU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/80995216",
       "alt_artists": [
         "Tim Bendzko",
         "Andreas Bourani",
@@ -849,7 +849,7 @@
       },
       "uri_deezer": "deezer://track/376483341",
       "uri_youtube_music": "https://music.youtube.com/watch?v=19RE_GTO3n0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/75485715",
       "alt_artists": [
         "Andrea Berg",
         "Vanessa Mai",
@@ -887,7 +887,7 @@
       },
       "uri_deezer": "deezer://track/103804276",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QoQpxH8eBzg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/49754311",
       "alt_artists": [
         "Casper",
         "Marteria",
