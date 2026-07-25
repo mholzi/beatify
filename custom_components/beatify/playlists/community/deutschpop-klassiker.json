@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "german",
     "pop",
@@ -2024,7 +2024,7 @@
       },
       "uri_deezer": "deezer://track/109703918",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ohHJjPSsW8c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/54054678",
       "alt_artists": [
         "Juli",
         "Wir sind Helden",
@@ -2060,7 +2060,7 @@
       },
       "uri_deezer": "deezer://track/84668179",
       "uri_youtube_music": "https://music.youtube.com/watch?v=O40yPfbLkzw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34039819",
       "alt_artists": [
         "Nicole",
         "Marianne Rosenberg",
@@ -2094,7 +2094,7 @@
       },
       "uri_deezer": "deezer://track/134946088",
       "uri_youtube_music": "https://music.youtube.com/watch?v=C5mnE1Cs2sg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66264828",
       "alt_artists": [
         "Yvonne Catterfeld",
         "Sarah Connor",
@@ -2128,7 +2128,7 @@
       },
       "uri_deezer": "deezer://track/130340602",
       "uri_youtube_music": "https://music.youtube.com/watch?v=riH-Nd5VbrQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64088709",
       "alt_artists": [
         "LEA",
         "Namika",
@@ -2162,7 +2162,7 @@
       },
       "uri_deezer": "deezer://track/653755722",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IfpvdHhIRIg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106320942",
       "alt_artists": [
         "Mark Forster",
         "Johannes Oerding",
@@ -2200,7 +2200,7 @@
       },
       "uri_deezer": "deezer://track/70267012",
       "uri_youtube_music": "https://music.youtube.com/watch?v=KSFPrOAwzqo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22126299",
       "alt_artists": [
         "Marteria",
         "Cro",
@@ -2236,7 +2236,7 @@
       },
       "uri_deezer": "deezer://track/143782932",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pVdqhL3eu28",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71027531",
       "alt_artists": [
         "Casper",
         "Marteria",
@@ -2270,7 +2270,7 @@
       },
       "uri_deezer": "deezer://track/755328722",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tqZfLmq6bxg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/117809896",
       "alt_artists": [
         "Bushido",
         "Kool Savas",
@@ -2306,7 +2306,7 @@
       },
       "uri_deezer": "deezer://track/135364786",
       "uri_youtube_music": "https://music.youtube.com/watch?v=697X-r-GVEM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66543240",
       "alt_artists": [
         "Helene Fischer",
         "Yvonne Catterfeld",
@@ -2342,7 +2342,7 @@
       },
       "uri_deezer": "deezer://track/4300847",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PRPxUo8kW8I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3143202",
       "alt_artists": [
         "Fanta 4",
         "Samy Deluxe",
@@ -2380,7 +2380,7 @@
       },
       "uri_deezer": "deezer://track/378742281",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JhJr_fPZc8M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77648832",
       "alt_artists": [
         "AnnenMayKantereit",
         "Bosse",
@@ -2416,7 +2416,7 @@
       },
       "uri_deezer": "deezer://track/14773082",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QTIQ_8IlJgQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10720016",
       "alt_artists": [
         "Jan Delay",
         "Kool Savas",
@@ -2450,7 +2450,7 @@
       },
       "uri_deezer": "deezer://track/14340462",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kZXJY6HtWSU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10209763",
       "alt_artists": [
         "Herbert Grönemeyer",
         "Marius Müller-Westernhagen",
@@ -2488,7 +2488,7 @@
       },
       "uri_deezer": "deezer://track/598211882",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DmqmO7S1lio",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/99797154",
       "alt_artists": [
         "Faber",
         "Bosse",
@@ -2522,7 +2522,7 @@
       },
       "uri_deezer": "deezer://track/7323577",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9gKYGbaqQVA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11193973",
       "alt_artists": [
         "Roland Kaiser",
         "Wolfgang Petry",
@@ -2556,7 +2556,7 @@
       },
       "uri_deezer": "deezer://track/4231394",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_QltRS3NrTI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66264830",
       "alt_artists": [
         "Yvonne Catterfeld",
         "Sarah Connor",
@@ -2594,7 +2594,7 @@
       },
       "uri_deezer": "deezer://track/4300901",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JyCN9mvA8cI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3133726",
       "alt_artists": [
         "Fanta 4",
         "Samy Deluxe",
@@ -2628,7 +2628,7 @@
       },
       "uri_deezer": "deezer://track/615080882",
       "uri_youtube_music": "https://music.youtube.com/watch?v=KZUcpzV3Qx8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102148098",
       "alt_artists": [
         "Sido",
         "Samy Deluxe",
@@ -2662,7 +2662,7 @@
       },
       "uri_deezer": "deezer://track/80180630",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HOYhFlbp0Uc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/31758005",
       "alt_artists": [
         "Beatsteaks",
         "Die Fantastischen Vier",
