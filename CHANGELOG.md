@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Polskie hity lat 90' 00' 🇵🇱 — 93 tracks (#1891).** Polish pop and rock hits of the 1990s and 2000s, the third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock. Seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 93 genuinely new songs rather than 100 with overlap.
+
 ## [4.2.0-rc17] - 2026-07-22
 
 Pre-release — cut from current `main`, supersedes rc16. Two gameplay changes from the Fable-review backlog, plus documentation for the AI playlist workflow.
