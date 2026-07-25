@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "german",
     "pop",
@@ -921,7 +921,7 @@
       },
       "uri_deezer": "deezer://track/672193282",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YHbYAUs9JCo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/108343454",
       "alt_artists": [
         "Loredana",
         "Shirin David",
@@ -959,7 +959,7 @@
       },
       "uri_deezer": "deezer://track/12000049",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kLVW82ryw2Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6680905",
       "alt_artists": [
         "Mark Forster",
         "Johannes Oerding",
@@ -997,7 +997,7 @@
       },
       "uri_deezer": "deezer://track/128548159",
       "uri_youtube_music": "https://music.youtube.com/watch?v=m2JRghbgeYw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62346180",
       "alt_artists": [
         "AnnenMayKantereit",
         "Bilderbuch",
@@ -1031,7 +1031,7 @@
       },
       "uri_deezer": "deezer://track/479680632",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vmQmYvYBj6Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86585562",
       "alt_artists": [
         "LEA",
         "Sarah Connor",
@@ -1069,7 +1069,7 @@
       },
       "uri_deezer": "deezer://track/755373282",
       "uri_youtube_music": "https://music.youtube.com/watch?v=nSaZMAFEW2U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/117840781",
       "alt_artists": [
         "Faber",
         "Bosse",
@@ -1103,7 +1103,7 @@
       },
       "uri_deezer": "deezer://track/99127814",
       "uri_youtube_music": "https://music.youtube.com/watch?v=u96Gr-NWnN4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45060584",
       "alt_artists": [
         "Mark Forster",
         "Tim Bendzko",
@@ -1141,7 +1141,7 @@
       },
       "uri_deezer": "deezer://track/539314222",
       "uri_youtube_music": "https://music.youtube.com/watch?v=b3cU182bGfQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/93309171",
       "alt_artists": [
         "Sarah Connor",
         "Namika",
@@ -1179,7 +1179,7 @@
       },
       "uri_deezer": "deezer://track/582229872",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7bczvKRhycA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/98192817",
       "alt_artists": [
         "Tim Bendzko",
         "Andreas Bourani",
@@ -1217,7 +1217,7 @@
       },
       "uri_deezer": "deezer://track/937040012",
       "uri_youtube_music": "https://music.youtube.com/watch?v=l7WE9lS37Gc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/138362960",
       "alt_artists": [
         "Bosse",
         "Andreas Bourani",
@@ -1253,7 +1253,7 @@
       },
       "uri_deezer": "deezer://track/2305250",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7fUpaXxPgMI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3983171",
       "alt_artists": [
         "Wir sind Helden",
         "Juli",
@@ -1291,7 +1291,7 @@
       },
       "uri_deezer": "deezer://track/505512892",
       "uri_youtube_music": "https://music.youtube.com/watch?v=n8NYD5qHdBw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89375094",
       "alt_artists": [
         "Helene Fischer",
         "Andreas Bourani",
