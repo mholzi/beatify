@@ -5,7 +5,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [Unreleased]
 
 ### Added
-- **Polskie hity lat 90' 00' 🇵🇱 — 93 tracks (#1891).** Polish pop and rock hits of the 1990s and 2000s, the third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock. Seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 93 genuinely new songs rather than 100 with overlap.
+- **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
 
 ## [4.2.0-rc17] - 2026-07-22
 
