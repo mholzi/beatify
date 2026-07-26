@@ -1,17 +1,19 @@
 {
-  "name": "Polskie hity lat 90' 00' 🇵🇱",
-  "version": "0.3",
+  "name": "Polskie hity radiowe 🇵🇱",
+  "version": "0.4",
   "tags": [
     "polish",
     "pop",
     "rock",
+    "1980s",
     "1990s",
-    "2000s"
+    "2000s",
+    "2010s"
   ],
   "language": "pl",
   "author": "Beatify Team",
   "added_date": "2026-07-25",
-  "description": "Polish pop and rock hits of the 1990s and 2000s — the radio canon of that era (Ich Troje, Myslovitz, Wilki, Lady Pank, Kayah, Brodka et al) alongside the older classics that never left Polish playlists. Sourced from the in-app playlist funnel (#1891); seven tracks already present in Polskie przeboje wszech czasow / Polski Rock were removed as duplicates.",
+  "description": "Polish pop and rock radio hits, 1972-2016 — with the heart of the collection in the 1990s and 2000s (75 of 92 tracks): Ich Troje, Myslovitz, Wilki, Lady Pank, Kayah, Brodka et al, alongside the older classics that never left Polish radio (Dwa plus Jeden, Maanam, Perfect, Dzem) and a handful of later hits. Sourced from the in-app playlist funnel (#1891); seven tracks already present in Polskie przeboje wszech czasow / Polski Rock were removed as duplicates.",
   "songs": [
     {
       "year": 2009,
