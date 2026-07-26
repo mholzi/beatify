@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "german",
     "pop",
@@ -3381,7 +3381,7 @@
       },
       "uri_deezer": "deezer://track/562963",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dhAs51kusLU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/559205",
       "alt_artists": [
         "Wir sind Helden",
         "Polarkreis 18",
@@ -3417,7 +3417,7 @@
       },
       "uri_deezer": "deezer://track/1278117372",
       "uri_youtube_music": "https://music.youtube.com/watch?v=98LmQZwMFwY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/177571613",
       "alt_artists": [
         "Adel Tawil",
         "Söhne Mannheims",
@@ -3455,7 +3455,7 @@
       },
       "uri_deezer": "deezer://track/118992732",
       "uri_youtube_music": "https://music.youtube.com/watch?v=yN_utJYmkIs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/56496749",
       "alt_artists": [
         "AnnenMayKantereit",
         "Philipp Poisel",
@@ -3491,7 +3491,7 @@
       },
       "uri_deezer": "deezer://track/378742231",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qqK2iDkDehc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77648819",
       "alt_artists": [
         "AnnenMayKantereit",
         "Bosse",
@@ -3525,7 +3525,7 @@
       },
       "uri_deezer": "deezer://track/896692912",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gThzgyY29xk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/133436181",
       "alt_artists": [
         "Xavier Naidoo",
         "Cassandra Steen",
@@ -3563,7 +3563,7 @@
       },
       "uri_deezer": "deezer://track/91985886",
       "uri_youtube_music": "https://music.youtube.com/watch?v=yt0FlrmJJn0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38907653",
       "alt_artists": [
         "Bosse",
         "Tim Bendzko",
@@ -3599,7 +3599,7 @@
       },
       "uri_deezer": "deezer://track/2443031",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3JG6yipKXVA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3606638",
       "alt_artists": [
         "Peter Fox",
         "Seeed",
@@ -3635,7 +3635,7 @@
       },
       "uri_deezer": "deezer://track/937020502",
       "uri_youtube_music": "https://music.youtube.com/watch?v=w-Ixfc84zi4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/138361440",
       "alt_artists": [
         "Bosse",
         "Andreas Bourani",
@@ -3668,7 +3668,7 @@
         "it": "applemusic://track/209983089"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PLHXrEPwk58",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14635004",
       "uri_deezer": "deezer://track/2888227",
       "alt_artists": [],
       "fun_fact": "Jasmin Wagner's bubblegum-Eurodance debut launched one of Germany's biggest teen-pop careers.",
@@ -3698,7 +3698,7 @@
         "it": "applemusic://track/1675303813"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=O5B73JFV5cI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/493939935",
       "uri_deezer": "deezer://track/3808712202",
       "alt_artists": [],
       "fun_fact": "The Leipzig band's witty hit declaring that everything is 'only stolen'.",
@@ -3728,7 +3728,7 @@
         "it": "applemusic://track/1763323401"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xeJ3LDWfRuE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/381799712",
       "uri_deezer": "deezer://track/2953000121",
       "alt_artists": [],
       "fun_fact": "An Italian producer's German-language Eurodance novelty that became a continent-wide hit.",
@@ -3758,7 +3758,7 @@
         "it": "applemusic://track/1761382252"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Z0aQxOOMCjw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/486357235",
       "uri_deezer": "deezer://track/2935831211",
       "alt_artists": [],
       "fun_fact": "A German-language après-ski party anthem, a fixture of winter-holiday playlists.",
@@ -3788,7 +3788,7 @@
         "it": "applemusic://track/6767693251"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Xs-BMEw_cRY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18629071",
       "uri_deezer": "deezer://track/13569299",
       "alt_artists": [],
       "fun_fact": "Released months after Falco's death, the dark ballad became a posthumous number one.",
@@ -3818,7 +3818,7 @@
         "it": "applemusic://track/1675989383"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qh7cf9Wpk2w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33973861",
       "uri_deezer": "deezer://track/1760748167",
       "fun_fact": "A chart hit by EAV (Erste Allgemeine Verunsicherung) (1990).",
       "fun_fact_de": "Ein Chart-Hit von EAV (Erste Allgemeine Verunsicherung) (1990).",
@@ -3844,7 +3844,7 @@
       },
       "uri_deezer": "deezer://track/95965268",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6_7qL92z3pA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/42832935",
       "alt_artists": [
         "Die Fantastischen Vier",
         "Kraftklub",

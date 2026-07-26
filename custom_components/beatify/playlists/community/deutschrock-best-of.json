@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "deutschrock",
     "german rock",
@@ -30,7 +30,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38577320",
       "uri_deezer": "deezer://track/91514582",
       "alt_artists": [],
       "fun_fact": "KneipenTerroristen is part of the German rock (Deutschrock) scene; \"14\" (2014) features on this Deutschrock best-of.",
@@ -56,7 +56,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/26008099",
       "uri_deezer": "deezer://track/2490366",
       "alt_artists": [],
       "fun_fact": "Böhse Onkelz is part of the German rock (Deutschrock) scene; \"Auf gute Freunde\" (1996) features on this Deutschrock best-of.",
@@ -82,7 +82,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/444188652",
       "uri_deezer": "deezer://track/3430225431",
       "alt_artists": [],
       "fun_fact": "Frei.Wild is part of the German rock (Deutschrock) scene; \"Alles ist weg\" (2025) features on this Deutschrock best-of.",
@@ -108,7 +108,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/370026570",
       "uri_deezer": "deezer://track/2851839172",
       "alt_artists": [],
       "fun_fact": "Goitzsche Front is part of the German rock (Deutschrock) scene; \"Wenn's nicht rockt\" (2023) features on this Deutschrock best-of.",
