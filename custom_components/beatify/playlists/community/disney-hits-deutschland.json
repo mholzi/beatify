@@ -1,6 +1,6 @@
 {
   "name": "Disney Hits Deutschland",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "disney",
     "movies",
@@ -1824,7 +1824,7 @@
       },
       "uri_deezer": "deezer://track/138225343",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eoH8Vj7fKXM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/518749767",
       "fun_fact": "\"Glänzend\" is the German version of \"Shiny,\" the crab Tamatoa's flamboyant villain song from Moana (Vaiana).",
       "fun_fact_de": "\"Glänzend\" ist die deutsche Fassung von \"Shiny\", dem schillernden Bösewicht-Song der Krabbe Tamatoa aus Vaiana.",
       "fun_fact_es": "\"Glänzend\" es la versión alemana de \"Shiny\", la extravagante canción del cangrejo Tamatoa en Vaiana (Moana).",
@@ -1855,7 +1855,7 @@
       },
       "uri_deezer": "deezer://track/595453882",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0X0sLw63KLU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34916447",
       "fun_fact": "\"Kingdom Dance\" is an instrumental piece by Alan Menken from Tangled, scoring the lively village dance.",
       "fun_fact_de": "\"Kingdom Dance\" ist ein Instrumentalstück von Alan Menken aus Rapunzel, das den lebhaften Dorftanz untermalt.",
       "fun_fact_es": "\"Kingdom Dance\" es una pieza instrumental de Alan Menken en Enredados, que acompaña el animado baile del pueblo.",
