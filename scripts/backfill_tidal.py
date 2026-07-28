@@ -26,6 +26,7 @@ State file (``scripts/.tidal-backfill-state.json``) maps each Spotify URI to
 Usage:
     python scripts/backfill_tidal.py                 # one wave over all playlists
     python scripts/backfill_tidal.py --max 50        # cap queries this run
+    python scripts/backfill_tidal.py --max-minutes 30  # cap wall-clock this run
     python scripts/backfill_tidal.py PATH.json ...   # only the given playlists
     python scripts/backfill_tidal.py --dry-run       # list what would be queried, no network
     python scripts/backfill_tidal.py --retry-misses  # also re-query recorded misses
@@ -158,6 +159,12 @@ def main() -> int:
         help="cap number of Odesli queries this run (0 = no cap)",
     )
     ap.add_argument(
+        "--max-minutes",
+        type=float,
+        default=0,
+        help="stop the wave after this many minutes of wall-clock (0 = no limit)",
+    )
+    ap.add_argument(
         "--dry-run",
         action="store_true",
         help="list what would be queried, no network/writes",
@@ -213,9 +220,17 @@ def main() -> int:
     hits = misses = skips = 0
     queried = 0
     dirty: set[Path] = set()
+    # Wall-clock deadline. Odesli's 429 backoff makes a wave's *duration* far
+    # less predictable than its query count, and yield is heavily front-loaded:
+    # the tail is mostly backoff with no hits. Stopping on time is safe because
+    # every hit is written out incrementally below.
+    deadline = time.monotonic() + args.max_minutes * 60 if args.max_minutes else None
     for pf, track, sid in todo:
         if args.max and queried >= args.max:
             print(f"reached --max {args.max}, stopping")
+            break
+        if deadline is not None and time.monotonic() >= deadline:
+            print(f"reached --max-minutes {args.max_minutes:g}, stopping")
             break
         queried += 1
         tidal_uri, outcome = query_odesli(sid)
