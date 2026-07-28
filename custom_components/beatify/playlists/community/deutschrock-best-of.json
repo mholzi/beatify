@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "deutschrock",
     "german rock",
@@ -2604,7 +2604,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/119304666",
       "uri_deezer": "deezer://track/767767252",
       "alt_artists": [],
       "fun_fact": "Unherz is part of the German rock (Deutschrock) scene; \"König ohne Krone\" (2020) features on this Deutschrock best-of.",
