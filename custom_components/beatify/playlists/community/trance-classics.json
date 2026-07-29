@@ -1,6 +1,6 @@
 {
   "name": "Trance Classics",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "trance",
     "hands-up",
@@ -823,7 +823,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1605918726",
         "de": "applemusic://track/1863359574",
-        "gb": "applemusic://track/1440644961",
+        "gb": null,
         "fr": "applemusic://track/1605918726",
         "es": "applemusic://track/1605918726",
         "nl": "applemusic://track/1605918726",
@@ -1507,7 +1507,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/675141309",
         "de": "applemusic://track/675579127",
-        "gb": "applemusic://track/1440645252",
+        "gb": null,
         "fr": "applemusic://track/675579127",
         "es": "applemusic://track/675579127",
         "nl": "applemusic://track/675579127",
@@ -2249,7 +2249,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1711820967",
         "de": "applemusic://track/1668179033",
-        "gb": "applemusic://track/1440645257",
+        "gb": null,
         "fr": "applemusic://track/1668179033",
         "es": "applemusic://track/1668179033",
         "nl": "applemusic://track/383517266",

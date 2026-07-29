@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "one-hit",
     "classics",
@@ -1315,7 +1315,7 @@
       "awards_nl": [],
       "isrc": "GBAYE8300270",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1717063925",
+        "us": null,
         "de": "applemusic://track/1571725724",
         "gb": "applemusic://track/1671169221",
         "fr": "applemusic://track/1671169221",
@@ -1391,7 +1391,7 @@
       "awards_nl": [],
       "isrc": "DEA622100161",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1689366988",
+        "us": null,
         "de": "applemusic://track/1550643321",
         "gb": "applemusic://track/1550643321",
         "fr": "applemusic://track/1550643321",
@@ -1805,7 +1805,7 @@
       "awards_nl": [],
       "isrc": "USEW18800001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1740119264",
+        "us": null,
         "de": "applemusic://track/1650960428",
         "gb": "applemusic://track/1650960428",
         "fr": "applemusic://track/1650960428",

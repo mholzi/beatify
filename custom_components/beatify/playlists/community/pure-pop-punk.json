@@ -1,6 +1,6 @@
 {
   "name": "Pure Pop Punk 🎸",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "2000s",
     "pop-punk",
@@ -2042,12 +2042,12 @@
       "isrc": "USSM10214990",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440785041",
-        "de": "applemusic://track/1440785041",
-        "gb": "applemusic://track/1440785041",
-        "fr": "applemusic://track/1440785041",
-        "es": "applemusic://track/1440785041",
-        "nl": "applemusic://track/1440785041",
-        "it": "applemusic://track/1440785041"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -2283,12 +2283,12 @@
       "isrc": "USSM10209831",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1471266343",
-        "de": "applemusic://track/1471266343",
-        "gb": "applemusic://track/1471266343",
-        "fr": "applemusic://track/1471266343",
-        "es": "applemusic://track/1471266343",
-        "nl": "applemusic://track/1471266343",
-        "it": "applemusic://track/1471266343"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -2392,7 +2392,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/438829874",
         "de": "applemusic://track/438829874",
-        "gb": "applemusic://track/438829874",
+        "gb": null,
         "fr": "applemusic://track/438829874",
         "es": "applemusic://track/438829874",
         "nl": "applemusic://track/438829874",
@@ -2472,7 +2472,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440665386",
         "de": "applemusic://track/1440665386",
-        "gb": "applemusic://track/1440665386",
+        "gb": null,
         "fr": "applemusic://track/1440665386",
         "es": "applemusic://track/1440665386",
         "nl": "applemusic://track/1440665386",
@@ -2552,7 +2552,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/315611301",
         "de": "applemusic://track/315611301",
-        "gb": "applemusic://track/315611301",
+        "gb": null,
         "fr": "applemusic://track/315611301",
         "es": "applemusic://track/315611301",
         "nl": "applemusic://track/315611301",
@@ -2631,12 +2631,12 @@
       "isrc": "USMC10200464",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445881688",
-        "de": "applemusic://track/1445881688",
-        "gb": "applemusic://track/1445881688",
-        "fr": "applemusic://track/1445881688",
-        "es": "applemusic://track/1445881688",
-        "nl": "applemusic://track/1445881688",
-        "it": "applemusic://track/1445881688"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -2862,7 +2862,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/684954529",
         "de": "applemusic://track/684954529",
-        "gb": "applemusic://track/684954529",
+        "gb": null,
         "fr": "applemusic://track/684954529",
         "es": "applemusic://track/684954529",
         "nl": "applemusic://track/684954529",
@@ -3463,12 +3463,12 @@
       "isrc": "US56V0506103",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/27295869",
-        "de": "applemusic://track/27295869",
-        "gb": "applemusic://track/27295869",
-        "fr": "applemusic://track/27295869",
-        "es": "applemusic://track/27295869",
-        "nl": "applemusic://track/27295869",
-        "it": "applemusic://track/27295869"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {

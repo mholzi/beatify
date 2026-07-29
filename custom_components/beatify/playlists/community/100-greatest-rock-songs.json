@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "rock",
     "classic-rock",
@@ -1154,12 +1154,12 @@
       "isrc": "GBUM71029605",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440650719",
-        "de": "applemusic://track/1441571446",
-        "gb": "applemusic://track/1441571446",
-        "fr": "applemusic://track/1441571446",
-        "es": "applemusic://track/1441571446",
-        "nl": "applemusic://track/1441571446",
-        "it": "applemusic://track/1441571446"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -1193,7 +1193,7 @@
       "awards_nl": [],
       "isrc": "USWB10001877",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1755142248",
+        "us": null,
         "de": "applemusic://track/1755142248",
         "gb": "applemusic://track/1755142248",
         "fr": "applemusic://track/1755142248",
@@ -2299,12 +2299,12 @@
       "isrc": "GBUM71029604",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1842449358",
-        "de": "applemusic://track/1842449358",
-        "gb": "applemusic://track/1842449358",
-        "fr": "applemusic://track/1842449358",
-        "es": "applemusic://track/1842449358",
-        "nl": "applemusic://track/1842449358",
-        "it": "applemusic://track/1842449358"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -2819,12 +2819,12 @@
       "isrc": "GBUM71029618",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1834502336",
-        "de": "applemusic://track/1440831384",
-        "gb": "applemusic://track/1440831384",
-        "fr": "applemusic://track/1440831384",
-        "es": "applemusic://track/1440831384",
-        "nl": "applemusic://track/1440831384",
-        "it": "applemusic://track/1440831384"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       }
     },
     {
@@ -3559,8 +3559,8 @@
       "awards_nl": [],
       "isrc": "GBAYK8800055",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1730001805",
-        "de": "applemusic://track/1730001805",
+        "us": null,
+        "de": null,
         "gb": "applemusic://track/1702790221",
         "fr": "applemusic://track/1702790221",
         "es": "applemusic://track/1702790221",

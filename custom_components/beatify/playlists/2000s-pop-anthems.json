@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "2000s",
     "pop",
@@ -6930,12 +6930,12 @@
       "uri_apple_music": "applemusic://track/1443760448",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443760448",
-        "de": "applemusic://track/1443760448",
-        "gb": "applemusic://track/1443760448",
-        "fr": "applemusic://track/1443760448",
-        "es": "applemusic://track/1443760448",
-        "nl": "applemusic://track/1443760448",
-        "it": "applemusic://track/1443760448"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o_ZBzGlYS6g",
       "uri_tidal": "tidal://track/578434",

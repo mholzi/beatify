@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "finnish",
     "iskelma",
@@ -1534,7 +1534,7 @@
       "isrc": "FIPT60900003",
       "uri_apple_music": "applemusic://track/656130117",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/656130117",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -1594,7 +1594,7 @@
       "isrc": "FIFMF6400025",
       "uri_apple_music": "applemusic://track/217538977",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/217538977",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -3619,7 +3619,7 @@
       "awards_nl": [],
       "isrc": "FIUNP8800208",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/714055460",
+        "us": null,
         "de": "applemusic://track/714055460",
         "gb": "applemusic://track/724547133",
         "fr": "applemusic://track/713624917",
@@ -3885,7 +3885,7 @@
       "awards_nl": [],
       "isrc": "FIPST9000301",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1442769495",
+        "us": null,
         "de": "applemusic://track/1442769495",
         "gb": "applemusic://track/1442769495",
         "fr": null,
@@ -4009,7 +4009,7 @@
       "isrc": "FIEFP9100019",
       "uri_apple_music": "applemusic://track/1442947684",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1442947684",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -4273,7 +4273,7 @@
       "isrc": "FIEFE1200011",
       "uri_apple_music": "applemusic://track/724240552",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/724240552",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -4485,7 +4485,7 @@
       "awards_nl": [],
       "isrc": "FIFIN9400142",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/196312115",
+        "us": null,
         "de": "applemusic://track/196312115",
         "gb": "applemusic://track/196312115",
         "fr": "applemusic://track/442167189",
@@ -4507,7 +4507,7 @@
       "isrc": "FIARA9500005",
       "uri_apple_music": "applemusic://track/919599316",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/919599316",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -4780,7 +4780,7 @@
       "awards_nl": [],
       "isrc": "FIUNP0600369",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/723799111",
+        "us": null,
         "de": "applemusic://track/723799111",
         "gb": "applemusic://track/723663004",
         "fr": "applemusic://track/723799111",
@@ -4979,7 +4979,7 @@
       "awards_nl": [],
       "isrc": "FIJKA9600136",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443109086",
+        "us": null,
         "de": "applemusic://track/1443109086",
         "gb": "applemusic://track/1443399152",
         "fr": "applemusic://track/1443399152",
@@ -5177,7 +5177,7 @@
       "awards_nl": [],
       "isrc": "FIEFP9800028",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/716309755",
+        "us": null,
         "de": "applemusic://track/716309755",
         "gb": "applemusic://track/716309755",
         "fr": "applemusic://track/716309755",
@@ -5274,7 +5274,7 @@
       "awards_nl": [],
       "isrc": "FIPST9800023",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443390151",
+        "us": null,
         "de": "applemusic://track/1443390151",
         "gb": "applemusic://track/739865801",
         "fr": "applemusic://track/739865801",
@@ -5842,7 +5842,7 @@
       "isrc": "FISBA7100188",
       "uri_apple_music": "applemusic://track/1442542999",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1442542999",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -5872,7 +5872,7 @@
       "isrc": "FIAAB8500312",
       "uri_apple_music": "applemusic://track/1442543255",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1442543255",
+        "us": null,
         "de": null,
         "gb": null,
         "fr": null,
@@ -5982,7 +5982,7 @@
       "awards_nl": [],
       "isrc": "FIPFP0100096",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443262117",
+        "us": null,
         "de": "applemusic://track/1443262117",
         "gb": "applemusic://track/1442923228",
         "fr": "applemusic://track/1442923228",
@@ -6215,7 +6215,7 @@
       "awards_nl": [],
       "isrc": "FIECA0200002",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/724627361",
+        "us": null,
         "de": "applemusic://track/713821788",
         "gb": "applemusic://track/713821788",
         "fr": "applemusic://track/713821788",

@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "quebecois",
     "quebec",
@@ -2904,13 +2904,13 @@
       "isrc": "CAA509003706",
       "uri_apple_music": "applemusic://track/1621195978",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1621195978",
-        "de": "applemusic://track/1621195978",
-        "gb": "applemusic://track/1621195978",
-        "fr": "applemusic://track/1621195978",
-        "es": "applemusic://track/1621195978",
-        "nl": "applemusic://track/1621195978",
-        "it": "applemusic://track/1621195978"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_n0nfHQVmxo",
       "uri_tidal": null,

@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.12",
+  "version": "0.13",
   "tags": [
     "german",
     "pop",
@@ -3372,7 +3372,7 @@
       "uri_apple_music": "applemusic://track/317319605",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/317319605",
-        "de": "applemusic://track/317319605",
+        "de": null,
         "gb": "applemusic://track/317319605",
         "fr": "applemusic://track/317319605",
         "es": "applemusic://track/317319605",
