@@ -123,3 +123,6 @@ mockups/
 
 # Tidal backfill local state (scripts/backfill_tidal.py)
 scripts/.tidal-backfill-state.json
+
+# Apple Music backfill local state (scripts/backfill_apple.py)
+scripts/.apple-backfill-state.json
