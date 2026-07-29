@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -286,13 +286,13 @@
       "uri": "spotify:track:4h5QfEwYWdaLtMeNjIWBER",
       "uri_apple_music": "applemusic://track/643877934",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/633395753",
-        "de": "applemusic://track/633395753",
-        "gb": "applemusic://track/633395753",
-        "fr": "applemusic://track/633395753",
-        "es": "applemusic://track/633395753",
-        "nl": "applemusic://track/633395753",
-        "it": "applemusic://track/633395753"
+        "us": "applemusic://track/643877934",
+        "de": "applemusic://track/643877934",
+        "gb": "applemusic://track/643877934",
+        "fr": "applemusic://track/643877934",
+        "es": "applemusic://track/643877934",
+        "nl": "applemusic://track/643877934",
+        "it": "applemusic://track/643877934"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yqWJb0mW0B8",
       "uri_tidal": null,

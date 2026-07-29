@@ -1,6 +1,6 @@
 {
   "name": "Divorced Dad Rock",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "post-grunge",
     "nu-metal",
@@ -346,13 +346,13 @@
       "uri": "spotify:track:25CMmGsl22APKhfuj4Tp7j",
       "uri_apple_music": "applemusic://track/263065220",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1528746447",
-        "de": "applemusic://track/1528746447",
-        "gb": "applemusic://track/1528746447",
-        "fr": "applemusic://track/1528746447",
-        "es": "applemusic://track/1528746447",
-        "nl": "applemusic://track/1528746447",
-        "it": "applemusic://track/1528746447"
+        "us": "applemusic://track/263065220",
+        "de": "applemusic://track/263065220",
+        "gb": "applemusic://track/263065220",
+        "fr": "applemusic://track/263065220",
+        "es": "applemusic://track/263065220",
+        "nl": "applemusic://track/263065220",
+        "it": "applemusic://track/263065220"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RNDWIh3Z_zo",
       "uri_tidal": null,
