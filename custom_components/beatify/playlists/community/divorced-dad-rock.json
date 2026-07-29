@@ -1,6 +1,6 @@
 {
   "name": "Divorced Dad Rock",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "post-grunge",
     "nu-metal",
@@ -30,7 +30,7 @@
         "it": "applemusic://track/1442303293"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=j2R6uT7uLFg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/120125683",
       "uri_deezer": "deezer://track/6435662",
       "fun_fact": "Papa Roach broke through with their nu-metal anthem 'Last Resort' in 2000.",
       "fun_fact_de": "Papa Roach gelang mit ihrer Nu-Metal-Hymne 'Last Resort' im Jahr 2000 der Durchbruch.",
@@ -55,7 +55,7 @@
         "it": "applemusic://track/1351287617"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vkvrbbtnp6s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23267439",
       "uri_deezer": "deezer://track/71828723",
       "fun_fact": "Nickelback are a Canadian rock band — one of the best-selling acts of the post-grunge era.",
       "fun_fact_de": "Nickelback sind eine kanadische Rockband — einer der meistverkauften Acts der Post-Grunge-Ära.",
@@ -80,7 +80,7 @@
         "it": "applemusic://track/1892522084"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qcX9HNIHwkg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32074200",
       "uri_deezer": "deezer://track/80274648",
       "fun_fact": "Creed were one of the defining American post-grunge bands of the late 90s and early 2000s.",
       "fun_fact_de": "Creed waren eine der prägenden amerikanischen Post-Grunge-Bands der späten 90er und frühen 2000er.",
