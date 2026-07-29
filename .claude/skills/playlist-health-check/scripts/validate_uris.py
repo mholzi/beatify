@@ -255,6 +255,131 @@ CHECKERS = {
     "apple_music":   check_apple_music,
 }
 
+# ---------------------------------------------------------------------------
+# Region-map validation (uri_apple_music_by_region)
+#
+# check_apple_music above validates the *base* field only, and it accepts a
+# track as healthy as soon as the id resolves in ANY of us/de/gb. Both
+# properties hide a real class of defect:
+#
+#   * 36% of tracks carry a by-region map whose ids differ from the base
+#     field entirely, so the base check never touches them. Aerosmith
+#     "Dream On" had a valid base id while its map pointed at 1885596530,
+#     dead in all nine storefronts checked — and the daily run reported the
+#     playlist as healthy.
+#   * A track present in DE but absent in US/GB passes the base check, so a
+#     map claiming us/gb was never contradicted.
+#
+# This pass resolves every *claimed* region separately. Regions whose map
+# entry is null are not defects — they are simply unfilled (Mode 2 never ran
+# for that track) and are counted apart.
+#
+# Cost is kept low by batching: iTunes' lookup endpoint accepts up to ~40
+# comma-separated ids per call, so a 100-track playlist across 7 regions is
+# ~21 requests rather than 700 sequential ones — cheaper than the per-track
+# pass it complements.
+# ---------------------------------------------------------------------------
+
+REGION_BATCH = 40
+REGION_DELAY = 1.0
+
+
+def _lookup_batch(ids, country):
+    """Resolve a batch of Apple track ids in one storefront.
+
+    Returns (found_map, transient). ``found_map`` maps id -> track dict for
+    everything the storefront knows. ``transient`` is True when the lookup
+    itself failed (throttled/unreachable) — the caller must then not treat
+    any id in the batch as dead.
+    """
+    url = ("https://itunes.apple.com/lookup?id=" + ",".join(ids)
+           + f"&entity=song&country={country}")
+    data, code, is_transient = http_json(url, timeout=25)
+    if data is None:
+        return {}, True if (is_transient or code is None) else False
+    found = {}
+    for t in data.get("results", []):
+        tid = t.get("trackId")
+        if tid is not None:
+            found[str(tid)] = t
+    return found, False
+
+
+def validate_region_maps(entries):
+    """Validate uri_apple_music_by_region entries.
+
+    ``entries`` is a list of dicts:
+        {"artist", "title", "regions": {"us": "applemusic://track/123", ...}}
+
+    Returns {"results": [...], "summary": {...}} where each result is one
+    (track, region) pair that was actually claimed.
+    """
+    results = []
+    summary = {"total": 0, "ok": 0, "dead": 0, "wrong_track": 0,
+               "unfilled": 0, "transient": 0, "tracks_affected": 0}
+
+    # Collect claimed (region -> [(id, entry)]) so each storefront is queried
+    # in as few calls as possible.
+    by_region = {}
+    for e in entries:
+        regions = e.get("regions") or {}
+        for country, uri in regions.items():
+            if not uri:
+                summary["unfilled"] += 1
+                continue
+            provider, tid = detect_provider(uri)
+            if provider != "apple_music":
+                results.append({"artist": e.get("artist"), "title": e.get("title"),
+                                "region": country, "uri": uri, "provider": "apple_music",
+                                "status": "unknown",
+                                "detail": f"Not an Apple Music URI: {uri}"})
+                summary["total"] += 1
+                summary["unknown"] = summary.get("unknown", 0) + 1
+                continue
+            by_region.setdefault(country, []).append((tid, e))
+            summary["total"] += 1
+
+    affected = set()
+    for country in sorted(by_region):
+        pairs = by_region[country]
+        for i in range(0, len(pairs), REGION_BATCH):
+            chunk = pairs[i:i + REGION_BATCH]
+            found, transient = _lookup_batch([tid for tid, _ in chunk], country)
+            for tid, e in chunk:
+                base = {"artist": e.get("artist"), "title": e.get("title"),
+                        "region": country, "uri": f"applemusic://track/{tid}",
+                        "provider": "apple_music"}
+                if transient:
+                    base.update({"status": "unreachable", "transient": True,
+                                 "detail": f"iTunes lookup for storefront {country} "
+                                           f"failed after retries — no verdict"})
+                    summary["transient"] += 1
+                    results.append(base)
+                    continue
+                track = found.get(tid)
+                if track is None:
+                    base.update({"status": "dead", "http_code": 404,
+                                 "detail": f"Claimed for storefront {country}, "
+                                           f"but not in that catalog"})
+                    summary["dead"] += 1
+                    affected.add((e.get("artist"), e.get("title")))
+                elif not titles_match(e.get("title", ""), track.get("trackName", ""),
+                                      e.get("artist", "")):
+                    r = wrong_track(e.get("title", ""), e.get("artist", ""),
+                                    track.get("trackName", ""), track.get("artistName", ""))
+                    base.update(r)
+                    base["detail"] = f"[{country}] " + base.get("detail", "")
+                    summary["wrong_track"] += 1
+                    affected.add((e.get("artist"), e.get("title")))
+                else:
+                    base.update({"status": "ok", "http_code": 200})
+                    summary["ok"] += 1
+                results.append(base)
+            time.sleep(REGION_DELAY)
+
+    summary["tracks_affected"] = len(affected)
+    return {"results": results, "summary": summary}
+
 COOLDOWN = 5.0   # extra pause after a throttled lookup, to let the provider recover
 
 def validate_uris(songs, delay=0.5):
@@ -294,7 +419,17 @@ def validate_uris(songs, delay=0.5):
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print(f"Usage: {sys.argv[0]} <input.json> <output.json>", file=sys.stderr); sys.exit(1)
-    with open(sys.argv[1]) as f: songs = json.load(f)
+    with open(sys.argv[1]) as f: payload = json.load(f)
+
+    # Input is either the historical flat list of URI entries, or an object
+    # that additionally carries region maps. Both are accepted so an older
+    # runner keeps working against a newer validator.
+    if isinstance(payload, dict):
+        songs = payload.get("uris", [])
+        region_entries = payload.get("region_maps", [])
+    else:
+        songs, region_entries = payload, []
+
     print(f"Validating {len(songs)} URIs (with title matching)...", file=sys.stderr)
     report = validate_uris(songs)
     s = report["summary"]
@@ -305,5 +440,28 @@ if __name__ == "__main__":
         print(f"  WARNING: {s['transient']} lookup(s) were throttled/unavailable even after "
               f"{len(RETRY_BACKOFF) + 1} attempts — those are provider failures, not track "
               f"defects. Re-run to get a verdict on them.", file=sys.stderr)
+
+    rs = {}
+    if region_entries:
+        claimed = sum(1 for e in region_entries
+                      for v in (e.get("regions") or {}).values() if v)
+        print(f"Validating {claimed} claimed region(s) across {len(region_entries)} "
+              f"track(s) (batched)...", file=sys.stderr)
+        region_report = validate_region_maps(region_entries)
+        report["region_results"] = region_report["results"]
+        report["region_summary"] = rs = region_report["summary"]
+        print(f"Region maps: {rs['ok']} ok, {rs['dead']} dead, "
+              f"{rs['wrong_track']} wrong track, {rs['unfilled']} unfilled "
+              f"({rs['tracks_affected']} track(s) affected).", file=sys.stderr)
+        if rs.get("transient"):
+            print(f"  WARNING: {rs['transient']} region lookup(s) had no verdict "
+                  f"(throttled/unreachable) — re-run before acting on them.",
+                  file=sys.stderr)
+
     with open(sys.argv[2], "w") as f: json.dump(report, f, indent=2)
-    sys.exit(1 if (s["dead"] + s["wrong_track"]) > 0 else 0)
+    # Region defects count toward the failure exit code as well — a dead id in
+    # a region map breaks playback for users in that region just as surely as a
+    # dead base URI does.
+    defects = (s["dead"] + s["wrong_track"]
+               + rs.get("dead", 0) + rs.get("wrong_track", 0))
+    sys.exit(1 if defects > 0 else 0)
