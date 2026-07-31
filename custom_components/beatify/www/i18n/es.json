@@ -1355,5 +1355,10 @@
   "starting": {
     "headline": "¡Ya empezamos!",
     "sub": "Conectando el altavoz y cargando la primera ronda. Preparad vuestros pulsadores."
+  },
+  "auth": {
+    "errorTitle": "Error al iniciar sesión",
+    "errorBody": "Beatify no pudo conectarse a Home Assistant. Comprueba la configuración de Beatify (URL interna / SSL) e inténtalo de nuevo.",
+    "errorRetry": "Inténtalo de nuevo"
   }
 }

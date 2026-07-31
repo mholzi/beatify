@@ -1355,5 +1355,10 @@
   "starting": {
     "headline": "C'est parti !",
     "sub": "Connexion de l'enceinte et chargement de la première manche. Préparez vos buzzers."
+  },
+  "auth": {
+    "errorTitle": "Échec de la connexion",
+    "errorBody": "Beatify n'a pas pu se connecter à Home Assistant. Vérifie la configuration de Beatify (URL interne / SSL) et réessaie.",
+    "errorRetry": "Réessayer"
   }
 }

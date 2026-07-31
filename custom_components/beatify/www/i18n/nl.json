@@ -1355,5 +1355,10 @@
   "starting": {
     "headline": "Daar gaan we!",
     "sub": "We verbinden de speaker en laden ronde één. Pak alvast je buzzer."
+  },
+  "auth": {
+    "errorTitle": "Aanmelden mislukt",
+    "errorBody": "Beatify kon geen verbinding maken met Home Assistant. Controleer de Beatify-configuratie (interne URL / SSL) en probeer het opnieuw.",
+    "errorRetry": "Opnieuw proberen"
   }
 }

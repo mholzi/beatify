@@ -1355,5 +1355,10 @@
   "starting": {
     "headline": "Here we go!",
     "sub": "Connecting the speaker and loading round one. Grab your buzzer."
+  },
+  "auth": {
+    "errorTitle": "Sign-in failed",
+    "errorBody": "Beatify could not connect to Home Assistant. Please check the Beatify configuration (internal URL / SSL) and try again.",
+    "errorRetry": "Try again"
   }
 }

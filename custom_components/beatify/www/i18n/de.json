@@ -1355,5 +1355,10 @@
   "starting": {
     "headline": "Gleich geht's los!",
     "sub": "Wir verbinden den Lautsprecher und laden die erste Runde. Schnappt euch schon mal eure Buzzer."
+  },
+  "auth": {
+    "errorTitle": "Anmeldung fehlgeschlagen",
+    "errorBody": "Beatify konnte keine Verbindung zu Home Assistant herstellen. Bitte prüfe die Beatify-Konfiguration (interne URL / SSL) und versuche es erneut.",
+    "errorRetry": "Erneut versuchen"
   }
 }

@@ -547,10 +547,36 @@
   }
 
   /**
+   * Translate a key with an English literal as the fallback (#1933).
+   *
+   * `BeatifyI18n.t()` returns the KEY itself when a translation is missing, and
+   * on this screen it may not be loaded at all — the auth error can render
+   * before the locale fetch resolves, and ha-auth.js is deliberately loaded
+   * ahead of the rest of the admin bundle. Both cases must degrade to readable
+   * English, never to a raw key like `auth.errorTitle`.
+   */
+  function _t(key, fallback) {
+    try {
+      if (typeof window === 'undefined' || !window.BeatifyI18n) return fallback;
+      var value = window.BeatifyI18n.t(key);
+      return !value || value === key ? fallback : value;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  /**
    * Render a terminal auth-error state into the page instead of redirecting
    * again. Called once the bounded retry budget is exhausted (#1394) so a
    * persistently-failing server-side OAuth exchange stops the redirect loop
    * and shows the user what happened.
+   *
+   * #1933: the strings used to be hardcoded German. This is the one screen a
+   * user in a broken auth state is guaranteed to reach, it covers the whole
+   * viewport, and a reporter who cannot read it describes the symptom in their
+   * own words instead of quoting it — which is exactly what made #1931 hard to
+   * triage. Built with textContent rather than innerHTML so a translation can
+   * never inject markup.
    */
   function _renderAuthError() {
     try {
@@ -570,23 +596,37 @@
         'align-items:center;justify-content:center;padding:24px;' +
         'background:#1c1c1e;color:#fff;font:16px/1.5 system-ui,sans-serif;' +
         'text-align:center;';
-      box.innerHTML =
-        '<div style="max-width:420px">' +
-        '<h2 style="margin:0 0 12px">Anmeldung fehlgeschlagen</h2>' +
-        '<p style="margin:0 0 20px;opacity:.85">Die Verbindung zu Home ' +
-        'Assistant konnte nicht hergestellt werden. Bitte pr&uuml;fe die ' +
-        'Beatify-Konfiguration (interne URL / SSL) und versuche es erneut.</p>' +
-        '<button type="button" style="padding:10px 20px;border:0;' +
-        'border-radius:8px;background:#0a84ff;color:#fff;font-size:16px;' +
-        'cursor:pointer">Erneut versuchen</button>' +
-        '</div>';
-      var btn = box.querySelector('button');
-      if (btn) {
-        btn.addEventListener('click', function () {
-          _clearLoginAttempts();
-          login();
-        });
-      }
+
+      var inner = document.createElement('div');
+      inner.style.cssText = 'max-width:420px';
+
+      var heading = document.createElement('h2');
+      heading.style.cssText = 'margin:0 0 12px';
+      heading.textContent = _t('auth.errorTitle', 'Sign-in failed');
+
+      var body = document.createElement('p');
+      body.style.cssText = 'margin:0 0 20px;opacity:.85';
+      body.textContent = _t(
+        'auth.errorBody',
+        'Beatify could not connect to Home Assistant. Please check the ' +
+          'Beatify configuration (internal URL / SSL) and try again.'
+      );
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.style.cssText =
+        'padding:10px 20px;border:0;border-radius:8px;background:#0a84ff;' +
+        'color:#fff;font-size:16px;cursor:pointer';
+      btn.textContent = _t('auth.errorRetry', 'Try again');
+      btn.addEventListener('click', function () {
+        _clearLoginAttempts();
+        login();
+      });
+
+      inner.appendChild(heading);
+      inner.appendChild(body);
+      inner.appendChild(btn);
+      box.appendChild(inner);
       document.body.appendChild(box);
     } catch (e) {
       /* ignore — error UI is best-effort */

@@ -57,36 +57,37 @@ function loadHaAuth({
     // Only created when withDomBody is set; otherwise document has no body and
     // _renderAuthError() short-circuits (matching a not-yet-painted page).
     let bodyShim = null;
-    if (withDomBody) {
-        const makeEl = () => {
-            const el = {
-                style: { cssText: '' },
-                children: [],
-                _listeners: {},
-                setAttribute() {},
-                set innerHTML(html) { this._html = html; },
-                get innerHTML() { return this._html || ''; },
-                appendChild(c) { this.children.push(c); return c; },
-                addEventListener(ev, fn) { this._listeners[ev] = fn; },
-                querySelector() { return makeEl(); },
-            };
-            return el;
+    // #1933: the shim now tracks children + textContent so a test can read
+    // what the auth-error card actually renders. Previously createElement()
+    // returned a throwaway whose appendChild() dropped the node, which was
+    // enough to prove "does not crash" but could not see the strings.
+    const makeEl = (tag) => {
+        const el = {
+            tagName: (tag || 'div').toUpperCase(),
+            style: { cssText: '' },
+            children: [],
+            textContent: '',
+            id: '',
+            type: '',
+            _attrs: {},
+            _listeners: {},
+            setAttribute(k, v) { this._attrs[k] = v; },
+            getAttribute(k) { return this._attrs[k]; },
+            set innerHTML(html) { this._html = html; },
+            get innerHTML() { return this._html || ''; },
+            appendChild(c) { this.children.push(c); return c; },
+            addEventListener(ev, fn) { this._listeners[ev] = fn; },
+            querySelector() { return makeEl(); },
         };
+        return el;
+    };
+    if (withDomBody) {
         bodyShim = makeEl();
     }
     const documentShim = {
         title: 'test',
         body: bodyShim,
-        createElement: bodyShim ? () => ({
-            style: { cssText: '' },
-            _listeners: {},
-            id: '',
-            setAttribute() {},
-            set innerHTML(html) { this._html = html; },
-            get innerHTML() { return this._html || ''; },
-            appendChild() {},
-            querySelector() { return { addEventListener: () => {} }; },
-        }) : undefined,
+        createElement: bodyShim ? (tag) => makeEl(tag) : undefined,
         get cookie() { return cookieJar.value; },
         set cookie(v) {
             const name = v.split('=')[0];
@@ -832,5 +833,98 @@ describe('login() OAuth redirect', () => {
         expect(url).toContain(
             'client_id=' + encodeURIComponent('https://ha.example/beatify/')
         );
+    });
+});
+
+describe('auth-error screen is translated, not hardcoded German (#1933)', () => {
+    const K = 'beatify_login_attempts';
+
+    /** Render the terminal auth-error card by exhausting the login budget. */
+    async function renderErrorCard(i18n) {
+        const ctx = loadHaAuth({
+            fetchFn: async () => ({ ok: false, status: 401, json: async () => ({}) }),
+            sessionStorageData: { [K]: '3' }, // budget already spent
+            withDomBody: true,
+        });
+        if (i18n) ctx.sandboxWindow.BeatifyI18n = i18n;
+        await ctx.BeatifyAuth.init({ requireAuth: true });
+        return ctx.bodyShim.children[0];
+    }
+
+    /** Flatten every textContent in the rendered subtree. */
+    function texts(node, out = []) {
+        if (!node) return out;
+        if (node.textContent) out.push(node.textContent);
+        (node.children || []).forEach((c) => texts(c, out));
+        return out;
+    }
+
+    it('falls back to English when i18n is not loaded at all', async () => {
+        // ha-auth.js is deliberately loaded ahead of the rest of the admin
+        // bundle, so the card can render before BeatifyI18n exists.
+        const card = await renderErrorCard(null);
+        const all = texts(card).join(' | ');
+
+        expect(all).toContain('Sign-in failed');
+        expect(all).toContain('Try again');
+        expect(all).not.toContain('Anmeldung fehlgeschlagen');
+        expect(all).not.toContain('Erneut versuchen');
+    });
+
+    it('uses the translations when i18n is available', async () => {
+        const card = await renderErrorCard({
+            t: (key) => ({
+                'auth.errorTitle': 'Aanmelden mislukt',
+                'auth.errorBody': 'Beatify kon geen verbinding maken.',
+                'auth.errorRetry': 'Opnieuw proberen',
+            }[key] || key),
+        });
+        const all = texts(card).join(' | ');
+
+        expect(all).toContain('Aanmelden mislukt');
+        expect(all).toContain('Opnieuw proberen');
+    });
+
+    it('falls back to English when t() echoes the key back (missing entry)', async () => {
+        // BeatifyI18n.t() returns the KEY itself for an unknown key — rendering
+        // that verbatim would put "auth.errorTitle" on a full-screen overlay.
+        const card = await renderErrorCard({ t: (key) => key });
+        const all = texts(card).join(' | ');
+
+        expect(all).toContain('Sign-in failed');
+        expect(all).not.toContain('auth.errorTitle');
+        expect(all).not.toContain('auth.errorRetry');
+    });
+
+    it('never interprets a translation as markup', async () => {
+        // Built with textContent, so a locale string containing tags stays
+        // inert text instead of becoming DOM.
+        const card = await renderErrorCard({
+            t: (key) =>
+                key === 'auth.errorTitle' ? '<img src=x onerror=1>' : key,
+        });
+        const all = texts(card).join(' | ');
+
+        expect(all).toContain('<img src=x onerror=1>');
+        expect(card.innerHTML).toBe('');
+    });
+
+    it('still offers a working retry that clears the attempt counter', async () => {
+        const ctx = loadHaAuth({
+            fetchFn: async () => ({ ok: false, status: 401, json: async () => ({}) }),
+            sessionStorageData: { [K]: '3' },
+            withDomBody: true,
+        });
+        await ctx.BeatifyAuth.init({ requireAuth: true });
+
+        const card = ctx.bodyShim.children[0];
+        const button = card.children[0].children.find((c) => c.tagName === 'BUTTON');
+        expect(button).toBeTruthy();
+        expect(ctx.sessionStorage.getItem(K)).toBe('3');
+
+        button._listeners.click();
+
+        expect(ctx.sessionStorage.getItem(K)).toBeNull();
+        expect(ctx.sandboxWindow.location._lastReplace).toContain('/auth/authorize');
     });
 });
