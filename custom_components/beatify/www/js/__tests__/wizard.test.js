@@ -562,3 +562,45 @@ describe('modeHintHtml', () => {
         expect(out).toContain('&lt;img');
     });
 });
+
+describe('#1940 — hiding the wizard refreshes the home view', () => {
+    it('calls BeatifyHome.refresh() when the wizard is dismissed', async () => {
+        const { hide } = await import('../wizard.js');
+        const calls = [];
+        const root = {
+            classList: { add() {}, remove() {} },
+            setAttribute() {},
+        };
+        globalThis.document = {
+            getElementById: (id) => (id === 'wizard-root' ? root : null),
+            body: { classList: { add() {}, remove() {} } },
+        };
+        globalThis.window = globalThis;
+        globalThis.BeatifyHome = { refresh: () => calls.push('refresh') };
+        globalThis.localStorage = {
+            getItem: () => null,
+            setItem: () => {},
+            removeItem: () => {},
+        };
+
+        hide({ dismissed: true });
+
+        // Skipping setup used to leave the home view on its "—" placeholder:
+        // only the *completion* path called enter(), which refreshes.
+        expect(calls).toEqual(['refresh']);
+    });
+
+    it('does not throw when the home view is not mounted', async () => {
+        const { hide } = await import('../wizard.js');
+        const root = { classList: { add() {}, remove() {} }, setAttribute() {} };
+        globalThis.document = {
+            getElementById: (id) => (id === 'wizard-root' ? root : null),
+            body: { classList: { add() {}, remove() {} } },
+        };
+        globalThis.window = globalThis;
+        delete globalThis.BeatifyHome;
+        globalThis.localStorage = { getItem: () => null, setItem: () => {}, removeItem: () => {} };
+
+        expect(() => hide({})).not.toThrow();
+    });
+});

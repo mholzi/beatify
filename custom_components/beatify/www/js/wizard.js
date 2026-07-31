@@ -1661,6 +1661,14 @@ export function hide({ dismissed } = {}) {
         try { localStorage.setItem(LS_WIZARD_STATE, 'dismissed'); } catch (e) { /* private mode */ }
     }
     _updatePill();
+    // #1940: the home view is already on screen underneath — refresh it, or the
+    // user is left looking at the placeholder meta line ("—") instead of the
+    // speaker, playlist and mode the next game will use. Only the *completion*
+    // path called BeatifyHome.enter() (which refreshes); skipping the wizard
+    // went straight to a stale screen.
+    try {
+        window.BeatifyHome?.refresh?.();
+    } catch (e) { /* home view not mounted — nothing to refresh */ }
 }
 
 function _updatePill() {

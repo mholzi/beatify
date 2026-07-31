@@ -329,6 +329,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         c.classList.toggle('chip--active', c.dataset.lang === adminState.selectedLanguage);
     });
 
+    // #1941: seed the server-side setup BEFORE the wizard decides whether to
+    // open. `shouldTrigger()` reads localStorage, and until now that read
+    // happened here — while the seed only landed later, inside loadStatus().
+    // A browser opening Beatify for the first time therefore got the wizard
+    // even on a fully configured instance, and once open the wizard persisted
+    // its own state, so it kept coming back on every later load. One extra
+    // fetch of an endpoint the wizard hits anyway is a cheap price for the
+    // decision being made on the real state.
+    try {
+        const seedResp = await fetch('/beatify/api/status');
+        if (seedResp.ok) {
+            const seedStatus = await seedResp.json();
+            adminState.setupComplete = seedStatus.setup_complete === true;
+            reconcileSavedSetup(seedStatus.saved_setup, globalThis.localStorage);
+        }
+    } catch (e) {
+        // Offline or the endpoint is down: fall through with whatever this
+        // device already knows. The wizard then behaves exactly as before.
+        console.warn('[Beatify] setup seed before wizard failed:', e);
+    }
+
     // First-run wizard — initializes after i18n is ready (DESIGN.md ## Patterns)
     if (window.BeatifyWizard && typeof window.BeatifyWizard.init === 'function') {
         try { await window.BeatifyWizard.init(); } catch (e) { console.warn('[Beatify] wizard init failed:', e); }
@@ -956,6 +977,18 @@ async function loadStatus() {
             handleAdminStateUpdate(status.active_game);
         } else {
             showSetupView();
+        }
+
+        // #1940: the meta line is built from data that only exists after this
+        // fetch — the saved settings seeded above, and adminState.mediaPlayers
+        // for the speaker's friendly name. BeatifyHome.refresh() previously ran
+        // only from enter(), which fires before any of that on a fresh device,
+        // so the line stayed on its "—" placeholder. Re-render it here, once
+        // the values it describes are actually present.
+        try {
+            window.BeatifyHome?.refresh?.();
+        } catch (e) {
+            console.warn('[Beatify] home refresh after status failed:', e);
         }
     } catch (error) {
         console.error('Failed to load status:', error);
