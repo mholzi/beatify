@@ -216,6 +216,14 @@ _REFRESH_COOKIE = "beatify_refresh"
 # refresh tokens are long-lived. 30 days lines up with HA's own refresh-
 # token rotation window and means a user who hits the admin once a month
 # never has to re-do the full OAuth dance.
+#
+# #1932: this is 30 days of INACTIVITY, not 30 days of existence. The
+# callback sets the cookie and every successful /beatify/auth/refresh
+# re-issues it with a fresh Max-Age, so the clock restarts on each use.
+# Before that, the cookie died 30 days after the FIRST login no matter how
+# often the user came back — which is the opposite of what the paragraph
+# above promises, and put every install on a 30-day fuse back through the
+# full OAuth round trip.
 _REFRESH_COOKIE_MAX_AGE = 30 * 24 * 60 * 60
 
 
@@ -457,10 +465,7 @@ class BeatifyAuthRefreshView(HomeAssistantView):
             return response
 
         # #1369: the fresh access token is returned ONLY in the JSON body —
-        # the frontend caches it in memory, never in a cookie. HA's
-        # refresh-token grant does NOT return a new refresh_token (the
-        # long-lived one stays in the HttpOnly cookie), so no Set-Cookie is
-        # needed here beyond wiping any legacy JS-readable access cookie.
+        # the frontend caches it in memory, never in a cookie.
         response = web.json_response(
             {
                 "access_token": parsed["access_token"],
@@ -471,8 +476,13 @@ class BeatifyAuthRefreshView(HomeAssistantView):
         _set_session_cookies(
             response,
             request,
-            # Don't overwrite the long-lived refresh cookie.
-            refresh_token=None,
+            # #1932: roll the refresh cookie. HA's refresh-token grant does not
+            # mint a new refresh_token, so this re-issues the SAME value the
+            # request arrived with — the point is the fresh Max-Age. Without it
+            # the cookie expired 30 days after the first login however active
+            # the user was, and the next page load fell all the way back to the
+            # /auth/authorize round trip.
+            refresh_token=refresh_token,
         )
         return response
 
