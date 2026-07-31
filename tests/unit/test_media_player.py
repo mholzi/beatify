@@ -1647,7 +1647,9 @@ class TestStartRoundFailureClassification:
             await gs.start_round()
 
         failures = [
-            r.getMessage() for r in caplog.records if "Playback failed" in r.getMessage()
+            r.getMessage()
+            for r in caplog.records
+            if "Playback failed" in r.getMessage()
         ]
         assert failures, "expected a playback-failure log record"
         assert "apple_music://track/1463658941" in failures[0]

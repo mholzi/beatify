@@ -345,10 +345,9 @@ class RoundLifecycleMixin:
                 # defect and sends the next reader into the wrong provider.
                 # Falls back to the base field when no attempt was recorded
                 # (e.g. the song carried no playable URI at all).
-                attempted_uri = (
-                    getattr(self._media_player_service, "last_attempted_uri", None)
-                    or song.get("uri")
-                )
+                attempted_uri = getattr(
+                    self._media_player_service, "last_attempted_uri", None
+                ) or song.get("uri")
                 # #1927: name the speaker too. The pause banner used to explain
                 # *what* failed and *which provider* to re-authenticate, but
                 # never *where* it was playing — the whole reason a game running
