@@ -1078,6 +1078,10 @@
                 <p class="admin-pause-recovery-message" id="admin-pause-recovery-message" data-i18n="admin.pauseRecovery.mediaPlayerError">
                     Playback failed for the last 3 songs in a row. Resume to try the next song, or end the game.
                 </p>
+                <!-- #1927: which speaker the game was playing on. Without it a
+                     game running on the wrong speaker (stale saved selection)
+                     is indistinguishable from a dead provider. -->
+                <p class="admin-pause-recovery-detail" id="admin-pause-recovery-speaker"></p>
                 <p class="admin-pause-recovery-detail" id="admin-pause-recovery-detail"></p>
                 <div class="admin-pause-recovery-actions">
                     <button id="admin-resume-game" class="btn btn-primary" type="button">

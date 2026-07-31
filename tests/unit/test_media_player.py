@@ -1599,6 +1599,105 @@ class TestStartRoundFailureClassification:
         assert mock_service.play_song.await_count == 1
         gs.pause_game.assert_awaited_once_with("media_player_error")
 
+    @pytest.mark.asyncio
+    async def test_error_failure_reports_attempted_uri_and_speaker(self, caplog):
+        """#1927 follow-up: the failure must name the URI that was really tried
+        and the speaker it was tried on.
+
+        The old line logged `song["uri"]` — the song's Spotify base field — so an
+        Apple Music attempt was reported as `spotify:track:…` and read like a
+        Spotify defect. It also never named the speaker, which is why a game
+        running on the WRONG speaker looked like a dead provider.
+        """
+        import logging  # noqa: PLC0415
+
+        from custom_components.beatify.game.state import GameState  # noqa: PLC0415
+        from tests.conftest import (  # noqa: PLC0415
+            make_game_state,
+            make_songs,
+        )
+
+        gs: GameState = make_game_state()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=make_songs(10),
+            media_player="media_player.esszimmer",
+            base_url="http://localhost:8123",
+        )
+
+        mock_service = MagicMock()
+        mock_service.is_available.return_value = True
+        mock_service.last_failure_reason = "error"
+        # What actually went to the player — a different provider than the
+        # song's base `uri` field, exactly as in the reported incident.
+        mock_service.last_attempted_uri = "apple_music://track/1463658941"
+        mock_service.play_song = AsyncMock(return_value=False)
+        gs._media_player_service = mock_service
+        gs.media_player = "media_player.esszimmer"
+        gs.platform = "music_assistant"
+        gs.pause_game = AsyncMock()
+
+        with (
+            caplog.at_level(logging.ERROR),
+            patch(
+                "custom_components.beatify.game.state.asyncio.sleep",
+                new_callable=AsyncMock,
+            ),
+        ):
+            await gs.start_round()
+
+        failures = [
+            r.getMessage() for r in caplog.records if "Playback failed" in r.getMessage()
+        ]
+        assert failures, "expected a playback-failure log record"
+        assert "apple_music://track/1463658941" in failures[0]
+        assert "media_player.esszimmer" in failures[0]
+        # The song's Spotify base field must NOT be what gets reported.
+        assert "spotify:track:" not in failures[0]
+        # And the banner detail carries speaker + attempted URI too.
+        assert "media_player.esszimmer" in gs.last_error_detail
+        assert "apple_music://track/1463658941" in gs.last_error_detail
+
+    @pytest.mark.asyncio
+    async def test_attempted_uri_falls_back_to_song_uri(self):
+        """No attempt recorded (service never got that far) → fall back to the
+        song's own URI rather than logging `None`.
+        """
+        from custom_components.beatify.game.state import GameState  # noqa: PLC0415
+        from tests.conftest import (  # noqa: PLC0415
+            make_game_state,
+            make_songs,
+        )
+
+        gs: GameState = make_game_state()
+        songs = make_songs(10)
+        gs.create_game(
+            playlists=["test.json"],
+            songs=songs,
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+        )
+
+        mock_service = MagicMock()
+        mock_service.is_available.return_value = True
+        mock_service.last_failure_reason = "error"
+        mock_service.last_attempted_uri = None
+        mock_service.play_song = AsyncMock(return_value=False)
+        gs._media_player_service = mock_service
+        gs.media_player = "media_player.test"
+        gs.platform = "music_assistant"
+        gs.pause_game = AsyncMock()
+
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            await gs.start_round()
+
+        # Detail still names a URI (the song's own) — never the literal "None".
+        assert "None" not in gs.last_error_detail
+        assert "media_player.test" in gs.last_error_detail
+
 
 class TestProxyAlbumArt:
     """proxy_album_art — same-origin wrapping so remote players see art (#933)."""

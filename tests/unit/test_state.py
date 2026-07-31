@@ -1134,6 +1134,21 @@ class TestGetState:
         assert state is not None
         assert state["provider"] == "apple_music"
 
+    def test_paused_state_includes_media_player(self):
+        """#1927: PAUSED state must surface the speaker the game was playing on.
+
+        A game started on a stale saved speaker fails with exactly this pause
+        reason, and until now no screen named the entity — so "playing in the
+        wrong room" was indistinguishable from "provider is dead".
+        """
+        _create_fresh_game(self.state)
+        self.state.media_player = "media_player.esszimmer"
+        self.state.phase = GamePhase.PAUSED
+        self.state.pause_reason = "media_player_error"
+        state = self.state.get_state()
+        assert state is not None
+        assert state["media_player"] == "media_player.esszimmer"
+
 
 # ---------------------------------------------------------------------------
 # Issue #228: rematch_game → LOBBY phase with join_url (Start Gameplay fix)

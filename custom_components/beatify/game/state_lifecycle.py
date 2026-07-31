@@ -339,9 +339,28 @@ class RoundLifecycleMixin:
                 # now so the recovery banner (which names the provider to
                 # re-authenticate) appears within seconds; its Resume button
                 # is the manual retry if it really was a transient blip.
+                # #1927 follow-up: report the URI that was ACTUALLY tried, not
+                # the song's Spotify base field. An Apple Music attempt used to
+                # be logged as `spotify:track:…`, which reads like a Spotify
+                # defect and sends the next reader into the wrong provider.
+                # Falls back to the base field when no attempt was recorded
+                # (e.g. the song carried no playable URI at all).
+                attempted_uri = (
+                    getattr(self._media_player_service, "last_attempted_uri", None)
+                    or song.get("uri")
+                )
+                # #1927: name the speaker too. The pause banner used to explain
+                # *what* failed and *which provider* to re-authenticate, but
+                # never *where* it was playing — the whole reason a game running
+                # on the wrong speaker looked like a provider outage.
+                self.last_error_detail = (
+                    f"{song.get('artist')} — {song.get('title')} "
+                    f"on {self.media_player} ({attempted_uri})"
+                )
                 _LOGGER.error(
-                    "Playback failed for %s — speaker unreachable, pausing game",
-                    song.get("uri"),
+                    "Playback failed for %s on %s — speaker unreachable, pausing game",
+                    attempted_uri,
+                    self.media_player,
                 )
                 await self.pause_game("media_player_error")
                 return False

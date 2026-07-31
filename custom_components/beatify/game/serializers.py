@@ -112,6 +112,11 @@ class GameStateSerializer:
             # The unauthenticated-MA-provider failure mode is the most
             # common cause of media_player_error pauses on MA setups.
             state["provider"] = gs.provider
+            # #1927: surface the speaker the game was playing on. A game that
+            # ran on the wrong speaker (a stale saved selection) failed with
+            # exactly this pause reason, and no screen named the entity — so
+            # the wrong-room case was indistinguishable from a dead provider.
+            state["media_player"] = gs.media_player
 
         elif gs.phase == GamePhase.END:
             GameStateSerializer._add_end_state(gs, state)

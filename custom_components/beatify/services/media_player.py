@@ -319,6 +319,13 @@ class MediaPlayerService:
         #                   broken provider auth across the board).
         self.last_failure_reason: str | None = None
 
+        # #1927 follow-up: the URI actually handed to the player for the most
+        # recent attempt. `state_lifecycle` used to log `song["uri"]` on a
+        # playback failure — the song's Spotify base field — so an Apple Music
+        # attempt was reported as `spotify:track:…` and every reader was sent
+        # hunting in the wrong provider. None until the first attempt.
+        self.last_attempted_uri: str | None = None
+
         # #1363: set when Beatify itself issues a same-song media_stop after a
         # stale-title detect (line ~729). The stop forces the speaker to
         # 'idle'; if the NEXT cascade candidate also fails to resolve, the
@@ -435,6 +442,10 @@ class MediaPlayerService:
 
         """
         uri = get_playback_uri(song)
+        # #1927 follow-up: start each song with a clean attempt record, then seed
+        # it with the dispatcher's URI. The MA path overwrites it per candidate
+        # (it walks several URI fields); sonos/alexa play exactly this one.
+        self.last_attempted_uri = uri or None
         if not uri:
             _LOGGER.error(
                 "Song has no URI to play: %s - %s",
@@ -752,6 +763,9 @@ class MediaPlayerService:
         an arbitrary title change from the prior queue auto-advancing is not
         instant-accepted as our track.
         """
+        # #1927 follow-up: remember what we are about to play, so a failure is
+        # reported with the URI that was really tried.
+        self.last_attempted_uri = uri
         _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
 
         # Snapshot speaker state before the call — we need both fields to

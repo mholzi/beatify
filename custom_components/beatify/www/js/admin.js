@@ -3077,6 +3077,21 @@ function _renderPauseRecoveryBanner(data) {
         msgEl.textContent = msg;
     }
 
+    // #1927: name the speaker the game was playing on. The banner already said
+    // WHAT failed and WHICH provider to re-authenticate, but never WHERE — and
+    // a game started on the wrong speaker fails in exactly this way.
+    var speakerEl = document.getElementById('admin-pause-recovery-speaker');
+    if (speakerEl) {
+        var speakerId = data && data.media_player ? data.media_player : '';
+        if (speakerId) {
+            speakerEl.textContent = speakerLabelFor(speakerId, adminState.mediaPlayers);
+            speakerEl.classList.remove('hidden');
+        } else {
+            speakerEl.textContent = '';
+            speakerEl.classList.add('hidden');
+        }
+    }
+
     var detailEl = document.getElementById('admin-pause-recovery-detail');
     if (detailEl) {
         if (detail) {
