@@ -21,6 +21,9 @@ import { adminState } from './admin/state.js';
 // #1279 step 4b: shared constants (localStorage keys) extracted so both this
 // core and the setup-section modules import the same literals.
 import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js';
+// #1927: reconcile the server-side setup blob with this browser's localStorage
+// so a stale local speaker can no longer outlive a newer pick from another device.
+import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
 // #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
@@ -254,6 +257,13 @@ document.addEventListener('visibilitychange', function() {
 
 // Lobby polling timer handle (Story 16.8)
 let lobbyPollingInterval = null;
+
+// #1927: epoch ms of the last setup change made ON THIS DEVICE (set by
+// persistSetupToServer). loadStatus() uses it to tell "my pick is newer than
+// the snapshot I am holding" from "the server knows something I don't" —
+// both timestamps come from this browser's clock, so no cross-machine
+// clock comparison is involved.
+let localSetupWriteAt = 0;
 
 // #949: the home "Start game" button's pre-"Starting…" HTML, stashed so a WS
 // start-failure error (MEDIA_PLAYER_UNAVAILABLE etc.) can un-stick the button.
@@ -598,7 +608,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // When the two disagree, both are shown: the number in force,
                 // and what the next game will use.
                 const mode = `${s.difficulty || 'normal'} · ${roundDurationLabel(adminState)} · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
-                const meta = `${playlistLabel} · ${mode}`;
+                // #1927: name the speaker that will actually be played on. The
+                // wrong-room bug was invisible precisely because no screen ever
+                // said which entity the game targets — it took a log dive to
+                // see that "Esszimmer" had been started on the kitchen Sonos.
+                const speakerId = (adminState.selectedMediaPlayer && adminState.selectedMediaPlayer.entityId)
+                    || localStorage.getItem(STORAGE_LAST_PLAYER)
+                    || '';
+                const meta = `${speakerLabelFor(speakerId, adminState.mediaPlayers)} · ${playlistLabel} · ${mode}`;
                 const metaEl = document.getElementById('home-meta');
                 if (metaEl) metaEl.textContent = meta;
             } catch (e) { /* ignore */ }
@@ -854,6 +871,10 @@ function ensureAdminViewVisible() {
  */
 async function loadStatus() {
     try {
+        // #1927: remember when this snapshot was requested. A speaker picked on
+        // THIS device between the request and the response is newer than the
+        // blob in the response, so adopting the response would revert the pick.
+        const requestedAt = Date.now();
         const response = await fetch('/beatify/api/status');
 
         if (!response.ok) {
@@ -862,27 +883,23 @@ async function loadStatus() {
 
         const status = await response.json();
 
-        // #1663: server-side setup flag. If this device has never been
-        // configured locally (fresh browser) but the server has a saved setup,
-        // seed localStorage from it so isConfigured() + hydrateFromStorage()
-        // (both localStorage-based) light up exactly as on the original device.
+        // #1663: server-side setup flag, so a device that was never configured
+        // locally still lights up as configured.
+        // #1927: the seed used to run ONLY for a pristine browser, which let a
+        // stale local speaker outlive a newer pick made on another device — the
+        // game then played in the wrong room with nothing in the UI saying so.
+        // reconcileSavedSetup() gives the speaker a single source of truth (the
+        // server blob) and keeps settings seed-only; see setup-sync.js.
         adminState.setupComplete = status.setup_complete === true;
-        if (status.saved_setup && typeof status.saved_setup === 'object') {
-            try {
-                const hasLocal = !!localStorage.getItem(STORAGE_LAST_PLAYER)
-                    || !!localStorage.getItem(STORAGE_GAME_SETTINGS);
-                if (!hasLocal) {
-                    if (status.saved_setup.last_player) {
-                        localStorage.setItem(STORAGE_LAST_PLAYER, status.saved_setup.last_player);
-                    }
-                    if (status.saved_setup.game_settings) {
-                        localStorage.setItem(
-                            STORAGE_GAME_SETTINGS,
-                            JSON.stringify(status.saved_setup.game_settings)
-                        );
-                    }
-                }
-            } catch (e) { /* private mode — fall back to server flag only */ }
+        if (localSetupWriteAt <= requestedAt) {
+            const reconciled = reconcileSavedSetup(status.saved_setup, globalThis.localStorage);
+            if (reconciled.playerAdopted) {
+                console.info(
+                    '[Beatify] speaker taken over from the saved server setup:',
+                    reconciled.playerAdopted,
+                    '(#1927)'
+                );
+            }
         }
 
         // #935 follow-up: the server embeds the active game's admin token in
@@ -1093,6 +1110,12 @@ function showLobbyView(gameData) {
  * this device.
  */
 async function persistSetupToServer() {
+    // #1927: stamp the moment this device changed its own setup. loadStatus()
+    // compares it against the age of the /api/status snapshot it holds and
+    // skips the reconcile when the local pick is the newer of the two — without
+    // it, a status response that was already in flight when the user tapped a
+    // speaker would hand the older server value straight back.
+    localSetupWriteAt = Date.now();
     try {
         const lastPlayer = localStorage.getItem(STORAGE_LAST_PLAYER);
         const rawSettings = localStorage.getItem(STORAGE_GAME_SETTINGS);
@@ -1112,6 +1135,19 @@ async function persistSetupToServer() {
 // Exposed so wizard.js can persist the host's picks the moment setup finishes,
 // even before the first game starts.
 window.BeatifyPersistSetup = persistSetupToServer;
+
+/**
+ * Mark a local setup change that is NOT (yet) published to the server (#1927).
+ *
+ * wizard.js commits the speaker to localStorage the moment it is tapped but
+ * only POSTs the blob when the wizard finishes. Without this stamp a
+ * loadStatus() landing in that window would hand the older server value back
+ * and move the pick under the user. Stamp-only on purpose: a wizard the host
+ * has not finished should not publish its speaker to every other device.
+ */
+window.BeatifyNoteLocalSetupWrite = function() {
+    localSetupWriteAt = Date.now();
+};
 
 /**
  * Start a new game

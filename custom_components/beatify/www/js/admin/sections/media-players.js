@@ -293,6 +293,17 @@ export function handleMediaPlayerSelect(radio, skipSave = false) {
         } catch (e) {
             console.warn('Failed to save last player:', e);
         }
+        // #1927 write-through: mirror the pick to the server blob immediately.
+        // Until now only the wizard did that, so a speaker chosen here stayed
+        // local — and reconcileSavedSetup() (which lets the server win) would
+        // hand this device back the older wizard pick on the next load. With
+        // the write-through there is one source of truth and this selection IS
+        // the newest one. Best-effort: a failed POST never blocks the game.
+        try {
+            globalThis.BeatifyPersistSetup?.();
+        } catch (e) {
+            console.warn('Failed to persist speaker to server:', e);
+        }
     }
 
     updateStartButtonState();

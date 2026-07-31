@@ -516,6 +516,10 @@ function _renderSpeakers() {
             const speakerChanged = chosenSpeaker !== newSpeaker;
             chosenSpeaker = newSpeaker;
             try { localStorage.setItem(LS_SELECTED_PLAYER, chosenSpeaker); } catch (e) { /* private mode */ }
+            // #1927: tell admin.js that this device just changed its speaker, so
+            // an /api/status snapshot that was already in flight cannot reconcile
+            // the fresh pick away. The POST still happens at wizard finish.
+            try { window.BeatifyNoteLocalSetupWrite?.(); } catch (e) { /* admin core not loaded */ }
             // Switching speakers invalidates the provider step — stale explainer
             // would reference the previous platform, and a previously-picked
             // provider may no longer be supported.
