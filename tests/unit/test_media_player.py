@@ -7,6 +7,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
+from custom_components.beatify.const import MAX_CONSECUTIVE_PLAYBACK_FAILURES
+
 from custom_components.beatify.services.media_player import (
     MediaPlayerService,
     async_get_media_players,
@@ -1558,12 +1560,17 @@ class TestStartRoundFailureClassification:
         assert mock_service.play_song.await_count >= 2
 
     @pytest.mark.asyncio
-    async def test_error_failure_pauses_immediately(self):
-        """#949: an 'error' failure (speaker idle / provider unauthenticated)
-        is systemic — play_song already waited a full MA timeout. start_round
-        must pause on the FIRST such failure, not grind ~3 silent retries
-        (~2 min) before the recovery banner appears. The banner's Resume
-        button is the manual retry if it really was a transient blip.
+    async def test_error_failure_pauses_within_the_consecutive_budget(self):
+        """#949 + #1936: an 'error' failure still pauses the game — but not on
+        the very first one any more.
+
+        #949 paused immediately, to avoid a ~2 min silent retry grind. #1936
+        showed the cost of that: Music Assistant's Apple Music provider
+        rate-limits and retries after its own backoff (15.7s, longer than our
+        deadline), so a working provider ended the game on its first slow
+        track. The compromise is a bounded streak — skip, skip, then pause —
+        which keeps the recovery banner for genuinely systemic failures while a
+        throttled provider only costs a couple of songs.
         """
         from custom_components.beatify.game.state import GameState  # noqa: PLC0415
         from tests.conftest import (  # noqa: PLC0415
@@ -1594,9 +1601,9 @@ class TestStartRoundFailureClassification:
         ):
             result = await gs.start_round()
 
-        # Pauses on the FIRST failure — no silent retry grind (#949).
+        # Still pauses, and still bounded — not an open-ended retry grind.
         assert result is False
-        assert mock_service.play_song.await_count == 1
+        assert mock_service.play_song.await_count == MAX_CONSECUTIVE_PLAYBACK_FAILURES
         gs.pause_game.assert_awaited_once_with("media_player_error")
 
     @pytest.mark.asyncio
@@ -2623,3 +2630,154 @@ class TestSingleWalkEquivalence:
         assert remap_combined == {"media_player.unnamed_room": "media_player.esszimmer"}
         ids = {p["entity_id"] for p in players_combined}
         assert ids == {"media_player.esszimmer", "media_player.kitchen_sonos"}
+
+
+class TestRateLimitTolerance:
+    """#1936 — a playback timeout is not proof that the system is broken.
+
+    Music Assistant's Apple Music provider rate-limits and then retries after
+    its own backoff (measured at 15.7s, longer than our deadline). Pausing the
+    whole game on the first timeout ended the evening for a provider that was
+    working. Only CONSECUTIVE timeouts now mean systemic.
+    """
+
+    @staticmethod
+    def _game_with_failing_player():
+        from custom_components.beatify.game.state import GameState  # noqa: PLC0415
+        from tests.conftest import make_game_state, make_songs  # noqa: PLC0415
+
+        gs: GameState = make_game_state()
+        gs.create_game(
+            playlists=["test.json"],
+            songs=make_songs(30),
+            media_player="media_player.esszimmer",
+            base_url="http://localhost:8123",
+        )
+        svc = MagicMock()
+        svc.is_available.return_value = True
+        svc.last_failure_reason = "error"
+        svc.last_attempted_uri = "apple_music://track/1122776156"
+        svc.play_song = AsyncMock(return_value=False)
+        svc.stop = AsyncMock()
+        gs._media_player_service = svc
+        gs.media_player = "media_player.esszimmer"
+        gs.platform = "music_assistant"
+        gs.pause_game = AsyncMock()
+        return gs, svc
+
+    @pytest.mark.asyncio
+    async def test_first_timeout_skips_the_song_instead_of_pausing(self):
+        gs, svc = self._game_with_failing_player()
+
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            await gs.start_round()
+
+        # It kept trying songs rather than ending the game on the first miss.
+        assert svc.play_song.await_count >= 2
+        assert gs.pause_game.await_count <= 1
+
+    @pytest.mark.asyncio
+    async def test_speaker_is_stopped_before_moving_on(self):
+        """MA may still be retrying the track we gave up on; without a stop it
+        can start mid-way through the NEXT round and play the wrong song under
+        a live question."""
+        gs, svc = self._game_with_failing_player()
+
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            await gs.start_round()
+
+        assert svc.stop.await_count >= 1
+
+    @pytest.mark.asyncio
+    async def test_pauses_once_the_consecutive_budget_is_spent(self):
+        """A genuinely offline speaker must still reach the recovery banner."""
+        from custom_components.beatify.const import (  # noqa: PLC0415
+            MAX_CONSECUTIVE_PLAYBACK_FAILURES,
+        )
+
+        gs, svc = self._game_with_failing_player()
+
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            await gs.start_round()
+
+        gs.pause_game.assert_awaited_with("media_player_error")
+        assert svc.play_song.await_count == MAX_CONSECUTIVE_PLAYBACK_FAILURES
+
+    @pytest.mark.asyncio
+    async def test_a_success_clears_the_streak(self):
+        """One bad song between two good ones must not accumulate."""
+        gs, svc = self._game_with_failing_player()
+        # fail, fail, then succeed — the streak must be back to zero.
+        svc.play_song = AsyncMock(side_effect=[False, False, True])
+
+        with patch(
+            "custom_components.beatify.game.state.asyncio.sleep",
+            new_callable=AsyncMock,
+        ):
+            await gs.start_round()
+
+        assert gs._consecutive_playback_failures == 0
+        gs.pause_game.assert_not_awaited()
+
+
+class TestFirstPlayBudget:
+    """#1936 — the first play of a game gets a third more time (cold speaker)."""
+
+    def test_factor_is_derived_from_the_base_timeout(self):
+        from custom_components.beatify.services.media_player import (  # noqa: PLC0415
+            MA_FIRST_PLAY_TIMEOUT_FACTOR,
+            MA_PLAYBACK_TIMEOUT,
+        )
+
+        assert MA_PLAYBACK_TIMEOUT * MA_FIRST_PLAY_TIMEOUT_FACTOR == 20.0
+
+    def test_a_fresh_service_is_pending_its_first_play(self):
+        svc = MediaPlayerService(
+            MagicMock(), "media_player.test", platform="music_assistant"
+        )
+        assert svc._first_play_pending is True
+
+    @pytest.mark.asyncio
+    async def test_the_longer_budget_is_used_once_and_then_dropped(self):
+        """The second attempt must fall back to the normal deadline — a warm
+        speaker waiting longer is just silence in front of the players."""
+        hass = MagicMock()
+        hass.services.async_call = AsyncMock()
+        hass.states.get = MagicMock(return_value=_make_state("idle", media_title="Old"))
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        seen = []
+
+        async def capture(awaitable, timeout=None):
+            seen.append(timeout)
+            awaitable.close()  # we never await it — keep the loop warning-free
+            raise asyncio.TimeoutError
+
+        with (
+            patch(
+                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                1.0,
+            ),
+            patch(
+                "custom_components.beatify.services.media_player.asyncio.sleep",
+                new_callable=AsyncMock,
+            ),
+            patch(
+                "custom_components.beatify.services.media_player.asyncio.wait_for",
+                capture,
+            ),
+        ):
+            await svc.play_song(_make_song(title="First"))
+            await svc.play_song(_make_song(title="Second"))
+
+        assert seen[0] == pytest.approx(4 / 3)
+        assert seen[-1] == pytest.approx(1.0)

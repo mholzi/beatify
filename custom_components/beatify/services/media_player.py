@@ -101,6 +101,19 @@ PLAYBACK_TIMEOUT = 8.0
 # advanced before the track had actually swapped on the speaker.
 MA_PLAYBACK_TIMEOUT = 15.0
 
+# #1936: the FIRST play of a game gets a third more time (15.0s → 20.0s). A
+# speaker idle for a while was measured at 10.1s to first audio (Sonos via MA,
+# Apple Music) — close enough to the deadline that a cold start regularly lost
+# the race and the game paused before a single note had played. Later rounds
+# keep the shorter deadline: by then the speaker is warm and a longer wait is
+# just silence in front of the players.
+#
+# Expressed as a FACTOR, not a second absolute constant, so the one existing
+# patch point still governs both budgets — eight tests patch
+# MA_PLAYBACK_TIMEOUT down to keep the suite fast, and a separate absolute
+# constant would have silently made each of them wait the full 20s.
+MA_FIRST_PLAY_TIMEOUT_FACTOR = 4 / 3
+
 # #1381: Fast-path Path 2 (title-advanced-without-exact-match) must not
 # instant-accept an *arbitrary* title change. If a requested URI fails to
 # resolve in MA while the speaker's prior queue naturally auto-advances to its
@@ -325,6 +338,10 @@ class MediaPlayerService:
         # attempt was reported as `spotify:track:…` and every reader was sent
         # hunting in the wrong provider. None until the first attempt.
         self.last_attempted_uri: str | None = None
+
+        # #1936: True until the first playback attempt of this game has been
+        # made. Drives the longer cold-start budget in _try_ma_play.
+        self._first_play_pending: bool = True
 
         # #1363: set when Beatify itself issues a same-song media_stop after a
         # stale-title detect (line ~729). The stop forces the speaker to
@@ -766,7 +783,14 @@ class MediaPlayerService:
         # #1927 follow-up: remember what we are about to play, so a failure is
         # reported with the URI that was really tried.
         self.last_attempted_uri = uri
-        _LOGGER.debug("MA playback: %s on %s", uri, self._entity_id)
+        # #1936: cold-start budget for the very first attempt of a game only.
+        timeout = MA_PLAYBACK_TIMEOUT * (
+            MA_FIRST_PLAY_TIMEOUT_FACTOR if self._first_play_pending else 1
+        )
+        self._first_play_pending = False
+        _LOGGER.debug(
+            "MA playback: %s on %s (budget %.0fs)", uri, self._entity_id, timeout
+        )
 
         # Snapshot speaker state before the call — we need both fields to
         # distinguish #345 slow-buffer (one of them changed during the wait)
@@ -903,7 +927,7 @@ class MediaPlayerService:
                 )
                 return True
 
-            await asyncio.wait_for(confirmed.wait(), timeout=MA_PLAYBACK_TIMEOUT)
+            await asyncio.wait_for(confirmed.wait(), timeout=timeout)
             elapsed = asyncio.get_event_loop().time() - start_time
             final = self._safe_state()
             _LOGGER.debug(
@@ -937,7 +961,7 @@ class MediaPlayerService:
                     "Beatify stopped it after a same-song stale-title detect. "
                     "Treating as a storefront/catalog gap (unavailable), not a "
                     "systemic error — game will skip this song silently. (#1363)",
-                    MA_PLAYBACK_TIMEOUT,
+                    timeout,
                     uri,
                 )
                 self.last_failure_reason = "unavailable"
@@ -946,8 +970,11 @@ class MediaPlayerService:
                 "MA playback failed after %.1fs for %s (state: %s). "
                 "Either the speaker is offline, MA's provider is unauthenticated, "
                 "or the track is not available in your provider's catalog. If this "
-                "happens for many tracks, re-authenticate your music provider in MA.",
-                MA_PLAYBACK_TIMEOUT,
+                "happens for many tracks, re-authenticate your music provider in MA. "
+                "A rate-limiting provider looks the same from here — Music "
+                "Assistant then retries the track after its own backoff, which "
+                "can outlast this budget. (#1936)",
+                timeout,
                 uri,
                 speaker_state,
             )
@@ -997,7 +1024,7 @@ class MediaPlayerService:
                 "not available in your provider's catalog/storefront, OR "
                 "your provider needs re-authentication in MA. Skipping "
                 "this song silently — game will try the next one. (#795)",
-                MA_PLAYBACK_TIMEOUT,
+                timeout,
                 uri,
                 title_before,
                 "advanced — prior track still playing"
@@ -1060,7 +1087,7 @@ class MediaPlayerService:
                 "dispatched. Check that the speaker is exposed to Music "
                 "Assistant and that your provider is authenticated there. "
                 "(#1863)",
-                MA_PLAYBACK_TIMEOUT,
+                timeout,
                 uri,
                 speaker_state,
                 title_before,
@@ -1085,7 +1112,7 @@ class MediaPlayerService:
             "MA playback not confirmed after %.1fs for %s (state: %s). "
             "Title moved %r → %r. Continuing anyway — MA may still be "
             "buffering. (#345)",
-            MA_PLAYBACK_TIMEOUT,
+            timeout,
             uri,
             speaker_state,
             title_before,

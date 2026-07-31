@@ -97,6 +97,7 @@ import logging
 from custom_components.beatify.const import (
     ERR_GAME_ALREADY_STARTED,
     ERR_GAME_NOT_STARTED,
+    MAX_CONSECUTIVE_PLAYBACK_FAILURES,
     MIN_PLAYERS,
 )
 
@@ -331,6 +332,48 @@ class RoundLifecycleMixin:
                     await asyncio.sleep(0.2)
                     return await self._start_round_locked(_retry_count)
 
+                # #1936: a timeout is not proof of a broken system. Music
+                # Assistant's Apple Music provider rate-limits and then retries
+                # after its OWN backoff — measured at 15.7s, i.e. longer than
+                # the deadline we just gave it. Pausing the whole game on that
+                # first timeout ended the evening for a provider that was
+                # working, and handed the host a re-authenticate banner for a
+                # problem they did not have.
+                #
+                # So the first failures skip the song, exactly like a
+                # storefront gap; only MAX_CONSECUTIVE_PLAYBACK_FAILURES in a
+                # row still means systemic and pauses. An offline speaker or a
+                # genuinely dead provider therefore still reaches the recovery
+                # banner — a few songs later instead of instantly, which is the
+                # deliberate price for not ending a game over one slow start.
+                self._consecutive_playback_failures = (
+                    getattr(self, "_consecutive_playback_failures", 0) + 1
+                )
+                if (
+                    self._consecutive_playback_failures
+                    < MAX_CONSECUTIVE_PLAYBACK_FAILURES
+                ):
+                    # Stop the speaker BEFORE moving on. MA may still be
+                    # retrying the track we just gave up on; without this it can
+                    # start mid-way through the *next* round and play the wrong
+                    # song under a live question. This does not provably cancel
+                    # MA's internal retry — it is the strongest lever this side
+                    # of the boundary has.
+                    try:
+                        await self._media_player_service.stop()
+                    except Exception as err:  # noqa: BLE001 — must not raise
+                        _LOGGER.warning("Stop before skip failed: %s (#1936)", err)
+                    _LOGGER.warning(
+                        "Playback timed out for %s — skipping this song "
+                        "(failure %d of %d in a row; the provider may be "
+                        "rate-limiting). Trying the next song. (#1936)",
+                        song.get("title") or song.get("uri"),
+                        self._consecutive_playback_failures,
+                        MAX_CONSECUTIVE_PLAYBACK_FAILURES,
+                    )
+                    await asyncio.sleep(0.2)
+                    return await self._start_round_locked(_retry_count)
+
                 # #949: a systemic playback failure — the speaker stayed idle,
                 # or the Music Assistant provider is unauthenticated — does not
                 # fix itself by retrying. play_song already waited a full MA
@@ -361,8 +404,16 @@ class RoundLifecycleMixin:
                     attempted_uri,
                     self.media_player,
                 )
+                # #1936: the budget is spent — reset it so the Resume button
+                # gets a full one rather than pausing again on the next timeout.
+                self._consecutive_playback_failures = 0
                 await self.pause_game("media_player_error")
                 return False
+
+            # #1936: a confirmed start clears the streak. Only CONSECUTIVE
+            # timeouts mean systemic; one bad song between two good ones does
+            # not accumulate toward the pause.
+            self._consecutive_playback_failures = 0
 
             # #1358: play_song just succeeded, but it parks for a full Music
             # Assistant timeout — long enough for the admin to end the game

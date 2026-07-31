@@ -589,8 +589,8 @@
     "ttsTestNoSpeaker": "Pick a speaker first",
     "pauseRecovery": {
       "title": "Game paused",
-      "mediaPlayerError": "Playback did not start — the speaker is not responding. This often means {provider} in Music Assistant needs re-authentication — open Settings → Music Assistant → {provider} → Reconnect, then click Resume.",
-      "mediaPlayerErrorGeneric": "Playback did not start — the speaker is not responding. This often means your music provider in Music Assistant needs re-authentication — open Settings → Music Assistant → your provider → Reconnect, then click Resume.",
+      "mediaPlayerError": "Playback did not start for several songs in a row. Two common causes: {provider} in Music Assistant needs re-authentication (Settings → Music Assistant → {provider} → Reconnect), or {provider} is rate-limiting right now — in that case wait a minute and hit Resume.",
+      "mediaPlayerErrorGeneric": "Playback did not start for several songs in a row. Two common causes: your music provider in Music Assistant needs re-authentication (Settings → Music Assistant → your provider → Reconnect), or it is rate-limiting right now — in that case wait a minute and hit Resume.",
       "noSongsAvailable": "No playable songs left for this provider. Resume to retry, or end the game.",
       "resume": "Resume",
       "endGame": "End game",

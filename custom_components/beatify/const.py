@@ -17,6 +17,14 @@ DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
 
+# #1936: how many playback timeouts IN A ROW count as a systemic failure that
+# pauses the game. Below this, a timeout skips the song and play continues —
+# a rate-limiting provider (Music Assistant's Apple Music backs off ~15.7s,
+# longer than our own deadline) is not a broken one, and pausing on the first
+# timeout ended whole games over it. A genuinely offline speaker still reaches
+# the recovery banner, just a few songs later.
+MAX_CONSECUTIVE_PLAYBACK_FAILURES = 3
+
 # Server-side round backstop (#1865). A periodic tick ends a round whose
 # deadline passed while the phase is still PLAYING, so the game does not depend
 # on the per-round timer task surviving or on a client's countdown nudging it.

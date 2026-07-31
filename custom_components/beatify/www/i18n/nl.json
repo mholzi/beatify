@@ -589,8 +589,8 @@
     "ttsTestNoSpeaker": "Kies eerst een luidspreker",
     "pauseRecovery": {
       "title": "Spel gepauzeerd",
-      "mediaPlayerError": "Afspelen kon niet starten — de speaker reageert niet. Veelvoorkomende oorzaak: {provider} in Music Assistant moet opnieuw worden geverifieerd — Instellingen → Music Assistant → {provider} → Opnieuw verbinden, en klik dan op Hervatten.",
-      "mediaPlayerErrorGeneric": "Afspelen kon niet starten — de speaker reageert niet. Veelvoorkomende oorzaak: je muziekprovider in Music Assistant moet opnieuw worden geverifieerd — Instellingen → Music Assistant → je provider → Opnieuw verbinden, en klik dan op Hervatten.",
+      "mediaPlayerError": "Afspelen is meerdere nummers achter elkaar niet gestart. Twee veelvoorkomende oorzaken: {provider} in Music Assistant moet opnieuw worden geverifieerd (Instellingen → Music Assistant → {provider} → Opnieuw verbinden), of {provider} beperkt op dit moment het aantal aanvragen — wacht dan een minuut en tik op Hervatten.",
+      "mediaPlayerErrorGeneric": "Afspelen is meerdere nummers achter elkaar niet gestart. Twee veelvoorkomende oorzaken: je muziekprovider in Music Assistant moet opnieuw worden geverifieerd (Instellingen → Music Assistant → provider → Opnieuw verbinden), of hij beperkt op dit moment het aantal aanvragen — wacht dan een minuut en tik op Hervatten.",
       "noSongsAvailable": "Geen afspeelbare nummers meer voor deze provider. Hervat om opnieuw te proberen, of stop het spel.",
       "resume": "Hervatten",
       "endGame": "Spel beëindigen",
