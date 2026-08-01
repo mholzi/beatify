@@ -329,3 +329,91 @@ class TestAsyncApplyCacheTokens:
 
         await base.async_apply_cache_tokens(_SpyHass("9.9.9"), "{{ASSET_VER}}")
         assert offloaded == [], "a fresh fingerprint cache must skip the executor"
+
+
+@pytest.mark.asyncio
+class TestNoBlockingSweepOnTheLoop:
+    """#1945 — the sweep must be unreachable from the event loop, not merely
+    unlikely.
+
+    Reported by a user whose HA logged `Detected blocking call to scandir …
+    inside the event loop by custom integration 'beatify' at base.py line 99`.
+    The async wrapper primed the cache in an executor and then called the sync
+    substitution, which re-read the cache — and the TTL is five seconds. On a
+    loaded instance those two steps are more than five seconds apart, the entry
+    was stale again, and the rglob walk ran on the loop after all.
+    """
+
+    def setup_method(self) -> None:
+        base._ASSET_FP_CACHE = None
+
+    async def test_expiring_between_prime_and_use_does_not_recompute(
+        self, monkeypatch
+    ) -> None:
+        """The reported failure, reproduced: with a TTL of 0 every cache read
+        is stale. The sweep must still run exactly once, in the executor."""
+        monkeypatch.setattr(base, "_ASSET_FP_TTL_NS", 0)
+
+        inline: list = []
+        offloaded: list = []
+        real = base._compute_asset_fingerprint
+
+        def _spy(www_dir):  # noqa: ANN001
+            inline.append(www_dir)
+            return real(www_dir)
+
+        monkeypatch.setattr(base, "_compute_asset_fingerprint", _spy)
+
+        class _SpyHass(_FakeHass):
+            async def async_add_executor_job(self, func, *args):  # noqa: ANN001
+                offloaded.append(func)
+                return func(*args)
+
+        out = await base.async_apply_cache_tokens(_SpyHass("9.9.9"), "{{ASSET_VER}}")
+
+        assert "{{ASSET_VER}}" not in out
+        assert len(offloaded) == 1, "the sweep belongs in the executor, once"
+        assert len(inline) == 1, (
+            "the sweep ran twice — the second one was on the event loop, which "
+            "is exactly the blocking call HA reported"
+        )
+
+    async def test_stale_cache_is_served_rather_than_recomputed(
+        self, monkeypatch
+    ) -> None:
+        """A stale entry is good enough for a cache-buster. Recomputing it on
+        the caller's thread is not worth a disk sweep in the hot path."""
+        await base.async_apply_cache_tokens(_FakeHass("9.9.9"), "{{ASSET_VER}}")
+        warm = base._ASSET_FP_CACHE
+        assert warm is not None
+
+        # Age the entry past the TTL without touching the filesystem.
+        base._ASSET_FP_CACHE = (warm[0] - base._ASSET_FP_TTL_NS * 10, warm[1])
+
+        calls: list = []
+        monkeypatch.setattr(
+            base, "_compute_asset_fingerprint", lambda d: calls.append(d) or "x"
+        )
+        out = _get_asset_version("9.9.9", base._www_dir())
+
+        assert calls == [], "a stale entry must be served, not recomputed inline"
+        assert out == f"9.9.9-{warm[1]}"
+
+    async def test_cold_cache_still_computes_inline_as_a_last_resort(
+        self, monkeypatch
+    ) -> None:
+        """With nothing cached at all there is nothing to serve — computing
+        inline is the only option, and stays allowed."""
+        base._ASSET_FP_CACHE = None
+        calls: list = []
+        real = base._compute_asset_fingerprint
+
+        def _spy(www_dir):  # noqa: ANN001
+            calls.append(www_dir)
+            return real(www_dir)
+
+        monkeypatch.setattr(base, "_compute_asset_fingerprint", _spy)
+        out = _get_asset_version("9.9.9", base._www_dir())
+
+        assert len(calls) == 1
+        assert out.startswith("9.9.9-")

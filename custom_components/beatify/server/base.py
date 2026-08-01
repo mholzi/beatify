@@ -131,9 +131,19 @@ def _get_asset_version(version: str, www_dir: Path) -> str:
     # Slow path: serialize recompute so concurrent first-access (event loop +
     # executor threads) hashes once, not once-per-thread (#1592). Re-check the
     # cache inside the lock — another thread may have just populated it.
+    # #1945: a STALE entry is served as-is rather than recomputed here. This
+    # function can run on the event loop (the sync substitution path), and
+    # recomputing means an rglob/stat sweep over the shipped bundle right there
+    # — which is exactly what HA's blocking-call detector reported. A
+    # cache-buster that is a few seconds old is harmless: the next call through
+    # async_apply_cache_tokens refreshes it in an executor. Only a completely
+    # cold cache still justifies computing inline, because there is nothing to
+    # serve otherwise.
+    if cache is not None:
+        return f"{version}-{cache[1]}"
     with _ASSET_FP_LOCK:
         cache = _ASSET_FP_CACHE
-        if cache is not None and now - cache[0] < _ASSET_FP_TTL_NS:
+        if cache is not None:
             fingerprint = cache[1]
         else:
             fingerprint = _compute_asset_fingerprint(www_dir)
@@ -146,25 +156,39 @@ def _www_dir() -> Path:
     return Path(__file__).parent.parent / "www"
 
 
-def _apply_cache_tokens(text: str, hass: HomeAssistant) -> str:
-    """Substitute {{VERSION}} and {{ASSET_VER}} tokens at serve time (#1266)."""
+def _apply_cache_tokens(
+    text: str, hass: HomeAssistant, *, asset_version: str | None = None
+) -> str:
+    """Substitute {{VERSION}} and {{ASSET_VER}} tokens at serve time (#1266).
+
+    ``asset_version`` (#1945) lets the async serve path pass the value it just
+    warmed in an executor, so this function never has to look the cache up
+    again — and therefore can never trigger the fingerprint sweep itself.
+    """
     version = _get_version(hass)
-    text = text.replace(_ASSET_VER_TOKEN, _get_asset_version(version, _www_dir()))
+    if asset_version is None:
+        asset_version = _get_asset_version(version, _www_dir())
+    text = text.replace(_ASSET_VER_TOKEN, asset_version)
     return text.replace(_VERSION_TOKEN, version)
 
 
-async def _async_prime_asset_fingerprint(hass: HomeAssistant) -> None:
+async def _async_prime_asset_fingerprint(hass: HomeAssistant) -> str:
     """Warm ``_ASSET_FP_CACHE`` via an executor job when it is cold or stale.
 
     Mirrors the throttle/lock logic in :func:`_get_asset_version`, but performs
     the actual filesystem sweep (:func:`_compute_asset_fingerprint`, a blocking
     ``rglob``/``stat`` walk) off the event loop. A no-op when the cache is fresh.
+
+    #1945: returns the fingerprint instead of nothing. The caller hands it
+    straight to the substitution, so the serve path never re-reads the cache —
+    the five-second TTL used to expire between the two steps on a loaded
+    instance, and the sweep then ran on the event loop after all.
     """
     global _ASSET_FP_CACHE  # noqa: PLW0603
     now = time.monotonic_ns()
     cache = _ASSET_FP_CACHE
     if cache is not None and now - cache[0] < _ASSET_FP_TTL_NS:
-        return
+        return cache[1]
     fingerprint = await hass.async_add_executor_job(
         _compute_asset_fingerprint, _www_dir()
     )
@@ -172,6 +196,11 @@ async def _async_prime_asset_fingerprint(hass: HomeAssistant) -> None:
         cache = _ASSET_FP_CACHE
         if cache is None or time.monotonic_ns() - cache[0] >= _ASSET_FP_TTL_NS:
             _ASSET_FP_CACHE = (time.monotonic_ns(), fingerprint)
+        else:
+            # Another thread warmed a fresher value while we were in the
+            # executor — prefer it, so every caller sees the same buster.
+            fingerprint = cache[1]
+    return fingerprint
 
 
 async def async_apply_cache_tokens(hass: HomeAssistant, text: str) -> str:
@@ -185,8 +214,10 @@ async def async_apply_cache_tokens(hass: HomeAssistant, text: str) -> str:
     cache in an executor first keeps the hot serve path non-blocking; the
     subsequent sync substitution then hits the warm cache.
     """
-    await _async_prime_asset_fingerprint(hass)
-    return _apply_cache_tokens(text, hass)
+    fingerprint = await _async_prime_asset_fingerprint(hass)
+    return _apply_cache_tokens(
+        text, hass, asset_version=f"{_get_version(hass)}-{fingerprint}"
+    )
 
 
 # #1177 follow-up: PR #1179 set documentElement.lang inside setLanguage(), but
