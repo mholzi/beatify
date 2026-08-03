@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "edm",
     "electronic",
@@ -1470,7 +1470,7 @@
         "it": "applemusic://track/1824649781"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/84840860",
       "uri_deezer": "deezer://track/463375512",
       "fun_fact": "“Tsunami” appears on DVBBS’s release “Tsunami (Jump) [Remixes] - EP (feat. Tinie Tempah)”.",
       "fun_fact_de": "„Tsunami“ erschien auf der Veröffentlichung „Tsunami (Jump) [Remixes] - EP (feat. Tinie Tempah)“ von DVBBS.",
@@ -1500,7 +1500,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/54504292",
       "uri_deezer": "deezer://track/569166552",
       "fun_fact": "“Light It Up” appears on Major Lazer’s release “Peace Is The Mission : Extended”.",
       "fun_fact_de": "„Light It Up“ erschien auf der Veröffentlichung „Peace Is The Mission : Extended“ von Major Lazer.",
@@ -1530,7 +1530,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=I6etAHfECXc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70588899",
       "uri_deezer": "deezer://track/142808100",
       "fun_fact": "“Stay (with Alessia Cara)” appears on Zedd’s release “Stay”.",
       "fun_fact_de": "„Stay (with Alessia Cara)“ erschien auf der Veröffentlichung „Stay“ von Zedd.",
@@ -1560,7 +1560,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lrviWgYgwH0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89050808",
       "uri_deezer": "deezer://track/502746922",
       "fun_fact": "“Rise” is the title track of Jonas Blue’s release of the same name.",
       "fun_fact_de": "„Rise“ ist der Titelsong der gleichnamigen Veröffentlichung von Jonas Blue.",
@@ -1590,7 +1590,7 @@
         "it": "applemusic://track/1533115303"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66538696",
       "uri_deezer": null,
       "fun_fact": "“This Girl (Kungs Vs. Cookin' On 3 Burners)” appears on Kungs’s release “Layers”.",
       "fun_fact_de": "„This Girl (Kungs Vs. Cookin' On 3 Burners)“ erschien auf der Veröffentlichung „Layers“ von Kungs.",
@@ -1620,7 +1620,7 @@
         "it": "applemusic://track/1761396656"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=We0SMj9ET8w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64999188",
       "uri_deezer": "deezer://track/132265704",
       "fun_fact": "“My Way” is the title track of Calvin Harris’s release of the same name.",
       "fun_fact_de": "„My Way“ ist der Titelsong der gleichnamigen Veröffentlichung von Calvin Harris.",
@@ -1650,7 +1650,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MbT_grBSt38",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77080091",
       "uri_deezer": "deezer://track/391727202",
       "fun_fact": "“Silence” is the title track of Marshmello’s release of the same name.",
       "fun_fact_de": "„Silence“ ist der Titelsong der gleichnamigen Veröffentlichung von Marshmello.",
@@ -1680,7 +1680,7 @@
         "it": "applemusic://track/1201058123"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ogKU5EQ0Wn0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71513806",
       "uri_deezer": "deezer://track/119497916",
       "fun_fact": "“Never Forget You” is the title track of MNEK’s release of the same name.",
       "fun_fact_de": "„Never Forget You“ ist der Titelsong der gleichnamigen Veröffentlichung von MNEK.",
@@ -1710,7 +1710,7 @@
         "it": "applemusic://track/1704042894"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=O5hasoAOVdY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74902292",
       "uri_deezer": "deezer://track/369397961",
       "fun_fact": "“2U (feat. Justin Bieber)” is the title track of David Guetta’s release of the same name.",
       "fun_fact_de": "„2U (feat. Justin Bieber)“ ist der Titelsong der gleichnamigen Veröffentlichung von David Guetta.",
@@ -1740,7 +1740,7 @@
         "it": "applemusic://track/1689076932"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=v9I83RpXZ3o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/83200849",
       "uri_deezer": "deezer://track/447942232",
       "fun_fact": "“These Days (feat. Jess Glynne, Macklemore & Dan Caplen)” is the title track of Rudimental’s release of the same name.",
       "fun_fact_de": "„These Days (feat. Jess Glynne, Macklemore & Dan Caplen)“ ist der Titelsong der gleichnamigen Veröffentlichung von Rudimental.",
@@ -1770,7 +1770,7 @@
         "it": "applemusic://track/1651048593"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_cUM4SlY2_o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/15300277",
       "uri_deezer": "deezer://track/28852751",
       "fun_fact": "“Starships” appears on Nicki Minaj’s release “Pink Friday: Roman Reloaded The Re-Up (Explicit Version)”.",
       "fun_fact_de": "„Starships“ erschien auf der Veröffentlichung „Pink Friday: Roman Reloaded The Re-Up (Explicit Version)“ von Nicki Minaj.",
@@ -1800,7 +1800,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-MxGVSch7EU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/43550579",
       "uri_deezer": "deezer://track/96818170",
       "fun_fact": "“Stole the Show” appears on Kygo’s release “Cloud Nine”.",
       "fun_fact_de": "„Stole the Show“ erschien auf der Veröffentlichung „Cloud Nine“ von Kygo.",
@@ -1830,7 +1830,7 @@
         "it": "applemusic://track/1761339986"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=h8rxsShxan4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/35410166",
       "uri_deezer": "deezer://track/86453925",
       "fun_fact": "“Runaway (U & I)” appears on Galantis’s release “Pharmacy”.",
       "fun_fact_de": "„Runaway (U & I)“ erschien auf der Veröffentlichung „Pharmacy“ von Galantis.",
@@ -1860,7 +1860,7 @@
         "it": "applemusic://track/1720411329"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ylA9rOmVoP0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18420575",
       "uri_deezer": "deezer://track/62847145",
       "fun_fact": "“Without You (feat. Usher)” appears on David Guetta’s release “Nothing but the Beat Ultimate”.",
       "fun_fact_de": "„Without You (feat. Usher)“ erschien auf der Veröffentlichung „Nothing but the Beat Ultimate“ von David Guetta.",
@@ -1890,7 +1890,7 @@
         "it": "applemusic://track/1685074627"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Dfiw7EmRTC4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69223393",
       "uri_deezer": "deezer://track/139904165",
       "fun_fact": "“Paris” is the title track of The Chainsmokers’s release of the same name.",
       "fun_fact_de": "„Paris“ ist der Titelsong der gleichnamigen Veröffentlichung von The Chainsmokers.",
@@ -1920,7 +1920,7 @@
         "it": "applemusic://track/971262278"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/42697178",
       "uri_deezer": "deezer://track/95963374",
       "fun_fact": "“Mind (feat. Kai)” appears on Jack Ü’s release “Skrillex and Diplo present Jack Ü”.",
       "fun_fact_de": "„Mind (feat. Kai)“ erschien auf der Veröffentlichung „Skrillex and Diplo present Jack Ü“ von Jack Ü.",
@@ -1950,7 +1950,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Lur-rvf6A1c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/17311361",
       "uri_deezer": "deezer://track/60904700",
       "fun_fact": "“Clarity” is the title track of Zedd’s release of the same name.",
       "fun_fact_de": "„Clarity“ ist der Titelsong der gleichnamigen Veröffentlichung von Zedd.",
@@ -1980,7 +1980,7 @@
         "it": "applemusic://track/1639233634"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N5SC0seO8jg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63442975",
       "uri_deezer": "deezer://track/129632290",
       "fun_fact": "“Middle” appears on DJ Snake’s release “Hity EDM”.",
       "fun_fact_de": "„Middle“ erschien auf der Veröffentlichung „Hity EDM“ von DJ Snake.",
@@ -2010,7 +2010,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/83549265",
       "uri_deezer": null,
       "fun_fact": "“Turn Up The Speakers” is the title track of AFROJACK’s release of the same name.",
       "fun_fact_de": "„Turn Up The Speakers“ ist der Titelsong der gleichnamigen Veröffentlichung von AFROJACK.",
