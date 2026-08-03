@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "edm",
     "electronic",
@@ -600,7 +600,7 @@
         "it": "applemusic://track/1750578593"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qpiilPFQtwM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18420577",
       "uri_deezer": "deezer://track/62847147",
       "fun_fact": "“Play Hard (feat. Ne-Yo & Akon)” appears on David Guetta’s release “Nothing but the Beat (Ultimate Edition)”.",
       "fun_fact_de": "„Play Hard (feat. Ne-Yo & Akon)“ erschien auf der Veröffentlichung „Nothing but the Beat (Ultimate Edition)“ von David Guetta.",
@@ -630,7 +630,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1s4-OFCBUGo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33531474",
       "uri_deezer": "deezer://track/83844544",
       "fun_fact": "“Break Free” appears on Ariana Grande’s release “My Everything (Deluxe)”.",
       "fun_fact_de": "„Break Free“ erschien auf der Veröffentlichung „My Everything (Deluxe)“ von Ariana Grande.",
@@ -660,7 +660,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aWkPBCF8rFU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/15905192",
       "uri_deezer": "deezer://track/37027991",
       "fun_fact": "“Beauty And A Beat” appears on Justin Bieber’s release “Believe (Deluxe Edition)”.",
       "fun_fact_de": "„Beauty And A Beat“ erschien auf der Veröffentlichung „Believe (Deluxe Edition)“ von Justin Bieber.",
@@ -690,7 +690,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n6N1_sxlBU8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10582679",
       "uri_deezer": "deezer://track/14113580",
       "fun_fact": "“We Found Love” appears on Rihanna’s release “Talk That Talk (Deluxe)”.",
       "fun_fact_de": "„We Found Love“ erschien auf der Veröffentlichung „Talk That Talk (Deluxe)“ von Rihanna.",
@@ -720,7 +720,7 @@
         "it": "applemusic://track/1740076913"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gTQk2mWE0xs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/355591507",
       "uri_deezer": "deezer://track/2739157311",
       "fun_fact": "“Ring Ring” is the title track of MIRA’s release of the same name.",
       "fun_fact_de": "„Ring Ring“ ist der Titelsong der gleichnamigen Veröffentlichung von MIRA.",
@@ -750,7 +750,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4tFktcmLl5M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/27865010",
       "uri_deezer": "deezer://track/76520669",
       "fun_fact": "“Bad (feat. Vassy) - Radio Edit” is the title track of David Guetta’s release of the same name.",
       "fun_fact_de": "„Bad (feat. Vassy) - Radio Edit“ ist der Titelsong der gleichnamigen Veröffentlichung von David Guetta.",
@@ -780,7 +780,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3mWbRB3Y4R8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/17271290",
       "uri_deezer": "deezer://track/60842359",
       "fun_fact": "“Don't You Worry Child - Radio Edit” appears on Swedish House Mafia’s release “Don't You Worry Child”.",
       "fun_fact_de": "„Don't You Worry Child - Radio Edit“ erschien auf der Veröffentlichung „Don't You Worry Child“ von Swedish House Mafia.",
@@ -810,7 +810,7 @@
         "it": "applemusic://track/1685074634"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aDPkAK5s30I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38092836",
       "uri_deezer": "deezer://track/90726629",
       "fun_fact": "“Firestone” appears on Kygo’s release “Cloud Nine”.",
       "fun_fact_de": "„Firestone“ erschien auf der Veröffentlichung „Cloud Nine“ von Kygo.",
@@ -840,7 +840,7 @@
         "it": "applemusic://track/1840277744"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=W4C-NEWrnSQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/38048363",
       "uri_deezer": "deezer://track/90632837",
       "fun_fact": "“The Nights” appears on Avicii’s release “Stories”.",
       "fun_fact_de": "„The Nights“ erschien auf der Veröffentlichung „Stories“ von Avicii.",
@@ -870,7 +870,7 @@
         "it": "applemusic://track/1137641426"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4u4d4GWdpo8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63337364",
       "uri_deezer": "deezer://track/129313094",
       "fun_fact": "“In the Name of Love” is the title track of Martin Garrix’s release of the same name.",
       "fun_fact_de": "„In the Name of Love“ ist der Titelsong der gleichnamigen Veröffentlichung von Martin Garrix.",
