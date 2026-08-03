@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "edm",
     "electronic",
@@ -2040,7 +2040,7 @@
         "it": "applemusic://track/1238673347"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fH1PcHx2kPY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74196200",
       "uri_deezer": "deezer://track/363930261",
       "fun_fact": "“There for You” is the title track of Martin Garrix’s release of the same name.",
       "fun_fact_de": "„There for You“ ist der Titelsong der gleichnamigen Veröffentlichung von Martin Garrix.",
@@ -2070,7 +2070,7 @@
         "it": "applemusic://track/1769798103"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gtITiCnq5EM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/388759560",
       "uri_deezer": "deezer://track/3007977851",
       "fun_fact": "“Mondays” is the title track of TOESUP’s release of the same name.",
       "fun_fact_de": "„Mondays“ ist der Titelsong der gleichnamigen Veröffentlichung von TOESUP.",
@@ -2100,7 +2100,7 @@
         "it": "applemusic://track/1062079658"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hBYP9f1LAHY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/42719927",
       "uri_deezer": null,
       "fun_fact": "“Five More Hours” is the title track of Deorro’s release of the same name.",
       "fun_fact_de": "„Five More Hours“ ist der Titelsong der gleichnamigen Veröffentlichung von Deorro.",
@@ -2130,7 +2130,7 @@
         "it": "applemusic://track/1170699702"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Gr6g3-6VQoE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/65214676",
       "uri_deezer": "deezer://track/133135258",
       "fun_fact": "“All We Know (feat. Phoebe Ryan)” is the title track of The Chainsmokers’s release of the same name.",
       "fun_fact_de": "„All We Know (feat. Phoebe Ryan)“ ist der Titelsong der gleichnamigen Veröffentlichung von The Chainsmokers.",
@@ -2160,7 +2160,7 @@
         "it": "applemusic://track/1647544887"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pIb7QoXdP_k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/244353280",
       "uri_deezer": "deezer://track/2107937657",
       "fun_fact": "“I'm Good (Blue)” appears on David Guetta’s release “Silvester Party Hits 2022 / 2023”.",
       "fun_fact_de": "„I'm Good (Blue)“ erschien auf der Veröffentlichung „Silvester Party Hits 2022 / 2023“ von David Guetta.",
@@ -2190,7 +2190,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wdt10Q6Awu8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18394337",
       "uri_deezer": "deezer://track/63017514",
       "fun_fact": "“I Could Be The One [Avicii vs Nicky Romero] - Nicktim - Original Mix” appears on Avicii’s release “I Could Be The One [Avicii vs Nicky Romero]”.",
       "fun_fact_de": "„I Could Be The One [Avicii vs Nicky Romero] - Nicktim - Original Mix“ erschien auf der Veröffentlichung „I Could Be The One [Avicii vs Nicky Romero]“ von Avicii.",
@@ -2220,7 +2220,7 @@
         "it": "applemusic://track/1687386388"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Nh_bdvA8cVM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7433092",
       "uri_deezer": "deezer://track/61142285",
       "fun_fact": "“Feel So Close - Radio Edit” appears on Calvin Harris’s release “18 Months”.",
       "fun_fact_de": "„Feel So Close - Radio Edit“ erschien auf der Veröffentlichung „18 Months“ von Calvin Harris.",
@@ -2250,7 +2250,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tUUoS_j3wWw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63135023",
       "uri_deezer": "deezer://track/128948012",
       "fun_fact": "“Starving” is the title track of Hailee Steinfeld’s release of the same name.",
       "fun_fact_de": "„Starving“ ist der Titelsong der gleichnamigen Veröffentlichung von Hailee Steinfeld.",
@@ -2280,7 +2280,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=E55WQGiVKko",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102098124",
       "uri_deezer": "deezer://track/614756502",
       "fun_fact": "“Giant (with Rag'n'Bone Man)” is the title track of Calvin Harris’s release of the same name.",
       "fun_fact_de": "„Giant (with Rag'n'Bone Man)“ ist der Titelsong der gleichnamigen Veröffentlichung von Calvin Harris.",
@@ -2310,7 +2310,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TfdFUMxRzqU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/52650626",
       "uri_deezer": "deezer://track/110148950",
       "fun_fact": "“Roses” is the title track of The Chainsmokers’s release of the same name.",
       "fun_fact_de": "„Roses“ ist der Titelsong der gleichnamigen Veröffentlichung von The Chainsmokers.",
@@ -2340,7 +2340,7 @@
         "it": "applemusic://track/1775903894"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mCptRDd3LxM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/395376532",
       "uri_deezer": "deezer://track/3059536421",
       "fun_fact": "“Ice Cream” is the title track of TOESUP’s release of the same name.",
       "fun_fact_de": "„Ice Cream“ ist der Titelsong der gleichnamigen Veröffentlichung von TOESUP.",
@@ -2370,7 +2370,7 @@
         "it": "applemusic://track/1445141302"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8RLYCeCRHis",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/94885976",
       "uri_deezer": null,
       "fun_fact": "“Diamond Heart” is the title track of Alan Walker’s release of the same name.",
       "fun_fact_de": "„Diamond Heart“ ist der Titelsong der gleichnamigen Veröffentlichung von Alan Walker.",
@@ -2400,7 +2400,7 @@
         "it": "applemusic://track/1445141159"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hK9mMhcLdiY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/80349548",
       "uri_deezer": "deezer://track/421100932",
       "fun_fact": "“All Falls Down (feat. Juliander)” appears on Alan Walker’s release “Different World”.",
       "fun_fact_de": "„All Falls Down (feat. Juliander)“ erschien auf der Veröffentlichung „Different World“ von Alan Walker.",
@@ -2430,7 +2430,7 @@
         "it": "applemusic://track/1720984159"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NLSq2PV2WNg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/145319227",
       "uri_deezer": "deezer://track/1006845912",
       "fun_fact": "“Head & Heart (feat. MNEK)” is the title track of Joel Corry’s release of the same name.",
       "fun_fact_de": "„Head & Heart (feat. MNEK)“ ist der Titelsong der gleichnamigen Veröffentlichung von Joel Corry.",
@@ -2460,7 +2460,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=s0HrJmVrCGk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/44158389",
       "uri_deezer": "deezer://track/97463796",
       "fun_fact": "“Secrets - Radio Edit” is the title track of Tiësto’s release of the same name.",
       "fun_fact_de": "„Secrets - Radio Edit“ ist der Titelsong der gleichnamigen Veröffentlichung von Tiësto.",
@@ -2490,7 +2490,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/31338681",
       "uri_deezer": null,
       "fun_fact": "“Stay The Night - Featuring Hayley Williams Of Paramore” appears on Zedd’s release “Clarity (Deluxe)”.",
       "fun_fact_de": "„Stay The Night - Featuring Hayley Williams Of Paramore“ erschien auf der Veröffentlichung „Clarity (Deluxe)“ von Zedd.",
@@ -2520,7 +2520,7 @@
         "it": "applemusic://track/1705901784"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DiTBXQXjZ0M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/81472267",
       "uri_deezer": null,
       "fun_fact": "“So Far Away (feat. Jamie Scott & Romy Dya)” is the title track of Martin Garrix’s release of the same name.",
       "fun_fact_de": "„So Far Away (feat. Jamie Scott & Romy Dya)“ ist der Titelsong der gleichnamigen Veröffentlichung von Martin Garrix.",
@@ -2550,7 +2550,7 @@
         "it": "applemusic://track/713276434"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zS_O0xHOsGM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2791729",
       "uri_deezer": "deezer://track/3445820",
       "fun_fact": "“When Love Takes Over (feat. Kelly Rowland)” appears on David Guetta’s release “One More Love”.",
       "fun_fact_de": "„When Love Takes Over (feat. Kelly Rowland)“ erschien auf der Veröffentlichung „One More Love“ von David Guetta.",
@@ -2580,7 +2580,7 @@
         "it": "applemusic://track/1442283453"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=I0XlpSnJMqQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/73132973",
       "uri_deezer": "deezer://track/353602091",
       "fun_fact": "“Most Girls” is the title track of Hailee Steinfeld’s release of the same name.",
       "fun_fact_de": "„Most Girls“ ist der Titelsong der gleichnamigen Veröffentlichung von Hailee Steinfeld.",
