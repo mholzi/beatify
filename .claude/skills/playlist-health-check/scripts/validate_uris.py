@@ -82,7 +82,10 @@ _NOISE_RE = re.compile(
 )
 
 def normalize(s):
-    s = s.lower()
+    # Fold compatibility forms first: Japanese catalogues mix fullwidth and
+    # halfwidth latin, so "少女Ｓ" and "少女S" are the same title written two
+    # ways. NFKC maps Ｓ→S, ﬁ→fi, ①→1 — none of which changes meaning.
+    s = unicodedata.normalize('NFKC', s).lower()
     # Strip unicode accents (é→e, ü→u, etc.)
     s = ''.join(c for c in unicodedata.normalize('NFD', s)
                 if unicodedata.category(c) != 'Mn')
@@ -109,6 +112,38 @@ def strip_version_suffix(s):
     stripped = _VERSION_SUFFIX_RE.sub('', s).strip()
     return stripped or s
 
+# YouTube auto-generates an "<Artist> - Topic" channel per artist, and labels
+# publish under "<Artist>VEVO". Neither is part of the artist's name.
+_CHANNEL_SUFFIX_RE = re.compile(r'(?i)(?:\s*[\-–—]\s*topic|\s*vevo)\s*$')
+
+def strip_channel_suffix(s):
+    stripped = _CHANNEL_SUFFIX_RE.sub('', s or '').strip()
+    return stripped or s
+
+# Codepoint blocks that carry no Latin transliteration: a title written in one
+# of these cannot be string-compared against a romanised or translated title.
+_CJK_RE = re.compile(
+    r'[぀-ゟ'   # Hiragana
+    r'゠-ヿ'    # Katakana
+    r'㐀-䶿'    # CJK Ext A
+    r'一-鿿'    # CJK Unified
+    r'가-힯'    # Hangul
+    r'ｦ-ﾟ]'   # Halfwidth Katakana
+)
+
+def has_cjk(s):
+    return bool(_CJK_RE.search(s or ''))
+
+def scripts_differ(expected, actual):
+    """True when exactly one side is written in a non-Latin script.
+
+    Providers legitimately return Japanese tracks romanised ("紅蓮華" →
+    "Gurenge") or translated ("百花繚乱" → "In Bloom"). A string comparison
+    across that boundary answers nothing — it always says "mismatch", which is
+    why anime-openings produced 308 flags and 0 real defects (#1957).
+    """
+    return has_cjk(expected) != has_cjk(actual)
+
 def titles_match(expected, actual, artist=None):
     e, a = normalize(expected), normalize(actual)
     if not e or not a: return True
@@ -131,7 +166,30 @@ def titles_match(expected, actual, artist=None):
                 return True
     return SequenceMatcher(None, e, a).ratio() >= 0.75
 
+def title_verdict(expected, actual, artist=None):
+    """'match' | 'unverifiable' | 'mismatch'.
+
+    'unverifiable' means the two titles are written in different scripts, so
+    the comparison cannot decide the question either way. The URI resolved and
+    the track exists — it is simply not checkable by string equality, and is
+    reported as its own status rather than as a defect.
+    """
+    if titles_match(expected, actual, artist):
+        return "match"
+    if scripts_differ(expected, actual):
+        return "unverifiable"
+    return "mismatch"
+
+def unverifiable_title(expected_title, actual_title, actual_artist=None):
+    actual_artist = strip_channel_suffix(actual_artist) if actual_artist else None
+    return {"status": "unverifiable", "http_code": 200,
+            "detail": f"Title written in a different script — expected "
+                      f"'{expected_title}', got '{actual_title}'. Not comparable "
+                      f"by string match; no verdict.",
+            "actual_title": actual_title, "actual_artist": actual_artist}
+
 def wrong_track(expected_title, expected_artist, actual_title, actual_artist=None):
+    actual_artist = strip_channel_suffix(actual_artist) if actual_artist else None
     exp = f"{expected_artist} - {expected_title}"
     act = f"{actual_artist} - {actual_title}" if actual_artist else actual_title
     return {"status": "wrong_track", "http_code": 200,
@@ -155,8 +213,11 @@ def check_spotify(tid, title, artist):
         if code == 403: return {"status": "dead", "http_code": 403, "detail": "Restricted"}
         return {"status": "unreachable", "http_code": code, "detail": f"Spotify HTTP {code}"}
     actual = data.get("title", "")
-    if not titles_match(title, actual, artist):
+    v = title_verdict(title, actual, artist)
+    if v == "mismatch":
         return wrong_track(title, artist, actual)
+    if v == "unverifiable":
+        return unverifiable_title(title, actual)
     return {"status": "ok", "http_code": 200}
 
 def check_youtube(tid, title, artist):
@@ -171,8 +232,11 @@ def check_youtube(tid, title, artist):
             return {"status": "dead", "http_code": code, "detail": "Not found or private"}
         return {"status": "unreachable", "http_code": code, "detail": f"YouTube HTTP {code}"}
     actual = data.get("title", "")
-    if not titles_match(title, actual, artist):
+    v = title_verdict(title, actual, artist)
+    if v == "mismatch":
         return wrong_track(title, artist, actual, data.get("author_name"))
+    if v == "unverifiable":
+        return unverifiable_title(title, actual, data.get("author_name"))
     return {"status": "ok", "http_code": 200}
 
 def check_deezer(tid, title, artist):
@@ -185,8 +249,11 @@ def check_deezer(tid, title, artist):
         return {"status": "dead", "http_code": 200, "detail": data["error"].get("message", "?")}
     actual_title  = data.get("title", "")
     actual_artist = data.get("artist", {}).get("name", "")
-    if not titles_match(title, actual_title, artist):
+    v = title_verdict(title, actual_title, artist)
+    if v == "mismatch":
         return wrong_track(title, artist, actual_title, actual_artist)
+    if v == "unverifiable":
+        return unverifiable_title(title, actual_title, actual_artist)
     return {"status": "ok", "http_code": 200}
 
 def check_tidal(tid, title, artist):
@@ -201,8 +268,12 @@ def check_tidal(tid, title, artist):
         if code == 403: return _check_tidal_embed(tid, title, artist)
         return {"status": "unreachable", "http_code": code, "detail": f"Tidal HTTP {code}"}
     actual = data.get("title", "")
-    if actual and not titles_match(title, actual, artist):
-        return wrong_track(title, artist, actual)
+    if actual:
+        v = title_verdict(title, actual, artist)
+        if v == "mismatch":
+            return wrong_track(title, artist, actual)
+        if v == "unverifiable":
+            return unverifiable_title(title, actual)
     return {"status": "ok", "http_code": 200}
 
 def _check_tidal_embed(tid, title, artist):
@@ -217,8 +288,11 @@ def _check_tidal_embed(tid, title, artist):
             og = re.search(r'<meta[^>]+property="og:title"[^>]+content="([^"]+)"', html)
             if og:
                 actual_title = og.group(1).strip()
-                if not titles_match(title, actual_title, artist):
+                v = title_verdict(title, actual_title, artist)
+                if v == "mismatch":
                     return wrong_track(title, artist, actual_title)
+                if v == "unverifiable":
+                    return unverifiable_title(title, actual_title)
             return {"status": "ok", "http_code": 200}
     except urllib.error.HTTPError as e:
         if e.code == 404: return {"status": "dead", "http_code": e.code, "detail": "Not found"}
@@ -242,8 +316,11 @@ def check_apple_music(tid, title, artist):
         track = data["results"][0]
         actual_title  = track.get("trackName", "")
         actual_artist = track.get("artistName", "")
-        if not titles_match(title, actual_title, artist):
+        v = title_verdict(title, actual_title, artist)
+        if v == "mismatch":
             return wrong_track(title, artist, actual_title, actual_artist)
+        if v == "unverifiable":
+            return unverifiable_title(title, actual_title, actual_artist)
         return {"status": "ok", "http_code": 200}
     return {"status": "dead", "http_code": 404, "detail": "Not found in US/DE/GB catalogs"}
 
@@ -316,7 +393,7 @@ def validate_region_maps(entries):
     """
     results = []
     summary = {"total": 0, "ok": 0, "dead": 0, "wrong_track": 0,
-               "unfilled": 0, "transient": 0, "tracks_affected": 0}
+               "unverifiable": 0, "unfilled": 0, "transient": 0, "tracks_affected": 0}
 
     # Collect claimed (region -> [(id, entry)]) so each storefront is queried
     # in as few calls as possible.
@@ -363,14 +440,23 @@ def validate_region_maps(entries):
                                            f"but not in that catalog"})
                     summary["dead"] += 1
                     affected.add((e.get("artist"), e.get("title")))
-                elif not titles_match(e.get("title", ""), track.get("trackName", ""),
-                                      e.get("artist", "")):
+                elif (v := title_verdict(e.get("title", ""), track.get("trackName", ""),
+                                         e.get("artist", ""))) == "mismatch":
                     r = wrong_track(e.get("title", ""), e.get("artist", ""),
                                     track.get("trackName", ""), track.get("artistName", ""))
                     base.update(r)
                     base["detail"] = f"[{country}] " + base.get("detail", "")
                     summary["wrong_track"] += 1
                     affected.add((e.get("artist"), e.get("title")))
+                elif v == "unverifiable":
+                    # Apple Music localises titles per storefront, so a German
+                    # storefront returns "Inferno" where the catalogue says
+                    # "インフェルノ". Not a defect and not an affected track.
+                    base.update(unverifiable_title(e.get("title", ""),
+                                                   track.get("trackName", ""),
+                                                   track.get("artistName", "")))
+                    base["detail"] = f"[{country}] " + base.get("detail", "")
+                    summary["unverifiable"] = summary.get("unverifiable", 0) + 1
                 else:
                     base.update({"status": "ok", "http_code": 200})
                     summary["ok"] += 1
@@ -384,8 +470,8 @@ COOLDOWN = 5.0   # extra pause after a throttled lookup, to let the provider rec
 
 def validate_uris(songs, delay=0.5):
     results = []
-    summary = {"total":0,"ok":0,"dead":0,"wrong_track":0,"error":0,"unreachable":0,"unknown":0,
-               "transient":0}
+    summary = {"total":0,"ok":0,"dead":0,"wrong_track":0,"unverifiable":0,"error":0,
+               "unreachable":0,"unknown":0,"transient":0}
     for i, song in enumerate(songs):
         uri, artist, title = song.get("uri",""), song.get("artist",""), song.get("title","")
         summary["total"] += 1
@@ -434,6 +520,7 @@ if __name__ == "__main__":
     report = validate_uris(songs)
     s = report["summary"]
     print(f"Done. {s['ok']} ok, {s['dead']} dead, {s['wrong_track']} wrong track, "
+          f"{s.get('unverifiable',0)} unverifiable (different script), "
           f"{s.get('error',0)} error, {s.get('unreachable',0)} unreachable.", file=sys.stderr)
     if s.get("transient"):
         # A degraded run must be visible as degraded, not as a wall of defects.
@@ -451,7 +538,9 @@ if __name__ == "__main__":
         report["region_results"] = region_report["results"]
         report["region_summary"] = rs = region_report["summary"]
         print(f"Region maps: {rs['ok']} ok, {rs['dead']} dead, "
-              f"{rs['wrong_track']} wrong track, {rs['unfilled']} unfilled "
+              f"{rs['wrong_track']} wrong track, "
+              f"{rs.get('unverifiable',0)} unverifiable (different script), "
+              f"{rs['unfilled']} unfilled "
               f"({rs['tracks_affected']} track(s) affected).", file=sys.stderr)
         if rs.get("transient"):
             print(f"  WARNING: {rs['transient']} region lookup(s) had no verdict "
