@@ -13,13 +13,16 @@ its reader to ignore it.
 These tests pin the three rules that fixed it, and — just as important — pin
 that a genuinely wrong track is still reported.
 """
+
 import importlib.util
 from pathlib import Path
 
 import pytest
 
-_SCRIPT = (Path(__file__).resolve().parents[2]
-           / ".claude/skills/playlist-health-check/scripts/validate_uris.py")
+_SCRIPT = (
+    Path(__file__).resolve().parents[2]
+    / ".claude/skills/playlist-health-check/scripts/validate_uris.py"
+)
 
 
 @pytest.fixture(scope="module")
@@ -33,12 +36,15 @@ def validator():
 class TestChannelSuffix:
     """YouTube's auto-generated channels are not part of an artist's name."""
 
-    @pytest.mark.parametrize("raw,expected", [
-        ("Ikimonogakari - Topic", "Ikimonogakari"),
-        ("Mrs. GREEN APPLE - Topic", "Mrs. GREEN APPLE"),
-        ("SevenOopsVEVO", "SevenOops"),
-        ("Judy & Mary", "Judy & Mary"),
-    ])
+    @pytest.mark.parametrize(
+        "raw,expected",
+        [
+            ("Ikimonogakari - Topic", "Ikimonogakari"),
+            ("Mrs. GREEN APPLE - Topic", "Mrs. GREEN APPLE"),
+            ("SevenOopsVEVO", "SevenOops"),
+            ("Judy & Mary", "Judy & Mary"),
+        ],
+    )
     def test_strips_topic_and_vevo(self, validator, raw, expected):
         assert validator.strip_channel_suffix(raw) == expected
 
@@ -50,19 +56,24 @@ class TestChannelSuffix:
 class TestScriptMismatch:
     """Different scripts -> the comparison has no verdict to give."""
 
-    @pytest.mark.parametrize("expected,actual", [
-        ("紅蓮華", "Gurenge"),                    # kanji -> romaji
-        ("百花繚乱", "In Bloom"),                  # kanji -> English translation
-        ("インフェルノ", "Inferno"),                # katakana -> English
-        ("Guren no Yumiya", "紅蓮の弓矢"),          # romaji -> kanji (reverse)
-    ])
+    @pytest.mark.parametrize(
+        "expected,actual",
+        [
+            ("紅蓮華", "Gurenge"),  # kanji -> romaji
+            ("百花繚乱", "In Bloom"),  # kanji -> English translation
+            ("インフェルノ", "Inferno"),  # katakana -> English
+            ("Guren no Yumiya", "紅蓮の弓矢"),  # romaji -> kanji (reverse)
+        ],
+    )
     def test_reports_unverifiable_not_mismatch(self, validator, expected, actual):
         assert validator.title_verdict(expected, actual, "LiSA") == "unverifiable"
 
     def test_same_script_still_compared(self, validator):
         """Both sides Latin -> the script rule must not swallow the check."""
-        assert validator.title_verdict("Let It Be", "Se Me Enamora el Alma",
-                                       "The Beatles") == "mismatch"
+        assert (
+            validator.title_verdict("Let It Be", "Se Me Enamora el Alma", "The Beatles")
+            == "mismatch"
+        )
 
     def test_both_sides_cjk_still_compared(self, validator):
         assert validator.title_verdict("紅蓮華", "残響散歌", "LiSA") == "mismatch"
@@ -78,18 +89,25 @@ class TestCompatibilityFolding:
 class TestNoRegressionOnLatinTitles:
     """The rules above must not loosen the ordinary Latin-script path."""
 
-    @pytest.mark.parametrize("expected,actual,artist", [
-        ("Bohemian Rhapsody", "Bohemian Rhapsody - Remastered 2011", "Queen"),
-        ("Blame", "Blame (feat. John Newman)", "Calvin Harris"),
-        ("Dancing Queen", "Dancing Queen", "ABBA"),
-    ])
+    @pytest.mark.parametrize(
+        "expected,actual,artist",
+        [
+            ("Bohemian Rhapsody", "Bohemian Rhapsody - Remastered 2011", "Queen"),
+            ("Blame", "Blame (feat. John Newman)", "Calvin Harris"),
+            ("Dancing Queen", "Dancing Queen", "ABBA"),
+        ],
+    )
     def test_known_good_pairs_still_match(self, validator, expected, actual, artist):
         assert validator.title_verdict(expected, actual, artist) == "match"
 
     def test_a_genuinely_wrong_track_is_still_reported(self, validator):
         """The defect #1943 found — the check must keep catching this."""
-        assert validator.title_verdict("Se Me Enamora el Alma", "Let It Be",
-                                       "Isabel Pantoja") == "mismatch"
+        assert (
+            validator.title_verdict(
+                "Se Me Enamora el Alma", "Let It Be", "Isabel Pantoja"
+            )
+            == "mismatch"
+        )
 
 
 class TestVerdictShape:
@@ -97,7 +115,7 @@ class TestVerdictShape:
         r = validator.unverifiable_title("紅蓮華", "Gurenge", "LiSA - Topic")
         assert r["status"] == "unverifiable"
         assert r["http_code"] == 200
-        assert r["actual_artist"] == "LiSA"      # channel suffix stripped
+        assert r["actual_artist"] == "LiSA"  # channel suffix stripped
         assert "no verdict" in r["detail"]
 
     def test_wrong_track_result_keeps_both_titles(self, validator):
