@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "edm",
     "electronic",
@@ -2610,7 +2610,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gyzQGADdb1M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/95667267",
       "uri_deezer": "deezer://track/559465252",
       "fun_fact": "“Sweet Lovin' - Radio Edit” appears on Sigala’s release “Brighter Days”.",
       "fun_fact_de": "„Sweet Lovin' - Radio Edit“ erschien auf der Veröffentlichung „Brighter Days“ von Sigala.",
@@ -2640,7 +2640,7 @@
         "it": "applemusic://track/1437993213"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g57Pl1A6IZ4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/96084732",
       "uri_deezer": "deezer://track/563375222",
       "fun_fact": "“Happy Now” is the title track of Kygo’s release of the same name.",
       "fun_fact_de": "„Happy Now“ ist der Titelsong der gleichnamigen Veröffentlichung von Kygo.",
@@ -2670,7 +2670,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=y0VAozNZN3Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45212833",
       "uri_deezer": "deezer://track/100068938",
       "fun_fact": "“Heroes (we could be)” appears on Alesso’s release “EDM Heroes”.",
       "fun_fact_de": "„Heroes (we could be)“ erschien auf der Veröffentlichung „EDM Heroes“ von Alesso.",
@@ -2700,7 +2700,7 @@
         "it": "applemusic://track/633413930"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=k-NjyUEIpaI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16391276",
       "uri_deezer": "deezer://track/46711461",
       "fun_fact": "“Don't Wake Me Up” appears on Chris Brown’s release “Fortune (Deluxe Version)”.",
       "fun_fact_de": "„Don't Wake Me Up“ erschien auf der Veröffentlichung „Fortune (Deluxe Version)“ von Chris Brown.",
@@ -2730,7 +2730,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/402391122",
       "uri_deezer": "deezer://track/143284446",
       "fun_fact": "“Call On Me - Ryan Riback Extended Remix” appears on Starley’s release “Call On Me (Remixes)”.",
       "fun_fact_de": "„Call On Me - Ryan Riback Extended Remix“ erschien auf der Veröffentlichung „Call On Me (Remixes)“ von Starley.",
@@ -3330,7 +3330,7 @@
         "it": "applemusic://track/1440899204"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=As_4JTmHuW4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/76977110",
       "uri_deezer": "deezer://track/393460732",
       "fun_fact": "“Without You (feat. Sandro Cavazza)” appears on Avicii’s release “AVĪCI (01)”.",
       "fun_fact_de": "„Without You (feat. Sandro Cavazza)“ erschien auf der Veröffentlichung „AVĪCI (01)“ von Avicii.",
@@ -3360,7 +3360,7 @@
         "it": "applemusic://track/1209277964"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-l4U07FIdi0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70786420",
       "uri_deezer": "deezer://track/143172578",
       "fun_fact": "“Pretty Girl - Cheat Codes X CADE Remix” is the title track of Maggie Lindemann’s release of the same name.",
       "fun_fact_de": "„Pretty Girl - Cheat Codes X CADE Remix“ ist der Titelsong der gleichnamigen Veröffentlichung von Maggie Lindemann.",
@@ -3390,7 +3390,7 @@
         "it": "applemusic://track/1443138946"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8iq6-5j1Q2M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/78795297",
       "uri_deezer": "deezer://track/407673232",
       "fun_fact": "“A Different Way” appears on DJ Snake’s release “Push It”.",
       "fun_fact_de": "„A Different Way“ erschien auf der Veröffentlichung „Push It“ von DJ Snake.",
@@ -3420,7 +3420,7 @@
         "it": "applemusic://track/1625999290"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WH-7Gemejd0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111982272",
       "uri_deezer": "deezer://track/701281342",
       "fun_fact": "“Higher Love” is the title track of Kygo’s release of the same name.",
       "fun_fact_de": "„Higher Love“ ist der Titelsong der gleichnamigen Veröffentlichung von Kygo.",
@@ -3450,7 +3450,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/192680454",
       "uri_deezer": "deezer://track/1451459172",
       "fun_fact": "“Booyah” is the title track of Showtek’s release of the same name.",
       "fun_fact_de": "„Booyah“ ist der Titelsong der gleichnamigen Veröffentlichung von Showtek.",
@@ -3480,7 +3480,7 @@
         "it": "applemusic://track/1749486148"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=y6DXCECMeNE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/366605379",
       "uri_deezer": "deezer://track/2826981712",
       "fun_fact": "“Addicted to You” is the title track of DAWN’s release of the same name.",
       "fun_fact_de": "„Addicted to You“ ist der Titelsong der gleichnamigen Veröffentlichung von DAWN.",
@@ -3510,7 +3510,7 @@
         "it": "applemusic://track/1831946958"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=j1h0rPYKces",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/48537288",
       "uri_deezer": "deezer://track/107471416",
       "fun_fact": "“Sugar (feat. Francesco Yates)” appears on Robin Schulz’s release “Sugar”.",
       "fun_fact_de": "„Sugar (feat. Francesco Yates)“ erschien auf der Veröffentlichung „Sugar“ von Robin Schulz.",
@@ -3540,7 +3540,7 @@
         "it": "applemusic://track/1775167588"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=c2S1x2kTYJM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19741497",
       "uri_deezer": "deezer://track/15269141",
       "fun_fact": "“Wild Ones (feat. Sia)” appears on Flo Rida’s release “Wild Ones”.",
       "fun_fact_de": "„Wild Ones (feat. Sia)“ erschien auf der Veröffentlichung „Wild Ones“ von Flo Rida.",
@@ -3570,7 +3570,7 @@
         "it": "applemusic://track/1442864749"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Yw-vvxnG9Y4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/29583551",
       "uri_deezer": "deezer://track/78176590",
       "fun_fact": "“Burn” appears on Ellie Goulding’s release “Halcyon Nights”.",
       "fun_fact_de": "„Burn“ erschien auf der Veröffentlichung „Halcyon Nights“ von Ellie Goulding.",
@@ -3600,7 +3600,7 @@
         "it": "applemusic://track/1782522965"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dHdMAdh4Xgc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/25467268",
       "uri_deezer": "deezer://track/73982869",
       "fun_fact": "“Rather Be (feat. Jess Glynne)” appears on Clean Bandit’s release “New Eyes”.",
       "fun_fact_de": "„Rather Be (feat. Jess Glynne)“ erschien auf der Veröffentlichung „New Eyes“ von Clean Bandit.",
@@ -3630,7 +3630,7 @@
         "it": "applemusic://track/1544424865"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/65979679",
       "uri_deezer": "deezer://track/81300218",
       "fun_fact": "“Are You With Me” appears on Lost Frequencies’s release “Less Is More”.",
       "fun_fact_de": "„Are You With Me“ erschien auf der Veröffentlichung „Less Is More“ von Lost Frequencies.",
@@ -3660,7 +3660,7 @@
         "it": "applemusic://track/1655248662"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rYPQtWOcGmQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/83528394",
       "uri_deezer": "deezer://track/451254022",
       "fun_fact": "“The Middle” is the title track of Zedd’s release of the same name.",
       "fun_fact_de": "„The Middle“ ist der Titelsong der gleichnamigen Veröffentlichung von Zedd.",
@@ -3690,7 +3690,7 @@
         "it": "applemusic://track/1706195443"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-Xt5d3a-0Nw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/160981992",
       "uri_deezer": "deezer://track/78527813",
       "fun_fact": "“If I Lose Myself - Alesso vs OneRepublic” appears on OneRepublic’s release “Native”.",
       "fun_fact_de": "„If I Lose Myself - Alesso vs OneRepublic“ erschien auf der Veröffentlichung „Native“ von OneRepublic.",
@@ -3720,7 +3720,7 @@
         "it": "applemusic://track/1308713617"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UGT6v4No9U8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37218613",
       "uri_deezer": "deezer://track/71294452",
       "fun_fact": "“Under Control (feat. Hurts)” appears on Calvin Harris’s release “Motion”.",
       "fun_fact_de": "„Under Control (feat. Hurts)“ erschien auf der Veröffentlichung „Motion“ von Calvin Harris.",
