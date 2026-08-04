@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "edm",
     "electronic",
@@ -5460,7 +5460,7 @@
         "it": "applemusic://track/1444848604"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XFqEjIqPjLo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64343124",
       "uri_deezer": "deezer://track/131337372",
       "fun_fact": "“Thief” is the title track of Ookay’s release of the same name.",
       "fun_fact_de": "„Thief“ ist der Titelsong der gleichnamigen Veröffentlichung von Ookay.",
@@ -5490,7 +5490,7 @@
         "it": "applemusic://track/1033360497"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jGflUbPQfW8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/51850844",
       "uri_deezer": "deezer://track/128097823",
       "fun_fact": "“Cheerleader - Felix Jaehn Remix Radio Edit” appears on OMI’s release “Me 4 U”.",
       "fun_fact_de": "„Cheerleader - Felix Jaehn Remix Radio Edit“ erschien auf der Veröffentlichung „Me 4 U“ von OMI.",
@@ -5520,7 +5520,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1643031",
       "uri_deezer": "deezer://track/1379046532",
       "fun_fact": "“As The Rush Comes” is the title track of Motorcycle’s release of the same name.",
       "fun_fact_de": "„As The Rush Comes“ ist der Titelsong der gleichnamigen Veröffentlichung von Motorcycle.",
@@ -5550,7 +5550,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/491190902",
       "uri_deezer": "deezer://track/3786002622",
       "fun_fact": "“Porcelain” appears on Moby’s release “Play & Play: B Sides”.",
       "fun_fact_de": "„Porcelain“ erschien auf der Veröffentlichung „Play & Play: B Sides“ von Moby.",
@@ -5580,7 +5580,7 @@
         "it": "applemusic://track/1701889813"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/310051385",
       "uri_deezer": "deezer://track/2404408865",
       "fun_fact": "“Shelter” is the title track of Porter Robinson’s release of the same name.",
       "fun_fact_de": "„Shelter“ ist der Titelsong der gleichnamigen Veröffentlichung von Porter Robinson.",
@@ -5610,7 +5610,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/280239339",
       "uri_deezer": "deezer://track/85330586",
       "fun_fact": "“Faded” appears on ZHU’s release “THE NIGHTDAY”.",
       "fun_fact_de": "„Faded“ erschien auf der Veröffentlichung „THE NIGHTDAY“ von ZHU.",
@@ -5641,7 +5641,7 @@
       },
       "uri_deezer": "deezer://track/1560033",
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/567499",
       "fun_fact": "“I Feel Love” appears on Donna Summer’s 1977 concept album “I Remember Yesterday”, where it represents the album’s futuristic final chapter.",
       "fun_fact_de": "„I Feel Love“ erschien auf Donna Summers Konzeptalbum „I Remember Yesterday“ von 1977 und bildet dort das futuristische Schlusskapitel.",
       "fun_fact_es": "«I Feel Love» aparece en el álbum conceptual «I Remember Yesterday» (1977) de Donna Summer, donde representa el capítulo final futurista.",
@@ -5671,7 +5671,7 @@
       },
       "uri_deezer": "deezer://track/61046485",
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/17491028",
       "fun_fact": "“Million Voices - Radio Edit” is the radio edit of Otto Knows’ 2012 single “Million Voices”.",
       "fun_fact_de": "„Million Voices – Radio Edit“ ist die Radiofassung von Otto Knows’ Single „Million Voices“ aus dem Jahr 2012.",
       "fun_fact_es": "«Million Voices - Radio Edit» es la versión para radio del sencillo «Million Voices» de Otto Knows, publicado en 2012.",
@@ -5701,7 +5701,7 @@
       },
       "uri_deezer": "deezer://track/79435949",
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/155823558",
       "fun_fact": "“Waves - Robin Schulz Radio Edit” is Robin Schulz’s radio edit of Mr. Probz’s 2014 single “Waves”.",
       "fun_fact_de": "„Waves – Robin Schulz Radio Edit“ ist Robin Schulz’ Radiofassung von Mr. Probz’ Single „Waves“ aus dem Jahr 2014.",
       "fun_fact_es": "«Waves - Robin Schulz Radio Edit» es la versión para radio de Robin Schulz del sencillo «Waves» de Mr. Probz, publicada en 2014.",
