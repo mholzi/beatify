@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "edm",
     "electronic",
@@ -4890,7 +4890,7 @@
         "it": "applemusic://track/696886431"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/161017",
       "uri_deezer": "deezer://track/3129775",
       "fun_fact": "“Around the World” appears on Daft Punk’s release “Homework”.",
       "fun_fact_de": "„Around the World“ erschien auf der Veröffentlichung „Homework“ von Daft Punk.",
@@ -4920,7 +4920,7 @@
         "it": "applemusic://track/491596647"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YJVmu6yttiw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11742043",
       "uri_deezer": "deezer://track/15781392",
       "fun_fact": "“Bangarang (feat. Sirah)” appears on Skrillex’s release “Bangarang EP”.",
       "fun_fact_de": "„Bangarang (feat. Sirah)“ erschien auf der Veröffentlichung „Bangarang EP“ von Skrillex.",
@@ -4950,7 +4950,7 @@
         "it": "applemusic://track/692624266"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22023176",
       "uri_deezer": "deezer://track/70179720",
       "fun_fact": "“Lady - Hear Me Tonight” appears on Modjo’s release “Modjo (Remastered)”.",
       "fun_fact_de": "„Lady - Hear Me Tonight“ erschien auf der Veröffentlichung „Modjo (Remastered)“ von Modjo.",
@@ -4980,7 +4980,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34645181",
       "uri_deezer": "deezer://track/858737222",
       "fun_fact": "“Infinity - Magic Mitch Club Mix” appears on Guru Josh Project’s release “Infinity”.",
       "fun_fact_de": "„Infinity - Magic Mitch Club Mix“ erschien auf der Veröffentlichung „Infinity“ von Guru Josh Project.",
@@ -5010,7 +5010,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37953066",
       "uri_deezer": "deezer://track/2524469521",
       "fun_fact": "“Ghosts 'n' Stuff (feat. Rob Swire)” appears on deadmau5’s release “For Lack of a Better Name (The Extended Mixes)”.",
       "fun_fact_de": "„Ghosts 'n' Stuff (feat. Rob Swire)“ erschien auf der Veröffentlichung „For Lack of a Better Name (The Extended Mixes)“ von deadmau5.",
@@ -5040,7 +5040,7 @@
         "it": "applemusic://track/259751997"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/43421710",
       "uri_deezer": "deezer://track/10284909",
       "fun_fact": "“D.A.N.C.E.” appears on Justice’s release “Justice”.",
       "fun_fact_de": "„D.A.N.C.E.“ erschien auf der Veröffentlichung „Justice“ von Justice.",
@@ -5070,7 +5070,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/203338403",
       "uri_deezer": "deezer://track/2138214447",
       "fun_fact": "Edward Maya is a Romanian producer whose 'Stereo Love' became a global summer anthem in 2009.",
       "fun_fact_de": "Edward Maya ist ein rumänischer Produzent, dessen 'Stereo Love' 2009 zur globalen Sommerhymne wurde.",
@@ -5100,7 +5100,7 @@
         "it": "applemusic://track/1857568226"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nS-fOh1CfhQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/440260754",
       "uri_deezer": "deezer://track/3410229851",
       "fun_fact": "“No Broke Boys” is the title track of Disco Lines’s release of the same name.",
       "fun_fact_de": "„No Broke Boys“ ist der Titelsong der gleichnamigen Veröffentlichung von Disco Lines.",
@@ -5130,7 +5130,7 @@
         "it": "applemusic://track/1463775977"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/112165986",
       "uri_deezer": "deezer://track/695110942",
       "fun_fact": "“Music Sounds Better With You - Radio Edit” appears on Stardust’s release “Music Sounds Better With You”.",
       "fun_fact_de": "„Music Sounds Better With You - Radio Edit“ erschien auf der Veröffentlichung „Music Sounds Better With You“ von Stardust.",
@@ -5160,7 +5160,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fthOxQ0rAds",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/28750033",
       "uri_deezer": "deezer://track/77725038",
       "fun_fact": "“Strangers” appears on Seven Lions’s release “Worlds Apart”.",
       "fun_fact_de": "„Strangers“ erschien auf der Veröffentlichung „Worlds Apart“ von Seven Lions.",
@@ -5190,7 +5190,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dX3k_QDnzHE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/65281308",
       "uri_deezer": "deezer://track/92198180",
       "fun_fact": "“Midnight City” appears on M83’s release “Hurry Up, We're Dreaming”.",
       "fun_fact_de": "„Midnight City“ erschien auf der Veröffentlichung „Hurry Up, We're Dreaming“ von M83.",
@@ -5220,7 +5220,7 @@
         "it": "applemusic://track/1216949850"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/40213783",
       "uri_deezer": "deezer://track/15803513",
       "fun_fact": "“Pjanoo - Radio Edit” appears on Eric Prydz’s release “Pjanoo”.",
       "fun_fact_de": "„Pjanoo - Radio Edit“ erschien auf der Veröffentlichung „Pjanoo“ von Eric Prydz.",
@@ -5250,7 +5250,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/26646356",
       "uri_deezer": "deezer://track/72363285",
       "fun_fact": "“You & Me - Flume Remix” appears on Disclosure’s release “Settle (The Remixes)”.",
       "fun_fact_de": "„You & Me - Flume Remix“ erschien auf der Veröffentlichung „Settle (The Remixes)“ von Disclosure.",
@@ -5280,7 +5280,7 @@
         "it": "applemusic://track/1444123050"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/49817482",
       "uri_deezer": "deezer://track/105353316",
       "fun_fact": "“Push The Feeling On - Mk Dub Revisited Edit” appears on Nightcrawlers’s release “Push The Feeling On”.",
       "fun_fact_de": "„Push The Feeling On - Mk Dub Revisited Edit“ erschien auf der Veröffentlichung „Push The Feeling On“ von Nightcrawlers.",
@@ -5310,7 +5310,7 @@
         "it": "applemusic://track/714174441"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/130883",
       "uri_deezer": "deezer://track/3135034",
       "fun_fact": "“Hey Boy Hey Girl” appears on The Chemical Brothers’s release “Surrender”.",
       "fun_fact_de": "„Hey Boy Hey Girl“ erschien auf der Veröffentlichung „Surrender“ von The Chemical Brothers.",
@@ -5340,7 +5340,7 @@
         "it": "applemusic://track/294600655"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/294979317",
       "uri_deezer": "deezer://track/63266242",
       "fun_fact": "“Finally Moving” appears on Pretty Lights’s release “Taking up Your Precious Time”.",
       "fun_fact_de": "„Finally Moving“ erschien auf der Veröffentlichung „Taking up Your Precious Time“ von Pretty Lights.",
@@ -5370,7 +5370,7 @@
         "it": "applemusic://track/1444623538"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/54290313",
       "uri_deezer": "deezer://track/76495953",
       "fun_fact": "“Nobody To Love - Extended Mix” appears on Sigma’s release “Life (Deluxe)”.",
       "fun_fact_de": "„Nobody To Love - Extended Mix“ erschien auf der Veröffentlichung „Life (Deluxe)“ von Sigma.",
@@ -5400,7 +5400,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70564299",
       "uri_deezer": "deezer://track/96465722",
       "fun_fact": "“Freaks - Radio Edit” appears on Timmy Trumpet’s release “Freaks”.",
       "fun_fact_de": "„Freaks - Radio Edit“ erschien auf der Veröffentlichung „Freaks“ von Timmy Trumpet.",
@@ -5430,7 +5430,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20006918",
       "uri_deezer": "deezer://track/66786199",
       "fun_fact": "“This Is What It Feels Like” appears on Armin van Buuren’s release “Intense”.",
       "fun_fact_de": "„This Is What It Feels Like“ erschien auf der Veröffentlichung „Intense“ von Armin van Buuren.",
