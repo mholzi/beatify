@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "edm",
     "electronic",
@@ -3750,7 +3750,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gxTRx4uurxs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23153131",
       "uri_deezer": "deezer://track/71645436",
       "fun_fact": "“Dark Horse” appears on Katy Perry’s release “PRISM”.",
       "fun_fact_de": "„Dark Horse“ erschien auf der Veröffentlichung „PRISM“ von Katy Perry.",
@@ -3780,7 +3780,7 @@
         "it": "applemusic://track/1162482636"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HbzZPpWr4MI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/65710819",
       "uri_deezer": "deezer://track/118986142",
       "fun_fact": "“Cheap Thrills (feat. Sean Paul)” appears on Sia’s release “This Is Acting”.",
       "fun_fact_de": "„Cheap Thrills (feat. Sean Paul)“ erschien auf der Veröffentlichung „This Is Acting“ von Sia.",
@@ -3810,7 +3810,7 @@
         "it": "applemusic://track/697195462"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1550546",
       "uri_deezer": "deezer://track/3135553",
       "fun_fact": "“One More Time” appears on Daft Punk’s release “Discovery”.",
       "fun_fact_de": "„One More Time“ erschien auf der Veröffentlichung „Discovery“ von Daft Punk.",
@@ -3840,7 +3840,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WSeNSzJ2-Jw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5167018",
       "uri_deezer": "deezer://track/7927244",
       "fun_fact": "“Scary Monsters and Nice Sprites” appears on Skrillex’s release “Scary Monsters and Nice Sprites EP”.",
       "fun_fact_de": "„Scary Monsters and Nice Sprites“ erschien auf der Veröffentlichung „Scary Monsters and Nice Sprites EP“ von Skrillex.",
@@ -3870,7 +3870,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GiT7fhfTrPQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3277163",
       "uri_deezer": "deezer://track/5150299",
       "fun_fact": "“Strobe - Radio Edit” appears on deadmau5’s release “Strobe”.",
       "fun_fact_de": "„Strobe - Radio Edit“ erschien auf der Veröffentlichung „Strobe“ von deadmau5.",
@@ -3900,7 +3900,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13869649",
       "uri_deezer": "deezer://track/16712341",
       "fun_fact": "“Calling (Lose My Mind) - Radio Edit” appears on Sebastian Ingrosso’s release “Calling (Lose My Mind)”.",
       "fun_fact_de": "„Calling (Lose My Mind) - Radio Edit“ erschien auf der Veröffentlichung „Calling (Lose My Mind)“ von Sebastian Ingrosso.",
@@ -3930,7 +3930,7 @@
         "it": "applemusic://track/1509360029"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/138517828",
       "uri_deezer": "deezer://track/937856142",
       "fun_fact": "“Language” is the title track of Porter Robinson’s release of the same name.",
       "fun_fact_de": "„Language“ ist der Titelsong der gleichnamigen Veröffentlichung von Porter Robinson.",
@@ -3960,7 +3960,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/70687052",
       "uri_deezer": "deezer://track/858971282",
       "fun_fact": "“Satisfaction” appears on Benny Benassi’s release “Hypnotica”.",
       "fun_fact_de": "„Satisfaction“ erschien auf der Veröffentlichung „Hypnotica“ von Benny Benassi.",
@@ -3990,7 +3990,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/88259519",
       "uri_deezer": "deezer://track/494360142",
       "fun_fact": "“Pressure - Alesso Remix” appears on Nadia Ali’s release “Pressure (The Remixes)”.",
       "fun_fact_de": "„Pressure - Alesso Remix“ erschien auf der Veröffentlichung „Pressure (The Remixes)“ von Nadia Ali.",
@@ -4020,7 +4020,7 @@
         "it": "applemusic://track/1769016658"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34702583",
       "uri_deezer": "deezer://track/2942220821",
       "fun_fact": "“I Can't Stop” appears on Flux Pavilion’s release “Lines in Wax”.",
       "fun_fact_de": "„I Can't Stop“ erschien auf der Veröffentlichung „Lines in Wax“ von Flux Pavilion.",
@@ -4050,7 +4050,7 @@
         "it": "applemusic://track/1628083606"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/115209470",
       "uri_deezer": "deezer://track/730461432",
       "fun_fact": "“In My Mind (feat. Georgi Kay) - Axwell Radio Edit” appears on Ivan Gough’s release “In My Mind (feat. Georgi Kay)”.",
       "fun_fact_de": "„In My Mind (feat. Georgi Kay) - Axwell Radio Edit“ erschien auf der Veröffentlichung „In My Mind (feat. Georgi Kay)“ von Ivan Gough.",
@@ -4080,7 +4080,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/14658643",
       "uri_deezer": "deezer://track/18181530",
       "fun_fact": "“Pursuit Of Happiness - Extended Steve Aoki Remix” appears on Kid Cudi’s release “Pursuit Of Happiness [Extended Steve Aoki Remix (Explicit)]”.",
       "fun_fact_de": "„Pursuit Of Happiness - Extended Steve Aoki Remix“ erschien auf der Veröffentlichung „Pursuit Of Happiness [Extended Steve Aoki Remix (Explicit)]“ von Kid Cudi.",
@@ -4110,7 +4110,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21399997",
       "uri_deezer": "deezer://track/69194935",
       "fun_fact": "“Cinema - Skrillex Remix” appears on Benny Benassi’s release “Electroman”.",
       "fun_fact_de": "„Cinema - Skrillex Remix“ erschien auf der Veröffentlichung „Electroman“ von Benny Benassi.",
@@ -4140,7 +4140,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6649657",
       "uri_deezer": "deezer://track/11234004",
       "fun_fact": "“Save The World” is the title track of Swedish House Mafia’s release of the same name.",
       "fun_fact_de": "„Save The World“ ist der Titelsong der gleichnamigen Veröffentlichung von Swedish House Mafia.",
@@ -4170,7 +4170,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/109010807",
       "uri_deezer": "deezer://track/676912382",
       "fun_fact": "“Heads Will Roll - A-Trak Remix Radio Edit” appears on Yeah Yeah Yeahs’s release “Heads Will Roll”.",
       "fun_fact_de": "„Heads Will Roll - A-Trak Remix Radio Edit“ erschien auf der Veröffentlichung „Heads Will Roll“ von Yeah Yeah Yeahs.",
@@ -4200,7 +4200,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19906571",
       "uri_deezer": "deezer://track/66822689",
       "fun_fact": "“Reload - Radio Edit” appears on Sebastian Ingrosso’s release “Reload (Vocal Version / Radio Edit)”.",
       "fun_fact_de": "„Reload - Radio Edit“ erschien auf der Veröffentlichung „Reload (Vocal Version / Radio Edit)“ von Sebastian Ingrosso.",
@@ -4230,7 +4230,7 @@
         "it": "applemusic://track/1483618721"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/120241323",
       "uri_deezer": "deezer://track/776083862",
       "fun_fact": "“Epic - Radio Edit” appears on Sandro Silva’s release “Epic”.",
       "fun_fact_de": "„Epic - Radio Edit“ erschien auf der Veröffentlichung „Epic“ von Sandro Silva.",
@@ -4260,7 +4260,7 @@
         "it": "applemusic://track/786489670"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HMUDVMiITOU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/24696095",
       "uri_deezer": null,
       "fun_fact": "“Turn Down for What” is the title track of DJ Snake’s release of the same name.",
       "fun_fact_de": "„Turn Down for What“ ist der Titelsong der gleichnamigen Veröffentlichung von DJ Snake.",
@@ -4290,7 +4290,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/227503406",
       "uri_deezer": "deezer://track/69954067",
       "fun_fact": "“Summertime Sadness (Lana Del Rey Vs. Cedric Gervais) - Cedric Gervais Remix” is the title track of Lana Del Rey’s release of the same name.",
       "fun_fact_de": "„Summertime Sadness (Lana Del Rey Vs. Cedric Gervais) - Cedric Gervais Remix“ ist der Titelsong der gleichnamigen Veröffentlichung von Lana Del Rey.",
