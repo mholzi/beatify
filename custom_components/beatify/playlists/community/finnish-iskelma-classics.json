@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "finnish",
     "iskelma",
@@ -35,7 +35,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/56442389",
       "uri_deezer": "deezer://track/104154962",
       "fun_fact": "Olavi Virta's 'Sä et kyyneltä nää' (You Won't See a Tear) is a proud song of emotional restraint — a very Finnish sentiment. Virta recorded an extraordinary range of emotional registers, from ecstatic joy to quiet, dignified sorrow.",
       "fun_fact_de": "Olavi Virtas 'Sä et kyyneltä nää' (Du wirst keine Träne sehen) ist ein stolzes Lied emotionaler Zurückhaltung — ein sehr finnisches Sentiment.",
@@ -65,7 +65,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2413901",
       "uri_deezer": "deezer://track/70640366",
       "fun_fact": "Olavi Virta's 'Sinun silmiesi tähden' (For the Sake of Your Eyes) is a classic early 1950s romantic ballad that established his status as Finland's premier romantic vocalist of the post-war era.",
       "fun_fact_de": "Olavi Virtas 'Sinun silmiesi tähden' (Um deiner Augen willen) ist eine klassische romantische Ballade der frühen 1950er Jahre.",
@@ -95,7 +95,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/364219",
       "uri_deezer": "deezer://track/104154944",
       "fun_fact": "Olavi Virta's 'Täysikuu' (Full Moon) uses lunar imagery to frame a romantic declaration; moon and night-sky imagery runs throughout Finnish poetry and song, connecting the terrestrial longing of iskelmä to cosmic scale.",
       "fun_fact_de": "Olavi Virtas 'Täysikuu' (Vollmond) nutzt Mondbilder für eine romantische Erklärung.",
@@ -125,7 +125,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/601027",
       "uri_deezer": "deezer://track/3612503",
       "fun_fact": "Georg Ots's 'Saarenmaan valssi' (Saaremaa Waltz) is the most famous Estonian song to be embraced by Finnish audiences; Ots was an Estonian opera baritone whose warm voice transcended the Iron Curtain to win Finnish hearts.",
       "fun_fact_de": "Georg Ots' 'Saarenmaan valssi' (Walzer von Saaremaa) ist das bekannteste estnische Lied, das beim finnischen Publikum Anklang fand.",
@@ -155,7 +155,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20970320",
       "uri_deezer": "deezer://track/104154956",
       "fun_fact": "Olavi Virta's Finnish version of 'Quién Será' (the mambo standard) demonstrates his range beyond Nordic styles; Virta embraced Latin rhythms and international pop with the same natural ease he brought to Finnish tangos and waltzes.",
       "fun_fact_de": "Olavi Virtas finnische Version von 'Quién Será' (dem Mambo-Standard) zeigt seine Bandbreite jenseits nordischer Stile.",
@@ -185,7 +185,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/56443076",
       "uri_deezer": "deezer://track/104155096",
       "fun_fact": "Tapio Rautavaara's 'Reissumies ja kissa' (The Traveler and the Cat) is one of his most beloved novelty songs, showcasing the playful side of iskelmä alongside his more serious folk ballads.",
       "fun_fact_de": "Tapio Rautavaaras 'Reissumies ja kissa' (Der Reisende und die Katze) ist eines seiner beliebtesten humoristischen Lieder und zeigt die spielerische Seite der Iskelmä.",
@@ -215,7 +215,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578350",
       "uri_deezer": "deezer://track/14686543",
       "fun_fact": "Tapio Rautavaara's 'Väliaikainen' (Temporary) muses on the transient nature of happiness; such philosophical reflections on impermanence are a recurring thread in Finnish iskelmä, connected to the Lutheran and stoic sensibility of Finnish culture.",
       "fun_fact_de": "Tapio Rautavaaras 'Väliaikainen' (Vorübergehend) sinniert über die vergängliche Natur des Glücks.",
@@ -245,7 +245,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/388043",
       "uri_deezer": "deezer://track/3597029",
       "fun_fact": "Annikki Tähti's 'Muistatko Monrepos'n' (Do You Remember Monrepos?) refers to the famous Monrepos landscape park in Vyborg, a Finnish city lost to the Soviet Union; the song carries profound Karelian nostalgia for many Finnish listeners.",
       "fun_fact_de": "Annikki Tähtis 'Muistatko Monrepos'n' bezieht sich auf den berühmten Landschaftspark Monrepos in Wyborg, einer an die Sowjetunion verlorenen finnischen Stadt.",
@@ -275,7 +275,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578352",
       "uri_deezer": "deezer://track/67739759",
       "fun_fact": "Brita Koivunen's Finnish cover of 'Mama's Pearls' made her one of Finland's first teenage pop sensations in the mid-1950s; she later represented Finland at Eurovision 1961 with 'Valoa ikkunassa'.",
       "fun_fact_de": "Brita Koivunens finnische Version von 'Mama's Pearls' machte sie in den Mitte 1950ern zu einem der ersten Teenie-Popsensationen Finnlands.",
@@ -305,7 +305,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21018871",
       "uri_deezer": "deezer://track/117675224",
       "fun_fact": "Olavi Virta's 'Hurmio' (Rapture) showcases his ability to convey ecstatic joy — a counterpoint to the melancholic tangos of his era; Virta's range from sorrow to delight made him Finland's most complete popular singer.",
       "fun_fact_de": "Olavi Virtas 'Hurmio' (Verzückung) zeigt seine Fähigkeit, ekstatische Freude zu vermitteln — ein Gegenpol zu den melancholischen Tangos seiner Ära.",
@@ -335,7 +335,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/147305933",
       "uri_deezer": "deezer://track/1010527632",
       "fun_fact": "Brita Koivunen's 'Sä kaunehin oot' (You Are the Most Beautiful) exemplifies the youthful pop sound she pioneered in 1950s Finland; Koivunen debuted as a teenager and quickly became one of Finland's most adored singing stars.",
       "fun_fact_de": "Brita Koivunens 'Sä kaunehin oot' (Du bist die Schönste) verkörpert den jugendlichen Popsound, den sie in den 1950ern in Finnland pionierte.",
@@ -365,7 +365,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21064094",
       "uri_deezer": "deezer://track/1231017842",
       "fun_fact": "Olavi Virta's 'Sen tuuli häivyttää' (The Wind Will Carry It Away) speaks to a generation of Finns rebuilding after World War II; Virta's recordings of loss and fading memory held particularly deep resonance in post-war Finland.",
       "fun_fact_de": "Olavi Virtas 'Sen tuuli häivyttää' (Der Wind trägt es fort) spricht zu einer Generation von Finnen, die nach dem Zweiten Weltkrieg wieder aufbauten.",
@@ -395,7 +395,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22989355",
       "uri_deezer": "deezer://track/3596813",
       "fun_fact": "Helena Siltala's 'Tuuli tuo, tuuli vie' (The Wind Brings, the Wind Takes) is a delicate nature metaphor for the passing of love; Siltala was one of the fresh female voices who shaped Finnish popular music in the late 1950s.",
       "fun_fact_de": "Helena Siltalas 'Tuuli tuo, tuuli vie' (Der Wind bringt, der Wind nimmt) ist eine zarte Naturmetapher für das Vergehen der Liebe.",
