@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "finnish",
     "iskelma",
@@ -425,7 +425,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578342",
       "uri_deezer": "deezer://track/3597024",
       "fun_fact": "Olavi Virta's 'Metsäkukkia' (Forest Flowers) is a gentle nature song that shows his more pastoral side; Virta could shift effortlessly between jazz-inflected dance numbers, romantic ballads, and delicate nature songs.",
       "fun_fact_de": "Olavi Virtas 'Metsäkukkia' (Waldblumen) ist ein zartes Naturlied, das seine ländlichere Seite zeigt.",
@@ -455,7 +455,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19170300",
       "uri_deezer": "deezer://track/14956441",
       "fun_fact": "Annikki Tähti's 'Tummat silmät' (Dark Eyes) draws on the Russian romance 'Ochi Chernye', reflecting Finland's complex historical proximity to Russia; Tähti was one of the queens of Finnish iskelmä in the 1950s.",
       "fun_fact_de": "Annikki Tähtis 'Tummat silmät' (Dunkle Augen) greift auf die russische Romanze 'Otschis Tschjornye' zurück.",
@@ -485,7 +485,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21045533",
       "uri_deezer": "deezer://track/1010527672",
       "fun_fact": "Brita Koivunen's 'Katinka' shows her versatility in romantic and playful repertoire; she represented Finland at Eurovision 1961 and was one of the first Finnish artists to gain significant international profile through the competition.",
       "fun_fact_de": "Brita Koivunens 'Katinka' zeigt ihre Vielseitigkeit im romantischen und spielerischen Repertoire; sie vertrat Finnland 1961 beim Eurovision Song Contest.",
@@ -515,7 +515,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578357",
       "uri_deezer": "deezer://track/113417132",
       "fun_fact": "Eila Pienimäki's 'Vanhan veräjän luona' (By the Old Gate) evokes rural Finnish nostalgia — a recurring theme in iskelmä as Finland urbanised rapidly in the 1950s and 60s, leaving millions longing for the countryside of their childhood.",
       "fun_fact_de": "Eila Pienimäkis 'Vanhan veräjän luona' (Am alten Tor) beschwört ländliche finnische Nostalgie.",

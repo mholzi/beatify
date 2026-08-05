@@ -1,6 +1,6 @@
 {
   "name": "Eurodance 90s 💥",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1990s",
     "eurodance",
@@ -770,7 +770,8 @@
       "fun_fact_fr": "La participation de Gina G à l'Eurovision pour le Royaume-Uni s'est transformée en tube numéro 1, illustrant une rare passerelle entre le succès à l'Eurovision et l'Eurodance.",
       "uri_deezer": "deezer://track/7537488",
       "fun_fact_nl": "De inzending van Gina G voor het Eurovisie Songfestival namens het VK werd een nummer 1-hit en was een zeldzaam crossover-succes tussen het Songfestival en Eurodance.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/4343025"
     },
     {
       "year": 1994,
