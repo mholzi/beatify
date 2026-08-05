@@ -29,22 +29,45 @@ The gate
 --------
 A search result is only accepted when **all** of these hold:
 
-  1. ``artistName`` equals the track's primary artist after normalisation
-     (casefold, punctuation stripped, ``&``/``and`` unified, ``feat.``-tails cut)
+  1. the track's primary artist is **one of** the artists credited in
+     ``artistName`` after normalisation (casefold, punctuation stripped,
+     ``&``/``and`` unified, ``feat.``-tails cut)
   2. title similarity >= ``--title-threshold`` (default 0.87, difflib ratio on
      normalised titles)
   3. the year in ``releaseDate`` is within ``--year-tolerance`` of ``year``
      (default 1; a release can straddle a year boundary)
+  4. no parenthetical suffix on either side names a different recording
+     (``suffix_conflict``)
 
 Anything else is **rejected, not guessed**. Rejections are recorded separately
 from genuine absences so the two can be told apart later — a rejection may
 become resolvable with a better matcher, a miss will not.
+
+Note on rule 1: this is membership, not equality (changed 2026-08-05, #1980).
+Apple frequently orders a multi-artist credit differently than the catalogue —
+"Tatanka, Zatox & Wild Motherfuckers" for our "Zatox" — and lead-vs-lead
+comparison rejected those correct matches. Only the *primary* catalogue artist
+is required to be present: Apple moves featured guests into the title, so
+demanding the full catalogue set would reject "Harris & Ford, BassWar & CaoX,
+Bobby John" against "Harris & Ford & BassWar & CaoX".
 
 Note on rule 3: for old songs that only exist on remaster/compilation albums,
 ``releaseDate`` is the *reissue* date, so rule 3 will reject some correct
 matches. That is deliberate — precision over recall. ``--probe`` reports the
 rejection breakdown so the thresholds can be calibrated against real data
 before any wave writes anything.
+
+Note on rule 4: rule 2 compares a parenthetical-stripped form as well, so a
+suffix on one side alone costs no similarity at all. That is right for
+"(2000 Remaster)" and wrong for "(Extended Mix)" — both score 1.00, so **no
+threshold can separate them** and the suffix must be inspected directly. Rule 4
+accepts a one-sided suffix only when the other title mentions the same words
+anywhere ("The Afterlife - Radio Edit" vs "The Afterlife (Radio Edit)") or when
+it is recording-neutral per ``_NEUTRAL_SUFFIX_RE``. This costs recall: real
+"(Radio Edit)" and "(Extended Version)" catalogue entries now land in
+``rejected`` rather than ``hit``. That is the intended direction — they stay
+retrievable via ``--retry-rejected``, whereas a wrong URI in the catalogue is
+only found again by the daily playlist-review.
 
 State file (``scripts/.apple-backfill-state.json``) maps each Spotify URI to
 ``{"status": hit|miss|rejected, ...}``:
@@ -101,8 +124,27 @@ REQUEST_TIMEOUT_S = 20
 
 _FEAT_RE = re.compile(r"\s*[\(\[]?\b(feat|ft|featuring|with)\b\.?\s.*$", re.I)
 _PAREN_RE = re.compile(r"\s*[\(\[][^)\]]*[)\]]")
+_PAREN_CONTENT_RE = re.compile(r"[\(\[]([^)\]]*)[)\]]")
 _PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
 _WS_RE = re.compile(r"\s+")
+_ARTIST_SPLIT_RE = re.compile(r"\s*[,;/]\s*|\s+(?:&|feat\.?|ft\.?|x|vs\.?)\s+", re.I)
+
+# Parenthetical suffixes that name the same *recording* — packaging or mastering
+# wording, not a different take. Only these may appear on one side alone.
+# Deliberately a short closed list: every entry here is a licence to accept a
+# title the other side does not carry, so it is reviewed in the diff.
+_NEUTRAL_SUFFIX_RE = re.compile(
+    r"^(?:\d{4}\s+)?(?:digital\s+)?(?:"
+    r"remaster(?:ed)?(?:\s+version)?(?:\s+\d{4})?"
+    r"|deluxe(?:\s+edition)?"
+    r"|album\s+version"
+    r"|single\s+version"
+    r"|original\s+(?:version|mix)"
+    r"|bonus\s+track"
+    r"|explicit|clean"
+    r")$",
+    re.I,
+)
 
 
 def _now_iso() -> str:
@@ -132,14 +174,70 @@ def primary_artist(artist: str) -> str:
     """First credited artist — search results carry the lead artist only."""
     if not artist:
         return ""
-    return re.split(r"\s*[,;/]\s*|\s+(?:&|feat\.?|ft\.?|x)\s+", artist, maxsplit=1)[0]
+    return _ARTIST_SPLIT_RE.split(artist, maxsplit=1)[0]
+
+
+def artist_set(artist: str) -> set[str]:
+    """All credited artists, normalised.
+
+    Split on the raw string, not the normalised one: ``normalise`` turns ``&``
+    into ``and``, which would stop it being a separator.
+    """
+    if not artist:
+        return set()
+    return {n for n in (normalise(p) for p in _ARTIST_SPLIT_RE.split(artist)) if n}
+
+
+def parenthetical_suffixes(text: str) -> list[str]:
+    """Normalised contents of every ``(...)``/``[...]`` group.
+
+    ``feat.``-tails are cut first — ``normalise`` already handles those, and a
+    featured guest is not a different recording.
+    """
+    if not text:
+        return []
+    stripped = _FEAT_RE.sub("", unicodedata.normalize("NFC", text))
+    out = []
+    for raw in _PAREN_CONTENT_RE.findall(stripped):
+        norm = normalise(raw)
+        if norm:
+            out.append(norm)
+    return out
+
+
+def suffix_conflict(a: str, b: str) -> str | None:
+    """The first suffix that one title carries and the other does not account for.
+
+    ``title_similarity`` compares a parenthetical-stripped form too, so a suffix
+    on one side alone costs nothing — which is right for ``(2000 Remaster)`` and
+    wrong for ``(Extended Mix)``. Both reach similarity 1.00, so no threshold can
+    separate them; the suffix has to be looked at directly.
+
+    A suffix is fine when either
+      * the other side mentions it anywhere in its title (``The Afterlife -
+        Radio Edit`` vs ``The Afterlife (Radio Edit)`` — same words, different
+        punctuation), or
+      * it is recording-neutral per ``_NEUTRAL_SUFFIX_RE``.
+
+    Anything else names a different take and is returned for rejection.
+    """
+    for src, other in ((a, b), (b, a)):
+        other_norm = normalise(other)
+        for suffix in parenthetical_suffixes(src):
+            if suffix in other_norm:
+                continue
+            if _NEUTRAL_SUFFIX_RE.match(suffix):
+                continue
+            return suffix
+    return None
 
 
 def title_similarity(a: str, b: str) -> float:
     """Best ratio over the raw and the parenthetical-stripped forms.
 
     ``Kryptonite`` vs ``Kryptonite (2000 Remaster)`` should not be punished for
-    a suffix that says nothing about track identity.
+    a suffix that says nothing about track identity. Suffixes that *do* say
+    something are caught by ``suffix_conflict``, not here.
     """
     best = difflib.SequenceMatcher(None, normalise(a), normalise(b)).ratio()
     bare = difflib.SequenceMatcher(
@@ -159,8 +257,15 @@ def evaluate(track: dict, result: dict, *, title_threshold: float,
              year_tolerance: int) -> tuple[bool, str]:
     """Apply the gate. Returns (accepted, reason)."""
     want_artist = normalise(primary_artist(track.get("artist", "")))
-    got_artist = normalise(primary_artist(result.get("artistName", "")))
-    if not want_artist or want_artist != got_artist:
+    got_artists = artist_set(result.get("artistName", ""))
+    # Membership, not equality: Apple often orders a multi-artist credit
+    # differently ("Tatanka, Zatox & Wild Motherfuckers" for our "Zatox"), and
+    # the lead-artist-only comparison then rejected a correct match. Checking
+    # the *primary* catalogue artist rather than the whole catalogue set is
+    # deliberate — Apple moves featured guests into the title, so requiring the
+    # full set to be present would reject e.g. "Harris & Ford, BassWar & CaoX,
+    # Bobby John" against "Harris & Ford & BassWar & CaoX".
+    if not want_artist or want_artist not in got_artists:
         return False, f"artist {result.get('artistName')!r} != {track.get('artist')!r}"
 
     sim = title_similarity(track.get("title", ""), result.get("trackName", ""))
@@ -168,6 +273,13 @@ def evaluate(track: dict, result: dict, *, title_threshold: float,
         return False, (
             f"title {result.get('trackName')!r} vs {track.get('title')!r} "
             f"(similarity {sim:.2f} < {title_threshold:.2f})"
+        )
+
+    clash = suffix_conflict(track.get("title", ""), result.get("trackName", ""))
+    if clash:
+        return False, (
+            f"suffix {result.get('trackName')!r} vs {track.get('title')!r} "
+            f"(unmatched {clash!r})"
         )
 
     want_year = track.get("year")
