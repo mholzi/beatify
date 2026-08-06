@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "finnish",
     "iskelma",
@@ -1693,7 +1693,7 @@
         "it": "applemusic://track/307823429"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20557759",
       "uri_deezer": "deezer://track/3598899",
       "fun_fact": "Markku Aro's Finnish cover of 'You're Such a Good Looking Woman' brought Joe Dolan's 1970 hit to Finnish audiences; Aro's ability to capture the spirit of international pop while keeping a distinctly Finnish feel made him a fan favourite.",
       "fun_fact_de": "Markku Aros finnischer Cover von 'You're Such a Good Looking Woman' brachte Joe Dolans Hit von 1970 zum finnischen Publikum.",
@@ -1723,7 +1723,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32520451",
       "uri_deezer": "deezer://track/1002290",
       "fun_fact": "'Tähdet meren yllä' (Stars Above the Sea) by Reijo Taipale showcases the Finnish tradition of nature imagery in iskelmä; the sea and stars are recurring motifs reflecting Finland's vast coastline and long dark nights.",
       "fun_fact_de": "'Tähdet meren yllä' (Sterne über dem Meer) von Reijo Taipale zeigt die finnische Tradition der Naturbilder in der Iskelmä.",
@@ -1753,7 +1753,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/364059",
       "uri_deezer": "deezer://track/80368034",
       "fun_fact": "Paula Koivuniemi's 'Perhonen' (Butterfly) became one of her signature songs; Koivuniemi has been a dominant force in Finnish popular music since the 1970s and is one of the country's most successful live performers.",
       "fun_fact_de": "Paula Koivuniemis 'Perhonen' (Schmetterling) wurde einer ihrer Signature-Songs; Koivuniemi ist seit den 1970ern eine dominierende Kraft der finnischen Popularmusik.",
@@ -1783,7 +1783,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10810244",
       "uri_deezer": "deezer://track/14957199",
       "fun_fact": "A. Aimo's 'Kaunis on luoksesi kaipuu' (Beautiful Is the Longing for You) is a tender wartime love song; Aimo was the troubadour of Finland's wartime generation, whose recordings gave voice to soldiers' homesickness and love.",
       "fun_fact_de": "A. Aimos 'Kaunis on luoksesi kaipuu' (Schön ist die Sehnsucht nach dir) ist ein zartes Kriegszeitliebes­lied.",
@@ -1813,7 +1813,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20788125",
       "uri_deezer": "deezer://track/74226373",
       "fun_fact": "Fredi's Finnish rendition of 'Love Is a Many Splendored Thing' illustrates how Hollywood film songs were regularly translated into Finnish during the 1960s and 70s, keeping cinema-inspired romance accessible to Finnish audiences.",
       "fun_fact_de": "Fredis finnische Version von 'Love Is a Many Splendored Thing' zeigt, wie Hollywoodfilmsongs in den 1960er und 70er Jahren regelmäßig ins Finnische übersetzt wurden.",
@@ -1841,7 +1841,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/655945869",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zoLLOOSpgQU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20534686",
       "uri_deezer": "deezer://track/4104261",
       "awards_nl": [],
       "isrc": "FIFMF7200008",
@@ -1877,7 +1877,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20555117",
       "uri_deezer": "deezer://track/1010525762",
       "fun_fact": "Tapio Rautavaara was not only Finland's most beloved folk singer of his era but also an Olympic javelin thrower who competed in the 1948 London Games; 'Päivänsäde ja menninkäinen' remains one of his most cherished recordings.",
       "fun_fact_de": "Tapio Rautavaara war nicht nur Finnlands beliebtester Volkssänger seiner Zeit, sondern auch ein olympischer Speerwerfer bei den Londoner Spielen 1948; 'Päivänsäde ja menninkäinen' ist eine seiner beliebtesten Aufnahmen.",
@@ -1908,7 +1908,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/654937000",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Jn_JKefqh84",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13243750",
       "uri_deezer": "deezer://track/67731103",
       "isrc": "FIFSC6600600",
       "uri_apple_music_by_region": {
@@ -1941,7 +1941,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/656239593",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jQdR8v0PcsE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20518502",
       "uri_deezer": null,
       "isrc": "FIFMF7300021",
       "uri_apple_music_by_region": {
@@ -1976,7 +1976,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20833372",
       "uri_deezer": "deezer://track/3610307",
       "fun_fact": "Seija Simola's 'Kun aika on' (When the Time Comes) is a melancholic reflection on patience and timing in love; Simola was one of the leading female voices of Finnish iskelmä in the late 1960s and early 1970s.",
       "fun_fact_de": "Seija Simolas 'Kun aika on' (Wenn die Zeit kommt) ist eine melancholische Reflexion über Geduld in der Liebe.",
@@ -2004,7 +2004,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/285618686",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qs-TXgaxS_0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180682",
       "uri_deezer": "deezer://track/77648145",
       "awards_nl": [],
       "isrc": "FIFPS7400002",
@@ -2040,7 +2040,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20569496",
       "uri_deezer": "deezer://track/4116238",
       "fun_fact": "Erkki Junkkarinen's 'Pieni hetki' (A Small Moment) captures the Finnish appreciation for fleeting precious moments — a philosophical current running through iskelmä that reflects the Lutheran and stoic strands of Finnish culture.",
       "fun_fact_de": "Erkki Junkkarinens 'Pieni hetki' (Ein kleiner Moment) erfasst die finnische Wertschätzung für flüchtige kostbare Momente.",
@@ -2068,7 +2068,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/740115238",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZYjzD1kFpss",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1641134",
       "uri_deezer": "deezer://track/67761841",
       "isrc": "FIFMF7500010",
       "uri_apple_music_by_region": {
@@ -2101,7 +2101,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1076971588",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pz0fdbm_GUs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578398",
       "uri_deezer": "deezer://track/3610324",
       "awards_nl": [],
       "isrc": "FIFSC7500100",
@@ -2133,7 +2133,7 @@
       },
       "uri_deezer": "13238168",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GZW1SDSYeU0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/605061",
       "alt_artists": [
         "Jani Wickholm",
         "Anne Mattila",
@@ -2169,7 +2169,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/655105896",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ff9pXZoRDAc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/390714",
       "uri_deezer": "deezer://track/3609030",
       "isrc": "FIFFD7500002",
       "uri_apple_music_by_region": {
@@ -2202,7 +2202,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/655922550",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MWwwXvWOp9M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21033367",
       "uri_deezer": "deezer://track/3598912",
       "awards_nl": [],
       "isrc": "FIFMF7600007",
@@ -2236,7 +2236,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/655830844",
       "uri_youtube_music": "https://music.youtube.com/watch?v=e-yHZJ-gYec",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/408081",
       "uri_deezer": "deezer://track/3595695",
       "isrc": "FIFMF7600037",
       "uri_apple_music_by_region": {
@@ -2269,7 +2269,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/740115242",
       "uri_youtube_music": "https://music.youtube.com/watch?v=t95UiNedXH4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21045732",
       "uri_deezer": "deezer://track/3908058",
       "awards_nl": [],
       "isrc": "FIFMF7600026",
