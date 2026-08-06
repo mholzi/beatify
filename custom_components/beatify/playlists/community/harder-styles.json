@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -2478,7 +2478,7 @@
       "year": 2018,
       "isrc": "NLH2L1800135",
       "uri": "spotify:track:1rLd3cCQBWkXw0prrzBQvB",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1470619481",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
