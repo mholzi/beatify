@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "finnish",
     "iskelma",
@@ -2305,7 +2305,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578405",
       "uri_deezer": "deezer://track/10260526",
       "fun_fact": "Mutkattomat's 'Jätkän humppa' (The Lumberjack's Humppa) celebrates humppa, a uniquely Finnish uptempo dance genre descended from the foxtrot; lumberjacks ('jätkät') were iconic figures in Finnish folk culture, embodying rugged independence.",
       "fun_fact_de": "Mutkattomat's 'Jätkän humppa' (Holzfäller-Humppa) feiert Humppa, ein einzigartiges finnisches Uptempo-Tanzgenre; Holzfäller waren ikonische Figuren der finnischen Volkskultur.",
@@ -2337,7 +2337,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/211107100",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6SDfpYZqq9g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578399",
       "uri_deezer": "deezer://track/583676",
       "isrc": "FIFSC7600400",
       "uri_apple_music_by_region": {
@@ -2370,7 +2370,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/656165402",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BswWK7dWFlw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1640377",
       "uri_deezer": "deezer://track/3609703",
       "isrc": "FIFFD7600014",
       "uri_apple_music_by_region": {
@@ -2403,7 +2403,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/216663576",
       "uri_youtube_music": "https://music.youtube.com/watch?v=W9aFisKYYEA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/362992",
       "uri_deezer": "deezer://track/3902491",
       "awards_nl": [],
       "isrc": "FIFMF7800009",
@@ -2435,7 +2435,7 @@
       },
       "uri_deezer": "1022443",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NR4CcDybv54",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2859139",
       "alt_artists": [
         "Leif Lindeman",
         "Marko Maunuksela",
@@ -2473,7 +2473,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20898309",
       "uri_deezer": "deezer://track/3608769",
       "fun_fact": "Eino Grön's Finnish version of the Italian 'Torna Piccina' showcases the warm cross-pollination between Italian melody and Finnish sentiment; Grön's deep baritone gave Italian songs a new emotional palette for Finnish listeners.",
       "fun_fact_de": "Eino Gröns finnische Version des italienischen 'Torna Piccina' zeigt die fruchtbare Wechselwirkung zwischen italienischer Melodie und finnischem Empfinden.",
@@ -2503,7 +2503,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20788127",
       "uri_deezer": "deezer://track/3608571",
       "fun_fact": "Fredi's Finnish version of the Godfather theme 'Speak Softly Love' became one of his most remembered recordings; the song's cinematic romance translated beautifully into Finnish iskelmä style.",
       "fun_fact_de": "Fredis finnische Version des Paten-Themas 'Speak Softly Love' wurde eine seiner bekanntesten Aufnahmen; die filmische Romantik des Songs übertrug sich wunderbar auf den Iskelmä-Stil.",
@@ -2533,7 +2533,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/364173",
       "uri_deezer": "deezer://track/3893606",
       "fun_fact": "Hortto Kaalo, a Finnish Roma music group, brought the rich Romani tradition into the iskelmä mainstream with 'Ei kenenkään lähimmäinen', helping give visibility to Finland's Romani community through popular music.",
       "fun_fact_de": "Hortto Kaalo, eine finnische Roma-Musikgruppe, brachte mit 'Ei kenenkään lähimmäinen' die reiche Romani-Tradition in den Iskelmä-Mainstream.",
@@ -2561,7 +2561,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/608019561",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rKHVqAxJuEM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20531431",
       "uri_deezer": "deezer://track/67721052",
       "isrc": "FIFMF7800001",
       "uri_apple_music_by_region": {
@@ -2594,7 +2594,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/299243621",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fdwdPVxU4s0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2864517",
       "uri_deezer": "deezer://track/7816926",
       "awards_nl": [],
       "isrc": "FISMC7800010",
@@ -2626,7 +2626,7 @@
       },
       "uri_deezer": "7816927",
       "uri_youtube_music": "https://music.youtube.com/watch?v=B7iiUYRxE0s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2864509",
       "alt_artists": [
         "Erika Vikman",
         "Kaseva",
@@ -2664,7 +2664,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36720833",
       "uri_deezer": "deezer://track/3861990",
       "fun_fact": "Vesa-Matti Loiri's 'Lapin kesä' (Lapland Summer) reflects his deep love for Finnish nature; Loiri was a celebrated actor, comedian, and singer who became a true national treasure, known for his extraordinary versatility.",
       "fun_fact_de": "Vesa-Matti Loiris 'Lapin kesä' (Lappland-Sommer) spiegelt seine tiefe Liebe zur finnischen Natur wider; Loiri war ein gefeierter Schauspieler, Komiker und Sänger.",
@@ -2694,7 +2694,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/398078",
       "uri_deezer": "deezer://track/3861986",
       "fun_fact": "Vesa-Matti Loiri's 'Nocturne' demonstrates his artistic ambition beyond comedy; Loiri was a serious musician as well as Finland's most beloved comic actor, and his heartfelt musical recordings stand as works of genuine art.",
       "fun_fact_de": "Vesa-Matti Loiris 'Nocturne' zeigt seinen künstlerischen Ehrgeiz jenseits der Komödie; Loiri war ein ernsthafter Musiker sowie Finnlands beliebtester Komiker.",
@@ -2724,7 +2724,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/398074",
       "uri_deezer": "deezer://track/3861982",
       "fun_fact": "Vesa-Matti Loiri's 'Elegia' (Elegy) showcases his profound ability to interpret serious, poetic material; Loiri set several Finnish classical poems to music, and his vocal performances of these pieces are considered definitive.",
       "fun_fact_de": "Vesa-Matti Loiris 'Elegia' (Elegie) zeigt seine tiefe Fähigkeit, ernstes, poetisches Material zu interpretieren.",
@@ -2752,7 +2752,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/250408633",
       "uri_youtube_music": "https://music.youtube.com/watch?v=seA8p2tv2S4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16836815",
       "uri_deezer": "deezer://track/3594625",
       "isrc": "FIFMF7900008",
       "uri_apple_music_by_region": {
@@ -2785,7 +2785,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/216663432",
       "uri_youtube_music": "https://music.youtube.com/watch?v=unU3vOAjHf8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/390697",
       "uri_deezer": "deezer://track/117673244",
       "awards_nl": [],
       "isrc": "FIFSC7900400",
@@ -2819,7 +2819,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/656151409",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4tRi6yCWtT0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1653415",
       "uri_deezer": "deezer://track/3597362",
       "isrc": "FIFSC7900500",
       "uri_apple_music_by_region": {
@@ -2852,7 +2852,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/269273222",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bJaqq0yIpx0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/17114689",
       "uri_deezer": "deezer://track/1022234",
       "awards_nl": [],
       "isrc": "FIFLF8800500",
@@ -2888,7 +2888,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1842252",
       "uri_deezer": "deezer://track/13259045",
       "fun_fact": "Reijo Kallio's 'Yksinäinen' (Lonely) captures the theme of solitude that runs through much of Finnish popular music; loneliness and longing ('ikävä') are perhaps the most defining emotional themes of the iskelmä genre.",
       "fun_fact_de": "Reijo Kallios 'Yksinäinen' (Einsam) erfasst das Thema der Einsamkeit, das sich durch einen Großteil der finnischen Popularmusik zieht.",
