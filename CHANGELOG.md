@@ -7,6 +7,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ### Added
 - **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
 
+## [4.2.0-rc21] - 2026-08-07
+
+Pre-release — cut from current `main`. One integration fix and a large Tidal data pass; no gameplay changes.
+
+### Fixed
+- **Home Assistant no longer logs a blocking call on every served page (#1945).** `Detected blocking call to scandir … inside the event loop by custom integration 'beatify' at base.py line 99`, reported by **@pwhh20** alongside #1931. `async_apply_cache_tokens()` warmed the asset fingerprint in an executor and then called the sync substitution, which read the cache a second time. The TTL is five seconds; on a loaded instance more than five seconds pass between those two lines, so the entry was stale again and the rglob/stat sweep over `www/{css,js,i18n}` ran on the event loop. The wrapper's guarantee held only while the machine was fast enough, and the cost landed precisely when it was not. The prime step now returns the fingerprint it warmed and hands that value straight to the substitution, so the serve path never consults the cache twice; `_get_asset_version()` serves a stale entry rather than recomputing on the caller's thread, and only a completely cold cache still computes inline. Three new tests, each verified to fail without the fix.
+
+### Changed
+- **Tidal coverage 3,867 → 4,378 URIs (+511).** Twenty-six backfill waves since rc20, most of them against `finnish-iskelma-classics` (0 → 131 of 293) and a first pass over `trance-classics`. Catalogue-wide Tidal coverage moves from 64.7 % to 73.2 %. Apple Music gains 6 URIs over the same window; the other providers are unchanged.
+- **The Apple backfill matcher compares bracketed suffixes instead of stripping them (#1980).** Both sides used to have `(Extended Mix)`, `[Pro Mix]` and the like removed before comparison, so an alternate mix reached a title similarity of 1.00 and passed the gate. A one-sided suffix is now checked against a small allowlist of recording-neutral suffixes and otherwise rejected. In the same change the artist rule was loosened from "first artist equal" to "catalogue artist present in the Apple credit", which fixes differently ordered multi-artist credits. Measured against twenty tracks of `divorced-dad-rock`, the new gate rejected three matches the old one had accepted: two live recordings and one censored edit.
+- **The playlist health check matches titles across scripts (#1957).** Cyrillic and Latin spellings of the same title no longer count as a mismatch.
+
 ## [4.2.0-rc20] - 2026-07-31
 
 Pre-release — cut from current `main`. Playback survives a throttling music provider, and the admin finally shows which speaker a round will play on.
