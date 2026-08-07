@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "finnish",
     "iskelma",
@@ -2916,7 +2916,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/216691182",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2y-uyKvy0ZA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20833543",
       "uri_deezer": "deezer://track/67761819",
       "awards_nl": [],
       "isrc": "FIFMF8000012",
@@ -2952,7 +2952,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20905895",
       "uri_deezer": "deezer://track/3595917",
       "fun_fact": "Laila Kinnunen's 'Tiet' (Roads) is a metaphorical song about life's journey; Kinnunen represented Finland at Eurovision 1961 and was one of the first Finnish artists to achieve genuine pan-European recognition.",
       "fun_fact_de": "Laila Kinnunens 'Tiet' (Wege) ist ein metaphorisches Lied über die Reise des Lebens; Kinnunen vertrat Finnland 1961 beim Eurovision Song Contest.",
@@ -2980,7 +2980,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/655584744",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ocV69Oeerp4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578409",
       "uri_deezer": "deezer://track/6638905",
       "isrc": "FIFMF8000200",
       "uri_apple_music_by_region": {
@@ -3011,7 +3011,7 @@
       },
       "uri_deezer": "548103",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MLIEw9d4hu4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3074210",
       "alt_artists": [
         "Samuli Edelmann",
         "Antti Kleemola",
@@ -3049,7 +3049,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20555612",
       "uri_deezer": "deezer://track/117677730",
       "fun_fact": "Tapio Rautavaara's 'En päivääkään vaihtaisi pois' (I Wouldn't Trade a Single Day) is a celebration of life and contentment, reflecting his philosophy that even hardship has value — a theme resonant in post-war Finnish culture.",
       "fun_fact_de": "Tapio Rautavaaras 'En päivääkään vaihtaisi pois' (Keinen Tag würde ich hergeben) ist eine Feier des Lebens und der Zufriedenheit.",
@@ -3077,7 +3077,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/438114768",
       "uri_youtube_music": "https://music.youtube.com/watch?v=M1U-IyXiXGc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1641129",
       "uri_deezer": "deezer://track/67761838",
       "isrc": "FIFMF8100012",
       "uri_apple_music_by_region": {
@@ -3106,7 +3106,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/281158430",
       "uri_youtube_music": "https://music.youtube.com/watch?v=5uyjGGYONmM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21017855",
       "uri_deezer": "deezer://track/117673102",
       "awards_nl": [],
       "isrc": "FIFFD8000600",
@@ -3140,7 +3140,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/655750109",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Z1qivhrQXLo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1640984",
       "uri_deezer": "deezer://track/67770026",
       "isrc": "FIFMT8100001",
       "uri_apple_music_by_region": {
@@ -3173,7 +3173,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/655052222",
       "uri_youtube_music": "https://music.youtube.com/watch?v=wJNY9gEdhk4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21063066",
       "uri_deezer": "deezer://track/774724",
       "isrc": "FIFMF8100008",
       "uri_apple_music_by_region": {
@@ -3208,7 +3208,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1902155",
       "uri_deezer": "deezer://track/3595414",
       "fun_fact": "'Uralin pihlaja' (The Rowan Tree of the Urals) is Tapio Rautavaara's moving tribute to the Karelian lands lost to the Soviet Union; the rowan tree is a Finnish national symbol, and the song carries profound historical resonance for Finns.",
       "fun_fact_de": "'Uralin pihlaja' (Die Vogelbeere des Urals) ist Tapio Rautavaaras bewegender Tribut an die an die Sowjetunion verlorenen karelischen Länder.",
@@ -3236,7 +3236,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1117478576",
       "uri_youtube_music": "https://music.youtube.com/watch?v=a0_tUUVeF0k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/190573",
       "uri_deezer": "deezer://track/774781",
       "isrc": "FIFMF8200015",
       "uri_apple_music_by_region": {
@@ -3271,7 +3271,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3625257",
       "uri_deezer": "deezer://track/6983184",
       "fun_fact": "Rauli 'Badding' Somerjoki's 'Mä haluan sun' (I Want You) captures his passionate, urgent vocal style; Somerjoki brought a rawness and authenticity to Finnish popular music that made him a cult figure beloved by later generations.",
       "fun_fact_de": "Rauli 'Badding' Somerjokis 'Mä haluan sun' (Ich will dich) zeigt seinen leidenschaftlichen, dringenden Vokalstil.",
@@ -3301,7 +3301,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/40448350",
       "uri_deezer": "deezer://track/94116054",
       "fun_fact": "Rauli 'Badding' Somerjoki's 'Kastehelmi Ja Lumikukka' (Dewdrop and Snowflower) shows his tender, poetic side, in contrast to his rawer recordings; Somerjoki's versatility made him one of the most complete Finnish artists of his generation.",
       "fun_fact_de": "Rauli 'Badding' Somerjokis 'Kastehelmi Ja Lumikukka' zeigt seine zärtliche, poetische Seite.",
@@ -3329,7 +3329,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/894488551",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7RJP_z--08Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/31891314",
       "uri_deezer": "deezer://track/80369812",
       "awards_nl": [],
       "isrc": "FIKFK0200043",
@@ -3365,7 +3365,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/381453",
       "uri_deezer": "deezer://track/3609152",
       "fun_fact": "Arja Saijonmaa's 'Ystävän laulu' (Song of a Friend) became one of Finland's most beloved songs of friendship and solidarity; Saijonmaa went on to have an extraordinary career in Sweden and across Scandinavia.",
       "fun_fact_de": "Arja Saijonmaas 'Ystävän laulu' (Lied der Freundschaft) wurde eines der beliebtesten finnischen Lieder über Freundschaft.",
@@ -3395,7 +3395,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1755800",
       "uri_deezer": "deezer://track/117673150",
       "fun_fact": "'Yksinäinen saarnipuu' (The Lonely Ash Tree) by Juha Vainio and Hyvän Tuulen Laulajat is one of the most iconic Finnish folk-iskelmä songs; lyricist Juha Vainio was a national treasure who captured everyday Finnish life with wit and warmth.",
       "fun_fact_de": "'Yksinäinen saarnipuu' (Die einsame Esche) von Juha Vainio und Hyvän Tuulen Laulajat ist eines der ikonischsten finnischen Folk-Iskelmä-Lieder.",
@@ -3425,7 +3425,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20930913",
       "uri_deezer": "deezer://track/71433661",
       "fun_fact": "Laila Kinnunen's 'Valoa ikkunassa' (Light in the Window) was Finland's entry at the Eurovision Song Contest 1961, placing sixth — Finland's best result at that time. The song's image of a glowing window as a symbol of home and belonging resonated across Europe.",
       "fun_fact_de": "Laila Kinnunens 'Valoa ikkunassa' (Licht im Fenster) war Finnlands Beitrag beim Eurovision Song Contest 1961 und belegte den sechsten Platz.",
@@ -3453,7 +3453,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/274562776",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1-YiaQZz1zY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20908010",
       "uri_deezer": "deezer://track/67770002",
       "awards_nl": [],
       "isrc": "FIFMT8200002",
@@ -3489,7 +3489,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/482733",
       "uri_deezer": "deezer://track/3865938",
       "fun_fact": "Tulipunaruusut's 'Partisaanivalssi' (Partisan Waltz) is a deeply Finnish song; the group Tulipunaruusut (Fiery Red Roses) became known for folk and dance music, and this waltz carries echoes of wartime Finnish folk tradition.",
       "fun_fact_de": "Tulipunaruusuts 'Partisaanivalssi' (Partisanenwalzer) ist ein zutiefst finnisches Lied.",
