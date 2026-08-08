@@ -1,6 +1,6 @@
 {
   "name": "🌪️ Funk Carioca",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "2000s",
     "funk",
@@ -21,7 +21,12 @@
       "year": 2003,
       "uri": "spotify:track:1UMAhJtjLS3351c9ySyWtj",
       "artist": "Furacão 2000",
-      "alt_artists": ["MC Marcinho", "DJ Marlboro", "Cidinho & Doca", "MC Sapao"],
+      "alt_artists": [
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Cidinho & Doca",
+        "MC Sapao"
+      ],
       "title": "Rap da Princesa",
       "chart_info": {},
       "certifications": [],
@@ -44,14 +49,19 @@
         "it": "applemusic://track/1563949308"
       },
       "uri_deezer": "deezer://track/1341687512",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180381577",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FxA1w8dkCjM"
     },
     {
       "year": 2010,
       "uri": "spotify:track:6UTr5usQnYGcUmnAnnWxYt",
       "artist": "Furacão 2000",
-      "alt_artists": ["Os Hawaianos", "DJ Marlboro", "MC Marcinho", "Yuri Hawaiano"],
+      "alt_artists": [
+        "Os Hawaianos",
+        "DJ Marlboro",
+        "MC Marcinho",
+        "Yuri Hawaiano"
+      ],
       "title": "Ai Ai Ai Ui Ui - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -74,14 +84,19 @@
         "it": "applemusic://track/1643065199"
       },
       "uri_deezer": "deezer://track/1896721487",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/246234681",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4OiuZUl9O2Y"
     },
     {
       "year": 2000,
       "uri": "spotify:track:5n6aTM7AjBEWmosWPimE6J",
       "artist": "Furacão 2000",
-      "alt_artists": ["MC Leleco", "DJ Marlboro", "MC Marcinho", "Cidinho & Doca"],
+      "alt_artists": [
+        "MC Leleco",
+        "DJ Marlboro",
+        "MC Marcinho",
+        "Cidinho & Doca"
+      ],
       "title": "F de Força",
       "chart_info": {},
       "certifications": [],
@@ -104,14 +119,19 @@
         "it": "applemusic://track/1709475686"
       },
       "uri_deezer": "deezer://track/2475297921",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/318824228",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0v0H66ZTHcw"
     },
     {
       "year": 2018,
       "uri": "spotify:track:6wheVgU5M6WWrq3Gr2KsF8",
       "artist": "MC Marcinho",
-      "alt_artists": ["Furacão 2000", "MC Sapao", "DJ Marlboro", "Cidinho & Doca"],
+      "alt_artists": [
+        "Furacão 2000",
+        "MC Sapao",
+        "DJ Marlboro",
+        "Cidinho & Doca"
+      ],
       "title": "Rap do Solitário",
       "chart_info": {},
       "certifications": [],
@@ -134,14 +154,19 @@
         "it": "applemusic://track/1628110260"
       },
       "uri_deezer": "deezer://track/553853772",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/232117616",
       "uri_youtube_music": "https://music.youtube.com/watch?v=TwkKp-BBChg"
     },
     {
       "year": 2017,
       "uri": "spotify:track:3Qvzb2ERBVAHaE4bxMphzT",
       "artist": "Coiote e Raposão",
-      "alt_artists": ["DJ Marlboro", "MC Marcinho", "Furacão 2000", "Bob Rum"],
+      "alt_artists": [
+        "DJ Marlboro",
+        "MC Marcinho",
+        "Furacão 2000",
+        "Bob Rum"
+      ],
       "title": "Estrada Da Posse",
       "chart_info": {},
       "certifications": [],
@@ -164,14 +189,19 @@
         "it": "applemusic://track/1732418740"
       },
       "uri_deezer": "deezer://track/2674498912",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/346874569",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qi8DXUEMHbs"
     },
     {
       "year": 2010,
       "uri": "spotify:track:2L9xyKrGaxV1spGeIch46t",
       "artist": "Furacão 2000",
-      "alt_artists": ["Os Hawaianos", "MC Marcinho", "DJ Marlboro", "Cidinho & Doca"],
+      "alt_artists": [
+        "Os Hawaianos",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Cidinho & Doca"
+      ],
       "title": "Delicialícia",
       "chart_info": {},
       "certifications": [],
@@ -194,14 +224,19 @@
         "it": "applemusic://track/1638229378"
       },
       "uri_deezer": "deezer://track/1853818027",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/241558261",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2IMkBu8ie_Y"
     },
     {
       "year": 2009,
       "uri": "spotify:track:2eLrsApWZ7UmlkYyeyZ2np",
       "artist": "Os Havaianos",
-      "alt_artists": ["Furacão 2000", "MC Marcinho", "DJ Marlboro", "Cidinho & Doca"],
+      "alt_artists": [
+        "Furacão 2000",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Cidinho & Doca"
+      ],
       "title": "Kikando E Mexendo O Ombrinho - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -224,14 +259,19 @@
         "it": null
       },
       "uri_deezer": "deezer://track/3201917",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184586913",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RdkJJKC8fA8"
     },
     {
       "year": 2007,
       "uri": "spotify:track:04A4QneXF7Hg6BoZXtreSd",
       "artist": "Furacão 2000",
-      "alt_artists": ["Juliana Fogosa", "MC Marcinho", "DJ Marlboro", "Valesca Popozuda"],
+      "alt_artists": [
+        "Juliana Fogosa",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Valesca Popozuda"
+      ],
       "title": "Solteirona na Pista - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -254,14 +294,19 @@
         "it": "applemusic://track/1576392175"
       },
       "uri_deezer": "deezer://track/1376170042",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184586929",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aQo6zIvZSfY"
     },
     {
       "year": 2007,
       "uri": "spotify:track:1Jw0NvStJHo5e1qbRBRVXl",
       "artist": "Furacão 2000",
-      "alt_artists": ["Robinho Da Prata", "MC Marcinho", "Cidinho & Doca", "Naldo Benny"],
+      "alt_artists": [
+        "Robinho Da Prata",
+        "MC Marcinho",
+        "Cidinho & Doca",
+        "Naldo Benny"
+      ],
       "title": "Cesta de Café da Manhã - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -284,14 +329,19 @@
         "it": "applemusic://track/1576392657"
       },
       "uri_deezer": "deezer://track/1376170122",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184586937",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CZPUFEBCrj0"
     },
     {
       "year": 2010,
       "uri": "spotify:track:7FHb8mWlVXeseHKesfqBmg",
       "artist": "Furacão 2000",
-      "alt_artists": ["Os Hawaianos", "MC Marcinho", "DJ Marlboro", "Cidinho & Doca"],
+      "alt_artists": [
+        "Os Hawaianos",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Cidinho & Doca"
+      ],
       "title": "Sequência do Pente",
       "chart_info": {},
       "certifications": [],
@@ -321,7 +371,12 @@
       "year": 2015,
       "uri": "spotify:track:3ZJY2DXzUdddSMXaOLC9kk",
       "artist": "Furacão 2000",
-      "alt_artists": ["MC Katia", "Mc Nem", "DJ Marlboro", "MC Marcinho"],
+      "alt_artists": [
+        "MC Katia",
+        "Mc Nem",
+        "DJ Marlboro",
+        "MC Marcinho"
+      ],
       "title": "Duelo - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -351,7 +406,12 @@
       "year": 2015,
       "uri": "spotify:track:5b8ESwjzwdfkgKSyfuVyQk",
       "artist": "Furacão 2000",
-      "alt_artists": ["Valesca Popozuda", "MC Marcinho", "DJ Marlboro", "Juliana Fogosa"],
+      "alt_artists": [
+        "Valesca Popozuda",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Juliana Fogosa"
+      ],
       "title": "Agora Tô Solteira",
       "chart_info": {},
       "certifications": [],
@@ -381,7 +441,12 @@
       "year": 2015,
       "uri": "spotify:track:6UGgiOsQmnxw5d6M7V2ZqV",
       "artist": "Furacão 2000",
-      "alt_artists": ["Anitta", "MC Marcinho", "Valesca Popozuda", "Naldo Benny"],
+      "alt_artists": [
+        "Anitta",
+        "MC Marcinho",
+        "Valesca Popozuda",
+        "Naldo Benny"
+      ],
       "title": "Eu Vou Ficar - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -411,7 +476,12 @@
       "year": 2006,
       "uri": "spotify:track:64lK0SB7dpDam6m5innovk",
       "artist": "Furacão 2000",
-      "alt_artists": ["Menor do Chapa", "MC Marcinho", "DJ Marlboro", "Bob Rum"],
+      "alt_artists": [
+        "Menor do Chapa",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Bob Rum"
+      ],
       "title": "Cheio de Ódio - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -441,7 +511,12 @@
       "year": 2017,
       "uri": "spotify:track:5SM9jV7MTsXx4gKAxHhfuh",
       "artist": "DJ Marlboro",
-      "alt_artists": ["Cidinho & Doca", "MC Marcinho", "Furacão 2000", "Bob Rum"],
+      "alt_artists": [
+        "Cidinho & Doca",
+        "MC Marcinho",
+        "Furacão 2000",
+        "Bob Rum"
+      ],
       "title": "Rap Da Felicidade",
       "chart_info": {},
       "certifications": [],
@@ -471,7 +546,12 @@
       "year": 2017,
       "uri": "spotify:track:0fXOs5kxjG7QHtow1BeY6H",
       "artist": "DJ Marlboro",
-      "alt_artists": ["Bob Rum", "MC Marcinho", "Furacão 2000", "Cidinho & Doca"],
+      "alt_artists": [
+        "Bob Rum",
+        "MC Marcinho",
+        "Furacão 2000",
+        "Cidinho & Doca"
+      ],
       "title": "Rap Do Silva",
       "chart_info": {},
       "certifications": [],
@@ -501,7 +581,12 @@
       "year": 2006,
       "uri": "spotify:track:0gg08gfDLD7XWVRSLKvNcc",
       "artist": "Mc Nem",
-      "alt_artists": ["MC Katia", "Furacão 2000", "MC Marcinho", "DJ Marlboro"],
+      "alt_artists": [
+        "MC Katia",
+        "Furacão 2000",
+        "MC Marcinho",
+        "DJ Marlboro"
+      ],
       "title": "Duelo 2 - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -531,7 +616,12 @@
       "year": 2015,
       "uri": "spotify:track:1QBB7VLVf6FkaB4MAyRlMG",
       "artist": "Furacão 2000",
-      "alt_artists": ["Anitta", "Valesca Popozuda", "MC Marcinho", "Juliana Fogosa"],
+      "alt_artists": [
+        "Anitta",
+        "Valesca Popozuda",
+        "MC Marcinho",
+        "Juliana Fogosa"
+      ],
       "title": "Fica Só Olhando",
       "chart_info": {},
       "certifications": [],
@@ -561,7 +651,12 @@
       "year": 2007,
       "uri": "spotify:track:2TBc4kLfeVc0g3gvHvJL34",
       "artist": "Furacão 2000",
-      "alt_artists": ["Naldo Benny", "MC Marcinho", "Cidinho & Doca", "Valesca Popozuda"],
+      "alt_artists": [
+        "Naldo Benny",
+        "MC Marcinho",
+        "Cidinho & Doca",
+        "Valesca Popozuda"
+      ],
       "title": "É Só Me Chamar que Eu Vou - Ao Vivo",
       "chart_info": {},
       "certifications": [],
@@ -591,7 +686,12 @@
       "year": 2009,
       "uri": "spotify:track:0abzwLSQVs0XioCrxxw0N9",
       "artist": "Furacão 2000",
-      "alt_artists": ["Naldo Benny", "MC Marcinho", "DJ Marlboro", "Valesca Popozuda"],
+      "alt_artists": [
+        "Naldo Benny",
+        "MC Marcinho",
+        "DJ Marlboro",
+        "Valesca Popozuda"
+      ],
       "title": "Na Veia - Ao Vivo",
       "chart_info": {},
       "certifications": [],

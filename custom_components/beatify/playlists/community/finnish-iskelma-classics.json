@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.19",
+  "version": "1.20",
   "tags": [
     "finnish",
     "iskelma",
@@ -8590,7 +8590,7 @@
       },
       "uri_deezer": "136334188",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LNZEyM8CEcQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66678944",
       "alt_artists": [
         "Varjokuva",
         "Antti Kleemola",
@@ -8628,7 +8628,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/656248159",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PbDbP7gpau8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20474980",
       "uri_deezer": "deezer://track/3597352",
       "isrc": "FIFSC7600300",
       "uri_apple_music_by_region": {
@@ -8659,7 +8659,7 @@
       },
       "uri_deezer": "134522928",
       "uri_youtube_music": "https://music.youtube.com/watch?v=I9j2_aZm--0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/66509604",
       "alt_artists": [
         "Ässät",
         "Mikko Kuustonen",
@@ -9341,7 +9341,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1442543234",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8wVJ8gxvHcw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18306535",
       "uri_deezer": "deezer://track/6981854",
       "awards_nl": [],
       "isrc": "FIAAB8500413",
@@ -9375,7 +9375,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1299104106",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FJG76l345E4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3692667",
       "uri_deezer": "deezer://track/62903820",
       "awards_nl": [],
       "isrc": "FISBA7400076",
@@ -9407,7 +9407,7 @@
       },
       "uri_deezer": "422496752",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0TaYJCWlH-Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/80531664",
       "alt_artists": [
         "Anne Mattila",
         "Marion",
@@ -9443,7 +9443,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1527081914",
       "uri_youtube_music": "https://music.youtube.com/watch?v=a22mUEFz5JU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/97262872",
       "uri_deezer": "deezer://track/581265082",
       "awards_nl": [],
       "isrc": "FIWMA1800347",
@@ -9479,7 +9479,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/656151422",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QcxhrKvV8oY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1578403",
       "uri_deezer": "deezer://track/3594661",
       "isrc": "FIFSC7700200",
       "uri_apple_music_by_region": {
@@ -9512,7 +9512,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1592324643",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QMHVRoGq7VA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/202681133",
       "uri_deezer": "deezer://track/1533598052",
       "awards_nl": [],
       "isrc": "FIGPF2100004",
@@ -9544,7 +9544,7 @@
       },
       "uri_deezer": "4058506061",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_eGRJs8my5I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/529964966",
       "alt_artists": [
         "Jani Wickholm",
         "Tomi Markkola",
