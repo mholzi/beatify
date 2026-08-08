@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -4917,7 +4917,7 @@
         "it": "applemusic://track/1511162031"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=COAvbbHIv04",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/132755602",
       "uri_deezer": "deezer://track/889440482",
       "fun_fact": "Da Tweekaz are a Norwegian hardstyle duo famous for their high-energy, often playful tracks.",
       "fun_fact_de": "Da Tweekaz sind ein norwegisches Hardstyle-Duo, berühmt für energiegeladene, oft verspielte Tracks.",
