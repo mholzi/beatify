@@ -1,6 +1,6 @@
 {
   "name": "100% Français 🇫🇷",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "french",
     "francais",
@@ -1486,7 +1486,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=eXF6hDCsPuU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/136556005",
       "uri_deezer": "deezer://track/3121388",
       "alt_artists": [],
       "fun_fact": "Mike Brant's 'Laisse-moi t'aimer' (1970) made the Israeli-French singer an overnight star.",
@@ -1512,7 +1512,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YN-nTZmiA0M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32853312",
       "uri_deezer": "deezer://track/17426509",
       "alt_artists": [],
       "fun_fact": "Philippe Lafontaine's 'Cœur de loup' (1989) is a much-loved francophone pop earworm.",
@@ -1538,7 +1538,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OohXkUCtVTI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67676138",
       "uri_deezer": "deezer://track/137047046",
       "alt_artists": [],
       "fun_fact": "'Tu veux ou tu veux pas' is jazzman Marcel Zanini's playful, much-sampled signature.",
@@ -1564,7 +1564,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cmE_aahc448",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37677691",
       "uri_deezer": "deezer://track/70785260",
       "alt_artists": [],
       "fun_fact": "Julien Doré, a 2007 'Nouvelle Star' winner, became a major French indie-pop figure.",
@@ -1590,7 +1590,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tVKaN_H35xs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/81115730",
       "uri_deezer": "deezer://track/429974992",
       "alt_artists": [],
       "fun_fact": "Dadju, brother of Gims, is a leading voice of late-2010s French R&B.",
@@ -2578,7 +2578,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HXdP15Ubu6M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/163856865",
       "uri_deezer": "deezer://track/886301",
       "alt_artists": [],
       "fun_fact": "Daniel Balavoine's 'Le chanteur' (1978) is a poignant self-portrait of a singer's dreams.",
