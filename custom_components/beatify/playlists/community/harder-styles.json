@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -3454,7 +3454,7 @@
       "uri_apple_music": "applemusic://track/1452633054",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=YhYOey9TGcM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/104063920",
       "uri_deezer": null,
       "fun_fact": "A hardstyle / hardcore track (2019).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2019).",
@@ -3479,7 +3479,7 @@
         "it": "applemusic://track/1842589085"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9ib0-a0TuqQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/463389729",
       "uri_deezer": "deezer://track/3576271741",
       "alt_artists": [
         "The Partysquad",
@@ -3508,7 +3508,7 @@
         "it": "applemusic://track/1463186247"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tEz3sQkKxek",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/104589579",
       "uri_deezer": "deezer://track/3287362801",
       "alt_artists": [
         "Dutch Movement"
@@ -3536,7 +3536,7 @@
         "it": "applemusic://track/1455218599"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qLmJuPkJ24g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/104143764",
       "uri_deezer": "deezer://track/643748112",
       "alt_artists": [
         "Dani Omega"
@@ -3564,7 +3564,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DKdj0n6z1eE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/352180934",
       "uri_deezer": "deezer://track/643299742",
       "alt_artists": [
         "Crystal Mad"
@@ -3592,7 +3592,7 @@
         "it": "applemusic://track/1455264709"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nNT_R6tPf8c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/105666828",
       "uri_deezer": "deezer://track/644088082",
       "alt_artists": [
         "Coone",
@@ -3621,7 +3621,7 @@
         "it": "applemusic://track/1465331702"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wkMMzXK4niQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106778777",
       "uri_deezer": "deezer://track/657044912",
       "alt_artists": [
         "KELTEK"
@@ -3649,7 +3649,7 @@
         "it": "applemusic://track/1458627743"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OskcMyBTtCw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/105080939",
       "uri_deezer": "deezer://track/641871642",
       "fun_fact": "A hardstyle / hardcore track (2019).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2019).",
@@ -3674,7 +3674,7 @@
         "it": "applemusic://track/1805299251"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QU8hfzGokhU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106908816",
       "uri_deezer": "deezer://track/3287362731",
       "fun_fact": "A hardstyle / hardcore track (2019).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2019).",
@@ -3699,7 +3699,7 @@
         "it": "applemusic://track/1495970707"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=me1tizuRNEo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111978949",
       "uri_deezer": "deezer://track/700920502",
       "alt_artists": [
         "Adrenalize"
@@ -3727,7 +3727,7 @@
         "it": "applemusic://track/1805281034"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JuLIWDHxot4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/84932191",
       "uri_deezer": "deezer://track/3287362721",
       "fun_fact": "Frontliner is a Dutch hardstyle producer active since the genre's mid-2000s rise.",
       "fun_fact_de": "Frontliner ist ein niederländischer Hardstyle-Produzent, aktiv seit dem Aufstieg des Genres Mitte der 2000er.",
@@ -3752,7 +3752,7 @@
         "it": "applemusic://track/1805280945"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gFzsodJSxgc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106907734",
       "uri_deezer": "deezer://track/3287363311",
       "alt_artists": [
         "Mona Rose"
@@ -3780,7 +3780,7 @@
         "it": "applemusic://track/1461685390"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HPN9est-v70",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/111978924",
       "uri_deezer": "deezer://track/672196542",
       "alt_artists": [
         "DJ Isaac"
@@ -3808,7 +3808,7 @@
         "it": "applemusic://track/1805299186"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OsUtuOzKYrg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/108151339",
       "uri_deezer": "deezer://track/700920292",
       "alt_artists": [
         "MC DL"
@@ -3836,7 +3836,7 @@
         "it": "applemusic://track/1462321956"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7Zh46FlTtS4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107778571",
       "uri_deezer": "deezer://track/666325562",
       "alt_artists": [
         "Last Word"
@@ -3864,7 +3864,7 @@
         "it": "applemusic://track/1750902048"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CB6oTaLwEKM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/109162696",
       "uri_deezer": "deezer://track/2836929972",
       "fun_fact": "A hardstyle / hardcore track (2024).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2024).",
@@ -3889,7 +3889,7 @@
         "it": "applemusic://track/1805282362"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qMKx79R2VsU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107386346",
       "uri_deezer": "deezer://track/3287363261",
       "fun_fact": "A hardstyle / hardcore track (2019).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2019).",
@@ -3914,7 +3914,7 @@
         "it": "applemusic://track/1740379941"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yGi1MePEN-k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/106950486",
       "uri_deezer": "deezer://track/683655052",
       "alt_artists": [
         "Deetox"
@@ -3942,7 +3942,7 @@
         "it": "applemusic://track/1498802353"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OrSfVB3pMf0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/131170250",
       "uri_deezer": "deezer://track/875974252",
       "fun_fact": "Da Tweekaz are a Norwegian hardstyle duo famous for their high-energy, often playful tracks.",
       "fun_fact_de": "Da Tweekaz sind ein norwegisches Hardstyle-Duo, berühmt für energiegeladene, oft verspielte Tracks.",
