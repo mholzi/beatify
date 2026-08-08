@@ -25,6 +25,22 @@ Two failure modes were visible in the very first five samples:
 An ungated backfill would therefore manufacture exactly the ``wrong_track``
 defects that the daily playlist-review then has to find and repair. Hence:
 
+Two-stage search (2026-08-08)
+-----------------------------
+The gate can only judge what the search returns, and the search term used to be
+the primary artist plus the **full** title. iTunes ranks on the whole string, so
+a distinctive parenthetical outweighs the song title: ``Sub Zero Project Stand
+Strong (Q-BASE 2017 Hangar OST)`` answers with ``E-Force – Salute (Q-Base 2018
+Hangar Ost)`` in both storefronts — different artist, different song, different
+year — while the correct track never appears at all. Dropping the suffix puts
+``Stand Strong (feat. Meccah Dawn)`` at rank 1 in ``de`` and ``us``.
+
+``search_terms`` therefore yields the historical term first and, only when the
+title actually carries a parenthetical, a second one without it. Stage 1 is
+unchanged and still wins on a tie, so this can only add matches, never move an
+existing one. **The gate is untouched** — stage 2 widens what it gets to see,
+not what it accepts.
+
 The gate
 --------
 A search result is only accepted when **all** of these hold:
@@ -127,6 +143,8 @@ _PAREN_RE = re.compile(r"\s*[\(\[][^)\]]*[)\]]")
 _PAREN_CONTENT_RE = re.compile(r"[\(\[]([^)\]]*)[)\]]")
 _PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
 _WS_RE = re.compile(r"\s+")
+# Separators a stripped parenthetical can leave dangling at the end of a title.
+_TRAILING_SEP_RE = re.compile(r"[\s\-–—/,:;]+$")
 _ARTIST_SPLIT_RE = re.compile(r"\s*[,;/]\s*|\s+(?:&|feat\.?|ft\.?|x|vs\.?)\s+", re.I)
 
 # Parenthetical suffixes that name the same *recording* — packaging or mastering
@@ -230,6 +248,52 @@ def suffix_conflict(a: str, b: str) -> str | None:
                 continue
             return suffix
     return None
+
+
+def strip_parentheticals(text: str) -> str:
+    """Title without its ``(...)``/``[...]`` groups and the debris they leave.
+
+    Only for building a *search* term — the gate keeps comparing full titles.
+    Trailing separators matter: ``Lost in Dreams (Q-BASE 2017 Warehouse OST) -
+    (D-Fence Remix)`` would otherwise become ``Lost in Dreams -`` and carry the
+    dangling dash into the query.
+    """
+    if not text:
+        return ""
+    out = _PAREN_RE.sub(" ", text)
+    out = _WS_RE.sub(" ", out).strip()
+    return _TRAILING_SEP_RE.sub("", out).strip()
+
+
+def search_terms(track: dict) -> list[str]:
+    """Query strings to try, most specific first.
+
+    Stage 1 is the historical term (primary artist + **full** title). Stage 2
+    drops the parenthetical groups, and exists because iTunes ranks on the whole
+    string: a distinctive event suffix outweighs the song title and can return a
+    wholly unrelated track, so the right candidate never reaches the gate.
+
+    The case this was built from — ``Sub Zero Project`` / ``Stand Strong
+    (Q-BASE 2017 Hangar OST)``. With the suffix, Apple answers with two
+    ``E-Force – Salute (Q-Base 2018 Hangar Ost)`` rows in both storefronts:
+    different artist, different song, different year. Without it, the correct
+    ``Stand Strong (feat. Meccah Dawn)`` is rank 1 in ``de`` **and** ``us``.
+
+    Stage 2 is skipped when it would repeat stage 1, so titles without a
+    parenthetical cost no extra request.
+    """
+    artist = primary_artist(track.get("artist", "") or "")
+    title = (track.get("title", "") or "").strip()
+    terms: list[str] = []
+    full = f"{artist} {title}".strip()
+    if full:
+        terms.append(full)
+    bare = strip_parentheticals(title)
+    if bare and bare != title:
+        reduced = f"{artist} {bare}".strip()
+        if reduced and reduced not in terms:
+            terms.append(reduced)
+    return terms
 
 
 def title_similarity(a: str, b: str) -> float:
@@ -363,41 +427,54 @@ def resolve(track: dict, *, title_threshold: float, year_tolerance: int,
     outcome: 'hit' | 'miss' (no results anywhere) | 'rejected' (results, none
     passed the gate) | 'skip' (throttled/transient).
     """
-    term = f"{primary_artist(track.get('artist', ''))} {track.get('title', '')}".strip()
-    if not term:
+    terms = search_terms(track)
+    if not terms:
         return None, "rejected", "no artist/title to search on"
 
     saw_any = False
-    first_reason = ""
-    for storefront in STOREFRONTS:
-        results, outcome = itunes_search(term, storefront, limit)
-        if outcome == "skip":
-            return None, "skip", f"throttled on storefront {storefront}"
-        if not results:
-            continue
-        saw_any = True
-        for result in results:
-            accepted, reason = evaluate(
-                track, result,
-                title_threshold=title_threshold, year_tolerance=year_tolerance,
-            )
-            if accepted:
-                tid = result.get("trackId")
-                if not tid:
-                    continue
-                return (
-                    f"applemusic://track/{tid}",
-                    "hit",
-                    f"{storefront}: {result.get('artistName')} – "
-                    f"{result.get('trackName')} ({reason})",
+    reason_to_report = ""
+    for stage, term in enumerate(terms):
+        # Tag stage-2 candidates so a rejection cannot be mistaken for a verdict
+        # on the full-title query. Kept space-free — main() parses the reason as
+        # "<tag>: <kind> ..." to tally the rejection breakdown.
+        tag_suffix = "" if stage == 0 else "(bare)"
+        stage_reason = ""
+        for storefront in STOREFRONTS:
+            results, outcome = itunes_search(term, storefront, limit)
+            if outcome == "skip":
+                return None, "skip", f"throttled on storefront {storefront}"
+            if not results:
+                continue
+            saw_any = True
+            for result in results:
+                accepted, reason = evaluate(
+                    track, result,
+                    title_threshold=title_threshold, year_tolerance=year_tolerance,
                 )
-            if not first_reason:
-                first_reason = f"{storefront}: {reason}"
-        time.sleep(BASE_DELAY_S)
+                if accepted:
+                    tid = result.get("trackId")
+                    if not tid:
+                        continue
+                    return (
+                        f"applemusic://track/{tid}",
+                        "hit",
+                        f"{storefront}{tag_suffix}: {result.get('artistName')} – "
+                        f"{result.get('trackName')} ({reason})",
+                    )
+                if not stage_reason:
+                    stage_reason = f"{storefront}{tag_suffix}: {reason}"
+            time.sleep(BASE_DELAY_S)
+        # Report the *last* stage that produced candidates. A stage-1 rejection
+        # is often a verdict on an unrelated track the suffix dragged in, and
+        # recording it hid the real situation: "artist 'E-Force' != 'Sub Zero
+        # Project'" read as "Apple credits it differently" when it meant "the
+        # search returned something else entirely".
+        if stage_reason:
+            reason_to_report = stage_reason
 
     if not saw_any:
         return None, "miss", "no results in any storefront"
-    return None, "rejected", first_reason
+    return None, "rejected", reason_to_report
 
 
 def main() -> int:
