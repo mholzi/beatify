@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -1507,7 +1507,7 @@
       "uri_apple_music": "applemusic://track/1334073319",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y2uKwACXVk4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/81147474",
       "uri_deezer": null,
       "alt_artists": [
         "GLDY LX"
@@ -1535,7 +1535,7 @@
         "it": "applemusic://track/1302765944"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=q2t7i61iQW8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/81009321",
       "uri_deezer": "deezer://track/426340832",
       "fun_fact": "A hardstyle / hardcore track (2017).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2017).",
@@ -1560,7 +1560,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JnAcJ4035hY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/83296083",
       "uri_deezer": "deezer://track/3287350311",
       "fun_fact": "A hardstyle / hardcore track (2018).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2018).",
@@ -1585,7 +1585,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zP4970VJRnY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/97768162",
       "uri_deezer": "deezer://track/577912362",
       "alt_artists": [
         "High Voltage"
@@ -1638,7 +1638,7 @@
         "it": "applemusic://track/1360517113"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Kzqb3cFoozs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86050845",
       "uri_deezer": "deezer://track/3842843981",
       "fun_fact": "A hardstyle / hardcore track (2018).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2018).",
@@ -1663,7 +1663,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FkIEWMt0qJQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86050858",
       "uri_deezer": "deezer://track/965499642",
       "alt_artists": [
         "MYST",
@@ -1692,7 +1692,7 @@
         "it": "applemusic://track/1370353261"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7i-UXuGYw7E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/85241627",
       "uri_deezer": "deezer://track/467291612",
       "alt_artists": [
         "Sound Rush",
@@ -1721,7 +1721,7 @@
         "it": "applemusic://track/1740381845"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1WrRYyBFMJY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/352183455",
       "uri_deezer": "deezer://track/1018335882",
       "fun_fact": "A hardstyle / hardcore track (2020).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2020).",
@@ -1746,7 +1746,7 @@
         "it": "applemusic://track/1843189474"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7Oiw1h1f9hQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86050840",
       "uri_deezer": "deezer://track/965526342",
       "fun_fact": "Phuture Noize is a Dutch hardstyle artist known for concept albums and cinematic productions.",
       "fun_fact_de": "Phuture Noize ist ein niederländischer Hardstyle-Künstler, bekannt für Konzeptalben und cineastische Produktionen.",
@@ -1771,7 +1771,7 @@
         "it": "applemusic://track/1805172589"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=I4BM4tMIM4c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/85414489",
       "uri_deezer": "deezer://track/3287350271",
       "fun_fact": "A hardstyle / hardcore track (2018).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2018).",
@@ -1796,7 +1796,7 @@
         "it": "applemusic://track/1805173485"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=L_7dfd8QmXs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/85804430",
       "uri_deezer": "deezer://track/3287429761",
       "fun_fact": "A hardstyle / hardcore track (2021).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2021).",
@@ -1821,7 +1821,7 @@
         "it": "applemusic://track/1360516053"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1ij6T0NWEtE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86050832",
       "uri_deezer": "deezer://track/510139862",
       "fun_fact": "Phuture Noize is a Dutch hardstyle artist known for concept albums and cinematic productions.",
       "fun_fact_de": "Phuture Noize ist ein niederländischer Hardstyle-Künstler, bekannt für Konzeptalben und cineastische Produktionen.",
@@ -1846,7 +1846,7 @@
         "it": "applemusic://track/1675500114"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rPNNnCnEmQs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86140361",
       "uri_deezer": "deezer://track/1580471272",
       "alt_artists": [
         "Alee"
@@ -1874,7 +1874,7 @@
         "it": "applemusic://track/1484772835"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_M0BZoZW6l8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86897373",
       "uri_deezer": "deezer://track/772210842",
       "fun_fact": "A hardstyle / hardcore track (2019).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2019).",
@@ -1899,7 +1899,7 @@
         "it": "applemusic://track/1842561906"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0fQPvUkqQyg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/463238031",
       "uri_deezer": "deezer://track/3575272921",
       "alt_artists": [
         "Billy The Kit",
@@ -1929,7 +1929,7 @@
         "it": "applemusic://track/1506161694"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vt6QJlIOAyI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86377118",
       "uri_deezer": "deezer://track/477350302",
       "fun_fact": "A hardstyle / hardcore track (2018).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2018).",
@@ -1946,7 +1946,7 @@
       "uri_apple_music": "applemusic://track/1441695467",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=q7ErRTG3ON4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86962828",
       "uri_deezer": null,
       "alt_artists": [
         "Outbreak"
@@ -1974,7 +1974,7 @@
         "it": "applemusic://track/1805189025"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_fENI8gceHw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/87503729",
       "uri_deezer": "deezer://track/515078452",
       "fun_fact": "A hardstyle / hardcore track (2018).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2018).",
