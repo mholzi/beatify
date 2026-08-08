@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "finnish",
     "iskelma",
@@ -4840,7 +4840,7 @@
       },
       "uri_deezer": "60976896",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pkp9ZALpnJw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1320168",
       "alt_artists": [
         "Danny",
         "Paula Koivuniemi",
@@ -5439,7 +5439,7 @@
       },
       "uri_deezer": "1022598",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GzgaZIyXLX4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/526596",
       "alt_artists": [
         "Katri Helena",
         "Reijo Taipale",
@@ -5475,7 +5475,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1442543256",
       "uri_youtube_music": "https://music.youtube.com/watch?v=v4EJFh9I2VU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18306542",
       "uri_deezer": "deezer://track/62903830",
       "isrc": "FIAAJ8300307",
       "uri_apple_music_by_region": {
@@ -5511,7 +5511,7 @@
       "awards_nl": [],
       "uri_apple_music": null,
       "uri_youtube_music": "https://music.youtube.com/watch?v=8iXjGGTfFtg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18306529",
       "uri_deezer": "deezer://track/6972603",
       "isrc": "FISBA7000301",
       "uri_apple_music_by_region": {
@@ -5544,7 +5544,7 @@
       "awards_nl": [],
       "uri_apple_music": null,
       "uri_youtube_music": "https://music.youtube.com/watch?v=H126jPdgPrk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6484022",
       "uri_deezer": "deezer://track/11220124",
       "isrc": "FIEFC7200018",
       "uri_apple_music_by_region": {
@@ -5575,7 +5575,7 @@
       },
       "uri_deezer": "130411998",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aNFJXjF9RtY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64016241",
       "alt_artists": [
         "Susanna Heikki",
         "Kirka",
@@ -5609,7 +5609,7 @@
       },
       "uri_deezer": "137724307",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6cVXaSL_kaY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69223460",
       "alt_artists": [
         "Rajaton",
         "Kirka",
@@ -5643,7 +5643,7 @@
       },
       "uri_deezer": "637166",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cjDNhi5CxHc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7986014",
       "alt_artists": [
         "Tapani Kansa",
         "Marilii",
@@ -5677,7 +5677,7 @@
       },
       "uri_deezer": "1012514",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fiAwO-3qxDw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/522798",
       "alt_artists": [
         "Marilii",
         "Anitta Mattila",
@@ -5711,7 +5711,7 @@
       },
       "uri_deezer": "145426782",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0j2UzoMX1p0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71567329",
       "alt_artists": [
         "Hanna Pakarinen",
         "Juha Metsäperä",
@@ -6378,7 +6378,7 @@
       },
       "uri_deezer": "15352394",
       "uri_youtube_music": "https://music.youtube.com/watch?v=b5CQyqxLjwc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2860713",
       "alt_artists": [
         "Anssi Kela",
         "Lasse Hoikka",
@@ -6412,7 +6412,7 @@
       },
       "uri_deezer": "578766",
       "uri_youtube_music": "https://music.youtube.com/watch?v=R9GJn0cRyZI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/28696",
       "alt_artists": [
         "Scandinavian Music Group",
         "Samuli Edelmann",
@@ -6448,7 +6448,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/893986623",
       "uri_youtube_music": "https://music.youtube.com/watch?v=epadKVTsI-s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/31854347",
       "uri_deezer": "deezer://track/88026931",
       "awards_nl": [],
       "isrc": "FIFPA0600002",
@@ -6480,7 +6480,7 @@
       },
       "uri_deezer": "15814382",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Aw2-dFKAxnU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/83826",
       "alt_artists": [
         "Varjokuva",
         "Heidi Pakarinen",
@@ -7156,7 +7156,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/379593179",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6aVPVlKh0KA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4156225",
       "uri_deezer": "deezer://track/51008291",
       "awards_nl": [],
       "isrc": "FIAPU1000027",
@@ -7188,7 +7188,7 @@
       },
       "uri_deezer": "72949223",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SMHvi1ax8SU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23929870",
       "alt_artists": [
         "Pasi Ruohonen",
         "Antti Huovila",
@@ -7226,7 +7226,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3411935",
       "uri_deezer": "deezer://track/5417779",
       "fun_fact": "'Illan viimeinen tango' (The Evening's Last Tango) is Reijo Taipale at his most atmospheric; Finnish tango is performed at a slower, more introspective tempo than the Argentine original, making it the ideal music for late-night reflection.",
       "fun_fact_de": "'Illan viimeinen tango' (Der letzte Tango des Abends) zeigt Reijo Taipale in seiner atmosphärischsten Form; der finnische Tango wird langsamer und introspektiver gespielt als das argentinische Original.",
@@ -7254,7 +7254,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1309179308",
       "uri_youtube_music": "https://music.youtube.com/watch?v=khEjKL-ZTEo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3341407",
       "uri_deezer": "deezer://track/5413565",
       "awards_nl": [],
       "isrc": "FIWMA1000011",
@@ -7286,7 +7286,7 @@
       },
       "uri_deezer": "10830847",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ih5yQ2IckW8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6405922",
       "alt_artists": [
         "Riki Sorsa",
         "Katri Helena",
