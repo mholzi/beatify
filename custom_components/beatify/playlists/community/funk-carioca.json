@@ -1,6 +1,6 @@
 {
   "name": "🌪️ Funk Carioca",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "2000s",
     "funk",
@@ -364,7 +364,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1896721437",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180381581",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1IauTSswbQE"
     },
     {
@@ -399,7 +399,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1341704242",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180381576",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jcrloN9d-UA"
     },
     {
@@ -434,7 +434,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1341704312",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180381593",
       "uri_youtube_music": "https://music.youtube.com/watch?v=m_Uo24O-BbE"
     },
     {
@@ -469,7 +469,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1341704382",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180381602",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MpzQgVr0ODo"
     },
     {
@@ -504,7 +504,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1352106772",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184586924",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GNUdfyclDzw"
     },
     {
@@ -539,7 +539,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/2674498862",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3454380",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7pD8k2zaLqk"
     },
     {
@@ -574,7 +574,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/2674499032",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/346874583",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vlZ9MGgC1NI"
     },
     {
@@ -609,7 +609,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1341216712",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180320024",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gcOkX_CW1aQ"
     },
     {
@@ -644,7 +644,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1341704302",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/180381592",
       "uri_youtube_music": "https://music.youtube.com/watch?v=e-PGloOLj8U"
     },
     {
@@ -679,7 +679,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1376170092",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184586934",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bgbScX-LYNE"
     },
     {
@@ -714,7 +714,7 @@
         "it": null
       },
       "uri_deezer": "deezer://track/1379106002",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184927087",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0RjReIy2ABQ"
     }
   ]
