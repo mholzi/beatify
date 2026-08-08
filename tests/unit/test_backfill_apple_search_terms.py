@@ -53,7 +53,10 @@ def test_strip_parentheticals(title: str, expected: str) -> None:
 
 
 def test_second_term_drops_the_parenthetical() -> None:
-    track = {"artist": "Sub Zero Project", "title": "Stand Strong (Q-BASE 2017 Hangar OST)"}
+    track = {
+        "artist": "Sub Zero Project",
+        "title": "Stand Strong (Q-BASE 2017 Hangar OST)",
+    }
     assert search_terms(track) == [
         "Sub Zero Project Stand Strong (Q-BASE 2017 Hangar OST)",
         "Sub Zero Project Stand Strong",
@@ -64,7 +67,10 @@ def test_stage_one_is_unchanged() -> None:
     """The historical term stays first, so an existing hit cannot move."""
     for track in (
         {"artist": "Zatox", "title": "Hard Bass - Ran-D Remix"},
-        {"artist": "Sub Zero Project", "title": "Stand Strong (Q-BASE 2017 Hangar OST)"},
+        {
+            "artist": "Sub Zero Project",
+            "title": "Stand Strong (Q-BASE 2017 Hangar OST)",
+        },
         {"artist": "Artifact", "title": "Aftermath"},
     ):
         first = search_terms(track)[0]
@@ -83,7 +89,10 @@ def test_no_parenthetical_means_no_second_request() -> None:
 
 def test_only_the_lead_artist_is_searched() -> None:
     """Unchanged behaviour: search results carry the lead artist only."""
-    track = {"artist": "Tatanka, Zatox & Wild Motherfuckers", "title": "Bassleader (Anthem 2012)"}
+    track = {
+        "artist": "Tatanka, Zatox & Wild Motherfuckers",
+        "title": "Bassleader (Anthem 2012)",
+    }
     terms = search_terms(track)
     assert terms[0].startswith("Tatanka ")
     assert terms[-1] == "Tatanka Bassleader"
