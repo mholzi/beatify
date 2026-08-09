@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "polish",
     "rock"
@@ -522,7 +522,7 @@
         "it": "applemusic://track/767893096"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tAKHWJTofP0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23965388",
       "uri_deezer": "deezer://track/72999262",
       "alt_artists": [],
       "fun_fact": "Małgorzata Ostrowska is part of Poland's rock scene, and 'Szklana pogoda' (2001) features on this Polish rock playlist.",
@@ -548,7 +548,7 @@
         "it": "applemusic://track/6764462264"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OAxSu8T_07g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/519279697",
       "uri_deezer": "deezer://track/3986080281",
       "alt_artists": [],
       "fun_fact": "Kuba Kubiak is part of Poland's rock scene, and '1996' (2026) features on this Polish rock playlist.",
@@ -574,7 +574,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SpBWPZN1uCg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/518636137",
       "uri_deezer": "deezer://track/3981328981",
       "alt_artists": [],
       "fun_fact": "Szymon Wydra is part of Poland's rock scene, and 'Wciąż mamy moc' (2026) features on this Polish rock playlist.",
@@ -600,7 +600,7 @@
         "it": "applemusic://track/1386254006"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gOAaBEeUy_I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/89024759",
       "uri_deezer": "deezer://track/503929412",
       "alt_artists": [],
       "fun_fact": "Wilki is a Polish rock band led by Robert Gawlinski, and 'Eli Lama Sabachtani' (1992) features on this Polish rock playlist.",
@@ -626,7 +626,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o2JUFe9sND4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/506470685",
       "uri_deezer": "deezer://track/3896676001",
       "alt_artists": [],
       "fun_fact": "Lao Che is a Polish rock band known for its concept albums, and 'Wojenka' (2015) features on this Polish rock playlist.",
@@ -652,7 +652,7 @@
         "it": "applemusic://track/6764351284"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JiKSwRgtRrI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/519490013",
       "uri_deezer": "deezer://track/3987363771",
       "alt_artists": [],
       "fun_fact": "Kindred Sūn is part of Poland's rock scene, and 'Still Overthinking' (2026) features on this Polish rock playlist.",
@@ -678,7 +678,7 @@
         "it": "applemusic://track/1859614486"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xAJjY0Et9cQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67250719",
       "uri_deezer": "deezer://track/135930350",
       "alt_artists": [],
       "fun_fact": "Męskie Granie Orkiestra is part of Poland's rock scene, and 'Co Mi Panie Dasz' (2016) features on this Polish rock playlist.",
@@ -704,7 +704,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=19FMN7kMh3I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/132446675",
       "uri_deezer": "deezer://track/887115842",
       "alt_artists": [],
       "fun_fact": "Stach Bukowski is part of Poland's rock scene, and 'Noc' (2020) features on this Polish rock playlist.",
@@ -834,7 +834,7 @@
         "it": "applemusic://track/1481885572"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4cgSqCyoj1A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/121024710",
       "uri_deezer": "deezer://track/785903502",
       "alt_artists": [],
       "fun_fact": "Tilt is a Polish rock band co-founded by Tomasz Lipinski, and 'Mówię ci, że' (2000) features on this Polish rock playlist.",
@@ -1250,7 +1250,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58381215",
       "uri_deezer": "deezer://track/84656155",
       "alt_artists": [],
       "fun_fact": "Lombard is a Polish rock band formed in Poznan in the early 1980s, and 'Szklana Pogoda' (2016) features on this Polish rock playlist.",
