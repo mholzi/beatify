@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "quebecois",
     "quebec",
@@ -1863,7 +1863,7 @@
         "it": "applemusic://track/1458402224"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WC-bTFZRSu8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107157570",
       "uri_deezer": "deezer://track/661488232",
       "alt_artists": [
         "Stefie Shock",
@@ -1893,7 +1893,7 @@
         "it": "applemusic://track/1568297786"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=I1d8VmiaIlk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/185113455",
       "uri_deezer": "deezer://track/1376969672",
       "alt_artists": [
         "2Frères",
@@ -1923,7 +1923,7 @@
         "it": "applemusic://track/1572369503"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=K35TCJ7RCiY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/187777701",
       "uri_deezer": "deezer://track/1405338312",
       "alt_artists": [
         "Martin Roberts",
@@ -1953,7 +1953,7 @@
         "it": "applemusic://track/1863966281"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5VeOmb2It-Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/26705144",
       "uri_deezer": "deezer://track/3738115762",
       "alt_artists": [
         "Les Respectables",
@@ -1983,7 +1983,7 @@
         "it": "applemusic://track/1551594223"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HOdqp6FqSkw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62849660",
       "uri_deezer": "deezer://track/128227247",
       "alt_artists": [
         "Sally Folk",
@@ -2013,7 +2013,7 @@
         "it": "applemusic://track/883802369"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Do-Zo3_VKQs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/30262659",
       "uri_deezer": "deezer://track/79074739",
       "alt_artists": [
         "Dumas",
@@ -2043,7 +2043,7 @@
         "it": "applemusic://track/1573828707"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tcnblTis0EI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/189255014",
       "uri_deezer": "deezer://track/1415226282",
       "alt_artists": [
         "Tomás Jensen",
@@ -2073,7 +2073,7 @@
         "it": "applemusic://track/1551611523"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FAiNp13ZH9s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62852371",
       "uri_deezer": "deezer://track/128234311",
       "alt_artists": [
         "Les Respectables",
@@ -2103,7 +2103,7 @@
         "it": "applemusic://track/1459897036"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/108016819",
       "uri_deezer": "deezer://track/668926932",
       "alt_artists": [
         "Joseph Edgar",
@@ -2133,7 +2133,7 @@
         "it": "applemusic://track/1458402228"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wuWiQ0PCGwo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107157573",
       "uri_deezer": "deezer://track/661488262",
       "alt_artists": [
         "Dumas",
@@ -2163,7 +2163,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lwsMJrtHJf0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/178181038",
       "uri_deezer": "deezer://track/1284099332",
       "alt_artists": [
         "Les Cowboys Fringants",
