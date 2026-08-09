@@ -1,6 +1,6 @@
 {
   "name": "Polskie hity radiowe 🇵🇱",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "polish",
     "pop",
@@ -33,7 +33,7 @@
         "pl": "applemusic://track/688248454"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=en7uKP696RE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2967321",
       "uri_deezer": "deezer://track/3172279",
       "alt_artists": [],
       "fun_fact": "Marta Moszczynska/Piotr Rubik belongs to the Polish pop and rock canon; \"Most dwojga serc\" (2009) features on this Polskie hity lat 90' 00' selection.",
@@ -60,7 +60,7 @@
         "pl": "applemusic://track/1443594712"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=j0U4lrfzv6U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7231794",
       "uri_deezer": "deezer://track/4670975",
       "alt_artists": [],
       "fun_fact": "Ich Troje belongs to the Polish pop and rock canon; \"Powiedz\" (2003) features on this Polskie hity lat 90' 00' selection.",
@@ -87,7 +87,7 @@
         "pl": "applemusic://track/1444111600"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=u2NLmfSJXAI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13491952",
       "uri_deezer": "deezer://track/3911792511",
       "alt_artists": [],
       "fun_fact": "Jacek Stachursky belongs to the Polish pop and rock canon; \"Typ Niepokorny\" (2010) features on this Polskie hity lat 90' 00' selection.",
@@ -107,7 +107,7 @@
         "pl": "applemusic://track/1444111735"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XH__tJ3vuBU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13491953",
       "uri_deezer": "deezer://track/115495332",
       "alt_artists": [],
       "fun_fact": "Jacek Stachursky belongs to the Polish pop and rock canon; \"Jedwab\" (2011) features on this Polskie hity lat 90' 00' selection.",
@@ -134,7 +134,7 @@
         "pl": "applemusic://track/288863471"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=y3bmeafP778",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1895343",
       "uri_deezer": "deezer://track/1277457",
       "alt_artists": [],
       "fun_fact": "Kasia Cerekwicka belongs to the Polish pop and rock canon; \"Na Kolana\" (2006) features on this Polskie hity lat 90' 00' selection.",
@@ -161,7 +161,7 @@
         "pl": "applemusic://track/996187325"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HPmH_WoWMcw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45513786",
       "uri_deezer": "deezer://track/100618300",
       "alt_artists": [],
       "fun_fact": "Kasia Cerekwicka belongs to the Polish pop and rock canon; \"Miedzy Slowami\" (2015) features on this Polskie hity lat 90' 00' selection.",
@@ -188,7 +188,7 @@
         "pl": "applemusic://track/1443543291"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2P3B2TLbRic",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3598811",
       "uri_deezer": "deezer://track/932859",
       "alt_artists": [],
       "fun_fact": "Kombii belongs to the Polish pop and rock canon; \"Pokolenie\" (2004) features on this Polskie hity lat 90' 00' selection.",
@@ -215,7 +215,7 @@
         "pl": "applemusic://track/1443803518"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZkRKUrtwqLs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3681365",
       "uri_deezer": "deezer://track/4154988",
       "alt_artists": [],
       "fun_fact": "Kombii belongs to the Polish pop and rock canon; \"Awinion\" (2007) features on this Polskie hity lat 90' 00' selection.",
