@@ -4,11 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
+  - _Entry needs review: the playlist that shipped is `polish-hits-90s-00s.json`, "Polskie hity lat 90' 00'" with 93 tracks, and it went out in rc21 (commit `274463f4`). Name and count here match neither. Left in Unreleased rather than moved into a release section, because moving it would assert something that isn't true._
+
+## [4.2.0-rc22] - 2026-08-09
+
 ### Fixed
 - **Reset on the host screen now really lands on step 1 of the wizard (#2036).** Reported by **@mholzi** from the ready-to-host screen. Both halves of the reset did what their code said: the browser dropped its seven `beatify_*` keys and reloaded, the server ended the running game. Nobody dropped the persisted setup blob, so the reload asked `/beatify/api/status`, got `setup_complete: true` back, and `reconcileSavedSetup()` wrote the saved speaker into the storage that had just been emptied — the "server wins" rule from #1927, applied to a client that had cleared itself on purpose. `shouldTrigger()` saw a configured host, kept the wizard shut, and `BeatifyHome` opened a fresh lobby: the exact screen the host had pressed Reset to leave. `ForceResetView` now deletes the blob as well, so there is nothing left to re-seed from. The reset therefore spans the whole installation rather than one device, which follows from it already ending the game for everyone. Twelve new tests, including that a failed delete still returns a usable response and that a rate-limited or unauthorized call leaves the blob untouched.
 
-### Added
-- **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
+### Changed
+- **Tidal coverage 4,378 → 5,152 URIs (+774).** Thirty-nine backfill waves since rc21 — the waves run hourly since 2026-08-08 instead of four times a day, which is where the step change comes from. Catalogue-wide Tidal coverage moves from 73.2 % to 86.2 %. Apple Music holds at 5,119 URIs (85.6 %); the two dead Apple links found in `hits-2010s-2020s` and the two wrong region-map URIs in `40s-50s-classics` were repaired in place, so the count is unchanged rather than stagnant.
+- **The Apple backfill searches in two stages (#2007).** The bracketed suffix of a title (`(Radio Edit)`, `[Extended Mix]`) was part of the search term the script sent to Apple, so the plain title was never queried and tracks that are in Apple's catalogue came back as misses. The suffix is now dropped for the query and only re-applied at the matching gate. `hardstyle-hardcore-anthems` ends up at 181 of 190 Apple URIs; the nine remaining gaps were each traced by hand in #1977 (three alternate mixes, two artist mismatches, one title mismatch, three genuinely absent from every storefront) and are not a search problem.
 
 ## [4.2.0-rc21] - 2026-08-07
 
