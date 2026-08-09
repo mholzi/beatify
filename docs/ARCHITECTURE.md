@@ -2,7 +2,7 @@
 
 A self-hosted multiplayer music trivia game that runs as a Home Assistant integration. This document is the top-down map of the system. For the why-was-this-decision-made nuance, follow the inline issue references (#NNN) into the GitHub history — every non-trivial path was driven by a specific user-reported bug or feature request.
 
-> Last refreshed: 2026-07-05 against `main` at `b90f947` (the v4.2.0-rc9 line).
+> Last refreshed: 2026-08-09 against `main` at `f15285a8` (the v4.2.0 release).
 
 ---
 
@@ -90,14 +90,14 @@ custom_components/beatify/
 │   ├── mix_views.py        # Smart Playlist Mixer endpoint (#1538) — see §6
 │   ├── companion_auth.py   # HA Companion app login handoff (#1527 era)
 │   ├── stats_views.py      # analytics dashboard data
-│   ├── setup_state.py      # persisted wizard/setup state
+│   ├── setup_state.py      # persisted wizard/setup state (read/write/clear; force-reset drops it, #2036)
 │   ├── serializers.py, base.py
 ├── services/               # backend side-effect services (see §4, §10)
 │   ├── media_player.py     # provider URI dispatch + playback (#768/#805/#808)
 │   ├── tts.py              # TTS announcements (tts.speak; #793)
 │   ├── lights.py           # party-lights phase orchestration
 │   └── stats.py            # analytics/stats side-effects
-├── playlists/              # 49 bundled playlists, 5,381 songs
+├── playlists/              # 54 bundled playlists, 5,980 songs
 │   ├── *.json              # 17 default packs (era / greatest-hits / movie)
 │   ├── community/          # 32 community packs (genre / region), separate browse tab
 │   ├── user/               # host-saved mixes land here as <slug>.json (Community tab)

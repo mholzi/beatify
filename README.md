@@ -316,9 +316,9 @@ Choose your difficulty—each changes how points are awarded:
 | 🔥 **Hard** | 10 pts | ±2 yrs = 3 pts | — | Punishing |
 
 ### Speed Bonus
-Submit instantly: **2x multiplier**
+Submit early: **2x multiplier**
 Submit at deadline: **1x multiplier**
-Linear scale in between. Hesitation costs points.
+The full multiplier holds through a short grace window at the start of the round, then decays linearly. You get a moment to actually recognise the song before the clock starts costing you points.
 
 ### Streak Milestones
 - **3 in a row:** +20 bonus points
@@ -341,11 +341,29 @@ After the song, it's a race — the **first** player to guess the artist correct
 Alternate names accepted—"Prince" or "The Artist" both count.
 
 ### Movie Quiz Bonus (Optional)
-For soundtrack songs. Guess the movie a song is from for tiered bonus points: **5 / 3 / 1** by submission speed.
+For soundtrack songs. Name the film a song comes from and the **first** correct guess earns **+5 bonus points** — winner-takes-all, like the Artist Challenge.
 Enable in game setup; only triggers on songs with movie metadata.
 
 ### Steal Power-Up
 Build a **3-answer streak** to unlock Steal. Once unlocked, tap a rival mid-round to copy their answer when they submit. One steal per game — spend it wisely.
+
+With the optional **comeback token** switched on, the bottom third of players are handed a Steal after the halfway round even without the streak.
+
+### Optional Twists
+
+All off by default. Each one is a switch in game setup.
+
+| Switch | What it does |
+|---|---|
+| 💀 **Sudden Death** | From round 2 on, the lowest scorer of each round is eliminated. Last one standing wins; a tie for last goes to the slowest submitter. Needs at least 3 players and can also be armed live from the reveal screen. |
+| 🏁 **Finale ×2** | The final round pays double on accuracy, and a tie for first is settled by a one-round playoff instead of a shared win. |
+| 🎁 **Comeback token** | Hands the bottom third of players a Steal after the halfway round. |
+| 📈 **Ramp-up ordering** | Orders the songs into a difficulty arc, easy early and hard at the end, from the per-song stats Beatify already keeps. |
+| 🎲 **Difficulty-scaled betting** | Triple or Nothing pays ×2 on an easy song, ×3 on normal and ×5 on hard, instead of a flat ×3. |
+| 😈 **Sabotage** | Lets a player cut or freeze somebody else's timer. |
+| 🛡️ **Streak-Shield** | Absorbs one wrong answer without breaking the streak, including one caused by a Sabotage. The absorbed round still pays no streak bonus. |
+
+**Crowd Court** resolves as soon as everyone has voted, rather than waiting out the full window.
 
 ---
 
@@ -383,7 +401,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 5,929 songs across 53 curated playlists:
+Beatify comes with 5,980 songs across 54 curated playlists:
 
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
 - 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
@@ -427,7 +445,8 @@ Beatify comes with 5,929 songs across 53 curated playlists:
 - 🎸 **NDW – Neue Deutsche Welle** — 50 German New Wave classics from 1976–1986
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 🇵🇱 **Polski Rock** — 100 Polish rock tracks
-- 🇵🇱 **Polskie przeboje wszech czasów** — 100 all-time Polish hits
+- 🇵🇱 **Polskie hity radiowe** — 92 Polish pop and rock radio hits from 1972–2016
+- 🇵🇱 **Polskie przeboje wszech czasów** — 59 all-time Polish hits
 - 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
 - 🍁 **Québécois 1990–2020** — 126 French-Canadian tracks from three decades of Quebec pop
@@ -438,6 +457,10 @@ Beatify comes with 5,929 songs across 53 curated playlists:
 - 🌀 **Trance Classics** — 120 classic trance anthems
 - 🌍 **World Cup Anthems** — 26 official FIFA World Cup songs, 1962–2026
 - ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
+
+### Suggestion Of The Season
+
+The setup screen surfaces a dismissible chip when a season is close — Carnival, Eurovision, World Cup, Summer — that adds the matching playlist in one tap. Dismiss it and it stays gone for that occasion.
 
 ### Adding Custom Playlists
 
@@ -680,6 +703,14 @@ Cast devices (Chromecast, Nest Audio, Nest Hub, Google TV) don't support direct 
 </details>
 
 <details>
+<summary><strong>Something is stuck. What does the Reset button do?</strong></summary>
+<br>
+The ↺ button in the admin header is the escape hatch. It ends whatever game is running, clears Beatify's saved setup and its local browser state, drops the cached service worker, and reloads you onto the first step of the setup wizard with nothing pre-selected. It asks before it does any of that, and it is rate-limited to three uses an hour per address.
+<br><br>
+One thing to know before you press it: the saved setup lives on your Home Assistant, not just on the phone in your hand, so a reset clears it for <strong>every</strong> device in the household. It already ends the running game for everyone anyway. If you only want to change speaker or playlists, use <strong>Edit setup</strong> instead.
+</details>
+
+<details>
 <summary><strong>Do players need to be on the same network?</strong></summary>
 <br>
 Yes, players need to access your Home Assistant instance. Works great on home WiFi.
@@ -697,8 +728,16 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
-### v4.2.0 — Sudden Death 💀
-- **New game mode: Sudden Death** — an elimination format where, from round 2 on, the lowest-scoring player each round is knocked out until only one is left standing. Ties for last go to the slowest submitter, the TV shows an "OUT" takeover for whoever was just eliminated, and the winner earns a "last one standing" highlight. Needs at least 3 players; arm it in the setup wizard or flip it on live from the reveal screen (#827, #1472)
+### v4.2.0 — Mix & Match 🎛️
+- **Mix tab in the playlist picker** — assemble a de-duplicated set on the fly from any combination of decade, style, region and special tags, at 30, 50 or 100 songs, and save it as a community playlist in one tap (#1538)
+- **Suggestion of the season** in the setup screen, one tap to add the matching playlist (#1539)
+- **New game mode: Sudden Death** — from round 2 on, the lowest-scoring player each round is knocked out until only one is left standing. Ties for last go to the slowest submitter, the TV shows an "OUT" takeover, and the winner earns a "last one standing" highlight. Needs at least 3 players; arm it in the setup wizard or live from the reveal screen (#827, #1472)
+- **Six optional twists** — Finale ×2, comeback token, ramp-up ordering, difficulty-scaled betting, Sabotage and Streak-Shield, all off by default (#1665, #1666, #1724, #1725, #1726, #1727)
+- **Fairer scoring** — the speed multiplier holds through a grace window before decaying (#1722), and the movie quiz became winner-takes-all like the artist challenge (#1723)
+- **Speakers and playback** — the picker hides the native twin of a Music Assistant speaker (#1627), a playback timeout no longer ends the game (#1936), and a round no longer depends on its own timer task or an open browser to finish (#1865)
+- **Setup follows you between devices** — one source of truth for the speaker (#1927), no more forced logout after 30 days (#1932), and the wizard stops opening on a configured device (#1941)
+- **Reset really resets** — it drops the saved setup on the server too and reloads by itself (#2036, #2041)
+- **Eight new playlists**, catalogue 46 → 54 playlists and 5,161 → 5,980 songs, Tidal coverage 47.7% → 86.5%
 - 6 music platforms, 5 languages
 
 ### v4.1.3 — Content & Reliability ☀️
