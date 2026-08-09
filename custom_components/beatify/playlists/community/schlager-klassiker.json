@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "german",
     "schlager",
@@ -2419,7 +2419,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=h2EdyvFazzk",
       "uri_deezer": "deezer://track/120358324",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/56290526",
       "isrc": "DEC739300115"
     },
     {
@@ -2452,7 +2452,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wCON7JlxuEI",
       "uri_deezer": "deezer://track/1008665",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2045071",
       "isrc": "DEC710100031"
     },
     {
@@ -2485,7 +2485,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wTIOa9PCxw0",
       "uri_deezer": "deezer://track/3828536231",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/491129755",
       "isrc": "DEZ040400109"
     },
     {
