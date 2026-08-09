@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "quebecois",
     "quebec",
@@ -1293,7 +1293,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=R_cEuRIBf-Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62848336",
       "uri_deezer": "deezer://track/128235407",
       "alt_artists": [
         "Daniel Lavoie",
@@ -1323,7 +1323,7 @@
         "it": "applemusic://track/1551598986"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=6FMRj8vAGAc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62848426",
       "uri_deezer": "deezer://track/128233489",
       "alt_artists": [
         "Fred Fortin",
@@ -1353,7 +1353,7 @@
         "it": "applemusic://track/1238762304"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Yy6AG-Vu094",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/39641181",
       "uri_deezer": "deezer://track/93081564",
       "alt_artists": [
         "Luce Dufault",
@@ -1383,7 +1383,7 @@
         "it": "applemusic://track/1575429099"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KyxXReCuBow",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/190159001",
       "uri_deezer": "deezer://track/1426035252",
       "alt_artists": [
         "Joseph Edgar",
@@ -1413,7 +1413,7 @@
         "it": "applemusic://track/323429149"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9HsdY1E9C0w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/161800482",
       "uri_deezer": "deezer://track/137874851",
       "alt_artists": [
         "Dumas",
@@ -1443,7 +1443,7 @@
         "it": "applemusic://track/1037526788"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-JKYICCphOM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/51017753",
       "uri_deezer": "deezer://track/107202708",
       "alt_artists": [
         "Patrick Norman",
@@ -1473,7 +1473,7 @@
         "it": "applemusic://track/1768788291"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aOxReeb3-Bk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/387652927",
       "uri_deezer": "deezer://track/2997313751",
       "alt_artists": [
         "Mes Aïeux",
@@ -1503,7 +1503,7 @@
         "it": "applemusic://track/1573047545"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xfPjOG53eRY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188302080",
       "uri_deezer": "deezer://track/1409455642",
       "alt_artists": [
         "Sally Folk",
@@ -1533,7 +1533,7 @@
         "it": "applemusic://track/1551597598"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=S6NtAWMgNaw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62849803",
       "uri_deezer": "deezer://track/128228071",
       "alt_artists": [
         "Les Colocs",
@@ -1563,7 +1563,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JWKpzJrli9c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1552810",
       "uri_deezer": "deezer://track/3393958",
       "alt_artists": [
         "Harmonium",
@@ -1593,7 +1593,7 @@
         "it": "applemusic://track/1525618068"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LhxPq-GqEuI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/150372426",
       "uri_deezer": "deezer://track/2027853997",
       "alt_artists": [
         "Luce Dufault",
@@ -1623,7 +1623,7 @@
         "it": "applemusic://track/1568305004"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/185129248",
       "uri_deezer": "deezer://track/1376976052",
       "alt_artists": [
         "Okoumé",
@@ -1653,7 +1653,7 @@
         "it": "applemusic://track/459096597"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ENePCYsFjXg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/291388",
       "uri_deezer": "deezer://track/729924",
       "alt_artists": [
         "Beau Dommage",
@@ -1683,7 +1683,7 @@
         "it": "applemusic://track/1048262131"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=io-jJeAtNfA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/52437711",
       "uri_deezer": "deezer://track/109374174",
       "alt_artists": [
         "Cœur De Pirate",
@@ -1713,7 +1713,7 @@
         "it": "applemusic://track/1599143362"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=EFe8tHS0Cqg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/208183702",
       "uri_deezer": "deezer://track/1579343352",
       "alt_artists": [
         "Patrice Michaud",
@@ -1743,7 +1743,7 @@
         "it": "applemusic://track/1551611350"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-NS1O1glcYg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62852367",
       "uri_deezer": "deezer://track/128234303",
       "alt_artists": [
         "Les Respectables",
@@ -1773,7 +1773,7 @@
         "it": "applemusic://track/1595746442"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0WJfUAEiWNw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/205322156",
       "uri_deezer": "deezer://track/1555122432",
       "alt_artists": [
         "La Chicane",
@@ -1803,7 +1803,7 @@
         "it": "applemusic://track/627076988"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20526267",
       "uri_deezer": "deezer://track/65802695",
       "alt_artists": [
         "Jonathan Painchaud",
@@ -1833,7 +1833,7 @@
         "it": "applemusic://track/1715417839"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=suGuppIe7b4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/117261768",
       "uri_deezer": "deezer://track/1497676382",
       "alt_artists": [
         "Dobacaracol",
