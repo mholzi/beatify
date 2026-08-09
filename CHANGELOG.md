@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **Reset reloads the page again (#2041).** Reported by **@mholzi** on iOS Safari minutes after rc22 shipped: pressing Reset left the host screen exactly as it was, and only a manual browser reload landed on the wizard. The Home Assistant log showed the server half had run and the wizard appearing after the manual reload showed the localStorage clear had run, which left exactly one suspect between them — `navigator.serviceWorker.getRegistrations()`, awaited without a deadline. A rejected promise was always handled; one that never settles was not, and `await` on it skips every line below, including the reload. Every cleanup step now has a four-second deadline and the navigation moved into a `finally`, so no stall above it can strand the host on the screen they asked to leave. Thirteen new tests, each of the three steps pinned in its never-settles form.
+
 ### Added
 - **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
   - _Entry needs review: the playlist that shipped is `polish-hits-90s-00s.json`, "Polskie hity lat 90' 00'" with 93 tracks, and it went out in rc21 (commit `274463f4`). Name and count here match neither. Left in Unreleased rather than moved into a release section, because moving it would assert something that isn't true._
