@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "quebecois",
     "quebec",
@@ -2763,7 +2763,7 @@
         "it": "applemusic://track/1551611114"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vISXH4osr8c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62852363",
       "uri_deezer": "deezer://track/128234295",
       "alt_artists": [
         "Les Respectables",
@@ -2793,7 +2793,7 @@
         "it": "applemusic://track/592485522"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MfxkLqQN2QM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18732957",
       "uri_deezer": "deezer://track/63509376",
       "alt_artists": [
         "Céline Dion",
@@ -2823,7 +2823,7 @@
         "it": "applemusic://track/349253350"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DqEaSVqQF1M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/161800521",
       "uri_deezer": "deezer://track/1497668772",
       "alt_artists": [
         "Kaïn",
@@ -2853,7 +2853,7 @@
         "it": "applemusic://track/196995391"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=D6RT7K9eiRc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/55276463",
       "uri_deezer": "deezer://track/45114581",
       "alt_artists": [
         "Ariane Moffatt",
@@ -2883,7 +2883,7 @@
         "it": "applemusic://track/1551615406"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3B3a1Rtf9js",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62851060",
       "uri_deezer": "deezer://track/128237741",
       "alt_artists": [
         "Marc Déry",
@@ -2913,7 +2913,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_n0nfHQVmxo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/531772544",
       "uri_deezer": "deezer://track/1732567157",
       "alt_artists": [
         "Roch Voisine",
@@ -2943,7 +2943,7 @@
         "it": "applemusic://track/1551596355"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VQzFIgrJE2k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62846226",
       "uri_deezer": "deezer://track/128227977",
       "alt_artists": [
         "Vincent Vallières",
@@ -2973,7 +2973,7 @@
         "it": "applemusic://track/1551615420"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=f2B_FiUL-rc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62851061",
       "uri_deezer": "deezer://track/128237743",
       "alt_artists": [
         "Marc Déry",
@@ -3003,7 +3003,7 @@
         "it": "applemusic://track/276422253"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ueTZ2622ZtA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/27317034",
       "uri_deezer": "deezer://track/75688046",
       "alt_artists": [
         "Jean Leloup",
@@ -3033,7 +3033,7 @@
         "it": "applemusic://track/1488375354"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OzBrdIQIPII",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/122868271",
       "uri_deezer": "deezer://track/811213402",
       "alt_artists": [
         "Maude Audet",
@@ -3063,7 +3063,7 @@
         "it": "applemusic://track/1148624351"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=oniHC9L0G2E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64437635",
       "uri_deezer": "deezer://track/131066296",
       "alt_artists": [
         "Charlotte Cardin",
@@ -3093,7 +3093,7 @@
         "it": "applemusic://track/1551597581"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bSNKcMdG_7E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62848630",
       "uri_deezer": "deezer://track/128219955",
       "alt_artists": [
         "La Maison Tellier",
@@ -3123,7 +3123,7 @@
         "it": "applemusic://track/1551598534"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PpHcmC3GCwk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62848419",
       "uri_deezer": "deezer://track/128233475",
       "alt_artists": [
         "Jean Leloup",
@@ -3153,7 +3153,7 @@
         "it": "applemusic://track/1048237585"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=c_MrMdh13Ec",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/52436964",
       "uri_deezer": "deezer://track/109523454",
       "alt_artists": [
         "Louis-Jean Cormier",
@@ -3183,7 +3183,7 @@
         "it": "applemusic://track/1573829263"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZnS_9yKvGbw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/189255034",
       "uri_deezer": "deezer://track/1415225382",
       "alt_artists": [
         "Louis-Jean Cormier",
@@ -3213,7 +3213,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=6fSRQv53Kac",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/353470156",
       "uri_deezer": "deezer://track/2721767182",
       "alt_artists": [
         "Édith Butler, Lisa LeBlanc",
@@ -3243,7 +3243,7 @@
         "it": "applemusic://track/1570898818"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pA085zepaAU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/186628712",
       "uri_deezer": "deezer://track/1395489412",
       "alt_artists": [
         "Martin Roberts",
@@ -3273,7 +3273,7 @@
         "it": "applemusic://track/1523945882"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=T6mP--kEOnA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/148936167",
       "uri_deezer": "deezer://track/1024249012",
       "alt_artists": [
         "Roch Voisine",
@@ -3303,7 +3303,7 @@
         "it": "applemusic://track/1271899249"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=a75LM3Z6Hbo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77504683",
       "uri_deezer": "deezer://track/395046612",
       "alt_artists": [
         "Philippe B",
