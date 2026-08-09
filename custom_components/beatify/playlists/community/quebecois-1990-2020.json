@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "quebecois",
     "quebec",
@@ -33,7 +33,7 @@
         "it": "applemusic://track/1589126538"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sYRp8oP0yiw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/155500118",
       "uri_deezer": "deezer://track/1082531032",
       "alt_artists": [
         "Charlotte Cardin, CRi",
@@ -63,7 +63,7 @@
         "it": "applemusic://track/1551597580"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A5KXY5Ssy5E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62849800",
       "uri_deezer": "deezer://track/128228065",
       "alt_artists": [
         "Les Colocs",
@@ -93,7 +93,7 @@
         "it": "applemusic://track/1849697499"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=15rawe3WVWw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/470392782",
       "uri_deezer": "deezer://track/3629522802",
       "alt_artists": [
         "Éric Lapointe",
@@ -123,7 +123,7 @@
         "it": "applemusic://track/1551615128"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=D_GJnIeyukI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62851053",
       "uri_deezer": "deezer://track/128237727",
       "alt_artists": [
         "Fred Fortin",
