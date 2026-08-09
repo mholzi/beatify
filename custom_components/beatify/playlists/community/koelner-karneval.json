@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "german",
     "carnival",
@@ -538,7 +538,8 @@
         "es": "applemusic://track/724060579",
         "nl": "applemusic://track/724060579",
         "it": "applemusic://track/724060579"
-      }
+      },
+      "uri_tidal": "tidal://track/2502619"
     },
     {
       "year": 1980,
@@ -1008,7 +1009,8 @@
         "es": "applemusic://track/205556986",
         "nl": "applemusic://track/205556986",
         "it": "applemusic://track/205556986"
-      }
+      },
+      "uri_tidal": "tidal://track/2104423"
     },
     {
       "year": 2003,
@@ -1726,7 +1728,8 @@
         "es": "applemusic://track/1219254873",
         "nl": "applemusic://track/1219254873",
         "it": "applemusic://track/1219254873"
-      }
+      },
+      "uri_tidal": "tidal://track/20796037"
     },
     {
       "year": 2006,
@@ -2383,7 +2386,8 @@
       },
       "uri_deezer": "deezer://track/3613918972",
       "fun_fact_nl": "Hanaks 'Haifischzahn' (Haaientand) brengt een steviger rock-geluid in de carnavalsmuziek, wat de evolutie van het genre buiten de traditionele klanken toont.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/11201660"
     },
     {
       "year": 2003,
@@ -2783,7 +2787,8 @@
         "es": "applemusic://track/202229994",
         "nl": "applemusic://track/202229994",
         "it": "applemusic://track/202229994"
-      }
+      },
+      "uri_tidal": "tidal://track/2117520"
     },
     {
       "year": 1957,
@@ -3957,7 +3962,8 @@
         "es": "applemusic://track/933255544",
         "nl": "applemusic://track/933255544",
         "it": "applemusic://track/933255544"
-      }
+      },
+      "uri_tidal": "tidal://track/40869675"
     },
     {
       "year": 2015,
@@ -4086,7 +4092,8 @@
         "es": "applemusic://track/1443009841",
         "nl": "applemusic://track/1443009841",
         "it": "applemusic://track/1443009841"
-      }
+      },
+      "uri_tidal": "tidal://track/52419252"
     },
     {
       "year": 2015,
@@ -4290,7 +4297,8 @@
         "es": "applemusic://track/1208124638",
         "nl": "applemusic://track/1208124638",
         "it": "applemusic://track/1208124638"
-      }
+      },
+      "uri_tidal": "tidal://track/70998871"
     },
     {
       "year": 2016,
@@ -5269,7 +5277,8 @@
         "es": "applemusic://track/1439344305",
         "nl": "applemusic://track/1439344305",
         "it": "applemusic://track/1439344305"
-      }
+      },
+      "uri_tidal": "tidal://track/102830944"
     },
     {
       "year": 2018,
@@ -5467,7 +5476,8 @@
         "es": "applemusic://track/1621280233",
         "nl": "applemusic://track/1621280233",
         "it": "applemusic://track/1621280233"
-      }
+      },
+      "uri_tidal": "tidal://track/96837825"
     },
     {
       "year": 2018,
@@ -6006,7 +6016,8 @@
         "es": "applemusic://track/1482342716",
         "nl": "applemusic://track/1482342716",
         "it": "applemusic://track/1482342716"
-      }
+      },
+      "uri_tidal": "tidal://track/119978974"
     },
     {
       "year": 2019,
@@ -6040,7 +6051,8 @@
         "es": "applemusic://track/1539793742",
         "nl": "applemusic://track/1539793742",
         "it": "applemusic://track/1539793742"
-      }
+      },
+      "uri_tidal": "tidal://track/120159373"
     },
     {
       "year": 2019,
@@ -6598,7 +6610,8 @@
         "es": "applemusic://track/1536059328",
         "nl": "applemusic://track/1536059328",
         "it": "applemusic://track/1536059328"
-      }
+      },
+      "uri_tidal": "tidal://track/159640003"
     },
     {
       "year": 2020,

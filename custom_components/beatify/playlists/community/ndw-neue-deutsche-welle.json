@@ -1,6 +1,6 @@
 {
   "name": "NDW – Neue Deutsche Welle",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "ndw",
     "neue deutsche welle",
@@ -726,7 +726,7 @@
       "fun_fact_nl": "'Dschinghis Khan' was West-Duitslands inzending voor het Eurovisie Songfestival 1979, eindigend op de 4e plaats.",
       "uri_apple_music": "applemusic://track/1308712711",
       "uri_youtube_music": "https://www.youtube.com/watch?v=1AXlVZRpweI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3609106",
       "uri_deezer": "1104837",
       "isrc": "DEUM70703330",
       "uri_apple_music_by_region": {
@@ -760,7 +760,7 @@
       "fun_fact_nl": "'Flieger, grüß mir die Sonne' van Extrabreit speelde bewust met beelden uit het nazi-tijdperk.",
       "uri_apple_music": "applemusic://track/1442228307",
       "uri_youtube_music": "https://www.youtube.com/watch?v=7e61KF2eH3g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13473805",
       "uri_deezer": "1140787",
       "isrc": "DEF088025210",
       "uri_apple_music_by_region": {
@@ -794,7 +794,7 @@
       "fun_fact_nl": "'Blaue Augen' van Ideal is een post-punk NDW klassieker uit Berlijn uit 1980 met zangeres Annette Humpe.",
       "uri_apple_music": "applemusic://track/41255576",
       "uri_youtube_music": "https://www.youtube.com/watch?v=zbaTJDnDRuY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/222224",
       "uri_deezer": "725925",
       "isrc": "DEA629260600",
       "uri_apple_music_by_region": {
