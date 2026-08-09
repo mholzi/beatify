@@ -1,6 +1,6 @@
 {
   "name": "NDW – Neue Deutsche Welle",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "ndw",
     "neue deutsche welle",
@@ -828,7 +828,7 @@
       "fun_fact_nl": "'Der blaue Planet' van Karat is een ecologisch lied uit 1982 uit Oost-Duitsland met een unieke milieuboodschap.",
       "uri_apple_music": "applemusic://track/1442504247",
       "uri_youtube_music": "https://www.youtube.com/watch?v=FJp2JaskW7E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/673970",
       "uri_deezer": "987946",
       "isrc": "DEC730000071",
       "uri_apple_music_by_region": {
@@ -862,7 +862,7 @@
       "fun_fact_nl": "'Am Fenster' van City is een Oost-Duitse rockballade uit 1977 met een legendarisch saxofoon, beschouwd als voorloper van het NDW.",
       "uri_apple_music": "applemusic://track/1485754934",
       "uri_youtube_music": "https://www.youtube.com/watch?v=e6oDrXOLs8w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/680464",
       "uri_deezer": "1060585",
       "isrc": "DEC730300509",
       "uri_apple_music_by_region": {
@@ -898,7 +898,7 @@
       "fun_fact_nl": "'Rosemarie' van Hubert Kah is een andere synth-pop parel van dezelfde artiest die 'Sternenhimmel' maakte.",
       "uri_apple_music": "applemusic://track/901876736",
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3689303",
       "uri_deezer": "2446108",
       "isrc": "DEF068200820",
       "uri_apple_music_by_region": {
@@ -934,7 +934,7 @@
       "fun_fact_nl": "'Neue Männer braucht das Land' van Ina Deter was een van de meest expliciete feministische hymnes van het NDW.",
       "uri_apple_music": null,
       "uri_youtube_music": "https://www.youtube.com/watch?v=GK51vq95j1s",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3991477",
       "uri_deezer": "1156605",
       "isrc": "DEF078202050",
       "uri_apple_music_by_region": {
@@ -968,7 +968,7 @@
       "fun_fact_nl": "'Ein Jahr (Es geht voran)' van Fehlfarben is een van de meest politiek geladen NDW nummers.",
       "uri_apple_music": null,
       "uri_youtube_music": "https://www.youtube.com/watch?v=Kvek60dvq50",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/73600220",
       "uri_deezer": "357738071",
       "isrc": "DEA349000536",
       "uri_apple_music_by_region": {
@@ -1004,7 +1004,7 @@
       "fun_fact_nl": "'Sonderzug nach Pankow' van Udo Lindenberg was een open brief aan DDR-leider Erich Honecker.",
       "uri_apple_music": null,
       "uri_youtube_music": "https://www.youtube.com/watch?v=b-NSfmhiTBg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13431154",
       "uri_deezer": "136432688",
       "isrc": "DEA621601757",
       "uri_apple_music_by_region": {
@@ -1040,7 +1040,7 @@
       "fun_fact_nl": "'Fred vom Jupiter' van Andreas Dorau werd opgenomen toen Dorau slechts 17 jaar oud was, met schoolvrienden als Die Marinas.",
       "uri_apple_music": "applemusic://track/79336558",
       "uri_youtube_music": "https://www.youtube.com/watch?v=fS4NPhnfVSM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/88345408",
       "uri_deezer": "494600042",
       "isrc": "DEK336400021",
       "uri_apple_music_by_region": {
@@ -1076,7 +1076,7 @@
       "fun_fact_nl": "'Kleine Taschenlampe brenn'' van Markus toonde de zachtere kant van de zanger achter 'Ich will Spaß'.",
       "uri_apple_music": null,
       "uri_youtube_music": "https://www.youtube.com/watch?v=ev8ZHJyx-bg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68528212",
       "uri_deezer": "95661492",
       "isrc": "DEE868200069",
       "uri_apple_music_by_region": {
@@ -1112,7 +1112,7 @@
       "fun_fact_nl": "'Tausendmal Du' van Münchener Freiheit is een oprechte liefdessong die de evolutie van de band naar mainstream pop toont.",
       "uri_apple_music": null,
       "uri_youtube_music": "https://www.youtube.com/watch?v=zF5XQmy2aII",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1830681",
       "uri_deezer": "627690",
       "isrc": "DEE868600081",
       "uri_apple_music_by_region": {
@@ -1146,7 +1146,7 @@
       "fun_fact_nl": "'Ich schau' dich an' van Spider Murphy Gang zette de Beierse-getinte pop traditie van de band voort.",
       "uri_apple_music": null,
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1501419",
       "uri_deezer": "3123341",
       "isrc": "DEA348200177",
       "uri_apple_music_by_region": {
@@ -1180,7 +1180,7 @@
       "fun_fact_nl": "'Berlin' van Ideal is een donker, atmosferisch eerbetoon aan het verdeelde Berlijn.",
       "uri_apple_music": "applemusic://track/41255570",
       "uri_youtube_music": "https://www.youtube.com/watch?v=J6YRKs_hKFQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/246514",
       "uri_deezer": "725907",
       "isrc": "DEA620100958",
       "uri_apple_music_by_region": {
@@ -1216,7 +1216,7 @@
       "fun_fact_nl": "'Tretboot in Seenot' van Frl. Menke was een eigenaardig NDW-hit uit de Hamburgse scene.",
       "uri_apple_music": "applemusic://track/1442362984",
       "uri_youtube_music": "https://www.youtube.com/watch?v=RAsaTHEcnEA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69360571",
       "uri_deezer": "140344155",
       "isrc": "DEF068207900",
       "uri_apple_music_by_region": {
@@ -1250,7 +1250,7 @@
       "fun_fact_nl": "'Tri Tra Trullala' van Joachim Witt was een speelse koerswijziging ten opzichte van zijn eerdere NDW-werk.",
       "uri_apple_music": "applemusic://track/1828632891",
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10926001",
       "uri_deezer": "2683151",
       "isrc": "DEA629660020",
       "uri_apple_music_by_region": {
@@ -1284,7 +1284,7 @@
       "fun_fact_nl": "'Wissenswertes über Erlangen' van Foyer Des Arts is een van de meest absurdistische NDW-liedjes over een kleine Beierse stad.",
       "uri_apple_music": "applemusic://track/298768453",
       "uri_youtube_music": "https://www.youtube.com/watch?v=Z4Ic1mzzAiI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/171660",
       "uri_deezer": "753182",
       "isrc": "DEA629252210",
       "uri_apple_music_by_region": {
@@ -1318,7 +1318,7 @@
       "fun_fact_nl": "'Jede Stunde' van Karat is een persoonlijke Oost-Duitse ballade over liefde en het verstrijken van de tijd.",
       "uri_apple_music": "applemusic://track/253718776",
       "uri_youtube_music": "https://www.youtube.com/watch?v=o1JEFeVq5aQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16819890",
       "uri_deezer": "1048689",
       "isrc": "DEC719400352",
       "uri_apple_music_by_region": {
@@ -1352,7 +1352,7 @@
       "fun_fact_nl": "'Am weißen Strand von Helgoland' van Niko is een nostalgische NDW-ode aan het Noordzee-eiland.",
       "uri_apple_music": "applemusic://track/472803327",
       "uri_youtube_music": "https://www.youtube.com/watch?v=FpJ3I6HR_dI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2405534",
       "uri_deezer": "2851299",
       "isrc": "DEA818300011",
       "uri_apple_music_by_region": {
@@ -1386,7 +1386,7 @@
       "fun_fact_nl": "'Hohe Berge' van Frl. Menke zette de carrière van de Hamburgse zangeres voort na 'Tretboot in Seenot'.",
       "uri_apple_music": "applemusic://track/1360780894",
       "uri_youtube_music": "https://www.youtube.com/watch?v=7Ae-IsVhSp0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69360572",
       "uri_deezer": "140344157",
       "isrc": "DEF068200830",
       "uri_apple_music_by_region": {
@@ -1420,7 +1420,7 @@
       "fun_fact_nl": "'Radio' van Spliff is een satirische ode aan omroepmedia van de Berlijnse band waaruit ook Nena voortkwam.",
       "uri_apple_music": "applemusic://track/400341812",
       "uri_youtube_music": "https://www.youtube.com/watch?v=QPAHVS-e1NM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1720728",
       "uri_deezer": "582492",
       "isrc": "DEE869700854",
       "uri_apple_music_by_region": {
@@ -1454,7 +1454,7 @@
       "fun_fact_nl": "'Ostberlin - Wahnsinn' van Lilli Berlin ving de absurditeit van het verdeelde Berlijn vanuit een zelden gehoord perspectief.",
       "uri_apple_music": null,
       "uri_youtube_music": "https://www.youtube.com/watch?v=BUnzv6cgFb0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11675437",
       "uri_deezer": "15563784",
       "isrc": "DEC730800325",
       "uri_apple_music_by_region": {
