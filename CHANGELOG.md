@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **Reset on the host screen now really lands on step 1 of the wizard (#2036).** Reported by **@mholzi** from the ready-to-host screen. Both halves of the reset did what their code said: the browser dropped its seven `beatify_*` keys and reloaded, the server ended the running game. Nobody dropped the persisted setup blob, so the reload asked `/beatify/api/status`, got `setup_complete: true` back, and `reconcileSavedSetup()` wrote the saved speaker into the storage that had just been emptied — the "server wins" rule from #1927, applied to a client that had cleared itself on purpose. `shouldTrigger()` saw a configured host, kept the wizard shut, and `BeatifyHome` opened a fresh lobby: the exact screen the host had pressed Reset to leave. `ForceResetView` now deletes the blob as well, so there is nothing left to re-seed from. The reset therefore spans the whole installation rather than one device, which follows from it already ending the game for everyone. Twelve new tests, including that a failed delete still returns a usable response and that a rate-limited or unauthorized call leaves the blob untouched.
+
 ### Added
 - **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
 

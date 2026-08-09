@@ -49,6 +49,12 @@ async function confirmReset() {
     closeResetModal();
 
     // 1. Hit the server, but don't block local cleanup on its result.
+    //    #2036: this POST is also what makes the wizard reappear. It drops the
+    //    persisted setup blob; without that the reload re-seeds the speaker we
+    //    are about to delete below (reconcileSavedSetup, "server wins" per
+    //    #1927) and the host lands back on the ready-to-host screen. If the
+    //    call fails we still clear + reload, as before — the reset is then
+    //    only as good as it was, not worse.
     try {
         await BeatifyAuth.fetch('/beatify/api/force-reset', { method: 'POST' });
     } catch (err) {

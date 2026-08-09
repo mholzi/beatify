@@ -43,6 +43,7 @@ from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_state_message,
 )
+from custom_components.beatify.server.setup_state import clear_setup
 from custom_components.beatify.server.ws_handlers.admin import _finalize_and_end
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
@@ -555,6 +556,16 @@ class ForceResetView(RateLimitMixin, HomeAssistantView):
     per-game admin token — any household HA user can unwedge stuck state —
     so the old "you might not have a valid token" rationale no longer
     applies. Still rate-limited per IP to prevent DoS abuse.
+
+    #2036: the reset also drops the persisted setup blob. The client half of
+    the reset clears ``localStorage`` and reloads, but the server kept
+    reporting ``setup_complete: true`` — and ``reconcileSavedSetup()`` wrote
+    the saved speaker straight back into the emptied storage on that same
+    load, so the wizard stayed shut and the host landed on the ready-to-host
+    screen again. The reset therefore spans the whole installation, not just
+    the device that pressed it; that follows from it already ending the
+    running game for everyone, and the confirm dialog plus the 3/hour rate
+    limit sit in front of it.
     """
 
     url = "/beatify/api/force-reset"
@@ -599,7 +610,24 @@ class ForceResetView(RateLimitMixin, HomeAssistantView):
                 except Exception:  # noqa: BLE001
                     _LOGGER.exception("force-reset: WS broadcast raised; continuing")
 
-        return web.json_response({"success": True, "ended_game_id": ended_game_id})
+        # #2036: drop the persisted setup blob so the reloading client really
+        # comes up unconfigured. Failures here must not swallow the rest of the
+        # recovery — the caller is stuck and the game is already ended.
+        cleared_setup = False
+        try:
+            cleared_setup = await self.hass.async_add_executor_job(
+                clear_setup, self.hass
+            )
+        except OSError:
+            _LOGGER.exception("force-reset: clearing the setup blob failed; continuing")
+
+        return web.json_response(
+            {
+                "success": True,
+                "ended_game_id": ended_game_id,
+                "cleared_setup": cleared_setup,
+            }
+        )
 
 
 class RematchGameView(HomeAssistantView):

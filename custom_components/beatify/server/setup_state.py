@@ -55,3 +55,25 @@ def write_setup(hass: HomeAssistant, blob: dict[str, Any]) -> None:
     path = _setup_path(hass)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(blob, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def clear_setup(hass: HomeAssistant) -> bool:
+    """Delete the persisted setup blob (blocking I/O). Returns whether one existed.
+
+    #2036: the force-reset escape hatch clears the host's ``localStorage`` and
+    reloads, but the blob written here survived — and ``reconcileSavedSetup()``
+    then wrote the speaker straight back into the freshly emptied storage on the
+    very next page load (the "server wins" rule from #1927). The wizard's
+    ``shouldTrigger()`` saw a configured host again and stayed shut, so a reset
+    landed back on the ready-to-host screen it was supposed to leave.
+
+    Deleting the file rather than writing ``{}`` keeps a single notion of
+    "nothing saved": ``read_setup`` already returns ``None`` for a missing file,
+    so no caller needs to learn a second empty shape.
+    """
+    path = _setup_path(hass)
+    try:
+        path.unlink()
+    except FileNotFoundError:
+        return False
+    return True
