@@ -16,6 +16,6 @@ To everyone asking for more of their own country on the board — these two list
 
 ---
 
-**43 playlists · 4,954 songs · 5 music platforms · 5 languages**
+**43 playlists · 4,954 songs · 6 music platforms · 5 languages**
 
 [Report a Bug](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions) · [Full Changelog](https://github.com/mholzi/beatify/blob/main/CHANGELOG.md)

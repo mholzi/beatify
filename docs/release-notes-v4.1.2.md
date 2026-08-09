@@ -14,6 +14,6 @@ Requested straight from the in-app funnel — keep the playlist ideas coming.
 
 ---
 
-**44 playlists · 5,051 songs · 5 music platforms · 5 languages**
+**44 playlists · 5,051 songs · 6 music platforms · 5 languages**
 
 [Report a Bug](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions) · [Full Changelog](https://github.com/mholzi/beatify/blob/main/CHANGELOG.md)
