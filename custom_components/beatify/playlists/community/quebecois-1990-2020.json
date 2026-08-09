@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "quebecois",
     "quebec",
@@ -2193,7 +2193,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36289922",
       "uri_deezer": "deezer://track/617423192",
       "alt_artists": [
         "Michel Rivard",
@@ -2223,7 +2223,7 @@
         "it": "applemusic://track/1615138989"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3W1-kUI4-CA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67234389",
       "uri_deezer": "deezer://track/136158804",
       "alt_artists": [
         "Charlotte Cardin",
@@ -2253,7 +2253,7 @@
         "it": "applemusic://track/1715481692"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=J8-GSSazu_8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188901254",
       "uri_deezer": "deezer://track/1498027642",
       "alt_artists": [
         "Jean Leloup",
@@ -2283,7 +2283,7 @@
         "it": "applemusic://track/254214693"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SSKIvNhoNYo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/507940",
       "uri_deezer": "deezer://track/3026560671",
       "alt_artists": [
         "Vilain Pingouin",
@@ -2313,7 +2313,7 @@
         "it": "applemusic://track/1551596657"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=-_0DeX0YSb0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62848668",
       "uri_deezer": "deezer://track/128226565",
       "alt_artists": [
         "Cœur De Pirate",
@@ -2343,7 +2343,7 @@
         "it": "applemusic://track/626982646"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=U-fU_V7Boic",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20205709",
       "uri_deezer": "deezer://track/65802338",
       "alt_artists": [
         "Vincent Vallières",
@@ -2373,7 +2373,7 @@
         "it": "applemusic://track/1715445683"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sUAv1_QKEgA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188270597",
       "uri_deezer": "deezer://track/1497899992",
       "alt_artists": [
         "Alexandre Poulin",
@@ -2403,7 +2403,7 @@
         "it": "applemusic://track/196990318"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zZU7wTcg698",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/55325166",
       "uri_deezer": "deezer://track/45114561",
       "alt_artists": [
         "Thomas Hellman",
@@ -2433,7 +2433,7 @@
         "it": "applemusic://track/1458402220"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NiNfoanV4E0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107157568",
       "uri_deezer": "deezer://track/661488212",
       "alt_artists": [
         "Dumas",
@@ -2463,7 +2463,7 @@
         "it": "applemusic://track/1638049219"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CR0C6Tib2zQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/241354066",
       "uri_deezer": "deezer://track/1853959917",
       "alt_artists": [
         "Ariane Moffatt",
@@ -2493,7 +2493,7 @@
         "it": "applemusic://track/536319001"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PEV1uS6P6y0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/21652788",
       "uri_deezer": "deezer://track/66904445",
       "alt_artists": [
         "Stefie Shock",
@@ -2523,7 +2523,7 @@
         "it": "applemusic://track/1450432899"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=U-TSnuOGeyw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102920595",
       "uri_deezer": "deezer://track/623796442",
       "alt_artists": [
         "Philémon Cimon",
@@ -2553,7 +2553,7 @@
         "it": "applemusic://track/1575428932"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8KRsKdKH30k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/190159021",
       "uri_deezer": "deezer://track/1426036652",
       "alt_artists": [
         "Damien Robitaille",
@@ -2583,7 +2583,7 @@
         "it": "applemusic://track/1532141705"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DHNshxGlLUk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/155500119",
       "uri_deezer": "deezer://track/1082531042",
       "alt_artists": [
         "Philémon Cimon",
@@ -2613,7 +2613,7 @@
         "it": "applemusic://track/1525618082"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SD-oL9fePeg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/264216181",
       "uri_deezer": "deezer://track/2027854057",
       "alt_artists": [
         "Luce Dufault",
@@ -2643,7 +2643,7 @@
         "it": "applemusic://track/540436160"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wHJM_KBhsrI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22235186",
       "uri_deezer": "deezer://track/66904494",
       "alt_artists": [
         "Alexandre Poulin",
@@ -2673,7 +2673,7 @@
         "it": "applemusic://track/635284300"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OvM0Qu8c75Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/22141219",
       "uri_deezer": "deezer://track/63008407",
       "alt_artists": [
         "TRICOT MACHINE",
@@ -2703,7 +2703,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4P_HZseRCYY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62851059",
       "uri_deezer": "deezer://track/128237739",
       "alt_artists": [
         "Les Respectables",
@@ -2733,7 +2733,7 @@
         "it": "applemusic://track/1368841830"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yA5RyRIJY7E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/87354926",
       "uri_deezer": "deezer://track/487061862",
       "alt_artists": [
         "2Frères",
