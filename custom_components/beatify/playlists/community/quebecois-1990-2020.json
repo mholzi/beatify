@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "quebecois",
     "quebec",
@@ -183,7 +183,7 @@
         "it": "applemusic://track/254869694"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=i6cJ0b0uz6A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19916699",
       "uri_deezer": "deezer://track/208868",
       "alt_artists": [
         "Les Trois Accords",
@@ -213,7 +213,7 @@
         "it": "applemusic://track/1768788296"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lNRcOaBdNjI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/159112870",
       "uri_deezer": "deezer://track/2997313761",
       "alt_artists": [
         "Les Trois Accords",
@@ -243,7 +243,7 @@
         "it": "applemusic://track/308138217"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0hnc2618F80",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33979635",
       "uri_deezer": "deezer://track/15397671",
       "alt_artists": [
         "Beau Dommage",
@@ -273,7 +273,7 @@
         "it": "applemusic://track/1458399429"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_ai1plnRMKI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107157698",
       "uri_deezer": "deezer://track/661492472",
       "alt_artists": [
         "Damien Robitaille",
@@ -303,7 +303,7 @@
         "it": "applemusic://track/1573039135"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MocqRzOIy3I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188302063",
       "uri_deezer": "deezer://track/1409440342",
       "alt_artists": [
         "David Jalbert",
@@ -333,7 +333,7 @@
         "it": "applemusic://track/1666652683"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=G0MsmqlX9-8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/272981194",
       "uri_deezer": "deezer://track/2120360737",
       "alt_artists": [
         "Lisa LeBlanc",
@@ -363,7 +363,7 @@
         "it": "applemusic://track/1715445681"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=c9xEWPw09mQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188270596",
       "uri_deezer": "deezer://track/1497899982",
       "alt_artists": [
         "Karkwa",
@@ -933,7 +933,7 @@
         "it": "applemusic://track/1551592638"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Wa61zlR_N84",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62847894",
       "uri_deezer": "deezer://track/128233603",
       "alt_artists": [
         "Patrick Norman",
@@ -963,7 +963,7 @@
         "it": "applemusic://track/1878379680"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ldAma8XZTLs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/500419753",
       "uri_deezer": "deezer://track/3854901651",
       "alt_artists": [
         "Cœur De Pirate",
@@ -993,7 +993,7 @@
         "it": "applemusic://track/1573047681"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MXdtp3yeMc4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/188302082",
       "uri_deezer": "deezer://track/1409455662",
       "alt_artists": [
         "Sally Folk",
@@ -1023,7 +1023,7 @@
         "it": "applemusic://track/1849697649"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=l3T2K221ZCo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/470392798",
       "uri_deezer": "deezer://track/3629522982",
       "alt_artists": [
         "Éric Lapointe",
@@ -1053,7 +1053,7 @@
         "it": "applemusic://track/1745568921"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=AzaTyxMduH4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3182912",
       "uri_deezer": "deezer://track/4762933",
       "alt_artists": [
         "Noir Silence",
@@ -1083,7 +1083,7 @@
         "it": "applemusic://track/1551591088"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0MsY7wh0rcU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62849630",
       "uri_deezer": "deezer://track/113480794",
       "alt_artists": [
         "Kaïn",
@@ -1113,7 +1113,7 @@
         "it": "applemusic://track/1003906531"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jdcO3Mfqpbc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19207139",
       "uri_deezer": "deezer://track/102014533",
       "alt_artists": [
         "Okoumé",
@@ -1143,7 +1143,7 @@
         "it": "applemusic://track/1849697504"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NchXMF4jILU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/470392786",
       "uri_deezer": "deezer://track/3629522842",
       "alt_artists": [
         "Éric Lapointe",
@@ -1173,7 +1173,7 @@
         "it": "applemusic://track/1048261678"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=boK-TEe2_sA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/52437446",
       "uri_deezer": "deezer://track/109374040",
       "alt_artists": [
         "Marc Déry",
@@ -1203,7 +1203,7 @@
         "it": "applemusic://track/1551592631"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZGKPuLJddJ8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62847890",
       "uri_deezer": "deezer://track/128233595",
       "alt_artists": [
         "Patrick Norman",
@@ -1233,7 +1233,7 @@
         "it": "applemusic://track/1606159319"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/332416388",
       "uri_deezer": "deezer://track/77580105",
       "alt_artists": [
         "Cœur De Pirate",
@@ -1263,7 +1263,7 @@
         "it": "applemusic://track/1551611129"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NPtiryyxx9c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/62852365",
       "uri_deezer": "deezer://track/128234299",
       "alt_artists": [
         "Daniel Boucher",
