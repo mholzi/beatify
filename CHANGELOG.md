@@ -8,6 +8,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 - **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
   - _Entry needs review: the playlist that shipped is `polish-hits-90s-00s.json`, "Polskie hity lat 90' 00'" with 93 tracks, and it went out in rc21 (commit `274463f4`). Name and count here match neither. Left in Unreleased rather than moved into a release section, because moving it would assert something that isn't true._
 
+## [4.2.0] - 2026-08-09
+
+Stable cut of the 4.2.0 line ("Mix & Match") — see [docs/release-notes-v4.2.0.md](docs/release-notes-v4.2.0.md) for the user-facing notes covering the Smart Playlist Mixer and seasonal suggestions, Sudden Death, the six opt-in gameplay switches (Finale ×2, comeback token, ramp-up ordering, difficulty-scaled betting, Sabotage, Streak-Shield), the fairer speed bonus and unified side-challenge scoring, the speaker-twin and playback-recovery pass, cross-device setup reconciliation, the two-part Reset fix, and the catalogue growth from 46 playlists / 5,161 songs to 54 / 5,980 with Tidal coverage from 47.7 % to 86.5 % (detailed per rc below).
+
 ## [4.2.0-rc23] - 2026-08-09
 
 ### Fixed
