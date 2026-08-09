@@ -4,10 +4,6 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-### Added
-- **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap.
-  - _Entry needs review: the playlist that shipped is `polish-hits-90s-00s.json`, "Polskie hity lat 90' 00'" with 93 tracks, and it went out in rc21 (commit `274463f4`). Name and count here match neither. Left in Unreleased rather than moved into a release section, because moving it would assert something that isn't true._
-
 ## [4.2.0] - 2026-08-09
 
 Stable cut of the 4.2.0 line ("Mix & Match") — see [docs/release-notes-v4.2.0.md](docs/release-notes-v4.2.0.md) for the user-facing notes covering the Smart Playlist Mixer and seasonal suggestions, Sudden Death, the six opt-in gameplay switches (Finale ×2, comeback token, ramp-up ordering, difficulty-scaled betting, Sabotage, Streak-Shield), the fairer speed bonus and unified side-challenge scoring, the speaker-twin and playback-recovery pass, cross-device setup reconciliation, the two-part Reset fix, and the catalogue growth from 46 playlists / 5,161 songs to 54 / 5,980 with Tidal coverage from 47.7 % to 86.5 % (detailed per rc below).
@@ -58,6 +54,11 @@ Pre-release — cut from current `main`. Three integration fixes, all in the spe
 - **Speaker selection is reconciled across devices (#1927).** The server-side setup blob was only ever used to seed a *pristine* browser, so a device holding any Beatify localStorage kept its own speaker forever and a newer pick made elsewhere stayed invisible to it — a game configured on a phone could start on a laptop and play in a different room. The speaker now has one source of truth (the server), a pick made in the admin is written through to it immediately, and the home screen names the resolved speaker before the first round. The pause banner names it too, and a playback failure now logs the URI that was actually attempted instead of the song's Spotify base field.
 - **The session no longer expires 30 days after first login (#1932).** The `beatify_refresh` cookie was set only by the OAuth callback and never re-issued, so its 30 days ran from the first login however active the user was. A successful refresh now rolls the cookie, making the window measure inactivity rather than existence.
 - **The terminal sign-in error screen is translated (#1933).** Its heading, body and button were hardcoded German on a full-screen overlay. All five locales now carry the strings, with English as the fallback when translations have not loaded or an entry is missing.
+
+## [4.2.0-rc18] - 2026-07-29
+
+### Added
+- **Polskie hity radiowe 🇵🇱 — 92 tracks (#1891).** Polish pop and rock radio hits spanning 1972-2016, with the heart of the collection in the 1990s and 2000s (75 of 92 tracks). The third Polish playlist alongside Polskie przeboje wszech czasów and Polski Rock; seven tracks already curated in those two were dropped as duplicates, so the catalogue gains 92 genuinely new songs rather than 100 with overlap. Added in `polish-hits-90s-00s.json` (commit `274463f4`); rc18 is the first release that carried it.
 
 ## [4.2.0-rc17] - 2026-07-22
 
