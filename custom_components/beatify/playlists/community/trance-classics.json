@@ -1,6 +1,6 @@
 {
   "name": "Trance Classics",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "trance",
     "hands-up",
@@ -1005,7 +1005,7 @@
         "it": "applemusic://track/384919391"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZuY2s58bRrE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63545799",
       "uri_deezer": "deezer://track/61419158",
       "fun_fact": "Gigi D'Agostino is an Italian DJ and the figurehead of the bouncy 'Lento Violento' sound.",
       "fun_fact_de": "Gigi D'Agostino ist ein italienischer DJ und Galionsfigur des hüpfenden 'Lento Violento'-Sounds.",
@@ -1030,7 +1030,7 @@
         "it": "applemusic://track/121304778"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aP1PrVeBiIA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2358828",
       "uri_deezer": "deezer://track/3748162",
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1055,7 +1055,7 @@
         "it": "applemusic://track/121304765"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aP1PrVeBiIA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2358830",
       "uri_deezer": "deezer://track/3748159",
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1080,7 +1080,7 @@
         "it": "applemusic://track/1490201645"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qNwamr09M84",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/297450131",
       "uri_deezer": "deezer://track/3786234122",
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1105,7 +1105,7 @@
         "it": "applemusic://track/1713815717"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qNwamr09M84",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/491260868",
       "uri_deezer": "deezer://track/3786457612",
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1122,7 +1122,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=2oNnjVBMTKU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/276644242",
       "uri_deezer": null,
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1164,7 +1164,7 @@
       "uri_apple_music": "applemusic://track/129611463",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=hjexeNExXKU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13143071",
       "uri_deezer": null,
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1189,7 +1189,7 @@
         "it": "applemusic://track/129611463"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hjexeNExXKU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13143072",
       "uri_deezer": null,
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1214,7 +1214,7 @@
         "it": "applemusic://track/310439630"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2xqkfeil4qI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4158645",
       "uri_deezer": "deezer://track/61538082",
       "fun_fact": "A trance and dance-floor classic (2000).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2000).",
@@ -1239,7 +1239,7 @@
         "it": "applemusic://track/1571951674"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LM4_Ae0jJ7c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/658331",
       "uri_deezer": "deezer://track/15263221",
       "fun_fact": "A trance and dance-floor classic (2000).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2000).",
@@ -1264,7 +1264,7 @@
         "it": "applemusic://track/271969670"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9t8ovH8lco4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/9356441",
       "uri_deezer": "deezer://track/11390029",
       "fun_fact": "Darude is a Finnish producer whose 'Sandstorm' became an internet-era dance institution.",
       "fun_fact_de": "Darude ist ein finnischer Produzent, dessen 'Sandstorm' zur Dance-Institution des Internetzeitalters wurde.",
@@ -1289,7 +1289,7 @@
         "it": "applemusic://track/1671521459"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CR3U1MtZoVE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/276441085",
       "uri_deezer": "deezer://track/2147457977",
       "fun_fact": "A trance and dance-floor classic (2000).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2000).",
@@ -1314,7 +1314,7 @@
         "it": "applemusic://track/1646214731"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ovMBy4RlKaw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/249699217",
       "uri_deezer": "deezer://track/1923878837",
       "fun_fact": "A trance and dance-floor classic (2000).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2000).",
@@ -1389,7 +1389,7 @@
         "it": "applemusic://track/119218506"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZTNej2USaYk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63261254",
       "uri_deezer": "deezer://track/61751496",
       "fun_fact": "Gigi D'Agostino is an Italian DJ and the figurehead of the bouncy 'Lento Violento' sound.",
       "fun_fact_de": "Gigi D'Agostino ist ein italienischer DJ und Galionsfigur des hüpfenden 'Lento Violento'-Sounds.",
@@ -1414,7 +1414,7 @@
         "it": "applemusic://track/1000697876"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g3oml70ktKs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/46733723",
       "uri_deezer": "deezer://track/101575806",
       "fun_fact": "A trance and dance-floor classic (2000).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2000).",
@@ -1439,7 +1439,7 @@
         "it": "applemusic://track/1000697873"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WO-emYoJh_g",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/46733721",
       "uri_deezer": "deezer://track/101575802",
       "fun_fact": "A trance and dance-floor classic (2000).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2000).",
