@@ -853,17 +853,6 @@ def run(args: argparse.Namespace) -> int:
                             song[PROVIDER_FIELDS[prov]] = val
                             cov.filled_this_run[prov] += 1
                             song_dirty = True
-                    # Deezer secondary verify via ISRC if Odesli missed it.
-                    if (
-                        "deezer" in non_yt_gaps
-                        and not song.get("uri_deezer")
-                        and song.get("isrc")
-                    ):
-                        did = fetch_deezer_isrc(song["isrc"])
-                        if did:
-                            song["uri_deezer"] = deezer_uri(did)
-                            cov.filled_this_run["deezer"] += 1
-                            song_dirty = True
                     # YouTube free-first: trust Odesli's link only if oembed
                     # confirms artist+title (filters covers/live re-uploads).
                     if yt_gap and yt_key and not song.get("uri_youtube_music"):
@@ -882,12 +871,19 @@ def run(args: argparse.Namespace) -> int:
                         song["uri_apple_music"] = apple_uri(aid)
                         cov.filled_this_run["apple_music"] += 1
                         song_dirty = True
-                # Deezer search fallback (keyless, verify-gated) — last resort after
-                # Odesli and the exact ISRC lookup. Sits at this level, not inside the
-                # ``payload is not None`` block, so it still runs while Odesli is down;
-                # same placement as the Apple fallback above.
+                # Deezer, zwei Stufen, beide AUSSERHALB des ``payload``-Blocks.
+                #
+                # Die ISRC-Abfrage sass bis 2026-08-10 *innerhalb* — sie lief also nur,
+                # wenn Odesli geantwortet hatte. Odesli antwortet aber regelmaessig mit
+                # 429 (die stuendliche Tidal-Welle teilt sich dieselbe Quote), und dann
+                # bekam Deezer gar nichts: kein Odesli-Link und keine ISRC-Abfrage.
+                # Apple lief im selben Lauf weiter, weil sein iTunes-Fallback schon
+                # immer hier draussen stand. Genau diese Asymmetrie erklaert Playlists
+                # mit voller Apple- und null Deezer-Abdeckung.
                 if "deezer" in non_yt_gaps and not song.get("uri_deezer"):
-                    did = resolve_deezer_via_search(song)
+                    did = (
+                        fetch_deezer_isrc(song["isrc"]) if song.get("isrc") else None
+                    ) or resolve_deezer_via_search(song)
                     if did:
                         song["uri_deezer"] = deezer_uri(did)
                         cov.filled_this_run["deezer"] += 1

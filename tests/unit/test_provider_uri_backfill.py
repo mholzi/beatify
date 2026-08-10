@@ -1247,3 +1247,97 @@ def test_run_apply_uses_deezer_search_when_isrc_and_odesli_miss(tmp_path, monkey
         json.loads(f.read_text())["songs"][0]["uri_deezer"]
         == "deezer://track/3788156072"
     )
+
+
+def test_deezer_isrc_runs_even_when_odesli_is_down(tmp_path, monkeypatch):
+    # Regression 2026-08-10: the ISRC lookup sat INSIDE the `payload is not None`
+    # block, so a 429 from Odesli skipped it entirely — Deezer got nothing while
+    # Apple kept filling via its own fallback. That asymmetry is what left whole
+    # playlists at full Apple / zero Deezer coverage.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "dz",
+        [
+            {
+                "artist": "Efecto Pasillo",
+                "title": "No importa que llueva",
+                "isrc": "ES24C1207102",
+                "uri": "spotify:track:" + "a" * 22,
+            }
+        ],
+    )
+
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)  # 429 / down
+    monkeypatch.setattr(bf, "fetch_deezer_isrc", lambda isrc, **k: "438648342")
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    assert (
+        json.loads(f.read_text())["songs"][0]["uri_deezer"]
+        == "deezer://track/438648342"
+    )
+
+
+def test_deezer_isrc_wins_over_search(tmp_path, monkeypatch):
+    # The exact ISRC hit is preferred; the search fallback must not be consulted
+    # when it already resolved — otherwise every song costs an extra HTTP call.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "dz2",
+        [
+            {
+                "artist": "Maan",
+                "title": "Stiekem",
+                "isrc": "NLZ292200147",
+                "uri": "spotify:track:" + "b" * 22,
+            }
+        ],
+    )
+    searched = []
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "fetch_deezer_isrc", lambda isrc, **k: "3606658082")
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(
+        bf, "resolve_deezer_via_search", lambda *a, **k: searched.append(1) or "999"
+    )
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert (
+        json.loads(f.read_text())["songs"][0]["uri_deezer"]
+        == "deezer://track/3606658082"
+    )
+    assert searched == []  # search never consulted
