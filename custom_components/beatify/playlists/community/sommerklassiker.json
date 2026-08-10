@@ -1,6 +1,6 @@
 {
   "name": "Sommerklassiker ☀️",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "summer",
     "pop",
@@ -39,7 +39,7 @@
         "it": "applemusic://track/1697418834"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CTFtOOh47oo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/76158441",
       "uri_deezer": "382428781",
       "awards_nl": []
     },
