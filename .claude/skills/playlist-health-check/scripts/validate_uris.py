@@ -32,6 +32,11 @@ def detect_provider(uri):
 # backoff before it is allowed to count as a defect. A 404 that survives all
 # retries is treated as genuinely dead.
 TRANSIENT_CODES = {408, 425, 429, 500, 502, 503, 504}
+# 403 is deliberately NOT in here. It means opposite things per provider:
+# iTunes answers 403 when it throttles, Spotify answers 403 for a track that is
+# genuinely restricted. Making it global would turn every restricted Spotify
+# track into a retried non-finding and add ~20s of backoff per one. The iTunes
+# reading is applied locally in check_apple_music instead.
 RETRY_BACKOFF = (1.0, 4.0, 15.0)   # sleep before attempt 2, 3, 4
 
 def http_json(url, headers=None, timeout=10, retry_404=False):
@@ -308,7 +313,9 @@ def check_apple_music(tid, title, artist):
         data, code, is_transient = http_json(url)
         if data is None:
             # iTunes throttles hard (403/429) — never call a track dead on that.
-            if is_transient: return transient(code, "Apple Music")
+            # 403 is not in TRANSIENT_CODES (it is a real defect at Spotify), so
+            # it is recognised here, where it can only mean throttling.
+            if is_transient or code == 403: return transient(code, "Apple Music")
             if code == 404: continue
             return {"status": "unreachable", "http_code": code, "detail": f"iTunes HTTP {code}"}
         if data.get("resultCount", 0) == 0:
