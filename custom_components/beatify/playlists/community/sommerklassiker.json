@@ -1,6 +1,6 @@
 {
   "name": "Sommerklassiker ☀️",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "summer",
     "pop",
@@ -69,7 +69,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ebXbLfLACGM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/26831498",
       "uri_deezer": "88936747",
       "awards_nl": []
     },
@@ -99,7 +99,7 @@
         "it": "applemusic://track/956024318"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=OPf0YbXqDm0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/39249713",
       "uri_deezer": "92734438",
       "awards_nl": []
     },
@@ -129,7 +129,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=E07s5ZYygMg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/125310819",
       "uri_deezer": "830336922",
       "awards_nl": []
     },
@@ -159,7 +159,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PIh2xe4jnpk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23046116",
       "uri_deezer": "79845486",
       "awards_nl": []
     },
@@ -189,7 +189,7 @@
         "it": "applemusic://track/1440867865"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vWaRiD5ym74",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67050714",
       "uri_deezer": "136341758",
       "awards_nl": []
     },
@@ -219,7 +219,7 @@
         "it": "applemusic://track/1440858500"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KEI4qSrkPAs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77704207",
       "uri_deezer": "106506516",
       "awards_nl": []
     },
@@ -249,7 +249,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=EkHTsc9PU2A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1618338",
       "uri_deezer": "2686140",
       "awards_nl": []
     },
@@ -279,7 +279,7 @@
         "it": "applemusic://track/378650466"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SgM3r8xKfGE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5002049",
       "uri_deezer": "6489970",
       "awards_nl": []
     },
@@ -309,7 +309,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=8_QY5gFQUTg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/11354176",
       "uri_deezer": "64848628",
       "awards_nl": []
     },
@@ -339,7 +339,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iEPTlhBmwRg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/91242773",
       "uri_deezer": "12724819",
       "awards_nl": []
     },
@@ -369,7 +369,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ozv4q2ov3Mk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/75172589",
       "uri_deezer": "374051471",
       "awards_nl": []
     },
@@ -399,7 +399,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rs6Y4kZ8qtw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/43419928",
       "uri_deezer": "71608366",
       "awards_nl": []
     },
@@ -429,7 +429,7 @@
         "it": "applemusic://track/636968288"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5NV6Rdv1a3I",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19823990",
       "uri_deezer": "66609426",
       "awards_nl": []
     },
@@ -459,7 +459,7 @@
         "it": "applemusic://track/1022164261"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uJ_1HMAGb4k",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/303106814",
       "uri_deezer": "83841464",
       "awards_nl": []
     },
@@ -489,7 +489,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bvC_0foemLY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/48537288",
       "uri_deezer": "107471416",
       "awards_nl": []
     },
@@ -519,7 +519,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aatr_2MstrI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71016752",
       "uri_deezer": "144393668",
       "awards_nl": []
     },
@@ -549,7 +549,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bg1sT4ILG0w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/25281212",
       "uri_deezer": "74126483",
       "awards_nl": []
     },
@@ -579,7 +579,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xTlNMmZKwpA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86900556",
       "uri_deezer": "482986842",
       "awards_nl": []
     },
@@ -609,7 +609,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DiItGE3eAyQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102570097",
       "uri_deezer": "619949882",
       "awards_nl": []
     },
