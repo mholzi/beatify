@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "deutschrock",
     "german rock",
@@ -19,7 +19,7 @@
       "artist": "KneipenTerroristen",
       "title": "14",
       "isrc": "DEKS81404314",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/948123767",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -29,7 +29,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GEewws0fEP4",
       "uri_tidal": "tidal://track/38577320",
       "uri_deezer": "deezer://track/91514582",
       "alt_artists": [],
@@ -45,7 +45,7 @@
       "artist": "Böhse Onkelz",
       "title": "Auf gute Freunde",
       "isrc": "DEG129603010",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587163726",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -55,7 +55,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c9VbthlhmIg",
       "uri_tidal": "tidal://track/26008099",
       "uri_deezer": "deezer://track/2490366",
       "alt_artists": [],
@@ -81,7 +81,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qsx7KLdzlaM",
       "uri_tidal": "tidal://track/444188652",
       "uri_deezer": "deezer://track/3430225431",
       "alt_artists": [],
