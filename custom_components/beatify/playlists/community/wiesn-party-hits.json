@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "party",
     "schlager",
@@ -44,7 +44,7 @@
       },
       "uri_deezer": "deezer://track/62238193",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/15811933"
     },
     {
       "year": 1981,
@@ -77,7 +77,7 @@
       },
       "uri_deezer": "deezer://track/982516",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/494409690"
     },
     {
       "year": 1981,
@@ -150,7 +150,7 @@
       },
       "uri_deezer": "deezer://track/3123329",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/1501407"
     },
     {
       "year": 1981,
@@ -187,7 +187,7 @@
       },
       "uri_deezer": "deezer://track/3123334",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/1500927"
     },
     {
       "year": 1982,
@@ -220,7 +220,7 @@
       },
       "uri_deezer": "deezer://track/15306741",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/20717379"
     },
     {
       "year": 1983,
@@ -255,7 +255,7 @@
       },
       "uri_deezer": "deezer://track/3390998",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/1528258"
     },
     {
       "year": 1983,
@@ -290,7 +290,7 @@
       },
       "uri_deezer": "deezer://track/120358320",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/56290524"
     },
     {
       "year": 1984,
@@ -329,7 +329,7 @@
       },
       "uri_deezer": "deezer://track/15379465",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/118934675"
     },
     {
       "year": 1984,
@@ -362,7 +362,7 @@
       },
       "uri_deezer": "deezer://track/2500674",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/3603818"
     },
     {
       "year": 1985,
