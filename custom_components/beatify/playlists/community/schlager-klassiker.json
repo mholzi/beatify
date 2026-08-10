@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "german",
     "schlager",
@@ -3145,7 +3145,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KIc9kddJT6M",
       "uri_deezer": "deezer://track/4259408",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3129444",
       "isrc": "DEA340401056"
     },
     {
@@ -3178,7 +3178,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=U15ZCSkkU9A",
       "uri_deezer": "deezer://track/481853452",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86938839",
       "isrc": "DEZ650603615"
     },
     {
@@ -3211,7 +3211,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=t-yLv2lj0Xg",
       "uri_deezer": "deezer://track/10584129",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/12786275",
       "isrc": "DEUM71101259"
     },
     {
@@ -3244,7 +3244,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=E9dvmMMMlVg",
       "uri_deezer": "deezer://track/10030323",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5797338",
       "isrc": "DEG128600103"
     },
     {
@@ -3277,7 +3277,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hX0wEt_SqiM",
       "uri_deezer": "deezer://track/15486005",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20350509",
       "isrc": "ATT250901360"
     },
     {
@@ -3310,7 +3310,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iUqk9V8NcJM",
       "uri_deezer": "deezer://track/120358374",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/56290551",
       "isrc": "DEC739600531"
     },
     {
@@ -3343,7 +3343,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2lyCBJAOqcQ",
       "uri_deezer": "deezer://track/7905433",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/401334",
       "isrc": "DEF067007130"
     },
     {
@@ -3376,7 +3376,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KuQfBroQUYo",
       "uri_deezer": "deezer://track/122436402",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58942587",
       "isrc": "DEF067200380"
     },
     {
@@ -3409,7 +3409,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yYkx-y-2xp0",
       "uri_deezer": "deezer://track/3434774",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/96957603",
       "isrc": "DEA340400165"
     },
     {
@@ -3442,7 +3442,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fjc3uwYCdmM",
       "uri_deezer": "deezer://track/5150017",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3276772",
       "isrc": "DEA347702437"
     },
     {
@@ -3475,7 +3475,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xACHTOBFTNw",
       "uri_deezer": "deezer://track/3808802692",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64617666",
       "isrc": "DEC717700015"
     },
     {
@@ -3508,7 +3508,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lPOGAob2w_g",
       "uri_deezer": "deezer://track/661831772",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3056226",
       "isrc": "DEC737800012"
     },
     {
@@ -3541,7 +3541,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2vyQ4ZIcESw",
       "uri_deezer": "deezer://track/50594951",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/43222822",
       "isrc": "DEU241017663"
     },
     {
@@ -3574,7 +3574,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wIRiGPccqJo",
       "uri_deezer": "deezer://track/15786719",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/12583723",
       "isrc": "DEA810800985"
     }
   ]
