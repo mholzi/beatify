@@ -701,7 +701,18 @@ def run(args: argparse.Namespace) -> int:
         f"cursor at song #{yt_state.cursor}"
     )
 
+    # Run caps, same semantics as scripts/backfill_tidal.py. Without them a single
+    # run is unbounded: Odesli's 429 backoff makes duration far less predictable
+    # than query count, so a 100-track playlist can outlast any scheduling window
+    # a caller reserved for it. Stopping early is safe because every filled URI is
+    # flushed to disk per song below.
+    queried = 0
+    deadline = time.monotonic() + args.max_minutes * 60 if args.max_minutes else None
+    stop_reason: str | None = None
+
     for path in playlist_paths:
+        if stop_reason:
+            break
         data = json.loads(path.read_text())
         songs = data.get("songs", [])
         cov = coverage_for_playlist(rel_name(root, path), str(path), songs)
@@ -709,6 +720,12 @@ def run(args: argparse.Namespace) -> int:
         version_bumped = False
 
         for song in songs:
+            if args.max and queried >= args.max:
+                stop_reason = f"reached --max {args.max}"
+                break
+            if deadline is not None and time.monotonic() >= deadline:
+                stop_reason = f"reached --max-minutes {args.max_minutes:g}"
+                break
             this_global_idx = global_idx
             global_idx += 1
             sid = spotify_track_id(song.get("uri"))
@@ -726,6 +743,9 @@ def run(args: argparse.Namespace) -> int:
             # first pass before spending an expensive search.list call.
             want_odesli = bool(non_yt_gaps) or (yt_gap and yt_key)
             if want_odesli:
+                # Counted before the call, so --max caps attempts rather than
+                # successes — a run that only hits 429s must still terminate.
+                queried += 1
                 # payload is None when Odesli is unavailable (429 exhausted /
                 # error) — skip Odesli for this song but keep going so the
                 # independent YouTube phase below still runs (#1687).
@@ -805,11 +825,18 @@ def run(args: argparse.Namespace) -> int:
 
         coverages.append(cov)
 
+    if stop_reason:
+        print(f"{stop_reason}, stopping")
+
     if yt_key:
         save_state(state_path, yt_state)
 
     report = build_report(
-        coverages, today, applied=args.apply, yt_phase_note=yt_phase_note
+        coverages,
+        today,
+        applied=args.apply,
+        yt_phase_note=yt_phase_note,
+        stop_reason=stop_reason,
     )
     out_path = (
         Path(args.output) if args.output else (root / "docs" / "provider-coverage.md")
@@ -823,7 +850,12 @@ def run(args: argparse.Namespace) -> int:
 
 
 def build_report(
-    coverages: list[PlaylistCoverage], today: str, *, applied: bool, yt_phase_note: str
+    coverages: list[PlaylistCoverage],
+    today: str,
+    *,
+    applied: bool,
+    yt_phase_note: str,
+    stop_reason: str | None = None,
 ) -> str:
     label = {
         "apple_music": "Apple",
@@ -842,6 +874,13 @@ def build_report(
         f"> Generated: {today}",
         f"> Mode: {'APPLY' if applied else 'DRY-RUN (no JSON written)'}",
         f"> YouTube phase: {yt_phase_note}",
+        # A capped run covers only part of the catalogue. Saying so in the report
+        # keeps a truncated run from reading like a complete one.
+        *(
+            [f"> Run stopped early: {stop_reason} — coverage below is partial."]
+            if stop_reason
+            else []
+        ),
         "",
         "## Summary",
         "",
@@ -907,6 +946,18 @@ def build_arg_parser() -> argparse.ArgumentParser:
         type=int,
         default=90,
         help="Max YouTube search.list calls per day (default 90)",
+    )
+    p.add_argument(
+        "--max",
+        type=int,
+        default=0,
+        help="cap number of Odesli queries this run (0 = no cap)",
+    )
+    p.add_argument(
+        "--max-minutes",
+        type=float,
+        default=0,
+        help="stop the run after this many minutes of wall-clock (0 = no limit)",
     )
     return p
 

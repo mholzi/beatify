@@ -929,3 +929,167 @@ def test_run_apply_itunes_fills_apple_when_odesli_lacks_it(tmp_path, monkeypatch
     song = json.loads(f.read_text())["songs"][0]
     assert song["uri_tidal"] == "tidal://track/7"
     assert song["uri_apple_music"] == "applemusic://track/808080"
+
+
+# --------------------------------------------------------------------------
+# Run caps: --max / --max-minutes (parity with scripts/backfill_tidal.py)
+#
+# Motivation: without a cap a single run is unbounded. Odesli's 429 backoff makes
+# duration far less predictable than query count, so one 100-track playlist can
+# outlast the scheduling window a caller reserved for it — which is exactly how
+# the youtube-backfill agent collided with the hourly Tidal wave on 2026-08-10.
+# --------------------------------------------------------------------------
+
+
+def _capped_songs(n: int) -> list[dict]:
+    return [
+        {
+            "artist": f"Artist {i}",
+            "title": f"Title {i}",
+            "uri": "spotify:track:" + f"{i:022d}",
+        }
+        for i in range(n)
+    ]
+
+
+def test_max_caps_odesli_queries(tmp_path, monkeypatch):
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    _write_playlist(pl_dir, "many", _capped_songs(10))
+
+    calls = []
+    monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: calls.append(sid) or None)
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+            "--max",
+            "3",
+        ]
+    )
+    assert rc == 0
+    # Exactly three attempts, not ten — and counted per attempt, so a run that
+    # only ever gets 429s (fetch_odesli -> None) still terminates.
+    assert len(calls) == 3
+
+
+def test_max_minutes_stops_run(tmp_path, monkeypatch):
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    _write_playlist(pl_dir, "many", _capped_songs(10))
+
+    calls = []
+    # Clock jumps past the deadline after the second song's check.
+    ticks = iter([0, 0, 0, 10_000, 10_000, 10_000, 10_000, 10_000, 10_000, 10_000])
+    monkeypatch.setattr(bf.time, "monotonic", lambda: next(ticks, 10_000))
+    monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: calls.append(sid) or None)
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+            "--max-minutes",
+            "1",
+        ]
+    )
+    assert rc == 0
+    assert len(calls) < 10  # stopped early, did not walk the whole playlist
+
+
+def test_no_cap_by_default_walks_everything(tmp_path, monkeypatch):
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    _write_playlist(pl_dir, "many", _capped_songs(6))
+
+    calls = []
+    monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: calls.append(sid) or None)
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    assert len(calls) == 6  # defaults stay uncapped — no behaviour change
+
+
+def test_capped_run_marks_report_as_partial(tmp_path, monkeypatch):
+    # A truncated run must not read like a complete one. Same failure mode that
+    # made the youtube-backfill agent report "nochange" on a broken run.
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    _write_playlist(pl_dir, "many", _capped_songs(5))
+
+    monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: None)
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    cov = tmp_path / "cov.md"
+    bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(cov),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+            "--max",
+            "2",
+        ]
+    )
+    text = cov.read_text()
+    assert "stopped early" in text
+    assert "reached --max 2" in text
+
+    # And the uncapped run says nothing of the sort.
+    cov2 = tmp_path / "cov2.md"
+    bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(cov2),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert "stopped early" not in cov2.read_text()
