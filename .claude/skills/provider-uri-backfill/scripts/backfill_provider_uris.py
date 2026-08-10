@@ -503,6 +503,101 @@ def fetch_deezer_isrc(
     return _numeric_id(data.get("id"))
 
 
+def deezer_search(
+    term: str, *, limit: int = 5, getter: Callable[[str], dict] = _http_get_json
+) -> list[dict]:
+    """Call the keyless Deezer search API. Returns ``data`` or ``[]``.
+
+    Never raises: any HTTP/network/parse error → ``[]`` (same contract as
+    :func:`itunes_search`).
+    """
+    q = urllib.parse.urlencode({"q": term, "limit": limit})
+    try:
+        data = getter(f"https://api.deezer.com/search?{q}")
+    except Exception:
+        return []
+    if not data or data.get("error"):
+        return []
+    return data.get("data") or []
+
+
+def _pick_deezer_match(
+    results: list[dict], title: str, artist: str, alt_artists: list[str]
+) -> str | None:
+    """Verify-gate for Deezer hits — mirrors :func:`_pick_itunes_match`.
+
+    Title AND artist must both fuzzy-match; the artist may be the primary one or
+    any ``alt_artists`` entry. Never guesses on title alone: "Iron Man" without
+    an artist check would happily return a cover band.
+    """
+    for r in results or []:
+        track_id = _numeric_id(r.get("id"))
+        if not track_id:
+            continue
+        r_title = r.get("title_short") or r.get("title") or ""
+        r_artist = ((r.get("artist") or {}).get("name")) or ""
+        if not titles_match(r_title, title):
+            continue
+        if titles_match(r_artist, artist) or any(
+            titles_match(r_artist, alt) for alt in (alt_artists or [])
+        ):
+            return track_id
+    return None
+
+
+def resolve_deezer_via_search(
+    song: dict, getter: Callable[[str], dict] = _http_get_json
+) -> str | None:
+    """Resolve a Deezer track id via search + gate, when ISRC and Odesli missed.
+
+    Why this exists: the ISRC endpoint is exact but only as good as the ISRC we
+    store. Catalogue rows frequently carry a reissue's ISRC that Deezer does not
+    index, while Deezer does hold an earlier remaster of the same recording —
+    measured 2026-08-10 on ``greatest-metal-songs``, where "Iron Man",
+    "Paranoid", "The Trooper" and "The Number of the Beast" all failed by ISRC
+    and all resolved by search. Apple already had this fallback; Deezer did not,
+    which is why whole playlists sat at zero Deezer coverage.
+
+    Query strategy mirrors :func:`resolve_apple_via_itunes`: most-specific first,
+    deduped, stops at the first gate-pass.
+    """
+    title = (song.get("title") or "").strip()
+    if not title:
+        return None
+    artist = (song.get("artist") or "").strip()
+    alt_artists = song.get("alt_artists") or []
+
+    stripped = strip_suffixes(title)
+    titles = _dedup([title, stripped])
+    artists = _dedup([a for a in (artist, strip_diacritics(artist)) if a])
+    folded_titles = _dedup([strip_diacritics(t) for t in titles])
+
+    terms: list[str] = []
+    for a in artists:
+        # Deezer's field-scoped syntax is far more precise than a bare term and
+        # keeps "Paranoid" from matching a hundred unrelated tracks.
+        for t in titles:
+            terms.append(f'artist:"{a}" track:"{t}"')
+        for t in folded_titles:
+            terms.append(f'artist:"{a}" track:"{t}"')
+        terms.append(f"{a} {stripped}")
+    for alt in alt_artists:
+        terms.append(f'artist:"{alt}" track:"{stripped}"')
+
+    seen: set[str] = set()
+    for term in terms:
+        term = _WHITESPACE_RE.sub(" ", term).strip()
+        if not term or term in seen:
+            continue
+        seen.add(term)
+        did = _pick_deezer_match(
+            deezer_search(term, getter=getter), title, artist, alt_artists
+        )
+        if did:
+            return did
+    return None
+
+
 def youtube_search_id(
     api_key: str,
     artist: str,
@@ -786,6 +881,16 @@ def run(args: argparse.Namespace) -> int:
                     if aid:
                         song["uri_apple_music"] = apple_uri(aid)
                         cov.filled_this_run["apple_music"] += 1
+                        song_dirty = True
+                # Deezer search fallback (keyless, verify-gated) — last resort after
+                # Odesli and the exact ISRC lookup. Sits at this level, not inside the
+                # ``payload is not None`` block, so it still runs while Odesli is down;
+                # same placement as the Apple fallback above.
+                if "deezer" in non_yt_gaps and not song.get("uri_deezer"):
+                    did = resolve_deezer_via_search(song)
+                    if did:
+                        song["uri_deezer"] = deezer_uri(did)
+                        cov.filled_this_run["deezer"] += 1
                         song_dirty = True
                 time.sleep(args.odesli_sleep)
 

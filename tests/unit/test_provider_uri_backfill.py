@@ -358,6 +358,7 @@ def test_run_dry_run_no_mutation(tmp_path, monkeypatch):
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     # Keyless Apple iTunes fallback is network → stub it off in these tests.
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     out = tmp_path / "coverage.md"
@@ -421,6 +422,7 @@ def test_run_apply_writes_uri(tmp_path, monkeypatch):
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     # Keyless Apple iTunes fallback is network → stub it off in these tests.
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     rc = bf.main(
@@ -475,6 +477,7 @@ def test_run_apply_odesli_429_does_not_block_youtube(tmp_path, monkeypatch):
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     # Keyless Apple iTunes fallback is network → stub it off in these tests.
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
 
     rc = bf.main(
@@ -529,6 +532,7 @@ def test_run_apply_flushes_partial_progress_on_crash(tmp_path, monkeypatch):
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     # Keyless Apple iTunes fallback is network → stub it off in these tests.
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
     with pytest.raises(RuntimeError):
@@ -795,6 +799,7 @@ def test_run_youtube_odesli_first_pass_skips_search_list(tmp_path, monkeypatch):
         },
     )
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf, "youtube_oembed_verify", lambda *a, **k: True)
 
     search_calls = {"n": 0}
@@ -853,6 +858,7 @@ def test_run_youtube_oembed_fail_falls_back_to_search_list(tmp_path, monkeypatch
         },
     )
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf, "youtube_oembed_verify", lambda *a, **k: False)
 
     search_calls = {"n": 0}
@@ -909,6 +915,7 @@ def test_run_apply_itunes_fills_apple_when_odesli_lacks_it(tmp_path, monkeypatch
         },
     )
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: "808080")
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
@@ -960,6 +967,7 @@ def test_max_caps_odesli_queries(tmp_path, monkeypatch):
     calls = []
     monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: calls.append(sid) or None)
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
@@ -995,6 +1003,7 @@ def test_max_minutes_stops_run(tmp_path, monkeypatch):
     monkeypatch.setattr(bf.time, "monotonic", lambda: next(ticks, 10_000))
     monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: calls.append(sid) or None)
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
@@ -1025,6 +1034,7 @@ def test_no_cap_by_default_walks_everything(tmp_path, monkeypatch):
     calls = []
     monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: calls.append(sid) or None)
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
@@ -1054,6 +1064,7 @@ def test_capped_run_marks_report_as_partial(tmp_path, monkeypatch):
 
     monkeypatch.setattr(bf, "fetch_odesli", lambda sid, **k: None)
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
 
@@ -1093,3 +1104,146 @@ def test_capped_run_marks_report_as_partial(tmp_path, monkeypatch):
         ]
     )
     assert "stopped early" not in cov2.read_text()
+
+
+# --------------------------------------------------------------------------
+# Deezer search fallback (parity with the Apple iTunes fallback)
+#
+# Motivation: the ISRC endpoint is exact but only as good as the stored ISRC.
+# Measured 2026-08-10 on greatest-metal-songs — "Iron Man", "Paranoid",
+# "The Trooper" and "The Number of the Beast" all carry reissue ISRCs Deezer
+# does not index, while Deezer holds earlier remasters of the same recordings.
+# Apple had a search fallback, Deezer did not; whole playlists sat at 0 Deezer.
+# --------------------------------------------------------------------------
+
+
+def _dz(track_id, title, artist):
+    return {
+        "id": track_id,
+        "title": title,
+        "title_short": title,
+        "artist": {"name": artist},
+    }
+
+
+def test_deezer_search_gate_accepts_matching_artist_and_title():
+    hit = bf._pick_deezer_match(
+        [_dz(3788156072, "Iron Man (Remastered 2009)", "Black Sabbath")],
+        "Iron Man",
+        "Black Sabbath",
+        [],
+    )
+    assert hit == "3788156072"
+
+
+def test_deezer_search_gate_rejects_wrong_artist():
+    # A cover band with the exact right title must NOT pass — this is the whole
+    # point of the gate. Title-only matching would happily return it.
+    assert (
+        bf._pick_deezer_match(
+            [_dz(999, "Iron Man", "Karaoke Allstars")], "Iron Man", "Black Sabbath", []
+        )
+        is None
+    )
+
+
+def test_deezer_search_gate_accepts_alt_artist():
+    hit = bf._pick_deezer_match(
+        [_dz(555, "Paranoid", "Ozzy Osbourne")],
+        "Paranoid",
+        "Black Sabbath",
+        ["Ozzy Osbourne"],
+    )
+    assert hit == "555"
+
+
+def test_deezer_search_gate_skips_results_without_id():
+    assert (
+        bf._pick_deezer_match(
+            [{"title": "Iron Man", "artist": {"name": "Black Sabbath"}}],
+            "Iron Man",
+            "Black Sabbath",
+            [],
+        )
+        is None
+    )
+
+
+def test_resolve_deezer_via_search_stops_at_first_gate_pass():
+    calls = []
+
+    def getter(url):
+        calls.append(url)
+        if "Iron%20Man" in url or "Iron+Man" in url:
+            return {"data": [_dz(42, "Iron Man (Remastered 2009)", "Black Sabbath")]}
+        return {"data": []}
+
+    got = bf.resolve_deezer_via_search(
+        {"artist": "Black Sabbath", "title": "Iron Man"}, getter=getter
+    )
+    assert got == "42"
+    assert len(calls) == 1  # first, most-specific term already passed
+
+
+def test_resolve_deezer_via_search_returns_none_when_nothing_matches():
+    got = bf.resolve_deezer_via_search(
+        {"artist": "Black Sabbath", "title": "Iron Man"},
+        getter=lambda url: {"data": [_dz(7, "Totally Different Song", "Someone Else")]},
+    )
+    assert got is None
+
+
+def test_deezer_search_never_raises_on_http_error():
+    def boom(url):
+        raise RuntimeError("network down")
+
+    assert bf.deezer_search("anything", getter=boom) == []
+
+
+def test_deezer_search_treats_api_error_payload_as_empty():
+    assert (
+        bf.deezer_search("x", getter=lambda url: {"error": {"type": "Exception"}}) == []
+    )
+
+
+def test_run_apply_uses_deezer_search_when_isrc_and_odesli_miss(tmp_path, monkeypatch):
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = _write_playlist(
+        pl_dir,
+        "metal",
+        [
+            {
+                "artist": "Black Sabbath",
+                "title": "Iron Man",
+                "isrc": "USWB11304371",
+                "uri": "spotify:track:" + "a" * 22,
+            }
+        ],
+    )
+
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)  # Odesli down
+    monkeypatch.setattr(bf, "fetch_deezer_isrc", lambda *a, **k: None)  # ISRC misses
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: "3788156072")
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+        ]
+    )
+    assert rc == 0
+    assert (
+        json.loads(f.read_text())["songs"][0]["uri_deezer"]
+        == "deezer://track/3788156072"
+    )
