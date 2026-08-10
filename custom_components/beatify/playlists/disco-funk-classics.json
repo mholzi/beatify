@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "1970s",
     "1980s",
@@ -3121,7 +3121,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2879929",
       "uri_deezer": "deezer://track/3151319",
       "isrc": "GBAYE7600024"
     },
@@ -3156,7 +3156,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/20481133",
       "uri_deezer": "deezer://track/891619",
       "isrc": "USFI87800059"
     },
@@ -3191,7 +3191,7 @@
         "it": "applemusic://track/1590817672"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/496171943",
       "uri_deezer": "deezer://track/3803021252",
       "isrc": "GBAJE7900087"
     },
@@ -3226,7 +3226,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/1785214",
       "uri_deezer": "deezer://track/846326",
       "isrc": "USAT20102201"
     },
@@ -3261,7 +3261,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64498756",
       "uri_deezer": "deezer://track/538706962",
       "isrc": "USPR39402398"
     },
@@ -3296,7 +3296,7 @@
         "it": "applemusic://track/1444081381"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/93614024",
       "uri_deezer": "deezer://track/94556154",
       "isrc": "USDJ20110815"
     },
@@ -3331,7 +3331,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/299130",
       "uri_deezer": "deezer://track/662391362",
       "isrc": "USAT20102506"
     },
@@ -3366,7 +3366,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/506143303",
       "uri_deezer": null,
       "isrc": null
     },
@@ -3401,7 +3401,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/10906574",
       "uri_deezer": "deezer://track/4094693",
       "isrc": "USWB10104850"
     },
@@ -3436,7 +3436,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/355682487",
       "uri_deezer": "deezer://track/3824997371",
       "isrc": "USWB10903605"
     },
