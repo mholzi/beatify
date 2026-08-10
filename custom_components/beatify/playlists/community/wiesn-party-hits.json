@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "party",
     "schlager",
@@ -395,7 +395,7 @@
       },
       "uri_deezer": "deezer://track/630374",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/1880055"
     },
     {
       "year": 1987,
@@ -428,7 +428,7 @@
       },
       "uri_deezer": "deezer://track/3109247",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/137251"
     },
     {
       "year": 1989,
@@ -461,7 +461,7 @@
       },
       "uri_deezer": "deezer://track/417358492",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/93744339"
     },
     {
       "year": 1994,
@@ -499,7 +499,7 @@
       },
       "uri_deezer": "deezer://track/419139102",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/80186819"
     },
     {
       "year": 1997,
@@ -532,7 +532,7 @@
       },
       "uri_deezer": "deezer://track/10092552",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/6150436"
     },
     {
       "year": 1997,
@@ -565,7 +565,7 @@
       },
       "uri_deezer": "deezer://track/120358330",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/56290529"
     },
     {
       "year": 1998,
@@ -598,7 +598,7 @@
       },
       "uri_deezer": "deezer://track/971107",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/16320764"
     },
     {
       "year": 1998,
@@ -635,7 +635,7 @@
       },
       "uri_deezer": "deezer://track/5105781",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/3270203"
     },
     {
       "year": 1999,
@@ -668,7 +668,7 @@
       },
       "uri_deezer": "deezer://track/417358532",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/20829494"
     },
     {
       "year": 1999,
@@ -701,7 +701,7 @@
       },
       "uri_deezer": "deezer://track/713477362",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/113400855"
     },
     {
       "year": 2000,
@@ -738,7 +738,7 @@
       },
       "uri_deezer": "deezer://track/15319250",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/13981564"
     },
     {
       "year": 2001,
@@ -773,7 +773,7 @@
       },
       "uri_deezer": "deezer://track/1008665",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/2045071"
     },
     {
       "year": 2002,
@@ -809,7 +809,7 @@
       },
       "uri_deezer": "deezer://track/1791078487",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/217332803"
     },
     {
       "year": 2003,
@@ -842,7 +842,7 @@
       },
       "uri_deezer": "deezer://track/3156476",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/1394994"
     },
     {
       "year": 2004,
@@ -879,7 +879,7 @@
       },
       "uri_deezer": "deezer://track/111773080",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/63902379"
     },
     {
       "year": 2004,
@@ -912,7 +912,7 @@
       },
       "uri_deezer": "deezer://track/605095502",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/40043487"
     },
     {
       "year": 2005,
@@ -945,7 +945,7 @@
       },
       "uri_deezer": "deezer://track/2455263785",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/316460562"
     },
     {
       "year": 2006,
@@ -978,7 +978,7 @@
       },
       "uri_deezer": "deezer://track/887610",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/3608587"
     },
     {
       "year": 2006,
