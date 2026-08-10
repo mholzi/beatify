@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "party",
     "schlager",
@@ -1628,7 +1628,7 @@
       },
       "uri_deezer": "deezer://track/3136075321",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/13338421"
     },
     {
       "year": 2013,
@@ -1665,7 +1665,7 @@
       },
       "uri_deezer": "deezer://track/67322451",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/328090815"
     },
     {
       "year": 2012,
@@ -1698,7 +1698,7 @@
       },
       "uri_deezer": "deezer://track/60967849",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/78632800"
     },
     {
       "year": 2013,
@@ -1731,7 +1731,7 @@
       },
       "uri_deezer": "deezer://track/107206036",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/25520527"
     },
     {
       "year": 2013,
@@ -1768,7 +1768,7 @@
       },
       "uri_deezer": "deezer://track/72761680",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/22563728"
     },
     {
       "year": 2013,
@@ -1801,7 +1801,7 @@
       },
       "uri_deezer": "deezer://track/70580287",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/149021974"
     },
     {
       "year": 2014,
@@ -1834,7 +1834,7 @@
       },
       "uri_deezer": "deezer://track/78386143",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/29636576"
     },
     {
       "year": 2015,
@@ -1871,7 +1871,7 @@
       },
       "uri_deezer": "deezer://track/99513264",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/45184315"
     },
     {
       "year": 2015,
@@ -1904,7 +1904,7 @@
       },
       "uri_deezer": "deezer://track/101790521",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/46311575"
     },
     {
       "year": 2010,
@@ -1937,7 +1937,7 @@
       },
       "uri_deezer": "deezer://track/52434351",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/24008287"
     },
     {
       "year": 2016,
@@ -1974,7 +1974,7 @@
       },
       "uri_deezer": "deezer://track/127667789",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/71128855"
     },
     {
       "year": 2017,
@@ -2007,7 +2007,7 @@
       },
       "uri_deezer": "deezer://track/2194892797",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/78632758"
     },
     {
       "year": 2017,
@@ -2040,7 +2040,7 @@
       },
       "uri_deezer": "deezer://track/439958382",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/82403475"
     },
     {
       "year": 2017,
@@ -2073,7 +2073,7 @@
       },
       "uri_deezer": "deezer://track/139404723",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/67764267"
     },
     {
       "year": 2018,
@@ -2106,7 +2106,7 @@
       },
       "uri_deezer": "deezer://track/552345022",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/94730576"
     },
     {
       "year": 2018,
@@ -2139,7 +2139,7 @@
       },
       "uri_deezer": "deezer://track/546876802",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/114868713"
     },
     {
       "year": 2018,
@@ -2175,7 +2175,7 @@
       },
       "uri_deezer": "deezer://track/539037552",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/93276838"
     },
     {
       "year": 1982,
@@ -2208,7 +2208,7 @@
       },
       "uri_deezer": "deezer://track/2710640712",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/352032815"
     },
     {
       "year": 2018,
