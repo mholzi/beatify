@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.10",
+  "version": "0.11",
   "tags": [
     "deutschrock",
     "german rock",
@@ -411,8 +411,8 @@
       "isrc": "DEN490100010",
       "uri_apple_music": "applemusic://track/587107055",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/587107055",
+        "de": "applemusic://track/579070965",
         "gb": null,
         "fr": null,
         "es": null,
@@ -489,8 +489,8 @@
       "isrc": "ATN262105506",
       "uri_apple_music": "applemusic://track/1590190387",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/1590190387",
+        "de": "applemusic://track/1593383984",
         "gb": null,
         "fr": null,
         "es": null,
@@ -723,8 +723,8 @@
       "isrc": "DEQ022280938",
       "uri_apple_music": "applemusic://track/1771972304",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/1771972304",
+        "de": "applemusic://track/1822319032",
         "gb": null,
         "fr": null,
         "es": null,
@@ -827,8 +827,8 @@
       "isrc": "DEG129603005",
       "uri_apple_music": "applemusic://track/587163591",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/587163591",
+        "de": "applemusic://track/579066787",
         "gb": null,
         "fr": null,
         "es": null,
