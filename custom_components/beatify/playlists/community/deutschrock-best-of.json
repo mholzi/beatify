@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "deutschrock",
     "german rock",
@@ -955,7 +955,7 @@
       "artist": "Goitzsche Front",
       "title": "Schwarze Raben",
       "isrc": "DEZ901901103",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485391552",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -981,7 +981,7 @@
       "artist": "Böhse Onkelz",
       "title": "Guten Tag (Neuaufnahme 2018)",
       "isrc": "CHC711800007",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1447560496",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1111,7 +1111,7 @@
       "artist": "Frei.Wild",
       "title": "Immer höher hinaus - Still Version",
       "isrc": "DEA451314610",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1677789517",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1137,7 +1137,7 @@
       "artist": "Eickenlob",
       "title": "Heute Nacht",
       "isrc": "DEZC62591317",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1811963679",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1163,7 +1163,7 @@
       "artist": "Local Bastards",
       "title": "Rattenfänger",
       "isrc": "DEZ901900312",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1455103851",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1215,7 +1215,7 @@
       "artist": "Kärbholz",
       "title": "Lass mich fliegen",
       "isrc": "DEQ121429500",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1772371464",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1267,7 +1267,7 @@
       "artist": "KrawallBrüder",
       "title": "Auf der Flucht - Rockversion",
       "isrc": "DEZ901501941",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1738071871",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1319,7 +1319,7 @@
       "artist": "Eizbrand",
       "title": "So erheben wir das Glas",
       "isrc": "DEZ901900053",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1453867892",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1345,7 +1345,7 @@
       "artist": "Grenzenlos",
       "title": "Abenteuer Apokalypse",
       "isrc": "DEPI82508506",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1822952101",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1371,7 +1371,7 @@
       "artist": "Betontod",
       "title": "Es ist vorbei",
       "isrc": "DED831800841",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1521483481",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1449,7 +1449,7 @@
       "artist": "Frei.Wild",
       "title": "Immer unter Feuer",
       "isrc": "DEPI82508981",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1807953006",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1475,7 +1475,7 @@
       "artist": "Störte.Priester",
       "title": "Im Himmel nur Idioten",
       "isrc": "DEBL61323399",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/638885015",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1501,7 +1501,7 @@
       "artist": "KneipenTerroristen",
       "title": "Die Zeit ist ein Dieb",
       "isrc": "DEKS82307905",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1671926723",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1527,7 +1527,7 @@
       "artist": "Unherz",
       "title": "Drachenflügel",
       "isrc": "DER372008413",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1482108664",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1553,7 +1553,7 @@
       "artist": "Die Toten Hosen",
       "title": "Nur zu Besuch",
       "isrc": "DEF240712333",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/478013620",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1657,7 +1657,7 @@
       "artist": "Themenwexel",
       "title": "Regieren",
       "isrc": "DEYX82247917",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1799151015",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1761,7 +1761,7 @@
       "artist": "Kärbholz",
       "title": "Raubtier",
       "isrc": "DEQ022276215",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1774336344",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1813,7 +1813,7 @@
       "artist": "Frei.Wild",
       "title": "Geile Heimat",
       "isrc": "DEZ902000485",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1675044846",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1995,7 +1995,7 @@
       "artist": "Sündflut",
       "title": "Gewalt der Musik",
       "isrc": "DEXE41900076",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1579051018",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2047,7 +2047,7 @@
       "artist": "BRDIGUNG",
       "title": "Kraft Liebe Hoffnung",
       "isrc": "DEZ901700778",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1787729908",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2099,7 +2099,7 @@
       "artist": "Betontod",
       "title": "Nie mehr Alkohol",
       "isrc": "DED831800843",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1521483792",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
