@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 /**
- * Beatify frontend build — single source of truth for the served `.min.js` bundles.
+ * Beatify frontend build — single source of truth for the served minified assets.
  *
- * Edit the readable `.js` sources under www/js/ and run `npm run build`; never
- * hand-edit a `.min.js`. `npm run build:check` rebuilds in memory and fails if any
- * committed `.min.js` drifts from its source — that drift is what caused #1263
- * (Amazon-Music admin UI lived in admin.js but never made it into admin.min.js).
+ * Edit the readable sources under www/js/ and www/css/ and run `npm run build`;
+ * never hand-edit a `.min.js` or `.min.css`. `npm run build:check` rebuilds in
+ * memory and fails if any committed artifact drifts from its source — that drift
+ * is what caused #1263 (Amazon-Music admin UI lived in admin.js but never made it
+ * into admin.min.js).
+ *
+ * CSS was outside this guard until #2098 and drifted the same way, silently: three
+ * merged features (Sudden Death elimination UI #827, Streak-Shield #1666, Mix-tab
+ * CTA #1625) shipped their markup and JS but not their styles, because
+ * admin.html and player.html load styles.min.css.
  *
  * Usage:
  *   node scripts/build.mjs           # write all bundles to disk
@@ -17,6 +23,7 @@ import path from "node:path";
 import process from "node:process";
 
 const JS_DIR = "custom_components/beatify/www/js";
+const CSS_DIR = "custom_components/beatify/www/css";
 
 // Per-file minify: readable IIFE source → minified IIFE, 1:1.
 const MINIFY = [
@@ -38,6 +45,12 @@ const BUNDLES = [
   { entry: "admin", out: "admin.min.js", format: "esm" },
 ];
 
+// Stylesheets: readable source → minified, 1:1. Every HTML page loads the
+// .min.css, never the readable one, so anything missing here does not reach a
+// screen. Sourcemaps are emitted alongside because the committed tree has them
+// and dropping them would take away the only way to debug the shipped CSS.
+const CSS = ["styles", "analytics", "dashboard"];
+
 /** Build one target and return { path, contents } without touching disk. */
 async function compile(target) {
   const common = {
@@ -46,6 +59,17 @@ async function compile(target) {
     write: false,
     logLevel: "silent",
   };
+  if (target.kind === "css") {
+    const r = await build({
+      ...common,
+      entryPoints: [path.join(CSS_DIR, `${target.name}.css`)],
+      outfile: path.join(CSS_DIR, `${target.name}.min.css`),
+      bundle: false,
+      sourcemap: true,
+      loader: { ".css": "css" },
+    });
+    return r.outputFiles.map((f) => ({ path: f.path, contents: f.contents }));
+  }
   if (target.kind === "minify") {
     const r = await build({
       ...common,
@@ -67,17 +91,20 @@ function targets() {
   return [
     ...MINIFY.map((name) => ({ kind: "minify", name })),
     ...BUNDLES.map((b) => ({ kind: "bundle", ...b })),
+    ...CSS.map((name) => ({ kind: "css", name })),
   ];
 }
 
 async function run() {
   const check = process.argv.includes("--check");
-  const results = await Promise.all(targets().map(compile));
+  // A CSS target emits two files (the stylesheet and its sourcemap), so compile()
+  // may return an array. Flatten before anything downstream counts or writes.
+  const results = (await Promise.all(targets().map(compile))).flat();
 
   if (!check) {
     const { writeFile } = await import("node:fs/promises");
     await Promise.all(results.map((r) => writeFile(r.path, r.contents)));
-    console.log(`✅ built ${results.length} bundles`);
+    console.log(`✅ built ${results.length} artifacts`);
     return;
   }
 
@@ -94,11 +121,11 @@ async function run() {
   }
 
   if (drifted.length) {
-    console.error("❌ min.js out of sync with source — run `npm run build` and commit:");
+    console.error("❌ minified asset out of sync with source — run `npm run build` and commit:");
     for (const d of drifted) console.error(`   - ${d}`);
     process.exit(1);
   }
-  console.log(`✅ all ${results.length} bundles match source`);
+  console.log(`✅ all ${results.length} artifacts match source`);
 }
 
 run().catch((e) => {
