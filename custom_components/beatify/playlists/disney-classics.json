@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.2",
+  "version": "1.3",
   "tags": [
     "disney",
     "movies",
@@ -58,7 +58,7 @@
         "Frozen",
         "Tangled"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67177683",
       "uri_deezer": "deezer://track/136349848",
       "isrc": "USWD11677855",
       "uri_apple_music_by_region": {
@@ -101,7 +101,7 @@
         "Tangled",
         "Encanto"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67177686",
       "uri_deezer": "deezer://track/136349854",
       "isrc": "USWD11677860",
       "uri_apple_music_by_region": {
@@ -145,7 +145,7 @@
         "Pocahontas",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/67177682",
       "uri_deezer": "deezer://track/2506660671",
       "isrc": "DEUM72311526",
       "uri_apple_music_by_region": {
@@ -188,7 +188,7 @@
         "Pocahontas",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/401365775",
       "uri_deezer": "deezer://track/136349850",
       "isrc": "USWD11677859",
       "uri_apple_music_by_region": {
@@ -232,7 +232,7 @@
         "The Jungle Book",
         "Tarzan"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/112868755",
       "uri_deezer": "deezer://track/81105404",
       "isrc": "USWD10321345",
       "uri_apple_music_by_region": {
@@ -302,7 +302,7 @@
         "Beauty and the Beast",
         "Aladdin"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34186764",
       "uri_deezer": "deezer://track/3117869",
       "isrc": "USWD10220758",
       "uri_apple_music_by_region": {
