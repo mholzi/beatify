@@ -149,6 +149,14 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         rampup_order_enabled = bool(
             body.get("rampup_order_enabled", False)
         )  # Issue #1726
+        # #1475: 0 or missing means "play every song" — the historic behaviour.
+        # Negative or unparseable values fall back to 0 instead of raising: a
+        # malformed payload must not block a party. The ten-round floor is
+        # applied by PlaylistManager, not here.
+        try:
+            max_rounds = max(0, int(body.get("max_rounds", 0) or 0))
+        except (TypeError, ValueError):
+            max_rounds = 0
         finale_double_enabled = bool(
             body.get("finale_double_enabled", False)
         )  # Issue #1725
@@ -402,6 +410,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             "difficulty_bet_scaling_enabled": difficulty_bet_scaling_enabled,  # Issue #1727
             "sabotage_enabled": sabotage_enabled,  # Issue #1665
             "reveal_auto_advance": reveal_auto_advance,  # #1012
+            "max_rounds": max_rounds,  # #1475
         }
         if round_duration is not None:
             create_kwargs["round_duration"] = round_duration

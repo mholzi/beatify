@@ -1031,6 +1031,11 @@
       "sub": "Standaardinstellingen werken voor de meeste feesten. Pas aan indien gewenst.",
       "difficulty": "Moeilijkheid",
       "timer": "Tijd per ronde",
+      "rounds": "Aantal rondes",
+      "roundsAll": "Alle",
+      "roundsCustom": "Eigen aantal",
+      "roundsCustomLabel": "rondes (min. 10)",
+      "roundsHint": "ca. {min} min voor {rounds} rondes",
       "autoAdvance": "Auto-doorgaan bij reveal",
       "autoAdvanceOff": "Uit",
       "language": "Aankondigingstaal",
@@ -1102,7 +1107,8 @@
       "service": "Service",
       "playlist": "Playlist",
       "mode": "Modus",
-      "atmosphere": "Sfeer"
+      "atmosphere": "Sfeer",
+      "rounds": "rondes"
     }
   },
   "onboarding": {

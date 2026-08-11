@@ -10314,6 +10314,35 @@ body.wizard-active .modal { z-index: calc(var(--z-overlay) + 10); }
     min-height: 1.5em;
 }
 
+/* #1475 — number field revealed by the "Custom" round-count chip */
+.wiz-rounds-custom {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.wiz-rounds-custom input {
+    width: 6em;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+}
+
+.wiz-rounds-custom input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+}
+
+.wiz-rounds-custom span {
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-sm);
+}
+
 /* Wizard Step 5 — expandable detail panels under level-up toggles */
 .wiz-lvl-card {
     flex-direction: column;

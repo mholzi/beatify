@@ -125,6 +125,7 @@ class GameSetupMixin:
         comeback_token_enabled: bool = False,
         difficulty_bet_scaling_enabled: bool = False,
         sabotage_enabled: bool = False,
+        max_rounds: int = 0,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -195,7 +196,7 @@ class GameSetupMixin:
         # provider). #1726: when ramp-up ordering is opted in, the manager also
         # gets a difficulty-lookup so it can arrange the songs into an arc.
         playlist_manager = self._build_playlist_manager(
-            songs, provider, storefront, rampup_order_enabled
+            songs, provider, storefront, rampup_order_enabled, max_rounds
         )
 
         # #709: if the chosen provider has zero playable songs, fail fast with
@@ -230,6 +231,10 @@ class GameSetupMixin:
         self._media_player_service = None
         self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
         self.players = {}
+
+        # #1475: gewaehlte Rundenzahl merken (0 = alle). Der Rematch liest sie
+        # aus `preserved` zurueck, damit die Revanche gleich lang ist.
+        self.max_rounds = max_rounds
 
         # Store provider setting (Story 17.2)
         self.provider = provider
@@ -463,6 +468,7 @@ class GameSetupMixin:
             "comeback_token_enabled": self.comeback_token_enabled,  # #1724
             "difficulty_bet_scaling_enabled": self.difficulty_bet_scaling_enabled,  # #1727
             "sabotage_enabled": self.sabotage_enabled,  # #1665
+            "max_rounds": self.max_rounds,  # #1475
         }
 
         self._reset_game_internals()
@@ -480,11 +486,15 @@ class GameSetupMixin:
         # HA's country config changed) and re-attach it.
         self.storefront = self._detect_storefront()
         # #1726: rebuild with the same ramp-up choice the host made at create.
+        # #1475: die Rundenzahl gehoert zur Spielkonfiguration, nicht zur
+        # einzelnen Partie. Ohne diese Zeile waere die Revanche wieder ueber
+        # die volle Playlist gelaufen, obwohl der Gastgeber 20 eingestellt hat.
         self._playlist_manager = self._build_playlist_manager(
             preserved["songs"],
             preserved["provider"],
             self.storefront,
             preserved["rampup_order_enabled"],
+            preserved["max_rounds"],
         )
         # #1377: derive total_rounds from the filtered/deduped playable pool
         # (exactly like create_game, state_setup.py), not the raw song list.
@@ -523,6 +533,7 @@ class GameSetupMixin:
         provider: str,
         storefront: str | None,
         rampup_order_enabled: bool,
+        max_rounds: int = 0,
     ) -> PlaylistManager:
         """Construct a :class:`PlaylistManager`, wiring ramp-up ordering (#1726).
 
@@ -535,7 +546,9 @@ class GameSetupMixin:
         from .playlist import SONG_ORDER_RAMPUP  # noqa: PLC0415
 
         if not rampup_order_enabled:
-            return PlaylistManager(songs, provider, storefront=storefront)
+            return PlaylistManager(
+                songs, provider, storefront=storefront, max_rounds=max_rounds
+            )
 
         def _difficulty_lookup(uri: str) -> int | None:
             rating = self.get_song_difficulty(uri)
@@ -547,6 +560,7 @@ class GameSetupMixin:
             storefront=storefront,
             song_order=SONG_ORDER_RAMPUP,
             difficulty_lookup=_difficulty_lookup,
+            max_rounds=max_rounds,
         )
 
     def _detect_storefront(self) -> str | None:

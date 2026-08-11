@@ -367,6 +367,8 @@ class GameState(
 
         # Issue #1726: Ramp-up (difficulty-arc) song ordering
         self.rampup_order_enabled: bool = False
+        # #1475: 0 = alle spielbaren Songs (historisches Verhalten).
+        self.max_rounds: int = 0
 
         # Issue #827: Sudden Death mode (last-place player eliminated per round)
         self.sudden_death_mode: bool = False

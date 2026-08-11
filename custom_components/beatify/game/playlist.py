@@ -51,6 +51,13 @@ _URI_FIELDS = [
 SONG_ORDER_RANDOM = "random"
 SONG_ORDER_RAMPUP = "rampup"
 
+# Smallest game a round cap may produce (#1475). A flat number rather than a
+# formula over the player count, because the wizard sets this before anyone has
+# joined — guests enter in the lobby, long after Step 4. Below ten rounds the
+# difficulty ramp-up has nothing to ramp over and a single lucky guess decides
+# the winner.
+MIN_ROUNDS = 10
+
 # Difficulty assumed for songs with no known rating (< MIN_PLAYS_FOR_DIFFICULTY
 # plays / no stats). 2 == "medium" on the 1..4 star scale (#1726).
 _UNKNOWN_DIFFICULTY = 2
@@ -81,6 +88,7 @@ class PlaylistManager:
         storefront: str | None = None,
         song_order: str = SONG_ORDER_RANDOM,
         difficulty_lookup: Callable[[str], int | None] | None = None,
+        max_rounds: int = 0,
     ) -> None:
         """Initialize with list of songs from loaded playlists.
 
@@ -96,6 +104,10 @@ class PlaylistManager:
             difficulty_lookup: Optional callable mapping a resolved song URI to
                 its known difficulty in stars (1..4) or ``None`` when there is
                 not enough data. Only consulted when ``song_order="rampup"``.
+            max_rounds: Cap the playable pool at this many songs (#1475).
+                ``0`` (default) keeps every playable song, which is the
+                historic behaviour. Values below :data:`MIN_ROUNDS` are raised
+                to it; a pool smaller than the cap is left untouched.
 
         """
         self._provider = provider
@@ -138,6 +150,26 @@ class PlaylistManager:
 
         self._buckets = buckets
         self._songs = [s for bucket in buckets.values() for s in bucket]
+
+        # #1475: cut the pool down BEFORE any ordering is built.
+        #
+        # Two decisions live here:
+        #
+        # * **Before the sort.** Building the ramp-up arc first and truncating
+        #   afterwards would remove exactly the hard end of it — the arc would
+        #   run easy -> medium and stop. Capping the pool instead means the arc
+        #   spans the songs that actually get played.
+        # * **Sample, not the first N.** ``buckets`` is grouped by playlist, so
+        #   a plain ``[:n]`` would serve only the first playlist of a
+        #   multi-playlist selection. Sampling keeps the mix.
+        self._max_rounds = max(max_rounds, MIN_ROUNDS) if max_rounds else 0
+        if self._max_rounds and len(self._songs) > self._max_rounds:
+            self._songs = random.sample(self._songs, self._max_rounds)
+            _LOGGER.info(
+                "Round cap active: %d of %d playable songs will be played (#1475)",
+                self._max_rounds,
+                total_count,
+            )
         self._multi_playlist = len(buckets) > 1
 
         deduped = sum(len(v) for v in buckets.values())

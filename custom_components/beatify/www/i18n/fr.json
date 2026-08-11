@@ -1031,6 +1031,11 @@
       "sub": "Les réglages par défaut conviennent pour la plupart. Ajuste si tu veux.",
       "difficulty": "Difficulté",
       "timer": "Temps par manche",
+      "rounds": "Nombre de manches",
+      "roundsAll": "Toutes",
+      "roundsCustom": "Personnalisé",
+      "roundsCustomLabel": "manches (min. 10)",
+      "roundsHint": "env. {min} min pour {rounds} manches",
       "autoAdvance": "Avance auto au reveal",
       "autoAdvanceOff": "Désactivé",
       "language": "Langue des annonces",
@@ -1102,7 +1107,8 @@
       "service": "Service",
       "playlist": "Playlist",
       "mode": "Mode",
-      "atmosphere": "Ambiance"
+      "atmosphere": "Ambiance",
+      "rounds": "manches"
     }
   },
   "onboarding": {

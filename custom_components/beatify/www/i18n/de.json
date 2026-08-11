@@ -1031,6 +1031,11 @@
       "sub": "Standardwerte passen für die meisten Partys. Anpassen optional.",
       "difficulty": "Schwierigkeit",
       "timer": "Zeit pro Runde",
+      "rounds": "Anzahl Runden",
+      "roundsAll": "Alle",
+      "roundsCustom": "Eigene Zahl",
+      "roundsCustomLabel": "Runden (min. 10)",
+      "roundsHint": "ca. {min} Min für {rounds} Runden",
       "autoAdvance": "Auto-Weiter im Reveal",
       "autoAdvanceOff": "Aus",
       "language": "Ansagesprache",
@@ -1102,7 +1107,8 @@
       "service": "Musikdienst",
       "playlist": "Playlist",
       "mode": "Modus",
-      "atmosphere": "Atmosphäre"
+      "atmosphere": "Atmosphäre",
+      "rounds": "Runden"
     }
   },
   "onboarding": {

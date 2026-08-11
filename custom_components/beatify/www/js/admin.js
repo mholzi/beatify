@@ -1249,6 +1249,23 @@ async function startGame() {
             }
         } catch (e) { /* private mode / malformed — keep default false */ }
 
+        // #1475: round count. Same situation as suddenDeathMode above — the
+        // wizard owns the setting and adminState has no field for it, so read
+        // it from localStorage. 0 means "all songs", which is the behaviour
+        // every game had before this issue, so it is also the fallback for a
+        // missing, malformed or nonsensical value.
+        var maxRounds = 0;
+        try {
+            var _mrRaw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+            if (_mrRaw) {
+                var _mrSettings = JSON.parse(_mrRaw);
+                var _mr = _mrSettings && _mrSettings.maxRounds;
+                if (typeof _mr === 'number' && Number.isFinite(_mr) && _mr > 0) {
+                    maxRounds = Math.floor(_mr);
+                }
+            }
+        } catch (e) { /* private mode / malformed — keep default 0 (all songs) */ }
+
         const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1257,6 +1274,7 @@ async function startGame() {
                 media_player: adminState.selectedMediaPlayer?.entityId,
                 language: adminState.selectedLanguage,
                 round_duration: adminState.selectedDuration,  // Story 13.1
+                max_rounds: maxRounds,  // Issue #1475
                 reveal_auto_advance: adminState.revealAutoAdvance,  // #1012
                 difficulty: adminState.selectedDifficulty,  // Story 14.1
                 provider: adminState.selectedProvider,  // Story 17.2

@@ -125,6 +125,16 @@
                     <div id="wiz-timer" class="wiz-chip-group"></div>
                 </div>
                 <div class="wiz-field">
+                    <label class="wiz-field-label" data-i18n="wizard.step4.rounds">Number of rounds</label>
+                    <div id="wiz-rounds" class="wiz-chip-group"></div>
+                    <div id="wiz-rounds-custom" class="wiz-rounds-custom hidden">
+                        <input type="number" min="10" step="1" inputmode="numeric"
+                               aria-labelledby="wiz-rounds-custom-label">
+                        <span id="wiz-rounds-custom-label" data-i18n="wizard.step4.roundsCustomLabel">rounds (min. 10)</span>
+                    </div>
+                    <div id="wiz-rounds-hint" class="wiz-difficulty-hint"></div>
+                </div>
+                <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.autoAdvance">Auto-advance reveal</label>
                     <div id="wiz-autoadvance" class="wiz-chip-group"></div>
                 </div>

@@ -1031,6 +1031,11 @@
       "sub": "Los valores por defecto funcionan para la mayoría. Ajusta si quieres.",
       "difficulty": "Dificultad",
       "timer": "Tiempo por ronda",
+      "rounds": "Número de rondas",
+      "roundsAll": "Todas",
+      "roundsCustom": "Personalizado",
+      "roundsCustomLabel": "rondas (mín. 10)",
+      "roundsHint": "aprox. {min} min para {rounds} rondas",
       "autoAdvance": "Avance automático en revelación",
       "autoAdvanceOff": "Desactivado",
       "language": "Idioma de anuncios",
@@ -1102,7 +1107,8 @@
       "service": "Servicio",
       "playlist": "Lista",
       "mode": "Modo",
-      "atmosphere": "Ambiente"
+      "atmosphere": "Ambiente",
+      "rounds": "rondas"
     }
   },
   "onboarding": {

@@ -1031,6 +1031,11 @@
       "sub": "Defaults work for most parties. Tweak if you want.",
       "difficulty": "Difficulty",
       "timer": "Time per round",
+      "rounds": "Number of rounds",
+      "roundsAll": "All",
+      "roundsCustom": "Custom",
+      "roundsCustomLabel": "rounds (min. 10)",
+      "roundsHint": "approx. {min} min for {rounds} rounds",
       "autoAdvance": "Auto-advance reveal",
       "autoAdvanceOff": "Off",
       "language": "Announcement language",
@@ -1102,7 +1107,8 @@
       "service": "Service",
       "playlist": "Playlist",
       "mode": "Mode",
-      "atmosphere": "Atmosphere"
+      "atmosphere": "Atmosphere",
+      "rounds": "rounds"
     }
   },
   "onboarding": {
