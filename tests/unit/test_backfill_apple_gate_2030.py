@@ -100,7 +100,7 @@ def test_artist_containment_is_one_directional() -> None:
     "apple_title",
     [
         'Zwei Seelen (aus "Die Schöne und das Biest" deutscher Film-Soundtrack)',
-        'Endlich sehe ich das Licht'
+        "Endlich sehe ich das Licht"
         ' (aus "Rapunzel – Neu verföhnt" deutscher Film-Soundtrack)',
         'Ich kann es kaum erwarten (aus "Hercules" deutscher Film-Soundtrack)',
         'Sei ein Mann (aus "Mulan" deutscher Film-Soundtrack)',
