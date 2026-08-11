@@ -124,6 +124,8 @@
     "eliminatedRound": "Eliminado · Ronda {round}",
     "watchingSidelines": "Mirando desde la banda",
     "lastOneStanding": "Último en Pie",
+    "bestOfSurvivors": "Mejor de los Supervivientes",
+    "survivorsAfterRounds": "{count} siguen en pie tras {rounds} rondas",
     "cutLine": "LÍNEA DE CORTE",
     "outRound": "Fuera · R{round}",
     "finalShowdown": "FINAL — MUERTE SÚBITA",

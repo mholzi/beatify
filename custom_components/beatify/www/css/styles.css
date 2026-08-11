@@ -17020,6 +17020,14 @@ body.theme-dark .your-result-stats .stat-value {
     font-size: var(--font-size-xl);
     color: var(--color-text-white);
 }
+/* #2105: the line that explains a points win — deliberately quiet, it is
+   context for the name above it, not a second headline. */
+.sd-last-standing__sub {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+}
 
 @media (prefers-reduced-motion: reduce) {
     .sd-out-overlay.show { animation: none; }

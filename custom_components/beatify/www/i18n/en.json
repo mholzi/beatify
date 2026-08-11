@@ -124,6 +124,8 @@
     "eliminatedRound": "Eliminated · Round {round}",
     "watchingSidelines": "Watching from the sidelines",
     "lastOneStanding": "Last One Standing",
+    "bestOfSurvivors": "Best of the Survivors",
+    "survivorsAfterRounds": "{count} still standing after {rounds} rounds",
     "cutLine": "CUT LINE",
     "outRound": "Out · R{round}",
     "finalShowdown": "FINAL — SUDDEN DEATH",

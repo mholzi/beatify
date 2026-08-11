@@ -1893,72 +1893,114 @@
     }
 
     /**
-     * Who, if anyone, may be crowned "Last One Standing" on the END screen.
+     * How a Sudden Death game ended, and who it ended in favour of.
      *
-     * Mirrors the backend award rule in `game/scoring.py`
-     * (`_superlative_last_one_standing`): **exactly one survivor and at least
-     * one eliminated player** — a Sudden Death game that actually ran to its
-     * 1v1 conclusion. Returns the survivor's name, or null when the hero must
-     * stay hidden.
+     * Two endings exist, and until #2105 the screen only had words for one:
      *
-     * Previously this took `survivors[0]` whenever Sudden Death was on. A game
-     * that ends by round exhaustion still has two or more players alive, and
-     * the screen then crowned the top-scoring survivor while others were still
-     * in it — contradicting both the withheld backend award and the leaderboard
-     * rendered right below. `compute_winners` has handled that case correctly
-     * since #1749; only this renderer had not caught up.
+     * - `sole` — the game ran to its 1v1 conclusion. Exactly one survivor and
+     *   at least one eliminated player, the same rule the backend award
+     *   `_superlative_last_one_standing` (game/scoring.py) enforces.
+     * - `points` — the rounds ran out with two or more players still alive.
+     *   `compute_winners` (game/state_serialization.py) then crowns the
+     *   top-scoring *survivor*, and the final leaderboard renders survivors
+     *   first, so `survivors[0]` is that player.
      *
-     * Reachable in practice since the selectable round count (#1475): before
-     * it, a capped finish required the playlist to run out. Elimination starts
-     * in round 2 and takes one player per round, so N players need N rounds —
-     * a cap of 10 leaves 11 players with two survivors.
+     * Returns null when neither applies and the hero must stay hidden: Sudden
+     * Death off, nobody ever eliminated (including a solo game, where one
+     * survivor is not an achievement), or no identifiable name.
      *
-     * The single-survivor rule also covers a solo game, where nobody is ever
-     * eliminated: one survivor, no eliminations, no award.
+     * Both endings are reachable in practice since the selectable round count
+     * (#1475). Elimination starts in round 2 and takes one player per round, so
+     * N players need N rounds — a cap of 10 leaves 11 players with two
+     * survivors. Before #1475 the `points` ending required the playlist to run
+     * out.
      *
      * @param {Object} data - END state data
-     * @returns {?string} survivor name, or null when the hero must stay hidden
+     * @returns {?{kind: string, name: string, survivors: number, rounds: number}}
      */
-    function suddenDeathSurvivorName(data) {
+    function suddenDeathEnding(data) {
         if (!data || !data.sudden_death_mode) return null;
 
+        var stats = data.game_stats || {};
+        var rounds = stats.total_rounds != null ? stats.total_rounds : (data.round || 0);
         var leaderboard = data.leaderboard || [];
+
         if (leaderboard.length) {
             var survivors = leaderboard.filter(function(e) { return !e.eliminated; });
             var eliminated = leaderboard.filter(function(e) { return e.eliminated; });
-            if (survivors.length !== 1 || !eliminated.length) return null;
-            return survivors[0].name || null;
+            // Sudden Death armed but never cut anyone — an ordinary game.
+            if (!eliminated.length || !survivors.length) return null;
+            var name = survivors[0].name;
+            if (!name) return null;
+            return {
+                kind: survivors.length === 1 ? 'sole' : 'points',
+                name: name,
+                survivors: survivors.length,
+                rounds: rounds
+            };
         }
 
-        // No usable leaderboard — fall back to the award, which the backend
-        // emits under exactly the same rule, so it needs no re-check here.
+        // No usable leaderboard — fall back to the award. The backend emits it
+        // only for a genuine sole survivor, so it needs no re-check here, but
+        // it also cannot describe the `points` ending.
         var awards = data.superlatives || [];
         var award = awards.find(function(a) { return a.id === 'last_one_standing'; });
-        return (award && award.player_name) || null;
+        if (!award || !award.player_name) return null;
+        return { kind: 'sole', name: award.player_name, survivors: 1, rounds: rounds };
     }
 
     /**
-     * Issue #827: END "Last One Standing" hero (design S6-C). Shown above the
-     * podium/superlatives only in Sudden Death mode, and only for a genuine
-     * sole survivor — see `suddenDeathSurvivorName` for the rule. Otherwise the
-     * END screen falls back to the normal podium.
+     * Issue #827 + #2105: END hero above the podium, in Sudden Death only.
+     *
+     * A sole survivor gets "Last One Standing". A game whose rounds ran out
+     * with several players alive gets its own closing line instead — the win
+     * was on points among the survivors, and saying "Last One Standing" there
+     * would contradict the leaderboard right below. The sub-line carries the
+     * number that explains it: how many were still standing, after how many
+     * rounds.
+     *
      * @param {Object} data - END state data
      */
     function renderSuddenDeathLastStanding(data) {
         var hero = document.getElementById('sd-last-standing');
         if (!hero) return;
 
-        var winner = suddenDeathSurvivorName(data);
-        if (!winner) {
+        var ending = suddenDeathEnding(data);
+        if (!ending) {
             hero.classList.add('hidden');
             return;
         }
 
+        var sole = ending.kind === 'sole';
+
         var headlineEl = hero.querySelector('.sd-last-standing__headline');
-        if (headlineEl) headlineEl.textContent = utils.t('game.lastOneStanding', 'Last One Standing');
+        if (headlineEl) {
+            headlineEl.textContent = sole
+                ? utils.t('game.lastOneStanding', 'Last One Standing')
+                : utils.t('game.bestOfSurvivors', 'Best of the Survivors');
+        }
 
         var winnerEl = document.getElementById('sd-last-standing-winner');
-        if (winnerEl) winnerEl.textContent = winner;
+        if (winnerEl) winnerEl.textContent = ending.name;
+
+        var subEl = document.getElementById('sd-last-standing-sub');
+        if (subEl) {
+            if (sole) {
+                subEl.textContent = '';
+                subEl.classList.add('hidden');
+            } else {
+                subEl.textContent = utils.t('game.survivorsAfterRounds', {
+                    count: ending.survivors,
+                    rounds: ending.rounds
+                });
+                subEl.classList.remove('hidden');
+            }
+        }
+
+        // The trophy belongs to the 1v1 finish; a points win gets the medal, so
+        // the two endings are distinguishable before anyone reads the words.
+        var trophyEl = hero.querySelector('.sd-last-standing__trophy');
+        if (trophyEl) trophyEl.textContent = sole ? '🏆' : '🥇';
 
         hero.classList.remove('hidden');
     }

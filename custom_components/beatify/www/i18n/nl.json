@@ -124,6 +124,8 @@
     "eliminatedRound": "Afgevallen · Ronde {round}",
     "watchingSidelines": "Je kijkt vanaf de zijlijn",
     "lastOneStanding": "Laatste Overgeblevene",
+    "bestOfSurvivors": "Beste van de Overgeblevenen",
+    "survivorsAfterRounds": "{count} nog in het spel na {rounds} rondes",
     "cutLine": "AFVALLIJN",
     "outRound": "Eruit · R{round}",
     "finalShowdown": "FINALE — SUDDEN DEATH",

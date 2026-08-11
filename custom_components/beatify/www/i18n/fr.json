@@ -124,6 +124,8 @@
     "eliminatedRound": "Éliminé · Manche {round}",
     "watchingSidelines": "Tu regardes depuis le banc",
     "lastOneStanding": "Dernier en Lice",
+    "bestOfSurvivors": "Meilleur des Survivants",
+    "survivorsAfterRounds": "{count} encore en lice après {rounds} manches",
     "cutLine": "LIGNE DE COUPE",
     "outRound": "Sorti · M{round}",
     "finalShowdown": "FINALE — MORT SUBITE",
