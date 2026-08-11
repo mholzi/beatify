@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "world-cup",
     "fifa",
@@ -8,7 +8,6 @@
     "international",
     "anthems"
   ],
-  "notes": "7 Songs haben bewusst keine Spotify-URI (`uri`): die offiziellen WM-Hymnen 1962, 1974, 1982, 1986, 1994, 1998 und 2002 sind bei Spotify nicht verfuegbar — am 11.08.2026 einzeln ueber Odesli geprueft, kein Treffer. Sie sind KEIN Datenfehler und sollen nicht entfernt werden: fuer YouTube-, Apple-, Tidal- und Deezer-Nutzer sind sie spielbar, und ohne sie haette die Playlist Luecken in ihrem eigenen Konzept. Fuer Spotify-Nutzer filtert filter_songs_for_provider sie vor der Auswahl aus (game/playlist.py), es entstehen also keine toten Runden. Nebenwirkung: da backfill_provider_uris.py ueber die Spotify-URI einsteigt und Songs ohne sie ueberspringt, erreichen die Backfill-Agenten diese 7 Songs nie — fehlende Provider-URIs muessen hier von Hand nachgetragen werden.",
   "songs": [
     {
       "year": 1962,
