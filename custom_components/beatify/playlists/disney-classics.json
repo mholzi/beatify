@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "disney",
     "movies",
@@ -777,7 +777,7 @@
         "The Princess and the Frog",
         "Hercules"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47941606",
       "uri_deezer": "deezer://track/145187396",
       "isrc": "USWD10220402",
       "uri_apple_music_by_region": {
@@ -1217,7 +1217,7 @@
         "The Prince of Egypt",
         "Sinbad"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37080956",
       "uri_deezer": "deezer://track/120917650",
       "isrc": "USWD10423197",
       "uri_apple_music_by_region": {
@@ -1287,7 +1287,7 @@
         "The Lion King",
         "Mulan"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47940926",
       "uri_deezer": "deezer://track/3118641",
       "isrc": "USWD10423005",
       "uri_apple_music_by_region": {
@@ -1329,7 +1329,7 @@
         "Moana",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47940921",
       "uri_deezer": "deezer://track/122832110",
       "isrc": "USWD10220442",
       "uri_apple_music_by_region": {
@@ -1391,7 +1391,7 @@
         "Mulan",
         "Tarzan"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92315569",
       "uri_deezer": "deezer://track/531228861",
       "isrc": "USWD10220438",
       "uri_apple_music_by_region": {
@@ -1435,7 +1435,7 @@
         "Aladdin",
         "The Little Mermaid"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92315574",
       "uri_deezer": "deezer://track/957383232",
       "isrc": "JPE562011237",
       "uri_apple_music_by_region": {
@@ -1479,7 +1479,7 @@
         "The Lion King",
         "Aladdin"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92315573",
       "uri_deezer": "deezer://track/3272583431",
       "isrc": "USNLR2500155",
       "uri_apple_music_by_region": {
@@ -1548,7 +1548,7 @@
         "The Lion King",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/95839099",
       "uri_deezer": "deezer://track/561875132",
       "isrc": "USWD10110146",
       "uri_apple_music_by_region": {
@@ -1589,7 +1589,7 @@
         "The Jungle Book",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/95839096",
       "uri_deezer": "deezer://track/561875072",
       "isrc": "USWD10110151",
       "uri_apple_music_by_region": {
@@ -1660,7 +1660,7 @@
         "The Little Mermaid",
         "Aladdin"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71411186",
       "uri_deezer": "deezer://track/3913809571",
       "isrc": "QZHN72636555",
       "uri_apple_music_by_region": {
@@ -1713,7 +1713,7 @@
         "The Aristocats",
         "Ratatouille"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34187027",
       "uri_deezer": "deezer://track/2250629177",
       "isrc": "AUMEV2344379",
       "uri_apple_music_by_region": {
@@ -1755,7 +1755,7 @@
         "The Little Mermaid",
         "Aladdin"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71411192",
       "uri_deezer": "deezer://track/2320097",
       "isrc": "USMC60400031",
       "uri_apple_music_by_region": {
@@ -1799,7 +1799,7 @@
         "Hercules",
         "The Little Mermaid"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/71411195",
       "uri_deezer": "deezer://track/2381495915",
       "isrc": "USWD10220401",
       "uri_apple_music_by_region": {
@@ -1852,7 +1852,7 @@
         "Beauty and the Beast",
         "Cinderella"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79143414",
       "uri_deezer": "deezer://track/144130196",
       "isrc": "USWD11778936",
       "uri_apple_music_by_region": {
@@ -1893,7 +1893,7 @@
         "Frozen",
         "Moana"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34916434",
       "uri_deezer": "deezer://track/626144342",
       "isrc": "FR10S1933882",
       "uri_apple_music_by_region": {
@@ -1950,7 +1950,7 @@
         "Frozen",
         "The Princess and the Frog"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34916440",
       "uri_deezer": "deezer://track/7599985",
       "isrc": "USWD11054842",
       "uri_apple_music_by_region": {
@@ -1994,7 +1994,7 @@
         "Frozen",
         "Brave"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34916438",
       "uri_deezer": "deezer://track/7599983",
       "isrc": "USWD11054841",
       "uri_apple_music_by_region": {
