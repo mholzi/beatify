@@ -1893,31 +1893,62 @@
     }
 
     /**
+     * Who, if anyone, may be crowned "Last One Standing" on the END screen.
+     *
+     * Mirrors the backend award rule in `game/scoring.py`
+     * (`_superlative_last_one_standing`): **exactly one survivor and at least
+     * one eliminated player** — a Sudden Death game that actually ran to its
+     * 1v1 conclusion. Returns the survivor's name, or null when the hero must
+     * stay hidden.
+     *
+     * Previously this took `survivors[0]` whenever Sudden Death was on. A game
+     * that ends by round exhaustion still has two or more players alive, and
+     * the screen then crowned the top-scoring survivor while others were still
+     * in it — contradicting both the withheld backend award and the leaderboard
+     * rendered right below. `compute_winners` has handled that case correctly
+     * since #1749; only this renderer had not caught up.
+     *
+     * Reachable in practice since the selectable round count (#1475): before
+     * it, a capped finish required the playlist to run out. Elimination starts
+     * in round 2 and takes one player per round, so N players need N rounds —
+     * a cap of 10 leaves 11 players with two survivors.
+     *
+     * The single-survivor rule also covers a solo game, where nobody is ever
+     * eliminated: one survivor, no eliminations, no award.
+     *
+     * @param {Object} data - END state data
+     * @returns {?string} survivor name, or null when the hero must stay hidden
+     */
+    function suddenDeathSurvivorName(data) {
+        if (!data || !data.sudden_death_mode) return null;
+
+        var leaderboard = data.leaderboard || [];
+        if (leaderboard.length) {
+            var survivors = leaderboard.filter(function(e) { return !e.eliminated; });
+            var eliminated = leaderboard.filter(function(e) { return e.eliminated; });
+            if (survivors.length !== 1 || !eliminated.length) return null;
+            return survivors[0].name || null;
+        }
+
+        // No usable leaderboard — fall back to the award, which the backend
+        // emits under exactly the same rule, so it needs no re-check here.
+        var awards = data.superlatives || [];
+        var award = awards.find(function(a) { return a.id === 'last_one_standing'; });
+        return (award && award.player_name) || null;
+    }
+
+    /**
      * Issue #827: END "Last One Standing" hero (design S6-C). Shown above the
-     * podium/superlatives only in Sudden Death mode. The survivor is the single
-     * non-eliminated entry in the final leaderboard, or — failing that — the
-     * player_name from the last_one_standing superlative.
+     * podium/superlatives only in Sudden Death mode, and only for a genuine
+     * sole survivor — see `suddenDeathSurvivorName` for the rule. Otherwise the
+     * END screen falls back to the normal podium.
      * @param {Object} data - END state data
      */
     function renderSuddenDeathLastStanding(data) {
         var hero = document.getElementById('sd-last-standing');
         if (!hero) return;
 
-        if (!data.sudden_death_mode) {
-            hero.classList.add('hidden');
-            return;
-        }
-
-        var leaderboard = data.leaderboard || [];
-        var survivors = leaderboard.filter(function(e) { return !e.eliminated; });
-        var winner = survivors.length ? survivors[0].name : null;
-
-        // Fallback to the last_one_standing superlative's player_name.
-        if (!winner && data.superlatives) {
-            var award = data.superlatives.find(function(a) { return a.id === 'last_one_standing'; });
-            if (award) winner = award.player_name;
-        }
-
+        var winner = suddenDeathSurvivorName(data);
         if (!winner) {
             hero.classList.add('hidden');
             return;
