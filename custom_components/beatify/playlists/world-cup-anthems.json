@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "world-cup",
     "fifa",
@@ -8,6 +8,7 @@
     "international",
     "anthems"
   ],
+  "notes": "7 Songs haben bewusst keine Spotify-URI (`uri`): die offiziellen WM-Hymnen 1962, 1974, 1982, 1986, 1994, 1998 und 2002 sind bei Spotify nicht verfuegbar — am 11.08.2026 einzeln ueber Odesli geprueft, kein Treffer. Sie sind KEIN Datenfehler und sollen nicht entfernt werden: fuer YouTube-, Apple-, Tidal- und Deezer-Nutzer sind sie spielbar, und ohne sie haette die Playlist Luecken in ihrem eigenen Konzept. Fuer Spotify-Nutzer filtert filter_songs_for_provider sie vor der Auswahl aus (game/playlist.py), es entstehen also keine toten Runden. Nebenwirkung: da backfill_provider_uris.py ueber die Spotify-URI einsteigt und Songs ohne sie ueberspringt, erreichen die Backfill-Agenten diese 7 Songs nie — fehlende Provider-URIs muessen hier von Hand nachgetragen werden.",
   "songs": [
     {
       "year": 1962,
@@ -31,7 +32,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/962309785",
       "uri_youtube_music": "https://music.youtube.com/watch?v=e_yafwjcf-w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/41490418",
       "uri_deezer": "deezer://track/3245977",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -109,7 +110,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1443376595",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HYDN6yq8nm4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/13342489",
       "uri_deezer": "deezer://track/7558171",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -294,8 +295,8 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/359615452",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4fAy7F2wuCk",
-      "uri_tidal": null,
-      "uri_deezer": null,
+      "uri_tidal": "tidal://track/17819979",
+      "uri_deezer": "deezer://track/15209177",
       "isrc": null,
       "uri_apple_music_by_region": {}
     },
