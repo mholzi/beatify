@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "polish",
     "rock"
@@ -121,7 +121,7 @@
       "artist": "KARAŚ/ROGUCKI",
       "title": "Kilka westchnień",
       "isrc": "PLA811900403",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1495625502",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1495625502",
@@ -251,7 +251,7 @@
       "artist": "Jędrzej Wise, Nosowska",
       "title": "Bez oka miś",
       "isrc": "PL31T2600468",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6764868482",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/6764868482",
@@ -355,7 +355,7 @@
       "artist": "ZIEMBUL",
       "title": "Działam",
       "isrc": "PLF242616662",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6770594246",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -381,7 +381,7 @@
       "artist": "Stanisław Soyka, Janusz Iwanski \"yanina\"",
       "title": "Tolerancja / Na Miły Bóg",
       "isrc": "PLA559100101",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/696658706",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -511,7 +511,7 @@
       "artist": "Małgorzata Ostrowska",
       "title": "Szklana pogoda",
       "isrc": "PLA140116010",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/767893096",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -615,7 +615,7 @@
       "artist": "Lao Che",
       "title": "Wojenka",
       "isrc": "PLB821500003",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1469573675",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -719,7 +719,7 @@
       "artist": "Sztywny Pal Azji",
       "title": "Wieża radości, wieża samotności",
       "isrc": "PLB171101279",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484540381",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1485674445",
@@ -745,7 +745,7 @@
       "artist": "Urszula",
       "title": "Luz - Blues, W Niebie Same Dziury",
       "isrc": "PLUM71400176",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1456381490",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1442357953",
@@ -1005,7 +1005,7 @@
       "artist": "Human",
       "title": "Polski",
       "isrc": "PLB080400112",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1394567916",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1083,7 +1083,7 @@
       "artist": "T.Love",
       "title": "Warszawa - 2008 Remaster",
       "isrc": "PLA550800157",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/904039503",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1109,7 +1109,7 @@
       "artist": "Kasia Lins",
       "title": "Śmierć w bikini",
       "isrc": "PLUM72500360",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1834635620",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1135,7 +1135,7 @@
       "artist": "Kult",
       "title": "Arahja",
       "isrc": "PLE781200093",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1097923589",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1161,7 +1161,7 @@
       "artist": "Myslovitz",
       "title": "Z twarzą Marilyn Monroe",
       "isrc": "PLA149701003",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1517793423",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1187,7 +1187,7 @@
       "artist": "Maanam",
       "title": "Cykady na Cykladach - 2011 Remaster",
       "isrc": "PLA551100126",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/904042039",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1213,7 +1213,7 @@
       "artist": "Voo Voo",
       "title": "Jak Gdyby Nigdy Nic",
       "isrc": "PLK681500209",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1056745487",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1239,7 +1239,7 @@
       "artist": "Lombard",
       "title": "Szklana Pogoda",
       "isrc": "PLF441400015",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1093781637",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1265,7 +1265,7 @@
       "artist": "Happysad",
       "title": "Zanim pójdę",
       "isrc": "PLE781300167",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1098879508",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1291,7 +1291,7 @@
       "artist": "Krzysztof Zalewski",
       "title": "Edith Piaf",
       "isrc": "PLA812400051",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1762654098",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1317,7 +1317,7 @@
       "artist": "WaluśKraksaKryzys",
       "title": "NAJGORSZE RZECZY",
       "isrc": "PLB822000638",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1563800181",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1343,7 +1343,7 @@
       "artist": "KARAŚ/ROGUCKI",
       "title": "Jutro Spróbujemy Jeszcze Raz",
       "isrc": "PLA812100074",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1573209459",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1369,7 +1369,7 @@
       "artist": "Bluszcz",
       "title": "Lamparty",
       "isrc": "UKRFZ2000529",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1531067303",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1395,7 +1395,7 @@
       "artist": "Hey",
       "title": "Bezruch",
       "isrc": "PLA812500023",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1822284390",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1421,7 +1421,7 @@
       "artist": "Bajm",
       "title": "Biała armia",
       "isrc": "PLA559000036",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1433949600",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1447,7 +1447,7 @@
       "artist": "Nosowska, Błażej Król",
       "title": "Błyszcz",
       "isrc": "PLA812400037",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1754695924",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1473,7 +1473,7 @@
       "artist": "Robert Gawlinski",
       "title": "Nie stało się nic",
       "isrc": "PLI368259260",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/950268462",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1499,7 +1499,7 @@
       "artist": "Perfect",
       "title": "Chcemy Być Sobą",
       "isrc": "PLA391359602",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/988439010",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1551,7 +1551,7 @@
       "artist": "Luxtorpeda",
       "title": "AUTYSTYCZNY",
       "isrc": "TCABM1344196",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1543389002",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1577,7 +1577,7 @@
       "artist": "Dżem",
       "title": "Wehikuł Czasu - To Byłby Cud - 2003 Remaster",
       "isrc": "PLB010300122",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/888840205",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1603,7 +1603,7 @@
       "artist": "Budka Suflera",
       "title": "Za ostatni grosz",
       "isrc": "PLB170701504",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484109779",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1629,7 +1629,7 @@
       "artist": "Hey",
       "title": "Zazdrosc",
       "isrc": "PLUM70700777",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1442653437",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1655,7 +1655,7 @@
       "artist": "Happysad",
       "title": "Mów mi dobrze",
       "isrc": "PLB820900146",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/585585390",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1681,7 +1681,7 @@
       "artist": "IRA",
       "title": "Nadzieja",
       "isrc": "PLK101400048",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/884121241",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1707,7 +1707,7 @@
       "artist": "Wojtek Szumański",
       "title": "Kołowrotek",
       "isrc": "PL34U2400001",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1751442187",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1733,7 +1733,7 @@
       "artist": "Jakub Skorupa",
       "title": "Pociągi towarowe",
       "isrc": "PL13M2000001",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1574109730",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1759,7 +1759,7 @@
       "artist": "Klaus Mitffoch",
       "title": "Jezu jak się cieszę",
       "isrc": "PLB171000321",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484846196",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1785,7 +1785,7 @@
       "artist": "Happysad",
       "title": "Łydka",
       "isrc": "PLE781300189",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1116232914",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1811,7 +1811,7 @@
       "artist": "Dziwna Wiosna",
       "title": "Płonę, płonę",
       "isrc": "PLC592300063",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1715321064",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1837,7 +1837,7 @@
       "artist": "Jacko Brango, Neony",
       "title": "Pod powierzchnią",
       "isrc": "PL77Y2500004",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1797579219",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1889,7 +1889,7 @@
       "artist": "Maanam",
       "title": "Szare miraże",
       "isrc": "PLA558000003",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/693088763",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1915,7 +1915,7 @@
       "artist": "Perfect",
       "title": "Ale Wkoło Jest Wesoło",
       "isrc": "PLA391359607",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/988439225",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1941,7 +1941,7 @@
       "artist": "Sztywny Pal Azji",
       "title": "Spotkanie z...",
       "isrc": "PLB171101269",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1472177744",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1967,7 +1967,7 @@
       "artist": "Hey",
       "title": "Teksanski",
       "isrc": "PLUM71000255",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1442654160",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1993,7 +1993,7 @@
       "artist": "Zabłocki Osobiście, Czesław Śpiewa",
       "title": "Ławeczka",
       "isrc": "PLC592400064",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1746759088",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
