@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "deutschrock",
     "german rock",
@@ -97,7 +97,7 @@
       "artist": "Goitzsche Front",
       "title": "Wenn's nicht rockt",
       "isrc": "DEZ902300389",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1752650394",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -123,7 +123,7 @@
       "artist": "Unantastbar",
       "title": "Dieser eine Moment",
       "isrc": "ATN262531911",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1791544176",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -175,7 +175,7 @@
       "artist": "Die Toten Hosen",
       "title": "Laune der Natur",
       "isrc": "DEF241736008",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1215035914",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -201,7 +201,7 @@
       "artist": "KneipenTerroristen",
       "title": "Der Alkohol",
       "isrc": "DEKS82307906",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1671926808",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -227,7 +227,7 @@
       "artist": "Rockwasser",
       "title": "Herzlich Willkommen",
       "isrc": "DEZ901800279",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1365670018",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -253,7 +253,7 @@
       "artist": "Eickenlob",
       "title": "Blaue Lichter",
       "isrc": "DEZC62588825",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1809165296",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -279,7 +279,7 @@
       "artist": "Störte.Priester",
       "title": "Nie wieder ist jetzt",
       "isrc": "FRX282590740",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1818212135",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -305,7 +305,7 @@
       "artist": "KrawallBrüder",
       "title": "von anfang an",
       "isrc": "DEZ902300069",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1738206483",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -331,7 +331,7 @@
       "artist": "Grenzenlos",
       "title": "10 Jahre",
       "isrc": "DEPI82320593",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1709524847",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -357,7 +357,7 @@
       "artist": "Betontod",
       "title": "Traum von Freiheit",
       "isrc": "DEE861400862",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6768275395",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -409,7 +409,7 @@
       "artist": "Böhse Onkelz",
       "title": "10 Jahre",
       "isrc": "DEN490100010",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587107055",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -435,7 +435,7 @@
       "artist": "Frei.Wild",
       "title": "Allein nach vorne - Still Version",
       "isrc": "DEA451314410",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1675185144",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -461,7 +461,7 @@
       "artist": "Artefuckt",
       "title": "Lasst uns",
       "isrc": "DGA072387350",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1822264755",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -487,7 +487,7 @@
       "artist": "Toxpack",
       "title": "Totgeglaubt, doch neugeboren",
       "isrc": "ATN262105506",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1590190387",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -513,7 +513,7 @@
       "artist": "Unherz",
       "title": "Helden von Morgen",
       "isrc": "DEA451619060",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1349496955",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -565,7 +565,7 @@
       "artist": "BRDIGUNG",
       "title": "Gib nicht auf",
       "isrc": "DEPI82505341",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1802589295",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -591,7 +591,7 @@
       "artist": "Leidbild",
       "title": "Vollgas",
       "isrc": "DEZI52300064",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1707952977",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -617,7 +617,7 @@
       "artist": "Themenwexel",
       "title": "Luft",
       "isrc": "DEL212000574",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1500266192",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -643,7 +643,7 @@
       "artist": "Eizbrand",
       "title": "Feuer",
       "isrc": "DES372301006",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1704975668",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -669,7 +669,7 @@
       "artist": "ElbRebellen",
       "title": "Alter Freund",
       "isrc": "FR26V1542316",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1434733541",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -695,7 +695,7 @@
       "artist": "Hangar-X",
       "title": "Nur die Zeit",
       "isrc": "DEZ901900062",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1450375658",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -721,7 +721,7 @@
       "artist": "Maerzfeld",
       "title": "Lange nicht",
       "isrc": "DEQ022280938",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1771972304",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -747,7 +747,7 @@
       "artist": "Haudegen",
       "title": "Feuer und Flamme",
       "isrc": "DEA621200414",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1806034832",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -773,7 +773,7 @@
       "artist": "Die Toten Hosen",
       "title": "Altes Fieber",
       "isrc": "DEF241230008",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/564656323",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -799,7 +799,7 @@
       "artist": "Frei.Wild",
       "title": "Auf alles was war",
       "isrc": "DEPI82307780",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1686351732",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -825,7 +825,7 @@
       "artist": "Böhse Onkelz",
       "title": "Zu nah an der Wahrheit",
       "isrc": "DEG129603005",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587163591",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -851,7 +851,7 @@
       "artist": "Unantastbar",
       "title": "Gerader Weg",
       "isrc": "DEZ901501601",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1050954451",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -877,7 +877,7 @@
       "artist": "Betontod",
       "title": "Zusammen",
       "isrc": "DED831800837",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1521483457",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -903,7 +903,7 @@
       "artist": "Wilde Jungs",
       "title": "Wildes Neues",
       "isrc": "DEA451304490",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1036253903",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -929,7 +929,7 @@
       "artist": "KneipenTerroristen",
       "title": "Kneipenterroristen 2.0",
       "isrc": "DEKS81907008",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1465865730",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
