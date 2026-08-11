@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import importlib.util
 import os
 import re
 import sys
@@ -309,6 +310,76 @@ def _dedup(items: list[str]) -> list[str]:
     return out
 
 
+# ---------------------------------------------------------------------------
+# Shared verify-gate (scripts/uri_gate.py)
+# ---------------------------------------------------------------------------
+# Dieses Skript und scripts/backfill_apple.py entscheiden dieselbe Frage — ist
+# der Suchtreffer wirklich unsere Aufnahme — und taten es in zwei verschiedenen
+# Formen. Am 11.08.2026 gemessen: `normalize_title` entfernt Klammerzusaetze,
+# bevor es vergleicht, also sind "The Night" und "The Night (Extended Mix)" fuer
+# dieses Gate identisch. Genau diese Regression hat #1980 im Apple-Skript
+# behoben — und der Apple-Backfill-Agent faehrt DIESES Skript.
+#
+# Die gemeinsamen Bausteine liegen deshalb in scripts/uri_gate.py und werden hier
+# per Pfad geladen (weder `scripts/` noch dieses Verzeichnis sind ein Package).
+# Der Pfad ist aus der Dateilage abgeleitet, nicht aus --repo-root: der Import
+# passiert vor dem Argument-Parsing.
+_GATE: Any = None
+_GATE_WARNED = False
+
+
+def _gate() -> Any:
+    """Load ``scripts/uri_gate.py`` once; ``None`` when it is unavailable.
+
+    A missing gate must not stop a backfill run — but it must be loud. Silent
+    degradation to the weaker rules is exactly the failure mode this project
+    keeps getting bitten by, so the fallback prints once and says what it means.
+    """
+    global _GATE, _GATE_WARNED
+    if _GATE is not None:
+        return _GATE
+    # Nach oben laufen statt eine Ebenenzahl zu raten: der erste Versuch stand auf
+    # parents[3] und traf .claude/scripts/uri_gate.py — die Warnung unten hat das
+    # sofort gezeigt, was genau ihr Zweck ist. Die Suche ueberlebt auch, wenn das
+    # Skill-Verzeichnis einmal verschoben wird.
+    here = Path(__file__).resolve()
+    path = None
+    for parent in here.parents:
+        candidate = parent / "scripts" / "uri_gate.py"
+        if candidate.is_file():
+            path = candidate
+            break
+    if path is None:
+        if not _GATE_WARNED:
+            print(
+                "WARNUNG: scripts/uri_gate.py oberhalb von "
+                f"{here} nicht gefunden — das Gate faellt auf die schwaechere "
+                "Fuzzy-Regel zurueck und kann einen Remix nicht vom Original "
+                "unterscheiden.",
+                file=sys.stderr,
+            )
+            _GATE_WARNED = True
+        return None
+    try:
+        spec = importlib.util.spec_from_file_location("beatify_uri_gate", path)
+        if spec is None or spec.loader is None:
+            raise ImportError(f"kein Loader fuer {path}")
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules["beatify_uri_gate"] = mod
+        spec.loader.exec_module(mod)
+        _GATE = mod
+    except Exception as exc:  # pragma: no cover - Umgebungsfehler
+        if not _GATE_WARNED:
+            print(
+                f"WARNUNG: {path} nicht ladbar ({exc}) — das Gate faellt auf die "
+                "schwaechere Fuzzy-Regel zurueck und kann einen Remix nicht vom "
+                "Original unterscheiden.",
+                file=sys.stderr,
+            )
+            _GATE_WARNED = True
+    return _GATE
+
+
 def _pick_itunes_match(
     results: list[dict], title: str, artist: str, alt_artists: list[str]
 ) -> str | None:
@@ -318,6 +389,7 @@ def _pick_itunes_match(
     (covers writer/original-performer credits). Returns the numeric trackId of
     the first gate-passing result, else None (never guesses on title alone).
     """
+    gate = _gate()
     for r in results or []:
         track_id = _numeric_id(r.get("trackId"))
         if not track_id:
@@ -326,9 +398,24 @@ def _pick_itunes_match(
         r_artist = r.get("artistName") or ""
         if not titles_match(r_title, title):
             continue
-        if titles_match(r_artist, artist) or any(
+        # Suffix-Pruefung. `titles_match` sieht Klammerzusaetze nicht, weil
+        # `normalize_title` sie entfernt — ohne diese Zeile nimmt das Gate einen
+        # Extended Mix als Original an (gemessen 11.08.2026 an drei Faellen).
+        if gate is not None:
+            clash = gate.suffix_conflict(title, r_title)
+            if clash:
+                continue
+        artist_ok = titles_match(r_artist, artist) or any(
             titles_match(r_artist, alt) for alt in (alt_artists or [])
-        ):
+        )
+        # Schreibweisen-Varianten als ZUSATZ, nicht als Ersatz: punktierte
+        # Abkuerzungen (Run-DMC / Run-D.M.C.) und Uebermengen (Jimi Hendrix in
+        # The Jimi Hendrix Experience) scheitern an der Editierdistanz.
+        if not artist_ok and gate is not None:
+            artist_ok = gate.artist_matches(artist, r_artist) or any(
+                gate.artist_matches(alt, r_artist) for alt in (alt_artists or [])
+            )
+        if artist_ok:
             return track_id
     return None
 

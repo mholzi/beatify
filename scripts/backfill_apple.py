@@ -111,10 +111,10 @@ from __future__ import annotations
 import argparse
 import difflib
 import json
+import importlib.util
 import re
 import sys
 import time
-import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -138,197 +138,33 @@ BACKOFF_BASE_S = 10.0
 MAX_THROTTLE_ATTEMPTS = 3
 REQUEST_TIMEOUT_S = 20
 
-_FEAT_RE = re.compile(r"\s*[\(\[]?\b(feat|ft|featuring|with)\b\.?\s.*$", re.I)
-_PAREN_RE = re.compile(r"\s*[\(\[][^)\]]*[)\]]")
-_PAREN_CONTENT_RE = re.compile(r"[\(\[]([^)\]]*)[)\]]")
-_PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
-_WS_RE = re.compile(r"\s+")
 # Separators a stripped parenthetical can leave dangling at the end of a title.
 _TRAILING_SEP_RE = re.compile(r"[\s\-–—/,:;]+$")
-_ARTIST_SPLIT_RE = re.compile(r"\s*[,;/]\s*|\s+(?:&|feat\.?|ft\.?|x|vs\.?)\s+", re.I)
 
-# Parenthetical suffixes that name the same *recording* — packaging or mastering
-# wording, not a different take. Only these may appear on one side alone.
-# Deliberately a short closed list: every entry here is a licence to accept a
-# title the other side does not carry, so it is reviewed in the diff.
-_NEUTRAL_SUFFIX_RE = re.compile(
-    r"^(?:\d{4}\s+)?(?:digital\s+)?(?:"
-    r"remaster(?:ed)?(?:\s+version)?(?:\s+\d{4})?"
-    r"|deluxe(?:\s+edition)?"
-    r"|album\s+version"
-    r"|single\s+version"
-    r"|original\s+(?:version|mix)"
-    r"|bonus\s+track"
-    r"|explicit|clean"
-    r")$",
-    re.I,
-)
+# Die Gate-Bausteine liegen seit 2026-08-11 in scripts/uri_gate.py, damit der
+# All-rounder sie mitbenutzen kann statt sie zu kopieren. `scripts/` ist kein
+# Package, deshalb der Pfad-Import — dieselbe Technik, die auch die Tests nutzen.
+_GATE_PATH = Path(__file__).resolve().parent / "uri_gate.py"
+_gate_spec = importlib.util.spec_from_file_location("beatify_uri_gate", _GATE_PATH)
+uri_gate = importlib.util.module_from_spec(_gate_spec)
+sys.modules["beatify_uri_gate"] = uri_gate
+_gate_spec.loader.exec_module(uri_gate)
 
-# Apple haengt an Filmmusik eine Herkunftsangabe statt eines Take-Merkmals:
-# "Zwei Seelen (aus \"Die Schoene und das Biest\" deutscher Film-Soundtrack)".
-# Das benennt, WO die Aufnahme herkommt, nicht WELCHE Aufnahme es ist — und war
-# im Probe-Lauf vom 09.08.2026 mit vier Faellen (Die Schoene und das Biest,
-# Rapunzel, Hercules, Mulan) der groesste Einzelposten unter den 19
-# Suffix-Ablehnungen. Bewusst eng gefasst: muss mit "aus"/"from" beginnen UND
-# auf "soundtrack" enden, damit ein blosses "(Motion Picture Version)" — das
-# sehr wohl eine andere Einspielung sein kann — weiter abgelehnt wird.
-_SOUNDTRACK_ORIGIN_RE = re.compile(
-    r"^(?:aus|from)\s+.+\ssoundtrack$|^original\s+motion\s+picture\s+soundtrack$",
-    re.I,
-)
+_NEUTRAL_SUFFIX_RE = uri_gate._NEUTRAL_SUFFIX_RE
+_SOUNDTRACK_ORIGIN_RE = uri_gate._SOUNDTRACK_ORIGIN_RE
+_PAREN_RE = uri_gate._PAREN_RE
+_ARTIST_SPLIT_RE = uri_gate._ARTIST_SPLIT_RE
+_WS_RE = uri_gate._WS_RE
+normalise = uri_gate.normalise
+primary_artist = uri_gate.primary_artist
+artist_set = uri_gate.artist_set
+artist_matches = uri_gate.artist_matches
+parenthetical_suffixes = uri_gate.parenthetical_suffixes
+suffix_conflict = uri_gate.suffix_conflict
 
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-
-
-def normalise(text: str, *, drop_parens: bool = False) -> str:
-    """Fold a title/artist to a comparable form.
-
-    Deliberately conservative: diacritics are kept (``Böhse`` must not collapse
-    onto ``Bohse`` and start matching unrelated artists), only case, punctuation,
-    ``&``/``and`` and whitespace are unified.
-    """
-    if not text:
-        return ""
-    out = unicodedata.normalize("NFC", text)
-    out = _FEAT_RE.sub("", out)
-    if drop_parens:
-        out = _PAREN_RE.sub("", out)
-    out = out.casefold()
-    out = out.replace("&", " and ")
-    out = _PUNCT_RE.sub(" ", out)
-    return _WS_RE.sub(" ", out).strip()
-
-
-def primary_artist(artist: str) -> str:
-    """First credited artist — search results carry the lead artist only."""
-    if not artist:
-        return ""
-    return _ARTIST_SPLIT_RE.split(artist, maxsplit=1)[0]
-
-
-def artist_set(artist: str) -> set[str]:
-    """All credited artists, normalised.
-
-    Split on the raw string, not the normalised one: ``normalise`` turns ``&``
-    into ``and``, which would stop it being a separator.
-    """
-    if not artist:
-        return set()
-    return {n for n in (normalise(p) for p in _ARTIST_SPLIT_RE.split(artist)) if n}
-
-
-_LEADING_ARTICLE_RE = re.compile(r"^(?:the|der|die|das|los|las|le|la|les)\s+", re.I)
-
-
-def _artist_variants(name: str) -> set[str]:
-    """Comparable spellings of one credited artist.
-
-    All four variants come from real rejections in the 09.08.2026 probe run over
-    861 missing Apple URIs — 38 of 137 rejections were artist mismatches, and
-    every one of them was a spelling difference, not a different act:
-
-    * ``Jackson 5`` vs ``The Jackson 5`` — a leading article.
-    * ``MadHouse`` vs ``Mad'House`` — an apostrophe. ``normalise`` turns
-      punctuation into a space, so the two differ by exactly that space.
-    * ``Run-DMC`` vs ``Run-D.M.C.`` — dots inside an abbreviation, again a
-      space after normalisation.
-    * ``Frozen - Cast`` vs ``Cast - Frozen`` — the same credit, reordered.
-
-    The space-free variant is what folds the apostrophe and the dots; it is
-    computed from the article-stripped form so ``The Jackson 5`` also yields
-    ``jackson5``.
-    """
-    base = normalise(name)
-    if not base:
-        return set()
-    stripped = _LEADING_ARTICLE_RE.sub("", base).strip()
-    out = {base, stripped}
-    out |= {v.replace(" ", "") for v in (base, stripped)}
-    out.add(" ".join(sorted(stripped.split())))
-    return {v for v in out if v}
-
-
-def artist_matches(want: str, got: str) -> bool:
-    """True when ``want`` (our primary artist) is credited in ``got`` (Apple's).
-
-    Two rules, in order of strictness:
-
-    1. Any spelling variant of ``want`` equals a variant of any artist Apple
-       credits. This is the membership check that has always been here, only
-       with the variants from :func:`_artist_variants` on both sides.
-    2. ``want`` appears in Apple's full credit as a **contiguous run of at
-       least two tokens** — ``Jimi Hendrix`` inside ``The Jimi Hendrix
-       Experience``. Deliberately not a substring test and deliberately
-       one-directional: it must be *our* artist that is contained, and a
-       single token is never enough.
-
-    Rule 2 is what keeps the real false positives out. In the same probe run
-    Apple answered ``The Parachute Club`` for our ``Paul Kalkbrenner`` and an
-    ensemble credit for our ``Phil Collins`` — neither shares a token run with
-    ours, so both stay rejected. Loosening this to a plain substring or to
-    single tokens would let exactly those through.
-    """
-    want_variants = _artist_variants(want)
-    if not want_variants:
-        return False
-    for credited in _ARTIST_SPLIT_RE.split(got or ""):
-        if want_variants & _artist_variants(credited):
-            return True
-    want_tokens = _LEADING_ARTICLE_RE.sub("", normalise(want)).split()
-    if len(want_tokens) >= 2:
-        got_tokens = normalise(got or "").split()
-        run = " ".join(want_tokens)
-        if run and run in " ".join(got_tokens):
-            return True
-    return False
-
-
-def parenthetical_suffixes(text: str) -> list[str]:
-    """Normalised contents of every ``(...)``/``[...]`` group.
-
-    ``feat.``-tails are cut first — ``normalise`` already handles those, and a
-    featured guest is not a different recording.
-    """
-    if not text:
-        return []
-    stripped = _FEAT_RE.sub("", unicodedata.normalize("NFC", text))
-    out = []
-    for raw in _PAREN_CONTENT_RE.findall(stripped):
-        norm = normalise(raw)
-        if norm:
-            out.append(norm)
-    return out
-
-
-def suffix_conflict(a: str, b: str) -> str | None:
-    """The first suffix that one title carries and the other does not account for.
-
-    ``title_similarity`` compares a parenthetical-stripped form too, so a suffix
-    on one side alone costs nothing — which is right for ``(2000 Remaster)`` and
-    wrong for ``(Extended Mix)``. Both reach similarity 1.00, so no threshold can
-    separate them; the suffix has to be looked at directly.
-
-    A suffix is fine when either
-      * the other side mentions it anywhere in its title (``The Afterlife -
-        Radio Edit`` vs ``The Afterlife (Radio Edit)`` — same words, different
-        punctuation), or
-      * it is recording-neutral per ``_NEUTRAL_SUFFIX_RE``.
-
-    Anything else names a different take and is returned for rejection.
-    """
-    for src, other in ((a, b), (b, a)):
-        other_norm = normalise(other)
-        for suffix in parenthetical_suffixes(src):
-            if suffix in other_norm:
-                continue
-            if _NEUTRAL_SUFFIX_RE.match(suffix):
-                continue
-            if _SOUNDTRACK_ORIGIN_RE.match(suffix):
-                continue
-            return suffix
-    return None
 
 
 def strip_parentheticals(text: str) -> str:
@@ -398,8 +234,9 @@ def release_year(result: dict) -> int | None:
     return None
 
 
-def evaluate(track: dict, result: dict, *, title_threshold: float,
-             year_tolerance: int) -> tuple[bool, str]:
+def evaluate(
+    track: dict, result: dict, *, title_threshold: float, year_tolerance: int
+) -> tuple[bool, str]:
     """Apply the gate. Returns (accepted, reason)."""
     want_artist = primary_artist(track.get("artist", "") or "")
     got_credit = result.get("artistName", "") or ""
@@ -443,7 +280,9 @@ def load_state() -> dict:
         try:
             return json.loads(STATE_PATH.read_text())
         except (json.JSONDecodeError, OSError):
-            sys.stderr.write(f"warning: unreadable state {STATE_PATH}, starting fresh\n")
+            sys.stderr.write(
+                f"warning: unreadable state {STATE_PATH}, starting fresh\n"
+            )
     return {}
 
 
@@ -474,8 +313,12 @@ def find_playlists(args_files: list[str]) -> list[Path]:
 
 def itunes_search(term: str, storefront: str, limit: int) -> tuple[list[dict], str]:
     """Return (results, outcome) with outcome in 'ok' | 'skip'."""
-    url = ITUNES_SEARCH + "?" + urllib.parse.urlencode(
-        {"term": term, "entity": "song", "limit": limit, "country": storefront}
+    url = (
+        ITUNES_SEARCH
+        + "?"
+        + urllib.parse.urlencode(
+            {"term": term, "entity": "song", "limit": limit, "country": storefront}
+        )
     )
     for attempt in range(1, MAX_THROTTLE_ATTEMPTS + 1):
         try:
@@ -501,8 +344,9 @@ def itunes_search(term: str, storefront: str, limit: int) -> tuple[list[dict], s
     return [], "skip"  # throttled out — retry next wave, NOT a miss
 
 
-def resolve(track: dict, *, title_threshold: float, year_tolerance: int,
-            limit: int) -> tuple[str | None, str, str]:
+def resolve(
+    track: dict, *, title_threshold: float, year_tolerance: int, limit: int
+) -> tuple[str | None, str, str]:
     """Return (apple_uri_or_None, outcome, detail).
 
     outcome: 'hit' | 'miss' (no results anywhere) | 'rejected' (results, none
@@ -529,8 +373,10 @@ def resolve(track: dict, *, title_threshold: float, year_tolerance: int,
             saw_any = True
             for result in results:
                 accepted, reason = evaluate(
-                    track, result,
-                    title_threshold=title_threshold, year_tolerance=year_tolerance,
+                    track,
+                    result,
+                    title_threshold=title_threshold,
+                    year_tolerance=year_tolerance,
                 )
                 if accepted:
                     tid = result.get("trackId")
@@ -562,25 +408,59 @@ def main() -> int:
     ap = argparse.ArgumentParser(
         description="Backfill uri_apple_music via iTunes search (gated, idempotent)."
     )
-    ap.add_argument("files", nargs="*", help="specific playlist JSON files (default: all)")
-    ap.add_argument("--max", type=int, default=0,
-                    help="cap number of tracks resolved this run (0 = no cap)")
-    ap.add_argument("--max-minutes", type=float, default=0,
-                    help="stop the wave after this many minutes of wall-clock (0 = no limit)")
-    ap.add_argument("--dry-run", action="store_true",
-                    help="list what would be queried, no network/writes")
-    ap.add_argument("--probe", action="store_true",
-                    help="query + apply the gate but write NOTHING (threshold calibration)")
-    ap.add_argument("--retry-rejected", action="store_true",
-                    help="also re-query tracks previously rejected by the gate")
-    ap.add_argument("--retry-misses", action="store_true",
-                    help="also re-query tracks recorded as genuine misses")
-    ap.add_argument("--title-threshold", type=float, default=0.87,
-                    help="minimum title similarity to accept a match (default 0.87)")
-    ap.add_argument("--year-tolerance", type=int, default=1,
-                    help="allowed |releaseDate year - track year| (default 1)")
-    ap.add_argument("--limit", type=int, default=5,
-                    help="search results inspected per storefront (default 5)")
+    ap.add_argument(
+        "files", nargs="*", help="specific playlist JSON files (default: all)"
+    )
+    ap.add_argument(
+        "--max",
+        type=int,
+        default=0,
+        help="cap number of tracks resolved this run (0 = no cap)",
+    )
+    ap.add_argument(
+        "--max-minutes",
+        type=float,
+        default=0,
+        help="stop the wave after this many minutes of wall-clock (0 = no limit)",
+    )
+    ap.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="list what would be queried, no network/writes",
+    )
+    ap.add_argument(
+        "--probe",
+        action="store_true",
+        help="query + apply the gate but write NOTHING (threshold calibration)",
+    )
+    ap.add_argument(
+        "--retry-rejected",
+        action="store_true",
+        help="also re-query tracks previously rejected by the gate",
+    )
+    ap.add_argument(
+        "--retry-misses",
+        action="store_true",
+        help="also re-query tracks recorded as genuine misses",
+    )
+    ap.add_argument(
+        "--title-threshold",
+        type=float,
+        default=0.87,
+        help="minimum title similarity to accept a match (default 0.87)",
+    )
+    ap.add_argument(
+        "--year-tolerance",
+        type=int,
+        default=1,
+        help="allowed |releaseDate year - track year| (default 1)",
+    )
+    ap.add_argument(
+        "--limit",
+        type=int,
+        default=5,
+        help="search results inspected per storefront (default 5)",
+    )
     args = ap.parse_args()
 
     state = {} if args.dry_run else load_state()
@@ -610,13 +490,19 @@ def main() -> int:
                 continue
             todo.append((pf, track))
 
-    mode = " (dry-run)" if args.dry_run else " (probe — no writes)" if args.probe else ""
-    print(f"{len(todo)} track(s) missing Apple Music across "
-          f"{len(files_cache)} playlist(s){mode}")
+    mode = (
+        " (dry-run)" if args.dry_run else " (probe — no writes)" if args.probe else ""
+    )
+    print(
+        f"{len(todo)} track(s) missing Apple Music across "
+        f"{len(files_cache)} playlist(s){mode}"
+    )
 
     if args.dry_run:
         for pf, track in todo[: args.max or len(todo)]:
-            print(f"  WOULD QUERY  {pf.name}: {track.get('artist')} – {track.get('title')}")
+            print(
+                f"  WOULD QUERY  {pf.name}: {track.get('artist')} – {track.get('title')}"
+            )
         return 0
 
     hits = misses = rejected = skips = 0
@@ -661,8 +547,11 @@ def main() -> int:
             reject_reasons[kind] = reject_reasons.get(kind, 0) + 1
             print(f"  REJECT    {label}  [{detail}]")
             if not args.probe:
-                state[track["uri"]] = {"status": "rejected", "tried_at": _now_iso(),
-                                       "reason": detail}
+                state[track["uri"]] = {
+                    "status": "rejected",
+                    "tried_at": _now_iso(),
+                    "reason": detail,
+                }
                 save_state(state)
         elif outcome == "miss":
             misses += 1
@@ -674,9 +563,11 @@ def main() -> int:
             skips += 1
         time.sleep(BASE_DELAY_S)
 
-    print(f"\nwave done: {hits} accepted, {rejected} rejected by gate, "
-          f"{misses} genuine misses, {skips} throttle skips (retry next wave). "
-          f"Files updated: {len(dirty)}.")
+    print(
+        f"\nwave done: {hits} accepted, {rejected} rejected by gate, "
+        f"{misses} genuine misses, {skips} throttle skips (retry next wave). "
+        f"Files updated: {len(dirty)}."
+    )
     if reject_reasons:
         print("rejections by kind:")
         for kind, count in sorted(reject_reasons.items(), key=lambda kv: -kv[1]):
