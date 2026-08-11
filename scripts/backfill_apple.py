@@ -164,6 +164,19 @@ _NEUTRAL_SUFFIX_RE = re.compile(
     re.I,
 )
 
+# Apple haengt an Filmmusik eine Herkunftsangabe statt eines Take-Merkmals:
+# "Zwei Seelen (aus \"Die Schoene und das Biest\" deutscher Film-Soundtrack)".
+# Das benennt, WO die Aufnahme herkommt, nicht WELCHE Aufnahme es ist — und war
+# im Probe-Lauf vom 09.08.2026 mit vier Faellen (Die Schoene und das Biest,
+# Rapunzel, Hercules, Mulan) der groesste Einzelposten unter den 19
+# Suffix-Ablehnungen. Bewusst eng gefasst: muss mit "aus"/"from" beginnen UND
+# auf "soundtrack" enden, damit ein blosses "(Motion Picture Version)" — das
+# sehr wohl eine andere Einspielung sein kann — weiter abgelehnt wird.
+_SOUNDTRACK_ORIGIN_RE = re.compile(
+    r"^(?:aus|from)\s+.+\ssoundtrack$|^original\s+motion\s+picture\s+soundtrack$",
+    re.I,
+)
+
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
@@ -206,6 +219,72 @@ def artist_set(artist: str) -> set[str]:
     return {n for n in (normalise(p) for p in _ARTIST_SPLIT_RE.split(artist)) if n}
 
 
+_LEADING_ARTICLE_RE = re.compile(r"^(?:the|der|die|das|los|las|le|la|les)\s+", re.I)
+
+
+def _artist_variants(name: str) -> set[str]:
+    """Comparable spellings of one credited artist.
+
+    All four variants come from real rejections in the 09.08.2026 probe run over
+    861 missing Apple URIs — 38 of 137 rejections were artist mismatches, and
+    every one of them was a spelling difference, not a different act:
+
+    * ``Jackson 5`` vs ``The Jackson 5`` — a leading article.
+    * ``MadHouse`` vs ``Mad'House`` — an apostrophe. ``normalise`` turns
+      punctuation into a space, so the two differ by exactly that space.
+    * ``Run-DMC`` vs ``Run-D.M.C.`` — dots inside an abbreviation, again a
+      space after normalisation.
+    * ``Frozen - Cast`` vs ``Cast - Frozen`` — the same credit, reordered.
+
+    The space-free variant is what folds the apostrophe and the dots; it is
+    computed from the article-stripped form so ``The Jackson 5`` also yields
+    ``jackson5``.
+    """
+    base = normalise(name)
+    if not base:
+        return set()
+    stripped = _LEADING_ARTICLE_RE.sub("", base).strip()
+    out = {base, stripped}
+    out |= {v.replace(" ", "") for v in (base, stripped)}
+    out.add(" ".join(sorted(stripped.split())))
+    return {v for v in out if v}
+
+
+def artist_matches(want: str, got: str) -> bool:
+    """True when ``want`` (our primary artist) is credited in ``got`` (Apple's).
+
+    Two rules, in order of strictness:
+
+    1. Any spelling variant of ``want`` equals a variant of any artist Apple
+       credits. This is the membership check that has always been here, only
+       with the variants from :func:`_artist_variants` on both sides.
+    2. ``want`` appears in Apple's full credit as a **contiguous run of at
+       least two tokens** — ``Jimi Hendrix`` inside ``The Jimi Hendrix
+       Experience``. Deliberately not a substring test and deliberately
+       one-directional: it must be *our* artist that is contained, and a
+       single token is never enough.
+
+    Rule 2 is what keeps the real false positives out. In the same probe run
+    Apple answered ``The Parachute Club`` for our ``Paul Kalkbrenner`` and an
+    ensemble credit for our ``Phil Collins`` — neither shares a token run with
+    ours, so both stay rejected. Loosening this to a plain substring or to
+    single tokens would let exactly those through.
+    """
+    want_variants = _artist_variants(want)
+    if not want_variants:
+        return False
+    for credited in _ARTIST_SPLIT_RE.split(got or ""):
+        if want_variants & _artist_variants(credited):
+            return True
+    want_tokens = _LEADING_ARTICLE_RE.sub("", normalise(want)).split()
+    if len(want_tokens) >= 2:
+        got_tokens = normalise(got or "").split()
+        run = " ".join(want_tokens)
+        if run and run in " ".join(got_tokens):
+            return True
+    return False
+
+
 def parenthetical_suffixes(text: str) -> list[str]:
     """Normalised contents of every ``(...)``/``[...]`` group.
 
@@ -245,6 +324,8 @@ def suffix_conflict(a: str, b: str) -> str | None:
             if suffix in other_norm:
                 continue
             if _NEUTRAL_SUFFIX_RE.match(suffix):
+                continue
+            if _SOUNDTRACK_ORIGIN_RE.match(suffix):
                 continue
             return suffix
     return None
@@ -320,8 +401,8 @@ def release_year(result: dict) -> int | None:
 def evaluate(track: dict, result: dict, *, title_threshold: float,
              year_tolerance: int) -> tuple[bool, str]:
     """Apply the gate. Returns (accepted, reason)."""
-    want_artist = normalise(primary_artist(track.get("artist", "")))
-    got_artists = artist_set(result.get("artistName", ""))
+    want_artist = primary_artist(track.get("artist", "") or "")
+    got_credit = result.get("artistName", "") or ""
     # Membership, not equality: Apple often orders a multi-artist credit
     # differently ("Tatanka, Zatox & Wild Motherfuckers" for our "Zatox"), and
     # the lead-artist-only comparison then rejected a correct match. Checking
@@ -329,7 +410,7 @@ def evaluate(track: dict, result: dict, *, title_threshold: float,
     # deliberate — Apple moves featured guests into the title, so requiring the
     # full set to be present would reject e.g. "Harris & Ford, BassWar & CaoX,
     # Bobby John" against "Harris & Ford & BassWar & CaoX".
-    if not want_artist or want_artist not in got_artists:
+    if not artist_matches(want_artist, got_credit):
         return False, f"artist {result.get('artistName')!r} != {track.get('artist')!r}"
 
     sim = title_similarity(track.get("title", ""), result.get("trackName", ""))

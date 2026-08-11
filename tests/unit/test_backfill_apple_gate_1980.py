@@ -91,7 +91,11 @@ def test_suffix_conflict(catalogue: str, apple: str, expected: str | None) -> No
     ],
 )
 def test_artist_membership(catalogue: str, apple: str, accepted: bool) -> None:
-    assert (normalise(primary_artist(catalogue)) in artist_set(apple)) is accepted
+    # Ruft seit #2030 `artist_matches` statt den alten Ausdruck nachzubauen:
+    # das Gate benutzt `artist_set` nicht mehr, und ein Test, der die frühere
+    # Formel prüft, schützt den Produktionspfad nicht. Alle sechs Erwartungen
+    # gelten unter der neuen Regel unverändert.
+    assert backfill_apple.artist_matches(primary_artist(catalogue), apple) is accepted
 
 
 def test_evaluate_rejects_extended_mix_with_matching_artist_and_year() -> None:
