@@ -1,6 +1,6 @@
 {
   "name": "Polskie hity radiowe 🇵🇱",
-  "version": "0.10",
+  "version": "0.11",
   "tags": [
     "polish",
     "pop",
@@ -255,7 +255,7 @@
       "artist": "Andrzej Piaseczny",
       "title": "To Co Dobre, To Co Lepsze",
       "isrc": "PLB381100404",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/494616538",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/494616538"
       },
@@ -275,7 +275,7 @@
       "artist": "Edyta Górniak",
       "title": "One & One",
       "isrc": "PLA559700074",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/689264324",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/689264324"
       },
@@ -295,7 +295,7 @@
       "artist": "Natalia Kukulska",
       "title": "Wierność jest nudna - Och Karol 2 OST",
       "isrc": "PLC141000082",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/763080971",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/763080971"
       },
@@ -315,7 +315,7 @@
       "artist": "Patrycja Markowska",
       "title": "Świat się pomylił",
       "isrc": "PLA550700017",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/691873971",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/691873971"
       },
@@ -335,7 +335,7 @@
       "artist": "Maanam",
       "title": "Kocham Cię, Kochanie Moje",
       "isrc": "PLA559500027",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1453669313",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/904041898"
       },
@@ -355,7 +355,7 @@
       "artist": "Dżem",
       "title": "Whisky - 2003 Remaster",
       "isrc": "PLB010300054",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/888840202",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/888840202"
       },
@@ -375,7 +375,7 @@
       "artist": "Yugopolis",
       "title": "Miasto budzi się (feat. Paweł Kukiz)",
       "isrc": "PLF391400312",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1709102254",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1442951381"
       },
@@ -395,7 +395,7 @@
       "artist": "Wilki",
       "title": "Na zawsze i na wieczność",
       "isrc": "PLA550600214",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/691441004",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/691441004"
       },
@@ -415,7 +415,7 @@
       "artist": "Wilki",
       "title": "Baśka",
       "isrc": "PLA550200024",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692595390",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692595390"
       },
@@ -435,7 +435,7 @@
       "artist": "Wilki",
       "title": "Love Story",
       "isrc": "PLA550600211",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/691440950",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/691440950"
       },
@@ -455,7 +455,7 @@
       "artist": "Bracia",
       "title": "Wierze w lepszy swiat",
       "isrc": "PLA961300174",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/966231718",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/966231718"
       },
@@ -475,7 +475,7 @@
       "artist": "Bracia",
       "title": "Nad Przepascia",
       "isrc": "PLA961200150",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/560776277",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/560776277"
       },
@@ -495,7 +495,7 @@
       "artist": "Elektryczne Gitary",
       "title": "Co Ty Tutaj Robisz",
       "isrc": "PLA551400196",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/881449260",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/881449260"
       },
@@ -515,7 +515,7 @@
       "artist": "Elektryczne Gitary",
       "title": "Kiler - 2014",
       "isrc": "PLA551400198",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/881449262",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/881449262"
       },
@@ -535,7 +535,7 @@
       "artist": "Robert Gawlinski",
       "title": "O sobie samym",
       "isrc": "PLB080400080",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1388421757",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1388421757"
       },
@@ -555,7 +555,7 @@
       "artist": "Budka Suflera",
       "title": "Bal Wszystkich Świętych",
       "isrc": "PLB111300084",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1454676969",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1454676969"
       },
@@ -575,7 +575,7 @@
       "artist": "Varius Manx",
       "title": "Maj",
       "isrc": "PLA550100184",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1231145180",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1231145180"
       },
@@ -595,7 +595,7 @@
       "artist": "Lady Pank",
       "title": "Kryzysowa Narzeczona",
       "isrc": "PLB170702648",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484081273",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1484084956"
       },
@@ -615,7 +615,7 @@
       "artist": "Wilki",
       "title": "Urke",
       "isrc": "PLA550200083",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692595394",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692595394"
       },
@@ -635,7 +635,7 @@
       "artist": "Marek Grechuta",
       "title": "Dni, których nie znamy",
       "isrc": "PLA247114836",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1066493167",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1066493167"
       },
@@ -655,7 +655,7 @@
       "artist": "T.Love",
       "title": "Nie nie nie",
       "isrc": "PLA550800169",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692038757",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692038757"
       },
@@ -675,7 +675,7 @@
       "artist": "Myslovitz",
       "title": "Mieć czy być",
       "isrc": "PLA521303074",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/688327631",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/688327631"
       },
@@ -695,7 +695,7 @@
       "artist": "Maanam",
       "title": "Cykady na Cykladach - 2011 Remaster",
       "isrc": "PLA551100126",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/904042039",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1049025566"
       },
@@ -715,7 +715,7 @@
       "artist": "Lady Pank",
       "title": "Zawsze Tam Gdzie Ty",
       "isrc": "PLB170702755",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484082238",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1654687649"
       },
@@ -735,7 +735,7 @@
       "artist": "T.Love",
       "title": "Chłopaki nie płaczą",
       "isrc": "PLA559700184",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/691883772",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/691883772"
       },
@@ -755,7 +755,7 @@
       "artist": "Mr. Zoob",
       "title": "Mój Jest Ten Kawałek Podłogi",
       "isrc": "PLB171100345",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485523612",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1485523612"
       },
@@ -775,7 +775,7 @@
       "artist": "Lady Pank",
       "title": "Mniej Niż Zero",
       "isrc": "PLB170702647",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484081264",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1484081264"
       },
@@ -795,7 +795,7 @@
       "artist": "T.Love",
       "title": "Ajrisz",
       "isrc": "PLA550100363",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692038724",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692038724"
       },
@@ -815,7 +815,7 @@
       "artist": "Lady Pank",
       "title": "Na Co Komu Dziś",
       "isrc": "PLB170702761",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1481862811",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1481862811"
       },
@@ -835,7 +835,7 @@
       "artist": "Strachy Na Lachy",
       "title": "Dzień dobry, kocham Cię",
       "isrc": "PLE781300026",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1098882919",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1098882919"
       },
@@ -855,7 +855,7 @@
       "artist": "Poparzeni Kawą Trzy",
       "title": "Byłaś dla Mnie Wszystkim",
       "isrc": "PLI421300018",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/733754252",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/733754252"
       },
@@ -875,7 +875,7 @@
       "artist": "Lady Pank",
       "title": "Stacja Warszawa",
       "isrc": "PLUM71200901",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1654687651",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1654687651"
       },
@@ -935,7 +935,7 @@
       "artist": "Lady Pank",
       "title": "Zostawcie Titanica",
       "isrc": "PLB170702744",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484081227",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1484081227"
       },
@@ -955,7 +955,7 @@
       "artist": "Bajm",
       "title": "Myśli i słowa",
       "isrc": "PLA550300079",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692620174",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692620174"
       },
@@ -975,7 +975,7 @@
       "artist": "Kombi",
       "title": "Słodkiego Miłego Życia",
       "isrc": "PLB170702215",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485460394",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1485460394"
       },
@@ -995,7 +995,7 @@
       "artist": "GOLEC UORKIESTRA",
       "title": "Ściernisco",
       "isrc": "PLD271200015",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/670237025",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/720685699"
       },
@@ -1015,7 +1015,7 @@
       "artist": "GOLEC UORKIESTRA",
       "title": "Pędzą Konie",
       "isrc": "PLD271200037",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/674019763",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/674019763"
       },
@@ -1035,7 +1035,7 @@
       "artist": "GOLEC UORKIESTRA",
       "title": "Lornetka - 2013",
       "isrc": "PLD271200007",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/720685730",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/720685730"
       },
@@ -1055,7 +1055,7 @@
       "artist": "GOLEC UORKIESTRA",
       "title": "Crazy Is My Life - 2013",
       "isrc": "PLD271200003",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/720685801",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/720685801"
       },
@@ -1075,7 +1075,7 @@
       "artist": "Brathanki",
       "title": "W Kinie W Lublinie - Kochaj Mnie",
       "isrc": "PLA140105002",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/977940561",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/340409213"
       },
@@ -1095,7 +1095,7 @@
       "artist": "Brathanki",
       "title": "Czerwone Korale",
       "isrc": "PLA149923002",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/456542887",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/456542887"
       },
@@ -1115,7 +1115,7 @@
       "artist": "Ivan i Delfin",
       "title": "Jej czarne oczy",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/893775565",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/893775565"
       },
@@ -1135,7 +1135,7 @@
       "artist": "Kancelaria",
       "title": "Zabiorę cię",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/407303433",
       "uri_apple_music_by_region": {
         "pl": null
       },
@@ -1155,7 +1155,7 @@
       "artist": "Anna Wyszkoni",
       "title": "Czy Ten Pan i Pani",
       "isrc": "PLA960900111",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/561312629",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/763151909"
       },
@@ -1175,7 +1175,7 @@
       "artist": "Dwa plus Jeden",
       "title": "Chodź, Pomaluj Mój Świat",
       "isrc": "PLA391591809",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1459344267",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1459344267"
       },
