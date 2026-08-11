@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "disney",
     "movies",
@@ -357,7 +357,7 @@
         "The Jungle Book",
         "Tarzan"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/112868760",
       "uri_deezer": "deezer://track/10067014",
       "isrc": "USA371170545",
       "uri_apple_music_by_region": {
@@ -401,7 +401,7 @@
         "Aladdin",
         "The Hunchback of Notre Dame"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/112868757",
       "uri_deezer": "deezer://track/2145306847",
       "isrc": "QZDA52357127",
       "uri_apple_music_by_region": {
@@ -445,7 +445,7 @@
         "Hercules",
         "Tarzan"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47940552",
       "uri_deezer": "deezer://track/1377537512",
       "isrc": "USWD10423004",
       "uri_apple_music_by_region": {
@@ -488,7 +488,7 @@
         "Pocahontas",
         "The Little Mermaid"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37080674",
       "uri_deezer": "deezer://track/1377537502",
       "isrc": "USWD10110091",
       "uri_apple_music_by_region": {
@@ -532,7 +532,7 @@
         "Hercules",
         "The Hunchback of Notre Dame"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47940553",
       "uri_deezer": "deezer://track/3262889141",
       "isrc": "USWD10423390",
       "uri_apple_music_by_region": {
@@ -575,7 +575,7 @@
         "Pocahontas",
         "The Little Mermaid"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47940550",
       "uri_deezer": "deezer://track/1377537492",
       "isrc": "USWD10322240",
       "uri_apple_music_by_region": {
@@ -638,7 +638,7 @@
         "Moana",
         "Finding Nemo"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/185430265",
       "uri_deezer": "deezer://track/145187392",
       "isrc": "USWD10220463",
       "uri_apple_music_by_region": {
@@ -681,7 +681,7 @@
         "Moana",
         "Tangled"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47941603",
       "uri_deezer": "deezer://track/145187390",
       "isrc": "USWD10220403",
       "uri_apple_music_by_region": {
@@ -734,7 +734,7 @@
         "Beauty and the Beast",
         "Tangled"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47941608",
       "uri_deezer": "deezer://track/145187400",
       "isrc": "USWD10110093",
       "uri_apple_music_by_region": {
@@ -849,7 +849,7 @@
         "Frozen 2",
         "Tangled"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36771690",
       "uri_deezer": "deezer://track/72371930",
       "isrc": "USWD11366376",
       "uri_apple_music_by_region": {
@@ -892,7 +892,7 @@
         "Tangled",
         "Moana"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36771687",
       "uri_deezer": "deezer://track/72371923",
       "isrc": "USWD11366364",
       "uri_apple_music_by_region": {
@@ -935,7 +935,7 @@
         "Tangled",
         "The Little Mermaid"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36771689",
       "uri_deezer": "deezer://track/72371928",
       "isrc": "USWD11366375",
       "uri_apple_music_by_region": {
@@ -977,7 +977,7 @@
         "Tangled",
         "Moana"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36771688",
       "uri_deezer": "deezer://track/72371927",
       "isrc": "USWD11366365",
       "uri_apple_music_by_region": {
@@ -1019,7 +1019,7 @@
         "Tangled",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36771694",
       "uri_deezer": "deezer://track/72371941",
       "isrc": "USWD11366380",
       "uri_apple_music_by_region": {
@@ -1061,7 +1061,7 @@
         "Frozen 2",
         "The Snowman"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36771692",
       "uri_deezer": "deezer://track/72371935",
       "isrc": "USWD11366378",
       "uri_apple_music_by_region": {
@@ -1133,7 +1133,7 @@
         "The Lion King",
         "Beauty and the Beast"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34186806",
       "uri_deezer": "deezer://track/7703143",
       "isrc": "USWD10423000",
       "uri_apple_music_by_region": {
@@ -1175,7 +1175,7 @@
         "Hercules",
         "Tangled"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34186800",
       "uri_deezer": "deezer://track/120917654",
       "isrc": "USWD10423200",
       "uri_apple_music_by_region": {
