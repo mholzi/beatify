@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "party",
     "schlager",
@@ -2852,7 +2852,7 @@
       },
       "uri_deezer": "deezer://track/2336027235",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/430782933"
     },
     {
       "year": 2023,
@@ -2885,7 +2885,7 @@
       },
       "uri_deezer": "deezer://track/2434257815",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/313843471"
     },
     {
       "year": 2024,
@@ -2918,7 +2918,7 @@
       },
       "uri_deezer": "deezer://track/3151231281",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/358213955"
     },
     {
       "year": 2024,
@@ -2951,7 +2951,7 @@
       },
       "uri_deezer": "deezer://track/2694100132",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/349692494"
     },
     {
       "year": 2024,
@@ -2984,7 +2984,7 @@
       },
       "uri_deezer": "deezer://track/2767030321",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/359763637"
     },
     {
       "year": 2024,
@@ -3017,7 +3017,7 @@
       },
       "uri_deezer": "deezer://track/2959691301",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/382874563"
     },
     {
       "year": 2024,
@@ -3050,7 +3050,7 @@
       },
       "uri_deezer": "deezer://track/2805848012",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/363687804"
     },
     {
       "year": 2025,
@@ -3083,7 +3083,7 @@
       },
       "uri_deezer": "deezer://track/3319947541",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/429399201"
     },
     {
       "year": 2025,
@@ -3120,7 +3120,7 @@
       },
       "uri_deezer": "deezer://track/3200185401",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/413444352"
     },
     {
       "year": 2025,
@@ -3153,7 +3153,7 @@
       },
       "uri_deezer": "deezer://track/3573741941",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/463050080"
     },
     {
       "year": 2022,
@@ -3186,7 +3186,7 @@
       },
       "uri_deezer": "deezer://track/1789665297",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/233457205"
     },
     {
       "year": 2025,
@@ -3222,7 +3222,7 @@
       },
       "uri_deezer": "deezer://track/3647291032",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/539811572"
     },
     {
       "year": 2001,
@@ -3255,7 +3255,7 @@
       },
       "uri_deezer": "deezer://track/2911274451",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/377339098"
     },
     {
       "year": 2026,
@@ -3288,7 +3288,7 @@
       },
       "uri_deezer": "deezer://track/3960003601",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/515839583"
     },
     {
       "year": 2026,
@@ -3321,7 +3321,7 @@
       },
       "uri_deezer": "deezer://track/3924289331",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/510532089"
     },
     {
       "year": 2026,
@@ -3354,7 +3354,7 @@
       },
       "uri_deezer": "deezer://track/3870271561",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/502686746"
     },
     {
       "year": 2024,
@@ -3387,7 +3387,7 @@
       },
       "uri_deezer": "deezer://track/2816336822",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/365133648"
     },
     {
       "year": 2026,
@@ -3420,7 +3420,7 @@
       },
       "uri_deezer": "deezer://track/3946488621",
       "uri_youtube_music": null,
-      "uri_tidal": null
+      "uri_tidal": "tidal://track/513809918"
     }
   ]
 }
