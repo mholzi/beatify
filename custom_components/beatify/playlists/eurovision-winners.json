@@ -1,6 +1,6 @@
 {
   "name": "Eurovision Winners (1956-2025)",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "eurovision",
     "contest",
@@ -104,7 +104,8 @@
         "es": "applemusic://track/1739553677",
         "nl": "applemusic://track/1739553677",
         "it": "applemusic://track/1739553677"
-      }
+      },
+      "uri_tidal": "tidal://track/18237627"
     },
     {
       "year": 1958,
@@ -153,7 +154,8 @@
         "es": "applemusic://track/794472283",
         "nl": "applemusic://track/794472283",
         "it": "applemusic://track/794472283"
-      }
+      },
+      "uri_tidal": "tidal://track/73263202"
     },
     {
       "year": 1959,
@@ -491,7 +493,8 @@
       "fun_fact_nl": "Poupee de cire, poupee de son werd geschreven door de legendarische Franse songwriter Serge Gainsbourg. France Gall was pas 17 en was naar verluidt niet op de hoogte van de dubbelzinnige betekenis van de tekst. Het werd een klassieker in de ye-ye popstijl.",
       "awards_nl": [
         "Eurovisionwinnaar 1965"
-      ]
+      ],
+      "uri_tidal": "tidal://track/41386583"
     },
     {
       "year": 1966,
@@ -1126,7 +1129,8 @@
       "fun_fact_nl": "Ding-A-Dong bezorgde Nederland de vierde overwinning. Het aanstekelijke popnummer won in een jaar met veel sterke tegenstanders. Teach-In genoot na de winst van een korte internationale carrière.",
       "awards_nl": [
         "Eurovisionwinnaar 1975"
-      ]
+      ],
+      "uri_tidal": "tidal://track/181365005"
     },
     {
       "year": 1976,

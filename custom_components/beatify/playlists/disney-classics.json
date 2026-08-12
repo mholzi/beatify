@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "disney",
     "movies",
@@ -2901,7 +2901,7 @@
         "Atlantis: The Lost Empire",
         "Brother Bear"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/36735626",
       "uri_deezer": "deezer://track/1762551507",
       "isrc": "USWD10220511",
       "uri_apple_music_by_region": {
@@ -2944,7 +2944,7 @@
         "The Aristocats",
         "Robin Hood"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/59075006",
       "uri_deezer": "deezer://track/122886568",
       "isrc": "USWD11676132",
       "uri_apple_music_by_region": {
@@ -3002,7 +3002,7 @@
         "Snow White and the Seven Dwarfs",
         "Cinderella"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37081267",
       "uri_deezer": "deezer://track/3145964",
       "isrc": "USWD10220003",
       "uri_apple_music_by_region": {
@@ -3055,7 +3055,7 @@
         "Bedknobs and Broomsticks",
         "Chitty Chitty Bang Bang"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34186721",
       "uri_deezer": "deezer://track/3118718",
       "isrc": "USWD10320942",
       "uri_apple_music_by_region": {
@@ -3097,7 +3097,7 @@
         "Bedknobs and Broomsticks",
         "Cinderella"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34186718",
       "uri_deezer": "deezer://track/677778572",
       "isrc": "USWD10220406",
       "uri_apple_music_by_region": {
@@ -3154,7 +3154,7 @@
         "Bedknobs and Broomsticks",
         "Chitty Chitty Bang Bang"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/34186727",
       "uri_deezer": "deezer://track/462639092",
       "isrc": "FR10S1851773",
       "uri_apple_music_by_region": {
@@ -3197,7 +3197,7 @@
         "Pocahontas",
         "Beauty and the Beast"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/47941008",
       "uri_deezer": "deezer://track/3867512211",
       "isrc": "GX8KD2412728",
       "uri_apple_music_by_region": {
@@ -3239,7 +3239,7 @@
         "Pinocchio",
         "Cinderella"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/91948711",
       "uri_deezer": "deezer://track/3203549",
       "isrc": "USWD10321898",
       "uri_apple_music_by_region": {
@@ -3282,7 +3282,7 @@
         "The Aristocats",
         "Lady and the Tramp"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37081149",
       "uri_deezer": "deezer://track/119928454",
       "isrc": "USWD10220295",
       "uri_apple_music_by_region": {
@@ -3325,7 +3325,7 @@
         "The Jungle Book",
         "101 Dalmatians"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2502280",
       "uri_deezer": "deezer://track/134519754",
       "isrc": "FRUM71601092",
       "uri_apple_music_by_region": {
@@ -3369,7 +3369,7 @@
         "Pinocchio",
         "Cinderella"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/109095717",
       "uri_deezer": "deezer://track/106122128",
       "isrc": "BEDO61509811",
       "uri_apple_music_by_region": {
@@ -3410,7 +3410,7 @@
         "Tarzan",
         "The Lion King"
       ],
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37080358",
       "uri_deezer": "deezer://track/3191609",
       "isrc": "USWD10322458",
       "uri_apple_music_by_region": {

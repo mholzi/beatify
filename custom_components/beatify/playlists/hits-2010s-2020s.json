@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "pop",
     "charts",
@@ -425,7 +425,7 @@
         "it": "applemusic://track/1835099678"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=N5KEtQlWzEg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33346629",
       "uri_deezer": "deezer://track/65735114",
       "alt_artists": [
         "Ella Eyre"
@@ -453,7 +453,7 @@
         "it": "applemusic://track/1761397067"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=NLyKhp-4Y-0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/184061880",
       "uri_deezer": "deezer://track/1371887182",
       "alt_artists": [
         "Tom Grennan"
@@ -481,7 +481,7 @@
         "it": "applemusic://track/1807709656"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Hx4nWW9z0ig",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/114833547",
       "uri_deezer": "deezer://track/739870792",
       "fun_fact": "A chart hit by Tones And I (2019).",
       "fun_fact_de": "Ein Chart-Hit von Tones And I (2019).",
@@ -506,7 +506,7 @@
         "it": "applemusic://track/1416740913"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=K2UAIvQ_lNY",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/92489009",
       "uri_deezer": "deezer://track/532182272",
       "alt_artists": [
         "Bonn"
@@ -534,7 +534,7 @@
         "it": "applemusic://track/6767693237"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=SZx4KF6CQFU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/94730576",
       "uri_deezer": "deezer://track/552345022",
       "fun_fact": "A chart hit by Andreas Gabalier (2018).",
       "fun_fact_de": "Ein Chart-Hit von Andreas Gabalier (2018).",
@@ -559,7 +559,7 @@
         "it": "applemusic://track/1834746991"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=U4CPl7mpxFw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/141089695",
       "uri_deezer": "deezer://track/68985416",
       "fun_fact": "A chart hit by INNA (2011).",
       "fun_fact_de": "Ein Chart-Hit von INNA (2011).",
@@ -584,7 +584,7 @@
         "it": "applemusic://track/1756057163"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jVBsM8CM0AE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/351423643",
       "uri_deezer": "deezer://track/2706736172",
       "fun_fact": "A chart hit by Artemas (2024).",
       "fun_fact_de": "Ein Chart-Hit von Artemas (2024).",
@@ -601,7 +601,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=XWCPbRsMb0Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/86980532",
       "uri_deezer": null,
       "alt_artists": [
         "Dua Lipa"
@@ -629,7 +629,7 @@
         "it": "applemusic://track/1699868137"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=gDRL47NzG5o",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/6444630",
       "uri_deezer": "deezer://track/8930372",
       "alt_artists": [
         "Pitbull"
@@ -657,7 +657,7 @@
         "it": "applemusic://track/1598666433"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_Za1vy3yDUc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/75613542",
       "uri_deezer": "deezer://track/377718131",
       "alt_artists": [
         "Willy William"
@@ -685,7 +685,7 @@
         "it": "applemusic://track/1888263656"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=xAgv1mAyxr8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/9184437",
       "uri_deezer": "deezer://track/14383880",
       "fun_fact": "A chart hit by Avicii (2011).",
       "fun_fact_de": "Ein Chart-Hit von Avicii (2011).",
@@ -710,7 +710,7 @@
         "it": "applemusic://track/1442401366"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=b0U-NcIWz1M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32542776",
       "uri_deezer": "deezer://track/81609384",
       "alt_artists": [
         "Ariana Grande",
@@ -739,7 +739,7 @@
         "it": "applemusic://track/1790697544"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=KBV_zpMm_0Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/385073564",
       "uri_deezer": "deezer://track/3068802261",
       "fun_fact": "A chart hit by Linkin Park (2024).",
       "fun_fact_de": "Ein Chart-Hit von Linkin Park (2024).",
@@ -764,7 +764,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XOsY3W3dlI0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/296594990",
       "uri_deezer": "deezer://track/2297911845",
       "fun_fact": "A chart hit by Peggy Gou (2023).",
       "fun_fact_de": "Ein Chart-Hit von Peggy Gou (2023).",
@@ -789,7 +789,7 @@
         "it": "applemusic://track/1738363782"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jSG3uy97VNA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/353983142",
       "uri_deezer": "deezer://track/2658723742",
       "fun_fact": "A chart hit by Beyoncé (2024).",
       "fun_fact_de": "Ein Chart-Hit von Beyoncé (2024).",
@@ -814,7 +814,7 @@
         "it": "applemusic://track/1445141316"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=pIWaVJPl0-c",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/69449730",
       "uri_deezer": "deezer://track/140295501",
       "fun_fact": "A chart hit by Alan Walker (2015).",
       "fun_fact_de": "Ein Chart-Hit von Alan Walker (2015).",
@@ -839,7 +839,7 @@
         "it": "applemusic://track/1613393848"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wERbBIdcT4Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/490832408",
       "uri_deezer": "deezer://track/3782886122",
       "alt_artists": [
         "Shaggy"
@@ -867,7 +867,7 @@
         "it": "applemusic://track/1653449011"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=l0dwuaAF3VI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/217351494",
       "uri_deezer": "deezer://track/1661208732",
       "alt_artists": [
         "DNCE"
@@ -895,7 +895,7 @@
         "it": "applemusic://track/1531503560"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uYN0VbbQTP8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/59896476",
       "uri_deezer": "deezer://track/1077700822",
       "fun_fact": "A chart hit by Alexandra Stan (2011).",
       "fun_fact_de": "Ein Chart-Hit von Alexandra Stan (2011).",
