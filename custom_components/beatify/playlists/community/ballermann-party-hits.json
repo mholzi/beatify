@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.24",
+  "version": "1.25",
   "tags": [
     "schlager",
     "party",
@@ -506,7 +506,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YG6k0EZR8Uo",
       "uri_tidal": "tidal://track/464578463",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/3584613091",
       "alt_artists": [
         "Julian Sommer",
         "Roxy",
@@ -656,7 +656,8 @@
       "fun_fact_de": "Lorenz Büffel ist ein Mallorca-Party-Schlager-Star, bekannt vor allem durch die Hymne \"Johnny Däpp\".",
       "fun_fact_es": "Lorenz Büffel es una estrella del Schlager fiestero de Mallorca, conocido sobre todo por el himno \"Johnny Däpp\".",
       "fun_fact_fr": "Lorenz Büffel est une star du Schlager festif de Majorque, connu surtout pour l'hymne \"Johnny Däpp\".",
-      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\"."
+      "fun_fact_nl": "Lorenz Büffel is een Mallorca-feest-Schlagerster, vooral bekend van de anthem \"Johnny Däpp\".",
+      "uri_deezer": "deezer://track/127667789"
     },
     {
       "artist": "Mickie Krause",
@@ -870,7 +871,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=5SXdEjVpHxY",
       "uri_tidal": "tidal://track/437172835",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/3376938571",
       "alt_artists": [
         "Specktakel",
         "DJ Cashi",
@@ -1403,11 +1404,11 @@
       "year": 2024,
       "isrc": null,
       "uri": "spotify:track:5t2L4RyK0XjpMgbkvOxwrD",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1740370877",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=7ICiUTFl0H0",
       "uri_tidal": "tidal://track/356880385",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2747834271",
       "alt_artists": [
         "Julian Benz",
         "Lyzar"
@@ -2041,7 +2042,7 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=VnW2FBUnRuc",
       "uri_tidal": "tidal://track/335333730",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2540170701",
       "alt_artists": [
         "Schürze",
         "DJ Robin"
@@ -2120,7 +2121,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nDhzI6hYbms",
       "uri_tidal": "tidal://track/337000336",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2598568052",
       "alt_artists": [
         "DJ Dee"
       ],
@@ -2481,11 +2482,11 @@
       "year": 2022,
       "isrc": null,
       "uri": "spotify:track:6HtDN2JPFmUTZXjs9dewjN",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1642919743",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=JGBUp35-ZqQ",
       "uri_tidal": "tidal://track/246121474",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2036363687",
       "fun_fact": "Peter Wackel is a mainstay of the Mallorca party-Schlager scene and a regular at the Bierkönig.",
       "fun_fact_de": "Peter Wackel ist eine feste Größe der Mallorca-Party-Schlager-Szene und Dauergast im Bierkönig.",
       "fun_fact_es": "Peter Wackel es un pilar de la escena del Schlager fiestero de Mallorca y habitual del Bierkönig.",
@@ -2547,7 +2548,8 @@
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2022).",
       "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2022).",
       "fun_fact_fr": "Un tube de fête de Majorque / Ballermann (2022).",
-      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022)."
+      "fun_fact_nl": "Een Mallorca-/Ballermann-feesthit (2022).",
+      "uri_apple_music": "applemusic://track/1629427486"
     },
     {
       "artist": "Honk!",
@@ -3027,11 +3029,11 @@
       "year": 2017,
       "isrc": null,
       "uri": "spotify:track:2kVaYYo0HCAh6DLEBVFyrC",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1721526801",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=ozegflGA8jM",
       "uri_tidal": "tidal://track/336999603",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2836089382",
       "alt_artists": [
         "VFL Eschhofen",
         "Kreisligalegende"
@@ -3048,11 +3050,11 @@
       "year": 2024,
       "isrc": null,
       "uri": "spotify:track:0VRemx1mBBJ9LeWQjIecWH",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1721519021",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=R1khp5lA6Cc",
       "uri_tidal": "tidal://track/336998913",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2598565712",
       "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
       "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
       "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
@@ -3140,7 +3142,7 @@
       "year": 2010,
       "isrc": null,
       "uri": "spotify:track:7xTy2pipCAytjQJSySIbKT",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/362714130",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=X0qtLof0eeg",
       "uri_tidal": "tidal://track/16670983",
@@ -3841,11 +3843,11 @@
       "year": 2021,
       "isrc": null,
       "uri": "spotify:track:5p72jZxWouRGRrNJawy2d3",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1437555810",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=PJVqqdbaluE",
       "uri_tidal": "tidal://track/103928543",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/671464252",
       "fun_fact": "Tobee's party cover of \"Cordula Grün\" turned the originally folk-pop tune into a Ballermann smash.",
       "fun_fact_de": "Tobees Party-Coverversion von \"Cordula Grün\" machte aus dem ursprünglichen Folk-Pop-Lied einen Ballermann-Hit.",
       "fun_fact_es": "La versión fiestera de Tobee de \"Cordula Grün\" convirtió la canción folk-pop original en un éxito del Ballermann.",
@@ -4373,11 +4375,11 @@
       "year": 2018,
       "isrc": null,
       "uri": "spotify:track:7sdBx6DRf6r7a8ILex6cys",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1721521529",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=b3CYsa_luYI",
       "uri_tidal": "tidal://track/100116950",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2598567532",
       "fun_fact": "Ikke Hüftgold is a Ballermann artist and label boss — his Summerfield label was behind the 2022 smash \"Layla\".",
       "fun_fact_de": "Ikke Hüftgold ist Ballermann-Künstler und Label-Chef — sein Label Summerfield steckte hinter dem 2022er-Hit \"Layla\".",
       "fun_fact_es": "Ikke Hüftgold es artista del Ballermann y jefe de sello; su sello Summerfield estuvo detrás del exitazo \"Layla\" de 2022.",
@@ -4537,7 +4539,8 @@
       "fun_fact_de": "Axel Fischer ist ein Party-Schlager-Sänger, bekannt vor allem durch den Mallorca-Hit \"Amsterdam\".",
       "fun_fact_es": "Axel Fischer es un cantante de Schlager fiestero conocido sobre todo por el éxito de Mallorca \"Amsterdam\".",
       "fun_fact_fr": "Axel Fischer est un chanteur de Schlager festif connu surtout pour le tube majorquin \"Amsterdam\".",
-      "fun_fact_nl": "Axel Fischer is een feest-Schlagerzanger vooral bekend van de Mallorca-hit \"Amsterdam\"."
+      "fun_fact_nl": "Axel Fischer is een feest-Schlagerzanger vooral bekend van de Mallorca-hit \"Amsterdam\".",
+      "uri_apple_music": "applemusic://track/844155578"
     },
     {
       "artist": "Mickie Krause",
@@ -4645,11 +4648,11 @@
       "year": 2016,
       "isrc": null,
       "uri": "spotify:track:404cZYK4mrx3Mwf27C08Dq",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1124113027",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=QIdVNto7mkI",
       "uri_tidal": "tidal://track/61998120",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/126731415",
       "alt_artists": [
         "Mia Julia"
       ],
@@ -4693,11 +4696,11 @@
       "year": 2018,
       "isrc": null,
       "uri": "spotify:track:4LDwIQ6zHywMuMVQqjDB2D",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1444209941",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=hEUMThMU0l4",
       "uri_tidal": "tidal://track/105812003",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/527184041",
       "fun_fact": "A Mallorca / Ballermann party hit (2018).",
       "fun_fact_de": "Ein Mallorca-/Ballermann-Partyhit (2018).",
       "fun_fact_es": "Un éxito de fiesta de Mallorca / Ballermann (2018).",
