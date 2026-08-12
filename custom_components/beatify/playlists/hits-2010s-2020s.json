@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "pop",
     "charts",
@@ -1095,7 +1095,7 @@
         "it": "applemusic://track/1566573897"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9u3FC1E6RMk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/183359659",
       "uri_deezer": "deezer://track/1366251182",
       "fun_fact": "A chart hit by Die Atzen (2010).",
       "fun_fact_de": "Ein Chart-Hit von Die Atzen (2010).",
@@ -1120,7 +1120,7 @@
         "it": "applemusic://track/1633685561"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=K1FlAphL2p8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/45191318",
       "uri_deezer": "deezer://track/99976952",
       "fun_fact": "A chart hit by Twenty One Pilots (2015).",
       "fun_fact_de": "Ein Chart-Hit von Twenty One Pilots (2015).",
@@ -1145,7 +1145,7 @@
         "it": "applemusic://track/1750028478"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GvdKeZO8IzM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/88470135",
       "uri_deezer": "deezer://track/497415082",
       "alt_artists": [
         "Demi Lovato"
@@ -1165,7 +1165,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=sWMk8dwljFU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/121444600",
       "uri_deezer": null,
       "fun_fact": "A chart hit by Taylor Swift (2015).",
       "fun_fact_de": "Ein Chart-Hit von Taylor Swift (2015).",
@@ -1190,7 +1190,7 @@
         "it": "applemusic://track/1581587880"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GJY8OMJXRAk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/88922697",
       "uri_deezer": "deezer://track/516351532",
       "fun_fact": "A chart hit by Panic! At The Disco (2018).",
       "fun_fact_de": "Ein Chart-Hit von Panic! At The Disco (2018).",
@@ -1215,7 +1215,7 @@
         "it": "applemusic://track/1547314277"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3MrY_BwLChk",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4282590",
       "uri_deezer": "deezer://track/7063920",
       "fun_fact": "A chart hit by Taio Cruz (2010).",
       "fun_fact_de": "Ein Chart-Hit von Taio Cruz (2010).",
@@ -1240,7 +1240,7 @@
         "it": "applemusic://track/626205874"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RnX3Qas9zCs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/19646531",
       "uri_deezer": "deezer://track/10686934",
       "fun_fact": "A chart hit by Beyoncé (2011).",
       "fun_fact_de": "Ein Chart-Hit von Beyoncé (2011).",
@@ -1265,7 +1265,7 @@
         "it": "applemusic://track/1807714122"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iR1sAex__VA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/79272716",
       "uri_deezer": "deezer://track/107346368",
       "fun_fact": "A chart hit by Avicii (2015).",
       "fun_fact_de": "Ein Chart-Hit von Avicii (2015).",
@@ -1290,7 +1290,7 @@
         "it": "applemusic://track/1625989507"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ch_NfEOxzh4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4833306",
       "uri_deezer": "deezer://track/15597831",
       "fun_fact": "A chart hit by P!nk (2010).",
       "fun_fact_de": "Ein Chart-Hit von P!nk (2010).",
@@ -1315,7 +1315,7 @@
         "it": "applemusic://track/907071271"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=cbHs1Mx2M6Y",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/32961853",
       "uri_deezer": "deezer://track/82564724",
       "fun_fact": "A chart hit by AronChupa (2014).",
       "fun_fact_de": "Ein Chart-Hit von AronChupa (2014).",
@@ -1340,7 +1340,7 @@
         "it": "applemusic://track/1820145146"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DiTd771WumE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/393926674",
       "uri_deezer": "deezer://track/3050380851",
       "alt_artists": [
         "Bruno Mars"

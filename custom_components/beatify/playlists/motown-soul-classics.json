@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1960s",
     "1970s",
@@ -1414,7 +1414,8 @@
         "es": "applemusic://track/1708519509",
         "nl": "applemusic://track/1708519509",
         "it": "applemusic://track/1708519509"
-      }
+      },
+      "uri_tidal": "tidal://track/98184494"
     },
     {
       "year": 1964,
@@ -1452,7 +1453,8 @@
         "es": "applemusic://track/1452187833",
         "nl": "applemusic://track/1452187833",
         "it": "applemusic://track/1452187833"
-      }
+      },
+      "uri_tidal": "tidal://track/1851572"
     },
     {
       "year": 1975,
@@ -1492,7 +1494,8 @@
         "es": "applemusic://track/1442463684",
         "nl": "applemusic://track/1471566080",
         "it": "applemusic://track/1471566080"
-      }
+      },
+      "uri_tidal": "tidal://track/101659741"
     },
     {
       "year": 1968,
@@ -1539,7 +1542,8 @@
         "es": "applemusic://track/1801727260",
         "nl": "applemusic://track/1801727260",
         "it": "applemusic://track/1801727260"
-      }
+      },
+      "uri_tidal": "tidal://track/578617"
     },
     {
       "year": 1991,
@@ -1579,7 +1583,8 @@
         "es": "applemusic://track/1444166661",
         "nl": "applemusic://track/1444166661",
         "it": "applemusic://track/1444166661"
-      }
+      },
+      "uri_tidal": "tidal://track/3875003"
     },
     {
       "year": 1979,
@@ -1619,7 +1624,8 @@
         "es": "applemusic://track/1413946617",
         "nl": "applemusic://track/1413946617",
         "it": "applemusic://track/1413946617"
-      }
+      },
+      "uri_tidal": "tidal://track/5254501"
     },
     {
       "year": 1972,
