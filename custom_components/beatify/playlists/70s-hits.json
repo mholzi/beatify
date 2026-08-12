@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "1970s",
     "classic-rock",
@@ -3044,7 +3044,7 @@
       "year": 1976,
       "isrc": "DED168000002",
       "uri": "spotify:track:3pf96IFggfQuT6Gafqx2rt",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/220385946",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1626933880",
         "de": "applemusic://track/1626933880",
@@ -3069,7 +3069,7 @@
       "year": 1978,
       "isrc": "USAM17800365",
       "uri": "spotify:track:1CQqupcyMg7176PPmIVmSj",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440911577",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6767662926",
         "de": "applemusic://track/6767662926",
@@ -3144,7 +3144,7 @@
       "year": 1971,
       "isrc": "US2HK1341204",
       "uri": "spotify:track:10vkYRKw6Jjr7try1ir50G",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1203896571",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1196519945",
         "de": "applemusic://track/1196519945",
@@ -3169,7 +3169,7 @@
       "year": 1976,
       "isrc": "USSM17800853",
       "uri": "spotify:track:2hdNya0b6Cc2YJ8IyaQIWp",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1054523242",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/894170618",
         "de": "applemusic://track/318312874",
@@ -3219,7 +3219,7 @@
       "year": 1971,
       "isrc": "USIR20000701",
       "uri": "spotify:track:6rovOdp3HgK1DeAMYDzoA7",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1423302726",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1426968402",
         "de": "applemusic://track/1426968402",
@@ -3269,7 +3269,7 @@
       "year": 1979,
       "isrc": "GBARL1200680",
       "uri": "spotify:track:5jzma6gCzYtKB1DbEwFZKH",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/684811768",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/688795488",
         "de": "applemusic://track/688795488",
@@ -3294,7 +3294,7 @@
       "year": 1971,
       "isrc": "USJT11500131",
       "uri": "spotify:track:3ZE3wv8V3w2T2f7nOCjV0N",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1039798013",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1593686602",
         "de": "applemusic://track/1593686602",
@@ -3319,7 +3319,7 @@
       "year": 1976,
       "isrc": "GBF087600063",
       "uri": "spotify:track:43DeSV93pJPT4lCZaWZ6b1",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443910472",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6766355695",
         "de": "applemusic://track/6766355695",
@@ -3344,7 +3344,7 @@
       "year": 1979,
       "isrc": "USUM71021480",
       "uri": "spotify:track:6mHOcVtsHLMuesJkswc0GZ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440521625",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1892521978",
         "de": "applemusic://track/1892521978",
@@ -3394,7 +3394,7 @@
       "year": 1979,
       "isrc": "NLF057990026",
       "uri": "spotify:track:6UXXeFqMBGiqjkzQzkMT3E",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1445664308",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1716610378",
         "de": "applemusic://track/1716610378",
@@ -3444,7 +3444,7 @@
       "year": 1973,
       "isrc": "USAM17300051",
       "uri": "spotify:track:3wM6RTAnF7IQpMFd7b9ZcL",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1434886946",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1814188181",
         "de": "applemusic://track/1814188181",
@@ -3469,7 +3469,7 @@
       "year": 1970,
       "isrc": "USSM16900181",
       "uri": "spotify:track:6QhXQOpyYvbpdbyjgAqKdY",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/324127936",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1463652199",
         "de": "applemusic://track/1463652199",
@@ -3494,7 +3494,7 @@
       "year": 1977,
       "isrc": "NLF057790024",
       "uri": "spotify:track:2udGjDmpK1dH9VGyw7nrei",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440782710",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1388006144",
         "de": "applemusic://track/1388006144",
@@ -3519,7 +3519,7 @@
       "year": 1971,
       "isrc": "USEM38600091",
       "uri": "spotify:track:0VNzEY1G4GLqcNx5qaaTl6",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440834638",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6768427700",
         "de": "applemusic://track/6768427700",

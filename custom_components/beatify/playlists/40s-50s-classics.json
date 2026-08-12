@@ -1,6 +1,6 @@
 {
   "name": "40s & 50s Classics",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "1940s",
     "1950s",
@@ -2144,7 +2144,7 @@
       "year": 1957,
       "isrc": "USSM10403425",
       "uri": "spotify:track:4g9ZMsnY0xpeG3OR8GRJne",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/818525729",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/201414349",
         "de": "applemusic://track/201414349",
@@ -2219,7 +2219,7 @@
       "year": 1957,
       "isrc": "USRC10000595",
       "uri": "spotify:track:2k6qpHJsrKCCyvsHv2cPqR",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/282219334",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/282219334",
         "de": "applemusic://track/314000997",
@@ -2256,7 +2256,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LJCp7K__8Vo",
       "uri_tidal": "tidal://track/60683639",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/3265903131",
       "fun_fact": "Ricky Nelson — a teen idol who became one of the 50s' biggest stars.",
       "fun_fact_de": "Ricky Nelson — ein Teenie-Idol, das zu einem der größten Stars der 50er wurde.",
       "fun_fact_es": "Ricky Nelson, un ídolo adolescente que se convirtió en una de las grandes estrellas de los 50.",
@@ -2319,7 +2319,7 @@
       "year": 1957,
       "isrc": "USWB10603360",
       "uri": "spotify:track:11fNLqDB47gMKj7BHhR2Qr",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1714917514",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1400161658",
         "de": "applemusic://track/1400161658",
@@ -2394,7 +2394,7 @@
       "year": 1957,
       "isrc": "QM4TX1767965",
       "uri": "spotify:track:2yOXKIU9YtBSWjI3OA8tqj",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/447593241",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2569,7 +2569,7 @@
       "year": 1958,
       "isrc": "USRC16406272",
       "uri": "spotify:track:4nAJtcmiyoL0ARY5WZY9IN",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/217699850",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/415504223",
         "de": "applemusic://track/324167268",
@@ -2894,7 +2894,7 @@
       "year": 1958,
       "isrc": "USPR35800063",
       "uri": "spotify:track:1f0Wfl3eLCLKv72SdkpviC",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1437194539",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1700465239",
         "de": "applemusic://track/1700465239",
@@ -2919,7 +2919,7 @@
       "year": 1958,
       "isrc": "QM7281450274",
       "uri": "spotify:track:07GtDOCxmye5KDWsTSACPk",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/541046802",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3044,7 +3044,7 @@
       "year": 1959,
       "isrc": "USMO15900265",
       "uri": "spotify:track:0jqr2lIlIU09FsuSOibDdA",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1445297290",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1576448302",
         "de": "applemusic://track/1576448302",
@@ -3156,7 +3156,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uk4ZbUGRKt8",
       "uri_tidal": "tidal://track/1500589",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/3124101",
       "fun_fact": "A 1950s classic (1959).",
       "fun_fact_de": "Ein 50er-Klassiker (1959).",
       "fun_fact_es": "Un clásico de los años 50 (1959).",
@@ -3219,7 +3219,7 @@
       "year": 1959,
       "isrc": "USGR19906204",
       "uri": "spotify:track:28HXaQiH5DF10ey7yh9Gdu",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1434896964",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1765400390",
         "de": "applemusic://track/1765400390",
@@ -3269,7 +3269,7 @@
       "year": 1959,
       "isrc": "USEM38700242",
       "uri": "spotify:track:3Ib94mN8YF3cXZo5x1FpQL",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1444140158",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1496048261",
         "de": "applemusic://track/724391048",
@@ -3319,7 +3319,7 @@
       "year": 1959,
       "isrc": "USA371099273",
       "uri": "spotify:track:0qDShcc7oY6M8OFaDXHOZG",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/208115171",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3594,7 +3594,7 @@
       "year": 1959,
       "isrc": "USAT29901950",
       "uri": "spotify:track:047Ip9c6dijAJfuwloV3NF",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1600072827",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1694329463",
         "de": "applemusic://track/1694329463",
@@ -3619,7 +3619,7 @@
       "year": 1959,
       "isrc": "NLHR52134880",
       "uri": "spotify:track:5WAPUAldIHRM28j5fUl1ak",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1354794482",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3656,7 +3656,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VcCV_ALcpss",
       "uri_tidal": "tidal://track/3191789",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/3581352",
       "fun_fact": "A 1950s classic (1959).",
       "fun_fact_de": "Ein 50er-Klassiker (1959).",
       "fun_fact_es": "Un clásico de los años 50 (1959).",
@@ -3794,7 +3794,7 @@
       "year": 1962,
       "isrc": "USSM10404750",
       "uri": "spotify:track:5KG2ahk1cONbHvg3dBdTbx",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/192966100",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/192966100",
         "de": "applemusic://track/192966100",
