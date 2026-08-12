@@ -383,8 +383,7 @@
     }
 }
 
-.playing-right-section,
-.reveal-right-section {
+.playing-right-section {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -534,14 +533,6 @@
     gap: var(--space-2xl);
     flex: 1;
     padding: var(--space-lg);
-}
-
-.reveal-left-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
 }
 
 .reveal-song-info {
@@ -1625,8 +1616,7 @@
    fits its row, whatever the player count or viewport height — no
    overflow, no overlap, no cropping. overflow stays visible so the #1
    row's glow is never clipped. */
-.playing-right-section .dashboard-leaderboard,
-.reveal-right-section .dashboard-leaderboard {
+.playing-right-section .dashboard-leaderboard {
     gap: clamp(4px, 0.8vh, 12px);
     overflow: visible;  /* #1 lead row grows bigger — don't clip glow */
     padding-right: 0;
@@ -1676,8 +1666,7 @@
     font-size: 17cqh;
     padding: 6cqh 12cqh;
 }
-.playing-right-section,
-.reveal-right-section {
+.playing-right-section {
     max-height: none;
     padding-top: 8px;
     justify-content: center;  /* center the scoreboard vertically in the cell */
@@ -1797,26 +1786,10 @@
     min-height: 0;
 }
 
-.reveal-left-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
-}
-
 /* Shrink the reveal album to fit alongside the hero year */
-.dashboard-album-container.dashboard-album-container--reveal,
-.reveal-left-section .dashboard-album-container {
+.dashboard-album-container.dashboard-album-container--reveal {
     width: 200px;
     height: 200px;
-}
-.reveal-left-section .dashboard-album-art {
-    width: 200px;
-    height: 200px;
-    border-radius: 14px;
-    border: 2px solid var(--color-accent-primary);
-    box-shadow: 0 0 40px rgba(255, 45, 106, 0.4);
 }
 
 /* Year row: label + giant number */
@@ -1905,13 +1878,6 @@
     font-style: italic;
 }
 
-/* Right side on REVEAL */
-.reveal-right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-height: none;
-}
 .reveal-top-guesses .top-guesses-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -1967,50 +1933,6 @@
     background: rgba(255, 255, 255, 0.15);
     color: var(--color-text-neon-muted);
     box-shadow: none;
-}
-
-/* Compact standings rows on reveal */
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry {
-    grid-template-columns: 44px 1fr auto;
-    gap: 12px;
-    padding: 8px 16px;
-    border-radius: 10px;
-    border: none;
-    background: transparent;
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry.is-top-1 {
-    background: rgba(255, 45, 106, 0.08);
-    border: 1px solid rgba(255, 45, 106, 0.35);
-    padding: 8px 16px;
-    box-shadow: none;
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-rank {
-    width: auto;
-    height: auto;
-    border-radius: 0;
-    border: none;
-    background: transparent;
-    font-size: 18px;
-    color: var(--color-text-neon-muted);
-    font-weight: 900;
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-rank {
-    color: var(--color-accent-primary);
-    text-shadow: 0 0 10px rgba(255, 45, 106, 0.55);
-    box-shadow: none;
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-name {
-    font-size: 20px;
-    font-weight: 600;
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-score {
-    font-size: 26px;
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry.is-top-1 .entry-score {
-    text-shadow: 0 0 10px rgba(0, 245, 255, 0.4);
-}
-.reveal-right-section > .dashboard-leaderboard .leaderboard-entry .entry-change {
-    display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
