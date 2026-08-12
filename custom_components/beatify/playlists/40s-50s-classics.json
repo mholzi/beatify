@@ -1,6 +1,6 @@
 {
   "name": "40s & 50s Classics",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1940s",
     "1950s",
@@ -94,7 +94,7 @@
       "year": 1949,
       "isrc": "USA561404126",
       "uri": "spotify:track:4mQz22nF9cyWqwuErTqc6V",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1444488926",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -144,7 +144,7 @@
       "year": 1949,
       "isrc": "USPR34900126",
       "uri": "spotify:track:0hveAq1VSNWo9MQYGMHvFF",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1434632705",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1467439589",
         "de": "applemusic://track/1467439589",
@@ -294,7 +294,7 @@
       "year": 1951,
       "isrc": "USKYW0701089",
       "uri": "spotify:track:3GVyT9fBXuEkGs1STo2WHZ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1308706304",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -344,7 +344,7 @@
       "year": 1952,
       "isrc": "DEZZ42172492",
       "uri": "spotify:track:5fWf6gj5RE9nma0nyOSuZ6",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1455420757",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -669,7 +669,7 @@
       "year": 1954,
       "isrc": "MXF551052585",
       "uri": "spotify:track:0Rk9byjmZksAJX15onGns5",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1491548585",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -694,7 +694,7 @@
       "year": 1954,
       "isrc": "USSM17700246",
       "uri": "spotify:track:3KSchPNSklO5McIqRH3qYX",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1445668361",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/306966336",
         "de": "applemusic://track/288164984",
@@ -719,7 +719,7 @@
       "year": 1954,
       "isrc": "USCA29100211",
       "uri": "spotify:track:1oDCK7PW72XEZ1pE5rh87A",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1449320059",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1814188579",
         "de": "applemusic://track/1814188579",
@@ -769,7 +769,7 @@
       "year": 1954,
       "isrc": "NLG620401805",
       "uri": "spotify:track:00e59ZgjHI2GwsiY3oXayw",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/479865036",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/277572768",
@@ -869,7 +869,7 @@
       "year": 1955,
       "isrc": "QM7281450273",
       "uri": "spotify:track:4ZfQwNx3FlCN07cnUvekh3",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1396312116",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
