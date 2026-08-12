@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.14",
+  "version": "0.18",
   "tags": [
     "deutschrock",
     "german rock",
@@ -393,7 +393,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7XoKvGq7zB0",
       "uri_tidal": "tidal://track/442482686",
       "uri_deezer": "deezer://track/3417022611",
       "alt_artists": [],
@@ -419,7 +419,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5pjY547qn5k",
       "uri_tidal": "tidal://track/2040261",
       "uri_deezer": "deezer://track/1272451732",
       "alt_artists": [],
@@ -445,7 +445,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CYxrCtFlXEA",
       "uri_tidal": "tidal://track/279503489",
       "uri_deezer": "deezer://track/2170638557",
       "alt_artists": [],
@@ -471,7 +471,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vNZLQGL1fwE",
       "uri_tidal": "tidal://track/442479985",
       "uri_deezer": "deezer://track/3417021261",
       "alt_artists": [],
@@ -497,7 +497,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=puVj_142_R4",
       "uri_tidal": "tidal://track/203629601",
       "uri_deezer": "deezer://track/1520562962",
       "alt_artists": [],
