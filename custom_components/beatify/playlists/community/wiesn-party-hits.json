@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.7",
+  "version": "0.9",
   "tags": [
     "party",
     "schlager",
@@ -43,7 +43,7 @@
         "it": "applemusic://track/293895098"
       },
       "uri_deezer": "deezer://track/62238193",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RwHcohP7y3I",
       "uri_tidal": "tidal://track/15811933"
     },
     {
@@ -76,7 +76,7 @@
         "it": "applemusic://track/1443346606"
       },
       "uri_deezer": "deezer://track/982516",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CjGQLp6t6GU",
       "uri_tidal": "tidal://track/494409690"
     },
     {
@@ -112,7 +112,7 @@
         "it": "applemusic://track/311429581"
       },
       "uri_deezer": "deezer://track/636405",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Nn1IeHL5DHY",
       "uri_tidal": null
     },
     {
@@ -597,7 +597,7 @@
         "it": "applemusic://track/253831824"
       },
       "uri_deezer": "deezer://track/971107",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wWURPVmV2cg",
       "uri_tidal": "tidal://track/16320764"
     },
     {
