@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "pop",
     "charts",
@@ -157,7 +157,7 @@
         "it": "applemusic://track/1824437915"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QD3CQlFGTRU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/42721810",
       "uri_deezer": "deezer://track/95973024",
       "fun_fact": "A chart hit by Jess Glynne (2015).",
       "fun_fact_de": "Ein Chart-Hit von Jess Glynne (2015).",
@@ -182,7 +182,7 @@
         "it": "applemusic://track/1449106558"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GQwj_FRntp8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/102570097",
       "uri_deezer": "deezer://track/619949882",
       "alt_artists": [
         "Snow"
@@ -210,7 +210,7 @@
         "it": "applemusic://track/1360104027"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lygg5Ju0nNU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/131867904",
       "uri_deezer": "deezer://track/474915622",
       "alt_artists": [
         "DCup"
@@ -238,7 +238,7 @@
         "it": "applemusic://track/1674907698"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dv8V-w-Pu1A",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/279360993",
       "uri_deezer": "deezer://track/2170492547",
       "alt_artists": [
         "Omega"
@@ -266,7 +266,7 @@
         "it": "applemusic://track/1643531791"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Ag4EXrgDPzc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/240126781",
       "uri_deezer": "deezer://track/1841649517",
       "fun_fact": "A chart hit by Nina Chuba (2022).",
       "fun_fact_de": "Ein Chart-Hit von Nina Chuba (2022).",
@@ -291,7 +291,7 @@
         "it": "applemusic://track/1566250669"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rJ0D1GbDq1Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/63442986",
       "uri_deezer": "deezer://track/129632340",
       "alt_artists": [
         "Justin Bieber"
@@ -319,7 +319,7 @@
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XmxL8IaC0MQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/112419336",
       "uri_deezer": "deezer://track/568119562",
       "fun_fact": "A chart hit by Dua Lipa (2018).",
       "fun_fact_de": "Ein Chart-Hit von Dua Lipa (2018).",
@@ -344,7 +344,7 @@
         "it": "applemusic://track/1478926055"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=v3rLqmxCyFg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/74940922",
       "uri_deezer": "deezer://track/371903741",
       "alt_artists": [
         "Josh Cumbee"
@@ -372,7 +372,7 @@
         "it": "applemusic://track/1714510316"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dj86haGuI8w",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/18692668",
       "uri_deezer": "deezer://track/63510362",
       "fun_fact": "A chart hit by Imagine Dragons (2013).",
       "fun_fact_de": "Ein Chart-Hit von Imagine Dragons (2013).",
@@ -397,7 +397,7 @@
         "it": "applemusic://track/1551388182"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zGipbUYrUCQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/16604853",
       "uri_deezer": "deezer://track/53825251",
       "alt_artists": [
         "Carly Rae Jepsen"
@@ -920,7 +920,7 @@
         "it": "applemusic://track/1614290677"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Iv_xiCxXxR0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/43716407",
       "uri_deezer": "deezer://track/97094250",
       "alt_artists": [
         "Ray Dalton"
@@ -948,7 +948,7 @@
         "it": "applemusic://track/1680227537"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=evHIaUZ0KtQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/7046928",
       "uri_deezer": "deezer://track/12565421",
       "fun_fact": "A chart hit by LMFAO (2011).",
       "fun_fact_de": "Ein Chart-Hit von LMFAO (2011).",
@@ -973,7 +973,7 @@
         "it": "applemusic://track/1697183130"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=FZfj5iPy5wU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/23026756",
       "uri_deezer": "deezer://track/71444147",
       "fun_fact": "A chart hit by Christian Steiffen (2013).",
       "fun_fact_de": "Ein Chart-Hit von Christian Steiffen (2013).",
@@ -998,7 +998,7 @@
         "it": "applemusic://track/1675511597"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=p674YL6KmyI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/279538029",
       "uri_deezer": "deezer://track/2171888827",
       "fun_fact": "A chart hit by Leony (2023).",
       "fun_fact_de": "Ein Chart-Hit von Leony (2023).",
@@ -1023,7 +1023,7 @@
         "it": "applemusic://track/556437629"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=a1fFwOXBxik",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/17540263",
       "uri_deezer": "deezer://track/57286181",
       "fun_fact": "A chart hit by Alcazar (2000).",
       "fun_fact_de": "Ein Chart-Hit von Alcazar (2000).",
@@ -1039,7 +1039,7 @@
       "uri": "spotify:track:00vk0sEfb6mr2ehwSw0Uhn",
       "uri_apple_music": "applemusic://track/1711711223",
       "uri_youtube_music": "https://music.youtube.com/watch?v=b1_B-IKEufg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64145676",
       "uri_deezer": "deezer://track/444887352",
       "alt_artists": [
         "Filatov & Karas"
@@ -1067,7 +1067,7 @@
         "it": "applemusic://track/1062031902"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=VIUKdjDNbdE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/107507250",
       "uri_deezer": "deezer://track/78098991",
       "alt_artists": [
         "Felix Jaehn"
