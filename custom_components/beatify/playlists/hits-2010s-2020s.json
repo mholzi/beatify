@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "pop",
     "charts",
@@ -29,7 +29,7 @@
         "it": "applemusic://track/1518633270"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mZxGIfDWzr4",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/101662668",
       "uri_deezer": "deezer://track/610861462",
       "fun_fact": "A chart hit by Dermot Kennedy (2019).",
       "fun_fact_de": "Ein Chart-Hit von Dermot Kennedy (2019).",
@@ -54,7 +54,7 @@
         "it": "applemusic://track/1843374417"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LsCHjlYw2oM",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/58410092",
       "uri_deezer": "deezer://track/121107876",
       "fun_fact": "A chart hit by Galantis (2016).",
       "fun_fact_de": "Ein Chart-Hit von Galantis (2016).",
@@ -79,7 +79,7 @@
         "it": "applemusic://track/1627575419"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HaEYUJ2aRHs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/206382693",
       "uri_deezer": "deezer://track/1564465082",
       "fun_fact": "A chart hit by BTS (2020).",
       "fun_fact_de": "Ein Chart-Hit von BTS (2020).",
@@ -104,7 +104,7 @@
         "it": "applemusic://track/1517696110"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zfvfxA166eQ",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144618536",
       "uri_deezer": "deezer://track/986939372",
       "alt_artists": [
         "Jason Derulo"
@@ -132,7 +132,7 @@
         "it": "applemusic://track/1730454802"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=l8JSq9BJwM8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/97228354",
       "uri_deezer": "deezer://track/576178912",
       "fun_fact": "A chart hit by Sia (2017).",
       "fun_fact_de": "Ein Chart-Hit von Sia (2017).",
