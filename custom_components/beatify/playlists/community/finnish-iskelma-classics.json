@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "finnish",
     "iskelma",
@@ -24,7 +24,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIVLM6201123",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1019818620",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -114,7 +114,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFMF5700700",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1027732467",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -204,7 +204,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFMF5500058",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/327169695",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -324,7 +324,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFMF1320895",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/740477741",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -354,7 +354,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIVLM6201746",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/269308239",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -514,7 +514,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=v7cRFFMtS4s",
       "uri_tidal": "tidal://track/1578357",
       "uri_deezer": "deezer://track/113417132",
       "fun_fact": "Eila Pienimäki's 'Vanhan veräjän luona' (By the Old Gate) evokes rural Finnish nostalgia — a recurring theme in iskelmä as Finland urbanised rapidly in the 1950s and 60s, leaving millions longing for the countryside of their childhood.",
@@ -544,7 +544,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e79oKvqn-0w",
       "uri_tidal": "tidal://track/1298473",
       "uri_deezer": "deezer://track/3596772",
       "fun_fact": "Eino Grön's 'Unhoita menneet' (Forget the Past) reflects his warm, reassuring wisdom; Grön was nicknamed 'Suomen Eino' (Finland's Eino) — a mark of deep national affection for an artist who brought comfort through music for six decades.",
@@ -574,7 +574,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IIGjwmFWhGk",
       "uri_tidal": "tidal://track/2664420",
       "uri_deezer": "deezer://track/117675250",
       "fun_fact": "Olavi Virta's 'Eva' is one of his most beloved waltzes; Virta had a gift for waltz-time songs that combined elegance with emotional warmth, making dance music feel like intimate conversation.",
@@ -604,7 +604,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C9OWm2trdx0",
       "uri_tidal": "tidal://track/22590811",
       "uri_deezer": "deezer://track/67706248",
       "fun_fact": "Olavi Virta's 'Kuin lapsena ennen' (Like a Child Before) is a nostalgic reflection on lost innocence; Virta's own later years were marked by hardship, lending his nostalgic recordings an added layer of personal poignancy.",
@@ -634,7 +634,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GFcONXvSkyo",
       "uri_tidal": "tidal://track/20521685",
       "uri_deezer": "deezer://track/67739761",
       "fun_fact": "Brita Koivunen's 'Käy tanssimaan' (Come Dancing) reflects the central role of the dance hall in Finnish social life during the 1950s and 60s; open-air summer dance pavilions ('lavatanssit') drew enormous crowds across Finland.",
@@ -664,7 +664,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lQ0JQJgklvo",
       "uri_tidal": "tidal://track/21119607",
       "uri_deezer": "deezer://track/67764069",
       "fun_fact": "Irmeli Mäkelä's 'Virran viemää' (Carried by the Current) uses the Finnish tradition of water imagery to express emotional surrender; water and flowing rivers are deeply embedded in Finnish folklore and the national epic Kalevala.",
@@ -694,7 +694,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MY08Wm39k6Y",
       "uri_tidal": "tidal://track/168640",
       "uri_deezer": "deezer://track/767850",
       "fun_fact": "Leif Wager's 'Tähdet kertovat' (The Stars Tell) reflects the stellar imagery beloved in Finnish iskelmä; Wager was a popular early 1960s artist whose romantic pop songs captured the optimism of a Finland rapidly modernising after wartime.",
@@ -724,7 +724,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rjqbM18YHK4",
       "uri_tidal": "tidal://track/1579604",
       "uri_deezer": "deezer://track/67716053",
       "fun_fact": "Teijo Joutsela and Humppa-Veikot's 'Tulipunaruusut' (Fiery Red Roses) is a quintessential Finnish humppa number; humppa is a uniquely Finnish uptempo dance genre, and this song became one of the most recognisable humppa classics.",
@@ -744,7 +744,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFSC6101200",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/655867339",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -754,7 +754,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=v9k3J1frh9M",
       "uri_tidal": "tidal://track/20477830",
       "uri_deezer": "deezer://track/14956456",
       "fun_fact": "'Villit ruusut' (Wild Roses) by Annikki Tähti and Humppa-Veikot showcases the joyful dance-band tradition of mid-century Finnish music; Humppa-Veikot were one of the country's most popular dance orchestras of the era.",
@@ -784,7 +784,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G5mJQBSYZ_0",
       "uri_tidal": "tidal://track/394953",
       "uri_deezer": "deezer://track/80333062",
       "fun_fact": "Eino Grön's Finnish version of 'Sealed with a Kiss' brought this American summer song to Finnish audiences in the early 1960s; the translation maintained the sweet melancholy of the original while giving it an iskelmä warmth.",
@@ -814,7 +814,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iKOIr_0K0js",
       "uri_tidal": "tidal://track/20836217",
       "uri_deezer": "deezer://track/3595611",
       "fun_fact": "Reijo Taipale's 'Yön hetket' (Moments of the Night) is one of his most atmospheric recordings; the theme of nighttime longing and sleepless emotion is a cornerstone of Finnish tango, where darkness becomes a canvas for intimate feeling.",
@@ -844,7 +844,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jt4NfwBaSY8",
       "uri_tidal": "tidal://track/10809388",
       "uri_deezer": "deezer://track/3594490",
       "fun_fact": "Veikko Tuomi's 'Musta ruusu' (Black Rose) embodies the golden era of 1950s Finnish iskelmä; Tuomi was one of the most popular male vocalists of the decade, whose warm baritone and romantic delivery captured postwar Finnish hearts.",
@@ -874,7 +874,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lV3H8Gff770",
       "uri_tidal": "tidal://track/21104585",
       "uri_deezer": "deezer://track/3595419",
       "fun_fact": "Eino Grön is often called the King of Finnish Tango; 'Kohtalon tango' (Fate's Tango) exemplifies his deep, soulful baritone and the melancholic fatalism that defines the Finnish tango style.",
@@ -904,7 +904,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mwpZKbxtfa0",
       "uri_tidal": "tidal://track/20523857",
       "uri_deezer": "deezer://track/3610856",
       "fun_fact": "'Tango Humiko' is Reijo Taipale at his most classically Finnish; Finnish tango is performed at a slower, more melancholic tempo than the Argentine original, reflecting 'ikävä' — a deep, untranslatable Finnish longing.",
@@ -934,7 +934,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sXpKIyFj26k",
       "uri_tidal": "tidal://track/1578365",
       "uri_deezer": "deezer://track/3594189",
       "fun_fact": "Taisto Tammi's 'Tango merellä' (Tango at Sea) combines two of Finnish popular music's deepest currents — the tango tradition and the sea — creating a romantic tableau that resonated with Finland's long maritime and coastal culture.",
@@ -954,7 +954,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIVLM6201508",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/655412815",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -964,7 +964,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G-4Z475D2Ac",
       "uri_tidal": "tidal://track/20971761",
       "uri_deezer": "deezer://track/448410662",
       "fun_fact": "Eino Grön's 'Suvesta syksyyn' (From Summer to Autumn) traces the arc of a relationship through seasonal change; the Finnish seasons — particularly the transition from the luminous summer to the dark autumn — carry immense emotional weight in Finnish culture.",
@@ -994,7 +994,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OuO2qFGahdo",
       "uri_tidal": "tidal://track/20970349",
       "uri_deezer": "deezer://track/129881498",
       "fun_fact": "'Tango pelargonia' by Kari Kuuva is a 1960s Finnish tango gem; the pelargonium (geranium) flower is a beloved symbol in Finnish homes, giving this tango an intimate domestic warmth rare in the genre.",
