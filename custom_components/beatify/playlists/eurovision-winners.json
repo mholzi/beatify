@@ -1,6 +1,6 @@
 {
   "name": "Eurovision Winners (1956-2025)",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "eurovision",
     "contest",
@@ -2429,7 +2429,8 @@
         "es": "applemusic://track/260662904",
         "nl": "applemusic://track/260662904",
         "it": "applemusic://track/260662904"
-      }
+      },
+      "uri_tidal": "tidal://track/12486339"
     },
     {
       "year": 2003,
@@ -3221,7 +3222,8 @@
         "es": "applemusic://track/1388547847",
         "nl": "applemusic://track/1388547847",
         "it": "applemusic://track/1388547847"
-      }
+      },
+      "uri_tidal": "tidal://track/490853205"
     },
     {
       "year": 2019,
