@@ -2471,9 +2471,27 @@
     font-family: var(--font-display, 'Outfit'), sans-serif;
     font-weight: 800; font-size: 24px; color: #fff; margin: 0 0 14px;
 }
+/* #2130: `overflow: hidden` schnitt die Standings still ab — wer unten aus
+   der Karte fiel, war spurlos weg, ohne jeden Hinweis darauf, dass es
+   weitergeht. Scrollen macht den Rest wenigstens erreichbar und den
+   Abschnitt sichtbar (Scrollbar als Hinweis). `overflow-x: hidden`, damit
+   eine lange Namenszeile keine waagerechte Leiste erzeugt. */
 #dashboard-reveal .reveal-standings-card #reveal-leaderboard {
-    flex: 1; min-height: 0; overflow: hidden;
+    flex: 1; min-height: 0;
+    overflow-y: auto; overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
     display: flex; flex-direction: column; gap: 8px;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard::-webkit-scrollbar {
+    width: 8px;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 /* --- This-round results strip --- */
@@ -2505,7 +2523,13 @@
 #dashboard-reveal .reveal-results .dashboard-fun-fact { margin-top: 14px; font-size: 18px; color: var(--color-text-neon-muted, #b3b3c2); display: flex; gap: 8px; }
 #dashboard-reveal .reveal-results .dashboard-fun-fact.hidden { display: none; }
 
-/* --- Lower-third announce band --- */
+/* --- Lower-third announce band ---
+   #2130: die Bande ist `flex-shrink: 0` und hatte KEINEN Höhendeckel. In
+   Name-the-Tune wächst sie mit den Close-Call-Karten und Verdikt-Chips —
+   und weil die Bühne darüber `flex: 1; min-height: 0` ist, ging jeder
+   zusätzliche Pixel direkt von der Standings-Karte ab. `max-height`
+   deckelt das; die Antwortzeile (Titel — Interpret) bleibt immer stehen,
+   nur der Abstimmungs-Teil darunter scrollt. */
 #dashboard-reveal .reveal-lowerthird {
     flex-shrink: 0;
     border-radius: 24px;
@@ -2516,6 +2540,7 @@
     border: 1px solid rgba(255, 255, 255, 0.14);
     display: flex; align-items: center; justify-content: center;
     min-height: 180px;
+    max-height: 42vh;
     position: relative;
     overflow: hidden;
 }
@@ -2542,11 +2567,30 @@
     font-variant-numeric: tabular-nums;
 }
 /* TA answer in the band */
-#dashboard-reveal .reveal-lowerthird .dashboard-ta-banner { width: 100%; }
+/* #2130: unter dem Höhendeckel der Bande muss die Antwort Vorrang haben —
+   sie ist der Grund, warum die Bande existiert. Antwortzeile `flex: 0 0
+   auto`, der Abstimmungs-Teil darunter schrumpfbar und scrollend. */
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-banner {
+    width: 100%;
+    max-height: 100%;
+    display: flex; flex-direction: column;
+    min-height: 0;
+}
 #dashboard-reveal .reveal-lowerthird .dashboard-ta-banner.hidden { display: none; }
 #dashboard-reveal .reveal-lowerthird .dashboard-ta-answer {
     display: flex; align-items: baseline; justify-content: center; gap: 16px; flex-wrap: wrap;
+    flex: 0 0 auto;
 }
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-live,
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-outcomes {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-live.hidden,
+#dashboard-reveal .reveal-lowerthird .dashboard-ta-outcomes.hidden { display: none; }
 #dashboard-reveal .reveal-lowerthird .dashboard-ta-title {
     font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; font-size: 72px; line-height: 1;
     background: linear-gradient(90deg, #ff2d6a, #00f5ff);
