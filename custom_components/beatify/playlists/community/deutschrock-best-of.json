@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.12",
+  "version": "0.13",
   "tags": [
     "deutschrock",
     "german rock",
@@ -1059,7 +1059,7 @@
       "artist": "Betontod",
       "title": "Regenbogen",
       "isrc": "DEMU32100322",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6768275540",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1085,7 +1085,7 @@
       "artist": "Rockwasser",
       "title": "Nicht einer von Millionen",
       "isrc": "DEZ902100660",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1602349942",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1189,7 +1189,7 @@
       "artist": "Artefuckt",
       "title": "Stigma",
       "isrc": "DEZ901801037",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1437904143",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1241,7 +1241,7 @@
       "artist": "Die Toten Hosen",
       "title": "Alles passiert",
       "isrc": "DEF241736010",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1215035916",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1397,7 +1397,7 @@
       "artist": "Unantastbar",
       "title": "Beautiful day",
       "isrc": "ATN262531905",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1791543574",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1423,7 +1423,7 @@
       "artist": "Toxpack",
       "title": "Die Letzten, die sich noch dagegen stellen",
       "isrc": "ATN261768007",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1195960695",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1579,7 +1579,7 @@
       "artist": "BRDIGUNG",
       "title": "Genug",
       "isrc": "DEPI82505345",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1800290058",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1605,7 +1605,7 @@
       "artist": "Böhse Onkelz",
       "title": "Wir ham' noch lange nicht genug",
       "isrc": "DEA450500340",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587130080",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1631,7 +1631,7 @@
       "artist": "Haudegen",
       "title": "Heute für immer",
       "isrc": "DEA651780012",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1230401275",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1683,7 +1683,7 @@
       "artist": "Goitzsche Front",
       "title": "Menschlich",
       "isrc": "DEZ901501813",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1055358632",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1709,7 +1709,7 @@
       "artist": "Betontod",
       "title": "Nie mehr St. Pauli ohne Dich",
       "isrc": "DEMU31900303",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6768275261",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1735,7 +1735,7 @@
       "artist": "Der W",
       "title": "Geschichtenhasser",
       "isrc": "DEN490800001",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/704562841",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1865,7 +1865,7 @@
       "artist": "Rockwasser",
       "title": "Immer noch nicht satt",
       "isrc": "DEZ901501153",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1001141180",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1943,7 +1943,7 @@
       "artist": "Böhse Onkelz",
       "title": "Terpentin",
       "isrc": "DEG129800671",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587127560",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1969,7 +1969,7 @@
       "artist": "Saitenfeuer",
       "title": "Auf und Davon",
       "isrc": "DEA451607960",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1349527495",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2021,7 +2021,7 @@
       "artist": "Unantastbar",
       "title": "Wir leben laut",
       "isrc": "ATN262319904",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1649426809",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2073,7 +2073,7 @@
       "artist": "Die Toten Hosen",
       "title": "Hier kommt Alex",
       "isrc": "DEP611112456",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/269731160",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2125,7 +2125,7 @@
       "artist": "KneipenTerroristen",
       "title": "Prost!",
       "isrc": "DEKS81404311",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/948123763",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2151,7 +2151,7 @@
       "artist": "Frei.Wild",
       "title": "Wer weniger schläft, ist länger wach - Still Version",
       "isrc": "DEA451314480",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1675185557",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2177,7 +2177,7 @@
       "artist": "Eizbrand",
       "title": "Lasst uns Geschichte schreiben",
       "isrc": "DEZ902100383",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1575897761",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2203,7 +2203,7 @@
       "artist": "Betontod",
       "title": "Las Vegas",
       "isrc": "DEMU32000320",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6768274442",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2229,7 +2229,7 @@
       "artist": "Böhse Onkelz",
       "title": "Heilige Lieder",
       "isrc": "DEA450500680",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587118372",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2255,7 +2255,7 @@
       "artist": "Local Bastards",
       "title": "Dem Teufel so nah",
       "isrc": "DEYX82273053",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1845369124",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2281,7 +2281,7 @@
       "artist": "Goitzsche Front",
       "title": "Tag des Regens",
       "isrc": "DEZ901700738",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1281119950",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2307,7 +2307,7 @@
       "artist": "Kärbholz",
       "title": "Es fühlt sich richtig an",
       "isrc": "DEQ121429505",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1772371483",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2385,7 +2385,7 @@
       "artist": "Leidbild, Marcel Hä",
       "title": "Alte Brücken",
       "isrc": "DEZI52500070",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1802170077",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2411,7 +2411,7 @@
       "artist": "KrawallBrüder",
       "title": "Für uns zu spät - 2015 Version",
       "isrc": "DEZ901501942",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1738071873",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2463,7 +2463,7 @@
       "artist": "Die Toten Hosen",
       "title": "Tage wie diese",
       "isrc": "DEF241230001",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/512313000",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2489,7 +2489,7 @@
       "artist": "Artefuckt",
       "title": "Was wir wollen - Remastered",
       "isrc": "DEZ902000291",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1248218666",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2515,7 +2515,7 @@
       "artist": "Frei.Wild",
       "title": "Für immer untrennbar",
       "isrc": "DEPI82508973",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1832694209",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2541,7 +2541,7 @@
       "artist": "Böhse Onkelz",
       "title": "Es ist soweit",
       "isrc": "DEN490100019",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/587107257",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2593,7 +2593,7 @@
       "artist": "Unherz",
       "title": "König ohne Krone",
       "isrc": "DER372008404",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1482108439",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
