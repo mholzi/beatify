@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "edm",
     "electronic",
@@ -4381,7 +4381,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GKZgTk1dSJg",
       "uri_tidal": "tidal://track/4169625",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/6588200",
       "fun_fact": "“One - Radio Edit” appears on Swedish House Mafia’s release “One (Your Name)”.",
       "fun_fact_de": "„One - Radio Edit“ erschien auf der Veröffentlichung „One (Your Name)“ von Swedish House Mafia.",
       "fun_fact_es": "«One - Radio Edit» aparece en el lanzamiento «One (Your Name)» de Swedish House Mafia.",
@@ -4411,7 +4411,7 @@
       },
       "uri_youtube_music": null,
       "uri_tidal": "tidal://track/80031865",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/99374314",
       "fun_fact": "“Sun & Moon - Original Mix” appears on Above & Beyond’s release “Group Therapy”.",
       "fun_fact_de": "„Sun & Moon - Original Mix“ erschien auf der Veröffentlichung „Group Therapy“ von Above & Beyond.",
       "fun_fact_es": "«Sun & Moon - Original Mix» aparece en el lanzamiento «Group Therapy» de Above & Beyond.",
@@ -4549,7 +4549,7 @@
       "year": 2012,
       "isrc": "NLS241204177",
       "uri": "spotify:track:07WtSvEmkyAbFP6hZJkojQ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/502107644",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -4561,7 +4561,7 @@
       },
       "uri_youtube_music": null,
       "uri_tidal": "tidal://track/237114050",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/938184312",
       "fun_fact": "“Spaceman - Edit” appears on Hardwell’s release “I Am Hardwell (Original Soundtrack)”.",
       "fun_fact_de": "„Spaceman - Edit“ erschien auf der Veröffentlichung „I Am Hardwell (Original Soundtrack)“ von Hardwell.",
       "fun_fact_es": "«Spaceman - Edit» aparece en el lanzamiento «I Am Hardwell (Original Soundtrack)» de Hardwell.",
@@ -4639,7 +4639,7 @@
       "year": 2008,
       "isrc": "USUS10800096",
       "uri": "spotify:track:62h4GYm6aTqS0dsfJtKYIX",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1821960365",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -4969,7 +4969,7 @@
       "year": 2008,
       "isrc": "DEHD60712077",
       "uri": "spotify:track:0NFBBnJO8D7oA6suYD2WKD",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1693974480",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -5389,7 +5389,7 @@
       "year": 2014,
       "isrc": "AUNV01400450",
       "uri": "spotify:track:4f3NHOxgC8Bg21IJBg4cZ3",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1442853214",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
