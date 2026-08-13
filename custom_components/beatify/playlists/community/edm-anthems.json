@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "edm",
     "electronic",
@@ -209,7 +209,7 @@
         "nl": "applemusic://track/1645408287",
         "it": "applemusic://track/1645408287"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5y_KJAg8bHI",
       "uri_tidal": "tidal://track/22120602",
       "uri_deezer": "deezer://track/3092872331",
       "fun_fact": "“Wake Me Up - Radio Edit” appears on Avicii’s release “Transports en commun”.",
@@ -329,7 +329,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gCYcHz2k5x0",
       "uri_tidal": "tidal://track/275664235",
       "uri_deezer": "deezer://track/72057650",
       "fun_fact": "“Animals” is the title track of Martin Garrix’s release of the same name.",
@@ -569,7 +569,7 @@
         "nl": "applemusic://track/1869661185",
         "it": "applemusic://track/1869661185"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wJnBTPUQS5A",
       "uri_tidal": "tidal://track/233788675",
       "uri_deezer": "deezer://track/2522607221",
       "fun_fact": "“Spectre” appears on Alan Walker’s release “Origins”.",
