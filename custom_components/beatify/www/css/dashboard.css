@@ -2416,6 +2416,59 @@
     background: transparent;
 }
 
+/* #2134: das #963-Verfahren aus der Playing-Ansicht auf die Reveal-Standings
+   uebertragen. Dort teilen sich die Zeilen die verfuegbare Hoehe, jede Zeile
+   ist ein Size-Container, und die Schriften skalieren in `cqh` — als Bruchteil
+   der eigenen Zeilenhoehe. Damit passt der Text immer in seine Zeile, bei jeder
+   Spielerzahl und jeder Viewport-Hoehe.
+
+   Warum das noetig ist, obwohl #2133 bereits scrollen laesst: eine Scrollbar
+   ist auf einem TV ohne Zeigegeraet nicht bedienbar. #2133 macht den Abschnitt
+   sichtbar statt ihn zu verbergen — fuer eine Ansicht, die aus 3–5 m gelesen
+   wird, ist das die ehrlichere Variante desselben Problems, nicht die Loesung.
+
+   Die Reveal-Zeile hatte bis hier KEINE eigenen Groessen: sie erbte
+   `font-size: var(--font-size-lg)` und die Pixel-Mindestbreiten aus dem
+   generischen `.leaderboard-entry`-Block. Genau deshalb kam #963 hier nie an —
+   dort wurden eigene Regeln danebengelegt, hier nicht.
+
+   Die Zahlen sind NICHT aus Playing uebernommen. Dort gilt `max-height: 92px`;
+   die Reveal-Zeile ist dichter, deshalb 64px. Bei 12 Spielern ergibt das
+   12 x 64 + 11 x 8 Abstand = 856px, was auf 1080p in die Karte passt, solange
+   die Lower-Third-Bande bei ihren `max-height: 42vh` aus #2133 bleibt.
+
+   Bewusst KEIN `is-top-1`-Sonderfall wie in Playing (`flex-grow: 1.35`): in der
+   Ergebnisansicht steht der Gewinner ohnehin in einem eigenen Block darueber,
+   ein zweites Hervorheben kostet nur die Hoehe, die bei 12 Spielern fehlt.
+
+   Nicht geloest und bewusst getrennt: der horizontale Druck durch Streak-Badge
+   und Rangwechsel-Pfeil, die im Spielverlauf wachsen und die Namensspalte
+   zusammenschieben (bestaetigter Teilbefund aus #2130). */
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .leaderboard-entry {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: 64px;
+    container-type: size;
+}
+/* Groessen in cqh loesen gegen die eigene (geflexte) Zeilenhoehe auf. */
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-rank {
+    min-width: 48cqh;
+    font-size: 26cqh;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-name {
+    font-size: 34cqh;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-score {
+    min-width: 72cqh;
+    font-size: 34cqh;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-meta,
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .streak-indicator,
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .rank-up,
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .rank-down {
+    font-size: 24cqh;
+}
+
 /* --- This-round results strip --- */
 #dashboard-reveal .reveal-results {
     background: rgba(255, 255, 255, 0.04);
