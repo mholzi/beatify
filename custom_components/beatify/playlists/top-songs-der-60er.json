@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.9",
+  "version": "1.10",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -2122,7 +2122,7 @@
         "it": "applemusic://track/354114080"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=4zkPBwlyd4M",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/346596036",
       "uri_deezer": "deezer://track/5479527",
       "fun_fact": "A chart hit by Bobby Lewis (2009).",
       "fun_fact_de": "Ein Chart-Hit von Bobby Lewis (2009).",
@@ -2147,7 +2147,7 @@
         "it": "applemusic://track/1440760503"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=61jfm219ArA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/123249707",
       "uri_deezer": "deezer://track/16702525",
       "fun_fact": "A chart hit by The Rolling Stones (2005).",
       "fun_fact_de": "Ein Chart-Hit von The Rolling Stones (2005).",
@@ -2172,7 +2172,7 @@
         "it": "applemusic://track/1607178793"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_NpsUiKBEes",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/64495473",
       "uri_deezer": "deezer://track/24161411",
       "fun_fact": "A chart hit by Lesley Gore (2000).",
       "fun_fact_de": "Ein Chart-Hit von Lesley Gore (2000).",
@@ -2197,7 +2197,7 @@
         "it": "applemusic://track/1647424928"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=rUXa1-oI_ug",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2848125",
       "uri_deezer": "deezer://track/13176492",
       "fun_fact": "A chart hit by The Edwin Hawkins Singers (2001).",
       "fun_fact_de": "Ein Chart-Hit von The Edwin Hawkins Singers (2001).",
@@ -2222,7 +2222,7 @@
         "it": "applemusic://track/1280531429"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=v8Psvxk9tjA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/5120008",
       "uri_deezer": "deezer://track/404045132",
       "alt_artists": [
         "Junkie XL"
@@ -2250,7 +2250,7 @@
         "it": "applemusic://track/1577639056"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UvynvnxZJ3Q",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/77637657",
       "uri_deezer": "deezer://track/4188287",
       "fun_fact": "A 70s classic (1969).",
       "fun_fact_de": "Ein 70er-Klassiker (1969).",
@@ -2275,7 +2275,7 @@
         "it": "applemusic://track/318312890"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=C1VUWDcp5Sg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/12748794",
       "uri_deezer": "deezer://track/13174769",
       "fun_fact": "A 70s classic (1969).",
       "fun_fact_de": "Ein 70er-Klassiker (1969).",

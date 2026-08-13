@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1960s",
     "1970s",
@@ -3103,7 +3103,8 @@
         "es": "applemusic://track/581217805",
         "nl": "applemusic://track/581217805",
         "it": "applemusic://track/581217805"
-      }
+      },
+      "uri_tidal": "tidal://track/115151371"
     },
     {
       "year": 1966,
@@ -3141,7 +3142,8 @@
         "es": "applemusic://track/1447558300",
         "nl": "applemusic://track/1447558300",
         "it": "applemusic://track/1447558300"
-      }
+      },
+      "uri_tidal": "tidal://track/34778326"
     },
     {
       "year": 1962,
@@ -3179,7 +3181,8 @@
         "es": "applemusic://track/1440720604",
         "nl": "applemusic://track/1440720604",
         "it": "applemusic://track/1440720604"
-      }
+      },
+      "uri_tidal": "tidal://track/2176265"
     },
     {
       "year": 1964,
@@ -3217,7 +3220,8 @@
         "es": "applemusic://track/1452829685",
         "nl": "applemusic://track/1452829685",
         "it": "applemusic://track/1452829685"
-      }
+      },
+      "uri_tidal": "tidal://track/330545"
     },
     {
       "year": 1980,
@@ -3255,7 +3259,8 @@
         "es": "applemusic://track/1430158374",
         "nl": "applemusic://track/1430158374",
         "it": "applemusic://track/1430158374"
-      }
+      },
+      "uri_tidal": "tidal://track/93758630"
     },
     {
       "year": 1980,
@@ -3293,7 +3298,8 @@
         "es": "applemusic://track/1443160118",
         "nl": "applemusic://track/1442673183",
         "it": "applemusic://track/1443160118"
-      }
+      },
+      "uri_tidal": "tidal://track/77637965"
     },
     {
       "year": 1968,
@@ -3331,7 +3337,8 @@
         "es": "applemusic://track/1418236782",
         "nl": "applemusic://track/1418236782",
         "it": "applemusic://track/1418236782"
-      }
+      },
+      "uri_tidal": "tidal://track/77645152"
     },
     {
       "year": 1971,
@@ -3371,7 +3378,8 @@
         "es": "applemusic://track/1445082418",
         "nl": "applemusic://track/1445082418",
         "it": "applemusic://track/1445082418"
-      }
+      },
+      "uri_tidal": "tidal://track/30630962"
     },
     {
       "year": 1965,
