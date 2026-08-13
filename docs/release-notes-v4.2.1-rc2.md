@@ -12,7 +12,7 @@ Beatify takes over the speaker's queue while it plays. Until now it never gave i
 
 ### 📺 The standings fit the screen
 
-On a television across the room, the scoreboard used to run past the bottom edge and quietly take the last players with it — and there was no way to scroll a TV screen to find them. The rows now share the space they have and the text scales to fit, so everyone stays visible however many of you are playing. Thanks to **@FurtiveD** for reporting it, screenshots and all.
+On a television across the room, the scoreboard used to run past the bottom edge and quietly take the last players with it — and there was no way to scroll a TV screen to find them. The rows now share the space they have and the text scales to fit, so everyone stays visible however many of you are playing. Thanks to **@FurtiveD** for reporting it.
 
 ### 🙏 Thank you
 
