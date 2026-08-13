@@ -2,7 +2,8 @@
   "domain": "beatify",
   "name": "Beatify",
   "after_dependencies": [
-    "cloud"
+    "cloud",
+    "music_assistant"
   ],
   "codeowners": [
     "@mholzi"
