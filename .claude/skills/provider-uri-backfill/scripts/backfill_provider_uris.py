@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timezone
 import importlib.util
 import os
 import re
@@ -525,6 +526,129 @@ def save_state(path: Path, yt: YouTubeBudget) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Per-Provider-Miss-Cache (pure, unit-tested)
+#
+# Bis 2026-08-13 fragten Apple, Deezer und YouTube bei JEDEM Lauf jeden noch
+# offenen Song erneut bei Odesli ab. `backfill_tidal.py` merkt sich seit jeher,
+# welche Tracks der Anbieter nachweislich nicht hat, und ueberspringt sie —
+# hier fehlte das Gegenstueck, und die Laeufe verbrannten ihr Odesli-Kontingent
+# auf Absagen, die schon bekannt waren.
+#
+# Zwei Eigenheiten, die den Cache von backfill_tidal.py unterscheiden:
+#
+#   1. **Pro Provider, nicht pro Track.** Ein Song kann bei Deezer fehlen und
+#      bei Apple existieren. Ein Cache auf Track-Ebene wuerde die noch
+#      offenen Provider desselben Songs mit abwuergen.
+#   2. **Nur eintragen, was wirklich versucht wurde.** Ist Odesli nicht
+#      erreichbar (429, Netzfehler -> ``payload is None``), darf KEIN Miss
+#      geschrieben werden. Sonst wird aus "gerade gesperrt" dauerhaft "gibt es
+#      nicht" — genau der Fehler, den backfill_tidal.py im Kopf seiner Datei
+#      ausdruecklich ausschliesst.
+#
+# Anders als bei Tidal verfaellt ein Miss hier nach ``--miss-ttl-days`` (Vorgabe
+# 90). Ein Anbieter, der einen Song spaeter aufnimmt, wird dadurch von selbst
+# wiedergefunden.
+# ---------------------------------------------------------------------------
+MISS_TTL_DAYS_DEFAULT = 90
+
+
+def load_provider_misses(path: Path) -> dict:
+    """Return the per-provider miss map from the shared state file."""
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError):
+        return {}
+    misses = data.get("provider_misses")
+    return misses if isinstance(misses, dict) else {}
+
+
+def save_provider_misses(path: Path, misses: dict) -> None:
+    """Persist the miss map, leaving every other key of the file untouched."""
+    data = {}
+    if path.exists():
+        try:
+            data = json.loads(path.read_text())
+        except (OSError, json.JSONDecodeError):
+            data = {}
+    data["provider_misses"] = misses
+    path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+
+
+def _miss_is_fresh(stamp: str, now: datetime, ttl_days: int) -> bool:
+    """True if ``stamp`` is a parsable timestamp within ``ttl_days`` of now."""
+    if ttl_days <= 0:
+        return True
+    try:
+        then = datetime.strptime(stamp, "%Y-%m-%dT%H:%MZ")
+    except (TypeError, ValueError):
+        return False  # unparsable -> treat as expired, i.e. query again
+    return (now - then).days < ttl_days
+
+
+def filter_cached_misses(
+    gaps: list[str],
+    uri: str,
+    misses: dict,
+    now: datetime,
+    ttl_days: int = MISS_TTL_DAYS_DEFAULT,
+    retry_misses: bool = False,
+) -> list[str]:
+    """Drop providers already recorded as a fresh miss for ``uri``.
+
+    Returns the gaps still worth querying. ``retry_misses`` disables the cache
+    entirely; an expired or unparsable entry is treated as "ask again".
+    """
+    if retry_misses or not gaps:
+        return list(gaps)
+    entry = misses.get(uri) or {}
+    return [g for g in gaps if not _miss_is_fresh(entry.get(g, ""), now, ttl_days)]
+
+
+# Provider, die auch ohne Odesli einen eigenen Aufloesungsweg haben:
+# Apple ueber die iTunes-Suche, Deezer ueber ISRC bzw. Deezer-Suche.
+# Beide stehen im Code ausserhalb des ``payload``-Blocks.
+ODESLI_INDEPENDENT = ("apple_music", "deezer")
+
+
+def attempted_providers(non_yt_gaps: list[str], odesli_ok: bool) -> list[str]:
+    """Welche Provider wurden in diesem Durchgang wirklich befragt?
+
+    Antwortet Odesli (``odesli_ok``), gilt das fuer alle offenen Provider.
+    Ist Odesli nicht erreichbar, wurden nur die beiden Wege gegangen, die
+    unabhaengig davon laufen — fuer alle anderen darf KEIN Miss entstehen,
+    sonst wird aus einer Sperre eine dauerhafte Absage.
+    """
+    if odesli_ok:
+        return list(non_yt_gaps)
+    return [g for g in non_yt_gaps if g in ODESLI_INDEPENDENT]
+
+
+def record_provider_misses(
+    misses: dict,
+    uri: str,
+    attempted: list[str],
+    song: dict,
+    now: datetime,
+) -> int:
+    """Record a miss for every attempted provider still unfilled. Returns count.
+
+    ``attempted`` must contain only providers that were genuinely queried this
+    run — never ones skipped because the source was unavailable.
+    """
+    stamp = now.strftime("%Y-%m-%dT%H:%MZ")
+    n = 0
+    for prov in attempted:
+        field = PROVIDER_FIELDS.get(prov)
+        if not field or (song.get(field) or "").strip():
+            continue
+        misses.setdefault(uri, {})[prov] = stamp
+        n += 1
+    return n
+
+
+# ---------------------------------------------------------------------------
 # HTTP helpers (network; mocked in tests)
 # ---------------------------------------------------------------------------
 def _http_get_json(url: str, timeout: int = 30) -> dict:
@@ -892,6 +1016,14 @@ def run(args: argparse.Namespace) -> int:
     deadline = time.monotonic() + args.max_minutes * 60 if args.max_minutes else None
     stop_reason: str | None = None
 
+    # Per-Provider-Miss-Cache: einmal je Lauf laden, am Ende einmal schreiben.
+    # ``run_now`` ist der feste Bezugspunkt fuer Ablauf und Zeitstempel, damit
+    # ein langer Lauf nicht mitten drin die TTL-Grenze verschiebt.
+    provider_misses = load_provider_misses(state_path)
+    run_now = datetime.now(timezone.utc).replace(tzinfo=None)
+    miss_skipped = 0
+    miss_recorded = 0
+
     for path in playlist_paths:
         if stop_reason:
             break
@@ -913,6 +1045,21 @@ def run(args: argparse.Namespace) -> int:
             sid = spotify_track_id(song.get("uri"))
             gaps = song_gaps(song)
             if not sid or not gaps:
+                continue
+            # Provider ueberspringen, deren Absage schon bekannt und noch frisch
+            # ist. Bleibt nichts uebrig, ist der Song fuer diesen Lauf erledigt,
+            # ohne einen einzigen Odesli-Aufruf zu kosten.
+            song_uri = (song.get("uri") or "").strip()
+            gaps = filter_cached_misses(
+                gaps,
+                song_uri,
+                provider_misses,
+                run_now,
+                ttl_days=args.miss_ttl_days,
+                retry_misses=args.retry_misses,
+            )
+            if not gaps:
+                miss_skipped += 1
                 continue
 
             song_dirty = False
@@ -975,6 +1122,15 @@ def run(args: argparse.Namespace) -> int:
                         song["uri_deezer"] = deezer_uri(did)
                         cov.filled_this_run["deezer"] += 1
                         song_dirty = True
+                # Miss nur fuer Provider vormerken, die wirklich befragt
+                # wurden. War Odesli nicht erreichbar (``payload is None``),
+                # gilt das ausschliesslich fuer die beiden Wege, die davon
+                # unabhaengig laufen: Apples iTunes-Suche und Deezers
+                # ISRC-/Such-Fallback.
+                attempted = attempted_providers(non_yt_gaps, payload is not None)
+                miss_recorded += record_provider_misses(
+                    provider_misses, song_uri, attempted, song, run_now
+                )
                 time.sleep(args.odesli_sleep)
 
             # ---- YouTube Data API search.list (resume-cursor + daily budget) ----
@@ -1018,6 +1174,16 @@ def run(args: argparse.Namespace) -> int:
 
     if yt_key:
         save_state(state_path, yt_state)
+    # BEWUSST ausserhalb des ``yt_key``-Blocks: Apple und Deezer laufen mit
+    # ``--youtube-budget 0`` und ohne API-Key. Stuende das Schreiben unter der
+    # Bedingung, wuerde der Cache genau fuer die beiden Agenten nie gefuellt,
+    # fuer die er gebaut wurde.
+    save_provider_misses(state_path, provider_misses)
+    if miss_skipped or miss_recorded:
+        print(
+            f"miss cache: {miss_skipped} song(s) skipped entirely, "
+            f"{miss_recorded} provider miss(es) recorded"
+        )
 
     report = build_report(
         coverages,
@@ -1146,6 +1312,20 @@ def build_arg_parser() -> argparse.ArgumentParser:
         type=float,
         default=0,
         help="stop the run after this many minutes of wall-clock (0 = no limit)",
+    )
+    p.add_argument(
+        "--retry-misses",
+        action="store_true",
+        help="ignore the per-provider miss cache and re-query recorded absences",
+    )
+    p.add_argument(
+        "--miss-ttl-days",
+        type=int,
+        default=MISS_TTL_DAYS_DEFAULT,
+        help=(
+            "days a recorded miss stays binding before it is retried "
+            f"(default: {MISS_TTL_DAYS_DEFAULT}; 0 = never expire)"
+        ),
     )
     return p
 

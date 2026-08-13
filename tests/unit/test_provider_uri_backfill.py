@@ -10,6 +10,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import sys
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -1341,3 +1342,127 @@ def test_deezer_isrc_wins_over_search(tmp_path, monkeypatch):
         == "deezer://track/3606658082"
     )
     assert searched == []  # search never consulted
+
+
+# ---------------------------------------------------------------------------
+# Per-Provider-Miss-Cache (13.08.2026)
+#
+# Kernzusage: was einmal nachweislich fehlt, wird nicht erneut abgefragt — aber
+# eine Sperre darf NIE als Absage durchgehen, und ein Miss verfaellt.
+# ---------------------------------------------------------------------------
+_NOW = datetime(2026, 8, 13, 10, 0)
+
+
+def _stamp(days_ago: int) -> str:
+    return (_NOW - timedelta(days=days_ago)).strftime("%Y-%m-%dT%H:%MZ")
+
+
+def test_filter_cached_misses_drops_fresh_miss():
+    misses = {"spotify:track:A": {"deezer": _stamp(1)}}
+    got = bf.filter_cached_misses(
+        ["deezer", "apple_music"], "spotify:track:A", misses, _NOW
+    )
+    assert got == ["apple_music"]
+
+
+def test_filter_cached_misses_keeps_other_providers_of_same_track():
+    """Ein Miss bei Deezer darf Apple desselben Songs nicht mit abwuergen."""
+    misses = {"spotify:track:A": {"deezer": _stamp(1)}}
+    got = bf.filter_cached_misses(
+        ["apple_music", "tidal", "deezer"], "spotify:track:A", misses, _NOW
+    )
+    assert got == ["apple_music", "tidal"]
+
+
+def test_filter_cached_misses_expires_after_ttl():
+    misses = {"spotify:track:A": {"deezer": _stamp(120)}}
+    got = bf.filter_cached_misses(
+        ["deezer"], "spotify:track:A", misses, _NOW, ttl_days=90
+    )
+    assert got == ["deezer"]
+
+
+def test_filter_cached_misses_ttl_zero_never_expires():
+    misses = {"spotify:track:A": {"deezer": _stamp(9999)}}
+    got = bf.filter_cached_misses(
+        ["deezer"], "spotify:track:A", misses, _NOW, ttl_days=0
+    )
+    assert got == []
+
+
+def test_filter_cached_misses_retry_flag_ignores_cache():
+    misses = {"spotify:track:A": {"deezer": _stamp(1)}}
+    got = bf.filter_cached_misses(
+        ["deezer"], "spotify:track:A", misses, _NOW, retry_misses=True
+    )
+    assert got == ["deezer"]
+
+
+def test_filter_cached_misses_unparsable_stamp_is_retried():
+    misses = {"spotify:track:A": {"deezer": "kaputt"}}
+    got = bf.filter_cached_misses(["deezer"], "spotify:track:A", misses, _NOW)
+    assert got == ["deezer"]
+
+
+def test_record_provider_misses_only_for_unfilled():
+    song = {"uri_deezer": "deezer://track/1"}
+    misses = {}
+    n = bf.record_provider_misses(
+        misses, "spotify:track:A", ["deezer", "apple_music"], song, _NOW
+    )
+    assert n == 1
+    assert list(misses["spotify:track:A"]) == ["apple_music"]
+
+
+def test_record_provider_misses_records_nothing_when_all_filled():
+    song = {"uri_deezer": "deezer://track/1", "uri_apple_music": "applemusic://track/2"}
+    misses = {}
+    n = bf.record_provider_misses(
+        misses, "spotify:track:A", ["deezer", "apple_music"], song, _NOW
+    )
+    assert n == 0
+    assert misses == {}
+
+
+def test_record_provider_misses_ignores_empty_string_field():
+    song = {"uri_deezer": "   "}
+    misses = {}
+    bf.record_provider_misses(misses, "spotify:track:A", ["deezer"], song, _NOW)
+    assert "deezer" in misses["spotify:track:A"]
+
+
+def test_miss_cache_roundtrip_preserves_other_state_keys(tmp_path):
+    """save_provider_misses darf den YouTube-Budgetblock nicht zerstoeren."""
+    p = tmp_path / "state.json"
+    p.write_text(json.dumps({"youtube": {"budget": 90, "cursor": 7}}))
+    bf.save_provider_misses(p, {"spotify:track:A": {"deezer": _stamp(0)}})
+    data = json.loads(p.read_text())
+    assert data["youtube"] == {"budget": 90, "cursor": 7}
+    assert bf.load_provider_misses(p) == {"spotify:track:A": {"deezer": _stamp(0)}}
+
+
+def test_load_provider_misses_tolerates_missing_and_broken_file(tmp_path):
+    assert bf.load_provider_misses(tmp_path / "fehlt.json") == {}
+    bad = tmp_path / "kaputt.json"
+    bad.write_text("{nicht json")
+    assert bf.load_provider_misses(bad) == {}
+
+
+def test_attempted_providers_with_odesli_covers_all_gaps():
+    assert bf.attempted_providers(["apple_music", "tidal", "deezer"], True) == [
+        "apple_music",
+        "tidal",
+        "deezer",
+    ]
+
+
+def test_attempted_providers_without_odesli_excludes_tidal():
+    """Die Kernregel: eine Odesli-Sperre darf NIE zu einem Tidal-Miss werden."""
+    assert bf.attempted_providers(["apple_music", "tidal", "deezer"], False) == [
+        "apple_music",
+        "deezer",
+    ]
+
+
+def test_attempted_providers_without_odesli_and_only_tidal_is_empty():
+    assert bf.attempted_providers(["tidal"], False) == []
