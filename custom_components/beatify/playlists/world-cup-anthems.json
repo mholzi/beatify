@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "world-cup",
     "fifa",
@@ -56,7 +56,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1439725634",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Phx30LDo1rE",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/493949975",
       "uri_deezer": "deezer://track/3141989511",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -186,7 +186,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1525407005",
       "uri_youtube_music": "https://music.youtube.com/watch?v=N2ANAqO1TLs",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/150210063",
       "uri_deezer": "deezer://track/1035795002",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -213,7 +213,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1525408545",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kdd65T82ZlI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/150210255",
       "uri_deezer": "deezer://track/1035796702",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -267,7 +267,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/185391878",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tF_ggG5dY5U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/33833948",
       "uri_deezer": "deezer://track/13111375",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -319,7 +319,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1811457658",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aYbwkEX7bko",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/432943122",
       "uri_deezer": "deezer://track/3345558141",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -376,7 +376,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/271424813",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JPZGuwUAVOo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/75257171",
       "uri_deezer": "deezer://track/563270",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -403,7 +403,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/716668990",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LKi4BlO_ls8",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/2950975",
       "uri_deezer": "deezer://track/2651438972",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -431,7 +431,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/371784883",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pRpeEdMmmQ0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/3863314",
       "uri_deezer": "deezer://track/68473089",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -458,7 +458,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/374246384",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WK0zpXArVvo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/4044191",
       "uri_deezer": "deezer://track/6237416",
       "isrc": null,
       "uri_apple_music_by_region": {}
@@ -486,7 +486,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/863447277",
       "uri_youtube_music": "https://music.youtube.com/watch?v=TGtWWb9emYI",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/37617779",
       "uri_deezer": "deezer://track/76575944",
       "isrc": null,
       "uri_apple_music_by_region": {}
