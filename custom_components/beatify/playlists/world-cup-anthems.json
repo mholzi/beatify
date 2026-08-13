@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "world-cup",
     "fifa",
@@ -99,7 +99,7 @@
       "fun_fact_es": "La selección de Alemania Occidental grabó este himno antes de ganar el Mundial en casa en 1974.",
       "fun_fact_fr": "L'équipe d'Allemagne de l'Ouest enregistra cet hymne avant de remporter la Coupe du monde 1974 à domicile.",
       "fun_fact_nl": "Het West-Duitse elftal nam dit anthem op en won vervolgens het WK 1974 op eigen bodem.",
-      "uri": null,
+      "uri": "spotify:track:45jKsyqbTncdrq00gMIKUL",
       "chart_info": {},
       "certifications": [],
       "awards": [],
@@ -111,7 +111,7 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=HYDN6yq8nm4",
       "uri_tidal": "tidal://track/13342489",
       "uri_deezer": "deezer://track/7558171",
-      "isrc": null,
+      "isrc": "DEF067312220",
       "uri_apple_music_by_region": {}
     },
     {
