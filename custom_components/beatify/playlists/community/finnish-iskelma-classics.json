@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.29",
+  "version": "1.30",
   "tags": [
     "finnish",
     "iskelma",
@@ -1942,7 +1942,7 @@
       "uri_apple_music": "applemusic://track/656239593",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jQdR8v0PcsE",
       "uri_tidal": "tidal://track/20518502",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/67771189",
       "isrc": "FIFMF7300021",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/656239593",
@@ -2294,7 +2294,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFPS7700001",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/255923111",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2462,7 +2462,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFSC7700018",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/655414110",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3290,7 +3290,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FISPN8200008",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/961338009",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3354,7 +3354,7 @@
       "awards": [],
       "awards_nl": [],
       "isrc": "FIFSC8300006",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/655414285",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3900,7 +3900,7 @@
       "year": 1990,
       "isrc": "FIFSC6200800",
       "uri": "spotify:track:2ZHVXVNscugtlDlPRsRUHi",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/261354716",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/257180221",
@@ -4542,7 +4542,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1670406236",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hHHg0KpIgno",
       "uri_tidal": "tidal://track/37105773",
       "uri_deezer": "deezer://track/7471553",
@@ -4902,7 +4902,7 @@
         "nl": "applemusic://track/298241795",
         "it": "applemusic://track/298241795"
       },
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/1186732",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6sf9vsDQKiI",
       "uri_tidal": "tidal://track/1871600",
       "alt_artists": [
@@ -4926,7 +4926,7 @@
       "year": 1996,
       "isrc": "FIBAR9600066",
       "uri": "spotify:track:3RhPqrELgI5QJXHtY5hslE",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/269274371",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/269274371",
@@ -5406,7 +5406,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/269273757",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tBDamSZx6s4",
       "uri_tidal": "tidal://track/525162",
       "uri_deezer": "deezer://track/1021954",
