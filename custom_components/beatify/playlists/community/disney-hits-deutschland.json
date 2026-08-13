@@ -1,6 +1,6 @@
 {
   "name": "Disney Hits Deutschland",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "disney",
     "movies",
@@ -32,7 +32,7 @@
       },
       "uri_deezer": "deezer://track/3589389911",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Kw3935PH01E",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/473820111",
       "fun_fact": "Shakira voices and sings for Gazelle in the Zootopia franchise, the pop-star gazelle adored by the animal city.",
       "fun_fact_de": "Shakira leiht der Popstar-Gazelle Gazelle aus dem Zoomania-Universum ihre Stimme und ihren Gesang.",
       "fun_fact_es": "Shakira pone voz y canto a Gazelle, la estrella pop del universo de Zootrópolis.",
@@ -454,7 +454,7 @@
       "title": "Ich wünsch es wäre wahr",
       "uri": "spotify:track:62uNBgBcCUmSjviu9aDphs",
       "isrc": "USWD12536786",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1802687792",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -485,7 +485,7 @@
       "title": "He's a Pirate",
       "uri": "spotify:track:08QaHlMPWuO5PUxjl61bXn",
       "isrc": "USWD10321341",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440650203",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/724369568",
@@ -516,7 +516,7 @@
       "title": "Hakuna Matata",
       "uri": "spotify:track:2LzHS1XsclUlk388WnJB2p",
       "isrc": "USWD10524285",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443904074",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/714527225",
@@ -559,7 +559,7 @@
       },
       "uri_deezer": "deezer://track/138225335",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ManAg9fy4yo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68061279",
       "fun_fact": "\"Ich bin bereit\" is the German version of \"How Far I'll Go,\" the signature song of Moana (Vaiana).",
       "fun_fact_de": "\"Ich bin bereit\" ist die deutsche Fassung von \"How Far I'll Go\", dem Titelsong von Vaiana.",
       "fun_fact_es": "\"Ich bin bereit\" es la versión alemana de \"How Far I'll Go\", la canción insignia de Vaiana (Moana).",
@@ -733,7 +733,7 @@
       "title": "Nur kein Wort über Bruno",
       "uri": "spotify:track:6nnjWPY4EbZvUjdH3g9Pd6",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1594791493",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -743,7 +743,7 @@
         "nl": "applemusic://track/1594791493",
         "it": "applemusic://track/1594791493"
       },
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/1550811292",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QvWL8ILsixs",
       "uri_tidal": "tidal://track/204854434",
       "fun_fact": "\"Nur kein Wort über Bruno\" is the German version of \"We Don't Talk About Bruno\" from Encanto.",
@@ -764,7 +764,7 @@
       "title": "Ich Will Jetzt Gleich Konig Sein",
       "uri": "spotify:track:3g87XDPkpwDNnTK2MCewB9",
       "isrc": "USWD10524283",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443903935",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -795,7 +795,7 @@
       "title": "You'll Be In My Heart",
       "uri": "spotify:track:4Y8vb1uy9IjM2V1hqvrAid",
       "isrc": "USWD10110146",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1437333914",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1043,7 +1043,7 @@
       "title": "Wir kennen den Weg",
       "uri": "spotify:track:6QFihKqAswWbc5OPo1BeFt",
       "isrc": "USWD11678070",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/6762974969",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1440651516",
@@ -1055,7 +1055,7 @@
       },
       "uri_deezer": "deezer://track/138225337",
       "uri_youtube_music": "https://music.youtube.com/watch?v=AkqPaP_Negg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68061280",
       "fun_fact": "\"Wir kennen den Weg\" is the German version of \"We Know the Way\" from Moana, co-written by Lin-Manuel Miranda.",
       "fun_fact_de": "\"Wir kennen den Weg\" ist die deutsche Fassung von \"We Know the Way\" aus Vaiana, mitgeschrieben von Lin-Manuel Miranda.",
       "fun_fact_es": "\"Wir kennen den Weg\" es la versión alemana de \"We Know the Way\" de Vaiana, coescrita por Lin-Manuel Miranda.",
@@ -1105,7 +1105,7 @@
       "title": "Arabische Nächte",
       "uri": "spotify:track:54nr9Qf3OEHbHobTEvlJ4z",
       "isrc": "USWD10629535",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1460037941",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1353,7 +1353,7 @@
       "title": "Kaltes Herz",
       "uri": "spotify:track:1sPlFEy23NdmSivjXXoYm8",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440639613",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1363,7 +1363,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/72391060",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DcUYEElo2GI",
       "uri_tidal": "tidal://track/23599915",
       "fun_fact": "\"Kaltes Herz\" is the German version of \"Frozen Heart,\" the ice-cutters' opening song of Frozen.",
@@ -1415,7 +1415,7 @@
       "title": "Milele",
       "uri": "spotify:track:2ThAR6xCZ2klvKjAxSQbv7",
       "isrc": "USWD12435074",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1784617373",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1719,7 +1719,7 @@
       "title": "Druck",
       "uri": "spotify:track:6lq2ScYLYvIwQwTGEYjFW2",
       "isrc": "USWD12113121",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1594791491",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1998,7 +1998,7 @@
       "title": "Zeige dich",
       "uri": "spotify:track:5tzyWjN8tUU55AwLIaXjw0",
       "isrc": "USWD11994854",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1487751250",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2225,7 +2225,7 @@
         "nl": "applemusic://track/1460037948",
         "it": "applemusic://track/1460037948"
       },
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/668949522",
       "uri_youtube_music": "https://music.youtube.com/watch?v=nEK7waj9Nqw",
       "uri_tidal": "tidal://track/108017100",
       "fun_fact": "\"Nur'n kleiner Freundschaftsdienst\" is the German version of \"Friend Like Me,\" the Genie's song from Aladdin.",
@@ -2277,7 +2277,7 @@
       "title": "Wer Bin Ich?",
       "uri": "spotify:track:3vbAxBj6QCme8Jdzem59IF",
       "isrc": "USWD10527277",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1561429809",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2308,7 +2308,7 @@
       "title": "Belles Lied: \"Unsere Stadt",
       "uri": "spotify:track:6XeHN3YOcFZmraEsYeAiOC",
       "isrc": "USWD10526922",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1561429095",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2370,7 +2370,7 @@
       "title": "Sei Ein Mann",
       "uri": "spotify:track:3Tc82c77lfoyzT6wSNoTuu",
       "isrc": "USWD10527278",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1561429816",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2401,7 +2401,7 @@
       "title": "Married Life",
       "uri": "spotify:track:7iocNjLrxPHLl8njgRlv5U",
       "isrc": "USWD10936421",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440617708",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2432,7 +2432,7 @@
       "title": "Colombia, Mi Encanto",
       "uri": "spotify:track:5eqtSVaKM8de3ItBwszjWU",
       "isrc": "USWD12112912",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1594677766",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2742,7 +2742,7 @@
       "title": "Prince Ali",
       "uri": "spotify:track:2DeoxSn3J2mktCwAR6CDPs",
       "isrc": "USWD10629539",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1460037951",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1460037951",
@@ -2816,7 +2816,7 @@
       },
       "uri_deezer": "deezer://track/138225349",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cHhqOFrzJ5U",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/68061286",
       "fun_fact": "\"Wer du bist\" is the German version of \"Know Who You Are\" from Moana (Vaiana).",
       "fun_fact_de": "\"Wer du bist\" ist die deutsche Fassung von \"Know Who You Are\" aus Vaiana.",
       "fun_fact_es": "\"Wer du bist\" es la versión alemana de \"Know Who You Are\" de Vaiana (Moana).",
@@ -2959,7 +2959,7 @@
       "title": "Ehre Für Das Haus",
       "uri": "spotify:track:1VlOLu0SAV8CABydLJHhVi",
       "isrc": "USWD10527276",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1561429503",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1442420178",
