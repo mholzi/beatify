@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Dutch Classics 🇳🇱",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "nederlandstalig",
     "dutch",
@@ -3438,7 +3438,8 @@
         "nl": "applemusic://track/1364474697",
         "it": "applemusic://track/1364474697"
       },
-      "uri_tidal": "tidal://track/86440979"
+      "uri_tidal": "tidal://track/86440979",
+      "uri_deezer": "deezer://track/140899371"
     },
     {
       "year": 2024,
@@ -3474,7 +3475,8 @@
         "nl": "applemusic://track/1723046101",
         "it": "applemusic://track/1723046101"
       },
-      "uri_tidal": "tidal://track/336703585"
+      "uri_tidal": "tidal://track/336703585",
+      "uri_deezer": "deezer://track/2596182062"
     },
     {
       "year": 2022,
@@ -3501,7 +3503,9 @@
       "fun_fact_nl": "Hallo werd in 2022 een enorme viral hit voor Antoon, die de Nederlandse hitlijsten aanvoerde met zijn warme, nostalgische ode aan iemand uit het verleden. Antoon is een van de meest succesvolle jonge Nederlandse popartiesten, bekend om zijn pakkende melodieën en relativerende teksten. Het nummer werd een van de meest gestreamde Nederlandse tracks van het jaar.",
       "awards_nl": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=8EAUAGtTclo",
-      "uri_tidal": "tidal://track/462805468"
+      "uri_tidal": "tidal://track/462805468",
+      "uri_apple_music": "applemusic://track/1842004262",
+      "uri_deezer": "deezer://track/3568133801"
     },
     {
       "year": 1967,
@@ -3559,7 +3563,8 @@
         "nl": "applemusic://track/1442951442",
         "it": "applemusic://track/1442951442"
       },
-      "uri_tidal": "tidal://track/15752418"
+      "uri_tidal": "tidal://track/15752418",
+      "uri_deezer": "deezer://track/1568266"
     },
     {
       "year": 1984,
@@ -3596,7 +3601,8 @@
         "nl": "applemusic://track/1705235721",
         "it": "applemusic://track/1705235721"
       },
-      "uri_tidal": "tidal://track/56826819"
+      "uri_tidal": "tidal://track/56826819",
+      "uri_deezer": "deezer://track/2432282785"
     },
     {
       "year": 2025,
@@ -3625,7 +3631,8 @@
         "es": "applemusic://track/1822743192",
         "nl": "applemusic://track/1822743009",
         "it": "applemusic://track/1822743009"
-      }
+      },
+      "uri_deezer": "deezer://track/3606656722"
     },
     {
       "year": 2025,
@@ -3654,7 +3661,8 @@
         "es": "applemusic://track/1801780608",
         "nl": "applemusic://track/1801780608",
         "it": "applemusic://track/1801780608"
-      }
+      },
+      "uri_deezer": "deezer://track/3275483961"
     },
     {
       "year": 2025,
@@ -3683,7 +3691,8 @@
         "es": "applemusic://track/1807093937",
         "nl": "applemusic://track/1807093937",
         "it": "applemusic://track/1807093937"
-      }
+      },
+      "uri_deezer": "deezer://track/3402563781"
     },
     {
       "year": 2011,
@@ -3712,7 +3721,8 @@
         "es": "applemusic://track/1219059350",
         "nl": "applemusic://track/1444311426",
         "it": "applemusic://track/1219059350"
-      }
+      },
+      "uri_deezer": "deezer://track/140899421"
     }
   ]
 }
