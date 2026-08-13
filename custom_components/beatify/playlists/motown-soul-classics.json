@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "1960s",
     "1970s",
@@ -1665,7 +1665,8 @@
         "es": "applemusic://track/1444221439",
         "nl": "applemusic://track/1442913723",
         "it": "applemusic://track/1444221439"
-      }
+      },
+      "uri_tidal": "tidal://track/619427"
     },
     {
       "year": 1983,
@@ -1705,7 +1706,8 @@
         "es": "applemusic://track/1445751851",
         "nl": "applemusic://track/1445751851",
         "it": "applemusic://track/1445751851"
-      }
+      },
+      "uri_tidal": "tidal://track/592285"
     },
     {
       "year": 1969,
@@ -1745,7 +1747,8 @@
         "es": "applemusic://track/1709698020",
         "nl": "applemusic://track/1709698020",
         "it": "applemusic://track/1709698020"
-      }
+      },
+      "uri_tidal": "tidal://track/77637657"
     },
     {
       "year": 1966,
@@ -1785,7 +1788,8 @@
         "es": "applemusic://track/1692700539",
         "nl": "applemusic://track/1692700539",
         "it": "applemusic://track/1692700539"
-      }
+      },
+      "uri_tidal": "tidal://track/77621789"
     },
     {
       "year": 1966,
@@ -1823,7 +1827,8 @@
         "es": "applemusic://track/1444044792",
         "nl": "applemusic://track/1444044792",
         "it": "applemusic://track/1444044792"
-      }
+      },
+      "uri_tidal": "tidal://track/35712396"
     },
     {
       "year": 1968,
@@ -1861,7 +1866,8 @@
         "es": "applemusic://track/1443092702",
         "nl": "applemusic://track/1443092702",
         "it": "applemusic://track/1443092702"
-      }
+      },
+      "uri_tidal": "tidal://track/77620243"
     },
     {
       "year": 1962,
@@ -1901,7 +1907,8 @@
         "es": "applemusic://track/1634846367",
         "nl": "applemusic://track/1634846367",
         "it": "applemusic://track/1634846367"
-      }
+      },
+      "uri_tidal": "tidal://track/115151338"
     },
     {
       "year": 1973,
@@ -1941,7 +1948,8 @@
         "es": "applemusic://track/415753587",
         "nl": "applemusic://track/1442673174",
         "it": "applemusic://track/415753587"
-      }
+      },
+      "uri_tidal": "tidal://track/311544272"
     },
     {
       "year": 1981,
@@ -1988,7 +1996,8 @@
         "es": "applemusic://track/1452232446",
         "nl": "applemusic://track/1452232446",
         "it": "applemusic://track/1452232446"
-      }
+      },
+      "uri_tidal": "tidal://track/35420938"
     },
     {
       "year": 1972,
@@ -2035,7 +2044,8 @@
         "es": "applemusic://track/1445242536",
         "nl": "applemusic://track/1445242536",
         "it": "applemusic://track/1445242536"
-      }
+      },
+      "uri_tidal": "tidal://track/3043941"
     },
     {
       "year": 1965,
@@ -2830,7 +2840,8 @@
         "es": "applemusic://track/1452829703",
         "nl": "applemusic://track/1452829703",
         "it": "applemusic://track/1452829703"
-      }
+      },
+      "uri_tidal": "tidal://track/330555"
     },
     {
       "year": 1964,
@@ -2870,7 +2881,8 @@
         "es": "applemusic://track/1452877853",
         "nl": "applemusic://track/1452877853",
         "it": "applemusic://track/1452877853"
-      }
+      },
+      "uri_tidal": "tidal://track/77642591"
     },
     {
       "year": 1972,
@@ -2908,7 +2920,8 @@
         "es": "applemusic://track/1445243494",
         "nl": "applemusic://track/1445243494",
         "it": "applemusic://track/1445243494"
-      }
+      },
+      "uri_tidal": "tidal://track/93758593"
     },
     {
       "year": 1997,
@@ -2948,7 +2961,8 @@
         "es": "applemusic://track/1834511848",
         "nl": "applemusic://track/1834511848",
         "it": "applemusic://track/1834511848"
-      }
+      },
+      "uri_tidal": "tidal://track/631713"
     },
     {
       "year": 1999,
@@ -2978,7 +2992,8 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=SN3m8sKyjYk",
       "uri_deezer": "deezer://track/2173612",
       "fun_fact_nl": "De grootste hit van Brian McKnight, uitgebracht op Motown Records. Hij is een multi-instrumentalist die negen instrumenten bespeelt. Het nummer was een van de laatste grote hits die in de 20e eeuw op het Motown-label werden uitgebracht.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/3294130"
     },
     {
       "year": 1985,
@@ -3008,7 +3023,8 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=BFe4BMgcSd0",
       "uri_deezer": "deezer://track/1476770092",
       "fun_fact_nl": "Van het album 'Glow', dat de veelzijdigheid van Rick James liet zien toen hij funk combineerde met zachtere R&B ballads. Rick stond ook bekend als ontdekker en mentor van Teena Marie bij Motown.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/93438293"
     },
     {
       "year": 1988,
@@ -3046,7 +3062,8 @@
         "es": "applemusic://track/1430161432",
         "nl": "applemusic://track/1430161432",
         "it": "applemusic://track/1430161432"
-      }
+      },
+      "uri_tidal": "tidal://track/93758662"
     },
     {
       "year": 1969,
