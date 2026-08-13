@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "world-cup",
     "fifa",
@@ -87,7 +87,7 @@
       "uri_apple_music_by_region": {}
     },
     {
-      "year": 1974,
+      "year": 1973,
       "artist": "Germany National Football Team",
       "title": "Fußball ist unser Leben",
       "alt_artists": [
