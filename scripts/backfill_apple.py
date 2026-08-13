@@ -234,8 +234,103 @@ def release_year(result: dict) -> int | None:
     return None
 
 
+# ---------------------------------------------------------------------------
+# Dauer-Abgleich als Zweitmeinung zum Jahr (#2116)
+#
+# Gemessen am 13.08.2026 an 22 der 58 Jahres-Ablehnungen aus dem Probe-Lauf vom
+# 11./12.08.: bei **14 von 20** auswertbaren Faellen weicht die Spieldauer um
+# hoechstens 2 s ab, bei **8** davon um exakt 0 ms — dieselbe Aufnahme, nur mit
+# anderem Release-Jahr in den Metadaten.
+#
+# Entscheidend ist nicht der Anteil, sondern dass das Jahr nicht trennt: die
+# Abweichungen der 14 richtigen Treffer lauten 2, 2, 2, 2, 2, 3, 3, 4, 7, 9, 14,
+# 19, 34, 43 — und die beiden echten Fehltreffer liegen mit 18 und 23 mitten
+# darin. Eine Abweichung von 43 Jahren gehoerte zu einer millisekundengleichen
+# Aufnahme, eine von 23 Jahren zu einer Live-Fassung mit 38 s Unterschied.
+#
+# Die Toleranz von 2 s ist aus den Daten gegriffen: die Treffergruppe endet bei
+# 920 ms, der naechste Fall beginnt bei 2303 ms. In dieser Luecke liegt die
+# Grenze, sie ist nicht geraten.
+#
+# Die Dauer ersetzt das Jahr NICHT, sie ueberstimmt es nur in eine Richtung:
+# ein Kandidat, den das Jahr verwirft, wird bei passender Dauer doch genommen.
+# Umgekehrt wird nie etwas verworfen, das das Jahr akzeptiert haette.
+# ---------------------------------------------------------------------------
+DURATION_TOLERANCE_MS = 2000
+_SPOTIFY_EMBED = "https://open.spotify.com/embed/track/{}"
+_NEXT_DATA_RE = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.S)
+
+
+def durations_match(
+    ref_ms: object, cand_ms: object, tolerance_ms: int = DURATION_TOLERANCE_MS
+) -> bool:
+    """True if both durations are known and within ``tolerance_ms``.
+
+    Unknown on either side returns False — eine fehlende Dauer ist kein Beleg
+    fuer Gleichheit, und der Kandidat bleibt dann beim Jahres-Urteil.
+    """
+    if not isinstance(ref_ms, int) or not isinstance(cand_ms, int):
+        return False
+    if ref_ms <= 0 or cand_ms <= 0:
+        return False
+    return abs(ref_ms - cand_ms) <= tolerance_ms
+
+
+def spotify_track_id(uri: object) -> str | None:
+    """Extract the bare track id from ``spotify:track:<id>``."""
+    if not isinstance(uri, str):
+        return None
+    m = re.fullmatch(r"spotify:track:([A-Za-z0-9]{10,})", uri.strip())
+    return m.group(1) if m else None
+
+
+def spotify_duration_ms(uri: object, opener=urllib.request.urlopen) -> int | None:
+    """Read the reference duration from Spotify's public embed page.
+
+    Keyless und nur auf dem Ablehnungspfad aufgerufen: die Dauer wird erst
+    geholt, wenn das Jahres-Gate einen Kandidaten sonst verwerfen wuerde. Bei
+    730 Apple-Luecken betraf das im Probe-Lauf 58 Tracks. Jeder Fehler fuehrt
+    zu ``None``, also zum unveraenderten Jahres-Urteil.
+    """
+    tid = spotify_track_id(uri)
+    if not tid:
+        return None
+    req = urllib.request.Request(
+        _SPOTIFY_EMBED.format(tid), headers={"User-Agent": "Mozilla/5.0"}
+    )
+    try:
+        raw = opener(req, timeout=20).read().decode("utf-8", "replace")
+        m = _NEXT_DATA_RE.search(raw)
+        if not m:
+            return None
+        data = json.loads(m.group(1))
+        dur = data["props"]["pageProps"]["state"]["data"]["entity"]["duration"]
+    except Exception:  # noqa: BLE001 — jede Stoerung faellt auf das Jahr zurueck
+        return None
+    return dur if isinstance(dur, int) and dur > 0 else None
+
+
+def _year_would_reject(track: dict, result: dict, year_tolerance: int) -> bool:
+    """True wenn allein das Jahr diesen Kandidaten verwerfen wuerde.
+
+    Vorgeschaltet, damit die Referenzdauer nur dann geholt wird, wenn sie
+    ueberhaupt gebraucht wird.
+    """
+    want_year = track.get("year")
+    got_year = release_year(result)
+    if not isinstance(want_year, int) or got_year is None:
+        return False
+    return abs(got_year - want_year) > year_tolerance
+
+
 def evaluate(
-    track: dict, result: dict, *, title_threshold: float, year_tolerance: int
+    track: dict,
+    result: dict,
+    *,
+    title_threshold: float,
+    year_tolerance: int,
+    ref_duration_ms: int | None = None,
+    duration_tolerance_ms: int = DURATION_TOLERANCE_MS,
 ) -> tuple[bool, str]:
     """Apply the gate. Returns (accepted, reason)."""
     want_artist = primary_artist(track.get("artist", "") or "")
@@ -267,10 +362,19 @@ def evaluate(
     want_year = track.get("year")
     got_year = release_year(result)
     if isinstance(want_year, int) and got_year is not None:
-        if abs(got_year - want_year) > year_tolerance:
+        off = abs(got_year - want_year)
+        if off > year_tolerance:
+            # Zweitmeinung Dauer (#2116). Nur hier, nur in eine Richtung: was das
+            # Jahr durchlaesst, wird nie nachtraeglich verworfen.
+            cand_ms = result.get("trackTimeMillis")
+            if durations_match(ref_duration_ms, cand_ms, duration_tolerance_ms):
+                delta = abs(int(ref_duration_ms) - int(cand_ms))
+                return True, (
+                    f"similarity {sim:.2f}, Jahr {got_year} vs {want_year} "
+                    f"(off by {off}) durch Dauer bestaetigt ({delta} ms Abweichung)"
+                )
             return False, (
-                f"year {got_year} vs {want_year} (off by {abs(got_year - want_year)} "
-                f"> {year_tolerance})"
+                f"year {got_year} vs {want_year} (off by {off} > {year_tolerance})"
             )
     return True, f"similarity {sim:.2f}"
 
@@ -345,7 +449,14 @@ def itunes_search(term: str, storefront: str, limit: int) -> tuple[list[dict], s
 
 
 def resolve(
-    track: dict, *, title_threshold: float, year_tolerance: int, limit: int
+    track: dict,
+    *,
+    title_threshold: float,
+    year_tolerance: int,
+    limit: int,
+    duration_fallback: bool = True,
+    duration_tolerance_ms: int = DURATION_TOLERANCE_MS,
+    duration_getter=spotify_duration_ms,
 ) -> tuple[str | None, str, str]:
     """Return (apple_uri_or_None, outcome, detail).
 
@@ -358,6 +469,19 @@ def resolve(
 
     saw_any = False
     reason_to_report = ""
+    # Referenzdauer hoechstens EINMAL je Track holen, und nur wenn die
+    # Zweitmeinung ueberhaupt gefragt ist. `_ref` bleibt "nicht geholt", bis das
+    # erste Mal ein Jahr danebenliegt — die grosse Mehrheit der Tracks kostet
+    # damit keinen zusaetzlichen Abruf.
+    _ref: list = []  # leer = noch nicht geholt; [None] = geholt, nicht lesbar
+
+    def ref_ms() -> int | None:
+        if not duration_fallback:
+            return None
+        if not _ref:
+            _ref.append(duration_getter(track.get("uri")))
+        return _ref[0]
+
     for stage, term in enumerate(terms):
         # Tag stage-2 candidates so a rejection cannot be mistaken for a verdict
         # on the full-title query. Kept space-free — main() parses the reason as
@@ -377,6 +501,12 @@ def resolve(
                     result,
                     title_threshold=title_threshold,
                     year_tolerance=year_tolerance,
+                    ref_duration_ms=(
+                        ref_ms()
+                        if _year_would_reject(track, result, year_tolerance)
+                        else None
+                    ),
+                    duration_tolerance_ms=duration_tolerance_ms,
                 )
                 if accepted:
                     tid = result.get("trackId")
@@ -461,6 +591,23 @@ def main() -> int:
         default=5,
         help="search results inspected per storefront (default 5)",
     )
+    ap.add_argument(
+        "--no-duration-fallback",
+        action="store_true",
+        help=(
+            "disable the duration second opinion (#2116): a candidate rejected "
+            "by the year gate stays rejected even when its runtime matches"
+        ),
+    )
+    ap.add_argument(
+        "--duration-tolerance-ms",
+        type=int,
+        default=DURATION_TOLERANCE_MS,
+        help=(
+            "max |our duration - candidate duration| that overrides a year "
+            f"mismatch (default {DURATION_TOLERANCE_MS})"
+        ),
+    )
     args = ap.parse_args()
 
     state = {} if args.dry_run else load_state()
@@ -524,6 +671,8 @@ def main() -> int:
             title_threshold=args.title_threshold,
             year_tolerance=args.year_tolerance,
             limit=args.limit,
+            duration_fallback=not args.no_duration_fallback,
+            duration_tolerance_ms=args.duration_tolerance_ms,
         )
         label = f"{track.get('artist')} – {track.get('title')}"
         if outcome == "hit":
