@@ -30,6 +30,8 @@ def _stub_media_service() -> MagicMock:
     svc.verify_responsive = AsyncMock(return_value=(True, None))
     # #1516: end_game now awaits restore_volume; make it awaitable on the stub.
     svc.restore_volume = AsyncMock(return_value=True)
+    # #2143: and restore_queue right after it.
+    svc.restore_queue = AsyncMock(return_value=True)
     return svc
 
 

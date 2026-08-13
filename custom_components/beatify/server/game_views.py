@@ -497,7 +497,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     if isinstance(mp, str) and mp and self.hass.states.get(mp):
                         if gs.media_player != mp:
                             gs.media_player = mp
-                            gs._media_player_service = None
+                            # #2143: same release-instead-of-null as the lobby
+                            # switch below. This path runs pre-start, so there
+                            # is usually nothing captured yet — but a force-
+                            # reset can land here mid-game.
+                            gs.release_media_player_service()
                             _cp = getattr(gs, "_cancel_prewarm", None)
                             if callable(_cp):
                                 with contextlib.suppress(Exception):
@@ -1073,7 +1077,13 @@ class UpdateLobbyView(BeatifyAdminView):
             # construction and recycles itself (see create_game's identical
             # reset + its comment) — without nulling it, playback keeps
             # routing to the OLD device.
-            game_state._media_player_service = None
+            #
+            # #2143: released, not nulled. This view permits a switch during
+            # PLAYING and REVEAL, so the outgoing service can already hold the
+            # old speaker's pre-game volume (#1516) and pre-game queue. Nulling
+            # threw both away and left that speaker at party volume with
+            # Beatify's track on it.
+            game_state.release_media_player_service()
             # Upstream 4.2.0 (#1540) pre-warms the MediaPlayerService during
             # LOBBY. That task was scheduled at create with the OLD entity; if
             # it completes AFTER the null above it can reinstate a service

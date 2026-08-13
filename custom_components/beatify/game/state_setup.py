@@ -229,6 +229,11 @@ class GameSetupMixin:
         # provider until HA itself restarts. rematch_game() intentionally preserves
         # these values, so this reset stays scoped to create_game.
         self._media_player_service = None
+        # #2143: a NEW game starts owing nothing. Promises to speakers of a
+        # previous game are dropped here on purpose — carrying them across
+        # would restore a stale volume/track at the end of an unrelated game.
+        # (rematch_game does NOT come through here and keeps its promises.)
+        self._pending_speaker_states = {}
         # Same recycling mechanism as the media service above, same fix.
         # configure_tts / configure_party_lights are only called when a config
         # is supplied, so with TTS or lights DISABLED nothing cleared the
@@ -432,10 +437,20 @@ class GameSetupMixin:
         async with self._score_lock:
             # Issue #331: Restore lights before resetting
             await self.disable_party_lights()
+            # #2143: a speaker switch during PLAYING/REVEAL leaves the old
+            # device's promises parked on the game with no service to carry
+            # them out. Build one so the restores below reach every speaker
+            # this game touched, not just the last one.
+            if self._pending_speaker_states and self.media_player:
+                self._ensure_media_player_service()
             # #1516: restore the speaker volume to its pre-game level (the host
             # had to manually reset it after every game otherwise). No-op if
             # Beatify never changed the volume this game.
             await self.restore_player_volume()
+            # #2143: hand back the track the speaker was playing before the
+            # game — paused, at its old position. No-op outside Music
+            # Assistant, or when the speaker was idle at game start.
+            await self.restore_player_queue()
             # Issue #447: Disable TTS
             await self.disable_tts()
             self._reset_game_internals()

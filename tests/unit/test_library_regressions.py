@@ -55,8 +55,17 @@ class TestSettingsReachTheGameTheyWereSetFor:
         assert "async_clear_game_output_settings" in src("server/game_views.py")
 
     def test_device_switch_drops_the_cached_media_service(self):
+        """#2143 changed HOW it is dropped, not THAT it is dropped.
+
+        The service must still go — it captures entity and platform at
+        construction, so keeping it routes playback to the old device. But
+        nulling the reference outright also dropped the old speaker's pre-game
+        volume (#1516) and queue (#2143). `release_media_player_service`
+        preserves those and then nulls. A bare `= None` here is the regression.
+        """
         code = src("server/game_views.py")
-        assert "_media_player_service = None" in code
+        assert "release_media_player_service()" in code
+        assert "_media_player_service = None" not in code
 
     def test_device_switch_supersedes_the_lobby_prewarm(self):
         """#1540 pre-warms the service with the entity chosen at CREATE; a

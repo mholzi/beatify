@@ -4,6 +4,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **The host gets their own music back after a game (#2143).** Every round is played with `enqueue: "replace"`, which wipes whatever Music Assistant had queued — for every MA user, in every round, whether or not they use Crate Digger. Nothing was ever remembered, so a game ended with the speaker parked on Beatify's last track and the host's own listening gone. The speaker's current track, playback position, shuffle flag and repeat mode are now captured once per game, immediately before the first replace, and handed back at game end: the track returns **paused, at the position it was at**. What sat *behind* the current track cannot come back — MA's `get_queue` reports `items` as a count and exposes only `current_item`/`next_item`, measured against a live queue, so the "first entry with replace, the rest with add" plan in the issue is not implementable against that interface. Music Assistant only; other platforms are never probed, and a failed snapshot is swallowed rather than allowed to fail the round.
+- **A mid-game speaker switch no longer breaks its promises (#1516 follow-up, found via #2143).** `UpdateLobbyView` explicitly permits switching the speaker during PLAYING and REVEAL, and that path nulled the cached `MediaPlayerService` outright. The service is also where the outgoing speaker's pre-game volume lived, so the switch silently discarded it and left that speaker at party volume forever — a bug that predates #2143 by weeks and had gone unnoticed because nothing ever pointed at it. The snapshots now survive the switch on the game state and are handed to the replacement service, which restores **each speaker at its own captured level**, never the new speaker's. Switching back to an earlier speaker adopts its snapshot instead of re-capturing a level Beatify itself had set.
+
 ## [4.2.1-rc1] - 2026-08-11
 
 ### Added

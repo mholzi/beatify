@@ -76,6 +76,38 @@ class MediaControlMixin:
             return await self._media_player_service.restore_volume()
         return False
 
+    async def restore_player_queue(self) -> bool:
+        """Hand the speaker back the track it was playing before the game (#2143).
+
+        No-op (returns False) when there is no media player, when the platform
+        is not Music Assistant, or when the speaker was idle at game start.
+        """
+        if self._media_player_service:
+            return await self._media_player_service.restore_queue()
+        return False
+
+    def release_media_player_service(self) -> None:
+        """Drop the MediaPlayerService but keep what it owes the speaker (#2143).
+
+        A mid-game speaker switch has to discard the service — it captures
+        entity and platform at construction, so keeping it would route playback
+        to the OLD device. But the service also holds the promises made to that
+        device: its pre-game volume (#1516) and its pre-game queue (#2143).
+        Nulling the reference alone threw both away, silently, and the old
+        speaker was left at party volume with Beatify's last track on it.
+
+        The volume half of that was already broken before #2143 existed and
+        nobody had noticed: ``UpdateLobbyView`` explicitly permits a speaker
+        switch during PLAYING and REVEAL, which is exactly when a volume has
+        been captured.
+        """
+        service = self._media_player_service
+        if service is not None:
+            snapshot = service.snapshot_saved_states()
+            if snapshot:
+                self._pending_speaker_states.update(snapshot)
+        self._media_player_service = None
+
     async def seek_forward(self, seconds: int) -> bool:
         """Seek media player forward by given seconds (#498)."""
         if self._media_player_service:

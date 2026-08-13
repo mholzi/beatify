@@ -438,11 +438,14 @@ class TestRevealAutoAdvance:
         media.set_volume = AsyncMock(return_value=True)
         media.restore_volume = AsyncMock(return_value=True)
         media.save_volume = MagicMock()
+        # #2143: end_game now also hands back the queue.
+        media.restore_queue = AsyncMock(return_value=True)
         state._media_player_service = media
 
         await state.end_game()
 
         media.restore_volume.assert_awaited_once()
+        media.restore_queue.assert_awaited_once()
 
     @pytest.mark.asyncio
     async def test_set_volume_on_player_captures_pre_game_volume(self):

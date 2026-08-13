@@ -90,12 +90,16 @@ class TestMANonBlockingPlayback:
             result = await svc.play_song(_make_song(title="New Song"))
 
         assert result is True
-        hass.services.async_call.assert_awaited_once()
-        call_kwargs = hass.services.async_call.call_args
-        assert (
-            call_kwargs.kwargs.get("blocking") is False
-            or call_kwargs[1].get("blocking") is False
-        )
+        # #2143 added a get_queue snapshot ahead of the play, so "awaited once"
+        # no longer holds. What must hold is that the PLAY is still exactly one
+        # call and still non-blocking — blocking=True hangs on MA+YTMusic.
+        play_calls = [
+            c
+            for c in hass.services.async_call.await_args_list
+            if c.args[:2] == ("music_assistant", "play_media")
+        ]
+        assert len(play_calls) == 1
+        assert play_calls[0].kwargs.get("blocking") is False
 
     @pytest.mark.asyncio
     async def test_ma_fast_path_succeeds_when_title_matches_even_if_position_zero(self):

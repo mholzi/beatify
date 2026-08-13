@@ -47,6 +47,8 @@ def _stub_media_service() -> MagicMock:
     svc.play_song = AsyncMock(return_value=True)
     svc.verify_responsive = AsyncMock(return_value=(True, None))
     svc.restore_volume = AsyncMock(return_value=True)
+    # #2143: end_game also awaits restore_queue now.
+    svc.restore_queue = AsyncMock(return_value=True)
     return svc
 
 

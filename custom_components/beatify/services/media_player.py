@@ -115,6 +115,14 @@ MA_PLAYBACK_TIMEOUT = 15.0
 # constant would have silently made each of them wait the full 20s.
 MA_FIRST_PLAY_TIMEOUT_FACTOR = 4 / 3
 
+# #2143: how long the queue restore waits for the host's track to actually
+# start before it seeks to the saved position. Deliberately far below
+# MA_PLAYBACK_TIMEOUT: this runs during game teardown, where every second is a
+# second the admin UI sits on a dead screen. Missing the window costs the
+# position, not the track — the song comes back either way, just from 0:00.
+MA_QUEUE_RESTORE_WAIT = 5.0
+MA_QUEUE_RESTORE_POLL = 0.25
+
 # #1381: Fast-path Path 2 (title-advanced-without-exact-match) must not
 # instant-accept an *arbitrary* title change. If a requested URI fails to
 # resolve in MA while the speaker's prior queue naturally auto-advances to its
@@ -290,6 +298,7 @@ class MediaPlayerService:
         entity_id: str,
         platform: str = "unknown",
         provider: str = "spotify",
+        inherited_states: dict[str, dict[str, Any]] | None = None,
     ) -> None:
         """
         Initialize with HomeAssistant and entity_id.
@@ -299,6 +308,11 @@ class MediaPlayerService:
             entity_id: Media player entity ID
             platform: Platform identifier (music_assistant, sonos, alexa_media, etc.)
             provider: Music provider (spotify or apple_music)
+            inherited_states: what earlier speakers of this game still owe their
+                owners, as ``{entity_id: {"volume": …, "queue": …}}`` (#2143).
+                A speaker switch throws this service away and builds a new one;
+                without carrying the snapshots the game would silently forget
+                to hand the previous speaker back.
 
         """
         self._hass = hass
@@ -359,6 +373,54 @@ class MediaPlayerService:
         # game end. None = nothing to restore (Beatify never touched the volume).
         self._saved_volume: float | None = None
 
+        # #2143: what the speaker was playing before Beatify claimed the queue.
+        # `_try_ma_play` sends `enqueue: "replace"`, which wipes whatever the
+        # host had queued — in EVERY round, for every Music Assistant user,
+        # whether or not they use Crate Digger. Captured once per game (like
+        # `_saved_volume`) and handed back at game end.
+        #
+        # Three shapes, deliberately distinct:
+        #   None — not captured yet (or already restored)
+        #   {}   — captured, but the speaker was idle: nothing to hand back
+        #   {…}  — the track, its position, shuffle and repeat mode
+        #
+        # What CANNOT be captured: the queue behind the current track. MA's
+        # `get_queue` reports `items` as a COUNT, not a list, and exposes only
+        # `current_item` / `next_item` — measured against a live queue on
+        # 2026-08-13. Restoring "the first entry with replace, the rest with
+        # add" (the original plan in #2143) is therefore not implementable.
+        self._saved_queue: dict[str, Any] | None = None
+
+        # Speakers this game already touched and then switched away from —
+        # {entity_id: {"volume": …, "queue": …}}. Our OWN entity's snapshot is
+        # adopted into the fields above instead of living here, so a switch
+        # back to a speaker does not re-capture an already-Beatify-altered
+        # level as if it were the host's original.
+        self._inherited_states: dict[str, dict[str, Any]] = {
+            eid: dict(snap) for eid, snap in (inherited_states or {}).items()
+        }
+        own_snapshot = self._inherited_states.pop(entity_id, None)
+        if own_snapshot:
+            self._saved_volume = own_snapshot.get("volume")
+            self._saved_queue = own_snapshot.get("queue")
+
+    def snapshot_saved_states(self) -> dict[str, dict[str, Any]]:
+        """Everything this game still owes the user's speakers (#1516/#2143).
+
+        Mirrors ``PartyLightsService.snapshot_saved_states``: a mid-game
+        speaker switch discards this service, and the caller hands the result
+        of this method to the replacement so the promise survives the switch.
+        """
+        states = {eid: dict(snap) for eid, snap in self._inherited_states.items()}
+        own: dict[str, Any] = {}
+        if self._saved_volume is not None:
+            own["volume"] = self._saved_volume
+        if self._saved_queue:
+            own["queue"] = dict(self._saved_queue)
+        if own:
+            states[self._entity_id] = own
+        return states
+
     def save_volume(self) -> None:
         """Remember the speaker's current volume for later restore (#1516).
 
@@ -374,17 +436,193 @@ class MediaPlayerService:
     async def restore_volume(self) -> bool:
         """Restore the volume captured by :meth:`save_volume` (#1516).
 
+        Also hands back every speaker this game switched AWAY from (#2143) —
+        each at its own captured level, never at this speaker's. Restoring the
+        old speaker's volume onto the new one would be a different bug.
+
         Returns:
-            True if a saved volume was applied, False if there was nothing to
-            restore (Beatify never changed the volume this game).
+            True if at least one saved volume was applied, False if there was
+            nothing to restore (Beatify never changed any volume this game).
         """
+        applied = False
+        for entity_id, snapshot in list(self._inherited_states.items()):
+            level = snapshot.pop("volume", None)
+            if level is None:
+                continue
+            if await self._set_volume_on(entity_id, level):
+                applied = True
         if self._saved_volume is None:
-            return False
+            return applied
         level = self._saved_volume
         # Clear BEFORE the await so a re-entrant call can't double-restore, and
         # so the next game starts from a clean (uncaptured) slate.
         self._saved_volume = None
-        return await self.set_volume(level)
+        return await self._set_volume_on(self._entity_id, level) or applied
+
+    async def save_queue(self) -> None:
+        """Remember what the speaker was playing before Beatify took it (#2143).
+
+        Idempotent in the same way as :meth:`save_volume`: only the FIRST call
+        per game captures. Round two would otherwise "capture" Beatify's own
+        track and hand the host that instead of their music.
+
+        Music Assistant only — the snapshot is read from ``get_queue``, which
+        no other platform provides. A failure here is deliberately swallowed:
+        not being able to remember the queue must never stop the round from
+        playing.
+        """
+        if self._platform != "music_assistant" or self._saved_queue is not None:
+            return
+        try:
+            response = await self._hass.services.async_call(
+                "music_assistant",
+                "get_queue",
+                {"entity_id": self._entity_id},
+                blocking=True,
+                return_response=True,
+            )
+        except (HomeAssistantError, ServiceNotFound, TypeError) as err:
+            # TypeError guards older MA versions whose get_queue takes no
+            # response — there is nothing to remember then, and pretending
+            # otherwise would make restore_queue play a phantom track.
+            _LOGGER.debug("Queue snapshot unavailable on %s: %s", self._entity_id, err)
+            self._saved_queue = {}
+            return
+
+        # HA hands back None when a service has no response payload, and older
+        # cores ignore `return_response` outright — neither is an error worth a
+        # log line, but both must not be walked as if they were the mapping.
+        if not isinstance(response, dict):
+            self._saved_queue = {}
+            return
+        data = response.get(self._entity_id)
+        if not isinstance(data, dict):
+            self._saved_queue = {}
+            return
+        media_item = (data.get("current_item") or {}).get("media_item") or {}
+        uri = media_item.get("uri")
+        if not uri:
+            # Idle speaker: captured, but there is nothing to hand back. Stored
+            # as {} rather than None so round two doesn't try again.
+            self._saved_queue = {}
+            _LOGGER.debug("Queue snapshot on %s: speaker idle", self._entity_id)
+            return
+
+        self._saved_queue = {
+            "uri": uri,
+            "name": media_item.get("name") or "",
+            "elapsed_time": float(data.get("elapsed_time") or 0),
+            "shuffle": bool(data.get("shuffle_enabled")),
+            "repeat_mode": data.get("repeat_mode"),
+        }
+        _LOGGER.debug(
+            "Queue snapshot on %s: %s at %.0fs",
+            self._entity_id,
+            uri,
+            self._saved_queue["elapsed_time"],
+        )
+
+    async def restore_queue(self) -> bool:
+        """Hand the speaker back what it was playing before the game (#2143).
+
+        Restores this speaker and every speaker the game switched away from.
+        The track comes back PAUSED at its old position: the host ended the
+        game, so starting their music unasked would be its own surprise.
+
+        Only the track that was playing returns. What sat behind it in the
+        queue is gone — MA's ``get_queue`` never exposed it (see the
+        ``_saved_queue`` comment in ``__init__``).
+
+        Returns:
+            True if at least one speaker got something back.
+        """
+        restored = False
+        for entity_id, snapshot in list(self._inherited_states.items()):
+            queue = snapshot.pop("queue", None)
+            if await self._restore_queue_on(entity_id, queue):
+                restored = True
+        queue = self._saved_queue
+        # Clear BEFORE the awaits so a re-entrant call can't double-restore.
+        self._saved_queue = None
+        return await self._restore_queue_on(self._entity_id, queue) or restored
+
+    async def _restore_queue_on(
+        self, entity_id: str, queue: dict[str, Any] | None
+    ) -> bool:
+        """Replay one captured queue snapshot onto one speaker."""
+        if not queue or not queue.get("uri"):
+            return False
+        try:
+            await self._hass.services.async_call(
+                "music_assistant",
+                "play_media",
+                {
+                    "media_id": queue["uri"],
+                    "media_type": "track",
+                    "enqueue": "replace",
+                },
+                target={"entity_id": entity_id},
+                blocking=False,
+            )
+            # The seek below needs the track actually loaded — a seek against
+            # the still-playing Beatify track would move the wrong song. Wait
+            # for the speaker to report a position, bounded, then give up and
+            # leave it playing from the start rather than hang the teardown.
+            if not await self._wait_for_playing(entity_id):
+                _LOGGER.debug(
+                    "Queue restore on %s: track loaded but never confirmed", entity_id
+                )
+            elif queue.get("elapsed_time", 0) >= 1:
+                await self._hass.services.async_call(
+                    "media_player",
+                    "media_seek",
+                    {
+                        "entity_id": entity_id,
+                        "seek_position": queue["elapsed_time"],
+                    },
+                    blocking=False,
+                )
+            await self._hass.services.async_call(
+                "media_player",
+                "media_pause",
+                {"entity_id": entity_id},
+                blocking=False,
+            )
+            if queue.get("shuffle") is not None:
+                await self._hass.services.async_call(
+                    "media_player",
+                    "shuffle_set",
+                    {"entity_id": entity_id, "shuffle": bool(queue["shuffle"])},
+                    blocking=False,
+                )
+            if queue.get("repeat_mode"):
+                await self._hass.services.async_call(
+                    "media_player",
+                    "repeat_set",
+                    {"entity_id": entity_id, "repeat": queue["repeat_mode"]},
+                    blocking=False,
+                )
+        except (HomeAssistantError, ServiceNotFound) as err:
+            _LOGGER.warning("Queue restore on %s failed: %s", entity_id, err)
+            return False
+        else:
+            _LOGGER.info(
+                "Queue restored on %s: %s at %.0fs (paused)",
+                entity_id,
+                queue.get("name") or queue["uri"],
+                queue.get("elapsed_time", 0),
+            )
+            return True
+
+    async def _wait_for_playing(self, entity_id: str) -> bool:
+        """Poll until the speaker reports playback, at most MA_QUEUE_RESTORE_WAIT."""
+        deadline = asyncio.get_event_loop().time() + MA_QUEUE_RESTORE_WAIT
+        while asyncio.get_event_loop().time() < deadline:
+            state = self._hass.states.get(entity_id)
+            if state is not None and state.state == "playing":
+                return True
+            await asyncio.sleep(MA_QUEUE_RESTORE_POLL)
+        return False
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -831,6 +1069,10 @@ class MediaPlayerService:
         else:
             title_before = ""
             position_updated_before = None
+
+        # #2143: remember the host's own queue BEFORE the replace below wipes
+        # it. Idempotent, so this only costs a get_queue call in round one.
+        await self.save_queue()
 
         # Fire-and-forget the service call — blocking=True hangs on MA+YTMusic
         # enqueue=replace: each round's track REPLACES the queue. Without it
@@ -1510,12 +1752,21 @@ class MediaPlayerService:
             True if successful
 
         """
+        return await self._set_volume_on(self._entity_id, level)
+
+    async def _set_volume_on(self, entity_id: str, level: float) -> bool:
+        """Set the volume of an explicit entity.
+
+        Split out of :meth:`set_volume` so ``restore_volume`` can hand back a
+        speaker the game has since switched away from (#2143) — that one is no
+        longer ``self._entity_id``.
+        """
         try:
             await self._hass.services.async_call(
                 "media_player",
                 "volume_set",
                 {
-                    "entity_id": self._entity_id,
+                    "entity_id": entity_id,
                     "volume_level": max(0.0, min(1.0, level)),
                 },
             )

@@ -792,7 +792,14 @@ class RoundLifecycleMixin:
                 self.media_player,
                 platform=self.platform,
                 provider=self.provider,
+                # #2143: carry the promises made to earlier speakers of this
+                # game into the new service, so a mid-game switch doesn't lose
+                # them. The new service takes ownership — clearing here keeps a
+                # later release/build cycle from restoring the same speaker
+                # twice.
+                inherited_states=self._pending_speaker_states or None,
             )
+            self._pending_speaker_states = {}
             # Connect analytics for error recording (Story 19.1 AC: #2)
             if self._stats_service and hasattr(self._stats_service, "_analytics"):
                 self._media_player_service.set_analytics(self._stats_service._analytics)
