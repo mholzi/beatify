@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.23",
+  "version": "1.24",
   "tags": [
     "anime",
     "japanese",
@@ -207,7 +207,7 @@
         "it": "applemusic://track/1536256935"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=udNgJUiBCRg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/105884373",
       "uri_deezer": "deezer://track/121134202",
       "fun_fact": "Opening 3 of 'Naruto Shippuden' (2008) — one of the most beloved Naruto openings.",
       "fun_fact_de": "Opening 3 von 'Naruto Shippuden' (2008) — eines der beliebtesten Naruto-Openings.",
@@ -410,7 +410,7 @@
         "it": "applemusic://track/1594814706"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=d6NPs3OQIAU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/209819742",
       "uri_deezer": "deezer://track/1549796212",
       "fun_fact": "Opening of 'Demon Slayer: Entertainment District Arc' (2021) by Aimer.",
       "fun_fact_de": "Opening von 'Demon Slayer: Entertainment District Arc' (2021) von Aimer.",
@@ -435,7 +435,7 @@
         "it": "applemusic://track/1692289314"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zuoVd2QNxJo",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/300548847",
       "uri_deezer": "deezer://track/2332722735",
       "fun_fact": "Opening 1 of 'Jujutsu Kaisen' Season 2 by Tatsuya Kitani.",
       "fun_fact_de": "Opening 1 von 'Jujutsu Kaisen' Staffel 2 von Tatsuya Kitani.",
@@ -588,7 +588,7 @@
         "it": "applemusic://track/1678949889"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fR8iPh9S9qg",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/285513858",
       "uri_deezer": "deezer://track/2205130627",
       "alt_artists": [
         "milet"
@@ -2559,7 +2559,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=D1FHfPN39Y4",
       "uri_tidal": null,
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/143818800",
       "fun_fact": "Opening of 'Great Teacher Onizuka' (1999) by Porno Graffitti.",
       "fun_fact_de": "Opening von 'Great Teacher Onizuka' (1999) von Porno Graffitti.",
       "fun_fact_es": "Opening de 'Great Teacher Onizuka' (1999), de Porno Graffitti.",
@@ -2858,7 +2858,7 @@
         "it": "applemusic://track/1536503601"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=raMTMjaQ3mc",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144406160",
       "uri_deezer": "deezer://track/975992652",
       "fun_fact": "SID, a visual kei rock band active since 2005, is renowned for composing anime opening and ending themes.",
       "fun_fact_de": "SID, eine Visual-Kei-Rockband seit 2005 aktiv, ist berühmt für die Komposition von Anime-Opening- und Ending-Themen.",
@@ -2933,7 +2933,7 @@
         "it": "applemusic://track/1890211129"
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/487464883",
       "uri_deezer": "deezer://track/3293025721",
       "fun_fact": "Yuki Hayashi's My Hero Academia compositions became iconic for the series' most intense action sequences.",
       "fun_fact_de": "Yuki Hayashis My Hero Academia-Kompositionen wurden ikonisch für die intensivsten Actionszenen der Serie.",
@@ -3159,7 +3159,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=M-ROgEvfkqE",
       "uri_tidal": "tidal://track/467129879",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/976644342",
       "fun_fact": "Kumi Koda is a J-pop vocalist featured in multiple anime openings and endings throughout career",
       "fun_fact_de": "Kumi Koda ist eine J-Pop-Sängerin, die in vielen Anime-Openings und Endings auftritt",
       "fun_fact_es": "Kumi Koda es una cantante J-pop que aparece en múltiples aperturas y cierre de anime",
@@ -3283,7 +3283,7 @@
         "it": "applemusic://track/1754899924"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=57wkY1MGOXA",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/372417866",
       "uri_deezer": "deezer://track/2870893462",
       "fun_fact": "2024 anime theme by vocalist Yuuri, whose name means Curtain Call in the song title",
       "fun_fact_de": "Anime-Thema 2024 von Sängerin Yuuri, deren Name Curtain Call im Songtitel bedeutet",
@@ -3308,7 +3308,7 @@
         "it": "applemusic://track/1538150756"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=MF8kHWWFO10",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/144628782",
       "uri_deezer": "deezer://track/975986202",
       "fun_fact": "J-rock duo 7!! composed this 2013 anime theme, specializing in opening and ending tracks",
       "fun_fact_de": "J-Rock-Duo 7!! komponierte dieses 2013-Anime-Thema und spezialisiert sich auf Opening- und Ending-Songs",
@@ -3383,7 +3383,7 @@
         "it": "applemusic://track/1536963815"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WYYmt1hxOQU",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/145183005",
       "uri_deezer": "deezer://track/976805902",
       "fun_fact": "Little by Little, J-pop/rock artist known for emotional anime ballads in 2005",
       "fun_fact_de": "Little by Little, J-Pop/Rock-Künstler bekannt für emotionale Anime-Balladen 2005",
@@ -3458,7 +3458,7 @@
         "it": "applemusic://track/1831294708"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CCWaIsOX4d0",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/452332632",
       "uri_deezer": "deezer://track/3493163131",
       "fun_fact": "2025 character song blending Japanese vocals with Marc Hudson's English collaboration",
       "fun_fact_de": "2025er Charakterlied, das japanische Vocals mit Marc Hudsons englischer Zusammenarbeit verbindet",
