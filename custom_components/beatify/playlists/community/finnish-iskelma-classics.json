@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.30",
+  "version": "1.31",
   "tags": [
     "finnish",
     "iskelma",
@@ -5597,7 +5597,7 @@
       "year": 2000,
       "isrc": "FIBAR1600507",
       "uri": "spotify:track:4rcWjCsFHGV2XrefhgrL43",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1194609001",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -5699,7 +5699,7 @@
       "year": 2000,
       "isrc": "FIB2M1700001",
       "uri": "spotify:track:5IoMgg0HE24edNmVQrzzRz",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1215673119",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -5733,7 +5733,7 @@
       "year": 2000,
       "isrc": "FIBAR0000042",
       "uri": "spotify:track:6xIu4wz5ihfzX5h7D8lTYr",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/257854045",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/273934655",
@@ -5767,7 +5767,7 @@
       "year": 2000,
       "isrc": "FIERA9900013",
       "uri": "spotify:track:2Z0NJ6fPy63ifOEPeQXVo4",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1155562489",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -6517,7 +6517,7 @@
       "uri_apple_music": "applemusic://track/73640761",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IlFKEr3g56Y",
       "uri_tidal": "tidal://track/175334",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/73132522",
       "awards_nl": [],
       "isrc": "FIWMA0500036",
       "uri_apple_music_by_region": {
@@ -7274,7 +7274,7 @@
       "year": 2011,
       "isrc": "FIBAR1100088",
       "uri": "spotify:track:6npEtOnwvqSAy3GQJb9Iij",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/431640806",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -7387,7 +7387,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1551106843",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lGN3XB9YXDI",
       "uri_tidal": "tidal://track/1427262",
       "uri_deezer": "deezer://track/1225533152",
@@ -7442,7 +7442,7 @@
       "year": 2012,
       "isrc": "FIRMX1200072",
       "uri": "spotify:track:6WiKW0kMCgv77fITqAhCYT",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/539486723",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -7748,7 +7748,7 @@
       "uri_apple_music": "applemusic://track/857595588",
       "uri_youtube_music": "https://music.youtube.com/watch?v=73GZKW7dP_E",
       "uri_tidal": "tidal://track/23149972",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/70213323",
       "awards_nl": [],
       "isrc": "FIWMA1300450",
       "uri_apple_music_by_region": {
@@ -7899,7 +7899,7 @@
       "year": 2015,
       "isrc": "FIBAR1400723",
       "uri": "spotify:track:4lFEjmaLhebRErxAUSRo4H",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/953646677",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -7997,7 +7997,7 @@
       "year": 2015,
       "isrc": "FIBAR1500176",
       "uri": "spotify:track:2TBkwoGvD6m6G2Jx1rpkbJ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/995943578",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/987985489",
@@ -8031,7 +8031,7 @@
       "year": 2015,
       "isrc": "FIBAR1400468",
       "uri": "spotify:track:0Z0CuTjydlR1ob5xYHOr7j",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1013871039",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1013871039",
@@ -8235,7 +8235,7 @@
       "year": 2016,
       "isrc": "FIBAR1600003",
       "uri": "spotify:track:3vXy7HFgi2OdJqS69fEISf",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1073124984",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -8371,7 +8371,7 @@
       "year": 2016,
       "isrc": "FIB2M1600003",
       "uri": "spotify:track:6NeoKd7r1c2Ht29w6xyacZ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1150475307",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -8523,7 +8523,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1189401902",
       "uri_youtube_music": "https://music.youtube.com/watch?v=teFVIKbdls0",
       "uri_tidal": "tidal://track/1225888",
       "uri_deezer": "deezer://track/3612633",
@@ -8919,7 +8919,7 @@
       "year": 2016,
       "isrc": "FIBAR1500964",
       "uri": "spotify:track:202EaNVFyqtWmPdF3aIBep",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1088600888",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1088600888",
@@ -9157,7 +9157,7 @@
       "year": 2017,
       "isrc": "FIDC21700001",
       "uri": "spotify:track:6JGX08kXeqhBda1OA2bqUm",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1211772098",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1211772098",
@@ -9293,7 +9293,7 @@
       "year": 2017,
       "isrc": "FIOMB1700001",
       "uri": "spotify:track:6SKsqakHjGxf7pPgiUQGjM",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1380100901",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1380100901",
