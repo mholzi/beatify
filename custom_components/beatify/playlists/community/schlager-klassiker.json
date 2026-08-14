@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "german",
     "schlager",
@@ -1455,7 +1455,8 @@
       "uri_tidal": "tidal://track/345291272",
       "uri_deezer": "deezer://track/2661133662",
       "fun_fact_nl": "Lotosblume van Die Flippers combineert romantiek uit het Verre Oosten met Duitse Schlager. De band was meer dan 40 jaar succesvol en verkocht miljoenen platen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1626938157"
     },
     {
       "year": 1972,
@@ -1565,7 +1566,8 @@
         "es": "applemusic://track/1509695327",
         "nl": "applemusic://track/1509695327",
         "it": "applemusic://track/1509695327"
-      }
+      },
+      "uri_deezer": "deezer://track/1665492682"
     },
     {
       "year": 2014,
@@ -2387,7 +2389,8 @@
       "uri_tidal": "tidal://track/499895",
       "uri_deezer": "deezer://track/1048957",
       "fun_fact_nl": "Albany van Roger Whittaker laat zijn kenmerkende stem en fluittalent horen. De Britse zanger werd een absolute fanfavoriet in Duitsland.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/258646339"
     },
     {
       "year": 1993,
@@ -2407,7 +2410,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1074872659",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2440,7 +2443,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1658114508",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2473,7 +2476,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1822443917",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2506,7 +2509,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/575137703",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2572,7 +2575,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1639197624",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2605,7 +2608,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1442541040",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2638,7 +2641,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/165184829",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2671,7 +2674,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1692937415",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2704,7 +2707,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1688479747",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2737,7 +2740,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/250802693",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2770,7 +2773,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1503694247",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2803,7 +2806,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1442461542",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2836,7 +2839,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1562298952",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2869,7 +2872,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1854453218",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2902,7 +2905,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/276105116",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2935,7 +2938,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/313373704",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2968,7 +2971,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/317319113",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3001,7 +3004,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1822469512",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3034,7 +3037,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/182459965",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3067,7 +3070,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1781055470",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3100,7 +3103,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/163269171",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3133,7 +3136,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/823743732",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3166,7 +3169,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/163269498",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3199,7 +3202,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/723552855",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3232,7 +3235,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1822464777",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3265,7 +3268,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/306790383",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3298,7 +3301,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1074873828",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3331,7 +3334,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1730854042",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3364,7 +3367,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1442673831",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3397,7 +3400,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1639198668",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3430,7 +3433,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/59728482",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3463,7 +3466,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1690135813",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3496,7 +3499,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1446473849",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3529,7 +3532,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1459998982",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
