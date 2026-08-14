@@ -1,6 +1,6 @@
 {
   "name": "Polskie hity radiowe 🇵🇱",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "polish",
     "pop",
@@ -1195,7 +1195,7 @@
       "artist": "Jeden Osiem L",
       "title": "Jak zapomnieć",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1072498217",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1072498217"
       },
@@ -1275,7 +1275,7 @@
       "artist": "Video",
       "title": "Środa Czwartek",
       "isrc": "PLA961100137",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/690779955",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/690779955"
       },
@@ -1295,7 +1295,7 @@
       "artist": "Poparzeni Kawą Trzy",
       "title": "Kawałek Do Tańca",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/648261923",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/648261923"
       },
@@ -1315,7 +1315,7 @@
       "artist": "T.Love",
       "title": "Warszawa",
       "isrc": "PLA550800157",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/904039503",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/904039503"
       },
@@ -1335,7 +1335,7 @@
       "artist": "Perfect",
       "title": "Nie Płacz Ewka",
       "isrc": "PLA391359609",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/988439227",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/988439227"
       },
@@ -1355,7 +1355,7 @@
       "artist": "Felicjan Andrzejczak",
       "title": "Jolka, Jolka Pamiętasz",
       "isrc": "PLB171303004",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1481872523",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1481872523"
       },
@@ -1375,7 +1375,7 @@
       "artist": "Skaldowie",
       "title": "Wszystko Mi Mówi, Że Mnie Ktoś Pokochał",
       "isrc": "PLJ051302362",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1476307610",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1476307610"
       },
@@ -1395,7 +1395,7 @@
       "artist": "Krzysztof Krawczyk",
       "title": "Bo Jestes Ty",
       "isrc": "PLG941201353",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1712454081",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1712454081"
       },
@@ -1415,7 +1415,7 @@
       "artist": "Ryszard Rynkowski",
       "title": "Wypijmy za Błędy",
       "isrc": "PLB170800882",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1481864948",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1485634113"
       },
@@ -1435,7 +1435,7 @@
       "artist": "Perfect",
       "title": "Kołysanka dla Nieznajomej",
       "isrc": "PLB171500907",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485457169",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1485457169"
       },
@@ -1455,13 +1455,13 @@
       "artist": "Myslovitz",
       "title": "Dlugosc Dzwieku Samotnosci",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1511556424",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1729127080"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=A30Fx3wnfwE",
       "uri_tidal": null,
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/950273432",
       "alt_artists": [],
       "fun_fact": "Myslovitz belongs to the Polish pop and rock canon; \"Dlugosc Dzwieku Samotnosci\" (2016) features on this Polskie hity lat 90' 00' selection.",
       "fun_fact_de": "Myslovitz gehoert zum polnischen Pop- und Rock-Kanon; \"Dlugosc Dzwieku Samotnosci\" (2016) ist auf dieser Auswahl polnischer Hits der 90er und 2000er vertreten.",
@@ -1475,7 +1475,7 @@
       "artist": "Bajm",
       "title": "Ta sama chwila",
       "isrc": "PLA559300022",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/689119596",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1433949599"
       },
@@ -1495,7 +1495,7 @@
       "artist": "Elektryczne Gitary",
       "title": "Dzieci wybiegły - 2014",
       "isrc": "PLA551400188",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1720216739",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1720216739"
       },
@@ -1535,7 +1535,7 @@
       "artist": "Maryla Rodowicz",
       "title": "To Już Było",
       "isrc": "PLUM71300576",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1738285237",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1834162140"
       },
@@ -1555,7 +1555,7 @@
       "artist": "Kombi",
       "title": "Nasze Rendez Vous",
       "isrc": "PLB170702217",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1481885268",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1485460403"
       },
@@ -1575,7 +1575,7 @@
       "artist": "Krzysztof Krawczyk, Edyta Bartosiewicz",
       "title": "Trudno tak (razem byc nam ze soba)",
       "isrc": "PLA320400032",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1857602525",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1164950994"
       },
@@ -1595,7 +1595,7 @@
       "artist": "Lady Pank",
       "title": "Tacy Sami",
       "isrc": "PLB170702738",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484081003",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1484081003"
       },
@@ -1615,7 +1615,7 @@
       "artist": "Feel",
       "title": "No pokaż na co cię stać",
       "isrc": "PLC270700002",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692629907",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692629907"
       },
@@ -1655,13 +1655,13 @@
       "artist": "Kombi",
       "title": "Blackand White",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485460397",
       "uri_apple_music_by_region": {
         "pl": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=UKsOkMNCURs",
       "uri_tidal": "tidal://track/120555559",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/780120252",
       "alt_artists": [],
       "fun_fact": "Kombi belongs to the Polish pop and rock canon; \"Blackand White\" (2008) features on this Polskie hity lat 90' 00' selection.",
       "fun_fact_de": "Kombi gehoert zum polnischen Pop- und Rock-Kanon; \"Blackand White\" (2008) ist auf dieser Auswahl polnischer Hits der 90er und 2000er vertreten.",
@@ -1675,7 +1675,7 @@
       "artist": "Reni Jusis",
       "title": "Kiedyś Cię znajdę - Remastered",
       "isrc": "PLA550300067",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/688298093",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/688298093"
       },
@@ -1695,7 +1695,7 @@
       "artist": "Gabriel Fleszar",
       "title": "Kroplą deszczu",
       "isrc": "PLUM72200936",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1678776177",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1678776177"
       },
@@ -1715,7 +1715,7 @@
       "artist": "Big Day",
       "title": "W Dzień Gorącego Lata",
       "isrc": "PLUM71600307",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1758367682",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1442614637"
       },
@@ -1735,7 +1735,7 @@
       "artist": "Ryszard Rynkowski",
       "title": "Za młodzi, za starzy",
       "isrc": "PLA550000327",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/688291345",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/688291345"
       },
@@ -1755,7 +1755,7 @@
       "artist": "Kasia Kowalska",
       "title": "To co dobre",
       "isrc": "PLA210400266",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443717579",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1443717579"
       },
@@ -1775,7 +1775,7 @@
       "artist": "Goya",
       "title": "Smak słów",
       "isrc": "PLA550400152",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1660045452",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1802946633"
       },
@@ -1795,7 +1795,7 @@
       "artist": "Brodka",
       "title": "Znam cie na pamiec",
       "isrc": "PLB380600178",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/285146610",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/285146610"
       },
@@ -1815,7 +1815,7 @@
       "artist": "Blue Cafe",
       "title": "Do nieba, do piekła",
       "isrc": "PLA550300191",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/691284703",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/691284703"
       },
@@ -1835,13 +1835,13 @@
       "artist": "Andrzej Piaseczny",
       "title": "Sniadanie do lozka",
       "isrc": null,
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1630820093",
       "uri_apple_music_by_region": {
         "pl": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZEtkY59TUwk",
       "uri_tidal": "tidal://track/234485187",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/1797297697",
       "alt_artists": [],
       "fun_fact": "Andrzej Piaseczny belongs to the Polish pop and rock canon; \"Sniadanie do lozka\" (2016) features on this Polskie hity lat 90' 00' selection.",
       "fun_fact_de": "Andrzej Piaseczny gehoert zum polnischen Pop- und Rock-Kanon; \"Sniadanie do lozka\" (2016) ist auf dieser Auswahl polnischer Hits der 90er und 2000er vertreten.",
@@ -1855,7 +1855,7 @@
       "artist": "Kasia Kowalska",
       "title": "Spowiedz",
       "isrc": "PLUM70800561",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443754401",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1443754401"
       },
@@ -1875,7 +1875,7 @@
       "artist": "Brodka",
       "title": "Dziewczyna Mojego Chlopaka",
       "isrc": "PLA320400098",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/339038396",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/339038396"
       },
@@ -1895,7 +1895,7 @@
       "artist": "Anita Lipnicka",
       "title": "I wszystko się może zdarzyć",
       "isrc": "PLA559600045",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/883323366",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/883323366"
       },
