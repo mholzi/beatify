@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.14",
+  "version": "0.15",
   "tags": [
     "polish",
     "rock"
@@ -2019,7 +2019,7 @@
       "artist": "Voo Voo",
       "title": "Beztrosko",
       "isrc": "PLK682200048",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1649175126",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2045,7 +2045,7 @@
       "artist": "Mr. Zoob",
       "title": "Mój jest ten kawałek podłogi",
       "isrc": "PLB171100345",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485523612",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2071,7 +2071,7 @@
       "artist": "Wilki",
       "title": "Bohema",
       "isrc": "PLA550400108",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/690806298",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2123,7 +2123,7 @@
       "artist": "Perfect",
       "title": "Idź precz!",
       "isrc": "PLA391365602",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1485640114",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2149,7 +2149,7 @@
       "artist": "Męskie Granie Orkiestra, Dawid Podsiadło, Organek, O.S.T.R.",
       "title": "Wataha",
       "isrc": "PLS121600001",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1699412396",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2175,7 +2175,7 @@
       "artist": "Breakout",
       "title": "Oni zaraz przyjdą tu",
       "isrc": "PLA247114654",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1062840522",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2201,7 +2201,7 @@
       "artist": "KARAŚ/ROGUCKI",
       "title": "Bolesne strzały w serce",
       "isrc": "PLA811900344",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1495625503",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2227,7 +2227,7 @@
       "artist": "Kult",
       "title": "Baranek",
       "isrc": "PLE781200147",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1098862980",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2253,7 +2253,7 @@
       "artist": "Dżem",
       "title": "Naiwne pytania - 2003 Remaster",
       "isrc": "PLB010300013",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1760325663",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2279,7 +2279,7 @@
       "artist": "Farben Lehre",
       "title": "Anioły i Demony",
       "isrc": "PLG251200421",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1709631234",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2331,7 +2331,7 @@
       "artist": "KULT",
       "title": "Polska",
       "isrc": "PLE781200076",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1098856826",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2357,7 +2357,7 @@
       "artist": "Kult",
       "title": "Gdy nie ma dzieci",
       "isrc": "PLE781200194",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1097927970",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2383,7 +2383,7 @@
       "artist": "Spięty",
       "title": "Zapalenie Przedrostka",
       "isrc": "PLB822500302",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1873611843",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2409,7 +2409,7 @@
       "artist": "El Dupa",
       "title": "Natalia w Bruklinie odc. 1",
       "isrc": "PLE781300558",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1447151512",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2435,7 +2435,7 @@
       "artist": "Lady Pank",
       "title": "Kryzysowa narzeczona",
       "isrc": "PLB170702648",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484081273",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2461,7 +2461,7 @@
       "artist": "Pidżama Porno",
       "title": "Ezoteryczny Poznań",
       "isrc": "PLE781300439",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1103206478",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2487,7 +2487,7 @@
       "artist": "Aleksander Szalonek",
       "title": "Płyń - Single Edit",
       "isrc": "PL90X2500003",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1830184239",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2513,7 +2513,7 @@
       "artist": "Miro Kepinski, Krzysztof Zalewski",
       "title": "Szklana Góra",
       "isrc": "PLA812580147",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1845118312",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2539,7 +2539,7 @@
       "artist": "Sztywny Pal Azji",
       "title": "Nieprzemakalni",
       "isrc": "PLB171101274",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1484539951",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2565,7 +2565,7 @@
       "artist": "Edyta Bartosiewicz",
       "title": "Koziorożec - Remastered 2024",
       "isrc": "PLUM72400427",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1770766204",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2591,7 +2591,7 @@
       "artist": "Brygada Kryzys",
       "title": "To co czujesz, to co wiesz",
       "isrc": "PLB171201167",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1482966699",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
