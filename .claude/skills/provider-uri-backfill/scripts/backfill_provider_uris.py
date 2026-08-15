@@ -809,13 +809,30 @@ def resolve_deezer_via_search(
     return None
 
 
-def youtube_search_id(
+def youtube_search_ex(
     api_key: str,
     artist: str,
     title: str,
     getter: Callable[[str], dict] = _http_get_json,
-) -> str | None:
-    """search.list for ``artist title``; return the top video id (11 chars)."""
+) -> tuple[str | None, str]:
+    """search.list for ``artist title``; return ``(video_id, status)``.
+
+    ``status`` is the reason the caller needs and ``youtube_search_id`` throws
+    away:
+
+    ``hit``    ein verwertbares Video gefunden
+    ``empty``  YouTube hat geantwortet und **nichts** gefunden — eine echte
+               Absage, die in den Miss-Cache gehoert
+    ``error``  HTTP-/Netz-/Parse-Fehler oder eine unbrauchbare Antwort. Hier
+               ist **nichts** ueber den Song gelernt worden; ein Miss waere
+               eine Sperre auf Verdacht.
+
+    Die Unterscheidung ist der ganze Zweck der Funktion. Bis zum 15.08.2026
+    lieferte ``youtube_search_id`` fuer beide Faelle ``None``, weshalb
+    ``record_provider_misses`` YouTube pauschal ausgeschlossen hat — mit der
+    Folge, dass eine erfolglos durchsuchte Luecke jeden Lauf erneut Quote
+    kostete.
+    """
     q = urllib.parse.quote(f"{artist} {title}")
     url = (
         "https://www.googleapis.com/youtube/v3/search"
@@ -823,13 +840,29 @@ def youtube_search_id(
     )
     try:
         data = getter(url)
-    except urllib.error.HTTPError:
-        return None
+    except Exception:
+        # Bewusst breit: HTTPError, URLError, Timeout und JSON-Parsefehler
+        # sind hier dasselbe — die Suche hat nicht stattgefunden.
+        return None, "error"
     items = (data or {}).get("items") or []
     if not items:
-        return None
+        return None, "empty"
     vid = (items[0].get("id") or {}).get("videoId")
-    return vid if vid and _YT_ID.match(vid) else None
+    if vid and _YT_ID.match(vid):
+        return vid, "hit"
+    # Antwort da, aber unbrauchbar (fehlende/kaputte id). Das ist kein Beleg
+    # dafuer, dass es den Song nicht gibt.
+    return None, "error"
+
+
+def youtube_search_id(
+    api_key: str,
+    artist: str,
+    title: str,
+    getter: Callable[[str], dict] = _http_get_json,
+) -> str | None:
+    """search.list for ``artist title``; return the top video id (11 chars)."""
+    return youtube_search_ex(api_key, artist, title, getter)[0]
 
 
 def itunes_search(
@@ -1139,7 +1172,7 @@ def run(args: argparse.Namespace) -> int:
             if yt_gap and yt_key and not song.get("uri_youtube_music"):
                 if this_global_idx >= yt_state.cursor:
                     if yt_state.can_spend():
-                        vid = youtube_search_id(
+                        vid, yt_status = youtube_search_ex(
                             yt_key, song.get("artist", ""), song.get("title", "")
                         )
                         yt_state.spend()
@@ -1148,6 +1181,20 @@ def run(args: argparse.Namespace) -> int:
                             song["uri_youtube_music"] = youtube_uri(vid)
                             cov.filled_this_run["youtube_music"] += 1
                             song_dirty = True
+                        elif yt_status == "empty":
+                            # Gesucht und nichts gefunden: eine Absage wie
+                            # jede andere. NUR dieser Zweig darf einen Miss
+                            # schreiben — der Budget-Zweig unten und der
+                            # Fehlerfall duerfen es nicht, sonst wird aus
+                            # einer Tagesgrenze bzw. einer Stoerung eine
+                            # Sperre auf 90 Tage.
+                            miss_recorded += record_provider_misses(
+                                provider_misses,
+                                song_uri,
+                                ["youtube_music"],
+                                song,
+                                run_now,
+                            )
                     else:
                         yt_phase_note = (
                             f"daily budget {yt_state.budget} exhausted; "

@@ -301,6 +301,42 @@ def test_youtube_search_no_items():
     assert bf.youtube_search_id("KEY", "a", "b", getter=lambda u: {"items": []}) is None
 
 
+def test_youtube_search_ex_reports_hit():
+    resp = {"items": [{"id": {"videoId": "dQw4w9WgXcQ"}}]}
+    assert bf.youtube_search_ex("KEY", "a", "b", getter=lambda u: resp) == (
+        "dQw4w9WgXcQ",
+        "hit",
+    )
+
+
+def test_youtube_search_ex_reports_empty_for_no_items():
+    """Gesucht, nichts gefunden — die einzige Lage, die einen Miss rechtfertigt."""
+    assert bf.youtube_search_ex("KEY", "a", "b", getter=lambda u: {"items": []}) == (
+        None,
+        "empty",
+    )
+
+
+def test_youtube_search_ex_reports_error_on_exception():
+    """Eine gescheiterte Anfrage ist KEIN Beleg gegen den Song."""
+    import urllib.error
+
+    def boom(url):
+        raise urllib.error.URLError("no route")
+
+    vid, status = bf.youtube_search_ex("KEY", "a", "b", getter=boom)
+    assert (vid, status) == (None, "error")
+
+
+def test_youtube_search_ex_reports_error_on_unusable_id():
+    """Antwort da, id unbrauchbar — auch das darf keine Absage werden."""
+    resp = {"items": [{"id": {"videoId": "zu-kurz"}}]}
+    assert bf.youtube_search_ex("KEY", "a", "b", getter=lambda u: resp) == (
+        None,
+        "error",
+    )
+
+
 # --- report aggregation ----------------------------------------------------
 def test_build_report_has_summary_and_rows():
     cov = bf.PlaylistCoverage(name="p.json", path="/p.json", total=10)
@@ -474,7 +510,9 @@ def test_run_apply_odesli_429_does_not_block_youtube(tmp_path, monkeypatch):
 
     # Odesli hard-rate-limited: skips every song (returns None), never raises.
     monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)
-    monkeypatch.setattr(bf, "youtube_search_id", lambda *a, **k: "dQw4w9WgXcQ")
+    monkeypatch.setattr(
+        bf, "youtube_search_ex", lambda *a, **k: ("dQw4w9WgXcQ", "hit")
+    )
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     # Keyless Apple iTunes fallback is network → stub it off in these tests.
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
@@ -807,9 +845,9 @@ def test_run_youtube_odesli_first_pass_skips_search_list(tmp_path, monkeypatch):
 
     def boom_search(*a, **k):
         search_calls["n"] += 1
-        return "SHOULDNOTBE1"
+        return "SHOULDNOTBE1", "hit"
 
-    monkeypatch.setattr(bf, "youtube_search_id", boom_search)
+    monkeypatch.setattr(bf, "youtube_search_ex", boom_search)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
 
@@ -866,9 +904,9 @@ def test_run_youtube_oembed_fail_falls_back_to_search_list(tmp_path, monkeypatch
 
     def real_search(*a, **k):
         search_calls["n"] += 1
-        return "dQw4w9WgXcQ"
+        return "dQw4w9WgXcQ", "hit"
 
-    monkeypatch.setattr(bf, "youtube_search_id", real_search)
+    monkeypatch.setattr(bf, "youtube_search_ex", real_search)
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
 
@@ -889,6 +927,101 @@ def test_run_youtube_oembed_fail_falls_back_to_search_list(tmp_path, monkeypatch
     song = json.loads(f.read_text())["songs"][0]
     assert song["uri_youtube_music"] == "https://music.youtube.com/watch?v=dQw4w9WgXcQ"
     assert search_calls["n"] == 1  # oembed failed → paid path used
+
+
+def _yt_only_playlist(tmp_path):
+    """Ein Song, dem nur die YouTube-URI fehlt."""
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    return _write_playlist(
+        pl_dir,
+        "ytmiss",
+        [
+            {
+                "artist": "Rick Astley",
+                "title": "Never Gonna Give You Up",
+                "uri": "spotify:track:" + "a" * 22,
+                "uri_apple_music": "applemusic://track/1",
+                "uri_tidal": "tidal://track/1",
+                "uri_deezer": "deezer://track/1",
+            }
+        ],
+    )
+
+
+def _run_yt(tmp_path, extra=()):
+    return bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--output",
+            str(tmp_path / "cov.md"),
+            "--state",
+            str(tmp_path / "state.json"),
+            "--odesli-sleep",
+            "0",
+            *extra,
+        ]
+    )
+
+
+def test_run_records_youtube_miss_when_search_finds_nothing(tmp_path, monkeypatch):
+    """Gesucht und nichts gefunden -> Absage im Cache, damit der naechste Lauf
+    dieselbe Luecke nicht erneut Quote kostet."""
+    _yt_only_playlist(tmp_path)
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: {"linksByPlatform": {}})
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "youtube_search_ex", lambda *a, **k: (None, "empty"))
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
+
+    assert _run_yt(tmp_path) == 0
+    misses = json.loads((tmp_path / "state.json").read_text())["provider_misses"]
+    entry = misses["spotify:track:" + "a" * 22]
+    assert "youtube_music" in entry
+
+
+def test_run_records_no_youtube_miss_on_search_error(tmp_path, monkeypatch):
+    """Eine gescheiterte Anfrage darf keine 90-Tage-Sperre erzeugen."""
+    _yt_only_playlist(tmp_path)
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: {"linksByPlatform": {}})
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "youtube_search_ex", lambda *a, **k: (None, "error"))
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
+
+    assert _run_yt(tmp_path) == 0
+    misses = json.loads((tmp_path / "state.json").read_text()).get(
+        "provider_misses", {}
+    )
+    entry = misses.get("spotify:track:" + "a" * 22, {})
+    assert "youtube_music" not in entry
+
+
+def test_run_records_no_youtube_miss_when_budget_exhausted(tmp_path, monkeypatch):
+    """Der Fall, der die Ausnahme urspruenglich begruendet hat: ohne Aufruf
+    keine Absage."""
+    _yt_only_playlist(tmp_path)
+    monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: {"linksByPlatform": {}})
+    monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", lambda *a, **k: None)
+
+    def must_not_run(*a, **k):
+        raise AssertionError("search.list darf bei aufgebrauchtem Budget nicht laufen")
+
+    monkeypatch.setattr(bf, "youtube_search_ex", must_not_run)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.setenv("YOUTUBE_API_KEY", "KEY")
+
+    assert _run_yt(tmp_path, ["--youtube-budget", "0"]) == 0
+    misses = json.loads((tmp_path / "state.json").read_text()).get(
+        "provider_misses", {}
+    )
+    entry = misses.get("spotify:track:" + "a" * 22, {})
+    assert "youtube_music" not in entry
 
 
 def test_run_apply_itunes_fills_apple_when_odesli_lacks_it(tmp_path, monkeypatch):
