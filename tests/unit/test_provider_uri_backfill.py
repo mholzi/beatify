@@ -510,9 +510,7 @@ def test_run_apply_odesli_429_does_not_block_youtube(tmp_path, monkeypatch):
 
     # Odesli hard-rate-limited: skips every song (returns None), never raises.
     monkeypatch.setattr(bf, "fetch_odesli", lambda *a, **k: None)
-    monkeypatch.setattr(
-        bf, "youtube_search_ex", lambda *a, **k: ("dQw4w9WgXcQ", "hit")
-    )
+    monkeypatch.setattr(bf, "youtube_search_ex", lambda *a, **k: ("dQw4w9WgXcQ", "hit"))
     monkeypatch.setattr(bf.time, "sleep", lambda s: None)
     # Keyless Apple iTunes fallback is network → stub it off in these tests.
     monkeypatch.setattr(bf, "resolve_apple_via_itunes", lambda *a, **k: None)
