@@ -1,6 +1,6 @@
 {
   "name": "100 Summer Anthems ☀️",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "party",
     "classics",
@@ -116,7 +116,8 @@
       "fun_fact_fr": "« Good Vibrations » a coûté plus de 50 000 dollars à produire en 1966 (environ 470 000 dollars aujourd'hui), ce qui en faisait le single le plus cher jamais enregistré à l'époque. Il a été assemblé à partir de sessions dans quatre studios différents.",
       "uri_deezer": "deezer://track/3091992",
       "fun_fact_nl": "Good Vibrations' kostte in 1966 meer dan 50.000 dollar om te produceren (vandaag de dag ongeveer 470.000 dollar), waarmee het de duurste single was die ooit werd opgenomen. Het werd samengesteld uit sessies in vier verschillende studio's.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1442865074"
     },
     {
       "year": 1985,
@@ -515,7 +516,8 @@
         "es": "applemusic://track/1439527967",
         "nl": "applemusic://track/1439527967",
         "it": "applemusic://track/1439527967"
-      }
+      },
+      "uri_deezer": "deezer://track/143035002"
     },
     {
       "year": 1957,
@@ -976,7 +978,8 @@
       "fun_fact_fr": "« Itchycoo Park » des Small Faces était l'un des premiers singles pop à utiliser le flanging, un effet de studio créé en appuyant un doigt sur une bobine de bande. Le parc du titre fait référence à un vrai parc dans l'East End de Londres.",
       "uri_deezer": "deezer://track/75994742",
       "fun_fact_nl": "Itchycoo Park' van Small Faces was een van de eerste popsingles waarin flanging werd gebruikt, een studio-effect dat wordt gecreëerd door met een vinger tegen een bandspoel te drukken. Het park in de titel verwijst naar een echt park in East End in Londen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/956517200"
     },
     {
       "year": 1978,
@@ -3514,7 +3517,8 @@
       "fun_fact_fr": "« Lambada » a fait l'objet de multiples procès car la mélodie a été empruntée sans permission à « Llorando Se Fue » du groupe bolivien Los Kjarkas. Malgré les controverses juridiques, elle est devenue un phénomène mondial, atteignant la première place dans plus de 15 pays et se vendant à plus de 5 millions d'exemplaires.",
       "uri_deezer": "deezer://track/309174",
       "fun_fact_nl": "Lambada' was het onderwerp van meerdere rechtszaken omdat de melodie zonder toestemming was overgenomen van 'Llorando Se Fue' van de Boliviaanse groep Los Kjarkas. Ondanks de juridische controverses werd het een wereldwijd fenomeen, bereikte #1 in meer dan 15 landen en verkocht meer dan 5 miljoen exemplaren.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1460025553"
     },
     {
       "year": 1993,

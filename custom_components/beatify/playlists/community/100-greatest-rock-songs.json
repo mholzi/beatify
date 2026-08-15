@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "rock",
     "classic-rock",
@@ -3899,7 +3899,7 @@
       "year": 1971,
       "isrc": "USWB19901792",
       "uri": "spotify:track:3BCSIFo2mLFFhSsg0QwpPw",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/301027918",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -4824,7 +4824,7 @@
       "year": 2000,
       "isrc": "USGI19900180",
       "uri": "spotify:track:40rvBMQizxkIqnjPdEWY1v",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/310530469",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/270959694",

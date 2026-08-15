@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.12",
+  "version": "0.13",
   "tags": [
     "canadian",
     "canada",
@@ -2558,7 +2558,7 @@
       },
       "uri_youtube_music": null,
       "uri_tidal": null,
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/71374087",
       "alt_artists": [
         "Bryan Adams",
         "La Bottine Souriante",
@@ -3588,7 +3588,7 @@
       "year": 2016,
       "isrc": "USCM51600028",
       "uri": "spotify:track:1zi7xx7UVEFkmKfv06H8x0",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440841384",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
