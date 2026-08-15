@@ -1,6 +1,6 @@
 {
   "name": "Greatest Metal Songs of All Time 🤘",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "metal",
     "rock",
@@ -2602,7 +2602,8 @@
         "es": "applemusic://track/1725518942",
         "nl": "applemusic://track/1725518942",
         "it": "applemusic://track/1725518942"
-      }
+      },
+      "uri_deezer": "deezer://track/3783333852"
     },
     {
       "year": 2005,
@@ -2643,7 +2644,8 @@
         "es": "applemusic://track/187472354",
         "nl": "applemusic://track/187472354",
         "it": "applemusic://track/187472354"
-      }
+      },
+      "uri_deezer": "deezer://track/559789"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "Essential Alternative 🎸",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "alternative",
     "rock",
@@ -1123,7 +1123,7 @@
       "uri_apple_music": "applemusic://track/1099848811",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hzRltUL5M3k",
       "uri_tidal": "tidal://track/392539",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/1169696172",
       "fun_fact_nl": "Chino Moreno schreef 'Change' als metafoor voor iemand die negatief verandert — het werd het meest gestreamde Deftones-nummer.",
       "awards_nl": [],
       "isrc": "USRE11600104",
@@ -3163,7 +3163,7 @@
       "uri_apple_music": "applemusic://track/887763877",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HwQaIWXV4Kc",
       "uri_tidal": "tidal://track/59965797",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/3801651962",
       "fun_fact_nl": "alt-J nam 'Left Hand Free' in twee uur op als bewuste grap — het label vond het geweldig en maakte het de leadsingle van 'This Is All Yours'.",
       "awards_nl": [],
       "isrc": "GBZUZ1400291",

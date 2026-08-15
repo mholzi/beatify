@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "german",
     "carnival",
@@ -2788,7 +2788,8 @@
         "nl": "applemusic://track/202229994",
         "it": "applemusic://track/202229994"
       },
-      "uri_tidal": "tidal://track/2117520"
+      "uri_tidal": "tidal://track/2117520",
+      "uri_deezer": "deezer://track/2473722"
     },
     {
       "year": 1957,

@@ -1,6 +1,6 @@
 {
   "name": "Best of Giraffenaffen",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "kinderlieder",
     "kids",
@@ -531,7 +531,7 @@
       },
       "uri_youtube_music": null,
       "uri_tidal": "tidal://track/22288857",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/1363393712",
       "fun_fact": "A German children's song from the popular Giraffenaffen collection (2009).",
       "fun_fact_de": "Ein deutsches Kinderlied aus der beliebten Giraffenaffen-Sammlung (2009).",
       "fun_fact_es": "Una canción infantil alemana de la popular colección Giraffenaffen (2009).",
