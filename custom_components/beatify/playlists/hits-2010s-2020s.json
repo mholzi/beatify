@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "pop",
     "charts",
@@ -598,11 +598,11 @@
       "year": 2018,
       "isrc": null,
       "uri": "spotify:track:7ef4DlsgrMEH11cDZd32M6",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1364709436",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=XWCPbRsMb0Q",
       "uri_tidal": "tidal://track/86980532",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/482990352",
       "alt_artists": [
         "Dua Lipa"
       ],
@@ -753,7 +753,7 @@
       "year": 2023,
       "isrc": "GBBKS2300080",
       "uri": "spotify:track:23RoR84KodL5HWvUTneQ1w",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1689088958",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1162,11 +1162,11 @@
       "year": 2015,
       "isrc": null,
       "uri": "spotify:track:0cqRj7pUJDkTCEsJkx8snD",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440933651",
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=sWMk8dwljFU",
       "uri_tidal": "tidal://track/121444600",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/89077555",
       "fun_fact": "A chart hit by Taylor Swift (2015).",
       "fun_fact_de": "Ein Chart-Hit von Taylor Swift (2015).",
       "fun_fact_es": "Un éxito de Taylor Swift (2015).",
@@ -1756,7 +1756,7 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=Rgrt_8mXrK8",
       "uri_tidal": "tidal://track/19823990",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/66609426",
       "alt_artists": [
         "Pharrell Williams",
         "Nile Rodgers"
