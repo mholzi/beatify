@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "one-hit",
     "classics",
@@ -882,7 +882,8 @@
       "uri_tidal": "tidal://track/84601690",
       "uri_deezer": "deezer://track/558949042",
       "fun_fact_nl": "Robin Scott nam dit op onder alleen de letter 'M'. Het nummer voorspelde de elektronische toekomst van de muziek, maar Scott bleef liever een mysterieus eendagsvlieg.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1435333807"
     },
     {
       "year": 1979,
@@ -1025,7 +1026,8 @@
       "uri_tidal": "tidal://track/41652471",
       "uri_deezer": "deezer://track/906566",
       "fun_fact_nl": "Geschreven over het willen verlaten van Minneapolis voor een grotere stad. Het nummer is honderden keren gecoverd en gesampled in verschillende genres.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440894579"
     },
     {
       "year": 1980,

@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.24",
+  "version": "0.25",
   "tags": [
     "deutschrock",
     "german rock",
@@ -2500,7 +2500,7 @@
         "it": null
       },
       "uri_youtube_music": null,
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/143586611",
       "uri_deezer": "deezer://track/979374112",
       "alt_artists": [],
       "fun_fact": "Artefuckt is part of the German rock (Deutschrock) scene; \"Was wir wollen - Remastered\" (2020) features on this Deutschrock best-of.",

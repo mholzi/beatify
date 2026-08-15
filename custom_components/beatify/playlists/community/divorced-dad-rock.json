@@ -1,6 +1,6 @@
 {
   "name": "Divorced Dad Rock",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "post-grunge",
     "nu-metal",
@@ -2619,7 +2619,7 @@
       "year": 1994,
       "isrc": "USRE19900154",
       "uri": "spotify:track:1Dr1fXbc2IxaK1Mu8P8Khz",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1160082350",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1747028746",
         "de": "applemusic://track/1650409506",
@@ -2669,7 +2669,7 @@
       "year": 1999,
       "isrc": "USMC19959122",
       "uri": "spotify:track:6xpDh0dXrkVp0Po1qrHUd8",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440840502",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1471266335",
         "de": "applemusic://track/6762674925",

@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "quebecois",
     "quebec",
@@ -412,7 +412,7 @@
       "uri": "spotify:track:5rwxYvICaxJ8yTl3F85G5R",
       "year": 2007,
       "isrc": "CAU111300147",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/635284293",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1282,7 +1282,7 @@
       "uri": "spotify:track:6dUQz8Uqq6tf6SQrG4Unuy",
       "year": 2009,
       "isrc": "CAA500926104",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1551601737",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1552,7 +1552,7 @@
       "uri": "spotify:track:6JVngSxUtrYkWfFmFWmtm5",
       "year": 1974,
       "isrc": "CAE150400171",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1722646913",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3202,7 +3202,7 @@
       "uri": "spotify:track:3Gu950Tw0cw2PdSJPqDnTE",
       "year": 2021,
       "isrc": "QZES62133544",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1737815570",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,

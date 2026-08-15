@@ -1,6 +1,6 @@
 {
   "name": "Sommerklassiker ☀️",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "summer",
     "pop",
@@ -1648,7 +1648,7 @@
       "certifications": [],
       "awards": [],
       "isrc": "DEA621400286",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1465751570",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1678,7 +1678,7 @@
       "certifications": [],
       "awards": [],
       "isrc": "DEUM71800524",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1457691826",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1708,7 +1708,7 @@
       "certifications": [],
       "awards": [],
       "isrc": "FR2X41643669",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1111535562",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1768,7 +1768,7 @@
       "certifications": [],
       "awards": [],
       "isrc": "GBBBM8300007",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/206897937",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,

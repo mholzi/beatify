@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.10",
+  "version": "1.11",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -1420,7 +1420,8 @@
       "uri_tidal": "tidal://track/77557764",
       "fun_fact_nl": "Roger Daltrey's stotterende zangstijl was Pete Townshend's poging om een pillen slikkende mod na te bootsen. De BBC verbood het aanvankelijk, omdat ze dachten dat het de spot dreef met mensen met een spraakgebrek.",
       "awards_nl": [],
-      "uri_deezer": "deezer://track/136341550"
+      "uri_deezer": "deezer://track/136341550",
+      "uri_apple_music": "applemusic://track/1443238754"
     },
     {
       "year": 1967,
@@ -1911,7 +1912,7 @@
       "year": 1965,
       "isrc": "DEXO11960577",
       "uri": "spotify:track:5kLCC1MMxOACV632KrSAS3",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1721242740",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1961,7 +1962,7 @@
       "year": 1963,
       "isrc": "UKU6H1936000",
       "uri": "spotify:track:3Cbh1EJ6OYAPkkNRuTIz6T",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1447557732",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2011,7 +2012,7 @@
       "year": 1961,
       "isrc": "GBA7H1265495",
       "uri": "spotify:track:19SxvsX3cFBDExvGaRkyQr",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/696083117",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
