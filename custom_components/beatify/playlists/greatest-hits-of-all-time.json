@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.15",
+  "version": "2.16",
   "tags": [
     "classics",
     "top-hits",
@@ -2796,16 +2796,7 @@
       "awards_nl": [
         "Grammy Hall of Fame (2003)"
       ],
-      "isrc": "USCA20001654",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1698230404",
-        "de": "applemusic://track/1698230404",
-        "gb": "applemusic://track/1698230404",
-        "fr": "applemusic://track/1698230404",
-        "es": "applemusic://track/1698230404",
-        "nl": "applemusic://track/1698230404",
-        "it": "applemusic://track/1698230404"
-      }
+      "isrc": "USCA20001654"
     },
     {
       "year": 1987,
@@ -7324,7 +7315,6 @@
       "isrc": "USPR37609134",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1590952411",
-        "de": "applemusic://track/1442323421",
         "gb": "applemusic://track/1590952411",
         "fr": "applemusic://track/1590952411",
         "es": "applemusic://track/1590952411",
