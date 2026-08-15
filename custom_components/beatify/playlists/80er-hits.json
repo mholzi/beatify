@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.13",
+  "version": "2.14",
   "tags": [
     "1980s",
     "pop",
@@ -279,7 +279,8 @@
       "uri_tidal": "tidal://track/234636699",
       "uri_deezer": "deezer://track/1787693427",
       "fun_fact_nl": "Beroemd van de VK nummer 1 plek gehouden door Joe Dolce's 'Shaddap You Face', wordt Vienna vaak aangehaald als het grootste nummer dat nooit de nummer 1 positie in het VK bereikte.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1630208751"
     },
     {
       "year": 1981,
@@ -339,7 +340,8 @@
       "uri_tidal": "tidal://track/35096249",
       "uri_deezer": "deezer://track/14640464",
       "fun_fact_nl": "Van het album 'Abacab' was dit een van de eerste Genesis-nummers die Phil Collins' popsensibiliteit weerspiegelden in plaats van de progressieve rockwortels van de band.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1472171998"
     },
     {
       "year": 1981,
@@ -2482,7 +2484,8 @@
       "uri_deezer": "deezer://track/1090634",
       "fun_fact_nl": "Oorspronkelijk uitgebracht in 1982 en opnieuw opgenomen voor het album 'The Hurting', gaat het nummer over emotionele verwaarlozing in de kindertijd, geïnspireerd door Arthur Janovs primaire therapie.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/22936962"
+      "uri_tidal": "tidal://track/22936962",
+      "uri_apple_music": "applemusic://track/1440912610"
     },
     {
       "year": 1983,
@@ -2506,7 +2509,8 @@
       "uri_tidal": "tidal://track/282489999",
       "uri_deezer": "deezer://track/3803453672",
       "fun_fact_nl": "Ondanks hun naam waren de Thompson Twins eigenlijk een trio en geen tweeling. De naam was ontleend aan de detectives Jansen en Janssen uit de Kuifje-strips.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1675310468"
     },
     {
       "year": 1983,
@@ -4334,7 +4338,8 @@
       "uri_tidal": "tidal://track/4087636",
       "uri_deezer": "deezer://track/699130",
       "fun_fact_nl": "Heinz Rudolf Kunze schreef deze hartverwarmende ballade die een van de grootste Duitse hits van 1985 werd. Zijn poëtische teksten leverden hem vergelijkingen op met Bob Dylan in Duitstalige landen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/79280627"
     },
     {
       "year": 1985,
@@ -5656,7 +5661,8 @@
       "awards": [],
       "uri_deezer": "deezer://track/540503452",
       "fun_fact_nl": "Oorspronkelijk met Dolly Parton in gedachten voor de vrouwelijke zang, zong Kate Bush uiteindelijk het duet. Het nummer was geïnspireerd op Depressie-era foto's van Dorothea Lange.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/986800861"
     },
     {
       "year": 1986,
@@ -5685,7 +5691,8 @@
       "uri_tidal": "tidal://track/51771426",
       "uri_deezer": "deezer://track/664178",
       "fun_fact_nl": "Prince schreef dit oorspronkelijk voor de band Mazarati maar vond de demo zo goed dat hij het hield. De sobere productie was revolutionair - alleen drums, gitaar en zang met bijna geen bas of keyboards.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/260336471"
     },
     {
       "year": 1986,
@@ -5971,7 +5978,8 @@
       "uri_tidal": "tidal://track/4841969",
       "uri_deezer": "deezer://track/8146779",
       "fun_fact_nl": "George Michael schreef, produceerde en speelde bijna elk instrument op dit nummer. Het iconische gitaarriff aan het begin was geïnspireerd op Bo Diddley. Het gelijknamige album maakte hem de eerste blanke soloartiest die nummer 1 bereikte op de Amerikaanse R&B-hitparade.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/282658468"
     },
     {
       "year": 1987,
