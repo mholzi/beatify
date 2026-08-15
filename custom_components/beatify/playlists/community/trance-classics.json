@@ -1,6 +1,6 @@
 {
   "name": "Trance Classics",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "trance",
     "hands-up",
@@ -1757,7 +1757,7 @@
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=FZ9RvUMTfLg",
       "uri_tidal": "tidal://track/430498622",
-      "uri_deezer": null,
+      "uri_deezer": "deezer://track/2101296767",
       "fun_fact": "A trance and dance-floor classic (2001).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2001).",
       "fun_fact_es": "Un clásico del trance y la pista de baile (2001).",
