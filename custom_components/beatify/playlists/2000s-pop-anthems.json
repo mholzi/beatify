@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "2000s",
     "pop",
@@ -6739,34 +6739,6 @@
       "fun_fact_es": "Un éxito de Kylie Minogue (2000).",
       "fun_fact_fr": "Un tube de Kylie Minogue (2000).",
       "fun_fact_nl": "Een chart-hit van Kylie Minogue (2000)."
-    },
-    {
-      "artist": "James Brown",
-      "title": "Get Up I Feel Like Being Like A Sex Machine, Pts. 1 & 2",
-      "year": 2005,
-      "isrc": "USF067025050",
-      "uri": "spotify:track:6hpmTwgNCz81H2bFEREx29",
-      "uri_apple_music": "applemusic://track/1646679726",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1646679726",
-        "de": "applemusic://track/1646679726",
-        "gb": "applemusic://track/1646679726",
-        "fr": "applemusic://track/1646679726",
-        "es": "applemusic://track/1646679726",
-        "nl": "applemusic://track/1452460238",
-        "it": "applemusic://track/1646679726"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hY_LBqmyNrk",
-      "uri_tidal": "tidal://track/93614211",
-      "uri_deezer": "deezer://track/548876882",
-      "alt_artists": [
-        "The Original J.B.s"
-      ],
-      "fun_fact": "A chart hit by James Brown (2005).",
-      "fun_fact_de": "Ein Chart-Hit von James Brown (2005).",
-      "fun_fact_es": "Un éxito de James Brown (2005).",
-      "fun_fact_fr": "Un tube de James Brown (2005).",
-      "fun_fact_nl": "Een chart-hit van James Brown (2005)."
     },
     {
       "artist": "Rihanna",
