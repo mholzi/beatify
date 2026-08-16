@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.13",
+  "version": "0.14",
   "tags": [
     "german",
     "pop",
@@ -1353,7 +1353,7 @@
       "year": 2002,
       "isrc": "GBLAZ1600800",
       "uri": "spotify:track:7py0pONdy9D0DxNnT3elik",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440953084",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
