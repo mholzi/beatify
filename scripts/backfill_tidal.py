@@ -16,12 +16,22 @@ Odesli with the Spotify track URL and map
 used across the catalogue).
 
 State file (``scripts/.tidal-backfill-state.json``) maps each Spotify URI to
-``{"status": hit|miss, "tried_at": "<iso>"}``:
+``{"status": hit|miss, "tried_at": "<iso>"}``, plus ``"http": <code>`` when the
+miss came from a status code rather than an empty answer:
   * ``hit``  -> resolved (also written into the playlist; not re-queried).
-  * ``miss`` -> Odesli returned 200 but no Tidal link (genuine absence). Not
-    re-queried unless ``--retry-misses`` is passed.
-  * a 429-skip is NOT recorded as a miss, so the next wave retries it — the
-    whole point: "rate-limited" must never be confused with "not on Tidal".
+  * ``miss`` -> Odesli will not hand us a Tidal link. Either 200 without one,
+    or a 4xx other than 429 — those describe the request, so repeating it
+    verbatim cannot change the answer. Not re-queried unless ``--retry-misses``
+    is passed.
+  * 429, 5xx and network errors are NOT recorded, so the next wave retries
+    them — the whole point: "rate-limited" must never be confused with "not on
+    Tidal".
+
+The 4xx half of that rule arrived late (#2200, 2026-08-16). Before it, *every*
+non-429 status was treated as transient and left unrecorded, so a permanent
+``400 could_not_fetch_entity_data`` was re-queried by all six daily waves
+indefinitely — and, because the state file kept no trace, downstream tooling
+kept counting those tracks as still fillable.
 
 Usage:
     python scripts/backfill_tidal.py                 # one wave over all playlists
@@ -105,11 +115,27 @@ def find_playlists(args_files: list[str]) -> list[Path]:
     return sorted(PLAYLISTS_DIR.rglob("*.json"))
 
 
-def query_odesli(spotify_id: str) -> tuple[str | None, str]:
-    """Return (tidal_uri_or_None, outcome).
+def query_odesli(spotify_id: str) -> tuple[str | None, str, int | None]:
+    """Return (tidal_uri_or_None, outcome, http_status).
 
-    outcome is one of: 'hit', 'miss' (200 but no Tidal), 'skip' (429 wall /
-    transient error — retry next wave).
+    outcome is one of:
+
+    * ``hit``   — 200 with a usable Tidal link.
+    * ``miss``  — Odesli will not give us a Tidal link for this track. Either a
+      200 without one, or a 4xx other than 429: those describe the *request*,
+      not the server's mood, so repeating it verbatim cannot change the answer.
+    * ``retry`` — 429, 5xx, or a network/parse error. Genuinely transient;
+      deliberately not recorded, so the next wave tries again.
+
+    ``http_status`` is the code behind a ``miss`` or ``retry`` and ``None`` for
+    a clean 200. It is stored with the miss so a permanent refusal can later be
+    told apart from "200, but no Tidal link" without re-querying.
+
+    Until 2026-08-16 every non-429 status became a ``skip``: never recorded,
+    retried by all six daily waves forever. Three tracks sat in that loop, one
+    of them answering ``400 could_not_fetch_entity_data`` every single time.
+    Since a skip leaves no trace in the state file, downstream tooling counted
+    those gaps as still fillable (#2200).
     """
     url = (
         ODESLI_API
@@ -129,20 +155,23 @@ def query_odesli(spotify_id: str) -> tuple[str | None, str]:
             if tidal:
                 m = TIDAL_TRACK_RE.search(tidal)
                 if m:
-                    return f"tidal://track/{m.group(1)}", "hit"
-            return None, "miss"  # 200, but no usable Tidal link
+                    return f"tidal://track/{m.group(1)}", "hit", None
+            return None, "miss", None  # 200, but no usable Tidal link
         except urllib.error.HTTPError as exc:
             if exc.code == 429:
                 wait = BACKOFF_BASE_S * attempt
                 sys.stderr.write(f"  429 backoff {wait:.0f}s (attempt {attempt})\n")
                 time.sleep(wait)
                 continue
-            sys.stderr.write(f"  HTTP {exc.code} -> skip\n")
-            return None, "skip"
+            if 500 <= exc.code < 600:
+                sys.stderr.write(f"  HTTP {exc.code} -> retry next wave\n")
+                return None, "retry", exc.code
+            sys.stderr.write(f"  HTTP {exc.code} -> recorded as miss\n")
+            return None, "miss", exc.code
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
-            sys.stderr.write(f"  error {exc} -> skip\n")
-            return None, "skip"
-    return None, "skip"  # exhausted 429 attempts — retry next wave
+            sys.stderr.write(f"  error {exc} -> retry next wave\n")
+            return None, "retry", None
+    return None, "retry", 429  # exhausted 429 attempts — retry next wave
 
 
 def main() -> int:
@@ -217,7 +246,7 @@ def main() -> int:
             )
         return 0
 
-    hits = misses = skips = 0
+    hits = misses = retries = 0
     queried = 0
     dirty: set[Path] = set()
     # Wall-clock deadline. Odesli's 429 backoff makes a wave's *duration* far
@@ -233,7 +262,7 @@ def main() -> int:
             print(f"reached --max-minutes {args.max_minutes:g}, stopping")
             break
         queried += 1
-        tidal_uri, outcome = query_odesli(sid)
+        tidal_uri, outcome, http_status = query_odesli(sid)
         if outcome == "hit":
             track["uri_tidal"] = tidal_uri
             state[track["uri"]] = {"status": "hit", "tried_at": _now_iso()}
@@ -253,17 +282,21 @@ def main() -> int:
                 f"  OK  {pf.name}: {track.get('artist')} – {track.get('title')} -> {tidal_uri}"
             )
         elif outcome == "miss":
-            state[track["uri"]] = {"status": "miss", "tried_at": _now_iso()}
+            entry = {"status": "miss", "tried_at": _now_iso()}
+            if http_status is not None:
+                entry["http"] = http_status
+            state[track["uri"]] = entry
             save_state(state)
             misses += 1
-            print(f"  no tidal  {track.get('artist')} – {track.get('title')}")
-        else:  # skip — NOT recorded as miss, retried next wave
-            skips += 1
+            why = f" (HTTP {http_status})" if http_status is not None else ""
+            print(f"  no tidal  {track.get('artist')} – {track.get('title')}{why}")
+        else:  # retry — NOT recorded, deliberately tried again next wave
+            retries += 1
         time.sleep(BASE_DELAY_S)
 
     print(
-        f"\nwave done: {hits} added, {misses} genuine misses, {skips} rate-limit skips "
-        f"(retry next wave). Files updated: {len(dirty)}."
+        f"\nwave done: {hits} added, {misses} genuine misses, {retries} retryable "
+        f"(429/5xx/network, retry next wave). Files updated: {len(dirty)}."
     )
     return 0
 
