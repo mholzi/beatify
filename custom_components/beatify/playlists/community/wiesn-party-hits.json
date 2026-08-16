@@ -2138,7 +2138,7 @@
         "it": "applemusic://track/1434529238"
       },
       "uri_deezer": "deezer://track/546876802",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HyZq3yLrEcI",
       "uri_tidal": "tidal://track/114868713"
     },
     {
@@ -2174,7 +2174,7 @@
         "it": "applemusic://track/1436693105"
       },
       "uri_deezer": "deezer://track/539037552",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Xw-g6X8qob0",
       "uri_tidal": "tidal://track/93276838"
     },
     {
@@ -2207,7 +2207,7 @@
         "it": "applemusic://track/1639196585"
       },
       "uri_deezer": "deezer://track/2710640712",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AmWSYvSa7d8",
       "uri_tidal": "tidal://track/352032815"
     },
     {
@@ -2240,7 +2240,7 @@
         "it": "applemusic://track/1340281670"
       },
       "uri_deezer": "deezer://track/453959592",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PP9I6WRD4VI",
       "uri_tidal": "tidal://track/83844562"
     },
     {
@@ -2273,7 +2273,7 @@
         "it": "applemusic://track/1481949278"
       },
       "uri_deezer": "deezer://track/767503372",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_jc0ui1bn6s",
       "uri_tidal": "tidal://track/114881181"
     },
     {
@@ -2306,7 +2306,7 @@
         "it": "applemusic://track/1721340180"
       },
       "uri_deezer": "deezer://track/701254282",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0lbivVK6aVs",
       "uri_tidal": "tidal://track/111979125"
     },
     {
@@ -2339,7 +2339,7 @@
         "it": "applemusic://track/1481837738"
       },
       "uri_deezer": "deezer://track/767090942",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4TDUKLcvJjc",
       "uri_tidal": "tidal://track/119709384"
     },
     {
@@ -2372,7 +2372,7 @@
         "it": "applemusic://track/1713345699"
       },
       "uri_deezer": "deezer://track/616075692",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FqjGxCtFhDI",
       "uri_tidal": "tidal://track/89527896"
     },
     {
@@ -2405,7 +2405,7 @@
         "it": "applemusic://track/1277735070"
       },
       "uri_deezer": "deezer://track/405519982",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IIIIDf8-Qoo",
       "uri_tidal": "tidal://track/82425407"
     },
     {
@@ -2438,7 +2438,7 @@
         "it": "applemusic://track/1682353038"
       },
       "uri_deezer": "deezer://track/456989982",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3QfFBSK9as8",
       "uri_tidal": "tidal://track/94068457"
     },
     {
@@ -2471,7 +2471,7 @@
         "it": "applemusic://track/1459618684"
       },
       "uri_deezer": "deezer://track/664225902",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MJRQYboCV7Q",
       "uri_tidal": "tidal://track/108212644"
     },
     {
@@ -2504,7 +2504,7 @@
         "it": "applemusic://track/1527739492"
       },
       "uri_deezer": "deezer://track/1059236202",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WQTcNa93vBQ",
       "uri_tidal": "tidal://track/152662649"
     },
     {
@@ -2537,7 +2537,7 @@
         "it": "applemusic://track/1638973767"
       },
       "uri_deezer": "deezer://track/1861024137",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZzaocGePJO0",
       "uri_tidal": "tidal://track/242399606"
     },
     {
@@ -2574,7 +2574,7 @@
         "it": "applemusic://track/1627722137"
       },
       "uri_deezer": "deezer://track/1777525717",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vQIIpesCiew",
       "uri_tidal": "tidal://track/232094164"
     },
     {
@@ -2611,7 +2611,7 @@
         "it": "applemusic://track/1610640063"
       },
       "uri_deezer": "deezer://track/1667190232",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hzqcMvDON1g",
       "uri_tidal": "tidal://track/218186683"
     },
     {
@@ -2646,7 +2646,7 @@
         "it": "applemusic://track/1631121972"
       },
       "uri_deezer": "deezer://track/1799764447",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HuMelPdyvsg",
       "uri_tidal": "tidal://track/234777608"
     },
     {
@@ -2679,7 +2679,7 @@
         "it": "applemusic://track/1587871378"
       },
       "uri_deezer": "deezer://track/1833203577",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nAR-bZNDYdE",
       "uri_tidal": "tidal://track/199553095"
     },
     {
@@ -2712,7 +2712,7 @@
         "it": "applemusic://track/1594379970"
       },
       "uri_deezer": "deezer://track/1705383417",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MAvVIUGSx6s",
       "uri_tidal": "tidal://track/223358599"
     },
     {
@@ -2748,7 +2748,7 @@
         "it": "applemusic://track/1689797190"
       },
       "uri_deezer": "deezer://track/2310194015",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=n41rdYDCvHc",
       "uri_tidal": "tidal://track/297943368"
     },
     {
@@ -2781,7 +2781,7 @@
         "it": "applemusic://track/1670922703"
       },
       "uri_deezer": "deezer://track/2078308317",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Nlk6fbgolXM",
       "uri_tidal": "tidal://track/267762137"
     },
     {
@@ -2818,7 +2818,7 @@
         "it": "applemusic://track/1700859514"
       },
       "uri_deezer": "deezer://track/2308642345",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TOb2NXx_GQo",
       "uri_tidal": "tidal://track/297794802"
     },
     {
@@ -2851,7 +2851,7 @@
         "it": "applemusic://track/1693666826"
       },
       "uri_deezer": "deezer://track/2336027235",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=85Rl9JQKhBk",
       "uri_tidal": "tidal://track/430782933"
     },
     {
@@ -2884,7 +2884,7 @@
         "it": "applemusic://track/1705233750"
       },
       "uri_deezer": "deezer://track/2434257815",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DagQcnwRM40",
       "uri_tidal": "tidal://track/313843471"
     },
     {
@@ -2917,7 +2917,7 @@
         "it": "applemusic://track/1741325664"
       },
       "uri_deezer": "deezer://track/3151231281",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=esq0Q8UgmyU",
       "uri_tidal": "tidal://track/358213955"
     },
     {
@@ -2950,7 +2950,7 @@
         "it": "applemusic://track/1733692530"
       },
       "uri_deezer": "deezer://track/2694100132",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aDNJRPj2nNI",
       "uri_tidal": "tidal://track/349692494"
     },
     {
@@ -2983,7 +2983,7 @@
         "it": "applemusic://track/1742172007"
       },
       "uri_deezer": "deezer://track/2767030321",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y-h5U_ojDNQ",
       "uri_tidal": "tidal://track/359763637"
     },
     {
