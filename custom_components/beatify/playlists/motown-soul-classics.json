@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "1960s",
     "1970s",
@@ -659,7 +659,6 @@
       ],
       "isrc": "USMO17500374",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1819076170",
         "de": "applemusic://track/1612221191",
         "gb": "applemusic://track/1612221191",
         "fr": "applemusic://track/1612221191",
@@ -1406,15 +1405,6 @@
         "Grammy Award voor Beste R&B Zangprestatie"
       ],
       "isrc": "USMO17600547",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1708519509",
-        "de": "applemusic://track/1708519509",
-        "gb": "applemusic://track/1708519509",
-        "fr": "applemusic://track/1708519509",
-        "es": "applemusic://track/1708519509",
-        "nl": "applemusic://track/1708519509",
-        "it": "applemusic://track/1708519509"
-      },
       "uri_tidal": "tidal://track/98184494"
     },
     {
