@@ -201,6 +201,9 @@ _DASH_SUFFIX_RE = re.compile(r"\s+-\s+.*$")
 _PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
 _WHITESPACE_RE = re.compile(r"\s+")
 _LEADING_ARTICLE_RE = re.compile(r"^(?:the|a|an)\s+")
+# Trennt die Namen in einem Katalog-``artist``-Feld. Spotify liefert alle
+# Credits als EINEN String, mal komma-, mal semikolon-getrennt.
+_ARTIST_SPLIT_RE = re.compile(r"\s*[;,]\s*")
 
 # Keyless resolver endpoints (queried in the network helpers below).
 ITUNES_SEARCH = "https://itunes.apple.com/search"
@@ -300,6 +303,61 @@ def _tokens_present(needle: str, hay: str, *, min_len: int = 3) -> bool:
         return False
     hay_set = set(hay.split())
     return all(t in hay_set for t in toks)
+
+
+def split_credited_artists(artist: str) -> list[str]:
+    """Split a catalogue ``artist`` credit string into the individual names.
+
+    The catalogue stores every credited Spotify artist in ONE field, joined by
+    a comma or a semicolon: ``"Justin Bieber, Nicki Minaj"``,
+    ``"Tanel Padar;Dave Benton"``. Nothing else in the pipeline needs the parts,
+    so this is deliberately dumb — it splits, it does not try to understand.
+    """
+    return [p.strip() for p in _ARTIST_SPLIT_RE.split(artist or "") if p.strip()]
+
+
+def _lead_artist_with_features(artist: str, r_artist: str, r_title: str) -> bool:
+    """Accept an iTunes hit that credits only the LEAD of a multi-artist track.
+
+    The mismatch this repairs (#2211): the catalogue names every artist in one
+    joined string, iTunes names only the lead in ``artistName`` and pushes the
+    guests into ``trackName`` — ``"Justin Bieber, Nicki Minaj"`` versus
+    ``"Justin Bieber"`` + ``"Beauty and a Beat (feat. Nicki Minaj)"``. Compared
+    head-on the two artist strings blow the edit budget of :func:`titles_match`,
+    so a plainly correct match was discarded. Measured on 2026-08-17 over a
+    random sample of 25 of the 185 open Apple gaps: 7 rejections came from this
+    comparison, 6 of them on the right recording.
+
+    True only when BOTH halves hold:
+
+    1. the iTunes artist matches the **first** catalogue name, and
+    2. every remaining catalogue name shows up on the iTunes side — in the
+       track title (``feat. …``) or in the artist string (``A & B``).
+
+    Half 2 is what keeps this from being a loosening. Without it the rule would
+    accept a solo re-release of the same title as the featured version. It is
+    also why a band whose own name carries a comma is safe: splitting
+    ``"Earth, Wind & Fire"`` yields a "guest" ``"Wind & Fire"`` that no iTunes
+    row will carry, so the rule simply never fires and the existing checks
+    decide alone.
+
+    The single-name case returns False on purpose. When the catalogue credits
+    one artist and iTunes credits another as lead — Kayah's *Śpij Kochanie Śpij*
+    against ``kk8 — Śpij Kochanie Śpij (feat. Kayah)`` — that is a different
+    recording, and the gate is right to refuse it.
+    """
+    names = split_credited_artists(artist)
+    if len(names) < 2:
+        return False
+    lead, guests = names[0], names[1:]
+    gate = _gate()
+    lead_ok = titles_match(r_artist, lead) or (
+        gate is not None and gate.artist_matches(lead, r_artist)
+    )
+    if not lead_ok:
+        return False
+    hay = _normalize_loose(f"{r_title} {r_artist}")
+    return all(_tokens_present(_normalize_loose(g), hay) for g in guests)
 
 
 def _dedup(items: list[str]) -> list[str]:
@@ -416,6 +474,12 @@ def _pick_itunes_match(
             artist_ok = gate.artist_matches(artist, r_artist) or any(
                 gate.artist_matches(alt, r_artist) for alt in (alt_artists or [])
             )
+        # Feature-Regel als LETZTE Stufe, nicht als Ersatz: greift nur, wenn
+        # `artist` mehrere Namen fuehrt und iTunes bloss den ersten nennt, die
+        # uebrigen aber nachweislich mitfuehrt (#2211). `alt_artists` faengt das
+        # nicht ab — das Feld meint Coverversionen, keine Features.
+        if not artist_ok:
+            artist_ok = _lead_artist_with_features(artist, r_artist, r_title)
         if artist_ok:
             return track_id
     return None

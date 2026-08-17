@@ -755,6 +755,108 @@ def test_itunes_search_never_raises_on_http_error():
     )
 
 
+# --- Feature-Artists im iTunes-Gate (#2211) ---------------------------------
+def _itunes_getter(track_name: str, artist_name: str, track_id: int = 700100):
+    """Every query returns the same single row — the gate is what's under test."""
+
+    def getter(url):
+        return {
+            "results": [
+                {
+                    "trackId": track_id,
+                    "trackName": track_name,
+                    "artistName": artist_name,
+                }
+            ]
+        }
+
+    return getter
+
+
+def test_split_credited_artists_handles_comma_and_semicolon():
+    assert bf.split_credited_artists("Justin Bieber, Nicki Minaj") == [
+        "Justin Bieber",
+        "Nicki Minaj",
+    ]
+    # Spotify is not consistent about the separator.
+    assert bf.split_credited_artists("Tanel Padar;Dave Benton") == [
+        "Tanel Padar",
+        "Dave Benton",
+    ]
+    assert bf.split_credited_artists("") == []
+    assert bf.split_credited_artists("Prince") == ["Prince"]
+
+
+def test_itunes_gate_accepts_guest_named_in_track_title():
+    # The catalogue joins every credit into one string, iTunes names only the
+    # lead and moves the guest into the title. Real case from the 2026-08-17
+    # sample (spotify:track:0KTsmr6JOuhxZuiXUha1xC).
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Justin Bieber, Nicki Minaj", "title": "Beauty And A Beat"},
+        getter=_itunes_getter("Beauty and a Beat (feat. Nicki Minaj)", "Justin Bieber"),
+    )
+    assert aid == "700100"
+
+
+def test_itunes_gate_accepts_guest_named_in_artist_string():
+    # Same rule, other side: iTunes carries the guest in ``artistName`` instead
+    # of the title (spotify:track:5bGG1abhVIUm6EAa36ipRX).
+    aid = bf.resolve_apple_via_itunes(
+        {
+            "artist": "Asaf Avidan,The Mojos,Wankelmut",
+            "title": "One Day / Reckoning Song (Wankelmut Remix) [Radio Edit]",
+        },
+        getter=_itunes_getter(
+            "One Day / Reckoning Song (Wankelmut Remix) [Radio Edit]",
+            "Asaf Avidan & The Mojos",
+        ),
+    )
+    assert aid == "700100"
+
+
+def test_itunes_gate_accepts_two_guests_named_with_ampersand():
+    # Three credited names; iTunes keeps the lead and joins the two guests with
+    # "&" instead of a comma (spotify:track:5bTRw958W3Gf95RwXgJ2ql).
+    aid = bf.resolve_apple_via_itunes(
+        {
+            "artist": "Jamal, Jambojet, USPM",
+            "title": "Policeman (feat. Jambojet, USPM)",
+        },
+        getter=_itunes_getter("Policeman (feat. Jambojet & USPM)", "Jamal"),
+    )
+    assert aid == "700100"
+
+
+def test_itunes_gate_still_rejects_solo_version_of_a_featured_track():
+    # The half that keeps the rule from being a loosening: the guest is credited
+    # NOWHERE on the iTunes side, so this is the solo cut, not the feature.
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Justin Bieber, Nicki Minaj", "title": "Beauty And A Beat"},
+        getter=_itunes_getter("Beauty and a Beat", "Justin Bieber"),
+    )
+    assert aid is None
+
+
+def test_itunes_gate_still_rejects_when_catalogue_credits_one_artist():
+    # Kayah's Śpij Kochanie Śpij against ``kk8 — … (feat. Kayah)``: the roles are
+    # swapped, so it is a different recording. One catalogue name → rule is off.
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Kayah", "title": "Śpij Kochanie Śpij"},
+        getter=_itunes_getter("Śpij Kochanie Śpij (feat. Kayah)", "kk8"),
+    )
+    assert aid is None
+
+
+def test_itunes_gate_band_name_with_its_own_comma_does_not_leak():
+    # "Earth, Wind & Fire" splits into a bogus "guest" that no iTunes row can
+    # carry — the rule must therefore not fire and the hit must stay rejected.
+    aid = bf.resolve_apple_via_itunes(
+        {"artist": "Earth, Wind & Fire", "title": "September"},
+        getter=_itunes_getter("September", "Earth"),
+    )
+    assert aid is None
+
+
 # --- Lever 3: YouTube Odesli-first + oembed verify --------------------------
 def test_odesli_youtube_video_id_extracts():
     payload = {
