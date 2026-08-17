@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.12",
+  "version": "0.13",
   "tags": [
     "quebecois",
     "quebec",
@@ -652,7 +652,7 @@
       "uri": "spotify:track:0LI89ikl3gcJpFepnrfr38",
       "year": 2021,
       "isrc": "CA06H2100137",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1572369506",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,

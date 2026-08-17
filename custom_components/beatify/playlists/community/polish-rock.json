@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "polish",
     "rock"
@@ -2097,7 +2097,7 @@
       "artist": "Żurkowski, Organek",
       "title": "Western",
       "isrc": "PLB822100252",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1607525202",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2305,7 +2305,7 @@
       "artist": "Łydka Grubasa, Kwiat Jabłoni",
       "title": "Wzięli zamknęli mi klub",
       "isrc": "PL22V2387010",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1803621973",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,

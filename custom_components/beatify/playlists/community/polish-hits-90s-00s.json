@@ -1,6 +1,6 @@
 {
   "name": "Polskie hity radiowe 🇵🇱",
-  "version": "0.12",
+  "version": "0.13",
   "tags": [
     "polish",
     "pop",
@@ -1235,7 +1235,7 @@
       "artist": "Yugoton, Kazik",
       "title": "Malcziki",
       "isrc": "PLA330100621",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1019522665",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1019522665"
       },
@@ -1255,7 +1255,7 @@
       "artist": "Jamal, Jambojet, USPM",
       "title": "Policeman (feat. Jambojet, USPM)",
       "isrc": "PLA550500048",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/692568005",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/692568005"
       },
@@ -1635,7 +1635,7 @@
       "artist": "Krzysztof Kiljański, Kayah",
       "title": "Prócz Ciebie, Nic",
       "isrc": "PL0282400013",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1501151870",
       "uri_apple_music_by_region": {
         "pl": "applemusic://track/1501151870"
       },

@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.31",
+  "version": "1.32",
   "tags": [
     "edm",
     "electronic",
@@ -79,7 +79,7 @@
       "year": 2016,
       "isrc": "USQX91601347",
       "uri": "spotify:track:3oBzTWbiIndAXQbWBcLeHW",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1170699703",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -499,7 +499,7 @@
       "year": 2011,
       "isrc": "USJAY1100032",
       "uri": "spotify:track:4QNpBfC0zvjKqPJcyqBy9W",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1307027266",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/904436696",
@@ -529,7 +529,7 @@
       "year": 2015,
       "isrc": "USAT21500555",
       "uri": "spotify:track:66hayvUbTotekKU3H4ta1f",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/971262282",
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/1068554525",
@@ -619,7 +619,7 @@
       "year": 2014,
       "isrc": "USUM71409719",
       "uri": "spotify:track:12KUFSHFgT0XCoiSlvdQi4",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440825208",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -649,7 +649,7 @@
       "year": 2012,
       "isrc": "USUM71205367",
       "uri": "spotify:track:0KTsmr6JOuhxZuiXUha1xC",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440805856",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -679,7 +679,7 @@
       "year": 2011,
       "isrc": "USUM71115507",
       "uri": "spotify:track:5uImkHXfTLkNYwemtGH7kB",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443102668",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -769,7 +769,7 @@
       "year": 2012,
       "isrc": "GBAAA1200728",
       "uri": "spotify:track:2V65y3PX4DkRhy1djlxd9p",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1021729332",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1219,7 +1219,7 @@
       "year": 2015,
       "isrc": "GBUM71507621",
       "uri": "spotify:track:6OZh916QF8XNunWaP97WEZ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1437812225",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1549,7 +1549,7 @@
       "year": 2018,
       "isrc": "GBUM71802109",
       "uri": "spotify:track:3u1S1OmAUhx5DRlLrXqyp3",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1383852262",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1639,7 +1639,7 @@
       "year": 2017,
       "isrc": "USRC11701901",
       "uri": "spotify:track:7vGuf3Y35N4wmASOKLUVVU",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1268152499",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -1939,7 +1939,7 @@
       "year": 2013,
       "isrc": "USUM71210662",
       "uri": "spotify:track:0VGrgE7GbWaINRnh1bR4k9",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440818495",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2239,7 +2239,7 @@
       "year": 2016,
       "isrc": "USUM71606370",
       "uri": "spotify:track:2zDt2TfQbxiSPjTVJTgbwz",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1444891951",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2299,7 +2299,7 @@
       "year": 2015,
       "isrc": "USQX91500801",
       "uri": "spotify:track:3vv9phIu6Y1vX3jcqaGz5Z",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1050203620",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2449,7 +2449,7 @@
       "year": 2015,
       "isrc": "CYA111500012",
       "uri": "spotify:track:69zxj1EFDfAouZu9JDmQld",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1443097680",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2479,7 +2479,7 @@
       "year": 2013,
       "isrc": "USUM71311478",
       "uri": "spotify:track:4bT2zLVv2T4GiK9q9KtI0v",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1568228498",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2809,7 +2809,7 @@
       "year": 2012,
       "isrc": "USUM71502344",
       "uri": "spotify:track:4NCYjPP2VAyYi6707SkS30",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1470706637",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2929,7 +2929,7 @@
       "year": 2015,
       "isrc": "USUM71505090",
       "uri": "spotify:track:5rePjHvMXWqVt1EenTR1w1",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1470706638",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3439,7 +3439,7 @@
       "year": 2013,
       "isrc": "NLDD61300077",
       "uri": "spotify:track:7hahCXrIA6MmEumclFpA5g",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1729703799",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3739,7 +3739,7 @@
       "year": 2013,
       "isrc": "USUM71311296",
       "uri": "spotify:track:4jbmgIyjGoXjY01XxatOx6",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440871474",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -3979,7 +3979,7 @@
       "year": 2011,
       "isrc": "NLC281110493",
       "uri": "spotify:track:2g136494iEXB1GGPakAFzx",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1378649078",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -4759,7 +4759,7 @@
       "year": 2014,
       "isrc": "GBCFB1404201",
       "uri": "spotify:track:1LeItUMezKA1HdCHxYICed",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/897564278",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -4999,7 +4999,7 @@
       "year": 2009,
       "isrc": "USUS10900757",
       "uri": "spotify:track:3ezkJgagRPZ39KCTrKcSI7",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1826175057",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -5149,7 +5149,7 @@
       "year": 2014,
       "isrc": "USUM71313869",
       "uri": "spotify:track:2U0pVx4m1Kdm1Gsjjm6iq8",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1440850881",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -5419,7 +5419,7 @@
       "year": 2013,
       "isrc": "NLF711303312",
       "uri": "spotify:track:5GjnIpUlLGEIYk052ISOw9",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/626898256",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,

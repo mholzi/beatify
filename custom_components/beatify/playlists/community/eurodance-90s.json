@@ -1,6 +1,6 @@
 {
   "name": "Eurodance 90s 💥",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1990s",
     "eurodance",
@@ -1087,7 +1087,8 @@
       "uri_tidal": "tidal://track/111279010",
       "uri_deezer": "deezer://track/696667752",
       "fun_fact_nl": "De eigenzinnige Franse Eurodance-track van Daddy DJ werd een hit in heel Europa met zijn speelse teksten en vrolijke beats.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1841918964"
     },
     {
       "year": 1998,
