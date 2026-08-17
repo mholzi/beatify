@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.14",
+  "version": "1.19",
   "tags": [
     "movies",
     "soundtrack",
@@ -448,7 +448,8 @@
         "es": "applemusic://track/1691911665",
         "nl": "applemusic://track/1691911665",
         "it": "applemusic://track/1691911665"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZC7v2gFsCz0"
     },
     {
       "year": 1971,
@@ -499,7 +500,8 @@
         "Oscar voor Beste Originele Lied (1971)",
         "Grammy Award voor Beste Instrumentaal (1972)"
       ],
-      "uri_apple_music": "applemusic://track/1440781096"
+      "uri_apple_music": "applemusic://track/1440781096",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fTU_9T5ufzY"
     },
     {
       "year": 1963,
@@ -553,7 +555,8 @@
         "es": "applemusic://track/1006312033",
         "nl": "applemusic://track/1006312033",
         "it": "applemusic://track/1006312033"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wDoDYEFIMas"
     },
     {
       "year": 2002,
@@ -902,7 +905,8 @@
       "uri_deezer": "deezer://track/35904871",
       "fun_fact_nl": "Het Magnificent Seven-thema van Elmer Bernstein is in ontelbare reclames gebruikt en werd bekender dan de film zelf.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1444043816"
+      "uri_apple_music": "applemusic://track/1444043816",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yulmgTcGLZw"
     },
     {
       "year": 1968,
@@ -1571,7 +1575,8 @@
         "es": "applemusic://track/1842229145",
         "nl": "applemusic://track/1842229145",
         "it": "applemusic://track/1842229145"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E-sX2Y0W8l0"
     },
     {
       "year": 1978,
@@ -1956,7 +1961,8 @@
       "uri_deezer": "deezer://track/35904871",
       "fun_fact_nl": "Het Great Escape-thema van Elmer Bernstein roept zowel avontuur als verzet op. Gevangenen gebruikten het deuntje om ontsnappingspogingen te coördineren.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1444004606"
+      "uri_apple_music": "applemusic://track/1444004606",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qPAjKeR1wsw"
     },
     {
       "year": 1990,
@@ -2671,7 +2677,8 @@
         "es": "applemusic://track/1612220245",
         "nl": "applemusic://track/1612220245",
         "it": "applemusic://track/1612220245"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jC2ZY2loo74"
     },
     {
       "year": 1964,
@@ -2781,7 +2788,8 @@
       "uri_tidal": "tidal://track/11320214",
       "uri_deezer": "deezer://track/14305753",
       "fun_fact_nl": "Het thema van Third Man wordt volledig op citer gespeeld door Anton Karas. Regisseur Carol Reed ontdekte hem in een wijntuin in Wenen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2oEsWi88Qv0"
     },
     {
       "year": 1976,
@@ -3329,7 +3337,8 @@
       "awards_nl": [
         "Golden Globe voor Beste Originele Filmmuziek (1961)"
       ],
-      "uri_apple_music": "applemusic://track/1705329406"
+      "uri_apple_music": "applemusic://track/1705329406",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DZ6e8-94JRE"
     },
     {
       "year": 1985,
@@ -4374,7 +4383,8 @@
       "fun_fact_nl": "Trent Reznor en Atticus Ross' cover van Immigrant Song opent The Girl with the Dragon Tattoo met een agressieve intensiteit.",
       "awards_nl": [
         "Grammy Award voor Beste Soundtrackpartituur (2012)"
-      ]
+      ],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7Ys-t436d1Y"
     },
     {
       "year": 1982,
@@ -4412,7 +4422,8 @@
         "es": "applemusic://track/1452656167",
         "nl": "applemusic://track/1452656167",
         "it": "applemusic://track/1452656167"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=meU2gAU7Xss"
     },
     {
       "year": 1982,
@@ -4720,7 +4731,8 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1955)"
       ],
-      "uri_apple_music": "applemusic://track/551962523"
+      "uri_apple_music": "applemusic://track/551962523",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xM96O-Yk5YU"
     },
     {
       "year": 2002,
@@ -5393,7 +5405,8 @@
         "es": "applemusic://track/1455697817",
         "nl": "applemusic://track/1455697817",
         "it": "applemusic://track/1455697817"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UIUVC6xc2f0"
     },
     {
       "year": 1979,
@@ -5483,7 +5496,8 @@
         "nl": "applemusic://track/1227748545",
         "it": "applemusic://track/1227748545"
       },
-      "uri_deezer": "deezer://track/139354685"
+      "uri_deezer": "deezer://track/139354685",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Qqa_NADTVQw"
     },
     {
       "year": 1981,
@@ -5601,7 +5615,8 @@
         "nl": "applemusic://track/1452552843",
         "it": "applemusic://track/1452552843"
       },
-      "uri_deezer": "deezer://track/2919225"
+      "uri_deezer": "deezer://track/2919225",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mQQKZ5cgybU"
     },
     {
       "year": 1995,
@@ -5704,7 +5719,8 @@
         "es": "applemusic://track/1658406090",
         "nl": "applemusic://track/1658406090",
         "it": "applemusic://track/1658406090"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ymIQ_oDGsDs"
     },
     {
       "year": 1968,
@@ -5912,7 +5928,8 @@
         "es": "applemusic://track/1802763015",
         "nl": "applemusic://track/1802763015",
         "it": "applemusic://track/1802763015"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KQIRbV_noi8"
     },
     {
       "year": 1964,
@@ -5973,7 +5990,8 @@
         "es": "applemusic://track/1377468571",
         "nl": "applemusic://track/1377468571",
         "it": "applemusic://track/1377468571"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-9012SGz-yY"
     },
     {
       "year": 1965,
