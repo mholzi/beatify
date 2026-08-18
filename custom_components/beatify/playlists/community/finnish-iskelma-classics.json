@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.31",
+  "version": "1.34",
   "tags": [
     "finnish",
     "iskelma",
@@ -5563,7 +5563,7 @@
       "year": 2000,
       "isrc": "FIBAR1600455",
       "uri": "spotify:track:2OShY9ZbNvnFr2IZyhw6sm",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/1143099319",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -6585,7 +6585,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tgv8B-eKUGM",
       "uri_tidal": "tidal://track/1578841",
       "uri_deezer": "deezer://track/3879910",
       "fun_fact": "Jörgen Petersen's Finnish recording of 'Boulevard of Broken Dreams' illustrates how English-language themes were absorbed into Finnish iskelmä throughout the 1960s; Finnish artists covered international hits to keep them accessible for local audiences.",
@@ -7225,7 +7225,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YrrDBLBBV9I",
       "uri_tidal": "tidal://track/3411935",
       "uri_deezer": "deezer://track/5417779",
       "fun_fact": "'Illan viimeinen tango' (The Evening's Last Tango) is Reijo Taipale at his most atmospheric; Finnish tango is performed at a slower, more introspective tempo than the Argentine original, making it the ideal music for late-night reflection.",
@@ -7453,7 +7453,7 @@
         "it": null
       },
       "uri_deezer": "40489611",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DvZqely59_Y",
       "uri_tidal": "tidal://track/26719312",
       "alt_artists": [
         "Susanna Heikki",
@@ -7589,7 +7589,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lQFgh6t6JM8",
       "uri_tidal": "tidal://track/147305934",
       "uri_deezer": "deezer://track/1010527642",
       "fun_fact": "Juha Eirto's 'Keskiyön tango' (Midnight Tango) captures late-night melancholy at the heart of Finnish tango; Finland hosts the world's largest tango festival in Seinäjoki each summer, drawing tens of thousands of devotees.",
@@ -7619,7 +7619,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b4xHV7aJrWU",
       "uri_tidal": "tidal://track/147305936",
       "uri_deezer": "deezer://track/1010527662",
       "fun_fact": "Olavi Virta's 'Sylvia-valssi' (Sylvia Waltz) showcases the elegant waltz-time side of Finland's most recorded popular singer; Virta's 800+ recordings covered an extraordinary range of genres, from tango to jazz to classical-influenced ballads.",
@@ -7982,7 +7982,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mD7OkZkhK6M",
       "uri_tidal": "tidal://track/10810024",
       "uri_deezer": "deezer://track/105382576",
       "fun_fact": "Laila Kinnunen's version of the Italian 'Chell'alla' is a bittersweet duet about evening arrivals and departures; Italian melodies were widely adapted into Finnish during the 1960s, and Kinnunen excelled at giving them an intimate, personal feel.",
@@ -8382,7 +8382,7 @@
         "it": null
       },
       "uri_deezer": "132195124",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dgMi_Cytmek",
       "uri_tidal": "tidal://track/64562178",
       "alt_artists": [
         "Samuli Edelmann",

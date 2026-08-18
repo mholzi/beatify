@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.13",
+  "version": "0.15",
   "tags": [
     "canadian",
     "canada",
@@ -607,7 +607,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hkMaBy6EX0w",
       "uri_tidal": "tidal://track/19905016",
       "uri_deezer": "deezer://track/61209554",
       "alt_artists": [
@@ -725,7 +725,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8gCjJC_INNE",
       "uri_tidal": "tidal://track/35518555",
       "uri_deezer": null,
       "alt_artists": [
@@ -1323,7 +1323,7 @@
         "nl": "applemusic://track/714738520",
         "it": "applemusic://track/714738520"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lpqDTQOFvf0",
       "uri_tidal": "tidal://track/170170644",
       "uri_deezer": "deezer://track/3152859",
       "alt_artists": [
@@ -2329,7 +2329,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pG_brDZoLAs",
       "uri_tidal": "tidal://track/35518612",
       "uri_deezer": "deezer://track/130400468",
       "alt_artists": [
@@ -2556,7 +2556,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qNwuB76pBcc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/71374087",
       "alt_artists": [
@@ -3561,7 +3561,7 @@
         "nl": "applemusic://track/1676305524",
         "it": "applemusic://track/1676305524"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=34Na4j8AVgA",
       "uri_tidal": "tidal://track/77706588",
       "uri_deezer": "deezer://track/136889400",
       "alt_artists": [
@@ -3598,7 +3598,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ki0Ocze98U8",
       "uri_tidal": "tidal://track/77690162",
       "uri_deezer": "deezer://track/124603270",
       "alt_artists": [
@@ -3635,7 +3635,7 @@
         "nl": "applemusic://track/1440841730",
         "it": "applemusic://track/1440841730"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uxpDa-c-4Mc",
       "uri_tidal": "tidal://track/77690170",
       "uri_deezer": "deezer://track/124603286",
       "alt_artists": [
