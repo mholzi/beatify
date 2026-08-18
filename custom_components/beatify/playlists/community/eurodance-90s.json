@@ -1,6 +1,6 @@
 {
   "name": "Eurodance 90s 💥",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "1990s",
     "eurodance",
@@ -776,7 +776,8 @@
       "fun_fact_nl": "De inzending van Gina G voor het Eurovisie Songfestival namens het VK werd een nummer 1-hit en was een zeldzaam crossover-succes tussen het Songfestival en Eurodance.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/4343025",
-      "uri_apple_music": "applemusic://track/401123583"
+      "uri_apple_music": "applemusic://track/401123583",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ge_U6zw0gLo"
     },
     {
       "year": 1994,
@@ -2809,7 +2810,8 @@
       "uri_deezer": "deezer://track/133204792",
       "fun_fact_nl": "Het trance-anthem van Sash! werd een van de bepalende nummers van de Europese dansmuziek van eind jaren 90, met beklijvende Franse vocalen.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1164431858"
+      "uri_apple_music": "applemusic://track/1164431858",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=frhVSxCxUGE"
     },
     {
       "year": 1995,
@@ -3321,7 +3323,8 @@
         "es": "applemusic://track/345069329",
         "nl": "applemusic://track/345069329",
         "it": "applemusic://track/345069329"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ogMRSwk2LpI"
     },
     {
       "year": 1995,

@@ -1,6 +1,6 @@
 {
   "name": "British Invasion & Britpop 🇬🇧",
-  "version": "1.6",
+  "version": "1.8",
   "tags": [
     "1960s",
     "1990s",
@@ -1765,7 +1765,8 @@
         "es": "applemusic://track/1241160162",
         "nl": "applemusic://track/1241160162",
         "it": "applemusic://track/1241160162"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OEDAGNYYa1o"
     },
     {
       "year": 1968,
@@ -3376,7 +3377,8 @@
       "fun_fact_nl": "Anne Briggs was een enorm invloedrijke figuur in de Britse folk revival die de muziek vaarwel zei om een teruggetrokken leven te gaan leiden in de Schotse Hooglanden. Ze was een belangrijke inspiratie voor Sandy Denny en vele anderen.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/222867938",
-      "uri_apple_music": "applemusic://track/1617409983"
+      "uri_apple_music": "applemusic://track/1617409983",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J194Hr6_FlM"
     },
     {
       "year": 1996,

@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "one-hit",
     "classics",
@@ -883,7 +883,8 @@
       "uri_deezer": "deezer://track/558949042",
       "fun_fact_nl": "Robin Scott nam dit op onder alleen de letter 'M'. Het nummer voorspelde de elektronische toekomst van de muziek, maar Scott bleef liever een mysterieus eendagsvlieg.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1435333807"
+      "uri_apple_music": "applemusic://track/1435333807",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gPoiv0sZ4s4"
     },
     {
       "year": 1979,
@@ -1400,7 +1401,8 @@
         "es": "applemusic://track/1550643321",
         "nl": "applemusic://track/1550643321",
         "it": "applemusic://track/1550643321"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wO0A0XcWy88"
     },
     {
       "year": 1983,
@@ -1692,7 +1694,8 @@
         "es": "applemusic://track/1695812529",
         "nl": "applemusic://track/1695812529",
         "it": "applemusic://track/1695812529"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w9gOQgfPW4Y"
     },
     {
       "year": 1988,
@@ -3538,7 +3541,8 @@
         "es": "applemusic://track/308198608",
         "nl": "applemusic://track/308198608",
         "it": "applemusic://track/308198608"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wq-S8CIU7VA"
     },
     {
       "year": 2005,

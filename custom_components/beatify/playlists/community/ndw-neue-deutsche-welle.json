@@ -1,6 +1,6 @@
 {
   "name": "NDW – Neue Deutsche Welle",
-  "version": "0.7",
+  "version": "0.9",
   "tags": [
     "ndw",
     "neue deutsche welle",
@@ -1627,7 +1627,7 @@
       "fun_fact_fr": "'Vor all den Jahren' de Stahlnetz est un bijou mélancolique du NDW de Hambourg.",
       "fun_fact_nl": "'Vor all den Jahren' van Stahlnetz is een melancholische NDW parel uit Hamburg.",
       "uri_apple_music": "applemusic://track/1862481651",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VPHFwH-MJcY",
       "uri_tidal": "tidal://track/482999776",
       "uri_deezer": "3724778042",
       "isrc": "DEGE92000085",
@@ -1769,7 +1769,7 @@
       "fun_fact_fr": "'Irgendwie, irgendwo, irgendwann' de Nena a été écrite par le guitariste Carlo Karges, qui a aussi écrit '99 Luftballons'.",
       "fun_fact_nl": "'Irgendwie, irgendwo, irgendwann' van Nena werd geschreven door gitarist Carlo Karges, die ook '99 Luftballons' schreef.",
       "uri_apple_music": "applemusic://track/1446021377",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oMHLkcc9I9c",
       "uri_tidal": "tidal://track/493681444",
       "uri_deezer": "3806147312",
       "isrc": "DEE869901718",

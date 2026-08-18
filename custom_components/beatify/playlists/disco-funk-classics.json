@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.15",
+  "version": "1.17",
   "tags": [
     "1970s",
     "1980s",
@@ -3785,7 +3785,7 @@
         "nl": null,
         "it": "applemusic://track/1469850494"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ybt38UnfAU0",
       "uri_tidal": "tidal://track/113774878",
       "uri_deezer": "deezer://track/716819012",
       "isrc": "GBKQU1961236"
@@ -3820,7 +3820,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oOimgG4DzbM",
       "uri_tidal": "tidal://track/123982184",
       "uri_deezer": "deezer://track/810601452",
       "isrc": "GBLV61913727"
@@ -3855,7 +3855,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=70ubJKNWE4c",
       "uri_tidal": null,
       "uri_deezer": null,
       "isrc": null
