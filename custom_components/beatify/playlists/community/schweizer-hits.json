@@ -1,6 +1,6 @@
 {
   "name": "Schweizer Hits 🇨🇭",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "swiss",
     "mundart",
@@ -2428,7 +2428,7 @@
       "fun_fact_es": "Stress es un rapero de Lausana y uno de los artistas de hip-hop más conocidos de Suiza.",
       "fun_fact_fr": "Stress est un rappeur lausannois, l'un des artistes hip-hop les plus connus de Suisse.",
       "uri_apple_music": "applemusic://track/1867742662",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OKW0nLiQPFM",
       "uri_tidal": "tidal://track/490067068",
       "uri_deezer": "deezer://track/3777210552",
       "fun_fact_nl": "Stress is een rapper uit Lausanne en een van de bekendste hiphopartiesten van Zwitserland.",
