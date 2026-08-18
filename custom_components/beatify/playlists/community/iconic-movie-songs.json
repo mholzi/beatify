@@ -1,6 +1,6 @@
 {
   "name": "ICONIC movie songs 🎬",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "movies",
     "soundtracks",
@@ -2271,7 +2271,7 @@
       "fun_fact_es": "El eufórico final de Grease (1978).",
       "fun_fact_fr": "Le final exubérant de Grease (1978).",
       "uri_apple_music": "applemusic://track/1440844889",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bkWevngKTcw",
       "uri_tidal": "tidal://track/77625043",
       "uri_deezer": "deezer://track/781563242",
       "fun_fact_nl": "De uitbundige finale van Grease (1978).",

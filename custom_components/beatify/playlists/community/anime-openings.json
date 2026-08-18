@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.24",
+  "version": "1.25",
   "tags": [
     "anime",
     "japanese",
@@ -335,7 +335,7 @@
         "it": "applemusic://track/1529543135"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=TqyfmFaZlqw",
-      "uri_tidal": null,
+      "uri_tidal": "tidal://track/156732851",
       "uri_deezer": "deezer://track/976228172",
       "fun_fact": "Opening 1 of 'Demon Slayer: Kimetsu no Yaiba' (2019) — LiSA's career-defining smash.",
       "fun_fact_de": "Opening 1 von 'Demon Slayer: Kimetsu no Yaiba' (2019) — LiSAs karrieredefinierender Hit.",

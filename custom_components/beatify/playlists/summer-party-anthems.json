@@ -1,6 +1,6 @@
 {
   "name": "100 Summer Anthems ☀️",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "party",
     "classics",
@@ -4235,7 +4235,8 @@
         "es": "applemusic://track/82347771",
         "nl": "applemusic://track/82347771",
         "it": "applemusic://track/82347771"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mTUhnIY3oRM"
     },
     {
       "year": 1966,

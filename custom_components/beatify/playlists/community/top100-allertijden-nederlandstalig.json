@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Dutch Classics 🇳🇱",
-  "version": "1.19",
+  "version": "1.20",
   "tags": [
     "nederlandstalig",
     "dutch",
@@ -2833,7 +2833,8 @@
       "fun_fact_nl": "Mijn Gebed is een gospel-achtig Nederlandstalig popliedje uit 1970 dat de krachtige, soulvolle stem van D.C. Lewis liet horen. Het nummer werd een geliefde klassieker in de Nederlandstalige pop met zijn spirituele thema van gebed en geloof. Het blijft een van de meest kenmerkende Nederlandstalige popopnames van de vroege jaren 1970.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/259313534",
-      "uri_deezer": "deezer://track/134543785"
+      "uri_deezer": "deezer://track/134543785",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rqg_kNRvWNQ"
     },
     {
       "year": 2020,
@@ -2942,7 +2943,8 @@
         "it": "applemusic://track/1442289020"
       },
       "uri_tidal": "tidal://track/29536632",
-      "uri_deezer": "deezer://track/78256158"
+      "uri_deezer": "deezer://track/78256158",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fDlUYTysLk8"
     },
     {
       "year": 1969,
