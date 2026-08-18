@@ -96,9 +96,25 @@ with open(sys.argv[1], "w") as f:
     json.dump(state, f, indent=2)
 PYEOF
 
-ISSUES=$(python3 -c "import json; d=json.load(open('$OUTPUT')); s=d['summary']; print(s['dead'] + s.get('wrong_track',0) + s.get('error',0))")
+# Zaehlt Basis-URIs UND Region-Maps. Bis zum 18.08.2026 sah diese Stelle nur
+# `summary` — ein Lauf mit toten Region-Eintraegen endete deshalb auf
+# "All tracks healthy", zwei Zeilen unter der eigenen Meldung "N dead".
+# Aufgefallen an motown-soul-classics (#2194, 8 tote Regionen) und erneut an
+# 2000s-pop-anthems (#2223, 7 tote Regionen auf einem Track). Beim ersten Mal
+# wurden nur die Daten repariert, nicht die Meldung — daher der zweite Fall.
+read -r BASE_ISSUES REGION_ISSUES <<EOF
+$(python3 -c "
+import json
+d = json.load(open('$OUTPUT'))
+s = d['summary']
+r = d.get('region_summary') or {}
+print(s['dead'] + s.get('wrong_track', 0) + s.get('error', 0),
+      r.get('dead', 0) + r.get('wrong_track', 0))
+")
+EOF
+ISSUES=$((BASE_ISSUES + REGION_ISSUES))
 if [ "$ISSUES" -gt 0 ]; then
-  log "Found $ISSUES issue(s) — pending AI review before creating GitHub issue."
+  log "Found $ISSUES issue(s) — $BASE_ISSUES on base URIs, $REGION_ISSUES in region maps — pending AI review before creating GitHub issue."
 else
   log "All tracks healthy — no issues found."
 fi
