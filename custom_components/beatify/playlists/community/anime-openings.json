@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.25",
+  "version": "1.26",
   "tags": [
     "anime",
     "japanese",
@@ -2932,7 +2932,7 @@
         "nl": "applemusic://track/1890211129",
         "it": "applemusic://track/1890211129"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QwACoXnNcwg",
       "uri_tidal": "tidal://track/487464883",
       "uri_deezer": "deezer://track/3293025721",
       "fun_fact": "Yuki Hayashi's My Hero Academia compositions became iconic for the series' most intense action sequences.",
