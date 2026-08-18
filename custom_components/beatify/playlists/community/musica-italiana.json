@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana",
   "description": "Italienische Klassiker von den 60ern bis in die 2000er — Cantautori, Sanremo-Sieger und die Lieder, die auf jeder Feier mitgesungen werden.",
-  "version": "0.1",
+  "version": "0.3",
   "songs": [
     {
       "year": 1962,
@@ -16,7 +16,10 @@
       "fun_fact_de": "Gianni Morandi - \"Fatti Mandare Dalla Mamma A Prendere Il Latte\" (1962), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Gianni Morandi - \"Fatti Mandare Dalla Mamma A Prendere Il Latte\" (1962), del canon del pop italiano.",
       "fun_fact_fr": "Gianni Morandi - \"Fatti Mandare Dalla Mamma A Prendere Il Latte\" (1962), du canon de la pop italienne.",
-      "fun_fact_nl": "Gianni Morandi - \"Fatti Mandare Dalla Mamma A Prendere Il Latte\" (1962), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Gianni Morandi - \"Fatti Mandare Dalla Mamma A Prendere Il Latte\" (1962), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/620947772",
+      "uri_deezer": "deezer://track/68627294",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7eLBR4xQt_4"
     },
     {
       "year": 1962,
@@ -31,7 +34,10 @@
       "fun_fact_de": "Rita Pavone - \"La partita di pallone\" (1962), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Rita Pavone - \"La partita di pallone\" (1962), del canon del pop italiano.",
       "fun_fact_fr": "Rita Pavone - \"La partita di pallone\" (1962), du canon de la pop italienne.",
-      "fun_fact_nl": "Rita Pavone - \"La partita di pallone\" (1962), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Rita Pavone - \"La partita di pallone\" (1962), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1732105559",
+      "uri_deezer": "deezer://track/844247532",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DERSWPBE0Xc"
     },
     {
       "year": 1963,
@@ -46,7 +52,10 @@
       "fun_fact_de": "Rita Pavone - \"Il Ballo Del Mattone\" (1963), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Rita Pavone - \"Il Ballo Del Mattone\" (1963), del canon del pop italiano.",
       "fun_fact_fr": "Rita Pavone - \"Il Ballo Del Mattone\" (1963), du canon de la pop italienne.",
-      "fun_fact_nl": "Rita Pavone - \"Il Ballo Del Mattone\" (1963), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Rita Pavone - \"Il Ballo Del Mattone\" (1963), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1732106292",
+      "uri_deezer": "deezer://track/3783877822",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MBHPjlRQKaU"
     },
     {
       "year": 1963,
@@ -61,7 +70,10 @@
       "fun_fact_de": "Rita Pavone - \"Cuore\" (1963), aus dem italienischen Pop-Kanon. Geschrieben von Carlo Rossi.",
       "fun_fact_es": "Rita Pavone - \"Cuore\" (1963), del canon del pop italiano. Escrita por Carlo Rossi.",
       "fun_fact_fr": "Rita Pavone - \"Cuore\" (1963), du canon de la pop italienne. Ecrite par Carlo Rossi.",
-      "fun_fact_nl": "Rita Pavone - \"Cuore\" (1963), uit de Italiaanse popcanon. Geschreven door Carlo Rossi."
+      "fun_fact_nl": "Rita Pavone - \"Cuore\" (1963), uit de Italiaanse popcanon. Geschreven door Carlo Rossi.",
+      "uri_apple_music": "applemusic://track/1054017780",
+      "uri_deezer": "deezer://track/118813640",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OScp2u69dOc"
     },
     {
       "year": 1964,
@@ -76,7 +88,10 @@
       "fun_fact_de": "Bobby Solo - \"Una Lacrima Sul Viso\" (1964), aus dem italienischen Pop-Kanon. Beim Sanremo-Festival vorgestellt.",
       "fun_fact_es": "Bobby Solo - \"Una Lacrima Sul Viso\" (1964), del canon del pop italiano. Presentada en el Festival de Sanremo.",
       "fun_fact_fr": "Bobby Solo - \"Una Lacrima Sul Viso\" (1964), du canon de la pop italienne. Presentee au Festival de Sanremo.",
-      "fun_fact_nl": "Bobby Solo - \"Una Lacrima Sul Viso\" (1964), uit de Italiaanse popcanon. Gepresenteerd op het Sanremo-festival."
+      "fun_fact_nl": "Bobby Solo - \"Una Lacrima Sul Viso\" (1964), uit de Italiaanse popcanon. Gepresenteerd op het Sanremo-festival.",
+      "uri_apple_music": "applemusic://track/1462939298",
+      "uri_deezer": "deezer://track/5066687",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s6qyC4nPoSs"
     },
     {
       "year": 1964,
@@ -91,7 +106,10 @@
       "fun_fact_de": "Rita Pavone - \"Datemi un martello\" (1964), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Rita Pavone - \"Datemi un martello\" (1964), del canon del pop italiano.",
       "fun_fact_fr": "Rita Pavone - \"Datemi un martello\" (1964), du canon de la pop italienne.",
-      "fun_fact_nl": "Rita Pavone - \"Datemi un martello\" (1964), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Rita Pavone - \"Datemi un martello\" (1964), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1082356818",
+      "uri_deezer": "deezer://track/118813648",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u1eehe9J5G0"
     },
     {
       "year": 1965,
@@ -106,7 +124,10 @@
       "fun_fact_de": "Jimmy Fontana - \"Il mondo\" (1965), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Jimmy Fontana - \"Il mondo\" (1965), del canon del pop italiano.",
       "fun_fact_fr": "Jimmy Fontana - \"Il mondo\" (1965), du canon de la pop italienne.",
-      "fun_fact_nl": "Jimmy Fontana - \"Il mondo\" (1965), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Jimmy Fontana - \"Il mondo\" (1965), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1410916284",
+      "uri_deezer": "deezer://track/957076",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HFyCfFJC0no"
     },
     {
       "year": 1965,
@@ -121,7 +142,10 @@
       "fun_fact_de": "Mina - \"Più di te\" (1965), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Mina - \"Più di te\" (1965), del canon del pop italiano.",
       "fun_fact_fr": "Mina - \"Più di te\" (1965), du canon de la pop italienne.",
-      "fun_fact_nl": "Mina - \"Più di te\" (1965), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Mina - \"Più di te\" (1965), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1423224326",
+      "uri_deezer": "deezer://track/518977172",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6uDP_TTvhz8"
     },
     {
       "year": 1966,
@@ -136,7 +160,10 @@
       "fun_fact_de": "Caterina Caselli - \"Nessuno Mi Può Giudicare\" (1966), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Caterina Caselli - \"Nessuno Mi Può Giudicare\" (1966), del canon del pop italiano.",
       "fun_fact_fr": "Caterina Caselli - \"Nessuno Mi Può Giudicare\" (1966), du canon de la pop italienne.",
-      "fun_fact_nl": "Caterina Caselli - \"Nessuno Mi Può Giudicare\" (1966), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Caterina Caselli - \"Nessuno Mi Può Giudicare\" (1966), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1583784528",
+      "uri_deezer": "deezer://track/1487292572",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VtWLUYFWb7M"
     },
     {
       "year": 1966,
@@ -151,7 +178,10 @@
       "fun_fact_de": "Mina - \"Se telefonando\" (1966), aus dem italienischen Pop-Kanon. Erschien auf dem Album Studio Uno 66.",
       "fun_fact_es": "Mina - \"Se telefonando\" (1966), del canon del pop italiano. Aparecio en el album Studio Uno 66.",
       "fun_fact_fr": "Mina - \"Se telefonando\" (1966), du canon de la pop italienne. Parue sur l album Studio Uno 66.",
-      "fun_fact_nl": "Mina - \"Se telefonando\" (1966), uit de Italiaanse popcanon. Verscheen op het album Studio Uno 66."
+      "fun_fact_nl": "Mina - \"Se telefonando\" (1966), uit de Italiaanse popcanon. Verscheen op het album Studio Uno 66.",
+      "uri_apple_music": "applemusic://track/1423193119",
+      "uri_deezer": "deezer://track/523540742",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x6fpSiE953w"
     },
     {
       "year": 1969,
@@ -166,7 +196,10 @@
       "fun_fact_de": "Nada - \"Ma Che Freddo Fa\" (1969), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Nada - \"Ma Che Freddo Fa\" (1969), del canon del pop italiano.",
       "fun_fact_fr": "Nada - \"Ma Che Freddo Fa\" (1969), du canon de la pop italienne.",
-      "fun_fact_nl": "Nada - \"Ma Che Freddo Fa\" (1969), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Nada - \"Ma Che Freddo Fa\" (1969), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/201304510",
+      "uri_deezer": "deezer://track/972240",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DJs-9BnJRPA"
     },
     {
       "year": 1970,
@@ -181,7 +214,10 @@
       "fun_fact_de": "Claudio Baglioni - \"E tu...\" (1970), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Claudio Baglioni - \"E tu...\" (1970), del canon del pop italiano.",
       "fun_fact_fr": "Claudio Baglioni - \"E tu...\" (1970), du canon de la pop italienne.",
-      "fun_fact_nl": "Claudio Baglioni - \"E tu...\" (1970), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Claudio Baglioni - \"E tu...\" (1970), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/254120593",
+      "uri_deezer": "deezer://track/424506002",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4Ajev-GrEWA"
     },
     {
       "year": 1970,
@@ -196,7 +232,10 @@
       "fun_fact_de": "Lucio Battisti - \"Acqua azzurra, acqua chiara\" (1970), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Lucio Battisti - \"Acqua azzurra, acqua chiara\" (1970), del canon del pop italiano.",
       "fun_fact_fr": "Lucio Battisti - \"Acqua azzurra, acqua chiara\" (1970), du canon de la pop italienne.",
-      "fun_fact_nl": "Lucio Battisti - \"Acqua azzurra, acqua chiara\" (1970), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Lucio Battisti - \"Acqua azzurra, acqua chiara\" (1970), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1480766584",
+      "uri_deezer": "deezer://track/764314612",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q6JW3KKeGKQ"
     },
     {
       "year": 1970,
@@ -211,7 +250,9 @@
       "fun_fact_de": "Lucio Battisti - \"Dieci ragazze\" (1970), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Lucio Battisti - \"Dieci ragazze\" (1970), del canon del pop italiano.",
       "fun_fact_fr": "Lucio Battisti - \"Dieci ragazze\" (1970), du canon de la pop italienne.",
-      "fun_fact_nl": "Lucio Battisti - \"Dieci ragazze\" (1970), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Lucio Battisti - \"Dieci ragazze\" (1970), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1480766583",
+      "uri_deezer": "deezer://track/764314602"
     },
     {
       "year": 1970,
@@ -226,7 +267,9 @@
       "fun_fact_de": "Massimo Ranieri - \"Se bruciasse la città\" (1970), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Massimo Ranieri - \"Se bruciasse la città\" (1970), del canon del pop italiano.",
       "fun_fact_fr": "Massimo Ranieri - \"Se bruciasse la città\" (1970), du canon de la pop italienne.",
-      "fun_fact_nl": "Massimo Ranieri - \"Se bruciasse la città\" (1970), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Massimo Ranieri - \"Se bruciasse la città\" (1970), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1532921385",
+      "uri_deezer": "deezer://track/751997"
     },
     {
       "year": 1970,
@@ -241,7 +284,9 @@
       "fun_fact_de": "Massimo Ranieri - \"Vent'anni\" (1970), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Massimo Ranieri - \"Vent'anni\" (1970), del canon del pop italiano.",
       "fun_fact_fr": "Massimo Ranieri - \"Vent'anni\" (1970), du canon de la pop italienne.",
-      "fun_fact_nl": "Massimo Ranieri - \"Vent'anni\" (1970), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Massimo Ranieri - \"Vent'anni\" (1970), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1542206913",
+      "uri_deezer": "deezer://track/783929"
     },
     {
       "year": 1970,
@@ -256,7 +301,9 @@
       "fun_fact_de": "Massimo Ranieri - \"Rose rosse\" (1970), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Massimo Ranieri - \"Rose rosse\" (1970), del canon del pop italiano.",
       "fun_fact_fr": "Massimo Ranieri - \"Rose rosse\" (1970), du canon de la pop italienne.",
-      "fun_fact_nl": "Massimo Ranieri - \"Rose rosse\" (1970), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Massimo Ranieri - \"Rose rosse\" (1970), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1532950592",
+      "uri_deezer": "deezer://track/751985"
     },
     {
       "year": 1971,
@@ -271,7 +318,9 @@
       "fun_fact_de": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), del canon del pop italiano.",
       "fun_fact_fr": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), du canon de la pop italienne.",
-      "fun_fact_nl": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1480763765",
+      "uri_deezer": "deezer://track/764072472"
     },
     {
       "year": 1971,
@@ -286,7 +335,9 @@
       "fun_fact_de": "Lucio Dalla - \"4/3/1943\" (1971), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Lucio Dalla - \"4/3/1943\" (1971), del canon del pop italiano.",
       "fun_fact_fr": "Lucio Dalla - \"4/3/1943\" (1971), du canon de la pop italienne.",
-      "fun_fact_nl": "Lucio Dalla - \"4/3/1943\" (1971), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Lucio Dalla - \"4/3/1943\" (1971), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/254149169",
+      "uri_deezer": "deezer://track/972768"
     },
     {
       "year": 1971,
@@ -301,7 +352,9 @@
       "fun_fact_de": "Mia Martini - \"Piccolo uomo\" (1971), aus dem italienischen Pop-Kanon. Gewann den Festivalbar.",
       "fun_fact_es": "Mia Martini - \"Piccolo uomo\" (1971), del canon del pop italiano. Gano el Festivalbar.",
       "fun_fact_fr": "Mia Martini - \"Piccolo uomo\" (1971), du canon de la pop italienne. A gagne le Festivalbar.",
-      "fun_fact_nl": "Mia Martini - \"Piccolo uomo\" (1971), uit de Italiaanse popcanon. Won de Festivalbar."
+      "fun_fact_nl": "Mia Martini - \"Piccolo uomo\" (1971), uit de Italiaanse popcanon. Won de Festivalbar.",
+      "uri_apple_music": "applemusic://track/1807966498",
+      "uri_deezer": "deezer://track/3731934942"
     },
     {
       "year": 1971,
@@ -316,7 +369,9 @@
       "fun_fact_de": "Ricchi E Poveri - \"Che Sarà\" (1971), aus dem italienischen Pop-Kanon. Geschrieben von Jimmy Fontana. Beim Sanremo-Festival vorgestellt.",
       "fun_fact_es": "Ricchi E Poveri - \"Che Sarà\" (1971), del canon del pop italiano. Escrita por Jimmy Fontana. Presentada en el Festival de Sanremo.",
       "fun_fact_fr": "Ricchi E Poveri - \"Che Sarà\" (1971), du canon de la pop italienne. Ecrite par Jimmy Fontana. Presentee au Festival de Sanremo.",
-      "fun_fact_nl": "Ricchi E Poveri - \"Che Sarà\" (1971), uit de Italiaanse popcanon. Geschreven door Jimmy Fontana. Gepresenteerd op het Sanremo-festival."
+      "fun_fact_nl": "Ricchi E Poveri - \"Che Sarà\" (1971), uit de Italiaanse popcanon. Geschreven door Jimmy Fontana. Gepresenteerd op het Sanremo-festival.",
+      "uri_apple_music": "applemusic://track/998281784",
+      "uri_deezer": "deezer://track/3293696"
     },
     {
       "year": 1972,
@@ -331,7 +386,9 @@
       "fun_fact_de": "Claudio Baglioni - \"Porta Portese\" (1972), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Claudio Baglioni - \"Porta Portese\" (1972), del canon del pop italiano.",
       "fun_fact_fr": "Claudio Baglioni - \"Porta Portese\" (1972), du canon de la pop italienne.",
-      "fun_fact_nl": "Claudio Baglioni - \"Porta Portese\" (1972), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Claudio Baglioni - \"Porta Portese\" (1972), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/254225856",
+      "uri_deezer": "deezer://track/424505992"
     },
     {
       "year": 1972,
@@ -346,7 +403,9 @@
       "fun_fact_de": "Claudio Baglioni - \"Mia Libertà\" (1972), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Claudio Baglioni - \"Mia Libertà\" (1972), del canon del pop italiano.",
       "fun_fact_fr": "Claudio Baglioni - \"Mia Libertà\" (1972), du canon de la pop italienne.",
-      "fun_fact_nl": "Claudio Baglioni - \"Mia Libertà\" (1972), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Claudio Baglioni - \"Mia Libertà\" (1972), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/200571073",
+      "uri_deezer": "deezer://track/1021893"
     },
     {
       "year": 1972,
@@ -361,7 +420,9 @@
       "fun_fact_de": "Claudio Baglioni - \"Questo piccolo grande amore\" (1972), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Claudio Baglioni - \"Questo piccolo grande amore\" (1972), del canon del pop italiano.",
       "fun_fact_fr": "Claudio Baglioni - \"Questo piccolo grande amore\" (1972), du canon de la pop italienne.",
-      "fun_fact_nl": "Claudio Baglioni - \"Questo piccolo grande amore\" (1972), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Claudio Baglioni - \"Questo piccolo grande amore\" (1972), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/200570600",
+      "uri_deezer": "deezer://track/576276"
     },
     {
       "year": 1972,
@@ -376,7 +437,9 @@
       "fun_fact_de": "Lucio Battisti - \"Il mio canto libero\" (1972), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Lucio Battisti - \"Il mio canto libero\" (1972), del canon del pop italiano.",
       "fun_fact_fr": "Lucio Battisti - \"Il mio canto libero\" (1972), du canon de la pop italienne.",
-      "fun_fact_nl": "Lucio Battisti - \"Il mio canto libero\" (1972), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Lucio Battisti - \"Il mio canto libero\" (1972), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1480766133",
+      "uri_deezer": "deezer://track/764304922"
     },
     {
       "year": 1973,
@@ -391,7 +454,9 @@
       "fun_fact_de": "Claudio Baglioni - \"Amore bello\" (1973), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Claudio Baglioni - \"Amore bello\" (1973), del canon del pop italiano.",
       "fun_fact_fr": "Claudio Baglioni - \"Amore bello\" (1973), du canon de la pop italienne.",
-      "fun_fact_nl": "Claudio Baglioni - \"Amore bello\" (1973), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Claudio Baglioni - \"Amore bello\" (1973), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/253992888",
+      "uri_deezer": "deezer://track/1020156"
     },
     {
       "year": 1973,
@@ -406,7 +471,9 @@
       "fun_fact_de": "Umberto Tozzi - \"Tu\" (1973), aus dem italienischen Pop-Kanon. Geschrieben von Umberto Tozzi and Giancarlo Bigazzi.",
       "fun_fact_es": "Umberto Tozzi - \"Tu\" (1973), del canon del pop italiano. Escrita por Umberto Tozzi and Giancarlo Bigazzi.",
       "fun_fact_fr": "Umberto Tozzi - \"Tu\" (1973), du canon de la pop italienne. Ecrite par Umberto Tozzi and Giancarlo Bigazzi.",
-      "fun_fact_nl": "Umberto Tozzi - \"Tu\" (1973), uit de Italiaanse popcanon. Geschreven door Umberto Tozzi and Giancarlo Bigazzi."
+      "fun_fact_nl": "Umberto Tozzi - \"Tu\" (1973), uit de Italiaanse popcanon. Geschreven door Umberto Tozzi and Giancarlo Bigazzi.",
+      "uri_apple_music": "applemusic://track/1564230420",
+      "uri_deezer": "deezer://track/1351336652"
     },
     {
       "year": 1974,
@@ -421,7 +488,9 @@
       "fun_fact_de": "Riccardo Cocciante - \"Bella senz'anima\" (1974), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Riccardo Cocciante - \"Bella senz'anima\" (1974), del canon del pop italiano.",
       "fun_fact_fr": "Riccardo Cocciante - \"Bella senz'anima\" (1974), du canon de la pop italienne.",
-      "fun_fact_nl": "Riccardo Cocciante - \"Bella senz'anima\" (1974), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Riccardo Cocciante - \"Bella senz'anima\" (1974), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/255453955",
+      "uri_deezer": "deezer://track/985852"
     },
     {
       "year": 1975,
@@ -436,7 +505,9 @@
       "fun_fact_de": "Francesco De Gregori - \"Rimmel\" (1975), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Francesco De Gregori - \"Rimmel\" (1975), del canon del pop italiano.",
       "fun_fact_fr": "Francesco De Gregori - \"Rimmel\" (1975), du canon de la pop italienne.",
-      "fun_fact_nl": "Francesco De Gregori - \"Rimmel\" (1975), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Francesco De Gregori - \"Rimmel\" (1975), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/259987956",
+      "uri_deezer": "deezer://track/546135"
     },
     {
       "year": 1975,
@@ -451,7 +522,9 @@
       "fun_fact_de": "Rino Gaetano - \"Ma il cielo è sempre più blu\" (1975), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Rino Gaetano - \"Ma il cielo è sempre più blu\" (1975), del canon del pop italiano.",
       "fun_fact_fr": "Rino Gaetano - \"Ma il cielo è sempre più blu\" (1975), du canon de la pop italienne.",
-      "fun_fact_nl": "Rino Gaetano - \"Ma il cielo è sempre più blu\" (1975), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Rino Gaetano - \"Ma il cielo è sempre più blu\" (1975), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1571903770",
+      "uri_deezer": "deezer://track/1020925"
     },
     {
       "year": 1976,
@@ -466,7 +539,9 @@
       "fun_fact_de": "Loredana Bertè - \"Sei bellissima\" (1976), aus dem italienischen Pop-Kanon. Veroeffentlicht bei Sony Music.",
       "fun_fact_es": "Loredana Bertè - \"Sei bellissima\" (1976), del canon del pop italiano. Publicada por Sony Music.",
       "fun_fact_fr": "Loredana Bertè - \"Sei bellissima\" (1976), du canon de la pop italienne. Publiee chez Sony Music.",
-      "fun_fact_nl": "Loredana Bertè - \"Sei bellissima\" (1976), uit de Italiaanse popcanon. Uitgebracht bij Sony Music."
+      "fun_fact_nl": "Loredana Bertè - \"Sei bellissima\" (1976), uit de Italiaanse popcanon. Uitgebracht bij Sony Music.",
+      "uri_apple_music": "applemusic://track/1631382207",
+      "uri_deezer": "deezer://track/689319"
     },
     {
       "year": 1977,
@@ -481,7 +556,9 @@
       "fun_fact_de": "Alan Sorrenti - \"Figli Delle Stelle\" (1977), aus dem italienischen Pop-Kanon. Veroeffentlicht bei EMI italiana.",
       "fun_fact_es": "Alan Sorrenti - \"Figli Delle Stelle\" (1977), del canon del pop italiano. Publicada por EMI italiana.",
       "fun_fact_fr": "Alan Sorrenti - \"Figli Delle Stelle\" (1977), du canon de la pop italienne. Publiee chez EMI italiana.",
-      "fun_fact_nl": "Alan Sorrenti - \"Figli Delle Stelle\" (1977), uit de Italiaanse popcanon. Uitgebracht bij EMI italiana."
+      "fun_fact_nl": "Alan Sorrenti - \"Figli Delle Stelle\" (1977), uit de Italiaanse popcanon. Uitgebracht bij EMI italiana.",
+      "uri_apple_music": "applemusic://track/1442578568",
+      "uri_deezer": "deezer://track/3371535"
     },
     {
       "year": 1977,
@@ -496,7 +573,9 @@
       "fun_fact_de": "Donatella Rettore - \"Donatella\" (1977), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Donatella Rettore - \"Donatella\" (1977), del canon del pop italiano.",
       "fun_fact_fr": "Donatella Rettore - \"Donatella\" (1977), du canon de la pop italienne.",
-      "fun_fact_nl": "Donatella Rettore - \"Donatella\" (1977), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Donatella Rettore - \"Donatella\" (1977), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1614482579",
+      "uri_deezer": "deezer://track/3731929282"
     },
     {
       "year": 1977,
@@ -511,7 +590,9 @@
       "fun_fact_de": "Pooh - \"Dammi solo un minuto - 2014 Remaster\" (1977), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Pooh - \"Dammi solo un minuto - 2014 Remaster\" (1977), del canon del pop italiano.",
       "fun_fact_fr": "Pooh - \"Dammi solo un minuto - 2014 Remaster\" (1977), du canon de la pop italienne.",
-      "fun_fact_nl": "Pooh - \"Dammi solo un minuto - 2014 Remaster\" (1977), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Pooh - \"Dammi solo un minuto - 2014 Remaster\" (1977), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1710443769",
+      "uri_deezer": "deezer://track/124637040"
     },
     {
       "year": 1977,
@@ -526,7 +607,9 @@
       "fun_fact_de": "Roberto Vecchioni - \"Samarcanda\" (1977), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Roberto Vecchioni - \"Samarcanda\" (1977), del canon del pop italiano.",
       "fun_fact_fr": "Roberto Vecchioni - \"Samarcanda\" (1977), du canon de la pop italienne.",
-      "fun_fact_nl": "Roberto Vecchioni - \"Samarcanda\" (1977), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Roberto Vecchioni - \"Samarcanda\" (1977), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/821631862",
+      "uri_deezer": "deezer://track/2297038065"
     },
     {
       "year": 1977,
@@ -541,7 +624,9 @@
       "fun_fact_de": "Umberto Tozzi - \"Ti Amo\" (1977), aus dem italienischen Pop-Kanon. Spaeter im Film Asterix & Obelix: Mission Cleopatra verwendet.",
       "fun_fact_es": "Umberto Tozzi - \"Ti Amo\" (1977), del canon del pop italiano. Usada despues en la pelicula Asterix & Obelix: Mission Cleopatra.",
       "fun_fact_fr": "Umberto Tozzi - \"Ti Amo\" (1977), du canon de la pop italienne. Reprise ensuite dans le film Asterix & Obelix: Mission Cleopatra.",
-      "fun_fact_nl": "Umberto Tozzi - \"Ti Amo\" (1977), uit de Italiaanse popcanon. Later gebruikt in de film Asterix & Obelix: Mission Cleopatra."
+      "fun_fact_nl": "Umberto Tozzi - \"Ti Amo\" (1977), uit de Italiaanse popcanon. Later gebruikt in de film Asterix & Obelix: Mission Cleopatra.",
+      "uri_apple_music": "applemusic://track/1565179218",
+      "uri_deezer": "deezer://track/1357589612"
     },
     {
       "year": 1978,
@@ -556,7 +641,9 @@
       "fun_fact_de": "Anna Oxa - \"Un'emozione da poco\" (1978), aus dem italienischen Pop-Kanon. Erreichte Platz eins der italienischen Hitparade. Erschien auf dem Album Oxanna.",
       "fun_fact_es": "Anna Oxa - \"Un'emozione da poco\" (1978), del canon del pop italiano. Alcanzo el numero uno en la lista italiana. Aparecio en el album Oxanna.",
       "fun_fact_fr": "Anna Oxa - \"Un'emozione da poco\" (1978), du canon de la pop italienne. Numero un du classement italien. Parue sur l album Oxanna.",
-      "fun_fact_nl": "Anna Oxa - \"Un'emozione da poco\" (1978), uit de Italiaanse popcanon. Bereikte nummer een in de Italiaanse hitlijst. Verscheen op het album Oxanna."
+      "fun_fact_nl": "Anna Oxa - \"Un'emozione da poco\" (1978), uit de Italiaanse popcanon. Bereikte nummer een in de Italiaanse hitlijst. Verscheen op het album Oxanna.",
+      "uri_apple_music": "applemusic://track/818784238",
+      "uri_deezer": "deezer://track/69008435"
     },
     {
       "year": 1978,
@@ -571,7 +658,9 @@
       "fun_fact_de": "Antonello Venditti - \"Sara\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Antonello Venditti - \"Sara\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Antonello Venditti - \"Sara\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Antonello Venditti - \"Sara\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Antonello Venditti - \"Sara\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/252352184",
+      "uri_deezer": "deezer://track/555658072"
     },
     {
       "year": 1978,
@@ -586,7 +675,9 @@
       "fun_fact_de": "Claudio Baglioni - \"E tu come stai?\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Claudio Baglioni - \"E tu come stai?\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Claudio Baglioni - \"E tu come stai?\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Claudio Baglioni - \"E tu come stai?\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Claudio Baglioni - \"E tu come stai?\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/200324416",
+      "uri_deezer": "deezer://track/1073047"
     },
     {
       "year": 1978,
@@ -601,7 +692,9 @@
       "fun_fact_de": "Francesco De Gregori - \"Generale\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Francesco De Gregori - \"Generale\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Francesco De Gregori - \"Generale\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Francesco De Gregori - \"Generale\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Francesco De Gregori - \"Generale\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/254263491",
+      "uri_deezer": "deezer://track/1082468"
     },
     {
       "year": 1978,
@@ -616,7 +709,9 @@
       "fun_fact_de": "Loredana Bertè - \"Dedicato - 2016 Remastered\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Loredana Bertè - \"Dedicato - 2016 Remastered\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Loredana Bertè - \"Dedicato - 2016 Remastered\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Loredana Bertè - \"Dedicato - 2016 Remastered\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Loredana Bertè - \"Dedicato - 2016 Remastered\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1679436762",
+      "uri_deezer": "deezer://track/3920585"
     },
     {
       "year": 1978,
@@ -631,7 +726,9 @@
       "fun_fact_de": "Patty Pravo - \"Pensiero stupendo\" (1978), aus dem italienischen Pop-Kanon. Geschrieben von Ivano Fossati.",
       "fun_fact_es": "Patty Pravo - \"Pensiero stupendo\" (1978), del canon del pop italiano. Escrita por Ivano Fossati.",
       "fun_fact_fr": "Patty Pravo - \"Pensiero stupendo\" (1978), du canon de la pop italienne. Ecrite par Ivano Fossati.",
-      "fun_fact_nl": "Patty Pravo - \"Pensiero stupendo\" (1978), uit de Italiaanse popcanon. Geschreven door Ivano Fossati."
+      "fun_fact_nl": "Patty Pravo - \"Pensiero stupendo\" (1978), uit de Italiaanse popcanon. Geschreven door Ivano Fossati.",
+      "uri_apple_music": "applemusic://track/254264774",
+      "uri_deezer": "deezer://track/1020587"
     },
     {
       "year": 1978,
@@ -646,7 +743,9 @@
       "fun_fact_de": "Renato Zero - \"Triangolo\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Renato Zero - \"Triangolo\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Renato Zero - \"Triangolo\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Renato Zero - \"Triangolo\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Renato Zero - \"Triangolo\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/275439955",
+      "uri_deezer": "deezer://track/64975600"
     },
     {
       "year": 1978,
@@ -661,7 +760,9 @@
       "fun_fact_de": "Rino Gaetano - \"A mano a mano\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Rino Gaetano - \"A mano a mano\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Rino Gaetano - \"A mano a mano\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Rino Gaetano - \"A mano a mano\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Rino Gaetano - \"A mano a mano\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1536464463",
+      "uri_deezer": "deezer://track/101902307"
     },
     {
       "year": 1978,
@@ -676,7 +777,9 @@
       "fun_fact_de": "Rino Gaetano - \"Gianna\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Rino Gaetano - \"Gianna\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Rino Gaetano - \"Gianna\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Rino Gaetano - \"Gianna\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Rino Gaetano - \"Gianna\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1299685367",
+      "uri_deezer": "deezer://track/634108"
     },
     {
       "year": 1978,
