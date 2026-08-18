@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana",
   "description": "Italienische Klassiker von den 60ern bis in die 2000er — Cantautori, Sanremo-Sieger und die Lieder, die auf jeder Feier mitgesungen werden.",
-  "version": "0.3",
+  "version": "0.5",
   "songs": [
     {
       "year": 1962,
@@ -252,7 +252,8 @@
       "fun_fact_fr": "Lucio Battisti - \"Dieci ragazze\" (1970), du canon de la pop italienne.",
       "fun_fact_nl": "Lucio Battisti - \"Dieci ragazze\" (1970), uit de Italiaanse popcanon.",
       "uri_apple_music": "applemusic://track/1480766583",
-      "uri_deezer": "deezer://track/764314602"
+      "uri_deezer": "deezer://track/764314602",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nWEIl80bqok"
     },
     {
       "year": 1970,
@@ -269,7 +270,8 @@
       "fun_fact_fr": "Massimo Ranieri - \"Se bruciasse la città\" (1970), du canon de la pop italienne.",
       "fun_fact_nl": "Massimo Ranieri - \"Se bruciasse la città\" (1970), uit de Italiaanse popcanon.",
       "uri_apple_music": "applemusic://track/1532921385",
-      "uri_deezer": "deezer://track/751997"
+      "uri_deezer": "deezer://track/751997",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_zzug4d51eo"
     },
     {
       "year": 1970,
@@ -320,7 +322,8 @@
       "fun_fact_fr": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), du canon de la pop italienne.",
       "fun_fact_nl": "Lucio Battisti - \"La canzone del sole - Remastered\" (1971), uit de Italiaanse popcanon.",
       "uri_apple_music": "applemusic://track/1480763765",
-      "uri_deezer": "deezer://track/764072472"
+      "uri_deezer": "deezer://track/764072472",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XcxWKT41A0g"
     },
     {
       "year": 1971,
@@ -794,7 +797,9 @@
       "fun_fact_de": "Vasco Rossi - \"E...\" (1978), aus dem italienischen Pop-Kanon.",
       "fun_fact_es": "Vasco Rossi - \"E...\" (1978), del canon del pop italiano.",
       "fun_fact_fr": "Vasco Rossi - \"E...\" (1978), du canon de la pop italienne.",
-      "fun_fact_nl": "Vasco Rossi - \"E...\" (1978), uit de Italiaanse popcanon."
+      "fun_fact_nl": "Vasco Rossi - \"E...\" (1978), uit de Italiaanse popcanon.",
+      "uri_apple_music": "applemusic://track/1443213284",
+      "uri_deezer": "deezer://track/135876548"
     },
     {
       "year": 1979,
