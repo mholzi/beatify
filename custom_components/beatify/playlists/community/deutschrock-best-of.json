@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.29",
+  "version": "0.31",
   "tags": [
     "deutschrock",
     "german rock",
@@ -2525,7 +2525,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IqJo2donfMA",
       "uri_tidal": "tidal://track/453551268",
       "uri_deezer": "deezer://track/3503714961",
       "alt_artists": [],
@@ -2551,7 +2551,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lKvqAKiUW58",
       "uri_tidal": "tidal://track/2040270",
       "uri_deezer": "deezer://track/1272451822",
       "alt_artists": [],
@@ -2577,7 +2577,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nQXfqSTbRgo",
       "uri_tidal": "tidal://track/1992589",
       "uri_deezer": "deezer://track/2222140",
       "alt_artists": [],
@@ -2603,7 +2603,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dxMUs1QsEKY",
       "uri_tidal": "tidal://track/119304666",
       "uri_deezer": "deezer://track/767767252",
       "alt_artists": [],

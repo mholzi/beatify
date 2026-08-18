@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.13",
+  "version": "0.14",
   "tags": [
     "quebecois",
     "quebec",
@@ -1232,7 +1232,7 @@
         "nl": "applemusic://track/1606159319",
         "it": "applemusic://track/1606159319"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qJPxlP3m4DM",
       "uri_tidal": "tidal://track/332416388",
       "uri_deezer": "deezer://track/77580105",
       "alt_artists": [
@@ -1622,7 +1622,7 @@
         "nl": "applemusic://track/1568305004",
         "it": "applemusic://track/1568305004"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RrBHlpUIbE0",
       "uri_tidal": "tidal://track/185129248",
       "uri_deezer": "deezer://track/1376976052",
       "alt_artists": [
@@ -1802,7 +1802,7 @@
         "nl": "applemusic://track/627076988",
         "it": "applemusic://track/627076988"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s9otjryrpYU",
       "uri_tidal": "tidal://track/20526267",
       "uri_deezer": "deezer://track/65802695",
       "alt_artists": [
@@ -2102,7 +2102,7 @@
         "nl": "applemusic://track/1459897036",
         "it": "applemusic://track/1459897036"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xwNKQbafLQo",
       "uri_tidal": "tidal://track/108016819",
       "uri_deezer": "deezer://track/668926932",
       "alt_artists": [
@@ -2192,7 +2192,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RkC9HgrRq3Q",
       "uri_tidal": "tidal://track/36289922",
       "uri_deezer": "deezer://track/617423192",
       "alt_artists": [
@@ -3362,7 +3362,7 @@
         "nl": "applemusic://track/1274063182",
         "it": "applemusic://track/1274063182"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4j8DVTkZdCE",
       "uri_tidal": "tidal://track/75787055",
       "uri_deezer": "deezer://track/401394412",
       "alt_artists": [
@@ -3572,7 +3572,7 @@
         "nl": "applemusic://track/687812868",
         "it": "applemusic://track/687812868"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RLOQCqGKVt8",
       "uri_tidal": "tidal://track/21048803",
       "uri_deezer": "deezer://track/1885473517",
       "alt_artists": [

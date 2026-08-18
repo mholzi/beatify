@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.18",
+  "version": "0.19",
   "tags": [
     "polish",
     "rock"
@@ -2575,7 +2575,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UOyXW3hJMqg",
       "uri_tidal": "tidal://track/389745865",
       "uri_deezer": "deezer://track/3017689761",
       "alt_artists": [],
@@ -2601,7 +2601,7 @@
         "nl": null,
         "it": null
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z0EZSFAnD04",
       "uri_tidal": "tidal://track/121024756",
       "uri_deezer": "deezer://track/785902672",
       "alt_artists": [],
