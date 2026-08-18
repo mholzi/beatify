@@ -1,6 +1,6 @@
 {
-  "name": "Musica Italiana",
-  "description": "Italienische Klassiker von den 60ern bis in die 2000er — Cantautori, Sanremo-Sieger und die Lieder, die auf jeder Feier mitgesungen werden.",
+  "name": "Musica Italiana 🇮🇹",
+  "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
   "version": "0.5",
   "songs": [
     {
@@ -1831,5 +1831,6 @@
     "1980s",
     "1990s",
     "2000s"
-  ]
+  ],
+  "language": "it"
 }

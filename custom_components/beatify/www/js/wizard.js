@@ -899,6 +899,7 @@ const LANGUAGES = [
     { id: 'es', label: 'Español' },
     { id: 'fr', label: 'Français' },
     { id: 'nl', label: 'Nederlands' },
+    { id: 'it', label: 'Italiano' },
 ];
 
 /**
