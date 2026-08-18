@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beatify — Das Musikquiz für Home Assistant</title>
+  <meta name="description" content="Musikquiz für die Party, direkt aus Home Assistant. Gäste scannen einen QR-Code, ein Song läuft — ratet das Jahr oder Titel und Interpret. Ohne App, ohne Konto. Mit 550 deutschen Titeln von Schlager bis NDW.">
+  <meta name="keywords" content="Musikquiz Home Assistant, Musik Quiz Party, Hitster selber bauen, Schlager Quiz, NDW Quiz, Smart Home Partyspiel, HACS, Sonos, Alexa, Music Assistant">
+  <meta name="author" content="Markus Holzhäuser">
+
+  <!-- Canonical + Sprachvarianten -->
+  <link rel="canonical" href="https://mholzi.github.io/beatify/de/">
+  <link rel="alternate" hreflang="de" href="https://mholzi.github.io/beatify/de/">
+  <link rel="alternate" hreflang="en" href="https://mholzi.github.io/beatify/">
+  <link rel="alternate" hreflang="x-default" href="https://mholzi.github.io/beatify/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Beatify — Das Musikquiz für Home Assistant">
+  <meta property="og:description" content="Gäste scannen einen QR-Code, ein Song läuft, alle raten mit. 55 Playlists mit 6.079 Songs, davon 550 deutsche Titel. Läuft komplett bei dir zu Hause.">
+  <meta property="og:url" content="https://mholzi.github.io/beatify/de/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/mholzi/beatify/main/images/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beatify — Das Musikquiz für Home Assistant">
+  <meta name="twitter:description" content="QR-Code scannen, Song hören, Jahr raten. 550 deutsche Titel von Schlager bis NDW. Ohne App, ohne Konto, komplett lokal.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/mholzi/beatify/main/images/social-preview.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/mholzi/beatify/main/images/icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/mholzi/beatify/main/images/icon.png">
+
+  <!-- Preconnect hints -->
+  <link rel="preconnect" href="https://img.shields.io">
+  <link rel="preconnect" href="https://my.home-assistant.io">
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Beatify",
+    "inLanguage": "de",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Home Assistant",
+    "description": "Musikquiz-Partyspiel für Home Assistant. Ratet das Erscheinungsjahr oder Titel und Interpret. Gäste treten über einen QR-Code bei, ohne App und ohne Konto. Läuft mit Sonos, Alexa und jedem Music-Assistant-Lautsprecher.",
+    "url": "https://mholzi.github.io/beatify/de/",
+    "downloadUrl": "https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration",
+    "softwareVersion": "4.2.0",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Markus Holzhäuser",
+      "url": "https://github.com/mholzi"
+    },
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/mholzi/beatify"
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#" class="logo" aria-label="Beatify Startseite">
+          <img src="https://raw.githubusercontent.com/mholzi/beatify/main/images/beatify-logo.png" alt="Beatify Logo" width="28" height="28" class="logo-img">
+          Beatify
+        </a>
+        <ul class="nav-links">
+          <li><a href="#so-gehts">So läuft's</a></li>
+          <li><a href="#musik">Musik</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="../" hreflang="en">English</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <!-- ===== HERO ===== -->
+      <section class="hero" id="hero">
+        <div class="container">
+          <h1>Das Musikquiz, für das dein Smart Home gebaut ist</h1>
+          <p class="tagline">QR-Code scannen, Song hören, Jahr raten — oder Titel und Interpret eintippen. Läuft über die Lautsprecher, die ohnehin bei dir stehen.</p>
+
+          <div class="hero-stats">
+            <span>55 Playlists</span>
+            <span>6.079 Songs</span>
+            <span>550 deutsche Titel</span>
+            <span>6 Musikdienste</span>
+          </div>
+
+          <div class="hero-cta">
+            <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration" class="hacs-button" target="_blank" rel="noopener noreferrer">
+              <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="In HACS öffnen" width="197" height="48">
+            </a>
+            <a href="https://github.com/mholzi/beatify" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              Auf GitHub ansehen
+            </a>
+          </div>
+
+          <div class="hero-image">
+            <img src="https://raw.githubusercontent.com/mholzi/beatify/main/images/qr-lobby.png" alt="Beatify QR-Code-Lobby — Gäste scannen und sind im Spiel" width="600" height="400" loading="eager">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SO LÄUFT'S ===== -->
+      <section class="how-it-works" id="so-gehts">
+        <div class="container">
+          <h2 class="section-title">So läuft's</h2>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-number" aria-hidden="true">1</div>
+              <h3>Installieren</h3>
+              <p>Beatify über HACS zu Home Assistant hinzufügen. Lautsprecher und Musikdienst auswählen, fertig.</p>
+            </div>
+            <div class="step">
+              <div class="step-number" aria-hidden="true">2</div>
+              <h3>Musik wählen</h3>
+              <p>55 fertige Playlists, davon sechs deutschsprachige — oder stell dir im Mix-Tab aus Jahrzehnt, Stil und Region deine eigene zusammen.</p>
+            </div>
+            <div class="step">
+              <div class="step-number" aria-hidden="true">3</div>
+              <h3>Losspielen</h3>
+              <p>Gäste scannen den QR-Code am Fernseher. Keine App, kein Konto. Der erste Song läuft, alle raten mit.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DEUTSCHE MUSIK ===== -->
+      <section class="features" id="musik">
+        <div class="container">
+          <h2 class="section-title">550 deutsche Titel, damit alle mitraten können</h2>
+          <p class="tagline">Bei einem Jahresraten-Spiel steht und fällt der Abend damit, ob die Leute die Songs kennen. Mit einer reinen Billboard-Auswahl raten deutsche Gäste im Nebel. „Skandal im Sperrbezirk" oder „Über den Wolken" erkennt dagegen jeder im Raum sofort — und daraus entsteht das Mitgrölen, das so einen Abend trägt.</p>
+          <div class="features-grid">
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🎤</div>
+              <h3>Deutschpop Klassiker</h3>
+              <p>107 Songs quer durch vier Jahrzehnte deutschen Pop.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🎸</div>
+              <h3>Deutschrock</h3>
+              <p>100 Songs von den Toten Hosen bis Böhse Onkelz.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🍺</div>
+              <h3>Wiesn Party Hits</h3>
+              <p>100 Songs für Oktoberfest, Après-Ski und jede Feier, die laut wird.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🏰</div>
+              <h3>Disney Hits Deutschland</h3>
+              <p>97 Songs in der Fassung, mit der alle aufgewachsen sind.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">💃</div>
+              <h3>Schlager Klassiker</h3>
+              <p>96 Songs, bei denen die Elterngeneration jedes Mal gewinnt.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🎹</div>
+              <h3>Neue Deutsche Welle</h3>
+              <p>50 Songs aus den Jahren 1976 bis 1986.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FEATURES ===== -->
+      <section class="features" id="features">
+        <div class="container">
+          <h2 class="section-title">Features</h2>
+          <div class="features-grid">
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🚫📱</div>
+              <h3>Ohne Hürde</h3>
+              <p>Gäste scannen einen QR-Code. Keine App, kein Konto. Zehn Sekunden vom Scannen bis zum ersten Song.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🔊</div>
+              <h3>Deine Lautsprecher</h3>
+              <p>Läuft mit Music Assistant, Sonos und Alexa — also mit dem, was schon da ist.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🎵</div>
+              <h3>Deine Musik</h3>
+              <p>Spotify, Apple Music, YouTube Music, Deezer, Tidal und Amazon Music. Oder deine eigene Bibliothek über Plex, Jellyfin und lokale Dateien.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">✍️</div>
+              <h3>Zwei Spielarten</h3>
+              <p>Erscheinungsjahr raten oder Titel und Interpret eintippen. Bei knappen Antworten stimmt der Raum per 👍/👎 ab.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🏠</div>
+              <h3>Läuft bei dir</h3>
+              <p>Keine Cloud, kein Abo. Es verlässt nichts dein Netzwerk.</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon" aria-hidden="true">🏆</div>
+              <h3>Echter Wettkampf</h3>
+              <p>Punkte, Serien, Alles-oder-nichts-Wetten und ein Siegertreppchen mit Trommelwirbel.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== INSTALLATION ===== -->
+      <section class="install" id="installation">
+        <div class="container">
+          <h2 class="section-title">Installation</h2>
+          <div class="install-grid">
+            <div class="install-card">
+              <h3>📦 Über HACS</h3>
+              <p>Beatify steht im HACS-Standard-Store. In HACS nach „Beatify" suchen, herunterladen, Home Assistant neu starten und die Integration hinzufügen. Kein Custom Repository nötig.</p>
+              <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration" class="hacs-button" target="_blank" rel="noopener noreferrer">
+                <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="In HACS öffnen" width="197" height="48">
+              </a>
+            </div>
+            <div class="install-card">
+              <h3>🔧 Voraussetzungen</h3>
+              <p>Home Assistant 2025.1 oder neuer, Music Assistant für die Wiedergabe und ein bezahlter Streaming-Account. Kostenlose Tarife lassen kein gezieltes Abspielen einzelner Titel zu — das ist eine Grenze der Dienste, nicht von Beatify.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== COMMUNITY ===== -->
+      <section class="community" id="community">
+        <div class="container">
+          <h2 class="section-title">Mitmachen</h2>
+          <p class="tagline">Fehlt dir eine Playlist? Schreib ein Issue auf GitHub — deutschsprachige Wünsche sind ausdrücklich willkommen und landen meistens innerhalb weniger Tage im Katalog.</p>
+          <div class="hero-cta">
+            <a href="https://github.com/mholzi/beatify/issues" class="btn-secondary" target="_blank" rel="noopener noreferrer">Playlist vorschlagen</a>
+            <a href="https://github.com/mholzi/beatify" class="btn-secondary" target="_blank" rel="noopener noreferrer">Auf GitHub ansehen</a>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Beatify ist freie Software unter der MIT-Lizenz. <a href="../" hreflang="en">English version</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
