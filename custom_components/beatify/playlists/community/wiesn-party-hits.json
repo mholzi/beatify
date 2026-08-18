@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.18",
+  "version": "0.20",
   "tags": [
     "party",
     "schlager",
@@ -3016,7 +3016,7 @@
         "it": "applemusic://track/1763633119"
       },
       "uri_deezer": "deezer://track/2959691301",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XcjJ_vaokA4",
       "uri_tidal": "tidal://track/382874563"
     },
     {
@@ -3049,7 +3049,7 @@
         "it": "applemusic://track/1745148372"
       },
       "uri_deezer": "deezer://track/2805848012",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zhSmxQ__rs8",
       "uri_tidal": "tidal://track/363687804"
     },
     {
@@ -3082,7 +3082,7 @@
         "it": "applemusic://track/1807081836"
       },
       "uri_deezer": "deezer://track/3319947541",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=diyJWQkXBTg",
       "uri_tidal": "tidal://track/429399201"
     },
     {
@@ -3119,7 +3119,7 @@
         "it": "applemusic://track/1792241771"
       },
       "uri_deezer": "deezer://track/3200185401",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1SXQfd8f-o0",
       "uri_tidal": "tidal://track/413444352"
     },
     {
@@ -3152,7 +3152,7 @@
         "it": "applemusic://track/1839934484"
       },
       "uri_deezer": "deezer://track/3573741941",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J7wEQnmDCac",
       "uri_tidal": "tidal://track/463050080"
     },
     {
@@ -3185,7 +3185,7 @@
         "it": "applemusic://track/1638351753"
       },
       "uri_deezer": "deezer://track/1789665297",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QLlK-br3iDw",
       "uri_tidal": "tidal://track/233457205"
     },
     {
@@ -3221,7 +3221,7 @@
         "it": "applemusic://track/1854797633"
       },
       "uri_deezer": "deezer://track/3647291032",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_lJv09v7kpI",
       "uri_tidal": "tidal://track/539811572"
     },
     {

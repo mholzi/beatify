@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.10",
+  "version": "1.13",
   "tags": [
     "german",
     "carnival",
@@ -150,7 +150,8 @@
         "es": "applemusic://track/1384484805",
         "nl": "applemusic://track/1384484805",
         "it": "applemusic://track/1384484805"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PtCU3M0Gbm0"
     },
     {
       "year": 1973,
@@ -246,7 +247,8 @@
       "uri_tidal": "tidal://track/11203241",
       "uri_deezer": "deezer://track/3399558",
       "fun_fact_nl": "Alternatieve versie van het geliefde Veedel-volkslied - de Bläck Fööss, opgericht in 1970, waren pioniers van het Kölschrock-genre, een mix van rock en carnavalstradities.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BNNgDvSX4tk"
     },
     {
       "year": 1981,
@@ -454,7 +456,8 @@
       "uri_tidal": "tidal://track/1501194",
       "uri_deezer": "deezer://track/3399536",
       "fun_fact_nl": "Over het traditionele 'Schützenfest' (schuttersfeest), wat laat zien hoe de Bläck Fööss alle aspecten van de Rijnlandse volkstradities vierden.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Tqr9k6K8kN8"
     },
     {
       "year": 1983,
@@ -1119,7 +1122,8 @@
       "uri_tidal": "tidal://track/11214236",
       "uri_deezer": "deezer://track/13443009",
       "fun_fact_nl": "Een zelfbewuste verklaring 'Wij hebben niemand nodig' - het viert de onafhankelijke geest van Keulen en de hechte gemeenschapsbanden.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IX_OE9Budtg"
     },
     {
       "year": 1986,
@@ -1898,7 +1902,8 @@
       "uri_tidal": "tidal://track/2912433",
       "uri_deezer": "deezer://track/7369688",
       "fun_fact_nl": "De Höhner vieren dat er 'Overal ter wereld Keulenaren zijn' - de Keulse diaspora houdt de carnavalstradities wereldwijd levend.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o2PwjxkiBpI"
     },
     {
       "year": 1999,
@@ -2277,7 +2282,8 @@
       "uri_tidal": "tidal://track/2904871",
       "uri_deezer": "deezer://track/3396587",
       "fun_fact_nl": "De carnavals-hit 'Waanzin' van komiek Bernd Stelter - veel Duitse komieken hebben een succesvolle carrière in de carnavalsmuziek in Keulen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_BJXCRhDdKE"
     },
     {
       "year": 2009,
@@ -2636,7 +2642,8 @@
       "uri_tidal": "tidal://track/11203206",
       "uri_deezer": "deezer://track/13463239",
       "fun_fact_nl": "Die Rheinländer zingen 'Into the World' - carnavalsgroepen gaan vaak op internationale tournee om de Kölsch-cultuur buiten het Rijnland te verspreiden.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L40-yKjzDeY"
     },
     {
       "year": 2005,
@@ -2720,7 +2727,8 @@
       "uri_tidal": "tidal://track/11211584",
       "uri_deezer": "deezer://track/13459439",
       "fun_fact_nl": "Querbeat, opgericht in 2007, brengt fanfare-energie met latin flair - deze 'Tropical Colonia' werd een favoriet op de carnavalsdansvloer.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RXfOnIaDW8E"
     },
     {
       "year": 1995,
@@ -2789,7 +2797,8 @@
         "it": "applemusic://track/202229994"
       },
       "uri_tidal": "tidal://track/2117520",
-      "uri_deezer": "deezer://track/2473722"
+      "uri_deezer": "deezer://track/2473722",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uc8WS_pXXtM"
     },
     {
       "year": 1957,
@@ -2987,7 +2996,8 @@
       "uri_tidal": "tidal://track/11193255",
       "uri_deezer": "deezer://track/13459786",
       "fun_fact_nl": "Hans Rudolf Knipp's versie van dit tedere liedje over oma bloemen geven - een carnavalstraditie om ouderen te eren.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wqUzpWv098A"
     },
     {
       "year": 2012,
@@ -3011,7 +3021,8 @@
       "uri_tidal": "tidal://track/13245200",
       "uri_deezer": "deezer://track/16033099",
       "fun_fact_nl": "Kasalla's doorbraakhit 'Kiss me' lanceerde hen naar carnavalsterrendom - hun moderne rocksound trok een jonger publiek naar de Kölsch-muziek.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J02T0m2c31g"
     },
     {
       "year": 2012,
@@ -3270,7 +3281,8 @@
       "uri_tidal": "tidal://track/23455340",
       "uri_deezer": "deezer://track/89242807",
       "fun_fact_nl": "Koning' in het Duits - viert dat je je koninklijk voelt tijdens carnaval, wanneer elke Jeck (dwaas) een koning wordt.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SbJjykM8yig"
     },
     {
       "year": 2013,
@@ -3294,7 +3306,8 @@
       "uri_tidal": "tidal://track/23455334",
       "uri_deezer": "deezer://track/72278182",
       "fun_fact_nl": "My City' - een liefdesverklaring aan Keulen, met het kenmerkende folkrockgeluid dat Cat Ballou in de Kölsch-muziek heeft geïntroduceerd.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q7WeY_dOzlw"
     },
     {
       "year": 2013,
@@ -5348,7 +5361,8 @@
         "es": "applemusic://track/1671011632",
         "nl": "applemusic://track/1671011632",
         "it": "applemusic://track/1671011632"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x65_s8T1SGQ"
     },
     {
       "year": 2018,
@@ -6157,7 +6171,8 @@
         "es": null,
         "nl": null,
         "it": null
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P0Ath0jJh-4"
     },
     {
       "year": 2019,
@@ -7781,7 +7796,8 @@
         "es": "applemusic://track/1711613886",
         "nl": "applemusic://track/1711613886",
         "it": "applemusic://track/1711613886"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BJ_ke06uB5o"
     },
     {
       "year": 2023,
@@ -9283,7 +9299,8 @@
         "es": "applemusic://track/1774224347",
         "nl": "applemusic://track/1774224347",
         "it": "applemusic://track/1774224347"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=34JOAPatI3I"
     }
   ]
 }
