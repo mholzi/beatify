@@ -1,6 +1,6 @@
 {
   "name": "Eurovision Winners (1956-2025)",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "eurovision",
     "contest",
@@ -1132,7 +1132,8 @@
         "Eurovisionwinnaar 1975"
       ],
       "uri_tidal": "tidal://track/181365005",
-      "uri_apple_music": "applemusic://track/104581124"
+      "uri_apple_music": "applemusic://track/104581124",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BPxuq4uQ0OU"
     },
     {
       "year": 1976,
@@ -1524,7 +1525,8 @@
         "es": "applemusic://track/1568840214",
         "nl": "applemusic://track/1568840214",
         "it": "applemusic://track/1568840214"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=F8y5xc8UodE"
     },
     {
       "year": 1984,
@@ -2385,7 +2387,8 @@
       "fun_fact_nl": "Everybody was de eerste Estse overwinning en de eerste voor een voormalige Sovjetrepubliek. Dave Benton werd op 50-jarige leeftijd de oudste winnaar en de eerste zwarte artiest die won. Estland werd kampioen in slechts zeven jaar na hun debuut.",
       "awards_nl": [
         "Eurovisionwinnaar 2001"
-      ]
+      ],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=92TSUlqzFi8"
     },
     {
       "year": 2002,
@@ -2434,7 +2437,8 @@
         "nl": "applemusic://track/260662904",
         "it": "applemusic://track/260662904"
       },
-      "uri_tidal": "tidal://track/12486339"
+      "uri_tidal": "tidal://track/12486339",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_M-w89U8TEU"
     },
     {
       "year": 2003,
@@ -2863,7 +2867,8 @@
       "fun_fact_nl": "Running Scared was de eerste Eurovisie-overwinning voor Azerbeidzjan, dat pas in 2008 debuteerde. Het romantische duet van Ell en Nikki versloeg nipt Italië. De overwinning zorgde ervoor dat Azerbeidzjan Eurovisie 2012 mocht organiseren in hun speciaal gebouwde Crystal Hall.",
       "awards_nl": [
         "Eurovisionwinnaar 2011"
-      ]
+      ],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_0tlQUW5X0U"
     },
     {
       "year": 2012,

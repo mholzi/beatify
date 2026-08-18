@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Dutch Classics 🇳🇱",
-  "version": "1.17",
+  "version": "1.19",
   "tags": [
     "nederlandstalig",
     "dutch",
@@ -2557,7 +2557,8 @@
       "fun_fact_es": "Toppertje! se convirtió en el himno no oficial de los conciertos Toppers holandeses con Gordon, Gerard Joling y Jan Smit.",
       "fun_fact_fr": "Toppertje! est devenu l'hymne non officiel des concerts Toppers néerlandais avec Gordon, Gerard Joling et Jan Smit.",
       "fun_fact_nl": "Toppertje! werd het officieuze volkslied van de Nederlandse Toppers-concerten, razend populaire entertainmentspektakels met Gordon, Gerard Joling en Jan Smit. Het upbeat, campy nummer vatte perfect de over-the-top spirit van het merk Toppers. Het werd een van de meest herkenbare Nederlandse feestnummers van midden jaren 2000.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ktk1Lj5e18Y"
     },
     {
       "year": 1994,
@@ -2730,7 +2731,8 @@
         "nl": "applemusic://track/1371915839",
         "it": "applemusic://track/1371915839"
       },
-      "uri_deezer": "deezer://track/485661192"
+      "uri_deezer": "deezer://track/485661192",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pZpqZq1nNJs"
     },
     {
       "year": 2018,

@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.14",
+  "version": "2.15",
   "tags": [
     "1980s",
     "pop",
@@ -2485,7 +2485,8 @@
       "fun_fact_nl": "Oorspronkelijk uitgebracht in 1982 en opnieuw opgenomen voor het album 'The Hurting', gaat het nummer over emotionele verwaarlozing in de kindertijd, geïnspireerd door Arthur Janovs primaire therapie.",
       "awards_nl": [],
       "uri_tidal": "tidal://track/22936962",
-      "uri_apple_music": "applemusic://track/1440912610"
+      "uri_apple_music": "applemusic://track/1440912610",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BUfcT5OoP-8"
     },
     {
       "year": 1983,
@@ -3624,7 +3625,8 @@
         "es": "applemusic://track/1692882667",
         "nl": "applemusic://track/1692882667",
         "it": "applemusic://track/1692882667"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NSRrAYeh5OU"
     },
     {
       "year": 1984,
@@ -3696,7 +3698,8 @@
         "es": "applemusic://track/1127014316",
         "nl": "applemusic://track/1127014316",
         "it": "applemusic://track/1127014316"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fe93CLbHjxQ"
     },
     {
       "year": 1984,
@@ -5662,7 +5665,8 @@
       "uri_deezer": "deezer://track/540503452",
       "fun_fact_nl": "Oorspronkelijk met Dolly Parton in gedachten voor de vrouwelijke zang, zong Kate Bush uiteindelijk het duet. Het nummer was geïnspireerd op Depressie-era foto's van Dorothea Lange.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/986800861"
+      "uri_apple_music": "applemusic://track/986800861",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VjEq-r2agqc"
     },
     {
       "year": 1986,

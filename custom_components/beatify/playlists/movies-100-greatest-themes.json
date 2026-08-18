@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.19",
+  "version": "1.20",
   "tags": [
     "movies",
     "soundtrack",
@@ -6495,7 +6495,8 @@
       "fun_fact_nl": "The Deer Hunter gebruikt Cavatina van Stanley Myers. Het zachte gitaarstuk staat in schril contrast met het geweld van de film.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1052784975",
-      "uri_deezer": "deezer://track/120866262"
+      "uri_deezer": "deezer://track/120866262",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gGycDDqBuX8"
     },
     {
       "year": 2001,
@@ -7076,7 +7077,8 @@
       "uri_deezer": "deezer://track/106267650",
       "fun_fact_nl": "John Barry's From Russia with Love vestigde de muzikale stijl van Bond. Het was de eerste Bondfilm met een titelsong.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1542637867"
+      "uri_apple_music": "applemusic://track/1542637867",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UDZEZxHdq5k"
     },
     {
       "year": 1946,
@@ -7114,7 +7116,8 @@
         "es": "applemusic://track/1597777326",
         "nl": "applemusic://track/1597777326",
         "it": "applemusic://track/1597777326"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ncbod0QSLJA"
     },
     {
       "year": 1942,
@@ -7160,7 +7163,8 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1942)"
       ],
-      "uri_apple_music": "applemusic://track/1300642506"
+      "uri_apple_music": "applemusic://track/1300642506",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=v5ryZdpEHqM"
     },
     {
       "year": 1958,
@@ -7187,7 +7191,8 @@
       "uri_tidal": "tidal://track/303511178",
       "uri_deezer": "deezer://track/2357173085",
       "fun_fact_nl": "Het Pearl & Dean-thema speelt al sinds 1958 voor reclames in Britse bioscopen. De fanfare is bekend bij generaties bioscoopbezoekers.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cxU6LT6DonE"
     }
   ],
   "movie_quiz_enabled": true
