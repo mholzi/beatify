@@ -195,7 +195,7 @@ window.BeatifyI18n = (function() {
     /**
      * Supported languages (Story 16.3 - added Spanish)
      */
-    var SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'nl'];
+    var SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'nl', 'it'];
 
     /**
      * Set the current language
@@ -311,6 +311,10 @@ window.BeatifyI18n = (function() {
         // Check for Dutch (nl, nl-NL, nl-BE, etc.)
         if (langLower.startsWith('nl')) {
             return 'nl';
+        }
+        // Check for Italian (it, it-IT, it-CH, etc.)
+        if (langLower.startsWith('it')) {
+            return 'it';
         }
         // Default to English
         return 'en';

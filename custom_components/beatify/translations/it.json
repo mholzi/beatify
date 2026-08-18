@@ -1,0 +1,30 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configura Beatify",
+                "description": "Beatify è un'integrazione per Home Assistant che trasforma la festa in un gioco musicale, riproducendo la musica sui tuoi media player.\n\n{warning}"
+            }
+        },
+        "error": {
+            "unknown": "Si è verificato un errore sconosciuto."
+        },
+        "abort": {
+            "already_configured": "Beatify è già configurato."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Opzioni di Beatify",
+                "description": "Impostazioni avanzate di autenticazione. Lasciale ai valori predefiniti, a meno che tu non sappia di averne bisogno.",
+                "data": {
+                    "enable_companion_auth_bypass": "Attiva il bypass di autenticazione per l'app HA Companion su Android"
+                },
+                "data_description": {
+                    "enable_companion_auth_bypass": "Disattivato per impostazione predefinita. Se attivo, le richieste provenienti dall'app HA Companion per Android sulla tua rete locale vengono trattate come quelle dell'host, senza login. Questo indebolisce l'autenticazione e dovrebbe restare disattivato, a meno che l'app Companion non riesca davvero ad autenticarsi. NON attivarlo se Beatify è raggiungibile tramite Home Assistant Cloud (Nabu Casa) o un reverse proxy che non inoltra l'indirizzo IP reale del client: in questi casi un visitatore da internet potrebbe ospitare partite senza credenziali."
+                }
+            }
+        }
+    }
+}
