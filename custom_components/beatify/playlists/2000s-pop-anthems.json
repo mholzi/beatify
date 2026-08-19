@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "2000s",
     "pop",
@@ -6968,13 +6968,13 @@
       "uri": "spotify:track:6MPTmoLt4IaL1XKRgKER4I",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1468603436",
+        "de": "applemusic://track/1468603436",
+        "gb": "applemusic://track/1468603999",
+        "fr": "applemusic://track/1468603436",
+        "es": "applemusic://track/1468603436",
+        "nl": "applemusic://track/1468603436",
+        "it": "applemusic://track/1468603436"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QWBMCtIllEM",
       "uri_tidal": "tidal://track/111279010",
@@ -7068,13 +7068,13 @@
       "uri": "spotify:track:2QMdxS78DaXP8aS8qJqGzU",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/348366650",
+        "de": "applemusic://track/348366650",
+        "gb": "applemusic://track/348366650",
+        "fr": "applemusic://track/348366650",
+        "es": "applemusic://track/348366650",
+        "nl": "applemusic://track/348366650",
+        "it": "applemusic://track/348366498"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=oGDjI40SjrA",
       "uri_tidal": "tidal://track/79783653",
@@ -7118,7 +7118,7 @@
       "uri": "spotify:track:7xXSaVgEvUrV1GCc3oO8HC",
       "uri_apple_music": "applemusic://track/1269627144",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1751829853",
         "de": "applemusic://track/1269627144",
         "gb": "applemusic://track/1269627144",
         "fr": "applemusic://track/1269627144",
