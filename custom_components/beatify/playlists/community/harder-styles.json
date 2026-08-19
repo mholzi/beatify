@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.25",
+  "version": "1.26",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -3372,12 +3372,12 @@
       "uri_apple_music": "applemusic://track/1467342418",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1467342418",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1467342418",
+        "gb": "applemusic://track/1467342418",
+        "fr": "applemusic://track/1467342418",
+        "es": "applemusic://track/1467342418",
+        "nl": "applemusic://track/1467342418",
+        "it": "applemusic://track/1467342418"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Tzl8J-bmXVE",
       "uri_tidal": "tidal://track/111034121",
@@ -3424,13 +3424,13 @@
       "uri": "spotify:track:2QFR0InGwGPZY1wPCrpb6a",
       "uri_apple_music": "applemusic://track/1459524332",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1842571770",
         "de": "applemusic://track/1459524332",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1842571770",
+        "fr": "applemusic://track/1842571770",
+        "es": "applemusic://track/1450541135",
+        "nl": "applemusic://track/1450541135",
+        "it": "applemusic://track/1450541135"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aoTKVVtCO9w",
       "uri_tidal": "tidal://track/352180916",
