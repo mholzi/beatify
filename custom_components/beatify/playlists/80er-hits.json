@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.18",
+  "version": "2.19",
   "tags": [
     "1980s",
     "pop",
@@ -944,6 +944,14 @@
         "Grammy per il disco dell'anno (1984)",
         "Grammy per la migliore interpretazione vocale rock maschile (1984)"
       ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1984)",
+        "Grammy - Beste männliche Rock-Gesangsdarbietung (1984)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1984)",
+        "Grammy - Mejor Interpretación Vocal Rock Masculina (1984)"
+      ],
       "isrc": "USSM18200197",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/310505615",
@@ -993,6 +1001,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione vocale R&B maschile (1984)"
+      ],
+      "awards_de": [
+        "Grammy - Beste männliche R&B-Gesangsdarbietung (1984)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal R&B Masculina (1984)"
       ],
       "isrc": "USSM19902991",
       "uri_apple_music_by_region": {
@@ -1275,6 +1289,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione rock di un duo o gruppo (1983)"
       ],
+      "awards_de": [
+        "Grammy - Beste Rock-Darbietung eines Duos oder einer Gruppe (1983)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Rock de Dúo o Grupo (1983)"
+      ],
       "isrc": "USVR19300001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1635636757",
@@ -1476,6 +1496,12 @@
       ],
       "awards_it": [
         "Grammy per il disco dell'anno (1983)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1983)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1983)"
       ],
       "isrc": "USSM18200245",
       "uri_apple_music_by_region": {
@@ -2089,6 +2115,14 @@
       "awards_it": [
         "Oscar per la migliore canzone originale (1984)",
         "Golden Globe per la migliore canzone originale (1984)"
+      ],
+      "awards_de": [
+        "Oscar - Bester Filmsong (1984)",
+        "Golden Globe - Bester Filmsong (1984)"
+      ],
+      "awards_es": [
+        "Óscar - Mejor Canción Original (1984)",
+        "Globo de Oro - Mejor Canción Original (1984)"
       ],
       "isrc": "USA560661522",
       "uri_apple_music_by_region": {
@@ -3571,6 +3605,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione vocale pop maschile (1985)"
       ],
+      "awards_de": [
+        "Grammy - Beste männliche Pop-Gesangsdarbietung (1985)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop Masculina (1985)"
+      ],
       "isrc": "USRH11603951",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1148642452",
@@ -3802,6 +3842,14 @@
       "awards_it": [
         "Oscar per la migliore canzone originale (1985)",
         "Golden Globe per la migliore canzone originale (1985)"
+      ],
+      "awards_de": [
+        "Oscar - Bester Filmsong (1985)",
+        "Golden Globe - Bester Filmsong (1985)"
+      ],
+      "awards_es": [
+        "Óscar - Mejor Canción Original (1985)",
+        "Globo de Oro - Mejor Canción Original (1985)"
       ],
       "isrc": "USUMG9900476",
       "uri_apple_music_by_region": {
@@ -4068,6 +4116,16 @@
         "Grammy per il disco dell'anno (1985)",
         "Grammy per la canzone dell'anno (1985)",
         "Grammy per la migliore interpretazione vocale pop femminile (1985)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1985)",
+        "Grammy - Song des Jahres (1985)",
+        "Grammy - Beste weibliche Pop-Gesangsdarbietung (1985)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1985)",
+        "Grammy - Canción del Año (1985)",
+        "Grammy - Mejor Interpretación Vocal Pop Femenina (1985)"
       ],
       "isrc": "USCA28400002",
       "uri_apple_music_by_region": {
@@ -5667,6 +5725,12 @@
       "awards_it": [
         "Grammy per l'album dell'anno (1987)"
       ],
+      "awards_de": [
+        "Grammy - Album des Jahres (1987)"
+      ],
+      "awards_es": [
+        "Grammy - Álbum del Año (1987)"
+      ],
       "isrc": "USSM11002255",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1739846276",
@@ -5805,6 +5869,12 @@
       ],
       "awards_it": [
         "Grammy per il disco dell'anno (1987)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1987)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1987)"
       ],
       "isrc": "GBAAN0201051",
       "uri_apple_music_by_region": {
@@ -6469,6 +6539,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione vocale pop femminile (1988)"
       ],
+      "awards_de": [
+        "Grammy - Beste weibliche Pop-Gesangsdarbietung (1988)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop Femenina (1988)"
+      ],
       "isrc": "USAR18700121",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1627099927",
@@ -6710,6 +6786,12 @@
       ],
       "awards_it": [
         "Golden Globe per la migliore canzone originale (1989)"
+      ],
+      "awards_de": [
+        "Golden Globe - Bester Filmsong (1989)"
+      ],
+      "awards_es": [
+        "Globo de Oro - Mejor Canción Original (1989)"
       ],
       "isrc": "USWI19600240",
       "uri_apple_music_by_region": {
@@ -7377,6 +7459,12 @@
       ],
       "awards_it": [
         "Grammy per il disco dell'anno (1991)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1991)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1991)"
       ],
       "isrc": "USRH11602405",
       "uri_apple_music_by_region": {

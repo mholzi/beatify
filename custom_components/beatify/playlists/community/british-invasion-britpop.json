@@ -1,6 +1,6 @@
 {
   "name": "British Invasion & Britpop 🇬🇧",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "1960s",
     "1990s",
@@ -164,6 +164,9 @@
       "awards_it": [
         "Brit Award per il miglior singolo britannico (1995)"
       ],
+      "awards_fr": [
+        "BRIT Award - Meilleur single britannique (1995)"
+      ],
       "isrc": "GBAYE1200960",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/699606039",
@@ -215,6 +218,9 @@
         "Grammy Hall of Fame (1998)"
       ],
       "awards_it": [
+        "Grammy Hall of Fame (1998)"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame (1998)"
       ],
       "isrc": "USA176510160",
@@ -691,6 +697,9 @@
       ],
       "awards_it": [
         "Ivor Novello Award per l'opera piu eseguita"
+      ],
+      "awards_fr": [
+        "Ivor Novello Award - Œuvre la plus jouée"
       ],
       "uri_apple_music": "applemusic://track/1469579797"
     },
@@ -1487,6 +1496,9 @@
       "awards_it": [
         "Grammy per la migliore registrazione rock and roll (1965)"
       ],
+      "awards_fr": [
+        "Grammy Award - Meilleur enregistrement rock and roll (1965)"
+      ],
       "isrc": "FRZ196400510",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1676474357",
@@ -1941,6 +1953,9 @@
       ],
       "awards_it": [
         "Candidatura al Brit Award per il miglior singolo britannico (1998)"
+      ],
+      "awards_fr": [
+        "Nomination au BRIT Award - Meilleur single britannique (1998)"
       ],
       "isrc": "GBUM71601819",
       "uri_apple_music_by_region": {

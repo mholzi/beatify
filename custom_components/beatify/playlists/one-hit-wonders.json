@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "one-hit",
     "classics",
@@ -270,6 +270,12 @@
       ],
       "awards_it": [
         "Ivor Novello Award (1969)"
+      ],
+      "awards_de": [
+        "Ivor Novello Award (1969)"
+      ],
+      "awards_es": [
+        "Premio Ivor Novello (1969)"
       ],
       "isrc": "GBAYE6900097",
       "uri_apple_music_by_region": {
@@ -546,6 +552,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione vocale R&B maschile (1973)"
+      ],
+      "awards_de": [
+        "Grammy - Beste männliche R&B-Gesangsdarbietung (1973)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal R&B Masculina (1973)"
       ],
       "isrc": "USSM17200413",
       "uri_apple_music_by_region": {
@@ -1744,6 +1756,14 @@
         "Grammy per la canzone dell'anno (1989)",
         "Grammy per il disco dell'anno (1989)"
       ],
+      "awards_de": [
+        "Grammy - Song des Jahres (1989)",
+        "Grammy - Aufnahme des Jahres (1989)"
+      ],
+      "awards_es": [
+        "Grammy - Canción del Año (1989)",
+        "Grammy - Grabación del Año (1989)"
+      ],
       "isrc": "USEM38800361",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6762672295",
@@ -2048,6 +2068,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione rap (1990)"
       ],
+      "awards_de": [
+        "Grammy - Beste Rap-Darbietung (1990)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Rap (1990)"
+      ],
       "isrc": "USA370507645",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1807406244",
@@ -2173,6 +2199,14 @@
       "awards_it": [
         "Grammy per la migliore interpretazione rap solista (1991)",
         "Grammy per la migliore canzone R&B (1991)"
+      ],
+      "awards_de": [
+        "Grammy - Beste Rap-Solodarbietung (1991)",
+        "Grammy - Bester R&B-Song (1991)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Rap Solista (1991)",
+        "Grammy - Mejor Canción R&B (1991)"
       ],
       "isrc": "USCA29000294",
       "uri_apple_music_by_region": {
@@ -3634,6 +3668,12 @@
       ],
       "awards_it": [
         "Grammy per il disco dell'anno (2007)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (2007)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (2007)"
       ],
       "isrc": "USAT20611041",
       "uri_apple_music_by_region": {

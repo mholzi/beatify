@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.22",
+  "version": "1.23",
   "tags": [
     "2000s",
     "pop",
@@ -92,6 +92,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore collaborazione rap/cantata"
+      ],
+      "awards_de": [
+        "Grammy - Beste Rap/Gesang-Zusammenarbeit"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Colaboración Rap/Cantada"
       ],
       "isrc": "USUR10200370",
       "uri_apple_music_by_region": {
@@ -187,6 +193,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione vocale pop femminile"
       ],
+      "awards_de": [
+        "Grammy - Beste weibliche Pop-Gesangsdarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop Femenina"
+      ],
       "isrc": "GBCTA0400231",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1687386491",
@@ -243,6 +255,14 @@
         "Grammy per la migliore interpretazione vocale R&B femminile",
         "Grammy per la migliore canzone R&B"
       ],
+      "awards_de": [
+        "Grammy - Beste weibliche R&B-Gesangsdarbietung",
+        "Grammy - Bester R&B-Song"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal R&B Femenina",
+        "Grammy - Mejor Canción R&B"
+      ],
       "isrc": "USIR20500195",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443208143",
@@ -294,6 +314,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore collaborazione pop con parti vocali"
+      ],
+      "awards_de": [
+        "Grammy - Beste Pop-Zusammenarbeit mit Gesang"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Colaboración Pop con Voces"
       ],
       "isrc": "USIR10110334",
       "uri_apple_music_by_region": {
@@ -429,6 +455,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore collaborazione pop con parti vocali"
+      ],
+      "awards_de": [
+        "Grammy - Beste Pop-Zusammenarbeit mit Gesang"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Colaboración Pop con Voces"
       ],
       "isrc": "GBAYE1400422",
       "uri_apple_music_by_region": {
@@ -566,6 +598,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione hard rock"
       ],
+      "awards_de": [
+        "Grammy - Beste Hard-Rock-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Hard Rock"
+      ],
       "isrc": "USWU30200093",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1645901771",
@@ -659,6 +697,12 @@
       ],
       "awards_it": [
         "Grammy per il miglior video musicale (Short Form)"
+      ],
+      "awards_de": [
+        "Grammy - Bestes Musikvideo (Short Form)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Vídeo Musical (Short Form)"
       ],
       "isrc": "USIR10211038",
       "uri_apple_music_by_region": {
@@ -840,6 +884,14 @@
       "awards_it": [
         "Grammy per la canzone dell'anno",
         "Grammy per la migliore interpretazione pop di un duo o gruppo"
+      ],
+      "awards_de": [
+        "Grammy - Song des Jahres",
+        "Grammy - Beste Pop-Darbietung eines Duos oder einer Gruppe"
+      ],
+      "awards_es": [
+        "Grammy - Canción del Año",
+        "Grammy - Mejor Interpretación Pop de Dúo o Grupo"
       ],
       "isrc": "GBAYE1600217",
       "uri_apple_music_by_region": {
@@ -1060,6 +1112,12 @@
       "awards_it": [
         "ARIA Award per la migliore pubblicazione pop"
       ],
+      "awards_de": [
+        "ARIA Award - Beste Pop-Veröffentlichung"
+      ],
+      "awards_es": [
+        "Premio ARIA - Mejor Lanzamiento Pop"
+      ],
       "isrc": "AUEI10800039",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1707435588",
@@ -1153,6 +1211,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore registrazione dance"
+      ],
+      "awards_de": [
+        "Grammy - Beste Dance-Aufnahme"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Grabación Dance"
       ],
       "isrc": "USJI10301005",
       "uri_apple_music_by_region": {
@@ -1252,6 +1316,14 @@
         "Grammy per la migliore canzone rap",
         "Grammy per la migliore collaborazione rap/cantata"
       ],
+      "awards_de": [
+        "Grammy - Bester Rap-Song",
+        "Grammy - Beste Rap/Gesang-Zusammenarbeit"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Canción de Rap",
+        "Grammy - Mejor Colaboración Rap/Cantada"
+      ],
       "isrc": "USJZ10900031",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440750745",
@@ -1308,6 +1380,14 @@
         "Grammy per la migliore interpretazione vocale pop femminile",
         "Grammy per il miglior video musicale di forma breve"
       ],
+      "awards_de": [
+        "Grammy - Beste weibliche Pop-Gesangsdarbietung",
+        "Grammy - Bestes Kurzform-Musikvideo"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop Femenina",
+        "Grammy - Mejor Vídeo Musical de Formato Corto"
+      ],
       "isrc": "USUM70918596",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1688497897",
@@ -1359,6 +1439,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore registrazione dance"
+      ],
+      "awards_de": [
+        "Grammy - Beste Dance-Aufnahme"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Grabación Dance"
       ],
       "isrc": "USJI10600269",
       "uri_apple_music_by_region": {
@@ -1412,6 +1498,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione rock di un duo o gruppo con parti vocali"
       ],
+      "awards_de": [
+        "Grammy - Beste Rock-Darbietung eines Duos oder einer Gruppe mit Gesang"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Rock de Dúo o Grupo con Voz"
+      ],
       "isrc": "USRC10800300",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1441530830",
@@ -1463,6 +1555,12 @@
       ],
       "awards_it": [
         "Grammy per il disco dell'anno"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año"
       ],
       "isrc": "GBAYE1600193",
       "uri_apple_music_by_region": {
@@ -1684,6 +1782,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione rap solista"
       ],
+      "awards_de": [
+        "Grammy - Beste Rap-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Rap Solista"
+      ],
       "isrc": "USIR10000448",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440866926",
@@ -1820,6 +1924,12 @@
       "awards_it": [
         "Grammy per la migliore registrazione dance"
       ],
+      "awards_de": [
+        "Grammy - Beste Dance-Aufnahme"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Grabación Dance"
+      ],
       "isrc": "USUM70824409",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1710465533",
@@ -1912,6 +2022,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore collaborazione rap/cantata"
+      ],
+      "awards_de": [
+        "Grammy - Beste Rap/Gesang-Zusammenarbeit"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Colaboración Rap/Cantada"
       ],
       "isrc": "USUM70736771",
       "uri_apple_music_by_region": {
@@ -2048,6 +2164,12 @@
       "awards_it": [
         "Brit Award per il miglior artista rock britannico (band)"
       ],
+      "awards_de": [
+        "BRIT Award - Bester britischer Rock-Act (band)"
+      ],
+      "awards_es": [
+        "Premio BRIT - Mejor Artista de Rock Británico (band)"
+      ],
       "isrc": "GBCEL0300192",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/315844084",
@@ -2099,6 +2221,12 @@
       ],
       "awards_it": [
         "Candidatura al Grammy per la migliore interpretazione rap di un duo o gruppo"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung - Beste Rap-Darbietung eines Duos oder einer Gruppe"
+      ],
+      "awards_es": [
+        "Nominación al Grammy - Mejor Interpretación de Rap de Dúo o Grupo"
       ],
       "isrc": "USIR10401121",
       "uri_apple_music_by_region": {
@@ -2239,6 +2367,14 @@
         "Grammy per la migliore interpretazione vocale R&B femminile",
         "Grammy per la migliore canzone R&B"
       ],
+      "awards_de": [
+        "Grammy - Beste weibliche R&B-Gesangsdarbietung",
+        "Grammy - Bester R&B-Song"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal R&B Femenina",
+        "Grammy - Mejor Canción R&B"
+      ],
       "isrc": "USJAY0300452",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1721921218",
@@ -2332,6 +2468,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione urban/alternative"
+      ],
+      "awards_de": [
+        "Grammy - Beste Urban/Alternative-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Urbana/Alternativa"
       ]
     },
     {
@@ -2541,6 +2683,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione rap di un duo o gruppo"
       ],
+      "awards_de": [
+        "Grammy - Beste Rap-Darbietung eines Duos oder einer Gruppe"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Rap de Dúo o Grupo"
+      ],
       "isrc": "USLF20000357",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1741741469",
@@ -2719,6 +2867,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione vocale R&B femminile"
       ],
+      "awards_de": [
+        "Grammy - Beste weibliche R&B-Gesangsdarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal R&B Femenina"
+      ],
       "isrc": "USMC10111369",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1691778424",
@@ -2812,6 +2966,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione rap solista"
+      ],
+      "awards_de": [
+        "Grammy - Beste Rap-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Rap Solista"
       ],
       "isrc": "USUM70741299",
       "uri_apple_music_by_region": {
@@ -3287,6 +3447,14 @@
         "Grammy per il disco dell'anno",
         "Grammy per la migliore interpretazione rock di un duo o gruppo"
       ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres",
+        "Grammy - Beste Rock-Darbietung eines Duos oder einer Gruppe"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año",
+        "Grammy - Mejor Interpretación Rock de Dúo o Grupo"
+      ],
       "isrc": "USRC10800301",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1351343570",
@@ -3638,6 +3806,16 @@
         "Oscar per la migliore canzone originale",
         "Grammy per la migliore canzone rap",
         "Grammy per la migliore interpretazione rap solista"
+      ],
+      "awards_de": [
+        "Oscar - Bester Filmsong",
+        "Grammy - Bester Rap-Song",
+        "Grammy - Beste Rap-Solodarbietung"
+      ],
+      "awards_es": [
+        "Óscar - Mejor Canción Original",
+        "Grammy - Mejor Canción de Rap",
+        "Grammy - Mejor Interpretación de Rap Solista"
       ],
       "isrc": "USIR10211559",
       "uri_apple_music_by_region": {
@@ -4111,6 +4289,14 @@
       "awards_it": [
         "Grammy per la migliore canzone rap",
         "Grammy per la migliore collaborazione rap/cantata"
+      ],
+      "awards_de": [
+        "Grammy - Bester Rap-Song",
+        "Grammy - Beste Rap/Gesang-Zusammenarbeit"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Canción de Rap",
+        "Grammy - Mejor Colaboración Rap/Cantada"
       ],
       "isrc": "USJZ10900010",
       "uri_apple_music_by_region": {

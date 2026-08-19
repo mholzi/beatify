@@ -1,6 +1,6 @@
 {
   "name": "Fiesta Latina 90s 🇲🇽",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1990s",
     "latin",
@@ -175,6 +175,12 @@
       ],
       "awards_it": [
         "Candidatura al Grammy per il disco dell'anno"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung - Aufnahme des Jahres"
+      ],
+      "awards_es": [
+        "Nominación al Grammy - Grabación del Año"
       ]
     },
     {
@@ -377,6 +383,12 @@
       ],
       "awards_it": [
         "Grammy per il miglior album latino tropicale (Bachata Rosa)"
+      ],
+      "awards_de": [
+        "Grammy - Bestes tropisches Latin-Album (Bachata Rosa)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Álbum Tropical Latino (Bachata Rosa)"
       ],
       "isrc": "USKP10400046",
       "uri_apple_music_by_region": {
@@ -593,6 +605,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione latina tropicale"
+      ],
+      "awards_de": [
+        "Grammy - Beste tropische Latin-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Tropical Latina"
       ],
       "isrc": "USSD19700576",
       "uri_apple_music_by_region": {
@@ -1194,6 +1212,12 @@
       ],
       "awards_it": [
         "Candidatura al Grammy per il miglior album merengue"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung - Bestes Merengue-Album"
+      ],
+      "awards_es": [
+        "Nominación al Grammy - Mejor Álbum de Merengue"
       ],
       "isrc": "USWL19400004",
       "uri_apple_music_by_region": {
@@ -1927,6 +1951,14 @@
       "awards_it": [
         "Latin Grammy per il disco dell'anno",
         "Latin Grammy per l'album dell'anno"
+      ],
+      "awards_de": [
+        "Latin Grammy - Aufnahme des Jahres",
+        "Latin Grammy - Album des Jahres"
+      ],
+      "awards_es": [
+        "Latin Grammy - Grabación del Año",
+        "Latin Grammy - Álbum del Año"
       ],
       "isrc": "ES5150306001",
       "uri_apple_music_by_region": {

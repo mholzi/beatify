@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "1960s",
     "1970s",
@@ -131,6 +131,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione strumentale R&B"
+      ],
+      "awards_de": [
+        "Grammy - Beste instrumentale R&B-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Instrumental R&B"
       ],
       "isrc": "USMO17200080",
       "uri_apple_music_by_region": {
@@ -663,6 +669,12 @@
       "awards_it": [
         "Candidatura all'Oscar per la migliore canzone originale"
       ],
+      "awards_de": [
+        "Oscar-Nominierung - Bester Filmsong"
+      ],
+      "awards_es": [
+        "Nominación al Óscar - Mejor Canción Original"
+      ],
       "isrc": "USMO17500374",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/1612221191",
@@ -998,6 +1010,12 @@
       "awards_it": [
         "Grammy Hall of Fame"
       ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
       "isrc": "USMO17100041",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1472134764",
@@ -1250,6 +1268,12 @@
       "awards_it": [
         "Grammy per la migliore canzone R&B"
       ],
+      "awards_de": [
+        "Grammy - Bester R&B-Song"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Canción R&B"
+      ],
       "isrc": "USMO18400528",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6762971076",
@@ -1419,6 +1443,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione vocale R&B"
       ],
+      "awards_de": [
+        "Grammy - Beste R&B-Gesangsdarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal R&B"
+      ],
       "isrc": "USMO17600547",
       "uri_tidal": "tidal://track/98184494"
     },
@@ -1540,6 +1570,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione vocale pop contemporanea"
+      ],
+      "awards_de": [
+        "Grammy - Beste zeitgenössische Pop-Gesangsdarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Vocal Pop Contemporánea"
       ],
       "isrc": "USWSP0000033",
       "uri_apple_music_by_region": {
@@ -1998,6 +2034,12 @@
       "awards_it": [
         "Candidatura all'Oscar per la migliore canzone originale"
       ],
+      "awards_de": [
+        "Oscar-Nominierung - Bester Filmsong"
+      ],
+      "awards_es": [
+        "Nominación al Óscar - Mejor Canción Original"
+      ],
       "isrc": "USMO18190008",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1606057197",
@@ -2048,6 +2090,12 @@
       ],
       "awards_it": [
         "Candidatura all'Oscar per la migliore canzone originale"
+      ],
+      "awards_de": [
+        "Oscar-Nominierung - Bester Filmsong"
+      ],
+      "awards_es": [
+        "Nominación al Óscar - Mejor Canción Original"
       ],
       "isrc": "USMO17282631",
       "uri_apple_music_by_region": {

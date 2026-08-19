@@ -1,6 +1,6 @@
 {
   "name": "Gen Z Anthems",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "2010s",
     "2020s",
@@ -99,6 +99,12 @@
       "awards_it": [
         "Billboard Music Award per la migliore canzone della Hot 100"
       ],
+      "awards_de": [
+        "Billboard Music Award - Top-Song der Hot 100"
+      ],
+      "awards_es": [
+        "Billboard Music Award - Mejor Canción del Hot 100"
+      ],
       "isrc": "USUM71100061",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1851540442",
@@ -155,6 +161,14 @@
       "awards_it": [
         "Grammy per il disco dell'anno",
         "Grammy per la migliore interpretazione pop di un duo o gruppo"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres",
+        "Grammy - Beste Pop-Darbietung eines Duos oder einer Gruppe"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año",
+        "Grammy - Mejor Interpretación Pop de Dúo o Grupo"
       ],
       "isrc": "AUZS21100040",
       "uri_apple_music_by_region": {
@@ -255,6 +269,14 @@
       "awards_it": [
         "Grammy per la canzone dell'anno",
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Song des Jahres",
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Canción del Año",
+        "Grammy - Mejor Interpretación Pop Solista"
       ]
     },
     {
@@ -302,6 +324,14 @@
       "awards_it": [
         "Grammy per il miglior video musicale",
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Bestes Musikvideo",
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Vídeo Musical",
+        "Grammy - Mejor Interpretación Pop Solista"
       ],
       "isrc": "USQ4E1300686",
       "uri_apple_music_by_region": {
@@ -405,6 +435,16 @@
         "Grammy per il disco dell'anno",
         "Grammy per la canzone dell'anno",
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres",
+        "Grammy - Song des Jahres",
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año",
+        "Grammy - Canción del Año",
+        "Grammy - Mejor Interpretación Pop Solista"
       ]
     },
     {
@@ -495,6 +535,14 @@
       "awards_it": [
         "Grammy per la migliore interpretazione pop solista",
         "Billboard Music Award per la migliore canzone della Hot 100"
+      ],
+      "awards_de": [
+        "Grammy - Beste Pop-Solodarbietung",
+        "Billboard Music Award - Top-Song der Hot 100"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Pop Solista",
+        "Billboard Music Award - Mejor Canción del Hot 100"
       ]
     },
     {
@@ -546,6 +594,16 @@
         "Latin Grammy per il disco dell'anno",
         "Latin Grammy per la canzone dell'anno",
         "Billboard Music Award per la migliore canzone della Hot 100"
+      ],
+      "awards_de": [
+        "Latin Grammy - Aufnahme des Jahres",
+        "Latin Grammy - Song des Jahres",
+        "Billboard Music Award - Top-Song der Hot 100"
+      ],
+      "awards_es": [
+        "Latin Grammy - Grabación del Año",
+        "Latin Grammy - Canción del Año",
+        "Billboard Music Award - Mejor Canción del Hot 100"
       ],
       "isrc": "USUM71607007",
       "uri_apple_music_by_region": {
@@ -603,6 +661,14 @@
       "awards_it": [
         "Grammy per la migliore canzone rap",
         "Billboard Music Award per la migliore canzone della Hot 100"
+      ],
+      "awards_de": [
+        "Grammy - Bester Rap-Song",
+        "Billboard Music Award - Top-Song der Hot 100"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Canción de Rap",
+        "Billboard Music Award - Mejor Canción del Hot 100"
       ]
     },
     {
@@ -697,6 +763,16 @@
         "Grammy per il disco dell'anno",
         "Grammy per la canzone dell'anno",
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres",
+        "Grammy - Song des Jahres",
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año",
+        "Grammy - Canción del Año",
+        "Grammy - Mejor Interpretación Pop Solista"
       ]
     },
     {
@@ -744,6 +820,14 @@
       "awards_it": [
         "Grammy per il miglior video musicale",
         "Candidatura al CMA Award per l'evento musicale dell'anno"
+      ],
+      "awards_de": [
+        "Grammy - Bestes Musikvideo",
+        "CMA-Award-Nominierung - Musikalisches Ereignis des Jahres"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Vídeo Musical",
+        "Nominación al Premio CMA - Evento Musical del Año"
       ],
       "isrc": "USSM11902498",
       "uri_apple_music_by_region": {
@@ -797,6 +881,12 @@
       ],
       "awards_it": [
         "Brit Award per la canzone dell'anno"
+      ],
+      "awards_de": [
+        "BRIT Award - Song des Jahres"
+      ],
+      "awards_es": [
+        "Premio BRIT - Canción del Año"
       ],
       "isrc": "DEUM71807062",
       "uri_apple_music_by_region": {
@@ -858,6 +948,16 @@
         "Billboard Music Award per la migliore canzone della Hot 100",
         "Juno Award per il singolo dell'anno",
         "American Music Award per la canzone pop/rock preferita"
+      ],
+      "awards_de": [
+        "Billboard Music Award - Top-Song der Hot 100",
+        "Juno Award - Single des Jahres",
+        "American Music Award - Lieblingssong Pop/Rock"
+      ],
+      "awards_es": [
+        "Billboard Music Award - Mejor Canción del Hot 100",
+        "Premio Juno - Sencillo del Año",
+        "American Music Award - Canción Favorita Pop/Rock"
       ],
       "isrc": "USUG11904206",
       "uri_apple_music_by_region": {
@@ -944,6 +1044,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Pop Solista"
       ],
       "isrc": "USSM11912587",
       "uri_apple_music_by_region": {
@@ -1041,6 +1147,12 @@
       "awards_it": [
         "Grammy per la migliore interpretazione pop di un duo o gruppo"
       ],
+      "awards_de": [
+        "Grammy - Beste Pop-Darbietung eines Duos oder einer Gruppe"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Pop de Dúo o Grupo"
+      ],
       "isrc": "USRC12100760",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1577637152",
@@ -1137,6 +1249,12 @@
       "awards_it": [
         "Grammy per il disco dell'anno"
       ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año"
+      ],
       "isrc": "USAT22202139",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1810531325",
@@ -1194,6 +1312,14 @@
         "Grammy per il miglior album vocale pop (Harry's House)",
         "Brit Award per la canzone dell'anno"
       ],
+      "awards_de": [
+        "Grammy - Bestes Pop-Gesangsalbum (Harry's House)",
+        "BRIT Award - Song des Jahres"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Álbum Vocal Pop (Harry's House)",
+        "Premio BRIT - Canción del Año"
+      ],
       "isrc": "USSM12200612",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1615585008",
@@ -1246,6 +1372,12 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación Pop Solista"
       ]
     },
     {
@@ -1293,6 +1425,14 @@
       "awards_it": [
         "Grammy per il disco dell'anno",
         "Grammy per la migliore interpretazione pop solista"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres",
+        "Grammy - Beste Pop-Solodarbietung"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año",
+        "Grammy - Mejor Interpretación Pop Solista"
       ],
       "isrc": "USSM12209777",
       "uri_apple_music_by_region": {

@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.12",
+  "version": "0.13",
   "tags": [
     "rock",
     "classic-rock",
@@ -253,8 +253,6 @@
       "awards": [
         "Grammy nomination"
       ],
-      "awards_de": [],
-      "awards_es": [],
       "fun_fact": "Eddie Van Halen wrote Jump's synth riff at home on a four-track recorder. The rest of the band initially resisted releasing a keyboard-led single, worried it strayed too far from their guitar-driven identity.",
       "fun_fact_de": "Eddie Van Halen schrieb das Synthesizer-Riff von Jump zu Hause an einem Vierspur-Rekorder. Der Rest der Band sträubte sich zunächst gegen eine von Keyboards geführte Single, aus Angst, sich zu weit von ihrer gitarrenlastigen Identität zu entfernen.",
       "fun_fact_es": "Eddie Van Halen escribió el riff de sintetizador de Jump en casa con una grabadora de cuatro pistas. El resto de la banda se resistió al principio a lanzar un sencillo liderado por teclados, temiendo alejarse demasiado de su identidad guitarrera.",
@@ -269,6 +267,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USWB11403680",
       "uri_apple_music_by_region": {
@@ -1895,8 +1902,6 @@
       "awards": [
         "Grammy Hall of Fame"
       ],
-      "awards_de": [],
-      "awards_es": [],
       "fun_fact": "Smoke on the Water documents a real event: a fire that broke out during a Frank Zappa concert at the Montreux Casino in Switzerland, started by someone firing a flare gun into the ceiling.",
       "fun_fact_de": "Smoke on the Water beschreibt ein reales Ereignis: einen Brand während eines Frank-Zappa-Konzerts im Casino von Montreux in der Schweiz, ausgelöst durch eine ins Dach abgefeuerte Leuchtpistole.",
       "fun_fact_es": "Smoke on the Water relata un hecho real: un incendio que se produjo durante un concierto de Frank Zappa en el Casino de Montreux, en Suiza, provocado por alguien que disparó una bengala hacia el techo.",
@@ -1910,6 +1915,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "GBDXG1200006",
@@ -3367,6 +3381,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "GBAJE8000033",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1442217683",
@@ -4085,6 +4108,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "AUAP08000046",
@@ -4828,6 +4860,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USSM19200317",
       "uri_apple_music_by_region": {

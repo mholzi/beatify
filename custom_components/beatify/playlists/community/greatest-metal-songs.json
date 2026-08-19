@@ -1,6 +1,6 @@
 {
   "name": "Greatest Metal Songs of All Time 🤘",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "metal",
     "rock",
@@ -44,6 +44,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "USWB11304371",
@@ -93,6 +102,15 @@
       "awards_it": [
         "Grammy Hall of Fame"
       ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
+        "Grammy Hall of Fame"
+      ],
       "isrc": "USWB11304369",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/787644021",
@@ -139,6 +157,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "GBBBN8202006",
       "uri_apple_music_by_region": {
@@ -187,6 +214,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "GBCHB1500031",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1713861908",
@@ -234,6 +270,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "GBCHB1500023",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1713862907",
@@ -279,6 +324,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "QMKHM1600219",
@@ -328,6 +382,15 @@
       "awards_it": [
         "Grammy per la migliore interpretazione metal"
       ],
+      "awards_de": [
+        "Grammy - Beste Metal-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Metal"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance metal"
+      ],
       "isrc": "QMKHM1900001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1572046436",
@@ -374,6 +437,15 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione metal"
+      ],
+      "awards_de": [
+        "Grammy - Beste Metal-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Metal"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance metal"
       ],
       "isrc": "QMKHM1700138",
       "uri_apple_music_by_region": {
@@ -422,6 +494,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USSM18600241",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1733769810",
@@ -468,6 +549,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USAT21202190",
       "uri_apple_music_by_region": {
@@ -516,6 +606,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USAT21001391",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1814306260",
@@ -562,6 +661,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USEE19900919",
       "uri_apple_music_by_region": {
@@ -610,6 +718,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USCA29000003",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/724649275",
@@ -656,6 +773,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USCA20400616",
       "uri_apple_music_by_region": {
@@ -704,6 +830,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USWB11507137",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1048476460",
@@ -749,6 +884,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "USSM11002845",
@@ -798,6 +942,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USSM10107256",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/273714640",
@@ -844,6 +997,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USSM10107262",
       "uri_apple_music_by_region": {
@@ -892,6 +1054,15 @@
       "awards_it": [
         "Grammy per la migliore interpretazione metal"
       ],
+      "awards_de": [
+        "Grammy - Beste Metal-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Metal"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance metal"
+      ],
       "isrc": "USVR10100013",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1474185654",
@@ -938,6 +1109,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USRE11600104",
       "uri_apple_music_by_region": {
@@ -986,6 +1166,15 @@
       "awards_it": [
         "Grammy per la migliore interpretazione hard rock"
       ],
+      "awards_de": [
+        "Grammy - Beste Hard-Rock-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Hard Rock"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance hard rock"
+      ],
       "isrc": "USAM19400007",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1436558379",
@@ -1032,6 +1221,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USSM19200881",
       "uri_apple_music_by_region": {
@@ -1080,6 +1278,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USGF18714801",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1377826728",
@@ -1127,6 +1334,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USGF18714809",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1377813701",
@@ -1172,6 +1388,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "AUAP07900028",
@@ -1221,6 +1446,15 @@
       "awards_it": [
         "Grammy Hall of Fame"
       ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
+        "Grammy Hall of Fame"
+      ],
       "isrc": "AUAP08000046",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/576003082",
@@ -1266,6 +1500,15 @@
         "Grammy Hall of Fame"
       ],
       "awards_it": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_de": [
+        "Grammy - Hall of Fame"
+      ],
+      "awards_es": [
+        "Grammy - Salón de la Fama"
+      ],
+      "awards_fr": [
         "Grammy Hall of Fame"
       ],
       "isrc": "USRH11602140",
@@ -1315,6 +1558,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "GBUM71701307",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1438626355",
@@ -1361,6 +1613,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USWB11403500",
       "uri_apple_music_by_region": {
@@ -1409,6 +1670,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USSM19200317",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1737564412",
@@ -1455,6 +1725,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USIR19601008",
       "uri_apple_music_by_region": {
@@ -1503,6 +1782,15 @@
       "awards_it": [
         "Grammy per il miglior video musicale di forma breve"
       ],
+      "awards_de": [
+        "Grammy - Bestes Kurzform-Musikvideo"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Vídeo Musical de Formato Corto"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleur vidéoclip format court"
+      ],
       "isrc": "USSM19805391",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1831584743",
@@ -1549,6 +1837,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "NLA321400496",
       "uri_apple_music_by_region": {
@@ -1597,6 +1894,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "NLA321400554",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/927744252",
@@ -1643,6 +1949,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USRE11500333",
       "uri_apple_music_by_region": {
@@ -1691,6 +2006,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USRZR0300801",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6777217538",
@@ -1737,6 +2061,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "US2640562201",
       "uri_apple_music_by_region": {
@@ -1785,6 +2118,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "FR6V80520037",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/213374170",
@@ -1831,6 +2173,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "NLA321600053",
       "uri_apple_music_by_region": {
@@ -1879,6 +2230,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "NLA329513650",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1630107557",
@@ -1925,6 +2285,15 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione metal"
+      ],
+      "awards_de": [
+        "Grammy - Beste Metal-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Metal"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance metal"
       ],
       "isrc": "USC4R1601984",
       "uri_apple_music_by_region": {
@@ -1973,6 +2342,15 @@
       "awards_it": [
         "Grammy per la migliore interpretazione metal"
       ],
+      "awards_de": [
+        "Grammy - Beste Metal-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Metal"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance metal"
+      ],
       "isrc": "USRC11902032",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1475686698",
@@ -2019,6 +2397,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "GBAJE8000033",
       "uri_apple_music_by_region": {
@@ -2067,6 +2454,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "DED830703548",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1882049242",
@@ -2113,6 +2509,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "USAT21202188",
       "uri_apple_music_by_region": {
@@ -2161,6 +2566,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USWB11201118",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/591534783",
@@ -2207,6 +2621,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "NLA320420753",
       "uri_apple_music_by_region": {
@@ -2255,6 +2678,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "NLA321392901",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/697728142",
@@ -2301,6 +2733,15 @@
       ],
       "awards_it": [
         "Candidatura al Grammy"
+      ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
       ],
       "isrc": "GBARL1401189",
       "uri_apple_music_by_region": {
@@ -2349,6 +2790,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USEP41014009",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1485045876",
@@ -2396,6 +2846,15 @@
       "awards_it": [
         "Candidatura al Grammy"
       ],
+      "awards_de": [
+        "Grammy-Nominierung"
+      ],
+      "awards_es": [
+        "Nominación al Grammy"
+      ],
+      "awards_fr": [
+        "Nomination aux Grammy"
+      ],
       "isrc": "USEP41604038",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1485075528",
@@ -2442,6 +2901,15 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione metal"
+      ],
+      "awards_de": [
+        "Grammy - Beste Metal-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Metal"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance metal"
       ],
       "isrc": "NLA321900283",
       "uri_apple_music_by_region": {
@@ -2793,6 +3261,15 @@
       ],
       "awards_it": [
         "Grammy per la migliore interpretazione hard rock"
+      ],
+      "awards_de": [
+        "Grammy - Beste Hard-Rock-Darbietung"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Interpretación de Hard Rock"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure performance hard rock"
       ],
       "isrc": "USSM10501327",
       "uri_apple_music_by_region": {

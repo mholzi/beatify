@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.14",
+  "version": "1.15",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -476,6 +476,15 @@
       "awards_it": [
         "Grammy per la migliore canzone R&B (1972)"
       ],
+      "awards_de": [
+        "Grammy - Bester R&B-Song (1972)"
+      ],
+      "awards_es": [
+        "Grammy - Mejor Canción R&B (1972)"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleure chanson R&B (1972)"
+      ],
       "isrc": "USSM17100268",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/391725482",
@@ -522,6 +531,15 @@
       ],
       "awards_it": [
         "Grammy per la migliore registrazione rock and roll (1965)"
+      ],
+      "awards_de": [
+        "Grammy Award für beste Rock-and-Roll-Aufnahme (1965)"
+      ],
+      "awards_es": [
+        "Premio Grammy a la Mejor Grabación de Rock and Roll (1965)"
+      ],
+      "awards_fr": [
+        "Grammy Award - Meilleur enregistrement rock and roll (1965)"
       ],
       "isrc": "FRZ196400510",
       "uri_apple_music_by_region": {
@@ -645,6 +663,15 @@
       ],
       "awards_it": [
         "Ivor Novello Award per l'originalita (1970)"
+      ],
+      "awards_de": [
+        "Ivor Novello Award - Originalität (1970)"
+      ],
+      "awards_es": [
+        "Premio Ivor Novello - Originalidad (1970)"
+      ],
+      "awards_fr": [
+        "Ivor Novello Award - Originalité (1970)"
       ],
       "isrc": "USJT10900021",
       "uri_apple_music_by_region": {
@@ -846,6 +873,15 @@
       ],
       "awards_it": [
         "Grammy per il disco dell'anno (1969)"
+      ],
+      "awards_de": [
+        "Grammy - Aufnahme des Jahres (1969)"
+      ],
+      "awards_es": [
+        "Grammy - Grabación del Año (1969)"
+      ],
+      "awards_fr": [
+        "Grammy Award - Enregistrement de l'année (1969)"
       ],
       "isrc": "USSM16800379",
       "uri_apple_music_by_region": {
