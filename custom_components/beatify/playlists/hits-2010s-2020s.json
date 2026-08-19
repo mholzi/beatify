@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "pop",
     "charts",
@@ -310,13 +310,13 @@
       "uri": "spotify:track:2ekn2ttSfGqwhhate0LSR0",
       "uri_apple_music": "applemusic://track/1435139360",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1228742334",
         "de": "applemusic://track/1435139360",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1228739609",
+        "fr": "applemusic://track/1228739609",
+        "es": "applemusic://track/1228739609",
+        "nl": "applemusic://track/1228739609",
+        "it": "applemusic://track/1228739609"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XmxL8IaC0MQ",
       "uri_tidal": "tidal://track/112419336",
@@ -755,12 +755,12 @@
       "uri": "spotify:track:23RoR84KodL5HWvUTneQ1w",
       "uri_apple_music": "applemusic://track/1689088958",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
+        "us": "applemusic://track/1689088958",
+        "de": "applemusic://track/1689088958",
+        "gb": "applemusic://track/1706358880",
+        "fr": "applemusic://track/1689088958",
+        "es": "applemusic://track/1689088958",
+        "nl": "applemusic://track/1689088958",
         "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XOsY3W3dlI0",

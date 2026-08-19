@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "1970s",
     "1980s",
@@ -1096,7 +1096,7 @@
       "fun_fact_nl": "Gloria Gaynors discoversie van Frankie Valli's klassieker uit 1967 transformeerde een doo-wopballade in een pulserende dansklassieker. Het origineel van Frankie Valli bereikte nummer 2 op de Billboard Hot 100 en is gecoverd door meer dan 200 artiesten.",
       "awards_nl": [],
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1627565015",
         "de": "applemusic://track/1650393398",
         "gb": "applemusic://track/1650393398",
         "fr": "applemusic://track/1650393398",
@@ -2014,13 +2014,13 @@
       "awards_nl": [],
       "isrc": "GBAJH0100174",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1528522190",
+        "de": "applemusic://track/1436832514",
+        "gb": "applemusic://track/1436833754",
+        "fr": "applemusic://track/1436832514",
+        "es": "applemusic://track/1436833754",
+        "nl": "applemusic://track/1436832514",
+        "it": "applemusic://track/1436832514"
       }
     },
     {
@@ -3113,12 +3113,12 @@
       "uri_apple_music": "applemusic://track/334815341",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/334815341",
-        "de": null,
+        "de": "applemusic://track/1372790230",
         "gb": "applemusic://track/1112794084",
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "fr": "applemusic://track/697243024",
+        "es": "applemusic://track/697243024",
+        "nl": "applemusic://track/1372790230",
+        "it": "applemusic://track/111172676"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=x8no2UG-oZ0",
       "uri_tidal": "tidal://track/2879929",
@@ -3183,9 +3183,9 @@
       "uri_apple_music": "applemusic://track/292699986",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/292699986",
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "de": "applemusic://track/1590817672",
+        "gb": "applemusic://track/1590817672",
+        "fr": "applemusic://track/1590817676",
         "es": "applemusic://track/1439691902",
         "nl": "applemusic://track/1590817676",
         "it": "applemusic://track/1590817672"
@@ -3289,8 +3289,8 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444081381",
         "de": "applemusic://track/1444081381",
-        "gb": null,
-        "fr": null,
+        "gb": "applemusic://track/1444081381",
+        "fr": "applemusic://track/1444081381",
         "es": "applemusic://track/1444081381",
         "nl": "applemusic://track/1444081381",
         "it": "applemusic://track/1444081381"
@@ -3567,13 +3567,13 @@
       "fun_fact_nl": "Cowleys hi-NRG-samenwerking met Sylvester, uitgebracht maanden voor Cowleys dood en een fundament van de homo-clubscene in San Francisco.",
       "uri_apple_music": "applemusic://track/280376277",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/280376277",
+        "de": "applemusic://track/280376277",
+        "gb": "applemusic://track/280376277",
+        "fr": "applemusic://track/280376277",
+        "es": "applemusic://track/280376395",
+        "nl": "applemusic://track/280376277",
+        "it": "applemusic://track/280376277"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PeYUTbU_iTw",
       "uri_tidal": "tidal://track/19378799",
@@ -3707,13 +3707,13 @@
       "fun_fact_nl": "Mede geschreven door Michael en Randy Jackson; #7 in de Hot 100. Het album 'Destiny' was de eerste zelf geproduceerde plaat van de broers na hun vertrek bij Motown.",
       "uri_apple_music": "applemusic://track/604797613",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/159293270",
+        "de": "applemusic://track/604797613",
+        "gb": "applemusic://track/604797613",
+        "fr": "applemusic://track/604797613",
+        "es": "applemusic://track/604797613",
+        "nl": "applemusic://track/604797613",
+        "it": "applemusic://track/604797613"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kldVOhKe4rg",
       "uri_tidal": "tidal://track/33740664",
@@ -3743,12 +3743,12 @@
       "uri_apple_music": "applemusic://track/1496277407",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1496277407",
-        "de": null,
+        "de": "applemusic://track/1496020011",
         "gb": "applemusic://track/1496277402",
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "fr": "applemusic://track/1496020011",
+        "es": "applemusic://track/1830380313",
+        "nl": "applemusic://track/1496020011",
+        "it": "applemusic://track/1496020011"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=6Q_Xse4izH8",
       "uri_tidal": "tidal://track/128936364",
@@ -3814,11 +3814,11 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1486633617",
         "de": "applemusic://track/1486633617",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1486633617",
+        "fr": "applemusic://track/1486633617",
+        "es": "applemusic://track/1486633617",
+        "nl": "applemusic://track/1486633617",
+        "it": "applemusic://track/1486633617"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=oOimgG4DzbM",
       "uri_tidal": "tidal://track/123982184",

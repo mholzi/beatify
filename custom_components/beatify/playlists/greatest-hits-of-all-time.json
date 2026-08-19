@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.20",
+  "version": "2.21",
   "tags": [
     "classics",
     "top-hits",
@@ -2105,13 +2105,13 @@
       "awards_nl": [],
       "isrc": "DEH259900010",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
+        "us": "applemusic://track/1322068804",
+        "de": "applemusic://track/1318383098",
+        "gb": "applemusic://track/1322068804",
+        "fr": "applemusic://track/1322068804",
+        "es": "applemusic://track/1322068804",
         "nl": "applemusic://track/1656111119",
-        "it": null
+        "it": "applemusic://track/1322068804"
       }
     },
     {
@@ -2338,7 +2338,7 @@
         "us": "applemusic://track/1787328102",
         "de": "applemusic://track/827814095",
         "gb": "applemusic://track/450578425",
-        "fr": null,
+        "fr": "applemusic://track/273400238",
         "es": "applemusic://track/1298435999",
         "nl": "applemusic://track/1790923385",
         "it": "applemusic://track/284881685"
@@ -7847,13 +7847,13 @@
       "uri": "spotify:track:54OR1VDpfkBuOY5zZjhZAY",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1644716686",
+        "de": "applemusic://track/1872720856",
+        "gb": "applemusic://track/1872720856",
+        "fr": "applemusic://track/6795719648",
+        "es": "applemusic://track/6795719648",
+        "nl": "applemusic://track/6795719648",
+        "it": "applemusic://track/6795719648"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7-F8wkjKWg8",
       "uri_tidal": "tidal://track/25702905",
@@ -8325,11 +8325,11 @@
       "isrc": "GBF088200895",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440921464",
-        "de": null,
+        "de": "applemusic://track/1443275794",
         "gb": "applemusic://track/1440921464",
         "fr": "applemusic://track/1440921464",
         "es": "applemusic://track/1440921464",
-        "nl": null,
+        "nl": "applemusic://track/1444103660",
         "it": "applemusic://track/1440921464"
       },
       "uri_deezer": "deezer://track/1174009"
@@ -8654,7 +8654,7 @@
       "awards_nl": [],
       "isrc": "GBARL1201017",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/647246433",
         "de": "applemusic://track/647981479",
         "gb": "applemusic://track/647981479",
         "fr": "applemusic://track/647246433",
@@ -8684,7 +8684,7 @@
       "awards_nl": [],
       "isrc": "GBAJE7800192",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1716086003",
         "de": "applemusic://track/1806628286",
         "gb": "applemusic://track/1806624271",
         "fr": "applemusic://track/1806624271",
@@ -9438,7 +9438,7 @@
         "de": "applemusic://track/696838901",
         "gb": "applemusic://track/697039305",
         "fr": "applemusic://track/696838901",
-        "es": null,
+        "es": "applemusic://track/696838901",
         "nl": "applemusic://track/696838901",
         "it": "applemusic://track/696838901"
       },
@@ -9494,7 +9494,7 @@
       "awards_nl": [],
       "isrc": "GBF088000023",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1443803092",
         "de": "applemusic://track/1444017495",
         "gb": "applemusic://track/1443803092",
         "fr": "applemusic://track/1444017495",
@@ -9524,7 +9524,7 @@
       "awards_nl": [],
       "isrc": "GBAMY8500222",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1313443614",
         "de": "applemusic://track/1313443614",
         "gb": "applemusic://track/1313443614",
         "fr": "applemusic://track/1313443614",
