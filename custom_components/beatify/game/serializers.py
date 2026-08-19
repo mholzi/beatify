@@ -177,6 +177,7 @@ class GameStateSerializer:
                 "fun_fact_es": gs.current_song.get("fun_fact_es", ""),
                 "fun_fact_fr": gs.current_song.get("fun_fact_fr", ""),
                 "fun_fact_nl": gs.current_song.get("fun_fact_nl", ""),
+                "fun_fact_it": gs.current_song.get("fun_fact_it", ""),
             }
         # Leaderboard (Story 5.5)
         state["leaderboard"] = gs.get_leaderboard()
@@ -224,6 +225,7 @@ class GameStateSerializer:
                 "fun_fact_es": gs.current_song.get("fun_fact_es", ""),
                 "fun_fact_fr": gs.current_song.get("fun_fact_fr", ""),
                 "fun_fact_nl": gs.current_song.get("fun_fact_nl", ""),
+                "fun_fact_it": gs.current_song.get("fun_fact_it", ""),
             }
         # Include reveal-specific player data (guesses, round_score, missed)
         state["players"] = GameStateSerializer.get_reveal_players_state(gs)

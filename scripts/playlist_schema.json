@@ -112,6 +112,10 @@
         "fun_fact_es": { "type": "string" },
         "fun_fact_fr": { "type": "string" },
         "fun_fact_nl": { "type": "string" },
+        "fun_fact_it": {
+          "description": "Italian fun fact. OPTIONAL on purpose (#2234): the five older fun_fact_* fields are required, and adding Italian the same way would fail the CI gate for every one of the 6261 songs until the catalogue is fully translated. The client reads `fun_fact_<lang>` generically and falls back to the English `fun_fact`, so a missing entry degrades to the English text rather than to an error.",
+          "type": "string"
+        },
         "chart_info": { "type": ["object", "string"] },
         "certifications": { "type": ["array", "string"] },
         "awards": { "type": ["array", "string"] },

@@ -130,3 +130,27 @@ def test_region_map_rejects_bare_id_but_accepts_uri_and_null() -> None:
         )
     )
     assert not list(validator.iter_errors(good))
+
+
+def test_fun_fact_it_is_optional_and_typed() -> None:
+    """#2234: Italian fun facts must not gate the catalogue.
+
+    The five older ``fun_fact_*`` fields are required. Adding ``fun_fact_it``
+    the same way would fail this very gate for all 6261 songs until every one
+    carries an Italian fact, turning a catalogue chore into a release blocker.
+    """
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    song = schema["$defs"]["song"]
+
+    assert "fun_fact_it" not in song["required"], "fun_fact_it must stay optional"
+    assert song["properties"]["fun_fact_it"]["type"] == "string"
+
+    validator = _validator()
+    # Absent: still valid.
+    assert not list(validator.iter_errors(_playlist(_song())))
+    # Present: still valid.
+    assert not list(
+        validator.iter_errors(_playlist(_song(fun_fact_it="Fu il primo brano…")))
+    )
+    # Wrong type: rejected, so a null does not slip in unnoticed.
+    assert list(validator.iter_errors(_playlist(_song(fun_fact_it=None))))
