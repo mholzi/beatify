@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.38",
+  "version": "0.39",
   "tags": [
     "deutschrock",
     "german rock",
@@ -2549,7 +2549,7 @@
         "fr": "applemusic://track/579071005",
         "es": "applemusic://track/579071005",
         "nl": "applemusic://track/579071005",
-        "it": null
+        "it": "applemusic://track/579071005"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lKvqAKiUW58",
       "uri_tidal": "tidal://track/2040270",
@@ -2595,13 +2595,13 @@
       "isrc": "DER372008404",
       "uri_apple_music": "applemusic://track/1482108439",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1482108439",
+        "de": "applemusic://track/1482108439",
+        "gb": "applemusic://track/1482108439",
+        "fr": "applemusic://track/1482108439",
+        "es": "applemusic://track/1482108439",
+        "nl": "applemusic://track/1482108439",
+        "it": "applemusic://track/1482108439"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=dxMUs1QsEKY",
       "uri_tidal": "tidal://track/119304666",
