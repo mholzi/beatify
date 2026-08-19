@@ -193,17 +193,17 @@ describe('#1570 hub-friendly wiring (wireSeasonalSuggestionHub)', () => {
 });
 
 describe('#1585 data-driven occasions + i18n', () => {
-    const LOCALES = ['en', 'de', 'es', 'fr', 'nl'];
+    const LOCALES = ['en', 'de', 'es', 'fr', 'nl', 'it'];
     const here = path.dirname(fileURLToPath(import.meta.url));
     const i18nDir = path.resolve(here, '../../i18n');
     const locale = (code) =>
         JSON.parse(readFileSync(path.join(i18nDir, `${code}.json`), 'utf8'));
 
     // Shared chrome labels (badge / add / dismiss) + every occasion's reason
-    // key must resolve to a non-empty string in ALL five locales — otherwise
+    // key must resolve to a non-empty string in ALL shipped locales — otherwise
     // tr() would silently fall back to English and a "data-driven" entry would
     // ship untranslated.
-    it('resolves every occasion reasonKey in all 5 locales', () => {
+    it('resolves every occasion reasonKey in every shipped locale', () => {
         for (const code of LOCALES) {
             const admin = locale(code).admin || {};
             for (const o of SEASONAL_OCCASIONS) {
@@ -215,7 +215,7 @@ describe('#1585 data-driven occasions + i18n', () => {
         }
     });
 
-    it('resolves the shared chrome labels in all 5 locales', () => {
+    it('resolves the shared chrome labels in every shipped locale', () => {
         for (const code of LOCALES) {
             const admin = locale(code).admin || {};
             for (const key of ['seasonalBadge', 'seasonalAdd', 'seasonalDismiss']) {

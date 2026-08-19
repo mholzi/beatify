@@ -1,7 +1,7 @@
 """Key-parity guard for the in-app UI locale files (#1730).
 
 ``custom_components/beatify/www/i18n/en.json`` is the canonical source of UI
-strings. Every other locale (``de``, ``es``, ``fr``, ``nl``) must expose the
+strings. Every other locale (``de``, ``es``, ``fr``, ``nl``, ``it``) must expose the
 *exact same* set of (dotted) keys — no missing keys (which surface as English
 fallbacks for that locale) and no extra keys (dead strings).
 
@@ -27,7 +27,10 @@ I18N_DIR = (
     / "i18n"
 )
 CANONICAL = "en"
-LOCALES = ["de", "es", "fr", "nl"]
+# ``it`` joined on 2026-08-19 (#2234). It shipped in #2237/#2238 on 2026-08-18
+# and was the only locale this guard did not cover — exactly the blind spot
+# #1730 was about, one locale later.
+LOCALES = ["de", "es", "fr", "nl", "it"]
 
 
 def _flatten(obj: dict, prefix: str = "") -> set[str]:

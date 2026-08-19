@@ -26,7 +26,7 @@ global.window = global.window || {};
 await import('../utils.js');
 const utils = global.window.BeatifyUtils;
 
-const LOCALES = ['en', 'de', 'es', 'fr', 'nl'];
+const LOCALES = ['en', 'de', 'es', 'fr', 'nl', 'it'];
 const i18n = {};
 beforeAll(() => {
     for (const l of LOCALES) {

@@ -4,7 +4,7 @@
  * `renderPersonalResult` is not exported, so this asserts the wiring at the
  * source level instead of rendering: that both reveal paths consult
  * `streak_shield_used`, that the helper exists, and that the i18n key it uses
- * is present in all five locales. The last one matters more than it looks —
+ * is present in every shipped locale. The last one matters more than it looks —
  * a missing key does not throw, it renders the raw key string into the card.
  */
 
@@ -33,8 +33,8 @@ describe('Streak-Shield badge (#1666)', () => {
         expect(REVEAL).toContain("utils.t('reveal.streakShieldUsed', { streak: streak })");
     });
 
-    it('has the string in all five locales', () => {
-        for (const lang of ['en', 'de', 'es', 'fr', 'nl']) {
+    it('has the string in every shipped locale', () => {
+        for (const lang of ['en', 'de', 'es', 'fr', 'nl', 'it']) {
             const dict = JSON.parse(fs.readFileSync(
                 path.join(ROOT, `www/i18n/${lang}.json`), 'utf8'));
             expect(dict.reveal?.streakShieldUsed, `${lang} missing`).toBeTruthy();

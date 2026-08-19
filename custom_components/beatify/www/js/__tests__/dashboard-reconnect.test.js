@@ -93,7 +93,7 @@ describe('reconnect indicator i18n key (#1578)', () => {
     // (onopen). The badge text is supplied via data-i18n="dashboard.reconnecting"
     // resolved by BeatifyI18n at load — guard that EVERY shipped locale defines
     // the key so no display falls back to the raw key string.
-    const LOCALES = ['en', 'de', 'es', 'fr', 'nl'];
+    const LOCALES = ['en', 'de', 'es', 'fr', 'nl', 'it'];
 
     it('dashboard.reconnecting is present and non-empty in every locale', () => {
         for (const l of LOCALES) {
