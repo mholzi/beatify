@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "2000s",
     "pop",
@@ -89,6 +89,9 @@
       "fun_fact_nl": "In de videoclip is te zien hoe Kelly Rowland op een beroemde manier probeert Nelly te sms'en via een Microsoft Excel-spreadsheet.",
       "awards_nl": [
         "Grammy Award – Beste Rap/Zang-samenwerking"
+      ],
+      "awards_it": [
+        "Grammy per la migliore collaborazione rap/cantata"
       ],
       "isrc": "USUR10200370",
       "uri_apple_music_by_region": {
@@ -181,6 +184,9 @@
       "awards_nl": [
         "Grammy Award – Beste Vrouwelijke Pop Zangprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop femminile"
+      ],
       "isrc": "GBCTA0400231",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1687386491",
@@ -233,6 +239,10 @@
         "Grammy Award – Beste Vrouwelijke R&B Zangprestatie",
         "Grammy Award – Beste R&B-nummer"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B femminile",
+        "Grammy per la migliore canzone R&B"
+      ],
       "isrc": "USIR20500195",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443208143",
@@ -281,6 +291,9 @@
       "fun_fact_nl": "De Moulin Rouge-versie bevat Christina Aguilera, Lil' Kim, Mýa en Pink — vier van de grootste vrouwelijke artiesten van dat tijdperk die samen optreden.",
       "awards_nl": [
         "Grammy Award – Beste Popsamenwerking met Zang"
+      ],
+      "awards_it": [
+        "Grammy per la migliore collaborazione pop con parti vocali"
       ],
       "isrc": "USIR10110334",
       "uri_apple_music_by_region": {
@@ -413,6 +426,9 @@
       "fun_fact_nl": "De iconische lach aan het begin van het nummer werd ingesproken door de stemacteur van bassist Murdoc Niccals, en de geanimeerde videoclip won een Grammy voor Beste Videoclip.",
       "awards_nl": [
         "Grammy Award – Beste Popsamenwerking met Zang"
+      ],
+      "awards_it": [
+        "Grammy per la migliore collaborazione pop con parti vocali"
       ],
       "isrc": "GBAYE1400422",
       "uri_apple_music_by_region": {
@@ -547,6 +563,9 @@
       "awards_nl": [
         "Grammy Award – Beste Hardrockprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione hard rock"
+      ],
       "isrc": "USWU30200093",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1645901771",
@@ -637,6 +656,9 @@
       "fun_fact_nl": "De videoclip in stripboekthema parodieert meerdere beroemdheden en toont Eminem als een superheld genaamd 'Rap Boy', een persiflage op Robin uit Batman.",
       "awards_nl": [
         "Grammy Award – Beste Muziekvideo (Korte Vorm)"
+      ],
+      "awards_it": [
+        "Grammy per il miglior video musicale (Short Form)"
       ],
       "isrc": "USIR10211038",
       "uri_apple_music_by_region": {
@@ -814,6 +836,10 @@
       "awards_nl": [
         "Grammy Award – Lied van het Jaar",
         "Grammy Award – Beste Popprestatie door Duo of Groep"
+      ],
+      "awards_it": [
+        "Grammy per la canzone dell'anno",
+        "Grammy per la migliore interpretazione pop di un duo o gruppo"
       ],
       "isrc": "GBAYE1600217",
       "uri_apple_music_by_region": {
@@ -1031,6 +1057,9 @@
       "awards_nl": [
         "ARIA Award – Beste Poprelease"
       ],
+      "awards_it": [
+        "ARIA Award per la migliore pubblicazione pop"
+      ],
       "isrc": "AUEI10800039",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1707435588",
@@ -1121,6 +1150,9 @@
       "fun_fact_nl": "De iconische Bollywood-strijkerssample van het nummer is afkomstig uit 'Tere Mere Beech Mein' uit de Indiase film Ek Duuje Ke Liye uit 1981. Het leverde Britney haar enige Grammy Award op.",
       "awards_nl": [
         "Grammy Award – Beste Dance-opname"
+      ],
+      "awards_it": [
+        "Grammy per la migliore registrazione dance"
       ],
       "isrc": "USJI10301005",
       "uri_apple_music_by_region": {
@@ -1216,6 +1248,10 @@
         "Grammy Award – Beste Rapnummer",
         "Grammy Award – Beste Rap/Zang-samenwerking"
       ],
+      "awards_it": [
+        "Grammy per la migliore canzone rap",
+        "Grammy per la migliore collaborazione rap/cantata"
+      ],
       "isrc": "USJZ10900031",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440750745",
@@ -1268,6 +1304,10 @@
         "Grammy Award – Beste Vrouwelijke Pop Zangprestatie",
         "Grammy Award – Beste Korte Muziekvideo"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop femminile",
+        "Grammy per il miglior video musicale di forma breve"
+      ],
       "isrc": "USUM70918596",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1688497897",
@@ -1316,6 +1356,9 @@
       "fun_fact_nl": "Timbaland produceerde de track met zware elektronische vervorming, en veel dj's dachten aanvankelijk dat het een nieuwe artiest was in plaats van Justin Timberlake vanwege de dramatische verandering in geluid.",
       "awards_nl": [
         "Grammy Award – Beste Dance-opname"
+      ],
+      "awards_it": [
+        "Grammy per la migliore registrazione dance"
       ],
       "isrc": "USJI10600269",
       "uri_apple_music_by_region": {
@@ -1366,6 +1409,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rockprestatie door Duo of Groep met Zang"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rock di un duo o gruppo con parti vocali"
+      ],
       "isrc": "USRC10800300",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1441530830",
@@ -1414,6 +1460,9 @@
       "fun_fact_nl": "Chris Martin bedacht de pianoriff diep in de nacht en nam hem bijna niet op omdat hij bedoeld was voor een ander bandproject. Het won de Grammy voor Record of the Year in 2004.",
       "awards_nl": [
         "Grammy Award – Opname van het Jaar"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno"
       ],
       "isrc": "GBAYE1600193",
       "uri_apple_music_by_region": {
@@ -1632,6 +1681,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USIR10000448",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440866926",
@@ -1765,6 +1817,9 @@
       "awards_nl": [
         "Grammy Award – Beste Dance-opname"
       ],
+      "awards_it": [
+        "Grammy per la migliore registrazione dance"
+      ],
       "isrc": "USUM70824409",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1710465533",
@@ -1854,6 +1909,9 @@
       "fun_fact_nl": "Het nummer was oorspronkelijk geschreven voor Britney Spears, die het weigerde. Het stond 10 opeenvolgende weken op nummer 1 in het VK tijdens een van de regenachtigste zomers ooit gemeten.",
       "awards_nl": [
         "Grammy Award – Beste Rap/Zang-samenwerking"
+      ],
+      "awards_it": [
+        "Grammy per la migliore collaborazione rap/cantata"
       ],
       "isrc": "USUM70736771",
       "uri_apple_music_by_region": {
@@ -1987,6 +2045,9 @@
       "awards_nl": [
         "BRIT Award – Beste Britse Rockact (band)"
       ],
+      "awards_it": [
+        "Brit Award per il miglior artista rock britannico (band)"
+      ],
       "isrc": "GBCEL0300192",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/315844084",
@@ -2035,6 +2096,9 @@
       "fun_fact_nl": "Ironisch genoeg namen The Game en 50 Cent deze samenwerking op vlak voor hun beroemde vete die de G-Unit-rapgroep uiteendreef.",
       "awards_nl": [
         "Grammy-nominatie – Beste Rapprestatie door Duo of Groep"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore interpretazione rap di un duo o gruppo"
       ],
       "isrc": "USIR10401121",
       "uri_apple_music_by_region": {
@@ -2171,6 +2235,10 @@
         "Grammy Award – Beste Vrouwelijke R&B Zangprestatie",
         "Grammy Award – Beste R&B-nummer"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B femminile",
+        "Grammy per la migliore canzone R&B"
+      ],
       "isrc": "USJAY0300452",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1721921218",
@@ -2261,6 +2329,9 @@
       "fun_fact_nl": "André 3000 speelde alle instrumenten zelf. De tekst 'shake it like a Polaroid picture' zette Polaroid ertoe aan een verklaring af te geven dat het schudden van foto's ze in feite beschadigt.",
       "awards_nl": [
         "Grammy Award – Beste Urban/Alternatieve Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione urban/alternative"
       ]
     },
     {
@@ -2467,6 +2538,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rapprestatie door Duo of Groep"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap di un duo o gruppo"
+      ],
       "isrc": "USLF20000357",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1741741469",
@@ -2642,6 +2716,9 @@
       "awards_nl": [
         "Grammy Award – Beste Vrouwelijke R&B Zangprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B femminile"
+      ],
       "isrc": "USMC10111369",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1691778424",
@@ -2732,6 +2809,9 @@
       "fun_fact_nl": "Het nummer bevat op beroemde wijze een sample van Daft Punk's 'Harder, Better, Faster, Stronger' en de futuristische videoclip was geïnspireerd op de animefilm Akira.",
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
       ],
       "isrc": "USUM70741299",
       "uri_apple_music_by_region": {
@@ -3203,6 +3283,10 @@
         "Grammy Award – Opname van het Jaar",
         "Grammy Award – Beste Rockprestatie door Duo of Groep"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno",
+        "Grammy per la migliore interpretazione rock di un duo o gruppo"
+      ],
       "isrc": "USRC10800301",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1351343570",
@@ -3549,6 +3633,11 @@
         "Oscar – Beste Originele Lied",
         "Grammy Award – Beste Rapnummer",
         "Grammy Award – Beste Rap Soloprestatie"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale",
+        "Grammy per la migliore canzone rap",
+        "Grammy per la migliore interpretazione rap solista"
       ],
       "isrc": "USIR10211559",
       "uri_apple_music_by_region": {
@@ -4018,6 +4107,10 @@
       "awards_nl": [
         "Grammy Award – Beste Rapnummer",
         "Grammy Award – Beste Rap/Zang-samenwerking"
+      ],
+      "awards_it": [
+        "Grammy per la migliore canzone rap",
+        "Grammy per la migliore collaborazione rap/cantata"
       ],
       "isrc": "USJZ10900010",
       "uri_apple_music_by_region": {

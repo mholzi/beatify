@@ -1,6 +1,6 @@
 {
   "name": "Eurovision Winners (1956-2025)",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "eurovision",
     "contest",
@@ -45,6 +45,9 @@
       "fun_fact_nl": "Refrain won het allereerste Eurovisie Songfestival, gehouden in Lugano, Zwitserland. Lys Assia was de enige deelnemer uit Zwitserland en won met een eenvoudig, elegant optreden. Het songfestival van 1956 had nog geen publieksstemmen - alleen de stemmen van de jury telden.",
       "awards_nl": [
         "Eurovisionwinnaar 1956"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1956"
       ],
       "isrc": "US2Y30712375",
       "uri_apple_music_by_region": {
@@ -95,6 +98,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1957"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1957"
+      ],
       "isrc": "BEK011900098",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1739553677",
@@ -144,6 +150,9 @@
       "fun_fact_nl": "Dors mon amour (Slaap mijn liefste) was een zacht slaapliedje dat Frankrijk de eerste songfestivaltitel bezorgde. Andre Claveau was voor zijn overwinning al een gevestigde Franse chansonnier, bekend om zijn warme stemgeluid.",
       "awards_nl": [
         "Eurovisionwinnaar 1958"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1958"
       ],
       "isrc": "FR6V82155103",
       "uri_apple_music_by_region": {
@@ -196,6 +205,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1959"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1959"
+      ],
       "isrc": "NLBH71029195",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/420371297",
@@ -245,6 +257,9 @@
       "fun_fact_nl": "Tom Pillibi vertelt het verhaal van een charmante leugenaar die fantastische verhalen verzint. Jacqueline Boyer was pas 18 jaar oud toen ze won, en haar moeder Lucienne Boyer was ook een beroemde Franse zangeres.",
       "awards_nl": [
         "Eurovisionwinnaar 1960"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1960"
       ],
       "isrc": "FRZ035903640",
       "uri_apple_music_by_region": {
@@ -296,6 +311,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1961"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1961"
+      ],
       "isrc": "FRZ116103170",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1752888490",
@@ -345,6 +363,9 @@
       "fun_fact_nl": "Un premier amour (Een eerste liefde) stelde de derde Franse overwinning veilig. Isabelle Aubret overleefde in 1963 een bijna fataal auto-ongeluk, maar maakte een opmerkelijke comeback. Ze vertegenwoordigde Frankrijk opnieuw in 1968 en werd toen derde.",
       "awards_nl": [
         "Eurovisionwinnaar 1962"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1962"
       ],
       "isrc": "FRZ036203430",
       "uri_apple_music_by_region": {
@@ -396,6 +417,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1963"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1963"
+      ],
       "isrc": "DKABA1100812",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/693093834",
@@ -446,6 +470,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1964"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1964"
+      ],
       "isrc": "ITR006400011",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1769611022",
@@ -494,6 +521,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1965"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1965"
+      ],
       "uri_tidal": "tidal://track/41386583",
       "uri_apple_music": "applemusic://track/1721242740"
     },
@@ -535,6 +565,9 @@
       "fun_fact_nl": "Merci Cherie was de eerste Oostenrijkse overwinning. Udo Jurgens had al twee keer eerder deelgenomen (1964, 1965) voordat hij eindelijk won. Hij groeide uit tot een van de meest succesvolle artiesten van Europa met meer dan 100 miljoen verkochte platen.",
       "awards_nl": [
         "Eurovisionwinnaar 1966"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1966"
       ],
       "isrc": "DEA810602256",
       "uri_apple_music_by_region": {
@@ -586,6 +619,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1967"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1967"
+      ],
       "isrc": "GBCXD0400224",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1467380894",
@@ -636,6 +672,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1968"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1968"
+      ],
       "isrc": "ES5100300048",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1344881200",
@@ -685,6 +724,9 @@
       "fun_fact_nl": "De Troubadour was onderdeel van het enige gelijke spel tussen vier landen in de geschiedenis. Nederland, Frankrijk, Spanje en het VK deelden de eerste plaats met elk 18 punten. Dit leidde tot regels om gelijke standen in de toekomst te voorkomen.",
       "awards_nl": [
         "Eurovisionwinnaar 1969 (4-way tie)"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1969 (ex aequo a quattro)"
       ]
     },
     {
@@ -725,6 +767,9 @@
       "fun_fact_nl": "Boom Bang a Bang was een van de vier gedeelde winnaars in 1969. De Schotse zangeres Lulu was al beroemd door 'Shout' en 'To Sir with Love'. Het vrolijke, aanstekelijke nummer werd een hit in het VK ondanks de gedeelde winst.",
       "awards_nl": [
         "Eurovisionwinnaar 1969 (4-way tie)"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1969 (ex aequo a quattro)"
       ],
       "isrc": "GBAYE6900136",
       "uri_apple_music_by_region": {
@@ -776,6 +821,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1969 (4-way tie)"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1969 (ex aequo a quattro)"
+      ],
       "isrc": "ES5378900013",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1838068722",
@@ -825,6 +873,9 @@
       "fun_fact_nl": "Un jour, un enfant completeerde de historische gedeelde winst van 1969. Frida Boccara werd geboren in Marokko en groeide uit tot een van de meest gerespecteerde Franse zangeressen. Haar emotionele ballade viel op tussen de andere winnaars.",
       "awards_nl": [
         "Eurovisionwinnaar 1969 (4-way tie)"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1969 (ex aequo a quattro)"
       ],
       "isrc": "CAU111501580",
       "uri_apple_music_by_region": {
@@ -876,6 +927,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1970"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1970"
+      ],
       "isrc": "USCGH1615055",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1078014787",
@@ -925,6 +979,9 @@
       "fun_fact_nl": "Un Banc, Un Arbre, Une Rue bezorgde Monaco de enige songfestivaloverwinning. Severine was eigenlijk Frans en het nummer werd geschreven door Yves Dessca. De winst kwam op het moment dat er nieuwe stemregels werden geïntroduceerd.",
       "awards_nl": [
         "Eurovisionwinnaar 1971"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1971"
       ],
       "isrc": "USBKY0518252",
       "uri_apple_music_by_region": {
@@ -976,6 +1033,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1972"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1972"
+      ],
       "isrc": "FRZ037201700",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1442450412",
@@ -1025,6 +1085,9 @@
       "fun_fact_nl": "Tu te reconnaitras was de vierde Luxemburgse winst in 12 jaar tijd. Anne-Marie David vertegenwoordigde Frankrijk in 1979, wat haar een van de weinige artiesten maakt die voor twee verschillende landen uitkwamen.",
       "awards_nl": [
         "Eurovisionwinnaar 1973"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1973"
       ],
       "isrc": "FRZ051700133",
       "uri_apple_music_by_region": {
@@ -1084,6 +1147,10 @@
         "Eurovisionwinnaar 1974",
         "Beste Eurovisielied Ooit (2005 peiling)"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1974",
+        "Migliore canzone dell'Eurovision di sempre (sondaggio del 2005)"
+      ],
       "isrc": "SEAYD7415010",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1612497895",
@@ -1131,6 +1198,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1975"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1975"
+      ],
       "uri_tidal": "tidal://track/181365005",
       "uri_apple_music": "applemusic://track/104581124",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BPxuq4uQ0OU"
@@ -1173,6 +1243,9 @@
       "fun_fact_nl": "Save Your Kisses For Me was de derde Britse overwinning en werd een van de bestverkochte singles van 1976 wereldwijd. Het liedje lijkt over romantische liefde te gaan, maar aan het eind blijkt het over een driejarige dochter te gaan.",
       "awards_nl": [
         "Eurovisionwinnaar 1976"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1976"
       ],
       "isrc": "NLB127600905",
       "uri_apple_music_by_region": {
@@ -1224,6 +1297,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1977"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1977"
+      ],
       "isrc": "FRZ988800040",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1222623640",
@@ -1271,6 +1347,9 @@
       "fun_fact_nl": "A-Ba-Ni-Bi was de eerste overwinning voor Israël en bevatte een Hebreeuws kindertaalspelletje in de tekst. Izhar Cohen en de Alphabeta traden op met een energieke choreografie die baanbrekend was voor die tijd.",
       "awards_nl": [
         "Eurovisionwinnaar 1978"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1978"
       ]
     },
     {
@@ -1310,6 +1389,9 @@
       "fun_fact_nl": "Hallelujah zorgde voor een tweede Israëlische overwinning op rij. Gezongen door Gali Atari met Milk and Honey, sloeg de vredesboodschap van het nummer diep aan tijdens de gespannen tijden in het Midden-Oosten. Israël organiseerde het festival van 1979 in Jeruzalem.",
       "awards_nl": [
         "Eurovisionwinnaar 1979"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1979"
       ],
       "isrc": "IL1032102005",
       "uri_apple_music_by_region": {
@@ -1362,6 +1444,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1980"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1980"
+      ],
       "isrc": "GBCWS1310103",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/735689364",
@@ -1413,6 +1498,9 @@
       "fun_fact_nl": "Making Your Mind Up is beroemd om de routine waarbij de mannen de rokken van de vrouwen afscheurden, waarna er kortere rokjes onder vandaan kwamen. Dit werd een van de meest iconische songfestivalmomenten en maakte Bucks Fizz op slag beroemd.",
       "awards_nl": [
         "Eurovisionwinnaar 1981"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1981"
       ],
       "isrc": "GBARL8100025",
       "uri_apple_music_by_region": {
@@ -1467,6 +1555,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1982"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1982"
+      ],
       "isrc": "DEC718200001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/284222244",
@@ -1515,6 +1606,9 @@
       "fun_fact_nl": "Si la vie est cadeau bezorgde Luxemburg de vijfde en laatste overwinning. De powerballade toonde het indrukwekkende stembereik van Corinne Hermes. Luxemburg trok zich in 1994 terug en is pas onlangs weer teruggekeerd.",
       "awards_nl": [
         "Eurovisionwinnaar 1983"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1983"
       ],
       "isrc": "TCAFO2159766",
       "uri_apple_music_by_region": {
@@ -1567,6 +1661,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1984"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1984"
+      ],
       "isrc": "SEVNI0201801",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/440309422",
@@ -1617,6 +1714,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1985"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1985"
+      ],
       "isrc": "NOJLA1005130",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/976265487",
@@ -1666,6 +1766,9 @@
       "fun_fact_nl": "J'aime la vie is tot nu toe de enige Belgische overwinning. Sandra Kim beweerde 15 te zijn, maar was in werkelijkheid pas 13, waarmee ze de jongste winnaar ooit is. De waarheid kwam pas na haar overwinning aan het licht.",
       "awards_nl": [
         "Eurovisionwinnaar 1986"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1986"
       ],
       "isrc": "BEU761000004",
       "uri_apple_music_by_region": {
@@ -1719,6 +1822,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1987"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1987"
+      ],
       "isrc": "GBBBM8700004",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/429802667",
@@ -1768,6 +1874,9 @@
       "fun_fact_nl": "Ne partez pas sans moi betekende de Europese doorbraak voor Celine Dion. Ze won met slechts één punt verschil in een zenuwslopende finale. Dion kwam uit voor Zwitserland omdat Canadese artiesten niet voor hun eigen land mochten uitkomen.",
       "awards_nl": [
         "Eurovisionwinnaar 1988"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1988"
       ],
       "isrc": "FRV628800310",
       "uri_apple_music_by_region": {
@@ -1819,6 +1928,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1989"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1989"
+      ],
       "isrc": "HRA048918172",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1846157477",
@@ -1869,6 +1981,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1990"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1990"
+      ],
       "isrc": "ITB261002520",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1329254875",
@@ -1918,6 +2033,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1991"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1991"
+      ],
       "uri_apple_music": "applemusic://track/586785384"
     },
     {
@@ -1958,6 +2076,9 @@
       "fun_fact_nl": "Why Me? werd geschreven door Johnny Logan, wat hem zijn derde overwinning bezorgde (dit keer als songwriter). Linda Martin had al eerder meegedaan in 1984. Dit was het begin van een reeks van vier Ierse zeges op rij.",
       "awards_nl": [
         "Eurovisionwinnaar 1992"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1992"
       ],
       "isrc": "GBKRX1600856",
       "uri_apple_music_by_region": {
@@ -2008,6 +2129,9 @@
       "fun_fact_nl": "In Your Eyes zorgde voor de tweede Ierse overwinning op rij. De krachtige stem van Niamh Kavanagh leverde de hoogste puntenscore tot dan toe op. Ze keerde in 2010 terug om Ierland nogmaals te vertegenwoordigen.",
       "awards_nl": [
         "Eurovisionwinnaar 1993"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1993"
       ],
       "isrc": "GBARK0400010",
       "uri_apple_music_by_region": {
@@ -2061,6 +2185,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1994"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1994"
+      ],
       "isrc": "US2G40701607",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/212118856",
@@ -2109,6 +2236,9 @@
       "fun_fact_nl": "Nocturne is het enige grotendeels instrumentale nummer dat het songfestival won, met slechts 24 woorden tekst. De meeslepende vioolmelodie van Secret Garden betoverde Europa en bewees dat winnen niet alleen met popliedjes kon.",
       "awards_nl": [
         "Eurovisionwinnaar 1995"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1995"
       ]
     },
     {
@@ -2151,6 +2281,9 @@
       "fun_fact_nl": "The Voice bezorgde Ierland de recordbrekende zevende overwinning (de vierde in vijf jaar). Het serene Keltische optreden van Eimear Quinn zette de Ierse dominantie voort. Geen enkel land won het festival vaker dan Ierland.",
       "awards_nl": [
         "Eurovisionwinnaar 1996"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1996"
       ],
       "isrc": "USDP20403422",
       "uri_apple_music_by_region": {
@@ -2202,6 +2335,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 1997"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1997"
+      ],
       "isrc": "GBDNM1010071",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1438441951",
@@ -2250,6 +2386,9 @@
       "fun_fact_nl": "Diva schreef geschiedenis toen Dana International de eerste transgender winnaar van het songfestival werd. Haar winst was in sommige kringen omstreden, maar werd gevierd als een mijlpaal voor LGBTQ+-representatie. Het nummer werd een wereldwijde hit.",
       "awards_nl": [
         "Eurovisionwinnaar 1998"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1998"
       ]
     },
     {
@@ -2290,6 +2429,9 @@
       "fun_fact_nl": "Take Me to Your Heaven was de vierde Zweedse overwinning. Charlotte Nilsson (later Perrelli) bracht een klassiek Scandinavisch popnummer. Ze keerde in 2008 terug met 'Hero' en werd toen 18e.",
       "awards_nl": [
         "Eurovisionwinnaar 1999"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1999"
       ],
       "isrc": "SEVFN9908070",
       "uri_apple_music_by_region": {
@@ -2341,6 +2483,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2000"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2000"
+      ],
       "isrc": "DKABA1100240",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1676954239",
@@ -2388,6 +2533,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2001"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2001"
+      ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=92TSUlqzFi8"
     },
     {
@@ -2426,6 +2574,9 @@
       "fun_fact_nl": "I Wanna bezorgde Letland de eerste overwinning bij hun pas derde deelname. Het zwoele optreden van Marie N en de kostuumwissels tijdens het nummer zorgden voor een gedenkwaardig spektakel. Letland organiseerde daarna het festival van 2003 in Riga.",
       "awards_nl": [
         "Eurovisionwinnaar 2002"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2002"
       ],
       "isrc": "USA370580255",
       "uri_apple_music_by_region": {
@@ -2479,6 +2630,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2003"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2003"
+      ],
       "isrc": "TRA160300427",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/400705407",
@@ -2528,6 +2682,9 @@
       "fun_fact_nl": "Wild Dances was de eerste Oekraïense overwinning en bevatte volksmuziek-elementen uit de Karpaten. Het energieke optreden van Ruslana met vuur en tribale dans was revolutionair. Ze werd later een bekende activiste tijdens de politieke onrust in Oekraïne.",
       "awards_nl": [
         "Eurovisionwinnaar 2004"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2004"
       ],
       "isrc": "UAAO10400001",
       "uri_apple_music_by_region": {
@@ -2579,6 +2736,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2005"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2005"
+      ],
       "isrc": "GRS010500065",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1782949200",
@@ -2629,6 +2789,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2006"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2006"
+      ],
       "isrc": "USGMP0700099",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/389516413",
@@ -2678,6 +2841,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2007"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2007"
+      ],
       "uri_apple_music": "applemusic://track/1578027079"
     },
     {
@@ -2717,6 +2883,9 @@
       "fun_fact_nl": "Believe bezorgde Rusland hun eerste en enige Eurovisie-overwinning. Dima Bilan trad op met de Hongaarse violist Edvin Marton en een Olympische schaatser op het podium. Hij was tweede geworden in 2006, waardoor 2008 zijn verlossingsjaar werd.",
       "awards_nl": [
         "Eurovisionwinnaar 2008"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2008"
       ],
       "isrc": "RUB421500013",
       "uri_apple_music_by_region": {
@@ -2767,6 +2936,9 @@
       "fun_fact_nl": "Fairytale won met 387 punten, de hoogste score ooit behaald op dat moment onder het stemsysteem. Alexander Rybak charmeerde heel Europa met zijn folkpopliedjes en vioolspel. De Wit-Russisch-Noorse artiest was net 22 jaar oud.",
       "awards_nl": [
         "Eurovisionwinnaar 2009"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2009"
       ],
       "isrc": "NO23B0900001",
       "uri_apple_music_by_region": {
@@ -2821,6 +2993,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2010"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2010"
+      ],
       "isrc": "DEUM71001210",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1667036971",
@@ -2868,6 +3043,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2011"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2011"
+      ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=_0tlQUW5X0U"
     },
     {
@@ -2911,6 +3089,9 @@
       "fun_fact_nl": "Euphoria wordt beschouwd als een van de beste winnende Eurovisiesongs ooit. Loreen kreeg stemmen voor de eerste plaats uit 18 landen - een record. Het beklijvende dansnummer stond wereldwijd bovenaan de hitlijsten en heeft meer dan 300 miljoen Spotify streams.",
       "awards_nl": [
         "Eurovisionwinnaar 2012"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2012"
       ],
       "isrc": "SEPQA1200005",
       "uri_apple_music_by_region": {
@@ -2963,6 +3144,9 @@
       "fun_fact_nl": "Only Teardrops bezorgde Denemarken hun derde Eurovisie-overwinning. Emmelie de Forest's etherische folk-pop optreden bevatte dansen op blote voeten en tin whistle. De boodschap van het lied over het loslaten van pijn vond weerklank bij kijkers in heel Europa.",
       "awards_nl": [
         "Eurovisionwinnaar 2013"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2013"
       ],
       "isrc": "DKADG1200760",
       "uri_apple_music_by_region": {
@@ -3017,6 +3201,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2014"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2014"
+      ],
       "isrc": "ATE501400401",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/844169216",
@@ -3070,6 +3257,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2015"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2015"
+      ],
       "isrc": "SEPQA1401135",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1612452449",
@@ -3122,6 +3312,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2016"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2016"
+      ],
       "isrc": "RUA1H1518948",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1664506710",
@@ -3171,6 +3364,9 @@
       "fun_fact_nl": "Amar Pelos Dois (Liefde voor ons beiden) won met 758 punten - de hoogste score ooit in de Eurovisiegeschiedenis. De intieme jazzballad van Salvador Sobral, geschreven door zijn zus Luisa, brak alle records. Hij trad op in afwachting van een harttransplantatie, die hij maanden later kreeg.",
       "awards_nl": [
         "Eurovisionwinnaar 2017"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2017"
       ],
       "isrc": "PTNO11700001",
       "uri_apple_music_by_region": {
@@ -3222,6 +3418,9 @@
       "fun_fact_nl": "De kippengeluiden en loop-pedal performance van Toy maakten het onvergetelijk. Netta Barzilai's 'empowerment anthem' met de boodschap 'I'm not your toy' sloot aan bij de #MeToo-beweging. De eigenzinnige elektronische track verdeelde de meningen maar won beslissend.",
       "awards_nl": [
         "Eurovisionwinnaar 2018"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2018"
       ],
       "isrc": "IL5181100107",
       "uri_apple_music_by_region": {
@@ -3276,6 +3475,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2019"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2019"
+      ],
       "isrc": "NL1TK1900001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1748200197",
@@ -3325,6 +3527,9 @@
       "fun_fact_nl": "ZITTI E BUONI (Shut Up and Behave) was het eerste rocknummer dat Eurovisie won sinds Lordi in 2006. Maneskin werd een wereldwijde superster, die wereldwijd hitlijsten aanvoerde en optrad op grote festivals. Frontman Damiano werd geconfronteerd met valse beschuldigingen van drugsgebruik die snel werden weerlegd.",
       "awards_nl": [
         "Eurovisionwinnaar 2021"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2021"
       ],
       "isrc": "ITB002100112",
       "uri_apple_music_by_region": {
@@ -3379,6 +3584,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2022"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2022"
+      ],
       "isrc": "DEE862200344",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1614859013",
@@ -3432,6 +3640,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2023"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2023"
+      ],
       "isrc": "SEUM72201638",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1872510113",
@@ -3482,6 +3693,9 @@
       "awards_nl": [
         "Eurovisionwinnaar 2024"
       ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2024"
+      ],
       "isrc": "DEUM72401182",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1730730673",
@@ -3531,6 +3745,9 @@
       "fun_fact_nl": "Wasted Love liet JJ's buitengewone countertenor operastem horen in een nummer dat opbouwt van orkestrale zweltonen naar een clubfinish. Johannes Pietsch, die optreedt in de Weense Staatsopera, kreeg de steun van de jury van 8 landen, wat hem dubbele punten opleverde. Oostenrijk zal gastheer zijn van Eurovisie 2026.",
       "awards_nl": [
         "Eurovisionwinnaar 2025"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 2025"
       ],
       "isrc": "DEA622500513",
       "uri_apple_music_by_region": {

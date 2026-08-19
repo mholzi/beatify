@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "disney",
     "movies",
@@ -49,6 +49,10 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2017)",
         "Grammy-nominatie voor Best Song Written for Visual Media (2018)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2017)",
+        "Candidatura al Grammy per la migliore canzone scritta per media visivi (2018)"
       ],
       "uri_apple_music": "applemusic://track/1440639381",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cPAbx5kgCJo",
@@ -294,6 +298,11 @@
         "Golden Globe voor Beste Originele Song (1995)",
         "Grammy voor Best Male Pop Vocal Performance (1995)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1995)",
+        "Golden Globe per la migliore canzone originale (1995)",
+        "Grammy per la migliore interpretazione vocale pop maschile (1995)"
+      ],
       "uri_apple_music": "applemusic://track/1442813103",
       "uri_youtube_music": "https://music.youtube.com/watch?v=25QyCxVkXwQ",
       "movie": "The Lion King",
@@ -348,6 +357,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (1995)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1995)"
       ],
       "uri_apple_music": "applemusic://track/1472083402",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MBIWFTXQbi4",
@@ -630,6 +642,11 @@
         "Grammy voor Best Song Written for Visual Media (1991)",
         "Golden Globe-nominatie voor Beste Originele Song (1990)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1990)",
+        "Grammy per la migliore canzone scritta per media visivi (1991)",
+        "Candidatura al Golden Globe per la migliore canzone originale (1990)"
+      ],
       "uri_apple_music": "applemusic://track/1440661297",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GC_mV1IpjWA",
       "movie": "The Little Mermaid",
@@ -725,6 +742,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (1990)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1990)"
       ],
       "uri_apple_music": "applemusic://track/1440661481",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3BNpW7cxzrw",
@@ -840,6 +860,11 @@
         "Oscar voor Beste Originele Song (2014)",
         "Grammy voor Best Song Written for Visual Media (2015)",
         "Golden Globe-nominatie voor Beste Originele Song (2014)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (2014)",
+        "Grammy per la migliore canzone scritta per media visivi (2015)",
+        "Candidatura al Golden Globe per la migliore canzone originale (2014)"
       ],
       "uri_apple_music": "applemusic://track/1440626764",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YVVTZgwYwVo",
@@ -1125,6 +1150,11 @@
         "Grammy voor Lied van het Jaar (1994)",
         "Golden Globe voor Beste Originele Song (1993)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1993)",
+        "Grammy per la canzone dell'anno (1994)",
+        "Golden Globe per la migliore canzone originale (1993)"
+      ],
       "uri_apple_music": "applemusic://track/1440722284",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eitDnP0_83k",
       "movie": "Aladdin",
@@ -1279,6 +1309,11 @@
         "Grammy voor Best Song Written for Visual Media (1997)",
         "Golden Globe voor Beste Originele Song (1996)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1996)",
+        "Grammy per la migliore canzone scritta per media visivi (1997)",
+        "Golden Globe per la migliore canzone originale (1996)"
+      ],
       "uri_apple_music": "applemusic://track/1440720093",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hcmpj5HPue0",
       "movie": "Pocahontas",
@@ -1382,6 +1417,10 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (1998)",
         "Golden Globe-nominatie voor Beste Originele Song (1998)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1998)",
+        "Candidatura al Golden Globe per la migliore canzone originale (1998)"
       ],
       "uri_apple_music": "applemusic://track/1412859027",
       "uri_youtube_music": "https://music.youtube.com/watch?v=44LambNZgd4",
@@ -1540,6 +1579,11 @@
         "Golden Globe voor Beste Originele Song (2000)",
         "Grammy voor Best Song Written for Visual Media (2001)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (2000)",
+        "Golden Globe per la migliore canzone originale (2000)",
+        "Grammy per la migliore canzone scritta per media visivi (2001)"
+      ],
       "uri_apple_music": "applemusic://track/1437333914",
       "uri_youtube_music": "https://music.youtube.com/watch?v=w0ZHlp6atUQ",
       "movie": "Tarzan",
@@ -1652,6 +1696,11 @@
         "Grammy voor Best Pop Performance by a Duo or Group (1993)",
         "Golden Globe voor Beste Originele Song (1992)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1992)",
+        "Grammy per la migliore interpretazione pop di un duo o gruppo (1993)",
+        "Golden Globe per la migliore canzone originale (1992)"
+      ],
       "uri_apple_music": "applemusic://track/1443431255",
       "uri_youtube_music": "https://music.youtube.com/watch?v=axySrE0Kg6k",
       "movie": "Beauty and the Beast",
@@ -1704,6 +1753,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (1992)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1992)"
       ],
       "uri_apple_music": "applemusic://track/1440618901",
       "uri_youtube_music": "https://music.youtube.com/watch?v=afzmwAKUppU",
@@ -1844,6 +1896,9 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2017)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2017)"
+      ],
       "uri_apple_music": "applemusic://track/1443431128",
       "uri_youtube_music": "https://music.youtube.com/watch?v=diLa-gpHRKc",
       "movie": "Beauty and the Beast (Live Action)",
@@ -1941,6 +1996,10 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2011)",
         "Golden Globe-nominatie voor Beste Originele Song (2011)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2011)",
+        "Candidatura al Golden Globe per la migliore canzone originale (2011)"
       ],
       "uri_apple_music": "applemusic://track/1440639422",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ILRs2r6lcHY",
@@ -2078,6 +2137,9 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2010)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2010)"
+      ],
       "uri_apple_music": "applemusic://track/1417397131",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ThMwHKfzz1I",
       "movie": "The Princess and the Frog",
@@ -2173,6 +2235,9 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2008)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2008)"
+      ],
       "uri_apple_music": "applemusic://track/1452871166",
       "uri_youtube_music": "https://music.youtube.com/watch?v=iFiGp2QrsCw",
       "movie": "Enchanted",
@@ -2267,6 +2332,9 @@
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2000)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2000)"
+      ],
       "uri_apple_music": "applemusic://track/1463095449",
       "uri_youtube_music": "https://music.youtube.com/watch?v=QApcQh9_kQw",
       "movie": "Toy Story 2",
@@ -2319,6 +2387,9 @@
       ],
       "awards_nl": [
         "Oscar voor Beste Originele Song (2002)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (2002)"
       ],
       "uri_apple_music": "applemusic://track/893108671",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CMJPhCh4ARc",
@@ -2379,6 +2450,9 @@
       "awards_nl": [
         "Grammy-nominatie voor Best Song Written for Visual Media (2017)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore canzone scritta per media visivi (2017)"
+      ],
       "uri_apple_music": "applemusic://track/1440667007",
       "uri_youtube_music": "https://music.youtube.com/watch?v=c6rP-YP4c5I",
       "movie": "Zootopia",
@@ -2437,6 +2511,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2020)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2020)"
       ],
       "uri_apple_music": "applemusic://track/1487738283",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gIOyB9ZXn8s",
@@ -2591,6 +2668,10 @@
         "Grammy-nominatie voor Lied van het Jaar (2023)",
         "Critics' Choice Movie Award voor Beste Song (2022)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la canzone dell'anno (2023)",
+        "Critics' Choice Movie Award per la migliore canzone (2022)"
+      ],
       "uri_apple_music": "applemusic://track/1594677760",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bvWRMAU6V-c",
       "movie": "Encanto",
@@ -2649,6 +2730,9 @@
       "awards_nl": [
         "Grammy-nominatie voor Best Song Written for Visual Media (2023)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore canzone scritta per media visivi (2023)"
+      ],
       "uri_apple_music": "applemusic://track/1594677759",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tQwVKr8rCYw",
       "movie": "Encanto",
@@ -2700,6 +2784,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (2022)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (2022)"
       ],
       "uri_apple_music": "applemusic://track/1594677763",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DUGtyj5QlEM",
@@ -2846,6 +2933,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (1998)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1998)"
       ],
       "uri_apple_music": "applemusic://track/1664565006",
       "uri_youtube_music": "https://music.youtube.com/watch?v=mgyKVLUt0no",
@@ -2994,6 +3084,10 @@
         "Oscar voor Beste Originele Song (1941)",
         "RIAA 'Songs of the Century'-lijst"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1941)",
+        "Recording Industry Association of America, «Songs of the Century»"
+      ],
       "uri_apple_music": "applemusic://track/1452851094",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0oyxywZJsIs",
       "movie": "Pinocchio",
@@ -3046,6 +3140,9 @@
       ],
       "awards_nl": [
         "Oscar-nominatie voor Beste Originele Song (1965)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1965)"
       ],
       "uri_apple_music": "applemusic://track/1444019946",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xA_vQZd_9N8",
@@ -3146,6 +3243,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Song (1965)",
         "Grammy-nominatie"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1965)",
+        "Candidatura al Grammy"
       ],
       "uri_apple_music": "applemusic://track/1434821546",
       "movie": "Mary Poppins",

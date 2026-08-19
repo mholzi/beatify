@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.19",
+  "version": "1.20",
   "tags": [
     "1970s",
     "1980s",
@@ -722,6 +722,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Mannelijke R&B Zangprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B maschile"
+      ],
       "isrc": "USSM19803028",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1739929127",
@@ -809,6 +812,9 @@
       "fun_fact_nl": "Geschreven door George Merrill en Shannon Rubicam, die ook Whitney's 'How Will I Know' schreven. Het stond twee weken op nummer 1 en won de Grammy voor Best Female Pop Vocal. De biopic uit 2022 over Whitney Houston werd vernoemd naar dit nummer.",
       "awards_nl": [
         "Grammy Award voor Beste Vrouwelijke Pop Zangprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop femminile"
       ],
       "isrc": "USAR18700121",
       "uri_apple_music_by_region": {
@@ -1256,6 +1262,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Disco-opname"
       ],
+      "awards_it": [
+        "Grammy per la migliore registrazione disco"
+      ],
       "isrc": "USPR37800083",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443818368",
@@ -1426,6 +1435,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale"
+      ],
       "isrc": "USNLR1200531",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1454593961",
@@ -1473,6 +1485,9 @@
       "fun_fact_nl": "Geproduceerd door Quincy Jones en geschreven door Rod Temperton (die ook Michael Jacksons 'Thriller' schreef). Het vermengde jazz-gitaarvirtuositeit met disco-funkgrooves en bewees dat Benson zowel de jazz- als de pophitparade kon domineren.",
       "awards_nl": [
         "Grammy Award voor Beste Mannelijke R&B Zangprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B maschile"
       ],
       "isrc": "USWB19900127",
       "uri_apple_music_by_region": {
@@ -1604,6 +1619,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Vrouwelijke Rock Zangprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale rock femminile"
+      ],
       "isrc": "USPR37907202",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1704761711",
@@ -1653,6 +1671,10 @@
       "fun_fact_nl": "Won de Oscar voor Beste Originele Nummer uit de film 'Thank God It's Friday'. Het begint uniek als een langzame ballade voordat het losbarst in een energiek disco-nummer - een structuur die revolutionair was voor disco op dat moment.",
       "awards_nl": [
         "Oscar voor Beste Originele Lied",
+        "Golden Globe"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale",
         "Golden Globe"
       ],
       "isrc": "USPR39402394",
@@ -2388,6 +2410,9 @@
       "awards_nl": [
         "Grammy Award voor Beste R&B-nummer"
       ],
+      "awards_it": [
+        "Grammy per la migliore canzone R&B"
+      ],
       "isrc": "USWB19600662",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1807720130",
@@ -2599,6 +2624,9 @@
       "fun_fact_nl": "Geschreven door Marti Sharron, Gary Skardina en Stephen Mitchell. Het won de Grammy voor Best Pop Performance by a Duo or Group. Het nummer kreeg hernieuwde populariteit toen het te zien was in de film 'Love Actually' (2003) en in Hugh Grants beroemde dansscène.",
       "awards_nl": [
         "Grammy Award voor Beste Popprestatie door Duo of Groep"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione pop di un duo o gruppo"
       ],
       "isrc": "USRC18303288",
       "uri_apple_music_by_region": {

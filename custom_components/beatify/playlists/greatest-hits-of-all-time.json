@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.21",
+  "version": "2.22",
   "tags": [
     "classics",
     "top-hits",
@@ -49,6 +49,9 @@
       "uri_deezer": "deezer://track/9997018",
       "fun_fact_nl": "Bohemian Rhapsody werd aanvankelijk afgewezen door platenmaatschappijen die dachten dat een opera-rocknummer van 6 minuten nooit op de radio zou komen. Freddie Mercury spendeerde drie weken aan het opnemen van de complexe vocale harmonieën, met 180 afzonderlijke overdubs. Het werd het kenmerkende nummer van Queen.",
       "awards_nl": [
+        "Grammy Hall of Fame (2004)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2004)"
       ],
       "isrc": "GBUM71029604",
@@ -218,6 +221,9 @@
       "awards_nl": [
         "Grammy – Beste Mannelijke Pop Zangprestatie (1984)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop maschile (1984)"
+      ],
       "isrc": "USSM19902989",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/655262182",
@@ -347,6 +353,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2001)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2001)"
+      ],
       "isrc": "GBUM71505902",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1856287169",
@@ -441,6 +450,10 @@
         "Grammy Hall of Fame (2004)",
         "Grammy – Beste Originele Filmmuziek (1971)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2004)",
+        "Grammy per la migliore colonna sonora originale (1971)"
+      ],
       "isrc": "GBAYE0601713",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1441164738",
@@ -491,6 +504,9 @@
       "uri_deezer": "deezer://track/92719900",
       "fun_fact_nl": "Highway to Hell was het laatste AC/DC-album met de oorspronkelijke zanger Bon Scott, die zes maanden na de release overleed. De titel verwijst naar het slopende leven van toeren, niet naar satanisme. Producer Mutt Lange duwde de band in de richting van een meer gepolijst geluid dat hun toekomstige werk bepaalde.",
       "awards_nl": [
+        "Grammy Hall of Fame (2020)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2020)"
       ],
       "isrc": "AUAP07900028",
@@ -549,6 +565,10 @@
         "Grammy – Opname van het Jaar (1978)",
         "Grammy Hall of Fame (2003)"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1978)",
+        "Grammy Hall of Fame (2003)"
+      ],
       "isrc": "USEE11300195",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/635770202",
@@ -598,6 +618,9 @@
       "uri_deezer": "deezer://track/12206946",
       "fun_fact_nl": "Another One Bites the Dust werd aanvankelijk tegengewerkt door het management van Queen die het te disco vond. Michael Jackson moedigde de band persoonlijk aan om het als single uit te brengen. John Deacons baslijn was geïnspireerd op Chic's 'Good Times' en werd een wereldwijd fenomeen.",
       "awards_nl": [
+        "American Music Award (1981)"
+      ],
+      "awards_it": [
         "American Music Award (1981)"
       ],
       "isrc": "GBUM71029605",
@@ -655,6 +678,10 @@
       "awards_nl": [
         "Grammy – Opname van het Jaar (1984)",
         "Grammy – Beste Mannelijke Rock Zangprestatie (1984)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1984)",
+        "Grammy per la migliore interpretazione vocale rock maschile (1984)"
       ],
       "isrc": "USSM19902990",
       "uri_apple_music_by_region": {
@@ -745,6 +772,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (1998)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (1998)"
+      ],
       "isrc": "GBUM71700184",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1652668538",
@@ -795,6 +825,9 @@
       "fun_fact_nl": "Eye of the Tiger werd geschreven als antwoord op Sylvester Stallone's verzoek om een themalied voor Rocky III nadat Queen's 'Another One Bites the Dust' niet gelicenseerd kon worden. De band schreef het met beelden uit de eerste twee Rocky-films als inspiratie. Het haalde wereldwijd de hitlijsten.",
       "awards_nl": [
         "Grammy – Beste Rockprestatie (1983)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rock (1983)"
       ],
       "isrc": "USVR19300001",
       "uri_apple_music_by_region": {
@@ -885,6 +918,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2023)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2023)"
+      ],
       "isrc": "USRH11602140",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1099335223",
@@ -935,6 +971,9 @@
       "fun_fact_nl": "Het tempo van Stayin' Het tempo van 104 BPM komt overeen met het ideale tempo voor het uitvoeren van reanimatie op de borst, waardoor het een aanbevolen nummer is voor medische training. Het nummer werd in slechts een paar uur geschreven tijdens een onderbreking van het filmen van Saturday Night Fever. Het definieerde het discotijdperk.",
       "awards_nl": [
         "Grammy – Beste Pop Zangprestatie (1979)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop (1979)"
       ],
       "isrc": "NLF057790034",
       "uri_apple_music_by_region": {
@@ -987,6 +1026,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2009)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2009)"
+      ],
       "isrc": "GBUM71029619",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440646546",
@@ -1037,6 +1079,9 @@
       "fun_fact_nl": "Take on Me werd drie keer uitgebracht voordat het een hit werd. De innovatieve videoclip, die een potloodschets-animatie met live action combineerde, kostte 100.000 dollar en de productie nam 16 weken in beslag. Het succes van de video bewees dat MTV de populariteit van een nummer kon maken of breken.",
       "awards_nl": [
         "MTV VMA – Beste Nieuwe Artiest (1986)"
+      ],
+      "awards_it": [
+        "MTV VMA per il miglior artista esordiente (1986)"
       ],
       "isrc": "USWB11506543",
       "uri_apple_music_by_region": {
@@ -1133,6 +1178,10 @@
         "Ivor Novello Award (1966)",
         "Grammy Hall of Fame (1997)"
       ],
+      "awards_it": [
+        "Ivor Novello Award (1966)",
+        "Grammy Hall of Fame (1997)"
+      ],
       "isrc": "GBAYE0601477",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1441133496",
@@ -1183,6 +1232,9 @@
       "fun_fact_nl": "Sweet Dreams werd geschreven door Annie Lennox en Dave Stewart tijdens het verbreken van hun romantische relatie. De synthesizerhook van het nummer ontstond per ongeluk toen Stewart apparatuur verkeerd had aangesloten. Het werd het bepalende geluid van synthpop uit de jaren 80 en lanceerde Eurythmics naar de roem.",
       "awards_nl": [
         "MTV VMA – Beste Nieuwe Artiest (1984)"
+      ],
+      "awards_it": [
+        "MTV VMA per il miglior artista esordiente (1984)"
       ],
       "isrc": "GBARL8300004",
       "uri_apple_music_by_region": {
@@ -1309,6 +1361,9 @@
       "uri_deezer": "deezer://track/12206933",
       "fun_fact_nl": "De iconische stomp-stomp-clap beat van We Will Rock You werd ontworpen door Brian May om te worden uitgevoerd door stadionpubliek. May wilde iets creëren dat 'zelfs een stadion vol mensen kon doen'. Het nummer wordt tot op de dag van vandaag bij vrijwel elk sportevenement wereldwijd gespeeld.",
       "awards_nl": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2009)"
       ],
       "isrc": "GBUM71029618",
@@ -1516,6 +1571,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2017)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2017)"
+      ],
       "isrc": "USMC16991138",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1422721989",
@@ -1565,6 +1623,9 @@
       "uri_deezer": "deezer://track/136710424",
       "fun_fact_nl": "Stand By Me werd in slechts 15 minuten geschreven in de kelder van het appartement van Ben E. King in New York. Het nummer was geïnspireerd op een gospelhymne. Het is gebruikt in meer dan 150 films en tv-shows en werd door de Recording Industry Association uitgeroepen tot een van de Songs of the Century.",
       "awards_nl": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (1999)"
       ],
       "isrc": "USAT21402270",
@@ -1619,6 +1680,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (1999)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (1999)"
+      ],
       "isrc": "USMC16758823",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1483870398",
@@ -1668,6 +1732,9 @@
       "uri_deezer": "deezer://track/4188287",
       "fun_fact_nl": "I Want You Back was de debuutsingle van de Jackson 5, met de 11-jarige Michael Jackson als leadzanger. Motown-oprichter Berry Gordy hield persoonlijk toezicht op de productie. Het nummer toonde Michael's ongelooflijke vocale vaardigheden en lanceerde een van de meest legendarische carrières in de muziek.",
       "awards_nl": [
+        "Grammy Hall of Fame (1999)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (1999)"
       ],
       "isrc": "USMO19400306",
@@ -1763,6 +1830,10 @@
       "awards_nl": [
         "Grammy – Opname van het Jaar (1986)",
         "Grammy – Lied van het Jaar (1986)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1986)",
+        "Grammy per la canzone dell'anno (1986)"
       ],
       "isrc": "US25T0511671",
       "uri_apple_music_by_region": {
@@ -1937,6 +2008,10 @@
         "Grammy – Opname van het Jaar (1989)",
         "Grammy – Lied van het Jaar (1989)"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1989)",
+        "Grammy per la canzone dell'anno (1989)"
+      ],
       "isrc": "USEM38800361",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6762672295",
@@ -1988,6 +2063,9 @@
       "fun_fact_nl": "Waterloo was ABBA's doorbraakhit die het Eurovisiesongfestival van 1974 won. Het lied vergelijkt overgave in de liefde met Napoleons nederlaag bij Waterloo. Het werd uitgebracht in zowel een Engelse als Zweedse versie en lanceerde ABBA's carrière als een van de best verkopende groepen in de geschiedenis.",
       "awards_nl": [
         "Eurovisionwinnaar (1974)"
+      ],
+      "awards_it": [
+        "Vincitore dell'Eurovision Song Contest 1974"
       ],
       "isrc": "SEAYD7415010",
       "uri_apple_music_by_region": {
@@ -2548,6 +2626,11 @@
         "Grammy – Beste R&B Zangprestatie (1968)",
         "Grammy Hall of Fame (1998)"
       ],
+      "awards_it": [
+        "Grammy per la migliore registrazione R&B (1968)",
+        "Grammy per la migliore interpretazione vocale R&B (1968)",
+        "Grammy Hall of Fame (1998)"
+      ],
       "isrc": "USAT21403673",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/933578351",
@@ -2599,6 +2682,9 @@
       "awards_nl": [
         "Grammy – Opname van het Jaar (1983)"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1983)"
+      ],
       "isrc": "USSM18200245",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/318675271",
@@ -2649,6 +2735,9 @@
       "uri_deezer": "deezer://track/884025",
       "fun_fact_nl": "Dancing Queen blijft ABBA's meest succesvolle single en de enige die nummer één werd in de VS. Het was geïnspireerd door George McCrae's 'Rock Your Baby'. ABBA voerde het voor het eerst uit op de avond voor het huwelijk van de Zweedse koning Carl XVI Gustaf als eerbetoon aan de nieuwe koningin.",
       "awards_nl": [
+        "Grammy Hall of Fame (2015)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2015)"
       ],
       "isrc": "SEAYD7601020",
@@ -2746,6 +2835,10 @@
         "Grammy – Opname van het Jaar (1994)",
         "Grammy – Beste Pop Zangprestatie (1994)"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1994)",
+        "Grammy per la migliore interpretazione vocale pop (1994)"
+      ],
       "isrc": "USAR19200110",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/650117376",
@@ -2795,6 +2888,9 @@
       "uri_deezer": "deezer://track/3091966",
       "fun_fact_nl": "De melodie van Surfin' U.S.A. werd aangepast van Chuck Berry's 'Sweet Little Sixteen', wat leidde tot een rechtszaak. Brian Wilson van de Beach Boys werd gedwongen om Berry de eer te geven voor zijn songwriting. Ondanks de controverse legde het nummer de Californische surfcultuur vast en is het tot op de dag van vandaag een Amerikaanse klassieker.",
       "awards_nl": [
+        "Grammy Hall of Fame (2003)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2003)"
       ],
       "isrc": "USCA20001654"
@@ -2915,6 +3011,9 @@
       "awards_nl": [
         "Grammy – Beste Pop Zangprestatie (1988)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop (1988)"
+      ],
       "isrc": "USAR18700121",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1627099927",
@@ -3033,6 +3132,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2021)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2021)"
+      ],
       "isrc": "USSM18100116",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1681227819",
@@ -3122,6 +3224,9 @@
       "fun_fact_nl": "I Will Survive werd oorspronkelijk uitgebracht als B-kant voordat DJ's het begonnen te draaien in clubs. Gloria Gaynor nam het in één take op, ondanks het feit dat ze net hersteld was van een rugoperatie. Het nummer werd een disco-anthem en later een symbool van empowerment voor de LGBTQ+ gemeenschap wereldwijd.",
       "awards_nl": [
         "Grammy – Beste Disco-opname (1980)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore registrazione disco (1980)"
       ],
       "isrc": "USPR37800083",
       "uri_apple_music_by_region": {
@@ -3255,6 +3360,10 @@
       "awards_nl": [
         "Grammy – Beste R&B Zangprestatie (1984)",
         "Grammy – Beste R&B-nummer (1984)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B (1984)",
+        "Grammy per la migliore canzone R&B (1984)"
       ],
       "isrc": "USSM19902991",
       "uri_apple_music_by_region": {
@@ -3692,6 +3801,9 @@
       "awards_nl": [
         "Grammy – Beste Rock-'n-Roll-opname (1962)"
       ],
+      "awards_it": [
+        "Grammy per la migliore registrazione rock and roll (1962)"
+      ],
       "isrc": "USA176140170",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443091056",
@@ -3934,6 +4046,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2017)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2017)"
+      ],
       "isrc": "USGF19942501",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440783625",
@@ -4104,6 +4219,10 @@
         "Grammy – Beste Pop Zangprestatie (1984)",
         "Oscar – Beste Originele Lied (1984)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop (1984)",
+        "Oscar per la migliore canzone originale (1984)"
+      ],
       "isrc": "CAU118300354",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/280711410",
@@ -4268,6 +4387,9 @@
       "fun_fact_nl": "De iconische gitaarriff van Sweet Child O' Mine was eigenlijk een opwarmoefening die Slash aan het spelen was. Axl Rose hoorde het en eiste dat ze er een nummer van maakten. Het nummer werd in slechts vijf dagen geschreven. Het werd Guns N' Roses' grootste hit en een van de meest geliefde ballads van de rock.",
       "awards_nl": [
         "American Music Award – Favoriete Pop/Rock Single (1989)"
+      ],
+      "awards_it": [
+        "American Music Award per il singolo pop/rock preferito (1989)"
       ],
       "isrc": "USGF18714809",
       "uri_apple_music_by_region": {
@@ -4528,6 +4650,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2003)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2003)"
+      ],
       "isrc": "USAT21207031",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/902620521",
@@ -4616,6 +4741,10 @@
       "awards_nl": [
         "Grammy – Beste Rock Zangprestatie (1985)",
         "Oscar – Beste Originele Liedpartituur (1985)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale rock (1985)",
+        "Oscar per la migliore colonna sonora con canzoni originali (1985)"
       ]
     },
     {
@@ -4699,6 +4828,9 @@
       "uri_deezer": "deezer://track/3788156052",
       "fun_fact_nl": "Paranoid werd in slechts 20 minuten geschreven als een last-minute filler track toen het album bijna op was. Tony Iommi bedacht de riff ter plekke en Geezer Butler krabbelde snel een tekst over depressie. Ondanks dat het een bijzaak was, werd het Black Sabbaths grootste hitsingle en het nummer dat heavy metal definieerde.",
       "awards_nl": [
+        "Grammy Hall of Fame (2021)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2021)"
       ],
       "isrc": "USWB11304369",
@@ -4829,6 +4961,9 @@
       "awards_nl": [
         "Grammy – Beste Rocknummer (2004)"
       ],
+      "awards_it": [
+        "Grammy per la migliore canzone rock (2004)"
+      ],
       "isrc": "USVT10300001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1533513537",
@@ -4921,6 +5056,9 @@
       "uri_deezer": "deezer://track/78671026",
       "fun_fact_nl": "Het middelste gedeelte van Whole Lotta Love bevat een psychedelische breakdown gemaakt door Jimmy Page met behulp van een theremin en backwards echo effecten. De tekst van het nummer is gedeeltelijk afgeleid van Willie Dixon's 'You Need Love', wat leidde tot een rechtszaak en een credit voor het songschrijven van Dixon. De riff werd door het tijdschrift Total Guitar uitgeroepen tot de beste gitaarriff aller tijden.",
       "awards_nl": [
+        "Grammy Hall of Fame (2014)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2014)"
       ],
       "isrc": "USAT21207009",
@@ -5017,6 +5155,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (1999)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (1999)"
+      ],
       "isrc": "USA176460010",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440781975",
@@ -5110,6 +5251,9 @@
       "fun_fact_nl": "Nikki Sixx schreef Kickstart My Heart na een bijna fatale overdosis heroïne in 1987. Hij was klinisch dood gedurende twee minuten voordat paramedici hem weer tot leven wekten met twee injecties met adrenaline recht in het hart. De adrenalinestoot die hem weer tot leven bracht, inspireerde de stuwende energie van het nummer. De basintro is opgenomen op 200+ BPM.",
       "awards_nl": [
         "Grammy-nominatie – Beste Hardrockprestatie (1990)"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore interpretazione hard rock (1990)"
       ],
       "isrc": "USBY29900215",
       "uri_apple_music_by_region": {
@@ -5289,6 +5433,9 @@
       "fun_fact_nl": "Kirk Hammett bedacht de iconische riff van Enter Sandman om 3 uur 's nachts, toen hij het half slapend in een bandrecorder speelde. Producer Bob Rock pushte de band om een toegankelijker geluid te creëren, wat spanning veroorzaakte maar uiteindelijk hun best verkopende album opleverde. Het nummer gebruikt de melodie van 'Hush, Little Baby' in de brug, verdraaid in een nachtmerrieachtige context over kinderangsten.",
       "awards_nl": [
         "Grammy-nominatie – Beste Metalprestatie (1992)"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore interpretazione metal (1992)"
       ],
       "isrc": "QMKHM1900001",
       "uri_apple_music_by_region": {
@@ -5686,6 +5833,10 @@
         "Grammy – Lied van het Jaar (1984)",
         "Grammy – Beste Popprestatie door Duo of Groep (1984)"
       ],
+      "awards_it": [
+        "Grammy per la canzone dell'anno (1984)",
+        "Grammy per la migliore interpretazione pop di un duo o gruppo (1984)"
+      ],
       "isrc": "GBAAM0201110",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1561882481",
@@ -5784,6 +5935,10 @@
       "awards_nl": [
         "Grammy – Beste Korte Muziekvideo (1992)",
         "Grammy – Beste Popprestatie door Duo of Groep (1992)"
+      ],
+      "awards_it": [
+        "Grammy per il miglior video musicale di forma breve (1992)",
+        "Grammy per la migliore interpretazione pop di un duo o gruppo (1992)"
       ],
       "isrc": "USWB10402077",
       "uri_apple_music_by_region": {
@@ -6044,6 +6199,9 @@
       "uri_deezer": "deezer://track/65445466",
       "fun_fact_nl": "Riders on the Storm was het laatste nummer dat The Doors opnamen met Jim Morrison voor zijn dood in Parijs in juli 1971. De regen- en dondergeluiden werden toegevoegd om een sfeervolle omgeving te creëren. De baslijn van het nummer was geïnspireerd op jazz en de tekst verwijst naar een liftende seriemoordenaar. Morrison fluisterde de zangtrack over zijn gewone zang, waardoor het spookachtige dubbelspooreffect ontstond.",
       "awards_nl": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2009)"
       ],
       "isrc": "USEE11200581",
@@ -6314,6 +6472,10 @@
         "Grammy Hall of Fame (1998)",
         "Rolling Stone – #2 Beste Nummer Aller Tijden"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (1998)",
+        "Rolling Stone – n. 2 tra le migliori canzoni di sempre"
+      ],
       "isrc": "USA176510160",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1623247613",
@@ -6408,6 +6570,9 @@
       "fun_fact_nl": "De videoclip van November Rain kostte naar schatting 1,5 miljoen dollar, waarmee het een van de duurste videoclips ooit was. Axl Rose werkte bijna tien jaar aan het nummer voordat hij het opnam. Het orkestrale arrangement bevat een 60-koppig orkest. De video werd de eerste uit de jaren 90 die meer dan 1 miljard keer werd bekeken op YouTube en bereikte deze mijlpaal in 2018.",
       "awards_nl": [
         "MTV VMA – Beste Cinematografie (1992)"
+      ],
+      "awards_it": [
+        "MTV VMA per la migliore fotografia (1992)"
       ]
     },
     {
@@ -6778,6 +6943,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2016)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2016)"
+      ],
       "isrc": "USEV19900002",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1275600554",
@@ -6913,6 +7081,9 @@
       "fun_fact_nl": "Eric Clapton schreef Layla over zijn onbeantwoorde liefde voor Pattie Boyd, die in die tijd getrouwd was met zijn beste vriend George Harrison. De titel was geïnspireerd op het Perzische liefdesverhaal 'Layla en Majnun'. Het gastgitaarwerk van Duane Allman creëerde een van de beroemdste gitaaruitvoeringen met dubbele lead in de rock. De uitgebreide pianocoda van het nummer werd geschreven door drummer Jim Gordon en werd bijna een apart nummer.",
       "awards_nl": [
         "Grammy Hall of Fame (2000)"
+      ],
+      "awards_it": [
+        "Grammy Hall of Fame (2000)"
       ]
     },
     {
@@ -6956,6 +7127,9 @@
       "fun_fact_nl": "Fly Away werd in één middag geschreven en opgenomen. Lenny Kravitz bedacht de riff tijdens het jammen in zijn thuisstudio en legde alle instrumenten zelf neer. Het nummer werd zijn grootste commerciële hit en werd veel gebruikt in tv-commercials, videospelletjes en soundtracks van films. Het hielp Kravitz' reputatie als moderne classic rock revivalist te verstevigen.",
       "awards_nl": [
         "Grammy – Beste Mannelijke Rock Zangprestatie (2000)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale rock maschile (2000)"
       ],
       "isrc": "USVI29800169",
       "uri_apple_music_by_region": {
@@ -7226,6 +7400,10 @@
       "awards_nl": [
         "Grammy – Beste Hardrockprestatie (1995)",
         "Grammy – Beste Metalprestatie (1995)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione hard rock (1995)",
+        "Grammy per la migliore interpretazione metal (1995)"
       ],
       "isrc": "USAM19400007",
       "uri_apple_music_by_region": {

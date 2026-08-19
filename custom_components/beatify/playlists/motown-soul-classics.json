@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "1960s",
     "1970s",
@@ -128,6 +128,9 @@
       "fun_fact_nl": "De volledige albumversie duurt meer dan 12 minuten met zijn iconische baslijn. The Temptations hadden aanvankelijk een hekel aan het nummer omdat het verwees naar een afwezige vader, wat voor sommige leden te dicht bij huis kwam.",
       "awards_nl": [
         "Grammy Award voor Beste R&B Instrumentale Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione strumentale R&B"
       ],
       "isrc": "USMO17200080",
       "uri_apple_music_by_region": {
@@ -657,6 +660,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale"
+      ],
       "isrc": "USMO17500374",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/1612221191",
@@ -989,6 +995,9 @@
       "awards_nl": [
         "Grammy Hall of Fame"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame"
+      ],
       "isrc": "USMO17100041",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1472134764",
@@ -1238,6 +1247,9 @@
       "awards_nl": [
         "Grammy Award voor Beste R&B-nummer"
       ],
+      "awards_it": [
+        "Grammy per la migliore canzone R&B"
+      ],
       "isrc": "USMO18400528",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6762971076",
@@ -1404,6 +1416,9 @@
       "awards_nl": [
         "Grammy Award voor Beste R&B Zangprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B"
+      ],
       "isrc": "USMO17600547",
       "uri_tidal": "tidal://track/98184494"
     },
@@ -1522,6 +1537,9 @@
       "fun_fact_nl": "Dit nummer, geschreven door Burt Bacharach en Hal David, werd een van Dionne Warwick's meest bekende nummers en won de Grammy voor Best Contemporary Pop Vocal Performance. Hoewel het geen Motown-opname is, staat het in deze Spotify-afspeellijst naast de Motown-klassiekers.",
       "awards_nl": [
         "Grammy Award voor Beste Hedendaagse Pop Zangprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop contemporanea"
       ],
       "isrc": "USWSP0000033",
       "uri_apple_music_by_region": {
@@ -1977,6 +1995,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale"
+      ],
       "isrc": "USMO18190008",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1606057197",
@@ -2024,6 +2045,9 @@
       "fun_fact_nl": "Een liefdesliedje over een rat, uit de horrorfilm 'Ben. Michael was pas 14 toen het zijn eerste nummer 1 solohit werd. Het werd genomineerd voor een Academy Award voor Best Original Song.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale"
       ],
       "isrc": "USMO17282631",
       "uri_apple_music_by_region": {

@@ -1,6 +1,6 @@
 {
   "name": "90s & 2000s Hip Hop Bangers",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "90s",
     "2000s",
@@ -296,6 +296,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie (genomineerd)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USBB40580817",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1801961851",
@@ -344,6 +347,9 @@
       "fun_fact_nl": "Het nummer werd geschreven voor de soundtrack van de film 'Dangerous Minds' met Michelle Pfeiffer, die ook in de videoclip verschijnt. Het was wereldwijd de bestverkochte single van 1995.",
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
       ],
       "isrc": "USTB10400128",
       "uri_apple_music_by_region": {
@@ -560,6 +566,9 @@
       "awards_nl": [
         "Grammy Award – Beste Vrouwelijke R&B Zangprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B femminile"
+      ],
       "isrc": "USSM19802337",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1276760748",
@@ -649,6 +658,9 @@
       "fun_fact_nl": "Het nummer bevat op beroemde wijze een sample van het koor van 'It's the Hard Knock Life' uit de musical Annie. Jay-Z vreesde aanvankelijk dat de sample hem 'zacht' zou doen lijken, maar het werd een van zijn grootste hits.",
       "awards_nl": [
         "Grammy Award – Beste Rapalbum (voor Vol. 2... Hard Knock Life)"
+      ],
+      "awards_it": [
+        "Grammy per il miglior album rap (for Vol. 2... Hard Knock Life)"
       ],
       "isrc": "USRL19800899",
       "uri_apple_music_by_region": {
@@ -741,6 +753,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie (genomineerd)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USDJ20010705",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1700354890",
@@ -796,6 +811,11 @@
         "MTV VMA – Beste Video",
         "MTV VMA – Beste Mannelijke Video"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista",
+        "MTV VMA per il miglior video",
+        "MTV VMA per il miglior video maschile"
+      ],
       "isrc": "USIR10000448",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440866926",
@@ -845,6 +865,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rapprestatie door Duo of Groep"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap di un duo o gruppo"
+      ],
       "isrc": "USLF20000357",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1741741469",
@@ -893,6 +916,9 @@
       "fun_fact_nl": "Timbaland produceerde de track met een tumbi, een Indiaas instrument, waarmee hij een van de meest kenmerkende beats in de geschiedenis van de hiphop creëerde. Het nummer werd in één sessie opgenomen en Missy improviseerde een groot deel van de tekst.",
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
       ],
       "isrc": "USEW20100037",
       "uri_apple_music_by_region": {
@@ -1026,6 +1052,9 @@
       "awards_nl": [
         "Grammy Award – Beste Muziekvideo"
       ],
+      "awards_it": [
+        "Grammy per il miglior video musicale"
+      ],
       "isrc": "USIR10211038",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1625004633",
@@ -1081,6 +1110,11 @@
         "Grammy Award – Beste Rapnummer",
         "Grammy Award – Beste Rap Soloprestatie"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale",
+        "Grammy per la migliore canzone rap",
+        "Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USIR10211559",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444221569",
@@ -1130,6 +1164,9 @@
       "awards_nl": [
         "Grammy Award – Beste Mannelijke Rap Soloprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista maschile"
+      ],
       "isrc": "USUR10200252",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1692116505",
@@ -1178,6 +1215,9 @@
       "fun_fact_nl": "Het nummer bevat de beroemde achterstevoren gedraaide tekst 'I put my thing down, flip it and reverse it', die Missy feitelijk eerst vooruit opnam, waarna de audio in de productie werd omgedraaid om de iconische hook te creëren.",
       "awards_nl": [
         "Grammy Award – Beste Vrouwelijke Rap Soloprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista femminile"
       ]
     },
     {
@@ -1220,6 +1260,10 @@
       "awards_nl": [
         "MTV VMA – Beste Rapvideo",
         "MTV VMA – Beste Nieuwe Artiest"
+      ],
+      "awards_it": [
+        "MTV VMA per il miglior video rap",
+        "MTV VMA per il miglior artista esordiente"
       ],
       "isrc": "USIR10300033",
       "uri_apple_music_by_region": {
@@ -1312,6 +1356,9 @@
       "awards_nl": [
         "Grammy Award – Beste Urban/Alternatieve Prestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione urban/alternative"
+      ],
       "isrc": "USAR10301095",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/202883791",
@@ -1360,6 +1407,9 @@
       "fun_fact_nl": "Het nummer gebruikt drie verschillende beats over de drie coupletten, elk geproduceerd door een andere producent. Rick Rubin produceerde de door rock beïnvloede hoofdbeat, die was geïnspireerd op 'The Big Beat' van Billy Squier.",
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
       ],
       "isrc": "USDJ20301460",
       "uri_apple_music_by_region": {
@@ -1440,6 +1490,9 @@
       "fun_fact_nl": "Het nummer werd geproduceerd door Kanye West voordat hij een grote soloartiest werd. De samenwerking hielp Kanye op de kaart te zetten als een topproducent in de hiphop.",
       "awards_nl": [
         "Grammy Award – Beste Rapnummer (genomineerd)"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore canzone rap"
       ],
       "isrc": "USDJ20300765",
       "uri_apple_music_by_region": {
@@ -1574,6 +1627,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USUM70500143",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443571076",
@@ -1623,6 +1679,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USUM70741299",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443830216",
@@ -1671,6 +1730,9 @@
       "awards_nl": [
         "Grammy Award – Beste Rap Soloprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rap solista"
+      ],
       "isrc": "USCM50800553",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440737322",
@@ -1718,6 +1780,9 @@
       "fun_fact_nl": "Met de overleden Static Major, die tragisch stierf slechts enkele maanden na het opnemen van de hook, werd het nummer Lil Waynes eerste nummer 1-single in de Billboard Hot 100 en hielp het Tha Carter III om in de eerste week meer dan een miljoen exemplaren te verkopen.",
       "awards_nl": [
         "Grammy Award – Beste Rapnummer"
+      ],
+      "awards_it": [
+        "Grammy per la migliore canzone rap"
       ],
       "isrc": "USCM50800380",
       "uri_apple_music_by_region": {

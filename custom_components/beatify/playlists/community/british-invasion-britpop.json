@@ -1,6 +1,6 @@
 {
   "name": "British Invasion & Britpop 🇬🇧",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1960s",
     "1990s",
@@ -161,6 +161,9 @@
       "awards_nl": [
         "BRIT Award voor Beste Britse Single (1995)"
       ],
+      "awards_it": [
+        "Brit Award per il miglior singolo britannico (1995)"
+      ],
       "isrc": "GBAYE1200960",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/699606039",
@@ -209,6 +212,9 @@
       "uri_deezer": "deezer://track/7677778",
       "fun_fact_nl": "Keith Richards bedacht de iconische riff in zijn slaap in een hotel in Clearwater, Florida. Hij nam het op met een cassettespeler naast zijn bed en kon het zich de volgende ochtend niet meer herinneren — de rest van de band bevat alleen gesnurk.",
       "awards_nl": [
+        "Grammy Hall of Fame (1998)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (1998)"
       ],
       "isrc": "USA176510160",
@@ -682,6 +688,9 @@
       "fun_fact_nl": "De iconische, op Bach geïnspireerde orgelintro werd gespeeld door Matthew Fisher, die decennia later een baanbrekende rechtszaak won waardoor hij als medeauteur werd erkend. Het nummer verkocht wereldwijd meer dan 10 miljoen exemplaren.",
       "awards_nl": [
         "Ivor Novello Award voor Meest Uitgevoerd Werk"
+      ],
+      "awards_it": [
+        "Ivor Novello Award per l'opera piu eseguita"
       ],
       "uri_apple_music": "applemusic://track/1469579797"
     },
@@ -1475,6 +1484,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Rock-'n-Roll-opname (1965)"
       ],
+      "awards_it": [
+        "Grammy per la migliore registrazione rock and roll (1965)"
+      ],
       "isrc": "FRZ196400510",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1676474357",
@@ -1926,6 +1938,9 @@
       "fun_fact_nl": "Richard Ashcroft schreef dit over de strijd van zijn vader tegen een ziekte en de nutteloosheid van medicatie. Het werd de enige Britse nummer 1-hit van The Verve en wordt vaak aangehaald als een van de beste Britse nummers van de jaren '90.",
       "awards_nl": [
         "BRIT Award voor Beste Britse Single (Nomination, 1998)"
+      ],
+      "awards_it": [
+        "Candidatura al Brit Award per il miglior singolo britannico (1998)"
       ],
       "isrc": "GBUM71601819",
       "uri_apple_music_by_region": {

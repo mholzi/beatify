@@ -1,6 +1,6 @@
 {
   "name": "Gen Z Anthems",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "2010s",
     "2020s",
@@ -96,6 +96,9 @@
       "awards_nl": [
         "Billboard Music Award - Beste Hot 100 Nummer"
       ],
+      "awards_it": [
+        "Billboard Music Award per la migliore canzone della Hot 100"
+      ],
       "isrc": "USUM71100061",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1851540442",
@@ -148,6 +151,10 @@
       "awards_nl": [
         "Grammy Award - Opname van het Jaar",
         "Grammy Award - Beste Pop Duo/Groepsprestatie"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno",
+        "Grammy per la migliore interpretazione pop di un duo o gruppo"
       ],
       "isrc": "AUZS21100040",
       "uri_apple_music_by_region": {
@@ -244,6 +251,10 @@
       "awards_nl": [
         "Grammy Award - Nummer van het Jaar",
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per la canzone dell'anno",
+        "Grammy per la migliore interpretazione pop solista"
       ]
     },
     {
@@ -287,6 +298,10 @@
       "awards_nl": [
         "Grammy Award - Beste Muziekvideo",
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per il miglior video musicale",
+        "Grammy per la migliore interpretazione pop solista"
       ],
       "isrc": "USQ4E1300686",
       "uri_apple_music_by_region": {
@@ -385,6 +400,11 @@
         "Grammy Award - Opname van het Jaar",
         "Grammy Award - Nummer van het Jaar",
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno",
+        "Grammy per la canzone dell'anno",
+        "Grammy per la migliore interpretazione pop solista"
       ]
     },
     {
@@ -471,6 +491,10 @@
       "awards_nl": [
         "Grammy Award - Beste Pop Solo Prestatie",
         "Billboard Music Award - Beste Hot 100 Nummer"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione pop solista",
+        "Billboard Music Award per la migliore canzone della Hot 100"
       ]
     },
     {
@@ -517,6 +541,11 @@
         "Latin Grammy Award - Opname van het Jaar",
         "Latin Grammy Award - Nummer van het Jaar",
         "Billboard Music Award - Beste Hot 100 Nummer"
+      ],
+      "awards_it": [
+        "Latin Grammy per il disco dell'anno",
+        "Latin Grammy per la canzone dell'anno",
+        "Billboard Music Award per la migliore canzone della Hot 100"
       ],
       "isrc": "USUM71607007",
       "uri_apple_music_by_region": {
@@ -570,6 +599,10 @@
       "awards_nl": [
         "Grammy Award - Beste Rapnummer",
         "Billboard Music Award - Beste Hot 100 Nummer"
+      ],
+      "awards_it": [
+        "Grammy per la migliore canzone rap",
+        "Billboard Music Award per la migliore canzone della Hot 100"
       ]
     },
     {
@@ -659,6 +692,11 @@
         "Grammy Award - Opname van het Jaar",
         "Grammy Award - Nummer van het Jaar",
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno",
+        "Grammy per la canzone dell'anno",
+        "Grammy per la migliore interpretazione pop solista"
       ]
     },
     {
@@ -702,6 +740,10 @@
       "awards_nl": [
         "Grammy Award - Beste Muziekvideo",
         "CMA Award Nominatie - Muzikaal Evenement van het Jaar"
+      ],
+      "awards_it": [
+        "Grammy per il miglior video musicale",
+        "Candidatura al CMA Award per l'evento musicale dell'anno"
       ],
       "isrc": "USSM11902498",
       "uri_apple_music_by_region": {
@@ -752,6 +794,9 @@
       "fun_fact_nl": "Lewis Capaldi's zelfspot op sociale media maakte hem een Gen Z-icoon — hij verscheen ooit op Glastonbury met een Chewbacca-masker nadat zijn neef Peter Capaldi hem zo had genoemd.",
       "awards_nl": [
         "Brit Award - Nummer van het Jaar"
+      ],
+      "awards_it": [
+        "Brit Award per la canzone dell'anno"
       ],
       "isrc": "DEUM71807062",
       "uri_apple_music_by_region": {
@@ -808,6 +853,11 @@
         "Billboard Music Award - Beste Hot 100 Nummer",
         "Juno Award - Single van het Jaar",
         "American Music Award - Favoriete Pop/Rock Nummer"
+      ],
+      "awards_it": [
+        "Billboard Music Award per la migliore canzone della Hot 100",
+        "Juno Award per il singolo dell'anno",
+        "American Music Award per la canzone pop/rock preferita"
       ],
       "isrc": "USUG11904206",
       "uri_apple_music_by_region": {
@@ -891,6 +941,9 @@
       "fun_fact_nl": "De videoclip van Watermelon Sugar werd op een strand gefilmd met een disclaimer dat het 'opgedragen aan aanraking' was — gefilmd net voor de COVID-lockdowns, de timing was bijna poëtisch.",
       "awards_nl": [
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione pop solista"
       ],
       "isrc": "USSM11912587",
       "uri_apple_music_by_region": {
@@ -985,6 +1038,9 @@
       "awards_nl": [
         "Grammy Award - Beste Pop Duo/Groepsprestatie"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione pop di un duo o gruppo"
+      ],
       "isrc": "USRC12100760",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1577637152",
@@ -1078,6 +1134,9 @@
       "awards_nl": [
         "Grammy Award - Opname van het Jaar"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno"
+      ],
       "isrc": "USAT22202139",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1810531325",
@@ -1131,6 +1190,10 @@
         "Grammy Award - Beste Pop Vocaal Album (Harry's House)",
         "Brit Award - Nummer van het Jaar"
       ],
+      "awards_it": [
+        "Grammy per il miglior album vocale pop (Harry's House)",
+        "Brit Award per la canzone dell'anno"
+      ],
       "isrc": "USSM12200612",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1615585008",
@@ -1180,6 +1243,9 @@
       "fun_fact_nl": "Steve Lacy nam een groot deel van Bad Habit op met zijn iPhone via GarageBand — het feit dat een #1-hit deels op een telefoon is gemaakt, is echt het meest Gen Z-achtige ooit.",
       "awards_nl": [
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione pop solista"
       ]
     },
     {
@@ -1223,6 +1289,10 @@
       "awards_nl": [
         "Grammy Award - Opname van het Jaar",
         "Grammy Award - Beste Pop Solo Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno",
+        "Grammy per la migliore interpretazione pop solista"
       ],
       "isrc": "USSM12209777",
       "uri_apple_music_by_region": {

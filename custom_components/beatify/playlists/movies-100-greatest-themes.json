@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.22",
+  "version": "1.23",
   "tags": [
     "movies",
     "soundtrack",
@@ -53,6 +53,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (2001)",
         "Grammy Award voor Beste Soundtrackpartituur (2002)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (2001)",
+        "Grammy per la migliore colonna sonora (2002)"
       ],
       "isrc": "USRE10501631",
       "uri_apple_music_by_region": {
@@ -141,6 +145,10 @@
         "Oscar voor Beste Originele Filmmuziek (1997)",
         "Golden Globe voor Beste Originele Filmmuziek (1998)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1997)",
+        "Golden Globe per la migliore colonna sonora originale (1998)"
+      ],
       "isrc": "USSM19702327",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/582727836",
@@ -203,6 +211,10 @@
         "Oscar voor Beste Originele Filmmuziek (1977)",
         "Grammy Award voor Beste Soundtrackpartituur (1978)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1977)",
+        "Grammy per la migliore colonna sonora (1978)"
+      ],
       "isrc": "USWD11785403",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1375814284",
@@ -260,6 +272,9 @@
       "fun_fact_nl": "De soundtrack van Saturday Night Fever stond 24 weken op nummer 1 en verkocht meer dan 40 miljoen exemplaren, waardoor het een van de best verkochte soundtracks ooit is.",
       "awards_nl": [
         "Grammy Award voor Album van het Jaar (1979)"
+      ],
+      "awards_it": [
+        "Grammy per l'album dell'anno (1979)"
       ],
       "isrc": "NLF057790034",
       "uri_apple_music_by_region": {
@@ -356,6 +371,9 @@
       "fun_fact_nl": "De score voor American Beauty van Thomas Newman maakt gebruik van marimba- en gamelaninstrumenten om een etherische, suburbane soundscape te creëren die een Grammy won.",
       "awards_nl": [
         "Grammy Award voor Beste Soundtrackpartituur (2000)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore colonna sonora (2000)"
       ],
       "isrc": "USDW19921001",
       "uri_apple_music_by_region": {
@@ -500,6 +518,10 @@
         "Oscar voor Beste Originele Lied (1971)",
         "Grammy Award voor Beste Instrumentaal (1972)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1971)",
+        "Grammy per la migliore interpretazione strumentale (1972)"
+      ],
       "uri_apple_music": "applemusic://track/1440781096",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fTU_9T5ufzY"
     },
@@ -545,6 +567,9 @@
       "fun_fact_nl": "Henry Mancini's Pink Panther Theme werd geschreven voor de openingscredits, maar werd zo populair dat er een hele animatieserie uit voortkwam.",
       "awards_nl": [
         "Grammy Award voor Beste Instrumentaal (1964)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione strumentale (1964)"
       ],
       "isrc": "USRC16302654",
       "uri_apple_music_by_region": {
@@ -689,6 +714,10 @@
         "Oscar voor Beste Originele Lied (1966)",
         "Oscar voor Beste Originele Filmmuziek (1966)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1966)",
+        "Oscar per la migliore colonna sonora originale (1966)"
+      ],
       "isrc": "USSM10028082",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/209447357",
@@ -746,6 +775,9 @@
       "awards_nl": [
         "Golden Globe voor Beste Originele Lied (1995)"
       ],
+      "awards_it": [
+        "Golden Globe per la migliore canzone originale (1995)"
+      ],
       "isrc": "USWD10220440",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445732924",
@@ -802,6 +834,9 @@
       "fun_fact_nl": "Gonna Fly Now uit Rocky werd in één middag geschreven. De triomfantelijke fanfare werd synoniem voor het overwinnen van onmogelijke kansen.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied (1976)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1976)"
       ],
       "isrc": "USNPD0600582",
       "uri_apple_music_by_region": {
@@ -864,6 +899,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1965)",
         "Golden Globe voor Beste Originele Filmmuziek (1966)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1965)",
+        "Golden Globe per la migliore colonna sonora originale (1966)"
       ],
       "isrc": "USNLR1200108",
       "uri_apple_music_by_region": {
@@ -1059,6 +1098,9 @@
       "awards_nl": [
         "Grammy-nominatie voor Beste Soundtrackpartituur (2015)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore colonna sonora (2015)"
+      ],
       "isrc": "USNLR1400774",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1533984393",
@@ -1149,6 +1191,10 @@
       "awards_nl": [
         "Golden Globe voor Beste Originele Filmmuziek (2016)",
         "BAFTA voor Beste Filmmuziek (2016)"
+      ],
+      "awards_it": [
+        "Golden Globe per la migliore colonna sonora originale (2016)",
+        "BAFTA per la migliore musica da film (2016)"
       ],
       "isrc": "US5941405853",
       "uri_apple_music_by_region": {
@@ -1271,6 +1317,9 @@
       "awards_nl": [
         "Gouden Palm in Cannes (1966)"
       ],
+      "awards_it": [
+        "Palma d'oro a Cannes (1966)"
+      ],
       "isrc": "FRP366600040",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1453739559",
@@ -1372,6 +1421,10 @@
         "Oscar voor Beste Originele Lied (1995)",
         "Golden Globe voor Beste Originele Lied (1995)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1995)",
+        "Golden Globe per la migliore canzone originale (1995)"
+      ],
       "isrc": "USWD10110149",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440720182",
@@ -1428,6 +1481,9 @@
       "fun_fact_nl": "Raindrops Keep Fallin' on My Head won de Oscar ondanks dat het niet op zijn plaats leek in een western. Het werd het lijflied van B.J. Thomas.",
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1969)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1969)"
       ],
       "isrc": "USAFM0600725",
       "uri_apple_music_by_region": {
@@ -1566,6 +1622,10 @@
         "Oscar voor Beste Originele Filmmuziek (1975)",
         "Grammy Award voor Beste Soundtrackpartituur (1976)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1975)",
+        "Grammy per la migliore colonna sonora (1976)"
+      ],
       "isrc": "USUM72505990",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1842229145",
@@ -1623,6 +1683,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1978)",
         "Golden Globe voor Beste Originele Filmmuziek (1979)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1978)",
+        "Golden Globe per la migliore colonna sonora originale (1979)"
       ],
       "isrc": "USPR37900070",
       "uri_apple_music_by_region": {
@@ -1685,6 +1749,10 @@
         "Oscar voor Beste Originele Lied (1987)",
         "Golden Globe voor Beste Originele Lied (1988)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1987)",
+        "Golden Globe per la migliore canzone originale (1988)"
+      ],
       "uri_apple_music": "applemusic://track/254938549"
     },
     {
@@ -1729,6 +1797,9 @@
       "fun_fact_nl": "Randy Newman schreef You've Got a Friend in Me in slechts één dag. Het werd het hart van de hele Toy Story-franchise.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied (1995)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1995)"
       ],
       "isrc": "USWD10110108",
       "uri_apple_music_by_region": {
@@ -2005,6 +2076,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Filmmuziek (1990)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore colonna sonora originale (1990)"
+      ],
       "isrc": "USSM19909870",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1712207945",
@@ -2059,6 +2133,9 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1968)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1968)"
+      ],
       "uri_apple_music": "applemusic://track/1206260997"
     },
     {
@@ -2101,6 +2178,9 @@
       "fun_fact_nl": "Het Indiana Jones-thema van John Williams staat bekend als de Raiders March. Het werd geschreven voor het filmen en inspireerde de branie van het personage.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Filmmuziek (1981)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore colonna sonora originale (1981)"
       ],
       "isrc": "USC4R0818847",
       "uri_apple_music_by_region": {
@@ -2226,6 +2306,9 @@
       "fun_fact_nl": "The Sound of Music werd de best verdienende film van 1965. Julie Andrews zong alleen.",
       "awards_nl": [
         "Oscar voor Beste Film (1965)"
+      ],
+      "awards_it": [
+        "Oscar per il miglior film (1965)"
       ],
       "isrc": "USRC16406208",
       "uri_apple_music_by_region": {
@@ -2399,6 +2482,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1970)",
         "Golden Globe voor Beste Originele Filmmuziek (1971)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1970)",
+        "Golden Globe per la migliore colonna sonora originale (1971)"
       ]
     },
     {
@@ -2450,6 +2537,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1961)",
         "Grammy Award voor Opname van het Jaar (1962)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1961)",
+        "Grammy per il disco dell'anno (1962)"
       ],
       "isrc": "USRC10001122",
       "uri_apple_music_by_region": {
@@ -2503,6 +2594,9 @@
       "fun_fact_nl": "De score voor Shawshank Redemption van Thomas Newman maakt gebruik van harmonica en zachte strijkers om hoop binnen de gevangenismuren over te brengen.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Filmmuziek (1994)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore colonna sonora originale (1994)"
       ],
       "isrc": "USSM10904608",
       "uri_apple_music_by_region": {
@@ -2636,6 +2730,9 @@
       "fun_fact_nl": "Het thema A Summer Place van Max Steiner stond negen weken op nummer één. De weelderige orkestratie werd een symbool voor romantische cinema.",
       "awards_nl": [
         "Grammy Award voor Opname van het Jaar (1960)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1960)"
       ],
       "uri_apple_music": "applemusic://track/1440563265"
     },
@@ -2841,6 +2938,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1976)",
         "Golden Globe voor Beste Originele Lied (1977)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1976)",
+        "Golden Globe per la migliore canzone originale (1977)"
       ],
       "isrc": "USSM10001384",
       "uri_apple_music_by_region": {
@@ -3165,6 +3266,9 @@
       "awards_nl": [
         "BAFTA voor Beste Filmmuziek (1983)"
       ],
+      "awards_it": [
+        "BAFTA per la migliore musica da film (1983)"
+      ],
       "isrc": "US5941405510",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1500818278",
@@ -3217,6 +3321,9 @@
       "fun_fact_nl": "Het Superman-thema van John Williams belichaamt heldendom en hoop. Christopher Reeve zei dat de muziek hem hielp geloven dat hij kon vliegen.",
       "awards_nl": [
         "Grammy Award voor Beste Soundtrackpartituur (1979)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore colonna sonora (1979)"
       ],
       "uri_apple_music": "applemusic://track/50235862"
     },
@@ -3336,6 +3443,9 @@
       "fun_fact_nl": "De Spartacus-score van Alex North was baanbrekend voor die tijd. Stanley Kubrick wees de muziek later af en gaf de voorkeur aan klassieke stukken.",
       "awards_nl": [
         "Golden Globe voor Beste Originele Filmmuziek (1961)"
+      ],
+      "awards_it": [
+        "Golden Globe per la migliore colonna sonora originale (1961)"
       ],
       "uri_apple_music": "applemusic://track/1705329406",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DZ6e8-94JRE"
@@ -3670,6 +3780,10 @@
         "Oscar voor Beste Originele Filmmuziek (1960)",
         "Golden Globe voor Beste Originele Filmmuziek (1961)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1960)",
+        "Golden Globe per la migliore colonna sonora originale (1961)"
+      ],
       "isrc": "USRC10101348",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719334913",
@@ -3762,6 +3876,9 @@
       "fun_fact_nl": "Max Steiner's Gone with the Wind partituur was in die tijd de langste die ooit geschreven was. Hij componeerde drie uur muziek in slechts drie maanden.",
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1939)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1939)"
       ],
       "isrc": "USNLR1300001",
       "uri_apple_music_by_region": {
@@ -3893,6 +4010,9 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1981)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1981)"
+      ],
       "isrc": "NLA028100010",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1450958727",
@@ -3950,6 +4070,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied (1984)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1984)"
+      ],
       "isrc": "USAR18400117",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1692216413",
@@ -4005,6 +4128,9 @@
       "fun_fact_nl": "The Entertainer van Scott Joplin werd nieuw leven ingeblazen voor The Sting. De ragtime-klassieker leverde Marvin Hamlisch een Oscar op voor Beste Score.",
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1973)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1973)"
       ],
       "uri_apple_music": "applemusic://track/1684775318"
     },
@@ -4177,6 +4303,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1982)",
         "Grammy Award voor Beste Soundtrackpartituur (1983)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1982)",
+        "Grammy per la migliore colonna sonora (1983)"
       ],
       "isrc": "USSM19603560",
       "uri_apple_music_by_region": {
@@ -4384,6 +4514,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Soundtrackpartituur (2012)"
       ],
+      "awards_it": [
+        "Grammy per la migliore colonna sonora (2012)"
+      ],
       "uri_youtube_music": "https://music.youtube.com/watch?v=7Ys-t436d1Y"
     },
     {
@@ -4540,6 +4673,9 @@
       "fun_fact_nl": "Over the Rainbow was bijna uit The Wizard of Oz geknipt. Het won de Oscar en werd het lijflied van Judy Garland.",
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1939)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1939)"
       ],
       "isrc": "USNLR1500393",
       "uri_apple_music_by_region": {
@@ -4731,6 +4867,9 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1955)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1955)"
+      ],
       "uri_apple_music": "applemusic://track/551962523",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xM96O-Yk5YU"
     },
@@ -4773,6 +4912,9 @@
       "fun_fact_nl": "John Williams' Catch Me If You Can score gebruikt jazz om de jaren 60 op te roepen. Het speelse thema past bij het kat-en-muis plot van de film.",
       "awards_nl": [
         "Grammy-nominatie voor Beste Soundtrackpartituur (2003)"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore colonna sonora (2003)"
       ],
       "uri_apple_music": "applemusic://track/1443084900"
     },
@@ -4823,6 +4965,9 @@
       "fun_fact_nl": "Mike Oldfield's Tubular Bells werden beroemd door The Exorcist. Het album verkocht miljoenen exemplaren na het gebruik ervan in de horrorklassieker.",
       "awards_nl": [
         "Grammy Award voor Beste Instrumentaal (1975)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione strumentale (1975)"
       ],
       "isrc": "GBUM70905030",
       "uri_apple_music_by_region": {
@@ -4875,6 +5020,9 @@
       "fun_fact_nl": "Miklos Rozsa's Ben-Hur score vereiste het grootste orkest ooit bijeengebracht voor een film. Het won de Oscar voor Beste Score.",
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1959)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1959)"
       ],
       "isrc": "USNLR1400192",
       "uri_apple_music_by_region": {
@@ -4958,6 +5106,9 @@
       "fun_fact_nl": "Het Lawrence of Arabia-thema van Maurice Jarre roept de uitgestrektheid van de woestijn op. De score won een Oscar en definieerde epische cinema.",
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1962)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1962)"
       ],
       "isrc": "FRZ811210002",
       "uri_apple_music_by_region": {
@@ -5170,6 +5321,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Filmmuziek (1962)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore colonna sonora originale (1962)"
+      ],
       "isrc": "US3M59904201",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444004606",
@@ -5271,6 +5425,9 @@
       "fun_fact_nl": "Leonard Bernsteins West Side Story past Romeo en Julia aan in het New York van de jaren 1950. De film won 10 Academy Awards.",
       "awards_nl": [
         "Oscar voor Beste Film (1961)"
+      ],
+      "awards_it": [
+        "Oscar per il miglior film (1961)"
       ]
     },
     {
@@ -5315,6 +5472,9 @@
       "fun_fact_nl": "The Bare Necessities uit The Jungle Book was het laatste nummer dat Walt Disney goedkeurde voor zijn dood in 1966.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied (1967)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1967)"
       ],
       "isrc": "USWD10423008",
       "uri_apple_music_by_region": {
@@ -5449,6 +5609,9 @@
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Filmmuziek (1979)"
       ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore colonna sonora originale (1979)"
+      ],
       "isrc": "USUM70759228",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1798286213",
@@ -5550,6 +5713,10 @@
         "Oscar voor Beste Originele Lied (1981)",
         "Golden Globe voor Beste Originele Lied (1982)"
       ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1981)",
+        "Golden Globe per la migliore canzone originale (1982)"
+      ],
       "isrc": "USWB10800109",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/273426183",
@@ -5605,6 +5772,10 @@
         "Oscar voor Beste Originele Filmmuziek (2000)",
         "Golden Globe voor Beste Originele Filmmuziek (2001)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (2000)",
+        "Golden Globe per la migliore colonna sonora originale (2001)"
+      ],
       "isrc": "USUMC0110060",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1452552843",
@@ -5659,6 +5830,9 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1995)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1995)"
+      ],
       "isrc": "GBBBA9570201",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440773543",
@@ -5709,6 +5883,9 @@
       "fun_fact_nl": "Seven Brides for Seven Brothers bevat uitgebreide choreografie voor het optrekken in de schuur. De musical werd gefilmd in 30 dagen.",
       "awards_nl": [
         "Oscar voor Beste Filmmuziek (1954)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore musica da film (1954)"
       ],
       "isrc": "USNLR1701181",
       "uri_apple_music_by_region": {
@@ -5807,6 +5984,9 @@
       "fun_fact_nl": "What's New Pussycat van Burt Bacharach werd genomineerd voor een Oscar. De energieke uitvoering van Tom Jones maakte er een nieuwe hit van.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied (1965)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1965)"
       ],
       "isrc": "GBF076520020",
       "uri_apple_music_by_region": {
@@ -5981,6 +6161,10 @@
         "Oscar voor Beste Originele Filmmuziek (1964)",
         "Oscar voor Beste Originele Lied (1964)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1964)",
+        "Oscar per la migliore canzone originale (1964)"
+      ],
       "isrc": "USWD10423157",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1377468571",
@@ -6125,6 +6309,9 @@
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1954)"
       ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1954)"
+      ],
       "isrc": "US4DG1400204",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1816013634",
@@ -6219,6 +6406,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Instrumentaal (1963)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione strumentale (1963)"
+      ],
       "isrc": "USBB16101029",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/306820503",
@@ -6311,6 +6501,9 @@
       "fun_fact_nl": "Oklahoma! was de eerste Rodgers en Hammerstein musical die werd verfilmd. Oh, What a Beautiful Morning opent met puur optimisme.",
       "awards_nl": [
         "Oscar voor Beste Filmmuziek (1955)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore musica da film (1955)"
       ],
       "uri_apple_music": "applemusic://track/1440787711"
     },
@@ -6424,6 +6617,9 @@
       "fun_fact_nl": "John Williams' Close Encounters gebruikt een motief van vijf tonen voor buitenaardse communicatie. De sequentie werd popcultuur steno.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Filmmuziek (1977)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore colonna sonora originale (1977)"
       ],
       "isrc": "USAR10201963",
       "uri_apple_music_by_region": {
@@ -6578,6 +6774,9 @@
       "fun_fact_nl": "Het thema Summer of '42 van Michel Legrand won de Oscar. De nostalgische score vangt de eerste liefde tijdens oorlogstijd.",
       "awards_nl": [
         "Oscar voor Beste Originele Filmmuziek (1971)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore colonna sonora originale (1971)"
       ]
     },
     {
@@ -6708,6 +6907,9 @@
       "fun_fact_nl": "Live and Let Die van Wings was het explosieve Bond-thema van Paul McCartney. Het was het eerste rocknummer in de franchise.",
       "awards_nl": [
         "Oscarnominatie voor Beste Originele Lied (1973)"
+      ],
+      "awards_it": [
+        "Candidatura all'Oscar per la migliore canzone originale (1973)"
       ],
       "isrc": "GBCCS7300674",
       "uri_apple_music_by_region": {
@@ -6841,6 +7043,9 @@
       "fun_fact_nl": "Percy Faith's Theme from A Summer Place stond negen weken op nummer één. Het weelderige arrangement definieerde romantische cinema.",
       "awards_nl": [
         "Grammy Award voor Opname van het Jaar (1961)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1961)"
       ]
     },
     {
@@ -6900,6 +7105,11 @@
         "Oscar voor Beste Originele Lied (1997)",
         "Golden Globe voor Beste Originele Lied (1998)",
         "Grammy Award voor Opname van het Jaar (1999)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1997)",
+        "Golden Globe per la migliore canzone originale (1998)",
+        "Grammy per il disco dell'anno (1999)"
       ],
       "isrc": "CAC229700123",
       "uri_apple_music_by_region": {
@@ -6998,6 +7208,9 @@
       "fun_fact_nl": "Everybody's Talkin' van Harry Nilsson won een Grammy voor Midnight Cowboy. Het weemoedige nummer beschrijft dromen van ontsnapping.",
       "awards_nl": [
         "Grammy Award voor Beste Hedendaags Lied (1970)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore canzone contemporanea (1970)"
       ],
       "isrc": "USEM36900044",
       "uri_apple_music_by_region": {
@@ -7162,6 +7375,9 @@
       "fun_fact_nl": "White Christmas van Bing Crosby uit Holiday Inn werd de best verkochte single ooit. Het won de Oscar voor Beste Lied.",
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1942)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1942)"
       ],
       "uri_apple_music": "applemusic://track/1300642506",
       "uri_youtube_music": "https://music.youtube.com/watch?v=v5ryZdpEHqM"

@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "rock",
     "classic-rock",
@@ -186,6 +186,9 @@
       },
       "awards_fr": [
         "Grammy Hall of Fame (2014)"
+      ],
+      "awards_it": [
+        "Grammy Hall of Fame (2014)"
       ]
     },
     {
@@ -263,6 +266,9 @@
       "fun_fact_nl": "Eddie Van Halen schreef de synthesizerriff van Jump thuis op een vierspoors-recorder. De rest van de band verzette zich aanvankelijk tegen een door keyboards geleide single, uit angst te ver af te wijken van hun gitaargedreven identiteit.",
       "awards_nl": [
         "Grammy-nominatie"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy"
       ],
       "isrc": "USWB11403680",
       "uri_apple_music_by_region": {
@@ -523,6 +529,10 @@
       "awards_fr": [
         "Grammy - Enregistrement de l'année (1978)",
         "Grammy Hall of Fame (2003)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1978)",
+        "Grammy Hall of Fame (2003)"
       ]
     },
     {
@@ -604,6 +614,9 @@
         "Grammy Hall of Fame (2009)"
       ],
       "awards_nl": [
+        "Grammy Hall of Fame (2009)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2009)"
       ]
     },
@@ -915,6 +928,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2017)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2017)"
+      ],
       "isrc": "USGF19942501",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440783625",
@@ -1009,6 +1025,9 @@
       "awards_nl": [
         "Grammy-nominatie – Beste Metalprestatie (1992)"
       ],
+      "awards_it": [
+        "Candidatura al Grammy per la migliore interpretazione metal (1992)"
+      ],
       "isrc": "QMKHM1900001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1572046436",
@@ -1100,6 +1119,10 @@
         "Grammy Hall of Fame (1998)",
         "Rolling Stone – #2 Beste Nummer Aller Tijden"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (1998)",
+        "Rolling Stone – n. 2 tra le migliori canzoni di sempre"
+      ],
       "isrc": "USA176510160",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1623247613",
@@ -1149,6 +1172,9 @@
       "uri_deezer": "deezer://track/12206946",
       "fun_fact_nl": "Another One Bites the Dust werd aanvankelijk tegengewerkt door het management van Queen die het te disco vond. Michael Jackson moedigde de band persoonlijk aan om het als single uit te brengen. John Deacons baslijn was geïnspireerd op Chic's 'Good Times' en werd een wereldwijd fenomeen.",
       "awards_nl": [
+        "American Music Award (1981)"
+      ],
+      "awards_it": [
         "American Music Award (1981)"
       ],
       "isrc": "GBUM71029605",
@@ -1883,6 +1909,9 @@
       "awards_nl": [
         "Grammy Hall of Fame"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame"
+      ],
       "isrc": "GBDXG1200006",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1099335223",
@@ -2294,6 +2323,9 @@
       "uri_deezer": "deezer://track/9997018",
       "fun_fact_nl": "Verschillende managers waarschuwden dat het bijna zes minuten durende nummer te lang was voor de radio. Queen nam het in ongeveer drie weken op; Freddie Mercury, Brian May en Roger Taylor legden hun stemmen herhaaldelijk over elkaar, waarbij sommige delen naar verluidt ongeveer 180 overdubs bevatten.",
       "awards_nl": [
+        "Grammy Hall of Fame (2004)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2004)"
       ],
       "isrc": "GBUM71029604",
@@ -2816,6 +2848,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2009)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2009)"
+      ],
       "isrc": "GBUM71029618",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1834502336",
@@ -3212,6 +3247,9 @@
       },
       "awards_fr": [
         "MTV VMA - Meilleur nouvel artiste (1986)"
+      ],
+      "awards_it": [
+        "MTV VMA per il miglior artista esordiente (1986)"
       ]
     },
     {
@@ -3325,6 +3363,9 @@
       "fun_fact_nl": "“Ace of Spades” van Motörhead verscheen oorspronkelijk in 1980; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
       "awards_nl": [
         "Grammy-nominatie"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy"
       ],
       "isrc": "GBAJE8000033",
       "uri_apple_music_by_region": {
@@ -3788,6 +3829,9 @@
       "awards_nl": [
         "Grammy Hall of Fame (2020)"
       ],
+      "awards_it": [
+        "Grammy Hall of Fame (2020)"
+      ],
       "isrc": "AUAP07900028",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/574044008",
@@ -3837,6 +3881,9 @@
       "uri_deezer": "deezer://track/625643",
       "fun_fact_nl": "Don't Stop Believin' werd het best verkopende digitale nummer van de 20e eeuw na het gebruik ervan in de finale van The Sopranos. Journey's Steve Perry schreef het over zijn eigen dorpse afkomst. Drie decennia na de release beleefde het nummer een enorme revival, waardoor het bij nieuwe generaties fans werd geïntroduceerd.",
       "awards_nl": [
+        "Grammy Hall of Fame (2021)"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame (2021)"
       ],
       "isrc": "USSM18100116",
@@ -4035,6 +4082,9 @@
       "uri_tidal": "tidal://track/4085631",
       "fun_fact_nl": "'Back in Black' opent het gelijknamige album van AC/DC, dat na de dood van Bon Scott met Brian Johnson werd opgenomen en aan Scotts nagedachtenis werd opgedragen. Het album verkocht wereldwijd meer dan 50 miljoen exemplaren.",
       "awards_nl": [
+        "Grammy Hall of Fame"
+      ],
+      "awards_it": [
         "Grammy Hall of Fame"
       ],
       "isrc": "AUAP08000046",
@@ -4775,6 +4825,9 @@
       "fun_fact_nl": "'Killing in the Name' bereikte in 2009 de eerste plaats in de Britse kersthitlijst na een grassrootscampagne op Facebook tegen de winnaarsingle van The X Factor.",
       "awards_nl": [
         "Grammy-nominatie"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy"
       ],
       "isrc": "USSM19200317",
       "uri_apple_music_by_region": {

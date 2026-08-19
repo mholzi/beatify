@@ -1,6 +1,6 @@
 {
   "name": "Fiesta Latina 90s 🇲🇽",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "1990s",
     "latin",
@@ -172,6 +172,9 @@
       "fun_fact_nl": "Dit nummer wordt gezien als de lancering van de 'Latin Pop Explosion' van de late jaren '90. Het werd tegelijkertijd in het Engels en Spaans opgenomen en was het eerste nummer van een Latin-artiest dat op nummer 1 debuteerde in de Billboard Hot 100. Het bereikte de eerste plaats in meer dan 20 landen.",
       "awards_nl": [
         "Grammy-nominatie voor Opname van het Jaar"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per il disco dell'anno"
       ]
     },
     {
@@ -371,6 +374,9 @@
       "fun_fact_nl": "De titel verwijst naar bilirubine, een stof in het bloed, hier gebruikt als metafoor voor 'ziek van liefde'. Van het Grammy-winnende album 'Bachata Rosa', dat de Dominicaanse bachata en merengue revolutioneerde en internationaal aanzien gaf.",
       "awards_nl": [
         "Grammy Award voor Beste Tropisch Latijns Album (Bachata Rosa)"
+      ],
+      "awards_it": [
+        "Grammy per il miglior album latino tropicale (Bachata Rosa)"
       ],
       "isrc": "USKP10400046",
       "uri_apple_music_by_region": {
@@ -584,6 +590,9 @@
       "fun_fact_nl": "Werd het meest gedraaide merengue-nummer op de Amerikaanse radio en won de Grammy voor Best Tropical Latin Performance. De Puerto Ricaanse zanger Elvis Crespo was voorheen lid van Grupo Mania voordat hij zijn solocarrière lanceerde met deze enorme debuuthit.",
       "awards_nl": [
         "Grammy Award voor Beste Tropisch Latijnse Prestatie"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione latina tropicale"
       ],
       "isrc": "USSD19700576",
       "uri_apple_music_by_region": {
@@ -1182,6 +1191,9 @@
       "fun_fact_nl": "De Puerto Ricaanse 'Mujer de Fuego' (Vuurvrouw) Olga Tañón is een van de meest succesvolle vrouwelijke merengue-artiesten in de geschiedenis. Dit krachtige nummer over een liegende partner werd een feministisch volkslied in heel Latijns-Amerika.",
       "awards_nl": [
         "Grammy-nominatie voor Beste Merengue-album"
+      ],
+      "awards_it": [
+        "Candidatura al Grammy per il miglior album merengue"
       ],
       "isrc": "USWL19400004",
       "uri_apple_music_by_region": {
@@ -1911,6 +1923,10 @@
       "awards_nl": [
         "Latin Grammy voor Opname van het Jaar",
         "Latin Grammy voor Album van het Jaar"
+      ],
+      "awards_it": [
+        "Latin Grammy per il disco dell'anno",
+        "Latin Grammy per l'album dell'anno"
       ],
       "isrc": "ES5150306001",
       "uri_apple_music_by_region": {

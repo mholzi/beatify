@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.17",
+  "version": "2.18",
   "tags": [
     "1980s",
     "pop",
@@ -940,6 +940,10 @@
         "Grammy Award voor Opname van het Jaar (1984)",
         "Grammy Award voor Beste Mannelijke Rock Zangprestatie (1984)"
       ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1984)",
+        "Grammy per la migliore interpretazione vocale rock maschile (1984)"
+      ],
       "isrc": "USSM18200197",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/310505615",
@@ -986,6 +990,9 @@
       "fun_fact_nl": "Michael Jackson schreef dit nummer onderweg naar huis, zo verdiept dat hij niet merkte dat zijn auto vlam had gevat. De beroemde baslijn vergde 91 takes om te perfectioneren. Jackson debuteerde de moonwalk tijdens een tv-optreden van dit nummer.",
       "awards_nl": [
         "Grammy Award voor Beste Mannelijke R&B Zangprestatie (1984)"
+      ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale R&B maschile (1984)"
       ],
       "isrc": "USSM19902991",
       "uri_apple_music_by_region": {
@@ -1265,6 +1272,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Rockprestatie door Duo of Groep (1983)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione rock di un duo o gruppo (1983)"
+      ],
       "isrc": "USVR19300001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1635636757",
@@ -1463,6 +1473,9 @@
       "fun_fact_nl": "Het nummer werd geschreven over actrice Rosanna Arquette, die een relatie had met Toto-toetsenist Steve Porcaro. Het karakteristieke drumpatroon, het 'Rosanna Shuffle' genaamd, wordt nu wereldwijd onderwezen op muziekscholen.",
       "awards_nl": [
         "Grammy Award voor Opname van het Jaar (1983)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1983)"
       ],
       "isrc": "USSM18200245",
       "uri_apple_music_by_region": {
@@ -2072,6 +2085,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1984)",
         "Golden Globe voor Beste Originele Lied (1984)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1984)",
+        "Golden Globe per la migliore canzone originale (1984)"
       ],
       "isrc": "USA560661522",
       "uri_apple_music_by_region": {
@@ -3551,6 +3568,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Mannelijke Pop Zangprestatie (1985)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop maschile (1985)"
+      ],
       "isrc": "USRH11603951",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1148642452",
@@ -3778,6 +3798,10 @@
       "awards_nl": [
         "Oscar voor Beste Originele Lied (1985)",
         "Golden Globe voor Beste Originele Lied (1985)"
+      ],
+      "awards_it": [
+        "Oscar per la migliore canzone originale (1985)",
+        "Golden Globe per la migliore canzone originale (1985)"
       ],
       "isrc": "USUMG9900476",
       "uri_apple_music_by_region": {
@@ -4039,6 +4063,11 @@
         "Grammy Award voor Opname van het Jaar (1985)",
         "Grammy Award voor Lied van het Jaar (1985)",
         "Grammy Award voor Beste Vrouwelijke Pop Zangprestatie (1985)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1985)",
+        "Grammy per la canzone dell'anno (1985)",
+        "Grammy per la migliore interpretazione vocale pop femminile (1985)"
       ],
       "isrc": "USCA28400002",
       "uri_apple_music_by_region": {
@@ -5635,6 +5664,9 @@
       "awards_nl": [
         "Grammy Award voor Album van het Jaar (1987) – Album"
       ],
+      "awards_it": [
+        "Grammy per l'album dell'anno (1987)"
+      ],
       "isrc": "USSM11002255",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1739846276",
@@ -5770,6 +5802,9 @@
       "fun_fact_nl": "Steve Winwood werkte samen met Chaka Khan voor achtergrondzang op dit nummer. Het won de Grammy voor Record of the Year in 1987 en markeerde Winwoods succesvolle solocarrière na Traffic.",
       "awards_nl": [
         "Grammy Award voor Opname van het Jaar (1987)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1987)"
       ],
       "isrc": "GBAAN0201051",
       "uri_apple_music_by_region": {
@@ -6431,6 +6466,9 @@
       "awards_nl": [
         "Grammy Award voor Beste Vrouwelijke Pop Zangprestatie (1988)"
       ],
+      "awards_it": [
+        "Grammy per la migliore interpretazione vocale pop femminile (1988)"
+      ],
       "isrc": "USAR18700121",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1627099927",
@@ -6669,6 +6707,9 @@
       "fun_fact_nl": "Phil Collins schreef dit samen met Lamont Dozier (van Motowns Holland-Dozier-Holland) voor de film 'Buster'. De samenwerking resulteerde in een modern Motown-geluid dat een Golden Globe won voor Best Original Song.",
       "awards_nl": [
         "Golden Globe voor Beste Originele Lied (1989)"
+      ],
+      "awards_it": [
+        "Golden Globe per la migliore canzone originale (1989)"
       ],
       "isrc": "USWI19600240",
       "uri_apple_music_by_region": {
@@ -7333,6 +7374,9 @@
       "fun_fact_nl": "Phil Collins schreef dit nummer over dakloosheid nadat hij mensen op straat had zien slapen in Washington DC. Het won de Grammy voor Record of the Year in 1991 en wakkerde een debat aan over sociale verantwoordelijkheid in popmuziek.",
       "awards_nl": [
         "Grammy Award voor Opname van het Jaar (1991)"
+      ],
+      "awards_it": [
+        "Grammy per il disco dell'anno (1991)"
       ],
       "isrc": "USRH11602405",
       "uri_apple_music_by_region": {
