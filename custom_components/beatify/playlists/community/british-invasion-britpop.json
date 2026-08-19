@@ -1,6 +1,6 @@
 {
   "name": "British Invasion & Britpop 🇬🇧",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "1960s",
     "1990s",
@@ -3692,9 +3692,9 @@
         "de": "applemusic://track/929702140",
         "gb": "applemusic://track/929702140",
         "fr": "applemusic://track/929702140",
-        "es": null,
-        "nl": null,
-        "it": null
+        "es": "applemusic://track/929702140",
+        "nl": "applemusic://track/929702140",
+        "it": "applemusic://track/929702140"
       }
     },
     {

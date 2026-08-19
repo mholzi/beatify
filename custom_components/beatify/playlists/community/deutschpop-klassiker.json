@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.14",
+  "version": "0.15",
   "tags": [
     "german",
     "pop",
@@ -1355,13 +1355,13 @@
       "uri": "spotify:track:7py0pONdy9D0DxNnT3elik",
       "uri_apple_music": "applemusic://track/1440953084",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1440953084",
+        "de": "applemusic://track/1020603711",
+        "gb": "applemusic://track/1440953084",
+        "fr": "applemusic://track/1440953084",
+        "es": "applemusic://track/1020603711",
+        "nl": "applemusic://track/1020603711",
+        "it": "applemusic://track/1440953084"
       },
       "uri_deezer": "deezer://track/566331572",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xSWJBClrmgo",
@@ -3153,13 +3153,13 @@
       "uri": "spotify:track:3iBMJMvcmCzerhF3QxMtfd",
       "uri_apple_music": "applemusic://track/1675991863",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1687400351",
         "de": "applemusic://track/1675991863",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1687400351",
+        "fr": "applemusic://track/1687400351",
+        "es": "applemusic://track/1687400351",
+        "nl": "applemusic://track/1687400351",
+        "it": "applemusic://track/1687400351"
       },
       "uri_deezer": "deezer://track/1755753297",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BKGW4MnPXVw",
@@ -3372,7 +3372,7 @@
       "uri_apple_music": "applemusic://track/317319605",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/317319605",
-        "de": null,
+        "de": "applemusic://track/1226269443",
         "gb": "applemusic://track/317319605",
         "fr": "applemusic://track/317319605",
         "es": "applemusic://track/317319605",
