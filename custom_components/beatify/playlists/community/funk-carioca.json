@@ -1,6 +1,6 @@
 {
   "name": "🌪️ Funk Carioca",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "2000s",
     "funk",
@@ -639,9 +639,9 @@
         "de": "applemusic://track/1563311106",
         "gb": "applemusic://track/1563311106",
         "fr": "applemusic://track/1563311106",
-        "es": null,
-        "nl": null,
-        "it": null
+        "es": "applemusic://track/1563311106",
+        "nl": "applemusic://track/1563311106",
+        "it": "applemusic://track/1563311106"
       },
       "uri_deezer": "deezer://track/1341704302",
       "uri_tidal": "tidal://track/180381592",
@@ -670,13 +670,13 @@
       "isrc": "BRLRE0700192",
       "uri_apple_music": "applemusic://track/1576392380",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1576392380",
+        "de": "applemusic://track/1576392380",
+        "gb": "applemusic://track/1576392380",
+        "fr": "applemusic://track/1576392380",
+        "es": "applemusic://track/1576392380",
+        "nl": "applemusic://track/1576392380",
+        "it": "applemusic://track/1576392380"
       },
       "uri_deezer": "deezer://track/1376170092",
       "uri_tidal": "tidal://track/184586934",
@@ -705,13 +705,13 @@
       "isrc": "BRFUP0900113",
       "uri_apple_music": "applemusic://track/1572679574",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1572679574",
+        "de": "applemusic://track/1572679574",
+        "gb": "applemusic://track/1572679574",
+        "fr": "applemusic://track/1572679574",
+        "es": "applemusic://track/1572679574",
+        "nl": "applemusic://track/1572679574",
+        "it": "applemusic://track/1572679574"
       },
       "uri_deezer": "deezer://track/1379106002",
       "uri_tidal": "tidal://track/184927087",
