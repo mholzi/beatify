@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.35",
+  "version": "1.36",
   "tags": [
     "finnish",
     "iskelma",
@@ -2121,7 +2121,7 @@
       "year": 1975,
       "isrc": "FIBAR9700067",
       "uri": "spotify:track:2pMQzYO1WQAwd4MDsCr5r5",
-      "uri_apple_music": "https://music.apple.com/us/album/daa-da-daa-da/257853869?i=257853898&uo=4",
+      "uri_apple_music": "applemusic://track/257853898",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/257853898",
         "de": null,
@@ -2131,7 +2131,7 @@
         "nl": "applemusic://track/714175898",
         "it": null
       },
-      "uri_deezer": "13238168",
+      "uri_deezer": "deezer://track/13238168",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GZW1SDSYeU0",
       "uri_tidal": "tidal://track/605061",
       "alt_artists": [
@@ -2423,7 +2423,7 @@
       "year": 1977,
       "isrc": "FIBMB8300101",
       "uri": "spotify:track:1akxsRGlzdaMbHWmhAnGJ5",
-      "uri_apple_music": "https://music.apple.com/us/album/kuumat-kyyneleet/299232701?i=299233018&uo=4",
+      "uri_apple_music": "applemusic://track/299233018",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299233018",
         "de": "applemusic://track/274143589",
@@ -2433,7 +2433,7 @@
         "nl": "applemusic://track/299217788",
         "it": "applemusic://track/299217788"
       },
-      "uri_deezer": "1022443",
+      "uri_deezer": "deezer://track/1022443",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NR4CcDybv54",
       "uri_tidal": "tidal://track/2859139",
       "alt_artists": [
@@ -2614,7 +2614,7 @@
       "year": 1978,
       "isrc": "FISMC7800002",
       "uri": "spotify:track:5XdczKVzK5UrLVHoMRH7R9",
-      "uri_apple_music": "https://music.apple.com/us/album/kalajoen-hiekat-california-dreamin/299243083?i=299243471&uo=4",
+      "uri_apple_music": "applemusic://track/299243471",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299243471",
         "de": "applemusic://track/299243471",
@@ -2624,7 +2624,7 @@
         "nl": "applemusic://track/299243471",
         "it": "applemusic://track/299243471"
       },
-      "uri_deezer": "7816927",
+      "uri_deezer": "deezer://track/7816927",
       "uri_youtube_music": "https://music.youtube.com/watch?v=B7iiUYRxE0s",
       "uri_tidal": "tidal://track/2864509",
       "alt_artists": [
@@ -2999,7 +2999,7 @@
       "year": 1980,
       "isrc": "FISMC8000003",
       "uri": "spotify:track:61xoLENmXdVqMnwSMfs0kz",
-      "uri_apple_music": "https://music.apple.com/us/album/suvivalssi/299398325?i=299398351&uo=4",
+      "uri_apple_music": "applemusic://track/299398351",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299398351",
         "de": "applemusic://track/329059286",
@@ -3009,7 +3009,7 @@
         "nl": "applemusic://track/329059286",
         "it": "applemusic://track/324201188"
       },
-      "uri_deezer": "548103",
+      "uri_deezer": "deezer://track/548103",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MLIEw9d4hu4",
       "uri_tidal": "tidal://track/3074210",
       "alt_artists": [
@@ -3798,7 +3798,7 @@
       "year": 1990,
       "isrc": "FIFMC9500040",
       "uri": "spotify:track:5Cxbcy1eKrZmfcBw2jxhM5",
-      "uri_apple_music": "https://music.apple.com/us/album/rakastunut-nainen-woman-in-love/269280496?i=269280543&uo=4",
+      "uri_apple_music": "applemusic://track/269280543",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/269280543",
         "de": "applemusic://track/329056237",
@@ -3808,7 +3808,7 @@
         "nl": "applemusic://track/269280543",
         "it": "applemusic://track/269280543"
       },
-      "uri_deezer": "92774746",
+      "uri_deezer": "deezer://track/92774746",
       "uri_youtube_music": "https://music.youtube.com/watch?v=OISSJr6IBOs",
       "uri_tidal": "tidal://track/31586",
       "alt_artists": [
@@ -3832,7 +3832,7 @@
       "year": 1990,
       "isrc": "FIFMF8900077",
       "uri": "spotify:track:32e5EBfzytemglctNzuXgt",
-      "uri_apple_music": "https://music.apple.com/us/album/min%C3%A4-olen-muistanut/299230378?i=299230382&uo=4",
+      "uri_apple_music": "applemusic://track/299230382",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299230382",
         "de": "applemusic://track/299230382",
@@ -3842,7 +3842,7 @@
         "nl": "applemusic://track/299230382",
         "it": "applemusic://track/299230382"
       },
-      "uri_deezer": "2672138",
+      "uri_deezer": "deezer://track/2672138",
       "uri_youtube_music": "https://music.youtube.com/watch?v=-xwOYAn4ENA",
       "uri_tidal": "tidal://track/2152722",
       "alt_artists": [
@@ -3910,7 +3910,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "3595428",
+      "uri_deezer": "deezer://track/3595428",
       "uri_youtube_music": "https://music.youtube.com/watch?v=K8-FE-YPyGE",
       "uri_tidal": "tidal://track/3411876",
       "alt_artists": [
@@ -4032,7 +4032,7 @@
       "year": 1992,
       "isrc": "FIMTA9200011",
       "uri": "spotify:track:2BNCHQneQj9Y8PNu9ZQB57",
-      "uri_apple_music": "https://music.apple.com/us/album/t%C3%A4hdet-meren-yll%C3%A4/981048683?i=981048686&uo=4",
+      "uri_apple_music": "applemusic://track/981048686",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/981048686",
         "de": null,
@@ -4042,7 +4042,7 @@
         "nl": "applemusic://track/981048686",
         "it": "applemusic://track/981048686"
       },
-      "uri_deezer": "98256158",
+      "uri_deezer": "deezer://track/98256158",
       "uri_youtube_music": "https://music.youtube.com/watch?v=O-xKB0BdGBw",
       "uri_tidal": "tidal://track/44632129",
       "alt_artists": [
@@ -4296,7 +4296,7 @@
       "year": 1994,
       "isrc": "FIBAR9400060",
       "uri": "spotify:track:3M7cvFttveTNqpLlXCzXMK",
-      "uri_apple_music": "https://music.apple.com/us/album/nelj%C3%A4n-ruuhka/299225245?i=299225252&uo=4",
+      "uri_apple_music": "applemusic://track/299225252",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299225252",
         "de": "applemusic://track/299225252",
@@ -4306,7 +4306,7 @@
         "nl": "applemusic://track/256060598",
         "it": "applemusic://track/256060598"
       },
-      "uri_deezer": "2680146",
+      "uri_deezer": "deezer://track/2680146",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FjkXIWNVQqg",
       "uri_tidal": "tidal://track/114555",
       "alt_artists": [
@@ -4432,7 +4432,7 @@
       "year": 1994,
       "isrc": "FISME9302002",
       "uri": "spotify:track:0QAcb5WtGtlbBK5p5yllvm",
-      "uri_apple_music": "https://music.apple.com/us/album/aurora/269843596?i=269848010&uo=4",
+      "uri_apple_music": "applemusic://track/269848010",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/269848010",
         "de": "applemusic://track/298250472",
@@ -4442,7 +4442,7 @@
         "nl": "applemusic://track/298250472",
         "it": "applemusic://track/298250472"
       },
-      "uri_deezer": "15352671",
+      "uri_deezer": "deezer://track/15352671",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FlIS8JotKDY",
       "uri_tidal": "tidal://track/1103417",
       "alt_artists": [
@@ -4828,7 +4828,7 @@
       "year": 1995,
       "isrc": "FIBAR9500025",
       "uri": "spotify:track:7L2LQ1UAZrL5HvRSuqtMN4",
-      "uri_apple_music": "https://music.apple.com/us/album/tuhat-y%C3%B6t%C3%A4/270986389?i=270986581&uo=4",
+      "uri_apple_music": "applemusic://track/270986581",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/270986581",
         "de": "applemusic://track/270986581",
@@ -4838,7 +4838,7 @@
         "nl": "applemusic://track/270986581",
         "it": "applemusic://track/270986581"
       },
-      "uri_deezer": "60976896",
+      "uri_deezer": "deezer://track/60976896",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pkp9ZALpnJw",
       "uri_tidal": "tidal://track/1320168",
       "alt_artists": [
@@ -4892,7 +4892,7 @@
       "year": 1996,
       "isrc": "FISMC9500106",
       "uri": "spotify:track:55hnpDGgL2YtqNB5Qm1fOy",
-      "uri_apple_music": "https://music.apple.com/us/album/tuulen-v%C3%A4rit-colors-of-the-wind-elokuvasta-pocahontas/298241792?i=298241795&uo=4",
+      "uri_apple_music": "applemusic://track/298241795",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/298241795",
         "de": "applemusic://track/298241795",
@@ -4936,7 +4936,7 @@
         "nl": null,
         "it": "applemusic://track/270986847"
       },
-      "uri_deezer": "13238166",
+      "uri_deezer": "deezer://track/13238166",
       "uri_youtube_music": "https://music.youtube.com/watch?v=XUnx-FW2Y14",
       "uri_tidal": "tidal://track/1320070",
       "alt_artists": [
@@ -5128,7 +5128,7 @@
       "year": 1997,
       "isrc": "FIBMB9700027",
       "uri": "spotify:track:3gj2wt8sBz0MAJFzwjDqw1",
-      "uri_apple_music": "https://music.apple.com/us/album/seine/273985810?i=273985858&uo=4",
+      "uri_apple_music": "applemusic://track/273985858",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/273985858",
         "de": "applemusic://track/273985858",
@@ -5138,7 +5138,7 @@
         "nl": "applemusic://track/273985858",
         "it": "applemusic://track/561195653"
       },
-      "uri_deezer": "1023159",
+      "uri_deezer": "deezer://track/1023159",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0RqtJblaTyU",
       "uri_tidal": "tidal://track/522040",
       "alt_artists": [
@@ -5323,7 +5323,7 @@
       "year": 1999,
       "isrc": "FIBAR9900033",
       "uri": "spotify:track:4QhaxhUmlysqgkArWID0pP",
-      "uri_apple_music": "https://music.apple.com/us/album/tulvii-pohjanmaa/1442305251?i=1442305252&uo=4",
+      "uri_apple_music": "applemusic://track/1442305252",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1442305252",
         "de": "applemusic://track/258513836",
@@ -5333,7 +5333,7 @@
         "nl": "applemusic://track/274052196",
         "it": "applemusic://track/274052196"
       },
-      "uri_deezer": "541185",
+      "uri_deezer": "deezer://track/541185",
       "uri_youtube_music": "https://music.youtube.com/watch?v=eak9OBgSArk",
       "uri_tidal": "tidal://track/114428",
       "alt_artists": [
@@ -5357,7 +5357,7 @@
       "year": 1999,
       "isrc": "FIBMB9800019",
       "uri": "spotify:track:6S3uLqRxcfo80zI4oXM4NL",
-      "uri_apple_music": "https://music.apple.com/us/album/sinisen-taivaan-sateenkaari/258513813?i=258513823&uo=4",
+      "uri_apple_music": "applemusic://track/258513823",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/258513823",
         "de": "applemusic://track/270984757",
@@ -5367,7 +5367,7 @@
         "nl": "applemusic://track/270984757",
         "it": "applemusic://track/270984757"
       },
-      "uri_deezer": "13352912",
+      "uri_deezer": "deezer://track/13352912",
       "uri_youtube_music": "https://music.youtube.com/watch?v=65_I8yu7PS8",
       "uri_tidal": "tidal://track/1319822",
       "alt_artists": [
@@ -5427,7 +5427,7 @@
       "year": 1999,
       "isrc": "FIBAR9900004",
       "uri": "spotify:track:22HyFF0Nr59Qa8ckdBQb5g",
-      "uri_apple_music": "https://music.apple.com/us/album/kun-kuuntelen-tomppaa/274071272?i=274071578&uo=4",
+      "uri_apple_music": "applemusic://track/274071578",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/274071578",
         "de": "applemusic://track/273976027",
@@ -5437,7 +5437,7 @@
         "nl": "applemusic://track/274071578",
         "it": "applemusic://track/273976027"
       },
-      "uri_deezer": "1022598",
+      "uri_deezer": "deezer://track/1022598",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GzgaZIyXLX4",
       "uri_tidal": "tidal://track/526596",
       "alt_artists": [
@@ -5573,7 +5573,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "130411998",
+      "uri_deezer": "deezer://track/130411998",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aNFJXjF9RtY",
       "uri_tidal": "tidal://track/64016241",
       "alt_artists": [
@@ -5607,7 +5607,7 @@
         "nl": null,
         "it": "applemusic://track/1181933534"
       },
-      "uri_deezer": "137724307",
+      "uri_deezer": "deezer://track/137724307",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6cVXaSL_kaY",
       "uri_tidal": "tidal://track/69223460",
       "alt_artists": [
@@ -5631,7 +5631,7 @@
       "year": 2000,
       "isrc": "FIBAR9200001",
       "uri": "spotify:track:7q8n3xxtwAl7JB6z9Dldu0",
-      "uri_apple_music": "https://music.apple.com/us/album/jos-et-s%C3%A4-soita/468017518?i=468017526&uo=4",
+      "uri_apple_music": "applemusic://track/468017526",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/468017526",
         "de": "applemusic://track/388828672",
@@ -5641,7 +5641,7 @@
         "nl": "applemusic://track/388828672",
         "it": "applemusic://track/388828672"
       },
-      "uri_deezer": "637166",
+      "uri_deezer": "deezer://track/637166",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cjDNhi5CxHc",
       "uri_tidal": "tidal://track/7986014",
       "alt_artists": [
@@ -5665,7 +5665,7 @@
       "year": 2000,
       "isrc": "FIBAR0000167",
       "uri": "spotify:track:5fZmAzNN1EI79STsS8pnhs",
-      "uri_apple_music": "https://music.apple.com/us/album/vaskikellot/331489822?i=331489837&uo=4",
+      "uri_apple_music": "applemusic://track/331489837",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/331489837",
         "de": null,
@@ -5675,7 +5675,7 @@
         "nl": "applemusic://track/331489837",
         "it": null
       },
-      "uri_deezer": "1012514",
+      "uri_deezer": "deezer://track/1012514",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fiAwO-3qxDw",
       "uri_tidal": "tidal://track/522798",
       "alt_artists": [
@@ -5709,7 +5709,7 @@
         "nl": "applemusic://track/1215673119",
         "it": "applemusic://track/1215673119"
       },
-      "uri_deezer": "145426782",
+      "uri_deezer": "deezer://track/145426782",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0j2UzoMX1p0",
       "uri_tidal": "tidal://track/71567329",
       "alt_artists": [
@@ -5743,7 +5743,7 @@
         "nl": null,
         "it": "applemusic://track/273934655"
       },
-      "uri_deezer": "1011663",
+      "uri_deezer": "deezer://track/1011663",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PzO8q6o9WsA",
       "uri_tidal": "tidal://track/2006219",
       "alt_artists": [
@@ -5777,7 +5777,7 @@
         "nl": "applemusic://track/1155562489",
         "it": "applemusic://track/1155562489"
       },
-      "uri_deezer": "589716112",
+      "uri_deezer": "deezer://track/589716112",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lhiP_4AJ870",
       "uri_tidal": "tidal://track/65018253",
       "alt_artists": [
@@ -5801,7 +5801,7 @@
       "year": 2000,
       "isrc": "FIELD1700001",
       "uri": "spotify:track:3mLEcL6sS2AzVkdRbr9Pzw",
-      "uri_apple_music": "https://music.apple.com/us/album/ei-haittaa/1233715840?i=1233716051&uo=4",
+      "uri_apple_music": "applemusic://track/1233716051",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1233716051",
         "de": null,
@@ -5811,7 +5811,7 @@
         "nl": null,
         "it": "applemusic://track/1233716051"
       },
-      "uri_deezer": "358033681",
+      "uri_deezer": "deezer://track/358033681",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IOX1lEZsFlg",
       "uri_tidal": "tidal://track/73635002",
       "alt_artists": [
@@ -5895,7 +5895,7 @@
       "year": 2000,
       "isrc": "FIWMA0800728",
       "uri": "spotify:track:6rKCLq0m3mOPsb8YkinpVI",
-      "uri_apple_music": "https://music.apple.com/us/album/p%C3%A4iv%C3%A4ns%C3%A4de-ja-mennink%C3%A4inen/287373139?i=287373243&uo=4",
+      "uri_apple_music": "applemusic://track/287373243",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/287373243",
         "de": "applemusic://track/289040934",
@@ -5905,7 +5905,7 @@
         "nl": "applemusic://track/289040934",
         "it": "applemusic://track/289040934"
       },
-      "uri_deezer": "4115530",
+      "uri_deezer": "deezer://track/4115530",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LOS_UJAXaKU",
       "uri_tidal": "tidal://track/1896651",
       "alt_artists": [
@@ -5929,7 +5929,7 @@
       "year": 2000,
       "isrc": "FI5JS0500004",
       "uri": "spotify:track:14qHmrcK06w7URoaBozyab",
-      "uri_apple_music": "https://music.apple.com/us/album/kaipaan-hell%C3%A4%C3%A4-kosketusta/219330524?i=219330840&uo=4",
+      "uri_apple_music": "applemusic://track/219330840",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/219330840",
         "de": null,
@@ -5939,7 +5939,7 @@
         "nl": null,
         "it": "applemusic://track/1838560884"
       },
-      "uri_deezer": "1928450",
+      "uri_deezer": "deezer://track/1928450",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_QKacSbzKiM",
       "uri_tidal": "tidal://track/12247468",
       "alt_artists": [
@@ -6065,7 +6065,7 @@
       "year": 2001,
       "isrc": "FIBAR0100041",
       "uri": "spotify:track:39npZtE8o2QITWLdPu1Xej",
-      "uri_apple_music": "https://music.apple.com/us/album/nummela/359790018?i=359790090&uo=4",
+      "uri_apple_music": "applemusic://track/359790090",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/359790090",
         "de": "applemusic://track/1609686974",
@@ -6075,7 +6075,7 @@
         "nl": "applemusic://track/359790090",
         "it": "applemusic://track/359790090"
       },
-      "uri_deezer": "5527599",
+      "uri_deezer": "deezer://track/5527599",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hqg96jIP_do",
       "uri_tidal": "tidal://track/3493815",
       "alt_artists": [
@@ -6230,7 +6230,7 @@
       "year": 2003,
       "isrc": "FIBAR0300193",
       "uri": "spotify:track:0B6W9Dztl02TtvTYIhbcOs",
-      "uri_apple_music": "https://music.apple.com/us/album/joutsenet/264272353?i=264272400&uo=4",
+      "uri_apple_music": "applemusic://track/264272400",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/264272400",
         "de": "applemusic://track/264272400",
@@ -6240,7 +6240,7 @@
         "nl": "applemusic://track/264272400",
         "it": "applemusic://track/264272400"
       },
-      "uri_deezer": "536847",
+      "uri_deezer": "deezer://track/536847",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xu51l6Ei8dE",
       "uri_tidal": "tidal://track/23434672",
       "alt_artists": [
@@ -6264,7 +6264,7 @@
       "year": 2004,
       "isrc": "FIBAR0400189",
       "uri": "spotify:track:2vmmKsJeOKm36vpZ9x7kUr",
-      "uri_apple_music": "https://music.apple.com/us/album/kaikki-muuttuu/299241343?i=299241384&uo=4",
+      "uri_apple_music": "applemusic://track/299241384",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299241384",
         "de": "applemusic://track/299241384",
@@ -6274,7 +6274,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "13350780",
+      "uri_deezer": "deezer://track/13350780",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WRmOG5Rbn3Q",
       "uri_tidal": "tidal://track/2859279",
       "alt_artists": [
@@ -6298,7 +6298,7 @@
       "year": 2004,
       "isrc": "FIRCR1400299",
       "uri": "spotify:track:6Su7Jdk3IxV4XaFKGj4fwE",
-      "uri_apple_music": "https://music.apple.com/us/album/kultaa-tai-kunniaa/1178935650?i=1178935702&uo=4",
+      "uri_apple_music": "applemusic://track/1178935702",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1178935702",
         "de": "applemusic://track/965891332",
@@ -6308,7 +6308,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "86637407",
+      "uri_deezer": "deezer://track/86637407",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JM9zM4umDEc",
       "uri_tidal": "tidal://track/35499642",
       "alt_artists": [
@@ -6366,7 +6366,7 @@
       "year": 2004,
       "isrc": "FISME0400005",
       "uri": "spotify:track:4WqsrF7TJMNcXpALt6amw6",
-      "uri_apple_music": "https://music.apple.com/us/album/aamun-kuiskaus/299303918?i=299303961&uo=4",
+      "uri_apple_music": "applemusic://track/299303961",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299303961",
         "de": "applemusic://track/299303961",
@@ -6376,7 +6376,7 @@
         "nl": "applemusic://track/299303961",
         "it": "applemusic://track/299303961"
       },
-      "uri_deezer": "15352394",
+      "uri_deezer": "deezer://track/15352394",
       "uri_youtube_music": "https://music.youtube.com/watch?v=b5CQyqxLjwc",
       "uri_tidal": "tidal://track/2860713",
       "alt_artists": [
@@ -6400,7 +6400,7 @@
       "year": 2005,
       "isrc": "FIBAR0500074",
       "uri": "spotify:track:4aFTlmF0FJGZQuvXAbiIh7",
-      "uri_apple_music": "https://music.apple.com/us/album/pient%C3%A4-unelmaa/217120073?i=217120389&uo=4",
+      "uri_apple_music": "applemusic://track/217120389",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/217120389",
         "de": "applemusic://track/217120389",
@@ -6410,7 +6410,7 @@
         "nl": "applemusic://track/217120389",
         "it": "applemusic://track/217120389"
       },
-      "uri_deezer": "578766",
+      "uri_deezer": "deezer://track/578766",
       "uri_youtube_music": "https://music.youtube.com/watch?v=R9GJn0cRyZI",
       "uri_tidal": "tidal://track/28696",
       "alt_artists": [
@@ -6468,7 +6468,7 @@
       "year": 2005,
       "isrc": "FIBAR0500165",
       "uri": "spotify:track:7HGBeEs8nhKJGZ38eCUWdp",
-      "uri_apple_music": "https://music.apple.com/us/album/suomen-neito/254586429?i=254586699&uo=4",
+      "uri_apple_music": "applemusic://track/254586699",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/254586699",
         "de": "applemusic://track/369239015",
@@ -6478,7 +6478,7 @@
         "nl": "applemusic://track/369239015",
         "it": "applemusic://track/254586699"
       },
-      "uri_deezer": "15814382",
+      "uri_deezer": "deezer://track/15814382",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Aw2-dFKAxnU",
       "uri_tidal": "tidal://track/83826",
       "alt_artists": [
@@ -6600,7 +6600,7 @@
       "year": 2006,
       "isrc": "FIBAR9800010",
       "uri": "spotify:track:3M688bDgR4ioG17qkFZRSl",
-      "uri_apple_music": "https://music.apple.com/us/album/kuningatar/269843596?i=269845773&uo=4",
+      "uri_apple_music": "applemusic://track/269845773",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/269845773",
         "de": "applemusic://track/269845773",
@@ -6610,7 +6610,7 @@
         "nl": "applemusic://track/269845773",
         "it": "applemusic://track/269845773"
       },
-      "uri_deezer": "71235509",
+      "uri_deezer": "deezer://track/71235509",
       "uri_youtube_music": "https://music.youtube.com/watch?v=B5DE5Qi2uas",
       "uri_tidal": "tidal://track/555564",
       "alt_artists": [
@@ -6668,7 +6668,7 @@
       "year": 2006,
       "isrc": "FIBAR9000301",
       "uri": "spotify:track:6xrXgC6AEPnJMXpMhSmCHn",
-      "uri_apple_music": "https://music.apple.com/us/album/hetki-ly%C3%B6/269272867?i=269274119&uo=4",
+      "uri_apple_music": "applemusic://track/269274119",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/269274119",
         "de": "applemusic://track/269274119",
@@ -6678,7 +6678,7 @@
         "nl": "applemusic://track/269274119",
         "it": "applemusic://track/269274119"
       },
-      "uri_deezer": "584424",
+      "uri_deezer": "deezer://track/584424",
       "uri_youtube_music": "https://music.youtube.com/watch?v=xgiPcVOuXWo",
       "uri_tidal": "tidal://track/550310",
       "alt_artists": [
@@ -6702,7 +6702,7 @@
       "year": 2006,
       "isrc": "FIBAR9000300",
       "uri": "spotify:track:2kM3QBDAaPXF3PPXFMOUs3",
-      "uri_apple_music": "https://music.apple.com/us/album/leijat/269272867?i=269274063&uo=4",
+      "uri_apple_music": "applemusic://track/269274063",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/269274063",
         "de": "applemusic://track/269274063",
@@ -6712,7 +6712,7 @@
         "nl": "applemusic://track/269274063",
         "it": "applemusic://track/269274063"
       },
-      "uri_deezer": "584421",
+      "uri_deezer": "deezer://track/584421",
       "uri_youtube_music": "https://music.youtube.com/watch?v=E6XdbUgNUx8",
       "uri_tidal": "tidal://track/550309",
       "alt_artists": [
@@ -6770,7 +6770,7 @@
       "year": 2006,
       "isrc": "FISMC8500011",
       "uri": "spotify:track:6WDKouucRwUucigQBUuEqt",
-      "uri_apple_music": "https://music.apple.com/us/album/haaveissa-vainko-oot-mun-gumbostrand-4-7-93/1142276576?i=1142276992&uo=4",
+      "uri_apple_music": "applemusic://track/1142276992",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1142276992",
         "de": "applemusic://track/657530142",
@@ -6780,7 +6780,7 @@
         "nl": "applemusic://track/269283039",
         "it": "applemusic://track/269283039"
       },
-      "uri_deezer": "15429829",
+      "uri_deezer": "deezer://track/15429829",
       "uri_youtube_music": "https://music.youtube.com/watch?v=WPDZcxgh7eQ",
       "uri_tidal": "tidal://track/554783",
       "alt_artists": [
@@ -6814,7 +6814,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "80593212",
+      "uri_deezer": "deezer://track/80593212",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ocJ-zCSqEns",
       "uri_tidal": "tidal://track/554775",
       "alt_artists": [
@@ -6940,7 +6940,7 @@
       "year": 2007,
       "isrc": "FIBAR0700338",
       "uri": "spotify:track:05PziBQrJVMby3FG5lUVbW",
-      "uri_apple_music": "https://music.apple.com/us/album/viel%C3%A4k%C3%B6-soitan-banjoa/288618043?i=288618076&uo=4",
+      "uri_apple_music": "applemusic://track/288618076",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/288618076",
         "de": "applemusic://track/288618076",
@@ -6950,7 +6950,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "1186825",
+      "uri_deezer": "deezer://track/1186825",
       "uri_youtube_music": "https://music.youtube.com/watch?v=W7OSrHWobp4",
       "uri_tidal": "tidal://track/1699607",
       "alt_artists": [
@@ -6974,7 +6974,7 @@
       "year": 2008,
       "isrc": "FIBAR0800261",
       "uri": "spotify:track:28ww5AUl4MVUfw4C1xlFBk",
-      "uri_apple_music": "https://music.apple.com/us/album/puhu-%C3%A4%C3%A4nell%C3%A4-jonka-kuulen/286782858?i=286782874&uo=4",
+      "uri_apple_music": "applemusic://track/286782874",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/286782874",
         "de": "applemusic://track/286782874",
@@ -6984,7 +6984,7 @@
         "nl": "applemusic://track/286782874",
         "it": "applemusic://track/286782874"
       },
-      "uri_deezer": "13355371",
+      "uri_deezer": "deezer://track/13355371",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PnzdhQyb1gU",
       "uri_tidal": "tidal://track/7989100",
       "alt_artists": [
@@ -7108,7 +7108,7 @@
       "year": 2009,
       "isrc": "FISPI0900002",
       "uri": "spotify:track:5Wlod4LbE5pka7wlxC1MI7",
-      "uri_apple_music": "https://music.apple.com/us/album/kanssas-k%C3%A4velen-rantaa-ni-una-sola-palabra/431343617?i=431343632&uo=4",
+      "uri_apple_music": "applemusic://track/431343632",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/431343632",
         "de": "applemusic://track/431343632",
@@ -7118,7 +7118,7 @@
         "nl": "applemusic://track/431343632",
         "it": "applemusic://track/431343632"
       },
-      "uri_deezer": "10434320",
+      "uri_deezer": "deezer://track/10434320",
       "uri_youtube_music": "https://music.youtube.com/watch?v=KapXNqjyboo",
       "uri_tidal": "tidal://track/6317307",
       "alt_artists": [
@@ -7176,7 +7176,7 @@
       "year": 2010,
       "isrc": "FIRMX1000006",
       "uri": "spotify:track:0by6C6NBkL0bePhenQZpbW",
-      "uri_apple_music": "https://music.apple.com/us/album/maailma-on-kaunis/766878747?i=766878757&uo=4",
+      "uri_apple_music": "applemusic://track/766878757",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/766878757",
         "de": "applemusic://track/766878757",
@@ -7186,7 +7186,7 @@
         "nl": "applemusic://track/766878757",
         "it": "applemusic://track/766878757"
       },
-      "uri_deezer": "72949223",
+      "uri_deezer": "deezer://track/72949223",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SMHvi1ax8SU",
       "uri_tidal": "tidal://track/23929870",
       "alt_artists": [
@@ -7284,7 +7284,7 @@
         "nl": "applemusic://track/431640806",
         "it": "applemusic://track/431640806"
       },
-      "uri_deezer": "10830847",
+      "uri_deezer": "deezer://track/10830847",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ih5yQ2IckW8",
       "uri_tidal": "tidal://track/6405922",
       "alt_artists": [
@@ -7408,7 +7408,7 @@
       "year": 2011,
       "isrc": "FI3HM1100051",
       "uri": "spotify:track:5bXyhCj71HlmcVIdOXJ1Fd",
-      "uri_apple_music": "https://music.apple.com/us/album/pahalta-piilossa/1719873955?i=1719873974&uo=4",
+      "uri_apple_music": "applemusic://track/1719873974",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719873974",
         "de": "applemusic://track/1522882864",
@@ -7418,7 +7418,7 @@
         "nl": null,
         "it": "applemusic://track/1719873974"
       },
-      "uri_deezer": "1010289512",
+      "uri_deezer": "deezer://track/1010289512",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PwxzWkKl8Sk",
       "uri_tidal": "tidal://track/147296992",
       "alt_artists": [
@@ -7452,7 +7452,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "40489611",
+      "uri_deezer": "deezer://track/40489611",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DvZqely59_Y",
       "uri_tidal": "tidal://track/26719312",
       "alt_artists": [
@@ -7476,7 +7476,7 @@
       "year": 2012,
       "isrc": "FI3HM1200005",
       "uri": "spotify:track:7mFQkDoR8BUIzbXwc4ZJX4",
-      "uri_apple_music": "https://music.apple.com/us/album/%C3%A4iti/509952352?i=509952356&uo=4",
+      "uri_apple_music": "applemusic://track/509952356",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/509952356",
         "de": null,
@@ -7486,7 +7486,7 @@
         "nl": "applemusic://track/502438040",
         "it": "applemusic://track/502438040"
       },
-      "uri_deezer": "16663730",
+      "uri_deezer": "deezer://track/16663730",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4n_5vRqjh_s",
       "uri_tidal": "tidal://track/14145129",
       "alt_artists": [
@@ -7510,7 +7510,7 @@
       "year": 2012,
       "isrc": "FIBAR1200060",
       "uri": "spotify:track:3jW1xGDwI9o0Tw1ZvyRLTR",
-      "uri_apple_music": "https://music.apple.com/us/album/kaunista-ja-hyv%C3%A4%C3%A4/531845647?i=531845984&uo=4",
+      "uri_apple_music": "applemusic://track/531845984",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/531845984",
         "de": "applemusic://track/519805917",
@@ -7520,7 +7520,7 @@
         "nl": "applemusic://track/519805917",
         "it": "applemusic://track/531845984"
       },
-      "uri_deezer": "20539491",
+      "uri_deezer": "deezer://track/20539491",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IU3CEP_O3nY",
       "uri_tidal": "tidal://track/15729334",
       "alt_artists": [
@@ -7767,7 +7767,7 @@
       "year": 2013,
       "isrc": "FIWMA1200457",
       "uri": "spotify:track:3DpZ71BIrAYcPbupFnA40D",
-      "uri_apple_music": "https://music.apple.com/us/album/h%C3%A4n-tanssi-kanssa-enkeleiden/1719317014?i=1719317210&uo=4",
+      "uri_apple_music": "applemusic://track/1719317210",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719317210",
         "de": "applemusic://track/1719317210",
@@ -7777,7 +7777,7 @@
         "nl": "applemusic://track/1719317210",
         "it": "applemusic://track/1719317016"
       },
-      "uri_deezer": "2566802322",
+      "uri_deezer": "deezer://track/2566802322",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fjRRU4BrAZg",
       "uri_tidal": "tidal://track/332414298",
       "alt_artists": [
@@ -7831,7 +7831,7 @@
       "year": 2015,
       "isrc": "FIBAR1500667",
       "uri": "spotify:track:1U86IN9ksnsvOjfmhJhWqk",
-      "uri_apple_music": "https://music.apple.com/us/album/clandestino-radio-versio/1061762017?i=1061762414&uo=4",
+      "uri_apple_music": "applemusic://track/1061762414",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1061762414",
         "de": null,
@@ -7841,7 +7841,7 @@
         "nl": "applemusic://track/1061762414",
         "it": "applemusic://track/1061762414"
       },
-      "uri_deezer": "110957854",
+      "uri_deezer": "deezer://track/110957854",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JaFIH8e3jRI",
       "uri_tidal": "tidal://track/54386814",
       "alt_artists": [
@@ -7865,7 +7865,7 @@
       "year": 2015,
       "isrc": "FIBAR1500191",
       "uri": "spotify:track:44BBBdfBgTNCfeC8fIFcUx",
-      "uri_apple_music": "https://music.apple.com/us/album/kuivaa-koivua/987985521?i=987985522&uo=4",
+      "uri_apple_music": "applemusic://track/987985522",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/987985522",
         "de": "applemusic://track/1090471870",
@@ -7875,7 +7875,7 @@
         "nl": "applemusic://track/1090471870",
         "it": "applemusic://track/1090471870"
       },
-      "uri_deezer": "121126658",
+      "uri_deezer": "deezer://track/121126658",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4XZxx-8NJr4",
       "uri_tidal": "tidal://track/57985487",
       "alt_artists": [
@@ -7909,7 +7909,7 @@
         "nl": "applemusic://track/953646677",
         "it": null
       },
-      "uri_deezer": "145426818",
+      "uri_deezer": "deezer://track/145426818",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Zc1dTEYZvvg",
       "uri_tidal": "tidal://track/39188737",
       "alt_artists": [
@@ -7933,7 +7933,7 @@
       "year": 2015,
       "isrc": "FIBAR1600519",
       "uri": "spotify:track:3x2Ity9VI7w4LVvZtXbERX",
-      "uri_apple_music": "https://music.apple.com/us/album/y%C3%B6ss%C3%A4-soi-americano/1044221784?i=1044221791&uo=4",
+      "uri_apple_music": "applemusic://track/1044221791",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1044221791",
         "de": "applemusic://track/1170080521",
@@ -7943,7 +7943,7 @@
         "nl": "applemusic://track/1170080521",
         "it": null
       },
-      "uri_deezer": "135870046",
+      "uri_deezer": "deezer://track/135870046",
       "uri_youtube_music": "https://music.youtube.com/watch?v=J-nA_xdBdVU",
       "uri_tidal": "tidal://track/51884808",
       "alt_artists": [
@@ -8007,7 +8007,7 @@
         "nl": "applemusic://track/987985489",
         "it": null
       },
-      "uri_deezer": "100606176",
+      "uri_deezer": "deezer://track/100606176",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IHDOJcX-8qA",
       "uri_tidal": "tidal://track/45088282",
       "alt_artists": [
@@ -8041,7 +8041,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "82200870",
+      "uri_deezer": "deezer://track/82200870",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kDu7juQ5OSE",
       "uri_tidal": "tidal://track/47553456",
       "alt_artists": [
@@ -8065,7 +8065,7 @@
       "year": 2015,
       "isrc": "FIBAR1500416",
       "uri": "spotify:track:7hF9wZVP3sRUQgt7s5Ji3c",
-      "uri_apple_music": "https://music.apple.com/us/album/minne-tuulet-vie/1110902215?i=1110902616&uo=4",
+      "uri_apple_music": "applemusic://track/1110902616",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1110902616",
         "de": null,
@@ -8075,7 +8075,7 @@
         "nl": "applemusic://track/1110902616",
         "it": null
       },
-      "uri_deezer": "107962726",
+      "uri_deezer": "deezer://track/107962726",
       "uri_youtube_music": "https://music.youtube.com/watch?v=u-RuV42TMsg",
       "uri_tidal": "tidal://track/60136844",
       "alt_artists": [
@@ -8099,7 +8099,7 @@
       "year": 2016,
       "isrc": "FIBAR1600317",
       "uri": "spotify:track:6njh3090pl4Xl2jOpxg4aS",
-      "uri_apple_music": "https://music.apple.com/us/album/alla-sateen-%C3%B6isen/1117025816?i=1117025936&uo=4",
+      "uri_apple_music": "applemusic://track/1117025936",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1117025936",
         "de": "applemusic://track/1117025936",
@@ -8109,7 +8109,7 @@
         "nl": "applemusic://track/1117025936",
         "it": "applemusic://track/1117025936"
       },
-      "uri_deezer": "125970475",
+      "uri_deezer": "deezer://track/125970475",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pzh-NBeieSw",
       "uri_tidal": "tidal://track/64016246",
       "alt_artists": [
@@ -8133,7 +8133,7 @@
       "year": 2016,
       "isrc": "FIBAR1600506",
       "uri": "spotify:track:1X418FIPXnli3z86KmM2kX",
-      "uri_apple_music": "https://music.apple.com/us/album/s%C3%A4-et-oo-mun-%C3%A4iti/1146591043?i=1146591254&uo=4",
+      "uri_apple_music": "applemusic://track/1146591254",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1146591254",
         "de": "applemusic://track/1146591254",
@@ -8143,7 +8143,7 @@
         "nl": "applemusic://track/1146591254",
         "it": "applemusic://track/1146591254"
       },
-      "uri_deezer": "131337640",
+      "uri_deezer": "deezer://track/131337640",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vHHJljueLQs",
       "uri_tidal": "tidal://track/69223459",
       "alt_artists": [
@@ -8167,7 +8167,7 @@
       "year": 2016,
       "isrc": "FIBAR1600308",
       "uri": "spotify:track:0UEyn55xEwr5ccOGCaBEIX",
-      "uri_apple_music": "https://music.apple.com/us/album/ei-kukaan-ket%C3%A4%C3%A4n/1110772388?i=1110772465&uo=4",
+      "uri_apple_music": "applemusic://track/1110772465",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1110772465",
         "de": "applemusic://track/1110772465",
@@ -8177,7 +8177,7 @@
         "nl": "applemusic://track/1110772465",
         "it": "applemusic://track/1110772465"
       },
-      "uri_deezer": "124601772",
+      "uri_deezer": "deezer://track/124601772",
       "uri_youtube_music": "https://music.youtube.com/watch?v=izu9AMOqDss",
       "uri_tidal": "tidal://track/60137459",
       "alt_artists": [
@@ -8211,7 +8211,7 @@
         "nl": null,
         "it": "applemusic://track/1090472472"
       },
-      "uri_deezer": "121126662",
+      "uri_deezer": "deezer://track/121126662",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0hvexJl8NWY",
       "uri_tidal": "tidal://track/57985489",
       "alt_artists": [
@@ -8245,7 +8245,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "117728526",
+      "uri_deezer": "deezer://track/117728526",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MXPFS8J1bp4",
       "uri_tidal": "tidal://track/56065920",
       "alt_artists": [
@@ -8269,7 +8269,7 @@
       "year": 2016,
       "isrc": "FIBAR1600502",
       "uri": "spotify:track:7ebISPOcADrDvvxXK9oE1O",
-      "uri_apple_music": "https://music.apple.com/us/album/ainut-el%C3%A4m%C3%A4/1151098540?i=1151098782&uo=4",
+      "uri_apple_music": "applemusic://track/1151098782",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1151098782",
         "de": "applemusic://track/1151098782",
@@ -8279,7 +8279,7 @@
         "nl": "applemusic://track/1151098782",
         "it": "applemusic://track/1151098782"
       },
-      "uri_deezer": "132195254",
+      "uri_deezer": "deezer://track/132195254",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9RwvXzD1LPs",
       "uri_tidal": "tidal://track/64624762",
       "alt_artists": [
@@ -8303,7 +8303,7 @@
       "year": 2016,
       "isrc": "FIBAR1600435",
       "uri": "spotify:track:4QEKHVGAmElwyVxRv80iqk",
-      "uri_apple_music": "https://music.apple.com/us/album/leip%C3%A4%C3%A4-lempee-l%C3%A4mp%C3%B6%C3%B6-feat-minna-lintukangas/1478778603?i=1478778612&uo=4",
+      "uri_apple_music": "applemusic://track/1478778612",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1478778612",
         "de": "applemusic://track/1123672122",
@@ -8313,7 +8313,7 @@
         "nl": "applemusic://track/1123672122",
         "it": "applemusic://track/1123672122"
       },
-      "uri_deezer": "126847847",
+      "uri_deezer": "deezer://track/126847847",
       "uri_youtube_music": "https://music.youtube.com/watch?v=l8-RuuqZZqM",
       "uri_tidal": "tidal://track/61927213",
       "alt_artists": [
@@ -8337,7 +8337,7 @@
       "year": 2016,
       "isrc": "FIMMZ1600001",
       "uri": "spotify:track:5a1xgwrrs6CmsqYaQ4vngg",
-      "uri_apple_music": "https://music.apple.com/us/album/v%C3%A4h%C3%A4n-yli-kuudentoista/1073223555?i=1073223558&uo=4",
+      "uri_apple_music": "applemusic://track/1073223558",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1073223558",
         "de": "applemusic://track/1073223558",
@@ -8347,7 +8347,7 @@
         "nl": "applemusic://track/1073223558",
         "it": "applemusic://track/1073223558"
       },
-      "uri_deezer": "117728514",
+      "uri_deezer": "deezer://track/117728514",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8Kdw47e6AeE",
       "uri_tidal": "tidal://track/59739862",
       "alt_artists": [
@@ -8381,7 +8381,7 @@
         "nl": "applemusic://track/1150475307",
         "it": null
       },
-      "uri_deezer": "132195124",
+      "uri_deezer": "deezer://track/132195124",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dgMi_Cytmek",
       "uri_tidal": "tidal://track/64562178",
       "alt_artists": [
@@ -8405,7 +8405,7 @@
       "year": 2016,
       "isrc": "FIBAR1600155",
       "uri": "spotify:track:3XaKpE5zPWptC44pI7a3Ct",
-      "uri_apple_music": "https://music.apple.com/us/album/rakkauden-j%C3%A4lkeen/1146834572?i=1146834809&uo=4",
+      "uri_apple_music": "applemusic://track/1146834809",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1146834809",
         "de": "applemusic://track/1146834809",
@@ -8415,7 +8415,7 @@
         "nl": "applemusic://track/1135870895",
         "it": "applemusic://track/1146834809"
       },
-      "uri_deezer": "129632946",
+      "uri_deezer": "deezer://track/129632946",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ri51FQj5y5U",
       "uri_tidal": "tidal://track/64257058",
       "alt_artists": [
@@ -8439,7 +8439,7 @@
       "year": 2016,
       "isrc": "FIB2M1600013",
       "uri": "spotify:track:7ag4ESrwgfyj2YwEgtAPoO",
-      "uri_apple_music": "https://music.apple.com/us/album/laulaa-saanut-oon/1122570356?i=1122570602&uo=4",
+      "uri_apple_music": "applemusic://track/1122570602",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1122570602",
         "de": "applemusic://track/1122570602",
@@ -8449,7 +8449,7 @@
         "nl": "applemusic://track/1122570602",
         "it": "applemusic://track/1122570602"
       },
-      "uri_deezer": "127246111",
+      "uri_deezer": "deezer://track/127246111",
       "uri_youtube_music": "https://music.youtube.com/watch?v=p78pL9PwyE4",
       "uri_tidal": "tidal://track/71567327",
       "alt_artists": [
@@ -8473,7 +8473,7 @@
       "year": 2016,
       "isrc": "FIBAR1600219",
       "uri": "spotify:track:3jrgayjtXyutcSUuH8YJuf",
-      "uri_apple_music": "https://music.apple.com/us/album/en-olekaan-valmis/1217977536?i=1217977853&uo=4",
+      "uri_apple_music": "applemusic://track/1217977853",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1217977853",
         "de": null,
@@ -8483,7 +8483,7 @@
         "nl": "applemusic://track/1096291407",
         "it": null
       },
-      "uri_deezer": "341400671",
+      "uri_deezer": "deezer://track/341400671",
       "uri_youtube_music": "https://music.youtube.com/watch?v=PI02890Dus8",
       "uri_tidal": "tidal://track/58693517",
       "alt_artists": [
@@ -8544,7 +8544,7 @@
       "year": 2016,
       "isrc": "FIBAR1600446",
       "uri": "spotify:track:2ohfnOZOBq5KpXeY9VSd71",
-      "uri_apple_music": "https://music.apple.com/us/album/maailma-on-kaunis/1124558083?i=1124558169&uo=4",
+      "uri_apple_music": "applemusic://track/1124558169",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1124558169",
         "de": "applemusic://track/1124558169",
@@ -8554,7 +8554,7 @@
         "nl": "applemusic://track/1124558169",
         "it": "applemusic://track/1124558169"
       },
-      "uri_deezer": "127247327",
+      "uri_deezer": "deezer://track/127247327",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Trd8f8wSw30",
       "uri_tidal": "tidal://track/62037362",
       "alt_artists": [
@@ -8578,7 +8578,7 @@
       "year": 2016,
       "isrc": "FIBAR1600581",
       "uri": "spotify:track:6QWQUfkv5ABqwIiG5vcW3r",
-      "uri_apple_music": "https://music.apple.com/us/album/vieriv%C3%A4-kivi/1171504437?i=1171504564&uo=4",
+      "uri_apple_music": "applemusic://track/1171504564",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1171504564",
         "de": "applemusic://track/1171504564",
@@ -8588,7 +8588,7 @@
         "nl": "applemusic://track/1171504564",
         "it": "applemusic://track/1171504564"
       },
-      "uri_deezer": "136334188",
+      "uri_deezer": "deezer://track/136334188",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LNZEyM8CEcQ",
       "uri_tidal": "tidal://track/66678944",
       "alt_artists": [
@@ -8647,7 +8647,7 @@
       "year": 2016,
       "isrc": "FIBAR1600529",
       "uri": "spotify:track:2L8oDNv328hRAP1LO6rNlj",
-      "uri_apple_music": "https://music.apple.com/us/album/oot-voimani-mun/1164241527?i=1164241870&uo=4",
+      "uri_apple_music": "applemusic://track/1164241870",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1164241870",
         "de": "applemusic://track/1164241870",
@@ -8657,7 +8657,7 @@
         "nl": "applemusic://track/1164241870",
         "it": "applemusic://track/1164241870"
       },
-      "uri_deezer": "134522928",
+      "uri_deezer": "deezer://track/134522928",
       "uri_youtube_music": "https://music.youtube.com/watch?v=I9j2_aZm--0",
       "uri_tidal": "tidal://track/66509604",
       "alt_artists": [
@@ -8681,7 +8681,7 @@
       "year": 2016,
       "isrc": "FIBAR1600480",
       "uri": "spotify:track:0PXpGt5A5TCQZ442VKxusW",
-      "uri_apple_music": "https://music.apple.com/us/album/valo-y%C3%B6ss%C3%A4/1170080055?i=1170080520&uo=4",
+      "uri_apple_music": "applemusic://track/1170080520",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1170080520",
         "de": "applemusic://track/1130952180",
@@ -8691,7 +8691,7 @@
         "nl": "applemusic://track/1130952180",
         "it": "applemusic://track/1130952180"
       },
-      "uri_deezer": "128548813",
+      "uri_deezer": "deezer://track/128548813",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VNzxf-MDJr0",
       "uri_tidal": "tidal://track/62655806",
       "alt_artists": [
@@ -8715,7 +8715,7 @@
       "year": 2016,
       "isrc": "FIBAR1600289",
       "uri": "spotify:track:0vItYAhrTCe4MpXStdbduP",
-      "uri_apple_music": "https://music.apple.com/us/album/laulajan-yst%C3%A4v%C3%A4/1112565783?i=1112566459&uo=4",
+      "uri_apple_music": "applemusic://track/1112566459",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1112566459",
         "de": "applemusic://track/1112566459",
@@ -8725,7 +8725,7 @@
         "nl": "applemusic://track/1112566459",
         "it": "applemusic://track/1112566459"
       },
-      "uri_deezer": "125512210",
+      "uri_deezer": "deezer://track/125512210",
       "uri_youtube_music": "https://music.youtube.com/watch?v=TP-KRXZvvA8",
       "uri_tidal": "tidal://track/60264672",
       "alt_artists": [
@@ -8783,7 +8783,7 @@
       "year": 2016,
       "isrc": "FIWMA1600169",
       "uri": "spotify:track:5Grf1q0nMeJ8ZxWGfFDaVC",
-      "uri_apple_music": "https://music.apple.com/us/album/sin%C3%A4-olet-minun/1152655142?i=1152655148&uo=4",
+      "uri_apple_music": "applemusic://track/1152655148",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1152655148",
         "de": "applemusic://track/1152655148",
@@ -8793,7 +8793,7 @@
         "nl": "applemusic://track/1152655148",
         "it": "applemusic://track/1174868405"
       },
-      "uri_deezer": "541246172",
+      "uri_deezer": "deezer://track/541246172",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0a6rpE8btK8",
       "uri_tidal": "tidal://track/64691373",
       "alt_artists": [
@@ -8817,7 +8817,7 @@
       "year": 2016,
       "isrc": "FIBAR1600463",
       "uri": "spotify:track:55jd6Rr1rU1UczKoUIkfGd",
-      "uri_apple_music": "https://music.apple.com/us/album/ei-rakkautta-suurempaa/1173424012?i=1173424176&uo=4",
+      "uri_apple_music": "applemusic://track/1173424176",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1173424176",
         "de": "applemusic://track/1130950274",
@@ -8827,7 +8827,7 @@
         "nl": "applemusic://track/1130950274",
         "it": "applemusic://track/1130950274"
       },
-      "uri_deezer": "128548895",
+      "uri_deezer": "deezer://track/128548895",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IUYEJw-s0TM",
       "uri_tidal": "tidal://track/62655735",
       "alt_artists": [
@@ -8851,7 +8851,7 @@
       "year": 2016,
       "isrc": "FIOMB1600002",
       "uri": "spotify:track:7dQDBgUCdc89XPzNOgL2Kv",
-      "uri_apple_music": "https://music.apple.com/us/album/kysymys-saa-vastauksen/1380782277?i=1380782280&uo=4",
+      "uri_apple_music": "applemusic://track/1380782280",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1380782280",
         "de": "applemusic://track/1380782280",
@@ -8861,7 +8861,7 @@
         "nl": "applemusic://track/1380782280",
         "it": "applemusic://track/1380782280"
       },
-      "uri_deezer": "496333152",
+      "uri_deezer": "deezer://track/496333152",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_VxaYZVXQXo",
       "uri_tidal": "tidal://track/95218451",
       "alt_artists": [
@@ -8885,7 +8885,7 @@
       "year": 2016,
       "isrc": "FIBAR1600580",
       "uri": "spotify:track:40xsLfGPevA7gmAJomUk5K",
-      "uri_apple_music": "https://music.apple.com/us/album/viaton/1166979426?i=1166979704&uo=4",
+      "uri_apple_music": "applemusic://track/1166979704",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1166979704",
         "de": "applemusic://track/1166979704",
@@ -8895,7 +8895,7 @@
         "nl": "applemusic://track/1166979704",
         "it": null
       },
-      "uri_deezer": "134947754",
+      "uri_deezer": "deezer://track/134947754",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_B16yVXuD0M",
       "uri_tidal": "tidal://track/66392221",
       "alt_artists": [
@@ -8929,7 +8929,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "120305744",
+      "uri_deezer": "deezer://track/120305744",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bY139F1enyQ",
       "uri_tidal": "tidal://track/57817888",
       "alt_artists": [
@@ -8953,7 +8953,7 @@
       "year": 2016,
       "isrc": "FIBAR1600646",
       "uri": "spotify:track:3vuREE46XfrgXS1xmA00Oe",
-      "uri_apple_music": "https://music.apple.com/us/album/myyty-mies/1182473365?i=1182473539&uo=4",
+      "uri_apple_music": "applemusic://track/1182473539",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1182473539",
         "de": "applemusic://track/1182473539",
@@ -8963,7 +8963,7 @@
         "nl": "applemusic://track/1182473539",
         "it": "applemusic://track/1182473539"
       },
-      "uri_deezer": "138122445",
+      "uri_deezer": "deezer://track/138122445",
       "uri_youtube_music": "https://music.youtube.com/watch?v=N10riFBXxjM",
       "uri_tidal": "tidal://track/67844003",
       "alt_artists": [
@@ -8987,7 +8987,7 @@
       "year": 2016,
       "isrc": "FIBAR1600418",
       "uri": "spotify:track:2H3tbEwbwXJZ56zmdKgMW1",
-      "uri_apple_music": "https://music.apple.com/us/album/ei-p%C3%A4iv%C3%A4%C3%A4-ei-y%C3%B6t%C3%A4/1120180061?i=1120180066&uo=4",
+      "uri_apple_music": "applemusic://track/1120180066",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1120180066",
         "de": "applemusic://track/1120180066",
@@ -8997,7 +8997,7 @@
         "nl": "applemusic://track/1120180066",
         "it": "applemusic://track/1120180066"
       },
-      "uri_deezer": "126847719",
+      "uri_deezer": "deezer://track/126847719",
       "uri_youtube_music": "https://music.youtube.com/watch?v=N286cj8W1Sw",
       "uri_tidal": "tidal://track/61539577",
       "alt_artists": [
@@ -9021,7 +9021,7 @@
       "year": 2016,
       "isrc": "FIBAR1500315",
       "uri": "spotify:track:03Jvaf4LzkWtSzmH5d3Ryk",
-      "uri_apple_music": "https://music.apple.com/us/album/erakko/1110902215?i=1110902644&uo=4",
+      "uri_apple_music": "applemusic://track/1110902644",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1110902644",
         "de": "applemusic://track/1110902644",
@@ -9031,7 +9031,7 @@
         "nl": "applemusic://track/1110902644",
         "it": "applemusic://track/1106629037"
       },
-      "uri_deezer": "124185522",
+      "uri_deezer": "deezer://track/124185522",
       "uri_youtube_music": "https://music.youtube.com/watch?v=K2I__DH3ZYQ",
       "uri_tidal": "tidal://track/60136847",
       "alt_artists": [
@@ -9055,7 +9055,7 @@
       "year": 2017,
       "isrc": "FIBAR1600509",
       "uri": "spotify:track:06EGCoGpHgvIPCA334n2hY",
-      "uri_apple_music": "https://music.apple.com/us/album/yks-biisin-aihe-vaan/1194608630?i=1194609001&uo=4",
+      "uri_apple_music": "applemusic://track/1194609001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1194609001",
         "de": "applemusic://track/1194609007",
@@ -9065,7 +9065,7 @@
         "nl": "applemusic://track/1194609007",
         "it": "applemusic://track/1194609007"
       },
-      "uri_deezer": "141334777",
+      "uri_deezer": "deezer://track/141334777",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9hyjMkLSR8k",
       "uri_tidal": "tidal://track/69223462",
       "alt_artists": [
@@ -9089,7 +9089,7 @@
       "year": 2017,
       "isrc": "FIBAR1700079",
       "uri": "spotify:track:2k5vp9kvJKVi4XtUyuaDCw",
-      "uri_apple_music": "https://music.apple.com/us/album/ettei-mee-el%C3%A4m%C3%A4-hukkaan/1203757522?i=1203757532&uo=4",
+      "uri_apple_music": "applemusic://track/1203757532",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1203757532",
         "de": "applemusic://track/1203757532",
@@ -9099,7 +9099,7 @@
         "nl": "applemusic://track/1203757532",
         "it": "applemusic://track/1203757532"
       },
-      "uri_deezer": "141824435",
+      "uri_deezer": "deezer://track/141824435",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gXbkeNkMBLI",
       "uri_tidal": "tidal://track/70199192",
       "alt_artists": [
@@ -9123,7 +9123,7 @@
       "year": 2017,
       "isrc": "FIB2M1600015",
       "uri": "spotify:track:5jBzF5PLkU1SwLkOBIy5hW",
-      "uri_apple_music": "https://music.apple.com/us/album/minulla-on-sinut/1211415704?i=1211416434&uo=4",
+      "uri_apple_music": "applemusic://track/1211416434",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1211416434",
         "de": "applemusic://track/1211416434",
@@ -9133,7 +9133,7 @@
         "nl": "applemusic://track/1211416434",
         "it": "applemusic://track/1211416434"
       },
-      "uri_deezer": "143778134",
+      "uri_deezer": "deezer://track/143778134",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vUMJQvtuXi8",
       "uri_tidal": "tidal://track/71020010",
       "alt_artists": [
@@ -9167,7 +9167,7 @@
         "nl": null,
         "it": "applemusic://track/1211772098"
       },
-      "uri_deezer": "143335430",
+      "uri_deezer": "deezer://track/143335430",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qOK_Esun3ec",
       "uri_tidal": "tidal://track/71060841",
       "alt_artists": [
@@ -9191,7 +9191,7 @@
       "year": 2017,
       "isrc": "FIMTA9500116",
       "uri": "spotify:track:2J7BaSSRAWuUzUJIS6mxS5",
-      "uri_apple_music": "https://music.apple.com/us/album/satulinna-feat-jari-sillanp%C3%A4%C3%A4/1299104105?i=1299104384&uo=4",
+      "uri_apple_music": "applemusic://track/1299104384",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1299104384",
         "de": "applemusic://track/1299104384",
@@ -9201,7 +9201,7 @@
         "nl": "applemusic://track/893708146",
         "it": "applemusic://track/893708146"
       },
-      "uri_deezer": "75299345",
+      "uri_deezer": "deezer://track/75299345",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jAPElJGDW_I",
       "uri_tidal": "tidal://track/31826456",
       "alt_artists": [
@@ -9225,7 +9225,7 @@
       "year": 2017,
       "isrc": "FISOF1710011",
       "uri": "spotify:track:4rCyxvo3WHq0b7kTMskSMk",
-      "uri_apple_music": "https://music.apple.com/us/album/miljoona/1272301795?i=1272301797&uo=4",
+      "uri_apple_music": "applemusic://track/1272301797",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1272301797",
         "de": "applemusic://track/1243523167",
@@ -9235,7 +9235,7 @@
         "nl": "applemusic://track/1243523167",
         "it": "applemusic://track/1243523167"
       },
-      "uri_deezer": "368958001",
+      "uri_deezer": "deezer://track/368958001",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lgJhPknSTnA",
       "uri_tidal": "tidal://track/77510658",
       "alt_artists": [
@@ -9259,7 +9259,7 @@
       "year": 2017,
       "isrc": "FIBAR1700013",
       "uri": "spotify:track:6sT9MjKclCmiV853zOYSnE",
-      "uri_apple_music": "https://music.apple.com/us/album/anna-menn%C3%A4-anna/1206406445?i=1206406590&uo=4",
+      "uri_apple_music": "applemusic://track/1206406590",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1206406590",
         "de": "applemusic://track/1206406590",
@@ -9269,7 +9269,7 @@
         "nl": "applemusic://track/1194597278",
         "it": null
       },
-      "uri_deezer": "140797957",
+      "uri_deezer": "deezer://track/140797957",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RHOOlQweDj8",
       "uri_tidal": "tidal://track/69223310",
       "alt_artists": [
@@ -9303,7 +9303,7 @@
         "nl": null,
         "it": null
       },
-      "uri_deezer": "495980502",
+      "uri_deezer": "deezer://track/495980502",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6HzP8Pj1XYI",
       "uri_tidal": "tidal://track/89679558",
       "alt_artists": [
@@ -9395,7 +9395,7 @@
       "year": 2017,
       "isrc": "FITRO1700008",
       "uri": "spotify:track:2L6rmSaS1altRBwr8yOgga",
-      "uri_apple_music": "https://music.apple.com/us/album/vanha-liekki/1302170088?i=1302172466&uo=4",
+      "uri_apple_music": "applemusic://track/1302172466",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1302172466",
         "de": "applemusic://track/1302172466",
@@ -9405,7 +9405,7 @@
         "nl": "applemusic://track/1302172466",
         "it": "applemusic://track/1302172466"
       },
-      "uri_deezer": "422496752",
+      "uri_deezer": "deezer://track/422496752",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0TaYJCWlH-Y",
       "uri_tidal": "tidal://track/80531664",
       "alt_artists": [
@@ -9532,7 +9532,7 @@
       "year": 2026,
       "isrc": "FIMFY2600003",
       "uri": "spotify:track:1HPVyTwkDkOKhfEt0BgEJQ",
-      "uri_apple_music": "https://music.apple.com/us/album/koko-suomi-tanssii/6775741604?i=6775741606&uo=4",
+      "uri_apple_music": "applemusic://track/6775741606",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6775741606",
         "de": "applemusic://track/6775741606",
@@ -9542,7 +9542,7 @@
         "nl": "applemusic://track/6775741606",
         "it": "applemusic://track/6775741606"
       },
-      "uri_deezer": "4058506061",
+      "uri_deezer": "deezer://track/4058506061",
       "uri_youtube_music": "https://music.youtube.com/watch?v=_eGRJs8my5I",
       "uri_tidal": "tidal://track/529964966",
       "alt_artists": [

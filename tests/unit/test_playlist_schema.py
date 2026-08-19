@@ -51,3 +51,82 @@ def test_playlist_conforms_to_schema(path: Path) -> None:
         for e in errors
     ]
     assert not messages, "schema violations:\n" + "\n".join(messages)
+
+
+def _song(**overrides: object) -> dict:
+    """Minimal song that satisfies the schema, with fields overridden per test."""
+    song = {
+        "artist": "Falco",
+        "title": "Rock Me Amadeus",
+        "year": 1985,
+        "uri": "spotify:track:1EB3Z38oKDKVp4K2yEO2dl",
+        "fun_fact": "f",
+        "fun_fact_de": "f",
+        "fun_fact_es": "f",
+        "fun_fact_fr": "f",
+        "fun_fact_nl": "f",
+    }
+    song.update(overrides)
+    return song
+
+
+def _playlist(song: dict) -> dict:
+    return {"name": "t", "version": "1.0", "tags": ["t"], "songs": [song]}
+
+
+def test_baseline_song_is_valid() -> None:
+    # Without this, every rejection test below would pass for the wrong reason.
+    assert not list(_validator().iter_errors(_playlist(_song())))
+
+
+# The malformed forms that reached `main` before #2247: a bare numeric ID, an
+# Apple web URL and an empty string. `get_song_uri()` hands these to Music
+# Assistant verbatim, and for a regional entry the legacy field is dropped
+# (#1379), so there is no fallback behind a broken value.
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("uri_apple_music", "1519834045"),
+        ("uri_apple_music", "https://music.apple.com/us/album/x/257853869?i=257853898"),
+        ("uri_apple_music", ""),
+        ("uri_deezer", "122357172"),
+        ("uri_deezer", ""),
+        ("uri_tidal", "12345678"),
+        ("uri_youtube_music", "e_yafwjcf-w"),
+    ],
+)
+def test_malformed_provider_uri_is_rejected(field: str, value: str) -> None:
+    errors = list(_validator().iter_errors(_playlist(_song(**{field: value}))))
+    assert errors, f"{field}={value!r} must not pass the schema gate"
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("uri_apple_music", "applemusic://track/1519834045"),
+        ("uri_apple_music", None),
+        ("uri_deezer", "deezer://track/122357172"),
+        ("uri_tidal", "tidal://track/12345678"),
+        ("uri_youtube_music", "https://music.youtube.com/watch?v=e_yafwjcf-w"),
+        ("uri_youtube_music", "https://www.youtube.com/watch?v=KQRaj1vcnrs"),
+    ],
+)
+def test_well_formed_provider_uri_is_accepted(field: str, value: str | None) -> None:
+    errors = list(_validator().iter_errors(_playlist(_song(**{field: value}))))
+    assert not errors, [e.message for e in errors]
+
+
+def test_region_map_rejects_bare_id_but_accepts_uri_and_null() -> None:
+    validator = _validator()
+    bad = _playlist(_song(uri_apple_music_by_region={"us": "1519834045"}))
+    assert list(validator.iter_errors(bad)), "bare region ID must not pass (#2247)"
+
+    good = _playlist(
+        _song(
+            uri_apple_music_by_region={
+                "us": "applemusic://track/1519834045",
+                "fr": None,
+            }
+        )
+    )
+    assert not list(validator.iter_errors(good))

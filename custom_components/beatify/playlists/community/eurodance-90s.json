@@ -1,6 +1,6 @@
 {
   "name": "Eurodance 90s 💥",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "1990s",
     "eurodance",
@@ -2873,7 +2873,7 @@
       "fun_fact_es": "La edificante pista Eurodance de Tess difundió un mensaje de unidad.",
       "fun_fact_fr": "Le titre Eurodance fédérateur de Tess diffusait un message d'unité porté par des paroles positives et une production pleine d'énergie.",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CaptYZ8FCvk",
-      "uri_deezer": "",
+      "uri_deezer": null,
       "fun_fact_nl": "Tess's opzwepende Eurodance track verspreidt een boodschap van eenheid met zijn positieve teksten en energieke productie.",
       "awards_nl": []
     },

@@ -67,11 +67,42 @@
             { "type": "null" }
           ]
         },
-        "uri_apple_music": { "type": ["string", "null"] },
-        "uri_youtube_music": { "type": ["string", "null"] },
-        "uri_tidal": { "type": ["string", "null"] },
-        "uri_deezer": { "type": ["string", "null"] },
-        "uri_apple_music_by_region": { "type": "object" },
+        "uri_apple_music": {
+          "description": "Apple Music track URI. The runtime resolver hands this value to Music Assistant unchanged, so the scheme is part of the contract (#2247).",
+          "oneOf": [
+            { "type": "string", "pattern": "^applemusic://track/[0-9]+$" },
+            { "type": "null" }
+          ]
+        },
+        "uri_youtube_music": {
+          "description": "YouTube Music watch URL. Both hosts occur on main (music.youtube.com 6041x, www.youtube.com 43x) and both are accepted here; the pattern exists to reject bare video IDs and empty strings (#2247).",
+          "oneOf": [
+            { "type": "string", "pattern": "^https://(music|www)\\.youtube\\.com/watch\\?v=[A-Za-z0-9_-]+$" },
+            { "type": "null" }
+          ]
+        },
+        "uri_tidal": {
+          "oneOf": [
+            { "type": "string", "pattern": "^tidal://track/[0-9]+$" },
+            { "type": "null" }
+          ]
+        },
+        "uri_deezer": {
+          "oneOf": [
+            { "type": "string", "pattern": "^deezer://track/[0-9]+$" },
+            { "type": "null" }
+          ]
+        },
+        "uri_apple_music_by_region": {
+          "description": "Per-storefront Apple Music track URIs, keyed by two-letter region code. null means confirmed-unavailable in that storefront. Same URI contract as uri_apple_music: get_song_uri() returns the value verbatim and drops the legacy field when this map exists (#1379), so a malformed entry has no fallback behind it (#2247).",
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              { "type": "string", "pattern": "^applemusic://track/[0-9]+$" },
+              { "type": "null" }
+            ]
+          }
+        },
         "alt_artists": {
           "type": "array",
           "items": { "type": "string" }
