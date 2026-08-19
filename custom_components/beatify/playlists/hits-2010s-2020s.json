@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "pop",
     "charts",
@@ -761,7 +761,7 @@
         "fr": "applemusic://track/1689088958",
         "es": "applemusic://track/1689088958",
         "nl": "applemusic://track/1689088958",
-        "it": null
+        "it": "applemusic://track/1689088958"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=XOsY3W3dlI0",
       "uri_tidal": "tidal://track/296594990",

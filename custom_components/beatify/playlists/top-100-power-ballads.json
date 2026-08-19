@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Power Ballads",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "1980s",
     "1990s",
@@ -117,7 +117,7 @@
       "awards_nl": [],
       "isrc": "USAT29900662",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/284531789",
         "de": "applemusic://track/1810428489",
         "gb": "applemusic://track/1676594611",
         "fr": "applemusic://track/1676594611",
@@ -1346,11 +1346,11 @@
       "isrc": "USSM18800153",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/193605920",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
+        "de": "applemusic://track/185603176",
+        "gb": "applemusic://track/291417924",
+        "fr": "applemusic://track/1692216560",
+        "es": "applemusic://track/193605920",
+        "nl": "applemusic://track/193605920",
         "it": "applemusic://track/291417924"
       }
     },
@@ -2699,7 +2699,7 @@
       "awards_nl": [],
       "isrc": "USAT20000874",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1727217596",
         "de": "applemusic://track/1213308981",
         "gb": "applemusic://track/1213308981",
         "fr": "applemusic://track/1213308981",
@@ -2778,13 +2778,13 @@
       "awards_nl": [],
       "isrc": "USAT20802339",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/284531777",
+        "de": "applemusic://track/285143168",
+        "gb": "applemusic://track/284531777",
+        "fr": "applemusic://track/285143168",
+        "es": "applemusic://track/285143168",
+        "nl": "applemusic://track/285143168",
+        "it": "applemusic://track/285143168"
       }
     },
     {
@@ -2819,7 +2819,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/991385388",
         "de": "applemusic://track/991385388",
-        "gb": null,
+        "gb": "applemusic://track/153016356",
         "fr": "applemusic://track/991385388",
         "es": "applemusic://track/991385388",
         "nl": "applemusic://track/991385388",

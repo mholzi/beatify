@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.10",
+  "version": "0.11",
   "tags": [
     "rock",
     "classic-rock",
@@ -1193,7 +1193,7 @@
       "awards_nl": [],
       "isrc": "USWB10001877",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1545712784",
         "de": "applemusic://track/1755142248",
         "gb": "applemusic://track/1755142248",
         "fr": "applemusic://track/1755142248",
@@ -3559,8 +3559,8 @@
       "awards_nl": [],
       "isrc": "GBAYK8800055",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/693789044",
+        "de": "applemusic://track/693789044",
         "gb": "applemusic://track/1702790221",
         "fr": "applemusic://track/1702790221",
         "es": "applemusic://track/1702790221",
@@ -3901,13 +3901,13 @@
       "uri": "spotify:track:3BCSIFo2mLFFhSsg0QwpPw",
       "uri_apple_music": "applemusic://track/301027918",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/301027918",
+        "de": "applemusic://track/301027918",
+        "gb": "applemusic://track/301027918",
+        "fr": "applemusic://track/301027918",
+        "es": "applemusic://track/301027918",
+        "nl": "applemusic://track/301027918",
+        "it": "applemusic://track/301027918"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mSZXWdKSQNM",
       "uri_tidal": "tidal://track/212211808",
@@ -4826,7 +4826,7 @@
       "uri": "spotify:track:40rvBMQizxkIqnjPdEWY1v",
       "uri_apple_music": "applemusic://track/310530469",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/310530469",
         "de": "applemusic://track/270959694",
         "gb": "applemusic://track/1225275582",
         "fr": "applemusic://track/270959694",

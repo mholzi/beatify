@@ -1,6 +1,6 @@
 {
   "name": "100 Summer Anthems ☀️",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "party",
     "classics",
@@ -1255,7 +1255,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/158701754",
         "de": "applemusic://track/158701754",
-        "gb": null,
+        "gb": "applemusic://track/1328745809",
         "fr": "applemusic://track/158701754",
         "es": "applemusic://track/158701754",
         "nl": "applemusic://track/158701754",
@@ -1653,7 +1653,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1815573647",
         "de": "applemusic://track/1815573647",
-        "gb": null,
+        "gb": "applemusic://track/1757584414",
         "fr": "applemusic://track/1815573647",
         "es": "applemusic://track/1815573647",
         "nl": "applemusic://track/1815573647",
@@ -1693,7 +1693,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1308624086",
         "de": "applemusic://track/1308624086",
-        "gb": null,
+        "gb": "applemusic://track/1328637731",
         "fr": "applemusic://track/1308624086",
         "es": "applemusic://track/1308624086",
         "nl": "applemusic://track/1308624086",
@@ -1775,7 +1775,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1154239184",
         "de": "applemusic://track/1164253140",
-        "gb": null,
+        "gb": "applemusic://track/1110121977",
         "fr": "applemusic://track/1154239184",
         "es": "applemusic://track/1154239184",
         "nl": "applemusic://track/1154239184",
@@ -2457,7 +2457,7 @@
       "awards_nl": [],
       "isrc": "USEE19900869",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1329075086",
         "de": "applemusic://track/1562668239",
         "gb": "applemusic://track/1562668239",
         "fr": "applemusic://track/1562668239",

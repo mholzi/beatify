@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "movies",
     "soundtrack",
@@ -3459,13 +3459,13 @@
       "awards_nl": [],
       "isrc": "TCAAR1072726",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1107715429",
+        "de": "applemusic://track/1426559304",
+        "gb": "applemusic://track/1426559304",
+        "fr": "applemusic://track/1426559304",
+        "es": "applemusic://track/1478145271",
+        "nl": "applemusic://track/1478145271",
+        "it": "applemusic://track/1426559304"
       }
     },
     {
@@ -4964,7 +4964,7 @@
         "us": "applemusic://track/1663023916",
         "de": "applemusic://track/1663023916",
         "gb": "applemusic://track/1663023916",
-        "fr": null,
+        "fr": "applemusic://track/1663023916",
         "es": "applemusic://track/1663023916",
         "nl": "applemusic://track/1663023916",
         "it": "applemusic://track/1663023916"
@@ -6944,7 +6944,7 @@
       "awards_nl": [],
       "isrc": "USMG26900002",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/716556262",
         "de": "applemusic://track/692547737",
         "gb": "applemusic://track/692547737",
         "fr": "applemusic://track/692547737",
@@ -7001,13 +7001,13 @@
       ],
       "isrc": "USEM36900044",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1296522889",
+        "de": "applemusic://track/1296522889",
+        "gb": "applemusic://track/1473847240",
+        "fr": "applemusic://track/1296522889",
+        "es": "applemusic://track/1296522889",
+        "nl": "applemusic://track/1296522889",
+        "it": "applemusic://track/1296522889"
       }
     },
     {

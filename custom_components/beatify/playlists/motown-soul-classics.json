@@ -1,6 +1,6 @@
 {
   "name": "Motown & Soul Classics",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "1960s",
     "1970s",
@@ -4010,7 +4010,7 @@
       "awards_nl": [],
       "isrc": "USMO18600259",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1444145431",
         "de": "applemusic://track/1484130932",
         "gb": "applemusic://track/1484130932",
         "fr": "applemusic://track/1484130932",

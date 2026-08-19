@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "one-hit",
     "classics",
@@ -225,13 +225,13 @@
       "awards_nl": [],
       "isrc": "USSM16800342",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1828027615",
+        "de": "applemusic://track/1828027615",
+        "gb": "applemusic://track/1828027615",
+        "fr": "applemusic://track/1828027615",
+        "es": "applemusic://track/1828027615",
+        "nl": "applemusic://track/1828027615",
+        "it": "applemusic://track/1828027615"
       }
     },
     {
@@ -1318,7 +1318,7 @@
       "awards_nl": [],
       "isrc": "GBAYE8300270",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/695557897",
         "de": "applemusic://track/1571725724",
         "gb": "applemusic://track/1671169221",
         "fr": "applemusic://track/1671169221",
@@ -1394,7 +1394,7 @@
       "awards_nl": [],
       "isrc": "DEA622100161",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1273259360",
         "de": "applemusic://track/1550643321",
         "gb": "applemusic://track/1550643321",
         "fr": "applemusic://track/1550643321",
@@ -1469,7 +1469,7 @@
       "isrc": "USEM30200105",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1434903648",
-        "de": null,
+        "de": "applemusic://track/724506959",
         "gb": "applemusic://track/1443124564",
         "fr": "applemusic://track/1443124564",
         "es": "applemusic://track/1443124564",
@@ -1810,7 +1810,7 @@
       "awards_nl": [],
       "isrc": "USEW18800001",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/79026613",
         "de": "applemusic://track/1650960428",
         "gb": "applemusic://track/1650960428",
         "fr": "applemusic://track/1650960428",

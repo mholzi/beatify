@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.25",
+  "version": "1.26",
   "tags": [
     "schlager",
     "party",
@@ -146,12 +146,12 @@
       "uri": "spotify:track:0BiWxw6vpPlDpyl3nNZR2n",
       "uri_apple_music": "applemusic://track/1686543229",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
+        "us": "applemusic://track/1686543229",
+        "de": "applemusic://track/1686543229",
+        "gb": "applemusic://track/1686543229",
+        "fr": "applemusic://track/1686543229",
+        "es": "applemusic://track/1686543229",
+        "nl": "applemusic://track/1686543229",
         "it": "applemusic://track/1686543229"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=iQ6-280aIzs",
@@ -2529,9 +2529,9 @@
       "isrc": "DEEQ82200059",
       "uri": "spotify:track:6weT0OACEb3e4KLQJInf4I",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
+        "us": "applemusic://track/1629427486",
+        "de": "applemusic://track/1639855258",
+        "gb": "applemusic://track/1629427486",
         "fr": null,
         "es": null,
         "nl": null,
