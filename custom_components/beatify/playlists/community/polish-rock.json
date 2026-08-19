@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.19",
+  "version": "0.20",
   "tags": [
     "polish",
     "rock"
@@ -98,9 +98,9 @@
       "uri_apple_music": "applemusic://track/514798857",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/514798857",
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "de": "applemusic://track/579255084",
+        "gb": "applemusic://track/579255084",
+        "fr": "applemusic://track/514798857",
         "es": null,
         "nl": null,
         "it": "applemusic://track/514798857"
