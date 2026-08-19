@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.16",
+  "version": "2.17",
   "tags": [
     "1980s",
     "pop",
@@ -91,7 +91,7 @@
       "awards_nl": [],
       "isrc": "USCA20903078",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1572525083",
         "de": "applemusic://track/693113326",
         "gb": "applemusic://track/693113326",
         "fr": "applemusic://track/693113326",
@@ -2689,13 +2689,13 @@
       "awards_nl": [],
       "isrc": "GBAJH9900153",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1528521900",
+        "de": "applemusic://track/1436832239",
+        "gb": "applemusic://track/1436832239",
+        "fr": "applemusic://track/1436832239",
+        "es": "applemusic://track/1436833570",
+        "nl": "applemusic://track/1436832239",
+        "it": "applemusic://track/1436832239"
       }
     },
     {
@@ -3816,7 +3816,7 @@
       "awards_nl": [],
       "isrc": "GBAYE8400109",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/696670364",
         "de": "applemusic://track/1724929798",
         "gb": "applemusic://track/1724929798",
         "fr": "applemusic://track/1724929798",
@@ -3849,7 +3849,7 @@
       "awards_nl": [],
       "isrc": "GBAYE9700489",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/696670530",
         "de": "applemusic://track/1510554531",
         "gb": "applemusic://track/1510554531",
         "fr": "applemusic://track/1510554531",
@@ -4512,7 +4512,7 @@
       "awards_nl": [],
       "isrc": "GBAYE1601694",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/726107942",
         "de": "applemusic://track/1755174963",
         "gb": "applemusic://track/1755174963",
         "fr": "applemusic://track/1755174963",
@@ -4798,7 +4798,7 @@
       "awards_nl": [],
       "isrc": "GBCRL0800119",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/294361564",
         "de": "applemusic://track/1802225094",
         "gb": "applemusic://track/1802225094",
         "fr": "applemusic://track/1802225094",
@@ -4972,13 +4972,13 @@
       "awards_nl": [],
       "isrc": "USEE10608884",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/282971472",
+        "de": "applemusic://track/1440932674",
+        "gb": "applemusic://track/1440932674",
+        "fr": "applemusic://track/1443833766",
+        "es": "applemusic://track/1440932674",
+        "nl": "applemusic://track/1452098215",
+        "it": "applemusic://track/1440932674"
       }
     },
     {
@@ -6127,7 +6127,7 @@
       "awards_nl": [],
       "isrc": "GBAYE1700799",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1645129014",
         "de": "applemusic://track/1755142580",
         "gb": "applemusic://track/1755142580",
         "fr": "applemusic://track/1755142580",
@@ -6672,7 +6672,7 @@
       ],
       "isrc": "USWI19600240",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1148642433",
         "de": "applemusic://track/110687725",
         "gb": "applemusic://track/110687725",
         "fr": "applemusic://track/110687725",
@@ -6848,8 +6848,8 @@
       "awards_nl": [],
       "isrc": "GBAYK8800055",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/693789044",
+        "de": "applemusic://track/693789044",
         "gb": "applemusic://track/1702790221",
         "fr": "applemusic://track/1702790221",
         "es": "applemusic://track/1702790221",
@@ -7821,7 +7821,7 @@
       "uri": "spotify:track:2Mz7HwloqFNdA6iZeZk5PJ",
       "uri_apple_music": "applemusic://track/1512944833",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/541479235",
         "de": "applemusic://track/1512944833",
         "gb": "applemusic://track/1512944833",
         "fr": "applemusic://track/1519718252",

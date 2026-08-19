@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "1990s",
     "pop",
@@ -1441,7 +1441,7 @@
       "uri": "spotify:track:6hTBP6QLwJdxbKyLlLXrGo",
       "uri_apple_music": "applemusic://track/1443097885",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1641990794",
         "de": "applemusic://track/1443097885",
         "gb": "applemusic://track/1443097885",
         "fr": "applemusic://track/1443097885",
@@ -1616,13 +1616,13 @@
       "uri": "spotify:track:6x4tKaOzfNJpEJHySoiJcs",
       "uri_apple_music": "applemusic://track/1322068804",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
+        "us": "applemusic://track/1322068804",
+        "de": "applemusic://track/1322068804",
+        "gb": "applemusic://track/1322068804",
+        "fr": "applemusic://track/1322068804",
+        "es": "applemusic://track/1322068804",
         "nl": "applemusic://track/1656111119",
-        "it": null
+        "it": "applemusic://track/1322068804"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RUBvqz3ozv8",
       "uri_tidal": "tidal://track/81794041",
@@ -1815,7 +1815,7 @@
       "uri_apple_music": "applemusic://track/331129387",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/331129387",
-        "de": null,
+        "de": "applemusic://track/355893446",
         "gb": "applemusic://track/331129387",
         "fr": "applemusic://track/331129387",
         "es": "applemusic://track/200008030",
@@ -2369,7 +2369,7 @@
       "uri": "spotify:track:3L9RIFcNF9IDGPRE96EO7N",
       "uri_apple_music": "applemusic://track/880365276",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/880365276",
         "de": null,
         "gb": null,
         "fr": null,
