@@ -1,6 +1,6 @@
 {
   "name": "🌪️ Funk Carioca",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "2000s",
     "funk",
@@ -355,13 +355,13 @@
       "isrc": "BRFUP1000005",
       "uri_apple_music": "applemusic://track/1563311072",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1563311072",
+        "de": "applemusic://track/1563311072",
+        "gb": "applemusic://track/1563311072",
+        "fr": "applemusic://track/1563311072",
+        "es": "applemusic://track/1563311072",
+        "nl": "applemusic://track/1563311072",
+        "it": "applemusic://track/1563311072"
       },
       "uri_deezer": "deezer://track/1896721437",
       "uri_tidal": "tidal://track/180381581",
@@ -390,13 +390,13 @@
       "isrc": "BRFUP0500045",
       "uri_apple_music": "applemusic://track/1563311068",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1563311068",
+        "de": "applemusic://track/1563311068",
+        "gb": "applemusic://track/1563311068",
+        "fr": "applemusic://track/1563311068",
+        "es": "applemusic://track/1563311068",
+        "nl": "applemusic://track/1563311068",
+        "it": "applemusic://track/1563311068"
       },
       "uri_deezer": "deezer://track/1341704242",
       "uri_tidal": "tidal://track/180381576",
@@ -425,13 +425,13 @@
       "isrc": "BRLN30700001",
       "uri_apple_music": "applemusic://track/1563311108",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1563311108",
+        "de": "applemusic://track/1563311108",
+        "gb": "applemusic://track/1563311108",
+        "fr": "applemusic://track/1563311108",
+        "es": "applemusic://track/1563311108",
+        "nl": "applemusic://track/1563311108",
+        "it": "applemusic://track/1563311108"
       },
       "uri_deezer": "deezer://track/1341704312",
       "uri_tidal": "tidal://track/180381593",
@@ -460,13 +460,13 @@
       "isrc": "BRFUP1000086",
       "uri_apple_music": "applemusic://track/1573952018",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1563311124",
+        "de": "applemusic://track/1563311124",
+        "gb": "applemusic://track/1563311124",
+        "fr": "applemusic://track/1563311124",
+        "es": "applemusic://track/1563311124",
+        "nl": "applemusic://track/1563311124",
+        "it": "applemusic://track/1563311124"
       },
       "uri_deezer": "deezer://track/1341704382",
       "uri_tidal": "tidal://track/180381602",
@@ -495,13 +495,13 @@
       "isrc": "BRFUP0500066",
       "uri_apple_music": "applemusic://track/1576391845",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1567243828",
+        "de": "applemusic://track/1567243828",
+        "gb": "applemusic://track/1567243828",
+        "fr": "applemusic://track/1567243828",
+        "es": "applemusic://track/1567243828",
+        "nl": "applemusic://track/1567243828",
+        "it": "applemusic://track/1567243828"
       },
       "uri_deezer": "deezer://track/1352106772",
       "uri_tidal": "tidal://track/184586924",
@@ -530,13 +530,13 @@
       "isrc": "BRLRE1600002",
       "uri_apple_music": "applemusic://track/1732418729",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1732418729",
+        "de": "applemusic://track/1732418729",
+        "gb": "applemusic://track/1732418729",
+        "fr": "applemusic://track/1732418729",
+        "es": "applemusic://track/1732418729",
+        "nl": "applemusic://track/1732418729",
+        "it": "applemusic://track/1732418729"
       },
       "uri_deezer": "deezer://track/2674498862",
       "uri_tidal": "tidal://track/3454380",
@@ -565,13 +565,13 @@
       "isrc": "BRLRE0300140",
       "uri_apple_music": "applemusic://track/1732418791",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1732418791",
+        "de": "applemusic://track/1732418791",
+        "gb": "applemusic://track/1732418791",
+        "fr": "applemusic://track/1732418791",
+        "es": "applemusic://track/1732418791",
+        "nl": "applemusic://track/1732418791",
+        "it": "applemusic://track/1732418791"
       },
       "uri_deezer": "deezer://track/2674499032",
       "uri_tidal": "tidal://track/346874583",
@@ -600,13 +600,13 @@
       "isrc": "BRVCB0600029",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1563311068",
+        "de": "applemusic://track/1563311068",
+        "gb": "applemusic://track/1563311068",
+        "fr": "applemusic://track/1563311068",
+        "es": "applemusic://track/1563311068",
+        "nl": "applemusic://track/1563311068",
+        "it": "applemusic://track/1563311068"
       },
       "uri_deezer": "deezer://track/1341216712",
       "uri_tidal": "tidal://track/180320024",
@@ -635,10 +635,10 @@
       "isrc": "BRFUP1100351",
       "uri_apple_music": "applemusic://track/1563311106",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "us": "applemusic://track/1563311106",
+        "de": "applemusic://track/1563311106",
+        "gb": "applemusic://track/1563311106",
+        "fr": "applemusic://track/1563311106",
         "es": null,
         "nl": null,
         "it": null
