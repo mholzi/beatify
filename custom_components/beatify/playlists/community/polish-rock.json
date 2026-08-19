@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.20",
+  "version": "0.21",
   "tags": [
     "polish",
     "rock"
@@ -101,8 +101,8 @@
         "de": "applemusic://track/579255084",
         "gb": "applemusic://track/579255084",
         "fr": "applemusic://track/514798857",
-        "es": null,
-        "nl": null,
+        "es": "applemusic://track/514798857",
+        "nl": "applemusic://track/514798857",
         "it": "applemusic://track/514798857"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WD7dDfZD1_8",
@@ -123,7 +123,7 @@
       "isrc": "PLA811900403",
       "uri_apple_music": "applemusic://track/1495625502",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1495625502",
         "de": "applemusic://track/1495625502",
         "gb": "applemusic://track/1495625502",
         "fr": "applemusic://track/1495625502",
@@ -230,10 +230,10 @@
         "us": "applemusic://track/1097943982",
         "de": "applemusic://track/484555261",
         "gb": "applemusic://track/1097943982",
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "fr": "applemusic://track/1097943982",
+        "es": "applemusic://track/484555261",
+        "nl": "applemusic://track/1097943982",
+        "it": "applemusic://track/1097943982"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wQ2-YLzW7Ms",
       "uri_tidal": "tidal://track/58809796",
@@ -253,10 +253,10 @@
       "isrc": "PL31T2600468",
       "uri_apple_music": "applemusic://track/6764868482",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/6764868482",
         "de": "applemusic://track/6764868482",
-        "gb": null,
-        "fr": null,
+        "gb": "applemusic://track/6764868482",
+        "fr": "applemusic://track/6764868482",
         "es": "applemusic://track/6764868482",
         "nl": "applemusic://track/6764868482",
         "it": "applemusic://track/6764868482"
@@ -357,13 +357,13 @@
       "isrc": "PLF242616662",
       "uri_apple_music": "applemusic://track/6770594246",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
+        "us": "applemusic://track/6770594246",
+        "de": "applemusic://track/6770594246",
+        "gb": "applemusic://track/6770594246",
         "fr": "applemusic://track/6770594246",
-        "es": null,
+        "es": "applemusic://track/6770594246",
         "nl": "applemusic://track/6770594246",
-        "it": null
+        "it": "applemusic://track/6770594246"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=f_EXFzvj2vI",
       "uri_tidal": "tidal://track/525898080",
@@ -384,7 +384,7 @@
       "uri_apple_music": "applemusic://track/696658706",
       "uri_apple_music_by_region": {
         "us": null,
-        "de": null,
+        "de": "applemusic://track/696658706",
         "gb": null,
         "fr": "applemusic://track/1483764695",
         "es": "applemusic://track/1483764695",
@@ -490,9 +490,9 @@
         "us": "applemusic://track/6763656555",
         "de": "applemusic://track/6763656555",
         "gb": "applemusic://track/6763656555",
-        "fr": null,
-        "es": null,
-        "nl": null,
+        "fr": "applemusic://track/6763656555",
+        "es": "applemusic://track/6763656555",
+        "nl": "applemusic://track/6763656555",
         "it": "applemusic://track/6763656555"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=0LSXaBjdO48",
@@ -513,10 +513,10 @@
       "isrc": "PLA140116010",
       "uri_apple_music": "applemusic://track/767893096",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "us": "applemusic://track/767893096",
+        "de": "applemusic://track/767893096",
+        "gb": "applemusic://track/767893096",
+        "fr": "applemusic://track/767893096",
         "es": "applemusic://track/767893096",
         "nl": "applemusic://track/767893096",
         "it": "applemusic://track/767893096"
@@ -617,13 +617,13 @@
       "isrc": "PLB821500003",
       "uri_apple_music": "applemusic://track/1469573675",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/1469573675",
+        "de": "applemusic://track/1469573675",
         "gb": "applemusic://track/1469573675",
         "fr": "applemusic://track/1469573675",
-        "es": null,
-        "nl": null,
-        "it": null
+        "es": "applemusic://track/1859614402",
+        "nl": "applemusic://track/1469573675",
+        "it": "applemusic://track/1859614402"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=o2JUFe9sND4",
       "uri_tidal": "tidal://track/506470685",
@@ -644,10 +644,10 @@
       "uri_apple_music": "applemusic://track/6764351284",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6764351284",
-        "de": null,
-        "gb": null,
+        "de": "applemusic://track/6764351284",
+        "gb": "applemusic://track/6764351284",
         "fr": "applemusic://track/6764351284",
-        "es": null,
+        "es": "applemusic://track/6764351284",
         "nl": "applemusic://track/6764351284",
         "it": "applemusic://track/6764351284"
       },
@@ -696,12 +696,12 @@
       "uri_apple_music": "applemusic://track/1500463055",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1500463055",
-        "de": null,
+        "de": "applemusic://track/1500463055",
         "gb": "applemusic://track/1500463055",
         "fr": "applemusic://track/1500463055",
         "es": "applemusic://track/1500463055",
         "nl": "applemusic://track/1500463055",
-        "it": null
+        "it": "applemusic://track/1500463055"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=19FMN7kMh3I",
       "uri_tidal": "tidal://track/132446675",
@@ -721,7 +721,7 @@
       "isrc": "PLB171101279",
       "uri_apple_music": "applemusic://track/1484540381",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1484540381",
         "de": "applemusic://track/1485674445",
         "gb": "applemusic://track/1485674445",
         "fr": "applemusic://track/1485674445",
@@ -747,13 +747,13 @@
       "isrc": "PLUM71400176",
       "uri_apple_music": "applemusic://track/1456381490",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1456381490",
         "de": "applemusic://track/1442357953",
         "gb": "applemusic://track/1456381490",
         "fr": "applemusic://track/1442357953",
         "es": "applemusic://track/1442357953",
-        "nl": null,
-        "it": null
+        "nl": "applemusic://track/1442357953",
+        "it": "applemusic://track/1442357953"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=LAtmbRgGKxg",
       "uri_tidal": "tidal://track/29863054",
@@ -826,7 +826,7 @@
       "uri_apple_music": "applemusic://track/1481885572",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1481885572",
-        "de": null,
+        "de": "applemusic://track/1481885572",
         "gb": "applemusic://track/1481885572",
         "fr": "applemusic://track/1481885572",
         "es": "applemusic://track/1481885572",
@@ -853,11 +853,11 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1618952287",
         "de": "applemusic://track/1618952287",
-        "gb": null,
+        "gb": "applemusic://track/1604843340",
         "fr": "applemusic://track/1618952287",
         "es": "applemusic://track/1618952287",
         "nl": "applemusic://track/1618952287",
-        "it": null
+        "it": "applemusic://track/1618952287"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=frMejru65Vg",
       "uri_tidal": "tidal://track/212447327",
@@ -878,9 +878,9 @@
       "uri_apple_music": "applemusic://track/1097930204",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1097930204",
-        "de": null,
+        "de": "applemusic://track/1097930204",
         "gb": "applemusic://track/1097930204",
-        "fr": null,
+        "fr": "applemusic://track/1097930204",
         "es": "applemusic://track/1097930204",
         "nl": "applemusic://track/1097930204",
         "it": "applemusic://track/1097930204"
@@ -904,10 +904,10 @@
       "uri_apple_music": "applemusic://track/1511556419",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1511556419",
-        "de": null,
+        "de": "applemusic://track/1511556419",
         "gb": "applemusic://track/1511556419",
-        "fr": null,
-        "es": null,
+        "fr": "applemusic://track/1511556419",
+        "es": "applemusic://track/1511556419",
         "nl": "applemusic://track/1511556419",
         "it": "applemusic://track/1511556419"
       },
@@ -933,9 +933,9 @@
         "de": "applemusic://track/1450447338",
         "gb": "applemusic://track/1450447338",
         "fr": "applemusic://track/1450447338",
-        "es": null,
+        "es": "applemusic://track/1450447338",
         "nl": "applemusic://track/1450447338",
-        "it": null
+        "it": "applemusic://track/1450447338"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=sCzJW2P-aA8",
       "uri_tidal": "tidal://track/102929276",
@@ -959,7 +959,7 @@
         "de": "applemusic://track/1485672134",
         "gb": "applemusic://track/1485672134",
         "fr": "applemusic://track/1485672134",
-        "es": null,
+        "es": "applemusic://track/1485672134",
         "nl": "applemusic://track/1485672134",
         "it": "applemusic://track/1485672134"
       },
@@ -1007,12 +1007,12 @@
       "isrc": "PLB080400112",
       "uri_apple_music": "applemusic://track/1394567916",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/1394567916",
+        "de": "applemusic://track/1394567916",
         "gb": "applemusic://track/1394567916",
         "fr": "applemusic://track/1394567916",
         "es": "applemusic://track/1394567916",
-        "nl": null,
+        "nl": "applemusic://track/1394567916",
         "it": "applemusic://track/1394567916"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ViLjJ7LV-AI",
@@ -1035,7 +1035,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1572008783",
         "de": "applemusic://track/1562948972",
-        "gb": null,
+        "gb": "applemusic://track/1597980779",
         "fr": "applemusic://track/1572008783",
         "es": "applemusic://track/1562948972",
         "nl": "applemusic://track/1597980779",
@@ -1060,11 +1060,11 @@
       "uri_apple_music": "applemusic://track/1455495091",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1455495091",
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "de": "applemusic://track/1455495091",
+        "gb": "applemusic://track/1455495091",
+        "fr": "applemusic://track/1455495091",
         "es": "applemusic://track/1455495091",
-        "nl": null,
+        "nl": "applemusic://track/1455495091",
         "it": "applemusic://track/1455495091"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZrhjFzEQ_hY",
@@ -1085,13 +1085,13 @@
       "isrc": "PLA550800157",
       "uri_apple_music": "applemusic://track/904039503",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/904039503",
+        "de": "applemusic://track/904039503",
+        "gb": "applemusic://track/1496226094",
+        "fr": "applemusic://track/904039503",
+        "es": "applemusic://track/904039503",
+        "nl": "applemusic://track/1496226094",
+        "it": "applemusic://track/904039503"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=an-rlW6pRWo",
       "uri_tidal": "tidal://track/32580343",
@@ -1111,13 +1111,13 @@
       "isrc": "PLUM72500360",
       "uri_apple_music": "applemusic://track/1834635620",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1834635620",
+        "de": "applemusic://track/1834635620",
+        "gb": "applemusic://track/1834635620",
+        "fr": "applemusic://track/1851186571",
+        "es": "applemusic://track/1834635620",
+        "nl": "applemusic://track/1851186571",
+        "it": "applemusic://track/1851186571"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vU6D-FBzvfo",
       "uri_tidal": "tidal://track/455587714",
@@ -1137,13 +1137,13 @@
       "isrc": "PLE781200093",
       "uri_apple_music": "applemusic://track/1097923589",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1097923589",
+        "de": "applemusic://track/1097923589",
+        "gb": "applemusic://track/1097923589",
+        "fr": "applemusic://track/1097923589",
+        "es": "applemusic://track/1097923589",
+        "nl": "applemusic://track/1097923589",
+        "it": "applemusic://track/1097923589"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_vw2K0AgFF0",
       "uri_tidal": "tidal://track/58810037",
@@ -1163,13 +1163,13 @@
       "isrc": "PLA149701003",
       "uri_apple_music": "applemusic://track/1517793423",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1517793423",
+        "de": "applemusic://track/1517793423",
+        "gb": "applemusic://track/1517793423",
+        "fr": "applemusic://track/1517793423",
+        "es": "applemusic://track/1517793423",
+        "nl": "applemusic://track/1517793423",
+        "it": "applemusic://track/1517793423"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=E3fqn1aBZ5Q",
       "uri_tidal": "tidal://track/144631746",
@@ -1189,13 +1189,13 @@
       "isrc": "PLA551100126",
       "uri_apple_music": "applemusic://track/904042039",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1049025566",
+        "de": "applemusic://track/904042039",
+        "gb": "applemusic://track/904042039",
+        "fr": "applemusic://track/904042039",
+        "es": "applemusic://track/904042039",
+        "nl": "applemusic://track/904042039",
+        "it": "applemusic://track/904042039"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=y97vh4CumoY",
       "uri_tidal": "tidal://track/6039139",
