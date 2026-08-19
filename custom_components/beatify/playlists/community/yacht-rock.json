@@ -1,6 +1,6 @@
 {
   "name": "Yacht Rock ⛵",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1970s",
     "1980s",
@@ -642,13 +642,13 @@
       "awards_nl": [],
       "isrc": "USWB10902442",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/323436756",
+        "de": "applemusic://track/1110557401",
+        "gb": "applemusic://track/1110557401",
+        "fr": "applemusic://track/1110557401",
+        "es": "applemusic://track/1111346318",
+        "nl": "applemusic://track/1110557401",
+        "it": "applemusic://track/1110557401"
       },
       "uri_apple_music": "applemusic://track/323436756"
     },
@@ -883,7 +883,7 @@
       "awards_nl": [],
       "isrc": "GBSMU6699600",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/405600235",
         "de": "applemusic://track/1478105574",
         "gb": "applemusic://track/1478105574",
         "fr": "applemusic://track/1478105574",
@@ -2794,7 +2794,7 @@
         "fr": "applemusic://track/403427685",
         "es": "applemusic://track/403427685",
         "nl": "applemusic://track/403427685",
-        "it": null
+        "it": "applemusic://track/1724057317"
       }
     },
     {

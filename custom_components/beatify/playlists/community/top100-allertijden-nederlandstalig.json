@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Dutch Classics 🇳🇱",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "nederlandstalig",
     "dutch",
@@ -3113,7 +3113,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1442539933",
         "de": "applemusic://track/1442539933",
-        "gb": null,
+        "gb": "applemusic://track/394259119",
         "fr": "applemusic://track/1442539933",
         "es": "applemusic://track/1442539933",
         "nl": "applemusic://track/1442539933",

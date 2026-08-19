@@ -1,6 +1,6 @@
 {
   "name": "Sommerklassiker ☀️",
-  "version": "0.14",
+  "version": "0.15",
   "tags": [
     "summer",
     "pop",
@@ -1742,11 +1742,11 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1470909129",
         "de": "applemusic://track/1470036082",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1470909129",
+        "fr": "applemusic://track/1470909129",
+        "es": "applemusic://track/1470909129",
+        "nl": "applemusic://track/1470909129",
+        "it": "applemusic://track/1470909129"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=vs2PWPgdetc",
       "uri_tidal": "tidal://track/112067941",
@@ -1770,13 +1770,13 @@
       "isrc": "GBBBM8300007",
       "uri_apple_music": "applemusic://track/206897937",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/206897937",
+        "de": "applemusic://track/206897937",
+        "gb": "applemusic://track/206897937",
+        "fr": "applemusic://track/477441972",
+        "es": "applemusic://track/206897937",
+        "nl": "applemusic://track/206897937",
+        "it": "applemusic://track/206897937"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WYX0sjP6Za8",
       "uri_tidal": "tidal://track/38762",
@@ -1800,13 +1800,13 @@
       "isrc": "USRC11401783",
       "uri_apple_music": "applemusic://track/902800356",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/902800356",
+        "de": "applemusic://track/933984097",
+        "gb": "applemusic://track/902800356",
+        "fr": "applemusic://track/902800356",
+        "es": "applemusic://track/902800356",
+        "nl": "applemusic://track/902800356",
+        "it": "applemusic://track/902800356"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HMqgVXSvwGo",
       "uri_tidal": "tidal://track/32570155",

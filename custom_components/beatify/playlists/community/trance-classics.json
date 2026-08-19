@@ -1,6 +1,6 @@
 {
   "name": "Trance Classics",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "trance",
     "hands-up",
@@ -396,7 +396,7 @@
       "uri": "spotify:track:4AmULZtflj3SktU5MPB6EK",
       "uri_apple_music": "applemusic://track/1443151729",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1443151729",
         "de": "applemusic://track/1442565960",
         "gb": "applemusic://track/1442565960",
         "fr": "applemusic://track/1442565960",
@@ -823,7 +823,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1605918726",
         "de": "applemusic://track/1863359574",
-        "gb": null,
+        "gb": "applemusic://track/1463197973",
         "fr": "applemusic://track/1605918726",
         "es": "applemusic://track/1605918726",
         "nl": "applemusic://track/1605918726",
@@ -1330,13 +1330,13 @@
       "uri": "spotify:track:3fe81dBfsLlnHjVOUhWZYA",
       "uri_apple_music": "applemusic://track/1817940643",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1817940643",
+        "de": "applemusic://track/1817940643",
+        "gb": "applemusic://track/1817940643",
+        "fr": "applemusic://track/1817940643",
+        "es": "applemusic://track/1817940643",
+        "nl": "applemusic://track/1817940643",
+        "it": "applemusic://track/1817940643"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=1li8W2vVKCw",
       "uri_tidal": null,
@@ -1507,7 +1507,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/675141309",
         "de": "applemusic://track/675579127",
-        "gb": null,
+        "gb": "applemusic://track/675579127",
         "fr": "applemusic://track/675579127",
         "es": "applemusic://track/675579127",
         "nl": "applemusic://track/675579127",
@@ -1555,13 +1555,13 @@
       "uri": "spotify:track:25ys1lEf3z6lvkDEE5mG0R",
       "uri_apple_music": "applemusic://track/298597016",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/298597016",
+        "de": "applemusic://track/298597016",
+        "gb": "applemusic://track/27530464",
+        "fr": "applemusic://track/27530464",
+        "es": "applemusic://track/27530464",
+        "nl": "applemusic://track/27530464",
+        "it": "applemusic://track/298597016"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=omwXLXeTR4w",
       "uri_tidal": "tidal://track/2203669",
@@ -1655,13 +1655,13 @@
       "uri": "spotify:track:0PxHuN63iEo4RkcsLP98Ii",
       "uri_apple_music": "applemusic://track/1817940235",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1817940235",
+        "de": "applemusic://track/1817940235",
+        "gb": "applemusic://track/1817940235",
+        "fr": "applemusic://track/1817940235",
+        "es": "applemusic://track/1817940235",
+        "nl": "applemusic://track/1817940235",
+        "it": "applemusic://track/1817940235"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=K86F2ZgrqF4",
       "uri_tidal": null,
@@ -1972,7 +1972,7 @@
       "uri": "spotify:track:2mRNUz2RbAFf0AkPeQWelt",
       "uri_apple_music": "applemusic://track/1711841891",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1712041112",
         "de": "applemusic://track/1731208758",
         "gb": "applemusic://track/1731208758",
         "fr": "applemusic://track/1731208758",
@@ -2249,7 +2249,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1711820967",
         "de": "applemusic://track/1668179033",
-        "gb": null,
+        "gb": "applemusic://track/1704614656",
         "fr": "applemusic://track/1668179033",
         "es": "applemusic://track/1668179033",
         "nl": "applemusic://track/383517266",
@@ -2472,9 +2472,9 @@
       "uri": "spotify:track:6jbglMwIqyg1G1N96COAsD",
       "uri_apple_music": "applemusic://track/41483825",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1598226577",
         "de": "applemusic://track/1573248494",
-        "gb": null,
+        "gb": "applemusic://track/1828707507",
         "fr": "applemusic://track/41483822",
         "es": "applemusic://track/41483822",
         "nl": "applemusic://track/41483822",
