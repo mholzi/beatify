@@ -1,6 +1,6 @@
 {
   "name": "Schweizer Hits 🇨🇭",
-  "version": "0.10",
+  "version": "0.11",
   "tags": [
     "swiss",
     "mundart",
@@ -1480,8 +1480,8 @@
         "gb": "applemusic://track/1596442436",
         "fr": "applemusic://track/1596442436",
         "es": "applemusic://track/1596442436",
-        "nl": null,
-        "it": null
+        "nl": "applemusic://track/1442532664",
+        "it": "applemusic://track/1442532664"
       }
     },
     {
@@ -2015,7 +2015,7 @@
       "awards_nl": [],
       "isrc": "CHUM70800165",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1442396654",
         "de": "applemusic://track/1442396654",
         "gb": "applemusic://track/1442396654",
         "fr": "applemusic://track/1442396654",
@@ -2678,7 +2678,7 @@
         "us": "applemusic://track/1632234659",
         "de": "applemusic://track/1632234659",
         "gb": "applemusic://track/1703083904",
-        "fr": null,
+        "fr": "applemusic://track/1632234659",
         "es": "applemusic://track/1632234659",
         "nl": "applemusic://track/1632234659",
         "it": "applemusic://track/1703083904"
@@ -2825,13 +2825,13 @@
       "awards_nl": [],
       "isrc": "DEUM72601185",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/6770605520",
         "de": "applemusic://track/6765542490",
         "gb": "applemusic://track/6770605520",
-        "fr": null,
-        "es": null,
+        "fr": "applemusic://track/6770605520",
+        "es": "applemusic://track/6770605520",
         "nl": "applemusic://track/6770605520",
-        "it": null
+        "it": "applemusic://track/6770605520"
       }
     },
     {
