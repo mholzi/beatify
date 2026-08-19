@@ -1,6 +1,6 @@
 {
   "name": "British Invasion & Britpop 🇬🇧",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "1960s",
     "1990s",
@@ -1559,7 +1559,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/516667494",
         "de": "applemusic://track/516667494",
-        "gb": null,
+        "gb": "applemusic://track/1328560024",
         "fr": "applemusic://track/516667494",
         "es": "applemusic://track/516667494",
         "nl": "applemusic://track/516667494",
@@ -1841,7 +1841,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443993602",
         "de": "applemusic://track/1443993602",
-        "gb": null,
+        "gb": "applemusic://track/1537947620",
         "fr": "applemusic://track/1443993602",
         "es": "applemusic://track/1443993602",
         "nl": "applemusic://track/1443993602",
@@ -3015,7 +3015,7 @@
       "awards_nl": [],
       "isrc": "GBBBN9600018",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/6778445334",
         "de": "applemusic://track/1694076567",
         "gb": "applemusic://track/1694076567",
         "fr": "applemusic://track/1694076567",
@@ -3688,10 +3688,10 @@
       "awards_nl": [],
       "isrc": "USMG20700010",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "us": "applemusic://track/696888851",
+        "de": "applemusic://track/929702140",
+        "gb": "applemusic://track/929702140",
+        "fr": "applemusic://track/929702140",
         "es": null,
         "nl": null,
         "it": null

@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.16",
+  "version": "0.17",
   "tags": [
     "canadian",
     "canada",
@@ -368,7 +368,7 @@
       "uri_apple_music": "applemusic://track/1443124564",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1434903648",
-        "de": null,
+        "de": "applemusic://track/724506959",
         "gb": "applemusic://track/1443124564",
         "fr": "applemusic://track/1443124564",
         "es": "applemusic://track/1443124564",
@@ -599,13 +599,13 @@
       "uri": "spotify:track:13lYKkKAYEVCkGAyrFGZjF",
       "uri_apple_music": "applemusic://track/1763040701",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/566993416",
+        "de": "applemusic://track/566993416",
+        "gb": "applemusic://track/566993416",
+        "fr": "applemusic://track/566993416",
+        "es": "applemusic://track/566993416",
+        "nl": "applemusic://track/566993416",
+        "it": "applemusic://track/566993416"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hkMaBy6EX0w",
       "uri_tidal": "tidal://track/19905016",
@@ -2548,13 +2548,13 @@
       "uri": "spotify:track:0jfMibWwcy8AfumXIDDqlI",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
+        "us": "applemusic://track/1640280651",
+        "de": "applemusic://track/1640280651",
+        "gb": "applemusic://track/1640280651",
+        "fr": "applemusic://track/1640280651",
         "es": null,
         "nl": null,
-        "it": null
+        "it": "applemusic://track/1640280651"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qNwuB76pBcc",
       "uri_tidal": null,
@@ -2669,9 +2669,9 @@
         "de": "applemusic://track/1776020415",
         "gb": "applemusic://track/1776020415",
         "fr": "applemusic://track/1776020415",
-        "es": null,
-        "nl": null,
-        "it": null
+        "es": "applemusic://track/306670100",
+        "nl": "applemusic://track/258603259",
+        "it": "applemusic://track/267043921"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=zHKqPSAchcU",
       "uri_tidal": "tidal://track/2925956",
@@ -3590,13 +3590,13 @@
       "uri": "spotify:track:1zi7xx7UVEFkmKfv06H8x0",
       "uri_apple_music": "applemusic://track/1440841384",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1440841384",
+        "de": "applemusic://track/1440841384",
+        "gb": "applemusic://track/1440841384",
+        "fr": "applemusic://track/1440841384",
+        "es": "applemusic://track/1440841384",
+        "nl": "applemusic://track/1440843496",
+        "it": "applemusic://track/1440841384"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ki0Ocze98U8",
       "uri_tidal": "tidal://track/77690162",
