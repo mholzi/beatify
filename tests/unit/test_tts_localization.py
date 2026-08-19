@@ -292,3 +292,26 @@ async def test_speak_omits_language_when_not_set():
     hass = _make_hass()
     await TTSService(hass, "tts.x", "media_player.y").speak("hello")
     assert "language" not in _payload(hass)
+
+
+def test_italian_is_accepted_by_the_server_gates() -> None:
+    """#2234 follow-up: the phrase pack is worthless if the handlers drop 'it'.
+
+    Italian shipped as a UI language on 2026-08-18, but both language gates
+    still carried the five-language tuple: the REST gate ignored 'it' and the
+    WebSocket gate rewrote it to 'en'. `game_state.language` therefore never
+    became 'it', and since dashboard.js and player-core.js switch the UI from
+    exactly that value, players were sent back to English one state update
+    after the wizard.
+    """
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "custom_components" / "beatify"
+    rest = (root / "server" / "game_views.py").read_text(encoding="utf-8")
+    ws = (root / "server" / "ws_handlers" / "admin.py").read_text(encoding="utf-8")
+
+    assert '("en", "de", "es", "fr", "nl", "it")' in rest
+    assert '("en", "de", "es", "fr", "nl", "it")' in ws
+    # Guard against a gate drifting back to the five-language tuple.
+    assert '("en", "de", "es", "fr", "nl")' not in rest
+    assert '("en", "de", "es", "fr", "nl")' not in ws

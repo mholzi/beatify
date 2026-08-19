@@ -21,7 +21,7 @@ from __future__ import annotations
 DEFAULT_LANGUAGE = "en"
 
 # Languages the game accepts (matches the validation in the WS/REST handlers).
-SUPPORTED_LANGUAGES = ("en", "de", "es", "fr", "nl")
+SUPPORTED_LANGUAGES = ("en", "de", "es", "fr", "nl", "it")
 
 # Word joining names in a spoken list ("Marco and Anna"). The English form uses
 # " and ".join(...) verbatim, so two names read "A and B" and the rare 3+ case
@@ -32,6 +32,7 @@ _AND: dict[str, str] = {
     "es": "y",
     "fr": "et",
     "nl": "en",
+    "it": "e",
 }
 
 # Spoken difficulty labels inserted into the game_start template via {difficulty}.
@@ -41,6 +42,7 @@ _DIFFICULTY: dict[str, dict[str, str]] = {
     "es": {"easy": "fácil", "normal": "normal", "hard": "difícil"},
     "fr": {"easy": "facile", "normal": "normale", "hard": "difficile"},
     "nl": {"easy": "makkelijk", "normal": "normaal", "hard": "moeilijk"},
+    "it": {"easy": "facile", "normal": "normale", "hard": "difficile"},
 }
 
 # Podium place labels, used as "{label}: {name}" in the top-3 readout.
@@ -50,6 +52,7 @@ _PLACE: dict[str, dict[int, str]] = {
     "es": {1: "primer puesto", 2: "segundo puesto", 3: "tercer puesto"},
     "fr": {1: "première place", 2: "deuxième place", 3: "troisième place"},
     "nl": {1: "eerste plaats", 2: "tweede plaats", 3: "derde plaats"},
+    "it": {1: "primo posto", 2: "secondo posto", 3: "terzo posto"},
 }
 
 # str.format templates per language. Keys must be identical across languages;
@@ -179,6 +182,31 @@ _PHRASES: dict[str, dict[str, str]] = {
         "steal_unlocked": "{name} heeft jatten vrijgespeeld.",
         "tie_at_top": "Het is gelijkspel aan kop.",
         "leader_change": "{name} neemt de leiding.",
+    },
+    "it": {
+        "game_start": "Si gioca a Beatify! {rounds} round, difficoltà {difficulty}.",
+        "winner_single": "E il vincitore è... {name} con {points} punti!",
+        "winner_tie": "Pareggio tra {names} con {points} punti!",
+        "round_start": "Round {round} — preparatevi!",
+        "countdown": "Tre, due, uno — via!",
+        "time_up": "Tempo scaduto!",
+        "player_join": "{name} è entrato in partita!",
+        "player_reconnect": "Bentornato, {name}!",
+        "last_round": "Questo è l'ultimo round!",
+        "rematch": "Rivincita! Preparatevi!",
+        "intro_round": "Round introduttivo — veloci, sentite solo i primi secondi!",
+        "steal_used": "{stealer} ha rubato la risposta a {target}!",
+        "answer": "La risposta era {year}.",
+        "exact": "{names}: in pieno centro.",
+        "closest": "{name} è andato più vicino.",
+        "nobody": "Questo round non l'ha indovinato nessuno.",
+        "streak_milestone": "{name} è a una serie di {streak} canzoni.",
+        "streak_broken": "La serie di {name} finisce a {previous}.",
+        "bet_won": "{name} ha raddoppiato i punti.",
+        "bet_lost": "{name} perde la scommessa.",
+        "steal_unlocked": "{name} ha sbloccato il furto.",
+        "tie_at_top": "Parità in testa.",
+        "leader_change": "{name} passa in testa!",
     },
 }
 

@@ -520,7 +520,7 @@ async def admin_set_language(
         return
 
     language = data.get("language", "en")
-    if language not in ("en", "de", "es", "fr", "nl"):
+    if language not in ("en", "de", "es", "fr", "nl", "it"):
         language = "en"
 
     game_state.language = language

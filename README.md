@@ -567,6 +567,7 @@ Beatify speaks your guests' language.
 - **Español** — Soporte completo
 - **Français** — Support complet
 - **Nederlands** — Volledige ondersteuning
+- **Italiano** — Supporto completo
 
 Select during game setup. All players see the chosen language. Fun facts and awards are also translated!
 
