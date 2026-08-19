@@ -1,6 +1,6 @@
 {
   "name": "ICONIC movie songs 🎬",
-  "version": "0.13",
+  "version": "0.14",
   "tags": [
     "movies",
     "soundtracks",
@@ -559,12 +559,12 @@
       "isrc": "USCA20600519",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/725785116",
-        "de": null,
+        "de": "applemusic://track/725785116",
         "gb": "applemusic://track/1644388797",
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "fr": "applemusic://track/725785116",
+        "es": "applemusic://track/725785116",
+        "nl": "applemusic://track/725785116",
+        "it": "applemusic://track/725785116"
       },
       "movie": "Back to the Future",
       "movie_choices": [
@@ -960,7 +960,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440795596",
         "de": "applemusic://track/1445870931",
-        "gb": null,
+        "gb": "applemusic://track/1440795596",
         "fr": "applemusic://track/1445870931",
         "es": "applemusic://track/1445870931",
         "nl": "applemusic://track/1445870931",
@@ -1279,12 +1279,12 @@
       "isrc": "USWD11366376",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440618281",
-        "de": null,
+        "de": "applemusic://track/1477388275",
         "gb": "applemusic://track/1772699739",
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "fr": "applemusic://track/1477388275",
+        "es": "applemusic://track/1477388275",
+        "nl": "applemusic://track/1477388275",
+        "it": "applemusic://track/1477388275"
       },
       "movie": "Frozen",
       "movie_choices": [
@@ -2203,8 +2203,8 @@
         "gb": "applemusic://track/1680987071",
         "fr": "applemusic://track/1680987071",
         "es": "applemusic://track/1680987071",
-        "nl": null,
-        "it": null
+        "nl": "applemusic://track/1440769121",
+        "it": "applemusic://track/1440769121"
       },
       "movie": "Mamma Mia!",
       "movie_choices": [

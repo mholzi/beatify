@@ -1,6 +1,6 @@
 {
   "name": "NDW – Neue Deutsche Welle",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "ndw",
     "neue deutsche welle",
@@ -260,11 +260,11 @@
       "isrc": "DEA620100681",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/209082354",
-        "de": null,
+        "de": "applemusic://track/208848743",
         "gb": "applemusic://track/209082354",
-        "fr": null,
+        "fr": "applemusic://track/208848743",
         "es": "applemusic://track/209082354",
-        "nl": null,
+        "nl": "applemusic://track/208848743",
         "it": "applemusic://track/209082354"
       },
       "awards_nl": []
@@ -297,12 +297,12 @@
       "isrc": "ATB158200018",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1080465882",
-        "de": null,
+        "de": "applemusic://track/256330039",
         "gb": "applemusic://track/1080465882",
-        "fr": null,
-        "es": null,
+        "fr": "applemusic://track/1080465882",
+        "es": "applemusic://track/1080465882",
         "nl": "applemusic://track/1080465882",
-        "it": null
+        "it": "applemusic://track/1080465882"
       },
       "awards_nl": []
     },
@@ -332,13 +332,13 @@
       "uri_deezer": "deezer://track/3605282",
       "isrc": "DEA629253500",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1700931320",
+        "de": "applemusic://track/298674770",
+        "gb": "applemusic://track/298674770",
+        "fr": "applemusic://track/298674770",
+        "es": "applemusic://track/298674770",
+        "nl": "applemusic://track/298674770",
+        "it": "applemusic://track/298674770"
       },
       "awards_nl": []
     },
@@ -370,11 +370,11 @@
       "uri_apple_music_by_region": {
         "us": null,
         "de": "applemusic://track/693113326",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/693113326",
+        "fr": "applemusic://track/693113326",
+        "es": "applemusic://track/693113326",
+        "nl": "applemusic://track/693113326",
+        "it": "applemusic://track/693113326"
       },
       "awards_nl": []
     },
@@ -404,9 +404,9 @@
       "uri_deezer": "deezer://track/869747",
       "isrc": "DEE868600120",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
+        "us": "applemusic://track/279227495",
+        "de": "applemusic://track/279227495",
+        "gb": "applemusic://track/279227495",
         "fr": null,
         "es": null,
         "nl": null,

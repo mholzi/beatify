@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.13",
+  "version": "1.14",
   "tags": [
     "german",
     "carnival",
@@ -6164,13 +6164,13 @@
       "awards_nl": [],
       "isrc": "DED191900055",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1483720729",
+        "de": "applemusic://track/1483720729",
+        "gb": "applemusic://track/1483720729",
+        "fr": "applemusic://track/1483720729",
+        "es": "applemusic://track/1483720729",
+        "nl": "applemusic://track/1483720729",
+        "it": "applemusic://track/1483720729"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=P0Ath0jJh-4"
     },
