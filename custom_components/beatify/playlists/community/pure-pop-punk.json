@@ -1,6 +1,6 @@
 {
   "name": "Pure Pop Punk 🎸",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "2000s",
     "pop-punk",
@@ -126,11 +126,11 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443465786",
         "de": "applemusic://track/1443465786",
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "gb": "applemusic://track/1648103943",
+        "fr": "applemusic://track/1628887491",
+        "es": "applemusic://track/1440659995",
+        "nl": "applemusic://track/1442875330",
+        "it": "applemusic://track/1440659995"
       }
     },
     {
@@ -2392,7 +2392,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/438829874",
         "de": "applemusic://track/438829874",
-        "gb": null,
+        "gb": "applemusic://track/552834381",
         "fr": "applemusic://track/438829874",
         "es": "applemusic://track/438829874",
         "nl": "applemusic://track/438829874",
@@ -2472,7 +2472,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440665386",
         "de": "applemusic://track/1440665386",
-        "gb": null,
+        "gb": "applemusic://track/1442875199",
         "fr": "applemusic://track/1440665386",
         "es": "applemusic://track/1440665386",
         "nl": "applemusic://track/1440665386",
@@ -2552,7 +2552,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/315611301",
         "de": "applemusic://track/315611301",
-        "gb": null,
+        "gb": "applemusic://track/1156538980",
         "fr": "applemusic://track/315611301",
         "es": "applemusic://track/315611301",
         "nl": "applemusic://track/315611301",
@@ -2862,7 +2862,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/684954529",
         "de": "applemusic://track/684954529",
-        "gb": null,
+        "gb": "applemusic://track/1322119963",
         "fr": "applemusic://track/684954529",
         "es": "applemusic://track/684954529",
         "nl": "applemusic://track/684954529",

@@ -1,6 +1,6 @@
 {
   "name": "🍁 Québécois 1990-2020",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "quebecois",
     "quebec",
@@ -414,13 +414,13 @@
       "isrc": "CAU111300147",
       "uri_apple_music": "applemusic://track/635284293",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1573040156",
+        "de": "applemusic://track/1573040156",
+        "gb": "applemusic://track/1573040156",
+        "fr": "applemusic://track/635284293",
+        "es": "applemusic://track/1573040156",
+        "nl": "applemusic://track/1573040156",
+        "it": "applemusic://track/1573040156"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=fNB9fHfl_Ds",
       "uri_tidal": "tidal://track/22141212",
@@ -654,13 +654,13 @@
       "isrc": "CA06H2100137",
       "uri_apple_music": "applemusic://track/1572369506",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1572369506",
+        "de": "applemusic://track/1572369506",
+        "gb": "applemusic://track/1576786148",
+        "fr": "applemusic://track/1576786148",
+        "es": "applemusic://track/1576786148",
+        "nl": "applemusic://track/1572369506",
+        "it": "applemusic://track/1576786148"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WA_AlC8u2F4",
       "uri_tidal": "tidal://track/187777702",
@@ -1284,8 +1284,8 @@
       "isrc": "CAA500926104",
       "uri_apple_music": "applemusic://track/1551601737",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
+        "us": "applemusic://track/1551601737",
+        "de": "applemusic://track/1551601737",
         "gb": null,
         "fr": null,
         "es": null,
