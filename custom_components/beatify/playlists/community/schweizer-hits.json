@@ -1,6 +1,6 @@
 {
   "name": "Schweizer Hits 🇨🇭",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "swiss",
     "mundart",
@@ -215,7 +215,7 @@
       "awards_nl": [],
       "isrc": "CHUM70600384",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1444274432",
         "de": "applemusic://track/1444274432",
         "gb": "applemusic://track/1444274432",
         "fr": "applemusic://track/1444274432",
