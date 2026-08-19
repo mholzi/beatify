@@ -21,6 +21,20 @@ Guests scan, songs play, everyone competes. It's that simple.
 
 <br>
 
+## Will This Work For Me?
+
+Three things decide it — check them before you install.
+
+- **Home Assistant 2025.1 or newer**
+- **A supported speaker** — Music Assistant (any speaker it drives), Sonos, or Alexa. Chromecast, Nest and HomePod work only through Music Assistant. See [Supported Speakers](#supported-speakers).
+- **A paid music plan** — Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music. Free tiers can't play a chosen track on demand, so Spotify Free won't work.
+
+Beatify itself is free and runs entirely on your own Home Assistant.
+
+---
+
+<br>
+
 ## What Is Beatify?
 
 **Beatify is an open-source music quiz game for Home Assistant** — a multiplayer music trivia party game that turns your smart speakers into a game show.
