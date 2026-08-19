@@ -1,6 +1,6 @@
 {
   "name": "Fiesta Latina 90s 🇲🇽",
-  "version": "1.7",
+  "version": "1.8",
   "tags": [
     "1990s",
     "latin",
@@ -416,13 +416,13 @@
       "awards_nl": [],
       "isrc": "DEH259900010",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
+        "us": "applemusic://track/1322068804",
+        "de": "applemusic://track/1318383098",
+        "gb": "applemusic://track/1322068804",
+        "fr": "applemusic://track/1322068804",
+        "es": "applemusic://track/1322068804",
         "nl": "applemusic://track/1656111119",
-        "it": null
+        "it": "applemusic://track/1322068804"
       }
     },
     {

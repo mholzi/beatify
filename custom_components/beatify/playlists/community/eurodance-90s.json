@@ -1,6 +1,6 @@
 {
   "name": "Eurodance 90s 💥",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "1990s",
     "eurodance",
@@ -315,7 +315,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/17769882",
         "de": "applemusic://track/1831927967",
-        "gb": null,
+        "gb": "applemusic://track/676082863",
         "fr": "applemusic://track/1831927967",
         "es": "applemusic://track/1831927967",
         "nl": "applemusic://track/1831927967",

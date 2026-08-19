@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.36",
+  "version": "1.37",
   "tags": [
     "finnish",
     "iskelma",
@@ -26,13 +26,13 @@
       "isrc": "FIVLM6201123",
       "uri_apple_music": "applemusic://track/1019818620",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/1019818620",
+        "de": "applemusic://track/706040043",
+        "gb": "applemusic://track/1076962956",
+        "fr": "applemusic://track/706183044",
+        "es": "applemusic://track/706040043",
+        "nl": "applemusic://track/1076962956",
+        "it": "applemusic://track/1019818620"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=d7XohORW0zc",
       "uri_tidal": "tidal://track/56442389",
@@ -116,9 +116,9 @@
       "isrc": "FIFMF5700700",
       "uri_apple_music": "applemusic://track/1027732467",
       "uri_apple_music_by_region": {
-        "us": null,
+        "us": "applemusic://track/1735588452",
         "de": null,
-        "gb": null,
+        "gb": "applemusic://track/271020539",
         "fr": null,
         "es": null,
         "nl": null,
