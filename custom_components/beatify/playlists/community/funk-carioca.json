@@ -1,6 +1,6 @@
 {
   "name": "🌪️ Funk Carioca",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "2000s",
     "funk",
@@ -251,12 +251,12 @@
       "uri_apple_music": "applemusic://track/1576391269",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1576391269",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1576391269",
+        "gb": "applemusic://track/1576391269",
+        "fr": "applemusic://track/1576391269",
+        "es": "applemusic://track/1576391269",
+        "nl": "applemusic://track/1576391269",
+        "it": "applemusic://track/1576391269"
       },
       "uri_deezer": "deezer://track/3201917",
       "uri_tidal": "tidal://track/184586913",

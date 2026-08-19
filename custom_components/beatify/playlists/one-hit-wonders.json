@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "one-hit",
     "classics",
@@ -993,12 +993,12 @@
       "isrc": "USRH10403145",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/52310973",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1834119301",
+        "gb": "applemusic://track/1834119301",
+        "fr": "applemusic://track/1834119301",
+        "es": "applemusic://track/1834119301",
+        "nl": "applemusic://track/1439469091",
+        "it": "applemusic://track/1834119301"
       }
     },
     {
@@ -1205,12 +1205,12 @@
       "isrc": "USUM71918013",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1479631804",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/374486510",
+        "gb": "applemusic://track/374486510",
+        "fr": "applemusic://track/374486510",
+        "es": "applemusic://track/374486510",
+        "nl": "applemusic://track/374486510",
+        "it": "applemusic://track/374486510"
       }
     },
     {
@@ -3253,12 +3253,12 @@
       "isrc": "USSM10027246",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1695903012",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1382314942",
+        "gb": "applemusic://track/1382314942",
+        "fr": "applemusic://track/1440918860",
+        "es": "applemusic://track/1440918860",
+        "nl": "applemusic://track/1440918860",
+        "it": "applemusic://track/1440918860"
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "canadian",
     "canada",
@@ -1908,12 +1908,12 @@
       "uri_apple_music": "applemusic://track/1837530994",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1837530994",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/217503142",
+        "gb": "applemusic://track/217503142",
+        "fr": "applemusic://track/217503142",
+        "es": "applemusic://track/217503142",
+        "nl": "applemusic://track/217503142",
+        "it": "applemusic://track/217503142"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tT4d1LQy4es",
       "uri_tidal": "tidal://track/1408377",
@@ -2359,12 +2359,12 @@
       "uri_apple_music": "applemusic://track/1479631804",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1479631804",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/374486510",
+        "gb": "applemusic://track/374486510",
+        "fr": "applemusic://track/374486510",
+        "es": "applemusic://track/374486510",
+        "nl": "applemusic://track/374486510",
+        "it": "applemusic://track/374486510"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nM4okRvCg2g",
       "uri_tidal": "tidal://track/4186366",

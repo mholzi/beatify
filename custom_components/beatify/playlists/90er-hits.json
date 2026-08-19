@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "1990s",
     "pop",
@@ -754,12 +754,12 @@
       "isrc": "USSM10027246",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1695903012",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1382314942",
+        "gb": "applemusic://track/1382314942",
+        "fr": "applemusic://track/1440918860",
+        "es": "applemusic://track/1440918860",
+        "nl": "applemusic://track/1440918860",
+        "it": "applemusic://track/1440918860"
       }
     },
     {

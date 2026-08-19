@@ -1,6 +1,6 @@
 {
   "name": "Pure Pop Punk 🎸",
-  "version": "1.9",
+  "version": "1.10",
   "tags": [
     "2000s",
     "pop-punk",
@@ -2042,12 +2042,12 @@
       "isrc": "USSM10214990",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440785041",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440776758",
+        "gb": "applemusic://track/1440776758",
+        "fr": "applemusic://track/1440776758",
+        "es": "applemusic://track/1440776758",
+        "nl": "applemusic://track/1443850099",
+        "it": "applemusic://track/1440776758"
       }
     },
     {
@@ -2283,12 +2283,12 @@
       "isrc": "USSM10209831",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1471266343",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440840971",
+        "gb": "applemusic://track/1440840971",
+        "fr": "applemusic://track/1440840971",
+        "es": "applemusic://track/1440840971",
+        "nl": "applemusic://track/1440840971",
+        "it": "applemusic://track/1440840971"
       }
     },
     {
@@ -2631,12 +2631,12 @@
       "isrc": "USMC10200464",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445881688",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440728966",
+        "gb": "applemusic://track/1444276010",
+        "fr": "applemusic://track/1444276010",
+        "es": "applemusic://track/1444276010",
+        "nl": "applemusic://track/1444276010",
+        "it": "applemusic://track/1444276010"
       }
     },
     {
@@ -3463,12 +3463,12 @@
       "isrc": "US56V0506103",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/27295869",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/281969378",
+        "gb": "applemusic://track/281969378",
+        "fr": "applemusic://track/59080758",
+        "es": "applemusic://track/59080758",
+        "nl": "applemusic://track/1775799750",
+        "it": "applemusic://track/110686759"
       }
     },
     {

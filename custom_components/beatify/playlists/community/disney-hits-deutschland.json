@@ -1,6 +1,6 @@
 {
   "name": "Disney Hits Deutschland",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "disney",
     "movies",
@@ -1077,12 +1077,12 @@
       "uri_apple_music": "applemusic://track/1440639720",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440639720",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1561428083",
+        "gb": "applemusic://track/1561428903",
+        "fr": "applemusic://track/1561428002",
+        "es": "applemusic://track/1436801353",
+        "nl": "applemusic://track/1561435369",
+        "it": "applemusic://track/1436801353"
       },
       "uri_deezer": "deezer://track/7599998",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cSWSMf6F6VQ",
@@ -1691,12 +1691,12 @@
       "uri_apple_music": "applemusic://track/1610789903",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1610789903",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1610789903",
+        "gb": "applemusic://track/1610789903",
+        "fr": "applemusic://track/1610789903",
+        "es": "applemusic://track/1610789903",
+        "nl": "applemusic://track/1610789903",
+        "it": "applemusic://track/1610789903"
       },
       "uri_deezer": "deezer://track/1675161847",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DQQRjFzB8gY",
@@ -2063,12 +2063,12 @@
       "uri_apple_music": "applemusic://track/1443904064",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443904064",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1443904064",
+        "gb": "applemusic://track/714527220",
+        "fr": "applemusic://track/714527220",
+        "es": "applemusic://track/1443904064",
+        "nl": "applemusic://track/714527220",
+        "it": "applemusic://track/714527220"
       },
       "uri_deezer": "deezer://track/14249860",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RfRK5-6x4yQ",
@@ -2714,12 +2714,12 @@
       "uri_apple_music": "applemusic://track/1440639381",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440639381",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440638151",
+        "gb": "applemusic://track/1440635382",
+        "fr": "applemusic://track/1570496574",
+        "es": "applemusic://track/1440638151",
+        "nl": "applemusic://track/1440638151",
+        "it": "applemusic://track/1708456049"
       },
       "uri_deezer": "deezer://track/136349848",
       "uri_youtube_music": "https://music.youtube.com/watch?v=cPAbx5kgCJo",

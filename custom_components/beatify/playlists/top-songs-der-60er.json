@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.11",
+  "version": "1.12",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -354,12 +354,12 @@
       "isrc": "USA176460010",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440781975",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/697238871",
+        "gb": "applemusic://track/726189776",
+        "fr": "applemusic://track/697238871",
+        "es": "applemusic://track/727825262",
+        "nl": "applemusic://track/1542617044",
+        "it": "applemusic://track/697238871"
       },
       "uri_deezer": "deezer://track/3155135"
     },

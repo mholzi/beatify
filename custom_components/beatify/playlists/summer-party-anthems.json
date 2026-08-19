@@ -1,6 +1,6 @@
 {
   "name": "100 Summer Anthems ☀️",
-  "version": "1.12",
+  "version": "1.13",
   "tags": [
     "party",
     "classics",
@@ -433,12 +433,12 @@
       "isrc": "GBDL58300056",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/516652008",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1496801184",
+        "gb": "applemusic://track/351524438",
+        "fr": "applemusic://track/1437448803",
+        "es": "applemusic://track/266617377",
+        "nl": "applemusic://track/1437448803",
+        "it": "applemusic://track/1437448803"
       }
     },
     {
@@ -1894,12 +1894,12 @@
       "isrc": "USN018884501",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/31739286",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1512944637",
+        "gb": "applemusic://track/1627798956",
+        "fr": "applemusic://track/1512944637",
+        "es": "applemusic://track/1512944637",
+        "nl": "applemusic://track/1512944637",
+        "it": "applemusic://track/1512944637"
       }
     },
     {

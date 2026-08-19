@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.19",
+  "version": "2.20",
   "tags": [
     "classics",
     "top-hits",
@@ -54,12 +54,12 @@
       "isrc": "GBUM71029604",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1842449358",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080302",
+        "gb": "applemusic://track/6781027645",
+        "fr": "applemusic://track/6781027645",
+        "es": "applemusic://track/6781027645",
+        "nl": "applemusic://track/6781027645",
+        "it": "applemusic://track/6781080302"
       }
     },
     {
@@ -603,12 +603,12 @@
       "isrc": "GBUM71029605",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440650719",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080305",
+        "gb": "applemusic://track/6781027662",
+        "fr": "applemusic://track/6781080305",
+        "es": "applemusic://track/6781027662",
+        "nl": "applemusic://track/6781075748",
+        "it": "applemusic://track/6781076397"
       }
     },
     {
@@ -888,12 +888,12 @@
       "isrc": "USRH11602140",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1099335223",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440787908",
+        "gb": "applemusic://track/1440787908",
+        "fr": "applemusic://track/1440787908",
+        "es": "applemusic://track/1440787908",
+        "nl": "applemusic://track/1440787908",
+        "it": "applemusic://track/1440787908"
       }
     },
     {
@@ -990,12 +990,12 @@
       "isrc": "GBUM71029619",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440646546",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080744",
+        "gb": "applemusic://track/6781081102",
+        "fr": "applemusic://track/6781080744",
+        "es": "applemusic://track/6781081102",
+        "nl": "applemusic://track/6781080744",
+        "it": "applemusic://track/6781027708"
       }
     },
     {
@@ -1314,12 +1314,12 @@
       "isrc": "GBUM71029618",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1834502336",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781081101",
+        "gb": "applemusic://track/6781081101",
+        "fr": "applemusic://track/6781081101",
+        "es": "applemusic://track/6781027660",
+        "nl": "applemusic://track/6781081101",
+        "it": "applemusic://track/6781080737"
       }
     },
     {
@@ -2030,12 +2030,12 @@
       "isrc": "USPR37800001",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443926626",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/504994461",
+        "gb": "applemusic://track/1452863525",
+        "fr": "applemusic://track/1452863525",
+        "es": "applemusic://track/1452863525",
+        "nl": "applemusic://track/1452863525",
+        "it": "applemusic://track/504994461"
       }
     },
     {
@@ -2258,12 +2258,12 @@
       "isrc": "USBH18100118",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1871187077",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1881685586",
+        "gb": "applemusic://track/1881685586",
+        "fr": "applemusic://track/1881685586",
+        "es": "applemusic://track/1881685586",
+        "nl": "applemusic://track/1881685586",
+        "it": "applemusic://track/1881685586"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wMsazR6Tnf8"
     },
@@ -2490,12 +2490,12 @@
       "isrc": "GBUM71029613",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440743586",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080944",
+        "gb": "applemusic://track/6781027364",
+        "fr": "applemusic://track/6781027364",
+        "es": "applemusic://track/6781027364",
+        "nl": "applemusic://track/6781080944",
+        "it": "applemusic://track/6781027364"
       }
     },
     {
@@ -2693,12 +2693,12 @@
       "isrc": "GBUM71029610",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1494536053",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781079522",
+        "gb": "applemusic://track/6781080941",
+        "fr": "applemusic://track/6781080941",
+        "es": "applemusic://track/6781079522",
+        "nl": "applemusic://track/6781079522",
+        "it": "applemusic://track/6781079518"
       }
     },
     {
@@ -3644,12 +3644,12 @@
       "isrc": "GBUM71106221",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1699722786",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781081188",
+        "gb": "applemusic://track/6781081188",
+        "fr": "applemusic://track/6781081191",
+        "es": "applemusic://track/6781027712",
+        "nl": "applemusic://track/6781027712",
+        "it": "applemusic://track/6781078887"
       }
     },
     {
@@ -3734,12 +3734,12 @@
       "isrc": "GBUM71404523",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440651291",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1255089803",
+        "gb": "applemusic://track/1255089803",
+        "fr": "applemusic://track/1255089803",
+        "es": "applemusic://track/695543531",
+        "nl": "applemusic://track/1255089803",
+        "it": "applemusic://track/1255089803"
       }
     },
     {
@@ -4704,12 +4704,12 @@
       "isrc": "USWB11304369",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/787644021",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1451206494",
+        "gb": "applemusic://track/471306671",
+        "fr": "applemusic://track/1533659669",
+        "es": "applemusic://track/471306671",
+        "nl": "applemusic://track/1440282325",
+        "it": "applemusic://track/1533659669"
       }
     },
     {
@@ -4968,12 +4968,12 @@
       "isrc": "USWB11304343",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/787641279",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1451206590",
+        "gb": "applemusic://track/1551599034",
+        "fr": "applemusic://track/1439958428",
+        "es": "applemusic://track/1551599034",
+        "nl": "applemusic://track/1551599034",
+        "it": "applemusic://track/1439958428"
       }
     },
     {
@@ -5020,12 +5020,12 @@
       "isrc": "USA176460010",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440781975",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/697238871",
+        "gb": "applemusic://track/726189776",
+        "fr": "applemusic://track/697238871",
+        "es": "applemusic://track/727825262",
+        "nl": "applemusic://track/1542617044",
+        "it": "applemusic://track/697238871"
       }
     },
     {
@@ -6260,12 +6260,12 @@
       "isrc": "USPR38430331",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1624147676",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1297035676",
+        "gb": "applemusic://track/1297035676",
+        "fr": "applemusic://track/1297035676",
+        "es": "applemusic://track/1297035676",
+        "nl": "applemusic://track/1297035676",
+        "it": "applemusic://track/474741556"
       }
     },
     {
@@ -6781,12 +6781,12 @@
       "isrc": "USEV19900002",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1275600554",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440901431",
+        "gb": "applemusic://track/1440901431",
+        "fr": "applemusic://track/1442993961",
+        "es": "applemusic://track/1442993961",
+        "nl": "applemusic://track/1442993961",
+        "it": "applemusic://track/1442993961"
       }
     },
     {
@@ -7358,12 +7358,12 @@
       "isrc": "USWB11304371",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/787845531",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1533659672",
+        "gb": "applemusic://track/1533659672",
+        "fr": "applemusic://track/1452843406",
+        "es": "applemusic://track/1533659672",
+        "nl": "applemusic://track/1440282327",
+        "it": "applemusic://track/1533659672"
       }
     },
     {

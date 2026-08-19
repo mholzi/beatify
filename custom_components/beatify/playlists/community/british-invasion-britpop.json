@@ -1,6 +1,6 @@
 {
   "name": "British Invasion & Britpop 🇬🇧",
-  "version": "1.8",
+  "version": "1.9",
   "tags": [
     "1960s",
     "1990s",
@@ -254,12 +254,12 @@
       "isrc": "USWB10106686",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/302164746",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1435165348",
+        "gb": "applemusic://track/1435165348",
+        "fr": "applemusic://track/1435165348",
+        "es": "applemusic://track/1435165348",
+        "nl": "applemusic://track/1435165348",
+        "it": "applemusic://track/1435165348"
       }
     },
     {
@@ -1180,12 +1180,12 @@
       "isrc": "USWB11400744",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/880823903",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/696749191",
+        "gb": "applemusic://track/859942549",
+        "fr": "applemusic://track/693155524",
+        "es": "applemusic://track/696749191",
+        "nl": "applemusic://track/696749191",
+        "it": "applemusic://track/696749191"
       }
     },
     {
@@ -2311,12 +2311,12 @@
       "isrc": "USWWW0139594",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1549088515",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/693573743",
+        "gb": "applemusic://track/693573743",
+        "fr": "applemusic://track/693573743",
+        "es": "applemusic://track/693573743",
+        "nl": "applemusic://track/693573743",
+        "it": "applemusic://track/693573743"
       }
     },
     {
@@ -2974,12 +2974,12 @@
       "isrc": "USWB19903669",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/83155547",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/696488534",
+        "gb": "applemusic://track/726113029",
+        "fr": "applemusic://track/696488534",
+        "es": "applemusic://track/696488534",
+        "nl": "applemusic://track/696488534",
+        "it": "applemusic://track/696488534"
       }
     },
     {
@@ -3537,12 +3537,12 @@
       "isrc": "US29D0700012",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/265096509",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1096146963",
+        "gb": "applemusic://track/1096146963",
+        "fr": "applemusic://track/1096146963",
+        "es": "applemusic://track/1096146963",
+        "nl": "applemusic://track/1096146963",
+        "it": "applemusic://track/1096146963"
       }
     },
     {
@@ -3798,12 +3798,12 @@
       "isrc": "GBDL58300082",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/516624410",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/140771735",
+        "gb": "applemusic://track/140771735",
+        "fr": "applemusic://track/140771735",
+        "es": "applemusic://track/140771735",
+        "nl": "applemusic://track/140771735",
+        "it": "applemusic://track/140771735"
       }
     },
     {

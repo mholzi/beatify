@@ -1,6 +1,6 @@
 {
   "name": "NDW – Neue Deutsche Welle",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "ndw",
     "neue deutsche welle",
@@ -867,12 +867,12 @@
       "isrc": "DEC730300509",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1485754934",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/469220031",
+        "gb": "applemusic://track/1485754934",
+        "fr": "applemusic://track/1485754934",
+        "es": "applemusic://track/1485754934",
+        "nl": "applemusic://track/1485754934",
+        "it": "applemusic://track/1485754934"
       },
       "awards_nl": []
     },

@@ -1,6 +1,6 @@
 {
   "name": "Essential Alternative 🎸",
-  "version": "0.10",
+  "version": "0.11",
   "tags": [
     "alternative",
     "rock",
@@ -1163,12 +1163,12 @@
       "isrc": "USRE10602912",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/209388998",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/355446328",
+        "gb": "applemusic://track/355446328",
+        "fr": "applemusic://track/260548666",
+        "es": "applemusic://track/1156310784",
+        "nl": "applemusic://track/1156310784",
+        "it": "applemusic://track/1156310784"
       }
     },
     {

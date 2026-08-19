@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Power Ballads",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "1980s",
     "1990s",
@@ -912,12 +912,12 @@
       "isrc": "QMFME2521079",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1837530994",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/217503142",
+        "gb": "applemusic://track/217503142",
+        "fr": "applemusic://track/217503142",
+        "es": "applemusic://track/217503142",
+        "nl": "applemusic://track/217503142",
+        "it": "applemusic://track/217503142"
       }
     },
     {
@@ -1583,12 +1583,12 @@
       "isrc": "USAM19500609",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440632340",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1435166519",
+        "gb": "applemusic://track/313717475",
+        "fr": "applemusic://track/1435166519",
+        "es": "applemusic://track/1441033693",
+        "nl": "applemusic://track/1441033693",
+        "it": "applemusic://track/1441033693"
       }
     },
     {
@@ -1622,12 +1622,12 @@
       "isrc": "USAT21400633",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/828779772",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440855499",
+        "gb": "applemusic://track/1440522041",
+        "fr": "applemusic://track/1440855499",
+        "es": "applemusic://track/1440855499",
+        "nl": "applemusic://track/1440855499",
+        "it": "applemusic://track/1440855499"
       }
     },
     {
@@ -2042,12 +2042,12 @@
       "isrc": "GBUM71029613",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440743586",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080944",
+        "gb": "applemusic://track/6781027364",
+        "fr": "applemusic://track/6781027364",
+        "es": "applemusic://track/6781027364",
+        "nl": "applemusic://track/6781080944",
+        "it": "applemusic://track/6781027364"
       }
     },
     {
@@ -3320,12 +3320,12 @@
       "isrc": "USWB11304343",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/787641279",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1451206590",
+        "gb": "applemusic://track/1551599034",
+        "fr": "applemusic://track/1439958428",
+        "es": "applemusic://track/1551599034",
+        "nl": "applemusic://track/1551599034",
+        "it": "applemusic://track/1439958428"
       }
     },
     {

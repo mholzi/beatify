@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.32",
+  "version": "1.33",
   "tags": [
     "edm",
     "electronic",
@@ -3862,12 +3862,12 @@
       "uri_apple_music": "applemusic://track/1817426864",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1817426864",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/716567420",
+        "gb": "applemusic://track/716567388",
+        "fr": "applemusic://track/716567420",
+        "es": "applemusic://track/716567420",
+        "nl": "applemusic://track/1021610307",
+        "it": "applemusic://track/716567420"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GiT7fhfTrPQ",
       "uri_tidal": "tidal://track/3277163",
@@ -4432,12 +4432,12 @@
       "uri_apple_music": "applemusic://track/1440862129",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440862129",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1440856647",
+        "gb": "applemusic://track/1440856647",
+        "fr": "applemusic://track/1440856647",
+        "es": "applemusic://track/1443106417",
+        "nl": "applemusic://track/1763639275",
+        "it": "applemusic://track/1443276396"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=93ASUImTedo",
       "uri_tidal": "tidal://track/17311738",
@@ -5062,12 +5062,12 @@
       "uri_apple_music": "applemusic://track/1712042024",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1712042024",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1555177065",
+        "gb": "applemusic://track/1555177065",
+        "fr": "applemusic://track/1138399908",
+        "es": "applemusic://track/1555177065",
+        "nl": "applemusic://track/1555177065",
+        "it": "applemusic://track/1555177065"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=p-Z3YrHJ1sU",
       "uri_tidal": "tidal://track/203338403",

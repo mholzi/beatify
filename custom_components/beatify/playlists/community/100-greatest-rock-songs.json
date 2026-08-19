@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.9",
+  "version": "0.10",
   "tags": [
     "rock",
     "classic-rock",
@@ -1154,12 +1154,12 @@
       "isrc": "GBUM71029605",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440650719",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080305",
+        "gb": "applemusic://track/6781027662",
+        "fr": "applemusic://track/6781080305",
+        "es": "applemusic://track/6781027662",
+        "nl": "applemusic://track/6781075748",
+        "it": "applemusic://track/6781076397"
       }
     },
     {
@@ -2299,12 +2299,12 @@
       "isrc": "GBUM71029604",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1842449358",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781080302",
+        "gb": "applemusic://track/6781027645",
+        "fr": "applemusic://track/6781027645",
+        "es": "applemusic://track/6781027645",
+        "nl": "applemusic://track/6781027645",
+        "it": "applemusic://track/6781080302"
       }
     },
     {
@@ -2819,12 +2819,12 @@
       "isrc": "GBUM71029618",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1834502336",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781081101",
+        "gb": "applemusic://track/6781081101",
+        "fr": "applemusic://track/6781081101",
+        "es": "applemusic://track/6781027660",
+        "nl": "applemusic://track/6781081101",
+        "it": "applemusic://track/6781080737"
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Movie Themes 🎬",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "movies",
     "soundtrack",
@@ -2887,12 +2887,12 @@
       "isrc": "GBUM71103355",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440807379",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/6781023024",
+        "gb": "applemusic://track/6781023924",
+        "fr": "applemusic://track/6781023924",
+        "es": "applemusic://track/6781023924",
+        "nl": "applemusic://track/6781023924",
+        "it": "applemusic://track/6781023924"
       }
     },
     {
@@ -3673,12 +3673,12 @@
       "isrc": "USRC10101348",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719334913",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1432872981",
+        "gb": "applemusic://track/483793979",
+        "fr": "applemusic://track/483793979",
+        "es": "applemusic://track/483793979",
+        "nl": "applemusic://track/483793979",
+        "it": "applemusic://track/483793979"
       }
     },
     {
@@ -5082,12 +5082,12 @@
       "isrc": "USMG21500012",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443116804",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/716176922",
+        "gb": "applemusic://track/697275610",
+        "fr": "applemusic://track/716176922",
+        "es": "applemusic://track/716176922",
+        "nl": "applemusic://track/716176922",
+        "it": "applemusic://track/697275610"
       }
     },
     {
@@ -5219,12 +5219,12 @@
       "isrc": "USMC18010384",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440743615",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/324213374",
+        "gb": "applemusic://track/324213374",
+        "fr": "applemusic://track/324213374",
+        "es": "applemusic://track/324213374",
+        "nl": "applemusic://track/1502404626",
+        "it": "applemusic://track/324213374"
       }
     },
     {
@@ -6654,12 +6654,12 @@
       "isrc": "USUG10701295",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1442889719",
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "de": "applemusic://track/1436539081",
+        "gb": "applemusic://track/1436539081",
+        "fr": "applemusic://track/1436539081",
+        "es": "applemusic://track/1436539081",
+        "nl": "applemusic://track/1436539081",
+        "it": "applemusic://track/1436539081"
       }
     },
     {
