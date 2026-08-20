@@ -1,6 +1,6 @@
 {
   "name": "Schweizer Hits 🇨🇭",
-  "version": "0.13",
+  "version": "0.14",
   "tags": [
     "swiss",
     "mundart",
@@ -105,7 +105,7 @@
       }
     },
     {
-      "year": 1991,
+      "year": 1996,
       "uri": "spotify:track:67hvPNax9b1T4sRbeaUCzC",
       "artist": "Patent Ochsner",
       "alt_artists": [],
