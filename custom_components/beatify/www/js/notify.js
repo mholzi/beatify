@@ -143,6 +143,11 @@ export function showToast(message, opts) {
  * @param {string} [opts.id='beatify-banner'] - Reused id — a second call with the
  *   same id replaces the previous banner instead of stacking duplicates.
  * @param {boolean} [opts.dismissible=true] - Show a close button.
+ * @param {{label: string, onClick: function}} [opts.action] - Optional action
+ *   button under the text (#2269). A banner that tells the host what is wrong
+ *   but not where to fix it is a dead end; this is the way out. Clicking removes
+ *   the banner first, then runs onClick, so a scroll in the handler measures the
+ *   layout the host will actually land in.
  * @returns {HTMLElement|null} the banner node.
  */
 export function showBanner(message, opts) {
@@ -184,6 +189,17 @@ export function showBanner(message, opts) {
     textEl.className = 'beatify-banner-text';
     textEl.textContent = String(message);
     content.appendChild(textEl);
+    if (opts.action && opts.action.label && typeof opts.action.onClick === 'function') {
+        var actionBtn = document.createElement('button');
+        actionBtn.type = 'button';
+        actionBtn.className = 'beatify-banner-action';
+        actionBtn.textContent = String(opts.action.label);
+        actionBtn.addEventListener('click', function() {
+            if (banner.parentNode) banner.parentNode.removeChild(banner);
+            opts.action.onClick();
+        });
+        content.appendChild(actionBtn);
+    }
     banner.appendChild(content);
 
     if (opts.dismissible !== false) {

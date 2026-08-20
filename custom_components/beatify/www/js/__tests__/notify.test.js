@@ -161,6 +161,45 @@ describe('#1663 item 1 — showBanner', () => {
         expect(banners.length).toBe(1);
     });
 
+    // #2269 — the action button is the whole point of routing the speaker error
+    // here: without it the banner is a nicer-looking dead end.
+    it('renders an action button and runs its handler on click', () => {
+        const parent = makeNode('div');
+        const anchor = makeNode('button');
+        anchor.setAttribute('id', 'home-start-game');
+        parent.appendChild(anchor);
+        body.appendChild(parent);
+
+        const clicked = [];
+        const banner = showBanner('Media player unavailable', {
+            anchor, id: 'home-start-banner',
+            action: { label: 'Select Speaker', onClick: () => clicked.push(banner.parentNode) },
+        });
+        const content = banner.children.find((c) => c.classList.contains('beatify-banner-content'));
+        const actionBtn = content.children.find((c) => c.classList.contains('beatify-banner-action'));
+        expect(actionBtn).toBeTruthy();
+        expect(actionBtn.textContent).toBe('Select Speaker');
+
+        actionBtn._fire('click');
+        expect(clicked).toHaveLength(1);
+        // Banner is gone BEFORE the handler runs, so a scrollIntoView in there
+        // measures the layout the host actually lands in.
+        expect(clicked[0]).toBe(null);
+        expect(parent.children.some((c) => c.id === 'home-start-banner')).toBe(false);
+    });
+
+    it('renders no action button when no action is given', () => {
+        const parent = makeNode('div');
+        const anchor = makeNode('button');
+        anchor.setAttribute('id', 'home-start-game');
+        parent.appendChild(anchor);
+        body.appendChild(parent);
+
+        const banner = showBanner('No players yet', { anchor, id: 'home-start-banner' });
+        const content = banner.children.find((c) => c.classList.contains('beatify-banner-content'));
+        expect(content.children.some((c) => c.classList.contains('beatify-banner-action'))).toBe(false);
+    });
+
     it('clearBanner removes the banner', () => {
         const parent = makeNode('div');
         const anchor = makeNode('button');

@@ -119,6 +119,7 @@ import {
 import {
     renderMediaPlayers,
     handleMediaPlayerSelect,
+    expandMediaPlayersSection,
 } from './admin/sections/media-players.js';
 
 // game-settings.js: chip/toggle wiring (language, timer, difficulty, bonus
@@ -290,6 +291,7 @@ initAdminApi({
     startLobbyPolling: () => startLobbyPolling(),
     stopLobbyPolling: () => stopLobbyPolling(),
     showError: (msg) => showError(msg),
+    showSpeakerSetupError: (msg) => showSpeakerSetupError(msg),
     resetHomeStartButton: () => resetHomeStartButton(),
 });
 // #1048: REVEAL auto-advance countdown on the sticky Next button
@@ -1764,8 +1766,10 @@ function showError(message) {
  * stays in the screen-reader flow and next to the control that failed, unlike
  * the transient toast.
  * @param {string} message
+ * @param {{label: string, onClick: function}} [action] - Optional way out
+ *   rendered as a button in the banner (#2269).
  */
-function showSetupError(message) {
+function showSetupError(message, action) {
     var anchor = document.getElementById('home-start-game');
     if (!anchor) {
         // No start button in view (e.g. mid-game) — fall back to a toast.
@@ -1777,6 +1781,24 @@ function showSetupError(message) {
         id: 'home-start-banner',
         title: (window.BeatifyI18n && BeatifyI18n.t('errors.startNotPossible')) || 'Cannot start',
         type: 'error',
+        action: action,
+    });
+}
+
+/**
+ * Start failed because the speaker is gone (#2269 / #2263).
+ *
+ * This used to be a transient toast: it named the problem, offered nothing, and
+ * disappeared. The speaker list is not on the home card — it sits below the hero
+ * behind a collapsed section header — so the host was left with a message that
+ * had already vanished. Dock it above the Start button that failed and put the
+ * speaker list one tap away.
+ * @param {string} message
+ */
+function showSpeakerSetupError(message) {
+    showSetupError(message, {
+        label: (window.BeatifyI18n && BeatifyI18n.t('admin.selectMediaPlayer')) || 'Select Speaker',
+        onClick: expandMediaPlayersSection,
     });
 }
 

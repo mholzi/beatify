@@ -182,9 +182,10 @@ describe('handleAdminWsMessage start-failure gating (#1402 B7)', () => {
         };
         globalThis.BeatifyI18n = { t: () => '' };
         const api = await import('../admin/api.js?ts=' + Math.random());
-        const calls = { showError: [], resetHomeStartButton: 0 };
+        const calls = { showError: [], showSpeakerSetupError: [], resetHomeStartButton: 0 };
         api.initAdminApi({
             showError: (m) => calls.showError.push(m),
+            showSpeakerSetupError: (m) => calls.showSpeakerSetupError.push(m),
             resetHomeStartButton: () => { calls.resetHomeStartButton++; },
             handleAdminStateUpdate: () => {},
             debug: () => {},
@@ -211,9 +212,29 @@ describe('handleAdminWsMessage start-failure gating (#1402 B7)', () => {
         const { api, calls } = await setup();
         const sent = api.sendAdminWs({ type: 'admin', action: 'start_game' });
         expect(sent).toBe(true); // confirms the socket was OPEN → flag armed
+        api.handleAdminWsMessage({ type: 'error', code: 'NO_SONGS_REMAINING', message: 'nothing left' });
+        expect(calls.resetHomeStartButton).toBe(1);
+        expect(calls.showError).toContain('nothing left');
+    });
+
+    // #2269: MEDIA_PLAYER_UNAVAILABLE is the one start failure whose fix lives in
+    // a collapsed section further down the page, so it goes to the persistent
+    // banner with a way out instead of the transient toast.
+    it('routes MEDIA_PLAYER_UNAVAILABLE to the speaker banner, not the toast', async () => {
+        const { api, calls } = await setup();
+        expect(api.sendAdminWs({ type: 'admin', action: 'start_game' })).toBe(true);
         api.handleAdminWsMessage({ type: 'error', code: 'MEDIA_PLAYER_UNAVAILABLE', message: 'player gone' });
         expect(calls.resetHomeStartButton).toBe(1);
-        expect(calls.showError).toContain('player gone');
+        expect(calls.showSpeakerSetupError).toContain('player gone');
+        expect(calls.showError).toHaveLength(0);
+    });
+
+    it('keeps other start failures on the toast', async () => {
+        const { api, calls } = await setup();
+        expect(api.sendAdminWs({ type: 'admin', action: 'start_game' })).toBe(true);
+        api.handleAdminWsMessage({ type: 'error', code: 'INVALID_ACTION', message: 'bad action' });
+        expect(calls.showError).toContain('bad action');
+        expect(calls.showSpeakerSetupError).toHaveLength(0);
     });
 
     it('a `state` message clears the pending flag so a later error is non-blocking', async () => {

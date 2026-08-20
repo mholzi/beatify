@@ -75,6 +75,7 @@ let deps = {
     startLobbyPolling: () => {},
     stopLobbyPolling: () => {},
     showError: () => {},
+    showSpeakerSetupError: () => {},
     resetHomeStartButton: () => {},
 };
 
@@ -450,7 +451,16 @@ export function handleAdminWsMessage(data) {
                 // resets the home button. Cleared here either way.
                 startPending = false;
                 deps.resetHomeStartButton();
-                deps.showError(data.message);
+                if (data.code === 'MEDIA_PLAYER_UNAVAILABLE') {
+                    // #2269: the speaker is gone. A toast names that and then
+                    // disappears, leaving the host on the same home card with
+                    // the speaker list collapsed out of sight below it. This
+                    // one stays above the Start button and carries a button
+                    // that opens the list.
+                    deps.showSpeakerSetupError(data.message);
+                } else {
+                    deps.showError(data.message);
+                }
             } else {
                 // #1402 B7: an error for some other mid-game command
                 // (set_volume, stop_song, next_round, …). The home "Start game"

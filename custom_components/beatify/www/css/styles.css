@@ -16685,6 +16685,24 @@ body.theme-dark .your-result-stats .stat-value {
 .beatify-banner--warning .beatify-banner-title { color: var(--color-warning); }
 .beatify-banner--info .beatify-banner-title { color: var(--color-accent-secondary); }
 .beatify-banner-text { line-height: 1.4; color: var(--color-text-neon-muted); word-break: break-word; }
+.beatify-banner-action {
+    margin-top: var(--space-xs);
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-sm);
+    color: var(--color-error-neon);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    line-height: 1.2;
+    padding: 6px var(--space-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.beatify-banner-action:hover { background: var(--color-error-neon); color: var(--color-bg-primary); }
+.beatify-banner--warning .beatify-banner-action { color: var(--color-warning); }
+.beatify-banner--warning .beatify-banner-action:hover { background: var(--color-warning); }
+.beatify-banner--info .beatify-banner-action { color: var(--color-accent-secondary); }
+.beatify-banner--info .beatify-banner-action:hover { background: var(--color-accent-secondary); }
 .beatify-banner-close {
     flex-shrink: 0;
     background: none;
