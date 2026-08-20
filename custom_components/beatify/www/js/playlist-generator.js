@@ -70,6 +70,7 @@
         'uri', 'uri_apple_music', 'uri_apple_music_by_region',
         'uri_youtube_music', 'uri_tidal', 'uri_deezer',
         'fun_fact', 'fun_fact_de', 'fun_fact_es', 'fun_fact_fr', 'fun_fact_nl',
+        'fun_fact_it',
     ];
 
     function currentYear() {
@@ -120,6 +121,7 @@
             fun_fact_es: 'Un clásico del trance y la pista de baile (1991).',
             fun_fact_fr: 'Un classique de la trance et du dancefloor (1991).',
             fun_fact_nl: 'Een trance- en dancefloorklassieker (1991).',
+            fun_fact_it: 'Un classico della trance e delle piste da ballo (1991).',
         }, null, 2);
         const todayIso = new Date().toISOString().slice(0, 10);
         const yMax = currentYear();
@@ -160,12 +162,13 @@ Each song MUST have ALL of these fields (${fieldList}):
 - fun_fact_es: same fact translated to Spanish.
 - fun_fact_fr: same fact translated to French.
 - fun_fact_nl: same fact translated to Dutch.
+- fun_fact_it: same fact translated to Italian.
 
 GOLD STANDARD EXAMPLE (one song from Trance Classics):
 ${goldStandard}
 
 RULES
-- Every song must contain all 15 fields. uri_tidal may be null. Everything else must be populated.
+- Every song must contain all 15 required fields, plus fun_fact_it where you can supply it. uri_tidal may be null. Everything else must be populated.
 - Do NOT invent ISRC or Apple Music IDs you are not sure of. If unsure, still fill the field but mark the playlist's description with "(LLM-generated identifiers — verify with the Beatify URI resolver)".
 - Output ONLY JSON. No preamble, no closing remarks, no markdown code fences.`;
     }
@@ -407,11 +410,21 @@ RULES
             result.fields.uri_deezer = ok;
             if (!ok) result.errors.push({ field: 'uri_deezer', message: 'uri_deezer must be null or deezer://track/<digits>.' + _echo(song.uri_deezer) });
         }
-        // fun_facts (all required)
+        // fun_facts (the five original locales are required)
         for (const f of ['fun_fact', 'fun_fact_de', 'fun_fact_es', 'fun_fact_fr', 'fun_fact_nl']) {
             const ok = typeof song[f] === 'string' && song[f].trim().length > 0;
             result.fields[f] = ok;
             if (!ok) result.errors.push({ field: f, message: `${f} must be a non-empty string` });
+        }
+        // fun_fact_it is OPTIONAL on purpose (#2234/#2253): the schema keeps it
+        // optional so the 6000+ songs that predate Italian are not invalidated,
+        // and a validator that demanded it here would reject submissions the CI
+        // gate happily accepts. Present-but-empty is still an error — that is a
+        // mistake, not an omission.
+        if ('fun_fact_it' in song && song.fun_fact_it !== null && song.fun_fact_it !== undefined) {
+            const okIt = typeof song.fun_fact_it === 'string' && song.fun_fact_it.trim().length > 0;
+            result.fields.fun_fact_it = okIt;
+            if (!okIt) result.errors.push({ field: 'fun_fact_it', message: 'fun_fact_it must be a non-empty string when present' });
         }
         return result;
     }

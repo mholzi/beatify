@@ -556,3 +556,36 @@ describe('parseIssueNumberFromUrl', () => {
         expect(api.parseIssueNumberFromUrl(undefined)).toBeNull();
     });
 });
+
+// --------------------------------------------------------------------------
+// #2234 follow-up: Italian in the generator prompt and validator.
+// --------------------------------------------------------------------------
+describe('Italian fun facts (#2234)', () => {
+    it('asks the LLM for fun_fact_it', () => {
+        const prompt = api.buildPrompt('https://open.spotify.com/playlist/37i9dQZF1DX0BcQWzuB7ZO');
+        expect(prompt).toContain('fun_fact_it: same fact translated to Italian.');
+        // The gold-standard song is JSON.stringify'd into the prompt, so the
+        // Italian line has to show up in its JSON form, not the source form.
+        expect(prompt).toContain('"fun_fact_it": "Un classico');
+    });
+
+    it('accepts a song without fun_fact_it — the schema keeps it optional', () => {
+        const song = goldSong();
+        delete song.fun_fact_it;
+        const res = api.validateSong(song, 0);
+        expect(res.errors.filter((e) => e.field === 'fun_fact_it')).toEqual([]);
+    });
+
+    it('accepts a song with a filled fun_fact_it', () => {
+        const song = goldSong({ fun_fact_it: 'Un classico della trance (1991).' });
+        const res = api.validateSong(song, 0);
+        expect(res.errors.filter((e) => e.field === 'fun_fact_it')).toEqual([]);
+        expect(res.fields.fun_fact_it).toBe(true);
+    });
+
+    it('rejects a present-but-empty fun_fact_it — that is a mistake, not an omission', () => {
+        const song = goldSong({ fun_fact_it: '   ' });
+        const res = api.validateSong(song, 0);
+        expect(res.errors.some((e) => e.field === 'fun_fact_it')).toBe(true);
+    });
+});
