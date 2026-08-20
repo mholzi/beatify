@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- Added 56 tracks to EDM Anthems from the Tomorrowland Top 1000 Official Playlist (#2255).
+
 ## [4.2.1-rc3] - 2026-08-20
 
 ### Added
