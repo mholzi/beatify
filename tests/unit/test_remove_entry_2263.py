@@ -98,9 +98,12 @@ async def test_a_failing_step_does_not_abort_the_removal(tmp_path: Path) -> None
             if self._key.endswith("library_settings"):
                 raise OSError("disk full")
 
-    with patch("custom_components.beatify.Store", _FakeStore), patch(
-        "custom_components.beatify._remove_persisted_files",
-        side_effect=OSError("permission denied"),
+    with (
+        patch("custom_components.beatify.Store", _FakeStore),
+        patch(
+            "custom_components.beatify._remove_persisted_files",
+            side_effect=OSError("permission denied"),
+        ),
     ):
         await async_remove_entry(hass, MagicMock())
 
