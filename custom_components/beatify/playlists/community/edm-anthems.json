@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.42",
+  "version": "1.43",
   "tags": [
     "edm",
     "electronic",
@@ -6587,7 +6587,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1698794335"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MpbZDxx44qE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2395988015",
       "fun_fact": "“Consciousness” appears on Anyma’s release “Genesys”.",
@@ -6611,7 +6611,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444889769"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6Pazt9whz0A",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/69524336",
       "fun_fact": "“Silence (feat. Sarah McLachlan) - DJ Tiësto's in Search of Sunrise Remix” appears on Delerium’s release “Magik Six (Live in Amsterdam)”.",
@@ -6635,7 +6635,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1745292770"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o9Bgl8HUFZA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2789182992",
       "fun_fact": "“Go Back (feat. Julia Church)” appears on John Summit’s release “Go Back”.",
@@ -6659,7 +6659,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/693179192"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L0VmaJsPWbY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3087828",
       "fun_fact": "“Love Don't Let Me Go” appears on David Guetta vs The Egg’s release “Just a Little More Love”.",
@@ -6683,7 +6683,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1463197973"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=--3eIRSg2RY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/678184162",
       "fun_fact": "“For an Angel” appears on Paul van Dyk’s release “45 RPM”.",
@@ -6703,7 +6703,7 @@
       "year": 2011,
       "isrc": "NLC281112345",
       "uri": "spotify:track:4Zz6VnbuykOejSpGOahS4E",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wzamOZ4B630",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/466984412",
       "fun_fact": "“Toulouse - Original Edit” appears on Nicky Romero’s release “Toulouse”.",
@@ -6727,7 +6727,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1272651891"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JsKIAO11q1Y",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/395627872",
       "fun_fact": "“Pizza” is the title track of Martin Garrix’s release of the same name.",
@@ -6751,7 +6751,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440264030"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t7x3S4U0RTA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/525334532",
       "fun_fact": "“Losing It - Radio Edit” appears on FISHER’s release “Losing It”.",
