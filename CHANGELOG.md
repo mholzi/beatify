@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.2.1-rc3] - 2026-08-20
+
+### Added
+- **Italian, end to end (#2234).** The interface speaks Italian (1306 strings, at full key parity with English), Home Assistant's own config-flow dialog is translated, and the spoken announcements have their own Italian phrase pack rather than falling back to English. Song fun facts and award names appear in Italian too. The gap this closes was visible from outside the project: the catalogue had carried Italian music for weeks while the language picker offered five languages, none of them Italian.
+- **Two Italian playlists.** `musica-italiana` (114 songs, 1960s to 2000s) and `sanremo-vincitori` (68 songs, every festival winner from 1951 to 2026). The Sanremo years come from the official Albo d'oro rather than from streaming metadata, which dates reissues instead of songs — *Grazie dei fiori* (1951) comes back from Deezer as 2021.
+
+### Fixed
+- **Removing the integration now really removes it (#2263).** Reported by **@proffalken**. Beatify had no `async_remove_entry` at all: `config/beatify/setup.json`, `data_quality_reports.json` and two HA `Store` keys survived a delete, so a fresh install was handed the speaker entity ids of the old one. When those speakers no longer existed, the game refused to start, and the in-app reset that would have cleared the blob is unreachable when no game can start. All four are cleared now, best-effort so a failure cannot leave Home Assistant with a half-removed entry.
+- **291 malformed provider URIs across five playlists (#2247).** Bare numeric ids and Apple Music web URLs where the runtime expects `applemusic://track/<id>` and `deezer://track/<id>`. The resolver passes the stored value to Music Assistant unchanged, and per the #1379 guard a track with a region map drops its legacy field entirely, so 19 songs had a broken URI with no fallback behind it in seven storefronts. The CI schema gate now carries a `pattern` for Apple, Deezer, Tidal and every region-map value, so the next one fails the pull request instead of reaching a player.
+
+### Changed
+- **The locale parity guards cover Italian (#2234).** `test_i18n_locale_parity.py` and four vitest suites listed only de/es/fr/nl. That is the gap #1730 was filed for — es/fr/nl had silently fallen 133 keys behind `en.json` — and the newest locale was the only one shipping outside it.
+- **The playlist generator asks contributors for Italian fun facts.** The client-side validator treats `fun_fact_it` as optional, matching the schema, so it never rejects a submission the CI gate would accept.
+
 ## [4.2.1-rc2] - 2026-08-13
 
 ### Added
