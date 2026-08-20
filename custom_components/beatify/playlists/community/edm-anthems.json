@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.39",
+  "version": "1.42",
   "tags": [
     "edm",
     "electronic",
@@ -5723,7 +5723,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6784223276"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=stQkPr545O8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4116004831",
       "fun_fact": "“Human (Feat. John Martin)” appears on David Guetta’s release “Human”.",
@@ -5747,7 +5747,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1478926053"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mfJhMfOPWdE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/757592622",
       "fun_fact": "“Blah Blah Blah” appears on Armin van Buuren’s release “Balance”.",
@@ -5771,7 +5771,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1670593168"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CkRyaG4Mjik",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2102633427",
       "fun_fact": "“Animals - Radio Edit” appears on Martin Garrix’s release “Animals”.",
@@ -5795,7 +5795,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1643744154"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0YVvcTIGy40",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1902369227",
       "fun_fact": "“The Age Of Love (Charlotte de Witte & Enrico Sangiuliano Remix)” is the title track of Age Of Love’s release of the same name.",
@@ -5819,7 +5819,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1807714128"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bek1y2uiQGA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/63017512",
       "fun_fact": "“I Could Be The One (Avicii Vs. Nicky Romero) - Radio Edit” appears on Avicii’s release “I Could Be The One [Avicii vs Nicky Romero]”.",
@@ -5843,7 +5843,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440851025"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iRA82xLsb_w",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/118585342",
       "fun_fact": "“Opus” is the title track of Eric Prydz’s release of the same name.",
@@ -5867,7 +5867,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6798740071"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PkQ5rEJaTmk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/6588199",
       "fun_fact": "“One (Your Name) - Radio Edit” appears on Swedish House Mafia’s release “One (Your Name)”.",
@@ -5891,7 +5891,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445170865"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qWLLqKU0rNw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/60906179",
       "fun_fact": "“Years - Radio Edit” appears on Alesso’s release “Years”.",
@@ -5915,7 +5915,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1496030525"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XINlEYXA3k0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1761983427",
       "fun_fact": "“Sky and Sand” appears on Paul Kalkbrenner’s release “Berlin Calling (The Soundtrack by Paul Kalkbrenner)”.",
@@ -5939,7 +5939,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/78991465"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5GowkwJN-qU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/655849042",
       "fun_fact": "“Shivers” appears on Armin van Buuren’s release “Live at Tomorrowland Winter 2019”.",
@@ -5963,7 +5963,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1621522791"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6e1hS_RcGZE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1717051137",
       "fun_fact": "“Starlight (Keep Me Afloat)” is the title track of Martin Garrix’s release of the same name.",
@@ -5987,7 +5987,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719003437"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Db4hVWCh4zk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2563894272",
       "fun_fact": "“Metro” is the title track of Kevin de Vries’s release of the same name.",
@@ -6011,7 +6011,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1383671386"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=exJlapzPnlc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2100387047",
       "fun_fact": "“The Hum” is the title track of Dimitri Vegas & Like Mike’s release of the same name.",
@@ -6035,7 +6035,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/945235020"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nhBVOsNJ_O0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/90760041",
       "fun_fact": "“A Sky Full of Stars - Hardwell Remix” is the title track of Coldplay’s release of the same name.",
@@ -6059,7 +6059,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719003750"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WHHmiWUqIZA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2563894342",
       "fun_fact": "“Aria” is the title track of Argy’s release of the same name.",
@@ -6083,7 +6083,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/968887508"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P6GmT-WJR_k",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/95702698",
       "fun_fact": "“Payback” is the title track of Dimitri Vangelis & Wyman’s release of the same name.",
@@ -6107,7 +6107,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1806341361"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4OeprBdP3hY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3308851591",
       "fun_fact": "“Sweet Disposition - ARTBAT Remix” is the title track of The Temper Trap’s release of the same name.",
@@ -6131,7 +6131,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1749043132"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=si6Ox8IuZeU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2823893032",
       "fun_fact": "“Move” is the title track of Adam Port’s release of the same name.",
@@ -6155,7 +6155,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1103179956"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MWshlyFLPCA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3450137621",
       "fun_fact": "“Ocarina” is the title track of Dimitri Vegas & Like Mike’s release of the same name.",
@@ -6179,7 +6179,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/726149086"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NUVCQXMUVnI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/5400243",
       "fun_fact": "“Memories (feat. Kid Cudi)” is the title track of David Guetta’s release of the same name.",
@@ -6203,7 +6203,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1698793878"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_V_5YoOoV28",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2395987895",
       "fun_fact": "“Eternity” appears on Anyma’s release “Genesys”.",
@@ -6227,7 +6227,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1628083605"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=R4shwJBnYEM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/18063173",
       "fun_fact": "“In My Mind - Axwell Mix” appears on Ivan Gough’s release “Club Life: Vol. Two Miami”.",
@@ -6251,7 +6251,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1145032280"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mVM8D0BQLyY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/132972756",
       "fun_fact": "“Grey” appears on Kölsch’s release “Speicher 93”.",
@@ -6275,7 +6275,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1021729324"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PDboaDrHGbA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61427200",
       "fun_fact": "“Greyhound” appears on Swedish House Mafia’s release “Until Now”.",
@@ -6299,7 +6299,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1649195190"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q8kUckZ15fE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1818069397",
       "fun_fact": "“Apollo” is the title track of Hardwell’s release of the same name.",
@@ -6323,7 +6323,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1734865606"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hlRwWLiuNXc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2390031045",
       "fun_fact": "“The Feeling - Lost Frequencies & Andromedik Deluxe Mix” appears on Lost Frequencies’s release “The Feeling (Remix Pack)”.",
@@ -6347,7 +6347,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1835100450"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IMcAYYi3cFk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/76411968",
       "fun_fact": "“Tsunami (Jump) [feat. Tinie Tempah] - Radio Edit” appears on DVBBS’s release “Demonstration”.",
@@ -6371,7 +6371,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444332710"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-iUUAeYaFqY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61037315",
       "fun_fact": "“Kick Out The Epic Motherf**ker - Radio Edit” appears on Dada Life’s release “The Rules Of Dada”.",
@@ -6395,7 +6395,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/626280123"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nDLUMFkoCv4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/73460627",
       "fun_fact": "“Leave The World Behind - Radio Edit” appears on Axwell’s release “Leave The World Behind”.",
@@ -6419,7 +6419,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1782126187"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fQWNeIiFf_s",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2545396411",
       "fun_fact": "“Thank You (Not So Bad)” is the title track of Dimitri Vegas & Like Mike’s release of the same name.",
@@ -6443,7 +6443,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1411669346"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kHBGV0--Yf0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/468826652",
       "fun_fact": "“Turn It Around” is the title track of DubVision’s release of the same name.",
@@ -6467,7 +6467,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1182472297"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yo4pmauhugo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/137311004",
       "fun_fact": "“Great Spirit” is the title track of Armin van Buuren’s release of the same name.",
@@ -6491,7 +6491,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1293743671"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=95D6zmJreQU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/415148682",
       "fun_fact": "“Lions in the Wild” is the title track of Martin Garrix’s release of the same name.",
@@ -6515,7 +6515,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1713469232"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=17ozSeGw-fY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/60977514",
       "fun_fact": "“Sweet Nothing (feat. Florence Welch)” is the title track of Calvin Harris’s release of the same name.",
@@ -6539,7 +6539,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1635570436"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q22MCFC0CP0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1832599647",
       "fun_fact": "“Turn On The Lights again.. (feat. Future)” is the title track of Fred again..’s release of the same name.",
@@ -6563,7 +6563,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1589148307"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kNXdITndbXk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/24276241",
       "fun_fact": "“Silhouettes - Original Radio Edit” appears on Avicii’s release “Silhouettes”.",
