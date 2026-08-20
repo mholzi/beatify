@@ -231,6 +231,13 @@ class LibraryPoolBuildView(HomeAssistantView):
 
 _GAME_OUTPUT_KEY = "beatify.game_output_settings"
 
+# Public aliases for the removal hook (#2263). The integration has to clear
+# these Stores when it is deleted, and a second copy of the key strings in
+# __init__.py would drift the first time one of them is renamed here.
+LIBRARY_SETTINGS_STORE_KEY = _SETTINGS_STORE_KEY
+LIBRARY_GAME_OUTPUT_STORE_KEY = _GAME_OUTPUT_KEY
+LIBRARY_STORE_VERSION = _SETTINGS_STORE_VERSION
+
 
 async def async_save_game_output_settings(
     hass: HomeAssistant, patch: dict[str, Any]

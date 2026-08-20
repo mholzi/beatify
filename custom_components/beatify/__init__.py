@@ -19,6 +19,7 @@ from homeassistant.components.frontend import (
     async_remove_panel,
 )
 from homeassistant.helpers.event import async_track_time_interval
+from homeassistant.helpers.storage import Store
 
 from .analytics import AnalyticsStorage
 from .const import (
@@ -68,6 +69,9 @@ from .server.views import (
     UsageView,
 )
 from .server.library_views import (
+    LIBRARY_GAME_OUTPUT_STORE_KEY,
+    LIBRARY_SETTINGS_STORE_KEY,
+    LIBRARY_STORE_VERSION,
     LibraryPoolStatusView,
     LibraryPoolBuildView,
     LibraryPoolExportView,
@@ -82,6 +86,7 @@ from .server.library_views import (
     LibraryPlaylistResolveView,
     LibraryPlaylistGenerateView,
 )
+from .server.setup_state import clear_setup
 from .server.websocket import BeatifyWebSocketHandler
 from .server.ws_handlers.admin import _finalize_and_end
 from .services.media_player import async_get_media_players
@@ -455,3 +460,57 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         )
 
     return unload_ok
+
+
+def _remove_persisted_files(hass: HomeAssistant) -> list[str]:
+    """Delete Beatify's files under ``config/beatify`` (blocking I/O).
+
+    Returns the names that existed and were removed, for the log line.
+    """
+    removed: list[str] = []
+    if clear_setup(hass):
+        removed.append("setup.json")
+    reports = Path(hass.config.path("beatify")) / "data_quality_reports.json"
+    try:
+        if reports.exists():
+            reports.unlink()
+            removed.append("data_quality_reports.json")
+    except OSError:
+        _LOGGER.warning("Could not delete %s during removal", reports, exc_info=True)
+    return removed
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Drop everything Beatify persisted outside the config entry (#2263).
+
+    Home Assistant deletes the config entry itself, but anything an integration
+    wrote elsewhere is its own responsibility. Beatify persists in three places:
+
+    * ``config/beatify/setup.json`` — the host's speaker and game-mode picks
+      (#1663), so a second device can re-hydrate a finished setup.
+    * ``config/beatify/data_quality_reports.json`` — player-reported wrong years.
+    * two HA ``Store`` keys holding the Crate Digger library settings.
+
+    None of it was cleaned up before, so removing and re-adding the integration
+    handed the fresh install the old speaker entity ids. @proffalken hit exactly
+    that: speakers he had since deleted were still assigned, the game refused to
+    start, and the in-app reset that clears the blob is unreachable when no game
+    can start. Reported in #2263.
+
+    Deliberately best-effort: a failure here must not leave the entry
+    half-removed, so every step logs and continues.
+    """
+    _LOGGER.info("Removing Beatify integration, clearing persisted state")
+
+    try:
+        removed = await hass.async_add_executor_job(_remove_persisted_files, hass)
+        if removed:
+            _LOGGER.info("Removed persisted files: %s", ", ".join(removed))
+    except Exception:  # noqa: BLE001
+        _LOGGER.warning("Could not clear persisted files on removal", exc_info=True)
+
+    for key in (LIBRARY_SETTINGS_STORE_KEY, LIBRARY_GAME_OUTPUT_STORE_KEY):
+        try:
+            await Store(hass, LIBRARY_STORE_VERSION, key).async_remove()
+        except Exception:  # noqa: BLE001
+            _LOGGER.warning("Could not remove Store %s on removal", key, exc_info=True)
