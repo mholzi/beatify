@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.8",
+  "version": "0.9",
   "songs": [
     {
       "year": 1962,
@@ -910,7 +910,8 @@
       "fun_fact_it": "Adriano Pappalardo - \"Ricominciamo\" (1979), dal canone del pop italiano.",
       "isrc": "ITB007900666",
       "uri_apple_music": "applemusic://track/1080717875",
-      "uri_deezer": "deezer://track/1009010"
+      "uri_deezer": "deezer://track/1009010",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1Hcf2TxhhX4"
     },
     {
       "year": 1979,
