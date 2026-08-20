@@ -1,6 +1,6 @@
 {
   "name": "Schweizer Hits 🇨🇭",
-  "version": "0.14",
+  "version": "0.15",
   "tags": [
     "swiss",
     "mundart",
@@ -2235,7 +2235,7 @@
       }
     },
     {
-      "year": 1977,
+      "year": 1999,
       "uri": "spotify:track:1myONPDiNfP95dKi85J8Tp",
       "artist": "Stephan Eicher",
       "alt_artists": [],
