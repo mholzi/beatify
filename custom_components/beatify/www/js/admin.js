@@ -47,6 +47,7 @@ import {
     REQUEST_STATUS_LABELS,
     buildRequestRowHtml,
     escapeHtml,
+    errorHeadlineAndDetail,
     acquireWakeLockFirst,
     applyStoredGameSettings,
     roundDurationLabel,
@@ -1334,15 +1335,24 @@ async function startGame() {
             // play Apple Music") from the {speaker}/{provider} details. If the
             // localized string still has an unfilled {placeholder} (older
             // backend without details), keep the backend's plain message.
-            let msg = data.message || 'Failed to start game';
-            if (data.code && window.BeatifyI18n) {
-                const key = 'errors.' + String(data.code).toUpperCase();
-                const t = BeatifyI18n.t(key, data);
-                if (t && t !== key && !/\{[a-z_]+\}/i.test(t)) msg = t;
-            }
+            // #2294: the by-code translation is the headline, not the whole
+            // truth. This path alone answers twelve different rejections under
+            // the single code INVALID_REQUEST — "No playlists selected",
+            // "Media player is unavailable", "No valid songs found in selected
+            // playlists" — and every one of them rendered as the same generic
+            // sentence, which sends the host into their own setup while the
+            // cause sits elsewhere. It cost a real evening: Music Assistant had
+            // been down for five days, so every speaker was unavailable, and
+            // the screen said only "check your setup". _json_error writes no
+            // log line either, so the banner is the only witness there is.
+            const errText = errorHeadlineAndDetail(
+                data,
+                window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null,
+                'Failed to start game'
+            );
             // #1663 item 1: start rejected (e.g. provider not supported) is a
             // setup/validation error → inline banner above Start, not a toast.
-            showSetupError(msg);
+            showSetupError(errText.message, undefined, errText.detail);
             return;
         }
 
@@ -1769,11 +1779,13 @@ function showError(message) {
  * @param {{label: string, onClick: function}} [action] - Optional way out
  *   rendered as a button in the banner (#2269).
  */
-function showSetupError(message, action) {
+function showSetupError(message, action, detail) {
     var anchor = document.getElementById('home-start-game');
     if (!anchor) {
-        // No start button in view (e.g. mid-game) — fall back to a toast.
-        showToast(message, { type: 'error' });
+        // No start button in view (e.g. mid-game) — fall back to a toast. The
+        // toast has no second slot, so the detail is appended inline (#2294).
+        showToast(detail && detail !== message ? message + ' — ' + detail : message,
+            { type: 'error' });
         return;
     }
     showBanner(message, {
@@ -1781,6 +1793,7 @@ function showSetupError(message, action) {
         id: 'home-start-banner',
         title: (window.BeatifyI18n && BeatifyI18n.t('errors.startNotPossible')) || 'Cannot start',
         type: 'error',
+        detail: detail,
         action: action,
     });
 }

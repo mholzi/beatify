@@ -138,6 +138,11 @@ export function showToast(message, opts) {
  * @param {(HTMLElement|string)} [opts.parent] - Explicit parent; defaults to the
  *   anchor's parent.
  * @param {string} [opts.title] - Optional bold title line.
+ * @param {string} [opts.detail] - Optional secondary line under the body
+ *   text (#2294). Use it for the server's own wording when `message` is a
+ *   translated-by-code headline: twelve different create-game rejections
+ *   share the code INVALID_REQUEST, so the headline alone cannot say which
+ *   one fired. Rendered smaller and dimmer — a hint, not a second message.
  * @param {('error'|'warning'|'info')} [opts.type='error'] - Visual accent.
  * @param {string} [opts.icon] - Leading glyph.
  * @param {string} [opts.id='beatify-banner'] - Reused id — a second call with the
@@ -189,6 +194,14 @@ export function showBanner(message, opts) {
     textEl.className = 'beatify-banner-text';
     textEl.textContent = String(message);
     content.appendChild(textEl);
+    // #2294: the server's own message, kept when a by-code translation replaced
+    // it. Skipped when it would only repeat the headline.
+    if (opts.detail && String(opts.detail) !== String(message)) {
+        var detailEl = document.createElement('div');
+        detailEl.className = 'beatify-banner-detail';
+        detailEl.textContent = String(opts.detail);
+        content.appendChild(detailEl);
+    }
     if (opts.action && opts.action.label && typeof opts.action.onClick === 'function') {
         var actionBtn = document.createElement('button');
         actionBtn.type = 'button';

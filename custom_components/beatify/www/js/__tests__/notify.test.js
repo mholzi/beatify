@@ -188,6 +188,55 @@ describe('#1663 item 1 — showBanner', () => {
         expect(parent.children.some((c) => c.id === 'home-start-banner')).toBe(false);
     });
 
+    // #2294 — the detail line carries the server's own reason under a
+    // translated-by-code headline. Without it, twelve different create-game
+    // rejections are indistinguishable on screen.
+    it('renders the detail line under the body text', () => {
+        const parent = makeNode('div');
+        const anchor = makeNode('button');
+        anchor.setAttribute('id', 'home-start-game');
+        parent.appendChild(anchor);
+        body.appendChild(parent);
+
+        const banner = showBanner('Diese Anfrage war ungültig.', {
+            anchor, id: 'home-start-banner', detail: 'Media player is unavailable',
+        });
+        const content = banner.children.find((c) => c.classList.contains('beatify-banner-content'));
+        const text = content.children.find((c) => c.classList.contains('beatify-banner-text'));
+        const detail = content.children.find((c) => c.classList.contains('beatify-banner-detail'));
+        expect(text.textContent).toBe('Diese Anfrage war ungültig.');
+        expect(detail).toBeTruthy();
+        expect(detail.textContent).toBe('Media player is unavailable');
+        // Order matters: the detail reads as a follow-up, not a headline.
+        expect(content.children.indexOf(text)).toBeLessThan(content.children.indexOf(detail));
+    });
+
+    it('renders no detail line when none is given', () => {
+        const parent = makeNode('div');
+        const anchor = makeNode('button');
+        anchor.setAttribute('id', 'home-start-game');
+        parent.appendChild(anchor);
+        body.appendChild(parent);
+
+        const banner = showBanner('No players yet', { anchor, id: 'home-start-banner' });
+        const content = banner.children.find((c) => c.classList.contains('beatify-banner-content'));
+        expect(content.children.some((c) => c.classList.contains('beatify-banner-detail'))).toBe(false);
+    });
+
+    it('drops a detail that only repeats the body text', () => {
+        const parent = makeNode('div');
+        const anchor = makeNode('button');
+        anchor.setAttribute('id', 'home-start-game');
+        parent.appendChild(anchor);
+        body.appendChild(parent);
+
+        const banner = showBanner('Media player is unavailable', {
+            anchor, id: 'home-start-banner', detail: 'Media player is unavailable',
+        });
+        const content = banner.children.find((c) => c.classList.contains('beatify-banner-content'));
+        expect(content.children.some((c) => c.classList.contains('beatify-banner-detail'))).toBe(false);
+    });
+
     it('renders no action button when no action is given', () => {
         const parent = makeNode('div');
         const anchor = makeNode('button');

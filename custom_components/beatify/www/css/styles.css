@@ -16685,6 +16685,15 @@ body.theme-dark .your-result-stats .stat-value {
 .beatify-banner--warning .beatify-banner-title { color: var(--color-warning); }
 .beatify-banner--info .beatify-banner-title { color: var(--color-accent-secondary); }
 .beatify-banner-text { line-height: 1.4; color: var(--color-text-neon-muted); word-break: break-word; }
+/* #2294: the server's own reason, under the translated headline. Dimmer and
+   smaller so it reads as a detail rather than a competing message. */
+.beatify-banner-detail {
+    margin-top: var(--space-xs);
+    font-size: var(--font-size-sm);
+    line-height: 1.35;
+    color: var(--color-text-light);
+    word-break: break-word;
+}
 .beatify-banner-action {
     margin-top: var(--space-xs);
     background: none;
