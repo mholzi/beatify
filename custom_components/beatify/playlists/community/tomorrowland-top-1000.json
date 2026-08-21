@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "edm",
     "electronic",
@@ -667,7 +667,11 @@
         "Cajmere, Dajae, Marco Lys, Green Velvet",
         "Dimitri Vegas & Like Mike, Marlon Hoffstadt, Dj Konik, Dimitri Vegas, Like Mike",
         "Calvin Harris, Sam Smith, Jessie Reyez"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/904863611",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/904863611"
+      }
     },
     {
       "artist": "Amber Broos",
@@ -687,7 +691,11 @@
         "Tiësto, Oaks",
         "Purple Disco Machine",
         "Justice"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1688640735",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1688640735"
+      }
     },
     {
       "artist": "Eric Prydz",
@@ -707,7 +715,11 @@
         "Kid Cudi, Crookers",
         "KI/KI, Marlon Hoffstadt",
         "Higher Self, Lauren Mason"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1216951257",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1216951257"
+      }
     },
     {
       "artist": "BURNS",
@@ -727,7 +739,11 @@
         "Notre Dame",
         "felix jaehn, Sandro Cavazza",
         "Dimitri Vegas & Like Mike, Bassjackers, D'Angello & Francis"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1402864820",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1402864820"
+      }
     },
     {
       "artist": "CamelPhat, Elderbrook",
@@ -815,7 +831,11 @@
         "Sonique, The Conductor & The Cowboy",
         "Swedish House Mafia, Niki & The Dove",
         "Cygnus X, Rank 1"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1702716217",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1702716217"
+      }
     },
     {
       "artist": "Dimitri Vegas & Like Mike, Regi",
@@ -835,7 +855,11 @@
         "Bastille, Audien",
         "Oxia",
         "Mark Knight"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1826499975",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1826499975"
+      }
     },
     {
       "artist": "deadmau5",
@@ -927,7 +951,11 @@
         "Dimitri Vegas & Like Mike, Armin van Buuren, W&W",
         "Dimitri Vegas & Like Mike",
         "Bedrock, John Digweed, Nick Muir"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1043297503",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1043297503"
+      }
     },
     {
       "artist": "cassö, RAYE, D-Block Europe",
@@ -995,7 +1023,11 @@
         "Shouse, David Guetta",
         "Fred again.., Obongjayar",
         "Dimitri Vegas, Like Mike, Dada Life"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/207180742",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/207180742"
+      }
     },
     {
       "artist": "Sia, Diplo, Labrinth, LSD, Lost Frequencies",
@@ -1247,7 +1279,11 @@
         "Format:B",
         "Red Carpet, Brad Carter",
         "Marco V"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1170699706",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1170699706"
+      }
     },
     {
       "artist": "Avicii",
@@ -1267,7 +1303,11 @@
         "ACRAZE, Cherish",
         "Veracocha",
         "Alan Fitzpatrick"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1807714400",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1807714400"
+      }
     },
     {
       "artist": "Mau P",
@@ -1331,7 +1371,11 @@
         "Otto Knows, Avicii",
         "Gotye, FISHER, Chris Lake, Sante Sansone, Kimbra",
         "Tiësto, The Chainsmokers"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1648721722",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1648721722"
+      }
     },
     {
       "artist": "Laidback Luke, Steve Angello",
@@ -1675,7 +1719,11 @@
         "Martin Garrix, Khalid, DubVision",
         "HUGEL, Topic, Arash, Daecolm",
         "CYRIL"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1351453116",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1351453116"
+      }
     },
     {
       "artist": "Armin van Buuren, Sharon Den Adel",
@@ -1791,7 +1839,11 @@
         "Kevin de Vries",
         "San Holo",
         "Robin Schulz, Francesco Yates, Stadiumx"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/697195787",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/697195787"
+      }
     },
     {
       "artist": "John Summit, Echoes",
@@ -2143,7 +2195,11 @@
         "Alan Walker",
         "Armin van Buuren, AVIAN GRAYS, Jordan Shaw",
         "Fragma"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1364107062",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1364107062"
+      }
     },
     {
       "artist": "Calvin Harris, Clementine Douglas, Cassian",
@@ -2187,7 +2243,11 @@
         "Dubfire",
         "Miss Monique",
         "Ummet Ozcan"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1821960365",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1821960365"
+      }
     },
     {
       "artist": "Swedish House Mafia, Knife Party",
@@ -2207,7 +2267,11 @@
         "Pleasurekraft",
         "Dirty South, Rudy, Axwell",
         "Peggy Gou"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/716594626",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/716594626"
+      }
     },
     {
       "artist": "Nari, Milani",
@@ -2275,7 +2339,11 @@
         "Tiësto, Sevenn",
         "Martin Garrix, Tiësto",
         "Tiësto, Dzeko, Lena Leon"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1553064274",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1553064274"
+      }
     },
     {
       "artist": "M83, Eric Prydz",
@@ -2295,7 +2363,11 @@
         "Kölsch, Gregor Schwellenbach",
         "Ernesto vs. Bastian, Susana",
         "CYRIL"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/828060155",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/828060155"
+      }
     },
     {
       "artist": "David Guetta, Nicky Romero",
@@ -2411,7 +2483,11 @@
         "David Guetta, Showtek",
         "Knife Party",
         "C-Mos, Axwell"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1489005963",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1489005963"
+      }
     },
     {
       "artist": "Avicii, Lenny Kravitz",
@@ -2547,7 +2623,11 @@
         "deadmau5, Chris James",
         "Fatboy Slim, Riva Starr, Beardyman, Calvin Harris",
         "BL3SS, CamrinWatsin, bbyclose"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1337209540",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1337209540"
+      }
     },
     {
       "artist": "Martin Garrix, Matisse & Sadko, BARBZ",
@@ -2979,7 +3059,11 @@
         "Veracocha",
         "Steve Angello, The Presets",
         "Estelle, Lost Frequencies, Kanye West"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1609229155",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1609229155"
+      }
     },
     {
       "artist": "deadmau5, Chris James",
@@ -3163,7 +3247,11 @@
         "Gregor Salto, Florian T",
         "Kygo, Rita Ora",
         "Fred again.., Baby Keem"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1764403358",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1764403358"
+      }
     },
     {
       "artist": "Kölsch",
@@ -3227,7 +3315,11 @@
         "Tiësto, Dzeko, Lena Leon",
         "Lifelike, Kris Menace",
         "Cassian, YOTTO, Da Hool"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1229287791",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1229287791"
+      }
     },
     {
       "artist": "Alan Fitzpatrick",
@@ -3247,7 +3339,11 @@
         "Sub Focus, Culture Shock, Fragma",
         "Jonas Blue, Malive",
         "Laurent Garnier"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1715039095",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1715039095"
+      }
     },
     {
       "artist": "Avicii",
@@ -3291,7 +3387,11 @@
         "Tiësto, BT",
         "Roger Sanchez",
         "Vintage Culture, Fancy Inc, The Beach"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1713785634",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1713785634"
+      }
     },
     {
       "artist": "David Guetta, USHER",
@@ -3403,7 +3503,11 @@
         "Tiësto, Poppy Baskcomb",
         "KI/KI, Marlon Hoffstadt",
         "Deniz Koyu"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1756335935",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1756335935"
+      }
     },
     {
       "artist": "Knife Party",
@@ -3471,7 +3575,11 @@
         "Rank 1",
         "Sub Focus",
         "Justice, Soulwax"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1613337874",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1613337874"
+      }
     },
     {
       "artist": "Calvin Harris",
@@ -3491,7 +3599,11 @@
         "Delerium, Sarah McLachlan, John Summit",
         "ILLENIUM, Valerie Broussard, NURKO",
         "Skrillex, Damian \"Jr Gong\" Marley"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1714694294",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1714694294"
+      }
     },
     {
       "artist": "&ME, Rampa, Adam Port, Alan Dixon, Keinemusik, Arabic Piano",
@@ -3511,7 +3623,11 @@
         "Rebūke, Konstantin Sibold, ZAC, CARMEE",
         "David Guetta, MORTEN, Aloe Blacc",
         "Tiësto, Deorro"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1733869477",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1733869477"
+      }
     },
     {
       "artist": "Martin Garrix, Matisse & Sadko",
@@ -3555,7 +3671,11 @@
         "BURNS",
         "Kaskade, John Dahlbäck, Sansa",
         "Bodyrox, Luciana, D. Ramirez"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1819521951",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1819521951"
+      }
     },
     {
       "artist": "Oliver Heldens",
@@ -3599,7 +3719,11 @@
         "Secondcity",
         "Becky Hill, Galantis",
         "MOGUAI, Cheat Codes"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/955824979",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/955824979"
+      }
     },
     {
       "artist": "The Killers, Jacques Lu Cont",
@@ -3759,7 +3883,11 @@
         "Mr. Probz, Chris Brown, T.I.",
         "Dj Bountyhunter",
         "Martin Garrix, Macklemore, Fall Out Boy, Tiësto"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1440759730",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440759730"
+      }
     },
     {
       "artist": "Mr. Probz, Chris Brown, T.I.",
@@ -3779,7 +3907,11 @@
         "Pryda",
         "Kevin de Vries",
         "Pleasurekraft"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1532426999",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1532426999"
+      }
     },
     {
       "artist": "Axwell, Errol Reid",
@@ -3935,7 +4067,11 @@
         "Andain",
         "Cassian, SCRIPT, Belladonna (ofc)",
         "Salif Keita, Martin Solveig"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1748145546",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1748145546"
+      }
     },
     {
       "artist": "Avicii, Aloe Blacc",
@@ -3955,7 +4091,11 @@
         "Tiësto, R3HAB",
         "Diplo, Paul Woolford, Kareen Lomax",
         "Tiësto, KSHMR, VASSY"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1457882148",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1457882148"
+      }
     },
     {
       "artist": "Steve Angello, Matisse & Sadko",
@@ -3999,7 +4139,11 @@
         "DJ Hyperactive, Len Faki",
         "Armin van Buuren",
         "Martin Garrix, John Martin"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1116716471",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1116716471"
+      }
     },
     {
       "artist": "Armand Van Helden",
@@ -4019,7 +4163,11 @@
         "Martin Garrix, Third Party, Oaks, Declan J Donovan",
         "David Tort, Gosha",
         "Maceo Plex, Chromatics"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/714918921",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/714918921"
+      }
     },
     {
       "artist": "David Guetta, MORTEN, RAYE",
@@ -4319,7 +4467,11 @@
         "Alok, Zeeba, Bruno Martini",
         "BUNT., Nate Traveller",
         "Alesso, Katy Perry"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/405926184",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/405926184"
+      }
     },
     {
       "artist": "Robin Schulz, Francesco Yates, Stadiumx",
@@ -4459,7 +4611,11 @@
         "Diplo, SIDEPIECE",
         "David Guetta, MORTEN",
         "PAWSA"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1399102683",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1399102683"
+      }
     },
     {
       "artist": "Matisse & Sadko",
@@ -4479,7 +4635,11 @@
         "Martin Garrix, Macklemore, Fall Out Boy, Tiësto",
         "HUGEL, Topic, Arash, Daecolm",
         "Sia, Diplo, Labrinth, LSD, Lost Frequencies"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1424973204",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1424973204"
+      }
     },
     {
       "artist": "James Hype",
@@ -4587,7 +4747,11 @@
         "Gregor Salto, Florian T",
         "RAFFA GUIDO",
         "Galantis"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/716112616",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/716112616"
+      }
     },
     {
       "artist": "Tiësto, Deorro",
@@ -4607,7 +4771,11 @@
         "Vintage Culture, Fancy Inc",
         "Amine Edge & DANCE, Blaze (Kevin Hedge)",
         "Martin Garrix, Khalid, DubVision"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1619238428",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1619238428"
+      }
     },
     {
       "artist": "Kaskade, deadmau5",
@@ -4671,7 +4839,11 @@
         "Round Table Knights, Bauchamp",
         "Benny Benassi, Gary Go",
         "Double 99"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/935889931",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/935889931"
+      }
     },
     {
       "artist": "Vintage Culture, Goodboys",
@@ -4831,7 +5003,11 @@
         "Oden & Fatzo",
         "Lifelike, Kris Menace",
         "San Holo"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1596283391",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1596283391"
+      }
     },
     {
       "artist": "Dom Dolla, Clementine Douglas",
@@ -4851,7 +5027,11 @@
         "Joel Corry, James Hype",
         "Dimension",
         "John Summit"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1630235826",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1630235826"
+      }
     },
     {
       "artist": "Steve Angello",
@@ -4871,7 +5051,11 @@
         "Boris Brejcha, Laura Korinth",
         "Alan Fitzpatrick",
         "Dizzee Rascal"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1339709487",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1339709487"
+      }
     },
     {
       "artist": "Swedish House Mafia",
@@ -4915,7 +5099,11 @@
         "Vintage Culture, Goodboys",
         "Maverick Sabre, Jorja Smith, Vintage Culture, Slow Motion",
         "Tiësto, Deorro"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1481606692",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1481606692"
+      }
     },
     {
       "artist": "Cirez D",
@@ -4935,7 +5123,11 @@
         "Rebūke, Konstantin Sibold, ZAC, CARMEE",
         "Soul Central, Danny Krivit",
         "MK, Chrystal"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/345312858",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/345312858"
+      }
     },
     {
       "artist": "Deniz Koyu",
@@ -4955,7 +5147,11 @@
         "Martin Solveig, Ina Wroldsen",
         "The Chainsmokers, Daya, W&W",
         "Adriatique, WhoMadeWho"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1886577247",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1886577247"
+      }
     },
     {
       "artist": "Duke Dumont, Jax Jones",
@@ -5063,7 +5259,11 @@
         "Alesso, Katy Perry",
         "ARTBAT, Pete Tong",
         "Rune RK, Firebeatz"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1786170776",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1786170776"
+      }
     },
     {
       "artist": "Sonny Fodera, Jazzy, D.O.D",
@@ -5107,7 +5307,11 @@
         "Sub Focus, Dimension",
         "Showtek",
         "Dom Dolla, Anyma, Daya"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/6798409406",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6798409406"
+      }
     },
     {
       "artist": "Adriatique, WhoMadeWho",
@@ -5127,7 +5331,11 @@
         "Steve Aoki, Chris Lake, Tujamo",
         "Feist, Boys Noize",
         "BLOND:ISH, Stevie Appleton"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1701618391",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1701618391"
+      }
     },
     {
       "artist": "Nadia Ali",
@@ -5147,7 +5355,11 @@
         "Massano",
         "Oliver Heldens",
         "Alan Fitzpatrick"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/411864197",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/411864197"
+      }
     },
     {
       "artist": "Massano",
@@ -5167,7 +5379,11 @@
         "Jan Blomqvist, Ben Böhmer",
         "Pendulum, AN21, Max Vangeli, Steve Angello",
         "Alesso, Sentinel"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1793074780",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1793074780"
+      }
     },
     {
       "artist": "Martin Solveig, SAM WHITE",
@@ -5231,7 +5447,11 @@
         "David Guetta, Anne-Marie, Coi Leray",
         "Disciples",
         "Avicii"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1812646954",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1812646954"
+      }
     },
     {
       "artist": "James Hype, Miggy Dela Rosa",
@@ -5631,7 +5851,11 @@
         "Paul van Dyk, Hemstock, Jennings",
         "FISHER, bbyclose",
         "Dim Chris, Sebastien Drums, Avicii"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1444895710",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444895710"
+      }
     },
     {
       "artist": "Dash Berlin",
@@ -5835,7 +6059,11 @@
         "Duck Sauce, A-Trak, Armand Van Helden",
         "Martin Garrix, Matisse & Sadko, BARBZ",
         "Solardo, Eli Brown"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/627423228",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/627423228"
+      }
     },
     {
       "artist": "MEDUZA, Dermot Kennedy",
@@ -5943,7 +6171,11 @@
         "Michael Calfan",
         "Samm",
         "Vintage Culture, Fancy Inc"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1797889968",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1797889968"
+      }
     },
     {
       "artist": "Armin van Buuren, AVIAN GRAYS, Jordan Shaw",
@@ -6095,7 +6327,11 @@
         "4444 OF A KIND, D-Block & S-te-Fan, Sub Zero Project",
         "The Prodigy",
         "Art Of Trance, Ferry Corsten"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/408307507",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/408307507"
+      }
     },
     {
       "artist": "Kelis",
@@ -6303,7 +6539,11 @@
         "Armin van Buuren, Jan Vayne",
         "L.P. Rhythm",
         "Hypaton, David Guetta, La Bouche"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1760613455",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1760613455"
+      }
     },
     {
       "artist": "Becky Hill, Galantis",
@@ -6395,7 +6635,11 @@
         "Bob Sinclar, Steve Edwards",
         "Rusko, Netsky",
         "Armin van Buuren, Agents Of Time, ORKID"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1350836400",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1350836400"
+      }
     },
     {
       "artist": "Boris Brejcha, Laura Korinth",
@@ -6463,7 +6707,11 @@
         "System F",
         "DubVision, AFROJACK",
         "Rampa, Adam Port, &ME, chuala, Keinemusik"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1647406346",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1647406346"
+      }
     },
     {
       "artist": "Bodyrox, Luciana, D. Ramirez",
@@ -6507,7 +6755,11 @@
         "Martin Solveig, Ina Wroldsen",
         "Kelis",
         "Red Hot Chili Peppers"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1508567685",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1508567685"
+      }
     },
     {
       "artist": "Alesso, Roy English",
@@ -6571,7 +6823,11 @@
         "Martin Garrix, Clinton Kane",
         "Above & Beyond",
         "Swedish House Mafia, Alicia Keys"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1792993808",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1792993808"
+      }
     },
     {
       "artist": "Martin Garrix, Sentinel, Bonn",
@@ -6779,7 +7035,11 @@
         "CamelPhat",
         "Swedish House Mafia, Sting",
         "Martin Garrix, Justin Mylo, Dewain Whitmore"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1678866972",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1678866972"
+      }
     },
     {
       "artist": "Paul Kalkbrenner",
@@ -6915,7 +7175,11 @@
         "Vintage Culture, Adam K, MKLA",
         "Niels Van Gogh, Tiësto",
         "Calvin Harris, Ellie Goulding"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1164045276",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1164045276"
+      }
     },
     {
       "artist": "Dimitri Vegas & Like Mike, Bassjackers, D'Angello & Francis",
@@ -6959,7 +7223,11 @@
         "Porter Robinson",
         "Mark Knight",
         "Alesso, TINI"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/321932726",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/321932726"
+      }
     },
     {
       "artist": "Calvin Harris, Clementine Douglas",
@@ -6979,7 +7247,11 @@
         "Alan Fitzpatrick",
         "AVAION, Sofiya Nzau",
         "Dom Dolla, Anyma, Daya"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1811333176",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1811333176"
+      }
     },
     {
       "artist": "Rolando",
@@ -6999,7 +7271,11 @@
         "R3HAB, NERVO, Ummet Ozcan",
         "Mr. Belt & Wezol",
         "Mike Williams, Mesto"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1436962540",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1436962540"
+      }
     },
     {
       "artist": "ARTY",
@@ -7067,7 +7343,11 @@
         "MOGUAI, Cheat Codes",
         "BURNS",
         "AFROJACK, NERVO, Dimitri Vegas & Like Mike"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1605320589",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1605320589"
+      }
     },
     {
       "artist": "Oden & Fatzo",
@@ -7131,7 +7411,11 @@
         "Alesso, Sentinel",
         "Marian Hill, Franky Rizardo",
         "Armin van Buuren, Agents Of Time, ORKID"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1027434760",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1027434760"
+      }
     },
     {
       "artist": "Tommy Trash",
@@ -7175,7 +7459,11 @@
         "M.A.N.D.Y., Booka Shade",
         "Zonderling, Don Diablo",
         "Lost Frequencies, Zonderling"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1762696276",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1762696276"
+      }
     },
     {
       "artist": "Martin Garrix, Matisse & Sadko",
@@ -7243,7 +7531,11 @@
         "Steve Angello, The Presets",
         "BICEP, Four Tet",
         "Tchami"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1845867194",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1845867194"
+      }
     },
     {
       "artist": "Alan Walker, Tiësto",
@@ -7263,7 +7555,11 @@
         "Martin Garrix, Clinton Kane",
         "Jay Hardway",
         "Martin Garrix, DubVision, Jaimes"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1196295329",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1196295329"
+      }
     },
     {
       "artist": "Justice",
@@ -7283,7 +7579,11 @@
         "Dimitri Vegas & Like Mike, W&W",
         "Alesso, Katy Perry",
         "Joel Corry, Da Hool"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/252106445",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/252106445"
+      }
     },
     {
       "artist": "Fred again.., Skrillex, Four Tet",
@@ -7555,7 +7855,11 @@
         "Yves V, HIDDN",
         "Cloonee, Young M.A, InntRaw, HNTR",
         "Vintage Culture, Fancy Inc, The Beach"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1444998608",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444998608"
+      }
     },
     {
       "artist": "BURNS",
@@ -7695,7 +7999,11 @@
         "Lost Frequencies, Elley Duhé, X Ambassadors",
         "David Guetta, Akon",
         "Masters At Work"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/18238640",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/18238640"
+      }
     },
     {
       "artist": "Eric Prydz, Floyd",
@@ -8011,7 +8319,11 @@
         "Felix Da Housecat",
         "Sub Focus, Culture Shock, Fragma",
         "Martin Garrix, Matisse & Sadko, BARBZ"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1358792909",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1358792909"
+      }
     },
     {
       "artist": "Konstantin Sibold, Adam Sellouk",
@@ -8031,7 +8343,11 @@
         "Sub Focus",
         "Martin Solveig, Roy Woods",
         "Lifelike, Kris Menace"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1807331659",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1807331659"
+      }
     },
     {
       "artist": "David Guetta, Benny Benassi",
@@ -8099,7 +8415,11 @@
         "AVAION",
         "Tiësto, KSHMR, VASSY",
         "Jack Ü, Skrillex, Diplo, Kiesza, Tchami"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/327794731",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/327794731"
+      }
     },
     {
       "artist": "ANOTR, Abel Balder",
@@ -8143,7 +8463,11 @@
         "Tiësto, Kirsty Hawkshaw",
         "Jewelz & Sparks, AFROJACK, Sunnery James & Ryan Marciano",
         "Kygo, Rita Ora"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1872557578",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1872557578"
+      }
     },
     {
       "artist": "Borai & Denham Audio, Franky Rizardo",
@@ -8187,7 +8511,11 @@
         "AN21, Max Vangeli, Julie McKnight",
         "Alesso, TINI",
         "Watermät"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1791526478",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1791526478"
+      }
     },
     {
       "artist": "AN21, Max Vangeli",
@@ -8347,7 +8675,11 @@
         "Fragma",
         "Armin van Buuren, The Stickmen Project",
         "Marshall Jefferson, Solardo"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1453025844",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1453025844"
+      }
     },
     {
       "artist": "Lost Frequencies, Mathieu Koss",
@@ -8391,7 +8723,11 @@
         "Topic, Fireboy DML, Nico Santos",
         "FISHER, Kita Alexander",
         "Calvin Harris, Disciples, Chris Lake"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1134092369",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1134092369"
+      }
     },
     {
       "artist": "Dom Dolla, Daya",
@@ -8527,7 +8863,11 @@
         "Armin van Buuren, Agents Of Time, ORKID",
         "ILLENIUM, Valerie Broussard, NURKO",
         "Martin Solveig, Good Times Ahead"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1888238247",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1888238247"
+      }
     },
     {
       "artist": "Dimitri Vegas & Like Mike, Armin van Buuren, W&W",
@@ -8619,7 +8959,11 @@
         "Binary Finary, Paul van Dyk",
         "Kelis",
         "Butch, Kölsch"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1591091802",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1591091802"
+      }
     },
     {
       "artist": "Martin Solveig, Madeon",
@@ -8663,7 +9007,11 @@
         "Empire Of The Sun, Zedd",
         "Tiësto, Dzeko, Preme, Post Malone",
         "Don Diablo, Matt Nash"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1511808887",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1511808887"
+      }
     },
     {
       "artist": "Hardwell",
@@ -8779,7 +9127,11 @@
         "Justice",
         "David Guetta, Akon",
         "Veracocha"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1565542087",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1565542087"
+      }
     },
     {
       "artist": "BICEP, Four Tet",
@@ -8799,7 +9151,11 @@
         "Kelis",
         "Sebastian Ingrosso, Céline Dion",
         "Zedd, Matthew Koma"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1344432410",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1344432410"
+      }
     },
     {
       "artist": "Martin Solveig",
@@ -8819,7 +9175,11 @@
         "Mason",
         "KI/KI, Marlon Hoffstadt",
         "Josh Butler, Bontan, Pleasurekraft"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1399546655",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1399546655"
+      }
     },
     {
       "artist": "Rusko, Netsky",
@@ -8907,7 +9267,11 @@
         "Jessie Ware, Disclosure",
         "Miss Monique",
         "MK, Dom Dolla"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1714741686",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1714741686"
+      }
     },
     {
       "artist": "Chris Lorenzo",
@@ -8971,7 +9335,11 @@
         "M.A.N.D.Y., Booka Shade",
         "Alesso, Katy Perry",
         "Steve Angello"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1772953609",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1772953609"
+      }
     },
     {
       "artist": "Daft Punk",
@@ -9035,7 +9403,11 @@
         "MEDUZA, James Carter, Elley Duhé, FAST BOY",
         "Josh Butler, Bontan, Pleasurekraft",
         "deadmau5, Chris James"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1605184461",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1605184461"
+      }
     },
     {
       "artist": "The Temper Trap, John Summit, Silver Panda",
@@ -9055,7 +9427,11 @@
         "James Hype, Major Lazer",
         "Sub Focus, Culture Shock, Fragma",
         "Krystal Klear"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1782597728",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1782597728"
+      }
     },
     {
       "artist": "Zedd, Foxes",
@@ -9243,7 +9619,11 @@
         "Feist, Boys Noize",
         "Rolando",
         "Switch"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/974822177",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/974822177"
+      }
     },
     {
       "artist": "Swedish House Mafia, Connie Constance",
@@ -9307,7 +9687,11 @@
         "Anyma, CamelPhat",
         "Mark Knight",
         "Dimitri Vegas, Like Mike, Dada Life"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1476659595",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1476659595"
+      }
     },
     {
       "artist": "Armin van Buuren, Perpetuous Dreamer",
@@ -9327,7 +9711,11 @@
         "The Chainsmokers, Coldplay, Alesso",
         "Marc Benjamin, Marcus Santoro, David Pietras",
         "Bastille, Audien"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1363107612",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1363107612"
+      }
     },
     {
       "artist": "Bakermat",
@@ -9395,7 +9783,11 @@
         "Svenson & Gielen",
         "Digitalism",
         "Bob Sinclar, Steve Edwards"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1508343068",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1508343068"
+      }
     },
     {
       "artist": "DubVision, AFROJACK",
@@ -9463,7 +9855,11 @@
         "Lost Frequencies, Zonderling, Kelvin Jones",
         "Becky Hill, Galantis",
         "Above & Beyond"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1826500872",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1826500872"
+      }
     },
     {
       "artist": "Tiësto, Stargate, Aloe Blacc",
@@ -9531,7 +9927,11 @@
         "Armin van Buuren, Tempo Giusto",
         "SOFI TUKKER, John Summit, Vintage Culture",
         "Tiësto, Oaks"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1734890118",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1734890118"
+      }
     },
     {
       "artist": "LF SYSTEM",
@@ -9551,7 +9951,11 @@
         "Martin Garrix, Matisse & Sadko, Alex Aris",
         "Calvin Harris, Ellie Goulding",
         "PAWSA, The Adventures Of Stevie V"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1616903944",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1616903944"
+      }
     },
     {
       "artist": "Purple Disco Machine",
@@ -9783,7 +10187,11 @@
         "Alesso, TINI",
         "Bodyrox, Luciana, D. Ramirez",
         "Armand Van Helden, Duane Harden"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1747816820",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1747816820"
+      }
     },
     {
       "artist": "Watermät",
@@ -9867,7 +10275,11 @@
         "MOGUAI, Cheat Codes",
         "Shakedown, Anyma, Layton Giordani",
         "Bruno Mars, Shepard, Sultan"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1327431510",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1327431510"
+      }
     },
     {
       "artist": "Julien Jabre, Jerome Sydenham, Sebastian Ingrosso",
@@ -10099,7 +10511,11 @@
         "Gotye, FISHER, Chris Lake, Sante Sansone, Kimbra",
         "Chris Lake, Alexis Roberts",
         "Celeda, Danny Tenaglia"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1463042852",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1463042852"
+      }
     },
     {
       "artist": "Joris Voorn",
@@ -10143,7 +10559,11 @@
         "Art Of Trance, Ferry Corsten",
         "Laurent Garnier",
         "KI/KI"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1664544640",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1664544640"
+      }
     },
     {
       "artist": "Chuckie, Hardwell, Ambush",
@@ -10255,7 +10675,11 @@
         "Disclosure, Rivo, Eliza Doolittle",
         "Armin van Buuren, Perpetuous Dreamer",
         "Martin Garrix, Brooks"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1499707239",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1499707239"
+      }
     },
     {
       "artist": "Martin Garrix, John Martin",
@@ -10371,7 +10795,11 @@
         "Zerb, Sofiya Nzau",
         "David Guetta, Benny Benassi",
         "Pegassi"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1821960367",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1821960367"
+      }
     },
     {
       "artist": "Peggy Gou, Soulwax",
@@ -10415,7 +10843,11 @@
         "The Chainsmokers, Coldplay, Alesso",
         "Armin van Buuren, Sunnery James & Ryan Marciano",
         "NERVO"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1280426334",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1280426334"
+      }
     },
     {
       "artist": "Ten Walls",
@@ -10459,7 +10891,11 @@
         "Supermode, Axwell, Steve Angello",
         "Travis Scott, CHASE B",
         "Armin van Buuren, Tempo Giusto"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1793816300",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1793816300"
+      }
     },
     {
       "artist": "Romy, Fred again..",
@@ -10571,7 +11007,11 @@
         "Josh Baker, Omar+",
         "Dimitri Vegas & Like Mike",
         "Shakedown, Anyma, Layton Giordani"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1753764427",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1753764427"
+      }
     },
     {
       "artist": "Freejak",
@@ -10639,7 +11079,11 @@
         "Alesso, Zara Larsson",
         "Coldplay, Swedish House Mafia",
         "Dj Bountyhunter"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1735753670",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1735753670"
+      }
     },
     {
       "artist": "RAFFA GUIDO",
@@ -10731,7 +11175,11 @@
         "John Summit",
         "Rune RK, Firebeatz",
         "C-Mos, Axwell"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/665202869",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/665202869"
+      }
     },
     {
       "artist": "Alter Ego, Eric Prydz",
@@ -11167,7 +11615,11 @@
         "CamelPhat, Yannis, Foals",
         "Tiësto, 433",
         "Martin Garrix, Matisse & Sadko, Michel Zitron"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1711815811",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1711815811"
+      }
     },
     {
       "artist": "Sidney Samson",
@@ -11231,7 +11683,11 @@
         "Martin Garrix, MOTi",
         "Binary Finary, Paul van Dyk",
         "CHRIS STASSY, S.A.M."
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1456127470",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1456127470"
+      }
     },
     {
       "artist": "Tiga",
@@ -11387,7 +11843,11 @@
         "Martin Garrix, Khalid, DubVision",
         "Martin Solveig, Roy Woods",
         "Armand Van Helden"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/626180214",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/626180214"
+      }
     },
     {
       "artist": "Hardwell",
@@ -11407,7 +11867,11 @@
         "Sub Focus, Culture Shock, Fragma",
         "Martin Solveig, SAM WHITE",
         "The Temper Trap, John Summit, Silver Panda"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1617773179",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1617773179"
+      }
     },
     {
       "artist": "Peggy Gou",
@@ -11587,7 +12051,11 @@
         "Tommy Trash",
         "Tim Mason, Steve Angello",
         "Becky Hill, Galantis"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1815350222",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1815350222"
+      }
     },
     {
       "artist": "Deorro",
@@ -12143,7 +12611,11 @@
         "YORK, Kryder",
         "Martin Solveig, Roy Woods",
         "Tiësto, R3HAB"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1838923752",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1838923752"
+      }
     },
     {
       "artist": "Cassian",
@@ -12343,7 +12815,11 @@
         "Eliza Rose, Interplanetary Criminal",
         "deadmau5, Wolfgang Gartner",
         "Djuma Soundsystem"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1444760270",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444760270"
+      }
     },
     {
       "artist": "Moby",
@@ -12363,7 +12839,11 @@
         "Mau P",
         "Martin Garrix, USHER",
         "Congorock, Lexxus"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1511042797",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1511042797"
+      }
     },
     {
       "artist": "La Fuente",
@@ -12407,7 +12887,11 @@
         "Tommy Trash",
         "Calvin Harris, Example",
         "Don Diablo, Matt Nash"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/129938368",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/129938368"
+      }
     },
     {
       "artist": "CHRIS STASSY",
@@ -12451,7 +12935,11 @@
         "Calvin Harris, Clementine Douglas",
         "Disclosure, AlunaGeorge",
         "Jessie Ware, Disclosure"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1829723967",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1829723967"
+      }
     },
     {
       "artist": "deadmau5, Kaskade, Kx5, John Summit, HAYLA",
@@ -12515,7 +13003,11 @@
         "San Holo",
         "Anyma, Argy, Son of Son",
         "MEDUZA, Goodboys"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1435627014",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1435627014"
+      }
     },
     {
       "artist": "David Guetta, OneRepublic",
@@ -12535,7 +13027,11 @@
         "Nari, Milani",
         "Skrillex, Damian \"Jr Gong\" Marley",
         "Krystal Klear"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1737218564",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1737218564"
+      }
     },
     {
       "artist": "Sia, Sander van Doorn",
@@ -12579,7 +13075,11 @@
         "Rusko, Netsky",
         "Alok, ILLENIUM",
         "The Magician, Olly Alexander (Years & Years)"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1254370042",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1254370042"
+      }
     },
     {
       "artist": "Becky Hill, Chase & Status",
@@ -12643,7 +13143,11 @@
         "Barry Can't Swim",
         "Martin Garrix, Matisse & Sadko, BARBZ",
         "Justice, Simian"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1675655599",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1675655599"
+      }
     },
     {
       "artist": "Don Diablo",
@@ -12687,7 +13191,11 @@
         "Chicane, Moya Brennan",
         "Kölsch, Troels Abrahamsen",
         "Grooveyard, Nicky Romero"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1688819388",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1688819388"
+      }
     },
     {
       "artist": "BL3SS, CamrinWatsin, bbyclose",
@@ -12779,7 +13287,11 @@
         "Madeon",
         "Fragma",
         "FISHER, bbyclose"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1586190123",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1586190123"
+      }
     },
     {
       "artist": "Lucas & Steve, Tungevaag",
@@ -12891,7 +13403,11 @@
         "Kosheen, Tinlicker",
         "Lost Frequencies, Zonderling, Kelvin Jones",
         "John Summit, Echoes"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1636803265",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1636803265"
+      }
     },
     {
       "artist": "Chris Lake, Sammy Virji, Nathan Nicholson",
@@ -13455,7 +13971,11 @@
         "Disclosure, Rivo, Eliza Doolittle",
         "Dimitri Vegas & Like Mike, Sander van Doorn",
         "Cygnus X, Rank 1"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1636913228",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1636913228"
+      }
     },
     {
       "artist": "Lazy Jay",
@@ -13475,7 +13995,11 @@
         "Sunnery James & Ryan Marciano, Kes Kross",
         "Sam Feldt, Zonderling",
         "LF SYSTEM"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/319352757",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/319352757"
+      }
     },
     {
       "artist": "Alesso, TINI",
@@ -13495,7 +14019,11 @@
         "Netsky",
         "Axwell /\\ Ingrosso, Axwell, Sebastian Ingrosso",
         "Sia, Diplo, Labrinth, LSD, Lost Frequencies"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1472655935",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1472655935"
+      }
     },
     {
       "artist": "Martin Garrix, Matisse & Sadko",
@@ -13539,7 +14067,11 @@
         "KSHMR, Mike Waters",
         "John Summit, Inéz",
         "Cassian, SCRIPT, Belladonna (ofc)"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/268557140",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/268557140"
+      }
     },
     {
       "artist": "ARTY",
@@ -13699,7 +14231,11 @@
         "AVAION, Sofiya Nzau",
         "Eric Prydz, Floyd",
         "Josh Butler, Bontan, Pleasurekraft"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1509735360",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1509735360"
+      }
     },
     {
       "artist": "Dimitri Vegas & Like Mike, Marlon Hoffstadt, Dj Konik, Dimitri Vegas, Like Mike",
@@ -13791,7 +14327,11 @@
         "Armin van Buuren, W&W",
         "Diplo, HUGEL, Julia Church",
         "Fish Go Deep, Tracey K, Dennis Ferrer"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/963586171",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/963586171"
+      }
     },
     {
       "artist": "Steve Angello",
@@ -13879,7 +14419,11 @@
         "Travis Scott, CHASE B",
         "Diplo, Miguel",
         "Porter Robinson"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1547633800",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1547633800"
+      }
     },
     {
       "artist": "Solardo, Eli Brown",
@@ -13995,7 +14539,11 @@
         "Above & Beyond",
         "felix jaehn, Sandro Cavazza",
         "Zonderling, Don Diablo"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1483907765",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1483907765"
+      }
     },
     {
       "artist": "Calvin Harris, Ellie Goulding",
@@ -14035,7 +14583,11 @@
         "Eli Brown",
         "Armin van Buuren, The Stickmen Project",
         "Joel Corry, Da Hool"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1772333125",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1772333125"
+      }
     },
     {
       "artist": "Southside Spinners",
@@ -14147,7 +14699,11 @@
         "Kevin de Vries",
         "David Guetta, Nicky Romero, Sia",
         "Solid Sessions"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1813328515",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1813328515"
+      }
     },
     {
       "artist": "Agents Of Time",
@@ -14259,7 +14815,11 @@
         "Sam Feldt, Zonderling",
         "CamelPhat, Cristoph, Jem Cooke",
         "Dustin Zahn, Len Faki"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1613464771",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1613464771"
+      }
     },
     {
       "artist": "Art Of Trance, Ferry Corsten",
@@ -14279,7 +14839,11 @@
         "Niels Van Gogh, Tiësto",
         "SOFI TUKKER, John Summit, Vintage Culture",
         "Laidback Luke, Steve Aoki, Lil Jon"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/486221068",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/486221068"
+      }
     },
     {
       "artist": "Grooveyard, Nicky Romero",
@@ -14299,7 +14863,11 @@
         "Diplo, Miguel",
         "Swedish House Mafia, Connie Constance",
         "Virtual Self"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1374391541",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1374391541"
+      }
     },
     {
       "artist": "Disciples",
@@ -14319,7 +14887,11 @@
         "The Chainsmokers, Bebe Rexha",
         "Martin Garrix, Sem Vox, Jaimes",
         "Gotye, FISHER, Chris Lake, Sante Sansone, Kimbra"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1203283073",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1203283073"
+      }
     },
     {
       "artist": "Dimitri Vegas & Like Mike",
@@ -14339,7 +14911,11 @@
         "Dimitri Vegas & Like Mike, Bassjackers, D'Angello & Francis",
         "Tiësto, Oaks",
         "cassö, RAYE, D-Block Europe"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/669200686",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/669200686"
+      }
     },
     {
       "artist": "Skrillex, Damian \"Jr Gong\" Marley",
@@ -14575,7 +15151,11 @@
         "Rebūke, Storm, Jam El Mar",
         "Tiësto, Oliver Heldens",
         "Ferry Corsten"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1536130598",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1536130598"
+      }
     },
     {
       "artist": "David Guetta, Sia, MORTEN",
@@ -14663,7 +15243,11 @@
         "Matisse & Sadko",
         "Chris Lake",
         "Dimension"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/521411515",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/521411515"
+      }
     },
     {
       "artist": "AFROJACK",
@@ -14707,7 +15291,11 @@
         "Dimitri Vegas & Like Mike, Sander van Doorn",
         "Martin Garrix, Alesso, Shaun Farrugia",
         "CamelPhat, Yannis, Foals"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1665834831",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1665834831"
+      }
     },
     {
       "artist": "C-Mos, Axwell",
@@ -14751,7 +15339,11 @@
         "Mr. Probz, Chris Brown, T.I.",
         "Notre Dame",
         "Felix"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/276302653",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/276302653"
+      }
     },
     {
       "artist": "Martin Solveig, Tkay Maidza",
@@ -14839,7 +15431,11 @@
         "Hardwell, KSHMR",
         "The Prodigy",
         "BLOND:ISH, Stevie Appleton"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1448484829",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1448484829"
+      }
     },
     {
       "artist": "Bob Sinclar",
@@ -14955,7 +15551,11 @@
         "Tiësto, The Chainsmokers",
         "MEDUZA, Goodboys",
         "Martin Garrix, Clinton Kane"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1801838026",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1801838026"
+      }
     },
     {
       "artist": "Patrick Topping",
@@ -14999,7 +15599,11 @@
         "Yves V, Matthew Hill, Adrian Lux",
         "Max Dean, Luke Dean, Locky",
         "Dirty South, Rudy, Axwell"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/75094743",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/75094743"
+      }
     },
     {
       "artist": "Martin Garrix, R3HAB, Skytech",
@@ -15155,7 +15759,11 @@
         "R3HAB, NERVO, Ummet Ozcan",
         "Avicii, Aloe Blacc",
         "Tiësto, The Chainsmokers"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1768116733",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1768116733"
+      }
     },
     {
       "artist": "Prospa, RAHH",
@@ -15363,7 +15971,11 @@
         "Loofy, Anyma, Layton Giordani",
         "Netsky",
         "Tiësto, Hardwell"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1784001853",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1784001853"
+      }
     },
     {
       "artist": "Djuma Soundsystem",
@@ -15403,7 +16015,11 @@
         "MEDUZA, James Carter, Elley Duhé, FAST BOY",
         "Jonas Blue, Malive",
         "Avicii, Lenny Kravitz"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1440852991",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440852991"
+      }
     },
     {
       "artist": "deadmau5",
@@ -15515,7 +16131,11 @@
         "Yves V, HIDDN",
         "Calvin Harris, Clementine Douglas, Cassian",
         "R3HAB, NERVO, Ummet Ozcan"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1744275610",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1744275610"
+      }
     },
     {
       "artist": "Dennis Ferrer",
@@ -15535,7 +16155,11 @@
         "Pendulum, AN21, Max Vangeli, Steve Angello",
         "MOGUAI, Cheat Codes",
         "Nora En Pure"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1791260722",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1791260722"
+      }
     },
     {
       "artist": "HAVEN., Kaitlin Aragon",
@@ -15579,7 +16203,11 @@
         "Fred again.., The Blessed Madonna",
         "David Guetta, Nicky Romero",
         "CamelPhat, Cristoph, Jem Cooke"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/515581367",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/515581367"
+      }
     },
     {
       "artist": "John Dahlbäck",
@@ -15715,7 +16343,11 @@
         "MK, Chrystal",
         "Ben Böhmer",
         "Deniz Koyu"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1444647464",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444647464"
+      }
     },
     {
       "artist": "Tujamo",
@@ -15783,7 +16415,11 @@
         "Jack Ü, Skrillex, Diplo, Kiesza, Tchami",
         "Tiësto, Sevenn",
         "CamelPhat, Cristoph, Jem Cooke"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/641644589",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/641644589"
+      }
     },
     {
       "artist": "David Guetta, Alphaville, Hypaton, Ava Max",
@@ -15803,7 +16439,11 @@
         "Sub Focus",
         "Tom Staar, Eddie Thoneick",
         "Armand Van Helden"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1775988481",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1775988481"
+      }
     },
     {
       "artist": "Tchami, Kaleem Taylor",
@@ -15891,7 +16531,11 @@
         "John Summit, Guz, Stevie Appleton",
         "Lost Frequencies, Janieck",
         "Parachute Youth"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1872424471",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1872424471"
+      }
     },
     {
       "artist": "deadmau5, Wolfgang Gartner",
@@ -15951,7 +16595,11 @@
         "Peggy Gou, Soulwax",
         "DR. KUCHO!, Gregor Salto, Ane Brun, Oliver Heldens",
         "David Guetta, Sia, MORTEN"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1513957599",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1513957599"
+      }
     },
     {
       "artist": "James Hype",
@@ -16063,7 +16711,11 @@
         "Diplo, Miguel",
         "PAWSA",
         "Martin Garrix, Third Party, Oaks, Declan J Donovan"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1716033386",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1716033386"
+      }
     },
     {
       "artist": "Chris Lake, Marco Lys",
@@ -16083,7 +16735,11 @@
         "Southside Spinners",
         "Major Lazer, MØ, DJ Snake",
         "Dash Berlin"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1159822629",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1159822629"
+      }
     },
     {
       "artist": "Pryda",
@@ -16199,7 +16855,11 @@
         "Alan Fitzpatrick",
         "Diplo, Sonny Fodera",
         "Tube & Berger"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1678409375",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1678409375"
+      }
     },
     {
       "artist": "Axwell /\\ Ingrosso, Axwell, Sebastian Ingrosso",
@@ -16219,7 +16879,11 @@
         "MK, Dom Dolla",
         "Fatboy Slim, CamelPhat",
         "Above & Beyond, anamē, Marty Longstaff"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/6798409424",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6798409424"
+      }
     },
     {
       "artist": "Armin van Buuren",
@@ -16239,7 +16903,11 @@
         "Armin van Buuren, Agents Of Time, ORKID",
         "Freejak",
         "Eelke Kleijn, Joris Voorn"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1454008233",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1454008233"
+      }
     },
     {
       "artist": "Lost Frequencies, The NGHBRS, Keanu Silva",
@@ -16303,7 +16971,11 @@
         "Max Dean, Luke Dean, Locky",
         "Celeda, Danny Tenaglia",
         "Eric Prydz, Floyd"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1800278494",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1800278494"
+      }
     },
     {
       "artist": "Sunnery James & Ryan Marciano, RANI",
@@ -16323,7 +16995,11 @@
         "Filterheadz",
         "Hypaton, David Guetta, La Bouche",
         "Steve Angello, Third Party"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1526588491",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1526588491"
+      }
     },
     {
       "artist": "Booka Shade",
@@ -16391,7 +17067,11 @@
         "Tristan Garner, Norman Doray",
         "Calvin Harris, Sam Smith, Jessie Reyez",
         "CYRIL"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/943232483",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/943232483"
+      }
     },
     {
       "artist": "Sammy Virji, Skepta",
@@ -16411,7 +17091,11 @@
         "MK, Dom Dolla",
         "Black Coffee, David Guetta, Delilah Montagu",
         "Masters At Work"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1814574286",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1814574286"
+      }
     },
     {
       "artist": "Cristoph, FEMME",
@@ -16683,7 +17367,11 @@
         "Chris Brown, Benny Benassi",
         "Josh Baker, Omar+",
         "The Chainsmokers, Daya"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1797817425",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1797817425"
+      }
     },
     {
       "artist": "YORK",
@@ -16799,7 +17487,11 @@
         "Duke Dumont, Jax Jones",
         "Alan Fitzpatrick",
         "Breach"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1847849257",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1847849257"
+      }
     },
     {
       "artist": "Swedish House Mafia, Sting",
@@ -16843,7 +17535,11 @@
         "Above & Beyond, Zoë Johnston",
         "Armand Van Helden, Duane Harden",
         "Calvin Harris, Disciples, Chris Lake"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1337168150",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1337168150"
+      }
     },
     {
       "artist": "Dada Life, Sebastian Bach",
@@ -17095,7 +17791,11 @@
         "Riva",
         "New World Sound, Thomas Newson",
         "David Guetta, Sia, MORTEN"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1762957331",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1762957331"
+      }
     },
     {
       "artist": "John Summit",
@@ -17211,7 +17911,11 @@
         "MoBlack, Salif Keita, Benja (NL), Franc Fala, Cesária Evora",
         "Armin van Buuren",
         "Digitalism"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1789868142",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1789868142"
+      }
     },
     {
       "artist": "CamelPhat",
@@ -17351,7 +18055,11 @@
         "Armand Van Helden, Duane Harden",
         "Dirty South, Alesso, Ruben Haze",
         "Armin van Buuren, AVIAN GRAYS, Jordan Shaw"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1311588062",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1311588062"
+      }
     },
     {
       "artist": "Diplo, Miguel",
@@ -17491,7 +18199,11 @@
         "Martin Garrix, Brooks",
         "Avicii, Aloe Blacc",
         "Maceo Plex, Chromatics"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1355051058",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1355051058"
+      }
     },
     {
       "artist": "Chris Lake",
@@ -17575,7 +18287,11 @@
         "Josh Butler, Bontan, Pleasurekraft",
         "Calvin Harris, Rag'n'Bone Man, Robin Schulz",
         "Tiësto, Oliver Heldens"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1535514484",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1535514484"
+      }
     },
     {
       "artist": "Calvin Harris, Sam Smith",
@@ -17779,7 +18495,11 @@
         "Axwell, Sebastian Ingrosso, Steve Angello, Laidback Luke",
         "Watermät",
         "Kygo, Rita Ora"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1408916371",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1408916371"
+      }
     },
     {
       "artist": "FISHER, Aatig",
@@ -17823,7 +18543,11 @@
         "Cosmic Gate",
         "Diplo, Miguel",
         "Mike Williams, Mesto"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1598254002",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1598254002"
+      }
     },
     {
       "artist": "Martin Garrix, Clinton Kane",
@@ -17843,7 +18567,11 @@
         "Paul van Dyk, Hemstock, Jennings",
         "Michael Calfan",
         "Duck Sauce, A-Trak, Armand Van Helden"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1495990379",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1495990379"
+      }
     },
     {
       "artist": "Felix Da Housecat",
@@ -18023,7 +18751,11 @@
         "Tom Staar, Eddie Thoneick",
         "Zedd, Matthew Koma",
         "London Grammar"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1476683621",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1476683621"
+      }
     },
     {
       "artist": "Diplo, Sonny Fodera",
@@ -18043,7 +18775,11 @@
         "MEDUZA, Becky Hill, Goodboys",
         "The Magician, Olly Alexander (Years & Years)",
         "ARTBAT, Sailor & I"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1556562873",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1556562873"
+      }
     },
     {
       "artist": "Armand Van Helden",
@@ -18087,7 +18823,11 @@
         "Armin van Buuren, W&W",
         "Armin van Buuren, The Stickmen Project",
         "AFROJACK, Steve Aoki, Miss Palmer"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1691285455",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1691285455"
+      }
     },
     {
       "artist": "Samm",
@@ -18107,7 +18847,11 @@
         "Lifelike, Kris Menace",
         "Armin van Buuren, Shapov",
         "Avicii, MishCatt"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1820392712",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1820392712"
+      }
     },
     {
       "artist": "SOFI TUKKER, Öwnboss, Fancy Inc",
@@ -18195,7 +18939,11 @@
         "Jack Ü, Skrillex, Diplo, Kiesza, Tchami",
         "Topic, Fireboy DML, Nico Santos",
         "Purple Disco Machine"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/390278238",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/390278238"
+      }
     },
     {
       "artist": "Maceo Plex, Chromatics",
@@ -18239,7 +18987,11 @@
         "Lost Frequencies, Calum Scott",
         "Butch, Kölsch",
         "FISHER"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1655399058",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1655399058"
+      }
     },
     {
       "artist": "Zonderling, Andreas Moss",
@@ -18283,7 +19035,11 @@
         "Gregor Salto, Florian T",
         "Armin van Buuren, Perpetuous Dreamer",
         "Kevin de Vries"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1120828202",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1120828202"
+      }
     },
     {
       "artist": "Martin Garrix, DubVision, Jaimes",
@@ -18375,7 +19131,11 @@
         "Salif Keita, Martin Solveig",
         "Lost Frequencies",
         "Axwell, Sebastian Ingrosso"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/627700940",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/627700940"
+      }
     },
     {
       "artist": "Paul Kalkbrenner",
@@ -18467,7 +19227,11 @@
         "AN21, Max Vangeli",
         "David Guetta, Showtek",
         "Bob Sinclar"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1713225284",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1713225284"
+      }
     },
     {
       "artist": "Supermode, Axwell, Steve Angello",
