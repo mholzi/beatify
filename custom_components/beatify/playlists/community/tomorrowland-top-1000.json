@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "edm",
     "electronic",
@@ -223,7 +223,8 @@
         "Alesso, TINI",
         "Zerb, The Chainsmokers, Ink",
         "PAWSA, The Adventures Of Stevie V"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1443828610"
     },
     {
       "artist": "Monolink, ARTBAT",
@@ -291,7 +292,8 @@
         "Nadia Ali",
         "Dirty South, Rudy",
         "Sasha"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1440791835"
     },
     {
       "artist": "4444 OF A KIND, D-Block & S-te-Fan, Sub Zero Project",
@@ -623,7 +625,8 @@
         "Underworld",
         "Art Of Trance, Ferry Corsten",
         "Dom Dolla, Clementine Douglas"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1443097680"
     },
     {
       "artist": "David Guetta, Akon",
@@ -787,7 +790,8 @@
         "Eliza Rose, Interplanetary Criminal",
         "James Hype, Kelli-Leigh",
         "James Hype"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1640463908"
     },
     {
       "artist": "Swedish House Mafia, Tinie Tempah",
@@ -1083,7 +1087,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1439631915"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P-gioiwONGA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2458883615",
       "fun_fact": "“Warp 1.9 (feat. Steve Aoki)” appears on The Bloody Beetroots’s release “DIM MAK 20th Anniversary”.",
