@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "edm",
     "electronic",
@@ -1145,7 +1145,7 @@
       "artist": "Coldplay",
       "title": "Paradise - Fedde le Grand Remix",
       "year": 2011,
-      "isrc": "GBAYE1101454",
+      "isrc": "GBAYE1101369",
       "uri": "spotify:track:7BOSqLjA3lnA3dKh29pOuQ",
       "uri_apple_music": "applemusic://track/665202776",
       "uri_apple_music_by_region": {
@@ -1153,6 +1153,7 @@
       },
       "uri_youtube_music": null,
       "uri_tidal": null,
+      "uri_deezer": "deezer://track/75815486",
       "fun_fact": "“Paradise - Fedde le Grand Remix” appears on Coldplay’s release “Princess of China”.",
       "fun_fact_de": "„Paradise - Fedde le Grand Remix“ erschien auf der Veröffentlichung „Princess of China“ von Coldplay.",
       "fun_fact_es": "«Paradise - Fedde le Grand Remix» aparece en el lanzamiento «Princess of China» de Coldplay.",
