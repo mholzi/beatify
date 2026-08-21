@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "edm",
     "electronic",
@@ -23,7 +23,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1845909595"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ofmzX1nI7SE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3601122502",
       "fun_fact": "“Freaks” is the title track of Timmy Trumpet’s release of the same name.",
@@ -47,7 +47,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1793821667"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EiS9isTa82Y",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2874430052",
       "fun_fact": "“Adagio For Strings - Radio Edit” appears on Tiësto’s release “A State Of Trance Year Mix 2004 (Mixed) (Mixed by Armin van Buuren)”.",
@@ -71,7 +71,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/627546840"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S8jhXmfdRFY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1355491752",
       "fun_fact": "“Million Voices” appears on Otto Knows’s release “Electrónica Vieja Y Poderosa”.",
@@ -95,7 +95,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/697402070"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WYhv-hR6Q2U",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3157686",
       "fun_fact": "“One More Time - Radio Edit” appears on Daft Punk’s release “One More Time”.",
@@ -119,7 +119,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1436500148"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=31zkAUR3-Ec",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/555328722",
       "fun_fact": "“Wild One Two (feat. Nicky Romero and Sia)” appears on David Guetta’s release “Wild One Two (feat. Nicky Romero & Sia) (Remixes)”.",
@@ -143,7 +143,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1727698271"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xVGoGYb55NI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2635513182",
       "fun_fact": "“Carry You” is the title track of Martin Garrix’s release of the same name.",
@@ -167,7 +167,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1793821643"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TiIuP1-LCg0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3212523691",
       "fun_fact": "“Traffic - Radio Edit” appears on Tiësto’s release “Traffic”.",
@@ -191,7 +191,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1715396238"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=beGjncfEPt8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3166816",
       "fun_fact": "“Love Is Gone - Fred Riester & Joachim Garraud Radio Edit Remix” appears on David Guetta’s release “Love Is Gone”.",
@@ -211,7 +211,7 @@
       "year": 2014,
       "isrc": "CYA221400001",
       "uri": "spotify:track:2ldAdghnrO34HPcZ0IWfTu",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bltr_Dsk5EY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/77897290",
       "fun_fact": "“Ten Feet Tall” appears on AFROJACK’s release “Forget The World (Deluxe)”.",
@@ -235,7 +235,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1475125062"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lo0ELoepTCM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/671044412",
       "fun_fact": "“Return to Oz - ARTBAT Remix” is the title track of Monolink’s release of the same name.",
@@ -259,7 +259,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1688080970"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MOenJHdj8ro",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2285438237",
       "fun_fact": "“The Rapture Pt.III” is the title track of &ME’s release of the same name.",
@@ -279,7 +279,7 @@
       "year": 2009,
       "isrc": "GBPVV0900240",
       "uri": "spotify:track:4S9tSGd8sGFv0bPFmmLO41",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ci40ae8BlcE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/15640851",
       "fun_fact": "“Bonkers” appears on Dizzee Rascal’s release “Tongue N' Cheek (Dirtee Deluxe Edition)”.",
@@ -303,7 +303,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6776704146"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6yHzbNrEXK4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4083221771",
       "fun_fact": "“WAITING 4” is the title track of 4444 OF A KIND’s release of the same name.",
@@ -327,7 +327,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1478926110"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5C7sbzU6uOc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/757592732",
       "fun_fact": "“Million Voices” appears on Armin van Buuren’s release “Balance”.",
@@ -351,7 +351,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1764331995"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YOT5LoFuQfM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2958942721",
       "fun_fact": "“Never Going Home Tonight (feat. Madison Love)” is the title track of David Guetta’s release of the same name.",
@@ -375,7 +375,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/627421748"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=86vDxRr2ELA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/73460659",
       "fun_fact": "“Teenage Crime” is the title track of Adrian Lux’s release of the same name.",
@@ -399,7 +399,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1637427486"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GUaltRgMaMA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1847821547",
       "fun_fact": "“Tell Me Why - MEDUZA Remix” is the title track of Supermode’s release of the same name.",
@@ -423,7 +423,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1830332331"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4wUv--haykg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3486763691",
       "fun_fact": "“It Gets Better - Forever Mix” is the title track of KETTAMA’s release of the same name.",
@@ -447,7 +447,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6798410343"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zdwydslZlOI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61427206",
       "fun_fact": "“Every Teardrop Is A Waterfall (Coldplay Vs. Swedish House Mafia)” appears on Coldplay’s release “Until Now”.",
@@ -471,7 +471,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444998575"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XNebOJbgnIw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/81075574",
       "fun_fact": "“We Are Mirage” appears on Eric Prydz’s release “Liberate (Remixes)”.",
@@ -495,7 +495,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/291796182"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mxGMfKtqi8o",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/102586228",
       "fun_fact": "“Universal Nation” appears on Push’s release “Trance Top 1000 - The Best Of”.",
@@ -519,7 +519,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1462628896"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fqzhtvLWefA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/675656882",
       "fun_fact": "“Heaven” appears on Avicii’s release “TIM”.",
@@ -543,7 +543,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1576395046"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PoP2Sa7wYNQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1432930542",
       "fun_fact": "“Where Are You Now” is the title track of Lost Frequencies’s release of the same name.",
@@ -567,7 +567,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1491028334"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BU79EyMjIrU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/829116322",
       "fun_fact": "“Hold On (feat. Michel Zitron)” is the title track of Martin Garrix’s release of the same name.",
@@ -591,7 +591,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1718280036"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cS-kmwDhBAQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2645821532",
       "fun_fact": "“Somebody (2024)” is the title track of Gotye’s release of the same name.",
@@ -611,7 +611,7 @@
       "year": 2015,
       "isrc": "CYA111500019",
       "uri": "spotify:track:0NIC4unbe5KZOp1d9T7OaF",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Dr1nN__-2Po",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/100334216",
       "fun_fact": "“Secrets” appears on Tiësto’s release “Club Life, Vol. 4 - New York City”.",
@@ -635,7 +635,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1829555731"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N9hazmsUxrM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/673165762",
       "fun_fact": "“Sexy Bitch (feat. Akon)” appears on David Guetta’s release “One More Love”.",
@@ -655,7 +655,7 @@
       "year": 2013,
       "isrc": "USUS11202754",
       "uri": "spotify:track:7lCUnSxHqkQdBnR5VTZwO1",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wKsDLm-q6gY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/82230460",
       "fun_fact": "“Something Something Champs (feat. Zip Zip Through The Night) - Radio Edit” is the title track of Kaskade’s release of the same name.",
@@ -679,7 +679,7 @@
       "year": 2023,
       "isrc": "BE5KW2300213",
       "uri": "spotify:track:41fl1aHm371uXzcWVQEBJr",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KSHdRchBjMs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2300136505",
       "fun_fact": "“Amok” is the title track of Amber Broos’s release of the same name.",
@@ -703,7 +703,7 @@
       "year": 2004,
       "isrc": "GBCEN0400131",
       "uri": "spotify:track:1As4KC3YYpu89aBt7EqL2m",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qetW6R9Jxs4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/340051261",
       "fun_fact": "“Call on Me” appears on Eric Prydz’s release “Call On Me (Remixes)”.",
@@ -727,7 +727,7 @@
       "year": 2012,
       "isrc": "GBARL1200836",
       "uri": "spotify:track:2hEwnK3oW1F4NgV4RPp5qV",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rhozi9JwdNA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/518018572",
       "fun_fact": "“Lies (Otto Knows Remix)” appears on BURNS’s release “Lies”.",
@@ -755,7 +755,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1783998383"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qke-jOUqSXU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3155482291",
       "fun_fact": "“Cola” appears on CamelPhat’s release “Cola (Tutara Peak Remix)”.",
@@ -775,7 +775,7 @@
       "year": 2022,
       "isrc": "GBAHS2201028",
       "uri": "spotify:track:3YHOVyF4lBX2lL6MMTTHEj",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cl6Rz1Uvi2M",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1924777117",
       "fun_fact": "“Delilah (Pull Me Out of This)” is the title track of Fred again..’s release of the same name.",
@@ -799,7 +799,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6798744299"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LCH1AsUydSc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7261457",
       "fun_fact": "“Miami 2 Ibiza - Radio Edit” appears on Swedish House Mafia’s release “Miami 2 Ibiza”.",
@@ -819,7 +819,7 @@
       "year": 2023,
       "isrc": "QM4TX2371595",
       "uri": "spotify:track:5fF9T9SMqBKUvT06cn7kBR",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h4F9oZ0NINc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2412136495",
       "fun_fact": "“It's That Time” is the title track of Marlon Hoffstadt’s release of the same name.",
@@ -843,7 +843,7 @@
       "year": 2012,
       "isrc": "NLC281210093",
       "uri": "spotify:track:0YfTACQlZDeIQ8SsQTeISu",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KQ_TpOnLjTw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3458603891",
       "fun_fact": "“Momentum” is the title track of Dimitri Vegas & Like Mike’s release of the same name.",
@@ -871,7 +871,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1824106694"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h7ArUgxtlJs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/89844257",
       "fun_fact": "“Ghosts 'n' Stuff” appears on deadmau5’s release “5 years of mau5”.",
@@ -895,7 +895,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1791639249"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UtDc4uhlXsA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3194938041",
       "fun_fact": "“Stephanie - HNTR Remix” is the title track of Cloonee’s release of the same name.",
@@ -919,7 +919,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1418145097"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S73zDvMgGmI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/532996072",
       "fun_fact": "“Narco” is the title track of Blasterjaxx’s release of the same name.",
@@ -939,7 +939,7 @@
       "year": 2015,
       "isrc": "UK98Q1400002",
       "uri": "spotify:track:4ggTLtqmjfUgufdVWRbxmK",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=94Rq2TX0wj4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3786434292",
       "fun_fact": "“Intoxicated” is the title track of Martin Solveig’s release of the same name.",
@@ -967,7 +967,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1722358898"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zFMYL0XQ3lA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2403785095",
       "fun_fact": "“Prada” is the title track of cassö’s release of the same name.",
@@ -991,7 +991,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1359863336"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UwsY_foobEw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/465809482",
       "fun_fact": "“Gold Skies (feat. Aleesia) - Radio Edit” is the title track of Sander van Doorn’s release of the same name.",
@@ -1011,7 +1011,7 @@
       "year": 1998,
       "isrc": "USAR19800589",
       "uri": "spotify:track:1pUFYb9peWkK8m1WCKNRjp",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zXUrVJNIcgA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/560281",
       "fun_fact": "“God Is a DJ” appears on Faithless’s release “Forever Faithless - The Greatest Hits”.",
@@ -1035,7 +1035,7 @@
       "year": 2018,
       "isrc": "USQX91803039",
       "uri": "spotify:track:5xQyeo1rXqNAMgZhFXv8z7",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UdHGGAu1yLA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/569832342",
       "fun_fact": "“Thunderclouds - Lost Frequencies Remix” appears on Sia’s release “Thunderclouds (feat. Sia, Diplo & Labrinth) (Lost Frequencies Remix)”.",
@@ -1059,7 +1059,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1839520457"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b1_6N-qcuCE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3554039341",
       "fun_fact": "“Love Parade” is the title track of Cassian’s release of the same name.",
