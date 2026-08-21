@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "edm",
     "electronic",
@@ -1038,7 +1038,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1839520457"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b1_6N-qcuCE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3554039341",
       "fun_fact": "“Love Parade” is the title track of Cassian’s release of the same name.",
