@@ -92,9 +92,14 @@ def test_200_without_tidal_link_is_a_miss_without_status(monkeypatch, bt):
     assert status is None
 
 
-@pytest.mark.parametrize("code", [400, 403, 404, 422])
+@pytest.mark.parametrize("code", [400, 404, 422])
 def test_non_429_client_errors_are_recorded_as_misses(monkeypatch, bt, code):
-    """The bug in #2200: these were 'skip' and therefore never written down."""
+    """The bug in #2200: these were 'skip' and therefore never written down.
+
+    403 was in this list until 2026-08-21 and has moved to the retryable set —
+    see ``test_auth_refusal_is_retryable``. A 400, 404 or 422 describes the
+    request we sent; a 401 or 403 describes whether we were allowed to send it.
+    """
     calls = _patch_urlopen(monkeypatch, bt, lambda _n: _http_error(code))
 
     uri, outcome, status = bt.query_odesli("abc")
@@ -102,6 +107,24 @@ def test_non_429_client_errors_are_recorded_as_misses(monkeypatch, bt, code):
     assert (uri, outcome, status) == (None, "miss", code)
     # One shot only — retrying a 4xx verbatim cannot change the answer.
     assert calls["n"] == 1
+
+
+@pytest.mark.parametrize("code", [401, 403])
+def test_auth_refusal_is_retryable(monkeypatch, bt, code):
+    """A refused request is not an answer about the catalogue (2026-08-21).
+
+    Odesli shut its public API down and answered every request with
+    ``401 PUBLIC_API_ACCESS_DEPRECATED`` from 19 August. The 4xx branch read
+    that as "Tidal does not have this track" and wrote 238 songs into the miss
+    cache over three days — 238 songs that would never have been asked about
+    again. A 401 or 403 says nothing about the catalogue; it says we were not
+    allowed to ask.
+    """
+    _patch_urlopen(monkeypatch, bt, lambda _n: _http_error(code))
+
+    uri, outcome, status = bt.query_odesli("abc")
+
+    assert (uri, outcome, status) == (None, "retry", code)
 
 
 @pytest.mark.parametrize("code", [500, 502, 503])

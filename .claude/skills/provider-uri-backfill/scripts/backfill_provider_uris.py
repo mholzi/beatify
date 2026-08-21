@@ -695,11 +695,16 @@ def record_provider_misses(
     attempted: list[str],
     song: dict,
     now: datetime,
+    http_status: int | None = None,
 ) -> int:
     """Record a miss for every attempted provider still unfilled. Returns count.
 
     ``attempted`` must contain only providers that were genuinely queried this
     run — never ones skipped because the source was unavailable.
+
+    ``http_status`` is the code behind the refusal, or ``None`` when the source
+    answered cleanly and simply had no link. It is stored alongside the
+    timestamp so a later incident can be told apart from a genuine "no".
     """
     stamp = now.strftime("%Y-%m-%dT%H:%MZ")
     n = 0
@@ -707,7 +712,18 @@ def record_provider_misses(
         field = PROVIDER_FIELDS.get(prov)
         if not field or (song.get(field) or "").strip():
             continue
-        misses.setdefault(uri, {})[prov] = stamp
+        # Wert ist ``{"at": <stamp>, "http": <code|None>}`` statt eines nackten
+        # Zeitstempels (21.08.2026). Der Code ist die einzige Spur, an der sich
+        # ein spaeterer Vorfall wieder aufraeumen laesst: als Odesli am 19.08.
+        # begann, jede Anfrage mit 401 zu beantworten, war der Tidal-Speicher
+        # reparierbar, WEIL er den Code fuehrte — 238 vergiftete Eintraege liessen
+        # sich exakt greifen. Dieser Speicher fuehrte nur einen Zeitstempel; ein
+        # gleichartiger Vorfall waere hier unsichtbar geblieben.
+        #
+        # Alte Eintraege sind blosse Strings. Leser duerfen deshalb NICHT davon
+        # ausgehen, einen dict zu bekommen — ``pick_target_playlist.py`` liest
+        # ohnehin nur die Schluessel und ist von der Form unberuehrt.
+        misses.setdefault(uri, {})[prov] = {"at": stamp, "http": http_status}
         n += 1
     return n
 

@@ -69,6 +69,17 @@ TIDAL_TRACK_RE = re.compile(r"/track/(\d+)")
 BASE_DELAY_S = 6.0  # between successful requests
 BACKOFF_BASE_S = 8.0  # 429 backoff: BACKOFF_BASE * attempt
 MAX_429_ATTEMPTS = 3  # then skip (NOT recorded as a miss)
+
+# Statuscodes, mit denen der Server die *Anfrage verweigert*, statt eine Auskunft
+# ueber den Katalog zu geben. Sie gehoeren zu 429 und 5xx, nicht zu den Misses.
+#
+# Warum das eine eigene Zeile wert ist (21.08.2026): Odesli hat seine oeffentliche
+# API abgeschaltet und antwortet seit dem 19.08. auf jede Anfrage mit
+# ``401 PUBLIC_API_ACCESS_DEPRECATED``. Der 4xx-Zweig unten hielt das fuer eine
+# Auskunft und schrieb ``status: miss`` — in drei Tagen **238 Eintraege**, also
+# 238 Songs, die nie wieder abgefragt worden waeren. Ein 401 oder 403 sagt nichts
+# darueber, ob Tidal den Song hat; er sagt, dass wir nicht fragen durften.
+SERVER_REFUSED = (401, 403)
 REQUEST_TIMEOUT_S = 25
 
 
@@ -122,10 +133,13 @@ def query_odesli(spotify_id: str) -> tuple[str | None, str, int | None]:
 
     * ``hit``   — 200 with a usable Tidal link.
     * ``miss``  — Odesli will not give us a Tidal link for this track. Either a
-      200 without one, or a 4xx other than 429: those describe the *request*,
-      not the server's mood, so repeating it verbatim cannot change the answer.
-    * ``retry`` — 429, 5xx, or a network/parse error. Genuinely transient;
-      deliberately not recorded, so the next wave tries again.
+      200 without one, or a 4xx other than 429/401/403: those describe the
+      *request*, not the server's mood, so repeating it verbatim cannot change
+      the answer.
+    * ``retry`` — 429, 5xx, **401/403**, or a network/parse error. Genuinely
+      transient; deliberately not recorded, so the next wave tries again.
+      401 and 403 belong here because they describe our *access*, not the
+      catalogue: the server refused to answer rather than answering "no".
 
     ``http_status`` is the code behind a ``miss`` or ``retry`` and ``None`` for
     a clean 200. It is stored with the miss so a permanent refusal can later be
@@ -163,7 +177,7 @@ def query_odesli(spotify_id: str) -> tuple[str | None, str, int | None]:
                 sys.stderr.write(f"  429 backoff {wait:.0f}s (attempt {attempt})\n")
                 time.sleep(wait)
                 continue
-            if 500 <= exc.code < 600:
+            if 500 <= exc.code < 600 or exc.code in SERVER_REFUSED:
                 sys.stderr.write(f"  HTTP {exc.code} -> retry next wave\n")
                 return None, "retry", exc.code
             sys.stderr.write(f"  HTTP {exc.code} -> recorded as miss\n")
