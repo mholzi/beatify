@@ -4,8 +4,36 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.3.0] - 2026-08-21
+
+Released as **4.3.0** rather than 4.2.1: the work shipped as the `v4.2.1-rc1`…`rc3` release
+candidates, but a patch number promises bug fixes and this carries three new features, four
+new playlists and 1,162 more songs. Everything in 4.2.1-rc1 through rc3 is included.
+
 ### Added
-- Added 56 tracks to EDM Anthems from the Tomorrowland Top 1000 Official Playlist (#2255).
+- **Play from your own Music Assistant library (#45, #2082).** Contributed by **@DrMagicWolf**. Games can be sampled from the host's own library (Plex, Jellyfin, local files) instead of a streaming provider, with an enriched cached pool verified against MusicBrainz rather than raw local tags.
+- **The host picks how many rounds a game runs (#1475).** Requested by **@Vanman777**. 10 / 20 / 30 / all / a typed number, with a live duration estimate; a rematch replays at the chosen length.
+- **Italian, end to end (#2234).** Interface, config flow, spoken announcements, fun facts and award names, plus the locale parity guards extended to cover it.
+- **Four new playlists.** `tomorrowland-top-1000` (825), `musica-italiana` (114), `sanremo-vincitori` (68) and `wiesn-party-hits` (100); `edm-anthems` grew 190 → 246. The catalogue is now 58 playlists and 7,142 songs.
+- **Sudden Death names the ending it actually had (#2105).** "Best of the Survivors" when the rounds run out with several players alive.
+
+### Fixed
+- **The host gets their own music back after a game (#2143).** Track, position, shuffle and repeat are captured once per game and restored at the end.
+- **A mid-game speaker switch no longer discards the outgoing speaker's volume (#1516 follow-up).**
+- **The speaker start failure has a way out (#2269).** Persistent banner above the start button with a jump to the speaker list, instead of a toast that fades.
+- **Removing the integration now really removes it (#2263).** Reported by **@proffalken**. `async_remove_entry` clears the saved setup and two storage keys.
+- **The reveal standings no longer cut names off (#2130, #2134).** Reported by **@FurtiveD**. The card scrolls, the band is capped, and rows share the card's height so the text fits without a scrollbar.
+- **"Last One Standing" was announced while others were still standing (#2103).**
+- **Minified CSS was outside the drift guard (#2098).** 31 class rules never reached the stylesheet the browser loads.
+- **291 malformed provider URIs across five playlists (#2247)**, plus a CI schema gate so the next one fails the pull request.
+- **Seven stale Apple Music region ids in `schweizer-hits` (#2274)** and **a dead Apple id for *Surfin' U.S.A.* in `summer-party-anthems` (#2267)**.
+- **Five wrong years (#2272, #2277).** Two Patent Ochsner songs, one by Varius Manx and one that was simply five years early; the fifth established the rule that a cover credited to a different artist carries the year of the linked recording.
+
+### Changed
+- **Music Assistant is set up before Beatify (#2144).**
+- **The backfill agents stop re-asking for answers they already have (#2150)**, and pick their target playlist by fillable gaps rather than raw ones.
+- **The Apple backfill hears a second opinion before rejecting on year (#2116).** Track duration within two seconds overrules the year gate.
+- **Dead reveal CSS removed (#2132).**
 
 ## [4.2.1-rc3] - 2026-08-20
 
