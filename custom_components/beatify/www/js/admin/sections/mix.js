@@ -18,6 +18,7 @@
  */
 
 import { adminState } from '../state.js';
+import { errorHeadlineAndDetail } from '../util.js';
 import { TAG_CATEGORIES } from '../constants.js';
 
 const utils = (typeof window !== 'undefined' && window.BeatifyUtils) || {};
@@ -288,13 +289,17 @@ async function previewMixTracklist() {
         const data = await response.json();
 
         if (!response.ok || !data.success) {
-            let msg = data.message || t('admin.mixFailed', 'Failed to assemble mix.');
-            if (data.code && window.BeatifyI18n) {
-                const key = 'errors.' + String(data.code).toUpperCase();
-                const tr = BeatifyI18n.t(key);
-                if (tr && tr !== key) msg = tr;
-            }
-            showMixError(msg);
+            // #2294: the by-code translation is the headline; the server's own
+            // sentence goes underneath. `errors.INVALID_REQUEST` is one string
+            // shared by every rejection, so without the detail line a failed
+            // mix cannot say whether no tags matched, the provider is wrong, or
+            // the speaker is gone.
+            const errText = errorHeadlineAndDetail(
+                data,
+                window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null,
+                t('admin.mixFailed', 'Failed to assemble mix.')
+            );
+            showMixError(errText.message, errText.detail);
             return;
         }
 
@@ -324,10 +329,18 @@ function providerCountFor(p) {
     }
 }
 
-function showMixError(msg) {
+function showMixError(msg, detail) {
     const el = document.getElementById('mix-error');
     if (!el) return;
     el.textContent = msg;
+    // #2294: the server's own reason as a second line. A <span> rather than a
+    // <div> because #mix-error is a <p> — a block child would close it.
+    if (detail && detail !== msg) {
+        const detailEl = document.createElement('span');
+        detailEl.className = 'mix-error-detail';
+        detailEl.textContent = detail;
+        el.appendChild(detailEl);
+    }
     el.classList.remove('hidden');
 }
 
@@ -450,13 +463,17 @@ async function _assembleMix() {
         const data = await response.json();
 
         if (!response.ok || !data.success) {
-            let msg = data.message || t('admin.mixFailed', 'Failed to assemble mix.');
-            if (data.code && window.BeatifyI18n) {
-                const key = 'errors.' + String(data.code).toUpperCase();
-                const tr = BeatifyI18n.t(key);
-                if (tr && tr !== key) msg = tr;
-            }
-            showMixError(msg);
+            // #2294: the by-code translation is the headline; the server's own
+            // sentence goes underneath. `errors.INVALID_REQUEST` is one string
+            // shared by every rejection, so without the detail line a failed
+            // mix cannot say whether no tags matched, the provider is wrong, or
+            // the speaker is gone.
+            const errText = errorHeadlineAndDetail(
+                data,
+                window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null,
+                t('admin.mixFailed', 'Failed to assemble mix.')
+            );
+            showMixError(errText.message, errText.detail);
             return null;
         }
 

@@ -16453,6 +16453,16 @@ body.theme-dark .your-result-stats .stat-value {
 #mix-error {
     margin-top: var(--space-md);
 }
+/* #2294: the server's own reason under the translated headline. Inline-block
+   with display:block because #mix-error is a <p> and cannot hold a <div>. */
+.mix-error-detail {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--font-size-sm);
+    line-height: 1.35;
+    color: var(--color-text-light);
+    word-break: break-word;
+}
 
 /* Tracklist preview (#1586) */
 .mix-tracklist-row {
