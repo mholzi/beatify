@@ -1211,14 +1211,24 @@ def run(args: argparse.Namespace) -> int:
             # times and the run ended at its 25-minute cap having spent
             # 24 of 90 permitted searches.
             #
-            # So when this run exists to fill YouTube and YouTube is the
-            # song's only gap, skip Odesli and pay the search directly.
+            # So when this run exists to fill YouTube, a song with a YouTube
+            # gap skips Odesli entirely and pays the search directly.
+            #
+            # The first attempt narrowed that to songs whose *only* gap was
+            # YouTube, and on this catalogue that condition never holds:
+            # tomorrowland-top-1000 has 779 YouTube gaps and all 779 are also
+            # missing Tidal, musica-italiana 73 of 73. The 04:00 Tidal wave
+            # counts 1063 tracks missing Tidal across 58 playlists, so a
+            # sole-gap test is close to unreachable and the 19:32 run spent
+            # four searches where the 15:32 run spent twenty-four.
+            #
             # The trade is quota for time: 100 units against a wait that
-            # currently buys about 50 songs per slice. The other agents
-            # (Apple, Deezer, Tidal) run without the flag and keep the
-            # free pass unchanged.
-            want_odesli = bool(non_yt_gaps) or (
-                yt_gap and yt_key and not args.youtube_first
+            # buys about 50 songs per slice. The other gaps on these songs
+            # are not lost — Apple, Deezer and Tidal have their own agents
+            # and their own windows, and they call this script without the
+            # flag, so their free pass is unchanged.
+            want_odesli = not (args.youtube_first and yt_gap) and (
+                bool(non_yt_gaps) or (yt_gap and yt_key)
             )
             if want_odesli:
                 # Counted before the call, so --max caps attempts rather than
