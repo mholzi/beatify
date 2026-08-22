@@ -1202,7 +1202,24 @@ def run(args: argparse.Namespace) -> int:
             # Odesli is fetched for the Apple/Tidal/Deezer gaps AND, when a
             # YouTube key is set, to try its ``youtube`` link as a 0-quota
             # first pass before spending an expensive search.list call.
-            want_odesli = bool(non_yt_gaps) or (yt_gap and yt_key)
+            #
+            # That free pass is not free under ``--youtube-first`` (#2301).
+            # It costs ``--odesli-sleep`` seconds per song, and the YouTube
+            # search sits behind it in the same iteration, so the deadline
+            # takes the search first. Measured on 2026-08-22, 15:32: five
+            # five-minute slices, three of them reached search.list zero
+            # times and the run ended at its 25-minute cap having spent
+            # 24 of 90 permitted searches.
+            #
+            # So when this run exists to fill YouTube and YouTube is the
+            # song's only gap, skip Odesli and pay the search directly.
+            # The trade is quota for time: 100 units against a wait that
+            # currently buys about 50 songs per slice. The other agents
+            # (Apple, Deezer, Tidal) run without the flag and keep the
+            # free pass unchanged.
+            want_odesli = bool(non_yt_gaps) or (
+                yt_gap and yt_key and not args.youtube_first
+            )
             if want_odesli:
                 # Counted before the call, so --max caps attempts rather than
                 # successes — a run that only hits 429s must still terminate.
