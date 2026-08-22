@@ -74,7 +74,9 @@ class TestJsonErrorLogging:
 
     @pytest.mark.asyncio
     async def test_logs_status_code_and_message(self, caplog):
-        with caplog.at_level(logging.WARNING, logger="custom_components.beatify.server.base"):
+        with caplog.at_level(
+            logging.WARNING, logger="custom_components.beatify.server.base"
+        ):
             _json_error("Media player is unavailable", 400, code="INVALID_REQUEST")
         assert "400" in caplog.text
         assert "INVALID_REQUEST" in caplog.text
@@ -87,15 +89,21 @@ class TestJsonErrorLogging:
         # Home Assistant's system_log — Settings > System > Logs, and the
         # first place anyone looks — only collects WARNING and above. An INFO
         # line would have been exactly as invisible as no line at all.
-        with caplog.at_level(logging.DEBUG, logger="custom_components.beatify.server.base"):
+        with caplog.at_level(
+            logging.DEBUG, logger="custom_components.beatify.server.base"
+        ):
             _json_error("Media player is unavailable", 400, code="INVALID_REQUEST")
         records = [r for r in caplog.records if "INVALID_REQUEST" in r.getMessage()]
         assert records, "the error response produced no log record at all"
         assert all(r.levelno >= logging.WARNING for r in records)
 
     @pytest.mark.asyncio
-    async def test_two_rejections_sharing_a_code_are_distinguishable_in_the_log(self, caplog):
-        with caplog.at_level(logging.WARNING, logger="custom_components.beatify.server.base"):
+    async def test_two_rejections_sharing_a_code_are_distinguishable_in_the_log(
+        self, caplog
+    ):
+        with caplog.at_level(
+            logging.WARNING, logger="custom_components.beatify.server.base"
+        ):
             _json_error("Media player is unavailable", 400, code="INVALID_REQUEST")
             _json_error("No playlists selected", 400, code="INVALID_REQUEST")
         assert "Media player is unavailable" in caplog.text
