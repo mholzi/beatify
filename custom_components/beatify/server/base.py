@@ -305,10 +305,31 @@ def _json_error(
     admin UI can render — e.g. the structured per-song rejections from a
     failed playlist import (#1576). Merged into the body under their own keys
     so clients ignoring them are unaffected.
+
+    Every call also emits one WARNING carrying the status, code and message
+    (#2294), so a rejected request is findable in ``system_log`` afterwards.
     """
     body: dict[str, Any] = {"code": code, "error": code, "message": message}
     if details:
         body.update(details)
+    # #2294: every error response leaves a trace. Until now none of them did —
+    # the 33 call sites all return silently, so a failed request produced
+    # nothing in the log at all. On 2026-08-21 a host could not start a game
+    # for an evening; the screen said "this request was invalid, check your
+    # setup" (one generic string shared by twelve different rejections) and
+    # `system_log` held zero Beatify entries. The actual cause, "Media player
+    # is unavailable" after Music Assistant had been down for five days, was
+    # known right here and written nowhere.
+    #
+    # WARNING rather than INFO on purpose: Home Assistant's `system_log` — the
+    # list behind Settings > System > Logs and the one an assistant queries
+    # first — only collects WARNING and above. An INFO line would have been
+    # just as invisible during that evening's search as no line at all.
+    #
+    # One line per response, code and message both, no request context: adding
+    # the path would mean threading `request` through all 33 call sites for a
+    # detail the code already implies.
+    _LOGGER.warning("HTTP %s %s: %s", status, code, message)
     return web.json_response(body, status=status)
 
 
