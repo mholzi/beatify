@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.11",
+  "version": "0.12",
   "songs": [
     {
       "year": 1962,
@@ -1410,7 +1410,8 @@
       "fun_fact_it": "Franco Battiato - \"Voglio Vederti Danzare - Remastered\" (1982), dal canone del pop italiano.",
       "isrc": "ITD000800109",
       "uri_apple_music": "applemusic://track/713520078",
-      "uri_deezer": "deezer://track/3464233"
+      "uri_deezer": "deezer://track/3464233",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3nxXrHZ2HL4"
     },
     {
       "year": 1982,
@@ -1429,7 +1430,8 @@
       "fun_fact_it": "Loredana Bertè - \"Non sono una signora\" (1982), dal canone del pop italiano.",
       "isrc": "ITR008200751",
       "uri_apple_music": "applemusic://track/79323055",
-      "uri_deezer": "deezer://track/742432"
+      "uri_deezer": "deezer://track/742432",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oXh2eveEhFI"
     },
     {
       "year": 1982,
@@ -1448,7 +1450,8 @@
       "fun_fact_it": "Loretta Goggi - \"Pieno d'amore\" (1982), dal canone del pop italiano.",
       "isrc": "ITQ008200021",
       "uri_apple_music": "applemusic://track/698668554",
-      "uri_deezer": "deezer://track/70331701"
+      "uri_deezer": "deezer://track/70331701",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=M_81gxRaio8"
     },
     {
       "year": 1982,
@@ -1467,7 +1470,8 @@
       "fun_fact_it": "Mia Martini - \"E non finisce mica il cielo\" (1982), dal canone del pop italiano. Pubblicata da DDD nel 1982.",
       "isrc": "ITB008200759",
       "uri_apple_music": "applemusic://track/408273025",
-      "uri_deezer": "deezer://track/3803029202"
+      "uri_deezer": "deezer://track/3803029202",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1BqITMZofwM"
     },
     {
       "year": 1982,
