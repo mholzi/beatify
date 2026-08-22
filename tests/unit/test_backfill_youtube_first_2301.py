@@ -102,9 +102,7 @@ def wants_odesli(
     non_yt_gaps: list[str], yt_gap: bool, yt_key: bool, youtube_first: bool
 ) -> bool:
     """Die ``want_odesli``-Bedingung aus dem Song-Loop, isoliert nachgebildet."""
-    return not (youtube_first and yt_gap) and (
-        bool(non_yt_gaps) or (yt_gap and yt_key)
-    )
+    return not (youtube_first and yt_gap) and (bool(non_yt_gaps) or (yt_gap and yt_key))
 
 
 class TestOdesliSkip:
@@ -128,8 +126,12 @@ class TestOdesliSkip:
         # Der Normalfall im Katalog: YouTube fehlt, Tidal fehlt mit. Frueher
         # zwang das den 6-Sekunden-Aufruf, jetzt nicht mehr.
         assert wants_odesli([], yt_gap=True, yt_key=True, youtube_first=True) is False
-        for extra in (["tidal"], ["apple_music"], ["deezer"],
-                      ["apple_music", "deezer", "tidal"]):
+        for extra in (
+            ["tidal"],
+            ["apple_music"],
+            ["deezer"],
+            ["apple_music", "deezer", "tidal"],
+        ):
             assert (
                 wants_odesli(extra, yt_gap=True, yt_key=True, youtube_first=True)
                 is False
@@ -139,28 +141,31 @@ class TestOdesliSkip:
         # Ohne API-Key gibt es zwar keine Suche, aber auch keinen Grund, in
         # einem YouTube-Lauf auf Odesli zu warten. Die Entscheidung haengt
         # allein an Flag und Luecke.
-        assert wants_odesli(["tidal"], yt_gap=True, yt_key=False,
-                            youtube_first=True) is False
+        assert (
+            wants_odesli(["tidal"], yt_gap=True, yt_key=False, youtube_first=True)
+            is False
+        )
 
     def test_a_song_without_a_youtube_gap_is_untouched(self):
         # Das Flag sagt nur, welchen Job dieser Lauf macht. Songs ohne
         # YouTube-Luecke gehen ihren gewohnten Weg — sonst wuerde ein
         # YouTube-Lauf fremde Luecken stillschweigend ueberspringen.
-        assert wants_odesli(["tidal"], yt_gap=False, yt_key=True,
-                            youtube_first=True) is True
-        assert wants_odesli([], yt_gap=False, yt_key=True,
-                            youtube_first=True) is False
+        assert (
+            wants_odesli(["tidal"], yt_gap=False, yt_key=True, youtube_first=True)
+            is True
+        )
+        assert wants_odesli([], yt_gap=False, yt_key=True, youtube_first=True) is False
 
     def test_without_the_flag_everything_is_as_before(self):
         # Apple-, Deezer- und Tidal-Agenten rufen dasselbe Skript ohne das
         # Flag auf. Fuer sie darf sich nichts aendern.
         assert wants_odesli([], yt_gap=True, yt_key=True, youtube_first=False) is True
-        assert wants_odesli(["tidal"], yt_gap=True, yt_key=True,
-                            youtube_first=False) is True
-        assert wants_odesli([], yt_gap=True, yt_key=False,
-                            youtube_first=False) is False
-        assert wants_odesli([], yt_gap=False, yt_key=True,
-                            youtube_first=False) is False
+        assert (
+            wants_odesli(["tidal"], yt_gap=True, yt_key=True, youtube_first=False)
+            is True
+        )
+        assert wants_odesli([], yt_gap=True, yt_key=False, youtube_first=False) is False
+        assert wants_odesli([], yt_gap=False, yt_key=True, youtube_first=False) is False
 
     def test_the_narrow_first_attempt_is_gone(self):
         # Die alte Bedingung darf nicht zurueckkommen: sie war syntaktisch
