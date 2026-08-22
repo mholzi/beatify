@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "edm",
     "electronic",
@@ -1119,7 +1119,8 @@
         "Swedish House Mafia, Niki & The Dove",
         "DJ Hyperactive, Len Faki",
         "Axwell, Dirty South, Rudy"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1048105723"
     },
     {
       "artist": "Underworld",
@@ -1355,7 +1356,8 @@
         "Zedd, Matthew Koma",
         "Lucas & Steve, Tungevaag",
         "Armin van Buuren, Sunnery James & Ryan Marciano"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1712762653"
     },
     {
       "artist": "Eelke Kleijn, Joris Voorn",
@@ -1611,7 +1613,8 @@
         "Duke Dumont",
         "Kaskade, Punctual, Poppy Baskcomb",
         "Black Coffee, David Guetta, Delilah Montagu"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1440861908"
     },
     {
       "artist": "Chicane, Moya Brennan",
@@ -1631,7 +1634,8 @@
         "Fatboy Slim, CamelPhat",
         "Jerome Isma-Ae, Charlotte de Witte",
         "Maceo Plex, Chromatics"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/552020020"
     },
     {
       "artist": "R3HAB, NERVO, Ummet Ozcan",
@@ -1698,7 +1702,8 @@
         "Camisra",
         "Hardwell, KSHMR",
         "Travis Scott, CHASE B"
-      ]
+      ],
+      "uri_deezer": "deezer://track/43872461"
     },
     {
       "artist": "Butch, Kölsch",
@@ -2806,7 +2811,8 @@
         "Lazy Jay",
         "Tiësto, Vintage Culture",
         "BURNS"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1441448130"
     },
     {
       "artist": "Chris Brown, Benny Benassi",
@@ -2826,7 +2832,8 @@
         "Steve Aoki, Wynter Gordon",
         "Öwnboss, Sevek",
         "London Grammar"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/422045154"
     },
     {
       "artist": "Monolink, Ben Böhmer",
@@ -2894,7 +2901,8 @@
         "Michel Cleis, Totó La Momposina, Paul Kalkbrenner",
         "Moby, Steve Angello",
         "Pryda"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1553128246"
     },
     {
       "artist": "Lilly Wood and The Prick, Robin Schulz",
@@ -3293,7 +3301,9 @@
         "Lost Frequencies, Elley Duhé, X Ambassadors",
         "Avicii, Lenny Kravitz",
         "L.P. Rhythm"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1725032775",
+      "uri_deezer": "deezer://track/738419252"
     },
     {
       "artist": "The Chainsmokers, Coldplay, Alesso",
@@ -3409,7 +3419,8 @@
         "Jax Jones, Martin Solveig, Madison Beer, Europa",
         "Swedish House Mafia, Connie Constance",
         "David Guetta, Alesso, Madison Love"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/693226002"
     },
     {
       "artist": "Cosmic Gate",
@@ -4257,7 +4268,8 @@
         "Calvin Harris, Ellie Goulding",
         "Marc Benjamin, Marcus Santoro, David Pietras",
         "Purple Disco Machine, Moss Kena, The Knocks"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1397351286"
     },
     {
       "artist": "John Summit, Inéz",
@@ -4725,7 +4737,8 @@
         "Kaskade, deadmau5",
         "AFROJACK, NERVO, Dimitri Vegas & Like Mike",
         "Stromae, Paul Kalkbrenner"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1632534359"
     },
     {
       "artist": "NERVO",
@@ -4792,7 +4805,9 @@
         "Cassius",
         "Florence + The Machine, Swedish House Mafia, Mark Knight",
         "Hardwell"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1712580920",
+      "uri_deezer": "deezer://track/69184803"
     },
     {
       "artist": "Avicii",
@@ -5168,7 +5183,8 @@
         "Above & Beyond, anamē, Marty Longstaff",
         "Black Coffee, David Guetta, Delilah Montagu",
         "Justice, Soulwax"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1445284072"
     },
     {
       "artist": "Tiësto, R3HAB",
@@ -5828,7 +5844,8 @@
         "Alesso, TINI",
         "L.P. Rhythm",
         "Yves V"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1482928291"
     },
     {
       "artist": "Rihanna",
@@ -5968,7 +5985,8 @@
         "Martin Garrix, Julian Jordan",
         "Martin Garrix, Justin Mylo, Dewain Whitmore",
         "Solardo, Eli Brown"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1830183458"
     },
     {
       "artist": "Eliza Rose, Interplanetary Criminal",
@@ -6036,7 +6054,8 @@
         "KSHMR, Mike Waters",
         "Hardwell, Blasterjaxx, Mitch Crown",
         "Fragma"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1751948422"
     },
     {
       "artist": "Axwell, Errol Reid",
@@ -6080,7 +6099,8 @@
         "Dirty South, Evermore",
         "Secondcity",
         "Pegassi"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1536062139"
     },
     {
       "artist": "Adriatique, Marino Canal, Delhia De France",
@@ -6192,7 +6212,8 @@
         "Cristoph, FEMME",
         "Yves V",
         "Rui Da Silva, Cassandra"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1469407066"
     },
     {
       "artist": "Bruno Mars, Shepard, Sultan",
@@ -6260,7 +6281,8 @@
         "Lost Frequencies, The Temper Trap",
         "Oxia",
         "Prospa, RAHH"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1810312651"
     },
     {
       "artist": "Disclosure, Rivo, Eliza Doolittle",
@@ -6492,7 +6514,8 @@
         "Konstantin Sibold, Adam Sellouk",
         "MOGUAI, Cheat Codes",
         "Ernesto vs. Bastian, Susana"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/937537948"
     },
     {
       "artist": "CamelPhat, Yannis, Foals",
@@ -6776,7 +6799,8 @@
         "Issey Cross, Tiësto",
         "Joel Corry, James Hype",
         "AFROJACK, NERVO, Dimitri Vegas & Like Mike"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1440859018"
     },
     {
       "artist": "Vintage Culture, Adam K, MKLA",
@@ -7012,7 +7036,8 @@
         "DR. KUCHO!, Gregor Salto, Ane Brun, Oliver Heldens",
         "Fred again.., The Blessed Madonna",
         "Mr. Probz, Chris Brown, T.I."
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/6798410337"
     },
     {
       "artist": "Pegassi",
@@ -7832,7 +7857,8 @@
         "L.P. Rhythm",
         "Prospa, RAHH",
         "Kölsch, Gregor Schwellenbach"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1440862140"
     },
     {
       "artist": "Sebastian Ingrosso",
@@ -8112,7 +8138,8 @@
         "Ernesto vs. Bastian, Susana",
         "Parachute Youth",
         "Double 99"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1382339701"
     },
     {
       "artist": "Lost Frequencies, Flynn",
@@ -8276,7 +8303,8 @@
         "Vintage Culture, Fancy Inc",
         "Paul Kalkbrenner",
         "Rui Da Silva, Cassandra"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1044570310"
     },
     {
       "artist": "The Chainsmokers, Bebe Rexha",
@@ -8296,7 +8324,8 @@
         "Bag Raiders",
         "Fred again..",
         "Maceo Plex, Chromatics"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1489350663"
     },
     {
       "artist": "Mike Williams, Robin Valo",
@@ -8556,7 +8585,8 @@
         "Swedish House Mafia, Sting",
         "Breach",
         "Digitalism"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1641708378"
     },
     {
       "artist": "Michael Calfan",
@@ -9664,7 +9694,8 @@
         "Deniz Koyu",
         "Armin van Buuren, Jan Vayne",
         "Sonny Fodera, MK, Clementine Douglas"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1352439349"
     },
     {
       "artist": "Lost Frequencies",
