@@ -27,7 +27,7 @@ Three things decide it — check them before you install.
 
 - **Home Assistant 2025.1 or newer**
 - **A supported speaker** — Music Assistant (any speaker it drives), Sonos, or Alexa. Chromecast, Nest and HomePod work only through Music Assistant. See [Supported Speakers](#supported-speakers).
-- **A paid music plan** — Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music. Free tiers can't play a chosen track on demand, so Spotify Free won't work.
+- **A music source** — either a **paid streaming plan** (Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music; free tiers can't play a chosen track on demand, so Spotify Free won't work) **or your own music library** through Music Assistant — Plex, Jellyfin or local files, with no subscription at all.
 
 Beatify itself is free and runs entirely on your own Home Assistant.
 
@@ -634,7 +634,9 @@ That's it. No mDNS, no broadcast, no additional ports.
 ### Requirements
 - **Home Assistant** 2025.1+ (matches the `homeassistant` floor declared in `hacs.json`)
 - **Supported media player** (see [Supported Speakers](#supported-speakers) above)
-- **A music service** — Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music, each of which needs a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)). Amazon Music playback is Alexa-only (text search — see [Supported Speakers](#supported-speakers)).
+- **A music source**, either of:
+  - **A streaming service** — Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music, each of which needs a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)). Amazon Music playback is Alexa-only (text search — see [Supported Speakers](#supported-speakers)).
+  - **Your own library** — Plex, Jellyfin, local files, or anything else Music Assistant exposes as a library provider. No subscription required. Beatify builds a playable pool from it and verifies release years against MusicBrainz first, because a year-guessing game is only fair if the year is right (v4.3.0).
 - **HACS** (recommended) or manual installation
 
 ### How It Works
@@ -708,7 +710,9 @@ Spotify, Apple Music, YouTube Music, Tidal, Deezer, and Amazon Music. Support de
 <details>
 <summary><strong>Do I need a paid music subscription? Does Beatify work with free Spotify?</strong></summary>
 <br>
-Yes. Beatify plays a specific song on demand each round, and on every provider—Spotify, Apple Music, YouTube Music, Tidal, Deezer and Amazon Music—that requires a <strong>paid</strong> plan. <strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect), and <strong>a free YouTube Music account does not work either</strong>—playback runs through Music Assistant, whose <a href="https://www.music-assistant.io/music-providers/youtube-music/">YouTube Music provider</a> supports Premium accounts only. This is a streaming-service limitation, not a Beatify one. The curated playlists carry URIs for the five URI-based services; Amazon Music (Alexa-only) plays those same tracks by text search (<code>artist</code> + <code>title</code>) rather than a fixed URI.
+Not necessarily—there are two ways to play. <strong>Streaming</strong> needs a paid plan: Beatify plays a specific song on demand each round, and on every provider—Spotify, Apple Music, YouTube Music, Tidal, Deezer and Amazon Music—that requires a <strong>paid</strong> plan. <strong>Spotify Free does not work</strong> (its free tier blocks on-demand single-track playback via Music Assistant / Spotify Connect), and <strong>a free YouTube Music account does not work either</strong>—playback runs through Music Assistant, whose <a href="https://www.music-assistant.io/music-providers/youtube-music/">YouTube Music provider</a> supports Premium accounts only. This is a streaming-service limitation, not a Beatify one. The curated playlists carry URIs for the five URI-based services; Amazon Music (Alexa-only) plays those same tracks by text search (<code>artist</code> + <code>title</code>) rather than a fixed URI.
+<br><br>
+<strong>Your own library needs no subscription at all.</strong> Since v4.3.0 a game can be sampled from the music you already own—Plex, Jellyfin, local files, anything Music Assistant exposes as a library provider. Beatify enriches that pool first, resolving release years against MusicBrainz and discarding what it cannot verify, because a compilation rip tagged with its pressing year would make the game unfair. Music Assistant is still required for playback; a streaming subscription is not.
 </details>
 
 <details>
