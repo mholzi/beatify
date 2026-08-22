@@ -43,6 +43,11 @@ A song plays through your Sonos, Alexa, or Music Assistant speakers. Everyone ra
 
 No apps to download. No accounts to create. Just scan a QR code and play.
 
+If you have played **Hitster** or a similar card-based music party game, the core is familiar: a song
+starts, and you place its release year. Beatify does that without the cards, on the speakers already
+in the house — see [How Beatify compares](#how-beatify-compares) for what it does differently, and
+what it does not do at all.
+
 ---
 
 <br>
@@ -624,6 +629,33 @@ That's it. No mDNS, no broadcast, no additional ports.
 - If using HTTPS with a self-signed cert, guests may need to accept it once
 
 > **⚠️ Fritzbox users:** The Fritzbox guest WiFi fully isolates clients from your home network — this cannot be overridden with firewall rules. Players must join the main WiFi, or use a separate VLAN-capable router/access point to create a guest network with selective LAN access.
+
+---
+
+<br>
+
+## How Beatify Compares
+
+People usually find Beatify while looking for a **Hitster alternative**, so here is the honest
+comparison — including where the card game wins.
+
+| | Card-based music party game | Beatify |
+|---|---|---|
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 55 playlists ship with it, ~6,000 songs |
+| **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
+| **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
+| **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |
+| **How you answer** | Physically place a card on your timeline | Guess the year — or name the title and artist in a second mode |
+| **Timeline placement** | ✅ The core mechanic | ❌ **Not implemented.** Rounds score a year guess instead |
+| **Setup** | Open the box | Home Assistant 2025.1+, a supported speaker, HACS install |
+| **Players** | Limited by the components | 20+ on their own phones, no app |
+
+Two rows deserve more than a checkmark. Beatify has **no timeline-placement mechanic** — the most
+requested difference, and not a small feature. And it needs a **running Home Assistant**: a board game
+needs a table, this needs a server. If you do not have one, the box wins.
+
+> *Hitster is a trademark of its respective owner. Beatify is an independent open-source project,
+> not affiliated with or endorsed by it; the name appears here only to describe the kind of game.*
 
 ---
 
