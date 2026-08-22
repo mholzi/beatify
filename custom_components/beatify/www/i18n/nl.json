@@ -1071,7 +1071,9 @@
     "PROVIDER_NOT_SUPPORTED": "{speaker} kan {provider} niet afspelen. Schakel over naar een Music Assistant-speaker.",
     "UNSUPPORTED_PLAYER": "{speaker} is geen ondersteund speakertype. Gebruik Music Assistant.",
     "joinTimeout": "Verbinden mislukt. Probeer het opnieuw.",
-    "INVALID_REQUEST": "Dit verzoek was ongeldig. Controleer je instellingen en probeer het opnieuw."
+    "INVALID_REQUEST": "Dit verzoek was ongeldig. Controleer je instellingen en probeer het opnieuw.",
+    "NO_PLAYLISTS_SELECTED": "Kies minstens één afspeellijst voordat je een spel start.",
+    "NO_PLAYABLE_SONGS": "Geen van de nummers in de gekozen afspeellijsten kan met deze muziekdienst worden afgespeeld. Probeer een andere lijst of een andere dienst."
   },
   "highlights": {
     "highlight_exact_match": "{player} had '{song}' perfect — {year}!",

@@ -1071,7 +1071,9 @@
     "PROVIDER_NOT_SUPPORTED": "{speaker} can't play {provider}. Switch to a Music Assistant speaker.",
     "UNSUPPORTED_PLAYER": "{speaker} isn't a supported speaker type. Use Music Assistant.",
     "joinTimeout": "Couldn't connect. Please try again.",
-    "INVALID_REQUEST": "That request wasn't valid. Check your setup and try again."
+    "INVALID_REQUEST": "That request wasn't valid. Check your setup and try again.",
+    "NO_PLAYLISTS_SELECTED": "Pick at least one playlist before starting a game.",
+    "NO_PLAYABLE_SONGS": "None of the songs in the selected playlists can be played with this music service. Try another playlist or another service."
   },
   "highlights": {
     "highlight_exact_match": "{player} nailed '{song}' — {year}!",

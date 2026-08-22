@@ -1071,7 +1071,9 @@
     "PROVIDER_NOT_SUPPORTED": "{speaker} ne peut pas lire {provider}. Passe a une enceinte Music Assistant.",
     "UNSUPPORTED_PLAYER": "{speaker} n'est pas un type d'enceinte pris en charge. Utilise Music Assistant.",
     "joinTimeout": "Connexion impossible. Reessaie.",
-    "INVALID_REQUEST": "Requête invalide. Vérifiez votre configuration et réessayez."
+    "INVALID_REQUEST": "Requête invalide. Vérifiez votre configuration et réessayez.",
+    "NO_PLAYLISTS_SELECTED": "Choisissez au moins une playlist avant de lancer une partie.",
+    "NO_PLAYABLE_SONGS": "Aucun des titres des playlists sélectionnées ne peut être lu avec ce service musical. Essayez une autre playlist ou un autre service."
   },
   "highlights": {
     "highlight_exact_match": "{player} a trouvé '{song}' pile — {year} !",

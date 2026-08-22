@@ -1071,7 +1071,9 @@
     "PROVIDER_NOT_SUPPORTED": "{speaker} non può riprodurre {provider}. Passa a un altoparlante Music Assistant.",
     "UNSUPPORTED_PLAYER": "{speaker} non è un tipo di altoparlante supportato. Usa Music Assistant.",
     "joinTimeout": "Connessione non riuscita. Riprova.",
-    "INVALID_REQUEST": "La richiesta non era valida. Controlla la configurazione e riprova."
+    "INVALID_REQUEST": "La richiesta non era valida. Controlla la configurazione e riprova.",
+    "NO_PLAYLISTS_SELECTED": "Scegli almeno una playlist prima di iniziare una partita.",
+    "NO_PLAYABLE_SONGS": "Nessuno dei brani nelle playlist selezionate può essere riprodotto con questo servizio musicale. Prova un’altra playlist o un altro servizio."
   },
   "highlights": {
     "highlight_exact_match": "{player} ha centrato '{song}' — {year}!",

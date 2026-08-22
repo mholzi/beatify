@@ -1071,7 +1071,9 @@
     "PROVIDER_NOT_SUPPORTED": "{speaker} no puede reproducir {provider}. Cambia a un altavoz de Music Assistant.",
     "UNSUPPORTED_PLAYER": "{speaker} no es un tipo de altavoz compatible. Usa Music Assistant.",
     "joinTimeout": "No se pudo conectar. Intentalo de nuevo.",
-    "INVALID_REQUEST": "La solicitud no era válida. Revisa tu configuración e inténtalo de nuevo."
+    "INVALID_REQUEST": "La solicitud no era válida. Revisa tu configuración e inténtalo de nuevo.",
+    "NO_PLAYLISTS_SELECTED": "Elige al menos una lista de reproducción antes de empezar una partida.",
+    "NO_PLAYABLE_SONGS": "Ninguna de las canciones de las listas seleccionadas se puede reproducir con este servicio de música. Prueba otra lista u otro servicio."
   },
   "highlights": {
     "highlight_exact_match": "¡{player} clavó '{song}' — {year}!",

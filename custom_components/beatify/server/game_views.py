@@ -20,6 +20,9 @@ from custom_components.beatify.const import (
     DIFFICULTY_HARD,
     DIFFICULTY_NORMAL,
     DOMAIN,
+    ERR_MEDIA_PLAYER_UNAVAILABLE,
+    ERR_NO_PLAYABLE_SONGS,
+    ERR_NO_PLAYLISTS_SELECTED,
     PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEEZER,
@@ -224,7 +227,12 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # arrives with no playlist paths. Every other provider must select at
         # least one — a game with no source cannot be played.
         if not playlist_paths and provider != PROVIDER_MA_LIBRARY:
-            return _json_error("No playlists selected", 400, code="INVALID_REQUEST")
+            # #2294: own code so the client can say WHICH rejection fired. Twelve
+            # create-game rejections used to share INVALID_REQUEST, which the
+            # frontend renders as one generic sentence.
+            return _json_error(
+                "No playlists selected", 400, code=ERR_NO_PLAYLISTS_SELECTED
+            )
 
         if not media_player:
             return _json_error("No media player selected", 400, code="INVALID_REQUEST")
@@ -253,7 +261,10 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             return _json_error("Media player not found", 400, code="INVALID_REQUEST")
         if media_player_state.state == "unavailable":
             return _json_error(
-                "Media player is unavailable", 400, code="INVALID_REQUEST"
+                "Media player is unavailable",
+                400,
+                code=ERR_MEDIA_PLAYER_UNAVAILABLE,  # #2294: same code the WS path uses
+                details={"entity_id": media_player},
             )
 
         # Load and validate playlists -- or, for the library provider, sample a
@@ -346,7 +357,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             return _json_error(
                 "No valid songs found in selected playlists",
                 400,
-                code="INVALID_REQUEST",
+                code=ERR_NO_PLAYABLE_SONGS,  # #2294
             )
 
         # Get base URL for join URL construction (from request URL)

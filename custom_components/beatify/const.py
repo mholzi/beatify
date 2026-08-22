@@ -142,6 +142,11 @@ ERR_ROUND_EXPIRED = "ROUND_EXPIRED"
 ERR_ALREADY_SUBMITTED = "ALREADY_SUBMITTED"
 ERR_NOT_IN_GAME = "NOT_IN_GAME"
 ERR_MEDIA_PLAYER_UNAVAILABLE = "MEDIA_PLAYER_UNAVAILABLE"
+# #2294: the two create-game rejections a host can actually act on. They used to
+# share INVALID_REQUEST with ten unrelated ones, which the client renders as a
+# single generic sentence — "this request was invalid, check your setup".
+ERR_NO_PLAYLISTS_SELECTED = "NO_PLAYLISTS_SELECTED"
+ERR_NO_PLAYABLE_SONGS = "NO_PLAYABLE_SONGS"
 ERR_INVALID_ACTION = "INVALID_ACTION"
 ERR_GAME_FULL = "GAME_FULL"
 ERR_NO_SONGS_REMAINING = "NO_SONGS_REMAINING"
