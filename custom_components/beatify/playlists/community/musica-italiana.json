@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.11",
+  "version": "0.12",
   "songs": [
     {
       "year": 1962,
@@ -1679,7 +1679,7 @@
       "uri_deezer": "deezer://track/104724380"
     },
     {
-      "year": 1984,
+      "year": 1986,
       "uri": "spotify:track:07CPBe6hvgHgn749mxR0EJ",
       "artist": "Eros Ramazzotti",
       "alt_artists": [],

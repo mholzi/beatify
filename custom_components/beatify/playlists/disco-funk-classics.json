@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "1970s",
     "1980s",
@@ -340,7 +340,7 @@
       }
     },
     {
-      "year": 1984,
+      "year": 1982,
       "uri": "spotify:track:2u8MGAiS2hBVE7GZzTZLQI",
       "artist": "The Pointer Sisters",
       "alt_artists": [
