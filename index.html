@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beatify — Multiplayer Music Trivia for Home Assistant</title>
-  <meta name="description" content="Turn your smart speakers into a party game. Guests scan a QR code, a song plays — guess the year, or name the title and artist. No app, no account. Free and open source.">
+  <meta name="description" content="A self-hosted, open-source alternative to Hitster-style music party games. Guests scan a QR code, a song plays — guess the release year, or name the title and artist. Runs on the smart speakers you already own. No cards, no app, no account.">
   <meta name="keywords" content="Home Assistant, music quiz, party game, HACS, smart home, music trivia, Sonos, Alexa, Music Assistant, self-hosted">
   <meta name="author" content="Markus Holzhäuser">
 
@@ -251,6 +251,59 @@
             </div>
           </div>
           <p class="speakers-note">Using Chromecast, Nest, or HomePod? Install Music Assistant — they'll appear in Beatify automatically.</p>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT COMPARES ===== -->
+      <section class="speakers" id="compare">
+        <div class="container">
+          <h2 class="section-title">Looking for a Hitster Alternative?</h2>
+          <p class="speakers-note" style="margin-bottom:1.5rem">Beatify plays the same core game — a song starts, you place its release year — without the cards, the box, or the app. Here is what is genuinely different, including where Beatify falls short.</p>
+          <div class="speakers-grid">
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>Nothing to buy or reprint</strong>
+                <p>The card decks are playlists. 55 of them ship with Beatify, and you can build your own from any music service or your own library.</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>Your speakers, your music</strong>
+                <p>Plays through the Sonos, Alexa or Music Assistant speakers already in the house — at party volume, not through a phone.</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>No subscription needed</strong>
+                <p>Since v4.3.0 a game can be sampled from your own library — Plex, Jellyfin or local files. A streaming plan is one option, not a requirement.</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">✅</span>
+              <div>
+                <strong>A second way to play</strong>
+                <p>Beyond guessing the year, a Title &amp; Artist mode scores naming the track — with bonus rounds, streaks and a podium.</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">⚠️</span>
+              <div>
+                <strong>No timeline placement yet</strong>
+                <p>The board-game mechanic of slotting a card between two you already hold does not exist in Beatify. Rounds score a year guess instead. It is the most requested difference and it is on the list.</p>
+              </div>
+            </div>
+            <div class="speaker-card">
+              <span class="speaker-check" aria-hidden="true">⚠️</span>
+              <div>
+                <strong>It needs a Home Assistant</strong>
+                <p>A board game needs a table. Beatify needs Home Assistant 2025.1+ and a supported speaker. If you do not run one, the box wins.</p>
+              </div>
+            </div>
+          </div>
+          <p class="speakers-note">Hitster is a trademark of its respective owner. Beatify is an independent open-source project and is not affiliated with, endorsed by, or connected to it — the name appears here only to describe the kind of game.</p>
         </div>
       </section>
 
