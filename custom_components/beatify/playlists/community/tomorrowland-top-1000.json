@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "edm",
     "electronic",
@@ -10264,7 +10264,8 @@
         "Tim Mason, Steve Angello",
         "Red Carpet, Brad Carter",
         "Mr. Belt & Wezol"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/1704317411"
     },
     {
       "artist": "Bingo Players",
@@ -10284,7 +10285,8 @@
         "Vintage Culture, Fancy Inc, The Beach",
         "Axwell, Sebastian Ingrosso, Steve Angello, Laidback Luke",
         "Martin Garrix, Khalid, DubVision"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/466851778"
     },
     {
       "artist": "deadmau5",
@@ -10327,7 +10329,8 @@
         "DJ MERCER, Tchami",
         "deadmau5, Kaskade, Kx5, John Summit, HAYLA",
         "Svenson & Gielen"
-      ]
+      ],
+      "uri_deezer": "deezer://track/3155420471"
     },
     {
       "artist": "Dom Dolla",
