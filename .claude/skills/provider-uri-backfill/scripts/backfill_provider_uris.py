@@ -1179,6 +1179,25 @@ def run(args: argparse.Namespace) -> int:
             yt_gap = "youtube_music" in gaps
             non_yt_gaps = [g for g in gaps if g != "youtube_music"]
 
+            # ---- Fast-forward to the YouTube cursor (#2301) -----------------
+            # Songs before the cursor were already offered to the YouTube phase
+            # in an earlier run. The loop still walked them, paying one Odesli
+            # call each — and Odesli is throttled to ``--odesli-sleep`` (6s by
+            # default), so a 5-minute slice buys about 50 songs of walking.
+            #
+            # On 2026-08-22 that ate the window whole. Two runs, seven and five
+            # slices, `spent_today` unchanged at 0/90: the YouTube phase had
+            # twelve calls available and made none, because the loop never got
+            # past the cursor before the deadline. Cursors are not small —
+            # edm-anthems sits at 234, 80er-hits at 153.
+            #
+            # Under ``--youtube-first`` those songs are skipped outright. The
+            # non-YouTube gaps they may still carry are not lost: Apple, Deezer
+            # and Tidal have their own agents and their own windows. This flag
+            # says which job this run is doing.
+            if args.youtube_first and yt_gap and this_global_idx < yt_state.cursor:
+                continue
+
             # ---- Odesli (apple/tidal/deezer + free YouTube-first pass) ----
             # Odesli is fetched for the Apple/Tidal/Deezer gaps AND, when a
             # YouTube key is set, to try its ``youtube`` link as a 0-quota
@@ -1427,6 +1446,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
         type=int,
         default=90,
         help="Max YouTube search.list calls per day (default 90)",
+    )
+    p.add_argument(
+        "--youtube-first",
+        action="store_true",
+        help=(
+            "Skip songs the YouTube resume cursor has already passed instead of "
+            "paying an Odesli call for them. For runs whose purpose is YouTube "
+            "(#2301) — without it a short window is spent walking ground the "
+            "YouTube phase already covered."
+        ),
     )
     p.add_argument(
         "--max",
