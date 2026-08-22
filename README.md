@@ -4,10 +4,13 @@
 
 <img src="images/beatify-gameplay.gif" alt="Beatify gameplay: scan a QR code to join, guess the song, and climb the final ranking" width="800">
 
-### **Multiplayer Music Trivia Quiz Game for Home Assistant**
+### **The Music Party Game for the Speakers You Already Own**
 
-Turn any gathering into an unforgettable music trivia experience.
-Guests scan, songs play, everyone competes. It's that simple.
+A song starts. Everyone shouts a year at the speakers. Someone is
+gloriously, confidently wrong — and the room lets them know.
+
+Guests join from their phones by scanning a QR code. No app, no accounts.
+Runs on your own Home Assistant.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Version](https://img.shields.io/github/v/release/mholzi/beatify?style=for-the-badge&color=ff00ff&label=Version)](https://github.com/mholzi/beatify/releases)
@@ -37,9 +40,15 @@ Beatify itself is free and runs entirely on your own Home Assistant.
 
 ## What Is Beatify?
 
-**Beatify is an open-source music quiz game for Home Assistant** — a multiplayer music trivia party game that turns your smart speakers into a game show.
+**Beatify is a music party game.** Eight people in a living room, a song on the speakers, and a
+scramble to name the year before anyone else does.
 
-A song plays through your Sonos, Alexa, or Music Assistant speakers. Everyone races to guess the release year — or, in the new **Title & Artist** mode, to name the song and who sings it. Points fly. Streaks build. Champions emerge.
+The music plays through your Sonos, Alexa, or Music Assistant speakers — at party volume, not out of
+a phone on the table. Everyone races to guess the release year, or, in the **Title & Artist** mode, to
+name the song and who sings it. Points fly. Streaks build. Champions emerge, then lose it all on a
+song from 1994 that nobody can place.
+
+Underneath, it is an open-source Home Assistant integration that runs entirely on your own hardware.
 
 No apps to download. No accounts to create. Just scan a QR code and play.
 
