@@ -66,7 +66,41 @@ var lastLeaderboard = [];
  * Update game view with round data
  * @param {Object} data - State data from server
  */
+/**
+ * #2337: widen the year slider to whatever the server says this game needs.
+ *
+ * The markup ships min="1950" max="2025". 46 songs in the catalogue carry
+ * year 2026, and for those rounds the correct answer could not be entered —
+ * the thumb simply stopped short of it. The server now sends the bounds it
+ * needs (a fixed default, widened to cover the playlist, never narrowed to
+ * it) and this pulls the element into line.
+ *
+ * The current value is clamped into the new range, because narrowing can
+ * still happen the other way: a game whose range shrinks between rounds
+ * would otherwise leave the thumb parked outside its own track.
+ */
+export function applyYearRange(range) {
+    var slider = document.getElementById('year-slider');
+    if (!slider || !range) return;
+
+    var lo = parseInt(range.min, 10);
+    var hi = parseInt(range.max, 10);
+    if (!isFinite(lo) || !isFinite(hi) || lo >= hi) return;
+
+    if (parseInt(slider.min, 10) !== lo) slider.min = String(lo);
+    if (parseInt(slider.max, 10) !== hi) slider.max = String(hi);
+
+    var val = parseInt(slider.value, 10);
+    if (!isFinite(val) || val < lo || val > hi) {
+        var clamped = Math.max(lo, Math.min(hi, isFinite(val) ? val : lo));
+        slider.value = String(clamped);
+        var yearDisplay = document.getElementById('selected-year');
+        if (yearDisplay) yearDisplay.textContent = String(clamped);
+    }
+}
+
 export function updateGameView(data) {
+    applyYearRange(data.year_range);
     var currentRound = document.getElementById('current-round');
     var totalRounds = document.getElementById('total-rounds');
     var lastRoundBanner = document.getElementById('last-round-banner');
@@ -1111,9 +1145,16 @@ export function resetSubmissionState() {
     }
 
     if (slider) {
-        slider.value = 1990;
+        // #2337: 1990 is the intended starting point, but it has to land
+        // inside the track. A playlist that starts in 1995 would otherwise
+        // park the thumb before its own minimum.
+        var lo = parseInt(slider.min, 10);
+        var hi = parseInt(slider.max, 10);
+        var start = 1990;
+        if (isFinite(lo) && isFinite(hi)) start = Math.max(lo, Math.min(hi, start));
+        slider.value = start;
         var yearDisplay = document.getElementById('selected-year');
-        if (yearDisplay) yearDisplay.textContent = '1990';
+        if (yearDisplay) yearDisplay.textContent = String(start);
     }
 
     // Re-enable ±1 / ±5 buttons (Issues #662, #851)

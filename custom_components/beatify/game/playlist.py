@@ -357,6 +357,27 @@ class PlaylistManager:
         """
         return len(self._songs)
 
+    def get_year_span(self) -> tuple[int, int] | None:
+        """Earliest and latest ``year`` across this manager's songs (#2337).
+
+        The player's year slider was markup with ``max="2025"`` in it while
+        46 shipped songs carried ``year: 2026`` — the correct answer could
+        not be entered at all. The schema had already learned this lesson:
+        :func:`_max_year` is dynamic precisely so a hardcoded bound cannot
+        silently reject newer songs (#706). The UI kept a static one.
+
+        Returns ``None`` when no song carries a usable year, so the caller
+        keeps its own defaults rather than inventing a range from nothing.
+        """
+        years = [
+            s["year"]
+            for s in self._songs
+            if isinstance(s.get("year"), int) and MIN_YEAR <= s["year"] <= _max_year()
+        ]
+        if not years:
+            return None
+        return min(years), max(years)
+
 
 # Validation constants
 MIN_YEAR = 1900

@@ -468,6 +468,11 @@
                         <button type="button" id="year-decrement-5" class="slider-btn-year slider-btn-year--coarse" aria-label="Decrease year by 5">&minus;5</button>
                         <button type="button" id="year-decrement" class="slider-btn-year" aria-label="Decrease year">&minus;</button>
                         <div class="slider-arcade-track">
+                            <!-- #2337: these are the fallback bounds only.
+                                 applyYearRange() replaces them from the
+                                 server's year_range on the first state
+                                 update, so a playlist reaching past them is
+                                 still answerable. -->
                             <input type="range"
                                    id="year-slider"
                                    min="1950"
