@@ -15,17 +15,17 @@ import time
 from typing import TYPE_CHECKING, Any
 
 from .playlist import get_playback_uri
-
-# The floor the year slider always offers, regardless of what is in the
-# playlist. Songs older than this exist; a playlist containing them widens
-# the range rather than being clipped by it (#2337).
-_SLIDER_DEFAULT_MIN_YEAR = 1950
 from .scoring import bet_win_multiplier
 
 if TYPE_CHECKING:
     from .state import GameState
 
 _LOGGER = logging.getLogger(__name__)
+
+# The floor the year slider always offers, regardless of what is in the
+# playlist. Songs older than this exist; a playlist containing them widens
+# the range rather than being clipped by it (#2337).
+_SLIDER_DEFAULT_MIN_YEAR = 1950
 
 
 class GameStateSerializer:
