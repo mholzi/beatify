@@ -1162,9 +1162,35 @@ class MediaPlayerService:
                 if not position_fresh:
                     return False
 
+                # #2333: the track has to have actually changed. The
+                # docstring above promised this of BOTH paths, and Path 2
+                # honoured it while Path 1 did not — it accepted a substring
+                # match against whatever was playing, including the song from
+                # the previous round still running.
+                #
+                # `position_fresh` above is no help: a track that simply keeps
+                # playing keeps advancing its own position.
+                #
+                # The failure it allowed: round N plays "Stay With Me", round
+                # N+1 draws "Stay" whose URI is missing from the household's
+                # storefront, MA never switches, and `"stay" in "stay with
+                # me"` confirms success within a second. The room then guesses
+                # a song they already heard.
+                #
+                # Substring containment makes that reachable well beyond one
+                # example — covers, "One", "Hurt", remaster suffixes.
+                #
+                # An empty `title_before` (nothing was playing) still passes,
+                # which is the cold-start case and genuinely a change.
+                title_changed = current_title != title_before
+
                 # Path 1: exact-ish title match (substring) — strongest signal,
                 # the only path strong enough to learn a preferred URI field.
-                if expected_lower and expected_lower in current_title.lower():
+                if (
+                    title_changed
+                    and expected_lower
+                    and expected_lower in current_title.lower()
+                ):
                     self._last_confirm_path = 1
                     return True
                 # If no expected title was supplied, position-fresh alone is
@@ -1177,7 +1203,7 @@ class MediaPlayerService:
                 # title is plausibly our track (shared token / prefix) OR the
                 # artist matches. A bare "any different title" no longer
                 # qualifies — that is the prior-queue auto-advance trap.
-                if current_title and current_title != title_before:
+                if current_title and title_changed:
                     if _titles_plausibly_match(
                         expected_title, current_title
                     ) or _artist_matches(expected_artist, current_artist):
