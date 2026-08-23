@@ -883,38 +883,29 @@ function handleServerMessage(data) {
             console.warn('[Beatify] Stop song failed: No song playing');
             return;
         }
-        if (data.code === 'INTERNAL_ERROR') {
-            // #2336: the server now reports a handler failure instead of
-            // staying silent. It must NOT reach the catch-all below — that
-            // would drop the player to the join screen and wipe their stored
-            // session over a server-side hiccup, which is strictly worse than
-            // the silence it replaces. Same reasoning as #934 one branch down.
-            console.warn('[Beatify] Server error:', data.message);
-            handleSubmitError(data);
-            return;
-        }
-        if (data.code === 'INVALID_ACTION') {
-            // A benign, late action rejection — e.g. a year/artist/movie
-            // guess that landed just after the round flipped PLAYING ->
-            // REVEAL. This is NOT a session failure: the catch-all below
-            // would wrongly dump the player to the join screen and wipe
-            // their stored session. Surface it inline and stay put — the
-            // next state broadcast renders the reveal view. (#934)
-            console.warn('[Beatify] Action rejected:', data.message);
-            handleSubmitError(data);
-            return;
-        }
-        showView('join-view');
-        showJoinError(data.message);
-        if (joinBtn) {
-            joinBtn.disabled = false;
-            joinBtn.textContent = utils.t('join.joinButton');
-        }
-        if (nameInput) {
-            nameInput.focus();
-        }
-        state.playerName = null;
-        clearStoredPlayerName();
+        // #2338: everything that reaches this point stays in the game.
+        //
+        // This used to be the other way round — a handful of codes were
+        // listed as benign and anything else fell through to the join screen
+        // below, wiping the stored session with it. The server sends 17 error
+        // codes to players and this file recognised 8. Seven of the unlisted
+        // ones are reachable in normal play: FROZEN, ELIMINATED, NOT_IN_GAME,
+        // NO_SABOTAGE_AVAILABLE and the three NO_*_CHALLENGE codes.
+        //
+        // What that looked like in a living room: a sabotaged player taps
+        // Submit while their local freeze window and the server's disagree by
+        // a few hundred milliseconds, the server answers FROZEN — and instead
+        // of "you are frozen" they get the join form, with their name gone,
+        // mid-round, in front of everyone.
+        //
+        // #934 fixed exactly this for INVALID_ACTION and left the shape
+        // intact, so the next unlisted code brought it straight back. The
+        // list above now names only the codes that genuinely end a session
+        // (SESSION_TAKEOVER, SESSION_NOT_FOUND, GAME_ENDED) and each returns
+        // on its own. Anything else is surfaced inline, which means a new
+        // server-side code can no longer throw anyone out.
+        console.warn('[Beatify] Action rejected:', data.code, data.message);
+        handleSubmitError(data);
     } else if (data.type === 'song_stopped') {
         handleSongStopped();
     } else if (data.type === 'volume_changed') {
