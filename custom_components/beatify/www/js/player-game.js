@@ -814,6 +814,25 @@ export function setupRevealLeaderboardToggle() {
 // ============================================
 
 var hasSubmitted = false;
+
+// #2339: the submit button was disabled on send and only ever re-enabled by
+// handleSubmitAck() or a new round. On a half-open socket — an access-point
+// roam, an iPhone waking up — readyState is still OPEN, send() buffers into
+// nothing, and no ack ever comes. The heartbeat needs up to
+// HEARTBEAT_INTERVAL_MS + HEARTBEAT_TIMEOUT_MS (15s + 40s) to notice, which
+// is longer than a round, and even after reconnecting the button stays dead.
+//
+// Joining got exactly this watchdog in #1663 (startJoinTimeout). Submitting
+// a guess — the most important tap in the game — did not.
+var SUBMIT_ACK_TIMEOUT_MS = 5000;
+var submitAckTimeoutId = null;
+
+function clearSubmitAckTimeout() {
+    if (submitAckTimeoutId) {
+        clearTimeout(submitAckTimeoutId);
+        submitAckTimeoutId = null;
+    }
+}
 var betActive = false;
 var hasStealAvailable = false;
 // #1665: mirrors hasStealAvailable — gates the sabotage button + click handler.
@@ -1018,6 +1037,18 @@ export function handleSubmitGuess() {
             year: year,
             bet: betActive || sabotageForcedBet  // #1665: forced bet rides along
         }));
+        // #2339: nothing below re-enables the button, so arm a watchdog.
+        clearSubmitAckTimeout();
+        submitAckTimeoutId = setTimeout(function () {
+            submitAckTimeoutId = null;
+            if (hasSubmitted) return;   // the ack won the race after all
+            var btn = document.getElementById('submit-btn');
+            if (btn) {
+                btn.disabled = false;
+                btn.classList.remove('is-loading');
+            }
+            showSubmitError(utils.t('errors.connectionLost'));
+        }, SUBMIT_ACK_TIMEOUT_MS);
     } else {
         showSubmitError(utils.t('errors.connectionLost'));
         submitBtn.disabled = false;
@@ -1029,6 +1060,11 @@ export function handleSubmitGuess() {
  * Handle server acknowledgment of submission
  */
 export function handleSubmitAck() {
+    // #2339: a late ack must still land. hasSubmitted is set first so a
+    // watchdog already in flight sees it and does nothing — otherwise a
+    // reply arriving at 5.01s would re-enable a button the ack has just
+    // locked, and the player could submit twice.
+    clearSubmitAckTimeout();
     hasSubmitted = true;
 
     var yearSelector = document.getElementById('year-selector');
@@ -1112,6 +1148,9 @@ export function showSubmitError(message) {
  * Reset submission state for new round
  */
 export function resetSubmissionState() {
+    // #2339: a pending watchdog from the previous round must not fire into
+    // this one and flash an error at a player who has not tapped anything.
+    clearSubmitAckTimeout();
     hasSubmitted = false;
     betActive = false;
 
