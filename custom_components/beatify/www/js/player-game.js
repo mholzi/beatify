@@ -99,8 +99,45 @@ export function applyYearRange(range) {
     }
 }
 
+/**
+ * #2340: bring the local "have I submitted?" state back in line with the
+ * server's.
+ *
+ * After a reload — a locked phone, an evicted tab — `state.currentRoundNumber`
+ * is 0, so the next PLAYING broadcast looks like a new round and
+ * `resetSubmissionState()` runs: `hasSubmitted` goes false, the slider springs
+ * back to its default, the button is live again. The very same frame carries
+ * `players[me].submitted === true`, and nothing was reading it. `findMe()` has
+ * been here all along and `player.submitted` is used for *other* players in
+ * several places; the local player's own state was the gap.
+ *
+ * What that cost: the player saw an active slider on the default year instead
+ * of the 1987 they had entered, assumed their guess was lost, submitted again
+ * — and got ALREADY_SUBMITTED. The route back to the correct state ran through
+ * an error message.
+ *
+ * The year is NOT restored, and that is not an oversight. `guess` travels only
+ * in the REVEAL payload (`get_reveal_players_state`). The PLAYING broadcast
+ * (`get_players_state`) deliberately omits it: one frame goes to everyone, so
+ * shipping each player's guess mid-round would hand the whole room the
+ * answers-in-progress. Locking without the number is the honest half.
+ *
+ * Only fires when the two disagree. updateGameView runs on EVERY state
+ * broadcast — once per submission by anyone in the room — so an unconditional
+ * re-apply would fight the player for the rest of the round.
+ */
+function reconcileOwnSubmission(data) {
+    if (hasSubmitted) return;
+
+    var me = findMe(data && data.players);
+    if (!me || !me.submitted) return;
+
+    handleSubmitAck();
+}
+
 export function updateGameView(data) {
     applyYearRange(data.year_range);
+    reconcileOwnSubmission(data);
     var currentRound = document.getElementById('current-round');
     var totalRounds = document.getElementById('total-rounds');
     var lastRoundBanner = document.getElementById('last-round-banner');
