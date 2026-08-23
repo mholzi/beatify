@@ -269,6 +269,26 @@ async def handle_steal(
         )
         return
 
+    # #2335: the same guard the four guessing handlers have carried since
+    # #1662. `use_steal` only checks phase == PLAYING, and there is a window
+    # where the deadline has passed but end_round has not flipped the phase
+    # yet — the "Time's up" announcement, the overdue grace, a timer task
+    # firing late. In that window every honest submission is refused while a
+    # banked steal still goes through, and a steal IS a submission: it writes
+    # current_guess, sets submitted = True and stamps submission_time.
+    #
+    # A power-up that quietly hands one player extra time is a different
+    # thing from one that copies an answer.
+    if game_state.is_deadline_passed():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
+            }
+        )
+        return
+
     target_name = data.get("target")
     if not target_name:
         await ws.send_json(
@@ -387,6 +407,24 @@ async def handle_sabotage(
                 "type": "error",
                 "code": ERR_ELIMINATED,
                 "message": "You have been eliminated",
+            }
+        )
+        return
+
+    # #2335: same guard, opposite harm. All three sabotage effects act on the
+    # victim's submit path (timer cut, freeze, forced bet), and after the
+    # deadline that path is closed anyway — so a late sabotage cannot hurt the
+    # target. What it does do is run consume_sabotage() and burn the
+    # saboteur's own token for nothing.
+    #
+    # Worth guarding for the attacker's sake rather than the victim's, which
+    # is why it is stated here instead of left to look like a copy-paste.
+    if game_state.is_deadline_passed():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
             }
         )
         return
