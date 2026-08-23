@@ -1,7 +1,7 @@
 {
   "name": "Sanremo: I Vincitori 🇮🇹",
   "description": "Every winning song of the Sanremo Music Festival, from Nilla Pizzi in 1951 to Sal Da Vinci in 2026. Years verified against the official Albo d'oro. Requested in #2230.",
-  "version": "0.8",
+  "version": "0.9",
   "tags": [
     "italian",
     "sanremo",
@@ -1220,7 +1220,7 @@
         "nl": "applemusic://track/1443141820"
       },
       "uri_deezer": "deezer://track/9968672",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z8L-84d84yM",
       "uri_tidal": null
     },
     {
@@ -1248,7 +1248,7 @@
         "nl": "applemusic://track/1442358784"
       },
       "uri_deezer": "deezer://track/16607983",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pMzNxA81qmE",
       "uri_tidal": null
     },
     {
@@ -1274,7 +1274,7 @@
         "it": "applemusic://track/599931269"
       },
       "uri_deezer": "deezer://track/64784607",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=unRjK82bDLw",
       "uri_tidal": null
     },
     {
@@ -1302,7 +1302,7 @@
         "it": "applemusic://track/819907122"
       },
       "uri_deezer": "deezer://track/75373315",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wPrKYs2iDKQ",
       "uri_tidal": null
     },
     {
