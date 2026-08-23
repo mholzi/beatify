@@ -24,8 +24,6 @@ from __future__ import annotations
 
 from unittest.mock import AsyncMock, MagicMock
 
-import pytest
-
 from custom_components.beatify.const import DOMAIN, ERR_ROUND_EXPIRED
 from custom_components.beatify.game.state import GamePhase
 from tests.conftest import make_game_state, make_songs
