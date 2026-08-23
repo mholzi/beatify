@@ -107,6 +107,7 @@ def build_status_response(
     playlists: list[dict[str, Any]],
     media_player_twin_remap: dict[str, str] | None = None,
     saved_setup: dict[str, Any] | None = None,
+    redact_answers: bool = False,
 ) -> dict[str, Any]:
     """Build the admin ``/api/status`` JSON payload.
 
@@ -123,6 +124,14 @@ def build_status_response(
     settings) or ``None``. It drives ``setup_complete`` — the server-side
     replacement for the localStorage-only "is configured?" check that made a
     configured instance look unconfigured on a new device.
+
+    ``redact_answers`` (#2332) strips the round's answers out of
+    ``active_game`` for a caller who has not proved they are the host. The
+    #1366 redaction existed but was wired only into the WebSocket path, so an
+    unauthenticated HTTP GET returned ``admin_song.year`` — the answer — to
+    anyone who could reach the port. Players are unauthenticated by design and
+    on the same network, so that is one browser tab, silently, with nothing in
+    the log.
     """
     data = hass.data.get(DOMAIN, {})
     game_state: GameState | None = data.get("game")
@@ -130,6 +139,13 @@ def build_status_response(
     active_game = None
     if game_state and game_state.game_id:
         active_game = game_state.get_state()
+        # #2332: same treatment the WebSocket broadcast already gets. The
+        # endpoint stays open — the wizard (``wizard.js``) and the playlist
+        # hub fetch it without a token and would break under a hard auth
+        # gate, which is why ``requires_auth`` is False in the first place.
+        # Only the answers come out.
+        if redact_answers and isinstance(active_game, dict):
+            active_game = redact_state_for_player(active_game)
 
     has_music_assistant = any(
         entry.domain == "music_assistant"

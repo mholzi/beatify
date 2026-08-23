@@ -555,7 +555,7 @@ class StatusView(HomeAssistantView):
         """Initialize the status view."""
         self.hass = hass
 
-    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+    async def get(self, request: web.Request) -> web.Response:
         """Return current status as JSON."""
         # Fetch media players fresh (not cached) - Story 8-2.
         # #1704: the player list and the native→MA twin remap (#1627: lets the
@@ -579,6 +579,15 @@ class StatusView(HomeAssistantView):
         # to the executor (blocking I/O off the event loop).
         saved_setup = await self.hass.async_add_executor_job(read_setup, self.hass)
 
+        # #2332: this view stays unauthenticated on purpose — the wizard
+        # (`wizard.js`) and the playlist hub fetch it with a bare `fetch` and
+        # no token, so a hard `is_authorized_http` gate here would break setup
+        # and the playlist picker. What must not stay open is the answer:
+        # `active_game` carried `admin_song.year` to anyone who could reach
+        # the port, because the #1366 redaction was only ever wired into the
+        # WebSocket path. Players are unauthenticated by design and on the
+        # same network, so reading it was one browser tab away and left no
+        # trace. Authorized callers (the admin screen) get the full payload.
         status = build_status_response(
             self.hass,
             version=_get_version(self.hass),
@@ -586,6 +595,7 @@ class StatusView(HomeAssistantView):
             playlists=playlists,
             media_player_twin_remap=media_player_twin_remap,
             saved_setup=saved_setup,
+            redact_answers=not is_authorized_http(request, self.hass),
         )
 
         return web.json_response(status)
