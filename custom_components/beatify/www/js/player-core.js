@@ -883,6 +883,16 @@ function handleServerMessage(data) {
             console.warn('[Beatify] Stop song failed: No song playing');
             return;
         }
+        if (data.code === 'INTERNAL_ERROR') {
+            // #2336: the server now reports a handler failure instead of
+            // staying silent. It must NOT reach the catch-all below — that
+            // would drop the player to the join screen and wipe their stored
+            // session over a server-side hiccup, which is strictly worse than
+            // the silence it replaces. Same reasoning as #934 one branch down.
+            console.warn('[Beatify] Server error:', data.message);
+            handleSubmitError(data);
+            return;
+        }
         if (data.code === 'INVALID_ACTION') {
             // A benign, late action rejection — e.g. a year/artist/movie
             // guess that landed just after the round flipped PLAYING ->

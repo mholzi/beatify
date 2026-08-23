@@ -12,6 +12,7 @@ from aiohttp import WSCloseCode, WSMsgType, web
 
 from custom_components.beatify.const import (
     ERR_GAME_NOT_STARTED,
+    ERR_INTERNAL,
     LOBBY_DISCONNECT_GRACE_PERIOD,
     MAX_GUESS_LEN,
 )
@@ -242,16 +243,53 @@ class BeatifyWebSocketHandler:
         try:
             async for msg in ws:
                 if msg.type == WSMsgType.TEXT:
+                    # #2336: parsing and dispatch used to share one `except`,
+                    # and every handler failure was logged as "Failed to parse
+                    # WebSocket message". That does not merely under-describe
+                    # the error — it points at the wrong party. Anyone reading
+                    # the log concludes the client sent malformed JSON and
+                    # looks there.
+                    #
+                    # The case that made it visible: `_finalize_and_end`
+                    # re-raises on purpose (#1754) so the game-end claim is
+                    # released and a retry can re-run the terminal sequence.
+                    # The design works — but the admin got no frame back, so
+                    # "End game" read as a dead button with a misleading log
+                    # line beside it.
                     try:
                         parsed = msg.json()
-                        _WIRE_LOGGER.debug(
-                            "[WS-Debug] recv type=%s keys=%s",
-                            parsed.get("type") if isinstance(parsed, dict) else "?",
-                            list(parsed.keys()) if isinstance(parsed, dict) else None,
-                        )
-                        await self._handle_message(ws, parsed)
-                    except Exception as err:  # noqa: BLE001
+                    except (ValueError, TypeError) as err:
                         _LOGGER.warning("Failed to parse WebSocket message: %s", err)
+                        continue
+
+                    _WIRE_LOGGER.debug(
+                        "[WS-Debug] recv type=%s keys=%s",
+                        parsed.get("type") if isinstance(parsed, dict) else "?",
+                        list(parsed.keys()) if isinstance(parsed, dict) else None,
+                    )
+                    try:
+                        await self._handle_message(ws, parsed)
+                    except Exception:
+                        # exception(), not warning(): without the traceback the
+                        # only way to find the raising handler is to guess.
+                        _LOGGER.exception(
+                            "WebSocket handler failed for message type %s",
+                            parsed.get("type") if isinstance(parsed, dict) else "?",
+                        )
+                        # Tell the sender. A dead button should look dead —
+                        # the #1754 retry only helps someone who knows to try
+                        # again. Sending must not itself kill the connection,
+                        # so its own failure is swallowed deliberately.
+                        try:
+                            await ws.send_json(
+                                {
+                                    "type": "error",
+                                    "code": ERR_INTERNAL,
+                                    "message": "Something went wrong. Try again.",
+                                }
+                            )
+                        except Exception:  # noqa: BLE001
+                            _LOGGER.debug("Could not deliver error frame")
                 elif msg.type == WSMsgType.ERROR:
                     err_msg = str(ws.exception())
                     _LOGGER.error("WebSocket error: %s", err_msg)
