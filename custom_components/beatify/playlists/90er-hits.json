@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.25",
+  "version": "1.26",
   "tags": [
     "1990s",
     "pop",
@@ -1730,7 +1730,7 @@
     },
     {
       "artist": "KC",
-      "title": "Shake Your Booty - Live",
+      "title": "Shake Your Booty",
       "year": 1976,
       "isrc": "GBAYE7600024",
       "uri": "spotify:track:4gcxYHlffrCstGw7EPWB88",
@@ -3026,7 +3026,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1669579328",
         "de": "applemusic://track/1443215632",
-        "gb": "applemusic://track/1442391217",
+        "gb": "applemusic://track/1443215632",
         "fr": "applemusic://track/1443215632",
         "es": "applemusic://track/1443215632",
         "nl": "applemusic://track/1443215632",
