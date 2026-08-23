@@ -10689,6 +10689,9 @@ body.home-mode .home-view {
 /* Sticky CTA bar at the bottom of the home card */
 .home-cta-bar {
     display: flex;
+    /* #2365: lets the guard on `.beatify-banner` actually take effect, and on
+       a narrow phone lets the buttons themselves wrap rather than squeeze. */
+    flex-wrap: wrap;
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-lg);
     background: rgba(0, 0, 0, 0.3);
@@ -16685,6 +16688,14 @@ body.theme-dark .your-result-stats .stat-value {
 /* --- Inline Panel-Banner (Variant C): docked above the primary action --- */
 .beatify-banner {
     display: flex;
+    /* #2365: a guard, not a layout. The banner is a block that fills the width
+       of whatever it sits above; it is never meant to share a line. Should a
+       future call site anchor it inside a flex row again, this makes it claim
+       its own line there instead of being shrunk to one character per line.
+       Outside a flex parent `flex-basis` has no effect, so this costs nothing
+       in the normal case. Paired with `flex-wrap` on `.home-cta-bar` — a basis
+       of 100% only wins a line of its own if the row is allowed to wrap. */
+    flex-basis: 100%;
     align-items: flex-start;
     gap: var(--space-sm);
     margin-bottom: var(--space-md);

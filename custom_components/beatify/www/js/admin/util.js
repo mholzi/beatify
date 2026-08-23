@@ -491,3 +491,30 @@ export function createRenderCoalescer(render, options) {
     };
     return push;
 }
+
+// --- banner anchoring ------------------------------------------------------
+
+/**
+ * Pick the node a start-failure banner should dock above (#2365).
+ *
+ * `showBanner` inserts its node *before the anchor, inside the anchor's
+ * parent*. Handing it the Start button therefore does not put the banner above
+ * the button — it puts it **into** the button's row. `.home-cta-bar` is a flex
+ * container and `.home-cta-start` claims the free space with `flex: 1`, so the
+ * banner was left at its min-content width and its text wrapped one character
+ * per line. On a phone that is unreadable.
+ *
+ * The intent in the `showBanner` docstring — "docks directly above the primary
+ * action" — is met by anchoring on the *row*, not on the button inside it.
+ *
+ * @param {HTMLElement|null} startButton - the Start button that failed.
+ * @returns {HTMLElement|null} the footer row when there is one, else the button
+ *   itself (a banner in the wrong box still beats no banner), else null.
+ */
+export function bannerAnchorFor(startButton) {
+    if (!startButton) return null;
+    const bar = typeof startButton.closest === 'function'
+        ? startButton.closest('.home-cta-bar')
+        : null;
+    return bar || startButton;
+}

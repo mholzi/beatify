@@ -54,6 +54,7 @@ import {
     adminHasVisibleView,
     createRenderCoalescer,
     adminStateEqual,
+    bannerAnchorFor,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -1780,7 +1781,8 @@ function showError(message) {
  *   rendered as a button in the banner (#2269).
  */
 function showSetupError(message, action, detail) {
-    var anchor = document.getElementById('home-start-game');
+    // #2365: dock above the footer row, not inside it — see bannerAnchorFor.
+    var anchor = bannerAnchorFor(document.getElementById('home-start-game'));
     if (!anchor) {
         // No start button in view (e.g. mid-game) — fall back to a toast. The
         // toast has no second slot, so the detail is appended inline (#2294).
