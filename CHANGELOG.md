@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.3.1-rc2] - 2026-08-23
+
+### Added
+- **Music Assistant resolves a Tidal track by name when no URI works (#2364).** Odesli's public API was retired on 2026-07-31 and was the only source Beatify had for Tidal ids, so a missing `uri_tidal` can no longer be filled. The name lookup runs strictly *behind* the stored URIs, with an edition check that rejects a remix, live take or karaoke version standing in for the recording asked for.
+
+### Fixed
+- **The start-failure banner docks above the footer instead of inside it (#2365).** Anchoring on the Start button put the banner into `.home-cta-bar`, a flex row, where it was squeezed to its min-content width and wrapped one character per line on a phone.
+
 ## [4.3.1-rc1] - 2026-08-23
 
 ### Added
