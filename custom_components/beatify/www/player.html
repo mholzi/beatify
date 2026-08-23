@@ -479,6 +479,12 @@
                                    max="2025"
                                    value="1990"
                                    class="year-slider year-slider-arcade">
+                            <!-- #2344: decade marks, built by renderYearScale()
+                                 from the same span applyYearRange() applies.
+                                 Empty here on purpose — pinning them to fixed
+                                 percentages would go wrong the moment the
+                                 bounds move, which they now do. -->
+                            <div id="year-scale" class="year-scale" aria-hidden="true"></div>
                         </div>
                         <button type="button" id="year-increment" class="slider-btn-year" aria-label="Increase year">+</button>
                         <button type="button" id="year-increment-5" class="slider-btn-year slider-btn-year--coarse" aria-label="Increase year by 5">+5</button>

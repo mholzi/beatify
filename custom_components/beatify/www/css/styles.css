@@ -12645,7 +12645,31 @@ body.is-ingame .player-header { display: none; }
     transform: translate(-50%, -50%);
 }
 .slider-arcade { gap: 8px; }  /* tighten gap so 5 children fit on narrow screens */
-.slider-arcade-track { flex: 1; display: flex; align-items: center; }
+/* #2344: the track holds the input and the decade scale stacked, so the
+   marks line up with the thumb's travel rather than with the box. */
+.slider-arcade-track { flex: 1; display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+.year-scale {
+    position: relative;
+    height: 13px;
+    /* Reserve the thumb's half-width on both sides: a range thumb's centre
+       never reaches the very edge, so a mark at 100% would sit past the
+       furthest year the slider can actually select. */
+    margin: 0 2px;
+    pointer-events: none;
+}
+.year-scale span {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted, rgba(255, 255, 255, 0.42));
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    user-select: none;
+}
+.slider-arcade.slider-arcade--locked .year-scale { opacity: 0.5; }
 .year-slider-arcade {
     -webkit-appearance: none;
     appearance: none;

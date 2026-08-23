@@ -79,6 +79,70 @@ var lastLeaderboard = [];
  * still happen the other way: a game whose range shrinks between rounds
  * would otherwise leave the thumb parked outside its own track.
  */
+/**
+ * #2344: decade marks under the year slider.
+ *
+ * The track carried no landmarks at all — 76 years of blank rail. The cost is
+ * not precision (a thumb-width of travel is about two years, not thirty) but
+ * orientation: there was no way to see where 1985 sits, so the interaction was
+ * drag, read the number, drag again, with twelve seconds on the clock.
+ *
+ * Derived from the live span rather than pinned to percentages, because #2337
+ * made the bounds move: applyYearRange() sets min/max from the playlist in
+ * play, and a mark nailed to a fixed position would drift the moment a
+ * playlist reaches past the default.
+ *
+ * Two details that are easy to get wrong:
+ *
+ * A range thumb's centre travels from thumbWidth/2 to width - thumbWidth/2,
+ * never to the very edge, so positions are laid out inside that inset — a mark
+ * at a true 100% would sit past the furthest year the slider can select.
+ *
+ * And the step widens on long spans. Eight labels on a phone track collide;
+ * the rule below keeps at most eight, which is where a 10px label still has
+ * clear air around it on a ~300px track.
+ */
+var YEAR_SCALE_THUMB_PX = 32;
+var YEAR_SCALE_MAX_MARKS = 8;
+
+export function renderYearScale(lo, hi) {
+    var scale = document.getElementById('year-scale');
+    if (!scale) return;
+
+    scale.textContent = '';
+    if (!isFinite(lo) || !isFinite(hi) || hi <= lo) return;
+
+    // Widen from decades to 20- or 50-year steps rather than letting labels
+    // pile up on a narrow track.
+    var step = 10;
+    while ((hi - lo) / step > YEAR_SCALE_MAX_MARKS) {
+        step = step === 10 ? 20 : step * 2.5;
+    }
+
+    var half = YEAR_SCALE_THUMB_PX / 2;
+    var first = Math.ceil(lo / step) * step;
+
+    var years = [];
+    for (var y = first; y <= hi; y += step) years.push(y);
+
+    // Two digits with an apostrophe: language-neutral, so this needs no
+    // translation, and narrow enough that eight fit on a phone. But a span
+    // crossing a century renders '00 twice — 1900 and 2000 collide — so the
+    // short form is only used while it stays unambiguous.
+    var short = years.map(function (v) { return v % 100; });
+    var ambiguous = short.some(function (v, i) { return short.indexOf(v) !== i; });
+
+    years.forEach(function (year) {
+        var pct = (year - lo) / (hi - lo);
+        var mark = document.createElement('span');
+        mark.textContent = ambiguous
+            ? String(year)
+            : "'" + String(year % 100).padStart(2, '0');
+        mark.style.left = 'calc(' + half + 'px + ' + pct + ' * (100% - ' + YEAR_SCALE_THUMB_PX + 'px))';
+        scale.appendChild(mark);
+    });
+}
+
 export function applyYearRange(range) {
     var slider = document.getElementById('year-slider');
     if (!slider || !range) return;
@@ -97,6 +161,10 @@ export function applyYearRange(range) {
         var yearDisplay = document.getElementById('selected-year');
         if (yearDisplay) yearDisplay.textContent = String(clamped);
     }
+
+    // #2344: the scale is derived from the same span, so it is rebuilt here
+    // and nowhere else — one source for the bounds, one for the marks.
+    renderYearScale(lo, hi);
 }
 
 /**
