@@ -1179,6 +1179,28 @@ def run(args: argparse.Namespace) -> int:
             yt_gap = "youtube_music" in gaps
             non_yt_gaps = [g for g in gaps if g != "youtube_music"]
 
+            # ---- Songs this run has no business with (#2301) ----------------
+            # Under ``--youtube-first`` the run exists to fill YouTube and
+            # nothing else. A song that already HAS its YouTube URI has
+            # nothing here to do — but its other gaps still drag the loop
+            # through a full Odesli call at ``--odesli-sleep`` seconds.
+            #
+            # That is the toll booth two earlier fixes drove straight past.
+            # Measured on 2026-08-23 in tomorrowland-top-1000: the 46 songs
+            # that already carry a YouTube URI sit at indices 0 through 45,
+            # and the first real gap is at 46. All 46 are missing Tidal, so
+            # `yt_gap` is false for every one of them and each costs the
+            # full 6 seconds — 276 of a 300-second slice, spent before the
+            # first gap is even reached. The next slice restarts at 0 and
+            # pays it again, which is why two slices in a row report zero.
+            #
+            # Both previous attempts were gated on `yt_gap` (#2310's cursor
+            # skip, #2320's Odesli skip), so neither could ever see these
+            # songs. Their Apple, Deezer and Tidal gaps are not abandoned —
+            # those providers have their own agents and their own windows.
+            if args.youtube_first and not yt_gap:
+                continue
+
             # ---- Fast-forward to the YouTube cursor (#2301) -----------------
             # Songs before the cursor were already offered to the YouTube phase
             # in an earlier run. The loop still walked them, paying one Odesli
