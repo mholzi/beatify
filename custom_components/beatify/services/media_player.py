@@ -6,6 +6,7 @@ import asyncio
 import hashlib
 import hmac
 import logging
+import re
 import secrets
 from asyncio import timeout as async_timeout
 from datetime import datetime, timezone
@@ -135,6 +136,59 @@ MA_QUEUE_RESTORE_POLL = 0.25
 # appearing in the speaker's media_artist. The unbounded "any new title"
 # acceptance is reserved for the post-timeout #345 branch, where it is logged.
 _TITLE_TOKEN_MIN_LEN = 3
+
+# Providers whose missing/failed URI may be retried by asking Music Assistant to
+# resolve the track from name + artist. `ma_library` has done this since the
+# Crate Digger work; `tidal` joins because its URIs can no longer be refreshed —
+# Odesli's public API, the only source they ever came from, was retired on
+# 2026-07-31 and now answers 401.
+_NAME_FALLBACK_PROVIDERS = frozenset({"ma_library", "tidal"})
+
+# Words that mark a *different recording of the same song*. A name search is
+# free to return any of them, which is exactly the risk this fallback carries:
+# measured against ~2000 catalogue tracks with a known Deezer id, a plain
+# "artist title" search returned the wrong edition for 2 % of mainstream tracks
+# but 19 % of EDM ones ("Satisfaction" → "Satisfaction (Uk Radio Edit)",
+# "Scary Monsters and Nice Sprites" → "… (Zedd Remix)").
+#
+# `_titles_plausibly_match` does NOT catch these: it accepts a normalized
+# prefix, and the expected title is always a prefix of its own remix. That
+# leniency is deliberate and load-bearing for #1381 ("Das Modell" vs "The
+# Model"), so it stays — the stricter check below is applied only on the name
+# fallback path, where the extra risk actually lives.
+_EDITION_MARKERS = re.compile(
+    r"\b("
+    r"radio edit|extended|club mix|original mix|dub mix|"
+    r"remix|re-?edit|mixed|karaoke|instrumental|acapella|a cappella|"
+    r"acoustic|unplugged|live|demo|cover|tribute|playback|"
+    r"edit|mix|version"
+    r")\b",
+    re.IGNORECASE,
+)
+
+
+def _edition_markers(text: str) -> set[str]:
+    """Edition words present in a title, lower-cased."""
+    return {m.group(0).lower() for m in _EDITION_MARKERS.finditer(text or "")}
+
+
+def _edition_matches(expected_title: str, played_title: str) -> bool:
+    """False when the played title carries an edition the expected title lacks.
+
+    Deliberately one-directional. A catalogue entry named "Waves - Robin Schulz
+    Radio Edit" may legitimately play back as plain "Waves" (the provider drops
+    the suffix), so markers the *expected* side has are not required on the
+    played side. The reverse is the failure we are guarding against: plain
+    "Burn" must not be satisfied by "Burn (Aybsent Mynded Remix)".
+
+    This matters more for Beatify than it would for a music player. The game
+    asks players to guess the release *year*; a 2014 remix standing in for a
+    1998 original does not merely sound different, it makes the round's correct
+    answer wrong — and nothing on screen reveals that.
+    """
+    if not expected_title or not played_title:
+        return True
+    return not (_edition_markers(played_title) - _edition_markers(expected_title))
 
 
 def _normalize_for_match(text: str) -> str:
@@ -949,7 +1003,18 @@ class MediaPlayerService:
         self._stopped_for_cascade = False
 
         candidates = self._get_ma_uri_candidates(song)
-        if not candidates:
+        expected_title = song.get("title") or ""
+        expected_artist = song.get("artist") or ""
+
+        # The name fallback below needs both fields; without them there is
+        # nothing to search for and nothing to verify the result against.
+        name_fallback = bool(
+            self._provider in _NAME_FALLBACK_PROVIDERS
+            and expected_title
+            and expected_artist
+        )
+
+        if not candidates and not name_fallback:
             # #1276: surface the provider so a missing-URI miss is debuggable
             # (which provider was selected vs. which fields the song carries).
             _LOGGER.warning(
@@ -961,8 +1026,6 @@ class MediaPlayerService:
             self.last_failure_reason = "unavailable"
             return False
 
-        expected_title = song.get("title") or ""
-        expected_artist = song.get("artist") or ""
         if not expected_title:
             _LOGGER.warning(
                 "MA playback: no expected title — skipping title verification"
@@ -995,13 +1058,19 @@ class MediaPlayerService:
                 self.last_failure_reason = None
                 return True
 
-        # Library provider: the stored URI is normally exact, but the item may
-        # have moved/changed since the pool was built. Before giving up, let MA
-        # resolve by name+artist -- the confirmation machinery in _try_ma_play
-        # (expected-title matching) still guards against a wrong-track match.
-        if self._provider == "ma_library" and expected_title and expected_artist:
+        # Last resort: let MA resolve the track from name + artist.
+        #
+        # `ma_library`: the stored URI is normally exact, but the item may have
+        # moved or changed since the pool was built.
+        # `tidal`: the URI may be absent entirely and can no longer be obtained
+        # — Odesli, the only source Beatify ever had for Tidal ids, retired its
+        # public API on 2026-07-31. This path is a safety net *behind* the
+        # stored URIs, never a replacement for them: the loop above has already
+        # run, so a song that carries a working `uri_tidal` never reaches here.
+        if name_fallback:
             _LOGGER.info(
-                "MA library fallback: resolving by name -- %s - %s",
+                "MA name fallback (%s): resolving by name -- %s - %s",
+                self._provider,
                 expected_artist,
                 expected_title,
             )
@@ -1011,6 +1080,24 @@ class MediaPlayerService:
                 expected_artist,
                 artist_filter=expected_artist,
             ):
+                # A name search can land on a remix, a live take or a karaoke
+                # version of the right song. `_try_ma_play` will happily accept
+                # those (its title gate is a prefix/token check by design), so
+                # the edition is checked here instead.
+                state = self._safe_state()
+                played_title = (
+                    state.attributes.get("media_title", "") if state else ""
+                ) or ""
+                if not _edition_matches(expected_title, played_title):
+                    _LOGGER.warning(
+                        "MA name fallback: rejecting wrong edition — wanted %r, "
+                        "got %r (%s)",
+                        expected_title,
+                        played_title,
+                        expected_artist,
+                    )
+                    self.last_failure_reason = "wrong_track"
+                    return False
                 self.last_failure_reason = None
                 return True
 
