@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "edm",
     "electronic",
@@ -3126,7 +3126,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1489463484"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WeUCoSaE2Yk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/822440172",
       "fun_fact": "“Fades Away - Tribute Concert Version” is the title track of Avicii’s release of the same name.",
@@ -3150,7 +3150,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440769957"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s1MOYA6mOsU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/6994173",
       "fun_fact": "“Te Quiero - Paul Kalkbrenner Remix” appears on Stromae’s release “Te Quiero (German Remixes)”.",
@@ -3174,7 +3174,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1658061260"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=psSIJig_xnY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2054381447",
       "fun_fact": "“What You Say?” is the title track of Young Marco’s release of the same name.",
@@ -3198,7 +3198,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/646134057"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wNRXFqh36oo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/67239290",
       "fun_fact": "“Alive - Hardwell Remix” is the title track of Krewella’s release of the same name.",
@@ -3222,7 +3222,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/407539791"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m0z7MkHIR0c",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61682328",
       "fun_fact": "“Simulated” is the title track of Marco V’s release of the same name.",
@@ -3242,7 +3242,7 @@
       "year": 2024,
       "isrc": "USUG12405837",
       "uri": "spotify:track:5a2Mb0OPY17zkS8FnciQhg",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OuMHgqXjM7E",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2959712811",
       "fun_fact": "“Finally” is the title track of Swedish House Mafia’s release of the same name.",
