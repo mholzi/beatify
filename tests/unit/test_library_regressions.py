@@ -180,8 +180,17 @@ class TestPlaybackWiring:
         assert '"ma_library"' in src("services/media_player.py")
 
     def test_stale_uris_fall_back_to_a_name_lookup(self):
-        """Library item ids change when a library is rebuilt."""
-        assert "MA library fallback" in src("services/media_player.py")
+        """Library item ids change when a library is rebuilt.
+
+        The log line used to read "MA library fallback". It now reads
+        "MA name fallback (<provider>)" because Tidal shares the path, so this
+        asserts on the guard that actually decides whether the fallback runs
+        instead of on the wording of a log message.
+        """
+        code = src("services/media_player.py")
+        assert "_NAME_FALLBACK_PROVIDERS" in code
+        assert '"ma_library"' in code
+        assert "MA name fallback" in code
 
 
 class TestWizardIntegration:
