@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.3.1-rc1] - 2026-08-23
+
+### Added
+- **Decade marks under the year slider (#2358).** Seventy-odd years of blank rail now carry labelled ticks, so the first drag lands near the target instead of somewhere to correct.
+- **The slider ends where the playlist ends (#2347).** Bounds follow the songs actually shipped in the selected playlist rather than a fixed range.
+- **The reason a game refuses to start reaches the host (#2295, #2309, #2302).** Twelve rejections collapsed into one generic message; each actionable failure now carries its own code, the admin screen shows which one fired, and the Mix tab keeps the server's reason instead of failing silently.
+
+### Fixed
+- **Only a genuinely lost session sends a player back to the join screen (#2353).** A brief network wobble used to force a mid-round rejoin.
+- **The submit button no longer stays greyed out when an answer does not get through (#2354).** It re-enables and says so, with time still on the clock.
+- **After a page reload the client believes the server about its own submission (#2355).**
+- **The round deadline applies to steal and sabotage (#2352).** Power-ups were slipping through after the clock ran out.
+- **The current answer is no longer readable from the status endpoint before the reveal (#2348).**
+- **Playback confirmation waits for the speaker to actually change tracks (#2349).** A round could otherwise run against a song nobody heard.
+
 ## [4.3.0] - 2026-08-21
 
 Released as **4.3.0** rather than 4.2.1: the work shipped as the `v4.2.1-rc1`…`rc3` release
