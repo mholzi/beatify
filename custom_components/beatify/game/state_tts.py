@@ -273,7 +273,13 @@ class TtsAnnouncerMixin:
         # PLAYING -> REVEAL, so they were always "stale" by the time they
         # reached the front of the queue. A phase change within the same
         # round is normal; only a NEW ROUND makes a pending phrase wrong.
-        round_at_enqueue = getattr(self, "current_round", None)
+        # #2334: `self.round`, not `current_round`. GameState has no attribute
+        # by that name — it has the `round` property from
+        # RoundManagerDelegationMixin, and GameState composes both mixins, so
+        # it was on this object all along. With the wrong name both sides of
+        # the comparison below resolved to None, `None != None` was never
+        # true, and this guard has never dropped a single announcement.
+        round_at_enqueue = self.round
 
         # RESERVE the speaker window NOW, at enqueue — not when this phrase
         # reaches the front of the queue. Everything that asks "is the speaker
@@ -293,7 +299,7 @@ class TtsAnnouncerMixin:
                 delay = start_at - time.monotonic()
                 if delay > 0:
                     await asyncio.sleep(delay)
-                round_now = getattr(self, "current_round", None)
+                round_now = self.round
                 if round_now != round_at_enqueue:
                     _LOGGER.info(
                         "TTS: dropping stale announcement (queued in round %s, "

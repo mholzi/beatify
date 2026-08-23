@@ -346,7 +346,7 @@ class RoundLifecycleMixin:
                 _LOGGER.info(
                     "Round %s: waiting %.1fs for the speaker to finish announcing "
                     "before starting playback",
-                    getattr(self, "current_round", "?"),
+                    getattr(self, "round", "?"),
                     busy,
                 )
                 await asyncio.sleep(busy)
