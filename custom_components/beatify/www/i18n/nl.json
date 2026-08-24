@@ -178,6 +178,10 @@
     "theYearWas": "Het jaar was",
     "idleHaltBanner": "Spel gepauzeerd — niemand speelde deze ronde. Tik op Volgende ronde om door te gaan.",
     "funFact": "Leuk weetje",
+    "collection": {
+      "title": "Jouw verzameling",
+      "count": "{count} bewaard"
+    },
     "yourGuess": "Jouw gok",
     "correctYear": "Juiste jaar",
     "accuracy": "Nauwkeurigheid",

@@ -178,6 +178,10 @@
     "theYearWas": "L'année était",
     "idleHaltBanner": "Jeu en pause — personne n'a joué ce tour. Appuie sur « Tour suivant » pour continuer.",
     "funFact": "Le saviez-vous",
+    "collection": {
+      "title": "Ta collection",
+      "count": "{count} gardées"
+    },
     "yourGuess": "Ta réponse",
     "correctYear": "Année correcte",
     "accuracy": "Précision",

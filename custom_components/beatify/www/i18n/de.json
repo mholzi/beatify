@@ -178,6 +178,10 @@
     "theYearWas": "Das Jahr war",
     "idleHaltBanner": "Spielpause — in dieser Runde hat niemand mitgespielt. Tippe auf Nächste Runde, um weiterzuspielen.",
     "funFact": "Fun Fact",
+    "collection": {
+      "title": "Deine Sammlung",
+      "count": "{count} behalten"
+    },
     "yourGuess": "Dein Tipp",
     "correctYear": "Richtiges Jahr",
     "accuracy": "Genauigkeit",

@@ -65,6 +65,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from typing import TYPE_CHECKING
 
 from custom_components.beatify.const import (
     DIFFICULTY_DEFAULT,
@@ -74,6 +75,9 @@ from custom_components.beatify.const import (
 
 from .playlist import get_playback_uri
 from .scoring import ScoringService
+
+if TYPE_CHECKING:
+    from .player import PlayerSession
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -161,26 +165,62 @@ class RoundScoringMixin:
         for player in self.players.values():
             try:
                 if title_artist_mode and manager is not None:
-                    player.round_results.append(
-                        manager.title_artist_round_result(player.name)
-                    )
+                    result = manager.title_artist_round_result(player.name)
                 elif player.submitted and player.years_off is not None:
                     if player.years_off == 0:
-                        player.round_results.append("exact")
+                        result = "exact"
                     elif close_range > 0 and player.years_off <= close_range:
-                        player.round_results.append("scored")
+                        result = "scored"
                     elif near_range > 0 and player.years_off <= near_range:
-                        player.round_results.append("close")
+                        result = "close"
                     else:
-                        player.round_results.append("missed")
+                        result = "missed"
                 else:
-                    player.round_results.append("missed")
+                    result = "missed"
+                player.round_results.append(result)
+                self._collect_song(player, result)
             except (AttributeError, TypeError) as err:
                 _LOGGER.error(
                     "round_results append failed for player %s: %s",
                     getattr(player, "name", "?"),
                     err,
                 )
+
+    def _collect_song(self, player: PlayerSession, result: str) -> None:
+        """Pin the playing song to a player's row when they placed it (#2324).
+
+        Shape E of the timeline discussion: the year guess is unchanged and the
+        currency stays points — the row grows *beside* the score instead of
+        replacing it. A song is kept exactly when the round already classified
+        as ``exact`` or ``scored``, i.e. the guess landed inside the
+        difficulty's ``close_range``. Reusing that classification rather than
+        re-deriving a threshold is deliberate: there is one rule for "close
+        enough", not two that can drift apart.
+
+        Title/artist mode never collects. Its classifier returns the same
+        ``exact``/``scored`` strings, so the result alone cannot tell the two
+        modes apart — the guard is ``years_off is not None``, which is set by
+        the year path only. That keeps the rule to one condition instead of
+        threading a mode flag down here.
+        """
+        if result not in ("exact", "scored"):
+            return
+        if player.years_off is None:
+            return
+        song = self.current_song
+        if not song:
+            return
+        year = song.get("year")
+        if not year:
+            return
+        player.collection.append(
+            {
+                "title": song.get("title", "Unknown"),
+                "artist": song.get("artist", "Unknown"),
+                "year": year,
+                "round": self.round,
+            }
+        )
 
     async def _record_round_stats(self, correct_year: int | None) -> None:
         """Record highlights, round analytics and song-result stats (#1272).

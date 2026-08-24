@@ -5,7 +5,7 @@ from __future__ import annotations
 import time
 import uuid
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import MIN_SUBMISSIONS_FOR_SPEED
 
@@ -63,6 +63,12 @@ class PlayerSession:
 
     # Round results tracking (Issue #120 — Shareable Result Cards)
     round_results: list[str] = field(default_factory=list)
+
+    # Collection mode (Issue #2324, shape E) - CUMULATIVE, NOT reset per round.
+    # One entry per song this player placed close enough to keep: the growing
+    # row the boxed game has and a score does not. Entries are dicts with
+    # title / artist / year / round, appended in state_scoring._append_round_results.
+    collection: list[dict[str, Any]] = field(default_factory=list)
 
     # Betting tracking (Story 5.3)
     bet: bool = False
@@ -256,6 +262,10 @@ class PlayerSession:
 
         # Reset round results (Issue #120)
         self.round_results = []
+
+        # Reset the collected row (Issue #2324). Game-level like round_results:
+        # reset_round must NOT touch it, or the row would evaporate every round.
+        self.collection = []
 
         # Reset superlative tracking
         self.submission_times = []

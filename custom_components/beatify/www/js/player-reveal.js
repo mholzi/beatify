@@ -32,6 +32,84 @@ var _lastBackdropArt = null;
 // ============================================
 
 /**
+ * #2324 (shape E): the player's collected row.
+ *
+ * Every song a player placed inside the difficulty's ``close_range`` is kept
+ * server-side and shipped with the REVEAL payload. This draws it as a row of
+ * cards, and it is the only screen in Beatify that survives the game in a
+ * player's memory: a score is a number that resets, a row of twelve songs you
+ * pinned down is the thing people photograph.
+ *
+ * Sorted by year, NOT by the round it was won in — the row is a timeline, so
+ * it has to read left to right in years or it is just a list. The round number
+ * only breaks ties between two songs from the same year, so the order is
+ * stable across re-broadcasts (REVEAL fires again on every reaction/vote).
+ *
+ * The card won this round is marked so the row visibly grew; without it a
+ * twelve-card row looks identical before and after the song that was just
+ * added. Empty collection hides the whole section rather than showing an empty
+ * shelf — before the first keeper there is nothing to say.
+ */
+export function renderCollection(player) {
+    var section = document.getElementById('collection-section');
+    var row = document.getElementById('collection-row');
+    if (!section || !row) return;
+
+    var items = (player && player.collection) || [];
+    if (!items.length) {
+        row.textContent = '';
+        section.classList.add('hidden');
+        return;
+    }
+
+    var newestRound = 0;
+    for (var i = 0; i < items.length; i++) {
+        if (items[i] && items[i].round > newestRound) newestRound = items[i].round;
+    }
+
+    var sorted = items.slice().sort(function (a, b) {
+        return (a.year - b.year) || (a.round - b.round);
+    });
+
+    var html = '';
+    sorted.forEach(function (entry) {
+        var isNew = entry.round === newestRound;
+        html += '<div class="collection-card' + (isNew ? ' collection-card--new' : '') + '" role="listitem">'
+            + '<span class="collection-card-year">' + escapeHtml(String(entry.year)) + '</span>'
+            + '<span class="collection-card-title">' + escapeHtml(entry.title || '') + '</span>'
+            + '<span class="collection-card-artist">' + escapeHtml(entry.artist || '') + '</span>'
+            + '</div>';
+    });
+    row.innerHTML = html;
+
+    var countEl = document.getElementById('collection-count');
+    if (countEl) {
+        countEl.textContent = utils.t
+            ? utils.t('reveal.collection.count', { count: items.length })
+            : String(items.length);
+    }
+
+    section.classList.remove('hidden');
+
+    // Bring the freshly kept card into view. A long row scrolls off the right
+    // edge of a phone, and the one card the player wants to see is the one
+    // that just appeared.
+    var newCard = row.querySelector('.collection-card--new');
+    if (newCard && newCard.scrollIntoView) {
+        try {
+            newCard.scrollIntoView({
+                behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+                block: 'nearest',
+                inline: 'center',
+            });
+        } catch (e) {
+            // Older WebViews reject the options object — the row is still
+            // readable unscrolled, so a failure here must not break the reveal.
+        }
+    }
+}
+
+/**
  * Update reveal view with round results
  * @param {Object} data - State data from server
  */
@@ -200,6 +278,7 @@ export function updateRevealView(data) {
         renderChipRow(currentPlayer, data);
     }
     renderScoreRow(currentPlayer);
+    renderCollection(currentPlayer);
 
     // Cache context for bottom-sheet renderers that run on demand.
     state.lastRevealContext = {

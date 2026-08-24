@@ -178,6 +178,10 @@
     "theYearWas": "L'anno era",
     "idleHaltBanner": "Partita ferma: nessuno ha giocato questo turno. Tocca Turno successivo per proseguire.",
     "funFact": "Curiosità",
+    "collection": {
+      "title": "La tua collezione",
+      "count": "{count} tenute"
+    },
     "yourGuess": "La tua ipotesi",
     "correctYear": "Anno corretto",
     "accuracy": "Precisione",

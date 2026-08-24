@@ -155,6 +155,10 @@ class LeaderboardMixin:
                 # Issue #827: Sudden Death
                 "eliminated": player.eliminated,
                 "eliminated_round": player.eliminated_round,
+                # Issue #2324: the collected row, carried into the END screen —
+                # the one artifact of a finished game worth photographing. A
+                # score vanishes when the game does; this list does not.
+                "collection": [dict(entry) for entry in player.collection],
             }
             leaderboard.append(entry)
 

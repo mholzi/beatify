@@ -730,6 +730,20 @@
                     </div>
                 </div>
 
+                <!-- Your collection (#2324): every song you placed close
+                     enough to keep, oldest year first. The row a score cannot
+                     be — it is still there when the game is over. -->
+                <section id="collection-section" class="card-section collection-section hidden">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">🗂️</span>
+                        <span data-i18n="reveal.collection.title">Your collection</span>
+                        <span id="collection-count" class="collection-count"></span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="collection-row" class="collection-row" role="list"></div>
+                    </div>
+                </section>
+
                 <!-- Title & Artist Reveal + Voting (#1180) -->
                 <section id="ta-reveal-section" class="card-section ta-reveal-section hidden">
                     <h2 class="section-header">

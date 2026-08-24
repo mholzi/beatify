@@ -17104,3 +17104,89 @@ body.theme-dark .your-result-stats .stat-value {
 @media (prefers-reduced-motion: reduce) {
     .sd-out-overlay.show { animation: none; }
 }
+
+/* ============================================
+   Collection row (#2324, shape E)
+   ============================================
+   The songs a player placed inside close_range, oldest year first. It is a
+   timeline, so it scrolls sideways instead of wrapping: a wrapped grid reads
+   as a grid and loses the one property that makes the row mean anything —
+   that left is earlier than right.
+*/
+.collection-count {
+    margin-left: auto;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-secondary);
+}
+
+.collection-row {
+    display: flex;
+    gap: var(--space-sm, 8px);
+    overflow-x: auto;
+    padding-bottom: var(--space-xs, 4px);
+    /* Scroll-snap so a flick lands on a card rather than between two. */
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+}
+
+.collection-card {
+    flex: 0 0 auto;
+    width: 104px;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-sm, 8px);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-white);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-sm);
+}
+
+.collection-card-year {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Two lines of title, one of artist, both clamped: a card that grows with the
+   song title would break the row's rhythm, and every card has to stay the same
+   height for the years to line up. */
+.collection-card-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.collection-card-artist {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* The card won in this round. Marked because a long row looks identical
+   before and after it grew. */
+.collection-card--new {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 2px var(--color-accent-primary);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .collection-card--new {
+        animation: collection-card-in 320ms ease-out;
+    }
+}
+
+@keyframes collection-card-in {
+    from { transform: scale(0.86); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}

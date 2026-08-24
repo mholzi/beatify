@@ -178,6 +178,10 @@
     "theYearWas": "The year was",
     "idleHaltBanner": "Game idle — no one played this round. Tap Next round to keep going.",
     "funFact": "Fun fact",
+    "collection": {
+      "title": "Your collection",
+      "count": "{count} kept"
+    },
     "yourGuess": "Your guess",
     "correctYear": "Correct year",
     "accuracy": "Accuracy",

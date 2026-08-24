@@ -178,6 +178,10 @@
     "theYearWas": "El ano era",
     "idleHaltBanner": "Juego en pausa — nadie jugó esta ronda. Toca «Siguiente ronda» para continuar.",
     "funFact": "Dato curioso",
+    "collection": {
+      "title": "Tu colección",
+      "count": "{count} guardadas"
+    },
     "yourGuess": "Tu respuesta",
     "correctYear": "Ano correcto",
     "accuracy": "Precision",

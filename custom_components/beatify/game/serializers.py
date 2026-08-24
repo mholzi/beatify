@@ -409,6 +409,12 @@ class GameStateSerializer:
                 # Issue #827: Sudden Death state
                 "eliminated": p.eliminated,
                 "eliminated_round": p.eliminated_round,
+                # Issue #2324: the player's collected row — every song they
+                # placed inside close_range, oldest first. Sent at REVEAL
+                # because that is where it just grew ("you kept it"), and it
+                # is the phase where the row is on screen. Copied so a client
+                # payload can never alias the live player state.
+                "collection": [dict(entry) for entry in p.collection],
             }
             # Story 20.4: Add artist bonus if challenge is enabled
             if gs.artist_challenge_enabled:

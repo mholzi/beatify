@@ -51,6 +51,19 @@ def build_emoji_grid(
         f"  {scored_count}/{total_rounds} correct | 🔥 Best Streak: {player.best_streak}",
         "",
         f"🎯 {exact_count} Exact | 💰 {player.bets_won}/{player.bets_placed} Bets",
+    ]
+
+    # Issue #2324: the collected row, as the span it covers rather than a list.
+    # A share card is pasted into a chat, so twelve song titles would bury the
+    # grid above it; "12 songs · 1968–2019" is the same brag in one line.
+    # Omitted entirely at zero, like every other optional line here would be —
+    # "0 songs collected" reads as a failure notice on a card meant to be shown.
+    if player.collection:
+        years = sorted(entry["year"] for entry in player.collection)
+        lines.append("")
+        lines.append(f"🗂️ {len(player.collection)} collected | {years[0]}–{years[-1]}")
+
+    lines += [
         "",
         "beatify.fun",
     ]
