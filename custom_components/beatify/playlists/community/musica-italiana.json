@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.12",
+  "version": "0.13",
   "songs": [
     {
       "year": 1962,
@@ -1490,7 +1490,8 @@
       "fun_fact_it": "Raffaella Carrà - \"Ballo, ballo\" (1982), dal canone del pop italiano.",
       "isrc": "ES5151401337",
       "uri_apple_music": "applemusic://track/1692975052",
-      "uri_deezer": "deezer://track/2842211102"
+      "uri_deezer": "deezer://track/2842211102",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zy5HBtuODGc"
     },
     {
       "year": 1982,
@@ -1509,7 +1510,8 @@
       "fun_fact_it": "Riccardo Cocciante - \"Celeste nostalgia\" (1982), dal canone del pop italiano.",
       "isrc": "ITB008100768",
       "uri_apple_music": "applemusic://track/254296736",
-      "uri_deezer": "deezer://track/13230004"
+      "uri_deezer": "deezer://track/13230004",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=irenHpLMNls"
     },
     {
       "year": 1982,
@@ -1547,7 +1549,8 @@
       "fun_fact_it": "Ricchi E Poveri - \"Mamma Maria\" (1982), dal canone del pop italiano.",
       "isrc": "DEC719400065",
       "uri_apple_music": "applemusic://track/252058369",
-      "uri_deezer": "deezer://track/636403"
+      "uri_deezer": "deezer://track/636403",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X3nqLQoewB0"
     },
     {
       "year": 1982,
