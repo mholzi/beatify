@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.52",
+  "version": "0.60",
   "tags": [
     "edm",
     "electronic",
@@ -13686,7 +13686,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1810702937"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rSiHmtZbG-s",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3340111711",
       "fun_fact": "“Like I Like It” appears on Mau P’s release “Too Big For B-Side”.",
@@ -13706,7 +13706,7 @@
       "year": 2022,
       "isrc": "DEEC33500811",
       "uri": "spotify:track:58kUEj9sd9Z2XIPh3BhJRR",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jAOiRIOll4c",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2395987995",
       "fun_fact": "“The Sign (with CamelPhat)” appears on Anyma’s release “Genesys”.",
@@ -13730,7 +13730,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/626207768"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G50MvzN92bA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61858806",
       "fun_fact": "“Open Your Heart - Vocal Mix” appears on Axwell’s release “Sirup House Sessions (2009)”.",
@@ -13754,7 +13754,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1684584572"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6vnbCkzPgNk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2255185497",
       "fun_fact": "“Call Me” is the title track of Marlon Hoffstadt’s release of the same name.",
@@ -13778,7 +13778,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1691565215"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iosaSwiYp4E",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2637478372",
       "fun_fact": "“All That Matters (feat. Troels Abrahamsen) - [ARTBAT Remix] [Mixed]” appears on Kölsch’s release “Global Underground: Select #9 (Mixed)”.",
@@ -13802,7 +13802,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1575824358"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3J15zWQ8clg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/15790351",
       "fun_fact": "“Another Chance - Radio Edit” appears on Roger Sanchez’s release “Another Chance”.",
@@ -13826,7 +13826,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1688696901"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BCC_AvmHpR4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2929252061",
       "fun_fact": "“Iron Heart” appears on Netsky’s release “Netsky”.",
@@ -13850,7 +13850,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1724268061"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rjw-mHRDsto",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2585146062",
       "fun_fact": "“Universal Nation - Charlotte de Witte Rework” is the title track of Push’s release of the same name.",
@@ -13874,7 +13874,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1697465189"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uR3Vw8J8vUo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3808858922",
       "fun_fact": "“RIP Groove (Radio Edit)” appears on Double 99’s release “RIP Groove”.",
@@ -13898,7 +13898,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1552344232"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JGtlP0Vzuq4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1233536262",
       "fun_fact": "“Leave A Little Love” is the title track of Alesso’s release of the same name.",
@@ -13922,7 +13922,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1667381083"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=g2VZ5NOtx20",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2121748347",
       "fun_fact": "“Sunsleeper” is the title track of Barry Can't Swim’s release of the same name.",
@@ -13946,7 +13946,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1716121731"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VxWqco0PlOU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/585994092",
       "fun_fact": "“Nobody Else” is the title track of Axwell’s release of the same name.",
@@ -13970,7 +13970,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1698290969"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zEwo9ib8cVg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2200543787",
       "fun_fact": "“Be Sharp Say Nowt - Edit” appears on Patrick Topping’s release “Be Sharp Say Nowt”.",
@@ -13990,7 +13990,7 @@
       "year": 2022,
       "isrc": "GBENL2203380",
       "uri": "spotify:track:2HWx4iA8e9ynY7LlCyfelO",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MU8b5s-NkcM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1843202567",
       "fun_fact": "“Mind Dimension - Kölsch Remix” is the title track of Tiga’s release of the same name.",
@@ -14014,7 +14014,7 @@
       "year": 2009,
       "isrc": "NLE800900054",
       "uri": "spotify:track:6IRPB3rtIhHBjHd701QwrO",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aA6d27dwLDY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/119131488",
       "fun_fact": "“Float My Boat - Radio Edit” appears on Lazy Jay’s release “Float My Boat”.",
@@ -14038,7 +14038,7 @@
       "year": 2019,
       "isrc": "USUG11902428",
       "uri": "spotify:track:2UJQmwF0yShE7pHcjSzX4X",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8ZnatzNRmjI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/712066792",
       "fun_fact": "“Sad Song (feat. TINI) (Alesso Remix)” appears on Alesso’s release “Sad Song (Alesso Remix)”.",
@@ -14066,7 +14066,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1165345742"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uA51eLELZqE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/134440452",
       "fun_fact": "“Together” is the title track of Martin Garrix’s release of the same name.",
@@ -14086,7 +14086,7 @@
       "year": 2007,
       "isrc": "FR0NT0700510",
       "uri": "spotify:track:1hFy8aVf25oH4Jqri3u09L",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q6O6cNntQGA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/10284993",
       "fun_fact": "“Phantom Pt II - Soulwax Remix” appears on Justice’s release “Phantom - EP”.",
@@ -14114,7 +14114,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1457692164"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QVHkqSulQB8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/654915792",
       "fun_fact": "“Avalanche” is the title track of ARTY’s release of the same name.",
@@ -14138,7 +14138,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1484687356"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3YZgu0nHImA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/790090972",
       "fun_fact": "“Pieces” is the title track of AVAION’s release of the same name.",
@@ -14162,7 +14162,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1536464803"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cp9ZueNgVYE",
       "uri_tidal": null,
       "fun_fact": "“Raining Again (Steve Angello's Vocal Mix)” appears on Moby’s release “Raining Again”.",
       "fun_fact_de": "„Raining Again (Steve Angello's Vocal Mix)“ erschien auf der Veröffentlichung „Raining Again“ von Moby.",
@@ -14185,7 +14185,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1690875583"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oz_Zxd-iIdI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2395987905",
       "fun_fact": "“Welcome To The Opera (with Grimes)” appears on Anyma’s release “Genesys”.",
@@ -14205,7 +14205,7 @@
       "year": 2013,
       "isrc": "NLDD61300111",
       "uri": "spotify:track:4O799OM270z43L7pKzNqrt",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1Bs3FZXhmAY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/483374982",
       "fun_fact": "“We Like to Party - Original Mix” appears on Showtek’s release “We Like to Party”.",
@@ -14229,7 +14229,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1818382781"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5HQCs82Q7us",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3412428671",
       "fun_fact": "“Miracle” is the title track of Sub Focus’s release of the same name.",
@@ -14249,7 +14249,7 @@
       "year": 2018,
       "isrc": "CYA111800241",
       "uri": "spotify:track:3qPXWPkEZgUhUgPifbE99z",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gj0v9IRvujs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/938717382",
       "fun_fact": "“WOW” is the title track of Tiësto’s release of the same name.",
@@ -14277,7 +14277,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6764864571"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ed-r5SsBLx0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3719324372",
       "fun_fact": "“Makina Time” is the title track of Dimitri Vegas & Like Mike’s release of the same name.",
@@ -14301,7 +14301,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1350837076"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fyeojFLQLNY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1493620222",
       "fun_fact": "“When I Dip” appears on Bingo Players’s release “When I Dip (feat. J2K & MC Dynamite) (The Remixes)”.",
@@ -14325,7 +14325,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1548999214"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6F3PC5v74BY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1208434992",
       "fun_fact": "“Sleepless” is the title track of D.O.D’s release of the same name.",
@@ -14345,7 +14345,7 @@
       "year": 2005,
       "isrc": "DEAE60500477",
       "uri": "spotify:track:47X4O5S1uOHv7crhB7XeEY",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DpKD-ufujsk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/486432372",
       "fun_fact": "“Gebrünn Gebrünn” appears on Paul Kalkbrenner’s release “Tatü-Tata”.",
@@ -14373,7 +14373,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/920536338"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cc07eonFLUE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/86611613",
       "fun_fact": "“Tivoli” is the title track of Steve Angello’s release of the same name.",
@@ -14397,7 +14397,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1814833151"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4oSjO9FP5t4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3370485331",
       "fun_fact": "“Can't Decide” is the title track of Max Dean’s release of the same name.",
@@ -14417,7 +14417,7 @@
       "year": 2006,
       "isrc": "GBEWA0600621",
       "uri": "spotify:track:7imdlxmN8ORoiwbje4KcDy",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VuYk-fIf1Ds",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/101321498",
       "fun_fact": "“Can't Sleep - Radio Edit” appears on Above & Beyond’s release “Can't Sleep”.",
@@ -14437,7 +14437,7 @@
       "year": 2021,
       "isrc": "NLZ542100012",
       "uri": "spotify:track:4S5uBAB6Jl4IsMzwBpt2Rf",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YQ6Yss-DX1c",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1222285582",
       "fun_fact": "“Cali Dreams (feat. The Beach)” is the title track of Vintage Culture’s release of the same name.",
@@ -14465,7 +14465,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1472273911"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VL-TIXPivpQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/709596432",
       "fun_fact": "“XTC” is the title track of Solardo’s release of the same name.",
@@ -14489,7 +14489,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1641740273"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lu7lJ5okjyo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1881452677",
       "fun_fact": "“Sacrifice (Remix) (feat. Swedish House Mafia)” appears on The Weeknd’s release “Dawn FM (Alternate World)”.",
@@ -14513,7 +14513,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1258127028"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XlX_pOn5tE8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/382235621",
       "fun_fact": "“You Are” is the title track of Armin van Buuren’s release of the same name.",
@@ -14537,7 +14537,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1786856061"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9VQdVA2hjsA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3157769181",
       "fun_fact": "“Barbra Streisand - Radio Edit” appears on Duck Sauce’s release “Barbra Streisand”.",
@@ -14557,7 +14557,7 @@
       "year": 2013,
       "isrc": "GBBZH1391803",
       "uri": "spotify:track:6LW3Z1GqbL78TIjfDyg4zp",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I9QGpHScGug",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/88449443",
       "fun_fact": "“Afterglow” appears on Wilkinson’s release “Lazers Not Included (Extended Edition)”.",
@@ -14581,7 +14581,7 @@
       "year": 2024,
       "isrc": "GBARL2401346",
       "uri": "spotify:track:3NxB1jubUWY6zit9rOk8ZC",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NAVv00ZbAdc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2906712841",
       "fun_fact": "“Free (with Ellie Goulding)” appears on Calvin Harris’s release “Free (Arielle Free Remix)”.",
@@ -14601,7 +14601,7 @@
       "year": 2018,
       "isrc": "QMDA61831832",
       "uri": "spotify:track:42CMeHqi0S8sbKvrzLyixS",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E_wxPpRSgho",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3031056271",
       "fun_fact": "“Turn off the Lights” is the title track of Chris Lake’s release of the same name.",
@@ -14629,7 +14629,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1709656884"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ej0WpJ9XR6w",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2477720371",
       "fun_fact": "“Luvstruck” is the title track of Southside Spinners’s release of the same name.",
@@ -14653,7 +14653,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1821113842"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PGC4eGW25lA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3410703621",
       "fun_fact": "“Edge of Desire” is the title track of Jonas Blue’s release of the same name.",
@@ -14673,7 +14673,7 @@
       "year": 2022,
       "isrc": "NLCK42223782",
       "uri": "spotify:track:43OMUa5jouGCZEz9k9vooo",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mNrzmpA8JU4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2190795587",
       "fun_fact": "“Push Up - Original Mix” is the title track of Creeds’s release of the same name.",
@@ -14697,7 +14697,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1724318208"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8DQYdS5XxI4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1926389657",
       "fun_fact": "“Whole Again (feat. John Martin)” appears on Steve Aoki’s release “HiROQUEST: Genesis”.",
@@ -14717,7 +14717,7 @@
       "year": 2014,
       "isrc": "USWB11508774",
       "uri": "spotify:track:6SKkN6yuQFnzMEHMQR3sWw",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h7w4sUNw6tI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/107472746",
       "fun_fact": "“A Little More (feat. Sansa)” appears on Kaskade’s release “Automatic”.",
@@ -14745,7 +14745,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1684480208"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0IoU5aq0tXY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2254329837",
       "fun_fact": "“Zodiac” is the title track of Agents Of Time’s release of the same name.",
@@ -14769,7 +14769,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1503415448"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1ULfSL-HztE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/914174522",
       "fun_fact": "“Wanna Go Dancin'” appears on FISHER’s release “Freaks (EP)”.",
@@ -14793,7 +14793,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1823646005"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jg56z6J0KJE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3437335761",
       "fun_fact": "“Versatile” is the title track of L.P. Rhythm’s release of the same name.",
@@ -14813,7 +14813,7 @@
       "year": 2021,
       "isrc": "FRZID2000472",
       "uri": "spotify:track:59o6ojGNGJOYiVJSzC6Lsa",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mg94Y43yiNU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1197592562",
       "fun_fact": "“Memories (feat. Kid Cudi) - 2021 Remix” is the title track of David Guetta’s release of the same name.",
@@ -14833,7 +14833,7 @@
       "year": 2022,
       "isrc": "USUG12201165",
       "uri": "spotify:track:7mXNYEVh9FW72c12qBaO3p",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OP-bXPcqCCQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1682735327",
       "fun_fact": "“Only You” is the title track of Alesso’s release of the same name.",
@@ -14857,7 +14857,7 @@
       "year": 1999,
       "isrc": "NLF711302724",
       "uri": "spotify:track:3x55ruWsb6QtuufuCTxymf",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uuH_nYKXqHM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/64760941",
       "fun_fact": "“Madagascar - Ferry Corsten Remix” appears on Art Of Trance’s release “50 Best Trance Hits Ever, Vol. 2”.",
@@ -14881,7 +14881,7 @@
       "year": 2010,
       "isrc": "NLC281011060",
       "uri": "spotify:track:1NXQgcoRONCcxpBlMWuAQc",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TKflMtAi0EE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/489399542",
       "fun_fact": "“Mary Go Wild - Nicky Romero Remix” is the title track of Grooveyard’s release of the same name.",
@@ -14905,7 +14905,7 @@
       "year": 2017,
       "isrc": "GBAYE1700565",
       "uri": "spotify:track:5Xc74Dn1ZKH6H8XaVGOHXG",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z_1WcUAcbgQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4157792382",
       "fun_fact": "“On My Mind” appears on Disciples’s release “Golden Hour House”.",
@@ -14929,7 +14929,7 @@
       "year": 2013,
       "isrc": "GBKCF1300228",
       "uri": "spotify:track:7M2t0mMSjLJSweu8BwrY2R",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=d4VxFjHFcZ8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/113783762",
       "fun_fact": "“Wakanda” is the title track of Dimitri Vegas & Like Mike’s release of the same name.",
@@ -14957,7 +14957,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/555199299"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BGpzGu9Yp6Y",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/25746431",
       "fun_fact": "“Make It Bun Dem” is the title track of Skrillex’s release of the same name.",
@@ -14981,7 +14981,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/992482616"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sUoWkRggVig",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3762430162",
       "fun_fact": "“Imprint of Pleasure” is the title track of Tube & Berger’s release of the same name.",
@@ -15005,7 +15005,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445305132"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iWiilOH4cQE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/104274582",
       "fun_fact": "“Liquid Spirit - Claptone Remix” is the title track of Gregory Porter’s release of the same name.",
@@ -15029,7 +15029,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1164247047"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B0m5fxiN38Y",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/134279760",
       "fun_fact": "“Spotless” is the title track of Martin Garrix’s release of the same name.",
@@ -15053,7 +15053,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1052352915"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YolMcZ7Hb-Q",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/81258036",
       "fun_fact": "“Teasing Mr. Charlie - Short Edit” appears on Steve Angello’s release “Teasing Mr. Charlie / Straight”.",
@@ -15077,7 +15077,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1676086003"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7x5lqqji9ww",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2180342597",
       "fun_fact": "“Substitution (feat. Julian Perretta)” is the title track of Purple Disco Machine’s release of the same name.",
@@ -15101,7 +15101,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1544453964"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=svJvT6ruolA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/620495822",
       "fun_fact": "“No Good (Start the Dance)” appears on The Prodigy’s release “Music for the Jilted Generation”.",
@@ -15125,7 +15125,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1819789227"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cWdaDM6ZnSM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3422807521",
       "fun_fact": "“Everlight” is the title track of Tiësto’s release of the same name.",
@@ -15149,7 +15149,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1019219785"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tqlHzjolyIY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/73133570",
       "fun_fact": "“Like Home - Radio Edit” appears on Nicky Romero’s release “Like Home”.",
@@ -15169,7 +15169,7 @@
       "year": 2020,
       "isrc": "GBKCF2000946",
       "uri": "spotify:track:01jdO8lv02Qqrejkopan7M",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uZ8WMLdsB5M",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1111082782",
       "fun_fact": "“Losing Focus - Marcus Santoro & David Pietras Mix” appears on Marc Benjamin’s release “Losing Focus”.",
@@ -15197,7 +15197,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1535686154"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=efCUMvwo6Tk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1114694492",
       "fun_fact": "“Let's Love - David Guetta & MORTEN Future Rave Remix” is the title track of David Guetta’s release of the same name.",
@@ -15221,7 +15221,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/493000280"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cAS8kzMF_9I",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/16087973",
       "fun_fact": "“Delight” appears on Dimension’s release “Delight / Death Row”.",
@@ -15241,7 +15241,7 @@
       "year": 1998,
       "isrc": "NLML69800004",
       "uri": "spotify:track:1V88ZtojKFHgP3YYo5MPps",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PjoMQ9z_fp8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2664162732",
       "fun_fact": "“Let Me Show You - Original Mix” appears on Camisra’s release “Let Me Show You”.",
@@ -15261,7 +15261,7 @@
       "year": 2001,
       "isrc": "GBCPZ0100363",
       "uri": "spotify:track:5Ec3ROZqvqgwKVgCwzHK7C",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=syPi_HXY1e0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3155445671",
       "fun_fact": "“Finally - Original Extended Mix” appears on Kings Of Tomorrow’s release “Finally”.",
@@ -15289,7 +15289,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1798798516"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1LCxZfZVGSo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3282833161",
       "fun_fact": "“Never Forget You” is the title track of AFROJACK’s release of the same name.",
@@ -15309,7 +15309,7 @@
       "year": 2022,
       "isrc": "DEDH72200073",
       "uri": "spotify:track:3AYRPb2JAD4GZ6L6LeHoj5",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p4Antebo5uc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2110249107",
       "fun_fact": "“Yumi” appears on Notre Dame’s release “Yumi EP”.",
@@ -15337,7 +15337,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1773621800"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HPssThWONWk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3043878541",
       "fun_fact": "“2 Million Ways - Axwell Remix” appears on C-Mos’s release “2 Million Ways”.",
@@ -15357,7 +15357,7 @@
       "year": 1996,
       "isrc": "FRV229700030",
       "uri": "spotify:track:3PQGdUJ9GTKv0EttfvPlii",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4jEsu51QHtY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3780534",
       "fun_fact": "“Crispy Bacon” appears on Laurent Garnier’s release “30”.",
@@ -15381,7 +15381,7 @@
       "year": 2016,
       "isrc": "UK98Q1600001",
       "uri": "spotify:track:2uMbCJ8lxF7hqpQUaeo42D",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wQRV5omnBBU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/124992576",
       "fun_fact": "“Do It Right” is the title track of Martin Solveig’s release of the same name.",
@@ -15405,7 +15405,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1632332146"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=geFuxeHeZlk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3212473631",
       "fun_fact": "“Just Be (feat. Kirsty Hawkshaw)” appears on Tiësto’s release “Just Be”.",
@@ -15429,7 +15429,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/948362155"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kbz8qA314Hs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/91579846",
       "fun_fact": "“Take Ü There (feat. Kiesza) - Tchami Remix” appears on Jack Ü’s release “Take Ü There (feat. Kiesza) (Remixes)”.",
@@ -15449,7 +15449,7 @@
       "year": 2019,
       "isrc": "NLF711900036",
       "uri": "spotify:track:1nufXiTCTTAeJfO9hLHvO8",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LuyamglQkdw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/617796402",
       "fun_fact": "“Save Me Tonight” is the title track of ARTY’s release of the same name.",
@@ -15477,7 +15477,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1732751442"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L_GFS1yhWhM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2676359802",
       "fun_fact": "“Save Our Soul” appears on Bob Sinclar’s release “Champs Elysées”.",
@@ -15501,7 +15501,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1796387710"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gvnw2CSUts8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3234082101",
       "fun_fact": "“Be My Lover” is the title track of MALUGI’s release of the same name.",
@@ -15525,7 +15525,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1824462364"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6qAu4mbgArY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3443343751",
       "fun_fact": "“Blackberries” is the title track of FISHER’s release of the same name.",
@@ -15549,7 +15549,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1834540113"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0bj4i-sW44s",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3517854781",
       "fun_fact": "“Long Way Home” appears on Gareth Emery’s release “Drive”.",
@@ -15569,7 +15569,7 @@
       "year": 2025,
       "isrc": "USQX92500893",
       "uri": "spotify:track:7MtmQJPiZiyNbp8Pnjv5e5",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=r_Plv8zPx1U",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3279213741",
       "fun_fact": "“Dreamin (feat. Daya) - Anyma Remix” is the title track of Dom Dolla’s release of the same name.",
@@ -15597,7 +15597,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1677869070"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HGR6Qe81SA4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2202505457",
       "fun_fact": "“Forget” appears on Patrick Topping’s release “Boxed Off”.",
@@ -15617,7 +15617,7 @@
       "year": 2003,
       "isrc": "NLE710316553",
       "uri": "spotify:track:5hcshdvZJcEdipndIXUwzL",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LatAo9Srfko",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/62397182",
       "fun_fact": "“Beautiful Things - Radio Edit” appears on Andain’s release “Beautiful Things”.",
@@ -15645,7 +15645,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1838942984"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lnEz3HSjv5s",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3549628231",
       "fun_fact": "“Voodoo” is the title track of Martin Garrix’s release of the same name.",
@@ -15665,7 +15665,7 @@
       "year": 2022,
       "isrc": "DEZC62269331",
       "uri": "spotify:track:4tRhRLBxIZ34Iw0eCuiC03",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LL-z0yqCA3s",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1847938107",
       "fun_fact": "“Miss You” is the title track of southstar’s release of the same name.",
@@ -15689,7 +15689,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444270836"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=STmLv9pLuX0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/373219601",
       "fun_fact": "“All Stars” is the title track of Martin Solveig’s release of the same name.",
@@ -15713,7 +15713,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1799939402"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZVXOb2Cv-ho",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3278045671",
       "fun_fact": "“Magnet” is the title track of Miss Monique’s release of the same name.",
@@ -15733,7 +15733,7 @@
       "year": 2018,
       "isrc": "USRC11803472",
       "uri": "spotify:track:0M0FvSNRZmDz0Z769rewlI",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l86Y7zRDtUw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/570030402",
       "fun_fact": "“Fire In My Soul” appears on Oliver Heldens’s release “Fire In My Soul (feat. Shungudzo)”.",
@@ -15757,7 +15757,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445850974"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yO_HEa9adn4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/600991982",
       "fun_fact": "“Get Dumb - Radio Edit” appears on Axwell’s release “Get Dumb”.",
@@ -15777,7 +15777,7 @@
       "year": 2024,
       "isrc": "NLF712407066",
       "uri": "spotify:track:2U6nirXZWhSFFe1NfFQ7Ly",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EbOEjhasKas",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2947287451",
       "fun_fact": "“Love Is Eternity” is the title track of Armin van Buuren’s release of the same name.",
@@ -15805,7 +15805,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1796448782"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6ayiOciWuto",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3234442241",
       "fun_fact": "“This Rhythm (feat. RAHH)” is the title track of Prospa’s release of the same name.",
@@ -15829,7 +15829,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1678403898"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zvVRlhFetRI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2201976827",
       "fun_fact": "“Asura” appears on Charlotte de Witte’s release “Asura EP”.",
@@ -15853,7 +15853,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1087288641"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=44pRo58DV_4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/119865260",
       "fun_fact": "“Dark Side Of The Moon - Radio Mix” appears on Ernesto vs. Bastian’s release “Dark Side Of The Moon”.",
@@ -15873,7 +15873,7 @@
       "year": 2025,
       "isrc": "CYA112400023",
       "uri": "spotify:track:1aGXmfXBq4koas7v3277P3",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lEy7d460_y4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3185112831",
       "fun_fact": "“I Follow Rivers” appears on Tiësto’s release “Prismatic: Pack One”.",
@@ -15897,7 +15897,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1750872144"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fKDl64KEj9o",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2836735212",
       "fun_fact": "“Don't Stop (The Music)” is the title track of Dimitri Vegas’s release of the same name.",
@@ -15921,7 +15921,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1658771254"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SRVxRUJxITY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2247350867",
       "fun_fact": "“So U Kno” appears on Overmono’s release “Good Lies”.",
