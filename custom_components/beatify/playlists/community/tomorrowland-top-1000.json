@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.68",
+  "version": "0.69",
   "tags": [
     "edm",
     "electronic",
@@ -3872,7 +3872,8 @@
         "BUNT., Nate Traveller",
         "Madeon",
         "Bob Sinclar"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/6783301687"
     },
     {
       "artist": "Bag Raiders",
