@@ -2215,7 +2215,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1826812710"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=JEmbyx8NLxA",
+      "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3443845841",
       "fun_fact": "“Blessings - Cassian Remix” is the title track of Calvin Harris’s release of the same name.",
@@ -7333,7 +7333,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1727362089"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=IZ36b3q1elI",
+      "uri_youtube_music": null,
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2633773772",
       "fun_fact": "“World Hold On (Children of the Sky) - Radio Edit” is the title track of Bob Sinclar’s release of the same name.",
