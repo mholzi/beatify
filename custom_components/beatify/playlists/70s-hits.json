@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "1970s",
     "classic-rock",
@@ -4087,6 +4087,109 @@
       "fun_fact_es": "Un clásico de los 70 (1973).",
       "fun_fact_fr": "Un classique des années 70 (1973).",
       "fun_fact_nl": "Een 70's-klassieker (1973)."
+    },
+    {
+      "artist": "Bachman-Turner Overdrive",
+      "title": "You Ain't Seen Nothing Yet",
+      "year": 1974,
+      "isrc": "USPR39401742",
+      "uri": "spotify:track:0HOrDVS349XFcpCYsO2hAP",
+      "uri_apple_music": "applemusic://track/1891837843",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1891837843",
+        "de": "applemusic://track/1891837843",
+        "gb": "applemusic://track/1891837843",
+        "fr": "applemusic://track/1891837843",
+        "es": "applemusic://track/1891837843",
+        "nl": "applemusic://track/1891837843",
+        "it": "applemusic://track/1891837843"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=w3fRBzRngdc",
+      "uri_tidal": "tidal://track/1111508",
+      "uri_deezer": "deezer://track/2447245",
+      "fun_fact": "A chart hit by Bachman-Turner Overdrive (1974).",
+      "fun_fact_de": "Ein Chart-Hit von Bachman-Turner Overdrive (1974).",
+      "fun_fact_es": "Un éxito de Bachman-Turner Overdrive (1974).",
+      "fun_fact_fr": "Un tube de Bachman-Turner Overdrive (1974).",
+      "fun_fact_nl": "Een chart-hit van Bachman-Turner Overdrive (1974)."
+    },
+    {
+      "artist": "KC",
+      "title": "Shake Your Booty",
+      "year": 1976,
+      "isrc": "GBAYE7600024",
+      "uri": "spotify:track:4gcxYHlffrCstGw7EPWB88",
+      "uri_apple_music": "applemusic://track/1580630968",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1580630968",
+        "de": "applemusic://track/697243024",
+        "gb": "applemusic://track/697243024",
+        "fr": "applemusic://track/697243024",
+        "es": "applemusic://track/697243024",
+        "nl": "applemusic://track/697243024",
+        "it": "applemusic://track/697243024"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X6klWgHxTns",
+      "uri_tidal": "tidal://track/67327039",
+      "uri_deezer": "deezer://track/3151319",
+      "alt_artists": [
+        "The Sunshine Band"
+      ],
+      "fun_fact": "A chart hit by KC (1976).",
+      "fun_fact_de": "Ein Chart-Hit von KC (1976).",
+      "fun_fact_es": "Un éxito de KC (1976).",
+      "fun_fact_fr": "Un tube de KC (1976).",
+      "fun_fact_nl": "Een chart-hit van KC (1976)."
+    },
+    {
+      "artist": "The Osmonds",
+      "title": "Goin' Home",
+      "year": 1973,
+      "isrc": "USPR37307332",
+      "uri": "spotify:track:0p84j3ol6LPVQwW7cPB3y4",
+      "uri_apple_music": "applemusic://track/1825391722",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1825391722",
+        "de": "applemusic://track/1825391722",
+        "gb": "applemusic://track/1825391722",
+        "fr": "applemusic://track/1825391722",
+        "es": "applemusic://track/1825391722",
+        "nl": "applemusic://track/1825391722",
+        "it": "applemusic://track/1825391722"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5Oxu6G34qus",
+      "uri_tidal": "tidal://track/636496",
+      "uri_deezer": "deezer://track/1182485",
+      "fun_fact": "A chart hit by The Osmonds (1973).",
+      "fun_fact_de": "Ein Chart-Hit von The Osmonds (1973).",
+      "fun_fact_es": "Un éxito de The Osmonds (1973).",
+      "fun_fact_fr": "Un tube de The Osmonds (1973).",
+      "fun_fact_nl": "Een chart-hit van The Osmonds (1973)."
+    },
+    {
+      "artist": "Middle Of The Road",
+      "title": "Sacramento (A Wonderful Town)",
+      "year": 1971,
+      "isrc": "ITB007100338",
+      "uri": "spotify:track:6hAUzkpIfh81JFJFq72iVN",
+      "uri_apple_music": "applemusic://track/255672947",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/255672947",
+        "de": "applemusic://track/255672947",
+        "gb": "applemusic://track/255672947",
+        "fr": "applemusic://track/255672947",
+        "es": "applemusic://track/255672947",
+        "nl": "applemusic://track/829669438",
+        "it": "applemusic://track/255672947"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8INT8crRqhk",
+      "uri_tidal": "tidal://track/19614",
+      "uri_deezer": "deezer://track/991963",
+      "fun_fact": "A chart hit by Middle Of The Road (1971).",
+      "fun_fact_de": "Ein Chart-Hit von Middle Of The Road (1971).",
+      "fun_fact_es": "Un éxito de Middle Of The Road (1971).",
+      "fun_fact_fr": "Un tube de Middle Of The Road (1971).",
+      "fun_fact_nl": "Een chart-hit van Middle Of The Road (1971)."
     }
   ]
 }

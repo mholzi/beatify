@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.23",
+  "version": "2.24",
   "tags": [
     "1980s",
     "pop",
@@ -8597,6 +8597,104 @@
       "fun_fact_es": "Un éxito de Glenn Frey (2009).",
       "fun_fact_fr": "Un tube de Glenn Frey (2009).",
       "fun_fact_nl": "Een chart-hit van Glenn Frey (2009)."
+    },
+    {
+      "artist": "Lil' Louis",
+      "title": "French Kiss - The Original Underground Mix",
+      "year": 1989,
+      "isrc": "USSM18900036",
+      "uri": "spotify:track:7hnqJYCKZFW7vMoykaraZG",
+      "uri_apple_music": "applemusic://track/190367461",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/190367461",
+        "de": "applemusic://track/190367461",
+        "gb": "applemusic://track/190367461",
+        "fr": "applemusic://track/190367461",
+        "es": "applemusic://track/190367461",
+        "nl": "applemusic://track/190367461",
+        "it": "applemusic://track/190367461"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rmOAVfEDyhA",
+      "uri_tidal": "tidal://track/13196742",
+      "uri_deezer": "deezer://track/15273623",
+      "alt_artists": [
+        "The World"
+      ],
+      "fun_fact": "A chart hit by Lil' Louis (1996).",
+      "fun_fact_de": "Ein Chart-Hit von Lil' Louis (1996).",
+      "fun_fact_es": "Un éxito de Lil' Louis (1996).",
+      "fun_fact_fr": "Un tube de Lil' Louis (1996).",
+      "fun_fact_nl": "Een chart-hit van Lil' Louis (1996)."
+    },
+    {
+      "artist": "Ziggy Marley & The Melody Makers",
+      "title": "Tomorrow People",
+      "year": 1988,
+      "isrc": "USVI28800002",
+      "uri": "spotify:track:07QZEz7d4OS6vmS1iiwJCc",
+      "uri_apple_music": "applemusic://track/712869766",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/712869766",
+        "de": "applemusic://track/712869766",
+        "gb": "applemusic://track/712869766",
+        "fr": "applemusic://track/712869766",
+        "es": "applemusic://track/712869766",
+        "nl": "applemusic://track/712869766",
+        "it": "applemusic://track/712869766"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tdBDFwL3pyI",
+      "uri_tidal": "tidal://track/1838936",
+      "uri_deezer": "deezer://track/3133926",
+      "fun_fact": "A chart hit by Ziggy Marley & The Melody Makers (1988).",
+      "fun_fact_de": "Ein Chart-Hit von Ziggy Marley & The Melody Makers (1988).",
+      "fun_fact_es": "Un éxito de Ziggy Marley & The Melody Makers (1988).",
+      "fun_fact_fr": "Un tube de Ziggy Marley & The Melody Makers (1988).",
+      "fun_fact_nl": "Een chart-hit van Ziggy Marley & The Melody Makers (1988)."
+    },
+    {
+      "artist": "Run–D.M.C.",
+      "title": "It's Like That",
+      "year": 1983,
+      "isrc": null,
+      "uri": "spotify:track:0CtkjgZpkgnW7U6WmHsakD",
+      "uri_apple_music": "applemusic://track/256097956",
+      "uri_apple_music_by_region": {},
+      "uri_youtube_music": "https://music.youtube.com/watch?v=g6nthFTiPiI",
+      "uri_tidal": "tidal://track/38036078",
+      "uri_deezer": "deezer://track/2170703",
+      "alt_artists": [
+        "Jason Nevins"
+      ],
+      "fun_fact": "A chart hit by Run–D.M.C. (1983).",
+      "fun_fact_de": "Ein Chart-Hit von Run–D.M.C. (1983).",
+      "fun_fact_es": "Un éxito de Run–D.M.C. (1983).",
+      "fun_fact_fr": "Un tube de Run–D.M.C. (1983).",
+      "fun_fact_nl": "Een chart-hit van Run–D.M.C. (1983)."
+    },
+    {
+      "artist": "Eros Ramazzotti",
+      "title": "Ma che bello questo amore",
+      "year": 1987,
+      "isrc": "ITB008770681",
+      "uri": "spotify:track:12s8fpxTKhQl4HmKUKEYZv",
+      "uri_apple_music": "applemusic://track/254548590",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/254548590",
+        "de": "applemusic://track/1308691199",
+        "gb": "applemusic://track/1308691199",
+        "fr": "applemusic://track/1308691199",
+        "es": "applemusic://track/1308691199",
+        "nl": "applemusic://track/1308691199",
+        "it": "applemusic://track/1308691199"
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XLkHOnm0LIs",
+      "uri_tidal": "tidal://track/23093",
+      "uri_deezer": "deezer://track/604846",
+      "fun_fact": "A chart hit by Eros Ramazzotti (1987).",
+      "fun_fact_de": "Ein Chart-Hit von Eros Ramazzotti (1987).",
+      "fun_fact_es": "Un éxito de Eros Ramazzotti (1987).",
+      "fun_fact_fr": "Un tube de Eros Ramazzotti (1987).",
+      "fun_fact_nl": "Een chart-hit van Eros Ramazzotti (1987)."
     }
   ]
 }

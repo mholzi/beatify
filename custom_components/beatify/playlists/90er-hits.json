@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.27",
+  "version": "1.28",
   "tags": [
     "1990s",
     "pop",
@@ -1356,31 +1356,6 @@
       "fun_fact_nl": "Een chart-hit van iNi Kamoze (1995)."
     },
     {
-      "artist": "Bachman-Turner Overdrive",
-      "title": "You Ain't Seen Nothing Yet",
-      "year": 1974,
-      "isrc": "USPR39401742",
-      "uri": "spotify:track:0HOrDVS349XFcpCYsO2hAP",
-      "uri_apple_music": "applemusic://track/1891837843",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1891837843",
-        "de": "applemusic://track/1891837843",
-        "gb": "applemusic://track/1891837843",
-        "fr": "applemusic://track/1891837843",
-        "es": "applemusic://track/1891837843",
-        "nl": "applemusic://track/1891837843",
-        "it": "applemusic://track/1891837843"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=w3fRBzRngdc",
-      "uri_tidal": "tidal://track/1111508",
-      "uri_deezer": "deezer://track/2447245",
-      "fun_fact": "A chart hit by Bachman-Turner Overdrive (1990).",
-      "fun_fact_de": "Ein Chart-Hit von Bachman-Turner Overdrive (1990).",
-      "fun_fact_es": "Un éxito de Bachman-Turner Overdrive (1990).",
-      "fun_fact_fr": "Un tube de Bachman-Turner Overdrive (1990).",
-      "fun_fact_nl": "Een chart-hit van Bachman-Turner Overdrive (1990)."
-    },
-    {
       "artist": "Ace of Base",
       "title": "The Sign",
       "year": 1993,
@@ -1404,34 +1379,6 @@
       "fun_fact_es": "Un éxito de Ace of Base (1993).",
       "fun_fact_fr": "Un tube de Ace of Base (1993).",
       "fun_fact_nl": "Een chart-hit van Ace of Base (1993)."
-    },
-    {
-      "artist": "Lil' Louis",
-      "title": "French Kiss - The Original Underground Mix",
-      "year": 1989,
-      "isrc": "USSM18900036",
-      "uri": "spotify:track:7hnqJYCKZFW7vMoykaraZG",
-      "uri_apple_music": "applemusic://track/190367461",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/190367461",
-        "de": "applemusic://track/190367461",
-        "gb": "applemusic://track/190367461",
-        "fr": "applemusic://track/190367461",
-        "es": "applemusic://track/190367461",
-        "nl": "applemusic://track/190367461",
-        "it": "applemusic://track/190367461"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rmOAVfEDyhA",
-      "uri_tidal": "tidal://track/13196742",
-      "uri_deezer": "deezer://track/15273623",
-      "alt_artists": [
-        "The World"
-      ],
-      "fun_fact": "A chart hit by Lil' Louis (1996).",
-      "fun_fact_de": "Ein Chart-Hit von Lil' Louis (1996).",
-      "fun_fact_es": "Un éxito de Lil' Louis (1996).",
-      "fun_fact_fr": "Un tube de Lil' Louis (1996).",
-      "fun_fact_nl": "Een chart-hit van Lil' Louis (1996)."
     },
     {
       "artist": "Salt-N-Pepa",
@@ -1484,31 +1431,6 @@
       "fun_fact_nl": "Een chart-hit van Right Said Fred (1991)."
     },
     {
-      "artist": "Thin Lizzy",
-      "title": "The Boys Are Back In Town",
-      "year": 1976,
-      "isrc": "GBF087600063",
-      "uri": "spotify:track:43DeSV93pJPT4lCZaWZ6b1",
-      "uri_apple_music": "applemusic://track/1644749134",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1644749134",
-        "de": "applemusic://track/1644749134",
-        "gb": "applemusic://track/1644749134",
-        "fr": "applemusic://track/1644749134",
-        "es": "applemusic://track/1644749134",
-        "nl": "applemusic://track/1644749134",
-        "it": "applemusic://track/1644749134"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=56b4TTT609c",
-      "uri_tidal": "tidal://track/5244675",
-      "uri_deezer": "deezer://track/1101200",
-      "fun_fact": "A chart hit by Thin Lizzy (1996).",
-      "fun_fact_de": "Ein Chart-Hit von Thin Lizzy (1996).",
-      "fun_fact_es": "Un éxito de Thin Lizzy (1996).",
-      "fun_fact_fr": "Un tube de Thin Lizzy (1996).",
-      "fun_fact_nl": "Een chart-hit van Thin Lizzy (1996)."
-    },
-    {
       "artist": "Snow",
       "title": "Informer",
       "year": 1992,
@@ -1557,31 +1479,6 @@
       "fun_fact_es": "Un éxito de Sailor (1993).",
       "fun_fact_fr": "Un tube de Sailor (1993).",
       "fun_fact_nl": "Een chart-hit van Sailor (1993)."
-    },
-    {
-      "artist": "Ziggy Marley & The Melody Makers",
-      "title": "Tomorrow People",
-      "year": 1988,
-      "isrc": "USVI28800002",
-      "uri": "spotify:track:07QZEz7d4OS6vmS1iiwJCc",
-      "uri_apple_music": "applemusic://track/712869766",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/712869766",
-        "de": "applemusic://track/712869766",
-        "gb": "applemusic://track/712869766",
-        "fr": "applemusic://track/712869766",
-        "es": "applemusic://track/712869766",
-        "nl": "applemusic://track/712869766",
-        "it": "applemusic://track/712869766"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tdBDFwL3pyI",
-      "uri_tidal": "tidal://track/1838936",
-      "uri_deezer": "deezer://track/3133926",
-      "fun_fact": "A chart hit by Ziggy Marley & The Melody Makers (1997).",
-      "fun_fact_de": "Ein Chart-Hit von Ziggy Marley & The Melody Makers (1997).",
-      "fun_fact_es": "Un éxito de Ziggy Marley & The Melody Makers (1997).",
-      "fun_fact_fr": "Un tube de Ziggy Marley & The Melody Makers (1997).",
-      "fun_fact_nl": "Een chart-hit van Ziggy Marley & The Melody Makers (1997)."
     },
     {
       "artist": "Funkstar De Luxe",
@@ -1634,26 +1531,6 @@
       "fun_fact_nl": "Een chart-hit van Lou Bega (1999)."
     },
     {
-      "artist": "Run–D.M.C.",
-      "title": "It's Like That",
-      "year": 1983,
-      "isrc": null,
-      "uri": "spotify:track:0CtkjgZpkgnW7U6WmHsakD",
-      "uri_apple_music": "applemusic://track/256097956",
-      "uri_apple_music_by_region": {},
-      "uri_youtube_music": "https://music.youtube.com/watch?v=g6nthFTiPiI",
-      "uri_tidal": "tidal://track/38036078",
-      "uri_deezer": "deezer://track/2170703",
-      "alt_artists": [
-        "Jason Nevins"
-      ],
-      "fun_fact": "A chart hit by Run–D.M.C. (1993).",
-      "fun_fact_de": "Ein Chart-Hit von Run–D.M.C. (1993).",
-      "fun_fact_es": "Un éxito de Run–D.M.C. (1993).",
-      "fun_fact_fr": "Un tube de Run–D.M.C. (1993).",
-      "fun_fact_nl": "Een chart-hit van Run–D.M.C. (1993)."
-    },
-    {
       "artist": "Britney Spears",
       "title": "...Baby One More Time",
       "year": 1999,
@@ -1677,31 +1554,6 @@
       "fun_fact_es": "Un éxito de Britney Spears (1999).",
       "fun_fact_fr": "Un tube de Britney Spears (1999).",
       "fun_fact_nl": "Een chart-hit van Britney Spears (1999)."
-    },
-    {
-      "artist": "Eros Ramazzotti",
-      "title": "Ma che bello questo amore",
-      "year": 1987,
-      "isrc": "ITB008770681",
-      "uri": "spotify:track:12s8fpxTKhQl4HmKUKEYZv",
-      "uri_apple_music": "applemusic://track/254548590",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/254548590",
-        "de": "applemusic://track/1308691199",
-        "gb": "applemusic://track/1308691199",
-        "fr": "applemusic://track/1308691199",
-        "es": "applemusic://track/1308691199",
-        "nl": "applemusic://track/1308691199",
-        "it": "applemusic://track/1308691199"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XLkHOnm0LIs",
-      "uri_tidal": "tidal://track/23093",
-      "uri_deezer": "deezer://track/604846",
-      "fun_fact": "A chart hit by Eros Ramazzotti (1997).",
-      "fun_fact_de": "Ein Chart-Hit von Eros Ramazzotti (1997).",
-      "fun_fact_es": "Un éxito de Eros Ramazzotti (1997).",
-      "fun_fact_fr": "Un tube de Eros Ramazzotti (1997).",
-      "fun_fact_nl": "Een chart-hit van Eros Ramazzotti (1997)."
     },
     {
       "artist": "The Kelly Family",
@@ -1729,34 +1581,6 @@
       "fun_fact_nl": "Een chart-hit van The Kelly Family (1996)."
     },
     {
-      "artist": "KC",
-      "title": "Shake Your Booty",
-      "year": 1976,
-      "isrc": "GBAYE7600024",
-      "uri": "spotify:track:4gcxYHlffrCstGw7EPWB88",
-      "uri_apple_music": "applemusic://track/1580630968",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1580630968",
-        "de": "applemusic://track/697243024",
-        "gb": "applemusic://track/697243024",
-        "fr": "applemusic://track/697243024",
-        "es": "applemusic://track/697243024",
-        "nl": "applemusic://track/697243024",
-        "it": "applemusic://track/697243024"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=X6klWgHxTns",
-      "uri_tidal": "tidal://track/67327039",
-      "uri_deezer": "deezer://track/3151319",
-      "alt_artists": [
-        "The Sunshine Band"
-      ],
-      "fun_fact": "A chart hit by KC (1990).",
-      "fun_fact_de": "Ein Chart-Hit von KC (1990).",
-      "fun_fact_es": "Un éxito de KC (1990).",
-      "fun_fact_fr": "Un tube de KC (1990).",
-      "fun_fact_nl": "Een chart-hit van KC (1990)."
-    },
-    {
       "artist": "Aqua",
       "title": "Doctor Jones",
       "year": 1997,
@@ -1782,31 +1606,6 @@
       "fun_fact_nl": "Een chart-hit van Aqua (1997)."
     },
     {
-      "artist": "The Osmonds",
-      "title": "Goin' Home",
-      "year": 1973,
-      "isrc": "USPR37307332",
-      "uri": "spotify:track:0p84j3ol6LPVQwW7cPB3y4",
-      "uri_apple_music": "applemusic://track/1825391722",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1825391722",
-        "de": "applemusic://track/1825391722",
-        "gb": "applemusic://track/1825391722",
-        "fr": "applemusic://track/1825391722",
-        "es": "applemusic://track/1825391722",
-        "nl": "applemusic://track/1825391722",
-        "it": "applemusic://track/1825391722"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5Oxu6G34qus",
-      "uri_tidal": "tidal://track/636496",
-      "uri_deezer": "deezer://track/1182485",
-      "fun_fact": "A chart hit by The Osmonds (1996).",
-      "fun_fact_de": "Ein Chart-Hit von The Osmonds (1996).",
-      "fun_fact_es": "Un éxito de The Osmonds (1996).",
-      "fun_fact_fr": "Un tube de The Osmonds (1996).",
-      "fun_fact_nl": "Een chart-hit van The Osmonds (1996)."
-    },
-    {
       "artist": "The Bangles",
       "title": "Walk Like an Egyptian",
       "year": 1990,
@@ -1830,56 +1629,6 @@
       "fun_fact_es": "Un éxito de The Bangles (1990).",
       "fun_fact_fr": "Un tube de The Bangles (1990).",
       "fun_fact_nl": "Een chart-hit van The Bangles (1990)."
-    },
-    {
-      "artist": "Middle Of The Road",
-      "title": "Sacramento (A Wonderful Town)",
-      "year": 1971,
-      "isrc": "ITB007100338",
-      "uri": "spotify:track:6hAUzkpIfh81JFJFq72iVN",
-      "uri_apple_music": "applemusic://track/255672947",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/255672947",
-        "de": "applemusic://track/255672947",
-        "gb": "applemusic://track/255672947",
-        "fr": "applemusic://track/255672947",
-        "es": "applemusic://track/255672947",
-        "nl": "applemusic://track/829669438",
-        "it": "applemusic://track/255672947"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8INT8crRqhk",
-      "uri_tidal": "tidal://track/19614",
-      "uri_deezer": "deezer://track/991963",
-      "fun_fact": "A chart hit by Middle Of The Road (1992).",
-      "fun_fact_de": "Ein Chart-Hit von Middle Of The Road (1992).",
-      "fun_fact_es": "Un éxito de Middle Of The Road (1992).",
-      "fun_fact_fr": "Un tube de Middle Of The Road (1992).",
-      "fun_fact_nl": "Een chart-hit van Middle Of The Road (1992)."
-    },
-    {
-      "artist": "Wild Cherry",
-      "title": "Play That Funky Music",
-      "year": 1976,
-      "isrc": "USSM19912699",
-      "uri": "spotify:track:1zz3XExGFBdG49DSpDSaru",
-      "uri_apple_music": "applemusic://track/1695886340",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1695886340",
-        "de": "applemusic://track/1695886340",
-        "gb": "applemusic://track/1695886340",
-        "fr": "applemusic://track/1695886340",
-        "es": "applemusic://track/1695886340",
-        "nl": "applemusic://track/1695886340",
-        "it": "applemusic://track/1695886340"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yILr8KdTPsU",
-      "uri_tidal": "tidal://track/2045052",
-      "uri_deezer": "deezer://track/1067076",
-      "fun_fact": "A chart hit by Wild Cherry (1990).",
-      "fun_fact_de": "Ein Chart-Hit von Wild Cherry (1990).",
-      "fun_fact_es": "Un éxito de Wild Cherry (1990).",
-      "fun_fact_fr": "Un tube de Wild Cherry (1990).",
-      "fun_fact_nl": "Een chart-hit van Wild Cherry (1990)."
     },
     {
       "artist": "Gigi D'Agostino",
