@@ -2187,15 +2187,40 @@
     display: flex; align-items: flex-end; justify-content: center;
     gap: 22px; width: 100%; height: 100%; margin: 0;
 }
+/* #2130 (zweite Runde): der Gewinnername brach mitten im Wort und lief aus
+   dem Podest heraus. Ursache war NICHT die Schriftgroesse, sondern dass
+   `.podium-place` als Flex-Kind schrumpfen darf: `.podium-stand` steht zwar
+   auf `width: 200px`, das Podest selbst hatte aber keine Untergrenze. Wird
+   die mittlere Spalte eng, quetscht sich alles zusammen und der Name bricht.
+
+   `flex: 0 1 200px` gibt jedem Podest dieselbe Sollbreite wie seinem Stand,
+   `min-width: 0` erlaubt das geordnete Schrumpfen darunter statt des
+   Ueberlaufs, und `.podium-info` deckelt die Textspalte auf die Podestbreite.
+   Der Name kuerzt dann mit Ellipse, statt umzubrechen — auf einem Bildschirm,
+   der aus 3-5 m gelesen wird, ist eine je Spiel andere Schriftgroesse die
+   schlechtere Antwort als ein sauber gekuerzter Name. */
 .end-stage-layout .podium-place {
     display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    flex: 0 1 200px; min-width: 0;
 }
-.end-stage-layout .podium-info { display: flex; flex-direction: column; align-items: center; margin-bottom: 16px; position: relative; }
+/* Kein Podest ohne Spieler: renderEndView() setzt diese Klasse, wenn den Rang
+   niemand haelt. Bewusst eine eigene Klasse statt `hidden` — `.podium-place`
+   steht auf `display: flex` und wuerde das UA-`[hidden]` ueberstimmen. */
+.end-stage-layout .podium-place--empty { display: none; }
+.end-stage-layout .podium-info {
+    display: flex; flex-direction: column; align-items: center; margin-bottom: 16px; position: relative;
+    max-width: 100%; min-width: 0;
+}
 .end-stage-layout .podium-avatar {
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; color: #0a0a12;
 }
-.end-stage-layout .podium-name { font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 800; margin-top: 12px; letter-spacing: 0.3px; }
+.end-stage-layout .podium-name {
+    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 800;
+    margin-top: 12px; letter-spacing: 0.3px;
+    max-width: 100%; min-width: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .end-stage-layout .podium-score { font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
 .end-stage-layout .podium-pts { font-family: var(--font-body, 'Inter'), sans-serif; font-weight: 600; font-size: 14px; color: #b3b3c2; letter-spacing: 1px; margin-left: 6px; }
 .end-stage-layout .podium-stand {
@@ -2277,23 +2302,41 @@
     margin-top: 18px; flex-shrink: 0;
 }
 .end-stage-layout .superlatives-container.hidden { display: none; }
+/* #2130 (zweite Runde): die Werte der Award-Zeile standen RECHTS NEBEN ihrer
+   Karte statt darin. `.superlatives-container` ist `repeat(4, 1fr)`, und eine
+   `1fr`-Spur ist `minmax(auto, 1fr)` — ihr Auto-Minimum ist der min-content
+   der Karte. Weil die Karte selbst ein Grid mit einer `auto`-Wertspalte ist
+   und nirgends ein `min-width: 0` stand, konnte sie breiter werden als ihre
+   Spur und lief sichtbar heraus. `min-width: 0` schneidet diese Kette an
+   jeder Stelle durch, an der sie greift. */
 .end-stage-layout .superlative-card {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas: "emoji title value" "emoji player value";
     column-gap: 14px; align-items: center;
     padding: 12px 20px; border-radius: 18px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
+    min-width: 0;
 }
 .end-stage-layout .superlative-emoji { grid-area: emoji; font-size: 32px; align-self: center; }
 .end-stage-layout .superlative-title {
     grid-area: title; align-self: end;
     font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 800;
     font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8a8a9c;
+    min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.end-stage-layout .superlative-player { grid-area: player; align-self: start; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.1; }
-.end-stage-layout .superlative-value { grid-area: value; font-size: 15px; color: #b3b3c2; font-weight: 600; font-variant-numeric: tabular-nums; }
+.end-stage-layout .superlative-player {
+    grid-area: player; align-self: start; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.1;
+    min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* Der Wert ist die einzige Angabe, die von Spiel zu Spiel beliebig lang wird
+   ("17 Pkt in letzten 3"). Er darf umbrechen statt zu kuerzen — gekuerzt
+   waere er wertlos, umgebrochen bleibt er lesbar. */
+.end-stage-layout .superlative-value {
+    grid-area: value; font-size: 15px; color: #b3b3c2; font-weight: 600; font-variant-numeric: tabular-nums;
+    text-align: right; overflow-wrap: anywhere;
+}
 
 
 /* ==========================================================================

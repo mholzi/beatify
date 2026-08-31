@@ -1616,6 +1616,16 @@
             // as "A&amp;B" on the podium. Assign the raw name directly.
             if (nameEl) nameEl.textContent = player ? player.name : '---';
             if (scoreEl) scoreEl.textContent = player ? player.score : '0';
+
+            // #2130 (second round): a two-player game showed a third, empty
+            // stand with "---" and 0 PTS — reported from the field with a
+            // screenshot. Hide the stand when nobody holds the rank. Found via
+            // closest() so the markup stays untouched, and toggled with a class
+            // rather than `hidden`, which .podium-place's display:flex would
+            // override.
+            var placeEl = (nameEl || scoreEl || avatarEl);
+            placeEl = placeEl && placeEl.closest ? placeEl.closest('.podium-place') : null;
+            if (placeEl) placeEl.classList.toggle('podium-place--empty', !player);
             if (avatarEl) {
                 var nm = player ? player.name : '';
                 avatarEl.textContent = nm ? nm.trim().charAt(0).toUpperCase() : '';
