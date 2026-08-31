@@ -4190,6 +4190,98 @@
       "fun_fact_es": "Un éxito de Middle Of The Road (1971).",
       "fun_fact_fr": "Un tube de Middle Of The Road (1971).",
       "fun_fact_nl": "Een chart-hit van Middle Of The Road (1971)."
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:6COzABVCHQzyvc3rTMtrXn",
+      "artist": "Marianne Rosenberg",
+      "alt_artists": [
+        "Nicole",
+        "Mary Roos"
+      ],
+      "title": "Er gehört zu mir",
+      "chart_info": {},
+      "certifications": [
+        "Gold (DE)"
+      ],
+      "awards": [],
+      "fun_fact": "Marianne Rosenberg's 1975 Schlager hit experienced a major revival in the 80s and has remained a German classic. Her powerful voice and emotional delivery made her one of Germany's most beloved singers.",
+      "fun_fact_de": "Marianne Rosenbergs Schlager-Hit von 1975 erlebte in den 80ern ein großes Revival und ist ein deutscher Klassiker geblieben. Ihre kraftvolle Stimme machte sie zu einer der beliebtesten Sängerinnen Deutschlands.",
+      "fun_fact_es": "El éxito Schlager de Marianne Rosenberg de 1975 experimentó un gran renacimiento en los 80 y sigue siendo un clásico alemán. Su poderosa voz la convirtió en una de las cantantes más queridas de Alemania.",
+      "fun_fact_fr": "Le tube Schlager de Marianne Rosenberg, sorti en 1975, a connu un formidable regain de popularité dans les années 80 et reste un classique incontournable en Allemagne. Sa voix puissante et son interprétation pleine d'émotion ont fait d'elle l'une des chanteuses les plus adorées du pays.",
+      "uri_apple_music": "applemusic://track/253845195",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AwP7w54esDQ",
+      "uri_tidal": "tidal://track/22371988",
+      "uri_deezer": "deezer://track/2312569",
+      "fun_fact_nl": "Marianne Rosenbergs Schlager-hit uit 1975 beleefde een grote revival in de jaren 80 en is een Duits klassiek nummer gebleven. Haar krachtige stem en emotionele zang maakten haar een van Duitslands meest geliefde zangeressen.",
+      "awards_nl": [],
+      "isrc": "DEC737500013",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1626938161",
+        "de": "applemusic://track/1308496247",
+        "gb": "applemusic://track/1308496247",
+        "fr": "applemusic://track/1308496247",
+        "es": "applemusic://track/1308496247",
+        "nl": "applemusic://track/1308496247",
+        "it": "applemusic://track/1308496247"
+      }
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:69G2bqmdxqFxOBj4mkvYQt",
+      "artist": "Kraftwerk",
+      "title": "Die Roboter",
+      "alt_artists": [
+        "Tangerine Dream",
+        "Jean-Michel Jarre"
+      ],
+      "certifications": [],
+      "fun_fact": "Kraftwerk built actual robot replicas of themselves that could perform on stage, bringing the song's concept to life in their concerts.",
+      "fun_fact_de": "Kraftwerk bauten echte Roboter-Nachbildungen von sich selbst, die auf der Bühne auftreten konnten, und erweckten so das Konzept des Songs in ihren Konzerten zum Leben.",
+      "fun_fact_es": "Kraftwerk construyó réplicas robot reales de sí mismos que podían actuar en el escenario, dando vida al concepto de la canción en sus conciertos.",
+      "fun_fact_fr": "Kraftwerk a construit de véritables répliques robotiques d'eux-mêmes capables de se produire sur scène, donnant vie au concept de la chanson lors de leurs concerts.",
+      "chart_info": {},
+      "awards": [],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9plTe80SosA",
+      "uri_tidal": "tidal://track/11210159",
+      "uri_deezer": "deezer://track/13473869",
+      "fun_fact_nl": "Kraftwerk liet echte robotreplica's van zichzelf bouwen die op het podium konden optreden, waarmee ze het concept van het nummer tot leven brachten tijdens concerten.",
+      "awards_nl": []
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:5xf5uP70cZB1YPHS52IMex",
+      "artist": "Kraftwerk",
+      "title": "Das Model",
+      "alt_artists": [
+        "Tangerine Dream",
+        "Depeche Mode"
+      ],
+      "certifications": [
+        "Gold (UK)"
+      ],
+      "fun_fact": "Originally released in 1978, 'Das Modell' reached #1 in the UK in 1982 when it was re-released as a B-side that became more popular than the A-side 'Computer Love'.",
+      "fun_fact_de": "'Das Modell' wurde 1978 veröffentlicht und erreichte 1982 #1 in Großbritannien, als es als B-Seite wiederveröffentlicht wurde, die populärer als die A-Seite 'Computerlove' wurde.",
+      "fun_fact_es": "Originalmente lanzada en 1978, 'Das Modell' alcanzó el #1 en el Reino Unido en 1982 cuando se relanzó como cara B que se volvió más popular que la cara A 'Computer Love'.",
+      "fun_fact_fr": "Sorti à l'origine en 1978, 'Das Modell' a atteint le #1 au Royaume-Uni en 1982 lors de sa ressortie en face B, devenue plus populaire que la face A 'Computer Love'.",
+      "chart_info": {},
+      "awards": [],
+      "uri_apple_music": "applemusic://track/693113326",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qCFIRjycV5Q",
+      "uri_tidal": "tidal://track/11210162",
+      "uri_deezer": "deezer://track/1006803652",
+      "fun_fact_nl": "Oorspronkelijk uitgebracht in 1978, bereikte 'Das Modell' de nummer 1 in het VK in 1982 toen het opnieuw werd uitgebracht als B-kant die populairder werd dan de A-kant 'Computer Love'.",
+      "awards_nl": [],
+      "isrc": "USCA20903078",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1572525083",
+        "de": "applemusic://track/693113326",
+        "gb": "applemusic://track/693113326",
+        "fr": "applemusic://track/693113326",
+        "es": "applemusic://track/693113326",
+        "nl": "applemusic://track/693113326",
+        "it": "applemusic://track/693113326"
+      }
     }
   ]
 }
