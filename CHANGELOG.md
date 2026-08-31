@@ -4,6 +4,10 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.0-rc2] - 2026-08-31
+
+Re-cut of `4.4.0-rc1` with no code change. `main` carries the same commit; only the version string differs.
+
 ## [4.4.0-rc1] - 2026-08-31
 
 ### Added
