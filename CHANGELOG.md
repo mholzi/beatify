@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.0-rc4] - 2026-08-31
+
+### Added
+- **Two Spanish Disney playlists (#2385, #2386, #2433).** `clasicos-disney-castellano` (64 songs, Castilian) and `disney-latino` (54 songs, Latin American Spanish) ship as separate lists rather than one merged one: the same film is frequently a different recording, singer and lyric in the two regions, so merging them would have made half the entries wrong for half the players. Both arrived through the in-app request funnel.
+- **Italian song trivia across the catalogue (#2434, #2436).** 1,289 songs now carry a `fun_fact_it`, up from 182, and eight playlists are complete in Italian. The 850 template-shaped texts were translated from their structure rather than their wording so no claim could drift; `eurovision-winners` and `world-cup-anthems` were translated in full. All 14 touched playlist files carry a raised `version`, without which `_copy_bundled_playlists` would only reach fresh installations.
+
+### Fixed
+- **Three duplicate songs removed from `salsa-y-merengue` (#2435).** 534 → 531. Two were the same recording under two Spotify ids, one was a live take of a track already present in its studio version. Thirteen further title pairs stay: different artist, therefore two legitimate questions.
+- **Sixteen wrong or missing provider links repaired (#2430, #2431, #2432, #2437).** Nine wrong links and four lost artists in `salsa-y-merengue`, three more Apple links the artist fix exposed, and four wrong Apple Music URIs in `clasicos-disney-castellano`.
+
 ## [4.4.0-rc3] - 2026-08-31
 
 ### Added
