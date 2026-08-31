@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.0-rc3] - 2026-08-31
+
+### Added
+- **Play through the free YouTube Music provider (#2426, #2428).** Beatify now supports `ytmusic_free`, the third-party Music Assistant provider by sproft, which streams YouTube Music without a Premium account. Every provider before this needed a paid plan. No catalogue change was required: the provider keys tracks by the YouTube video id, which already sits in the `uri_youtube_music` field, so the URI is derived rather than stored a second time. **6,935 of 7,671 songs are playable on it.** The provider has to be installed in Music Assistant separately; the wizard's subtitle says so in all six languages.
+
 ## [4.4.0-rc2] - 2026-08-31
 
 Re-cut of `4.4.0-rc1` with no code change. `main` carries the same commit; only the version string differs.
