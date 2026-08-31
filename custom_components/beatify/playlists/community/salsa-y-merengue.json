@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.5",
+  "version": "1.6",
   "tags": [
     "salsa",
     "merengue",
@@ -639,7 +639,8 @@
       "fun_fact_es": "\"Si la Ves - Salsa Version\" de Víctor Manuelle, publicada por primera vez en 1999.",
       "fun_fact_fr": "« Si la Ves - Salsa Version » de Víctor Manuelle, parue pour la première fois en 1999.",
       "fun_fact_nl": "\"Si la Ves - Salsa Version\" van Víctor Manuelle, voor het eerst uitgebracht in 1999.",
-      "uri_apple_music": "applemusic://track/1140336688"
+      "uri_apple_music": "applemusic://track/1140336688",
+      "uri_deezer": "deezer://track/13230013"
     },
     {
       "year": 1997,
@@ -666,7 +667,8 @@
       "fun_fact_es": "\"Qué Habría Sido de Mí - Radio Version\" de Víctor Manuelle, publicada por primera vez en 1998.",
       "fun_fact_fr": "« Qué Habría Sido de Mí - Radio Version » de Víctor Manuelle, parue pour la première fois en 1998.",
       "fun_fact_nl": "\"Qué Habría Sido de Mí - Radio Version\" van Víctor Manuelle, voor het eerst uitgebracht in 1998.",
-      "uri_apple_music": "applemusic://track/161699762"
+      "uri_apple_music": "applemusic://track/161699762",
+      "uri_deezer": "deezer://track/130010946"
     },
     {
       "year": 1998,
@@ -1450,7 +1452,8 @@
       "fun_fact_es": "\"Se Pareció Tanto a Ti - Radio Version\" de Grupo Niche, publicada por primera vez en 1988.",
       "fun_fact_fr": "« Se Pareció Tanto a Ti - Radio Version » de Grupo Niche, parue pour la première fois en 1988.",
       "fun_fact_nl": "\"Se Pareció Tanto a Ti - Radio Version\" van Grupo Niche, voor het eerst uitgebracht in 1988.",
-      "uri_apple_music": "applemusic://track/321443761"
+      "uri_apple_music": "applemusic://track/321443761",
+      "uri_deezer": "deezer://track/13211925"
     },
     {
       "year": 1990,
@@ -4284,7 +4287,8 @@
       "fun_fact_es": "\"Qué Precio Tiene el Cielo - Salsa Version\" de Marc Anthony, publicada por primera vez en 2006.",
       "fun_fact_fr": "« Qué Precio Tiene el Cielo - Salsa Version » de Marc Anthony, parue pour la première fois en 2006.",
       "fun_fact_nl": "\"Qué Precio Tiene el Cielo - Salsa Version\" van Marc Anthony, voor het eerst uitgebracht in 2006.",
-      "uri_apple_music": "applemusic://track/163291459"
+      "uri_apple_music": "applemusic://track/163291459",
+      "uri_deezer": "deezer://track/549343"
     },
     {
       "year": 1978,
@@ -4647,7 +4651,8 @@
       "fun_fact_es": "\"Sedúceme - Salsa Version\" de LA INDIA, publicada por primera vez en 2002.",
       "fun_fact_fr": "« Sedúceme - Salsa Version » de LA INDIA, parue pour la première fois en 2002.",
       "fun_fact_nl": "\"Sedúceme - Salsa Version\" van LA INDIA, voor het eerst uitgebracht in 2002.",
-      "uri_apple_music": "applemusic://track/251562387"
+      "uri_apple_music": "applemusic://track/251562387",
+      "uri_deezer": "deezer://track/571707"
     },
     {
       "year": 2021,
