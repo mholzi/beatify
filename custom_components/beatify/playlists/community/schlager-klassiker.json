@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "german",
     "schlager",
@@ -3771,6 +3771,252 @@
       "fun_fact_es": "Schönes Mädchen aus Arcadia es la versión alemana de My Friend the Wind, de Demis Roussos. El cantante griego grabó en varios idiomas y tuvo uno de sus públicos más numerosos en Alemania.",
       "fun_fact_fr": "Schönes Mädchen aus Arcadia est la version allemande de My Friend the Wind de Demis Roussos. Le chanteur grec enregistrait en plusieurs langues et comptait l'Allemagne parmi ses plus grands publics.",
       "fun_fact_nl": "Schönes Mädchen aus Arcadia is de Duitse versie van My Friend the Wind van Demis Roussos. De Griekse zanger nam in meerdere talen op en had in Duitsland een van zijn grootste publieken."
+    },
+    {
+      "artist": "Wum's Gesang",
+      "title": "Ich wünsch' mir 'ne kleine Miezekatze",
+      "year": 1972,
+      "uri": "spotify:track:3LE0oKAZ8PCHIHjrsZ5IRg",
+      "uri_apple_music": "applemusic://track/276126875",
+      "uri_deezer": "deezer://track/15725639",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yTaokdhZnUA",
+      "isrc": "DEA817200001",
+      "alt_artists": [
+        "Loriot",
+        "Rudi Carrell"
+      ],
+      "fun_fact": "Wum is the cartoon dog from Loriot's television shows, and this was his song. It went to number one in Germany and stayed there for weeks — a drawn dog outselling most of the human competition that year.",
+      "fun_fact_de": "Wum ist der gezeichnete Hund aus Loriots Fernsehsendungen, und das hier war sein Lied. Es stand wochenlang auf Platz eins der deutschen Charts — ein gezeichneter Hund, der die meiste menschliche Konkurrenz des Jahres hinter sich ließ.",
+      "fun_fact_es": "Wum es el perro de dibujos animados de los programas de televisión de Loriot, y esta era su canción. Estuvo semanas en el número uno de Alemania: un perro dibujado que superó a casi toda la competencia humana de aquel año.",
+      "fun_fact_fr": "Wum est le chien de dessin animé des émissions de Loriot, et voici sa chanson. Elle est restée des semaines en tête des classements allemands — un chien dessiné devançant presque toute la concurrence humaine de l'année.",
+      "fun_fact_nl": "Wum is de getekende hond uit de televisieprogramma's van Loriot, en dit was zijn lied. Het stond wekenlang op nummer één in Duitsland — een getekende hond die bijna alle menselijke concurrentie van dat jaar achter zich liet."
+    },
+    {
+      "artist": "Peter Alexander",
+      "title": "Die kleine Kneipe",
+      "year": 1976,
+      "uri": "spotify:track:2KUe0QjJnwaQRB95yPmIbJ",
+      "uri_apple_music": "applemusic://track/268468315",
+      "uri_deezer": "deezer://track/957274",
+      "isrc": "DEA817600006",
+      "alt_artists": [
+        "Udo Jürgens",
+        "Roy Black"
+      ],
+      "fun_fact": "The German version of a Dutch song by Pierre Kartner — the same writer who recorded the Smurf song as Vader Abraham. Peter Alexander turned the harbour café of the original into the corner pub of a generation.",
+      "fun_fact_de": "Die deutsche Fassung eines niederländischen Liedes von Pierre Kartner — demselben Autor, der als Vader Abraham das Schlumpflied aufnahm. Peter Alexander machte aus dem Hafencafé des Originals die Eckkneipe einer ganzen Generation.",
+      "fun_fact_es": "La versión alemana de una canción neerlandesa de Pierre Kartner, el mismo autor que grabó la canción de los Pitufos como Vader Abraham. Peter Alexander convirtió el café portuario del original en la taberna de toda una generación.",
+      "fun_fact_fr": "La version allemande d'une chanson néerlandaise de Pierre Kartner, l'auteur même qui a enregistré la chanson des Schtroumpfs sous le nom de Vader Abraham. Peter Alexander a transformé le café du port en bistrot de toute une génération.",
+      "fun_fact_nl": "De Duitse versie van een Nederlands lied van Pierre Kartner — dezelfde schrijver die als Vader Abraham het Smurfenlied opnam. Peter Alexander maakte van het havencafé uit het origineel de stamkroeg van een hele generatie."
+    },
+    {
+      "artist": "Peter Maffay",
+      "title": "Und es war Sommer",
+      "year": 1976,
+      "uri": "spotify:track:4i6mkvKRIO07bHANBNRDWe",
+      "uri_apple_music": "applemusic://track/207073296",
+      "uri_deezer": "deezer://track/1047554",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-DLE_1SQsj0",
+      "isrc": "DEA817600022",
+      "alt_artists": [
+        "Howard Carpendale",
+        "Roland Kaiser"
+      ],
+      "fun_fact": "The ballad that turned Peter Maffay from a Schlager singer into a stadium act. He spent the decades after it moving steadily towards rock, but this is still the song audiences wait for.",
+      "fun_fact_de": "Die Ballade, die Peter Maffay vom Schlagersänger zum Stadionact machte. In den Jahrzehnten danach bewegte er sich stetig Richtung Rock — gewartet wird im Publikum bis heute auf dieses Lied.",
+      "fun_fact_es": "La balada que convirtió a Peter Maffay de cantante de Schlager en artista de estadios. En las décadas siguientes se fue acercando al rock, pero el público sigue esperando esta canción.",
+      "fun_fact_fr": "La ballade qui a fait passer Peter Maffay du Schlager aux stades. Les décennies suivantes l'ont mené vers le rock, mais c'est toujours cette chanson que le public attend.",
+      "fun_fact_nl": "De ballad die Peter Maffay van Schlagerzanger tot stadionact maakte. In de decennia erna bewoog hij richting rock, maar het publiek wacht nog altijd op dit nummer."
+    },
+    {
+      "artist": "Truck Stop",
+      "title": "Der wilde, wilde Westen",
+      "year": 1980,
+      "uri": "spotify:track:7LeYfDE3RuEAkSL5fsmEvH",
+      "uri_apple_music": "applemusic://track/1442359863",
+      "uri_deezer": "deezer://track/143783086",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5Uz04WxoNdM",
+      "isrc": "DEF088000270",
+      "alt_artists": [
+        "Gunter Gabriel",
+        "Tom Astor"
+      ],
+      "fun_fact": "Truck Stop came from Hamburg and sang country in German. This song did more than any other to make the genre a normal thing on German radio.",
+      "fun_fact_de": "Truck Stop kam aus Hamburg und sang Country auf Deutsch. Kein anderes Lied hat so viel dazu beigetragen, dass das Genre im deutschen Radio selbstverständlich wurde.",
+      "fun_fact_es": "Truck Stop venía de Hamburgo y cantaba country en alemán. Ninguna otra canción hizo tanto por normalizar el género en la radio alemana.",
+      "fun_fact_fr": "Truck Stop venait de Hambourg et chantait de la country en allemand. Aucune autre chanson n'a autant contribué à installer le genre à la radio allemande.",
+      "fun_fact_nl": "Truck Stop kwam uit Hamburg en zong country in het Duits. Geen ander nummer heeft zoveel bijgedragen aan de gewoonheid van het genre op de Duitse radio."
+    },
+    {
+      "artist": "Peter Alexander",
+      "title": "Der Papa wird's schon richten",
+      "year": 1981,
+      "uri": "spotify:track:3iKTDosKzbciQwZ6p9Ow4E",
+      "uri_apple_music": "applemusic://track/1029898733",
+      "uri_deezer": "deezer://track/957277",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SmctKnIYWF0",
+      "isrc": "DEA818100037",
+      "alt_artists": [
+        "Udo Jürgens",
+        "Rex Gildo"
+      ],
+      "fun_fact": "A comic number from the height of Peter Alexander's television years. The title line survived the song and is still used in German as a shorthand for someone whose father fixes everything.",
+      "fun_fact_de": "Eine Spaßnummer aus der Hochzeit von Peter Alexanders Fernsehjahren. Die Titelzeile hat das Lied überlebt und steht im Deutschen bis heute für jemanden, dem der Vater alles richtet.",
+      "fun_fact_es": "Un número cómico de la mejor época televisiva de Peter Alexander. El verso del título sobrevivió a la canción y en alemán sigue designando a quien tiene un padre que se lo arregla todo.",
+      "fun_fact_fr": "Un numéro comique de la grande époque télévisuelle de Peter Alexander. Le vers-titre a survécu à la chanson et désigne encore en allemand celui dont le père arrange tout.",
+      "fun_fact_nl": "Een komisch nummer uit de bloeitijd van Peter Alexanders televisiejaren. De titelregel overleefde het lied en staat in het Duits nog altijd voor iemand wiens vader alles regelt."
+    },
+    {
+      "artist": "Rainhard Fendrich",
+      "title": "Haben Sie Wien schon bei Nacht geseh'n",
+      "year": 1985,
+      "uri": "spotify:track:3r1h1kMQzGlRXskhZeZPPJ",
+      "uri_apple_music": "applemusic://track/1443359426",
+      "uri_deezer": "deezer://track/7905040",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZR8QxIgwinY",
+      "isrc": "ATF068500020",
+      "alt_artists": [
+        "Wolfgang Ambros",
+        "Georg Danzer"
+      ],
+      "fun_fact": "Fendrich belongs to the Austrian songwriting scene that also produced Wolfgang Ambros and Georg Danzer. His Vienna here is a night city, not a postcard.",
+      "fun_fact_de": "Fendrich gehört zur österreichischen Liedermacherszene, aus der auch Wolfgang Ambros und Georg Danzer kommen. Sein Wien ist hier eine Nachtstadt, keine Ansichtskarte.",
+      "fun_fact_es": "Fendrich pertenece a la escena de cantautores austríacos de la que también salieron Wolfgang Ambros y Georg Danzer. Su Viena es aquí una ciudad nocturna, no una postal.",
+      "fun_fact_fr": "Fendrich appartient à la scène des auteurs-compositeurs autrichiens dont sont aussi issus Wolfgang Ambros et Georg Danzer. Sa Vienne est ici une ville de nuit, pas une carte postale.",
+      "fun_fact_nl": "Fendrich hoort bij de Oostenrijkse liedjesschrijversscene waaruit ook Wolfgang Ambros en Georg Danzer voortkwamen. Zijn Wenen is hier een nachtstad, geen ansichtkaart."
+    },
+    {
+      "artist": "Stephan Remmler",
+      "title": "Alles hat ein Ende, nur die Wurst hat zwei",
+      "year": 1986,
+      "uri": "spotify:track:5nl9DKN2UFt3cjefB0hNC8",
+      "uri_apple_music": "applemusic://track/1443335606",
+      "uri_deezer": "deezer://track/6982143",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a4JSE32fuOc",
+      "isrc": "DEF078602800",
+      "alt_artists": [
+        "Trio",
+        "Markus"
+      ],
+      "fun_fact": "Remmler had been the voice of Trio and their minimal Da Da Da. Going solo he wrote this, and the title line has been a German saying ever since.",
+      "fun_fact_de": "Remmler war die Stimme von Trio und deren minimalem Da Da Da gewesen. Solo schrieb er das hier — und die Titelzeile ist seitdem eine deutsche Redensart.",
+      "fun_fact_es": "Remmler había sido la voz de Trio y de su minimalista Da Da Da. En solitario escribió esta canción, y desde entonces el verso del título es un dicho alemán.",
+      "fun_fact_fr": "Remmler avait été la voix de Trio et de leur minimaliste Da Da Da. En solo, il a écrit ceci, et le vers-titre est depuis un dicton allemand.",
+      "fun_fact_nl": "Remmler was de stem geweest van Trio en hun minimale Da Da Da. Solo schreef hij dit, en de titelregel is sindsdien een Duits gezegde."
+    },
+    {
+      "artist": "Stefan Raab",
+      "title": "Maschen-Draht-Zaun",
+      "year": 1999,
+      "uri": "spotify:track:3io3Tvsz2kg029lusbLmiR",
+      "uri_apple_music": "applemusic://track/6785839739",
+      "uri_deezer": "deezer://track/4123701131",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lNvB0XF46Y0",
+      "isrc": "DEQ989900069",
+      "alt_artists": [
+        "Guildo Horn",
+        "Dieter Bohlen"
+      ],
+      "fun_fact": "Raab built the song out of a television clip in which a woman described a wire-mesh fence. He set her words to music unchanged, and the result went to the top of the German charts.",
+      "fun_fact_de": "Raab baute das Lied aus einem Fernsehausschnitt, in dem eine Frau einen Maschendrahtzaun beschrieb. Er vertonte ihre Worte unverändert — und landete damit an der Spitze der deutschen Charts.",
+      "fun_fact_es": "Raab construyó la canción a partir de un fragmento televisivo en el que una mujer describía una valla de alambre. Puso música a sus palabras sin cambiarlas y llegó al número uno en Alemania.",
+      "fun_fact_fr": "Raab a bâti la chanson à partir d'un extrait télévisé où une femme décrivait un grillage. Il a mis ses mots en musique sans les changer, et s'est retrouvé en tête des classements allemands.",
+      "fun_fact_nl": "Raab bouwde het nummer uit een televisiefragment waarin een vrouw een gaashek beschreef. Hij zette haar woorden ongewijzigd op muziek en belandde bovenaan de Duitse hitlijst."
+    },
+    {
+      "artist": "Helene Fischer",
+      "title": "Und morgen früh küss ich dich wach",
+      "year": 2006,
+      "uri": "spotify:track:5OjIpU2wnpV30LNFZTdrtq",
+      "uri_apple_music": "applemusic://track/1544488820",
+      "uri_deezer": "deezer://track/584246602",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OKkYlb28SxU",
+      "isrc": "DEA340600012",
+      "alt_artists": [
+        "Andrea Berg",
+        "Michelle"
+      ],
+      "fun_fact": "From Von hier bis unendlich, the album that started Helene Fischer's career. The stadium tours and the New Year's Eve shows were still years away.",
+      "fun_fact_de": "Von Von hier bis unendlich, dem Album, mit dem Helene Fischers Laufbahn begann. Bis zu den Stadiontourneen und den Silvestershows waren es noch Jahre.",
+      "fun_fact_es": "De Von hier bis unendlich, el álbum con el que arrancó la carrera de Helene Fischer. Todavía faltaban años para las giras de estadios y los programas de Nochevieja.",
+      "fun_fact_fr": "Extrait de Von hier bis unendlich, l'album qui a lancé la carrière d'Helene Fischer. Les tournées de stades et les émissions du Nouvel An étaient encore loin.",
+      "fun_fact_nl": "Van Von hier bis unendlich, het album waarmee de loopbaan van Helene Fischer begon. De stadiontournees en de oudejaarsshows lagen nog jaren weg."
+    },
+    {
+      "artist": "Sportfreunde Stiller",
+      "title": "'54, '74, '90, 2006",
+      "year": 2006,
+      "uri": "spotify:track:5UVXLUq8m3CnehQ283wkrv",
+      "uri_apple_music": "applemusic://track/1629643058",
+      "uri_deezer": "deezer://track/1791079027",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rj9KyVpCfYg",
+      "isrc": "DEUM70601432",
+      "alt_artists": [
+        "Die Toten Hosen",
+        "Wir sind Helden"
+      ],
+      "fun_fact": "The title lists the years Germany had won the World Cup and adds the year of the home tournament as a hope. When 2006 ended without the title, the band simply moved the last number on for the next one.",
+      "fun_fact_de": "Der Titel zählt die Jahre auf, in denen Deutschland Weltmeister wurde, und hängt das Jahr des Heimturniers als Hoffnung an. Als 2006 ohne Titel endete, schob die Band die letzte Zahl einfach weiter.",
+      "fun_fact_es": "El título enumera los años en que Alemania fue campeona del mundo y añade el del torneo en casa como esperanza. Cuando 2006 acabó sin título, la banda simplemente corrió la última cifra.",
+      "fun_fact_fr": "Le titre énumère les années où l'Allemagne a été championne du monde et ajoute celle du tournoi à domicile en guise d'espoir. 2006 s'étant terminé sans titre, le groupe a simplement décalé le dernier chiffre.",
+      "fun_fact_nl": "De titel somt de jaren op waarin Duitsland wereldkampioen werd en voegt het jaar van het thuistoernooi toe als hoop. Toen 2006 zonder titel eindigde, schoof de band het laatste getal gewoon door."
+    },
+    {
+      "artist": "Santiano",
+      "title": "Es gibt nur Wasser",
+      "year": 2012,
+      "uri": "spotify:track:2gxV47AHMGT7NI25NpO6Pj",
+      "uri_apple_music": "applemusic://track/1440810789",
+      "uri_deezer": "deezer://track/58104331",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-RWKohWx8JQ",
+      "isrc": "DEUM71200052",
+      "alt_artists": [
+        "Achim Reichel",
+        "Die Höhner"
+      ],
+      "fun_fact": "Santiano come from the Baltic coast near Flensburg and play sea shanties with rock instruments. Their first album went to number one and made the genre a fixture of German charts.",
+      "fun_fact_de": "Santiano kommen von der Ostseeküste bei Flensburg und spielen Shanties mit Rockbesetzung. Ihr erstes Album ging auf Platz eins und machte das Genre in den deutschen Charts heimisch.",
+      "fun_fact_es": "Santiano vienen de la costa báltica cerca de Flensburgo y tocan canciones marineras con instrumentos de rock. Su primer álbum llegó al número uno y asentó el género en las listas alemanas.",
+      "fun_fact_fr": "Santiano vient de la côte baltique près de Flensbourg et joue des chants de marins avec une formation rock. Leur premier album est allé en tête et a installé le genre dans les classements allemands.",
+      "fun_fact_nl": "Santiano komt van de Oostzeekust bij Flensburg en speelt shanties met rockbezetting. Hun eerste album ging naar nummer één en maakte het genre thuis in de Duitse hitlijsten."
+    },
+    {
+      "artist": "Beatrice Egli",
+      "title": "Mein Herz",
+      "year": 2013,
+      "uri": "spotify:track:1CINbWotyT3WDt9EDh3cww",
+      "uri_apple_music": "applemusic://track/1667359574",
+      "uri_deezer": "deezer://track/67322451",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e-LKnxivGxI",
+      "isrc": "DEUM71301931",
+      "alt_artists": [
+        "Helene Fischer",
+        "Vanessa Mai"
+      ],
+      "fun_fact": "Egli won the German casting show Deutschland sucht den Superstar in 2013 and then did the unexpected: instead of pop she went straight into Schlager, and this was the song that carried it.",
+      "fun_fact_de": "Egli gewann 2013 Deutschland sucht den Superstar und tat dann das Unerwartete: statt Pop ging sie direkt in den Schlager — und dieses Lied trug den Schritt.",
+      "fun_fact_es": "Egli ganó el concurso alemán Deutschland sucht den Superstar en 2013 y luego hizo lo inesperado: en lugar de pop se pasó directamente al Schlager, y esta fue la canción que lo sostuvo.",
+      "fun_fact_fr": "Egli a remporté le télécrochet allemand Deutschland sucht den Superstar en 2013, puis a fait l'inattendu : au lieu de la pop, elle est passée droit au Schlager, portée par cette chanson.",
+      "fun_fact_nl": "Egli won in 2013 de Duitse talentenjacht Deutschland sucht den Superstar en deed toen het onverwachte: in plaats van pop ging ze rechtstreeks de Schlager in, gedragen door dit nummer."
+    },
+    {
+      "artist": "LaBrassBanda",
+      "title": "Nackert",
+      "year": 2013,
+      "uri": "spotify:track:1zMejoRtwflkkJOcSJehrn",
+      "uri_apple_music": "applemusic://track/600955789",
+      "uri_deezer": "deezer://track/64608995",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JS0iYM4mPro",
+      "isrc": "DEA811300071",
+      "alt_artists": [
+        "Die Draufgänger",
+        "Haindling"
+      ],
+      "fun_fact": "A Bavarian brass band singing in dialect, loud and barefoot. In 2013 they came close to representing Germany at the Eurovision Song Contest — with a brass section instead of a synthesiser.",
+      "fun_fact_de": "Eine bayerische Blaskapelle, die im Dialekt singt, laut und barfuß. 2013 waren sie nahe dran, Deutschland beim Eurovision Song Contest zu vertreten — mit Blechbläsern statt Synthesizer.",
+      "fun_fact_es": "Una banda de metales bávara que canta en dialecto, alta y descalza. En 2013 estuvieron cerca de representar a Alemania en Eurovisión, con metales en lugar de sintetizador.",
+      "fun_fact_fr": "Une fanfare bavaroise qui chante en dialecte, fort et pieds nus. En 2013, ils ont failli représenter l'Allemagne à l'Eurovision — avec des cuivres au lieu d'un synthétiseur.",
+      "fun_fact_nl": "Een Beierse blaaskapel die in dialect zingt, hard en op blote voeten. In 2013 scheelde het weinig of ze hadden Duitsland op het Eurovisiesongfestival vertegenwoordigd — met koper in plaats van synthesizer."
     }
   ]
 }
