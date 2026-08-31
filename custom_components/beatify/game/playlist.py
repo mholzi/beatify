@@ -171,12 +171,29 @@ class PlaylistManager:
         self._max_rounds = max(max_rounds, MIN_ROUNDS) if max_rounds else 0
         if self._max_rounds and len(self._songs) > self._max_rounds:
             self._songs = random.sample(self._songs, self._max_rounds)
+            # #2418: regroup the buckets from the sampled pool. Until this line
+            # existed the cap applied to `self._songs` alone, while
+            # `self._buckets` — assigned above, before the sample — kept every
+            # song of every selected playlist. get_next_song() reads the pool
+            # only in the single-playlist case; the balanced path taken for two
+            # or more playlists reads the buckets, so the cap did nothing there.
+            # Measured before the fix: two playlists of 150 with a cap of 10
+            # served all 300, while get_total_count() went on reporting 10.
+            #
+            # Regrouped rather than trimmed separately, so the pool stays the
+            # single source of truth and the two paths cannot drift apart again.
+            self._buckets = {}
+            for song in self._songs:
+                source = song.get("_playlist_source", "__default__")
+                self._buckets.setdefault(source, []).append(song)
             _LOGGER.info(
                 "Round cap active: %d of %d playable songs will be played (#1475)",
                 self._max_rounds,
                 total_count,
             )
-        self._multi_playlist = len(buckets) > 1
+        # Derived from the buckets that are actually played from — after the
+        # regroup above, not from the pre-cap grouping (#2418).
+        self._multi_playlist = len(self._buckets) > 1
 
         deduped = sum(len(v) for v in buckets.values())
         _LOGGER.info(
