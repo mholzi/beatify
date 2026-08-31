@@ -289,7 +289,25 @@ class RoundLifecycleMixin:
                 return False
             return await self._start_round_locked(_retry_count + 1)
 
-        self.last_round = self._playlist_manager.get_remaining_count() <= 1
+        # #2421: one rule decides whether this is the last round, and it lives
+        # here. The flag counts what is left in the pool; the TTS announcement
+        # used to re-derive the same question from `round >= total_rounds`, and
+        # the two disagree as soon as a song is dropped mid-game — the
+        # playback-failure path below marks a song played without a round being
+        # committed, so `round` falls behind while the remaining count keeps
+        # pace with reality. Measured on a five-song game with one song
+        # dropped: round 4 really is the last, the flag said so, and the spoken
+        # cue never came.
+        #
+        # The `total_rounds > 1` guard moved here from the announcement. It is
+        # the reason a one-song game no longer raises the flag at all: opening
+        # a game with "final round!" is noise, and that judgement now applies
+        # to the banner and the announcement alike instead of only to the one
+        # that happened to carry the guard.
+        self.last_round = (
+            self.total_rounds > 1
+            and self._playlist_manager.get_remaining_count() <= 1
+        )
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)
 
@@ -533,7 +551,10 @@ class RoundLifecycleMixin:
         await self.announce_round_start()
         await self.announce_countdown()
         # Issue #841 Phase 3: flag the final round (use case 17).
-        if self.total_rounds > 1 and self.round >= self.total_rounds:
+        # #2421: read the flag rather than re-deriving the condition, so the
+        # speaker, the banner, the admin's button and the Finale Double guard
+        # all answer to the same rule.
+        if self.last_round:
             await self.announce_last_round()
         # Issue #842 Phase 4: flag an intro-mode round (use case 21).
         if self.is_intro_round:
