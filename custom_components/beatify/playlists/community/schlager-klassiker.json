@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "german",
     "schlager",
@@ -3640,6 +3640,137 @@
       "uri_deezer": "deezer://track/15786719",
       "uri_tidal": "tidal://track/12583723",
       "isrc": "DEA810800985"
+    },
+    {
+      "artist": "Achim Reichel",
+      "title": "Aloha Heja He",
+      "year": 1991,
+      "uri": "spotify:track:3AQLL3Waks6LJ9FI8TFHGA",
+      "uri_apple_music": "applemusic://track/1442511140",
+      "uri_deezer": "deezer://track/3806147772",
+      "isrc": "DEAQ99102105",
+      "alt_artists": [
+        "Udo Lindenberg",
+        "Herbert Grönemeyer"
+      ],
+      "fun_fact": "Aloha Heja He is Achim Reichel's best-known song and opened his 1991 album Melancholie und Sturmflut. Its sea-shanty chorus made it a fixture at German festivals and stadium singalongs long after its release.",
+      "fun_fact_de": "Aloha Heja He ist Achim Reichels bekanntestes Lied und eröffnete 1991 sein Album Melancholie und Sturmflut. Der Shanty-Refrain machte es noch lange nach der Veröffentlichung zum festen Bestandteil deutscher Feste und Stadionchöre.",
+      "fun_fact_es": "Aloha Heja He es la canción más conocida de Achim Reichel y abrió su álbum de 1991 Melancholie und Sturmflut. Su estribillo de canción marinera la convirtió en un clásico de las fiestas alemanas mucho después de su lanzamiento.",
+      "fun_fact_fr": "Aloha Heja He est la chanson la plus connue d'Achim Reichel et ouvrait son album Melancholie und Sturmflut en 1991. Son refrain de chant de marins en a fait un incontournable des fêtes allemandes bien après sa sortie.",
+      "fun_fact_nl": "Aloha Heja He is het bekendste nummer van Achim Reichel en opende in 1991 zijn album Melancholie und Sturmflut. Het shantyrefrein maakte het nog jarenlang tot een vaste waarde op Duitse feesten."
+    },
+    {
+      "artist": "G.G. Anderson",
+      "title": "Herz auf rot",
+      "year": 2003,
+      "uri": "spotify:track:2nRvwfAs9iTfxvUNHWcJNL",
+      "uri_apple_music": "applemusic://track/1443338013",
+      "uri_deezer": "deezer://track/769767702",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I5HtYA54Jcw",
+      "isrc": "DEN120302106",
+      "alt_artists": [
+        "Roland Kaiser",
+        "Nik P."
+      ],
+      "fun_fact": "Herz auf rot is the title track of G.G. Anderson's 2003 album. Anderson wrote for other Schlager singers for years before stepping in front of the microphone himself.",
+      "fun_fact_de": "Herz auf rot ist der Titelsong von G.G. Andersons Album aus dem Jahr 2003. Anderson schrieb jahrelang für andere Schlagersänger, bevor er selbst ans Mikrofon trat.",
+      "fun_fact_es": "Herz auf rot es la canción que da título al álbum de G.G. Anderson de 2003. Anderson escribió durante años para otros cantantes de Schlager antes de ponerse él mismo ante el micrófono.",
+      "fun_fact_fr": "Herz auf rot est la chanson-titre de l'album de G.G. Anderson paru en 2003. Anderson a longtemps écrit pour d'autres chanteurs de Schlager avant de passer lui-même au micro.",
+      "fun_fact_nl": "Herz auf rot is het titelnummer van het album van G.G. Anderson uit 2003. Anderson schreef jarenlang voor andere Schlagerzangers voordat hij zelf achter de microfoon stapte."
+    },
+    {
+      "artist": "Thomas Anders",
+      "title": "Sternenregen",
+      "year": 2017,
+      "uri": "spotify:track:7g3M5euTiBBoTJ9bQ12tYr",
+      "uri_apple_music": "applemusic://track/1206450984",
+      "uri_deezer": "deezer://track/144965652",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YfnRHPm5RVc",
+      "isrc": "DEA621700296",
+      "alt_artists": [
+        "Roland Kaiser",
+        "Matthias Reim"
+      ],
+      "fun_fact": "Sternenregen comes from Pures Leben, the 2017 album on which Thomas Anders sang in German again. He had spent the years before that known worldwide as the voice of Modern Talking, singing in English.",
+      "fun_fact_de": "Sternenregen stammt aus Pures Leben, dem Album von 2017, auf dem Thomas Anders wieder auf Deutsch sang. Die Jahre davor war er weltweit als die Stimme von Modern Talking bekannt — auf Englisch.",
+      "fun_fact_es": "Sternenregen procede de Pures Leben, el álbum de 2017 en el que Thomas Anders volvió a cantar en alemán. Antes se le conocía en todo el mundo como la voz de Modern Talking, en inglés.",
+      "fun_fact_fr": "Sternenregen est tirée de Pures Leben, l'album de 2017 sur lequel Thomas Anders a de nouveau chanté en allemand. Il était connu dans le monde entier comme la voix de Modern Talking, en anglais.",
+      "fun_fact_nl": "Sternenregen komt van Pures Leben, het album uit 2017 waarop Thomas Anders weer in het Duits zong. Daarvoor was hij wereldwijd bekend als de stem van Modern Talking, in het Engels."
+    },
+    {
+      "artist": "Vader Abraham",
+      "title": "Das Lied der Schlümpfe",
+      "year": 1978,
+      "uri": "spotify:track:0mwDB1nJ18ln9zoO4bkrOt",
+      "uri_apple_music": "applemusic://track/1444278737",
+      "uri_deezer": "deezer://track/526614342",
+      "isrc": "NLE321000069",
+      "alt_artists": [
+        "Rudi Carrell",
+        "Tony Marshall"
+      ],
+      "fun_fact": "Das Lied der Schlümpfe is the German version of the Dutch hit that the singer Pierre Kartner recorded as Vader Abraham. The Smurfs song sold in the millions across Europe and spawned a whole run of follow-ups.",
+      "fun_fact_de": "Das Lied der Schlümpfe ist die deutsche Fassung des niederländischen Hits, den der Sänger Pierre Kartner als Vader Abraham aufnahm. Das Schlumpflied verkaufte sich europaweit millionenfach und zog eine ganze Reihe von Nachfolgern nach sich.",
+      "fun_fact_es": "Das Lied der Schlümpfe es la versión alemana del éxito neerlandés que el cantante Pierre Kartner grabó como Vader Abraham. La canción de los Pitufos vendió millones en toda Europa y dio pie a toda una serie de continuaciones.",
+      "fun_fact_fr": "Das Lied der Schlümpfe est la version allemande du tube néerlandais enregistré par le chanteur Pierre Kartner sous le nom de Vader Abraham. La chanson des Schtroumpfs s'est vendue à des millions d'exemplaires en Europe et a donné lieu à toute une série de suites.",
+      "fun_fact_nl": "Das Lied der Schlümpfe is de Duitse versie van de Nederlandse hit die zanger Pierre Kartner als Vader Abraham opnam. Het Smurfenlied ging in heel Europa miljoenen keren over de toonbank en kreeg een hele reeks opvolgers."
+    },
+    {
+      "artist": "Maite Kelly",
+      "title": "So wie man tanzt so liebt man",
+      "year": 2011,
+      "uri": "spotify:track:4geRKNmqbOSJc1GvweEAUK",
+      "uri_apple_music": "applemusic://track/1446015730",
+      "uri_deezer": "deezer://track/13677753",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YjvRUpJpLpE",
+      "isrc": "DEUM71102480",
+      "alt_artists": [
+        "Andrea Berg",
+        "Helene Fischer"
+      ],
+      "fun_fact": "So wie man tanzt so liebt man appeared on Das volle Programm in 2011, Maite Kelly's first solo album in German. She had grown up on stage as part of the Kelly Family.",
+      "fun_fact_de": "So wie man tanzt so liebt man erschien 2011 auf Das volle Programm, Maite Kellys erstem deutschsprachigen Soloalbum. Auf der Bühne aufgewachsen war sie als Teil der Kelly Family.",
+      "fun_fact_es": "So wie man tanzt so liebt man apareció en 2011 en Das volle Programm, el primer álbum en solitario en alemán de Maite Kelly. Creció sobre el escenario como parte de la Kelly Family.",
+      "fun_fact_fr": "So wie man tanzt so liebt man figure sur Das volle Programm, paru en 2011, le premier album solo en allemand de Maite Kelly. Elle a grandi sur scène au sein de la Kelly Family.",
+      "fun_fact_nl": "So wie man tanzt so liebt man verscheen in 2011 op Das volle Programm, het eerste Duitstalige soloalbum van Maite Kelly. Ze groeide op het podium op als lid van de Kelly Family."
+    },
+    {
+      "artist": "Liane",
+      "title": "Ich lass' nur noch Sonne in mein Herz",
+      "year": 2013,
+      "uri": "spotify:track:0MGLXSJHMO1IY0LiQKYR5i",
+      "uri_apple_music": "applemusic://track/1822449130",
+      "uri_deezer": "deezer://track/3785451192",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kKD97TNSSpg",
+      "isrc": "DEQS91300528",
+      "alt_artists": [
+        "Anna-Maria Zimmermann",
+        "Michelle"
+      ],
+      "fun_fact": "Ich lass' nur noch Sonne in mein Herz comes from Liane's 2013 album Frei sein. The song belongs to the party-Schlager wave that filled German dance floors through the 2010s.",
+      "fun_fact_de": "Ich lass' nur noch Sonne in mein Herz stammt von Lianes Album Frei sein aus dem Jahr 2013. Das Lied gehört zur Partyschlager-Welle, die in den 2010ern die deutschen Tanzflächen füllte.",
+      "fun_fact_es": "Ich lass' nur noch Sonne in mein Herz procede del álbum de Liane Frei sein, de 2013. La canción pertenece a la ola de Schlager festivo que llenó las pistas de baile alemanas en la década de 2010.",
+      "fun_fact_fr": "Ich lass' nur noch Sonne in mein Herz est tirée de l'album Frei sein de Liane, paru en 2013. Le morceau appartient à la vague de Schlager festif qui a rempli les pistes de danse allemandes dans les années 2010.",
+      "fun_fact_nl": "Ich lass' nur noch Sonne in mein Herz komt van Lianes album Frei sein uit 2013. Het nummer hoort bij de partyschlagergolf die in de jaren 2010 de Duitse dansvloeren vulde."
+    },
+    {
+      "artist": "Demis Roussos",
+      "title": "Schönes Mädchen aus Arcadia",
+      "year": 1973,
+      "uri": "spotify:track:02NKTxBbcbauX1saQ6Vlcm",
+      "uri_apple_music": "applemusic://track/1443355963",
+      "uri_deezer": "deezer://track/7524204",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Uye1u1bfubc",
+      "isrc": "DEF077302780",
+      "alt_artists": [
+        "Costa Cordalis",
+        "Vicky Leandros"
+      ],
+      "fun_fact": "Schönes Mädchen aus Arcadia is the German version of Demis Roussos's My Friend the Wind. The Greek singer recorded in several languages and had some of his largest audiences in Germany.",
+      "fun_fact_de": "Schönes Mädchen aus Arcadia ist die deutsche Fassung von Demis Roussos' My Friend the Wind. Der griechische Sänger nahm in mehreren Sprachen auf und hatte sein größtes Publikum unter anderem in Deutschland.",
+      "fun_fact_es": "Schönes Mädchen aus Arcadia es la versión alemana de My Friend the Wind, de Demis Roussos. El cantante griego grabó en varios idiomas y tuvo uno de sus públicos más numerosos en Alemania.",
+      "fun_fact_fr": "Schönes Mädchen aus Arcadia est la version allemande de My Friend the Wind de Demis Roussos. Le chanteur grec enregistrait en plusieurs langues et comptait l'Allemagne parmi ses plus grands publics.",
+      "fun_fact_nl": "Schönes Mädchen aus Arcadia is de Duitse versie van My Friend the Wind van Demis Roussos. De Griekse zanger nam in meerdere talen op en had in Duitsland een van zijn grootste publieken."
     }
   ]
 }
