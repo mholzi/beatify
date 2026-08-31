@@ -305,8 +305,7 @@ class RoundLifecycleMixin:
         # to the banner and the announcement alike instead of only to the one
         # that happened to carry the guard.
         self.last_round = (
-            self.total_rounds > 1
-            and self._playlist_manager.get_remaining_count() <= 1
+            self.total_rounds > 1 and self._playlist_manager.get_remaining_count() <= 1
         )
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)

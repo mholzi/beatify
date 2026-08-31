@@ -77,7 +77,13 @@ class TestTheFlagFollowsTheGame:
     @pytest.mark.asyncio
     async def test_clean_game_flags_only_the_final_round(self):
         gs = _make_game(5)
-        assert await _play(gs) == [(1, False), (2, False), (3, False), (4, False), (5, True)]
+        assert await _play(gs) == [
+            (1, False),
+            (2, False),
+            (3, False),
+            (4, False),
+            (5, True),
+        ]
 
     @pytest.mark.asyncio
     async def test_a_dropped_song_moves_the_last_round_forward(self):
