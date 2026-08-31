@@ -242,6 +242,14 @@ URI_PATTERN_YOUTUBE_MUSIC = r"^https://music\.youtube\.com/watch\?v=[a-zA-Z0-9_-
 URI_PATTERN_TIDAL = r"^tidal://track/\d+$"
 URI_PATTERN_DEEZER = r"^deezer://track/\d+$"
 URI_PATTERN_MA_LIBRARY = r"^[a-z0-9_]+(--[^:]+)?://track/.+$"
+# #2426: sproft/music-assistant-ytmusic registers as `ytmusic_free` and streams
+# YouTube Music without a Premium account. Its track item_id IS the YouTube
+# video id (`_encode_track_id` in the provider returns it unchanged unless a
+# trim window is set), so Beatify derives the URI from the `uri_youtube_music`
+# the catalogue already carries rather than storing a second copy of the same
+# id. `multi_instance` is true for that provider, hence the optional
+# `--<suffix>` on the instance name.
+URI_PATTERN_YTMUSIC_FREE = r"^ytmusic_free(--[^:]+)?://track/[a-zA-Z0-9_-]{11}$"
 
 # Provider identifiers (Story 17.1)
 PROVIDER_SPOTIFY = "spotify"
@@ -251,4 +259,5 @@ PROVIDER_TIDAL = "tidal"
 PROVIDER_DEEZER = "deezer"
 PROVIDER_MA_LIBRARY = "ma_library"
 PROVIDER_AMAZON_MUSIC = "amazon_music"
+PROVIDER_YTMUSIC_FREE = "ytmusic_free"  # #2426, third-party MA provider
 PROVIDER_DEFAULT = PROVIDER_SPOTIFY

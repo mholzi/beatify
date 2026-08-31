@@ -20,6 +20,7 @@ from custom_components.beatify.const import (
     PROVIDER_DEEZER,
     PROVIDER_MA_LIBRARY,
     PROVIDER_SPOTIFY,
+    PROVIDER_YTMUSIC_FREE,
     PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
     URI_PATTERN_APPLE_MUSIC,
@@ -782,6 +783,21 @@ def summarize_rejected_songs(
     return "; ".join(parts)
 
 
+def _ytmusic_free_uri(youtube_music_uri: str | None) -> str | None:
+    """Build a `ytmusic_free://track/<video id>` URI from a YouTube Music link.
+
+    Returns ``None`` when there is no link or the link carries no ``v=``
+    parameter, so a song without YouTube data is simply not playable on this
+    provider rather than producing a malformed URI that fails at the speaker.
+    """
+    if not youtube_music_uri:
+        return None
+    match = re.search(r"[?&]v=([a-zA-Z0-9_-]{11})(?:&|$)", youtube_music_uri)
+    if not match:
+        return None
+    return f"ytmusic_free://track/{match.group(1)}"
+
+
 def get_song_uri(
     song: dict[str, Any],
     provider: str,
@@ -828,6 +844,18 @@ def get_song_uri(
     if provider == PROVIDER_YOUTUBE_MUSIC:
         # For YouTube Music, only use uri_youtube_music
         return song.get("uri_youtube_music") or None
+    if provider == PROVIDER_YTMUSIC_FREE:
+        # #2426: derived, not stored. The third-party `ytmusic_free` provider
+        # keys tracks by the YouTube video id, which is exactly what sits in
+        # `uri_youtube_music` — so the URI is built here instead of adding a
+        # second catalogue field holding a copy of the same id that could then
+        # drift out of step with it.
+        #
+        # Deriving in this one function is enough for the whole stack:
+        # `filter_songs_for_provider` calls it, `PlaylistManager` caches the
+        # result as `_precomputed_uri`, and `_get_ma_uri_candidates` always
+        # tries `_resolved_uri` first — so nothing downstream needs a branch.
+        return _ytmusic_free_uri(song.get("uri_youtube_music"))
     if provider == PROVIDER_TIDAL:
         # For Tidal, only use uri_tidal
         return song.get("uri_tidal") or None

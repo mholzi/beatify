@@ -142,7 +142,7 @@ _TITLE_TOKEN_MIN_LEN = 3
 # Crate Digger work; `tidal` joins because its URIs can no longer be refreshed —
 # Odesli's public API, the only source they ever came from, was retired on
 # 2026-07-31 and now answers 401.
-_NAME_FALLBACK_PROVIDERS = frozenset({"ma_library", "tidal"})
+_NAME_FALLBACK_PROVIDERS = frozenset({"ma_library", "tidal", "ytmusic_free"})
 
 # Words that mark a *different recording of the same song*. A name search is
 # free to return any of them, which is exactly the risk this fallback carries:
@@ -288,6 +288,13 @@ _PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
     # Amazon Music uses Alexa text search — no URI fields; playback via
     # _play_via_alexa() with content_type="AMAZON_MUSIC".
     "amazon_music": (),
+    # #2426: the ytmusic_free URI is DERIVED from uri_youtube_music by
+    # get_song_uri(), so there is no catalogue field to walk. The empty tuple
+    # is deliberate rather than an omission: a missing key would log the
+    # "unknown provider" warning below and imply a mapping bug, while an empty
+    # one says the provider has no stored fields and lets _resolved_uri — which
+    # already holds the derived URI — do the work.
+    "ytmusic_free": (),
 }
 
 

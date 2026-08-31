@@ -1236,7 +1236,8 @@
       "title": "Tune your library game",
       "sub": "Scan runs in the background — you can keep going and finish setup while it works."
     },
-    "providerLibrarySub": "Your personal Music Assistant library"
+    "providerLibrarySub": "Your personal Music Assistant library",
+    "providerYtmusicFreeSub": "Needs the ytmusic_free provider in Music Assistant"
   },
   "onboarding": {
     "stepLabel": "Step",

@@ -29,6 +29,7 @@ from custom_components.beatify.const import (
     PROVIDER_DEFAULT,
     PROVIDER_MA_LIBRARY,
     PROVIDER_SPOTIFY,
+    PROVIDER_YTMUSIC_FREE,
     PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
     ROUND_DURATION_MAX,
@@ -85,6 +86,10 @@ def _validate_provider(provider: str) -> str:
         # create-game answered 400 with no log line — the same failure mode
         # this docstring records for Apple Music in #808.
         PROVIDER_MA_LIBRARY,
+        # #2426: third-party MA provider. Same reason it has to be listed here
+        # as the line above — an unlisted provider is coerced to the default
+        # and then fails the "no playlists" guard with a 400 and no log line.
+        PROVIDER_YTMUSIC_FREE,
     )
     return provider if provider in valid_providers else PROVIDER_DEFAULT
 

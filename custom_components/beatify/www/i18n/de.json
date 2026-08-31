@@ -1236,7 +1236,8 @@
       "title": "Stimme dein Bibliotheks-Spiel ab",
       "sub": "Der Scan läuft im Hintergrund — du kannst das Setup währenddessen abschließen."
     },
-    "providerLibrarySub": "Deine persönliche Music-Assistant-Bibliothek"
+    "providerLibrarySub": "Deine persönliche Music-Assistant-Bibliothek",
+    "providerYtmusicFreeSub": "Braucht den ytmusic_free-Provider in Music Assistant"
   },
   "onboarding": {
     "stepLabel": "Schritt",

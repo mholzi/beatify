@@ -607,6 +607,18 @@ const PROVIDERS = [
         sub: 'Your personal Music Assistant library',
         subKey: 'wizard.providerLibrarySub',
     },
+    // #2426: a third-party Music Assistant provider, not part of MA itself.
+    // Listed last, and the subtitle carries the prerequisite rather than the
+    // selling point: the dimmed-chip explainer below only opens for options
+    // the selected speaker cannot serve, and this one is selectable on any MA
+    // speaker whether or not the provider is actually installed. The subtitle
+    // is therefore the only place the user is told what to install.
+    {
+        id: 'ytmusic_free',
+        label: 'YouTube Music (Free)',
+        sub: 'Needs the ytmusic_free provider in Music Assistant',
+        subKey: 'wizard.providerYtmusicFreeSub',
+    },
 ];
 
 // Lock icon SVG for dimmed provider chips (#772 UX).

@@ -1236,7 +1236,8 @@
       "title": "Regola la partita sulla tua libreria",
       "sub": "La scansione va avanti in background: puoi proseguire e completare la configurazione mentre lavora."
     },
-    "providerLibrarySub": "La tua libreria personale di Music Assistant"
+    "providerLibrarySub": "La tua libreria personale di Music Assistant",
+    "providerYtmusicFreeSub": "Richiede il provider ytmusic_free in Music Assistant"
   },
   "onboarding": {
     "stepLabel": "Passo",

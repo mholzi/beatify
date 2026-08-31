@@ -1236,7 +1236,8 @@
       "title": "Stel je bibliotheekspel in",
       "sub": "Scan runs in the background — you can keep going and finish setup while it works."
     },
-    "providerLibrarySub": "Je persoonlijke Music Assistant-bibliotheek"
+    "providerLibrarySub": "Je persoonlijke Music Assistant-bibliotheek",
+    "providerYtmusicFreeSub": "Vereist de ytmusic_free-provider in Music Assistant"
   },
   "onboarding": {
     "stepLabel": "Stap",

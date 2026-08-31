@@ -1236,7 +1236,8 @@
       "title": "Configura tu partida de biblioteca",
       "sub": "Scan runs in the background — you can keep going and finish setup while it works."
     },
-    "providerLibrarySub": "Tu biblioteca personal de Music Assistant"
+    "providerLibrarySub": "Tu biblioteca personal de Music Assistant",
+    "providerYtmusicFreeSub": "Necesita el proveedor ytmusic_free en Music Assistant"
   },
   "onboarding": {
     "stepLabel": "Paso",
