@@ -29,7 +29,7 @@ from custom_components.beatify.server.ws_handlers import (
     admin_next_round,
     admin_rematch_game,
 )
-from custom_components.beatify.server.ws_handlers.admin import _finalize_and_end
+from custom_components.beatify.server.ws_handlers._helpers import finalize_and_end
 from tests.conftest import make_game_state
 from tests.unit.test_websocket import _make_handler_and_game, _make_ws
 
@@ -225,7 +225,7 @@ class TestAdminDisconnectTaskCleanup:
 def _wire_game_end(handler, game_state) -> None:
     """Wire the terminal game-end callback exactly like setup does."""
     game_state.set_game_end_callback(
-        functools.partial(_finalize_and_end, handler, game_state)
+        functools.partial(finalize_and_end, handler, game_state)
     )
 
 

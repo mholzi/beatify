@@ -168,7 +168,7 @@ class BeatifyWebSocketHandler:
     def _release_game_end(self, game_id: str | None) -> None:
         """Release a claimed game-end so the terminal sequence can be retried (#1754).
 
-        ``_finalize_and_end`` claims BEFORE its side effects (``record_game``
+        ``finalize_and_end`` claims BEFORE its side effects (``record_game``
         storage I/O + ``advance_to_end``). If either raises, the claim would
         otherwise be burned: every retry hits "already claimed" and returns
         without advancing, stranding the game in REVEAL/PAUSED. Discarding the
@@ -250,7 +250,7 @@ class BeatifyWebSocketHandler:
                     # the log concludes the client sent malformed JSON and
                     # looks there.
                     #
-                    # The case that made it visible: `_finalize_and_end`
+                    # The case that made it visible: `finalize_and_end`
                     # re-raises on purpose (#1754) so the game-end claim is
                     # released and a retry can re-run the terminal sequence.
                     # The design works — but the admin got no frame back, so

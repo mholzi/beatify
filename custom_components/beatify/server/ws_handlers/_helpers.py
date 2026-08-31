@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING
 
 from aiohttp import web
 
+from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.game.state import GameState
 from custom_components.beatify.server.companion_auth import is_companion_trusted_meta
 from custom_components.beatify.server.serializers import redact_state_for_player
@@ -131,3 +132,58 @@ def _ws_companion_trusted(
         return False
     meta = getattr(ws, "beatify_request_meta", None)
     return is_companion_trusted_meta(meta, hass)
+
+
+async def finalize_and_end(
+    handler: BeatifyWebSocketHandler,
+    game_state: GameState,
+    *,
+    allow_playoff: bool = True,
+) -> None:
+    """Record game stats + run the game-end ceremony exactly once (#1702/#1753).
+
+    The final-round terminal path is reachable from THREE places at the same
+    time: the two admin-capable sockets (participant WS + spectator
+    ``_admin_ws``) driving ``next_round``/``end_game``, and the unattended
+    REVEAL auto-advance carrying the final round (#1753, wired via
+    ``GameState.set_game_end_callback``). Gating on the handler's one-shot claim
+    keyed by ``game_id`` makes ``finalize_game`` / ``record_game`` (double
+    stats) and ``advance_to_end`` (double podium TTS) fire at most once per
+    game. The loser skips straight to the broadcast its caller performs.
+
+    #1754: the claim is taken BEFORE the side effects (``record_game`` storage
+    I/O + ``advance_to_end``). If either raises, the claim is released so a
+    retry can re-run the terminal sequence instead of stranding the game in
+    REVEAL/PAUSED — then the error propagates to the caller.
+
+    #1725: before claiming/finalizing, offer a finale sudden-death tiebreaker.
+    When the host opted in and the game would end on a tie for first with
+    unplayed songs left, ``maybe_start_finale_playoff`` eliminates the non-tied
+    players and starts one more playoff round; the game stays in PLAYING and we
+    return WITHOUT finalizing, so the caller re-broadcasts the live round. On a
+    clear winner / 0 songs left / cap reached it's a no-op and the normal
+    finalize path runs.
+    """
+    if allow_playoff and await game_state.maybe_start_finale_playoff():
+        _LOGGER.info("Finale tiebreaker armed — playoff round started, not ending")
+        return
+
+    if not handler._claim_game_end(game_state.game_id):
+        _LOGGER.debug("Game-end already claimed for %s — skipping", game_state.game_id)
+        return
+
+    try:
+        stats_service = handler.hass.data.get(DOMAIN, {}).get("stats")
+        if stats_service:
+            game_summary = game_state.finalize_game()
+            await stats_service.record_game(
+                game_summary, difficulty=game_state.difficulty
+            )
+            _LOGGER.debug("Game stats recorded")
+
+        await game_state.advance_to_end()
+    except Exception:
+        # #1754: release the claim so a retry re-runs the end sequence rather
+        # than hitting "already claimed" and stranding the game in REVEAL.
+        handler._release_game_end(game_state.game_id)
+        raise

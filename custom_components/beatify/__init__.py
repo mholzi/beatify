@@ -88,7 +88,7 @@ from .server.library_views import (
 )
 from .server.setup_state import clear_setup
 from .server.websocket import BeatifyWebSocketHandler
-from .server.ws_handlers.admin import _finalize_and_end
+from .server.ws_handlers._helpers import finalize_and_end
 from .services.media_player import async_get_media_players
 from .services.stats import StatsService
 
@@ -186,7 +186,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # auto-advance final round records stats + runs the podium ceremony through
     # the same claim as the admin sockets (no double record / double podium TTS).
     game_state.set_game_end_callback(
-        functools.partial(_finalize_and_end, ws_handler, game_state)
+        functools.partial(finalize_and_end, ws_handler, game_state)
     )
 
     # Set up metadata update callback for fast transitions (Issue #42)

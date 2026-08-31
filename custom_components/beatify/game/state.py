@@ -346,7 +346,7 @@ class GameState(
         self._on_round_end: Callable[[], Awaitable[None]] | None = None
 
         # #1753: callback for the terminal game-end. Wired by the WS handler to
-        # `_finalize_and_end` so the unattended REVEAL auto-advance final round
+        # `finalize_and_end` so the unattended REVEAL auto-advance final round
         # runs the SAME one-shot (claim + record_game + advance_to_end) as the
         # two admin sockets — recording stats + firing the podium TTS exactly
         # once. When unset (REST/service path or tests) the auto-advance falls
@@ -607,7 +607,7 @@ class GameState(
     def set_game_end_callback(self, callback: Callable[[], Awaitable[None]]) -> None:
         """Set the terminal game-end callback (#1753).
 
-        The WS handler wires this to ``_finalize_and_end`` so the unattended
+        The WS handler wires this to ``finalize_and_end`` so the unattended
         REVEAL auto-advance final round records stats + runs the podium ceremony
         through the SAME one-shot claim as the two admin sockets, instead of
         calling ``advance_to_end`` directly (which skipped ``record_game`` and
@@ -1102,7 +1102,7 @@ class GameState(
     async def maybe_start_finale_playoff(self) -> bool:
         """Arm + start a finale tiebreaker playoff round, if one is warranted.
 
-        Called at the game-end decision point (the ``_finalize_and_end`` WS
+        Called at the game-end decision point (the ``finalize_and_end`` WS
         chokepoint) BEFORE stats are finalized. When the game is about to end on
         a **tie for first** while **unplayed songs remain** and the host opted
         in (``finale_tiebreaker_enabled``), rather than declaring a shared winner

@@ -55,7 +55,7 @@ The mixin relies on attributes / methods the host class owns and that live on
 * ``self._on_round_end`` — the async WebSocket broadcast callback mirrored after
   the auto-advance ``start_round`` so the new PLAYING state reaches clients.
 * ``self._on_game_end`` — the terminal game-end callback (#1753), wired by the
-  WS handler to ``_finalize_and_end`` (claim + record_game + advance_to_end).
+  WS handler to ``finalize_and_end`` (claim + record_game + advance_to_end).
   The auto-advance final round routes through it so the unattended end records
   stats + fires the podium TTS through the SAME one-shot claim as the two admin
   sockets. Falls back to ``self.advance_to_end`` when unset (REST/service path
@@ -212,7 +212,7 @@ class RevealAutoAdvanceMixin:
             # REVEAL.
             #
             # #1753: route through the shared game-end gate (_on_game_end =
-            # ws_handler._finalize_and_end) rather than calling advance_to_end()
+            # ws_handler finalize_and_end) rather than calling advance_to_end()
             # directly. The old direct call (a) never recorded stats on the
             # unattended final round and (b) never claimed the game_id, so a
             # concurrently-parked admin_next_round could still win the claim and

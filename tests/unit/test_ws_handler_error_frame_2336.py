@@ -5,7 +5,7 @@ loggte beides als ``Failed to parse WebSocket message``. Das beschreibt den
 Fehler nicht nur ungenau — es **zeigt auf die falsche Partei**. Wer die Zeile
 liest, schliesst auf einen Client, der kaputtes JSON schickt, und sucht dort.
 
-Sichtbar wurde es an ``_finalize_and_end``: das wirft **absichtlich** weiter
+Sichtbar wurde es an ``finalize_and_end``: das wirft **absichtlich** weiter
 (#1754), damit der Game-End-Claim freigegeben wird und ein zweiter Versuch die
 Endsequenz erneut fahren kann. Der Entwurf stimmt — aber der Admin bekam kein
 Frame zurueck, also war „Spiel beenden" ein toter Knopf mit einer irrefuehrenden

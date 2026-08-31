@@ -39,6 +39,7 @@ from custom_components.beatify.game.playlist import (
     async_discover_playlists_detailed,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
+from custom_components.beatify.server.ws_handlers._helpers import finalize_and_end
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
     RateLimitMixin,
@@ -50,7 +51,6 @@ from custom_components.beatify.server.serializers import (
     build_state_message,
 )
 from custom_components.beatify.server.setup_state import clear_setup
-from custom_components.beatify.server.ws_handlers.admin import _finalize_and_end
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     get_platform_capabilities,
@@ -661,13 +661,39 @@ class EndGameView(BeatifyAdminView):
         if not game_state or not game_state.game_id:
             return _json_error("No active game", 404, code="GAME_NOT_STARTED")
 
+        ws_handler = data.get("ws_handler")
+
+        # #2442: finalize BEFORE the teardown. end_game() clears the state, so
+        # a broadcast_state() after it serialises nothing and players never see
+        # a `phase: END` — no podium, no scoreboard, no share card. This path
+        # is the admin UI's fallback for a closed admin socket, so it runs
+        # exactly when the host's connection is already shaky.
+        if game_state.phase in (
+            GamePhase.PLAYING,
+            GamePhase.REVEAL,
+            GamePhase.PAUSED,
+        ):
+            await game_state.stop_media()
+            # #1698: title/artist scoring for the running round is deferred
+            # until the vote window closes; resolve it or the podium misses
+            # the last round entirely.
+            await game_state.resolve_title_artist_if_pending()
+            # allow_playoff=False: this endpoint tears the game down in the
+            # same request, so arming one more round here would contradict
+            # its own response.
+            if ws_handler:
+                await finalize_and_end(ws_handler, game_state, allow_playoff=False)
+                # The END state carries the final standings. It has to reach
+                # the clients before end_game() empties the state below.
+                await ws_handler.broadcast_state()
+            else:
+                await game_state.advance_to_end()
+
         await game_state.end_game()
 
         # Broadcast game_ended to WebSocket clients so players clean up properly
-        ws_handler = data.get("ws_handler")
         if ws_handler:
             await ws_handler.broadcast({"type": "game_ended"})
-            await ws_handler.broadcast_state()
 
         return web.json_response({"success": True})
 
@@ -1209,7 +1235,7 @@ class StartGameplayView(BeatifyAdminView):
             # auto-advance final round records stats + runs the podium ceremony
             # through the same claim as the admin sockets.
             game_state.set_game_end_callback(
-                functools.partial(_finalize_and_end, ws_handler, game_state)
+                functools.partial(finalize_and_end, ws_handler, game_state)
             )
             # Set metadata update callback for fast transitions (Issue #42)
             game_state.set_metadata_update_callback(
