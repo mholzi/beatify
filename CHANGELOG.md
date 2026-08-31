@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.0-rc1] - 2026-08-31
+
+### Added
+- **Collected row (#2324, #2368).** A year guess that lands inside the difficulty's close range pins the song to a row the player keeps for the rest of the game. The row ships in the reveal payload and in the final leaderboard, and the share card gains a line with the count and the year span it covers. Shape E of the five discussed on the issue: it touches no scoring path, because swapping the question is cheap and swapping the currency is not.
+
+### Fixed
+- **The game-over screen keeps its contents inside its boxes (#2130, #2417).** The winner's name broke mid-word and left the podium card, the award row wrote its values outside the card border, and a two-player game rendered a third, empty stand. Three causes, all horizontal: `.podium-place` could shrink under its stand's fixed width, the award cards had no `min-width: 0` against their `1fr` track, and `renderEndView()` filled all three podium slots unconditionally. The reveal standings from #2133 and #2157 are untouched. Reported by @boardnick0815 on v4.3.0 with a screencast and screenshots.
+- **The round cap holds across playlists (#2418, #2419).** Selecting a round count did nothing once more than one playlist was picked: `PlaylistManager` capped `self._songs` but assigned `self._buckets` before the sample and never regrouped them, and the balanced path that serves a multi-playlist game reads the buckets. Measured before the fix, two playlists of 150 songs with a cap of 10 served all 300.
+- **One rule decides whether a round is the last (#2421, #2424).** The flag counted what was left in the pool while the TTS announcement re-derived the question from `round >= total_rounds`. A song dropped on the playback-failure path is marked played without a round being committed, so the two disagreed and the spoken cue never came. The announcement now reads the flag, and the `total_rounds > 1` guard moved onto it.
+
+### Changed
+- **Salsa y Merengue, 534 songs (#2392, #2410).** The second-largest playlist in the catalogue. Latin America was previously covered by `fiesta-latina-90s` and fifty songs.
+- **The decade playlists contain only their decade (#2403, #2411, #2413).** Nineteen songs sat outside their playlist's range. Eleven moved to the playlist of their own decade; the other eight already existed there and were removed rather than duplicated.
+- **Seventy-seven fun facts stopped contradicting the answer (#2415).** They followed the template `A chart hit by ARTIST (YEAR)`, where the bracketed year was not a release date: a 1988 Eddy Grant song carried 2026. Corrected in all five languages.
+- **Eighteen more provider links (#2409, #2412, #2416)** across Apple Music, YouTube Music and Deezer.
+- **The catalogue figures in the README and on the landing page (#2422, #2423)** now say 59 playlists and 7,671 songs.
+
 ## [4.3.1-rc2] - 2026-08-23
 
 ### Added
