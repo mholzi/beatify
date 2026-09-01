@@ -431,58 +431,65 @@ Playlists are displayed on the main Beatify admin screen:
 
 Beatify comes with 8,211 songs across 61 curated playlists:
 
-- 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
 - 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
 - 🇧🇷 **100% Brasil** — 66 Brazilian hits across the decades
 - 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
 - 🇫🇷 **100% Français** — 100 French hits across the eras (chanson, pop, rap, variété)
-- 🎵 **2000s Pop Anthems** — 182 essential pop hits from the 2000s
-- 🎵 **2010s & 2020s Hits** — 71 chart hits closing the modern-decade gap
-- 🎶 **40s & 50s Classics** — 152 swing, crooner and early rock 'n' roll standards
-- 🎸 **60s Classics** — 66 tracks from the golden age of rock & roll
-- 🎙️ **70s Hits** — 163 essential hits from the seventies
-- 🎹 **80s Hits** — 238 classic hits from the decade of synths and MTV
-- 🎤 **90s & 2000s Hip-Hop Bangers** — 40 tracks from 2Pac, Eminem, JAY-Z, Nas, Dr. Dre and more
-- 🎵 **90s Hits** — 115 essential tracks from the decade
+- 🎵 **2000s Pop Anthems** — 224 essential pop hits from the 2000s
+- 🎵 **2010s & 2020s Hits** — 124 chart hits closing the modern-decade gap
+- 🎶 **40s & 50s Classics** — 154 swing, crooner and early rock 'n' roll standards
+- 🎸 **60s Classics** — 82 tracks from the golden age of rock & roll
+- 🎙️ **70s Hits** — 211 essential hits from the seventies
+- 🎹 **80s Hits** — 267 classic hits from the decade of synths and MTV
+- 🎤 **90s & 2000s Hip Hop Bangers** — 40 tracks from 2Pac, Eminem, JAY-Z, Nas, Dr. Dre and more
+- 🎵 **90s Hits** — 158 essential tracks from the decade
 - 🎌 **Anime Openings** — 140 opening themes from Cowboy Bebop to Chainsaw Man
 - 🍺 **Ballermann Party Hits** — 189 Mallorca and Schlager party tracks
-- 🇨🇦 **Best Canadian Hits** — 100 Canadian hits across six decades, from The Guess Who and Rush to The Weeknd
+- 🇨🇦 **Best Canadian Hits: Top 100** — 100 Canadian hits across six decades, from The Guess Who and Rush to The Weeknd
 - 🦒 **Best of Giraffenaffen** — 26 German children's songs
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
+- 🏰 **Clásicos Disney (Castellano)** — 64 Disney songs in the Spanish of Spain
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
-- 🇩🇪 **Deutschpop Klassiker** — 107 German pop classics, incl. the 90s / NDW canon
-- 🇩🇪 **Deutschrock – Best Of** — 100 modern German rock tracks, from Böhse Onkelz to Die Toten Hosen
+- 🇩🇪 **Deutschpop Klassiker** — 118 German pop classics, incl. the 90s / NDW canon
+- 🇩🇪 **Deutschrock - Best Of** — 100 modern German rock tracks, from Böhse Onkelz to Die Toten Hosen
 - 🕺 **Disco & Funk Classics** — 98 essential disco and funk tracks from the 70s and 80s
 - 🏰 **Disney Classics** — 69 soundtrack singalongs from the Disney canon
 - 🇩🇪 **Disney Hits Deutschland** — 97 German-language Disney songs, with a guess-the-film bonus across 40 films
+- 🏰 **Disney Latino** — 54 Disney songs in Latin American Spanish
 - 🎸 **Divorced Dad Rock** — 107 post-grunge, nu-metal and 2000s radio-rock tracks
-- 🎧 **EDM Anthems** — 190 festival and mainstream EDM tracks
+- 🎧 **EDM Anthems** — 246 festival and mainstream EDM tracks
 - 🎸 **Essential Alternative** — 100 90s/2000s alternative rock essentials
 - 💥 **Eurodance 90s** — 100 party songs from the eurodance era
-- 🏆 **Eurovision Winners (1956–2025)** — 72 winning songs
-- 💃 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
+- 🏆 **Eurovision Winners (1956-2025)** — 72 winning songs
+- 🇲🇽 **Fiesta Latina 90s** — 50 Latin party anthems from Shakira, Ricky Martin, Maná
 - 🇫🇮 **Finnish Schlager Classics** — 293 Finnish iskelmä classics
 - 🌪️ **Funk Carioca** — 20 Brazilian baile funk hits spanning 2000–2018
 - 🧃 **Gen Z Anthems** — 30 tracks from TikTok to Good Luck, Babe! spanning 2009–2024
 - 🎯 **Greatest Hits of All Time** — 236 chart-toppers across four decades
-- 🤘 **Greatest Metal Songs** — 61 legendary tracks across all major metal subgenres
+- 🤘 **Greatest Metal Songs of All Time** — 61 legendary tracks across all major metal subgenres
 - 🔊 **Harder Styles** — 190 hardstyle, hardcore and raw tracks
-- 🎬 **ICONIC Movie Songs** — 72 songs from the movies, with a dedicated movie-quiz mode
+- 🎬 **ICONIC movie songs** — 72 songs from the movies, with a dedicated movie-quiz mode
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
+- 🎬 **Movie & TV Soundtracks** — 257 iconic film soundtracks
+- 🇮🇹 **Musica Italiana** — 115 Italian hits from the 1960s to the 2000s
 - 🎸 **NDW – Neue Deutsche Welle** — 50 German New Wave classics from 1976–1986
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 🇵🇱 **Polski Rock** — 100 Polish rock tracks
 - 🇵🇱 **Polskie hity radiowe** — 92 Polish pop and rock radio hits from 1972–2016
 - 🇵🇱 **Polskie przeboje wszech czasów** — 59 all-time Polish hits
-- 💔 **Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
-- 🍁 **Québécois 1990–2020** — 126 French-Canadian tracks from three decades of Quebec pop
-- 🇩🇪 **Schlager Classics** — 96 German schlager classics from the 60s to today
+- 🍁 **Québécois 1990-2020** — 126 French-Canadian tracks from three decades of Quebec pop
+- 💃 **Salsa y Merengue** — 531 Latin dance-floor classics, the second-largest list here
+- 🏆 **Sanremo: I Vincitori** — 68 Sanremo festival winners, one for every year since 1951
+- 🇩🇪 **Schlager Classics** — 175 German schlager classics from the 60s to today
 - 🇨🇭 **Schweizer Hits** — 97 Swiss tracks
 - ☀️ **Sommerklassiker** — 60 international summer hits from 1978–2023
+- 🎪 **Tomorrowland Top 1000** — 825 tracks from the festival's own all-time ranking
 - 🇳🇱 **Top 100 Dutch Classics** — 104 Nederlandstalig tracks
+- 💔 **Top 100 Power Ballads** — 99 epic rock ballads from the 80s and 90s
 - 🌀 **Trance Classics** — 120 classic trance anthems
+- 🍻 **Wiesn Party Hits** — 100 Oktoberfest singalongs
 - 🌍 **World Cup Anthems** — 26 official FIFA World Cup songs, 1962–2026
 - ⛵ **Yacht Rock** — 100 smooth West Coast classics from the 70s and 80s
 
