@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.25",
+  "version": "2.26",
   "tags": [
     "1980s",
     "pop",
@@ -8425,6 +8425,326 @@
       "fun_fact_fr": "Un tube de Eros Ramazzotti (1987).",
       "fun_fact_nl": "Een chart-hit van Eros Ramazzotti (1987).",
       "fun_fact_it": "Un successo in classifica di Eros Ramazzotti (1987)."
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:0EsVQ8w52MJCvYWuxpAnNV",
+      "artist": "Status Quo",
+      "alt_artists": [
+        "Slade",
+        "Sweet",
+        "Smokie"
+      ],
+      "title": "What You're Proposing",
+      "isrc": "GBF088000784",
+      "uri_apple_music": "applemusic://track/1692897029",
+      "uri_deezer": "deezer://track/363782101",
+      "fun_fact": "Rossi and Bown wrote it in a hotel room in a few minutes, and it gave the band their highest UK chart placing since the early seventies.",
+      "fun_fact_de": "Rossi und Bown schrieben den Song in wenigen Minuten in einem Hotelzimmer, und er brachte der Band ihre beste britische Chartplatzierung seit den frühen Siebzigern.",
+      "fun_fact_es": "Rossi y Bown la escribieron en unos minutos en una habitación de hotel, y le dio al grupo su mejor puesto británico desde principios de los setenta.",
+      "fun_fact_fr": "Rossi et Bown l'ont écrite en quelques minutes dans une chambre d'hôtel, et elle a donné au groupe son meilleur classement britannique depuis le début des années soixante-dix.",
+      "fun_fact_nl": "Rossi en Bown schreven het in een paar minuten in een hotelkamer, en het gaf de band hun hoogste Britse notering sinds begin jaren zeventig.",
+      "fun_fact_it": "Rossi e Bown la scrissero in pochi minuti in una stanza d'albergo, e diede alla band la miglior posizione britannica dai primi anni settanta."
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:3oEkrIfXfSh9zGnE7eBzSV",
+      "artist": "ABBA",
+      "alt_artists": [
+        "Agnetha Fältskog",
+        "Bucks Fizz",
+        "Blondie"
+      ],
+      "title": "The Winner Takes It All",
+      "isrc": "SEAYD8001020",
+      "uri_apple_music": "applemusic://track/1440816849",
+      "uri_deezer": "deezer://track/884035",
+      "fun_fact": "Björn wrote the words about his divorce from Agnetha, and then handed her the song to sing — she has called the recording the hardest day of her career.",
+      "fun_fact_de": "Björn schrieb den Text über seine Scheidung von Agnetha und gab ihr dann den Song zu singen — sie nannte die Aufnahme den schwersten Tag ihrer Laufbahn.",
+      "fun_fact_es": "Björn escribió la letra sobre su divorcio de Agnetha y luego le dio la canción para que la cantara; ella ha llamado a esa grabación el día más duro de su carrera.",
+      "fun_fact_fr": "Björn a écrit le texte sur son divorce d'avec Agnetha, puis lui a confié la chanson — elle a qualifié cet enregistrement de journée la plus dure de sa carrière.",
+      "fun_fact_nl": "Björn schreef de tekst over zijn scheiding van Agnetha en gaf haar daarna het nummer om te zingen — ze noemde die opname de zwaarste dag van haar loopbaan.",
+      "fun_fact_it": "Björn scrisse il testo sul divorzio da Agnetha e poi le affidò la canzone da cantare: lei ha definito quell'incisione il giorno più duro della sua carriera."
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:1ynmMEK1fkyiZ6Z6F3ThEt",
+      "artist": "The J. Geils Band",
+      "alt_artists": [
+        "Huey Lewis and the News",
+        "The Cars",
+        "Billy Idol"
+      ],
+      "title": "Centerfold",
+      "isrc": "USCA28100075",
+      "uri_apple_music": "applemusic://track/724071636",
+      "uri_deezer": "deezer://track/3168236",
+      "fun_fact": "The band had been playing blues bars for twelve years when this pop record spent six weeks at number one and became the only thing most listeners know them for.",
+      "fun_fact_de": "Die Band spielte zwölf Jahre in Bluesbars, bevor diese Popplatte sechs Wochen auf Platz eins stand und das Einzige wurde, wofür die meisten Hörer sie kennen.",
+      "fun_fact_es": "El grupo llevaba doce años tocando en bares de blues cuando este disco pop pasó seis semanas en el número uno y se convirtió en lo único por lo que se le conoce.",
+      "fun_fact_fr": "Le groupe jouait dans des bars de blues depuis douze ans quand ce disque pop est resté six semaines premier et est devenu la seule chose pour laquelle on le connaît.",
+      "fun_fact_nl": "De band speelde twaalf jaar in bluesbars toen deze popplaat zes weken op nummer één stond en het enige werd waarvoor de meeste luisteraars hen kennen.",
+      "fun_fact_it": "La band suonava nei bar blues da dodici anni quando questo disco pop restò sei settimane al primo posto e divenne l'unica cosa per cui la conoscono."
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:23EkZsgFWesLlXjqrHzbpx",
+      "artist": "Rainhard Fendrich",
+      "alt_artists": [
+        "Wolfgang Ambros",
+        "Georg Danzer",
+        "Falco"
+      ],
+      "title": "Weus'd a Herz hast wia a Bergwerk",
+      "isrc": "ATF078300110",
+      "uri_apple_music": "applemusic://track/1440924198",
+      "uri_deezer": "deezer://track/7905036",
+      "fun_fact": "Fendrich wrote it for his mother and sings it in Viennese dialect; it has been a fixed part of Austrian funerals and farewells ever since.",
+      "fun_fact_de": "Fendrich schrieb das Lied für seine Mutter und singt es im Wiener Dialekt; seither gehört es fest zu österreichischen Begräbnissen und Abschieden.",
+      "fun_fact_es": "Fendrich la escribió para su madre y la canta en dialecto vienés; desde entonces es parte fija de los funerales y despedidas en Austria.",
+      "fun_fact_fr": "Fendrich l'a écrite pour sa mère et la chante en dialecte viennois ; depuis, elle fait partie des enterrements et des adieux autrichiens.",
+      "fun_fact_nl": "Fendrich schreef het voor zijn moeder en zingt het in Weens dialect; sindsdien hoort het vast bij Oostenrijkse begrafenissen en afscheiden.",
+      "fun_fact_it": "Fendrich la scrisse per sua madre e la canta in dialetto viennese; da allora è parte fissa dei funerali e dei commiati austriaci."
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:6sn3FHCq2csvNkq2h9Au8V",
+      "artist": "Nik Kershaw",
+      "alt_artists": [
+        "Howard Jones",
+        "Thomas Dolby",
+        "Nick Heyward"
+      ],
+      "title": "The Riddle",
+      "isrc": "GBBBY0200033",
+      "uri_apple_music": "applemusic://track/1443315009",
+      "uri_deezer": "deezer://track/1174772",
+      "fun_fact": "Kershaw has said the words are nonsense he wrote as a placeholder and never replaced, which did not stop years of listeners hunting for the hidden meaning.",
+      "fun_fact_de": "Kershaw sagt, der Text sei Unsinn, den er als Platzhalter schrieb und nie ersetzte — was Hörer jahrelang nicht davon abhielt, nach dem verborgenen Sinn zu suchen.",
+      "fun_fact_es": "Kershaw ha dicho que la letra es un sinsentido que escribió como relleno y nunca cambió, lo que no impidió que durante años se buscara su significado oculto.",
+      "fun_fact_fr": "Kershaw a dit que le texte est un charabia écrit comme provisoire et jamais remplacé, ce qui n'a pas empêché des années de chasse au sens caché.",
+      "fun_fact_nl": "Kershaw heeft gezegd dat de tekst onzin is die hij als tijdelijke invulling schreef en nooit verving, wat luisteraars jarenlang niet weerhield van zoeken naar de verborgen betekenis.",
+      "fun_fact_it": "Kershaw ha detto che il testo è un nonsenso scritto come segnaposto e mai sostituito, il che non ha impedito anni di caccia al significato nascosto."
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:3qE6p9fN4YeILT0cQcY1cD",
+      "artist": "Bonnie Tyler",
+      "alt_artists": [
+        "Jim Steinman",
+        "Meat Loaf",
+        "Ann Wilson"
+      ],
+      "title": "Holding Out for a Hero",
+      "isrc": "USSM18400378",
+      "uri_apple_music": "applemusic://track/1721624197",
+      "uri_deezer": "deezer://track/911317852",
+      "fun_fact": "Jim Steinman wrote it for the Footloose soundtrack, and its gallop was built to run under the film's tractor chase rather than to sit on the radio.",
+      "fun_fact_de": "Jim Steinman schrieb den Song für den Footloose-Soundtrack, und sein Galopp war für die Traktorjagd des Films gebaut, nicht fürs Radio.",
+      "fun_fact_es": "Jim Steinman la escribió para la banda sonora de Footloose, y su galope estaba hecho para la persecución de tractores de la película, no para la radio.",
+      "fun_fact_fr": "Jim Steinman l'a écrite pour la bande originale de Footloose, et son galop était conçu pour la course de tracteurs du film, pas pour la radio.",
+      "fun_fact_nl": "Jim Steinman schreef het voor de Footloose-soundtrack, en de galop was gemaakt voor de tractorachtervolging in de film, niet voor de radio.",
+      "fun_fact_it": "Jim Steinman la scrisse per la colonna sonora di Footloose, e il suo galoppo era fatto per l'inseguimento dei trattori del film, non per la radio."
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:1hlveB9M6ijHZRbzZ2teyh",
+      "artist": "Twisted Sister",
+      "alt_artists": [
+        "Quiet Riot",
+        "Dee Snider",
+        "Mötley Crüe"
+      ],
+      "title": "We're Not Gonna Take It",
+      "isrc": "USAT20000548",
+      "uri_apple_music": "applemusic://track/1788380899",
+      "uri_deezer": "deezer://track/3803466302",
+      "fun_fact": "Dee Snider built the melody on the Christmas carol 'O Come, All Ye Faithful', and a year later defended the song line by line before a US Senate committee.",
+      "fun_fact_de": "Dee Snider baute die Melodie auf dem Weihnachtslied 'O Come, All Ye Faithful' auf und verteidigte den Song ein Jahr später Zeile für Zeile vor einem Ausschuss des US-Senats.",
+      "fun_fact_es": "Dee Snider construyó la melodía sobre el villancico 'O Come, All Ye Faithful', y un año después defendió la canción verso a verso ante un comité del Senado estadounidense.",
+      "fun_fact_fr": "Dee Snider a bâti la mélodie sur le chant de Noël 'O Come, All Ye Faithful', et un an plus tard il a défendu la chanson vers par vers devant une commission du Sénat américain.",
+      "fun_fact_nl": "Dee Snider bouwde de melodie op het kerstlied 'O Come, All Ye Faithful', en verdedigde het nummer een jaar later regel voor regel voor een commissie van de Amerikaanse Senaat.",
+      "fun_fact_it": "Dee Snider costruì la melodia sul canto natalizio 'O Come, All Ye Faithful', e un anno dopo difese la canzone verso per verso davanti a una commissione del Senato americano."
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:3G0ENKW9vzV0SuYKaWFflI",
+      "artist": "Elton John",
+      "alt_artists": [
+        "George Michael",
+        "Wham!",
+        "Chris de Burgh"
+      ],
+      "title": "Nikita",
+      "isrc": "GBAMS8500203",
+      "uri_apple_music": "applemusic://track/1440912804",
+      "uri_deezer": "deezer://track/1146286",
+      "fun_fact": "Bernie Taupin's lyric is about a border guard on the far side of the Berlin Wall, and the video was shot with the singer trying to reach her across it.",
+      "fun_fact_de": "Bernie Taupins Text handelt von einer Grenzsoldatin auf der anderen Seite der Berliner Mauer, und das Video zeigt den Sänger beim Versuch, über sie hinweg zu ihr zu gelangen.",
+      "fun_fact_es": "La letra de Bernie Taupin trata de una guardia fronteriza al otro lado del Muro de Berlín, y el vídeo muestra al cantante intentando alcanzarla al otro lado.",
+      "fun_fact_fr": "Le texte de Bernie Taupin parle d'une garde-frontière de l'autre côté du mur de Berlin, et le clip montre le chanteur essayant de la rejoindre.",
+      "fun_fact_nl": "De tekst van Bernie Taupin gaat over een grenswacht aan de andere kant van de Berlijnse Muur, en de video toont de zanger die haar probeert te bereiken.",
+      "fun_fact_it": "Il testo di Bernie Taupin parla di una guardia di frontiera dall'altra parte del Muro di Berlino, e il video mostra il cantante che cerca di raggiungerla."
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:2G1P5HoHl95ZWKmK4P9g47",
+      "artist": "Jennifer Rush",
+      "alt_artists": [
+        "Bonnie Tyler",
+        "Laura Branigan",
+        "Sandra"
+      ],
+      "title": "Destiny",
+      "isrc": "DEE868500070",
+      "uri_apple_music": "applemusic://track/250562025",
+      "uri_deezer": "deezer://track/8238050",
+      "fun_fact": "Rush was an American living in Frankfurt, and her records sold in Germany long before anyone in the United States had heard of her.",
+      "fun_fact_de": "Rush war eine Amerikanerin, die in Frankfurt lebte, und ihre Platten verkauften sich in Deutschland, lange bevor in den USA jemand ihren Namen kannte.",
+      "fun_fact_es": "Rush era una estadounidense afincada en Fráncfort, y sus discos se vendían en Alemania mucho antes de que nadie en Estados Unidos la conociera.",
+      "fun_fact_fr": "Rush était une Américaine installée à Francfort, et ses disques se vendaient en Allemagne bien avant que quiconque aux États-Unis n'entende parler d'elle.",
+      "fun_fact_nl": "Rush was een Amerikaanse die in Frankfurt woonde, en haar platen verkochten in Duitsland lang voordat iemand in de Verenigde Staten van haar had gehoord.",
+      "fun_fact_it": "Rush era un'americana che viveva a Francoforte, e i suoi dischi vendevano in Germania molto prima che negli Stati Uniti la conoscessero."
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:3F4JxbEkur9ZXAtQ5GFVXB",
+      "artist": "Pet Shop Boys",
+      "alt_artists": [
+        "New Order",
+        "Erasure",
+        "Depeche Mode"
+      ],
+      "title": "Suburbia",
+      "isrc": "GBAYE8600050",
+      "uri_apple_music": "applemusic://track/710663004",
+      "uri_deezer": "deezer://track/3122972",
+      "fun_fact": "Neil Tennant took the title from the 1983 Penelope Spheeris film about Los Angeles punks, and the record opens with barking dogs to match it.",
+      "fun_fact_de": "Neil Tennant nahm den Titel vom Film von Penelope Spheeris aus dem Jahr 1983 über Punks in Los Angeles, und die Platte beginnt passend dazu mit bellenden Hunden.",
+      "fun_fact_es": "Neil Tennant tomó el título de la película de Penelope Spheeris de 1983 sobre los punks de Los Ángeles, y el disco empieza con perros ladrando a juego.",
+      "fun_fact_fr": "Neil Tennant a pris le titre du film de Penelope Spheeris de 1983 sur les punks de Los Angeles, et le disque s'ouvre sur des aboiements en écho.",
+      "fun_fact_nl": "Neil Tennant ontleende de titel aan de film van Penelope Spheeris uit 1983 over punks in Los Angeles, en de plaat opent passend met blaffende honden.",
+      "fun_fact_it": "Neil Tennant prese il titolo dal film di Penelope Spheeris del 1983 sui punk di Los Angeles, e il disco si apre di conseguenza con cani che abbaiano."
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:1x9iOd3K1JC6tdjGZJpFgZ",
+      "artist": "Joe Cocker",
+      "alt_artists": [
+        "Randy Newman",
+        "Tom Jones",
+        "Etta James"
+      ],
+      "title": "You Can Leave Your Hat On",
+      "isrc": "USCA28600132",
+      "uri_apple_music": "applemusic://track/696198625",
+      "uri_deezer": "deezer://track/3104719",
+      "fun_fact": "Randy Newman wrote and recorded it in 1972 as a dry, uncomfortable song; Cocker's version for the film 9½ Weeks turned it into the opposite.",
+      "fun_fact_de": "Randy Newman schrieb und nahm den Song 1972 als trockenes, unbehagliches Stück auf; Cockers Fassung für den Film 9½ Wochen machte das Gegenteil daraus.",
+      "fun_fact_es": "Randy Newman la escribió y grabó en 1972 como una canción seca e incómoda; la versión de Cocker para la película Nueve semanas y media la convirtió en lo contrario.",
+      "fun_fact_fr": "Randy Newman l'a écrite et enregistrée en 1972 comme un morceau sec et gênant ; la version de Cocker pour le film 9 semaines ½ en a fait l'inverse.",
+      "fun_fact_nl": "Randy Newman schreef en nam het in 1972 op als een droog, ongemakkelijk nummer; Cockers versie voor de film 9½ Weken maakte er het tegendeel van.",
+      "fun_fact_it": "Randy Newman la scrisse e incise nel 1972 come un pezzo asciutto e a disagio; la versione di Cocker per il film 9 settimane e ½ ne fece l'opposto."
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:54OoOYiMFZbt0m4KPW66GJ",
+      "artist": "Falco",
+      "alt_artists": [
+        "Rainhard Fendrich",
+        "Opus",
+        "Peter Schilling"
+      ],
+      "title": "The Sound of Musik",
+      "isrc": "DEA619453610",
+      "uri_apple_music": "applemusic://track/355932256",
+      "uri_deezer": "deezer://track/6469183",
+      "fun_fact": "The title puns on the Salzburg film Austria is best known for abroad, which Falco found faintly embarrassing and used anyway.",
+      "fun_fact_de": "Der Titel spielt auf den Salzburger Film an, für den Österreich im Ausland bekannt ist — Falco fand das leicht peinlich und nutzte es trotzdem.",
+      "fun_fact_es": "El título juega con la película de Salzburgo por la que Austria es conocida fuera, algo que a Falco le parecía un poco embarazoso y que usó igualmente.",
+      "fun_fact_fr": "Le titre joue sur le film salzbourgeois qui fait la renommée de l'Autriche à l'étranger, ce que Falco trouvait légèrement gênant et qu'il a utilisé quand même.",
+      "fun_fact_nl": "De titel speelt met de Salzburgse film waar Oostenrijk in het buitenland om bekend staat, wat Falco lichtelijk gênant vond en toch gebruikte.",
+      "fun_fact_it": "Il titolo gioca sul film salisburghese per cui l'Austria è nota all'estero, cosa che Falco trovava lievemente imbarazzante e che usò comunque."
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:5OHUTC4EvTbL0DuZQRIGGX",
+      "artist": "Phil Collins",
+      "alt_artists": [
+        "The Mindbenders",
+        "Genesis",
+        "Peter Gabriel"
+      ],
+      "title": "A Groovy Kind of Love",
+      "isrc": "USRH11603370",
+      "uri_apple_music": "applemusic://track/1148701935",
+      "uri_deezer": "deezer://track/134036244",
+      "fun_fact": "The melody is lifted from a Muzio Clementi sonatina of 1801, which makes it one of the few number ones with a classical piano exercise underneath.",
+      "fun_fact_de": "Die Melodie stammt aus einer Sonatine von Muzio Clementi aus dem Jahr 1801 — einer der wenigen Nummer-eins-Hits mit einer klassischen Klavierübung darunter.",
+      "fun_fact_es": "La melodía procede de una sonatina de Muzio Clementi de 1801, lo que la convierte en uno de los pocos números uno con un ejercicio de piano clásico debajo.",
+      "fun_fact_fr": "La mélodie est tirée d'une sonatine de Muzio Clementi de 1801, ce qui en fait l'un des rares numéros un bâtis sur un exercice de piano classique.",
+      "fun_fact_nl": "De melodie komt uit een sonatine van Muzio Clementi uit 1801, wat het een van de weinige nummer-één-hits maakt met een klassieke pianoetude eronder.",
+      "fun_fact_it": "La melodia viene da una sonatina di Muzio Clementi del 1801, il che ne fa uno dei pochi primi posti costruiti su un esercizio di pianoforte classico."
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:1IDeAs57vupiUdvMkceoqY",
+      "artist": "Dominoe",
+      "alt_artists": [
+        "Bonfire",
+        "Frumpy",
+        "Münchener Freiheit"
+      ],
+      "title": "Here I Am",
+      "isrc": "DEKX91900105",
+      "uri_apple_music": "applemusic://track/1476351641",
+      "uri_deezer": "deezer://track/730302232",
+      "fun_fact": "Dominoe were a Munich band singing in English, and this one ballad outlived the rest of their catalogue on German radio by decades.",
+      "fun_fact_de": "Dominoe waren eine Münchner Band, die auf Englisch sang, und diese eine Ballade überlebte den Rest ihres Katalogs im deutschen Radio um Jahrzehnte.",
+      "fun_fact_es": "Dominoe era un grupo de Múnich que cantaba en inglés, y esta balada sobrevivió al resto de su catálogo en la radio alemana durante décadas.",
+      "fun_fact_fr": "Dominoe était un groupe munichois chantant en anglais, et cette seule ballade a survécu au reste de leur catalogue à la radio allemande pendant des décennies.",
+      "fun_fact_nl": "Dominoe was een band uit München die in het Engels zong, en deze ene ballade overleefde de rest van hun catalogus op de Duitse radio met decennia.",
+      "fun_fact_it": "I Dominoe erano un gruppo di Monaco che cantava in inglese, e questa sola ballata sopravvisse al resto del loro catalogo nelle radio tedesche per decenni."
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:09huOVRryZNV2deKFZLJDC",
+      "artist": "Boy Meets Girl",
+      "alt_artists": [
+        "Whitney Houston",
+        "Belinda Carlisle",
+        "Taylor Dayne"
+      ],
+      "title": "Waiting for a Star to Fall",
+      "isrc": "USRC18805633",
+      "uri_apple_music": "applemusic://track/1357864216",
+      "uri_deezer": "deezer://track/471297912",
+      "fun_fact": "The duo had written 'How Will I Know' for Whitney Houston, offered her this one too, were turned down, and recorded it themselves.",
+      "fun_fact_de": "Das Duo hatte 'How Will I Know' für Whitney Houston geschrieben, bot ihr auch diesen Song an, wurde abgelehnt und nahm ihn selbst auf.",
+      "fun_fact_es": "El dúo había escrito 'How Will I Know' para Whitney Houston, le ofreció también esta, fue rechazado y la grabó él mismo.",
+      "fun_fact_fr": "Le duo avait écrit 'How Will I Know' pour Whitney Houston, lui a aussi proposé celle-ci, s'est fait refuser et l'a enregistrée lui-même.",
+      "fun_fact_nl": "Het duo had 'How Will I Know' voor Whitney Houston geschreven, bood haar ook dit nummer aan, werd afgewezen en nam het zelf op.",
+      "fun_fact_it": "Il duo aveva scritto 'How Will I Know' per Whitney Houston, offrì anche questa, fu rifiutato e la incise da sé."
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:7IBff7ScohvP2pdfHR6YLE",
+      "artist": "Camouflage",
+      "alt_artists": [
+        "Depeche Mode",
+        "Alphaville",
+        "And One"
+      ],
+      "title": "Love Is A Shield",
+      "isrc": "PTAB19400307",
+      "uri_apple_music": "applemusic://track/1443862180",
+      "uri_deezer": "deezer://track/5096565",
+      "fun_fact": "Camouflage came from Bietigheim-Bissingen and were so often taken for a Depeche Mode side project that the comparison followed them for a decade.",
+      "fun_fact_de": "Camouflage kamen aus Bietigheim-Bissingen und wurden so oft für ein Nebenprojekt von Depeche Mode gehalten, dass ihnen der Vergleich ein Jahrzehnt lang nachhing.",
+      "fun_fact_es": "Camouflage venía de Bietigheim-Bissingen y se les tomaba tan a menudo por un proyecto paralelo de Depeche Mode que la comparación les persiguió una década.",
+      "fun_fact_fr": "Camouflage venait de Bietigheim-Bissingen et on les prenait si souvent pour un projet parallèle de Depeche Mode que la comparaison les a suivis dix ans.",
+      "fun_fact_nl": "Camouflage kwam uit Bietigheim-Bissingen en werd zo vaak voor een zijproject van Depeche Mode aangezien dat de vergelijking hen tien jaar achtervolgde.",
+      "fun_fact_it": "I Camouflage venivano da Bietigheim-Bissingen ed erano scambiati così spesso per un progetto parallelo dei Depeche Mode che il paragone li seguì per un decennio."
     }
   ]
 }
