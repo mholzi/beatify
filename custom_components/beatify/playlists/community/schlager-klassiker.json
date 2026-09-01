@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.23",
+  "version": "1.24",
   "tags": [
     "german",
     "schlager",
@@ -4736,6 +4736,426 @@
       "fun_fact_fr": "Les deux Autrichiens l'ont mise sur internet pour plaisanter, et en quelques semaines elle occupait la première place depuis des mois et lançait une vague de pop en dialecte viennois.",
       "fun_fact_nl": "De twee Oostenrijkers zetten het als grap op internet, en binnen weken stond het maandenlang op nummer één en begon een golf van Weense dialectpop.",
       "fun_fact_it": "I due austriaci la misero in rete per scherzo, e in poche settimane era da mesi al primo posto e aveva avviato una corsa al pop in dialetto viennese."
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:2v3TG35plidR486Cltpgxs",
+      "artist": "Conny Froboess",
+      "alt_artists": [
+        "Peter Kraus",
+        "Cornelia Froboess",
+        "Caterina Valente"
+      ],
+      "title": "Zwei kleine Italiener",
+      "isrc": "DER751380001",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/65077357",
+      "fun_fact": "Froboess was twelve when she sang it, and Italy's tourism office objected to the line about mixing wine with lemonade.",
+      "fun_fact_de": "Froboess war zwölf, als sie das Lied sang, und Italiens Fremdenverkehrsamt beschwerte sich über die Zeile vom Wein mit Limonade.",
+      "fun_fact_es": "Froboess tenía doce años cuando la cantó, y la oficina de turismo italiana protestó por el verso sobre mezclar vino con gaseosa.",
+      "fun_fact_fr": "Froboess avait douze ans quand elle l'a chantée, et l'office du tourisme italien s'est plaint du vers sur le vin mêlé de limonade.",
+      "fun_fact_nl": "Froboess was twaalf toen ze het zong, en het Italiaanse toeristenbureau klaagde over de regel over wijn met limonade.",
+      "fun_fact_it": "Froboess aveva dodici anni quando la cantò, e l'ente del turismo italiano protestò per il verso sul vino mescolato alla gazzosa."
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:0WpSao3aTOx9z6bm1CrXp8",
+      "artist": "Gitte Hænning",
+      "alt_artists": [
+        "Wencke Myhre",
+        "Peggy March",
+        "Manuela"
+      ],
+      "title": "Ich will 'nen Cowboy als Mann",
+      "isrc": "DEA346300144",
+      "uri_apple_music": "applemusic://track/1442507341",
+      "uri_deezer": "deezer://track/1408767732",
+      "fun_fact": "The Danish singer took second place at the German pre-selection for Eurovision with it, and the winner is long forgotten.",
+      "fun_fact_de": "Die dänische Sängerin kam damit bei der deutschen Eurovisions-Vorentscheidung auf Platz zwei — an den Sieger erinnert sich niemand mehr.",
+      "fun_fact_es": "La cantante danesa quedó segunda con ella en la preselección alemana para Eurovisión; del ganador ya no se acuerda nadie.",
+      "fun_fact_fr": "La chanteuse danoise a terminé deuxième avec elle à la présélection allemande de l'Eurovision ; plus personne ne se souvient du vainqueur.",
+      "fun_fact_nl": "De Deense zangeres werd er tweede mee bij de Duitse voorronde voor Eurovisie; aan de winnaar herinnert niemand zich nog.",
+      "fun_fact_it": "La cantante danese arrivò seconda con questa alla preselezione tedesca per l'Eurovision; del vincitore non si ricorda più nessuno."
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:17V9Hldsed4MOv9uhPu2lz",
+      "artist": "Peggy March",
+      "alt_artists": [
+        "Gitte Hænning",
+        "Manuela",
+        "Wencke Myhre"
+      ],
+      "title": "Mit 17 hat man noch Träume",
+      "isrc": "DEC766500001",
+      "uri_apple_music": "applemusic://track/458698310",
+      "uri_deezer": "deezer://track/2101665337",
+      "fun_fact": "March was an American who had a US number one at fifteen, then moved to Germany and spent the rest of her career singing in a language she had to learn.",
+      "fun_fact_de": "March war Amerikanerin, hatte mit fünfzehn einen US-Nummer-eins-Hit, zog nach Deutschland und sang den Rest ihrer Laufbahn in einer Sprache, die sie erst lernen musste.",
+      "fun_fact_es": "March era estadounidense, tuvo un número uno en su país a los quince, se mudó a Alemania y cantó el resto de su carrera en un idioma que tuvo que aprender.",
+      "fun_fact_fr": "March était américaine, a eu un numéro un aux États-Unis à quinze ans, s'est installée en Allemagne et a chanté le reste de sa carrière dans une langue qu'elle a dû apprendre.",
+      "fun_fact_nl": "March was Amerikaanse, had op haar vijftiende een Amerikaanse nummer één, verhuisde naar Duitsland en zong de rest van haar loopbaan in een taal die ze moest leren.",
+      "fun_fact_it": "March era americana, a quindici anni ebbe un numero uno negli Stati Uniti, si trasferì in Germania e cantò il resto della carriera in una lingua che dovette imparare."
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:3ZLiONVoHO12NBbMI1F9OH",
+      "artist": "Wencke Myhre",
+      "alt_artists": [
+        "Gitte Hænning",
+        "Peggy March",
+        "Manuela"
+      ],
+      "title": "Beiß nicht gleich in jeden Apfel",
+      "isrc": "DEF066600760",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/2277508",
+      "fun_fact": "The Norwegian singer sold more records in Germany than at home, and this one made her a fixture of Saturday-night television for two decades.",
+      "fun_fact_de": "Die norwegische Sängerin verkaufte in Deutschland mehr Platten als daheim, und dieses Lied machte sie für zwei Jahrzehnte zum festen Bestandteil der Samstagabend-Unterhaltung.",
+      "fun_fact_es": "La cantante noruega vendió más discos en Alemania que en su país, y esta canción la convirtió durante dos décadas en fija de la televisión de los sábados.",
+      "fun_fact_fr": "La chanteuse norvégienne a vendu plus de disques en Allemagne que chez elle, et ce titre en a fait pendant vingt ans une habituée des samedis soir à la télévision.",
+      "fun_fact_nl": "De Noorse zangeres verkocht in Duitsland meer platen dan thuis, en dit nummer maakte haar twee decennia lang een vaste waarde op zaterdagavond.",
+      "fun_fact_it": "La cantante norvegese vendette in Germania più dischi che in patria, e questo brano la rese per vent'anni una presenza fissa del sabato sera televisivo."
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:5Ltzqoi2f9mtBXzZPIUBiM",
+      "artist": "Erik Silvester",
+      "alt_artists": [
+        "Chris Roberts",
+        "Michael Holm",
+        "Tony Marshall"
+      ],
+      "title": "Zucker im Kaffee",
+      "isrc": "DER750111101",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/15453904",
+      "fun_fact": "Silvester sang the German version of a Dutch original, which was the standard route into the charts for a German-language hit at the time.",
+      "fun_fact_de": "Silvester sang die deutsche Fassung eines niederländischen Originals — damals der übliche Weg für einen deutschsprachigen Hit in die Charts.",
+      "fun_fact_es": "Silvester cantó la versión alemana de un original neerlandés, que era entonces la vía habitual para colar un éxito en alemán en las listas.",
+      "fun_fact_fr": "Silvester a chanté la version allemande d'un original néerlandais, la voie habituelle à l'époque pour un tube en allemand.",
+      "fun_fact_nl": "Silvester zong de Duitse versie van een Nederlands origineel, destijds de gebruikelijke weg voor een Duitstalige hit naar de lijsten.",
+      "fun_fact_it": "Silvester cantò la versione tedesca di un originale olandese, all'epoca la via consueta perché un successo in tedesco entrasse in classifica."
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:7d7CrztpZG7NGb0b2Td5DA",
+      "artist": "Tony Marshall",
+      "alt_artists": [
+        "Rex Gildo",
+        "Roy Black",
+        "Howard Carpendale"
+      ],
+      "title": "Komm gib mir deine Hand",
+      "isrc": "DEC717100004",
+      "uri_apple_music": "applemusic://track/1822313826",
+      "uri_deezer": "deezer://track/3785428732",
+      "fun_fact": "Marshall trained as an opera singer and switched to schlager for the money, then spent forty years being asked about the decision.",
+      "fun_fact_de": "Marshall war ausgebildeter Opernsänger und wechselte des Geldes wegen zum Schlager — danach wurde er vierzig Jahre lang nach dieser Entscheidung gefragt.",
+      "fun_fact_es": "Marshall se formó como cantante de ópera y se pasó al schlager por dinero; después le preguntaron por esa decisión durante cuarenta años.",
+      "fun_fact_fr": "Marshall avait une formation de chanteur d'opéra et est passé au schlager pour l'argent ; on lui a ensuite posé la question pendant quarante ans.",
+      "fun_fact_nl": "Marshall was opgeleid als operazanger en stapte voor het geld over op schlager; daarna werd hem er veertig jaar naar gevraagd.",
+      "fun_fact_it": "Marshall era un cantante lirico di formazione e passò allo schlager per soldi; poi gli fu chiesto conto di quella scelta per quarant'anni."
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:6EuVkSdWQ8LQWF3aRd37v4",
+      "artist": "Chris Roberts",
+      "alt_artists": [
+        "Rex Gildo",
+        "Michael Holm",
+        "Bata Illic"
+      ],
+      "title": "Ich bin verliebt in die Liebe",
+      "isrc": "DEF067004940",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/1085993",
+      "fun_fact": "Roberts was the teen idol of German television at the turn of the seventies, and his records sold better in Germany than anywhere his name was pronounced correctly.",
+      "fun_fact_de": "Roberts war um 1970 das Teenie-Idol des deutschen Fernsehens, und seine Platten verkauften sich in Deutschland besser als überall dort, wo man seinen Namen richtig aussprach.",
+      "fun_fact_es": "Roberts era el ídolo adolescente de la televisión alemana a comienzos de los setenta, y sus discos vendían más en Alemania que donde su nombre se pronunciaba bien.",
+      "fun_fact_fr": "Roberts était l'idole des adolescents à la télévision allemande au tournant des années soixante-dix, et ses disques se vendaient mieux en Allemagne que là où l'on prononçait son nom correctement.",
+      "fun_fact_nl": "Roberts was rond 1970 het tieneridool van de Duitse televisie, en zijn platen verkochten in Duitsland beter dan waar zijn naam correct werd uitgesproken.",
+      "fun_fact_it": "Roberts era l'idolo dei teenager della televisione tedesca all'inizio degli anni settanta, e i suoi dischi vendevano in Germania più che dove il suo nome si pronunciava bene."
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:1HoxtqhNHNx2mO6LNQchSV",
+      "artist": "Rex Gildo",
+      "alt_artists": [
+        "Tony Marshall",
+        "Roy Black",
+        "Howard Carpendale"
+      ],
+      "title": "Marie, der letzte Tanz ist nur für dich",
+      "isrc": "DEA817400020",
+      "uri_apple_music": "applemusic://track/915380437",
+      "uri_deezer": "deezer://track/84668225",
+      "fun_fact": "Gildo sang about a last dance for twenty-five years without ever being allowed to say publicly whom he was dancing with.",
+      "fun_fact_de": "Gildo sang fünfundzwanzig Jahre lang vom letzten Tanz, ohne je öffentlich sagen zu dürfen, mit wem er tanzte.",
+      "fun_fact_es": "Gildo cantó durante veinticinco años sobre un último baile sin poder decir nunca en público con quién bailaba.",
+      "fun_fact_fr": "Gildo a chanté pendant vingt-cinq ans une dernière danse sans jamais pouvoir dire publiquement avec qui il dansait.",
+      "fun_fact_nl": "Gildo zong vijfentwintig jaar over een laatste dans zonder ooit publiekelijk te mogen zeggen met wie hij danste.",
+      "fun_fact_it": "Gildo cantò per venticinque anni di un ultimo ballo senza poter mai dire in pubblico con chi ballava."
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:7vNZ2Gbr2cKtS8C6vc7fSC",
+      "artist": "Christian Anders",
+      "alt_artists": [
+        "Michael Holm",
+        "Chris Roberts",
+        "Bernd Clüver"
+      ],
+      "title": "Geh nicht vorbei",
+      "isrc": "DEA346900153",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/10028419",
+      "fun_fact": "Anders wrote his own material, which was unusual in a genre where the singer normally got handed a finished song.",
+      "fun_fact_de": "Anders schrieb seine Lieder selbst — ungewöhnlich in einem Fach, in dem der Sänger sonst ein fertiges Stück in die Hand gedrückt bekam.",
+      "fun_fact_es": "Anders escribía su propio material, algo poco común en un género donde al cantante se le entregaba la canción terminada.",
+      "fun_fact_fr": "Anders écrivait ses propres chansons, ce qui était rare dans un genre où l'on remettait au chanteur un titre déjà terminé.",
+      "fun_fact_nl": "Anders schreef zijn eigen materiaal, ongebruikelijk in een genre waarin de zanger normaal een kant-en-klaar lied kreeg.",
+      "fun_fact_it": "Anders scriveva i propri pezzi, cosa insolita in un genere dove al cantante si consegnava una canzone già pronta."
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:4fDg7BCqpalASqTuWzssQX",
+      "artist": "Jürgen Marcus",
+      "alt_artists": [
+        "Chris Roberts",
+        "Bernd Clüver",
+        "Howard Carpendale"
+      ],
+      "title": "Ein Festival der Liebe",
+      "isrc": "DEF709200206",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/93669600",
+      "fun_fact": "Marcus was born Jürgen Beumer and took the stage name because a record company thought the real one would not fit on a poster.",
+      "fun_fact_de": "Marcus hieß eigentlich Jürgen Beumer und nahm den Künstlernamen an, weil eine Plattenfirma den echten für zu sperrig fürs Plakat hielt.",
+      "fun_fact_es": "Marcus se llamaba en realidad Jürgen Beumer y adoptó el nombre artístico porque una discográfica juzgó que el verdadero no cabía en un cartel.",
+      "fun_fact_fr": "Marcus s'appelait en réalité Jürgen Beumer et a pris ce nom de scène parce qu'une maison de disques trouvait le vrai trop encombrant pour une affiche.",
+      "fun_fact_nl": "Marcus heette eigenlijk Jürgen Beumer en nam de artiestennaam aan omdat een platenmaatschappij de echte te log vond voor een poster.",
+      "fun_fact_it": "Marcus si chiamava in realtà Jürgen Beumer e prese il nome d'arte perché una casa discografica trovava quello vero troppo ingombrante per un manifesto."
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:2HTv1UzO7ksJFqScMYb2NR",
+      "artist": "Marianne Rosenberg",
+      "alt_artists": [
+        "Vicky Leandros",
+        "Katja Ebstein",
+        "Juliane Werding"
+      ],
+      "title": "Marleen",
+      "isrc": "DEC737600016",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/1048307",
+      "fun_fact": "Rosenberg was seventeen when her career started and became, decades later, a fixture of German gay clubs — an audience the schlager industry had not planned for.",
+      "fun_fact_de": "Rosenberg war siebzehn, als ihre Laufbahn begann, und wurde Jahrzehnte später zur festen Größe in deutschen Schwulenclubs — ein Publikum, mit dem die Schlagerbranche nicht gerechnet hatte.",
+      "fun_fact_es": "Rosenberg tenía diecisiete años cuando empezó y décadas después se volvió una fija de los clubes gays alemanes, un público con el que la industria del schlager no contaba.",
+      "fun_fact_fr": "Rosenberg avait dix-sept ans à ses débuts et est devenue, des décennies plus tard, une habituée des clubs gays allemands — un public que l'industrie du schlager n'avait pas prévu.",
+      "fun_fact_nl": "Rosenberg was zeventien toen haar loopbaan begon en werd decennia later een vaste waarde in Duitse homoclubs, een publiek waar de schlagerindustrie niet op had gerekend.",
+      "fun_fact_it": "Rosenberg aveva diciassette anni all'esordio e divenne, decenni dopo, una presenza fissa nei locali gay tedeschi: un pubblico che l'industria dello schlager non aveva previsto."
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:2RnfgTNXtmvXRXjSXdMJvB",
+      "artist": "Dennie Christian",
+      "alt_artists": [
+        "Dennie Christian",
+        "Die Wildecker Herzbuben",
+        "Tony Marshall"
+      ],
+      "title": "Rosamunde",
+      "isrc": "NLE870860176",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/3066312991",
+      "fun_fact": "The tune is a Czech polka from 1927 that has been a beer-tent standard in three languages ever since.",
+      "fun_fact_de": "Die Melodie ist eine tschechische Polka von 1927, die seither in drei Sprachen zum Bierzelt-Standard gehört.",
+      "fun_fact_es": "La melodía es una polca checa de 1927 que desde entonces es un clásico de las carpas cerveceras en tres idiomas.",
+      "fun_fact_fr": "La mélodie est une polka tchèque de 1927, devenue depuis un standard des tentes à bière en trois langues.",
+      "fun_fact_nl": "De melodie is een Tsjechische polka uit 1927 die sindsdien in drie talen een biertentklassieker is.",
+      "fun_fact_it": "La melodia è una polka ceca del 1927, da allora uno standard dei tendoni della birra in tre lingue."
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:5NFZ9y9Px11uTuiSnv8Emn",
+      "artist": "Howard Carpendale",
+      "alt_artists": [
+        "Roland Kaiser",
+        "Peter Maffay",
+        "Wolfgang Petry"
+      ],
+      "title": "Nachts, wenn alles schläft",
+      "isrc": null,
+      "uri_apple_music": "applemusic://track/724312432",
+      "uri_deezer": null,
+      "fun_fact": "Carpendale is South African and learned German as an adult, which is why his early records carry an accent that German audiences came to like.",
+      "fun_fact_de": "Carpendale ist Südafrikaner und lernte Deutsch erst als Erwachsener — daher der Akzent auf seinen frühen Platten, den das deutsche Publikum liebgewann.",
+      "fun_fact_es": "Carpendale es sudafricano y aprendió alemán de adulto; de ahí el acento de sus primeros discos, que al público alemán acabó gustándole.",
+      "fun_fact_fr": "Carpendale est sud-africain et a appris l'allemand adulte, d'où l'accent de ses premiers disques, que le public allemand a fini par apprécier.",
+      "fun_fact_nl": "Carpendale is Zuid-Afrikaan en leerde pas als volwassene Duits; vandaar het accent op zijn vroege platen, dat het Duitse publiek ging waarderen.",
+      "fun_fact_it": "Carpendale è sudafricano e imparò il tedesco da adulto: da qui l'accento dei suoi primi dischi, che al pubblico tedesco finì per piacere."
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:5oZ2hXRyiJrIwcTpoy3zT2",
+      "artist": "Dschinghis Khan",
+      "alt_artists": [
+        "Boney M.",
+        "Ottawan",
+        "Eruption"
+      ],
+      "title": "Hadschi Halef Omar",
+      "isrc": "DEC717900083",
+      "uri_apple_music": "applemusic://track/1357125044",
+      "uri_deezer": "deezer://track/470543992",
+      "fun_fact": "The group was assembled for one Eurovision entry and never really disbanded, touring the material for forty years with changing line-ups.",
+      "fun_fact_de": "Die Gruppe wurde für einen einzigen Eurovisions-Beitrag zusammengestellt und löste sich nie richtig auf — vierzig Jahre Tournee mit wechselnder Besetzung.",
+      "fun_fact_es": "El grupo se formó para una única candidatura a Eurovisión y nunca se disolvió del todo: cuarenta años de gira con formaciones cambiantes.",
+      "fun_fact_fr": "Le groupe a été monté pour une seule participation à l'Eurovision et ne s'est jamais vraiment séparé : quarante ans de tournée avec des formations changeantes.",
+      "fun_fact_nl": "De groep werd voor één Eurovisie-inzending samengesteld en viel nooit echt uit elkaar: veertig jaar toeren met wisselende bezettingen.",
+      "fun_fact_it": "Il gruppo fu messo insieme per una sola partecipazione all'Eurovision e non si sciolse mai davvero: quarant'anni di tournée con formazioni diverse."
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:0XYIiBfxfN0TlFGPUNsYZT",
+      "artist": "Roland Kaiser",
+      "alt_artists": [
+        "Howard Carpendale",
+        "Peter Maffay",
+        "Wolfgang Petry"
+      ],
+      "title": "Dich zu lieben",
+      "isrc": "DEC738100004",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/64949074",
+      "fun_fact": "Kaiser grew up in a Berlin children's home and worked as a car salesman until he was twenty-eight; the singing career came second.",
+      "fun_fact_de": "Kaiser wuchs in einem Berliner Kinderheim auf und arbeitete bis achtundzwanzig als Autoverkäufer — die Gesangskarriere kam danach.",
+      "fun_fact_es": "Kaiser creció en un hogar infantil de Berlín y trabajó de vendedor de coches hasta los veintiocho; la carrera musical vino después.",
+      "fun_fact_fr": "Kaiser a grandi dans un foyer pour enfants à Berlin et a été vendeur de voitures jusqu'à vingt-huit ans ; la carrière de chanteur est venue après.",
+      "fun_fact_nl": "Kaiser groeide op in een Berlijns kindertehuis en werkte tot zijn achtentwintigste als autoverkoper; de zangcarrière kwam daarna.",
+      "fun_fact_it": "Kaiser crebbe in un istituto per minori a Berlino e fece il venditore di auto fino a ventotto anni; la carriera da cantante venne dopo."
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:5h87ecAlxNNuIDnpSof1zx",
+      "artist": "G.G. Anderson",
+      "alt_artists": [
+        "Roland Kaiser",
+        "Michelle",
+        "Andrea Berg"
+      ],
+      "title": "Sommernacht in Rom",
+      "isrc": "DEC738800042",
+      "uri_apple_music": "applemusic://track/303993838",
+      "uri_deezer": "deezer://track/1006524",
+      "fun_fact": "G.G. Anderson is Gerd Grabowski from Bavaria, and the English-sounding stage name was chosen precisely because it sounded like anything but schlager.",
+      "fun_fact_de": "G.G. Anderson ist Gerd Grabowski aus Bayern — der englisch klingende Künstlername wurde gerade deshalb gewählt, weil er nach allem klang, nur nicht nach Schlager.",
+      "fun_fact_es": "G.G. Anderson es Gerd Grabowski, de Baviera; el nombre artístico de sonido inglés se eligió precisamente porque no sonaba a schlager.",
+      "fun_fact_fr": "G.G. Anderson est Gerd Grabowski, de Bavière ; le nom de scène à consonance anglaise a été choisi précisément parce qu'il ne sonnait pas schlager.",
+      "fun_fact_nl": "G.G. Anderson is Gerd Grabowski uit Beieren; de Engels klinkende artiestennaam werd juist gekozen omdat hij naar alles klonk behalve schlager.",
+      "fun_fact_it": "G.G. Anderson è Gerd Grabowski, bavarese; il nome d'arte dal suono inglese fu scelto proprio perché non sapeva di schlager."
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:6AAfe5lGMWBGYqKsU35Srd",
+      "artist": "Wolfgang Petry",
+      "alt_artists": [
+        "DJ Ötzi",
+        "Michael Wendler",
+        "Mickie Krause"
+      ],
+      "title": "Bronze, Silber und Gold",
+      "isrc": "DEC739500448",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/120358338",
+      "fun_fact": "Petry stopped performing in 2006 at the height of his success and spent a decade refusing every offer to come back.",
+      "fun_fact_de": "Petry hörte 2006 auf dem Höhepunkt seines Erfolgs auf und lehnte ein Jahrzehnt lang jedes Comeback-Angebot ab.",
+      "fun_fact_es": "Petry dejó los escenarios en 2006 en la cima del éxito y pasó una década rechazando toda oferta de regreso.",
+      "fun_fact_fr": "Petry a arrêté la scène en 2006 au sommet de son succès et a refusé pendant dix ans toute offre de retour.",
+      "fun_fact_nl": "Petry stopte in 2006 op het hoogtepunt van zijn succes en wees tien jaar lang elk comeback-aanbod af.",
+      "fun_fact_it": "Petry lasciò le scene nel 2006 all'apice del successo e per un decennio rifiutò ogni offerta di ritorno."
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:0MAoOpiamwvXSEgcWkeII2",
+      "artist": "Michelle",
+      "alt_artists": [
+        "Andrea Berg",
+        "Michelle",
+        "Vanessa Mai"
+      ],
+      "title": "Wer Liebe lebt",
+      "isrc": "DEUM72118400",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/1525051572",
+      "fun_fact": "Michelle had represented Germany at Eurovision and finished eighth; the schlager career that followed outlasted every act that beat her.",
+      "fun_fact_de": "Michelle hatte Deutschland beim Eurovision vertreten und wurde Achte; die Schlagerkarriere danach überdauerte jeden, der vor ihr lag.",
+      "fun_fact_es": "Michelle había representado a Alemania en Eurovisión y quedó octava; la carrera en el schlager que siguió duró más que la de todos los que la superaron.",
+      "fun_fact_fr": "Michelle avait représenté l'Allemagne à l'Eurovision et terminé huitième ; la carrière schlager qui a suivi a duré plus longtemps que celle de tous ceux qui l'avaient devancée.",
+      "fun_fact_nl": "Michelle had Duitsland vertegenwoordigd op Eurovisie en werd achtste; de schlagercarrière daarna hield langer stand dan die van iedereen die boven haar eindigde.",
+      "fun_fact_it": "Michelle aveva rappresentato la Germania all'Eurovision arrivando ottava; la carriera nello schlager che seguì durò più di quella di tutti quelli che l'avevano battuta."
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:1K472pWWx3mGL0UBoT0B7O",
+      "artist": "Michael Wendler",
+      "alt_artists": [
+        "Mickie Krause",
+        "DJ Ötzi",
+        "Olaf Henning"
+      ],
+      "title": "Sie liebt den DJ",
+      "isrc": "DEA810701151",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/3057630",
+      "fun_fact": "The record was made for the Mallorca party circuit rather than for radio, and it reached the German charts anyway.",
+      "fun_fact_de": "Die Platte war für den Mallorca-Partybetrieb gemacht, nicht fürs Radio — und landete trotzdem in den deutschen Charts.",
+      "fun_fact_es": "El disco se hizo para el circuito de fiestas de Mallorca, no para la radio, y aun así entró en las listas alemanas.",
+      "fun_fact_fr": "Le disque a été fait pour les fêtes de Majorque et non pour la radio, et il est quand même entré dans les classements allemands.",
+      "fun_fact_nl": "De plaat werd gemaakt voor het Mallorca-feestcircuit en niet voor de radio, en haalde toch de Duitse lijsten.",
+      "fun_fact_it": "Il disco fu fatto per il giro delle feste di Maiorca e non per la radio, ed entrò comunque nelle classifiche tedesche."
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:2H11a2O8kG97rcnkJt23hi",
+      "artist": "DJ Ötzi",
+      "alt_artists": [
+        "Nik P.",
+        "Mickie Krause",
+        "Andreas Gabalier"
+      ],
+      "title": "Ein Stern (der deinen Namen trägt)",
+      "isrc": "DEUM70606360",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/1139094",
+      "fun_fact": "Nik P. had released the song alone in 1998 to no effect; the version with DJ Ötzi nine years later stayed in the German charts for over a year.",
+      "fun_fact_de": "Nik P. hatte den Song 1998 allein veröffentlicht, ohne Wirkung; die Fassung mit DJ Ötzi neun Jahre später hielt sich über ein Jahr in den deutschen Charts.",
+      "fun_fact_es": "Nik P. había publicado la canción solo en 1998 sin efecto alguno; la versión con DJ Ötzi nueve años después se mantuvo más de un año en las listas alemanas.",
+      "fun_fact_fr": "Nik P. avait sorti la chanson seul en 1998 sans effet ; la version avec DJ Ötzi neuf ans plus tard est restée plus d'un an dans les classements allemands.",
+      "fun_fact_nl": "Nik P. had het nummer in 1998 alleen uitgebracht zonder effect; de versie met DJ Ötzi negen jaar later stond ruim een jaar in de Duitse lijsten.",
+      "fun_fact_it": "Nik P. aveva pubblicato la canzone da solo nel 1998 senza effetto; la versione con DJ Ötzi nove anni dopo restò oltre un anno nelle classifiche tedesche."
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:1s9Iij8FwCbeyxDCBdlz9P",
+      "artist": "Andreas Gabalier",
+      "alt_artists": [
+        "Hubert von Goisern",
+        "Rainhard Fendrich",
+        "Melissa Naschenweng"
+      ],
+      "title": "Amoi seg' ma uns wieder",
+      "isrc": "DEUM70902152",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/4242937",
+      "fun_fact": "Gabalier wrote it after both his father and his sister took their own lives, and sings it in Styrian dialect at stadium concerts.",
+      "fun_fact_de": "Gabalier schrieb das Lied, nachdem sich sein Vater und seine Schwester das Leben genommen hatten, und singt es im steirischen Dialekt vor Stadionpublikum.",
+      "fun_fact_es": "Gabalier la escribió después de que su padre y su hermana se quitaran la vida, y la canta en dialecto estirio ante estadios llenos.",
+      "fun_fact_fr": "Gabalier l'a écrite après les suicides de son père et de sa sœur, et la chante en dialecte styrien devant des stades.",
+      "fun_fact_nl": "Gabalier schreef het nadat zijn vader en zijn zus zich van het leven hadden beroofd, en zingt het in Stiers dialect voor stadions.",
+      "fun_fact_it": "Gabalier la scrisse dopo che il padre e la sorella si erano tolti la vita, e la canta in dialetto stiriano davanti agli stadi."
     }
   ]
 }
