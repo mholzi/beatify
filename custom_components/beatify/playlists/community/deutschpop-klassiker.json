@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.16",
+  "version": "0.17",
   "tags": [
     "german",
     "pop",
@@ -3861,6 +3861,226 @@
       "awards_nl": [],
       "certifications": [],
       "chart_info": {}
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:5NIl5fux02EnUJKKb8PKa0",
+      "artist": "Peter Maffay",
+      "alt_artists": [
+        "Rolf Zuckowski",
+        "Herbert Grönemeyer",
+        "Udo Lindenberg"
+      ],
+      "title": "Nessaja",
+      "isrc": "DEA818300093",
+      "uri_apple_music": "applemusic://track/253788243",
+      "uri_deezer": "deezer://track/1049363",
+      "fun_fact": "Maffay wrote it for a green dragon he invented for children, and thirty years later the song outlives every rock album he made.",
+      "fun_fact_de": "Maffay schrieb das Lied für einen grünen Drachen, den er für Kinder erfunden hatte — dreißig Jahre später überlebt es jedes seiner Rockalben.",
+      "fun_fact_es": "Maffay la escribió para un dragón verde que inventó para niños, y treinta años después la canción sobrevive a todos sus discos de rock.",
+      "fun_fact_fr": "Maffay l'a écrite pour un dragon vert inventé pour les enfants, et trente ans plus tard elle survit à tous ses albums de rock.",
+      "fun_fact_nl": "Maffay schreef het voor een groene draak die hij voor kinderen bedacht, en dertig jaar later overleeft het al zijn rockalbums.",
+      "fun_fact_it": "Maffay la scrisse per un drago verde inventato per i bambini, e trent'anni dopo sopravvive a ogni suo album rock."
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:4c0LwA8hxZrRVd5y7yCGvl",
+      "artist": "Herbert Grönemeyer",
+      "alt_artists": [
+        "Udo Lindenberg",
+        "Marius Müller-Westernhagen",
+        "Peter Maffay"
+      ],
+      "title": "Flugzeuge im Bauch",
+      "isrc": "DEC610800615",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/3159915",
+      "fun_fact": "Grönemeyer wrote it about his father's death, and it was the record that turned an actor into the best-selling German artist of the decade.",
+      "fun_fact_de": "Grönemeyer schrieb den Song über den Tod seines Vaters; die Platte machte aus einem Schauspieler den meistverkauften deutschen Künstler des Jahrzehnts.",
+      "fun_fact_es": "Grönemeyer la escribió sobre la muerte de su padre, y fue el disco que convirtió a un actor en el artista alemán más vendido de la década.",
+      "fun_fact_fr": "Grönemeyer l'a écrite sur la mort de son père, et c'est le disque qui a fait d'un acteur l'artiste allemand le plus vendu de la décennie.",
+      "fun_fact_nl": "Grönemeyer schreef het over de dood van zijn vader, en het was de plaat die een acteur tot de best verkopende Duitse artiest van het decennium maakte.",
+      "fun_fact_it": "Grönemeyer la scrisse sulla morte del padre, e fu il disco che trasformò un attore nell'artista tedesco più venduto del decennio."
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:4nd9gG5VO6nYcw9Sd93I0Q",
+      "artist": "Klaus Lage",
+      "alt_artists": [
+        "Herbert Grönemeyer",
+        "Marius Müller-Westernhagen",
+        "BAP"
+      ],
+      "title": "Faust auf Faust (Schimanski)",
+      "isrc": "DEA340700759",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/3523592",
+      "fun_fact": "Written for the Schimanski film Zahn um Zahn, and it stayed on the German chart for over a year — longer than the film ran anywhere.",
+      "fun_fact_de": "Geschrieben für den Schimanski-Film Zahn um Zahn; der Song hielt sich über ein Jahr in den deutschen Charts — länger, als der Film irgendwo lief.",
+      "fun_fact_es": "Escrita para la película de Schimanski Zahn um Zahn, se mantuvo más de un año en las listas alemanas, más de lo que el filme estuvo en cartel.",
+      "fun_fact_fr": "Écrite pour le film Schimanski Zahn um Zahn, elle est restée plus d'un an dans les classements allemands, plus longtemps que le film à l'affiche.",
+      "fun_fact_nl": "Geschreven voor de Schimanski-film Zahn um Zahn; het stond ruim een jaar in de Duitse lijsten, langer dan de film ergens draaide.",
+      "fun_fact_it": "Scritta per il film di Schimanski Zahn um Zahn, restò oltre un anno nelle classifiche tedesche, più a lungo di quanto il film rimase nelle sale."
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:6bsrVpcZbja30aeYQuRnFv",
+      "artist": "Münchener Freiheit",
+      "alt_artists": [
+        "Die Prinzen",
+        "Pur",
+        "Herbert Grönemeyer"
+      ],
+      "title": "Solang' man Träume noch leben kann",
+      "isrc": "DEE869700867",
+      "uri_apple_music": "applemusic://track/268481637",
+      "uri_deezer": "deezer://track/2847242",
+      "fun_fact": "The Munich band had a parallel English career as Freedom, and the German version outsold the English one many times over.",
+      "fun_fact_de": "Die Münchner Band hatte als Freedom eine parallele englische Karriere; die deutsche Fassung verkaufte sich um ein Vielfaches besser.",
+      "fun_fact_es": "El grupo muniqués tenía una carrera paralela en inglés como Freedom, y la versión alemana vendió muchísimo más que la inglesa.",
+      "fun_fact_fr": "Le groupe munichois menait une carrière anglaise parallèle sous le nom Freedom, et la version allemande s'est bien mieux vendue.",
+      "fun_fact_nl": "De band uit München had als Freedom een parallelle Engelse carrière; de Duitse versie verkocht vele malen beter.",
+      "fun_fact_it": "Il gruppo di Monaco aveva una carriera parallela in inglese come Freedom, e la versione tedesca vendette molte volte di più."
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:72zOETQxh17gpQbYmEhzTM",
+      "artist": "Rainbirds",
+      "alt_artists": [
+        "Nena",
+        "Ideal",
+        "Alphaville"
+      ],
+      "title": "Blueprint",
+      "isrc": "DEF078703100",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/1104155",
+      "fun_fact": "Katharina Franck sang in English at a time when German bands were expected to sing in German, and the band broke up before the follow-up landed.",
+      "fun_fact_de": "Katharina Franck sang auf Englisch, als von deutschen Bands Deutsch erwartet wurde; die Band zerbrach, bevor der Nachfolger erschien.",
+      "fun_fact_es": "Katharina Franck cantaba en inglés cuando se esperaba que los grupos alemanes cantaran en alemán, y la banda se separó antes del siguiente disco.",
+      "fun_fact_fr": "Katharina Franck chantait en anglais à une époque où l'on attendait des groupes allemands qu'ils chantent en allemand, et le groupe s'est séparé avant la suite.",
+      "fun_fact_nl": "Katharina Franck zong in het Engels in een tijd dat van Duitse bands Duits werd verwacht, en de band viel uiteen voor de opvolger er was.",
+      "fun_fact_it": "Katharina Franck cantava in inglese quando dai gruppi tedeschi ci si aspettava il tedesco, e la band si sciolse prima del disco successivo."
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:0LFq9xNDSgspBQlmaFfpat",
+      "artist": "Die Fantastischen Vier",
+      "alt_artists": [
+        "Die Prinzen",
+        "Fettes Brot",
+        "Deichkind"
+      ],
+      "title": "Die Da!?!",
+      "isrc": "DEE869200228",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/4300806",
+      "fun_fact": "The first German-language rap record to reach number one, and it did so with a chorus about telling two boyfriends apart.",
+      "fun_fact_de": "Die erste deutschsprachige Rap-Platte auf Platz eins — mit einem Refrain darüber, zwei Freunde auseinanderzuhalten.",
+      "fun_fact_es": "El primer disco de rap en alemán que llegó al número uno, y lo hizo con un estribillo sobre distinguir a dos novios.",
+      "fun_fact_fr": "Le premier disque de rap en allemand à atteindre la première place, avec un refrain sur le fait de distinguer deux petits amis.",
+      "fun_fact_nl": "De eerste Duitstalige rapplaat die nummer één werd, en dat met een refrein over het uit elkaar houden van twee vriendjes.",
+      "fun_fact_it": "Il primo disco rap in tedesco ad arrivare al primo posto, e con un ritornello su come distinguere due fidanzati."
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:4RuyA96d3CvfauODr7QIlC",
+      "artist": "Die Prinzen",
+      "alt_artists": [
+        "Die Fantastischen Vier",
+        "Wise Guys",
+        "Pur"
+      ],
+      "title": "Deutschland",
+      "isrc": "DEC730100323",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/3808712552",
+      "fun_fact": "The band released a sarcastic song about national pride in the year Germany was arguing about exactly that, and got attacked from both sides.",
+      "fun_fact_de": "Die Band veröffentlichte ein sarkastisches Lied über Nationalstolz in dem Jahr, in dem Deutschland genau darüber stritt — und wurde von beiden Seiten angegriffen.",
+      "fun_fact_es": "El grupo publicó una canción sarcástica sobre el orgullo nacional el año en que Alemania discutía justo eso, y fue atacado por ambos bandos.",
+      "fun_fact_fr": "Le groupe a sorti une chanson sarcastique sur la fierté nationale l'année où l'Allemagne en débattait précisément, et s'est fait attaquer des deux côtés.",
+      "fun_fact_nl": "De band bracht een sarcastisch lied over nationale trots uit in het jaar dat Duitsland daar precies over twistte, en werd van beide kanten aangevallen.",
+      "fun_fact_it": "Il gruppo pubblicò una canzone sarcastica sull'orgoglio nazionale nell'anno in cui la Germania ne discuteva, e fu attaccato da entrambe le parti."
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:0jxWQNH6LCGVEIPHIZnfYk",
+      "artist": "Glashaus",
+      "alt_artists": [
+        "Xavier Naidoo",
+        "Söhne Mannheims",
+        "Max Herre"
+      ],
+      "title": "Wenn das Liebe ist",
+      "isrc": "DEP950400179",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/124610086",
+      "fun_fact": "Moses Pelham built Glashaus to prove that soul could be sung in German without sounding like a translation.",
+      "fun_fact_de": "Moses Pelham gründete Glashaus, um zu zeigen, dass Soul auf Deutsch gesungen werden kann, ohne nach Übersetzung zu klingen.",
+      "fun_fact_es": "Moses Pelham creó Glashaus para demostrar que el soul podía cantarse en alemán sin sonar a traducción.",
+      "fun_fact_fr": "Moses Pelham a fondé Glashaus pour prouver que la soul pouvait se chanter en allemand sans sonner comme une traduction.",
+      "fun_fact_nl": "Moses Pelham richtte Glashaus op om te bewijzen dat soul in het Duits gezongen kan worden zonder als vertaling te klinken.",
+      "fun_fact_it": "Moses Pelham fondò i Glashaus per dimostrare che il soul si poteva cantare in tedesco senza suonare come una traduzione."
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:2vFl6t6ZjyvNCAT1X5N0I5",
+      "artist": "Schiller",
+      "alt_artists": [
+        "Wolfsheim",
+        "Peter Heppner",
+        "Blank & Jones"
+      ],
+      "title": "Dream Of You",
+      "isrc": "DEUM71604479",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/138224841",
+      "fun_fact": "Christopher von Deylen works as Schiller and had already sold a million records without ever showing his face on a cover.",
+      "fun_fact_de": "Christopher von Deylen arbeitet als Schiller und hatte bereits eine Million Platten verkauft, ohne je sein Gesicht auf ein Cover zu setzen.",
+      "fun_fact_es": "Christopher von Deylen trabaja como Schiller y ya había vendido un millón de discos sin mostrar nunca su cara en una portada.",
+      "fun_fact_fr": "Christopher von Deylen travaille sous le nom de Schiller et avait déjà vendu un million de disques sans jamais montrer son visage sur une pochette.",
+      "fun_fact_nl": "Christopher von Deylen werkt als Schiller en had al een miljoen platen verkocht zonder ooit zijn gezicht op een hoes te zetten.",
+      "fun_fact_it": "Christopher von Deylen lavora come Schiller e aveva già venduto un milione di dischi senza mai mettere il proprio volto su una copertina."
+    },
+    {
+      "year": 2010,
+      "uri": "spotify:track:5DDCG3NOg3EiOO7FurFoMR",
+      "artist": "Unheilig",
+      "alt_artists": [
+        "Rammstein",
+        "Oomph!",
+        "Schandmaul"
+      ],
+      "title": "Als wär's das erste Mal",
+      "isrc": "DEUM71400175",
+      "uri_apple_music": "applemusic://track/1441410986",
+      "uri_deezer": "deezer://track/75486190",
+      "fun_fact": "Der Graf sang in a black coat for fifteen years and ended the project at its commercial peak with a farewell tour he announced years in advance.",
+      "fun_fact_de": "Der Graf sang fünfzehn Jahre im schwarzen Mantel und beendete das Projekt auf dem kommerziellen Höhepunkt mit einer Abschiedstournee, die er Jahre vorher ankündigte.",
+      "fun_fact_es": "Der Graf cantó quince años con abrigo negro y cerró el proyecto en su cima comercial con una gira de despedida anunciada años antes.",
+      "fun_fact_fr": "Der Graf a chanté quinze ans en manteau noir et a mis fin au projet à son sommet commercial par une tournée d'adieu annoncée des années à l'avance.",
+      "fun_fact_nl": "Der Graf zong vijftien jaar in een zwarte jas en beëindigde het project op zijn commerciële hoogtepunt met een afscheidstournee die hij jaren vooraf aankondigde.",
+      "fun_fact_it": "Der Graf cantò quindici anni in cappotto nero e chiuse il progetto al culmine commerciale con una tournée d'addio annunciata anni prima."
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:6rDpddP9TCGQ48LsUcHe8o",
+      "artist": "Udo Lindenberg",
+      "alt_artists": [
+        "Herbert Grönemeyer",
+        "Peter Maffay",
+        "Marius Müller-Westernhagen"
+      ],
+      "title": "Ein Herz kann man nicht reparieren",
+      "isrc": "DEF069015020",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/7905871",
+      "fun_fact": "Lindenberg was sixty-five and had not had a hit in twenty years when the album this came from went to number one.",
+      "fun_fact_de": "Lindenberg war fünfundsechzig und seit zwanzig Jahren ohne Hit, als das Album, von dem dieser Song stammt, auf Platz eins ging.",
+      "fun_fact_es": "Lindenberg tenía sesenta y cinco años y llevaba veinte sin un éxito cuando el disco del que sale esta canción llegó al número uno.",
+      "fun_fact_fr": "Lindenberg avait soixante-cinq ans et n'avait plus eu de tube depuis vingt ans quand l'album dont vient ce titre est arrivé premier.",
+      "fun_fact_nl": "Lindenberg was vijfenzestig en had twintig jaar geen hit gehad toen het album waar dit nummer van komt nummer één werd.",
+      "fun_fact_it": "Lindenberg aveva sessantacinque anni e non aveva un successo da vent'anni quando l'album da cui viene questo brano arrivò al primo posto."
     }
   ]
 }
