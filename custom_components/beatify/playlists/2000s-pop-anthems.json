@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.26",
+  "version": "1.27",
   "tags": [
     "2000s",
     "pop",
@@ -7857,6 +7857,486 @@
       "fun_fact_fr": "Après des années de guitares, le groupe est revenu au son de synthétiseur de son premier disque, et a annoncé sa séparation lors de la tournée qui a suivi.",
       "fun_fact_nl": "Na jaren gitaren keerde de band terug naar het synthesizergeluid van hun eerste plaat, en kondigde tijdens de daaropvolgende tournee hun einde aan.",
       "fun_fact_it": "Dopo anni di chitarre la band tornò al suono di sintetizzatore del primo disco, e annunciò lo scioglimento nella tournée che seguì."
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:583xVl0Sbj93uU4ceixgU8",
+      "artist": "Anastacia",
+      "alt_artists": [
+        "Pink",
+        "Christina Aguilera",
+        "Jennifer Lopez"
+      ],
+      "title": "I'm Outta Love",
+      "isrc": "USSM19921724",
+      "uri_apple_music": "applemusic://track/250558355",
+      "uri_deezer": "deezer://track/833622",
+      "fun_fact": "Anastacia was thirty-one and had been turned down for a decade for looking wrong; the voice on this record settled the argument.",
+      "fun_fact_de": "Anastacia war einunddreißig und ein Jahrzehnt lang abgelehnt worden, weil sie nicht passend aussah; die Stimme auf dieser Platte beendete die Debatte.",
+      "fun_fact_es": "Anastacia tenía treinta y uno y llevaba una década siendo rechazada por su aspecto; la voz de este disco zanjó la discusión.",
+      "fun_fact_fr": "Anastacia avait trente et un ans et essuyait des refus depuis dix ans pour son apparence ; la voix de ce disque a clos le débat.",
+      "fun_fact_nl": "Anastacia was eenendertig en werd al tien jaar afgewezen omdat ze er verkeerd uitzag; de stem op deze plaat beëindigde de discussie.",
+      "fun_fact_it": "Anastacia aveva trentun anni ed era stata rifiutata per un decennio per il suo aspetto; la voce di questo disco chiuse la discussione."
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:62bOmKYxYg7dhrC6gH9vFn",
+      "artist": "*NSYNC",
+      "alt_artists": [
+        "Backstreet Boys",
+        "Westlife",
+        "Five"
+      ],
+      "title": "Bye Bye Bye",
+      "isrc": "USJI10000001",
+      "uri_apple_music": "applemusic://track/254906599",
+      "uri_deezer": "deezer://track/632447",
+      "fun_fact": "The group sued their own manager while this was in the charts, and won back the rights to their name.",
+      "fun_fact_de": "Die Gruppe verklagte ihren eigenen Manager, während der Song in den Charts stand — und gewann die Rechte am eigenen Namen zurück.",
+      "fun_fact_es": "El grupo demandó a su propio mánager mientras la canción estaba en listas y recuperó los derechos sobre su nombre.",
+      "fun_fact_fr": "Le groupe a poursuivi son propre manager pendant que le titre était en tête des ventes et a récupéré les droits sur son nom.",
+      "fun_fact_nl": "De groep klaagde hun eigen manager aan terwijl dit in de lijsten stond, en won de rechten op hun naam terug.",
+      "fun_fact_it": "Il gruppo fece causa al proprio manager mentre il brano era in classifica e riottenne i diritti sul proprio nome."
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:4l49RkY90qqeJZ72nVbdkC",
+      "artist": "Sylver",
+      "alt_artists": [
+        "Cascada",
+        "Groove Coverage",
+        "Lasgo"
+      ],
+      "title": "Forever in Love",
+      "isrc": "BEAA10114101",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/135335118",
+      "fun_fact": "The Belgian trio built a career on trance versions of ballads, and their records charted higher in Germany than at home.",
+      "fun_fact_de": "Das belgische Trio baute seine Laufbahn auf Trance-Fassungen von Balladen; die Platten liefen in Deutschland besser als daheim.",
+      "fun_fact_es": "El trío belga construyó su carrera con versiones trance de baladas, y sus discos entraron más alto en Alemania que en su país.",
+      "fun_fact_fr": "Le trio belge a bâti sa carrière sur des versions trance de ballades, et leurs disques se classaient mieux en Allemagne que chez eux.",
+      "fun_fact_nl": "Het Belgische trio bouwde een carrière op trance-versies van ballades, en hun platen scoorden in Duitsland hoger dan thuis.",
+      "fun_fact_it": "Il trio belga costruì la carriera su versioni trance di ballate, e i loro dischi andavano meglio in Germania che in patria."
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:4DRqC64lihScDSfDRLVHrX",
+      "artist": "Orange Blue",
+      "alt_artists": [
+        "Reamonn",
+        "Sasha",
+        "Söhne Mannheims"
+      ],
+      "title": "She's Got That Light",
+      "isrc": "DEH840000056",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/348209571",
+      "fun_fact": "A German band singing English soft rock, and the single spent months on German radio while the album barely sold.",
+      "fun_fact_de": "Eine deutsche Band mit englischem Softrock — die Single lief monatelang im deutschen Radio, während das Album kaum verkauft wurde.",
+      "fun_fact_es": "Un grupo alemán de soft rock en inglés; el sencillo sonó meses en la radio alemana mientras el disco apenas se vendía.",
+      "fun_fact_fr": "Un groupe allemand de soft rock en anglais ; le single a tourné des mois à la radio allemande alors que l'album se vendait à peine.",
+      "fun_fact_nl": "Een Duitse band met Engelse softrock; de single draaide maanden op de Duitse radio terwijl het album nauwelijks verkocht.",
+      "fun_fact_it": "Un gruppo tedesco di soft rock in inglese; il singolo passò per mesi nelle radio tedesche mentre l'album vendeva a stento."
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:5xEM5hIgJ1jjgcEBfpkt2F",
+      "artist": "Avril Lavigne",
+      "alt_artists": [
+        "Michelle Branch",
+        "Kelly Clarkson",
+        "Pink"
+      ],
+      "title": "Complicated",
+      "isrc": "USAR10200223",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/15587465",
+      "fun_fact": "Lavigne was seventeen and had a record deal for a country album; she refused to make it and wrote this instead.",
+      "fun_fact_de": "Lavigne war siebzehn und hatte einen Plattenvertrag für ein Country-Album; sie weigerte sich, es zu machen, und schrieb stattdessen diesen Song.",
+      "fun_fact_es": "Lavigne tenía diecisiete años y un contrato para un disco de country; se negó a hacerlo y escribió esto en su lugar.",
+      "fun_fact_fr": "Lavigne avait dix-sept ans et un contrat pour un album de country ; elle a refusé de le faire et a écrit ceci à la place.",
+      "fun_fact_nl": "Lavigne was zeventien en had een platencontract voor een countryalbum; ze weigerde het te maken en schreef dit in plaats daarvan.",
+      "fun_fact_it": "Lavigne aveva diciassette anni e un contratto per un album country; si rifiutò di farlo e scrisse questo."
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:4w1lzcaoZ1IC2K5TwjalRP",
+      "artist": "Vanessa Carlton",
+      "alt_artists": [
+        "Michelle Branch",
+        "Sara Bareilles",
+        "Norah Jones"
+      ],
+      "title": "A Thousand Miles",
+      "isrc": "USIR10210955",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/983832",
+      "fun_fact": "Carlton wrote it at nineteen about a person who never noticed her, and the piano figure was practised for years before it became a song.",
+      "fun_fact_de": "Carlton schrieb den Song mit neunzehn über jemanden, der sie nie bemerkte; die Klavierfigur hatte sie jahrelang geübt, bevor daraus ein Lied wurde.",
+      "fun_fact_es": "Carlton la escribió a los diecinueve sobre alguien que nunca la miró, y la figura de piano la practicó años antes de que fuera una canción.",
+      "fun_fact_fr": "Carlton l'a écrite à dix-neuf ans sur quelqu'un qui ne l'a jamais remarquée, et le motif de piano a été travaillé des années avant de devenir une chanson.",
+      "fun_fact_nl": "Carlton schreef het op haar negentiende over iemand die haar nooit opmerkte, en de pianofiguur oefende ze jaren voordat het een lied werd.",
+      "fun_fact_it": "Carlton la scrisse a diciannove anni su qualcuno che non la notò mai, e la figura di pianoforte la esercitò per anni prima che diventasse una canzone."
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:4h9E8Ydm3wBuIUwFZYmQtq",
+      "artist": "Alexander Klaws",
+      "alt_artists": [
+        "Daniel Küblböck",
+        "Mark Medlock",
+        "Juliette Schoppmann"
+      ],
+      "title": "Free Like the Wind",
+      "isrc": "DEC730300413",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/598666",
+      "fun_fact": "Klaws won the first German season of the talent show, and this was the follow-up single that had to prove the win was not a fluke.",
+      "fun_fact_de": "Klaws gewann die erste deutsche Staffel der Castingshow; mit dieser zweiten Single musste er beweisen, dass der Sieg kein Zufall war.",
+      "fun_fact_es": "Klaws ganó la primera edición alemana del concurso, y este fue el sencillo siguiente que debía demostrar que la victoria no fue casualidad.",
+      "fun_fact_fr": "Klaws a gagné la première saison allemande du télécrochet, et ce single suivant devait prouver que la victoire n'était pas un hasard.",
+      "fun_fact_nl": "Klaws won het eerste Duitse seizoen van de talentenjacht, en dit was de opvolgsingle die moest bewijzen dat de zege geen toeval was.",
+      "fun_fact_it": "Klaws vinse la prima edizione tedesca del talent, e questo fu il singolo successivo che doveva dimostrare che la vittoria non era stata un caso."
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:6si71supnBUhddjR2FJc2L",
+      "artist": "Dido",
+      "alt_artists": [
+        "Nelly Furtado",
+        "Sarah McLachlan",
+        "Moby"
+      ],
+      "title": "White Flag",
+      "isrc": "GBBXH0300035",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/2654326",
+      "fun_fact": "Dido's brother Rollo produced it, and the video ends with the singer dying in a car — which the label wanted cut.",
+      "fun_fact_de": "Didos Bruder Rollo produzierte den Song; im Video stirbt die Sängerin in einem Auto — die Plattenfirma wollte das herausschneiden.",
+      "fun_fact_es": "Su hermano Rollo la produjo, y el vídeo termina con la cantante muriendo en un coche, algo que el sello quería cortar.",
+      "fun_fact_fr": "Son frère Rollo l'a produite, et le clip se termine par la mort de la chanteuse dans une voiture, ce que le label voulait couper.",
+      "fun_fact_nl": "Haar broer Rollo produceerde het, en de video eindigt met de zangeres die in een auto sterft — wat het label eruit wilde knippen.",
+      "fun_fact_it": "Il fratello Rollo la produsse, e il video finisce con la cantante che muore in un'auto, cosa che l'etichetta voleva tagliare."
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:2dRrRVZ2P7yc5FFeGTKLNd",
+      "artist": "Sarah Connor",
+      "alt_artists": [
+        "Xavier Naidoo",
+        "Joana Zimmer",
+        "Mark Medlock"
+      ],
+      "title": "Music Is The Key",
+      "isrc": "DEE860300940",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/1590299512",
+      "fun_fact": "Connor recorded it with an American a cappella group and it became the theme of a German television gala for years afterwards.",
+      "fun_fact_de": "Connor nahm den Song mit einer amerikanischen A-cappella-Gruppe auf; er wurde jahrelang das Titellied einer deutschen Fernsehgala.",
+      "fun_fact_es": "Connor la grabó con un grupo estadounidense a capela y durante años fue la sintonía de una gala televisiva alemana.",
+      "fun_fact_fr": "Connor l'a enregistrée avec un groupe a cappella américain et elle est restée des années le générique d'un gala télévisé allemand.",
+      "fun_fact_nl": "Connor nam het op met een Amerikaanse a-capellagroep en het was jarenlang de tune van een Duitse tv-gala.",
+      "fun_fact_it": "Connor la incise con un gruppo a cappella americano e per anni fu la sigla di un galà televisivo tedesco."
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:5ClXLJW6OLZuTLCwhmX9h9",
+      "artist": "Infernal",
+      "alt_artists": [
+        "Cascada",
+        "Sylver",
+        "Groove Coverage"
+      ],
+      "title": "From Paris to Berlin",
+      "isrc": "DKCC50400404",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/579912712",
+      "fun_fact": "A Danish duo named a song after two cities they had not toured, and it became one of the biggest European dance records of the decade.",
+      "fun_fact_de": "Ein dänisches Duo benannte einen Song nach zwei Städten, in denen es nie gespielt hatte — er wurde eine der größten europäischen Dance-Platten des Jahrzehnts.",
+      "fun_fact_es": "Un dúo danés tituló una canción con dos ciudades en las que no había actuado, y se convirtió en uno de los mayores discos dance europeos de la década.",
+      "fun_fact_fr": "Un duo danois a intitulé une chanson d'après deux villes où il n'avait jamais joué, et elle est devenue l'un des plus grands disques dance européens de la décennie.",
+      "fun_fact_nl": "Een Deens duo noemde een nummer naar twee steden waar het nooit had gespeeld, en het werd een van de grootste Europese danceplaten van het decennium.",
+      "fun_fact_it": "Un duo danese intitolò una canzone a due città in cui non aveva mai suonato, e divenne uno dei più grandi dischi dance europei del decennio."
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:0Tn6mtt28qapllUQSAYYen",
+      "artist": "Joana Zimmer",
+      "alt_artists": [
+        "Sarah Connor",
+        "Yvonne Catterfeld",
+        "Anastacia"
+      ],
+      "title": "I Believe",
+      "isrc": "DEN120408862",
+      "uri_apple_music": "applemusic://track/1444310742",
+      "uri_deezer": "deezer://track/2315289",
+      "fun_fact": "Zimmer has been blind since birth and reached the German top five with her first single, then largely left the industry.",
+      "fun_fact_de": "Zimmer ist von Geburt an blind und kam mit ihrer ersten Single in die deutschen Top fünf; danach zog sie sich weitgehend zurück.",
+      "fun_fact_es": "Zimmer es ciega de nacimiento y llegó al top cinco alemán con su primer sencillo; después se retiró en gran medida.",
+      "fun_fact_fr": "Zimmer est aveugle de naissance et a atteint le top cinq allemand avec son premier single, avant de quitter en grande partie le métier.",
+      "fun_fact_nl": "Zimmer is blind vanaf haar geboorte en haalde met haar eerste single de Duitse top vijf; daarna verliet ze de branche grotendeels.",
+      "fun_fact_it": "Zimmer è cieca dalla nascita e arrivò nella top cinque tedesca col primo singolo; poi lasciò in gran parte il settore."
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:1kOAGK7iEoIk1iwWXtHTGR",
+      "artist": "Melanie C",
+      "alt_artists": [
+        "Spice Girls",
+        "Emma Bunton",
+        "Geri Halliwell"
+      ],
+      "title": "First Day of My Life",
+      "isrc": "GBHMK0500015",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/689130",
+      "fun_fact": "Melanie C wrote it after leaving the Spice Girls and a long illness; it went to number one in Germany but not in Britain.",
+      "fun_fact_de": "Melanie C schrieb den Song nach dem Ausstieg bei den Spice Girls und einer langen Krankheit; er ging in Deutschland auf Platz eins, in Britannien nicht.",
+      "fun_fact_es": "Melanie C la escribió tras dejar las Spice Girls y una larga enfermedad; llegó al número uno en Alemania, pero no en Gran Bretaña.",
+      "fun_fact_fr": "Melanie C l'a écrite après avoir quitté les Spice Girls et une longue maladie ; elle a atteint la première place en Allemagne, pas au Royaume-Uni.",
+      "fun_fact_nl": "Melanie C schreef het na haar vertrek bij de Spice Girls en een lange ziekte; het werd nummer één in Duitsland, maar niet in Groot-Brittannië.",
+      "fun_fact_it": "Melanie C la scrisse dopo l'uscita dalle Spice Girls e una lunga malattia; arrivò al primo posto in Germania, non in Gran Bretagna."
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:1q9l6c8bAzqWcvO3DM6FsR",
+      "artist": "Scissor Sisters",
+      "alt_artists": [
+        "Mika",
+        "Franz Ferdinand",
+        "Jamiroquai"
+      ],
+      "title": "I Don't Feel Like Dancin'",
+      "isrc": "GBUM70602587",
+      "uri_apple_music": "applemusic://track/1442963300",
+      "uri_deezer": "deezer://track/2504050",
+      "fun_fact": "Elton John co-wrote and played piano on it, and the band had to be talked into keeping the falsetto chorus.",
+      "fun_fact_de": "Elton John schrieb mit und spielte Klavier; die Band musste überredet werden, den Falsett-Refrain zu behalten.",
+      "fun_fact_es": "Elton John coescribió y tocó el piano, y hubo que convencer al grupo para que mantuviera el estribillo en falsete.",
+      "fun_fact_fr": "Elton John a coécrit et joué du piano, et il a fallu convaincre le groupe de garder le refrain en fausset.",
+      "fun_fact_nl": "Elton John schreef mee en speelde piano, en de band moest worden overtuigd om het falsetrefrein te houden.",
+      "fun_fact_it": "Elton John coscrisse e suonò il pianoforte, e la band dovette essere convinta a tenere il ritornello in falsetto."
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:3ZFTkvIE7kyPt6Nu3PEa7V",
+      "artist": "Shakira",
+      "alt_artists": [
+        "Jennifer Lopez",
+        "Beyoncé",
+        "Nelly Furtado"
+      ],
+      "title": "Hips Don't Lie",
+      "isrc": "USSM10600677",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/88897841",
+      "fun_fact": "The horn line comes from a 1970s Colombian cumbia, and the song made Shakira the first Latin artist with a global number one in two languages.",
+      "fun_fact_de": "Die Bläserlinie stammt aus einer kolumbianischen Cumbia der Siebziger; der Song machte Shakira zur ersten lateinamerikanischen Künstlerin mit einem weltweiten Nummer-eins-Hit in zwei Sprachen.",
+      "fun_fact_es": "La línea de metales viene de una cumbia colombiana de los setenta, y la canción hizo de Shakira la primera artista latina con un número uno mundial en dos idiomas.",
+      "fun_fact_fr": "La ligne de cuivres vient d'une cumbia colombienne des années soixante-dix, et la chanson a fait de Shakira la première artiste latine avec un numéro un mondial en deux langues.",
+      "fun_fact_nl": "De blazerslijn komt uit een Colombiaanse cumbia uit de jaren zeventig, en het nummer maakte Shakira de eerste Latijns-Amerikaanse artiest met een wereldwijde nummer één in twee talen.",
+      "fun_fact_it": "La linea di fiati viene da una cumbia colombiana degli anni settanta, e la canzone rese Shakira la prima artista latina con un numero uno mondiale in due lingue."
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:3DuHOCe1dbf3XKF8uoc5oM",
+      "artist": "Natasha Bedingfield",
+      "alt_artists": [
+        "Natalie Imbruglia",
+        "Leona Lewis",
+        "Katie Melua"
+      ],
+      "title": "Soulmate",
+      "isrc": "GBARL0700096",
+      "uri_apple_music": "applemusic://track/257727943",
+      "uri_deezer": "deezer://track/15621382",
+      "fun_fact": "Bedingfield's brother Daniel had a number one three years before her, making them the first siblings to top the British chart separately.",
+      "fun_fact_de": "Bedingfields Bruder Daniel hatte drei Jahre vor ihr einen Nummer-eins-Hit — sie waren die ersten Geschwister, die getrennt an der Spitze der britischen Charts standen.",
+      "fun_fact_es": "Su hermano Daniel tuvo un número uno tres años antes que ella, lo que los convirtió en los primeros hermanos en encabezar la lista británica por separado.",
+      "fun_fact_fr": "Son frère Daniel a eu un numéro un trois ans avant elle, ce qui en fait le premier frère et sœur à dominer séparément le classement britannique.",
+      "fun_fact_nl": "Haar broer Daniel had drie jaar eerder een nummer één, waarmee ze het eerste broer-zusduo waren dat apart de Britse lijst aanvoerde.",
+      "fun_fact_it": "Suo fratello Daniel ebbe un numero uno tre anni prima di lei: furono i primi fratelli a guidare separatamente la classifica britannica."
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:2sgBTNHz9ckmqj3rx3ez4M",
+      "artist": "Kaiser Chiefs",
+      "alt_artists": [
+        "Arctic Monkeys",
+        "Franz Ferdinand",
+        "The Killers"
+      ],
+      "title": "Ruby",
+      "isrc": "GBDVX0600080",
+      "uri_apple_music": "applemusic://track/1443919262",
+      "uri_deezer": "deezer://track/26608051",
+      "fun_fact": "The band are from Leeds and named themselves after a football chant; nobody in the group has ever said who Ruby is.",
+      "fun_fact_de": "Die Band kommt aus Leeds und benannte sich nach einem Fußballgesang; wer Ruby ist, hat nie jemand aus der Gruppe gesagt.",
+      "fun_fact_es": "El grupo es de Leeds y se puso el nombre por un cántico de fútbol; nadie de la banda ha dicho nunca quién es Ruby.",
+      "fun_fact_fr": "Le groupe vient de Leeds et s'est nommé d'après un chant de supporters ; personne dans le groupe n'a jamais dit qui est Ruby.",
+      "fun_fact_nl": "De band komt uit Leeds en noemde zich naar een voetbalkreet; niemand in de groep heeft ooit gezegd wie Ruby is.",
+      "fun_fact_it": "Il gruppo viene da Leeds e prese il nome da un coro da stadio; nessuno nella band ha mai detto chi sia Ruby."
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:4CanxrTGxjh0KL80lhUOgR",
+      "artist": "Mark Medlock",
+      "alt_artists": [
+        "Alexander Klaws",
+        "Daniel Küblböck",
+        "Sasha"
+      ],
+      "title": "Summer Love",
+      "isrc": "DEE860800263",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/95662612",
+      "fun_fact": "Medlock won the German talent show and Dieter Bohlen wrote the single; it went straight to number one and stayed there for six weeks.",
+      "fun_fact_de": "Medlock gewann die deutsche Castingshow, Dieter Bohlen schrieb die Single; sie ging direkt auf Platz eins und blieb dort sechs Wochen.",
+      "fun_fact_es": "Medlock ganó el concurso alemán y Dieter Bohlen escribió el sencillo; llegó directo al número uno y se quedó seis semanas.",
+      "fun_fact_fr": "Medlock a gagné le télécrochet allemand et Dieter Bohlen a écrit le single ; il est allé droit à la première place et y est resté six semaines.",
+      "fun_fact_nl": "Medlock won de Duitse talentenjacht en Dieter Bohlen schreef de single; die ging rechtstreeks naar nummer één en bleef er zes weken.",
+      "fun_fact_it": "Medlock vinse il talent tedesco e Dieter Bohlen scrisse il singolo; andò dritto al primo posto e vi restò sei settimane."
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:2T3jgoAMbBXiMMD8pSc6QL",
+      "artist": "Amy Macdonald",
+      "alt_artists": [
+        "KT Tunstall",
+        "Katie Melua",
+        "Duffy"
+      ],
+      "title": "This Is The Life",
+      "isrc": "GBUM70607840",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/882691",
+      "fun_fact": "Macdonald was nineteen and wrote it about Glasgow nights out; the album sold three million copies, most of them on the continent.",
+      "fun_fact_de": "Macdonald war neunzehn und schrieb den Song über Glasgower Nächte; das Album verkaufte sich drei Millionen Mal, größtenteils auf dem Kontinent.",
+      "fun_fact_es": "Macdonald tenía diecinueve años y la escribió sobre las noches de Glasgow; el disco vendió tres millones de copias, la mayoría en el continente.",
+      "fun_fact_fr": "Macdonald avait dix-neuf ans et l'a écrite sur les nuits de Glasgow ; l'album s'est vendu à trois millions d'exemplaires, surtout sur le continent.",
+      "fun_fact_nl": "Macdonald was negentien en schreef het over Glasgowse stapavonden; het album verkocht drie miljoen keer, grotendeels op het continent.",
+      "fun_fact_it": "Macdonald aveva diciannove anni e la scrisse sulle notti di Glasgow; l'album vendette tre milioni di copie, per lo più nel continente."
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:7HTX5cE4qzHALfgO2xSvMd",
+      "artist": "Milow",
+      "alt_artists": [
+        "Milow",
+        "Jason Mraz",
+        "Mando Diao"
+      ],
+      "title": "Ayo Technology",
+      "isrc": "BEA890800003",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/3441449911",
+      "fun_fact": "A Belgian singer turned a 50 Cent record into an acoustic ballad as a joke for radio, and it became the biggest hit of his career.",
+      "fun_fact_de": "Ein belgischer Sänger machte aus einer 50-Cent-Platte im Scherz eine Akustikballade fürs Radio — es wurde der größte Hit seiner Laufbahn.",
+      "fun_fact_es": "Un cantante belga convirtió un disco de 50 Cent en una balada acústica como broma para la radio, y fue el mayor éxito de su carrera.",
+      "fun_fact_fr": "Un chanteur belge a transformé un disque de 50 Cent en ballade acoustique pour rire à la radio, et c'est devenu le plus grand tube de sa carrière.",
+      "fun_fact_nl": "Een Belgische zanger maakte van een 50 Cent-plaat als grap voor de radio een akoestische ballade, en het werd de grootste hit van zijn loopbaan.",
+      "fun_fact_it": "Un cantante belga trasformò per scherzo un disco di 50 Cent in una ballata acustica per la radio, e divenne il successo più grande della sua carriera."
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:5WhqLY64g8U6tkUAFv6dzD",
+      "artist": "Mando Diao",
+      "alt_artists": [
+        "The Hives",
+        "The Hellacopters",
+        "Kaiser Chiefs"
+      ],
+      "title": "Black Saturday",
+      "isrc": "SEYBD1300102",
+      "uri_apple_music": "applemusic://track/1617774512",
+      "uri_deezer": "deezer://track/1708226717",
+      "fun_fact": "The Swedish band named themselves after a dream one member had, and sold more records in Germany than in Sweden every year they existed.",
+      "fun_fact_de": "Die schwedische Band benannte sich nach dem Traum eines Mitglieds und verkaufte in jedem Jahr ihres Bestehens in Deutschland mehr Platten als in Schweden.",
+      "fun_fact_es": "El grupo sueco se puso el nombre por el sueño de uno de sus miembros y vendió más discos en Alemania que en Suecia todos los años de su existencia.",
+      "fun_fact_fr": "Le groupe suédois s'est nommé d'après le rêve d'un de ses membres et a vendu plus de disques en Allemagne qu'en Suède chaque année de son existence.",
+      "fun_fact_nl": "De Zweedse band noemde zich naar de droom van een van de leden en verkocht elk jaar van hun bestaan in Duitsland meer platen dan in Zweden.",
+      "fun_fact_it": "Il gruppo svedese prese il nome dal sogno di un membro e vendette in Germania più dischi che in Svezia in ogni anno della sua esistenza."
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:4Dm32oO01YpIubCHaAtKkN",
+      "artist": "Kelly Clarkson",
+      "alt_artists": [
+        "Pink",
+        "Katy Perry",
+        "Avril Lavigne"
+      ],
+      "title": "My Life Would Suck Without You",
+      "isrc": "GBCTA0800348",
+      "uri_apple_music": "applemusic://track/305149906",
+      "uri_deezer": "deezer://track/62118994",
+      "fun_fact": "Max Martin wrote it, and the single made the biggest one-week jump in American chart history at the time, from 97 to 1.",
+      "fun_fact_de": "Max Martin schrieb den Song; die Single machte damals den größten Wochensprung der US-Chartgeschichte, von Platz 97 auf 1.",
+      "fun_fact_es": "La escribió Max Martin, y el sencillo dio el mayor salto semanal de la historia de las listas estadounidenses hasta entonces, del 97 al 1.",
+      "fun_fact_fr": "Max Martin l'a écrite, et le single a réalisé le plus grand bond hebdomadaire de l'histoire des classements américains, de la 97e à la 1re place.",
+      "fun_fact_nl": "Max Martin schreef het, en de single maakte de grootste weeksprong in de Amerikaanse hitlijstgeschiedenis tot dan, van 97 naar 1.",
+      "fun_fact_it": "La scrisse Max Martin, e il singolo fece il più grande balzo settimanale della storia delle classifiche americane, dal 97 al primo posto."
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:52hQY9AntPqOQM46N9BnfC",
+      "artist": "INNA",
+      "alt_artists": [
+        "Alexandra Stan",
+        "Edward Maya",
+        "Cascada"
+      ],
+      "title": "Amazing",
+      "isrc": "ROROT0901606",
+      "uri_apple_music": "applemusic://track/891266908",
+      "uri_deezer": "deezer://track/81661460",
+      "fun_fact": "Elena Alexandra Apostoleanu records as INNA and was part of a wave of Romanian dance acts that European radio played without ever naming the country.",
+      "fun_fact_de": "Elena Alexandra Apostoleanu nimmt als INNA auf und gehörte zu einer Welle rumänischer Dance-Acts, die das europäische Radio spielte, ohne je das Land zu nennen.",
+      "fun_fact_es": "Elena Alexandra Apostoleanu graba como INNA y formó parte de una oleada de artistas dance rumanos que la radio europea pinchaba sin nombrar nunca el país.",
+      "fun_fact_fr": "Elena Alexandra Apostoleanu enregistre sous le nom d'INNA et faisait partie d'une vague d'artistes dance roumains que les radios européennes passaient sans jamais nommer le pays.",
+      "fun_fact_nl": "Elena Alexandra Apostoleanu neemt op als INNA en hoorde bij een golf Roemeense dance-acts die de Europese radio draaide zonder ooit het land te noemen.",
+      "fun_fact_it": "Elena Alexandra Apostoleanu incide come INNA e faceva parte di un'ondata di artisti dance rumeni che le radio europee passavano senza mai nominare il paese."
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:7mDCg8XTEyDNPzC5Jdt7mu",
+      "artist": "Taio Cruz",
+      "alt_artists": [
+        "Jason Derulo",
+        "Flo Rida",
+        "Sean Kingston"
+      ],
+      "title": "Break Your Heart",
+      "isrc": "GBUM70908662",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/7063921",
+      "fun_fact": "Cruz wrote for other artists first, including a British number one at nineteen, before recording anything under his own name.",
+      "fun_fact_de": "Cruz schrieb zuerst für andere, mit neunzehn darunter ein britischer Nummer-eins-Hit, bevor er unter eigenem Namen etwas aufnahm.",
+      "fun_fact_es": "Cruz escribió primero para otros artistas, incluido un número uno británico a los diecinueve, antes de grabar nada con su propio nombre.",
+      "fun_fact_fr": "Cruz a d'abord écrit pour d'autres, dont un numéro un britannique à dix-neuf ans, avant d'enregistrer sous son propre nom.",
+      "fun_fact_nl": "Cruz schreef eerst voor anderen, waaronder een Britse nummer één op zijn negentiende, voordat hij iets onder eigen naam opnam.",
+      "fun_fact_it": "Cruz scrisse prima per altri, tra cui un numero uno britannico a diciannove anni, prima di incidere a proprio nome."
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:76VWuBu8qoFxzfhpfW0lE6",
+      "artist": "Lily Allen",
+      "alt_artists": [
+        "Kate Nash",
+        "Amy Winehouse",
+        "Duffy"
+      ],
+      "title": "Not Fair",
+      "isrc": "GBAYE0802261",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/4622568",
+      "fun_fact": "Allen set a complaint about a boyfriend to a country waltz with a pedal steel, which is not where anyone expected her to go.",
+      "fun_fact_de": "Allen setzte eine Beschwerde über einen Freund in einen Country-Walzer mit Pedal-Steel — dorthin hatte niemand sie erwartet.",
+      "fun_fact_es": "Allen puso una queja sobre su novio en un vals country con pedal steel, un sitio al que nadie esperaba que fuera.",
+      "fun_fact_fr": "Allen a mis une plainte contre son petit ami sur une valse country avec pedal steel, là où personne ne l'attendait.",
+      "fun_fact_nl": "Allen zette een klacht over haar vriend op een countrywals met pedal steel, waar niemand haar verwachtte.",
+      "fun_fact_it": "Allen mise una lamentela sul fidanzato in un valzer country con pedal steel, un posto in cui nessuno se l'aspettava."
     }
   ]
 }
