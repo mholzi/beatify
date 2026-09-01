@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.22",
+  "version": "1.23",
   "tags": [
     "german",
     "schlager",
@@ -4696,6 +4696,46 @@
       "fun_fact_es": "Jordi ganó el Grand Prix der Volksmusik en 1998 y representó a Suiza en Eurovisión en 2002. Entre ambos hitos pasó de la música folclórica al Schlager mayoritario.",
       "fun_fact_fr": "Jordi a remporté le Grand Prix der Volksmusik en 1998 et a représenté la Suisse à l'Eurovision en 2002. Entre les deux, elle est passée de la musique folklorique au Schlager grand public.",
       "fun_fact_nl": "Jordi won in 1998 de Grand Prix der Volksmusik en vertegenwoordigde Zwitserland in 2002 op het Eurovisiesongfestival. Daartussen stapte ze van volksmuziek over naar de brede Schlager."
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:5OsHWD22P4lg2wP58C6mCw",
+      "artist": "Nickerbocker & Biene",
+      "alt_artists": [
+        "Rainhard Fendrich",
+        "Wolfgang Ambros",
+        "EAV"
+      ],
+      "title": "Hallo Klaus (I wü zruck zu Dir)",
+      "isrc": "ATT238200120",
+      "uri_apple_music": "applemusic://track/309569089",
+      "uri_deezer": "deezer://track/15306741",
+      "fun_fact": "The record exists in two versions, one sung from the man's side and one from the woman's; this is the 1983 female original.",
+      "fun_fact_de": "Die Platte gibt es in zwei Fassungen, einer aus Sicht des Mannes und einer aus Sicht der Frau; dies ist das weibliche Original von 1983.",
+      "fun_fact_es": "El disco existe en dos versiones, una cantada desde el punto de vista del hombre y otra desde el de la mujer; esta es la original femenina de 1983.",
+      "fun_fact_fr": "Le disque existe en deux versions, l'une chantée du point de vue de l'homme, l'autre de celui de la femme ; voici l'original féminin de 1983.",
+      "fun_fact_nl": "De plaat bestaat in twee versies, één vanuit de man en één vanuit de vrouw gezongen; dit is het vrouwelijke origineel uit 1983.",
+      "fun_fact_it": "Il disco esiste in due versioni, una cantata dal punto di vista dell'uomo e una da quello della donna; questa è l'originale femminile del 1983."
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:2Bh1bOO728itHij0vMBeHL",
+      "artist": "Seiler und Speer",
+      "alt_artists": [
+        "Rainhard Fendrich",
+        "Wanda",
+        "Bilderbuch"
+      ],
+      "title": "Ham kummst",
+      "isrc": "ATCF31503102",
+      "uri_apple_music": "applemusic://track/1783779165",
+      "uri_deezer": "deezer://track/3130198181",
+      "fun_fact": "The two Austrians put it on the internet as a joke, and within weeks it had spent months at number one and started a run on Viennese dialect pop.",
+      "fun_fact_de": "Die beiden Österreicher stellten das Lied als Scherz ins Internet, und binnen Wochen stand es monatelang auf Platz eins und löste einen Ansturm auf Wiener Dialektpop aus.",
+      "fun_fact_es": "Los dos austriacos la subieron a internet como broma, y en semanas llevaba meses en el número uno y había desatado una fiebre por el pop en dialecto vienés.",
+      "fun_fact_fr": "Les deux Autrichiens l'ont mise sur internet pour plaisanter, et en quelques semaines elle occupait la première place depuis des mois et lançait une vague de pop en dialecte viennois.",
+      "fun_fact_nl": "De twee Oostenrijkers zetten het als grap op internet, en binnen weken stond het maandenlang op nummer één en begon een golf van Weense dialectpop.",
+      "fun_fact_it": "I due austriaci la misero in rete per scherzo, e in poche settimane era da mesi al primo posto e aveva avviato una corsa al pop in dialetto viennese."
     }
   ]
 }

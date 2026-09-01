@@ -1,6 +1,6 @@
 {
   "name": "40s & 50s Classics",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "1940s",
     "1950s",
@@ -3812,6 +3812,46 @@
       "fun_fact_es": "Un clásico de los años 50 (1962).",
       "fun_fact_fr": "Un classique des années 50 (1962).",
       "fun_fact_nl": "Een jaren-50-klassieker (1962)."
+    },
+    {
+      "year": 1955,
+      "uri": "spotify:track:2kKvwBX4Qsn1CpbqjtNyad",
+      "artist": "Frank Sinatra",
+      "alt_artists": [
+        "Dean Martin",
+        "Bing Crosby",
+        "Sammy Davis Jr."
+      ],
+      "title": "Love And Marriage",
+      "isrc": "USCA20902785",
+      "uri_apple_music": "applemusic://track/1804913753",
+      "uri_deezer": "deezer://track/97327612",
+      "fun_fact": "Written for a television production of Our Town, it won an Emmy and thirty years later became the theme of a sitcom about a deeply unhappy marriage.",
+      "fun_fact_de": "Für eine Fernsehfassung von Our Town geschrieben, gewann der Song einen Emmy und wurde dreißig Jahre später zum Titellied einer Sitcom über eine zutiefst unglückliche Ehe.",
+      "fun_fact_es": "Escrita para una versión televisiva de Our Town, ganó un Emmy y treinta años después se convirtió en la sintonía de una comedia sobre un matrimonio profundamente infeliz.",
+      "fun_fact_fr": "Écrite pour une adaptation télévisée d'Our Town, elle a remporté un Emmy et, trente ans plus tard, est devenue le générique d'une sitcom sur un mariage profondément malheureux.",
+      "fun_fact_nl": "Geschreven voor een televisieversie van Our Town, won het een Emmy en werd het dertig jaar later de tune van een sitcom over een diep ongelukkig huwelijk.",
+      "fun_fact_it": "Scritta per una versione televisiva di Our Town, vinse un Emmy e trent'anni dopo divenne la sigla di una sitcom su un matrimonio profondamente infelice."
+    },
+    {
+      "year": 1956,
+      "uri": "spotify:track:01u6AEzGbGbQyYVdxajxqk",
+      "artist": "Elvis Presley",
+      "alt_artists": [
+        "Carl Perkins",
+        "Jerry Lee Lewis",
+        "Buddy Holly"
+      ],
+      "title": "Don't Be Cruel",
+      "isrc": "USRC10200073",
+      "uri_apple_music": "applemusic://track/388127877",
+      "uri_deezer": "deezer://track/7675086",
+      "fun_fact": "Otis Blackwell sold the song outright for twenty-five dollars, then had to hand Presley half the writing credit as a condition of the recording.",
+      "fun_fact_de": "Otis Blackwell verkaufte den Song für fünfundzwanzig Dollar und musste Presley dann als Bedingung für die Aufnahme die halbe Autorenschaft überlassen.",
+      "fun_fact_es": "Otis Blackwell vendió la canción en firme por veinticinco dólares y luego tuvo que ceder a Presley la mitad de la autoría como condición para grabarla.",
+      "fun_fact_fr": "Otis Blackwell a vendu la chanson pour vingt-cinq dollars, puis a dû céder à Presley la moitié des droits d'auteur comme condition de l'enregistrement.",
+      "fun_fact_nl": "Otis Blackwell verkocht het nummer voor vijfentwintig dollar en moest Presley daarna de helft van het auteurschap afstaan als voorwaarde voor de opname.",
+      "fun_fact_it": "Otis Blackwell vendette la canzone per venticinque dollari e poi dovette cedere a Presley metà dei diritti d'autore come condizione per l'incisione."
     }
   ]
 }

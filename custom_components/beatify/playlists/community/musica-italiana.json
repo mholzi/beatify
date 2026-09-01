@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.13",
+  "version": "0.14",
   "songs": [
     {
       "year": 1962,
@@ -2213,6 +2213,26 @@
       "fun_fact_it": "Gianni Nazzaro - \"Quando L'Amore Diventa Poesía\" (2007), dal canone del pop italiano.",
       "isrc": null,
       "uri_apple_music": "applemusic://track/1780787742"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:7dp45uA0Ws4TadWaMwdIRw",
+      "artist": "Eros Ramazzotti",
+      "alt_artists": [
+        "Laura Pausini",
+        "Zucchero",
+        "Andrea Bocelli"
+      ],
+      "title": "Se bastasse una canzone",
+      "isrc": "ITB009700365",
+      "uri_apple_music": "applemusic://track/254549432",
+      "uri_deezer": "deezer://track/604862",
+      "fun_fact": "Ramazzotti wrote it for a Milan charity concert and sang it with an audience of forty thousand carrying the chorus back at him.",
+      "fun_fact_de": "Ramazzotti schrieb den Song für ein Benefizkonzert in Mailand und sang ihn vor vierzigtausend Menschen, die ihm den Refrain zurücktrugen.",
+      "fun_fact_es": "Ramazzotti la escribió para un concierto benéfico en Milán y la cantó ante cuarenta mil personas que le devolvían el estribillo.",
+      "fun_fact_fr": "Ramazzotti l'a écrite pour un concert caritatif à Milan et l'a chantée devant quarante mille personnes qui lui renvoyaient le refrain.",
+      "fun_fact_nl": "Ramazzotti schreef het voor een benefietconcert in Milaan en zong het voor veertigduizend mensen die het refrein terugzongen.",
+      "fun_fact_it": "Ramazzotti la scrisse per un concerto di beneficenza a Milano e la cantò davanti a quarantamila persone che gli rimandavano il ritornello."
     }
   ],
   "tags": [
