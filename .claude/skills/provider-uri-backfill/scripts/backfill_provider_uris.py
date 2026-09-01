@@ -554,6 +554,27 @@ class YouTubeBudget:
         self.spent_today += 1
 
 
+def _quota_day() -> str:
+    """The day Google's YouTube quota counts against (midnight Pacific).
+
+    Falls back to the local clock when timezone data is missing. That restores
+    the old behaviour, but says so instead of failing quietly.
+    """
+    try:
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+
+        return datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+    except (ImportError, KeyError, OSError) as err:  # pragma: no cover - no tzdata
+        print(
+            f"  Warning: cannot determine the Pacific date ({err.__class__.__name__}), "
+            "the YouTube budget will count on the local clock and most slots "
+            "will run empty (#2452)",
+            file=sys.stderr,
+        )
+        return time.strftime("%Y-%m-%d")
+
+
 def load_state(path: Path, today: str, budget: int) -> YouTubeBudget:
     data = {}
     if path.exists():
@@ -1095,7 +1116,13 @@ def run(args: argparse.Namespace) -> int:
         if args.state
         else (Path(__file__).resolve().parent.parent / ".backfill-state.json")
     )
-    today = time.strftime("%Y-%m-%d")
+    # #2452: Google resets the YouTube quota at midnight Pacific, not at local
+    # midnight. This script used to count on the local clock, and on CEST the two
+    # boundaries sit nine hours apart: the 03:32 run spent all 96 units, Google
+    # refreshed them at 09:00 local, but the counter stayed at 96/96 until local
+    # midnight, so every later slot skipped. Measured 2026-09-01: HTTP 429 at
+    # 07:35, a fresh result at 09:43.
+    today = _quota_day()
     yt_key = os.environ.get("YOUTUBE_API_KEY")
     yt_state = load_state(state_path, today, args.youtube_budget)
 
