@@ -4,6 +4,35 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.0] - 2026-09-01
+
+Released as **4.4.0** rather than 4.3.1: the work shipped as the `v4.3.1-rc1`, `v4.3.1-rc2` and
+`v4.4.0-rc1`…`rc4` release candidates, but a patch number promises bug fixes and this carries a
+new game mechanic, a provider that needs no paid subscription, three new playlists and 1,069
+more songs. Everything in those candidates is included.
+
+### Changed
+- **The catalogue reached 61 playlists and 8,211 songs**, from 58 and 7,142 at 4.3.0. Around a
+  thousand of those songs came from four requests filed through the in-app button — a Schlager
+  party list (#2372), a radio station's playlist (#2374), a guilty-pleasures list (#2373) and a
+  soundtracks list (#2377). None became a playlist of its own: each overlapped the catalogue by a
+  fifth to two thirds, so the usable songs were sorted into the decade, Schlager, Deutschpop and
+  film playlists instead.
+- **A soundtrack is dated by its work, not by its pressing (#2450).** The three signals behind a
+  song's year describe the same reissue when all three are read off the linked track, so they
+  agreed on a year decades off the work — the Seinfeld theme dated 2021 against a 1989 work. The
+  rule now takes the earliest recording credited to that artist, with the work's own year as a
+  ceiling where the artist is the composer of the film or series named in the title. A cover by
+  different performers keeps its own recording's year, unchanged from the rule of 2026-08-20.
+- **The catalogue figure in the README** now says 61 playlists and 8,211 songs. The landing page
+  is served from the `gh-pages` branch and still says 59 and 7,671.
+
+### Fixed
+- **The final standings reach the players when the host ends a game (#2442, #2443).**
+  `EndGameView` tore the game down before finalizing, so the podium never went out.
+- **The YouTube backfill budget counts on the Pacific day (#2452, #2453)** and the playlist
+  version is raised once per run rather than once per track (#2447).
+
 ## [4.4.0-rc4] - 2026-08-31
 
 ### Added

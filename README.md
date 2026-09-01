@@ -429,7 +429,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 7,671 songs across 59 curated playlists:
+Beatify comes with 8,211 songs across 61 curated playlists:
 
 - 🎬 **100 Greatest Movie Themes** — 162 iconic film soundtracks
 - 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
