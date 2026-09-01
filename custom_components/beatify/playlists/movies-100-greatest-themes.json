@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.26",
+  "version": "1.27",
   "tags": [
     "movies",
     "soundtrack",
@@ -8065,6 +8065,310 @@
       "fun_fact_fr": "Chantée dans A Star Is Born au moment où le personnage a déjà gagné et où la relation commence déjà à perdre. Gaga l'a écrite avec trois auteurs de Nashville.",
       "fun_fact_nl": "Gezongen in A Star Is Born op het punt waar het personage al gewonnen heeft en de relatie al begint te verliezen. Gaga schreef het met drie songwriters uit Nashville.",
       "fun_fact_it": "Cantata in A Star Is Born nel punto in cui il personaggio ha già vinto e la relazione comincia già a perdere. Gaga la scrisse con tre autori di Nashville."
+    },
+    {
+      "artist": "Doris Day",
+      "title": "Que Sera Sera (Whatever Will Be, Will Be)",
+      "year": 1956,
+      "uri": "spotify:track:4Ylqc711Eq763XbTAOABu3",
+      "uri_apple_music": "applemusic://track/1500610595",
+      "uri_deezer": "deezer://track/10317163",
+      "isrc": "GBZTD1101612",
+      "alt_artists": [
+        "Peggy Lee",
+        "Rosemary Clooney"
+      ],
+      "fun_fact": "Written for Hitchcock's The Man Who Knew Too Much, where Day sings it to be heard by her kidnapped son two floors up. It won the Oscar and became her signature.",
+      "fun_fact_de": "Für Hitchcocks Der Mann, der zuviel wußte geschrieben, wo Day es singt, damit ihr entführter Sohn zwei Stockwerke höher sie hört. Es gewann den Oscar und wurde ihr Erkennungslied.",
+      "fun_fact_es": "Escrita para El hombre que sabía demasiado de Hitchcock, donde Day la canta para que su hijo secuestrado la oiga dos pisos más arriba. Ganó el Óscar y se convirtió en su seña de identidad.",
+      "fun_fact_fr": "Écrite pour L'Homme qui en savait trop de Hitchcock, où Day la chante pour être entendue de son fils enlevé, deux étages plus haut. Elle a remporté l'Oscar et est devenue sa signature.",
+      "fun_fact_nl": "Geschreven voor Hitchcocks The Man Who Knew Too Much, waarin Day het zingt zodat haar ontvoerde zoon twee verdiepingen hoger haar hoort. Het won de Oscar en werd haar herkenningsmelodie.",
+      "fun_fact_it": "Scritta per L'uomo che sapeva troppo di Hitchcock, dove la Day la canta perché il figlio rapito la senta due piani più su. Vinse l'Oscar e divenne il suo marchio."
+    },
+    {
+      "artist": "The Beatles",
+      "title": "Yellow Submarine",
+      "year": 1966,
+      "uri": "spotify:track:1tdltVUBkiBCW1C3yB4zyD",
+      "uri_apple_music": "applemusic://track/1441164526",
+      "uri_deezer": "deezer://track/116348724",
+      "isrc": "GBAYE0601677",
+      "alt_artists": [
+        "The Kinks",
+        "The Monkees"
+      ],
+      "fun_fact": "Ringo Starr sings it on Revolver, two years before the animated film took its name. The sound effects were built in the studio from chains, bells and a tin bath.",
+      "fun_fact_de": "Ringo Starr singt es auf Revolver, zwei Jahre bevor der Zeichentrickfilm seinen Namen davon nahm. Die Geräusche entstanden im Studio aus Ketten, Glocken und einer Blechwanne.",
+      "fun_fact_es": "Ringo Starr la canta en Revolver, dos años antes de que la película de animación tomara su nombre. Los efectos se construyeron en el estudio con cadenas, campanas y una bañera de hojalata.",
+      "fun_fact_fr": "Ringo Starr la chante sur Revolver, deux ans avant que le film d'animation n'en reprenne le titre. Les bruitages ont été fabriqués en studio avec des chaînes, des cloches et une baignoire en fer-blanc.",
+      "fun_fact_nl": "Ringo Starr zingt het op Revolver, twee jaar voordat de tekenfilm er zijn naam aan ontleende. De geluidseffecten werden in de studio gemaakt met kettingen, bellen en een blikken teil.",
+      "fun_fact_it": "Ringo Starr la canta in Revolver, due anni prima che il film d'animazione ne prendesse il nome. Gli effetti sonori furono costruiti in studio con catene, campanelli e una tinozza di latta."
+    },
+    {
+      "artist": "Monty Python",
+      "title": "Always Look On The Bright Side Of Life",
+      "year": 1979,
+      "uri": "spotify:track:4DEcdqqKokU7UAE4wCGQEy",
+      "uri_apple_music": "applemusic://track/724459701",
+      "uri_deezer": "deezer://track/3133043",
+      "isrc": "GBAAA7900265",
+      "alt_artists": [
+        "Eric Idle",
+        "The Rutles"
+      ],
+      "fun_fact": "Eric Idle wrote it to be whistled from a cross at the end of Life of Brian. It has since been sung at football grounds and, often enough, at funerals.",
+      "fun_fact_de": "Eric Idle schrieb es, damit es am Ende von Das Leben des Brian vom Kreuz herab gepfiffen wird. Seither wird es in Fußballstadien gesungen und, oft genug, auf Beerdigungen.",
+      "fun_fact_es": "Eric Idle la escribió para que se silbara desde una cruz al final de La vida de Brian. Desde entonces se canta en los estadios de fútbol y, con bastante frecuencia, en los funerales.",
+      "fun_fact_fr": "Eric Idle l'a écrite pour être sifflée depuis une croix à la fin de La Vie de Brian. Depuis, on la chante dans les stades de football et, assez souvent, aux enterrements.",
+      "fun_fact_nl": "Eric Idle schreef het om aan het eind van Life of Brian vanaf een kruis gefloten te worden. Sindsdien wordt het gezongen in voetbalstadions en, vaak genoeg, op begrafenissen.",
+      "fun_fact_it": "Eric Idle la scrisse perché fosse fischiettata da una croce alla fine di Brian di Nazareth. Da allora si canta negli stadi di calcio e, abbastanza spesso, ai funerali."
+    },
+    {
+      "artist": "Gary Portnoy",
+      "title": "Where Everybody Knows Your Name (Cheers Theme)",
+      "year": 1982,
+      "uri": "spotify:track:2uE8l7sar0JT0tZYhrPz8S",
+      "uri_apple_music": "applemusic://track/7197543",
+      "uri_deezer": "deezer://track/2083623",
+      "isrc": "USA560319104",
+      "alt_artists": [
+        "Jonathan Wolff",
+        "Vic Mizzy"
+      ],
+      "fun_fact": "Portnoy and Judy Hart Angelo wrote it after an earlier song for the series was rejected. The bar it describes was modelled on a real one in Boston.",
+      "fun_fact_de": "Portnoy und Judy Hart Angelo schrieben es, nachdem ein früheres Lied für die Serie abgelehnt worden war. Die Kneipe, die es beschreibt, hat ein reales Vorbild in Boston.",
+      "fun_fact_es": "Portnoy y Judy Hart Angelo la escribieron después de que rechazaran una canción anterior para la serie. El bar que describe tiene un modelo real en Boston.",
+      "fun_fact_fr": "Portnoy et Judy Hart Angelo l'ont écrite après le refus d'une première chanson pour la série. Le bar qu'elle décrit a un modèle réel à Boston.",
+      "fun_fact_nl": "Portnoy en Judy Hart Angelo schreven het nadat een eerder lied voor de serie was afgewezen. De kroeg die het beschrijft heeft een echt voorbeeld in Boston.",
+      "fun_fact_it": "Portnoy e Judy Hart Angelo la scrissero dopo che una canzone precedente per la serie era stata rifiutata. Il bar che descrive ha un modello reale a Boston."
+    },
+    {
+      "artist": "Harold Faltermeyer",
+      "title": "Axel F",
+      "year": 1984,
+      "uri": "spotify:track:5w4DKOH3EsOPUuoHXieLtB",
+      "uri_apple_music": "applemusic://track/1458388103",
+      "uri_deezer": "deezer://track/80538212",
+      "isrc": "USMC18416586",
+      "alt_artists": [
+        "Jan Hammer",
+        "Giorgio Moroder"
+      ],
+      "fun_fact": "The Munich-born Faltermeyer built the Beverly Hills Cop theme on a Roland Jupiter-8 and named it after Eddie Murphy's character. It became a hit as an instrumental, which was unusual then and is rarer now.",
+      "fun_fact_de": "Der Münchner Faltermeyer baute das Thema zu Beverly Hills Cop auf einem Roland Jupiter-8 und benannte es nach Eddie Murphys Figur. Es wurde als Instrumentalstück ein Hit — damals ungewöhnlich, heute noch seltener.",
+      "fun_fact_es": "El muniqués Faltermeyer construyó el tema de Superdetective en Hollywood con un Roland Jupiter-8 y lo bautizó con el nombre del personaje de Eddie Murphy. Triunfó como instrumental, algo insólito entonces y aún más raro hoy.",
+      "fun_fact_fr": "Le Munichois Faltermeyer a bâti le thème du Flic de Beverly Hills sur un Roland Jupiter-8 et l'a nommé d'après le personnage d'Eddie Murphy. Il est devenu un tube en instrumental, chose inhabituelle alors et plus rare encore aujourd'hui.",
+      "fun_fact_nl": "De uit München afkomstige Faltermeyer bouwde het thema van Beverly Hills Cop op een Roland Jupiter-8 en noemde het naar het personage van Eddie Murphy. Het werd een hit als instrumentaal, toen ongebruikelijk en nu nog zeldzamer.",
+      "fun_fact_it": "Il monacense Faltermeyer costruì il tema di Beverly Hills Cop su un Roland Jupiter-8 e lo intitolò al personaggio di Eddie Murphy. Divenne un successo da strumentale, cosa insolita allora e ancor più rara oggi."
+    },
+    {
+      "artist": "John Barry",
+      "title": "I Had A Farm (Main Title) - From \"Out Of Africa\"",
+      "year": 1985,
+      "uri": "spotify:track:6qLLYJGpPhHPF7M4o53qJB",
+      "uri_apple_music": "applemusic://track/1440735219",
+      "uri_deezer": "deezer://track/119876610",
+      "isrc": "US3M59781601",
+      "alt_artists": [
+        "Maurice Jarre",
+        "Ennio Morricone"
+      ],
+      "fun_fact": "Barry had already written five Bond scores when he wrote this one, and it won him his fourth Oscar. The theme takes its title from the film's first spoken line.",
+      "fun_fact_de": "Barry hatte schon fünf Bond-Partituren geschrieben, als diese entstand, und sie brachte ihm seinen vierten Oscar. Das Thema trägt den Titel des ersten gesprochenen Satzes im Film.",
+      "fun_fact_es": "Barry ya había escrito cinco bandas sonoras de Bond cuando compuso esta, que le valió su cuarto Óscar. El tema toma su título de la primera frase hablada de la película.",
+      "fun_fact_fr": "Barry avait déjà écrit cinq partitions de Bond quand il a composé celle-ci, qui lui a valu son quatrième Oscar. Le thème tire son titre de la première réplique du film.",
+      "fun_fact_nl": "Barry had al vijf Bond-partituren geschreven toen hij deze componeerde, die hem zijn vierde Oscar opleverde. Het thema ontleent zijn titel aan de eerste gesproken zin van de film.",
+      "fun_fact_it": "Barry aveva già scritto cinque partiture di Bond quando compose questa, che gli valse il quarto Oscar. Il tema prende il titolo dalla prima battuta del film."
+    },
+    {
+      "artist": "Berlin",
+      "title": "Take My Breath Away",
+      "year": 1986,
+      "uri": "spotify:track:15MJ5NThPjj6xhPcts8MiY",
+      "uri_apple_music": "applemusic://track/387194076",
+      "uri_deezer": "deezer://track/7675055",
+      "isrc": "USSM19801613",
+      "alt_artists": [
+        "Kenny Loggins",
+        "Survivor"
+      ],
+      "fun_fact": "Giorgio Moroder and Tom Whitlock wrote the love theme for Top Gun, and it won the Oscar over Kenny Loggins's Danger Zone from the same film.",
+      "fun_fact_de": "Giorgio Moroder und Tom Whitlock schrieben das Liebesthema für Top Gun, und es gewann den Oscar — gegen Kenny Loggins' Danger Zone aus demselben Film.",
+      "fun_fact_es": "Giorgio Moroder y Tom Whitlock escribieron el tema de amor de Top Gun, y ganó el Óscar por delante de Danger Zone de Kenny Loggins, de la misma película.",
+      "fun_fact_fr": "Giorgio Moroder et Tom Whitlock ont écrit le thème d'amour de Top Gun, qui a remporté l'Oscar devant Danger Zone de Kenny Loggins, tiré du même film.",
+      "fun_fact_nl": "Giorgio Moroder en Tom Whitlock schreven het liefdesthema voor Top Gun, en het won de Oscar vóór Danger Zone van Kenny Loggins uit dezelfde film.",
+      "fun_fact_it": "Giorgio Moroder e Tom Whitlock scrissero il tema d'amore di Top Gun, che vinse l'Oscar davanti a Danger Zone di Kenny Loggins, dallo stesso film."
+    },
+    {
+      "artist": "Queen",
+      "title": "Princes Of The Universe",
+      "year": 1986,
+      "uri": "spotify:track:0Uy8lcDHiPDicBQ7rnDgcK",
+      "uri_apple_music": "applemusic://track/6781081254",
+      "uri_deezer": "deezer://track/4091934451",
+      "isrc": "GBUM71103763",
+      "alt_artists": [
+        "Freddie Mercury",
+        "Brian May"
+      ],
+      "fun_fact": "Written for Highlander, a film Queen scored almost entirely. The line about there being only one belongs to the film and has outlived it as a phrase.",
+      "fun_fact_de": "Für Highlander geschrieben, einen Film, den Queen fast vollständig vertonten. Die Zeile davon, dass es nur einen geben kann, stammt aus dem Film und hat ihn als Redewendung überlebt.",
+      "fun_fact_es": "Escrita para Los inmortales, una película cuya música Queen firmó casi por completo. La frase sobre que solo puede quedar uno viene del filme y le ha sobrevivido como dicho.",
+      "fun_fact_fr": "Écrite pour Highlander, un film dont Queen a signé presque toute la musique. La réplique disant qu'il ne peut en rester qu'un vient du film et lui a survécu comme expression.",
+      "fun_fact_nl": "Geschreven voor Highlander, een film die Queen bijna volledig van muziek voorzag. De regel dat er maar één kan zijn komt uit de film en heeft hem als gezegde overleefd.",
+      "fun_fact_it": "Scritta per Highlander, film che i Queen musicarono quasi per intero. La battuta secondo cui ne può restare soltanto uno viene dal film e gli è sopravvissuta come modo di dire."
+    },
+    {
+      "artist": "Danny Elfman",
+      "title": "The Batman Theme",
+      "year": 1989,
+      "uri": "spotify:track:50csT5Qb2qOF7lHdDQ1Sbx",
+      "uri_apple_music": "applemusic://track/41229142",
+      "uri_deezer": "deezer://track/722927",
+      "isrc": "USWB10000074",
+      "alt_artists": [
+        "Hans Zimmer",
+        "Shirley Walker"
+      ],
+      "fun_fact": "Elfman's march for Tim Burton's Batman was carried straight into the animated series that followed, which is why a whole generation knows it from television rather than the cinema.",
+      "fun_fact_de": "Elfmans Marsch für Tim Burtons Batman wurde direkt in die anschließende Zeichentrickserie übernommen — weshalb ihn eine ganze Generation aus dem Fernsehen kennt und nicht aus dem Kino.",
+      "fun_fact_es": "La marcha de Elfman para el Batman de Tim Burton pasó directamente a la serie animada posterior, por lo que toda una generación la conoce por televisión y no por el cine.",
+      "fun_fact_fr": "La marche d'Elfman pour le Batman de Tim Burton est passée telle quelle dans la série animée qui a suivi, ce qui fait que toute une génération la connaît par la télévision et non par le cinéma.",
+      "fun_fact_nl": "Elfmans mars voor Tim Burtons Batman ging rechtstreeks over in de daaropvolgende tekenfilmserie, waardoor een hele generatie hem van televisie kent en niet uit de bioscoop.",
+      "fun_fact_it": "La marcia di Elfman per il Batman di Tim Burton passò direttamente nella serie animata successiva, ed è per questo che un'intera generazione la conosce dalla televisione e non dal cinema."
+    },
+    {
+      "artist": "DJ Jazzy Jeff & The Fresh Prince",
+      "title": "The Fresh Prince of Bel-Air",
+      "year": 1990,
+      "uri": "spotify:track:0UREO3QWbXJW3gOUXpK1am",
+      "uri_apple_music": "applemusic://track/206201765",
+      "uri_deezer": "deezer://track/13138687",
+      "isrc": "USJI19000013",
+      "alt_artists": [
+        "Run-DMC",
+        "Kid 'n Play"
+      ],
+      "fun_fact": "The theme tells the show's premise in under a minute, which was the point: a sitcom whose opening credits are also its exposition. Will Smith raps his own backstory.",
+      "fun_fact_de": "Die Titelmelodie erzählt die Prämisse der Serie in weniger als einer Minute — genau das war die Absicht: ein Vorspann, der zugleich die Vorgeschichte ist. Will Smith rappt seine eigene.",
+      "fun_fact_es": "La sintonía cuenta la premisa de la serie en menos de un minuto, y esa era la idea: unos créditos iniciales que son también la exposición. Will Smith rapea su propia historia previa.",
+      "fun_fact_fr": "Le générique raconte le principe de la série en moins d'une minute, et c'était l'intention : un générique qui fait aussi office d'exposition. Will Smith rappe sa propre histoire.",
+      "fun_fact_nl": "De tune vertelt de premisse van de serie in minder dan een minuut, en dat was de bedoeling: een titelsequentie die tegelijk de voorgeschiedenis is. Will Smith rapt zijn eigen verhaal.",
+      "fun_fact_it": "La sigla racconta la premessa della serie in meno di un minuto, ed era proprio l'intento: titoli di testa che sono anche l'antefatto. Will Smith rappa il proprio passato."
+    },
+    {
+      "artist": "Angelo Badalamenti",
+      "title": "Twin Peaks Theme",
+      "year": 1990,
+      "uri": "spotify:track:7FO7BolIZsl1o8DDSjeOph",
+      "uri_apple_music": "applemusic://track/374382372",
+      "uri_deezer": "deezer://track/7337260",
+      "isrc": "USWB10102633",
+      "alt_artists": [
+        "Julee Cruise",
+        "Michael Nyman"
+      ],
+      "fun_fact": "David Lynch sat beside Badalamenti and described a dark wood while the composer played. What came out of that session became the sound of the series and won a Grammy.",
+      "fun_fact_de": "David Lynch saß neben Badalamenti und beschrieb einen dunklen Wald, während der Komponist spielte. Was aus dieser Sitzung entstand, wurde der Klang der Serie und gewann einen Grammy.",
+      "fun_fact_es": "David Lynch se sentó junto a Badalamenti y le describió un bosque oscuro mientras el compositor tocaba. Lo que salió de aquella sesión se convirtió en el sonido de la serie y ganó un Grammy.",
+      "fun_fact_fr": "David Lynch s'est assis à côté de Badalamenti et lui a décrit une forêt sombre pendant qu'il jouait. Ce qui est sorti de cette séance est devenu le son de la série et a remporté un Grammy.",
+      "fun_fact_nl": "David Lynch zat naast Badalamenti en beschreef een donker bos terwijl de componist speelde. Wat uit die sessie kwam werd het geluid van de serie en won een Grammy.",
+      "fun_fact_it": "David Lynch sedette accanto a Badalamenti e gli descrisse un bosco scuro mentre il compositore suonava. Ciò che nacque da quella seduta divenne il suono della serie e vinse un Grammy."
+    },
+    {
+      "artist": "Alan Silvestri",
+      "title": "Forrest Gump Suite",
+      "year": 1994,
+      "uri": "spotify:track:655OjsI6LbHdo3565qEfbE",
+      "uri_apple_music": "applemusic://track/418557001",
+      "uri_deezer": "deezer://track/17479922",
+      "isrc": "USLIC0601869",
+      "alt_artists": [
+        "Thomas Newman",
+        "James Horner"
+      ],
+      "fun_fact": "The feather theme is a piano line that never resolves the way a listener expects, which is the film's argument about chance in a single melody.",
+      "fun_fact_de": "Das Federthema ist eine Klavierlinie, die sich nie so auflöst, wie man es erwartet — die Aussage des Films über den Zufall, in eine einzige Melodie gefasst.",
+      "fun_fact_es": "El tema de la pluma es una línea de piano que nunca resuelve como uno espera: el argumento de la película sobre el azar, condensado en una sola melodía.",
+      "fun_fact_fr": "Le thème de la plume est une ligne de piano qui ne se résout jamais comme on l'attend : le propos du film sur le hasard, tenu en une seule mélodie.",
+      "fun_fact_nl": "Het verenthema is een pianolijn die zich nooit oplost zoals je verwacht — het betoog van de film over toeval, gevat in één melodie.",
+      "fun_fact_it": "Il tema della piuma è una linea di pianoforte che non si risolve mai come ci si aspetta: la tesi del film sul caso, racchiusa in una sola melodia."
+    },
+    {
+      "artist": "Nicola Piovani",
+      "title": "La vita è bella",
+      "year": 1997,
+      "uri": "spotify:track:7ob7mrVX7FEQIT2gSClVtA",
+      "uri_apple_music": "applemusic://track/437514899",
+      "uri_deezer": "deezer://track/11554108",
+      "isrc": "IT0681100457",
+      "alt_artists": [
+        "Ennio Morricone",
+        "Nino Rota"
+      ],
+      "fun_fact": "Piovani won the Oscar for a score that has to be light enough for a father's game and heavy enough for what the game is hiding.",
+      "fun_fact_de": "Piovani gewann den Oscar für eine Musik, die leicht genug für das Spiel eines Vaters sein muss und schwer genug für das, was dieses Spiel verbirgt.",
+      "fun_fact_es": "Piovani ganó el Óscar por una partitura que ha de ser lo bastante ligera para el juego de un padre y lo bastante grave para lo que ese juego esconde.",
+      "fun_fact_fr": "Piovani a remporté l'Oscar pour une partition qui doit être assez légère pour le jeu d'un père et assez lourde pour ce que ce jeu dissimule.",
+      "fun_fact_nl": "Piovani won de Oscar voor muziek die licht genoeg moet zijn voor het spel van een vader en zwaar genoeg voor wat dat spel verbergt.",
+      "fun_fact_it": "Piovani vinse l'Oscar per una partitura che deve essere abbastanza leggera per il gioco di un padre e abbastanza grave per ciò che quel gioco nasconde."
+    },
+    {
+      "artist": "Hans Zimmer",
+      "title": "Now We Are Free",
+      "year": 2000,
+      "uri": "spotify:track:1elGwF4VwkwglV4nCBPJtv",
+      "uri_apple_music": "applemusic://track/1440563274",
+      "uri_deezer": "deezer://track/2919225",
+      "isrc": "USUMC0110060",
+      "alt_artists": [
+        "Lisa Gerrard",
+        "Klaus Badelt"
+      ],
+      "fun_fact": "Lisa Gerrard sings the closing piece of Gladiator in no language at all — syllables chosen for sound rather than meaning, a method she had used for years with Dead Can Dance.",
+      "fun_fact_de": "Lisa Gerrard singt das Schlussstück von Gladiator in gar keiner Sprache — Silben nach Klang statt nach Bedeutung gewählt, eine Methode, die sie jahrelang bei Dead Can Dance benutzt hatte.",
+      "fun_fact_es": "Lisa Gerrard canta la pieza final de Gladiator en ningún idioma: sílabas elegidas por su sonido y no por su significado, un método que llevaba años usando con Dead Can Dance.",
+      "fun_fact_fr": "Lisa Gerrard chante le morceau final de Gladiator dans aucune langue — des syllabes choisies pour leur son et non leur sens, une méthode qu'elle pratiquait depuis des années avec Dead Can Dance.",
+      "fun_fact_nl": "Lisa Gerrard zingt het slotstuk van Gladiator in geen enkele taal — lettergrepen gekozen om hun klank en niet om hun betekenis, een methode die ze jarenlang bij Dead Can Dance gebruikte.",
+      "fun_fact_it": "Lisa Gerrard canta il brano finale del Gladiatore in nessuna lingua: sillabe scelte per il suono e non per il significato, un metodo che usava da anni con i Dead Can Dance."
+    },
+    {
+      "artist": "Kyle Dixon & Michael Stein",
+      "title": "Stranger Things",
+      "year": 2016,
+      "uri": "spotify:track:0kwuKfWntoGh0EWyYb7Mpf",
+      "uri_apple_music": "applemusic://track/1651958175",
+      "uri_deezer": "deezer://track/130871168",
+      "isrc": "USLS51683401",
+      "alt_artists": [
+        "John Carpenter",
+        "Tangerine Dream"
+      ],
+      "fun_fact": "The two were in a synthesiser band in Austin when the Duffer brothers asked them for a title sequence. The arpeggio is a deliberate echo of John Carpenter's scores from the early eighties.",
+      "fun_fact_de": "Die beiden spielten in einer Synthesizer-Band in Austin, als die Duffer-Brüder sie um einen Vorspann baten. Das Arpeggio ist ein bewusstes Echo auf John Carpenters Musiken der frühen Achtziger.",
+      "fun_fact_es": "Los dos tocaban en una banda de sintetizadores en Austin cuando los hermanos Duffer les pidieron una cabecera. El arpegio es un eco deliberado de las partituras de John Carpenter de principios de los ochenta.",
+      "fun_fact_fr": "Tous deux jouaient dans un groupe de synthétiseurs à Austin quand les frères Duffer leur ont demandé un générique. L'arpège est un écho délibéré des partitions de John Carpenter du début des années quatre-vingt.",
+      "fun_fact_nl": "De twee speelden in een synthesizerband in Austin toen de gebroeders Duffer hun om een titelsequentie vroegen. Het arpeggio is een bewuste echo van John Carpenters muziek uit de vroege jaren tachtig.",
+      "fun_fact_it": "I due suonavano in una band di sintetizzatori ad Austin quando i fratelli Duffer chiesero loro una sigla. L'arpeggio è un'eco voluta delle partiture di John Carpenter dei primi anni Ottanta."
+    },
+    {
+      "artist": "Kendrick Lamar",
+      "title": "All The Stars (with SZA)",
+      "year": 2018,
+      "uri": "spotify:track:3GCdLUSnKSMJhs4Tj6CV3s",
+      "uri_apple_music": "applemusic://track/1773138034",
+      "uri_deezer": "deezer://track/446082632",
+      "isrc": "USUM71713947",
+      "alt_artists": [
+        "SZA",
+        "The Weeknd"
+      ],
+      "fun_fact": "Lamar curated the whole Black Panther album rather than writing a single song for it, which was unusual for a superhero film and set a pattern others followed.",
+      "fun_fact_de": "Lamar kuratierte das gesamte Black-Panther-Album, statt ein einzelnes Lied dafür zu schreiben — für einen Superheldenfilm ungewöhnlich und seither vielfach nachgeahmt.",
+      "fun_fact_es": "Lamar comisarió el álbum entero de Black Panther en lugar de escribir una sola canción, algo insólito en una película de superhéroes que después muchos imitaron.",
+      "fun_fact_fr": "Lamar a supervisé l'album entier de Black Panther plutôt que d'écrire une seule chanson, chose inhabituelle pour un film de super-héros et souvent imitée depuis.",
+      "fun_fact_nl": "Lamar stelde het hele Black Panther-album samen in plaats van er één lied voor te schrijven, wat ongebruikelijk was voor een superheldenfilm en daarna veel navolging kreeg.",
+      "fun_fact_it": "Lamar curò l'intero album di Black Panther invece di scrivere una sola canzone: cosa insolita per un film di supereroi, poi molto imitata."
     }
   ],
   "movie_quiz_enabled": true
