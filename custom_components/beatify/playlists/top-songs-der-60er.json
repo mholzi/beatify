@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.16",
+  "version": "1.17",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -2351,6 +2351,164 @@
       "fun_fact_es": "Un clásico de los 70 (1969).",
       "fun_fact_fr": "Un classique des années 70 (1969).",
       "fun_fact_nl": "Een 70's-klassieker (1969)."
+    },
+    {
+      "year": 1960,
+      "uri": "spotify:track:391TUcoPonqYykPkSZ5Z9U",
+      "artist": "The Drifters",
+      "title": "Save the Last Dance for Me",
+      "alt_artists": [
+        "Ben E. King",
+        "The Platters",
+        "The Coasters"
+      ],
+      "isrc": null,
+      "uri_apple_music": "applemusic://track/159362636",
+      "uri_deezer": null,
+      "fun_fact": "Lyricist Doc Pomus was left unable to walk by childhood polio and wrote the words at his own wedding, watching from his chair while his bride danced with the guests.",
+      "fun_fact_de": "Textdichter Doc Pomus konnte nach einer Polio-Erkrankung in der Kindheit nicht gehen und schrieb die Zeilen auf seiner eigenen Hochzeit, während er vom Stuhl aus zusah, wie seine Braut mit den Gästen tanzte.",
+      "fun_fact_es": "El letrista Doc Pomus no podía caminar tras sufrir polio de niño y escribió la letra en su propia boda, mirando desde su silla cómo su novia bailaba con los invitados.",
+      "fun_fact_fr": "Le parolier Doc Pomus ne pouvait plus marcher après une poliomyélite dans l'enfance et a écrit ces mots lors de son propre mariage, regardant depuis sa chaise sa femme danser avec les invités.",
+      "fun_fact_nl": "Tekstschrijver Doc Pomus kon na polio in zijn jeugd niet lopen en schreef de tekst op zijn eigen bruiloft, terwijl hij vanaf zijn stoel toekeek hoe zijn bruid met de gasten danste.",
+      "fun_fact_it": "Il paroliere Doc Pomus non poteva camminare dopo la poliomielite avuta da bambino e scrisse il testo al proprio matrimonio, guardando dalla sedia la sposa ballare con gli invitati."
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:7FS541dJh3iQAEXEZoDhE6",
+      "artist": "Sam Cooke",
+      "title": "Twistin' the Night Away",
+      "alt_artists": [
+        "Chubby Checker",
+        "Otis Redding",
+        "Rod Stewart"
+      ],
+      "isrc": "USRC16107214",
+      "uri_apple_music": "applemusic://track/497770006",
+      "uri_deezer": "deezer://track/71190932",
+      "fun_fact": "Cooke wrote it after watching the Twist craze sweep New York nightclubs, and he sings it as a reporter would, describing dancer after dancer from the edge of the floor.",
+      "fun_fact_de": "Cooke schrieb den Song, nachdem er den Twist-Rausch durch die New Yorker Clubs hatte fegen sehen, und singt ihn wie ein Reporter — Tänzer für Tänzer vom Rand der Tanzfläche beschrieben.",
+      "fun_fact_es": "Cooke lo escribió tras ver la fiebre del twist arrasar los clubes de Nueva York, y lo canta como un reportero, describiendo bailarín tras bailarín desde el borde de la pista.",
+      "fun_fact_fr": "Cooke l'a écrite après avoir vu la folie du twist s'emparer des clubs new-yorkais, et il la chante comme un reporter, décrivant danseur après danseur depuis le bord de la piste.",
+      "fun_fact_nl": "Cooke schreef het nadat hij de twistrage door de New Yorkse clubs had zien razen, en hij zingt het als een verslaggever die vanaf de rand van de dansvloer danser na danser beschrijft.",
+      "fun_fact_it": "Cooke la scrisse dopo aver visto la febbre del twist travolgere i locali di New York, e la canta come un cronista, descrivendo un ballerino dopo l'altro dal bordo della pista."
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:5ATFGyF7RbheJ76neYI55u",
+      "artist": "Bruce Channel",
+      "title": "Hey! Baby",
+      "alt_artists": [
+        "Delbert McClinton",
+        "Bobby Vinton"
+      ],
+      "isrc": "PL90Y2463586",
+      "uri_apple_music": "applemusic://track/254939266",
+      "uri_deezer": "deezer://track/2822054572",
+      "fun_fact": "The harmonica riff is played by Delbert McClinton, who showed John Lennon how to get that sound on a British tour — months later it opened the Beatles' 'Love Me Do'.",
+      "fun_fact_de": "Das Mundharmonika-Riff spielt Delbert McClinton, der John Lennon auf einer England-Tournee zeigte, wie man diesen Ton hinbekommt — Monate später eröffnete er 'Love Me Do' der Beatles.",
+      "fun_fact_es": "El riff de armónica lo toca Delbert McClinton, que enseñó a John Lennon a lograr ese sonido durante una gira británica; meses después abría 'Love Me Do' de los Beatles.",
+      "fun_fact_fr": "Le riff d'harmonica est joué par Delbert McClinton, qui a montré à John Lennon comment obtenir ce son lors d'une tournée britannique — quelques mois plus tard, il ouvrait 'Love Me Do' des Beatles.",
+      "fun_fact_nl": "Het mondharmonicariff wordt gespeeld door Delbert McClinton, die John Lennon tijdens een Britse tournee liet zien hoe je die klank krijgt — maanden later opende hij 'Love Me Do' van de Beatles.",
+      "fun_fact_it": "Il riff di armonica è di Delbert McClinton, che durante una tournée britannica mostrò a John Lennon come ottenere quel suono: mesi dopo apriva 'Love Me Do' dei Beatles."
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:5J3Mf6dyqeGy67yuQ7ql9B",
+      "artist": "The Beatles",
+      "title": "I Want To Hold Your Hand",
+      "alt_artists": [
+        "The Rolling Stones",
+        "The Hollies",
+        "The Searchers"
+      ],
+      "isrc": "GBAYE0601549",
+      "uri_apple_music": "applemusic://track/1468023761",
+      "uri_deezer": "deezer://track/126848577",
+      "fun_fact": "This was the record that broke the Beatles in America — number one for seven weeks and the reason 73 million people switched on the Ed Sullivan Show in February 1964.",
+      "fun_fact_de": "Mit dieser Platte schafften die Beatles den Durchbruch in Amerika — sieben Wochen auf Platz eins und der Grund, warum im Februar 1964 73 Millionen Menschen die Ed Sullivan Show einschalteten.",
+      "fun_fact_es": "Fue el disco con el que los Beatles conquistaron América: siete semanas en el número uno y la razón por la que 73 millones de personas vieron el Ed Sullivan Show en febrero de 1964.",
+      "fun_fact_fr": "C'est le disque qui a lancé les Beatles en Amérique — sept semaines à la première place et la raison pour laquelle 73 millions de personnes ont regardé le Ed Sullivan Show en février 1964.",
+      "fun_fact_nl": "Dit was de plaat waarmee de Beatles Amerika veroverden — zeven weken op nummer één en de reden dat in februari 1964 73 miljoen mensen naar de Ed Sullivan Show keken.",
+      "fun_fact_it": "Fu il disco che sfondò per i Beatles in America: sette settimane al primo posto e il motivo per cui nel febbraio 1964 73 milioni di persone accesero l'Ed Sullivan Show."
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:36NX19wOQQEYyULfnuLnWc",
+      "artist": "The McCoys",
+      "title": "Hang on Sloopy",
+      "alt_artists": [
+        "The Vibrations",
+        "Rick Derringer",
+        "The Yardbirds"
+      ],
+      "isrc": "USSM11501608",
+      "uri_apple_music": "applemusic://track/1045178501",
+      "uri_deezer": "deezer://track/109700280",
+      "fun_fact": "Ohio made it the official state rock song in 1985, and the Ohio State marching band still plays it in the fourth quarter of every home game.",
+      "fun_fact_de": "Ohio erklärte den Song 1985 zum offiziellen Rocksong des Bundesstaates, und die Marching Band der Ohio State spielt ihn bis heute im letzten Viertel jedes Heimspiels.",
+      "fun_fact_es": "Ohio la declaró canción de rock oficial del estado en 1985, y la banda de la Ohio State la sigue tocando en el último cuarto de cada partido en casa.",
+      "fun_fact_fr": "L'Ohio en a fait sa chanson rock officielle en 1985, et la fanfare d'Ohio State la joue encore au dernier quart-temps de chaque match à domicile.",
+      "fun_fact_nl": "Ohio maakte het in 1985 tot officiële rocksong van de staat, en de marching band van Ohio State speelt het nog steeds in het laatste kwart van elke thuiswedstrijd.",
+      "fun_fact_it": "L'Ohio la dichiarò canzone rock ufficiale dello stato nel 1985, e la banda della Ohio State la suona ancora nell'ultimo quarto di ogni partita in casa."
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:26rqwzpocGyyW0Zn0Tb704",
+      "artist": "Herman's Hermits",
+      "title": "No Milk Today",
+      "alt_artists": [
+        "The Hollies",
+        "Gerry and the Pacemakers"
+      ],
+      "isrc": "GBAYE6600196",
+      "uri_apple_music": "applemusic://track/1033580686",
+      "uri_deezer": "deezer://track/3242640",
+      "fun_fact": "Graham Gouldman, later of 10cc, built the lyric around the note left out for the milkman — a small domestic ritual standing in for someone who has gone.",
+      "fun_fact_de": "Graham Gouldman, später bei 10cc, baute den Text um das Zettelchen für den Milchmann herum — ein kleines Alltagsritual, das für jemanden steht, der gegangen ist.",
+      "fun_fact_es": "Graham Gouldman, más tarde en 10cc, construyó la letra alrededor de la nota dejada al lechero: un pequeño ritual doméstico que representa a alguien que se ha ido.",
+      "fun_fact_fr": "Graham Gouldman, plus tard chez 10cc, a bâti le texte autour du mot laissé au laitier — un petit rituel domestique qui tient lieu de quelqu'un qui est parti.",
+      "fun_fact_nl": "Graham Gouldman, later van 10cc, bouwde de tekst rond het briefje voor de melkboer — een klein huiselijk ritueel dat staat voor iemand die weg is.",
+      "fun_fact_it": "Graham Gouldman, poi nei 10cc, costruì il testo attorno al biglietto lasciato al lattaio: un piccolo rito domestico che sta per qualcuno che se n'è andato."
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:6RJK553YhstRzyKA4mug09",
+      "artist": "The Box Tops",
+      "title": "The Letter",
+      "alt_artists": [
+        "Joe Cocker",
+        "Alex Chilton",
+        "The Arbors"
+      ],
+      "isrc": "USAR17200009",
+      "uri_apple_music": "applemusic://track/284043488",
+      "uri_deezer": "deezer://track/1093255",
+      "fun_fact": "Alex Chilton was sixteen when he growled the vocal, and at one minute fifty-eight the song was a number one hit shorter than most B-sides.",
+      "fun_fact_de": "Alex Chilton war sechzehn, als er den Gesang hinknurrte, und mit einer Minute achtundfünfzig war der Nummer-eins-Hit kürzer als die meisten B-Seiten.",
+      "fun_fact_es": "Alex Chilton tenía dieciséis años cuando gruñó esa voz, y con un minuto cincuenta y ocho el número uno duraba menos que la mayoría de las caras B.",
+      "fun_fact_fr": "Alex Chilton avait seize ans quand il a grogné ce chant, et avec une minute cinquante-huit, ce numéro un était plus court que la plupart des faces B.",
+      "fun_fact_nl": "Alex Chilton was zestien toen hij die zang eruit gromde, en met één minuut achtenvijftig was de nummer-één-hit korter dan de meeste B-kanten.",
+      "fun_fact_it": "Alex Chilton aveva sedici anni quando ringhiò quella voce, e con un minuto e cinquantotto quel numero uno durava meno della maggior parte dei lati B."
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:6ek9SiEj5a65WIs2EV7qiM",
+      "artist": "Dusty Springfield",
+      "title": "Son Of A Preacher Man",
+      "alt_artists": [
+        "Aretha Franklin",
+        "Janis Joplin",
+        "Bobbie Gentry"
+      ],
+      "isrc": "GBF086800754",
+      "uri_apple_music": "applemusic://track/1443719085",
+      "uri_deezer": "deezer://track/1104538",
+      "fun_fact": "It was written for Aretha Franklin, who turned it down; she recorded it only after Springfield's version had already become the definitive one.",
+      "fun_fact_de": "Der Song war für Aretha Franklin geschrieben, die ihn ablehnte; sie nahm ihn erst auf, als Springfields Fassung längst die maßgebliche war.",
+      "fun_fact_es": "Fue escrita para Aretha Franklin, que la rechazó; solo la grabó cuando la versión de Springfield ya se había convertido en la definitiva.",
+      "fun_fact_fr": "Elle a été écrite pour Aretha Franklin, qui l'a refusée ; elle ne l'a enregistrée qu'une fois la version de Springfield devenue la référence.",
+      "fun_fact_nl": "Het was geschreven voor Aretha Franklin, die het afwees; ze nam het pas op toen Springfields versie allang de definitieve was.",
+      "fun_fact_it": "Fu scritta per Aretha Franklin, che la rifiutò; la incise solo quando la versione di Springfield era ormai diventata quella definitiva."
     }
   ]
 }
