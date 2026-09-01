@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "salsa",
     "merengue",
@@ -2620,7 +2620,8 @@
       "fun_fact_nl": "\"Las Avispas\" van Juan Luis Guerra 4.40, voor het eerst uitgebracht in 2004.",
       "uri_deezer": "deezer://track/705003522",
       "uri_apple_music": "applemusic://track/1470329883",
-      "fun_fact_it": "«Las Avispas» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2004."
+      "fun_fact_it": "«Las Avispas» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2004.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ihZQAh4jr4M"
     },
     {
       "year": 1989,
@@ -2635,7 +2636,8 @@
       "fun_fact_nl": "\"Ojala Que Llueva Café\" van Juan Luis Guerra 4.40, voor het eerst uitgebracht in 1989 op het album \"Ojalá Que Llueva Café\".",
       "uri_deezer": "deezer://track/1857134427",
       "uri_apple_music": "applemusic://track/19468935",
-      "fun_fact_it": "«Ojala Que Llueva Café» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 1989 nell'album «Ojalá Que Llueva Café»."
+      "fun_fact_it": "«Ojala Que Llueva Café» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 1989 nell'album «Ojalá Que Llueva Café».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=suQC8d-YkeU"
     },
     {
       "year": 2013,
@@ -2650,7 +2652,8 @@
       "fun_fact_nl": "\"Visa Para Un Sueño - Live - Estadio Olímpico De República Dominicana/2012\" van Juan Luis Guerra 4.40, voor het eerst uitgebracht in 2013 op het album \"Asondeguerra Tour (En Vivo Estadio Olímpico De República Dominicana/2012)\".",
       "uri_deezer": "deezer://track/66674559",
       "uri_apple_music": "applemusic://track/1831094444",
-      "fun_fact_it": "«Visa Para Un Sueño - Live - Estadio Olímpico De República Dominicana/2012» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2013 nell'album «Asondeguerra Tour (En Vivo Estadio Olímpico De República Dominicana/2012)»."
+      "fun_fact_it": "«Visa Para Un Sueño - Live - Estadio Olímpico De República Dominicana/2012» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2013 nell'album «Asondeguerra Tour (En Vivo Estadio Olímpico De República Dominicana/2012)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=py5lONtuw2A"
     },
     {
       "year": 1998,
@@ -2665,7 +2668,8 @@
       "fun_fact_nl": "\"Tu Sonrisa\" van Elvis Crespo, voor het eerst uitgebracht in 1998 op het album \"Pintame\".",
       "uri_deezer": "deezer://track/557092",
       "uri_apple_music": "applemusic://track/187429849",
-      "fun_fact_it": "«Tu Sonrisa» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Pintame»."
+      "fun_fact_it": "«Tu Sonrisa» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Pintame».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3CqNeJLqvL0"
     },
     {
       "year": 1995,
@@ -2680,7 +2684,8 @@
       "fun_fact_nl": "\"Píntame\" van Elvis Crespo, voor het eerst uitgebracht in 1995 op het album \"Pintame\".",
       "uri_deezer": "deezer://track/557079",
       "uri_apple_music": "applemusic://track/321313238",
-      "fun_fact_it": "«Píntame» di Elvis Crespo, pubblicata per la prima volta nel 1995 nell'album «Pintame»."
+      "fun_fact_it": "«Píntame» di Elvis Crespo, pubblicata per la prima volta nel 1995 nell'album «Pintame».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZemZjPCXe0A"
     },
     {
       "year": 1998,
@@ -2695,7 +2700,8 @@
       "fun_fact_nl": "\"Princesita\" van Elvis Crespo, voor het eerst uitgebracht in 1998 op het album \"Dos Clásicos\".",
       "uri_deezer": "deezer://track/10066285",
       "uri_apple_music": "applemusic://track/187429781",
-      "fun_fact_it": "«Princesita» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Dos Clásicos»."
+      "fun_fact_it": "«Princesita» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Dos Clásicos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pfEf7i9uMPU"
     },
     {
       "year": 1998,
@@ -2710,7 +2716,8 @@
       "fun_fact_nl": "\"Luna Llena\" van Elvis Crespo, voor het eerst uitgebracht in 1998 op het album \"Suavemente\".",
       "uri_deezer": "deezer://track/13208886",
       "uri_apple_music": "applemusic://track/187429723",
-      "fun_fact_it": "«Luna Llena» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Suavemente»."
+      "fun_fact_it": "«Luna Llena» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Suavemente».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9EtC8zBHEIc"
     },
     {
       "year": 1998,
@@ -2725,7 +2732,8 @@
       "fun_fact_nl": "\"Suavemente\" van Elvis Crespo, voor het eerst uitgebracht in 1998 op het album \"Pintame\".",
       "uri_deezer": "deezer://track/557093",
       "uri_apple_music": "applemusic://track/187429633",
-      "fun_fact_it": "«Suavemente» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Pintame»."
+      "fun_fact_it": "«Suavemente» di Elvis Crespo, pubblicata per la prima volta nel 1998 nell'album «Pintame».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WPiEbYSF9kE"
     },
     {
       "year": 1997,
@@ -2740,7 +2748,8 @@
       "fun_fact_nl": "\"Procura\" van ChiChi Peralta, voor het eerst uitgebracht in 1997 op het album \"Pa' Otro La 'O\".",
       "uri_deezer": "deezer://track/833443452",
       "uri_apple_music": "applemusic://track/1389774337",
-      "fun_fact_it": "«Procura» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O»."
+      "fun_fact_it": "«Procura» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pry-ZU6StYk"
     },
     {
       "year": 1997,
@@ -2755,7 +2764,8 @@
       "fun_fact_nl": "\"Amor Narcótico\" van ChiChi Peralta, voor het eerst uitgebracht in 1997 op het album \"Pa' Otro La 'O\".",
       "uri_deezer": "deezer://track/833443392",
       "uri_apple_music": "applemusic://track/1389774000",
-      "fun_fact_it": "«Amor Narcótico» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O»."
+      "fun_fact_it": "«Amor Narcótico» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QMt7TWvY8VQ"
     },
     {
       "year": 1997,
@@ -2770,7 +2780,8 @@
       "fun_fact_nl": "\"La Ciguapa\" van ChiChi Peralta, voor het eerst uitgebracht in 1997 op het album \"Pa' Otro La 'O\".",
       "uri_deezer": "deezer://track/833443402",
       "uri_apple_music": "applemusic://track/1389774004",
-      "fun_fact_it": "«La Ciguapa» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O»."
+      "fun_fact_it": "«La Ciguapa» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nsX0sacEaug"
     },
     {
       "year": 1997,
@@ -2785,7 +2796,8 @@
       "fun_fact_nl": "\"Me Enamoré\" van ChiChi Peralta, voor het eerst uitgebracht in 1997 op het album \"Pa' Otro La 'O\".",
       "uri_deezer": "deezer://track/833443472",
       "uri_apple_music": "applemusic://track/1389774345",
-      "fun_fact_it": "«Me Enamoré» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O»."
+      "fun_fact_it": "«Me Enamoré» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OwIBf1x_3EA"
     },
     {
       "year": 1997,
@@ -2800,7 +2812,8 @@
       "fun_fact_nl": "\"Limón Con Sal\" van ChiChi Peralta, voor het eerst uitgebracht in 1997 op het album \"Pa' Otro La 'O\".",
       "uri_deezer": "deezer://track/833443482",
       "uri_apple_music": "applemusic://track/1389774355",
-      "fun_fact_it": "«Limón Con Sal» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O»."
+      "fun_fact_it": "«Limón Con Sal» di ChiChi Peralta, pubblicata per la prima volta nel 1997 nell'album «Pa' Otro La 'O».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RXYiO4vyaO0"
     },
     {
       "year": 1999,
@@ -2815,7 +2828,8 @@
       "fun_fact_nl": "\"A Puro Dolor\" van Son By Four, voor het eerst uitgebracht in 1999 op het album \"Son By 4\".",
       "uri_deezer": "deezer://track/13248020",
       "uri_apple_music": "applemusic://track/259567852",
-      "fun_fact_it": "«A Puro Dolor» di Son By Four, pubblicata per la prima volta nel 1999 nell'album «Son By 4»."
+      "fun_fact_it": "«A Puro Dolor» di Son By Four, pubblicata per la prima volta nel 1999 nell'album «Son By 4».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kAKVT1HWNsg"
     },
     {
       "year": 2000,
@@ -2830,7 +2844,8 @@
       "fun_fact_nl": "\"Pegame Tu Vicio\" van Eddy Herrera, voor het eerst uitgebracht in 2000 op het album \"Pegame Tu Vicio\".",
       "uri_deezer": "deezer://track/70970558",
       "uri_apple_music": "applemusic://track/20842031",
-      "fun_fact_it": "«Pegame Tu Vicio» di Eddy Herrera, pubblicata per la prima volta nel 2000 nell'album «Pegame Tu Vicio»."
+      "fun_fact_it": "«Pegame Tu Vicio» di Eddy Herrera, pubblicata per la prima volta nel 2000 nell'album «Pegame Tu Vicio».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yWSQxGppcFA"
     },
     {
       "year": 2000,
@@ -2845,7 +2860,8 @@
       "fun_fact_nl": "\"Tu Eres Ajena\" van Eddy Herrera, voor het eerst uitgebracht in 2000.",
       "uri_deezer": "deezer://track/11125329",
       "uri_apple_music": "applemusic://track/988533917",
-      "fun_fact_it": "«Tu Eres Ajena» di Eddy Herrera, pubblicata per la prima volta nel 2000."
+      "fun_fact_it": "«Tu Eres Ajena» di Eddy Herrera, pubblicata per la prima volta nel 2000.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uzU3x_egiEk"
     },
     {
       "year": 2009,
@@ -2860,7 +2876,8 @@
       "fun_fact_nl": "\"A Dormir Juntitos - Liz featuring Eddy Herrera\" van Eddy Herrera, voor het eerst uitgebracht in 2009 op het album \"Aqui Esperandote (2022 Remastered)\".",
       "uri_deezer": "deezer://track/2261594037",
       "uri_apple_music": "applemusic://track/1685522015",
-      "fun_fact_it": "«A Dormir Juntitos - Liz featuring Eddy Herrera» di Eddy Herrera, pubblicata per la prima volta nel 2009 nell'album «Aqui Esperandote (2022 Remastered)»."
+      "fun_fact_it": "«A Dormir Juntitos - Liz featuring Eddy Herrera» di Eddy Herrera, pubblicata per la prima volta nel 2009 nell'album «Aqui Esperandote (2022 Remastered)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LDyPMEKct4Q"
     },
     {
       "year": 2002,
@@ -2875,7 +2892,8 @@
       "fun_fact_nl": "\"Un Idiota\" van Eddy Herrera, voor het eerst uitgebracht in 2002 op het album \"Para Siempre\".",
       "uri_deezer": "deezer://track/10963842",
       "uri_apple_music": "applemusic://track/472096761",
-      "fun_fact_it": "«Un Idiota» di Eddy Herrera, pubblicata per la prima volta nel 2002 nell'album «Para Siempre»."
+      "fun_fact_it": "«Un Idiota» di Eddy Herrera, pubblicata per la prima volta nel 2002 nell'album «Para Siempre».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wV0kCNvcLNM"
     },
     {
       "year": 2001,
@@ -2890,7 +2908,8 @@
       "fun_fact_nl": "\"Como Llora Mi Alma\" van Eddy Herrera, voor het eerst uitgebracht in 2001 op het album \"Pégame Tu Vicio\".",
       "uri_deezer": "deezer://track/741113902",
       "uri_apple_music": "applemusic://track/1478012744",
-      "fun_fact_it": "«Como Llora Mi Alma» di Eddy Herrera, pubblicata per la prima volta nel 2001 nell'album «Pégame Tu Vicio»."
+      "fun_fact_it": "«Como Llora Mi Alma» di Eddy Herrera, pubblicata per la prima volta nel 2001 nell'album «Pégame Tu Vicio».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PePGIiVK0wo"
     },
     {
       "year": 2005,
@@ -2905,7 +2924,8 @@
       "fun_fact_nl": "\"Como Hago\" van Eddy Herrera, voor het eerst uitgebracht in 2005 op het album \"Pégame Tu Vicio\".",
       "uri_deezer": "deezer://track/741113882",
       "uri_apple_music": "applemusic://track/121473101",
-      "fun_fact_it": "«Como Hago» di Eddy Herrera, pubblicata per la prima volta nel 2005 nell'album «Pégame Tu Vicio»."
+      "fun_fact_it": "«Como Hago» di Eddy Herrera, pubblicata per la prima volta nel 2005 nell'album «Pégame Tu Vicio».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rcKxorngXWs"
     },
     {
       "year": 1990,
@@ -2920,7 +2940,8 @@
       "fun_fact_nl": "\"La Ventanita\" van Sergio Vargas, voor het eerst uitgebracht in 1990.",
       "uri_deezer": "deezer://track/13271089",
       "uri_apple_music": "applemusic://track/304774828",
-      "fun_fact_it": "«La Ventanita» di Sergio Vargas, pubblicata per la prima volta nel 1990."
+      "fun_fact_it": "«La Ventanita» di Sergio Vargas, pubblicata per la prima volta nel 1990.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TMnoDzBbvk0"
     },
     {
       "year": 1996,
@@ -2935,7 +2956,8 @@
       "fun_fact_nl": "\"La Quiero A Morir/ Si Algun Dia La Vez/ Madre\" van Sergio Vargas, voor het eerst uitgebracht in 1996 op het album \"El Hombre Y Su Merengue\".",
       "uri_deezer": "deezer://track/95527846",
       "uri_apple_music": "applemusic://track/1521266026",
-      "fun_fact_it": "«La Quiero A Morir/ Si Algun Dia La Vez/ Madre» di Sergio Vargas, pubblicata per la prima volta nel 1996 nell'album «El Hombre Y Su Merengue»."
+      "fun_fact_it": "«La Quiero A Morir/ Si Algun Dia La Vez/ Madre» di Sergio Vargas, pubblicata per la prima volta nel 1996 nell'album «El Hombre Y Su Merengue».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kn8qnMpSvQk"
     },
     {
       "year": 1993,
@@ -2950,7 +2972,8 @@
       "fun_fact_nl": "\"La Pastilla\" van Sergio Vargas, voor het eerst uitgebracht in 1993.",
       "uri_deezer": "deezer://track/13254157",
       "uri_apple_music": "applemusic://track/285788866",
-      "fun_fact_it": "«La Pastilla» di Sergio Vargas, pubblicata per la prima volta nel 1993."
+      "fun_fact_it": "«La Pastilla» di Sergio Vargas, pubblicata per la prima volta nel 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gfmMbDLW6C8"
     },
     {
       "year": 1989,
@@ -2965,7 +2988,8 @@
       "fun_fact_nl": "\"Lastima de tanto amor\" van Sergio Vargas, voor het eerst uitgebracht in 1989 op het album \"Sergio Vargas en Vivo (En vivo)\".",
       "uri_deezer": "deezer://track/2587502862",
       "uri_apple_music": "applemusic://track/1666329413",
-      "fun_fact_it": "«Lastima de tanto amor» di Sergio Vargas, pubblicata per la prima volta nel 1989 nell'album «Sergio Vargas en Vivo (En vivo)»."
+      "fun_fact_it": "«Lastima de tanto amor» di Sergio Vargas, pubblicata per la prima volta nel 1989 nell'album «Sergio Vargas en Vivo (En vivo)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kegXFzhj2b0"
     },
     {
       "year": 1992,
@@ -2980,7 +3004,8 @@
       "fun_fact_nl": "\"Ni tu ni yo\" van Sergio Vargas, voor het eerst uitgebracht in 1992.",
       "uri_deezer": "deezer://track/13271090",
       "uri_apple_music": "applemusic://track/304774830",
-      "fun_fact_it": "«Ni tu ni yo» di Sergio Vargas, pubblicata per la prima volta nel 1992."
+      "fun_fact_it": "«Ni tu ni yo» di Sergio Vargas, pubblicata per la prima volta nel 1992.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tjd7Y01T5Hg"
     },
     {
       "year": 1995,
@@ -2995,7 +3020,8 @@
       "fun_fact_nl": "\"La Dueña del Swing\" van Los Hermanos Rosario, voor het eerst uitgebracht in 1995 op het album \"Los Dueños del Swing\".",
       "uri_deezer": "deezer://track/1857103157",
       "uri_apple_music": "applemusic://track/1635180756",
-      "fun_fact_it": "«La Dueña del Swing» di Los Hermanos Rosario, pubblicata per la prima volta nel 1995 nell'album «Los Dueños del Swing»."
+      "fun_fact_it": "«La Dueña del Swing» di Los Hermanos Rosario, pubblicata per la prima volta nel 1995 nell'album «Los Dueños del Swing».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QCcBiAwp9nc"
     },
     {
       "year": 1990,
@@ -3010,7 +3036,8 @@
       "fun_fact_nl": "\"Pecadora\" van Los Hermanos Rosario, voor het eerst uitgebracht in 1990 op het album \"El Dísco de Oro de los Hermanos Rosario\".",
       "uri_deezer": "deezer://track/136465746",
       "uri_apple_music": "applemusic://track/1178369746",
-      "fun_fact_it": "«Pecadora» di Los Hermanos Rosario, pubblicata per la prima volta nel 1990 nell'album «El Dísco de Oro de los Hermanos Rosario»."
+      "fun_fact_it": "«Pecadora» di Los Hermanos Rosario, pubblicata per la prima volta nel 1990 nell'album «El Dísco de Oro de los Hermanos Rosario».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vp9wkWLNdy4"
     },
     {
       "year": 1985,
@@ -3025,7 +3052,8 @@
       "fun_fact_nl": "\"El Baile del Perrito\" van Wilfrido Vargas, voor het eerst uitgebracht in 1985 op het album \"Itinerario\".",
       "uri_deezer": "deezer://track/599807222",
       "uri_apple_music": "applemusic://track/1445571397",
-      "fun_fact_it": "«El Baile del Perrito» di Wilfrido Vargas, pubblicata per la prima volta nel 1985 nell'album «Itinerario»."
+      "fun_fact_it": "«El Baile del Perrito» di Wilfrido Vargas, pubblicata per la prima volta nel 1985 nell'album «Itinerario».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fs1Fg07CsQs"
     },
     {
       "year": 1980,
@@ -3040,7 +3068,8 @@
       "fun_fact_nl": "\"Abusadora\" van Wilfrido Vargas, voor het eerst uitgebracht in 1980 op het album \"Abusadora…!\".",
       "uri_deezer": "deezer://track/1857091827",
       "uri_apple_music": "applemusic://track/304776748",
-      "fun_fact_it": "«Abusadora» di Wilfrido Vargas, pubblicata per la prima volta nel 1980 nell'album «Abusadora…!»."
+      "fun_fact_it": "«Abusadora» di Wilfrido Vargas, pubblicata per la prima volta nel 1980 nell'album «Abusadora…!».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QweFe4CeAJg"
     },
     {
       "year": 1983,
@@ -3055,7 +3084,8 @@
       "fun_fact_nl": "\"El Africano\" van Wilfrido Vargas, voor het eerst uitgebracht in 1983 op het album \"Juntos\".",
       "uri_deezer": "deezer://track/13248477",
       "uri_apple_music": "applemusic://track/304776750",
-      "fun_fact_it": "«El Africano» di Wilfrido Vargas, pubblicata per la prima volta nel 1983 nell'album «Juntos»."
+      "fun_fact_it": "«El Africano» di Wilfrido Vargas, pubblicata per la prima volta nel 1983 nell'album «Juntos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1DbXzlhKS5s"
     },
     {
       "year": 1987,
@@ -3070,7 +3100,8 @@
       "fun_fact_nl": "\"A Mover la Colita\" van Wilfrido Vargas, voor het eerst uitgebracht in 1987 op het album \"Wilfrido Vargas y Sus Consentidas\".",
       "uri_deezer": "deezer://track/611640762",
       "uri_apple_music": "applemusic://track/1447684181",
-      "fun_fact_it": "«A Mover la Colita» di Wilfrido Vargas, pubblicata per la prima volta nel 1987 nell'album «Wilfrido Vargas y Sus Consentidas»."
+      "fun_fact_it": "«A Mover la Colita» di Wilfrido Vargas, pubblicata per la prima volta nel 1987 nell'album «Wilfrido Vargas y Sus Consentidas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JsucNf4VoKU"
     },
     {
       "year": 1980,
@@ -3085,7 +3116,8 @@
       "fun_fact_nl": "\"Volveré\" van Wilfrido Vargas, voor het eerst uitgebracht in 1980.",
       "uri_deezer": "deezer://track/13270389",
       "uri_apple_music": "applemusic://track/304776751",
-      "fun_fact_it": "«Volveré» di Wilfrido Vargas, pubblicata per la prima volta nel 1980."
+      "fun_fact_it": "«Volveré» di Wilfrido Vargas, pubblicata per la prima volta nel 1980.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=f7-vEi-uPB8"
     },
     {
       "year": 1980,
@@ -3100,7 +3132,8 @@
       "fun_fact_nl": "\"El Hombre Divertido\" van Wilfrido Vargas, voor het eerst uitgebracht in 1980.",
       "uri_deezer": "deezer://track/13270383",
       "uri_apple_music": "applemusic://track/1526575215",
-      "fun_fact_it": "«El Hombre Divertido» di Wilfrido Vargas, pubblicata per la prima volta nel 1980."
+      "fun_fact_it": "«El Hombre Divertido» di Wilfrido Vargas, pubblicata per la prima volta nel 1980.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KTPLxDwHoj0"
     },
     {
       "year": 2000,
@@ -3115,7 +3148,8 @@
       "fun_fact_nl": "\"Ella es Tan Bella\" van Rikarena, voor het eerst uitgebracht in 2000 op het album \"Con Arena Nueva\".",
       "uri_deezer": "deezer://track/11139454",
       "uri_apple_music": "applemusic://track/284800794",
-      "fun_fact_it": "«Ella es Tan Bella» di Rikarena, pubblicata per la prima volta nel 2000 nell'album «Con Arena Nueva»."
+      "fun_fact_it": "«Ella es Tan Bella» di Rikarena, pubblicata per la prima volta nel 2000 nell'album «Con Arena Nueva».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tLdjq0p7Zwk"
     },
     {
       "year": 1997,
@@ -3130,7 +3164,8 @@
       "fun_fact_nl": "\"Era Mentira\" van Rikarena, voor het eerst uitgebracht in 1997 op het album \"Sin Medir Distancia\".",
       "uri_deezer": "deezer://track/11532593",
       "uri_apple_music": "applemusic://track/20845235",
-      "fun_fact_it": "«Era Mentira» di Rikarena, pubblicata per la prima volta nel 1997 nell'album «Sin Medir Distancia»."
+      "fun_fact_it": "«Era Mentira» di Rikarena, pubblicata per la prima volta nel 1997 nell'album «Sin Medir Distancia».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6yQibm_Q1T4"
     },
     {
       "year": 1997,
@@ -3145,7 +3180,8 @@
       "fun_fact_nl": "\"No Puedo Olvidarla\" van Rikarena, voor het eerst uitgebracht in 1997.",
       "uri_deezer": "deezer://track/10963132",
       "uri_apple_music": "applemusic://track/284800669",
-      "fun_fact_it": "«No Puedo Olvidarla» di Rikarena, pubblicata per la prima volta nel 1997."
+      "fun_fact_it": "«No Puedo Olvidarla» di Rikarena, pubblicata per la prima volta nel 1997.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=riBGUPNYBEE"
     },
     {
       "year": 1995,
@@ -3160,7 +3196,8 @@
       "fun_fact_nl": "\"Te Voy Hacer Falta\" van Rikarena, voor het eerst uitgebracht in 1995.",
       "uri_deezer": "deezer://track/10963138",
       "uri_apple_music": "applemusic://track/284800693",
-      "fun_fact_it": "«Te Voy Hacer Falta» di Rikarena, pubblicata per la prima volta nel 1995."
+      "fun_fact_it": "«Te Voy Hacer Falta» di Rikarena, pubblicata per la prima volta nel 1995.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5Pl4Lk683Tg"
     },
     {
       "year": 2000,
@@ -3175,7 +3212,8 @@
       "fun_fact_nl": "\"Cuando El Amor Se Daña\" van Rikarena, voor het eerst uitgebracht in 2000.",
       "uri_deezer": "deezer://track/10963135",
       "uri_apple_music": "applemusic://track/284800767",
-      "fun_fact_it": "«Cuando El Amor Se Daña» di Rikarena, pubblicata per la prima volta nel 2000."
+      "fun_fact_it": "«Cuando El Amor Se Daña» di Rikarena, pubblicata per la prima volta nel 2000.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MB4o_V8AZa4"
     },
     {
       "year": 1994,
@@ -3190,7 +3228,8 @@
       "fun_fact_nl": "\"Ay!\" van Rikarena, voor het eerst uitgebracht in 1994.",
       "uri_deezer": "deezer://track/10963130",
       "uri_apple_music": "applemusic://track/21274571",
-      "fun_fact_it": "«Ay!» di Rikarena, pubblicata per la prima volta nel 1994."
+      "fun_fact_it": "«Ay!» di Rikarena, pubblicata per la prima volta nel 1994.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_a4jD23Kr1U"
     },
     {
       "year": 1997,
@@ -3204,7 +3243,8 @@
       "fun_fact_fr": "« El Gorila » de Rikarena, parue pour la première fois en 1997 sur l'album « Sin Medir Distancia ».",
       "fun_fact_nl": "\"El Gorila\" van Rikarena, voor het eerst uitgebracht in 1997 op het album \"Sin Medir Distancia\".",
       "uri_deezer": "deezer://track/11532596",
-      "fun_fact_it": "«El Gorila» di Rikarena, pubblicata per la prima volta nel 1997 nell'album «Sin Medir Distancia»."
+      "fun_fact_it": "«El Gorila» di Rikarena, pubblicata per la prima volta nel 1997 nell'album «Sin Medir Distancia».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ECOV54rL2LY"
     },
     {
       "year": 2015,
@@ -3219,7 +3259,8 @@
       "fun_fact_nl": "\"Beautiful Lady\" van Proyecto Uno, voor het eerst uitgebracht in 2015 op het album \"Beautiful Lady\".",
       "uri_deezer": "deezer://track/104374848",
       "uri_apple_music": "applemusic://track/1020827881",
-      "fun_fact_it": "«Beautiful Lady» di Proyecto Uno, pubblicata per la prima volta nel 2015 nell'album «Beautiful Lady»."
+      "fun_fact_it": "«Beautiful Lady» di Proyecto Uno, pubblicata per la prima volta nel 2015 nell'album «Beautiful Lady».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=glO3o4L4AiE"
     },
     {
       "year": 1996,
@@ -3234,7 +3275,8 @@
       "fun_fact_nl": "\"Latinos\" van Proyecto Uno, voor het eerst uitgebracht in 1996 op het album \"Latinos\".",
       "uri_deezer": "deezer://track/11513249",
       "uri_apple_music": "applemusic://track/276705636",
-      "fun_fact_it": "«Latinos» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «Latinos»."
+      "fun_fact_it": "«Latinos» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «Latinos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RIqrVE_BPSo"
     },
     {
       "year": 1993,
@@ -3249,7 +3291,8 @@
       "fun_fact_nl": "\"Esta Pegao\" van Proyecto Uno, voor het eerst uitgebracht in 1993 op het album \"In Da House\".",
       "uri_deezer": "deezer://track/60991517",
       "uri_apple_music": "applemusic://track/525133203",
-      "fun_fact_it": "«Esta Pegao» di Proyecto Uno, pubblicata per la prima volta nel 1993 nell'album «In Da House»."
+      "fun_fact_it": "«Esta Pegao» di Proyecto Uno, pubblicata per la prima volta nel 1993 nell'album «In Da House».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AhGe1rsLuQQ"
     },
     {
       "year": 1999,
@@ -3264,7 +3307,8 @@
       "fun_fact_nl": "\"25 Horas\" van Proyecto Uno, voor het eerst uitgebracht in 1999 op het album \"25 Horas\".",
       "uri_deezer": "deezer://track/79125923",
       "uri_apple_music": "applemusic://track/885035099",
-      "fun_fact_it": "«25 Horas» di Proyecto Uno, pubblicata per la prima volta nel 1999 nell'album «25 Horas»."
+      "fun_fact_it": "«25 Horas» di Proyecto Uno, pubblicata per la prima volta nel 1999 nell'album «25 Horas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4iBwipKkX6k"
     },
     {
       "year": 1993,
@@ -3279,7 +3323,8 @@
       "fun_fact_nl": "\"Another Night\" van Proyecto Uno, voor het eerst uitgebracht in 1993.",
       "uri_deezer": "deezer://track/11135906",
       "uri_apple_music": "applemusic://track/20845962",
-      "fun_fact_it": "«Another Night» di Proyecto Uno, pubblicata per la prima volta nel 1993."
+      "fun_fact_it": "«Another Night» di Proyecto Uno, pubblicata per la prima volta nel 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p3iPO9uAwDc"
     },
     {
       "year": 1996,
@@ -3294,7 +3339,8 @@
       "fun_fact_nl": "\"Pumpin'\" van Proyecto Uno, voor het eerst uitgebracht in 1996 op het album \"New Era\".",
       "uri_deezer": "deezer://track/10984119",
       "uri_apple_music": "applemusic://track/276705367",
-      "fun_fact_it": "«Pumpin'» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «New Era»."
+      "fun_fact_it": "«Pumpin'» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «New Era».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Oajw5gNkROo"
     },
     {
       "year": 1996,
@@ -3309,7 +3355,8 @@
       "fun_fact_nl": "\"El Grillero\" van Proyecto Uno, voor het eerst uitgebracht in 1996 op het album \"New Era\".",
       "uri_deezer": "deezer://track/10984125",
       "uri_apple_music": "applemusic://track/276705709",
-      "fun_fact_it": "«El Grillero» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «New Era»."
+      "fun_fact_it": "«El Grillero» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «New Era».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9JnmvGPAeVo"
     },
     {
       "year": 1991,
@@ -3324,7 +3371,8 @@
       "fun_fact_nl": "\"Brinca\" van Proyecto Uno, voor het eerst uitgebracht in 1991.",
       "uri_deezer": "deezer://track/120138458",
       "uri_apple_music": "applemusic://track/451881068",
-      "fun_fact_it": "«Brinca» di Proyecto Uno, pubblicata per la prima volta nel 1991."
+      "fun_fact_it": "«Brinca» di Proyecto Uno, pubblicata per la prima volta nel 1991.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ety4cES6hRQ"
     },
     {
       "year": 1996,
@@ -3339,7 +3387,8 @@
       "fun_fact_nl": "\"Cuarto De Hotel\" van Proyecto Uno, voor het eerst uitgebracht in 1996 op het album \"New Era\".",
       "uri_deezer": "deezer://track/10984126",
       "uri_apple_music": "applemusic://track/276705736",
-      "fun_fact_it": "«Cuarto De Hotel» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «New Era»."
+      "fun_fact_it": "«Cuarto De Hotel» di Proyecto Uno, pubblicata per la prima volta nel 1996 nell'album «New Era».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RZf8E6phfxs"
     },
     {
       "year": 1993,
@@ -3354,7 +3403,8 @@
       "fun_fact_nl": "\"Tiburon\" van Proyecto Uno, voor het eerst uitgebracht in 1993 op het album \"El Poder de la Música\".",
       "uri_deezer": "deezer://track/11126567",
       "uri_apple_music": "applemusic://track/451881067",
-      "fun_fact_it": "«Tiburon» di Proyecto Uno, pubblicata per la prima volta nel 1993 nell'album «El Poder de la Música»."
+      "fun_fact_it": "«Tiburon» di Proyecto Uno, pubblicata per la prima volta nel 1993 nell'album «El Poder de la Música».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4Qy0vs80T5M"
     },
     {
       "year": 1999,
@@ -3369,7 +3419,8 @@
       "fun_fact_nl": "\"No me Digas Que No\" van La Makina, voor het eerst uitgebracht in 1999.",
       "uri_deezer": "deezer://track/10963920",
       "uri_apple_music": "applemusic://track/48698608",
-      "fun_fact_it": "«No me Digas Que No» di La Makina, pubblicata per la prima volta nel 1999."
+      "fun_fact_it": "«No me Digas Que No» di La Makina, pubblicata per la prima volta nel 1999.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C8BzbuJ3G1o"
     },
     {
       "year": 1997,
@@ -3384,7 +3435,8 @@
       "fun_fact_nl": "\"Nadie Se Muere\" van La Makina, voor het eerst uitgebracht in 1997.",
       "uri_deezer": "deezer://track/10963918",
       "uri_apple_music": "applemusic://track/27064166",
-      "fun_fact_it": "«Nadie Se Muere» di La Makina, pubblicata per la prima volta nel 1997."
+      "fun_fact_it": "«Nadie Se Muere» di La Makina, pubblicata per la prima volta nel 1997.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0fZ4NW7s0Nw"
     },
     {
       "year": 1996,
@@ -3399,7 +3451,8 @@
       "fun_fact_nl": "\"Mi Reina\" van La Makina, voor het eerst uitgebracht in 1996 op het album \"Uniquehits\".",
       "uri_deezer": "deezer://track/90471541",
       "uri_apple_music": "applemusic://track/20845916",
-      "fun_fact_it": "«Mi Reina» di La Makina, pubblicata per la prima volta nel 1996 nell'album «Uniquehits»."
+      "fun_fact_it": "«Mi Reina» di La Makina, pubblicata per la prima volta nel 1996 nell'album «Uniquehits».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-h66Pa4qWzg"
     },
     {
       "year": 2001,
@@ -3414,7 +3467,8 @@
       "fun_fact_nl": "\"Me rompio El Corazon\" van La Makina, voor het eerst uitgebracht in 2001.",
       "uri_deezer": "deezer://track/11485709",
       "uri_apple_music": "applemusic://track/27064239",
-      "fun_fact_it": "«Me rompio El Corazon» di La Makina, pubblicata per la prima volta nel 2001."
+      "fun_fact_it": "«Me rompio El Corazon» di La Makina, pubblicata per la prima volta nel 2001.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CKXmAV7s-N4"
     },
     {
       "year": 1996,
@@ -3429,7 +3483,8 @@
       "fun_fact_nl": "\"Tu Muere Aqui\" van La Banda Gorda, voor het eerst uitgebracht in 1996 op het album \"Tu Muere Aqui\".",
       "uri_deezer": "deezer://track/63627119",
       "uri_apple_music": "applemusic://track/64822788",
-      "fun_fact_it": "«Tu Muere Aqui» di La Banda Gorda, pubblicata per la prima volta nel 1996 nell'album «Tu Muere Aqui»."
+      "fun_fact_it": "«Tu Muere Aqui» di La Banda Gorda, pubblicata per la prima volta nel 1996 nell'album «Tu Muere Aqui».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3z129NpQaQc"
     },
     {
       "year": 1995,
@@ -3444,7 +3499,8 @@
       "fun_fact_nl": "\"Candela Pura\" van La Banda Gorda, voor het eerst uitgebracht in 1995 op het album \"Candela Pura\".",
       "uri_deezer": "deezer://track/12018080",
       "uri_apple_music": "applemusic://track/1232763357",
-      "fun_fact_it": "«Candela Pura» di La Banda Gorda, pubblicata per la prima volta nel 1995 nell'album «Candela Pura»."
+      "fun_fact_it": "«Candela Pura» di La Banda Gorda, pubblicata per la prima volta nel 1995 nell'album «Candela Pura».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=252sHmVrHVc"
     },
     {
       "year": 1996,
@@ -3459,7 +3515,8 @@
       "fun_fact_nl": "\"El Rey Del Mambo\" van La Banda Gorda, voor het eerst uitgebracht in 1996 op het album \"Tu Muere Aqui\".",
       "uri_deezer": "deezer://track/63627118",
       "uri_apple_music": "applemusic://track/288157925",
-      "fun_fact_it": "«El Rey Del Mambo» di La Banda Gorda, pubblicata per la prima volta nel 1996 nell'album «Tu Muere Aqui»."
+      "fun_fact_it": "«El Rey Del Mambo» di La Banda Gorda, pubblicata per la prima volta nel 1996 nell'album «Tu Muere Aqui».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2unaLAs1y_w"
     },
     {
       "year": 1997,
@@ -3474,7 +3531,8 @@
       "fun_fact_nl": "\"Me Miras y Te Miro\" van Grupo Mania, voor het eerst uitgebracht in 1997 op het album \"20th Anniversary\".",
       "uri_deezer": "deezer://track/13258242",
       "uri_apple_music": "applemusic://track/1443201379",
-      "fun_fact_it": "«Me Miras y Te Miro» di Grupo Mania, pubblicata per la prima volta nel 1997 nell'album «20th Anniversary»."
+      "fun_fact_it": "«Me Miras y Te Miro» di Grupo Mania, pubblicata per la prima volta nel 1997 nell'album «20th Anniversary».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tH39S-yjUHg"
     },
     {
       "year": 1996,
@@ -3489,7 +3547,8 @@
       "fun_fact_nl": "\"Linda Eh\" van Grupo Mania, voor het eerst uitgebracht in 1996.",
       "uri_deezer": "deezer://track/13211607",
       "uri_apple_music": "applemusic://track/251534643",
-      "fun_fact_it": "«Linda Eh» di Grupo Mania, pubblicata per la prima volta nel 1996."
+      "fun_fact_it": "«Linda Eh» di Grupo Mania, pubblicata per la prima volta nel 1996.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dElUL4hvbJE"
     },
     {
       "year": 1992,
@@ -3519,7 +3578,8 @@
       "fun_fact_nl": "\"El Cepillo\" van Fulanito, voor het eerst uitgebracht in 1997.",
       "uri_deezer": "deezer://track/11873532",
       "uri_apple_music": "applemusic://track/276693211",
-      "fun_fact_it": "«El Cepillo» di Fulanito, pubblicata per la prima volta nel 1997."
+      "fun_fact_it": "«El Cepillo» di Fulanito, pubblicata per la prima volta nel 1997.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OHY_UwId_0M"
     },
     {
       "year": 1997,
@@ -3534,7 +3594,8 @@
       "fun_fact_nl": "\"Guallando\" van Fulanito, voor het eerst uitgebracht in 1997 op het album \"El Hombre Mas Famoso De La Tierra\".",
       "uri_deezer": "deezer://track/11671201",
       "uri_apple_music": "applemusic://track/4312096",
-      "fun_fact_it": "«Guallando» di Fulanito, pubblicata per la prima volta nel 1997 nell'album «El Hombre Mas Famoso De La Tierra»."
+      "fun_fact_it": "«Guallando» di Fulanito, pubblicata per la prima volta nel 1997 nell'album «El Hombre Mas Famoso De La Tierra».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4d7yQFgHROM"
     },
     {
       "year": 2008,
@@ -3549,7 +3610,8 @@
       "fun_fact_nl": "\"Pena Por Ti (La Novela)\" van Fulanito, voor het eerst uitgebracht in 2008.",
       "uri_deezer": "deezer://track/11873533",
       "uri_apple_music": "applemusic://track/276693212",
-      "fun_fact_it": "«Pena Por Ti (La Novela)» di Fulanito, pubblicata per la prima volta nel 2008."
+      "fun_fact_it": "«Pena Por Ti (La Novela)» di Fulanito, pubblicata per la prima volta nel 2008.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CnKRsXX2uxY"
     },
     {
       "year": 2001,
@@ -3564,7 +3626,8 @@
       "fun_fact_nl": "\"Callate\" van Fulanito, voor het eerst uitgebracht in 2001.",
       "uri_deezer": "deezer://track/11873538",
       "uri_apple_music": "applemusic://track/276693244",
-      "fun_fact_it": "«Callate» di Fulanito, pubblicata per la prima volta nel 2001."
+      "fun_fact_it": "«Callate» di Fulanito, pubblicata per la prima volta nel 2001.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=snzg4iUDcXI"
     },
     {
       "year": 2001,
@@ -3579,7 +3642,8 @@
       "fun_fact_nl": "\"Pecho a Pechuga\" van Fulanito, voor het eerst uitgebracht in 2001 op het album \"Americanizao\".",
       "uri_deezer": "deezer://track/11671256",
       "uri_apple_music": "applemusic://track/276693240",
-      "fun_fact_it": "«Pecho a Pechuga» di Fulanito, pubblicata per la prima volta nel 2001 nell'album «Americanizao»."
+      "fun_fact_it": "«Pecho a Pechuga» di Fulanito, pubblicata per la prima volta nel 2001 nell'album «Americanizao».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kalqSpHxVaA"
     },
     {
       "year": 1999,
@@ -3594,7 +3658,8 @@
       "fun_fact_nl": "\"Quien Es Fulanito\" van Fulanito, voor het eerst uitgebracht in 1999.",
       "uri_deezer": "deezer://track/11873535",
       "uri_apple_music": "applemusic://track/41978675",
-      "fun_fact_it": "«Quien Es Fulanito» di Fulanito, pubblicata per la prima volta nel 1999."
+      "fun_fact_it": "«Quien Es Fulanito» di Fulanito, pubblicata per la prima volta nel 1999.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3LLjIx3RMq4"
     },
     {
       "year": 1999,
@@ -3609,7 +3674,8 @@
       "fun_fact_nl": "\"La Vaca\" van Mala Fe, voor het eerst uitgebracht in 1999 op het album \"Con Su Loquera\".",
       "uri_deezer": "deezer://track/10848438",
       "uri_apple_music": "applemusic://track/21483663",
-      "fun_fact_it": "«La Vaca» di Mala Fe, pubblicata per la prima volta nel 1999 nell'album «Con Su Loquera»."
+      "fun_fact_it": "«La Vaca» di Mala Fe, pubblicata per la prima volta nel 1999 nell'album «Con Su Loquera».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2Gow_mzRTO4"
     },
     {
       "year": 2001,
@@ -3624,7 +3690,8 @@
       "fun_fact_nl": "\"Tra Tra\" van Mala Fe, voor het eerst uitgebracht in 2001 op het album \"La Vaca\".",
       "uri_deezer": "deezer://track/700897472",
       "uri_apple_music": "applemusic://track/450201025",
-      "fun_fact_it": "«Tra Tra» di Mala Fe, pubblicata per la prima volta nel 2001 nell'album «La Vaca»."
+      "fun_fact_it": "«Tra Tra» di Mala Fe, pubblicata per la prima volta nel 2001 nell'album «La Vaca».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0T2sEvzwVAo"
     },
     {
       "year": 1999,
@@ -3639,7 +3706,8 @@
       "fun_fact_nl": "\"Me Recoje Tu Maleta\" van Mala Fe, voor het eerst uitgebracht in 1999 op het album \"La Vaca\".",
       "uri_deezer": "deezer://track/700897562",
       "uri_apple_music": "applemusic://track/21483716",
-      "fun_fact_it": "«Me Recoje Tu Maleta» di Mala Fe, pubblicata per la prima volta nel 1999 nell'album «La Vaca»."
+      "fun_fact_it": "«Me Recoje Tu Maleta» di Mala Fe, pubblicata per la prima volta nel 1999 nell'album «La Vaca».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YGSlb7ZTYxQ"
     },
     {
       "year": 1994,
@@ -3654,7 +3722,8 @@
       "fun_fact_nl": "\"Mueve Mueve - I Like to Move It\" van Sandy & Papo, voor het eerst uitgebracht in 1994 op het album \"Sandy & Papo MC\".",
       "uri_deezer": "deezer://track/7878493",
       "uri_apple_music": "applemusic://track/20384907",
-      "fun_fact_it": "«Mueve Mueve - I Like to Move It» di Sandy & Papo, pubblicata per la prima volta nel 1994 nell'album «Sandy & Papo MC»."
+      "fun_fact_it": "«Mueve Mueve - I Like to Move It» di Sandy & Papo, pubblicata per la prima volta nel 1994 nell'album «Sandy & Papo MC».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CSHr4m0SuHg"
     },
     {
       "year": 1995,
@@ -3669,7 +3738,8 @@
       "fun_fact_nl": "\"La Hora De Bailar\" van Sandy & Papo, voor het eerst uitgebracht in 1995 op het album \"Sandy & Papo MC\".",
       "uri_deezer": "deezer://track/7878496",
       "uri_apple_music": "applemusic://track/1517909588",
-      "fun_fact_it": "«La Hora De Bailar» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC»."
+      "fun_fact_it": "«La Hora De Bailar» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y14snpXXW8A"
     },
     {
       "year": 1995,
@@ -3684,7 +3754,8 @@
       "fun_fact_nl": "\"Bueno Pa' Goza\" van Sandy & Papo, voor het eerst uitgebracht in 1995 op het album \"Sandy & Papo MC\".",
       "uri_deezer": "deezer://track/7878498",
       "uri_apple_music": "applemusic://track/1517909107",
-      "fun_fact_it": "«Bueno Pa' Goza» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC»."
+      "fun_fact_it": "«Bueno Pa' Goza» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MVDtZkAuMbw"
     },
     {
       "year": 1995,
@@ -3699,7 +3770,8 @@
       "fun_fact_nl": "\"El Alacrán\" van Sandy & Papo, voor het eerst uitgebracht in 1995 op het album \"Otra Vez\".",
       "uri_deezer": "deezer://track/7878391",
       "uri_apple_music": "applemusic://track/1539193700",
-      "fun_fact_it": "«El Alacrán» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Otra Vez»."
+      "fun_fact_it": "«El Alacrán» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Otra Vez».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gdbDRfu3cPk"
     },
     {
       "year": 1995,
@@ -3714,7 +3786,8 @@
       "fun_fact_nl": "\"La Chica Sexy\" van Sandy & Papo, voor het eerst uitgebracht in 1995 op het album \"Sandy & Papo MC\".",
       "uri_deezer": "deezer://track/7878494",
       "uri_apple_music": "applemusic://track/1539193931",
-      "fun_fact_it": "«La Chica Sexy» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC»."
+      "fun_fact_it": "«La Chica Sexy» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Uc5zbIr5cKw"
     },
     {
       "year": 1997,
@@ -3729,7 +3802,8 @@
       "fun_fact_nl": "\"Huelepega\" van Sandy & Papo, voor het eerst uitgebracht in 1997 op het album \"Otra Vez\".",
       "uri_deezer": "deezer://track/7878396",
       "uri_apple_music": "applemusic://track/20714622",
-      "fun_fact_it": "«Huelepega» di Sandy & Papo, pubblicata per la prima volta nel 1997 nell'album «Otra Vez»."
+      "fun_fact_it": "«Huelepega» di Sandy & Papo, pubblicata per la prima volta nel 1997 nell'album «Otra Vez».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yN4B8WGKmgY"
     },
     {
       "year": 1995,
@@ -3744,7 +3818,8 @@
       "fun_fact_nl": "\"Candela\" van Sandy & Papo, voor het eerst uitgebracht in 1995 op het album \"Sandy & Papo MC\".",
       "uri_deezer": "deezer://track/7878495",
       "uri_apple_music": "applemusic://track/20384914",
-      "fun_fact_it": "«Candela» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC»."
+      "fun_fact_it": "«Candela» di Sandy & Papo, pubblicata per la prima volta nel 1995 nell'album «Sandy & Papo MC».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VLVjE-3NbEU"
     },
     {
       "year": 1997,
@@ -3759,7 +3834,8 @@
       "fun_fact_nl": "\"La Fiesta\" van Sandy & Papo, voor het eerst uitgebracht in 1997 op het album \"Otra Vez\".",
       "uri_deezer": "deezer://track/7878390",
       "uri_apple_music": "applemusic://track/20714585",
-      "fun_fact_it": "«La Fiesta» di Sandy & Papo, pubblicata per la prima volta nel 1997 nell'album «Otra Vez»."
+      "fun_fact_it": "«La Fiesta» di Sandy & Papo, pubblicata per la prima volta nel 1997 nell'album «Otra Vez».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DXmU_9Yt96A"
     },
     {
       "year": 2013,
@@ -3774,7 +3850,8 @@
       "fun_fact_nl": "\"Chucuchá\" van Ilegales, voor het eerst uitgebracht in 2013 op het album \"Chucuchá\".",
       "uri_deezer": "deezer://track/77096658",
       "uri_apple_music": "applemusic://track/853045193",
-      "fun_fact_it": "«Chucuchá» di Ilegales, pubblicata per la prima volta nel 2013 nell'album «Chucuchá»."
+      "fun_fact_it": "«Chucuchá» di Ilegales, pubblicata per la prima volta nel 2013 nell'album «Chucuchá».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mksDUrgVBDc"
     },
     {
       "year": 1997,
@@ -3789,7 +3866,8 @@
       "fun_fact_nl": "\"Como Un Trueno\" van Ilegales, voor het eerst uitgebracht in 1997 op het album \"Rebotando\".",
       "uri_deezer": "deezer://track/13239356",
       "uri_apple_music": "applemusic://track/298515055",
-      "fun_fact_it": "«Como Un Trueno» di Ilegales, pubblicata per la prima volta nel 1997 nell'album «Rebotando»."
+      "fun_fact_it": "«Como Un Trueno» di Ilegales, pubblicata per la prima volta nel 1997 nell'album «Rebotando».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ge67kyM9ELU"
     },
     {
       "year": 2001,
@@ -3804,7 +3882,8 @@
       "fun_fact_nl": "\"Tu Recuerdo\" van Ilegales, voor het eerst uitgebracht in 2001 op het album \"On Time\".",
       "uri_deezer": "deezer://track/13243473",
       "uri_apple_music": "applemusic://track/254425721",
-      "fun_fact_it": "«Tu Recuerdo» di Ilegales, pubblicata per la prima volta nel 2001 nell'album «On Time»."
+      "fun_fact_it": "«Tu Recuerdo» di Ilegales, pubblicata per la prima volta nel 2001 nell'album «On Time».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wWWI6IhFw48"
     },
     {
       "year": 1990,
@@ -3819,7 +3898,8 @@
       "fun_fact_nl": "\"La Morena\" van Ilegales, voor het eerst uitgebracht in 1990 op het album \"Hits\".",
       "uri_deezer": "deezer://track/966378",
       "uri_apple_music": "applemusic://track/268460488",
-      "fun_fact_it": "«La Morena» di Ilegales, pubblicata per la prima volta nel 1990 nell'album «Hits»."
+      "fun_fact_it": "«La Morena» di Ilegales, pubblicata per la prima volta nel 1990 nell'album «Hits».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BT8Afk8HDxY"
     },
     {
       "year": 1995,
@@ -3834,7 +3914,8 @@
       "fun_fact_nl": "\"Fiesta Caliente\" van Ilegales, voor het eerst uitgebracht in 1995 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6237279",
       "uri_apple_music": "applemusic://track/298515073",
-      "fun_fact_it": "«Fiesta Caliente» di Ilegales, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Fiesta Caliente» di Ilegales, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4XR_X26blYA"
     },
     {
       "year": 1998,
@@ -3849,7 +3930,8 @@
       "fun_fact_nl": "\"La Bomba\" van Azul Azul, voor het eerst uitgebracht in 1998 op het album \"La Bomba\".",
       "uri_deezer": "deezer://track/15839179",
       "uri_apple_music": "applemusic://track/574008989",
-      "fun_fact_it": "«La Bomba» di Azul Azul, pubblicata per la prima volta nel 1998 nell'album «La Bomba»."
+      "fun_fact_it": "«La Bomba» di Azul Azul, pubblicata per la prima volta nel 1998 nell'album «La Bomba».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gsSw34Nw4cw"
     },
     {
       "year": 1994,
@@ -3864,7 +3946,8 @@
       "fun_fact_nl": "\"Rica y Apretadita (feat. Anayka)\" van El General, Anayka, voor het eerst uitgebracht in 1994 op het album \"Originales\".",
       "uri_deezer": "deezer://track/13247121",
       "uri_apple_music": "applemusic://track/1460608788",
-      "fun_fact_it": "«Rica y Apretadita (feat. Anayka)» di El General, Anayka, pubblicata per la prima volta nel 1994 nell'album «Originales»."
+      "fun_fact_it": "«Rica y Apretadita (feat. Anayka)» di El General, Anayka, pubblicata per la prima volta nel 1994 nell'album «Originales».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VijlGdZxtAg"
     },
     {
       "year": 1991,
@@ -3878,7 +3961,8 @@
       "fun_fact_fr": "\"Tu Pun Pun\" de El General, sortie pour la première fois en 1991 sur l'album \"Estas Buena\".",
       "fun_fact_nl": "\"Tu Pun Pun\" van El General, voor het eerst uitgebracht in 1991 op het album \"Estas Buena\".",
       "uri_deezer": "deezer://track/11897729",
-      "fun_fact_it": "«Tu Pun Pun» di El General, pubblicata per la prima volta nel 1991 nell'album «Estas Buena»."
+      "fun_fact_it": "«Tu Pun Pun» di El General, pubblicata per la prima volta nel 1991 nell'album «Estas Buena».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fmytao8GUIA"
     },
     {
       "year": 1991,
@@ -3893,7 +3977,8 @@
       "fun_fact_nl": "\"Muévelo\" van El General, voor het eerst uitgebracht in 1991 op het album \"Originales\".",
       "uri_deezer": "deezer://track/13247122",
       "uri_apple_music": "applemusic://track/254577710",
-      "fun_fact_it": "«Muévelo» di El General, pubblicata per la prima volta nel 1991 nell'album «Originales»."
+      "fun_fact_it": "«Muévelo» di El General, pubblicata per la prima volta nel 1991 nell'album «Originales».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=21aPrkvZy-A"
     },
     {
       "year": 1996,
@@ -3908,7 +3993,8 @@
       "fun_fact_nl": "\"Mis Ojos Lloran Por Ti\" van Big Boy, Angel Lopez, voor het eerst uitgebracht in 1996 op het album \"Mis Ojos Lloran Por Ti\".",
       "uri_deezer": "deezer://track/12018109",
       "uri_apple_music": "applemusic://track/1371029820",
-      "fun_fact_it": "«Mis Ojos Lloran Por Ti» di Big Boy, Angel Lopez, pubblicata per la prima volta nel 1996 nell'album «Mis Ojos Lloran Por Ti»."
+      "fun_fact_it": "«Mis Ojos Lloran Por Ti» di Big Boy, Angel Lopez, pubblicata per la prima volta nel 1996 nell'album «Mis Ojos Lloran Por Ti».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ef-IJJ7tJ0c"
     },
     {
       "year": 1996,
@@ -3923,7 +4009,8 @@
       "fun_fact_nl": "\"Voz Sensual\" van Big Boy, voor het eerst uitgebracht in 1996 op het album \"Mis Ojos Lloran Por Ti\".",
       "uri_deezer": "deezer://track/12018103",
       "uri_apple_music": "applemusic://track/346026420",
-      "fun_fact_it": "«Voz Sensual» di Big Boy, pubblicata per la prima volta nel 1996 nell'album «Mis Ojos Lloran Por Ti»."
+      "fun_fact_it": "«Voz Sensual» di Big Boy, pubblicata per la prima volta nel 1996 nell'album «Mis Ojos Lloran Por Ti».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=svEhsN7IOH4"
     },
     {
       "year": 1994,
@@ -3938,7 +4025,8 @@
       "fun_fact_nl": "\"Ese Hombre\" van LA INDIA, voor het eerst uitgebracht in 1994 op het album \"Ese Hombre (Baile Total)\".",
       "uri_deezer": "deezer://track/429988082",
       "uri_apple_music": "applemusic://track/1443757013",
-      "fun_fact_it": "«Ese Hombre» di LA INDIA, pubblicata per la prima volta nel 1994 nell'album «Ese Hombre (Baile Total)»."
+      "fun_fact_it": "«Ese Hombre» di LA INDIA, pubblicata per la prima volta nel 1994 nell'album «Ese Hombre (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bnv9r-FcD6I"
     },
     {
       "year": 2000,
@@ -3953,7 +4041,8 @@
       "fun_fact_nl": "\"Celia's Oye Cómo Va (Oye Cómo Va)\" van Celia Cruz, LA INDIA, voor het eerst uitgebracht in 2000 op het album \"La Reina Y Sus Amigos\".",
       "uri_deezer": "deezer://track/4762493",
       "uri_apple_music": "applemusic://track/338891804",
-      "fun_fact_it": "«Celia's Oye Cómo Va (Oye Cómo Va)» di Celia Cruz, LA INDIA, pubblicata per la prima volta nel 2000 nell'album «La Reina Y Sus Amigos»."
+      "fun_fact_it": "«Celia's Oye Cómo Va (Oye Cómo Va)» di Celia Cruz, LA INDIA, pubblicata per la prima volta nel 2000 nell'album «La Reina Y Sus Amigos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z9HwpFdC6tE"
     },
     {
       "year": 1994,
@@ -3968,7 +4057,8 @@
       "fun_fact_nl": "\"Nunca Voy A Olvidarte\" van LA INDIA, voor het eerst uitgebracht in 1994 op het album \"Pura Salsa\".",
       "uri_deezer": "deezer://track/15508091",
       "uri_apple_music": "applemusic://track/1444083248",
-      "fun_fact_it": "«Nunca Voy A Olvidarte» di LA INDIA, pubblicata per la prima volta nel 1994 nell'album «Pura Salsa»."
+      "fun_fact_it": "«Nunca Voy A Olvidarte» di LA INDIA, pubblicata per la prima volta nel 1994 nell'album «Pura Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bVIyBfsgzTY"
     },
     {
       "year": 1993,
@@ -3983,7 +4073,8 @@
       "fun_fact_nl": "\"Vivir Lo Nuestro\" van LA INDIA, Marc Anthony, voor het eerst uitgebracht in 1993 op het album \"Ese Hombre (Baile Total)\".",
       "uri_deezer": "deezer://track/429988092",
       "uri_apple_music": "applemusic://track/1444083786",
-      "fun_fact_it": "«Vivir Lo Nuestro» di LA INDIA, Marc Anthony, pubblicata per la prima volta nel 1993 nell'album «Ese Hombre (Baile Total)»."
+      "fun_fact_it": "«Vivir Lo Nuestro» di LA INDIA, Marc Anthony, pubblicata per la prima volta nel 1993 nell'album «Ese Hombre (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uIA0vaNzhOk"
     },
     {
       "year": 2011,
@@ -3998,7 +4089,8 @@
       "fun_fact_nl": "\"Si Entendieras\" van Alex Matos, voor het eerst uitgebracht in 2011 op het album \"El Salsero De Ahora\".",
       "uri_deezer": "deezer://track/63509504",
       "uri_apple_music": "applemusic://track/511981638",
-      "fun_fact_it": "«Si Entendieras» di Alex Matos, pubblicata per la prima volta nel 2011 nell'album «El Salsero De Ahora»."
+      "fun_fact_it": "«Si Entendieras» di Alex Matos, pubblicata per la prima volta nel 2011 nell'album «El Salsero De Ahora».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tvPsMEnsCro"
     },
     {
       "year": 1997,
@@ -4013,7 +4105,8 @@
       "fun_fact_nl": "\"La Quiero A Morir\" van DLG, voor het eerst uitgebracht in 1997 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13182317",
       "uri_apple_music": "applemusic://track/159869333",
-      "fun_fact_it": "«La Quiero A Morir» di DLG, pubblicata per la prima volta nel 1997 nell'album «Lo Esencial»."
+      "fun_fact_it": "«La Quiero A Morir» di DLG, pubblicata per la prima volta nel 1997 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wCBu0PkoNPs"
     },
     {
       "year": 1997,
@@ -4028,7 +4121,8 @@
       "fun_fact_nl": "\"Juliana\" van DLG, voor het eerst uitgebracht in 1997 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720610",
       "uri_apple_music": "applemusic://track/257766007",
-      "fun_fact_it": "«Juliana» di DLG, pubblicata per la prima volta nel 1997 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Juliana» di DLG, pubblicata per la prima volta nel 1997 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KB8jjy9IGuA"
     },
     {
       "year": 1995,
@@ -4043,7 +4137,8 @@
       "fun_fact_nl": "\"No Morirá - No Matter What\" van DLG, voor het eerst uitgebracht in 1995 op het album \"Canciones De Amor... En Salsa\".",
       "uri_deezer": "deezer://track/63353119",
       "uri_apple_music": "applemusic://track/384175504",
-      "fun_fact_it": "«No Morirá - No Matter What» di DLG, pubblicata per la prima volta nel 1995 nell'album «Canciones De Amor... En Salsa»."
+      "fun_fact_it": "«No Morirá - No Matter What» di DLG, pubblicata per la prima volta nel 1995 nell'album «Canciones De Amor... En Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y3TU8ny6d8o"
     },
     {
       "year": 1999,
