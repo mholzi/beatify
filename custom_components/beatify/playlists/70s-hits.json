@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "1970s",
     "classic-rock",
@@ -4286,6 +4286,406 @@
         "nl": "applemusic://track/693113326",
         "it": "applemusic://track/693113326"
       }
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:12rxrK9SZT9JDVf8WFyzsx",
+      "artist": "Desmond Dekker",
+      "alt_artists": [
+        "Jimmy Cliff",
+        "Bob Marley",
+        "Toots and the Maytals"
+      ],
+      "title": "You Can Get It If You Really Want",
+      "isrc": "GBAJE7000326",
+      "uri_apple_music": "applemusic://track/1434056762",
+      "uri_deezer": "deezer://track/3786050212",
+      "fun_fact": "Jimmy Cliff wrote it and recorded it himself, but it was Dekker's reading that went top ten in Britain — the songwriter's own version stayed the soundtrack cut.",
+      "fun_fact_de": "Jimmy Cliff schrieb den Song und nahm ihn selbst auf, doch in die britischen Top Ten brachte ihn Dekkers Fassung — die des Autors blieb die Soundtrack-Version.",
+      "fun_fact_es": "Jimmy Cliff la escribió y la grabó él mismo, pero fue la lectura de Dekker la que llegó al top ten británico; la del autor quedó como la versión de la banda sonora.",
+      "fun_fact_fr": "Jimmy Cliff l'a écrite et enregistrée lui-même, mais c'est la version de Dekker qui est entrée dans le top dix britannique ; celle de l'auteur est restée la version bande originale.",
+      "fun_fact_nl": "Jimmy Cliff schreef het en nam het zelf op, maar het was Dekkers versie die de Britse top tien haalde; die van de schrijver bleef de soundtrackversie.",
+      "fun_fact_it": "Jimmy Cliff la scrisse e la incise lui stesso, ma fu la versione di Dekker a entrare nella top ten britannica; quella dell'autore restò la versione della colonna sonora."
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:476V2d6iA2tWXgQboKmTtA",
+      "artist": "Cat Stevens",
+      "alt_artists": [
+        "Yusuf",
+        "Boyzone",
+        "Ronan Keating"
+      ],
+      "title": "Father And Son",
+      "isrc": "GBUM71905972",
+      "uri_apple_music": "applemusic://track/1535559786",
+      "uri_deezer": "deezer://track/1157032882",
+      "fun_fact": "Stevens sings both parts, dropping his voice for the father and lifting it for the son — the whole argument is carried by one singer changing register.",
+      "fun_fact_de": "Stevens singt beide Rollen, senkt die Stimme für den Vater und hebt sie für den Sohn — der ganze Streit wird von einem Sänger getragen, der die Lage wechselt.",
+      "fun_fact_es": "Stevens canta ambos papeles, bajando la voz para el padre y subiéndola para el hijo: toda la discusión la sostiene un solo cantante cambiando de registro.",
+      "fun_fact_fr": "Stevens chante les deux rôles, baissant la voix pour le père et la montant pour le fils — toute la dispute repose sur un seul chanteur qui change de registre.",
+      "fun_fact_nl": "Stevens zingt beide rollen, laat zijn stem zakken voor de vader en tilt hem op voor de zoon — de hele ruzie wordt gedragen door één zanger die van register wisselt.",
+      "fun_fact_it": "Stevens canta entrambe le parti, abbassando la voce per il padre e alzandola per il figlio: tutta la discussione è retta da un solo cantante che cambia registro."
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:2U2ByqoO82fnayaPzO4x2d",
+      "artist": "Uriah Heep",
+      "alt_artists": [
+        "Deep Purple",
+        "Wishbone Ash",
+        "Nazareth"
+      ],
+      "title": "Lady In Black",
+      "isrc": "GBAJE7100113",
+      "uri_apple_music": "applemusic://track/1439522637",
+      "uri_deezer": "deezer://track/5748600",
+      "fun_fact": "Two chords, no chorus and a folk melody — the band's least typical song became its most durable one on German radio, where it still outpolls the hard rock.",
+      "fun_fact_de": "Zwei Akkorde, kein Refrain und eine Folk-Melodie — der untypischste Song der Band wurde im deutschen Radio ihr langlebigster und schlägt dort bis heute den harten Rock.",
+      "fun_fact_es": "Dos acordes, sin estribillo y una melodía folk: la canción menos típica del grupo se volvió la más duradera en la radio alemana, donde aún supera al hard rock.",
+      "fun_fact_fr": "Deux accords, pas de refrain et une mélodie folk — la chanson la moins typique du groupe est devenue la plus durable à la radio allemande, où elle devance encore le hard rock.",
+      "fun_fact_nl": "Twee akkoorden, geen refrein en een folkmelodie — het minst typische nummer van de band werd op de Duitse radio het duurzaamste en verslaat daar nog steeds de hardrock.",
+      "fun_fact_it": "Due accordi, nessun ritornello e una melodia folk: il brano meno tipico della band è diventato il più duraturo alla radio tedesca, dove batte ancora l'hard rock."
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:0uHYplBhwLYey7f9qAmnSM",
+      "artist": "Joan Baez",
+      "alt_artists": [
+        "The Band",
+        "Johnny Cash",
+        "Robbie Robertson"
+      ],
+      "title": "The Night They Drove Old Dixie Down",
+      "isrc": "USVG20500225",
+      "uri_apple_music": "applemusic://track/712163270",
+      "uri_deezer": "deezer://track/3507788",
+      "fun_fact": "Baez learned it by ear from The Band's record and got a line wrong; her misheard version is the one that reached number three and that most people now sing.",
+      "fun_fact_de": "Baez lernte den Song nach Gehör von der Platte von The Band und verhörte sich in einer Zeile; ihre falsch verstandene Fassung kam auf Platz drei und ist die, die heute gesungen wird.",
+      "fun_fact_es": "Baez lo aprendió de oído del disco de The Band y se equivocó en un verso; su versión mal oída llegó al número tres y es la que hoy canta la gente.",
+      "fun_fact_fr": "Baez l'a apprise à l'oreille sur le disque de The Band et s'est trompée sur un vers ; sa version mal entendue est arrivée troisième et c'est celle que l'on chante aujourd'hui.",
+      "fun_fact_nl": "Baez leerde het op het gehoor van de plaat van The Band en verstond een regel verkeerd; haar versie werd nummer drie en is degene die men nu zingt.",
+      "fun_fact_it": "Baez la imparò a orecchio dal disco della Band e sbagliò un verso; la sua versione fraintesa arrivò al terzo posto ed è quella che oggi si canta."
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:2l3PcN960dFLwkWsFQSw0n",
+      "artist": "John Kincade",
+      "alt_artists": [
+        "First Class",
+        "Middle of the Road",
+        "Christie"
+      ],
+      "title": "Dreams Are Ten A Penny",
+      "isrc": "GBBXC7220173",
+      "uri_apple_music": "applemusic://track/1605183970",
+      "uri_deezer": "deezer://track/1622212942",
+      "fun_fact": "Kincade was a studio name rather than a band, and the record did nothing at home while reaching the top five in Germany and the Netherlands.",
+      "fun_fact_de": "Kincade war ein Studioname und keine Band, und die Platte lief daheim ins Leere, während sie in Deutschland und den Niederlanden in die Top fünf kam.",
+      "fun_fact_es": "Kincade era un nombre de estudio más que un grupo, y el disco no funcionó en casa mientras llegaba al top cinco en Alemania y los Países Bajos.",
+      "fun_fact_fr": "Kincade était un nom de studio plutôt qu'un groupe, et le disque n'a rien fait chez lui tout en atteignant le top cinq en Allemagne et aux Pays-Bas.",
+      "fun_fact_nl": "Kincade was eerder een studionaam dan een band, en de plaat deed thuis niets terwijl hij in Duitsland en Nederland de top vijf haalde.",
+      "fun_fact_it": "Kincade era più un nome da studio che un gruppo, e il disco non fece nulla in patria mentre entrava nella top cinque in Germania e nei Paesi Bassi."
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:1BmcaqiAwi3kbkCHNgSGuG",
+      "artist": "Nazareth",
+      "alt_artists": [
+        "Joni Mitchell",
+        "Uriah Heep",
+        "Deep Purple"
+      ],
+      "title": "This Flight Tonight",
+      "isrc": "GBCBR0402004",
+      "uri_apple_music": "applemusic://track/1441062608",
+      "uri_deezer": "deezer://track/65211028",
+      "fun_fact": "Joni Mitchell wrote it as a quiet acoustic piece; after hearing what Nazareth did to it she took to introducing it on stage as the Nazareth song.",
+      "fun_fact_de": "Joni Mitchell schrieb ihn als leises Akustikstück; nachdem sie gehört hatte, was Nazareth daraus machten, kündigte sie ihn auf der Bühne als den Nazareth-Song an.",
+      "fun_fact_es": "Joni Mitchell la escribió como una pieza acústica tranquila; tras oír lo que Nazareth hizo con ella, empezó a presentarla en directo como la canción de Nazareth.",
+      "fun_fact_fr": "Joni Mitchell l'avait écrite comme une pièce acoustique paisible ; après avoir entendu ce que Nazareth en avait fait, elle l'annonçait sur scène comme la chanson de Nazareth.",
+      "fun_fact_nl": "Joni Mitchell schreef het als een rustig akoestisch stuk; nadat ze hoorde wat Nazareth ermee deed, kondigde ze het op het podium aan als het Nazareth-nummer.",
+      "fun_fact_it": "Joni Mitchell la scrisse come un pezzo acustico sommesso; dopo aver sentito cosa ne avevano fatto i Nazareth, la presentava dal vivo come la canzone dei Nazareth."
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:6k6j3ZUljY1QLTMbc8VqB0",
+      "artist": "Sweet",
+      "alt_artists": [
+        "Slade",
+        "Suzi Quatro",
+        "Mud"
+      ],
+      "title": "Ballroom Blitz",
+      "isrc": "GBARL7300001",
+      "uri_apple_music": "applemusic://track/1446015804",
+      "uri_deezer": "deezer://track/2565717",
+      "fun_fact": "The spoken count-in came from a real night in Scotland where the band was driven off stage by a hail of bottles; the song is their reply to it.",
+      "fun_fact_de": "Das gesprochene Intro geht auf einen realen Abend in Schottland zurück, an dem die Band von einem Flaschenhagel von der Bühne getrieben wurde; der Song ist ihre Antwort darauf.",
+      "fun_fact_es": "La cuenta hablada del principio viene de una noche real en Escocia en la que una lluvia de botellas echó al grupo del escenario; la canción es su respuesta.",
+      "fun_fact_fr": "Le décompte parlé vient d'une vraie soirée en Écosse où une pluie de bouteilles a chassé le groupe de la scène ; la chanson est leur réponse.",
+      "fun_fact_nl": "De gesproken aftelling komt van een echte avond in Schotland waar de band door een hagel van flessen van het podium werd gejaagd; het nummer is hun antwoord.",
+      "fun_fact_it": "Il conteggio parlato viene da una serata vera in Scozia in cui una grandinata di bottiglie cacciò la band dal palco; la canzone è la loro risposta."
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:3SZkTTibswLaKIEyEfaAFM",
+      "artist": "Slade",
+      "alt_artists": [
+        "Sweet",
+        "Mud",
+        "Wizzard"
+      ],
+      "title": "Far Far Away",
+      "isrc": "GBAKW7401001",
+      "uri_apple_music": "applemusic://track/6781552783",
+      "uri_deezer": "deezer://track/4083043791",
+      "fun_fact": "Noddy Holder wrote the words on tour in America, and for once Slade spelled the title correctly — the band's trademark was deliberate misspelling.",
+      "fun_fact_de": "Noddy Holder schrieb den Text auf US-Tournee, und ausnahmsweise schrieb Slade den Titel richtig — das Markenzeichen der Band waren absichtliche Rechtschreibfehler.",
+      "fun_fact_es": "Noddy Holder escribió la letra de gira por Estados Unidos y, por una vez, Slade escribió bien el título: la marca del grupo eran las faltas deliberadas.",
+      "fun_fact_fr": "Noddy Holder a écrit le texte en tournée américaine et, pour une fois, Slade a écrit le titre correctement — la marque du groupe était la faute d'orthographe volontaire.",
+      "fun_fact_nl": "Noddy Holder schreef de tekst tijdens een Amerikaanse tournee, en voor één keer spelde Slade de titel correct — het handelsmerk van de band waren opzettelijke spelfouten.",
+      "fun_fact_it": "Noddy Holder scrisse il testo in tournée in America e, per una volta, gli Slade scrissero il titolo correttamente: il marchio della band erano gli errori voluti."
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:2obblQ6tcePeOEVJV6nEGD",
+      "artist": "Harry Chapin",
+      "alt_artists": [
+        "Ugly Kid Joe",
+        "Jim Croce",
+        "Cat Stevens"
+      ],
+      "title": "Cat's in the Cradle",
+      "isrc": "USEE10801444",
+      "uri_apple_music": "applemusic://track/40286679",
+      "uri_deezer": "deezer://track/4118799",
+      "fun_fact": "The words began as a poem by Chapin's wife Sandy about her first husband and his father; Chapin only recorded it after his own son was born.",
+      "fun_fact_de": "Der Text begann als Gedicht von Chapins Frau Sandy über ihren ersten Mann und dessen Vater; Chapin nahm ihn erst auf, nachdem sein eigener Sohn geboren war.",
+      "fun_fact_es": "La letra empezó como un poema de Sandy, la mujer de Chapin, sobre su primer marido y el padre de este; Chapin solo la grabó tras nacer su propio hijo.",
+      "fun_fact_fr": "Le texte a commencé comme un poème de Sandy, la femme de Chapin, sur son premier mari et le père de celui-ci ; Chapin ne l'a enregistré qu'après la naissance de son fils.",
+      "fun_fact_nl": "De tekst begon als een gedicht van Chapins vrouw Sandy over haar eerste man en diens vader; Chapin nam het pas op nadat zijn eigen zoon was geboren.",
+      "fun_fact_it": "Il testo nacque come poesia di Sandy, moglie di Chapin, sul suo primo marito e il padre di lui; Chapin la incise solo dopo la nascita del proprio figlio."
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:17pOLaBouf2EleJjsHfJSg",
+      "artist": "Blue Swede",
+      "alt_artists": [
+        "B. J. Thomas",
+        "Björn Skifs",
+        "David Hasselhoff"
+      ],
+      "title": "Hooked On A Feeling",
+      "isrc": "SEAMA7343050",
+      "uri_apple_music": "applemusic://track/726197782",
+      "uri_deezer": "deezer://track/3402413",
+      "fun_fact": "The wordless chant that opens it was not in B. J. Thomas's original; the Swedes borrowed it from a Jonathan King cover and made it the part everyone remembers.",
+      "fun_fact_de": "Der wortlose Sprechgesang am Anfang stand nicht im Original von B. J. Thomas; die Schweden übernahmen ihn von einer Coverversion von Jonathan King und machten daraus die Stelle, die alle kennen.",
+      "fun_fact_es": "El cántico sin palabras del inicio no estaba en el original de B. J. Thomas; los suecos lo tomaron de una versión de Jonathan King y lo convirtieron en lo que todos recuerdan.",
+      "fun_fact_fr": "Le chant sans paroles du début ne figurait pas dans l'original de B. J. Thomas ; les Suédois l'ont emprunté à une reprise de Jonathan King et en ont fait le passage que tout le monde retient.",
+      "fun_fact_nl": "Het woordeloze gezang aan het begin stond niet in het origineel van B. J. Thomas; de Zweden leenden het van een cover van Jonathan King en maakten er het stuk van dat iedereen kent.",
+      "fun_fact_it": "Il canto senza parole d'apertura non c'era nell'originale di B. J. Thomas; gli svedesi lo presero da una cover di Jonathan King e ne fecero il passaggio che tutti ricordano."
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:4Wr14AISsCuBGdkA6rids4",
+      "artist": "Silver Convention",
+      "alt_artists": [
+        "Boney M.",
+        "Donna Summer",
+        "Baccara"
+      ],
+      "title": "Fly Robin Fly",
+      "isrc": "USRDC7520003",
+      "uri_apple_music": "applemusic://track/394743930",
+      "uri_deezer": "deezer://track/11787290",
+      "fun_fact": "The whole lyric is six words repeated, which did not stop it going to number one in America and taking a Grammy for best disco recording.",
+      "fun_fact_de": "Der gesamte Text besteht aus sechs wiederholten Wörtern, was ihn nicht daran hinderte, in Amerika auf Platz eins zu gehen und einen Grammy für die beste Disco-Aufnahme zu holen.",
+      "fun_fact_es": "Toda la letra son seis palabras repetidas, lo que no impidió que llegara al número uno en Estados Unidos y ganara un Grammy a la mejor grabación disco.",
+      "fun_fact_fr": "Tout le texte tient en six mots répétés, ce qui ne l'a pas empêché d'atteindre la première place aux États-Unis et de remporter un Grammy du meilleur enregistrement disco.",
+      "fun_fact_nl": "De hele tekst bestaat uit zes herhaalde woorden, wat niet verhinderde dat het in Amerika nummer één werd en een Grammy won voor beste disco-opname.",
+      "fun_fact_it": "Tutto il testo sono sei parole ripetute, il che non impedì di arrivare al primo posto in America e di vincere un Grammy come miglior incisione disco."
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:4t9EUCjCPbdfqtOH25k8AU",
+      "artist": "Harpo",
+      "alt_artists": [
+        "Smokie",
+        "Chris Norman",
+        "Mud"
+      ],
+      "title": "Moviestar",
+      "isrc": "SEAMA7640010",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/6104213",
+      "fun_fact": "Sweden's Jan Svensson recorded it under a name he took from the Marx Brothers, and it sold better in Germany than anywhere else, including home.",
+      "fun_fact_de": "Der Schwede Jan Svensson nahm den Song unter einem Namen auf, den er sich von den Marx Brothers lieh, und er verkaufte sich in Deutschland besser als irgendwo sonst, auch besser als daheim.",
+      "fun_fact_es": "El sueco Jan Svensson lo grabó bajo un nombre tomado de los hermanos Marx, y se vendió mejor en Alemania que en ningún otro sitio, incluida su propia tierra.",
+      "fun_fact_fr": "Le Suédois Jan Svensson l'a enregistrée sous un nom emprunté aux Marx Brothers, et elle s'est mieux vendue en Allemagne que partout ailleurs, y compris chez lui.",
+      "fun_fact_nl": "De Zweed Jan Svensson nam het op onder een naam die hij aan de Marx Brothers ontleende, en het verkocht in Duitsland beter dan waar ook, ook beter dan thuis.",
+      "fun_fact_it": "Lo svedese Jan Svensson la incise sotto un nome preso in prestito dai fratelli Marx, e vendette in Germania meglio che altrove, patria compresa."
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:2jxuI4zNuFKQfTryWQRq6M",
+      "artist": "David Dundas",
+      "alt_artists": [
+        "Smokie",
+        "Mungo Jerry",
+        "Chris Rea"
+      ],
+      "title": "Jeans On",
+      "isrc": "GBEHT0400612",
+      "uri_apple_music": "applemusic://track/1438755116",
+      "uri_deezer": "deezer://track/3783335362",
+      "fun_fact": "It started life as a thirty-second jingle for a Brutus jeans advert; the record company asked Dundas to stretch it into a song and it reached number three.",
+      "fun_fact_de": "Der Song begann als dreißigsekündiger Jingle für eine Brutus-Jeans-Werbung; die Plattenfirma bat Dundas, daraus ein ganzes Lied zu machen, und es kam auf Platz drei.",
+      "fun_fact_es": "Empezó como una cuña de treinta segundos para un anuncio de vaqueros Brutus; la discográfica pidió a Dundas que la estirara hasta hacer una canción y llegó al número tres.",
+      "fun_fact_fr": "Elle a commencé comme un jingle de trente secondes pour une publicité de jeans Brutus ; la maison de disques a demandé à Dundas d'en faire une chanson et elle a atteint la troisième place.",
+      "fun_fact_nl": "Het begon als een jingle van dertig seconden voor een reclame van Brutus-jeans; de platenmaatschappij vroeg Dundas er een lied van te maken en het werd nummer drie.",
+      "fun_fact_it": "Nacque come jingle di trenta secondi per una pubblicità di jeans Brutus; la casa discografica chiese a Dundas di farne una canzone e arrivò al terzo posto."
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:2l6M2T0qbI74GXd7MqQhbw",
+      "artist": "Johnny Wakelin",
+      "alt_artists": [
+        "Boney M.",
+        "Baccara",
+        "Tina Charles"
+      ],
+      "title": "In Zaire",
+      "isrc": "GBAJE7600058",
+      "uri_apple_music": "applemusic://track/1710212104",
+      "uri_deezer": "deezer://track/3786451842",
+      "fun_fact": "Wakelin wrote two hits about Muhammad Ali, and this one is about the Rumble in the Jungle — a British singer's account of a fight in Kinshasa.",
+      "fun_fact_de": "Wakelin schrieb zwei Hits über Muhammad Ali, und dieser handelt vom Rumble in the Jungle — der Bericht eines britischen Sängers über einen Kampf in Kinshasa.",
+      "fun_fact_es": "Wakelin escribió dos éxitos sobre Muhammad Ali, y este trata del Rumble in the Jungle: la crónica de un cantante británico sobre un combate en Kinsasa.",
+      "fun_fact_fr": "Wakelin a écrit deux tubes sur Mohamed Ali, et celui-ci parle du Rumble in the Jungle — le récit par un chanteur britannique d'un combat à Kinshasa.",
+      "fun_fact_nl": "Wakelin schreef twee hits over Muhammad Ali, en deze gaat over de Rumble in the Jungle — het verslag van een Britse zanger over een gevecht in Kinshasa.",
+      "fun_fact_it": "Wakelin scrisse due successi su Muhammad Ali, e questo racconta il Rumble in the Jungle: la cronaca di un cantante britannico su un incontro a Kinshasa."
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:57TaM8GozkJBz90xvQ1xME",
+      "artist": "Smokie",
+      "alt_artists": [
+        "Chris Norman",
+        "New World",
+        "Suzi Quatro"
+      ],
+      "title": "Living Next Door to Alice",
+      "isrc": "DEA817600021",
+      "uri_apple_music": "applemusic://track/290383538",
+      "uri_deezer": "deezer://track/69883086",
+      "fun_fact": "Nicky Chinn and Mike Chapman wrote it for the Australian band New World in 1972; Smokie's remake four years later is the one that stuck across Europe.",
+      "fun_fact_de": "Nicky Chinn und Mike Chapman schrieben den Song 1972 für die australische Band New World; Smokies Neuaufnahme vier Jahre später ist die, die in Europa hängen blieb.",
+      "fun_fact_es": "Nicky Chinn y Mike Chapman la escribieron en 1972 para el grupo australiano New World; la nueva versión de Smokie cuatro años después es la que caló en Europa.",
+      "fun_fact_fr": "Nicky Chinn et Mike Chapman l'ont écrite en 1972 pour le groupe australien New World ; c'est la reprise de Smokie, quatre ans plus tard, qui s'est imposée en Europe.",
+      "fun_fact_nl": "Nicky Chinn en Mike Chapman schreven het in 1972 voor de Australische band New World; de nieuwe versie van Smokie vier jaar later is degene die in Europa bleef hangen.",
+      "fun_fact_it": "Nicky Chinn e Mike Chapman la scrissero nel 1972 per il gruppo australiano New World; il rifacimento degli Smokie quattro anni dopo è quello rimasto in Europa."
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:2eYjEQFSl43STOZZe86QgB",
+      "artist": "Wings",
+      "alt_artists": [
+        "Paul McCartney",
+        "The Beatles",
+        "Wings"
+      ],
+      "title": "Mull Of Kintyre",
+      "isrc": "GBCCS7700746",
+      "uri_apple_music": "applemusic://track/1440942241",
+      "uri_deezer": "deezer://track/5664767",
+      "fun_fact": "McCartney set it on the Scottish headland where he keeps a farm, and the bagpipes of the Campbeltown Pipe Band carried it past two million UK sales.",
+      "fun_fact_de": "McCartney siedelte den Song auf der schottischen Landzunge an, auf der er eine Farm hat, und die Dudelsäcke der Campbeltown Pipe Band trugen ihn über zwei Millionen verkaufte Exemplare in Britannien.",
+      "fun_fact_es": "McCartney la situó en el cabo escocés donde tiene una granja, y las gaitas de la Campbeltown Pipe Band la llevaron más allá de los dos millones de copias en el Reino Unido.",
+      "fun_fact_fr": "McCartney l'a située sur la pointe écossaise où il possède une ferme, et les cornemuses du Campbeltown Pipe Band lui ont fait dépasser les deux millions de ventes au Royaume-Uni.",
+      "fun_fact_nl": "McCartney situeerde het op de Schotse landtong waar hij een boerderij heeft, en de doedelzakken van de Campbeltown Pipe Band brachten het voorbij twee miljoen verkochte exemplaren in Groot-Brittannië.",
+      "fun_fact_it": "McCartney la ambientò sul promontorio scozzese dove ha una fattoria, e le cornamuse della Campbeltown Pipe Band la portarono oltre i due milioni di copie nel Regno Unito."
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:0rCEfFfigLLYmAFeJXQvm6",
+      "artist": "Santa Esmeralda",
+      "alt_artists": [
+        "The Animals",
+        "Nina Simone",
+        "Eric Burdon"
+      ],
+      "title": "Don't Let Me Be Misunderstood",
+      "isrc": "USGZ20600338",
+      "uri_apple_music": "applemusic://track/293764647",
+      "uri_deezer": "deezer://track/11567131",
+      "fun_fact": "Nina Simone recorded it first as a slow lament; Santa Esmeralda turned it into a sixteen-minute flamenco disco piece that Tarantino later put in Kill Bill.",
+      "fun_fact_de": "Nina Simone nahm den Song zuerst als langsame Klage auf; Santa Esmeralda machten daraus ein sechzehnminütiges Flamenco-Disco-Stück, das Tarantino später in Kill Bill verwendete.",
+      "fun_fact_es": "Nina Simone la grabó primero como un lamento lento; Santa Esmeralda la convirtió en una pieza de flamenco disco de dieciséis minutos que Tarantino usó luego en Kill Bill.",
+      "fun_fact_fr": "Nina Simone l'a d'abord enregistrée comme une lamentation lente ; Santa Esmeralda en a fait un morceau de flamenco disco de seize minutes que Tarantino a ensuite utilisé dans Kill Bill.",
+      "fun_fact_nl": "Nina Simone nam het eerst op als een traag klaaglied; Santa Esmeralda maakte er een flamencodiscostuk van zestien minuten van dat Tarantino later in Kill Bill gebruikte.",
+      "fun_fact_it": "Nina Simone la incise per prima come un lamento lento; i Santa Esmeralda ne fecero un pezzo flamenco disco di sedici minuti che Tarantino usò poi in Kill Bill."
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:12VVhwwzhAi0GBzJFarIEP",
+      "artist": "Suzi Quatro",
+      "alt_artists": [
+        "Sweet",
+        "Joan Jett",
+        "Blondie"
+      ],
+      "title": "If You Can't Give Me Love",
+      "isrc": "UKKP21700074",
+      "uri_apple_music": "applemusic://track/1629153040",
+      "uri_deezer": "deezer://track/1787375817",
+      "fun_fact": "Chinn and Chapman handed Quatro a pop song rather than a rocker, and it outsold every leather-jacket single she had released before it.",
+      "fun_fact_de": "Chinn und Chapman gaben Quatro einen Popsong statt eines Rockers, und er verkaufte sich besser als jede Lederjacken-Single davor.",
+      "fun_fact_es": "Chinn y Chapman le dieron a Quatro una canción pop en lugar de un tema rockero, y vendió más que cualquier sencillo de cazadora de cuero anterior.",
+      "fun_fact_fr": "Chinn et Chapman ont donné à Quatro une chanson pop plutôt qu'un morceau rock, et elle s'est mieux vendue que tous ses singles blouson de cuir précédents.",
+      "fun_fact_nl": "Chinn en Chapman gaven Quatro een popnummer in plaats van een rocker, en het verkocht beter dan elke leren-jack-single daarvoor.",
+      "fun_fact_it": "Chinn e Chapman diedero a Quatro una canzone pop invece di un pezzo rock, e vendette più di ogni singolo in giacca di pelle precedente."
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:284PXSCD8lGtytVviIkts3",
+      "artist": "Nick Straker Band",
+      "alt_artists": [
+        "M",
+        "Gary Numan",
+        "The Buggles"
+      ],
+      "title": "A Walk In The Park",
+      "isrc": "DEA311003597",
+      "uri_apple_music": "applemusic://track/78835989",
+      "uri_deezer": "deezer://track/60372121",
+      "fun_fact": "Straker played the synthesiser on M's 'Pop Muzik' before this; the same clipped electronic pop turns up here under his own name.",
+      "fun_fact_de": "Straker spielte davor den Synthesizer auf 'Pop Muzik' von M; derselbe knappe Elektro-Pop taucht hier unter seinem eigenen Namen wieder auf.",
+      "fun_fact_es": "Straker tocó el sintetizador en 'Pop Muzik' de M antes de esto; el mismo pop electrónico seco reaparece aquí bajo su propio nombre.",
+      "fun_fact_fr": "Straker jouait du synthétiseur sur 'Pop Muzik' de M avant cela ; la même pop électronique sèche revient ici sous son propre nom.",
+      "fun_fact_nl": "Straker speelde daarvoor synthesizer op 'Pop Muzik' van M; dezelfde strakke elektronische pop duikt hier onder zijn eigen naam op.",
+      "fun_fact_it": "Straker suonava il sintetizzatore in 'Pop Muzik' degli M prima di questo; lo stesso pop elettronico asciutto ritorna qui sotto il suo nome."
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:2QTAl6K1dEwzOoPdkpZORX",
+      "artist": "The Alan Parsons Project",
+      "alt_artists": [
+        "Pink Floyd",
+        "Electric Light Orchestra",
+        "Mike Oldfield"
+      ],
+      "title": "Lucifer",
+      "isrc": "USAR19700011",
+      "uri_apple_music": "applemusic://track/598283277",
+      "uri_deezer": "deezer://track/15387905",
+      "fun_fact": "The instrumental spent years as the theme of the German television show Die aktuelle Schaubude, which is why it is far better known in Germany than in Britain.",
+      "fun_fact_de": "Das Instrumental war jahrelang das Thema der deutschen Fernsehsendung Die aktuelle Schaubude — deshalb ist es in Deutschland weit bekannter als in Britannien.",
+      "fun_fact_es": "El instrumental fue durante años la sintonía del programa alemán Die aktuelle Schaubude, por lo que es mucho más conocido en Alemania que en Gran Bretaña.",
+      "fun_fact_fr": "L'instrumental a longtemps servi de générique à l'émission allemande Die aktuelle Schaubude, ce qui explique qu'il soit bien plus connu en Allemagne qu'au Royaume-Uni.",
+      "fun_fact_nl": "Het instrumentale nummer was jarenlang de tune van het Duitse programma Die aktuelle Schaubude, waardoor het in Duitsland veel bekender is dan in Groot-Brittannië.",
+      "fun_fact_it": "Il brano strumentale fu per anni la sigla del programma tedesco Die aktuelle Schaubude, ed è per questo assai più noto in Germania che in Gran Bretagna."
     }
   ]
 }
