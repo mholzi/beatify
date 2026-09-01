@@ -1,6 +1,6 @@
 {
   "name": "60s Classics 🎸",
-  "version": "1.17",
+  "version": "1.18",
   "source": "https://open.spotify.com/playlist/6rtsNFUv2UK3j78PRVMpSd",
   "tags": [
     "1960s",
@@ -2509,6 +2509,166 @@
       "fun_fact_fr": "Elle a été écrite pour Aretha Franklin, qui l'a refusée ; elle ne l'a enregistrée qu'une fois la version de Springfield devenue la référence.",
       "fun_fact_nl": "Het was geschreven voor Aretha Franklin, die het afwees; ze nam het pas op toen Springfields versie allang de definitieve was.",
       "fun_fact_it": "Fu scritta per Aretha Franklin, che la rifiutò; la incise solo quando la versione di Springfield era ormai diventata quella definitiva."
+    },
+    {
+      "year": 1960,
+      "uri": "spotify:track:1XunTmhOcj3xwh4b8P3isX",
+      "artist": "Elvis Presley",
+      "alt_artists": [
+        "Dean Martin",
+        "Roy Orbison",
+        "Cliff Richard"
+      ],
+      "title": "It's Now or Never",
+      "isrc": "USRC16001349",
+      "uri_apple_music": "applemusic://track/217634574",
+      "uri_deezer": "deezer://track/1055390",
+      "fun_fact": "The melody is the Neapolitan song 'O sole mio' from 1898; Presley heard it in the army in Germany and asked for English words.",
+      "fun_fact_de": "Die Melodie ist das neapolitanische Lied 'O sole mio' von 1898; Presley hörte es als Soldat in Deutschland und bat um einen englischen Text.",
+      "fun_fact_es": "La melodía es la canción napolitana 'O sole mio' de 1898; Presley la oyó siendo soldado en Alemania y pidió una letra en inglés.",
+      "fun_fact_fr": "La mélodie est la chanson napolitaine « O sole mio » de 1898 ; Presley l'a entendue soldat en Allemagne et a demandé des paroles en anglais.",
+      "fun_fact_nl": "De melodie is het Napolitaanse lied 'O sole mio' uit 1898; Presley hoorde het als soldaat in Duitsland en vroeg om een Engelse tekst.",
+      "fun_fact_it": "La melodia è la canzone napoletana 'O sole mio' del 1898; Presley la sentì da soldato in Germania e chiese un testo in inglese."
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:2HoqbEOXgbDSLZ5XCePEXt",
+      "artist": "Ray Charles",
+      "alt_artists": [
+        "Sam Cooke",
+        "Nat King Cole",
+        "Fats Domino"
+      ],
+      "title": "Hit the Road Jack",
+      "isrc": "DEG320700128",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/62882810",
+      "fun_fact": "Percy Mayfield sent the song to Ray Charles as an a cappella demo recorded on a home tape machine, and Charles cut it almost unchanged.",
+      "fun_fact_de": "Percy Mayfield schickte Ray Charles den Song als A-cappella-Demo von einem Heimtonband, und Charles nahm ihn fast unverändert auf.",
+      "fun_fact_es": "Percy Mayfield envió la canción a Ray Charles como una maqueta a capela grabada en casa, y Charles la registró casi sin cambios.",
+      "fun_fact_fr": "Percy Mayfield a envoyé la chanson à Ray Charles sous forme de démo a cappella enregistrée chez lui, et Charles l'a gravée presque telle quelle.",
+      "fun_fact_nl": "Percy Mayfield stuurde het nummer als a-capella-demo van een thuisbandrecorder naar Ray Charles, die het vrijwel ongewijzigd opnam.",
+      "fun_fact_it": "Percy Mayfield mandò il brano a Ray Charles come demo a cappella registrata in casa, e Charles la incise quasi immutata."
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:3v9xlH6BpmRbqL7hgNJhfT",
+      "artist": "The Beach Boys",
+      "alt_artists": [
+        "Jan and Dean",
+        "The Four Seasons",
+        "The Ventures"
+      ],
+      "title": "I Get Around",
+      "isrc": "USCA20001635",
+      "uri_apple_music": "applemusic://track/1443227679",
+      "uri_deezer": "deezer://track/3091964",
+      "fun_fact": "This was the band's first American number one, and Brian Wilson had a panic attack on a plane months later that ended his touring for good.",
+      "fun_fact_de": "Es war der erste amerikanische Nummer-eins-Hit der Band; Monate später hatte Brian Wilson im Flugzeug eine Panikattacke, die sein Tourleben endgültig beendete.",
+      "fun_fact_es": "Fue el primer número uno estadounidense del grupo; meses después Brian Wilson sufrió un ataque de pánico en un avión que acabó para siempre con sus giras.",
+      "fun_fact_fr": "Ce fut le premier numéro un américain du groupe ; quelques mois plus tard, Brian Wilson a fait une crise de panique en avion qui a mis fin à ses tournées.",
+      "fun_fact_nl": "Dit was de eerste Amerikaanse nummer één van de band; maanden later kreeg Brian Wilson in een vliegtuig een paniekaanval die zijn tourleven definitief beëindigde.",
+      "fun_fact_it": "Fu il primo numero uno americano della band; mesi dopo Brian Wilson ebbe un attacco di panico in aereo che pose fine per sempre alle sue tournée."
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:3EFb1qDgIqf9MegIryKtDj",
+      "artist": "The Mamas & The Papas",
+      "alt_artists": [
+        "The Byrds",
+        "The Turtles",
+        "The Lovin' Spoonful"
+      ],
+      "title": "Monday, Monday",
+      "isrc": "QM6MZ1436390",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/92272808",
+      "fun_fact": "John Phillips wrote it in twenty minutes and the group disliked it; it went to number one and won them their only Grammy.",
+      "fun_fact_de": "John Phillips schrieb den Song in zwanzig Minuten, und die Gruppe mochte ihn nicht; er wurde Nummer eins und brachte ihr den einzigen Grammy.",
+      "fun_fact_es": "John Phillips la escribió en veinte minutos y al grupo no le gustaba; llegó al número uno y les dio su único Grammy.",
+      "fun_fact_fr": "John Phillips l'a écrite en vingt minutes et le groupe ne l'aimait pas ; elle a atteint la première place et leur a valu leur seul Grammy.",
+      "fun_fact_nl": "John Phillips schreef het in twintig minuten en de groep vond het niets; het werd nummer één en leverde hun enige Grammy op.",
+      "fun_fact_it": "John Phillips la scrisse in venti minuti e al gruppo non piaceva; arrivò al primo posto e valse loro l'unico Grammy."
+    },
+    {
+      "year": 1966,
+      "uri": "spotify:track:74VR3AkGPhbYXnxcOYa16x",
+      "artist": "Frank Sinatra",
+      "alt_artists": [
+        "Dean Martin",
+        "Tony Bennett",
+        "Andy Williams"
+      ],
+      "title": "Strangers In The Night",
+      "isrc": "USRH10800935",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/70835195",
+      "fun_fact": "Sinatra called it the worst song he ever recorded and sang it at nearly every concert for the next thirty years.",
+      "fun_fact_de": "Sinatra nannte es das schlechteste Lied, das er je aufgenommen habe — und sang es die nächsten dreißig Jahre in fast jedem Konzert.",
+      "fun_fact_es": "Sinatra la llamó la peor canción que había grabado y la cantó en casi todos sus conciertos durante los treinta años siguientes.",
+      "fun_fact_fr": "Sinatra la qualifiait de pire chanson qu'il ait enregistrée et l'a chantée dans presque chaque concert pendant les trente années suivantes.",
+      "fun_fact_nl": "Sinatra noemde het het slechtste lied dat hij ooit opnam en zong het de volgende dertig jaar op bijna elk concert.",
+      "fun_fact_it": "Sinatra la definì la peggior canzone mai incisa e la cantò in quasi ogni concerto per i trent'anni successivi."
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:0bfvHnWWOeU1U5XeKyVLbW",
+      "artist": "Frankie Valli",
+      "alt_artists": [
+        "The Four Seasons",
+        "Andy Williams",
+        "Engelbert Humperdinck"
+      ],
+      "title": "Can't Take My Eyes off You",
+      "isrc": "USRH10175215",
+      "uri_apple_music": "applemusic://track/40454283",
+      "uri_deezer": "deezer://track/725689",
+      "fun_fact": "The horn fanfare in the middle was added because the producer thought the song had no hook; it became the most recognisable part.",
+      "fun_fact_de": "Die Bläserfanfare in der Mitte kam dazu, weil der Produzent den Song für hooklos hielt — sie wurde die bekannteste Stelle.",
+      "fun_fact_es": "La fanfarria de metales del centro se añadió porque el productor creía que la canción no tenía gancho; acabó siendo lo más reconocible.",
+      "fun_fact_fr": "La fanfare de cuivres au milieu a été ajoutée parce que le producteur trouvait la chanson sans accroche ; c'est devenu le passage le plus reconnaissable.",
+      "fun_fact_nl": "De blazersfanfare in het midden werd toegevoegd omdat de producer vond dat het nummer geen hook had; het werd het herkenbaarste deel.",
+      "fun_fact_it": "La fanfara di ottoni al centro fu aggiunta perché il produttore riteneva che il brano non avesse un gancio; divenne la parte più riconoscibile."
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:0iOZM63lendWRTTeKhZBSC",
+      "artist": "Simon & Garfunkel",
+      "alt_artists": [
+        "The Byrds",
+        "Simon and Garfunkel",
+        "The Bangles"
+      ],
+      "title": "Mrs. Robinson",
+      "isrc": "USSM16800379",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/624783",
+      "fun_fact": "Mike Nichols asked for songs for The Graduate and got this one half-finished, with 'Mrs Roosevelt' as a placeholder in the chorus.",
+      "fun_fact_de": "Mike Nichols bat um Musik für Die Reifeprüfung und bekam diesen Song halbfertig — im Refrain stand als Platzhalter noch 'Mrs Roosevelt'.",
+      "fun_fact_es": "Mike Nichols pidió canciones para El graduado y recibió esta a medio terminar, con 'Mrs Roosevelt' como relleno en el estribillo.",
+      "fun_fact_fr": "Mike Nichols a demandé des chansons pour Le Lauréat et a reçu celle-ci à moitié finie, avec « Mrs Roosevelt » en remplissage dans le refrain.",
+      "fun_fact_nl": "Mike Nichols vroeg om liedjes voor The Graduate en kreeg dit half af, met 'Mrs Roosevelt' als tijdelijke tekst in het refrein.",
+      "fun_fact_it": "Mike Nichols chiese canzoni per Il laureato e ricevette questa a metà, con 'Mrs Roosevelt' come segnaposto nel ritornello."
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:5xMLcSEstX1jN4arpNXqtX",
+      "artist": "Steam",
+      "alt_artists": [
+        "Bananarama",
+        "The Archies",
+        "Tommy James and the Shondells"
+      ],
+      "title": "Na Na Hey Hey Kiss Him Goodbye",
+      "isrc": "USPR37080068",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/936550902",
+      "fun_fact": "Steam was not a band but session players filling a B-side, and the nonsense chorus was meant as filler until real words arrived.",
+      "fun_fact_de": "Steam war keine Band, sondern Studiomusiker, die eine B-Seite füllten; der Nonsens-Refrain war als Platzhalter gedacht, bis ein echter Text käme.",
+      "fun_fact_es": "Steam no era un grupo sino músicos de sesión rellenando una cara B, y el estribillo sin sentido era un relleno hasta que llegara una letra de verdad.",
+      "fun_fact_fr": "Steam n'était pas un groupe mais des musiciens de studio bouchant une face B, et le refrain absurde devait tenir lieu de remplissage en attendant de vraies paroles.",
+      "fun_fact_nl": "Steam was geen band maar sessiemuzikanten die een B-kant vulden, en het onzinrefrein was bedoeld als opvulling tot er echte tekst kwam.",
+      "fun_fact_it": "Gli Steam non erano un gruppo ma turnisti che riempivano un lato B, e il ritornello senza senso doveva essere un riempitivo in attesa di un testo vero."
     }
   ]
 }
