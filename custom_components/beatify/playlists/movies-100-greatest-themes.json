@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.29",
+  "version": "1.30",
   "tags": [
     "movies",
     "soundtrack",
@@ -8882,6 +8882,139 @@
       "fun_fact_fr": "Une figure de piano qui trébuche sans cesse sur un motif de batterie hip-hop, pour une famille qui trébuche sur elle-même. Britell a remporté deux Emmy pour ce thème.",
       "fun_fact_nl": "Een pianofiguur die telkens struikelt over een hiphopdrumpatroon, voor een familie die telkens over zichzelf struikelt. Britell won er twee Emmy's mee.",
       "fun_fact_it": "Una figura di pianoforte che inciampa di continuo su un pattern di batteria hip-hop, per una famiglia che inciampa su se stessa. Britell vinse due Emmy."
+    },
+    {
+      "artist": "Michael Nyman",
+      "title": "The Heart Asks Pleasure First",
+      "year": 1993,
+      "uri": "spotify:track:4RW7EZi7SHSLRwvn1Q8Mqj",
+      "uri_apple_music": "applemusic://track/724561744",
+      "uri_deezer": "deezer://track/3358366",
+      "isrc": "GBDVE9300007",
+      "alt_artists": [
+        "Ludovico Einaudi",
+        "Yann Tiersen"
+      ],
+      "fun_fact": "Written for a mute woman who speaks only through her piano, and played on screen by Holly Hunter, who learned the part herself. The soundtrack sold over three million copies — almost unheard of for a contemporary classical score.",
+      "fun_fact_de": "Geschrieben für eine stumme Frau, die nur über ihr Klavier spricht, und im Film von Holly Hunter selbst gespielt, die den Part eigens lernte. Der Soundtrack verkaufte sich über drei Millionen Mal — für zeitgenössische Klassik fast unerhört.",
+      "fun_fact_es": "Escrita para una mujer muda que solo habla a través de su piano, e interpretada en pantalla por Holly Hunter, que aprendió la parte ella misma. La banda sonora vendió más de tres millones de copias, algo insólito para la música clásica contemporánea.",
+      "fun_fact_fr": "Écrite pour une femme muette qui ne s'exprime qu'au piano, et jouée à l'écran par Holly Hunter, qui a appris la partition elle-même. La bande originale s'est vendue à plus de trois millions d'exemplaires, chose rare pour de la musique classique contemporaine.",
+      "fun_fact_nl": "Geschreven voor een stomme vrouw die alleen via haar piano spreekt, en op het scherm gespeeld door Holly Hunter, die de partij zelf instudeerde. De soundtrack verkocht meer dan drie miljoen exemplaren — ongehoord voor hedendaags klassiek.",
+      "fun_fact_it": "Scritta per una donna muta che parla soltanto attraverso il pianoforte, ed eseguita sullo schermo da Holly Hunter, che imparò la parte da sé. La colonna sonora vendette oltre tre milioni di copie, cosa rarissima per la classica contemporanea."
+    },
+    {
+      "artist": "Georges Delerue",
+      "title": "Theme from Platoon",
+      "year": 1986,
+      "uri": "spotify:track:1zSkHrYVRdpDH8FwYjI9mD",
+      "uri_apple_music": "applemusic://track/1442991394",
+      "uri_deezer": "deezer://track/119875610",
+      "isrc": "US3M50122301",
+      "alt_artists": [
+        "Ennio Morricone",
+        "Maurice Jarre"
+      ],
+      "fun_fact": "Delerue wrote the original score for Oliver Stone's film, though the music most people remember from it is borrowed — Samuel Barber's Adagio for Strings, written half a century earlier. Delerue had already spent two decades scoring the French New Wave for Truffaut and Godard.",
+      "fun_fact_de": "Delerue schrieb die Originalmusik zu Oliver Stones Film, obwohl die Musik, die den meisten daraus im Ohr bleibt, geliehen ist — Samuel Barbers Adagio for Strings, ein halbes Jahrhundert älter. Delerue hatte zuvor zwei Jahrzehnte lang die Nouvelle Vague für Truffaut und Godard vertont.",
+      "fun_fact_es": "Delerue compuso la música original de la película de Oliver Stone, aunque la que casi todos recuerdan es prestada: el Adagio para cuerdas de Samuel Barber, escrito medio siglo antes. Delerue llevaba ya dos décadas poniendo música a la Nouvelle Vague de Truffaut y Godard.",
+      "fun_fact_fr": "Delerue a composé la musique originale du film d'Oliver Stone, alors que celle dont tout le monde se souvient est empruntée : l'Adagio pour cordes de Samuel Barber, écrit un demi-siècle plus tôt. Delerue avait déjà passé vingt ans à mettre la Nouvelle Vague en musique pour Truffaut et Godard.",
+      "fun_fact_nl": "Delerue schreef de originele muziek voor de film van Oliver Stone, terwijl de muziek die de meesten zich herinneren geleend is: Samuel Barbers Adagio for Strings, een halve eeuw ouder. Delerue had toen al twintig jaar de Nouvelle Vague getoonzet voor Truffaut en Godard.",
+      "fun_fact_it": "Delerue scrisse la musica originale del film di Oliver Stone, anche se quella che quasi tutti ricordano è presa a prestito: l'Adagio per archi di Samuel Barber, di mezzo secolo prima. Delerue aveva già alle spalle vent'anni di musiche per la Nouvelle Vague di Truffaut e Godard."
+    },
+    {
+      "artist": "Ramin Djawadi",
+      "title": "Game of Thrones Main Title",
+      "year": 2011,
+      "uri": "spotify:track:2q6fxAvSpqXR4jx9Ne7RGz",
+      "uri_apple_music": "applemusic://track/1440799057",
+      "uri_deezer": "deezer://track/117729426",
+      "isrc": "US3M51109701",
+      "alt_artists": [
+        "Hans Zimmer",
+        "Bear McCreary"
+      ],
+      "fun_fact": "The cello figure was written to match a title sequence of clockwork maps unfolding city by city, so the music turns like a mechanism. Djawadi had come up through Hans Zimmer's studio and went on to score Westworld the same way — one recurring theme, endlessly rebuilt.",
+      "fun_fact_de": "Die Cello-Figur wurde auf einen Vorspann geschrieben, in dem sich Uhrwerk-Karten Stadt für Stadt auffalten — die Musik dreht sich entsprechend wie ein Mechanismus. Djawadi kam aus Hans Zimmers Studio und vertonte später Westworld nach demselben Prinzip: ein Thema, immer neu gebaut.",
+      "fun_fact_es": "La figura de violonchelo se escribió para unos títulos en los que mapas de relojería se despliegan ciudad a ciudad, así que la música gira como un mecanismo. Djawadi se formó en el estudio de Hans Zimmer y luego compuso Westworld con el mismo método: un tema recurrente, reconstruido sin fin.",
+      "fun_fact_fr": "La figure de violoncelle a été écrite pour un générique où des cartes d'horlogerie se déplient ville après ville : la musique tourne donc comme un mécanisme. Djawadi est passé par le studio de Hans Zimmer, puis a composé Westworld selon le même principe — un thème, sans cesse reconstruit.",
+      "fun_fact_nl": "De cellofiguur werd geschreven bij een titelsequentie waarin uurwerkkaarten zich stad na stad ontvouwen, dus de muziek draait als een mechaniek. Djawadi kwam uit de studio van Hans Zimmer en componeerde Westworld later volgens hetzelfde principe: één thema, eindeloos herbouwd.",
+      "fun_fact_it": "La figura di violoncello fu scritta per una sigla in cui mappe a orologeria si aprono città dopo città, così la musica gira come un meccanismo. Djawadi veniva dallo studio di Hans Zimmer e compose poi Westworld allo stesso modo: un tema solo, ricostruito all'infinito."
+    },
+    {
+      "artist": "John Williams",
+      "title": "Theme from Superman",
+      "year": 1978,
+      "uri": "spotify:track:4tABZngfyleLXr5wxHgRxZ",
+      "uri_apple_music": "applemusic://track/50235930",
+      "uri_deezer": "deezer://track/3579856",
+      "isrc": "USWB10203667",
+      "alt_artists": [
+        "Jerry Goldsmith",
+        "Alan Silvestri"
+      ],
+      "fun_fact": "Recorded with the London Symphony Orchestra in the same stretch of years as Jaws, Star Wars and Close Encounters — four themes that between them fixed what a blockbuster is supposed to sound like. The main phrase is often said to follow the rhythm of the hero's name.",
+      "fun_fact_de": "Mit dem London Symphony Orchestra in derselben Werkphase eingespielt wie Der weiße Hai, Star Wars und Unheimliche Begegnung — vier Themen, die zusammen festlegten, wie ein Blockbuster zu klingen hat. Die Hauptphrase folgt, so heißt es oft, dem Rhythmus des Heldennamens.",
+      "fun_fact_es": "Grabada con la London Symphony Orchestra en los mismos años que Tiburón, Star Wars y Encuentros en la tercera fase: cuatro temas que juntos fijaron cómo debe sonar una superproducción. Se dice a menudo que la frase principal sigue el ritmo del nombre del héroe.",
+      "fun_fact_fr": "Enregistré avec le London Symphony Orchestra dans les mêmes années que Les Dents de la mer, Star Wars et Rencontres du troisième type — quatre thèmes qui ont ensemble défini le son du blockbuster. On dit souvent que la phrase principale épouse le rythme du nom du héros.",
+      "fun_fact_nl": "Opgenomen met het London Symphony Orchestra in dezelfde jaren als Jaws, Star Wars en Close Encounters — vier thema's die samen vastlegden hoe een blockbuster hoort te klinken. Vaak wordt gezegd dat de hoofdfrase het ritme van de heldennaam volgt.",
+      "fun_fact_it": "Registrato con la London Symphony Orchestra negli stessi anni di Lo squalo, Guerre stellari e Incontri ravvicinati: quattro temi che insieme stabilirono come debba suonare un blockbuster. Si dice spesso che la frase principale segua il ritmo del nome dell'eroe."
+    },
+    {
+      "artist": "Howard Shore",
+      "title": "The Shire",
+      "year": 2001,
+      "uri": "spotify:track:6zW80jVqLtgSF1yCtGHiiD",
+      "uri_apple_music": "applemusic://track/1369922093",
+      "uri_deezer": "deezer://track/483262842",
+      "isrc": "USRE10501559",
+      "alt_artists": [
+        "James Horner",
+        "John Powell"
+      ],
+      "fun_fact": "A tin whistle and a fiddle carry the whole idea of home for a trilogy that otherwise runs on brass and choirs. Shore wrote close to ten hours of music across the three films and won three Academy Awards for them.",
+      "fun_fact_de": "Eine Blechflöte und eine Fiedel tragen die ganze Vorstellung von Heimat — in einer Trilogie, die sonst von Blech und Chören lebt. Shore schrieb über die drei Filme hinweg fast zehn Stunden Musik und gewann dafür drei Oscars.",
+      "fun_fact_es": "Un silbato de hojalata y un violín sostienen toda la idea de hogar en una trilogía que por lo demás avanza a base de metales y coros. Shore escribió casi diez horas de música para las tres películas y ganó con ellas tres Oscar.",
+      "fun_fact_fr": "Un tin whistle et un violon portent à eux seuls l'idée du foyer, dans une trilogie qui carbure par ailleurs aux cuivres et aux chœurs. Shore a écrit près de dix heures de musique pour les trois films et y a gagné trois Oscars.",
+      "fun_fact_nl": "Een tinnen fluitje en een fiedel dragen het hele idee van thuis, in een trilogie die verder op koper en koren draait. Shore schreef bijna tien uur muziek voor de drie films en won er drie Oscars mee.",
+      "fun_fact_it": "Un flauto di latta e un violino reggono da soli l'idea di casa, in una trilogia che per il resto va avanti a ottoni e cori. Shore scrisse quasi dieci ore di musica per i tre film e ne ottenne tre Oscar."
+    },
+    {
+      "artist": "Keala Settle",
+      "title": "This Is Me",
+      "year": 2017,
+      "uri": "spotify:track:45aBsnKRWUzhwbcqOJLwfe",
+      "uri_apple_music": "applemusic://track/1436091877",
+      "uri_deezer": "deezer://track/435175512",
+      "isrc": "USAT21704622",
+      "alt_artists": [
+        "Idina Menzel",
+        "Loren Allred"
+      ],
+      "fun_fact": "Settle was so nervous at the first workshop that she almost did not sing it, and the take from that room is part of what ended up on the record. The song won the Golden Globe for Best Original Song and was nominated for an Oscar.",
+      "fun_fact_de": "Settle war beim ersten Workshop so nervös, dass sie es fast nicht gesungen hätte — und die Aufnahme aus jenem Raum steckt in dem, was schließlich auf der Platte landete. Das Lied gewann den Golden Globe als bester Filmsong und war für den Oscar nominiert.",
+      "fun_fact_es": "Settle estaba tan nerviosa en el primer ensayo que casi no llegó a cantarla, y la toma de aquella sala forma parte de lo que acabó en el disco. La canción ganó el Globo de Oro a la mejor canción original y fue nominada al Oscar.",
+      "fun_fact_fr": "Settle était si nerveuse lors du premier atelier qu'elle a failli ne pas la chanter, et la prise faite dans cette pièce fait partie de ce qui s'est retrouvé sur le disque. La chanson a remporté le Golden Globe de la meilleure chanson originale et été nommée aux Oscars.",
+      "fun_fact_nl": "Settle was bij de eerste workshop zo zenuwachtig dat ze het bijna niet zong, en de opname uit die ruimte zit in wat uiteindelijk op de plaat belandde. Het nummer won de Golden Globe voor beste originele song en kreeg een Oscarnominatie.",
+      "fun_fact_it": "Settle era così nervosa al primo workshop che quasi non la cantò, e la take di quella stanza è parte di ciò che finì sul disco. La canzone vinse il Golden Globe come miglior canzone originale e ottenne una nomination all'Oscar."
+    },
+    {
+      "artist": "James Horner",
+      "title": "For the Love of a Princess",
+      "year": 1995,
+      "uri": "spotify:track:22yxHt6UqZpH7tP6W4PooI",
+      "uri_apple_music": "applemusic://track/1440773933",
+      "uri_deezer": "deezer://track/65442214",
+      "isrc": "GBBBA9570211",
+      "alt_artists": [
+        "Hans Zimmer",
+        "John Barry"
+      ],
+      "fun_fact": "Horner ran uilleann pipes through the whole Braveheart score, so a Hollywood orchestra takes on a Celtic accent it does not naturally have. Recorded with the London Symphony Orchestra, the score brought him an Academy Award nomination.",
+      "fun_fact_de": "Horner zog die Uilleann Pipes durch die gesamte Braveheart-Musik, sodass ein Hollywood-Orchester einen keltischen Akzent bekommt, den es von Haus aus nicht hat. Eingespielt mit dem London Symphony Orchestra, brachte ihm die Musik eine Oscar-Nominierung ein.",
+      "fun_fact_es": "Horner recorrió toda la partitura de Braveheart con gaitas uilleann, de modo que una orquesta de Hollywood adopta un acento celta que no le es propio. Grabada con la London Symphony Orchestra, la banda sonora le valió una nominación al Oscar.",
+      "fun_fact_fr": "Horner a fait courir les uilleann pipes dans toute la partition de Braveheart, si bien qu'un orchestre hollywoodien prend un accent celte qui n'est pas le sien. Enregistrée avec le London Symphony Orchestra, la musique lui a valu une nomination aux Oscars.",
+      "fun_fact_nl": "Horner liet uilleann pipes door de hele Braveheart-partituur lopen, zodat een Hollywood-orkest een Keltisch accent krijgt dat het van huis uit niet heeft. Opgenomen met het London Symphony Orchestra leverde de muziek hem een Oscarnominatie op.",
+      "fun_fact_it": "Horner fece attraversare l'intera partitura di Braveheart dalle uilleann pipes, così un'orchestra hollywoodiana assume un accento celtico che non le appartiene. Registrata con la London Symphony Orchestra, la musica gli valse una nomination all'Oscar."
     }
   ],
   "movie_quiz_enabled": true
