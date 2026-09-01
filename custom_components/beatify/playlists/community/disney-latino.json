@@ -1,6 +1,6 @@
 {
   "name": "Disney Latino",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "disney",
     "movies",
@@ -629,7 +629,8 @@
         "Marco Antonio Solís",
         "Olga Lucía Vives"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tini: El gran cambio de Violetta» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tini: El gran cambio de Violetta» della Disney (2016).",
+      "uri_deezer": "deezer://track/123791408"
     },
     {
       "year": 2019,

@@ -1,6 +1,6 @@
 {
   "name": "Clásicos Disney (Castellano)",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "disney",
     "movies",
@@ -362,7 +362,9 @@
         "Malú",
         "Sleeping Beauty"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella Durmiente» della Disney (1959)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella Durmiente» della Disney (1959).",
+      "uri_apple_music": "applemusic://track/1443804803",
+      "uri_deezer": "deezer://track/1761711397"
     },
     {
       "year": 1995,
@@ -715,7 +717,8 @@
         "Gipsy Kings",
         "Jesús Aguirre"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella Durmiente» della Disney (1959)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella Durmiente» della Disney (1959).",
+      "uri_apple_music": "applemusic://track/1561428721"
     },
     {
       "year": 2016,
@@ -751,7 +754,8 @@
         "Carmen López",
         "Marco Antonio Solís"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998).",
+      "uri_deezer": "deezer://track/613917582"
     },
     {
       "year": 1937,
