@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.31",
+  "version": "1.32",
   "tags": [
     "movies",
     "soundtrack",
@@ -9055,6 +9055,344 @@
       "fun_fact_fr": "Swayze a écrit la chanson des années avant Dirty Dancing pour un autre film, l'a chantée lui-même, et ce fut l'unique tube de sa carrière d'acteur.",
       "fun_fact_nl": "Swayze schreef het nummer jaren voor Dirty Dancing voor een andere film, zong het zelf, en het bleef de enige hit van zijn acteercarrière.",
       "fun_fact_it": "Swayze scrisse la canzone anni prima di Dirty Dancing per un altro film, la cantò lui stesso, e restò l'unico successo della sua carriera di attore."
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:2S1JhDcpEArlLTmNYhW4q5",
+      "artist": "Joe Cocker, Jennifer Warnes",
+      "alt_artists": [
+        "Joe Cocker",
+        "Jennifer Warnes",
+        "Bill Medley"
+      ],
+      "title": "Up Where We Belong",
+      "isrc": "USIR28200024",
+      "uri_apple_music": "applemusic://track/1434922654",
+      "uri_deezer": "deezer://track/3156388",
+      "fun_fact": "Written for An Officer and a Gentleman, the song was nearly cut because the studio thought a duet would slow the ending down; it won the Oscar instead.",
+      "fun_fact_de": "Fuer Ein Offizier und Gentleman geschrieben und beinahe gestrichen, weil das Studio ein Duett fuer bremsend hielt — es gewann dann den Oscar.",
+      "fun_fact_es": "Escrita para Oficial y caballero, casi la cortan porque el estudio creia que un duo frenaria el final; acabo ganando el Oscar.",
+      "fun_fact_fr": "Ecrite pour Officier et gentleman, elle faillit etre coupee car le studio jugeait qu'un duo ralentirait la fin ; elle a remporte l'Oscar.",
+      "fun_fact_nl": "Geschreven voor An Officer and a Gentleman en bijna geschrapt omdat de studio dacht dat een duet het slot zou vertragen; het won de Oscar.",
+      "fun_fact_it": "Scritta per Ufficiale e gentiluomo, rischio il taglio perche lo studio temeva che un duetto rallentasse il finale; vinse l'Oscar."
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:32GikG80Mgfp4pQaI5LgjC",
+      "artist": "Bee Gees",
+      "alt_artists": [
+        "Bee Gees",
+        "Barry Gibb",
+        "Tavares"
+      ],
+      "title": "Night Fever",
+      "isrc": "NLF057790035",
+      "uri_apple_music": "applemusic://track/1445664307",
+      "uri_deezer": "deezer://track/139138751",
+      "fun_fact": "The film was going to be called Saturday Night until the Bee Gees turned in this song and the producers took the title from it.",
+      "fun_fact_de": "Der Film sollte Saturday Night heissen — bis die Bee Gees diesen Song ablieferten und die Produzenten den Titel daraus nahmen.",
+      "fun_fact_es": "La pelicula iba a llamarse Saturday Night hasta que los Bee Gees entregaron esta cancion y de ahi salio el titulo.",
+      "fun_fact_fr": "Le film devait s'appeler Saturday Night jusqu'a ce que les Bee Gees livrent ce morceau, dont les producteurs ont tire le titre.",
+      "fun_fact_nl": "De film zou Saturday Night heten, tot de Bee Gees dit nummer inleverden en de producenten de titel eruit haalden.",
+      "fun_fact_it": "Il film doveva chiamarsi Saturday Night finche i Bee Gees consegnarono questo brano e il titolo nacque da li."
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:6W2VbtvMrDXm5vYeB7amkO",
+      "artist": "Kenny Loggins",
+      "alt_artists": [
+        "Kenny Loggins",
+        "Deniece Williams",
+        "Bonnie Tyler"
+      ],
+      "title": "Footloose",
+      "isrc": "USSM19803320",
+      "uri_apple_music": "applemusic://track/1164757333",
+      "uri_deezer": "deezer://track/134012978",
+      "fun_fact": "Loggins wrote it with the screenwriter over the phone and cut the vocal in one afternoon; it spent three weeks at number one.",
+      "fun_fact_de": "Loggins schrieb ihn mit dem Drehbuchautor am Telefon und sang ihn an einem Nachmittag ein — drei Wochen Platz eins.",
+      "fun_fact_es": "Loggins la escribio por telefono con el guionista y grabo la voz en una tarde; estuvo tres semanas en el numero uno.",
+      "fun_fact_fr": "Loggins l'a ecrite au telephone avec le scenariste et a enregistre la voix en un apres-midi ; trois semaines numero un.",
+      "fun_fact_nl": "Loggins schreef het telefonisch met de scenarist en zong het in een middag in; drie weken op nummer een.",
+      "fun_fact_it": "Loggins la scrisse al telefono con lo sceneggiatore e incise la voce in un pomeriggio; tre settimane al primo posto."
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:3126iwAXVfyNQDP5iW2OAr",
+      "artist": "Isaac Hayes",
+      "alt_artists": [
+        "Isaac Hayes",
+        "Curtis Mayfield",
+        "Bill Withers"
+      ],
+      "title": "Theme from Shaft",
+      "isrc": "USFI80700310",
+      "uri_apple_music": "applemusic://track/1440937747",
+      "uri_deezer": "deezer://track/361114341",
+      "fun_fact": "The hi-hat that opens it was played for sixteen straight bars before a single note of melody arrives — the first Oscar for Best Original Song won by a Black composer.",
+      "fun_fact_de": "Die Hi-Hat laeuft sechzehn Takte, bevor die erste Melodienote kommt — der erste Song-Oscar fuer einen schwarzen Komponisten.",
+      "fun_fact_es": "El charles suena dieciseis compases antes de la primera nota de melodia; primer Oscar a cancion original para un compositor negro.",
+      "fun_fact_fr": "Le charleston tourne pendant seize mesures avant la premiere note de melodie ; premier Oscar de la chanson pour un compositeur noir.",
+      "fun_fact_nl": "De hi-hat loopt zestien maten voor de eerste melodienoot klinkt; eerste songoscar voor een zwarte componist.",
+      "fun_fact_it": "Il charleston suona per sedici battute prima della prima nota di melodia; primo Oscar per la canzone a un compositore nero."
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:3CxmaZX0VbpEi1Sw4gMJcf",
+      "artist": "Rolfe Kent",
+      "alt_artists": [
+        "Rolfe Kent",
+        "Daniel Licht",
+        "Ramin Djawadi"
+      ],
+      "title": "Dexter Main Title",
+      "uri_apple_music": "applemusic://track/1535112259",
+      "fun_fact": "Kent scored a breakfast routine — eggs, blood orange, coffee — so that ordinary morning sounds would read as a killer's ritual.",
+      "fun_fact_de": "Kent vertonte ein Fruehstueck — Ei, Blutorange, Kaffee — so, dass alltaegliche Morgengeraeusche wie das Ritual eines Moerders klingen.",
+      "fun_fact_es": "Kent musicalizo un desayuno — huevos, naranja sangre, cafe — para que los sonidos matinales sonaran a ritual de un asesino.",
+      "fun_fact_fr": "Kent a mis en musique un petit-dejeuner — oeufs, orange sanguine, cafe — pour que ces bruits ordinaires evoquent le rituel d'un tueur.",
+      "fun_fact_nl": "Kent zette een ontbijt op muziek — eieren, bloedsinaasappel, koffie — zodat gewone ochtendgeluiden klinken als het ritueel van een moordenaar.",
+      "fun_fact_it": "Kent musico una colazione — uova, arancia rossa, caffe — perche i suoni del mattino suonassero come il rituale di un assassino."
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:4EaBMhUIOfnFEbIgqCfKbi",
+      "artist": "Gerard Butler, Emmy Rossum",
+      "alt_artists": [
+        "Gerard Butler",
+        "Emmy Rossum",
+        "Sarah Brightman"
+      ],
+      "title": "The Phantom of the Opera",
+      "isrc": "USSM10414115",
+      "uri_apple_music": "applemusic://track/1843485219",
+      "uri_deezer": "deezer://track/3582495171",
+      "fun_fact": "Butler had never sung professionally and took four months of lessons; Lloyd Webber wanted a rock voice rather than an operatic one.",
+      "fun_fact_de": "Butler hatte nie professionell gesungen und nahm vier Monate Unterricht — Lloyd Webber wollte eine Rockstimme statt einer Opernstimme.",
+      "fun_fact_es": "Butler nunca habia cantado profesionalmente y tomo cuatro meses de clases; Lloyd Webber queria una voz de rock, no de opera.",
+      "fun_fact_fr": "Butler n'avait jamais chante professionnellement et a pris quatre mois de cours ; Lloyd Webber voulait une voix rock, pas lyrique.",
+      "fun_fact_nl": "Butler had nooit professioneel gezongen en nam vier maanden les; Lloyd Webber wilde een rockstem, geen operastem.",
+      "fun_fact_it": "Butler non aveva mai cantato da professionista e prese quattro mesi di lezioni; Lloyd Webber voleva una voce rock, non lirica."
+    },
+    {
+      "year": 1953,
+      "uri": "spotify:track:1pA7B5yYdhsopaWPCOKDac",
+      "artist": "Marilyn Monroe",
+      "alt_artists": [
+        "Marilyn Monroe",
+        "Jane Russell",
+        "Carol Channing"
+      ],
+      "title": "Diamonds Are a Girl's Best Friend",
+      "isrc": "USA370959761",
+      "uri_apple_music": "applemusic://track/1448886260",
+      "uri_deezer": "deezer://track/7745618",
+      "fun_fact": "The pink dress was a late replacement: nude photographs of Monroe had surfaced, and the studio dressed her as conservatively as the number allowed.",
+      "fun_fact_de": "Das pinke Kleid war ein spaeter Ersatz — nach dem Auftauchen von Aktfotos zog das Studio sie so zuruckhaltend an, wie die Nummer es zuliess.",
+      "fun_fact_es": "El vestido rosa fue un cambio tardio: aparecieron fotos desnudas de Monroe y el estudio la vistio lo mas discreta posible.",
+      "fun_fact_fr": "La robe rose fut un remplacement tardif : des photos denudees de Monroe avaient fuite et le studio l'habilla aussi sobrement que possible.",
+      "fun_fact_nl": "De roze jurk was een late vervanging: er waren naaktfoto's opgedoken en de studio kleedde haar zo ingetogen als het nummer toeliet.",
+      "fun_fact_it": "L'abito rosa fu una sostituzione tardiva: erano emerse foto di nudo e lo studio la vesti nel modo piu sobrio possibile."
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:4nZInUxh3l1qp2nUFq1ICp",
+      "artist": "Moby",
+      "alt_artists": [
+        "Moby",
+        "Massive Attack",
+        "Underworld"
+      ],
+      "title": "Extreme Ways",
+      "isrc": "US3M50459213",
+      "uri_apple_music": "applemusic://track/1556829929",
+      "uri_deezer": "deezer://track/1362338442",
+      "fun_fact": "Written for the album 18 with no film in mind, it has closed every Bourne film since — Moby re-recorded it for each one.",
+      "fun_fact_de": "Fuer das Album 18 ohne Film im Sinn geschrieben, beschliesst es seither jeden Bourne-Film — Moby nahm es fuer jeden neu auf.",
+      "fun_fact_es": "Escrita para el album 18 sin pensar en cine, cierra desde entonces cada pelicula de Bourne; Moby la regrabo para cada una.",
+      "fun_fact_fr": "Ecrite pour l'album 18 sans penser au cinema, elle clot depuis chaque film Bourne — Moby l'a reenregistree a chaque fois.",
+      "fun_fact_nl": "Geschreven voor het album 18 zonder film in gedachten; sindsdien sluit het elke Bourne-film af, telkens opnieuw opgenomen.",
+      "fun_fact_it": "Scritta per l'album 18 senza pensare al cinema, da allora chiude ogni film di Bourne; Moby la reincise ogni volta."
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:4dBllWRbahO6aIC4pLGjHa",
+      "artist": "Julie Andrews, Dick Van Dyke",
+      "alt_artists": [
+        "Julie Andrews",
+        "Dick Van Dyke",
+        "Sherman Brothers"
+      ],
+      "title": "Supercalifragilisticexpialidocious",
+      "isrc": "USWD10320942",
+      "uri_apple_music": "applemusic://track/1440796668",
+      "uri_deezer": "deezer://track/3118718",
+      "fun_fact": "Two songwriters sued Disney claiming they had coined the word in 1949; the court heard that children had been chanting versions of it at camp since the 1930s.",
+      "fun_fact_de": "Zwei Songschreiber verklagten Disney, sie haetten das Wort 1949 erfunden — vor Gericht kam heraus, dass Kinder es seit den 1930ern im Ferienlager sangen.",
+      "fun_fact_es": "Dos compositores demandaron a Disney alegando haber inventado la palabra en 1949; el tribunal supo que los ninos la cantaban desde los anos treinta.",
+      "fun_fact_fr": "Deux auteurs ont attaque Disney en affirmant avoir invente le mot en 1949 ; le tribunal apprit que des enfants le scandaient depuis les annees 1930.",
+      "fun_fact_nl": "Twee songschrijvers klaagden Disney aan omdat zij het woord in 1949 zouden hebben bedacht; kinderen zongen het al sinds de jaren dertig.",
+      "fun_fact_it": "Due autori fecero causa a Disney sostenendo di aver coniato la parola nel 1949; in aula emerse che i bambini la cantavano dagli anni trenta."
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:3TjlENVEU3a0s6s8BXyobq",
+      "artist": "Alabama 3",
+      "alt_artists": [
+        "Alabama 3",
+        "Primal Scream",
+        "The Sopranos Cast"
+      ],
+      "title": "Woke Up This Morning (Chosen One Mix)",
+      "isrc": "GBCDP0000101",
+      "uri_apple_music": "applemusic://track/1608608752",
+      "uri_deezer": "deezer://track/2629600512",
+      "fun_fact": "The band wrote it about a woman jailed for killing her abusive husband; David Chase heard it on a compilation and made it the Sopranos title sequence.",
+      "fun_fact_de": "Die Band schrieb ihn ueber eine Frau, die ihren gewalttaetigen Mann toetete — David Chase hoerte ihn auf einem Sampler und machte den Sopranos-Vorspann daraus.",
+      "fun_fact_es": "La banda la escribio sobre una mujer encarcelada por matar a su marido maltratador; David Chase la oyo en un recopilatorio y abrio Los Soprano con ella.",
+      "fun_fact_fr": "Le groupe l'a ecrite sur une femme emprisonnee pour avoir tue son mari violent ; David Chase l'a entendue sur une compilation et en a fait le generique des Soprano.",
+      "fun_fact_nl": "De band schreef het over een vrouw die haar gewelddadige man doodde; David Chase hoorde het op een verzamelaar en maakte er de Sopranos-titelsong van.",
+      "fun_fact_it": "La band la scrisse su una donna incarcerata per aver ucciso il marito violento; David Chase la senti su una compilation e ne fece la sigla dei Soprano."
+    },
+    {
+      "year": 2023,
+      "uri": "spotify:track:3zXIvb4nZ3cTdT8CsbTy3U",
+      "artist": "Ryan Gosling",
+      "alt_artists": [
+        "Ryan Gosling",
+        "Mark Ronson",
+        "Dua Lipa"
+      ],
+      "title": "I'm Just Ken",
+      "isrc": "USAT22305736",
+      "uri_apple_music": "applemusic://track/1689239593",
+      "uri_deezer": "deezer://track/2373296535",
+      "fun_fact": "Gosling recorded the vocal before the choreography existed; the power ballad was Ronson's answer to the question of what a Ken would sing about.",
+      "fun_fact_de": "Gosling sang den Gesang ein, bevor die Choreografie stand — die Powerballade war Ronsons Antwort darauf, worueber ein Ken singen wuerde.",
+      "fun_fact_es": "Gosling grabo la voz antes de que existiera la coreografia; la balada fue la respuesta de Ronson a que cantaria un Ken.",
+      "fun_fact_fr": "Gosling a enregistre la voix avant que la choregraphie existe ; la power ballad fut la reponse de Ronson a ce que chanterait un Ken.",
+      "fun_fact_nl": "Gosling nam de zang op voor de choreografie bestond; de powerballad was Ronsons antwoord op waarover een Ken zou zingen.",
+      "fun_fact_it": "Gosling incise la voce prima che esistesse la coreografia; la power ballad fu la risposta di Ronson su cosa canterebbe un Ken."
+    },
+    {
+      "year": 2021,
+      "uri": "spotify:track:3jJ9djWzDlQnqDd7vTZs9K",
+      "artist": "Ashley Park",
+      "alt_artists": [
+        "Ashley Park",
+        "Lily Collins",
+        "Zaz"
+      ],
+      "title": "Mon Soleil",
+      "isrc": "USQX92106022",
+      "uri_apple_music": "applemusic://track/1600366722",
+      "uri_deezer": "deezer://track/1591205432",
+      "fun_fact": "Park is a Broadway singer, and the show wrote her a French chanson so the American in Paris would be outsung by her best friend.",
+      "fun_fact_de": "Park kommt vom Broadway, und die Serie schrieb ihr eine franzoesische Chanson — die Amerikanerin in Paris wird von ihrer besten Freundin ueberstrahlt.",
+      "fun_fact_es": "Park viene de Broadway y la serie le escribio una chanson francesa: a la americana en Paris la canta mejor su mejor amiga.",
+      "fun_fact_fr": "Park vient de Broadway et la serie lui a ecrit une chanson francaise : l'Americaine a Paris se fait voler la vedette par son amie.",
+      "fun_fact_nl": "Park komt van Broadway en de serie schreef haar een Frans chanson; de Amerikaanse in Parijs wordt overtroffen door haar beste vriendin.",
+      "fun_fact_it": "Park viene da Broadway e la serie le scrisse una chanson francese: l'americana a Parigi viene superata dalla sua migliore amica."
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:6TgUmUgpfE2b6g9HcgHulQ",
+      "artist": "Tom Scott",
+      "alt_artists": [
+        "Tom Scott",
+        "Lalo Schifrin",
+        "Quincy Jones"
+      ],
+      "title": "Gotcha (Theme from \"Starsky & Hutch\")",
+      "isrc": "USSM10027943",
+      "uri_apple_music": "applemusic://track/201411459",
+      "uri_deezer": "deezer://track/1080232",
+      "fun_fact": "Scott built the theme on a wah-wah riff meant to imitate a siren heard from inside a moving car.",
+      "fun_fact_de": "Scott baute das Thema auf einem Wah-Wah-Riff, das eine Sirene nachahmen soll, wie man sie aus einem fahrenden Auto hoert.",
+      "fun_fact_es": "Scott construyo el tema sobre un riff de wah-wah que imita una sirena oida desde un coche en marcha.",
+      "fun_fact_fr": "Scott a bati le theme sur un riff de wah-wah imitant une sirene entendue depuis une voiture en marche.",
+      "fun_fact_nl": "Scott bouwde het thema op een wah-wah-riff dat een sirene nabootst zoals je die vanuit een rijdende auto hoort.",
+      "fun_fact_it": "Scott costrui il tema su un riff wah-wah che imita una sirena sentita da un'auto in corsa."
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:6W9rOGCpn6HwLOoy1uPySt",
+      "artist": "Limahl",
+      "alt_artists": [
+        "Limahl",
+        "Giorgio Moroder",
+        "Kajagoogoo"
+      ],
+      "title": "Never Ending Story",
+      "isrc": "GB01A0900835",
+      "uri_apple_music": "applemusic://track/692212392",
+      "uri_deezer": "deezer://track/4284273",
+      "fun_fact": "Moroder wrote it for the English version only; the German cut of the film opens with an orchestral theme and no vocal at all.",
+      "fun_fact_de": "Moroder schrieb ihn nur fuer die englische Fassung — die deutsche Kinofassung beginnt mit einem Orchesterthema ganz ohne Gesang.",
+      "fun_fact_es": "Moroder la escribio solo para la version inglesa; el montaje aleman de la pelicula abre con un tema orquestal sin voz.",
+      "fun_fact_fr": "Moroder l'a ecrite pour la seule version anglaise ; le montage allemand du film s'ouvre sur un theme orchestral sans chant.",
+      "fun_fact_nl": "Moroder schreef het alleen voor de Engelse versie; de Duitse filmversie opent met een orkestthema zonder zang.",
+      "fun_fact_it": "Moroder la scrisse solo per la versione inglese; il montaggio tedesco del film si apre con un tema orchestrale senza voce."
+    },
+    {
+      "year": 1960,
+      "uri": "spotify:track:3dkIE8P7hvl3tHl9KSb6dA",
+      "artist": "Édith Piaf",
+      "alt_artists": [
+        "Édith Piaf",
+        "Charles Aznavour",
+        "Jacques Brel"
+      ],
+      "title": "Non, je ne regrette rien",
+      "isrc": "FRZ116000530",
+      "uri_apple_music": "applemusic://track/726380514",
+      "uri_deezer": "deezer://track/3156614",
+      "fun_fact": "Piaf dedicated it to the French Foreign Legion, which adopted it as a marching song; Inception put it at the centre of its plot forty-nine years later.",
+      "fun_fact_de": "Piaf widmete ihn der Fremdenlegion, die ihn als Marschlied uebernahm — Inception ruckte ihn neunundvierzig Jahre spaeter ins Zentrum der Handlung.",
+      "fun_fact_es": "Piaf se la dedico a la Legion Extranjera, que la adopto como cancion de marcha; Origen la puso en el centro de su trama cuarenta y nueve anos despues.",
+      "fun_fact_fr": "Piaf l'a dediee a la Legion etrangere, qui en a fait un chant de marche ; Inception l'a placee au coeur de son intrigue quarante-neuf ans plus tard.",
+      "fun_fact_nl": "Piaf droeg het op aan het Vreemdelingenlegioen, dat het als marslied overnam; Inception zette het negenveertig jaar later centraal in de plot.",
+      "fun_fact_it": "Piaf la dedico alla Legione straniera, che la adotto come canto di marcia; Inception la mise al centro della trama quarantanove anni dopo."
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:5duZVZ4m1TaJDTCbeHG8TG",
+      "artist": "John Williams",
+      "alt_artists": [
+        "John Williams",
+        "Jerry Goldsmith",
+        "Alan Silvestri"
+      ],
+      "title": "Raiders March",
+      "isrc": "USC4R0816782",
+      "uri_apple_music": "applemusic://track/1400941657",
+      "uri_deezer": "deezer://track/518473892",
+      "fun_fact": "Williams wrote two candidate themes for Indiana Jones and played both for Spielberg, who asked to keep them both — they are the two halves of this march.",
+      "fun_fact_de": "Williams schrieb zwei Themen fuer Indiana Jones und spielte Spielberg beide vor, der beide behalten wollte — sie sind die zwei Haelften dieses Marsches.",
+      "fun_fact_es": "Williams escribio dos temas para Indiana Jones y toco ambos para Spielberg, que quiso conservar los dos: son las dos mitades de esta marcha.",
+      "fun_fact_fr": "Williams a ecrit deux themes pour Indiana Jones et les a joues tous deux a Spielberg, qui a voulu garder les deux : ce sont les deux moities de cette marche.",
+      "fun_fact_nl": "Williams schreef twee thema's voor Indiana Jones en speelde ze allebei voor Spielberg, die ze allebei wilde houden: samen vormen ze deze mars.",
+      "fun_fact_it": "Williams scrisse due temi per Indiana Jones e li suono entrambi a Spielberg, che volle tenerli tutti e due: sono le due meta di questa marcia."
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:2CHCWzikNPg5pIgMaMh0rB",
+      "artist": "Quincy Jones",
+      "alt_artists": [
+        "Quincy Jones",
+        "Sergio Mendes",
+        "Herb Alpert"
+      ],
+      "title": "Soul Bossa Nova",
+      "isrc": "USPR36270200",
+      "uri_apple_music": "applemusic://track/1440872209",
+      "uri_deezer": "deezer://track/2507005",
+      "fun_fact": "Jones says he wrote it in twenty minutes; the cuica whoop that carries it was recorded thirty-five years before Austin Powers made it a punchline.",
+      "fun_fact_de": "Jones sagt, er habe ihn in zwanzig Minuten geschrieben — der Cuica-Ruf darin wurde fuenfunddreissig Jahre vor Austin Powers aufgenommen.",
+      "fun_fact_es": "Jones dice que la escribio en veinte minutos; el chillido de cuica se grabo treinta y cinco anos antes de que Austin Powers lo volviera un chiste.",
+      "fun_fact_fr": "Jones dit l'avoir ecrite en vingt minutes ; le cri de cuica fut enregistre trente-cinq ans avant qu'Austin Powers n'en fasse une blague.",
+      "fun_fact_nl": "Jones zegt dat hij het in twintig minuten schreef; de cuica-roep werd vijfendertig jaar voor Austin Powers opgenomen.",
+      "fun_fact_it": "Jones dice di averla scritta in venti minuti; il grido di cuica fu inciso trentacinque anni prima che Austin Powers ne facesse una battuta."
     }
   ],
   "movie_quiz_enabled": true
