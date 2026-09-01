@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.30",
+  "version": "1.31",
   "tags": [
     "movies",
     "soundtrack",
@@ -9015,6 +9015,46 @@
       "fun_fact_fr": "Horner a fait courir les uilleann pipes dans toute la partition de Braveheart, si bien qu'un orchestre hollywoodien prend un accent celte qui n'est pas le sien. Enregistrée avec le London Symphony Orchestra, la musique lui a valu une nomination aux Oscars.",
       "fun_fact_nl": "Horner liet uilleann pipes door de hele Braveheart-partituur lopen, zodat een Hollywood-orkest een Keltisch accent krijgt dat het van huis uit niet heeft. Opgenomen met het London Symphony Orchestra leverde de muziek hem een Oscarnominatie op.",
       "fun_fact_it": "Horner fece attraversare l'intera partitura di Braveheart dalle uilleann pipes, così un'orchestra hollywoodiana assume un accento celtico che non le appartiene. Registrata con la London Symphony Orchestra, la musica gli valse una nomination all'Oscar."
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:5dWTTaFsr2P1LvwErDGlxw",
+      "artist": "Karel Svoboda",
+      "alt_artists": [
+        "Karel Gott",
+        "Karel Svoboda",
+        "Vaclav Neckar"
+      ],
+      "title": "Küss mich, Halt mich, Lieb mich (Drei Haselnüsse für Aschenbrödel)",
+      "isrc": "DEZ651214396",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/493938002",
+      "fun_fact": "Karel Svoboda wrote the theme for a Czech-German fairy tale film that German television has broadcast every Christmas since 1973.",
+      "fun_fact_de": "Karel Svoboda schrieb die Musik zu einem tschechisch-deutschen Maerchenfilm, den das deutsche Fernsehen seit 1973 jedes Weihnachten zeigt.",
+      "fun_fact_es": "Karel Svoboda compuso el tema de una película de cuento checo-alemana que la televisión alemana emite cada Navidad desde 1973.",
+      "fun_fact_fr": "Karel Svoboda a composé le thème d'un conte tchéco-allemand que la télévision allemande diffuse chaque Noël depuis 1973.",
+      "fun_fact_nl": "Karel Svoboda schreef de muziek voor een Tsjechisch-Duitse sprookjesfilm die de Duitse televisie sinds 1973 elke kerst uitzendt.",
+      "fun_fact_it": "Karel Svoboda scrisse il tema di una fiaba ceco-tedesca che la televisione tedesca trasmette ogni Natale dal 1973."
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:7BdXRaSlGAzhySfuW3y8h5",
+      "artist": "Patrick Swayze",
+      "alt_artists": [
+        "Patrick Swayze",
+        "Bill Medley",
+        "Eric Carmen"
+      ],
+      "title": "She's Like the Wind",
+      "isrc": "USBMG0100040",
+      "uri_apple_music": null,
+      "uri_deezer": "deezer://track/13128241",
+      "fun_fact": "Swayze wrote the song years before Dirty Dancing for a different film, sang it himself, and it became the only hit of his acting career.",
+      "fun_fact_de": "Swayze schrieb den Song Jahre vor Dirty Dancing fuer einen anderen Film, sang ihn selbst — es blieb der einzige Hit seiner Schauspielerlaufbahn.",
+      "fun_fact_es": "Swayze escribió la canción años antes de Dirty Dancing para otra película, la cantó él mismo y fue el único éxito de su carrera como actor.",
+      "fun_fact_fr": "Swayze a écrit la chanson des années avant Dirty Dancing pour un autre film, l'a chantée lui-même, et ce fut l'unique tube de sa carrière d'acteur.",
+      "fun_fact_nl": "Swayze schreef het nummer jaren voor Dirty Dancing voor een andere film, zong het zelf, en het bleef de enige hit van zijn acteercarrière.",
+      "fun_fact_it": "Swayze scrisse la canzone anni prima di Dirty Dancing per un altro film, la cantò lui stesso, e restò l'unico successo della sua carriera di attore."
     }
   ],
   "movie_quiz_enabled": true
