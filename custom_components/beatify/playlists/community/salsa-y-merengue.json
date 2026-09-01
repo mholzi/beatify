@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.9",
+  "version": "1.17",
   "tags": [
     "salsa",
     "merengue",
@@ -1119,7 +1119,8 @@
       "fun_fact_nl": "\"Siempre Seré\" van Tito Rojas, voor het eerst uitgebracht in 1990.",
       "uri_deezer": "deezer://track/10973080",
       "uri_apple_music": "applemusic://track/264123077",
-      "fun_fact_it": "«Siempre Seré» di Tito Rojas, pubblicata per la prima volta nel 1990."
+      "fun_fact_it": "«Siempre Seré» di Tito Rojas, pubblicata per la prima volta nel 1990.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Mq3LwKa_lYg"
     },
     {
       "year": 1990,
@@ -1134,7 +1135,8 @@
       "fun_fact_nl": "\"Ella se Hizo Deseo\" van Tito Rojas, voor het eerst uitgebracht in 1990.",
       "uri_deezer": "deezer://track/10973082",
       "uri_apple_music": "applemusic://track/264123170",
-      "fun_fact_it": "«Ella se Hizo Deseo» di Tito Rojas, pubblicata per la prima volta nel 1990."
+      "fun_fact_it": "«Ella se Hizo Deseo» di Tito Rojas, pubblicata per la prima volta nel 1990.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6K0wU23qu68"
     },
     {
       "year": 1993,
@@ -1149,7 +1151,8 @@
       "fun_fact_nl": "\"Señora De Madrugada\" van Tito Rojas, voor het eerst uitgebracht in 1993 op het album \"Vida\".",
       "uri_deezer": "deezer://track/11507265",
       "uri_apple_music": "applemusic://track/304149129",
-      "fun_fact_it": "«Señora De Madrugada» di Tito Rojas, pubblicata per la prima volta nel 1993 nell'album «Vida»."
+      "fun_fact_it": "«Señora De Madrugada» di Tito Rojas, pubblicata per la prima volta nel 1993 nell'album «Vida».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BONtkBt-k94"
     },
     {
       "year": 1995,
@@ -1164,7 +1167,8 @@
       "fun_fact_nl": "\"Usted\" van Tito Rojas, voor het eerst uitgebracht in 1995 op het album \"Vida\".",
       "uri_deezer": "deezer://track/11507270",
       "uri_apple_music": "applemusic://track/345305954",
-      "fun_fact_it": "«Usted» di Tito Rojas, pubblicata per la prima volta nel 1995 nell'album «Vida»."
+      "fun_fact_it": "«Usted» di Tito Rojas, pubblicata per la prima volta nel 1995 nell'album «Vida».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vWXmMYT5n0g"
     },
     {
       "year": 1992,
@@ -1179,7 +1183,8 @@
       "fun_fact_nl": "\"Porque Este Amor\" van Tito Rojas, voor het eerst uitgebracht in 1992 op het album \"Live - Auténticamente En Vivo\".",
       "uri_deezer": "deezer://track/12018475",
       "uri_apple_music": "applemusic://track/304157653",
-      "fun_fact_it": "«Porque Este Amor» di Tito Rojas, pubblicata per la prima volta nel 1992 nell'album «Live - Auténticamente En Vivo»."
+      "fun_fact_it": "«Porque Este Amor» di Tito Rojas, pubblicata per la prima volta nel 1992 nell'album «Live - Auténticamente En Vivo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-EQ-vaEYYDE"
     },
     {
       "year": 1992,
@@ -1194,7 +1199,8 @@
       "fun_fact_nl": "\"Condename A Tu Amor\" van Tito Rojas, voor het eerst uitgebracht in 1992 op het album \"Condename\".",
       "uri_deezer": "deezer://track/64118615",
       "uri_apple_music": "applemusic://track/304157693",
-      "fun_fact_it": "«Condename A Tu Amor» di Tito Rojas, pubblicata per la prima volta nel 1992 nell'album «Condename»."
+      "fun_fact_it": "«Condename A Tu Amor» di Tito Rojas, pubblicata per la prima volta nel 1992 nell'album «Condename».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7HuP0AkXDDg"
     },
     {
       "year": 1992,
@@ -1209,7 +1215,8 @@
       "fun_fact_nl": "\"A Ti Volvere\" van Tito Rojas, voor het eerst uitgebracht in 1992 op het album \"Condename\".",
       "uri_deezer": "deezer://track/64118618",
       "uri_apple_music": "applemusic://track/304157700",
-      "fun_fact_it": "«A Ti Volvere» di Tito Rojas, pubblicata per la prima volta nel 1992 nell'album «Condename»."
+      "fun_fact_it": "«A Ti Volvere» di Tito Rojas, pubblicata per la prima volta nel 1992 nell'album «Condename».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ah4xk9tROgY"
     },
     {
       "year": 1993,
@@ -1224,7 +1231,8 @@
       "fun_fact_nl": "\"Lo Que Te Queda\" van Tito Rojas, voor het eerst uitgebracht in 1993 op het album \"Me Tienes Que Recordar\".",
       "uri_deezer": "deezer://track/2017810637",
       "uri_apple_music": "applemusic://track/304149149",
-      "fun_fact_it": "«Lo Que Te Queda» di Tito Rojas, pubblicata per la prima volta nel 1993 nell'album «Me Tienes Que Recordar»."
+      "fun_fact_it": "«Lo Que Te Queda» di Tito Rojas, pubblicata per la prima volta nel 1993 nell'album «Me Tienes Que Recordar».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tY1l4kZS3zA"
     },
     {
       "year": 1992,
@@ -1239,7 +1247,8 @@
       "fun_fact_nl": "\"Aparentemente\" van Tony Vega, voor het eerst uitgebracht in 1992 op het album \"Pura Salsa\".",
       "uri_deezer": "deezer://track/15493895",
       "uri_apple_music": "applemusic://track/1443808820",
-      "fun_fact_it": "«Aparentemente» di Tony Vega, pubblicata per la prima volta nel 1992 nell'album «Pura Salsa»."
+      "fun_fact_it": "«Aparentemente» di Tony Vega, pubblicata per la prima volta nel 1992 nell'album «Pura Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OfgdBBQEAuQ"
     },
     {
       "year": 1993,
@@ -1254,7 +1263,8 @@
       "fun_fact_nl": "\"No Vale La Pena\" van Johnny Rivera, Ray Sepulveda, voor het eerst uitgebracht in 1993.",
       "uri_deezer": "deezer://track/67666100",
       "uri_apple_music": "applemusic://track/1705328227",
-      "fun_fact_it": "«No Vale La Pena» di Johnny Rivera, Ray Sepulveda, pubblicata per la prima volta nel 1993."
+      "fun_fact_it": "«No Vale La Pena» di Johnny Rivera, Ray Sepulveda, pubblicata per la prima volta nel 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wRHBmrNOLMk"
     },
     {
       "year": 1992,
@@ -1269,7 +1279,8 @@
       "fun_fact_nl": "\"Amores Como el Nuestro\" van Jerry Rivera, voor het eerst uitgebracht in 1992 op het album \"Sólo para Mujeres\".",
       "uri_deezer": "deezer://track/81827848",
       "uri_apple_music": "applemusic://track/192784400",
-      "fun_fact_it": "«Amores Como el Nuestro» di Jerry Rivera, pubblicata per la prima volta nel 1992 nell'album «Sólo para Mujeres»."
+      "fun_fact_it": "«Amores Como el Nuestro» di Jerry Rivera, pubblicata per la prima volta nel 1992 nell'album «Sólo para Mujeres».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sJqDmVekMWU"
     },
     {
       "year": 1993,
@@ -1284,7 +1295,8 @@
       "fun_fact_nl": "\"Qué Hay de Malo\" van Jerry Rivera, voor het eerst uitgebracht in 1993 op het album \"Cara De Niño\".",
       "uri_deezer": "deezer://track/1031403",
       "uri_apple_music": "applemusic://track/209434825",
-      "fun_fact_it": "«Qué Hay de Malo» di Jerry Rivera, pubblicata per la prima volta nel 1993 nell'album «Cara De Niño»."
+      "fun_fact_it": "«Qué Hay de Malo» di Jerry Rivera, pubblicata per la prima volta nel 1993 nell'album «Cara De Niño».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SUgQHe902yQ"
     },
     {
       "year": 1992,
@@ -1299,7 +1311,8 @@
       "fun_fact_nl": "\"Ese\" van Jerry Rivera, voor het eerst uitgebracht in 1992.",
       "uri_deezer": "deezer://track/13213223",
       "uri_apple_music": "applemusic://track/170127562",
-      "fun_fact_it": "«Ese» di Jerry Rivera, pubblicata per la prima volta nel 1992."
+      "fun_fact_it": "«Ese» di Jerry Rivera, pubblicata per la prima volta nel 1992.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S_s3GFGn15I"
     },
     {
       "year": 1992,
@@ -1314,7 +1327,8 @@
       "fun_fact_nl": "\"Casi un Hechizo\" van Jerry Rivera, voor het eerst uitgebracht in 1992.",
       "uri_deezer": "deezer://track/13213219",
       "uri_apple_music": "applemusic://track/192784381",
-      "fun_fact_it": "«Casi un Hechizo» di Jerry Rivera, pubblicata per la prima volta nel 1992."
+      "fun_fact_it": "«Casi un Hechizo» di Jerry Rivera, pubblicata per la prima volta nel 1992.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dz71DuaF5II"
     },
     {
       "year": 1993,
@@ -1329,7 +1343,8 @@
       "fun_fact_nl": "\"Cara de Niño\" van Jerry Rivera, voor het eerst uitgebracht in 1993 op het album \"Leyendas: Salsa Romántica\".",
       "uri_deezer": "deezer://track/88877239",
       "uri_apple_music": "applemusic://track/217767192",
-      "fun_fact_it": "«Cara de Niño» di Jerry Rivera, pubblicata per la prima volta nel 1993 nell'album «Leyendas: Salsa Romántica»."
+      "fun_fact_it": "«Cara de Niño» di Jerry Rivera, pubblicata per la prima volta nel 1993 nell'album «Leyendas: Salsa Romántica».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HagwTbmyyVA"
     },
     {
       "year": 2002,
@@ -1344,7 +1359,8 @@
       "fun_fact_nl": "\"Vuela Muy Alto\" van Jerry Rivera, voor het eerst uitgebracht in 2002 op het album \"Vuela Muy Alto\".",
       "uri_deezer": "deezer://track/13271522",
       "uri_apple_music": "applemusic://track/253648767",
-      "fun_fact_it": "«Vuela Muy Alto» di Jerry Rivera, pubblicata per la prima volta nel 2002 nell'album «Vuela Muy Alto»."
+      "fun_fact_it": "«Vuela Muy Alto» di Jerry Rivera, pubblicata per la prima volta nel 2002 nell'album «Vuela Muy Alto».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9en5hhI0q2w"
     },
     {
       "year": 1992,
@@ -1359,7 +1375,8 @@
       "fun_fact_nl": "\"Cuenta Conmigo\" van Jerry Rivera, voor het eerst uitgebracht in 1992 op het album \"Leyendas: Salsa Romántica\".",
       "uri_deezer": "deezer://track/88877221",
       "uri_apple_music": "applemusic://track/192784793",
-      "fun_fact_it": "«Cuenta Conmigo» di Jerry Rivera, pubblicata per la prima volta nel 1992 nell'album «Leyendas: Salsa Romántica»."
+      "fun_fact_it": "«Cuenta Conmigo» di Jerry Rivera, pubblicata per la prima volta nel 1992 nell'album «Leyendas: Salsa Romántica».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=af3f30QrDoo"
     },
     {
       "year": 1993,
@@ -1374,7 +1391,8 @@
       "fun_fact_nl": "\"Mi Media Mitad\" van Rey Ruiz, voor het eerst uitgebracht in 1993 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/13099828",
       "uri_apple_music": "applemusic://track/170979101",
-      "fun_fact_it": "«Mi Media Mitad» di Rey Ruiz, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Mi Media Mitad» di Rey Ruiz, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wQUcaSEuob0"
     },
     {
       "year": 1992,
@@ -1389,7 +1407,8 @@
       "fun_fact_nl": "\"No Me Acostumbro\" van Rey Ruiz, voor het eerst uitgebracht in 1992 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/13099822",
       "uri_apple_music": "applemusic://track/170979317",
-      "fun_fact_it": "«No Me Acostumbro» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«No Me Acostumbro» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oW8UfSTQEmo"
     },
     {
       "year": 1992,
@@ -1404,7 +1423,8 @@
       "fun_fact_nl": "\"Luna Negra\" van Rey Ruiz, voor het eerst uitgebracht in 1992 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13354600",
       "uri_apple_music": "applemusic://track/170980459",
-      "fun_fact_it": "«Luna Negra» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Lo Esencial»."
+      "fun_fact_it": "«Luna Negra» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AS2777CQ7xc"
     },
     {
       "year": 1992,
@@ -1419,7 +1439,8 @@
       "fun_fact_nl": "\"Amiga\" van Rey Ruiz, voor het eerst uitgebracht in 1992 op het album \"Dos Clásicos\".",
       "uri_deezer": "deezer://track/10066309",
       "uri_apple_music": "applemusic://track/170980947",
-      "fun_fact_it": "«Amiga» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Dos Clásicos»."
+      "fun_fact_it": "«Amiga» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Dos Clásicos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e8V3EYKFmZU"
     },
     {
       "year": 1999,
@@ -1434,7 +1455,8 @@
       "fun_fact_nl": "\"Creo en el Amor\" van Rey Ruiz, voor het eerst uitgebracht in 1999 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13250633",
       "uri_apple_music": "applemusic://track/192687759",
-      "fun_fact_it": "«Creo en el Amor» di Rey Ruiz, pubblicata per la prima volta nel 1999 nell'album «Lo Esencial»."
+      "fun_fact_it": "«Creo en el Amor» di Rey Ruiz, pubblicata per la prima volta nel 1999 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iIVuCFtv0qM"
     },
     {
       "year": 1992,
@@ -1449,7 +1471,8 @@
       "fun_fact_nl": "\"Si Te Preguntan\" van Rey Ruiz, voor het eerst uitgebracht in 1992 op het album \"Dos Clásicos\".",
       "uri_deezer": "deezer://track/10066318",
       "uri_apple_music": "applemusic://track/170980312",
-      "fun_fact_it": "«Si Te Preguntan» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Dos Clásicos»."
+      "fun_fact_it": "«Si Te Preguntan» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Dos Clásicos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SAFu8gRekdA"
     },
     {
       "year": 1992,
@@ -1464,7 +1487,8 @@
       "fun_fact_nl": "\"Estamos Solos\" van Rey Ruiz, voor het eerst uitgebracht in 1992 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13354602",
       "uri_apple_music": "applemusic://track/455673011",
-      "fun_fact_it": "«Estamos Solos» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Lo Esencial»."
+      "fun_fact_it": "«Estamos Solos» di Rey Ruiz, pubblicata per la prima volta nel 1992 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=d5Qcc8IiUto"
     },
     {
       "year": 1984,
@@ -1479,7 +1503,8 @@
       "fun_fact_nl": "\"Cali Pachanguero\" van Grupo Niche, voor het eerst uitgebracht in 1984 op het album \"No Hay Quinto Malo\".",
       "uri_deezer": "deezer://track/87231893",
       "uri_apple_music": "applemusic://track/1750353645",
-      "fun_fact_it": "«Cali Pachanguero» di Grupo Niche, pubblicata per la prima volta nel 1984 nell'album «No Hay Quinto Malo»."
+      "fun_fact_it": "«Cali Pachanguero» di Grupo Niche, pubblicata per la prima volta nel 1984 nell'album «No Hay Quinto Malo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7KxkMLAZlzw"
     },
     {
       "year": 1987,
@@ -1494,7 +1519,8 @@
       "fun_fact_nl": "\"Una Aventura\" van Grupo Niche, voor het eerst uitgebracht in 1987 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720639",
       "uri_apple_music": "applemusic://track/321443361",
-      "fun_fact_it": "«Una Aventura» di Grupo Niche, pubblicata per la prima volta nel 1987 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Una Aventura» di Grupo Niche, pubblicata per la prima volta nel 1987 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UwnmzIgNzyU"
     },
     {
       "year": 1990,
@@ -1509,7 +1535,8 @@
       "fun_fact_nl": "\"Sin Sentimientos\" van Grupo Niche, voor het eerst uitgebracht in 1990 op het album \"The Best\".",
       "uri_deezer": "deezer://track/13211932",
       "uri_apple_music": "applemusic://track/321443791",
-      "fun_fact_it": "«Sin Sentimientos» di Grupo Niche, pubblicata per la prima volta nel 1990 nell'album «The Best»."
+      "fun_fact_it": "«Sin Sentimientos» di Grupo Niche, pubblicata per la prima volta nel 1990 nell'album «The Best».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EJdbZIgaSHg"
     },
     {
       "year": 1995,
@@ -1524,7 +1551,8 @@
       "fun_fact_nl": "\"Gotas De Lluvia\" van Grupo Niche, voor het eerst uitgebracht in 1995 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720644",
       "uri_apple_music": "applemusic://track/321435846",
-      "fun_fact_it": "«Gotas De Lluvia» di Grupo Niche, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Gotas De Lluvia» di Grupo Niche, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fEhnwoVjrgc"
     },
     {
       "year": 1991,
@@ -1539,7 +1567,8 @@
       "fun_fact_nl": "\"Hagamos Lo Que Diga El Corazón\" van Grupo Niche, voor het eerst uitgebracht in 1991 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720641",
       "uri_apple_music": "applemusic://track/321443353",
-      "fun_fact_it": "«Hagamos Lo Que Diga El Corazón» di Grupo Niche, pubblicata per la prima volta nel 1991 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Hagamos Lo Que Diga El Corazón» di Grupo Niche, pubblicata per la prima volta nel 1991 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OPHH18FciPo"
     },
     {
       "year": 1988,
@@ -1554,7 +1583,8 @@
       "fun_fact_nl": "\"Se Pareció Tanto a Ti - Radio Version\" van Grupo Niche, voor het eerst uitgebracht in 1988.",
       "uri_apple_music": "applemusic://track/321443761",
       "uri_deezer": "deezer://track/13211925",
-      "fun_fact_it": "«Se Pareció Tanto a Ti - Radio Version» di Grupo Niche, pubblicata per la prima volta nel 1988."
+      "fun_fact_it": "«Se Pareció Tanto a Ti - Radio Version» di Grupo Niche, pubblicata per la prima volta nel 1988.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x4MGXomEId0"
     },
     {
       "year": 1990,
@@ -1569,7 +1599,8 @@
       "fun_fact_nl": "\"Busca Por Dentro\" van Grupo Niche, voor het eerst uitgebracht in 1990 op het album \"The Best\".",
       "uri_deezer": "deezer://track/13211933",
       "uri_apple_music": "applemusic://track/321443858",
-      "fun_fact_it": "«Busca Por Dentro» di Grupo Niche, pubblicata per la prima volta nel 1990 nell'album «The Best»."
+      "fun_fact_it": "«Busca Por Dentro» di Grupo Niche, pubblicata per la prima volta nel 1990 nell'album «The Best».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JXmC2z54hHI"
     },
     {
       "year": 1988,
@@ -1584,7 +1615,8 @@
       "fun_fact_nl": "\"Nuestro Sueño\" van Grupo Niche, voor het eerst uitgebracht in 1988 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720646",
       "uri_apple_music": "applemusic://track/321443778",
-      "fun_fact_it": "«Nuestro Sueño» di Grupo Niche, pubblicata per la prima volta nel 1988 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Nuestro Sueño» di Grupo Niche, pubblicata per la prima volta nel 1988 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qyGx4rxoeSg"
     },
     {
       "year": 1996,
@@ -1599,7 +1631,8 @@
       "fun_fact_nl": "\"La Magia De Tus Besos\" van Grupo Niche, voor het eerst uitgebracht in 1996 op het album \"Siempre Una Aventura\".",
       "uri_deezer": "deezer://track/13234888",
       "uri_apple_music": "applemusic://track/260756820",
-      "fun_fact_it": "«La Magia De Tus Besos» di Grupo Niche, pubblicata per la prima volta nel 1996 nell'album «Siempre Una Aventura»."
+      "fun_fact_it": "«La Magia De Tus Besos» di Grupo Niche, pubblicata per la prima volta nel 1996 nell'album «Siempre Una Aventura».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=db9O7lthBT0"
     },
     {
       "year": 1993,
@@ -1614,7 +1647,8 @@
       "fun_fact_nl": "\"Duele Más\" van Grupo Niche, voor het eerst uitgebracht in 1993 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720643",
       "uri_apple_music": "applemusic://track/321443348",
-      "fun_fact_it": "«Duele Más» di Grupo Niche, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Duele Más» di Grupo Niche, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tv1IdkPUYng"
     },
     {
       "year": 1989,
@@ -1629,7 +1663,8 @@
       "fun_fact_nl": "\"Como Podre Disimular\" van Grupo Niche, voor het eerst uitgebracht in 1989 op het album \"12 Años\".",
       "uri_deezer": "deezer://track/3729415212",
       "uri_apple_music": "applemusic://track/1862946402",
-      "fun_fact_it": "«Como Podre Disimular» di Grupo Niche, pubblicata per la prima volta nel 1989 nell'album «12 Años»."
+      "fun_fact_it": "«Como Podre Disimular» di Grupo Niche, pubblicata per la prima volta nel 1989 nell'album «12 Años».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HGesVfNKCbE"
     },
     {
       "year": 1988,
@@ -1644,7 +1679,8 @@
       "fun_fact_nl": "\"La Noche\" van Joe Arroyo, La Verdad, voor het eerst uitgebracht in 1988 op het album \"La Salsa: Identidad de un Pueblo, Vol. 4 Expresión de Inspiración\".",
       "uri_deezer": "deezer://track/132108910",
       "uri_apple_music": "applemusic://track/455561898",
-      "fun_fact_it": "«La Noche» di Joe Arroyo, La Verdad, pubblicata per la prima volta nel 1988 nell'album «La Salsa: Identidad de un Pueblo, Vol. 4 Expresión de Inspiración»."
+      "fun_fact_it": "«La Noche» di Joe Arroyo, La Verdad, pubblicata per la prima volta nel 1988 nell'album «La Salsa: Identidad de un Pueblo, Vol. 4 Expresión de Inspiración».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B-VBhgh_G8Q"
     },
     {
       "year": 1981,
@@ -1659,7 +1695,8 @@
       "fun_fact_nl": "\"En Barranquilla Me Quedo\" van Joe Arroyo, La Verdad, voor het eerst uitgebracht in 1981.",
       "uri_deezer": "deezer://track/112972818",
       "uri_apple_music": "applemusic://track/455561901",
-      "fun_fact_it": "«En Barranquilla Me Quedo» di Joe Arroyo, La Verdad, pubblicata per la prima volta nel 1981."
+      "fun_fact_it": "«En Barranquilla Me Quedo» di Joe Arroyo, La Verdad, pubblicata per la prima volta nel 1981.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j8ElCh65bzk"
     },
     {
       "year": 1995,
@@ -1674,7 +1711,8 @@
       "fun_fact_nl": "\"Tal Para Cual - de la serie Medusa, de Netflix\" van Joe Arroyo, voor het eerst uitgebracht in 1995 op het album \"Afro Latin Hitz\".",
       "uri_deezer": "deezer://track/9437190",
       "uri_apple_music": "applemusic://track/1784765370",
-      "fun_fact_it": "«Tal Para Cual - de la serie Medusa, de Netflix» di Joe Arroyo, pubblicata per la prima volta nel 1995 nell'album «Afro Latin Hitz»."
+      "fun_fact_it": "«Tal Para Cual - de la serie Medusa, de Netflix» di Joe Arroyo, pubblicata per la prima volta nel 1995 nell'album «Afro Latin Hitz».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XrPeHEi4eYQ"
     },
     {
       "year": 1990,
@@ -1689,7 +1727,8 @@
       "fun_fact_nl": "\"Noche de Arreboles\" van Joe Arroyo, voor het eerst uitgebracht in 1990.",
       "uri_deezer": "deezer://track/16403981",
       "uri_apple_music": "applemusic://track/542053584",
-      "fun_fact_it": "«Noche de Arreboles» di Joe Arroyo, pubblicata per la prima volta nel 1990."
+      "fun_fact_it": "«Noche de Arreboles» di Joe Arroyo, pubblicata per la prima volta nel 1990.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aqm_NJBj8QU"
     },
     {
       "year": 1972,
@@ -1704,7 +1743,8 @@
       "fun_fact_nl": "\"El Ausente\" van Fruko Y Sus Tesos, Joe Arroyo, voor het eerst uitgebracht in 1972 op het album \"Fruko el Bueno \"ayunando\"\".",
       "uri_deezer": "deezer://track/447088172",
       "uri_apple_music": "applemusic://track/455561917",
-      "fun_fact_it": "«El Ausente» di Fruko Y Sus Tesos, Joe Arroyo, pubblicata per la prima volta nel 1972 nell'album «Fruko el Bueno \"ayunando\"»."
+      "fun_fact_it": "«El Ausente» di Fruko Y Sus Tesos, Joe Arroyo, pubblicata per la prima volta nel 1972 nell'album «Fruko el Bueno \"ayunando\"».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lje9RuVmcWk"
     },
     {
       "year": 2009,
@@ -1718,7 +1758,8 @@
       "fun_fact_fr": "« El Preso » de Verschiedene Interpreten, parue pour la première fois en 2009 sur l'album « Lo Mejor de Mexico ».",
       "fun_fact_nl": "\"El Preso\" van Verschiedene Interpreten, voor het eerst uitgebracht in 2009 op het album \"Lo Mejor de Mexico\".",
       "uri_deezer": "deezer://track/5925704",
-      "fun_fact_it": "«El Preso» di Verschiedene Interpreten, pubblicata per la prima volta nel 2009 nell'album «Lo Mejor de Mexico»."
+      "fun_fact_it": "«El Preso» di Verschiedene Interpreten, pubblicata per la prima volta nel 2009 nell'album «Lo Mejor de Mexico».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6i_-y6_-uHA"
     },
     {
       "year": 1973,
@@ -1733,7 +1774,8 @@
       "fun_fact_nl": "\"El Caminante\" van Fruko Y Sus Tesos, Joe Arroyo, voor het eerst uitgebracht in 1973 op het album \"El Caminante\".",
       "uri_deezer": "deezer://track/1352281272",
       "uri_apple_music": "applemusic://track/455561913",
-      "fun_fact_it": "«El Caminante» di Fruko Y Sus Tesos, Joe Arroyo, pubblicata per la prima volta nel 1973 nell'album «El Caminante»."
+      "fun_fact_it": "«El Caminante» di Fruko Y Sus Tesos, Joe Arroyo, pubblicata per la prima volta nel 1973 nell'album «El Caminante».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RH2qrJQdie0"
     },
     {
       "year": 1988,
@@ -1748,7 +1790,8 @@
       "fun_fact_nl": "\"Barranquillero Arrebatao\" van Fruko Y Sus Tesos, Wilson \"Saoko\" Manyoma, voor het eerst uitgebracht in 1988 op het album \"Música Tropical de Colombia, Vol. 8\".",
       "uri_deezer": "deezer://track/113035242",
       "uri_apple_music": "applemusic://track/1016581600",
-      "fun_fact_it": "«Barranquillero Arrebatao» di Fruko Y Sus Tesos, Wilson \"Saoko\" Manyoma, pubblicata per la prima volta nel 1988 nell'album «Música Tropical de Colombia, Vol. 8»."
+      "fun_fact_it": "«Barranquillero Arrebatao» di Fruko Y Sus Tesos, Wilson \"Saoko\" Manyoma, pubblicata per la prima volta nel 1988 nell'album «Música Tropical de Colombia, Vol. 8».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lYt-wDDQBHs"
     },
     {
       "year": 1974,
@@ -1763,7 +1806,8 @@
       "fun_fact_nl": "\"Tania\" van Fruko Y Sus Tesos, Joe Arroyo, voor het eerst uitgebracht in 1974 op het album \"El Caminante\".",
       "uri_deezer": "deezer://track/1352281242",
       "uri_apple_music": "applemusic://track/455561914",
-      "fun_fact_it": "«Tania» di Fruko Y Sus Tesos, Joe Arroyo, pubblicata per la prima volta nel 1974 nell'album «El Caminante»."
+      "fun_fact_it": "«Tania» di Fruko Y Sus Tesos, Joe Arroyo, pubblicata per la prima volta nel 1974 nell'album «El Caminante».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XkfO33yIk4o"
     },
     {
       "year": 2000,
@@ -1853,7 +1897,8 @@
       "fun_fact_nl": "\"Buscandote\" van The Latin Brothers, voor het eerst uitgebracht in 1972.",
       "uri_deezer": "deezer://track/389147781",
       "uri_apple_music": "applemusic://track/1784527855",
-      "fun_fact_it": "«Buscandote» di The Latin Brothers, pubblicata per la prima volta nel 1972."
+      "fun_fact_it": "«Buscandote» di The Latin Brothers, pubblicata per la prima volta nel 1972.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=08ekyzOdUeM"
     },
     {
       "year": 1981,
@@ -1868,7 +1913,8 @@
       "fun_fact_nl": "\"Micaela\" van Sonora Carruseles, Luis Florez, voor het eerst uitgebracht in 1981.",
       "uri_deezer": "deezer://track/129506550",
       "uri_apple_music": "applemusic://track/1052291318",
-      "fun_fact_it": "«Micaela» di Sonora Carruseles, Luis Florez, pubblicata per la prima volta nel 1981."
+      "fun_fact_it": "«Micaela» di Sonora Carruseles, Luis Florez, pubblicata per la prima volta nel 1981.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5tKzKJob0yA"
     },
     {
       "year": 1998,
@@ -1913,7 +1959,8 @@
       "fun_fact_nl": "\"Mala Vida\" van Yuri Buenaventura, voor het eerst uitgebracht in 2000 op het album \"Yo Soy\".",
       "uri_deezer": "deezer://track/2533869",
       "uri_apple_music": "applemusic://track/1444026581",
-      "fun_fact_it": "«Mala Vida» di Yuri Buenaventura, pubblicata per la prima volta nel 2000 nell'album «Yo Soy»."
+      "fun_fact_it": "«Mala Vida» di Yuri Buenaventura, pubblicata per la prima volta nel 2000 nell'album «Yo Soy».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QrdxnomTA1c"
     },
     {
       "year": 2000,
@@ -1928,7 +1975,8 @@
       "fun_fact_nl": "\"La Negra Tiene Tumbao\" van Celia Cruz, voor het eerst uitgebracht in 2000 op het album \"La Reina Y Sus Amigos\".",
       "uri_deezer": "deezer://track/4762499",
       "uri_apple_music": "applemusic://track/338891891",
-      "fun_fact_it": "«La Negra Tiene Tumbao» di Celia Cruz, pubblicata per la prima volta nel 2000 nell'album «La Reina Y Sus Amigos»."
+      "fun_fact_it": "«La Negra Tiene Tumbao» di Celia Cruz, pubblicata per la prima volta nel 2000 nell'album «La Reina Y Sus Amigos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=imeXSRNRMeg"
     },
     {
       "year": 1964,
@@ -1943,7 +1991,8 @@
       "fun_fact_nl": "\"Quizas, Quizas, Quizas,\" van Celia Cruz, voor het eerst uitgebracht in 1964 op het album \"Boleros\".",
       "uri_deezer": "deezer://track/687131292",
       "uri_apple_music": "applemusic://track/1465817304",
-      "fun_fact_it": "«Quizas, Quizas, Quizas,» di Celia Cruz, pubblicata per la prima volta nel 1964 nell'album «Boleros»."
+      "fun_fact_it": "«Quizas, Quizas, Quizas,» di Celia Cruz, pubblicata per la prima volta nel 1964 nell'album «Boleros».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B07BfLDsB0Q"
     },
     {
       "year": 2003,
@@ -1958,7 +2007,8 @@
       "fun_fact_nl": "\"Rie y Llora\" van Celia Cruz, voor het eerst uitgebracht in 2003 op het album \"Soy Mujer\".",
       "uri_deezer": "deezer://track/88877135",
       "uri_apple_music": "applemusic://track/168404788",
-      "fun_fact_it": "«Rie y Llora» di Celia Cruz, pubblicata per la prima volta nel 2003 nell'album «Soy Mujer»."
+      "fun_fact_it": "«Rie y Llora» di Celia Cruz, pubblicata per la prima volta nel 2003 nell'album «Soy Mujer».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=83S-KtvGM2M"
     },
     {
       "year": 1965,
@@ -2033,7 +2083,8 @@
       "fun_fact_nl": "\"Anacaona\" van Cheo Feliciano, voor het eerst uitgebracht in 1971.",
       "uri_deezer": "deezer://track/2511634171",
       "uri_apple_music": "applemusic://track/1847697427",
-      "fun_fact_it": "«Anacaona» di Cheo Feliciano, pubblicata per la prima volta nel 1971."
+      "fun_fact_it": "«Anacaona» di Cheo Feliciano, pubblicata per la prima volta nel 1971.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pRhKY1jVJwE"
     },
     {
       "year": 1980,
@@ -2063,7 +2114,8 @@
       "fun_fact_nl": "\"Cachondea\" van Cheo Feliciano, voor het eerst uitgebracht in 1975 op het album \"La Salsa, Identidad de un Pueblo - Vol. 3 Expresión del Bailador\".",
       "uri_deezer": "deezer://track/131107392",
       "uri_apple_music": "applemusic://track/1465972653",
-      "fun_fact_it": "«Cachondea» di Cheo Feliciano, pubblicata per la prima volta nel 1975 nell'album «La Salsa, Identidad de un Pueblo - Vol. 3 Expresión del Bailador»."
+      "fun_fact_it": "«Cachondea» di Cheo Feliciano, pubblicata per la prima volta nel 1975 nell'album «La Salsa, Identidad de un Pueblo - Vol. 3 Expresión del Bailador».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3Cl32XVPwUg"
     },
     {
       "year": 2004,
@@ -2093,7 +2145,8 @@
       "fun_fact_nl": "\"Juguete De Nadie\" van Luisito Ayala Y La Puerto Rican Power, voor het eerst uitgebracht in 2008.",
       "uri_deezer": "deezer://track/14219823",
       "uri_apple_music": "applemusic://track/1791778082",
-      "fun_fact_it": "«Juguete De Nadie» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2008."
+      "fun_fact_it": "«Juguete De Nadie» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2008.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=daFvJZej978"
     },
     {
       "year": 1998,
@@ -2153,7 +2206,8 @@
       "fun_fact_nl": "\"Solo Con Un Beso\" van Luisito Ayala Y La Puerto Rican Power, Tito Rojas, voor het eerst uitgebracht in 2006 op het album \"Canta Tito Rojas\".",
       "uri_deezer": "deezer://track/64118622",
       "uri_apple_music": "applemusic://track/498336880",
-      "fun_fact_it": "«Solo Con Un Beso» di Luisito Ayala Y La Puerto Rican Power, Tito Rojas, pubblicata per la prima volta nel 2006 nell'album «Canta Tito Rojas»."
+      "fun_fact_it": "«Solo Con Un Beso» di Luisito Ayala Y La Puerto Rican Power, Tito Rojas, pubblicata per la prima volta nel 2006 nell'album «Canta Tito Rojas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=77qXQnu0EM0"
     },
     {
       "year": 1990,
@@ -2168,7 +2222,8 @@
       "fun_fact_nl": "\"Porque Te Amo\" van Nino Segarra, voor het eerst uitgebracht in 1990.",
       "uri_deezer": "deezer://track/12018038",
       "uri_apple_music": "applemusic://track/19923863",
-      "fun_fact_it": "«Porque Te Amo» di Nino Segarra, pubblicata per la prima volta nel 1990."
+      "fun_fact_it": "«Porque Te Amo» di Nino Segarra, pubblicata per la prima volta nel 1990.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ROBOWVuHKD8"
     },
     {
       "year": 2007,
@@ -2228,7 +2283,8 @@
       "fun_fact_nl": "\"Que Locura Enamorarme De Ti (feat. Eddie Santiago)\" van Huey Dunbar, Eddie Santiago, voor het eerst uitgebracht in 1997 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720615",
       "uri_apple_music": "applemusic://track/384175510",
-      "fun_fact_it": "«Que Locura Enamorarme De Ti (feat. Eddie Santiago)» di Huey Dunbar, Eddie Santiago, pubblicata per la prima volta nel 1997 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Que Locura Enamorarme De Ti (feat. Eddie Santiago)» di Huey Dunbar, Eddie Santiago, pubblicata per la prima volta nel 1997 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hb2Xc8zcEU4"
     },
     {
       "year": 1992,
@@ -2243,7 +2299,8 @@
       "fun_fact_nl": "\"Ay Amor Cuando Hablan Las Miradas\" van Guayacán Orquesta, voor het eerst uitgebracht in 1992.",
       "uri_deezer": "deezer://track/633458082",
       "uri_apple_music": "applemusic://track/1453085412",
-      "fun_fact_it": "«Ay Amor Cuando Hablan Las Miradas» di Guayacán Orquesta, pubblicata per la prima volta nel 1992."
+      "fun_fact_it": "«Ay Amor Cuando Hablan Las Miradas» di Guayacán Orquesta, pubblicata per la prima volta nel 1992.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5Z_vieWhWqw"
     },
     {
       "year": 1990,
@@ -2273,7 +2330,8 @@
       "fun_fact_nl": "\"Te Amo Te Extrano\" van Guayacán Orquesta, voor het eerst uitgebracht in 1990 op het album \"Sentimental de Punta a Punta\".",
       "uri_deezer": "deezer://track/2702846432",
       "uri_apple_music": "applemusic://track/1735849205",
-      "fun_fact_it": "«Te Amo Te Extrano» di Guayacán Orquesta, pubblicata per la prima volta nel 1990 nell'album «Sentimental de Punta a Punta»."
+      "fun_fact_it": "«Te Amo Te Extrano» di Guayacán Orquesta, pubblicata per la prima volta nel 1990 nell'album «Sentimental de Punta a Punta».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bqnY6w6AWm0"
     },
     {
       "year": 1985,
@@ -2378,7 +2436,8 @@
       "fun_fact_nl": "\"Cambio de Piel\" van Marc Anthony, voor het eerst uitgebracht in 2013 op het album \"3.0\".",
       "uri_deezer": "deezer://track/68771818",
       "uri_apple_music": "applemusic://track/668743492",
-      "fun_fact_it": "«Cambio de Piel» di Marc Anthony, pubblicata per la prima volta nel 2013 nell'album «3.0»."
+      "fun_fact_it": "«Cambio de Piel» di Marc Anthony, pubblicata per la prima volta nel 2013 nell'album «3.0».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-u6w90uQhTI"
     },
     {
       "year": 2004,
@@ -2393,7 +2452,8 @@
       "fun_fact_nl": "\"Tu Amor Me Hace Bien - Salsa Version\" van Marc Anthony, voor het eerst uitgebracht in 2004 op het album \"Valio La Pena\".",
       "uri_deezer": "deezer://track/15050444",
       "uri_apple_music": "applemusic://track/163291336",
-      "fun_fact_it": "«Tu Amor Me Hace Bien - Salsa Version» di Marc Anthony, pubblicata per la prima volta nel 2004 nell'album «Valio La Pena»."
+      "fun_fact_it": "«Tu Amor Me Hace Bien - Salsa Version» di Marc Anthony, pubblicata per la prima volta nel 2004 nell'album «Valio La Pena».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dcTyr5fhTi4"
     },
     {
       "year": 1997,
@@ -2423,7 +2483,8 @@
       "fun_fact_nl": "\"Dímelo\" van Marc Anthony, voor het eerst uitgebracht in 1999 op het album \"Sigo Siendo Yo\".",
       "uri_deezer": "deezer://track/547749",
       "uri_apple_music": "applemusic://track/191009795",
-      "fun_fact_it": "«Dímelo» di Marc Anthony, pubblicata per la prima volta nel 1999 nell'album «Sigo Siendo Yo»."
+      "fun_fact_it": "«Dímelo» di Marc Anthony, pubblicata per la prima volta nel 1999 nell'album «Sigo Siendo Yo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iP6pn_IQjhs"
     },
     {
       "year": 1999,
@@ -2483,7 +2544,8 @@
       "fun_fact_nl": "\"Barco a la Deriva\" van Marc Anthony, voor het eerst uitgebracht in 2001 op het album \"Sigo Siendo Yo\".",
       "uri_deezer": "deezer://track/547755",
       "uri_apple_music": "applemusic://track/192785720",
-      "fun_fact_it": "«Barco a la Deriva» di Marc Anthony, pubblicata per la prima volta nel 2001 nell'album «Sigo Siendo Yo»."
+      "fun_fact_it": "«Barco a la Deriva» di Marc Anthony, pubblicata per la prima volta nel 2001 nell'album «Sigo Siendo Yo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GY2WSQq-UnI"
     },
     {
       "year": 2001,
