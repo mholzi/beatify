@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.27",
+  "version": "1.28",
   "tags": [
     "movies",
     "soundtrack",
@@ -8369,6 +8369,310 @@
       "fun_fact_fr": "Lamar a supervisé l'album entier de Black Panther plutôt que d'écrire une seule chanson, chose inhabituelle pour un film de super-héros et souvent imitée depuis.",
       "fun_fact_nl": "Lamar stelde het hele Black Panther-album samen in plaats van er één lied voor te schrijven, wat ongebruikelijk was voor een superheldenfilm en daarna veel navolging kreeg.",
       "fun_fact_it": "Lamar curò l'intero album di Black Panther invece di scrivere una sola canzone: cosa insolita per un film di supereroi, poi molto imitata."
+    },
+    {
+      "artist": "Dick Dale & His Del-Tones",
+      "title": "Misirlou",
+      "year": 1962,
+      "uri": "spotify:track:6wmb6Mi0XcPEALiyCGWi2N",
+      "uri_apple_music": "applemusic://track/1533203882",
+      "uri_deezer": "deezer://track/7680019",
+      "isrc": "US29S0400634",
+      "alt_artists": [
+        "The Ventures",
+        "Link Wray"
+      ],
+      "fun_fact": "A Greek folk melody played on a Fender at a speed nobody had tried before. Tarantino put it under the opening titles of Pulp Fiction three decades later and gave it a second life.",
+      "fun_fact_de": "Eine griechische Volksweise, auf einer Fender in einem Tempo gespielt, das vorher niemand versucht hatte. Tarantino legte sie drei Jahrzehnte später unter den Vorspann von Pulp Fiction und gab ihr ein zweites Leben.",
+      "fun_fact_es": "Una melodía popular griega tocada en una Fender a una velocidad que nadie había intentado. Tarantino la puso bajo los títulos de Pulp Fiction tres décadas después y le dio una segunda vida.",
+      "fun_fact_fr": "Une mélodie populaire grecque jouée sur une Fender à une vitesse que personne n'avait tentée. Trente ans plus tard, Tarantino l'a placée sur le générique de Pulp Fiction et lui a offert une seconde vie.",
+      "fun_fact_nl": "Een Griekse volksmelodie op een Fender gespeeld in een tempo dat niemand eerder had geprobeerd. Tarantino zette hem drie decennia later onder de titels van Pulp Fiction en gaf hem een tweede leven.",
+      "fun_fact_it": "Una melodia popolare greca suonata su una Fender a una velocità che nessuno aveva tentato. Tarantino la mise sotto i titoli di testa di Pulp Fiction trent'anni dopo, dandole una seconda vita."
+    },
+    {
+      "artist": "Ennio Morricone",
+      "title": "The Good, The Bad and The Ugly",
+      "year": 1966,
+      "uri": "spotify:track:2IJJszwGK4NWmh3bNK6CPD",
+      "uri_apple_music": "applemusic://track/486088027",
+      "uri_deezer": "deezer://track/3089012",
+      "isrc": "USNPD0714249",
+      "alt_artists": [
+        "Nino Rota",
+        "Bruno Nicolai"
+      ],
+      "fun_fact": "The two-note coyote call was made with a human voice, an ocarina and an electric guitar. Morricone wrote the music before the film was shot, and Leone cut the scenes to fit it.",
+      "fun_fact_de": "Der zweitönige Kojotenruf entstand aus Menschenstimme, Okarina und E-Gitarre. Morricone schrieb die Musik vor dem Dreh, und Leone schnitt die Szenen darauf zu.",
+      "fun_fact_es": "El aullido de dos notas se hizo con voz humana, ocarina y guitarra eléctrica. Morricone escribió la música antes del rodaje, y Leone montó las escenas para que encajaran.",
+      "fun_fact_fr": "Le cri de coyote à deux notes a été fabriqué avec une voix humaine, un ocarina et une guitare électrique. Morricone a écrit la musique avant le tournage, et Leone a monté les scènes pour qu'elles s'y ajustent.",
+      "fun_fact_nl": "De tweetonige coyoteroep werd gemaakt met een menselijke stem, een ocarina en een elektrische gitaar. Morricone schreef de muziek vóór de opnames, en Leone monteerde de scènes erop.",
+      "fun_fact_it": "Il richiamo di coyote a due note fu ottenuto con voce umana, ocarina e chitarra elettrica. Morricone scrisse la musica prima delle riprese e Leone montò le scene per adattarle."
+    },
+    {
+      "artist": "Burt Bacharach",
+      "title": "Raindrops Keep Fallin' On My Head",
+      "year": 1969,
+      "uri": "spotify:track:039tOvW37VzuntOfrUVS8L",
+      "uri_apple_music": "applemusic://track/1443639296",
+      "uri_deezer": "deezer://track/1761620077",
+      "isrc": "USAM16900347",
+      "alt_artists": [
+        "Hal David",
+        "B.J. Thomas"
+      ],
+      "fun_fact": "Written for the bicycle scene in Butch Cassidy and the Sundance Kid, a sequence with no dialogue at all. It won the Oscar and Bacharach won a second the same evening for the score.",
+      "fun_fact_de": "Für die Fahrradszene in Zwei Banditen geschrieben, eine Sequenz ganz ohne Dialog. Es gewann den Oscar, und Bacharach gewann am selben Abend einen zweiten für die Filmmusik.",
+      "fun_fact_es": "Escrita para la escena de la bicicleta en Dos hombres y un destino, una secuencia sin diálogo alguno. Ganó el Óscar, y Bacharach ganó esa misma noche otro por la partitura.",
+      "fun_fact_fr": "Écrite pour la scène du vélo dans Butch Cassidy et le Kid, une séquence sans le moindre dialogue. Elle a remporté l'Oscar, et Bacharach en a gagné un second le même soir pour la partition.",
+      "fun_fact_nl": "Geschreven voor de fietsscène in Butch Cassidy and the Sundance Kid, een sequentie zonder enige dialoog. Het won de Oscar, en Bacharach won diezelfde avond een tweede voor de filmmuziek.",
+      "fun_fact_it": "Scritta per la scena della bicicletta in Butch Cassidy, una sequenza senza una sola battuta. Vinse l'Oscar, e Bacharach ne vinse un secondo la stessa sera per la colonna sonora."
+    },
+    {
+      "artist": "Nino Rota",
+      "title": "The Godfather Waltz",
+      "year": 1972,
+      "uri": "spotify:track:3WoSJF85H0qywD4qLp4HDd",
+      "uri_apple_music": "applemusic://track/1440844680",
+      "uri_deezer": "deezer://track/85456314",
+      "isrc": "CH6321405074",
+      "alt_artists": [
+        "Ennio Morricone",
+        "Carmine Coppola"
+      ],
+      "fun_fact": "Rota's waltz was disqualified from the Oscars because he had used part of it in an earlier Italian film. He won two years later for the sequel instead.",
+      "fun_fact_de": "Rotas Walzer wurde von den Oscars ausgeschlossen, weil er einen Teil davon in einem früheren italienischen Film verwendet hatte. Zwei Jahre später gewann er stattdessen für die Fortsetzung.",
+      "fun_fact_es": "El vals de Rota fue descalificado en los Óscar porque había usado parte de él en una película italiana anterior. Dos años después ganó por la segunda parte.",
+      "fun_fact_fr": "La valse de Rota a été disqualifiée aux Oscars parce qu'il en avait utilisé une partie dans un film italien antérieur. Il a gagné deux ans plus tard pour la suite.",
+      "fun_fact_nl": "Rota's wals werd van de Oscars uitgesloten omdat hij een deel ervan in een eerdere Italiaanse film had gebruikt. Twee jaar later won hij alsnog, voor het vervolg.",
+      "fun_fact_it": "Il valzer di Rota fu squalificato agli Oscar perché ne aveva usato una parte in un film italiano precedente. Vinse due anni dopo con il seguito."
+    },
+    {
+      "artist": "Gato Barbieri",
+      "title": "Last Tango in Paris",
+      "year": 1972,
+      "uri": "spotify:track:2dRjEirtMproK2r4gzda1j",
+      "uri_apple_music": "applemusic://track/865006383",
+      "uri_deezer": "deezer://track/77738472",
+      "isrc": "ITC460500427",
+      "alt_artists": [
+        "Astor Piazzolla",
+        "Stan Getz"
+      ],
+      "fun_fact": "The Argentine saxophonist recorded the score in a single week and won a Grammy for it. The tango is played rather than danced — the film keeps the music at arm's length from its characters.",
+      "fun_fact_de": "Der argentinische Saxofonist nahm die Musik in einer einzigen Woche auf und gewann dafür einen Grammy. Der Tango wird gespielt, nicht getanzt — der Film hält die Musik auf Abstand zu seinen Figuren.",
+      "fun_fact_es": "El saxofonista argentino grabó la partitura en una sola semana y ganó un Grammy. El tango se toca, no se baila: la película mantiene la música a distancia de sus personajes.",
+      "fun_fact_fr": "Le saxophoniste argentin a enregistré la partition en une seule semaine et remporté un Grammy. Le tango se joue et ne se danse pas — le film tient la musique à distance de ses personnages.",
+      "fun_fact_nl": "De Argentijnse saxofonist nam de muziek in één week op en won er een Grammy mee. De tango wordt gespeeld, niet gedanst — de film houdt de muziek op afstand van zijn personages.",
+      "fun_fact_it": "Il sassofonista argentino incise la partitura in una sola settimana e vinse un Grammy. Il tango si suona e non si balla: il film tiene la musica a distanza dai suoi personaggi."
+    },
+    {
+      "artist": "Barbra Streisand",
+      "title": "The Way We Were",
+      "year": 1973,
+      "uri": "spotify:track:1vZTgn4JXWMahR8r99ug5H",
+      "uri_apple_music": "applemusic://track/193022060",
+      "uri_deezer": "deezer://track/626294",
+      "isrc": "USSM10024187",
+      "alt_artists": [
+        "Bette Midler",
+        "Carole King"
+      ],
+      "fun_fact": "Streisand recorded two versions and the producers could not choose, so both were kept — one opens the film, the other closes it.",
+      "fun_fact_de": "Streisand nahm zwei Fassungen auf, und die Produzenten konnten sich nicht entscheiden, also blieben beide — eine eröffnet den Film, die andere beschließt ihn.",
+      "fun_fact_es": "Streisand grabó dos versiones y los productores no supieron elegir, así que se quedaron ambas: una abre la película y la otra la cierra.",
+      "fun_fact_fr": "Streisand a enregistré deux versions et les producteurs n'ont pas su choisir : les deux ont été gardées, l'une ouvre le film, l'autre le referme.",
+      "fun_fact_nl": "Streisand nam twee versies op en de producenten konden niet kiezen, dus bleven ze allebei — de ene opent de film, de andere sluit hem af.",
+      "fun_fact_it": "La Streisand incise due versioni e i produttori non seppero scegliere: rimasero entrambe, una apre il film e l'altra lo chiude."
+    },
+    {
+      "artist": "David Rose",
+      "title": "Little House On The Prairie",
+      "year": 1974,
+      "uri": "spotify:track:132I6UhRKQoslXIVSgoKuk",
+      "uri_apple_music": "applemusic://track/395793674",
+      "uri_deezer": "deezer://track/1541110502",
+      "isrc": "FXR022104627",
+      "alt_artists": [
+        "John Williams",
+        "Jerry Goldsmith"
+      ],
+      "fun_fact": "Rose had already written the music for Bonanza when he took on this series. The theme runs under an opening sequence of children rolling down a hill, and it has been shorthand for that image ever since.",
+      "fun_fact_de": "Rose hatte schon die Musik zu Bonanza geschrieben, als er diese Serie übernahm. Das Thema läuft unter einem Vorspann rollender Kinder am Hang — und steht seither als Kürzel für dieses Bild.",
+      "fun_fact_es": "Rose ya había escrito la música de Bonanza cuando aceptó esta serie. El tema suena bajo una cabecera de niñas rodando por una colina, y desde entonces es sinónimo de esa imagen.",
+      "fun_fact_fr": "Rose avait déjà écrit la musique de Bonanza quand il a pris cette série. Le thème accompagne un générique d'enfants dévalant une colline, et il en est resté le raccourci.",
+      "fun_fact_nl": "Rose had de muziek voor Bonanza al geschreven toen hij deze serie aannam. Het thema klinkt onder een titelsequentie van kinderen die van een heuvel rollen, en staat sindsdien voor dat beeld.",
+      "fun_fact_it": "Rose aveva già scritto la musica di Bonanza quando prese questa serie. Il tema accompagna una sigla di bambine che rotolano giù da una collina, e da allora ne è il simbolo."
+    },
+    {
+      "artist": "Jerry Goldsmith",
+      "title": "Star Trek - The Motion Picture: Main Title",
+      "year": 1979,
+      "uri": "spotify:track:43B5NwirruWiXQi5V1LaOd",
+      "uri_apple_music": "applemusic://track/49266664",
+      "uri_deezer": "deezer://track/119439166",
+      "isrc": "US3M50016302",
+      "alt_artists": [
+        "James Horner",
+        "John Williams"
+      ],
+      "fun_fact": "Goldsmith wrote this fanfare for the first Star Trek film, and it was later taken up as the theme for The Next Generation — a piece of music that outlasted the production it was made for.",
+      "fun_fact_de": "Goldsmith schrieb diese Fanfare für den ersten Star-Trek-Film; später wurde sie als Thema für Das nächste Jahrhundert übernommen — eine Musik, die ihre Produktion überlebt hat.",
+      "fun_fact_es": "Goldsmith escribió esta fanfarria para la primera película de Star Trek, y más tarde se adoptó como tema de La nueva generación: una música que sobrevivió a la producción para la que se hizo.",
+      "fun_fact_fr": "Goldsmith a écrit cette fanfare pour le premier film Star Trek ; elle a ensuite été reprise comme thème de La Nouvelle Génération — une musique qui a survécu à la production pour laquelle elle fut écrite.",
+      "fun_fact_nl": "Goldsmith schreef deze fanfare voor de eerste Star Trek-film; later werd ze overgenomen als thema voor The Next Generation — muziek die haar productie overleefde.",
+      "fun_fact_it": "Goldsmith scrisse questa fanfara per il primo film di Star Trek; fu poi ripresa come tema di The Next Generation, una musica sopravvissuta alla produzione per cui era nata."
+    },
+    {
+      "artist": "Stu Phillips",
+      "title": "Knight Rider Main Title",
+      "year": 1982,
+      "uri": "spotify:track:2R2gMe3zb9BgCdT2PZh1s3",
+      "uri_apple_music": "applemusic://track/1528121767",
+      "uri_deezer": "deezer://track/1053752862",
+      "isrc": "USQ4E1904295",
+      "alt_artists": [
+        "Jan Hammer",
+        "Mike Post"
+      ],
+      "fun_fact": "A synthesiser pulse for a series whose real star was a talking car. Phillips also wrote the theme for Battlestar Galactica, which is the other sound eighties television borrowed from him.",
+      "fun_fact_de": "Ein Synthesizer-Puls für eine Serie, deren eigentlicher Star ein sprechendes Auto war. Phillips schrieb auch das Thema zu Kampfstern Galactica — der andere Klang, den das Achtziger-Fernsehen bei ihm lieh.",
+      "fun_fact_es": "Un pulso de sintetizador para una serie cuya verdadera estrella era un coche que hablaba. Phillips escribió también el tema de Galáctica, el otro sonido que la televisión de los ochenta le tomó prestado.",
+      "fun_fact_fr": "Une pulsation de synthétiseur pour une série dont la vraie vedette était une voiture qui parle. Phillips a aussi écrit le thème de Galactica, l'autre son que la télévision des années quatre-vingt lui a emprunté.",
+      "fun_fact_nl": "Een synthesizerpuls voor een serie waarvan de echte ster een pratende auto was. Phillips schreef ook het thema van Battlestar Galactica, het andere geluid dat de jaren-tachtigtelevisie van hem leende.",
+      "fun_fact_it": "Un impulso di sintetizzatore per una serie la cui vera star era un'auto parlante. Phillips scrisse anche il tema di Galactica, l'altro suono che la televisione degli anni Ottanta gli prese in prestito."
+    },
+    {
+      "artist": "Harold Faltermeyer",
+      "title": "Top Gun Anthem",
+      "year": 1986,
+      "uri": "spotify:track:0Eodsilv1jAn83TGezUzaE",
+      "uri_apple_music": "applemusic://track/387194700",
+      "uri_deezer": "deezer://track/7675060",
+      "isrc": "USSM19904574",
+      "alt_artists": [
+        "Steve Stevens",
+        "Giorgio Moroder"
+      ],
+      "fun_fact": "Steve Stevens, better known as Billy Idol's guitarist, plays the solo. The piece won a Grammy and returned unchanged in the sequel thirty-six years later.",
+      "fun_fact_de": "Steve Stevens, besser bekannt als Billy Idols Gitarrist, spielt das Solo. Das Stück gewann einen Grammy und kehrte sechsunddreißig Jahre später unverändert in der Fortsetzung zurück.",
+      "fun_fact_es": "Steve Stevens, más conocido como guitarrista de Billy Idol, toca el solo. La pieza ganó un Grammy y volvió sin cambios en la secuela treinta y seis años después.",
+      "fun_fact_fr": "Steve Stevens, plus connu comme guitariste de Billy Idol, joue le solo. Le morceau a remporté un Grammy et est revenu inchangé dans la suite trente-six ans plus tard.",
+      "fun_fact_nl": "Steve Stevens, beter bekend als gitarist van Billy Idol, speelt de solo. Het stuk won een Grammy en keerde zesendertig jaar later ongewijzigd terug in het vervolg.",
+      "fun_fact_it": "Steve Stevens, più noto come chitarrista di Billy Idol, suona l'assolo. Il pezzo vinse un Grammy e tornò immutato nel seguito trentasei anni dopo."
+    },
+    {
+      "artist": "Inner Circle",
+      "title": "Bad Boys",
+      "year": 1987,
+      "uri": "spotify:track:1NojrDCqDLh4dWRZ7F589Q",
+      "uri_apple_music": "applemusic://track/1718311590",
+      "uri_deezer": "deezer://track/2557399732",
+      "isrc": "USA2P1004784",
+      "alt_artists": [
+        "Bob Marley",
+        "Shaggy"
+      ],
+      "fun_fact": "Written by a Jamaican reggae band years before the American documentary series Cops adopted it. The question in the chorus is now inseparable from footage neither the band nor the song had anything to do with.",
+      "fun_fact_de": "Von einer jamaikanischen Reggaeband geschrieben, Jahre bevor die amerikanische Doku-Serie Cops es übernahm. Die Frage im Refrain ist heute untrennbar mit Bildern verbunden, mit denen weder Band noch Lied etwas zu tun hatten.",
+      "fun_fact_es": "Escrita por una banda jamaicana de reggae años antes de que la serie documental estadounidense Cops la adoptara. La pregunta del estribillo es hoy inseparable de unas imágenes ajenas a la banda y a la canción.",
+      "fun_fact_fr": "Écrite par un groupe de reggae jamaïcain des années avant que la série documentaire américaine Cops ne l'adopte. La question du refrain est aujourd'hui indissociable d'images étrangères au groupe comme à la chanson.",
+      "fun_fact_nl": "Geschreven door een Jamaicaanse reggaeband, jaren voordat de Amerikaanse documentaireserie Cops het overnam. De vraag in het refrein is nu onlosmakelijk verbonden met beelden waar band noch lied iets mee te maken had.",
+      "fun_fact_it": "Scritta da una band reggae giamaicana anni prima che la serie documentaria americana Cops la adottasse. La domanda del ritornello è oggi inseparabile da immagini estranee sia al gruppo sia alla canzone."
+    },
+    {
+      "artist": "Madonna",
+      "title": "Who's That Girl",
+      "year": 1987,
+      "uri": "spotify:track:3G0NNqwQ1sqRpySr6soHlH",
+      "uri_apple_music": "applemusic://track/953642",
+      "uri_deezer": "deezer://track/4094775",
+      "isrc": "USWB10002766",
+      "alt_artists": [
+        "Cyndi Lauper",
+        "Kim Wilde"
+      ],
+      "fun_fact": "The film was a failure and the song went to number one anyway. Madonna sings part of it in Spanish, which was unusual for an American number one that year.",
+      "fun_fact_de": "Der Film floppte, das Lied ging trotzdem auf Platz eins. Madonna singt einen Teil auf Spanisch — für eine amerikanische Nummer eins jenes Jahres ungewöhnlich.",
+      "fun_fact_es": "La película fracasó y la canción llegó igualmente al número uno. Madonna canta parte en español, algo insólito en un número uno estadounidense de aquel año.",
+      "fun_fact_fr": "Le film a échoué et la chanson est tout de même montée en tête. Madonna en chante une partie en espagnol, chose inhabituelle pour un numéro un américain cette année-là.",
+      "fun_fact_nl": "De film flopte en het nummer werd toch nummer één. Madonna zingt een deel in het Spaans, ongebruikelijk voor een Amerikaanse nummer één van dat jaar.",
+      "fun_fact_it": "Il film fu un insuccesso e la canzone arrivò comunque al primo posto. Madonna ne canta una parte in spagnolo, cosa insolita per un numero uno americano di quell'anno."
+    },
+    {
+      "artist": "James Horner",
+      "title": "Willow's Theme",
+      "year": 1988,
+      "uri": "spotify:track:2Dy9bSUlnypC8Rm5O1iTOZ",
+      "uri_apple_music": "applemusic://track/1687005036",
+      "uri_deezer": "deezer://track/2281044207",
+      "isrc": "USWD12214295",
+      "alt_artists": [
+        "John Williams",
+        "Basil Poledouris"
+      ],
+      "fun_fact": "Horner borrowed openly from Schumann's Rhenish symphony for the main theme, which he said afterwards he would have handled differently. The score is still among the most performed of his early work.",
+      "fun_fact_de": "Horner lehnte sich beim Hauptthema offen an Schumanns Rheinische an, was er später anders gemacht hätte, wie er sagte. Die Musik gehört trotzdem zu den meistgespielten seines Frühwerks.",
+      "fun_fact_es": "Horner se apoyó abiertamente en la Renana de Schumann para el tema principal, algo que después dijo que habría resuelto de otro modo. La partitura sigue entre las más interpretadas de su obra temprana.",
+      "fun_fact_fr": "Horner s'est ouvertement appuyé sur la Rhénane de Schumann pour le thème principal, ce qu'il aurait, dit-il plus tard, traité autrement. La partition reste parmi les plus jouées de ses débuts.",
+      "fun_fact_nl": "Horner leunde voor het hoofdthema openlijk op Schumanns Rijnlandse, iets wat hij later naar eigen zeggen anders zou hebben aangepakt. De partituur behoort nog altijd tot de meest gespeelde uit zijn vroege werk.",
+      "fun_fact_it": "Horner si appoggiò apertamente alla Renana di Schumann per il tema principale, cosa che disse poi che avrebbe trattato diversamente. La partitura resta tra le più eseguite del suo primo periodo."
+    },
+    {
+      "artist": "Annie Lennox",
+      "title": "Love Song for a Vampire",
+      "year": 1992,
+      "uri": "spotify:track:3ik79qXV15D3ae33uveasw",
+      "uri_apple_music": "applemusic://track/158458647",
+      "uri_deezer": "deezer://track/1068248",
+      "isrc": "USSM10028116",
+      "alt_artists": [
+        "Kate Bush",
+        "Sinéad O'Connor"
+      ],
+      "fun_fact": "Lennox wrote it for the closing credits of Coppola's Dracula, her first release after leaving Eurythmics. The film has no other song in it at all.",
+      "fun_fact_de": "Lennox schrieb es für den Abspann von Coppolas Dracula — ihre erste Veröffentlichung nach dem Ende von Eurythmics. Der Film enthält sonst kein einziges Lied.",
+      "fun_fact_es": "Lennox la escribió para los créditos finales del Drácula de Coppola, su primera publicación tras dejar Eurythmics. La película no contiene ninguna otra canción.",
+      "fun_fact_fr": "Lennox l'a écrite pour le générique de fin du Dracula de Coppola, sa première parution après Eurythmics. Le film ne contient aucune autre chanson.",
+      "fun_fact_nl": "Lennox schreef het voor de aftiteling van Coppola's Dracula, haar eerste uitgave na Eurythmics. De film bevat verder geen enkel lied.",
+      "fun_fact_it": "La Lennox la scrisse per i titoli di coda del Dracula di Coppola, la sua prima uscita dopo gli Eurythmics. Il film non contiene nessun'altra canzone."
+    },
+    {
+      "artist": "Eric Clapton",
+      "title": "Change the World",
+      "year": 1996,
+      "uri": "spotify:track:5Ds0VGkTSQ1jf4KzLUpZPb",
+      "uri_apple_music": "applemusic://track/1648144410",
+      "uri_deezer": "deezer://track/1940201257",
+      "isrc": "USRE19600049",
+      "alt_artists": [
+        "Babyface",
+        "Sting"
+      ],
+      "fun_fact": "Produced by Babyface for the film Phenomenon, and it won Record of the Year at the Grammys — a soundtrack single beating everything released as an album track that year.",
+      "fun_fact_de": "Von Babyface für den Film Phenomenon produziert, und es gewann bei den Grammys die Aufnahme des Jahres — eine Soundtrack-Single, die alles schlug, was in jenem Jahr als Albumtitel erschien.",
+      "fun_fact_es": "Producida por Babyface para la película Phenomenon, ganó el Grammy a la grabación del año: un sencillo de banda sonora por delante de todo lo publicado como tema de álbum aquel año.",
+      "fun_fact_fr": "Produite par Babyface pour le film Phénomène, elle a remporté le Grammy de l'enregistrement de l'année — un single de bande originale devant tout ce qui est paru en album cette année-là.",
+      "fun_fact_nl": "Geproduceerd door Babyface voor de film Phenomenon, en het won de Grammy voor opname van het jaar — een soundtracksingle die alles versloeg wat dat jaar als albumtrack verscheen.",
+      "fun_fact_it": "Prodotta da Babyface per il film Phenomenon, vinse il Grammy come registrazione dell'anno: un singolo da colonna sonora davanti a tutto ciò che uscì come brano d'album quell'anno."
+    },
+    {
+      "artist": "Randy Newman",
+      "title": "Monsters, Inc.",
+      "year": 2001,
+      "uri": "spotify:track:5e0O7MjhNHq9G67qDFM8nR",
+      "uri_apple_music": "applemusic://track/724376322",
+      "uri_deezer": "deezer://track/3203370",
+      "isrc": "USWD10321170",
+      "alt_artists": [
+        "Thomas Newman",
+        "Alan Silvestri"
+      ],
+      "fun_fact": "Newman had been nominated fifteen times without winning before this song took the Oscar. He opened his acceptance speech by thanking the Academy for not making him wait for a sixteenth.",
+      "fun_fact_de": "Newman war fünfzehnmal nominiert gewesen, ohne zu gewinnen, bevor dieses Lied den Oscar holte. Seine Dankesrede begann er damit, der Akademie dafür zu danken, ihn nicht auf ein sechzehntes Mal warten zu lassen.",
+      "fun_fact_es": "Newman había sido nominado quince veces sin ganar antes de que esta canción se llevara el Óscar. Empezó su discurso agradeciendo a la Academia que no le hiciera esperar a una decimosexta.",
+      "fun_fact_fr": "Newman avait été nommé quinze fois sans gagner avant que cette chanson ne remporte l'Oscar. Il a ouvert son discours en remerciant l'Académie de ne pas lui avoir imposé une seizième attente.",
+      "fun_fact_nl": "Newman was vijftien keer genomineerd zonder te winnen voordat dit lied de Oscar pakte. Hij opende zijn dankwoord door de Academy te bedanken dat ze hem geen zestiende keer lieten wachten.",
+      "fun_fact_it": "Newman era stato candidato quindici volte senza vincere prima che questa canzone prendesse l'Oscar. Aprì il discorso ringraziando l'Academy per non avergli fatto attendere una sedicesima."
     }
   ],
   "movie_quiz_enabled": true
