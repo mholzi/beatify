@@ -1248,7 +1248,7 @@
   },
   "onboarding": {
     "stepLabel": "Step",
-    "stepOf": "of 4",
+    "stepOf": "of",
     "skip": "Skip tour",
     "skipBtn": "Skip",
     "nextBtn": "Next",

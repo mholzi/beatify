@@ -1248,7 +1248,7 @@
   },
   "onboarding": {
     "stepLabel": "Passo",
-    "stepOf": "di 4",
+    "stepOf": "di",
     "skip": "Salta il tutorial",
     "skipBtn": "Salta",
     "nextBtn": "Avanti",
