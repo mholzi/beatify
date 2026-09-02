@@ -134,17 +134,29 @@ class RoundLifecycleMixin:
 
         self._set_phase(GamePhase.PLAYING)
 
-        # Issue #1665: hand every player their single sabotage token. Unlike the
-        # steal (unlocked by a streak), the sabotage token exists from round 1 —
-        # a token you have to earn first would rarely be spent in a short game.
-        # No-op when the setting is off, so default games are unchanged.
-        if self.sabotage_enabled:
-            for player in self.players.values():
-                player.unlock_sabotage()
+        self._grant_sabotage_tokens()
 
         # Round and song selection will be implemented in Epic 4
         _LOGGER.info("Game started: %d players", len(self.players))
         return True, None
+
+    def _grant_sabotage_tokens(self) -> None:
+        """Hand every player their single sabotage token (#1665).
+
+        Unlike the steal (unlocked by a streak), the sabotage token exists from
+        round 1 — a token you have to earn first would rarely be spent in a
+        short game. No-op when the setting is off, so default games are
+        unchanged, and idempotent, so being called twice cannot hand out two.
+
+        #2497: this used to live inline in ``start_game()``, which no
+        production path calls — both real start paths go straight to
+        ``start_round()``. It is called from the LOBBY transition there as well
+        now, and lives in its own method so the two callers cannot drift.
+        """
+        if not self.sabotage_enabled:
+            return
+        for player in self.players.values():
+            player.unlock_sabotage()
 
     def _get_round_start_lock(self) -> asyncio.Lock:
         """Get (lazily creating) the #1697 round-start serialization lock.
@@ -227,6 +239,16 @@ class RoundLifecycleMixin:
         # that view entirely — hooking the view fixed one path and left the
         # other broken. Fires once; a hook failure must never block a game, so
         # the worst case is the room keeping its creation-time songs.
+        # #2497: the sabotage grant belongs to the LOBBY -> first-round
+        # transition, and this is the only place both start paths pass through.
+        # It used to sit in start_game(), which nothing in production calls: the
+        # websocket admin handler and the REST start view both call start_round()
+        # directly and the phase flip happens inside _initialize_round. Same
+        # reasoning as the pre-start hook below, which is here for exactly that
+        # reason.
+        if self.phase == GamePhase.LOBBY and _retry_count == 0:
+            self._grant_sabotage_tokens()
+
         hook = getattr(self, "pre_start_hook", None)
         if hook is not None and self.phase == GamePhase.LOBBY and _retry_count == 0:
             self.pre_start_hook = None
