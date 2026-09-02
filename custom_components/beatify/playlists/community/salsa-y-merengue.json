@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "salsa",
     "merengue",
@@ -4153,7 +4153,8 @@
       "fun_fact_nl": "\"Volvere\" van DLG, voor het eerst uitgebracht in 1999 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13182318",
       "uri_apple_music": "applemusic://track/321424453",
-      "fun_fact_it": "«Volvere» di DLG, pubblicata per la prima volta nel 1999 nell'album «Lo Esencial»."
+      "fun_fact_it": "«Volvere» di DLG, pubblicata per la prima volta nel 1999 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D8N8SmQvEcs"
     },
     {
       "year": 1999,
@@ -4168,7 +4169,8 @@
       "fun_fact_nl": "\"Acuyuye\" van DLG, voor het eerst uitgebracht in 1999 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13182322",
       "uri_apple_music": "applemusic://track/321424567",
-      "fun_fact_it": "«Acuyuye» di DLG, pubblicata per la prima volta nel 1999 nell'album «Lo Esencial»."
+      "fun_fact_it": "«Acuyuye» di DLG, pubblicata per la prima volta nel 1999 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h33UhCdhLrk"
     },
     {
       "year": 1997,
@@ -4183,7 +4185,8 @@
       "fun_fact_nl": "\"Magdalena, Mi Amor (Quimbara)\" van DLG, voor het eerst uitgebracht in 1997 op het album \"Swing On\".",
       "uri_deezer": "deezer://track/72189846",
       "uri_apple_music": "applemusic://track/159869477",
-      "fun_fact_it": "«Magdalena, Mi Amor (Quimbara)» di DLG, pubblicata per la prima volta nel 1997 nell'album «Swing On»."
+      "fun_fact_it": "«Magdalena, Mi Amor (Quimbara)» di DLG, pubblicata per la prima volta nel 1997 nell'album «Swing On».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q2n52roG8aQ"
     },
     {
       "year": 1996,
@@ -4198,7 +4201,8 @@
       "fun_fact_nl": "\"Muevete\" van DLG, voor het eerst uitgebracht in 1996 op het album \"Lo Esencial\".",
       "uri_deezer": "deezer://track/13182325",
       "uri_apple_music": "applemusic://track/159869373",
-      "fun_fact_it": "«Muevete» di DLG, pubblicata per la prima volta nel 1996 nell'album «Lo Esencial»."
+      "fun_fact_it": "«Muevete» di DLG, pubblicata per la prima volta nel 1996 nell'album «Lo Esencial».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XuHjAIvIakU"
     },
     {
       "year": 2011,
@@ -4213,7 +4217,8 @@
       "fun_fact_nl": "\"Si Tú Me Besas\" van Víctor Manuelle, voor het eerst uitgebracht in 2011 op het album \"Si Tú Me Besas\".",
       "uri_deezer": "deezer://track/14847589",
       "uri_apple_music": "applemusic://track/486982721",
-      "fun_fact_it": "«Si Tú Me Besas» di Víctor Manuelle, pubblicata per la prima volta nel 2011 nell'album «Si Tú Me Besas»."
+      "fun_fact_it": "«Si Tú Me Besas» di Víctor Manuelle, pubblicata per la prima volta nel 2011 nell'album «Si Tú Me Besas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TuY1py-wPl4"
     },
     {
       "year": 2012,
@@ -4525,7 +4530,8 @@
       "fun_fact_nl": "\"Bachata En Fukuoka\" van Juan Luis Guerra 4.40, voor het eerst uitgebracht in 2010 op het album \"Bachata En Fukuoka\".",
       "uri_deezer": "deezer://track/5645452",
       "uri_apple_music": "applemusic://track/715793668",
-      "fun_fact_it": "«Bachata En Fukuoka» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2010 nell'album «Bachata En Fukuoka»."
+      "fun_fact_it": "«Bachata En Fukuoka» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2010 nell'album «Bachata En Fukuoka».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_4NBD3SqBwg"
     },
     {
       "year": 2006,
@@ -4629,7 +4635,8 @@
       "fun_fact_nl": "\"Deje de Amar\" van Felipe Muñiz, Marc Anthony, voor het eerst uitgebracht in 2016 op het album \"Deje de Amar\".",
       "uri_deezer": "deezer://track/132316824",
       "uri_apple_music": "applemusic://track/1155763623",
-      "fun_fact_it": "«Deje de Amar» di Felipe Muñiz, Marc Anthony, pubblicata per la prima volta nel 2016 nell'album «Deje de Amar»."
+      "fun_fact_it": "«Deje de Amar» di Felipe Muñiz, Marc Anthony, pubblicata per la prima volta nel 2016 nell'album «Deje de Amar».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o0b48EWd0iI"
     },
     {
       "year": 2007,
@@ -4867,7 +4874,8 @@
       "fun_fact_nl": "\"Rebelión\" van Joe Arroyo, La Verdad, voor het eerst uitgebracht in 1981 op het album \"Discos Fuentes Salsa Sampler\".",
       "uri_deezer": "deezer://track/112896870",
       "uri_apple_music": "applemusic://track/203977425",
-      "fun_fact_it": "«Rebelión» di Joe Arroyo, La Verdad, pubblicata per la prima volta nel 1981 nell'album «Discos Fuentes Salsa Sampler»."
+      "fun_fact_it": "«Rebelión» di Joe Arroyo, La Verdad, pubblicata per la prima volta nel 1981 nell'album «Discos Fuentes Salsa Sampler».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oWBf9hfW_4Y"
     },
     {
       "year": 1992,
