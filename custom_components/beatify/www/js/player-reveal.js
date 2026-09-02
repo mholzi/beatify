@@ -627,6 +627,31 @@ function renderChartBadges(chartInfo) {
         );
     }
 
+    // Charts outside the three big ones. They follow the same rule as the UK
+    // and German badges above: shown only when no primary peak did, so a song
+    // that already displays a US position does not sprout three more badges.
+    // 46 songs in the catalogue carry one of these; 7 have nothing else.
+    var secondary = [
+        ['austrian_peak', 'reveal.chartAustria'],
+        ['swiss_peak', 'reveal.chartSwitzerland'],
+        ['it_peak', 'reveal.chartItaly'],
+        ['fr_peak', 'reveal.chartFrance'],
+        ['spain_peak', 'reveal.chartSpain']
+    ];
+    if (!chartInfo.billboard_peak && !chartInfo.german_peak && !chartInfo.uk_peak) {
+        for (var si = 0; si < secondary.length; si++) {
+            var field = secondary[si][0];
+            var peak = chartInfo[field];
+            if (!peak || peak <= 0) continue;
+            badges.push(
+                '<span class="song-badge song-badge--chart">' +
+                '<span class="song-badge-icon">📊</span>' +
+                '#' + peak + ' ' + utils.t(secondary[si][1]) +
+                '</span>'
+            );
+        }
+    }
+
     // Eurovision placements live in their own fields (eurovision-winners.json
     // carries position, points and country for 72 songs). They are not a chart
     // peak, so they get their own badge instead of being folded into one of the

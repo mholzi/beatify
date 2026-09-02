@@ -25,8 +25,8 @@
       ],
       "title": "Major Tom (Völlig losgelöst)",
       "chart_info": {
-        "at_peak": 1,
-        "german_peak": 1
+        "german_peak": 1,
+        "austrian_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -100,8 +100,8 @@
       "chart_info": {
         "us_peak": 1,
         "uk_peak": 1,
-        "at_peak": 1,
-        "german_peak": 1
+        "german_peak": 1,
+        "austrian_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -173,8 +173,8 @@
       ],
       "title": "Goldener Reiter",
       "chart_info": {
-        "at_peak": 1,
-        "german_peak": 2
+        "german_peak": 2,
+        "austrian_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -279,8 +279,8 @@
       ],
       "title": "Der Kommissar",
       "chart_info": {
-        "at_peak": 1,
-        "german_peak": 1
+        "german_peak": 1,
+        "austrian_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -424,8 +424,8 @@
       ],
       "title": "Ba-Ba Banküberfall",
       "chart_info": {
-        "at_peak": 2,
-        "german_peak": 5
+        "german_peak": 5,
+        "austrian_peak": 2
       },
       "certifications": [],
       "awards": [],
@@ -461,8 +461,8 @@
       ],
       "title": "Codo (...düse im Sauseschritt)",
       "chart_info": {
-        "at_peak": 1,
-        "german_peak": 1
+        "german_peak": 1,
+        "austrian_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -534,8 +534,8 @@
       ],
       "title": "Eisbär",
       "chart_info": {
-        "ch_peak": 1,
-        "german_peak": 10
+        "german_peak": 10,
+        "swiss_peak": 1
       },
       "certifications": [],
       "awards": [],
