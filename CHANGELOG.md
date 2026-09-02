@@ -4,6 +4,56 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.1-rc1] - 2026-09-02
+
+A patch number, and it holds: no new mechanic, no new provider. Six defects from a full review of
+the running app, two locale repairs, and five new playlists.
+
+### Fixed
+- **Sabotage tokens were never handed out (#2497).** The grant lived in `GameState.start_game()`,
+  which no production path calls — both the websocket admin handler and the REST start view go
+  straight to `start_round()`. The power-up had been inert since it shipped. The grant moved to the
+  LOBBY-to-first-round transition, the one point both paths pass through. The minimum-player floor
+  travelled the same dead path and now sits in the two entry points, which are the only places that
+  can report the refusal.
+- **A disconnected host's session could be taken over by name (#2501).** The deprecated name-based
+  reconnect fallback re-attached a socket to an existing player and kept its `is_admin` flag, so a
+  join carrying the host's display name — which is on the TV — inherited the host role without ever
+  meeting the token check, because nothing was declared. The fallback stays open for players and
+  now requires a verified Home Assistant login for a host session.
+- **A mid-game reload could reset a player's score (#2508).** Two connection paths start on page
+  load and nothing coordinated them: while the session reconnect was open but unacknowledged,
+  `state.playerName` was null, so the name path tore the socket down with a `leave` — which removes
+  the player server-side — and rejoined from scratch on the room average. The connect decision now
+  has one owner and stands down if the session path already holds a socket.
+- **One Title & Artist attempt per player per round (#2498).** Second attempts were accepted.
+- **The Join button stayed dead after leaving a game (#2506).** Only the join-timeout path ever
+  restored it; leaving, a session takeover, a failed reconnect and an unknown session all returned
+  to the join view and left a disabled button reading "Joining…". The reset now happens where the
+  view is shown, and re-derives the disabled state from the name in the box rather than simply
+  enabling it.
+- **A refused join is shown on the join view (#2499).** `escapeHtml` also escapes quotes, so
+  attribute context is safe (#2505).
+- **The onboarding tour counted "Step 5 of 4" (#2500).** The fifth card arrived with Title & Artist
+  mode; the six `stepOf` strings did not. The number now comes from the card count at render time
+  and the strings carry only the connecting word.
+- **Eight translation keys did not exist (#2507).** `t()` returns the key itself on a miss and never
+  a falsy value, so `t(key) || 'fallback'` is dead code: the steal modal's aria-label ended in
+  `leaderboard.leader` and the admin toast read `admin.alreadyJoined`. Four more left hard-coded
+  English on a German TV. A check now cross-references every literal `data-i18n` and `t('…')`
+  against `en.json`.
+- **The Spanish locale said "ano" where it means "año" in 14 strings (#2519)**, including the
+  reveal screen after every round, and had dropped accents in 118 more.
+
+### Changed
+- **The catalogue reached 66 playlists and 8,403 songs.** Deutschrap Klassiker, Clásicos del Rock
+  en Español, Rock Rioplatense, Vallenato Clásico and Música Colombiana Alegre.
+- **Latin repertoire needs three sources for a release year.** Streaming catalogues and MusicBrainz
+  agreed on 17 of 47 vallenato candidates, and every error ran late, because compilations and
+  reissues dominate. The ISRC registration year is now a third signal, the year at least two agree
+  on wins, and the agreement of two catalogue copies of one reissue is not evidence — two sources
+  dated a Diomedes Díaz and Juancho Rois recording to 2006, twelve years after Rois died.
+
 ## [4.4.0] - 2026-09-01
 
 Released as **4.4.0** rather than 4.3.1: the work shipped as the `v4.3.1-rc1`, `v4.3.1-rc2` and
