@@ -14,7 +14,8 @@ import {
     cleanupVirtualPlayerList,
     setEnergyLevel, triggerConfetti, stopConfetti,
     initQrCollapsible, setupLobbyCollapsible,
-    requestWakeLock, releaseWakeLock
+    requestWakeLock, releaseWakeLock,
+    isJoinRejection
 } from './player-utils.js';
 
 import {
@@ -537,6 +538,11 @@ function connectWebSocket(name) {
 
     state.playerName = name;
     storePlayerName(name);
+    // #2499: playerName is set optimistically here, before the server has
+    // acknowledged anything, so it cannot tell a refused join from a mid-game
+    // error. This flag can: it is raised on every connect attempt and lowered
+    // by join_ack / reconnect_ack.
+    state.joinPending = true;
 
     // #1701: stamp the attempt for the foreground-reconnect throttle.
     state.lastConnectStartedAt = Date.now();
@@ -805,6 +811,7 @@ function handleServerMessage(data) {
             clearStoredPlayerName();
         }
     } else if (data.type === 'join_ack') {
+        state.joinPending = false;  // #2499
         // #646: Request wake lock early — not just during PLAYING
         requestWakeLock();
         if (data.session_id) {
@@ -817,6 +824,7 @@ function handleServerMessage(data) {
             // Ignore storage errors
         }
     } else if (data.type === 'reconnect_ack') {
+        state.joinPending = false;  // #2499
         if (data.success && data.name) {
             state.playerName = data.name;
             storePlayerName(data.name);
@@ -834,6 +842,14 @@ function handleServerMessage(data) {
     } else if (data.type === 'error') {
         if (data.code === 'ROUND_EXPIRED' || data.code === 'ALREADY_SUBMITTED') {
             handleSubmitError(data);
+            return;
+        }
+        // #2499: a rejected join, handled before the in-game branches. The
+        // joinPending flag is what distinguishes "the join failed" from
+        // "something went wrong mid-game" — GAME_ENDED reaches both paths and
+        // means different things in each.
+        if (isJoinRejection(data.code, state.joinPending)) {
+            failJoin(data.message || 'Could not join');
             return;
         }
         if (data.code === 'GAME_ENDED') {
@@ -1047,6 +1063,33 @@ function showJoinError(message) {
         validationMsg.textContent = message;
         validationMsg.classList.remove('hidden');
     }
+}
+
+// #2499: a join the server refused — name taken, name invalid, game full,
+// game over. The socket stays open and the join watchdog has already been
+// cleared (the server did answer), so without this the join button sits
+// disabled on "Joining…" for good and the message lands on the submit button
+// of the hidden game view. The stored name is cleared as well, or a reload
+// re-joins with the same rejected name and hangs on "Connecting to game…".
+// Mirrors handleJoinTimeout() below, which does the same recovery for silence.
+// The predicate lives in player-utils.js so it can be tested on its own.
+function failJoin(message) {
+    clearJoinTimeout();
+    state.joinPending = false;
+    state.intentionalLeave = true;
+    if (state.ws) {
+        try { state.ws.close(); } catch (e) { /* ignore */ }
+        state.ws = null;
+    }
+    clearStoredPlayerName();
+
+    var joinBtn = document.getElementById('join-btn');
+    if (joinBtn) {
+        joinBtn.disabled = false;
+        joinBtn.textContent = utils.t('join.joinButton') || 'Join Game';
+    }
+    showJoinError(message);
+    showView('join-view');
 }
 
 function validateName(name) {
