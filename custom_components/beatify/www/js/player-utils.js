@@ -246,14 +246,32 @@ export function showConfirmModal(title, message, confirmText, cancelText) {
 // ============================================
 
 /**
- * Escape HTML to prevent XSS
+ * Escape text for insertion into HTML, in text nodes AND in attribute values.
+ *
+ * This used to route through a detached div (textContent in, innerHTML out).
+ * That encodes & < > and leaves the quote characters alone — correct for a
+ * text node, wrong for an attribute value, where a quote ends the value and
+ * everything after it is read as further attributes. Three call sites put
+ * player names into attributes (data-player, data-name, aria-label), and a
+ * player name is free text: the server checks only its length, and the name
+ * renders on every guest's phone rather than only the author's. (#2505)
+ *
+ * Escaping the five characters directly fixes both contexts at once, needs no
+ * DOM, and cannot drift apart from the second copy in utils.js.
+ *
  * @param {string} text - Text to escape
- * @returns {string} Escaped text
+ * @returns {string} Escaped text, safe in both contexts
  */
 export function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    if (text === null || text === undefined) {
+        return '';
+    }
+    return String(text)
+        .replace(/&/g, '&amp;')   // must come first
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
 /**

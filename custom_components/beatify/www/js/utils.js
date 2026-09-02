@@ -181,9 +181,16 @@ window.BeatifyUtils = (function() {
         if (text === null || text === undefined) {
             return '';
         }
-        var div = document.createElement('div');
-        div.textContent = String(text);
-        return div.innerHTML;
+        // Escapes the five characters directly rather than routing through a
+        // detached div: the div trick leaves the quotes alone, which breaks
+        // attribute context. Kept byte-identical to the player-utils.js copy
+        // so the two cannot drift. (#2505)
+        return String(text)
+            .replace(/&/g, '&amp;')   // must come first
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
     // ==========================================================================
