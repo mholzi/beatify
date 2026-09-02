@@ -68,6 +68,7 @@
     "players": "players"
   },
   "game": {
+    "yearLabel": "Year",
     "introSplashTitle": "Intro Round!",
     "introSplashDesc": "Stop the song the moment you recognise it!",
     "introSplashWaiting": "Waiting for host...",
@@ -337,6 +338,7 @@
     "flaggedForHost": "✓ Flagged for the host"
   },
   "leaderboard": {
+    "leader": "leader",
     "title": "Leaderboard",
     "standings": "Standings",
     "finalTitle": "Final Results",
@@ -356,6 +358,7 @@
     "fullRankings": "Full Rankings"
   },
   "admin": {
+    "alreadyJoined": "Already joined as {name}",
     "title": "Beatify Admin",
     "filterAll": "All",
     "skipRound": "Skip",
@@ -872,6 +875,9 @@
     "pagination": "Page {current} of {total}"
   },
   "dashboard": {
+    "nowPlaying": "Now Playing",
+    "reveal": "Reveal",
+    "nowRevealing": "Now revealing",
     "autoAdvance": "Auto-advance",
     "title": "Beatify - Dashboard",
     "connecting": "Connecting to game...",

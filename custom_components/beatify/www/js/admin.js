@@ -1828,7 +1828,12 @@ function showSpeakerSetupError(message) {
 function openAdminJoinModal() {
     // Issue #477: If already joined inline, just show a toast
     if (adminState.isPlaying && adminState.adminPlayerName) {
-        showError(BeatifyI18n.t('admin.alreadyJoined') || 'Already joined as ' + adminState.adminPlayerName);
+        // #2507: `|| fallback` never fires — t() returns the key itself on a
+        // miss, never a falsy value — so tapping Join twice showed the literal
+        // "admin.alreadyJoined". The key now exists in all six locales, with
+        // the name as a parameter; English is the backstop for a locale that
+        // ever lacks it, and test_i18n_keys_exist_2507.py is the guard.
+        showError(utils.t('admin.alreadyJoined', { name: adminState.adminPlayerName }));
         return;
     }
 
