@@ -1222,6 +1222,71 @@ function setupRetryConnection() {
 // Initialization
 // ============================================
 
+// #2508: resolves once the bootstrap checkGameStatus() below has settled — and
+// therefore once its session-cookie branch has had its chance to open a socket.
+// Declared here rather than at the bootstrap call because the connection
+// decision reads it, and `await null` on an early call is harmless.
+var gameStatusReady = null;
+
+/**
+ * Decide how — or whether — this page load connects.
+ *
+ * #2508: a mid-game reload starts two independent connection paths, and
+ * nothing used to coordinate them. ``checkGameStatus`` finds the session
+ * cookie and opens a socket that sends ``reconnect``; ``initAll`` finds the
+ * stored name and calls ``connectWebSocket``. If the second arrived while the
+ * first was open but still waiting for ``reconnect_ack``, ``state.playerName``
+ * was null, so ``connectWebSocket`` read a live socket under a *different*
+ * name, sent ``leave`` — which removes the player on the server — and rejoined
+ * from scratch. Mid-game that means a fresh player on the room average: reload
+ * in round five holding 300 points, come back at the bottom of the board.
+ *
+ * The fix gives the connection one owner. This runs after the status check has
+ * settled, and stands down entirely if that path already holds a socket.
+ *
+ * Exported for the #2508 tests.
+ */
+export async function resolveInitialConnection() {
+    // checkGameStatus handles its own transport failures and never rejects,
+    // but an unexpected throw must not take the connection decision with it.
+    try { await gameStatusReady; } catch (e) { /* already surfaced as not-found */ }
+
+    // The session path owns the socket. Never open a second one behind it.
+    if (state.ws && (state.ws.readyState === WebSocket.CONNECTING || state.ws.readyState === WebSocket.OPEN)) {
+        return;
+    }
+
+    if (checkAdminStatus() && state.playerName) {
+        // Cookie set by the handoff above (or already by admin.js join_ack) —
+        // prefer connectWithSession so we reconnect as the same player.
+        if (getSessionCookie()) {
+            connectWithSession();
+        } else {
+            connectWebSocket(state.playerName);
+        }
+        return;
+    }
+
+    var storedName = getStoredPlayerName();
+    if (storedName && state.gameId) {
+        debug('[Beatify] Auto-reconnecting as:', storedName);
+        connectWebSocket(storedName);
+        return;
+    }
+
+    if (storedName) {
+        var nameInput = document.getElementById('name-input');
+        var joinBtn = document.getElementById('join-btn');
+        if (nameInput) {
+            nameInput.value = storedName;
+            if (joinBtn) {
+                var result = validateName(storedName);
+                joinBtn.disabled = !result.valid;
+            }
+        }
+    }
+}
+
 async function initAll() {
     // #998: consume any pending HA login redirect (?code=). Normal players
     // never authenticate — requireAuth:false means this only exchanges a
@@ -1280,39 +1345,13 @@ async function initAll() {
         try { sessionStorage.removeItem('beatify_session'); } catch (e) { /* ignore */ }
     }
 
-    if (checkAdminStatus() && state.playerName) {
-        // Cookie set above (or already set by admin.js join_ack) — prefer
-        // connectWithSession so we reconnect as the same player.
-        if (getSessionCookie()) {
-            connectWithSession();
-        } else {
-            connectWebSocket(state.playerName);
-        }
-        return;
-    }
-
-    var storedName = getStoredPlayerName();
-    if (storedName && state.gameId) {
-        debug('[Beatify] Auto-reconnecting as:', storedName);
-        connectWebSocket(storedName);
-        return;
-    }
-
-    if (storedName) {
-        var nameInput = document.getElementById('name-input');
-        var joinBtn = document.getElementById('join-btn');
-        if (nameInput) {
-            nameInput.value = storedName;
-            if (joinBtn) {
-                var result = validateName(storedName);
-                joinBtn.disabled = !result.valid;
-            }
-        }
-    }
+    await resolveInitialConnection();
 }
 
-// Initialize and check game status
-checkGameStatus();
+// Initialize and check game status.
+// #2508: keep the promise. initAll's auto-reconnect waits for it, so the two
+// connection paths this page starts on load can no longer overtake each other.
+gameStatusReady = checkGameStatus();
 
 // Wire refresh/retry buttons
 document.getElementById('refresh-btn')?.addEventListener('click', function() {
