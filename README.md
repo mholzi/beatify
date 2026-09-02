@@ -429,7 +429,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,211 songs across 61 curated playlists:
+Beatify comes with 8,237 songs across 62 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -452,6 +452,7 @@ Beatify comes with 8,211 songs across 61 curated playlists:
 - 🏰 **Clásicos Disney (Castellano)** — 64 Disney songs in the Spanish of Spain
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
 - 🇩🇪 **Deutschpop Klassiker** — 118 German pop classics, incl. the 90s / NDW canon
+- 🇩🇪 **Deutschrap Klassiker** — 26 German rap tracks from 1995 to 2024, Freundeskreis and Beginner through Sido and Haftbefehl to Pashanim and Ski Aggu
 - 🇩🇪 **Deutschrock - Best Of** — 100 modern German rock tracks, from Böhse Onkelz to Die Toten Hosen
 - 🕺 **Disco & Funk Classics** — 98 essential disco and funk tracks from the 70s and 80s
 - 🏰 **Disney Classics** — 69 soundtrack singalongs from the Disney canon
