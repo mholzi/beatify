@@ -627,9 +627,10 @@ function renderChartBadges(chartInfo) {
         );
     }
 
-    // Charts outside the three big ones. They follow the same rule as the UK
-    // and German badges above: shown only when no primary peak did, so a song
-    // that already displays a US position does not sprout three more badges.
+    // Charts outside the three big ones. Unlike the UK and German badges above,
+    // these are NOT suppressed by a primary peak: a song that charted at #5 in
+    // the US and #1 in Austria says something with both numbers, and for a
+    // German-speaking party the second one is often the more interesting.
     // 46 songs in the catalogue carry one of these; 7 have nothing else.
     var secondary = [
         ['austrian_peak', 'reveal.chartAustria'],
@@ -638,18 +639,15 @@ function renderChartBadges(chartInfo) {
         ['fr_peak', 'reveal.chartFrance'],
         ['spain_peak', 'reveal.chartSpain']
     ];
-    if (!chartInfo.billboard_peak && !chartInfo.german_peak && !chartInfo.uk_peak) {
-        for (var si = 0; si < secondary.length; si++) {
-            var field = secondary[si][0];
-            var peak = chartInfo[field];
-            if (!peak || peak <= 0) continue;
-            badges.push(
-                '<span class="song-badge song-badge--chart">' +
-                '<span class="song-badge-icon">📊</span>' +
-                '#' + peak + ' ' + utils.t(secondary[si][1]) +
-                '</span>'
-            );
-        }
+    for (var si = 0; si < secondary.length; si++) {
+        var peak = chartInfo[secondary[si][0]];
+        if (!peak || peak <= 0) continue;
+        badges.push(
+            '<span class="song-badge song-badge--chart">' +
+            '<span class="song-badge-icon">📊</span>' +
+            '#' + peak + ' ' + utils.t(secondary[si][1]) +
+            '</span>'
+        );
     }
 
     // Eurovision placements live in their own fields (eurovision-winners.json
