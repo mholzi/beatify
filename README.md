@@ -249,6 +249,25 @@ http://YOUR-HA-IP:8123/beatify/static/dashboard.html
    aspect_ratio: 56.25%   # 16:9
    ```
 
+### If your TV is driven by a media centre (Kodi, Plex HTPC)
+
+A media centre is a media *player*, not a browser, so the dashboard does not
+run inside it — Kodi in particular has no embedded browser, and there is no
+Beatify add-on for it (see [#2389](https://github.com/mholzi/beatify/issues/2389)).
+That does not stop you using the box; it just means the picture and the sound
+take different paths.
+
+- **Android TV, Fire TV or Shield** — Kodi is one app among others on these.
+  Open the dashboard URL in the device's browser as in option 1 above, and
+  switch back to Kodi when the party is over.
+- **A dedicated HTPC that only boots into Kodi** — leave the box as the
+  speaker (below) and put the dashboard somewhere else: a tablet on the
+  table, a laptop casting to the same TV, or a Lovelace view on a second
+  screen.
+
+Either way the box can still be the thing making noise — that part is set up
+in Music Assistant, not in Beatify.
+
 ### Sending audio to the TV
 
 The dashboard is purely visual. **Music plays through whichever speaker you
@@ -257,6 +276,14 @@ sound coming out of the TV (or a soundbar/AVR attached to it), select that
 device as the playback target in Music Assistant when you set up the game.
 The dashboard URL and the audio target are independent — pick each one to
 fit your room.
+
+**If your speaker does not appear in Music Assistant**, check whether Music
+Assistant has a provider for it. Kodi is the common case: Music Assistant has
+no native Kodi provider, so a Kodi player only shows up once the **Home
+Assistant Media Players** provider is enabled in Music Assistant — it then
+picks up the `media_player` entity that Home Assistant's Kodi integration
+already provides. Same route for any other player Home Assistant knows and
+Music Assistant has no driver of its own for.
 
 > **Tip:** A Fire TV Stick (or any cheap browser-capable streaming stick)
 > opened to the dashboard URL gives you a "permanent" Beatify TV display
