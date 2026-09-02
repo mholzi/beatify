@@ -1,6 +1,6 @@
 {
   "name": "Schlager Classics 🇩🇪",
-  "version": "1.24",
+  "version": "1.25",
   "tags": [
     "german",
     "schlager",
@@ -5120,6 +5120,312 @@
       "fun_fact_fr": "Gabalier l'a écrite après les suicides de son père et de sa sœur, et la chante en dialecte styrien devant des stades.",
       "fun_fact_nl": "Gabalier schreef het nadat zijn vader en zijn zus zich van het leven hadden beroofd, en zingt het in Stiers dialect voor stadions.",
       "fun_fact_it": "Gabalier la scrisse dopo che il padre e la sorella si erano tolti la vita, e la canta in dialetto stiriano davanti agli stadi."
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:1wNXkEKCcspETALfsr7GvN",
+      "artist": "Mario Jordan",
+      "alt_artists": [
+        "Wolfgang Petry",
+        "Roland Kaiser",
+        "Michael Holm",
+        "Bernhard Brink"
+      ],
+      "title": "Welch ein Tag",
+      "fun_fact": "Mario Jordan is a stage name — the singer is Mario Lehner, and the lyrics come from Michael Kunze, who also wrote for Udo Jürgens.",
+      "fun_fact_de": "Mario Jordan ist ein Künstlername — der Sänger heißt Mario Lehner, und der Text stammt von Michael Kunze, der auch für Udo Jürgens schrieb.",
+      "fun_fact_es": "Mario Jordan es un nombre artístico: el cantante se llama Mario Lehner, y la letra es de Michael Kunze, que también escribió para Udo Jürgens.",
+      "fun_fact_fr": "Mario Jordan est un nom de scène : le chanteur s'appelle Mario Lehner, et le texte est signé Michael Kunze, qui a aussi écrit pour Udo Jürgens.",
+      "fun_fact_nl": "Mario Jordan is een artiestennaam — de zanger heet Mario Lehner, en de tekst komt van Michael Kunze, die ook voor Udo Jürgens schreef."
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:1oy5gYPBNzICwy4VCvrc6k",
+      "artist": "Carrière",
+      "alt_artists": [
+        "Die Flippers",
+        "Nockalm Quintett",
+        "Calimeros",
+        "Die Paldauer"
+      ],
+      "title": "Mein Ein und mein Alles",
+      "fun_fact": "The Austrian band had to rename itself Caraboo for legal reasons, so the same group appears in record shops under two names.",
+      "fun_fact_de": "Die österreichische Band musste sich aus rechtlichen Gründen in Caraboo umbenennen — dieselbe Gruppe steht also unter zwei Namen im Plattenregal.",
+      "fun_fact_es": "La banda austriaca tuvo que cambiar su nombre a Caraboo por motivos legales, así que el mismo grupo aparece con dos nombres.",
+      "fun_fact_fr": "Le groupe autrichien a dû se rebaptiser Caraboo pour des raisons juridiques : la même formation existe donc sous deux noms.",
+      "fun_fact_nl": "De Oostenrijkse band moest zich om juridische redenen Caraboo gaan noemen, dus dezelfde groep staat onder twee namen in de rekken."
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:7nA19Q8NZITJqwHx7dlHoN",
+      "artist": "Monika Martin",
+      "alt_artists": [
+        "Andrea Berg",
+        "Michelle",
+        "Kristina Bach",
+        "Claudia Jung"
+      ],
+      "title": "La Luna Blu",
+      "fun_fact": "The debut single of the Austrian singer, who trained as a painter before she recorded anything.",
+      "fun_fact_de": "Die Debütsingle der österreichischen Sängerin, die zuerst Malerin war, bevor sie überhaupt etwas aufnahm.",
+      "fun_fact_es": "El sencillo debut de la cantante austriaca, que antes de grabar nada se formó como pintora.",
+      "fun_fact_fr": "Le premier single de la chanteuse autrichienne, peintre de formation avant d'enregistrer quoi que ce soit.",
+      "fun_fact_nl": "De debuutsingle van de Oostenrijkse zangeres, die schilderes was voordat ze ook maar iets opnam."
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:4WQZSjuVjxGRPZT9gCNT3B",
+      "artist": "Ibo",
+      "alt_artists": [
+        "Olaf Henning",
+        "Tim Toupet",
+        "Mickie Krause",
+        "Jürgen Drews"
+      ],
+      "title": "Schwarze Rose",
+      "fun_fact": "It comes from Ibo's last album — the discofox singer died in the same year, aged 44, and the song outlived him as a party standard.",
+      "fun_fact_de": "Der Titel stammt von Ibos letztem Album — der Discofox-Sänger starb im selben Jahr mit 44, und das Lied überlebte ihn als Partyklassiker.",
+      "fun_fact_es": "Procede del último álbum de Ibo: el cantante de discofox murió ese mismo año con 44 años, y la canción le sobrevivió como clásico de fiesta.",
+      "fun_fact_fr": "Le titre vient du dernier album d'Ibo : le chanteur de discofox est mort la même année à 44 ans, et la chanson lui a survécu comme classique de fête.",
+      "fun_fact_nl": "Het nummer komt van Ibo's laatste album — de discofoxzanger stierf datzelfde jaar op zijn 44e, en het lied overleefde hem als partyklassieker."
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:6nHQrTrXd0dyVb74VfsjxA",
+      "artist": "Simone",
+      "alt_artists": [
+        "Marianne Rosenberg",
+        "Michelle",
+        "Andrea Jürgens",
+        "Nicole"
+      ],
+      "title": "Solang wir lieben",
+      "fun_fact": "Simone is the Austrian singer Simone Stelzer, and this is the title track of the album that carries her first name alone on the cover.",
+      "fun_fact_de": "Simone ist die Österreicherin Simone Stelzer, und das hier ist der Titelsong des Albums, auf dessen Cover nur ihr Vorname steht.",
+      "fun_fact_es": "Simone es la austriaca Simone Stelzer, y esta es la canción que da título al álbum que lleva solo su nombre de pila en la portada.",
+      "fun_fact_fr": "Simone, c'est l'Autrichienne Simone Stelzer, et voici la chanson-titre de l'album qui ne porte que son prénom en couverture.",
+      "fun_fact_nl": "Simone is de Oostenrijkse Simone Stelzer, en dit is het titelnummer van het album dat alleen haar voornaam op de hoes draagt."
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:3DelaacjOD7LpDygDydl9L",
+      "artist": "Sandy Wagner",
+      "alt_artists": [
+        "Tim Toupet",
+        "Mickie Krause",
+        "Olaf Henning",
+        "Willi Herren"
+      ],
+      "title": "Hier spricht die Polizei",
+      "fun_fact": "Sandy Wagner is a man — Stefan Dietmar Wagner, a television presenter who wrote, sang and produced this one himself.",
+      "fun_fact_de": "Sandy Wagner ist ein Mann — Stefan Dietmar Wagner, Fernsehmoderator, der diesen Titel selbst geschrieben, gesungen und produziert hat.",
+      "fun_fact_es": "Sandy Wagner es un hombre: Stefan Dietmar Wagner, presentador de televisión que escribió, cantó y produjo él mismo esta canción.",
+      "fun_fact_fr": "Sandy Wagner est un homme : Stefan Dietmar Wagner, animateur de télévision, qui a écrit, chanté et produit lui-même ce titre.",
+      "fun_fact_nl": "Sandy Wagner is een man — Stefan Dietmar Wagner, tv-presentator, die dit nummer zelf schreef, zong en produceerde."
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:3YTlEtWSVvnJ0WAgvzPx79",
+      "artist": "Lukas Hilbert",
+      "alt_artists": [
+        "Wolfgang Petry",
+        "Christian Anders",
+        "Marquess",
+        "Laith Al-Deen"
+      ],
+      "title": "Was ich an dir mag - Single Mix",
+      "fun_fact": "Hilbert wrote a run of German top-ten singles for other artists and sat on the Popstars jury, which made him better known as an author than as a singer.",
+      "fun_fact_de": "Hilbert schrieb eine Reihe deutscher Top-Ten-Singles für andere und saß bei Popstars in der Jury — als Autor war er bekannter denn als Sänger.",
+      "fun_fact_es": "Hilbert escribió varios sencillos alemanes de top ten para otros artistas y fue jurado en Popstars: se le conocía más como autor que como cantante.",
+      "fun_fact_fr": "Hilbert a écrit plusieurs singles allemands du top dix pour d'autres et a siégé au jury de Popstars : il était plus connu comme auteur que comme chanteur.",
+      "fun_fact_nl": "Hilbert schreef een reeks Duitse toptienhits voor anderen en zat in de jury van Popstars — als auteur was hij bekender dan als zanger."
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:5lo52acOaW0GDQYrhZwzoS",
+      "artist": "Nico Gemba",
+      "alt_artists": [
+        "Olaf Henning",
+        "Ibo",
+        "Willi Herren",
+        "Almklausi"
+      ],
+      "title": "Dein Zug ist abgefahr’n",
+      "fun_fact": "Discofox at 132 beats per minute — fast enough that the dance floor sets the tempo rather than the song.",
+      "fun_fact_de": "Discofox mit 132 Schlägen pro Minute — schnell genug, dass die Tanzfläche das Tempo vorgibt und nicht das Lied.",
+      "fun_fact_es": "Discofox a 132 pulsaciones por minuto: lo bastante rápido para que el ritmo lo marque la pista y no la canción.",
+      "fun_fact_fr": "Du discofox à 132 battements par minute : assez rapide pour que ce soit la piste qui donne le tempo, pas la chanson.",
+      "fun_fact_nl": "Discofox op 132 slagen per minuut — snel genoeg dat de dansvloer het tempo bepaalt en niet het nummer."
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:076TvwvwODg9xYZyIhwcWq",
+      "artist": "PS Alex",
+      "alt_artists": [
+        "Almklausi",
+        "Tim Toupet",
+        "Mickie Krause",
+        "Willi Herren"
+      ],
+      "title": "Eine Frau die mich nach Hause trägt",
+      "fun_fact": "The single shipped with a Stadl mix, a rock mix and a DJ mix — one song cut three ways for three different rooms.",
+      "fun_fact_de": "Die Single erschien mit Stadl-Mix, Rock-Mix und DJ-Mix — ein Lied in drei Fassungen für drei verschiedene Säle.",
+      "fun_fact_es": "El sencillo salió con un mix Stadl, uno de rock y uno de DJ: una canción en tres versiones para tres salas distintas.",
+      "fun_fact_fr": "Le single est sorti avec un mix Stadl, un mix rock et un mix DJ : une chanson en trois versions pour trois salles différentes.",
+      "fun_fact_nl": "De single verscheen met een Stadl-mix, een rockmix en een dj-mix — één lied in drie versies voor drie verschillende zalen."
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:0k6WvGNgeySmv1E0zU0Fni",
+      "artist": "Linda Hesse",
+      "alt_artists": [
+        "Beatrice Egli",
+        "Vanessa Mai",
+        "Michelle",
+        "Anna-Maria Zimmermann"
+      ],
+      "title": "Knutschen...ich kann nichts dafür",
+      "fun_fact": "Five straight weeks at number one on the German airplay charts, which made it the most-played song on schlager radio that year.",
+      "fun_fact_de": "Fünf Wochen in Folge auf Platz eins der deutschen Airplay-Charts — damit war es in dem Jahr der meistgespielte Titel im Schlagerradio.",
+      "fun_fact_es": "Cinco semanas seguidas en el número uno de las listas de radiodifusión alemanas, la canción más pinchada en la radio schlager de ese año.",
+      "fun_fact_fr": "Cinq semaines d'affilée en tête des classements radio allemands : le titre le plus diffusé de l'année sur les radios schlager.",
+      "fun_fact_nl": "Vijf weken op rij op nummer één in de Duitse airplaylijsten — daarmee het meest gedraaide nummer op schlagerradio dat jaar."
+    },
+    {
+      "year": 2018,
+      "uri": "spotify:track:18fNOhyZxb4ZuXuAqNwlTt",
+      "artist": "Francine Jordi",
+      "alt_artists": [
+        "Beatrice Egli",
+        "Nicole",
+        "Michelle",
+        "Andrea Berg"
+      ],
+      "title": "Lovesong",
+      "fun_fact": "Jordi won the Grand Prix der Volksmusik in 1998 and sang for Switzerland at Eurovision in 2002 — in French, not German.",
+      "fun_fact_de": "Jordi gewann 1998 den Grand Prix der Volksmusik und sang 2002 für die Schweiz beim Eurovision Song Contest — auf Französisch, nicht auf Deutsch.",
+      "fun_fact_es": "Jordi ganó el Grand Prix der Volksmusik en 1998 y cantó por Suiza en Eurovisión en 2002, en francés y no en alemán.",
+      "fun_fact_fr": "Jordi a gagné le Grand Prix der Volksmusik en 1998 et a chanté pour la Suisse à l'Eurovision en 2002 — en français, pas en allemand.",
+      "fun_fact_nl": "Jordi won in 1998 de Grand Prix der Volksmusik en zong in 2002 voor Zwitserland op het Eurovisiesongfestival — in het Frans, niet in het Duits."
+    },
+    {
+      "year": 2019,
+      "uri": "spotify:track:6pOQxkHy563Uwa5gHkJX7w",
+      "artist": "Musikapostel, Allessa",
+      "alt_artists": [
+        "Die Draufgänger",
+        "Vincent Gross",
+        "Marc Pircher",
+        "Nockis"
+      ],
+      "title": "Ich bin wer ich sein will (feat. Allessa)",
+      "fun_fact": "The duet partner is the Austrian singer Allessa, and the song follows their earlier one together, Der Einzige.",
+      "fun_fact_de": "Die Duettpartnerin ist die österreichische Sängerin Allessa, und der Titel folgt auf ihr gemeinsames Der Einzige.",
+      "fun_fact_es": "La compañera de dueto es la cantante austriaca Allessa, y el tema sigue a Der Einzige, que grabaron juntos antes.",
+      "fun_fact_fr": "La partenaire de duo est la chanteuse autrichienne Allessa, et le titre fait suite à leur précédent, Der Einzige.",
+      "fun_fact_nl": "De duetpartner is de Oostenrijkse zangeres Allessa, en het nummer volgt op hun eerdere Der Einzige."
+    },
+    {
+      "year": 2020,
+      "uri": "spotify:track:28ooNJCBh2MWbCVYhZ8aqx",
+      "artist": "Marina Marx",
+      "alt_artists": [
+        "Vanessa Mai",
+        "Beatrice Egli",
+        "Anna-Carina Woitschack",
+        "Michelle"
+      ],
+      "title": "Der geilste Fehler",
+      "fun_fact": "The title track of her debut album, and only her second single — her heart is in country and rock, which is where the guitars come from.",
+      "fun_fact_de": "Der Titelsong ihres Debütalbums und erst ihre zweite Single — ihr Herz hängt an Country und Rock, daher die Gitarren.",
+      "fun_fact_es": "La canción que da título a su álbum debut y apenas su segundo sencillo: su corazón está en el country y el rock, de ahí las guitarras.",
+      "fun_fact_fr": "La chanson-titre de son premier album et seulement son deuxième single — son cœur penche vers le country et le rock, d'où les guitares.",
+      "fun_fact_nl": "Het titelnummer van haar debuutalbum en pas haar tweede single — haar hart ligt bij country en rock, vandaar de gitaren."
+    },
+    {
+      "year": 2020,
+      "uri": "spotify:track:2VO7ytMJt7AICZyDGM09VV",
+      "artist": "Mike Leon Grosch",
+      "alt_artists": [
+        "Alexander Klaws",
+        "Vincent Gross",
+        "Eloy de Jong",
+        "Ben Zucker"
+      ],
+      "title": "Nicht mal eine Stunde",
+      "fun_fact": "Grosch reached the final of the third Deutschland sucht den Superstar and lost to Tobias Regner; this was his comeback, fourteen years later.",
+      "fun_fact_de": "Grosch stand im Finale der dritten DSDS-Staffel und verlor gegen Tobias Regner — dieser Titel war vierzehn Jahre später sein Comeback.",
+      "fun_fact_es": "Grosch llegó a la final de la tercera edición de Deutschland sucht den Superstar y perdió ante Tobias Regner; este tema fue su regreso, catorce años después.",
+      "fun_fact_fr": "Grosch a atteint la finale de la troisième saison de Deutschland sucht den Superstar et a perdu face à Tobias Regner ; ce titre marque son retour, quatorze ans plus tard.",
+      "fun_fact_nl": "Grosch haalde de finale van het derde seizoen van Deutschland sucht den Superstar en verloor van Tobias Regner; dit nummer was veertien jaar later zijn comeback."
+    },
+    {
+      "year": 2021,
+      "uri": "spotify:track:0LTsD9w7mj1d0L9TyJ4KXe",
+      "artist": "DJ Herzbeat, Roger Whittaker",
+      "alt_artists": [
+        "Klubbb3",
+        "Stereoact",
+        "VoXXclub",
+        "Ben Zucker"
+      ],
+      "title": "Albany (feat. Roger Whittaker)",
+      "fun_fact": "A new recording of Roger Whittaker's 1982 hit — with Whittaker himself singing it again, almost forty years on.",
+      "fun_fact_de": "Eine Neuaufnahme von Roger Whittakers Hit von 1982 — und Whittaker singt ihn fast vierzig Jahre später selbst noch einmal.",
+      "fun_fact_es": "Una nueva grabación del éxito de Roger Whittaker de 1982, con el propio Whittaker cantándolo de nuevo casi cuarenta años después.",
+      "fun_fact_fr": "Un nouvel enregistrement du tube de Roger Whittaker de 1982 — avec Whittaker lui-même qui le rechante près de quarante ans plus tard.",
+      "fun_fact_nl": "Een nieuwe opname van Roger Whittakers hit uit 1982 — met Whittaker die hem bijna veertig jaar later zelf opnieuw zingt."
+    },
+    {
+      "year": 2022,
+      "uri": "spotify:track:02L6Gd6M9LaBxaSeum3bwV",
+      "artist": "Rebel Tell",
+      "alt_artists": [
+        "VoXXclub",
+        "Die Draufgänger",
+        "Stereoact",
+        "Kerstin Ott"
+      ],
+      "title": "Schlager ist nicht kriminell",
+      "fun_fact": "The band plays Andrea Berg and Udo Jürgens on double bass and electric guitar and calls the result Schlagerbilly.",
+      "fun_fact_de": "Die Band spielt Andrea Berg und Udo Jürgens auf Kontrabass und E-Gitarre und nennt das Ergebnis Schlagerbilly.",
+      "fun_fact_es": "La banda toca a Andrea Berg y Udo Jürgens con contrabajo y guitarra eléctrica, y llama al resultado Schlagerbilly.",
+      "fun_fact_fr": "Le groupe joue Andrea Berg et Udo Jürgens à la contrebasse et à la guitare électrique, et appelle ça du Schlagerbilly.",
+      "fun_fact_nl": "De band speelt Andrea Berg en Udo Jürgens op contrabas en elektrische gitaar en noemt het resultaat Schlagerbilly."
+    },
+    {
+      "year": 2026,
+      "uri": "spotify:track:7loscGnLhciYbQYJSuRyVW",
+      "artist": "Julian Sommer, Luca-Dante Spadafora",
+      "alt_artists": [
+        "Mia Julia",
+        "Ikke Hüftgold",
+        "Almklausi",
+        "Isi Glück"
+      ],
+      "title": "WENN ICH NÜCHTERN WÄR",
+      "fun_fact": "Released in carnival season and carried straight into the Mallorca summer — one of the two Julian Sommer songs the 2026 opening was built on.",
+      "fun_fact_de": "Zur Karnevalszeit erschienen und direkt in den Mallorca-Sommer getragen — einer der beiden Julian-Sommer-Titel, auf denen das Opening 2026 aufbaute.",
+      "fun_fact_es": "Publicada en carnaval y llevada directamente al verano mallorquín: uno de los dos temas de Julian Sommer sobre los que se construyó la apertura de 2026.",
+      "fun_fact_fr": "Sorti pendant le carnaval et porté directement dans l'été majorquin — l'un des deux titres de Julian Sommer sur lesquels reposait l'ouverture 2026.",
+      "fun_fact_nl": "Uitgebracht in het carnavalsseizoen en meteen doorgedragen naar de Mallorca-zomer — een van de twee Julian Sommer-nummers waarop de opening van 2026 leunde."
+    },
+    {
+      "year": 2026,
+      "uri": "spotify:track:1v2D7403SK9tpzEEVRKDmp",
+      "artist": "Sonia Liebing",
+      "alt_artists": [
+        "Vanessa Mai",
+        "Beatrice Egli",
+        "Anna-Carina Woitschack",
+        "Marina Marx"
+      ],
+      "title": "Schon längst verliebt",
+      "fun_fact": "The words are by Tobias Reitz, who has also written for Helene Fischer and Vanessa Mai — a songwriter heard far more often than he is named.",
+      "fun_fact_de": "Der Text stammt von Tobias Reitz, der auch für Helene Fischer und Vanessa Mai schreibt — ein Autor, den man weit öfter hört als nennt.",
+      "fun_fact_es": "La letra es de Tobias Reitz, que también escribe para Helene Fischer y Vanessa Mai: un autor al que se escucha mucho más de lo que se le nombra.",
+      "fun_fact_fr": "Le texte est de Tobias Reitz, qui écrit aussi pour Helene Fischer et Vanessa Mai — un auteur qu'on entend bien plus souvent qu'on ne le nomme.",
+      "fun_fact_nl": "De tekst is van Tobias Reitz, die ook voor Helene Fischer en Vanessa Mai schrijft — een auteur die je veel vaker hoort dan noemt."
     }
   ]
 }
