@@ -15,7 +15,7 @@ import {
     setEnergyLevel, triggerConfetti, stopConfetti,
     initQrCollapsible, setupLobbyCollapsible,
     requestWakeLock, releaseWakeLock,
-    isJoinRejection
+    isJoinRejection, validateName
 } from './player-utils.js';
 
 import {
@@ -83,7 +83,6 @@ var pushGameRender = createRenderCoalescer(updateGameView);
 
 var MAX_RECONNECT_ATTEMPTS = 7;
 var MAX_RECONNECT_DELAY_MS = 30000;
-var MAX_NAME_LENGTH = 20;
 // #1663: how long a guest may sit on "Joining…" before we surface a retry.
 // The join WS has no server-side ack timeout, so a dead/slow socket would
 // otherwise hang the spinner forever.
@@ -1083,25 +1082,13 @@ function failJoin(message) {
     }
     clearStoredPlayerName();
 
-    var joinBtn = document.getElementById('join-btn');
-    if (joinBtn) {
-        joinBtn.disabled = false;
-        joinBtn.textContent = utils.t('join.joinButton') || 'Join Game';
-    }
+    // #2506: the button reset moved into showView('join-view') below, so every
+    // route back to the join view gets it, not just this one.
     showJoinError(message);
     showView('join-view');
 }
 
-function validateName(name) {
-    var trimmed = (name || '').trim();
-    if (!trimmed) {
-        return { valid: false, error: 'Please enter a name' };
-    }
-    if (trimmed.length > MAX_NAME_LENGTH) {
-        return { valid: false, error: 'Name too long (max 20 characters)' };
-    }
-    return { valid: true, name: trimmed };
-}
+
 
 function handleJoinClick() {
     var nameInput = document.getElementById('name-input');
@@ -1151,12 +1138,9 @@ function handleJoinTimeout() {
         state.ws = null;
     }
 
-    // Re-enable the join form and surface the retry affordance.
-    var joinBtn = document.getElementById('join-btn');
-    if (joinBtn) {
-        joinBtn.disabled = false;
-        joinBtn.textContent = utils.t('join.joinButton') || 'Join Game';
-    }
+    // Surface the retry affordance. #2506: the button reset that used to sit
+    // here is now done by showView('join-view') for every route, not just this
+    // one — this path was the only one that ever had it.
     showJoinError(utils.t('errors.joinTimeout') || "Couldn't connect. Please try again.");
     showView('join-view');
 }
