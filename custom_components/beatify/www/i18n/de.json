@@ -68,6 +68,7 @@
     "players": "Spieler"
   },
   "game": {
+    "yearLabel": "Jahr",
     "introSplashTitle": "Intro-Runde!",
     "introSplashDesc": "Stoppe den Song, sobald du ihn erkennst!",
     "introSplashWaiting": "Warte auf den Host...",
@@ -337,6 +338,7 @@
     "flaggedForHost": "✓ Für den Gastgeber markiert"
   },
   "leaderboard": {
+    "leader": "Spitzenreiter",
     "title": "Rangliste",
     "standings": "Zwischenstand",
     "finalTitle": "Endergebnis",
@@ -356,6 +358,7 @@
     "fullRankings": "Vollständige Rangliste"
   },
   "admin": {
+    "alreadyJoined": "Du bist bereits als {name} dabei",
     "title": "Beatify Admin",
     "filterAll": "Alle",
     "skipRound": "Überspringen",
@@ -872,6 +875,9 @@
     "pagination": "Seite {current} von {total}"
   },
   "dashboard": {
+    "nowPlaying": "Läuft gerade",
+    "reveal": "Auflösung",
+    "nowRevealing": "Wir lösen auf",
     "autoAdvance": "Auto-Weiter",
     "title": "Beatify - Dashboard",
     "connecting": "Verbinde zum Spiel...",

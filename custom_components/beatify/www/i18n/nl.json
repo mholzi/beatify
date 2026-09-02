@@ -68,6 +68,7 @@
     "players": "spelers"
   },
   "game": {
+    "yearLabel": "Jaar",
     "introSplashTitle": "Intro-ronde!",
     "introSplashDesc": "Stop het nummer zodra je het herkent!",
     "introSplashWaiting": "Wachten op de host...",
@@ -337,6 +338,7 @@
     "flaggedForHost": "✓ Gemeld aan de host"
   },
   "leaderboard": {
+    "leader": "koploper",
     "title": "Scorebord",
     "standings": "Stand",
     "finalTitle": "Einduitslag",
@@ -356,6 +358,7 @@
     "fullRankings": "Volledige Ranglijst"
   },
   "admin": {
+    "alreadyJoined": "Je doet al mee als {name}",
     "title": "Beatify Beheer",
     "filterAll": "Alle",
     "skipRound": "Overslaan",
@@ -872,6 +875,9 @@
     "pagination": "Pagina {current} van {total}"
   },
   "dashboard": {
+    "nowPlaying": "Nu speelt",
+    "reveal": "Onthulling",
+    "nowRevealing": "We onthullen",
     "autoAdvance": "Auto-volgende",
     "title": "Beatify - Dashboard",
     "connecting": "Verbinden met spel...",

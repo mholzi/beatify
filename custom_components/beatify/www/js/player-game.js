@@ -1595,7 +1595,10 @@ function buildStealTargetAria(name, entry, isLeader) {
     var parts = [name];
     if (entry.rank != null) parts.push('#' + entry.rank);
     if (entry.score != null) parts.push(formatStealScore(entry.score));
-    if (isLeader) parts.push(utils.t('leaderboard.leader') || 'leader');
+    // #2507: t() returns the key itself on a miss, never a falsy value, so the
+    // old `|| 'leader'` was dead code and the steal modal's aria-label ended in
+    // the raw key. The key now exists in all six locales.
+    if (isLeader) parts.push(utils.t('leaderboard.leader'));
     return parts.join(' · ');
 }
 
