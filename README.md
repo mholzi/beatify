@@ -456,7 +456,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,294 songs across 63 curated playlists:
+Beatify comes with 8,330 songs across 64 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -509,6 +509,7 @@ Beatify comes with 8,294 songs across 63 curated playlists:
 - 🇵🇱 **Polskie przeboje wszech czasów** — 59 all-time Polish hits
 - 🎸 **Pure Pop Punk** — 100 essential pop-punk tracks from the 2000s
 - 🍁 **Québécois 1990-2020** — 126 French-Canadian tracks from three decades of Quebec pop
+- 🎸 **Rock Rioplatense** — 36 tracks of Argentine and Uruguayan rock from 1983 to 2013
 - 💃 **Salsa y Merengue** — 531 Latin dance-floor classics, the second-largest list here
 - 🏆 **Sanremo: I Vincitori** — 68 Sanremo festival winners, one for every year since 1951
 - 🇩🇪 **Schlager Classics** — 175 German schlager classics from the 60s to today

@@ -1,0 +1,702 @@
+{
+  "name": "Rock Rioplatense",
+  "version": "1.0",
+  "tags": [
+    "rock",
+    "spanish",
+    "latin",
+    "argentina",
+    "uruguay",
+    "classics"
+  ],
+  "language": "es",
+  "author": "Beatify Team",
+  "added_date": "2026-09-02",
+  "description": "Rock from both banks of the Río de la Plata — Charly García and the Redonditos de Ricota, La Renga and Los Piojos, El Cuarteto de Nos and La Vela Puerca, 1983 to 2013.",
+  "songs": [
+    {
+      "year": 2006,
+      "uri": "spotify:track:6uaaUABuK03YkEPwlsuoKq",
+      "artist": "El Cuarteto De Nos",
+      "alt_artists": [
+        "La Vela Puerca",
+        "No Te Va Gustar",
+        "Buitres",
+        "Jaime Roos"
+      ],
+      "title": "Ya No Sé Que Hacer Conmigo",
+      "fun_fact": "The Montevideo band spent twenty years as a joke act before this album turned them into the most quoted lyricists in the region.",
+      "fun_fact_de": "Die Band aus Montevideo war zwanzig Jahre lang eine Spassnummer, bevor dieses Album sie zu den meistzitierten Textern der Region machte.",
+      "fun_fact_es": "La banda montevideana pasó veinte años como grupo de chistes antes de que este álbum la convirtiera en la más citada de la región.",
+      "fun_fact_fr": "Le groupe de Montevideo a passé vingt ans comme formation comique avant que cet album n'en fasse les paroliers les plus cités de la région.",
+      "fun_fact_nl": "De band uit Montevideo was twintig jaar een grappenband voordat dit album hen tot de meest geciteerde tekstschrijvers van de regio maakte.",
+      "isrc": "UYB141602506",
+      "uri_deezer": "deezer://track/3257569121"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:3RoQirNdkwEHug7MIiErhq",
+      "artist": "El Cuarteto De Nos",
+      "alt_artists": [
+        "La Vela Puerca",
+        "No Te Va Gustar",
+        "Buitres",
+        "Jaime Roos"
+      ],
+      "title": "Yendo a la Casa de Damián",
+      "fun_fact": "Four minutes of a man talking himself into and out of a decision on the way to a friend's house, and never arriving.",
+      "fun_fact_de": "Vier Minuten, in denen ein Mann sich auf dem Weg zu einem Freund eine Entscheidung ein- und wieder ausredet — und nie ankommt.",
+      "fun_fact_es": "Cuatro minutos de un hombre convenciéndose y desdiciéndose camino a casa de un amigo, sin llegar nunca.",
+      "fun_fact_fr": "Quatre minutes d'un homme qui se convainc puis se dédit en allant chez un ami, et n'arrive jamais.",
+      "fun_fact_nl": "Vier minuten waarin een man zichzelf onderweg naar een vriend een besluit in- en uitpraat, en nooit aankomt.",
+      "isrc": "UYB141602504",
+      "uri_deezer": "deezer://track/3257569101"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:6lSypaQOcC6JtzfwpINLGW",
+      "artist": "El Cuarteto De Nos",
+      "alt_artists": [
+        "La Vela Puerca",
+        "No Te Va Gustar",
+        "Buitres",
+        "Jaime Roos"
+      ],
+      "title": "El hijo de Hernández",
+      "fun_fact": "A single sentence, sung at speed for four minutes, listing everything one man is the son, brother and neighbour of.",
+      "fun_fact_de": "Ein einziger Satz, vier Minuten lang im Tempo gesungen, der aufzählt, wessen Sohn, Bruder und Nachbar ein Mann alles ist.",
+      "fun_fact_es": "Una sola frase, cantada a toda velocidad durante cuatro minutos, que enumera de quién es hijo, hermano y vecino un hombre.",
+      "fun_fact_fr": "Une seule phrase, chantée à toute vitesse pendant quatre minutes, énumérant de qui un homme est le fils, le frère et le voisin.",
+      "fun_fact_nl": "Eén enkele zin, vier minuten lang op snelheid gezongen, die opsomt wiens zoon, broer en buurman één man allemaal is.",
+      "isrc": "ARF110900970",
+      "uri_deezer": "deezer://track/7393403"
+    },
+    {
+      "year": 2012,
+      "uri": "spotify:track:0CgpCtEPvyDizcg2p47VrU",
+      "artist": "No Te Va Gustar",
+      "alt_artists": [
+        "La Vela Puerca",
+        "El Cuarteto De Nos",
+        "Buitres",
+        "Jaime Roos"
+      ],
+      "title": "A las Nueve",
+      "fun_fact": "Also from the 2012 album — the title is simply a time, and the song is about what does not happen at it.",
+      "fun_fact_de": "Ebenfalls vom Album von 2012 — der Titel ist bloss eine Uhrzeit, und das Lied handelt davon, was um sie herum nicht geschieht.",
+      "fun_fact_es": "También del álbum de 2012: el título es apenas una hora, y la canción trata de lo que a esa hora no ocurre.",
+      "fun_fact_fr": "Également de l'album de 2012 : le titre n'est qu'une heure, et la chanson parle de ce qui, à cette heure-là, n'arrive pas.",
+      "fun_fact_nl": "Ook van het album uit 2012 — de titel is slechts een tijdstip, en het nummer gaat over wat er dan níét gebeurt.",
+      "isrc": "UYH121900007",
+      "uri_deezer": "deezer://track/661625492"
+    },
+    {
+      "year": 2012,
+      "uri": "spotify:track:6MuJUSYCqA4FpMogUHzb2R",
+      "artist": "No Te Va Gustar",
+      "alt_artists": [
+        "La Vela Puerca",
+        "El Cuarteto De Nos",
+        "Buitres",
+        "Jaime Roos"
+      ],
+      "title": "Ese Maldito Momento",
+      "fun_fact": "From El Calor del Pleno Invierno, made after the band lost their saxophonist and kept the horn section anyway.",
+      "fun_fact_de": "Vom Album El Calor del Pleno Invierno, entstanden nachdem die Band ihren Saxofonisten verlor und den Bläsersatz dennoch behielt.",
+      "fun_fact_es": "De El Calor del Pleno Invierno, hecho después de que la banda perdiera a su saxofonista y mantuviera igual la sección de vientos.",
+      "fun_fact_fr": "Extrait de El Calor del Pleno Invierno, réalisé après la perte de leur saxophoniste, la section de cuivres étant malgré tout conservée.",
+      "fun_fact_nl": "Van El Calor del Pleno Invierno, gemaakt nadat de band zijn saxofonist verloor en de blazerssectie toch behield.",
+      "isrc": "UYH121200025",
+      "uri_deezer": "deezer://track/588479072"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:46yA2K9FA0PaCbeWkezvFC",
+      "artist": "Callejeros",
+      "alt_artists": [
+        "Viejas Locas",
+        "Los Piojos",
+        "La 25",
+        "Intoxicados"
+      ],
+      "title": "Rocanroles Sin Destino",
+      "fun_fact": "The title track of the album the band was touring when the Cromañón fire killed 194 people at one of their concerts.",
+      "fun_fact_de": "Der Titelsong des Albums, mit dem die Band auf Tour war, als der Brand in Cromañón bei einem ihrer Konzerte 194 Menschen tötete.",
+      "fun_fact_es": "La canción que da título al álbum que la banda estaba presentando cuando el incendio de Cromañón mató a 194 personas en uno de sus recitales.",
+      "fun_fact_fr": "La chanson-titre de l'album que le groupe défendait quand l'incendie de Cromañón a tué 194 personnes lors d'un de ses concerts.",
+      "fun_fact_nl": "Het titelnummer van het album waarmee de band toerde toen de brand in Cromañón bij een van hun concerten 194 mensen doodde.",
+      "isrc": "ARF841700043",
+      "uri_deezer": "deezer://track/395890422"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:5kfg05FFAsnW4ikMqSfI3g",
+      "artist": "Callejeros",
+      "alt_artists": [
+        "Viejas Locas",
+        "Los Piojos",
+        "La 25",
+        "Intoxicados"
+      ],
+      "title": "Prohibido",
+      "fun_fact": "From the same 2004 album — the band kept playing for years afterwards under a different name and to a divided audience.",
+      "fun_fact_de": "Vom selben Album von 2004 — die Band spielte danach jahrelang unter anderem Namen und vor einem gespaltenen Publikum weiter.",
+      "fun_fact_es": "Del mismo álbum de 2004: la banda siguió tocando años después bajo otro nombre y ante un público dividido.",
+      "fun_fact_fr": "Du même album de 2004 : le groupe a continué des années sous un autre nom, devant un public divisé.",
+      "fun_fact_nl": "Van hetzelfde album uit 2004 — de band speelde daarna nog jaren onder een andere naam en voor een verdeeld publiek.",
+      "isrc": "ARF840400142",
+      "uri_deezer": "deezer://track/109383418"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:5Bi9Cq5oVFy1OtUgecbegZ",
+      "artist": "Callejeros",
+      "alt_artists": [
+        "Viejas Locas",
+        "Los Piojos",
+        "La 25",
+        "Intoxicados"
+      ],
+      "title": "Creo",
+      "fun_fact": "From Señales, the first album the band made after the fire — recorded while the trial was still running.",
+      "fun_fact_de": "Vom Album Señales, dem ersten nach dem Brand — aufgenommen, während der Prozess noch lief.",
+      "fun_fact_es": "De Señales, el primer álbum que la banda hizo después del incendio, grabado mientras el juicio seguía en curso.",
+      "fun_fact_fr": "Extrait de Señales, le premier album après l'incendie, enregistré alors que le procès était encore en cours.",
+      "fun_fact_nl": "Van Señales, het eerste album na de brand — opgenomen terwijl het proces nog liep.",
+      "isrc": "ARF840400283",
+      "uri_deezer": "deezer://track/109383730"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:1wIUWGdTdhVk5gIPd0ULxX",
+      "artist": "La Vela Puerca",
+      "alt_artists": [
+        "No Te Va Gustar",
+        "El Cuarteto De Nos",
+        "Buitres",
+        "Cuarteto de Nos"
+      ],
+      "title": "Zafar",
+      "fun_fact": "Zafar is River Plate slang for getting out of something — the word has no clean translation, which is part of the point.",
+      "fun_fact_de": "Zafar ist Slang am Río de la Plata für davonkommen — das Wort hat keine saubere Übersetzung, und das gehört dazu.",
+      "fun_fact_es": "Zafar es lunfardo rioplatense para librarse de algo: la palabra no tiene traducción limpia, y eso es parte del asunto.",
+      "fun_fact_fr": "Zafar, c'est de l'argot du Río de la Plata pour s'en tirer : le mot n'a pas de traduction propre, et c'est un peu le sujet.",
+      "fun_fact_nl": "Zafar is Río-de-la-Plata-slang voor ergens onderuit komen — het woord laat zich niet netjes vertalen, en dat hoort erbij.",
+      "isrc": "ARF140400100",
+      "uri_deezer": "deezer://track/1566896"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:4MPwBYidOWnwpKlqQYJEzX",
+      "artist": "La Vela Puerca",
+      "alt_artists": [
+        "No Te Va Gustar",
+        "El Cuarteto De Nos",
+        "Buitres",
+        "Cuarteto de Nos"
+      ],
+      "title": "Va A Escampar",
+      "fun_fact": "From A Contraluz, the record that took the band from Montevideo across the river and into Argentine festivals.",
+      "fun_fact_de": "Vom Album A Contraluz, mit dem die Band von Montevideo über den Fluss auf die argentinischen Festivals kam.",
+      "fun_fact_es": "De A Contraluz, el disco que llevó a la banda de Montevideo al otro lado del río y a los festivales argentinos.",
+      "fun_fact_fr": "Extrait de A Contraluz, le disque qui a mené le groupe de Montevideo de l'autre côté du fleuve, jusqu'aux festivals argentins.",
+      "fun_fact_nl": "Van A Contraluz, de plaat die de band van Montevideo over de rivier naar de Argentijnse festivals bracht.",
+      "isrc": "ARF140400097",
+      "uri_deezer": "deezer://track/1566891"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:7gKqjNMM4ikt7KFTRsgZgL",
+      "artist": "La Vela Puerca",
+      "alt_artists": [
+        "No Te Va Gustar",
+        "El Cuarteto De Nos",
+        "Buitres",
+        "Cuarteto de Nos"
+      ],
+      "title": "El Viejo",
+      "fun_fact": "From De Bichos y Flores — the Montevideo band plays rock with a horn section, which is what makes them sound Uruguayan rather than Argentine.",
+      "fun_fact_de": "Vom Album De Bichos y Flores — die Band aus Montevideo spielt Rock mit Bläsersatz, und genau das lässt sie uruguayisch statt argentinisch klingen.",
+      "fun_fact_es": "De De Bichos y Flores: la banda montevideana toca rock con sección de vientos, y eso es lo que la hace sonar uruguaya y no argentina.",
+      "fun_fact_fr": "Extrait de De Bichos y Flores : le groupe de Montevideo joue un rock avec cuivres, ce qui le fait sonner uruguayen et non argentin.",
+      "fun_fact_nl": "Van De Bichos y Flores — de band uit Montevideo speelt rock met blazers, en juist dat maakt hun klank Uruguayaans in plaats van Argentijns.",
+      "isrc": "ARF140100186",
+      "uri_deezer": "deezer://track/7337794"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:6JEEFrc6MHgH7X2hRbijzx",
+      "artist": "La Renga",
+      "alt_artists": [
+        "Los Piojos",
+        "Viejas Locas",
+        "Divididos",
+        "Las Pelotas"
+      ],
+      "title": "En El Baldío",
+      "fun_fact": "From La Esquina del Infinito — the band has released every record on its own label and refused major deals for thirty years.",
+      "fun_fact_de": "Vom Album La Esquina del Infinito — die Band veröffentlicht seit dreissig Jahren auf eigenem Label und lehnt Major-Verträge ab.",
+      "fun_fact_es": "De La Esquina del Infinito: la banda edita todo en su propio sello y lleva treinta años rechazando contratos con multinacionales.",
+      "fun_fact_fr": "Extrait de La Esquina del Infinito : le groupe sort tout sur son propre label et refuse les contrats majors depuis trente ans.",
+      "fun_fact_nl": "Van La Esquina del Infinito — de band brengt alles op zijn eigen label uit en wijst al dertig jaar majordeals af.",
+      "isrc": "ARF140100136",
+      "uri_deezer": "deezer://track/812044772"
+    },
+    {
+      "year": 2003,
+      "uri": "spotify:track:0ljyHIWERJQp8O5LKgKm1l",
+      "artist": "La Renga",
+      "alt_artists": [
+        "Los Piojos",
+        "Viejas Locas",
+        "Divididos",
+        "Almafuerte"
+      ],
+      "title": "La Razón Que Te Demora",
+      "fun_fact": "From Detonador de Sueños, recorded at a point when the band could fill a stadium without a single radio single.",
+      "fun_fact_de": "Vom Album Detonador de Sueños, aufgenommen, als die Band ein Stadion füllen konnte, ohne je eine Radiosingle gehabt zu haben.",
+      "fun_fact_es": "De Detonador de Sueños, grabado cuando la banda llenaba estadios sin haber tenido un solo sencillo de radio.",
+      "fun_fact_fr": "Extrait de Detonador de Sueños, enregistré alors que le groupe remplissait des stades sans le moindre single radio.",
+      "fun_fact_nl": "Van Detonador de Sueños, opgenomen toen de band stadions vulde zonder ooit een radiosingle te hebben gehad.",
+      "isrc": "ARA140300104",
+      "uri_deezer": "deezer://track/3874514201"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:2E2dLZK0gSTl6vjr53BfKM",
+      "artist": "Catupecu Machu",
+      "alt_artists": [
+        "Babasónicos",
+        "Massacre",
+        "Los Piojos",
+        "Intoxicados"
+      ],
+      "title": "A Veces Vuelvo",
+      "fun_fact": "From El Número Imperfecto, the last album before a car crash left the bass player, the singer's brother, unable to perform.",
+      "fun_fact_de": "Vom Album El Número Imperfecto, dem letzten vor dem Autounfall, nach dem der Bassist — der Bruder des Sängers — nicht mehr auftreten konnte.",
+      "fun_fact_es": "De El Número Imperfecto, el último álbum antes del accidente de auto que dejó al bajista, hermano del cantante, sin poder tocar.",
+      "fun_fact_fr": "Extrait de El Número Imperfecto, dernier album avant l'accident de voiture qui a empêché le bassiste, frère du chanteur, de jouer.",
+      "fun_fact_nl": "Van El Número Imperfecto, het laatste album voor het auto-ongeluk waardoor de bassist, de broer van de zanger, niet meer kon optreden.",
+      "isrc": "ARF040400453",
+      "uri_deezer": "deezer://track/3411903"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:2jiSAy0MSiODKpQupYLnTY",
+      "artist": "Catupecu Machu",
+      "alt_artists": [
+        "Babasónicos",
+        "Massacre",
+        "Los Piojos",
+        "Intoxicados"
+      ],
+      "title": "Entero O A Pedazos",
+      "fun_fact": "From Cuentos decapitados, the album that took the band out of the Buenos Aires club circuit.",
+      "fun_fact_de": "Vom Album Cuentos decapitados, mit dem die Band den Klub-Zirkel von Buenos Aires verliess.",
+      "fun_fact_es": "De Cuentos decapitados, el álbum que sacó a la banda del circuito de clubes de Buenos Aires.",
+      "fun_fact_fr": "Extrait de Cuentos decapitados, l'album qui a fait sortir le groupe du circuit des clubs de Buenos Aires.",
+      "fun_fact_nl": "Van Cuentos decapitados, het album dat de band uit het clubcircuit van Buenos Aires haalde.",
+      "isrc": "ARF040704995",
+      "uri_deezer": "deezer://track/3412182"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:5zM3ge7sOQE4vyjEjBzVL9",
+      "artist": "Almafuerte",
+      "alt_artists": [
+        "Hermética",
+        "V8",
+        "Rata Blanca",
+        "Horcas"
+      ],
+      "title": "Toro y Pampa",
+      "fun_fact": "Metal sung in Argentine payada tradition — the band put a gaucho poet's cadence over distorted guitars.",
+      "fun_fact_de": "Metal in der Tradition der argentinischen Payada — die Band legte die Kadenz eines Gaucho-Dichters über verzerrte Gitarren.",
+      "fun_fact_es": "Metal cantado en la tradición de la payada argentina: la banda puso la cadencia de un payador sobre guitarras distorsionadas.",
+      "fun_fact_fr": "Du metal chanté dans la tradition de la payada argentine : le groupe pose la cadence d'un poète gaucho sur des guitares saturées.",
+      "fun_fact_nl": "Metal gezongen in de Argentijnse payada-traditie — de band legde de cadans van een gauchodichter over vervormde gitaren.",
+      "isrc": "ARF850600142",
+      "uri_deezer": "deezer://track/1490492922"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:4MUhGA8YfsYDqD4NhTUtSf",
+      "artist": "Almafuerte",
+      "alt_artists": [
+        "Hermética",
+        "V8",
+        "Rata Blanca",
+        "Horcas"
+      ],
+      "title": "Sé Vos",
+      "fun_fact": "Almafuerte carried on the thread of Hermética, and the title uses vos — the Argentine you that no Spanish course teaches.",
+      "fun_fact_de": "Almafuerte führte den Faden von Hermética fort, und der Titel benutzt vos — das argentinische Du, das kein Spanischkurs lehrt.",
+      "fun_fact_es": "Almafuerte continuó el hilo de Hermética, y el título usa el vos, el tuteo argentino que ningún curso de español enseña.",
+      "fun_fact_fr": "Almafuerte a repris le fil d'Hermética, et le titre emploie le vos, le tutoiement argentin qu'aucun cours d'espagnol n'enseigne.",
+      "fun_fact_nl": "Almafuerte zette de lijn van Hermética voort, en de titel gebruikt vos — het Argentijnse jij dat geen enkele cursus Spaans leert.",
+      "isrc": "ARF099800056",
+      "uri_deezer": "deezer://track/4154478"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:3oqWr0jDWNXxWufNogGREp",
+      "artist": "Gustavo Cerati",
+      "alt_artists": [
+        "Soda Stereo",
+        "Charly García",
+        "Fito Páez",
+        "Babasónicos"
+      ],
+      "title": "Crimen",
+      "fun_fact": "From Ahí Vamos, made fifteen years after Soda Stereo — the guitar sound is deliberately the one he had left behind.",
+      "fun_fact_de": "Vom Album Ahí Vamos, fünfzehn Jahre nach Soda Stereo entstanden — der Gitarrenklang ist bewusst der, den er hinter sich gelassen hatte.",
+      "fun_fact_es": "De Ahí Vamos, hecho quince años después de Soda Stereo: el sonido de guitarra es, a propósito, el que había dejado atrás.",
+      "fun_fact_fr": "Extrait de Ahí Vamos, réalisé quinze ans après Soda Stereo : le son de guitare est volontairement celui qu'il avait abandonné.",
+      "fun_fact_nl": "Van Ahí Vamos, vijftien jaar na Soda Stereo gemaakt — de gitaarklank is bewust die welke hij had achtergelaten.",
+      "isrc": "ARF030600057",
+      "uri_deezer": "deezer://track/13255149"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:4nISKMNTbWKrZpGFI44pIz",
+      "artist": "Gustavo Cerati",
+      "alt_artists": [
+        "Soda Stereo",
+        "Charly García",
+        "Fito Páez",
+        "Babasónicos"
+      ],
+      "title": "Fuerza Natural",
+      "fun_fact": "The title track of his last album — a stroke during the tour that followed left him in a coma he never woke from.",
+      "fun_fact_de": "Der Titelsong seines letzten Albums — ein Schlaganfall auf der anschliessenden Tournee liess ihn in ein Koma fallen, aus dem er nicht mehr erwachte.",
+      "fun_fact_es": "La canción que da título a su último álbum: un ACV durante la gira siguiente lo dejó en un coma del que nunca despertó.",
+      "fun_fact_fr": "La chanson-titre de son dernier album : un AVC pendant la tournée qui a suivi l'a plongé dans un coma dont il ne s'est jamais réveillé.",
+      "fun_fact_nl": "Het titelnummer van zijn laatste album — een beroerte tijdens de tournee die volgde bracht hem in een coma waaruit hij nooit ontwaakte.",
+      "isrc": "ARF100900383",
+      "uri_deezer": "deezer://track/472033662"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:1qAf32OMadEU2tBBKigIbB",
+      "artist": "Massacre",
+      "alt_artists": [
+        "Babasónicos",
+        "Catupecu Machu",
+        "Los Piojos",
+        "Intoxicados"
+      ],
+      "title": "La Octava Maravilla",
+      "fun_fact": "From El Mamut — the band started in the eighties as a hardcore act and arrived here as something closer to pop.",
+      "fun_fact_de": "Vom Album El Mamut — die Band begann in den Achtzigern als Hardcore-Gruppe und kam hier bei etwas Popnahem an.",
+      "fun_fact_es": "De El Mamut: la banda empezó en los ochenta como grupo hardcore y llegó aquí a algo mucho más cercano al pop.",
+      "fun_fact_fr": "Extrait de El Mamut : le groupe a commencé dans les années quatre-vingt en hardcore et arrive ici à quelque chose de proche de la pop.",
+      "fun_fact_nl": "Van El Mamut — de band begon in de jaren tachtig als hardcoregroep en kwam hier uit bij iets wat op pop lijkt.",
+      "isrc": "ARF470700340",
+      "uri_deezer": "deezer://track/7727689"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:4q4wG8XmmGaBKYuH64vg6g",
+      "artist": "Massacre",
+      "alt_artists": [
+        "Babasónicos",
+        "Catupecu Machu",
+        "Los Piojos",
+        "Intoxicados"
+      ],
+      "title": "La Reina de Marte",
+      "fun_fact": "Also from El Mamut, and the song that gave the band its first radio play after twenty years together.",
+      "fun_fact_de": "Ebenfalls von El Mamut — der Song, der der Band nach zwanzig gemeinsamen Jahren die erste Radiopräsenz brachte.",
+      "fun_fact_es": "También de El Mamut, y la canción que le dio a la banda su primera difusión radial tras veinte años juntos.",
+      "fun_fact_fr": "Également extrait de El Mamut, et la chanson qui a valu au groupe sa première diffusion radio après vingt ans d'existence.",
+      "fun_fact_nl": "Ook van El Mamut, en het nummer dat de band na twintig jaar samen zijn eerste radioairplay opleverde.",
+      "isrc": "ARF470700345",
+      "uri_deezer": "deezer://track/7727694"
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:3VCKdfJAL8DTDlwZw5O6Ik",
+      "artist": "Charly García",
+      "alt_artists": [
+        "Luis Alberto Spinetta",
+        "Fito Páez",
+        "León Gieco",
+        "Serú Girán"
+      ],
+      "title": "Los Dinosaurios",
+      "fun_fact": "Written under the dictatorship and released the year it fell — the dinosaurs of the title are the ones who will disappear.",
+      "fun_fact_de": "Unter der Diktatur geschrieben und in dem Jahr veröffentlicht, in dem sie fiel — die Dinosaurier des Titels sind die, die verschwinden werden.",
+      "fun_fact_es": "Escrita bajo la dictadura y publicada el año en que cayó: los dinosaurios del título son los que van a desaparecer.",
+      "fun_fact_fr": "Écrite sous la dictature et publiée l'année de sa chute : les dinosaures du titre sont ceux qui vont disparaître.",
+      "fun_fact_nl": "Geschreven onder de dictatuur en uitgebracht in het jaar dat die viel — de dinosauriërs uit de titel zijn degenen die zullen verdwijnen.",
+      "isrc": "ARF098300014",
+      "uri_deezer": "deezer://track/2674969"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:5etBIAwIW3m3Ei1K50kfSw",
+      "artist": "Patricio Rey y sus Redonditos de Ricota",
+      "alt_artists": [
+        "Indio Solari",
+        "Skay Beilinson",
+        "La Renga",
+        "Divididos"
+      ],
+      "title": "Todo un Palo",
+      "fun_fact": "The band never played on television and never gave interviews, which is why a song this well known has almost no footage.",
+      "fun_fact_de": "Die Band trat nie im Fernsehen auf und gab keine Interviews — deshalb gibt es von einem so bekannten Lied kaum Aufnahmen.",
+      "fun_fact_es": "La banda nunca tocó en televisión ni dio entrevistas, y por eso de una canción tan conocida apenas hay imágenes.",
+      "fun_fact_fr": "Le groupe n'a jamais joué à la télévision ni donné d'interview : d'où l'absence quasi totale d'images pour une chanson si connue.",
+      "fun_fact_nl": "De band speelde nooit op televisie en gaf geen interviews — daarom bestaat er van zo'n bekend nummer nauwelijks beeld.",
+      "isrc": "AR5CC8800008",
+      "uri_deezer": "deezer://track/2593826682"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:2aWd3hLrewRnRA9gYcl9WS",
+      "artist": "Patricio Rey y sus Redonditos de Ricota",
+      "alt_artists": [
+        "Indio Solari",
+        "Skay Beilinson",
+        "La Renga",
+        "Divididos"
+      ],
+      "title": "El Pibe de los Astilleros",
+      "fun_fact": "From La Mosca y la Sopa — the shipyard boy of the title is a portrait of the industrial suburbs the band came from.",
+      "fun_fact_de": "Vom Album La Mosca y la Sopa — der Werftjunge des Titels ist ein Bild der Industrievororte, aus denen die Band kam.",
+      "fun_fact_es": "De La Mosca y la Sopa: el pibe de los astilleros del título retrata los suburbios industriales de donde venía la banda.",
+      "fun_fact_fr": "Extrait de La Mosca y la Sopa : le gamin des chantiers navals du titre dépeint les banlieues industrielles d'où venait le groupe.",
+      "fun_fact_nl": "Van La Mosca y la Sopa — de werfjongen uit de titel schetst de industriële voorsteden waar de band vandaan kwam.",
+      "isrc": "AR5CC9100007",
+      "uri_deezer": "deezer://track/2593932742"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:3xZB4ogU6Y9g0VuekPmAO5",
+      "artist": "Patricio Rey y sus Redonditos de Ricota",
+      "alt_artists": [
+        "Indio Solari",
+        "Skay Beilinson",
+        "La Renga",
+        "Divididos"
+      ],
+      "title": "La Hija del Fletero",
+      "fun_fact": "From Lobo Suelto, half of a double album released as two separate records on the same day.",
+      "fun_fact_de": "Vom Album Lobo Suelto, der einen Hälfte eines Doppelalbums, das am selben Tag als zwei getrennte Platten erschien.",
+      "fun_fact_es": "De Lobo Suelto, una de las dos mitades de un álbum doble publicado el mismo día como dos discos separados.",
+      "fun_fact_fr": "Extrait de Lobo Suelto, moitié d'un double album sorti le même jour en deux disques distincts.",
+      "fun_fact_nl": "Van Lobo Suelto, de ene helft van een dubbelalbum dat op dezelfde dag als twee losse platen verscheen.",
+      "isrc": "AR5CC9300011",
+      "uri_deezer": "deezer://track/2594136922"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:6RZZtPtwZdiYmqRGZhRlW8",
+      "artist": "Indio Solari",
+      "alt_artists": [
+        "Skay Beilinson",
+        "La Renga",
+        "Divididos",
+        "Las Pelotas"
+      ],
+      "title": "El Tesoro de los Inocentes",
+      "fun_fact": "The Indio was the singer of Patricio Rey; this is from the solo album he made after that band split for good.",
+      "fun_fact_de": "Der Indio war der Sänger von Patricio Rey; der Titel stammt vom Soloalbum nach dem endgültigen Ende jener Band.",
+      "fun_fact_es": "El Indio fue el cantante de Patricio Rey; esto sale del álbum solista que hizo tras la separación definitiva de aquella banda.",
+      "fun_fact_fr": "L'Indio était le chanteur de Patricio Rey ; ce titre vient de l'album solo réalisé après la séparation définitive du groupe.",
+      "fun_fact_nl": "De Indio was de zanger van Patricio Rey; dit komt van het soloalbum dat hij maakte na het definitieve einde van die band.",
+      "isrc": "ARG601101170",
+      "uri_deezer": "deezer://track/2593678462"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:3XdBTCAFUc3LW9ObmiAkIx",
+      "artist": "Indio Solari",
+      "alt_artists": [
+        "Skay Beilinson",
+        "La Renga",
+        "Divididos",
+        "Las Pelotas"
+      ],
+      "title": "A la Luz de la Luna",
+      "fun_fact": "By this record the Indio was announcing shows to crowds of over a hundred thousand in provincial towns with no stadium.",
+      "fun_fact_de": "Zur Zeit dieser Platte kündigte der Indio Konzerte für über hunderttausend Menschen in Provinzstädten ohne Stadion an.",
+      "fun_fact_es": "Para este disco, el Indio anunciaba shows para más de cien mil personas en pueblos de provincia sin estadio.",
+      "fun_fact_fr": "À l'époque de ce disque, l'Indio annonçait des concerts pour plus de cent mille personnes dans des villes de province sans stade.",
+      "fun_fact_nl": "Ten tijde van deze plaat kondigde de Indio concerten aan voor meer dan honderdduizend mensen in provinciestadjes zonder stadion.",
+      "isrc": "ARG601300550",
+      "uri_deezer": "deezer://track/2756585911"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:4pGm1vJLx5eVNVUyYXy5BB",
+      "artist": "Indio Solari",
+      "alt_artists": [
+        "Skay Beilinson",
+        "La Renga",
+        "Divididos",
+        "Las Pelotas"
+      ],
+      "title": "Babas del Diablo",
+      "fun_fact": "The title is taken from a Julio Cortázar short story, the one Antonioni turned into Blow-Up.",
+      "fun_fact_de": "Der Titel stammt aus einer Erzählung von Julio Cortázar — jener, die Antonioni zu Blow-Up verfilmte.",
+      "fun_fact_es": "El título viene de un cuento de Julio Cortázar, el mismo que Antonioni convirtió en Blow-Up.",
+      "fun_fact_fr": "Le titre est emprunté à une nouvelle de Julio Cortázar, celle qu'Antonioni a portée à l'écran sous le nom de Blow-Up.",
+      "fun_fact_nl": "De titel komt uit een kort verhaal van Julio Cortázar, hetzelfde dat Antonioni verfilmde als Blow-Up.",
+      "isrc": "ARG601300556",
+      "uri_deezer": "deezer://track/2756585971"
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:2HZ9Dj1VezKtzfn6FO8E8F",
+      "artist": "Skay Beilinson",
+      "alt_artists": [
+        "Patricio Rey y sus Redonditos de Ricota",
+        "Indio Solari",
+        "La Renga",
+        "Divididos"
+      ],
+      "title": "El Sueño del Jinete",
+      "fun_fact": "From La Luna Hueca — three decades on, Skay still plays the same Gibson through the same small amplifier.",
+      "fun_fact_de": "Vom Album La Luna Hueca — drei Jahrzehnte später spielt Skay immer noch dieselbe Gibson durch denselben kleinen Verstärker.",
+      "fun_fact_es": "De La Luna Hueca: tres décadas después, Skay sigue tocando la misma Gibson por el mismo amplificador pequeño.",
+      "fun_fact_fr": "Extrait de La Luna Hueca : trois décennies plus tard, Skay joue toujours la même Gibson dans le même petit ampli.",
+      "fun_fact_nl": "Van La Luna Hueca — drie decennia later speelt Skay nog steeds dezelfde Gibson door dezelfde kleine versterker.",
+      "isrc": "ARW251100631",
+      "uri_deezer": "deezer://track/3246179981"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:0Enw0NyZx9FZNlBbg6UO34",
+      "artist": "Skay Beilinson",
+      "alt_artists": [
+        "Patricio Rey y sus Redonditos de Ricota",
+        "Indio Solari",
+        "La Renga",
+        "Divididos"
+      ],
+      "title": "Oda a la Sin Nombre",
+      "fun_fact": "Skay was the guitarist of Patricio Rey; this comes from his first solo record after that band ended.",
+      "fun_fact_de": "Skay war der Gitarrist von Patricio Rey; der Titel stammt von seiner ersten Soloplatte nach dem Ende jener Band.",
+      "fun_fact_es": "Skay fue el guitarrista de Patricio Rey; esto viene de su primer disco en solitario tras el final de aquella banda.",
+      "fun_fact_fr": "Skay était le guitariste de Patricio Rey ; ce titre vient de son premier disque solo après la fin de ce groupe.",
+      "fun_fact_nl": "Skay was de gitarist van Patricio Rey; dit komt van zijn eerste soloplaat na het einde van die band.",
+      "isrc": "QM7281627110",
+      "uri_deezer": "deezer://track/3271796591"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:5c6D6jf3o8KCMCWfHY6KG5",
+      "artist": "Skay Beilinson",
+      "alt_artists": [
+        "Patricio Rey y sus Redonditos de Ricota",
+        "Indio Solari",
+        "La Renga",
+        "Divididos"
+      ],
+      "title": "Tal Vez Mañana",
+      "fun_fact": "From La Marca de Caín — Skay writes the music and his partner Poli, who managed Patricio Rey, still runs the operation.",
+      "fun_fact_de": "Vom Album La Marca de Caín — Skay schreibt die Musik, und seine Partnerin Poli, einst Managerin von Patricio Rey, führt weiter die Geschäfte.",
+      "fun_fact_es": "De La Marca de Caín: Skay escribe la música y su compañera Poli, que manejaba a Patricio Rey, sigue llevando el negocio.",
+      "fun_fact_fr": "Extrait de La Marca de Caín : Skay écrit la musique et sa compagne Poli, qui gérait Patricio Rey, dirige toujours l'affaire.",
+      "fun_fact_nl": "Van La Marca de Caín — Skay schrijft de muziek en zijn partner Poli, ooit manager van Patricio Rey, runt nog altijd de zaak.",
+      "isrc": "ARW251100640",
+      "uri_deezer": "deezer://track/3246179471"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:3Q4U2lpNqKR0URvGkB78L2",
+      "artist": "Los Piojos",
+      "alt_artists": [
+        "La Renga",
+        "Viejas Locas",
+        "Las Pelotas",
+        "Divididos"
+      ],
+      "title": "Tan Solo",
+      "fun_fact": "From Chac Tu Chac, the debut — the band's name is Buenos Aires slang for lice, chosen to sound like nothing grand.",
+      "fun_fact_de": "Vom Debüt Chac Tu Chac — der Bandname ist Slang aus Buenos Aires für Läuse und wurde gewählt, um nach nichts Grossem zu klingen.",
+      "fun_fact_es": "De Chac Tu Chac, el debut: el nombre de la banda es lunfardo porteño para piojos, elegido para no sonar a nada grandilocuente.",
+      "fun_fact_fr": "Extrait de Chac Tu Chac, le premier album : le nom du groupe est de l'argot de Buenos Aires pour les poux, choisi pour ne rien avoir de grandiose.",
+      "fun_fact_nl": "Van Chac Tu Chac, het debuut — de bandnaam is Buenos Aires-slang voor luizen, gekozen om vooral niet groots te klinken.",
+      "isrc": "ARG601100044",
+      "uri_deezer": "deezer://track/1377576012"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:03Ntkzzjkz7nFJldcPbL90",
+      "artist": "Andrés Calamaro",
+      "alt_artists": [
+        "Fito Páez",
+        "Charly García",
+        "Los Rodríguez",
+        "Bunbury"
+      ],
+      "title": "Estadio Azteca",
+      "fun_fact": "Named after the Mexico City stadium, from El Cantante — an album made almost entirely of other people's songs.",
+      "fun_fact_de": "Benannt nach dem Stadion in Mexiko-Stadt, vom Album El Cantante, das fast ausschliesslich aus fremden Liedern besteht.",
+      "fun_fact_es": "Bautizada por el estadio de Ciudad de México, de El Cantante, un disco hecho casi enteramente de canciones ajenas.",
+      "fun_fact_fr": "Nommée d'après le stade de Mexico, extraite de El Cantante, un album fait presque entièrement de chansons des autres.",
+      "fun_fact_nl": "Vernoemd naar het stadion in Mexico-Stad, van El Cantante — een album dat bijna volledig uit andermans liedjes bestaat.",
+      "isrc": "ES5010400008",
+      "uri_deezer": "deezer://track/3885291"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:3AjSUbPd7siXGOSlmXm9Nr",
+      "artist": "Viejas Locas",
+      "alt_artists": [
+        "Los Piojos",
+        "La Renga",
+        "Intoxicados",
+        "Las Pelotas"
+      ],
+      "title": "Homero",
+      "fun_fact": "Named after the Simpsons character, which in Argentina is pronounced the Spanish way and lands as a very local joke.",
+      "fun_fact_de": "Benannt nach der Simpsons-Figur, die in Argentinien spanisch ausgesprochen wird — ein sehr lokaler Witz.",
+      "fun_fact_es": "Bautizada por el personaje de los Simpson, que en Argentina se pronuncia a la española y funciona como un chiste muy local.",
+      "fun_fact_fr": "Nommée d'après le personnage des Simpson, prononcé à l'espagnole en Argentine : une blague très locale.",
+      "fun_fact_nl": "Vernoemd naar het Simpsons-personage, dat in Argentinië op zijn Spaans wordt uitgesproken — een heel lokale grap.",
+      "isrc": "ARF149900164",
+      "uri_deezer": "deezer://track/5498976"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:3wSEaw1s73DTuS1iNPaK4G",
+      "artist": "La 25",
+      "alt_artists": [
+        "Callejeros",
+        "Viejas Locas",
+        "Los Piojos",
+        "Intoxicados"
+      ],
+      "title": "Cruz de Sal",
+      "fun_fact": "Rock barrial in its plainest form — three chords, a stadium chorus, and a band named after a bus line.",
+      "fun_fact_de": "Rock barrial in seiner schlichtesten Form — drei Akkorde, ein Stadionrefrain und eine Band, benannt nach einer Buslinie.",
+      "fun_fact_es": "Rock barrial en su forma más simple: tres acordes, un estribillo de estadio y una banda que lleva el nombre de una línea de colectivo.",
+      "fun_fact_fr": "Du rock barrial dans sa forme la plus simple : trois accords, un refrain de stade et un groupe nommé d'après une ligne de bus.",
+      "fun_fact_nl": "Rock barrial in zijn eenvoudigste vorm — drie akkoorden, een stadionrefrein en een band vernoemd naar een buslijn.",
+      "isrc": "ARJ401300005",
+      "uri_deezer": "deezer://track/72139632"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:1gXpI9hNnexKKD4PvpOSSL",
+      "artist": "León Gieco",
+      "alt_artists": [
+        "Charly García",
+        "Fito Páez",
+        "Divididos",
+        "Los Piojos"
+      ],
+      "title": "Bandidos Rurales",
+      "fun_fact": "Gieco tells the story of real bandits from the Argentine plains — the song is closer to a ballad in the old sense than to rock.",
+      "fun_fact_de": "Gieco erzählt die Geschichte echter Banditen aus der argentinischen Pampa — der Song ist eher Ballade im alten Sinn als Rock.",
+      "fun_fact_es": "Gieco cuenta la historia de bandidos reales de la llanura argentina: la canción está más cerca del romance antiguo que del rock.",
+      "fun_fact_fr": "Gieco raconte l'histoire de vrais bandits de la plaine argentine : la chanson tient davantage de la complainte ancienne que du rock.",
+      "fun_fact_nl": "Gieco vertelt het verhaal van echte bandieten uit de Argentijnse vlakte — het nummer is eerder een oude ballade dan rock.",
+      "isrc": "ARF040100627",
+      "uri_deezer": "deezer://track/3531995"
+    }
+  ]
+}
