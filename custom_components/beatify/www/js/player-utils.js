@@ -80,11 +80,52 @@ export function showView(viewId) {
     }
 
     if (viewId === 'join-view') {
+        // #2506: tapping Join disables the button and relabels it "Joining…",
+        // and only the join-timeout path ever put it back. Leaving a game, a
+        // session takeover, a failed reconnect and an unknown session all
+        // returned here and left a dead grey button reading "Joining…" — the
+        // guest's only way out was to edit a letter of their own name, and even
+        // then the label stayed wrong. Resetting where the view is shown covers
+        // every route into it, including the ones added after this.
+        resetJoinButton();
         setTimeout(function() {
             var nameInput = document.getElementById('name-input');
             if (nameInput) nameInput.focus();
         }, 100);
     }
+}
+
+export var MAX_NAME_LENGTH = 20;
+
+/**
+ * Validate a typed player name. Pure — moved here from player-core (#2506) so
+ * the join view's button state has one owner that can reach it.
+ */
+export function validateName(name) {
+    var trimmed = (name || '').trim();
+    if (!trimmed) {
+        return { valid: false, error: 'Please enter a name' };
+    }
+    if (trimmed.length > MAX_NAME_LENGTH) {
+        return { valid: false, error: 'Name too long (max 20 characters)' };
+    }
+    return { valid: true, name: trimmed };
+}
+
+/**
+ * Put the join button back the way an untouched join view has it: the original
+ * label, and enabled only if the name in the box would pass. The button ships
+ * `disabled` in the markup precisely because an empty box must not be
+ * submittable, so this restores that rule rather than simply enabling it.
+ *
+ * Exported for the #2506 tests.
+ */
+export function resetJoinButton() {
+    var joinBtn = document.getElementById('join-btn');
+    if (!joinBtn) return;
+    joinBtn.textContent = utils.t ? utils.t('join.joinButton') : 'Join Game';
+    var nameInput = document.getElementById('name-input');
+    joinBtn.disabled = !validateName(nameInput ? nameInput.value : '').valid;
 }
 
 // ============================================
