@@ -771,6 +771,24 @@ async def handle_title_artist_guess(
         )
         return
 
+    # One title/artist attempt per player per round (#2498). Without this the
+    # handler overwrites the stored guess and answers every attempt with its
+    # classification (``exact`` / ``fuzzy`` / ``near_miss`` / ``skipped``), so a
+    # player can probe the answer and have the converged guess scored as a
+    # first try — the resubmission also pushes ``submission_time`` later, which
+    # feeds the speed bonus. This mirrors the artist-challenge guard added for
+    # the same reason in #1660; the flag was already being set here, only never
+    # read.
+    if player.has_title_artist_guess:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Title & artist already guessed this round",
+            }
+        )
+        return
+
     if not game_state.title_artist_challenge:
         await ws.send_json(
             {

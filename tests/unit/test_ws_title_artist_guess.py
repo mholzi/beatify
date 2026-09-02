@@ -210,3 +210,83 @@ class TestGuessTruncatedAtIngest:
         assert data["artist"] == "short"
 
         gs._cancel_auto_advance()
+
+
+class TestTitleArtistOneAttemptPerRound:
+    """#2498: one title/artist attempt per player per round.
+
+    The handler answers each attempt with its classification, so without a
+    guard a player can probe the answer and have the converged guess scored as
+    a first try. Mirrors the artist-challenge guard from #1660.
+    """
+
+    async def test_second_guess_is_rejected_and_does_not_overwrite(self):
+        handler, gs = _make_handler_game()
+        ws = _ws()
+        gs.add_player("Alice", ws)
+        gs.get_player("Alice").connected = True
+        await gs.start_round()
+        assert gs.phase == GamePhase.PLAYING
+
+        truth_title = gs.current_song["title"]
+        truth_artist = gs.current_song["artist"]
+
+        # First attempt: deliberately wrong, so a successful overwrite would be
+        # visible as a score change rather than a no-op.
+        await handler._handle_message(
+            ws,
+            {"type": "title_artist_guess", "title": "nope", "artist": "nope"},
+        )
+        player = gs.get_player("Alice")
+        assert player.has_title_artist_guess is True
+        first_time = player.submission_time
+
+        ws.send_json.reset_mock()
+
+        # Second attempt: the correct answer. Must be refused.
+        await handler._handle_message(
+            ws,
+            {
+                "type": "title_artist_guess",
+                "title": truth_title,
+                "artist": truth_artist,
+            },
+        )
+
+        sent = [c.args[0] for c in ws.send_json.call_args_list]
+        assert any(m.get("type") == "error" for m in sent), sent
+        # No acknowledgement, so no classification leaks back for attempt two.
+        assert not any(m.get("type") == "title_artist_guess_ack" for m in sent), sent
+
+        # The stored guess is still the first one, and the speed bonus does not
+        # get a later timestamp handed to it.
+        stored = gs.title_artist_challenge.guesses["Alice"]
+        assert stored["title"] == "nope"
+        assert stored["artist"] == "nope"
+        assert player.submission_time == first_time
+
+    async def test_flag_is_cleared_between_rounds(self):
+        """The lock is per round — round two must accept a guess again."""
+        handler, gs = _make_handler_game()
+        ws = _ws()
+        gs.add_player("Alice", ws)
+        gs.get_player("Alice").connected = True
+        await gs.start_round()
+
+        await handler._handle_message(
+            ws,
+            {"type": "title_artist_guess", "title": "a", "artist": "b"},
+        )
+        assert gs.get_player("Alice").has_title_artist_guess is True
+
+        await gs.end_round()
+        await gs.start_round()
+
+        assert gs.get_player("Alice").has_title_artist_guess is False
+        ws.send_json.reset_mock()
+        await handler._handle_message(
+            ws,
+            {"type": "title_artist_guess", "title": "c", "artist": "d"},
+        )
+        sent = [c.args[0] for c in ws.send_json.call_args_list]
+        assert any(m.get("type") == "title_artist_guess_ack" for m in sent), sent
