@@ -627,6 +627,49 @@ function renderChartBadges(chartInfo) {
         );
     }
 
+    // Charts outside the three big ones. Unlike the UK and German badges above,
+    // these are NOT suppressed by a primary peak: a song that charted at #5 in
+    // the US and #1 in Austria says something with both numbers, and for a
+    // German-speaking party the second one is often the more interesting.
+    // 46 songs in the catalogue carry one of these; 7 have nothing else.
+    var secondary = [
+        ['austrian_peak', 'reveal.chartAustria'],
+        ['swiss_peak', 'reveal.chartSwitzerland'],
+        ['it_peak', 'reveal.chartItaly'],
+        ['fr_peak', 'reveal.chartFrance'],
+        ['spain_peak', 'reveal.chartSpain']
+    ];
+    for (var si = 0; si < secondary.length; si++) {
+        var peak = chartInfo[secondary[si][0]];
+        if (!peak || peak <= 0) continue;
+        badges.push(
+            '<span class="song-badge song-badge--chart">' +
+            '<span class="song-badge-icon">📊</span>' +
+            '#' + peak + ' ' + utils.t(secondary[si][1]) +
+            '</span>'
+        );
+    }
+
+    // Eurovision placements live in their own fields (eurovision-winners.json
+    // carries position, points and country for 72 songs). They are not a chart
+    // peak, so they get their own badge instead of being folded into one of the
+    // three above — and they show alongside a chart peak rather than instead of
+    // it, because a song can have both.
+    if (chartInfo.eurovision_position && chartInfo.eurovision_position > 0) {
+        var evCountry = chartInfo.country
+            ? ' <span class="chart-weeks">· ' + escapeHtml(chartInfo.country) + '</span>'
+            : '';
+        var evPoints = chartInfo.eurovision_points
+            ? ' <span class="chart-weeks">· ' + chartInfo.eurovision_points + ' ' + utils.t('reveal.pointsShort') + '</span>'
+            : '';
+        badges.push(
+            '<span class="song-badge song-badge--chart">' +
+            '<span class="song-badge-icon">🏆</span>' +
+            '#' + chartInfo.eurovision_position + ' ' + utils.t('reveal.chartEurovision') + evCountry + evPoints +
+            '</span>'
+        );
+    }
+
     if (chartInfo.uk_peak && chartInfo.uk_peak > 0 && !chartInfo.billboard_peak) {
         badges.push(
             '<span class="song-badge song-badge--chart">' +

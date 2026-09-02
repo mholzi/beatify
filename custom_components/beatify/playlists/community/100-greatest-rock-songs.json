@@ -65,11 +65,6 @@
         "Taxiride",
         "Prince"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -105,11 +100,6 @@
         "Deep Purple",
         "KISS"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -145,11 +135,6 @@
         "Deep Purple",
         "KISS"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "Platinum (US)"
       ],
@@ -201,11 +186,6 @@
         "Regurgitator",
         "Lash"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -241,11 +221,6 @@
         "Faith No More",
         "AC/DC"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "2x Platinum (US)",
         "Gold (UK)"
@@ -298,11 +273,6 @@
         "Nirvana",
         "blink-182"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -406,11 +376,6 @@
         "The Doobie Brothers",
         "Led Zeppelin"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "Gold (US)"
       ],
@@ -490,11 +455,6 @@
         "Dire Straits",
         "Led Zeppelin"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "Platinum (US)"
       ],
@@ -637,11 +597,6 @@
         "Motörhead",
         "Faith No More"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -677,11 +632,6 @@
         "Queen",
         "Dire Straits"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -717,11 +667,6 @@
         "Regurgitator",
         "Simple Plan"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -757,7 +702,6 @@
         "Blink-182"
       ],
       "title": "American Idiot",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Billie Joe Armstrong wrote 'American Idiot' as a reaction to George W. Bush's media-driven Iraq War rhetoric.",
@@ -791,11 +735,6 @@
         "KISS",
         "AC/DC"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -831,7 +770,6 @@
         "Wolfmother"
       ],
       "title": "I Believe in a Thing Called Love",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "“I Believe in a Thing Called Love” by The Darkness was originally released in 2003; the year is based on matched recording and release metadata.",
@@ -865,11 +803,6 @@
         "AC/DC",
         "Iron Maiden"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1056,7 +989,6 @@
         "Jane's Addiction"
       ],
       "title": "Scar Tissue",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "“Scar Tissue” by Red Hot Chili Peppers was originally released in 1999; the year is based on matched recording and release metadata.",
@@ -1205,11 +1137,6 @@
         "Journey",
         "Choirboys"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1281,11 +1208,6 @@
         "Nirvana",
         "blink-182"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1351,11 +1273,6 @@
         "Portugal. The Man",
         "Muse"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1429,11 +1346,6 @@
         "The Doobie Brothers",
         "Dire Straits"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1469,7 +1381,6 @@
         "Hootie & the Blowfish"
       ],
       "title": "I'll Be There for You - Theme From \"Friends\"",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "The Rembrandts' theme to the sitcom Friends (1994-2004).",
@@ -1509,11 +1420,6 @@
         "a-ha",
         "The Goo Goo Dolls"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1579,11 +1485,6 @@
         "Fleetwood Mac",
         "ZZ Top"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1649,11 +1550,6 @@
         "Duran Duran",
         "a-ha"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "Silver (UK)"
       ],
@@ -1730,11 +1626,6 @@
         "Blur",
         "Nirvana"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1851,11 +1742,6 @@
         "The Offspring",
         "The Superjesus"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -1891,11 +1777,6 @@
         "Black Sabbath",
         "AC/DC"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "RIAA Gold"
       ],
@@ -1947,7 +1828,6 @@
         "Travis"
       ],
       "title": "Beautiful Day",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "U2 wrote 'Beautiful Day' to mark their return to anthemic rock after the experimental 'Pop' era — it won three Grammys including Record of the Year.",
@@ -1981,11 +1861,6 @@
         "Goanna",
         "Guns N' Roses"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "Platinum (US)",
         "Gold (UK)"
@@ -2065,11 +1940,6 @@
         "Bruce Springsteen",
         "Fleetwood Mac"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2147,11 +2017,6 @@
         "Fleetwood Mac",
         "Dire Straits"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2228,11 +2093,6 @@
         "a-ha",
         "Prince"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2268,11 +2128,6 @@
         "The Doors",
         "America"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2363,7 +2218,6 @@
         "Stone Temple Pilots"
       ],
       "title": "Otherside",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "“Otherside” by Red Hot Chili Peppers was originally released in 1999; the year is based on matched recording and release metadata.",
@@ -2397,11 +2251,6 @@
         "My Chemical Romance",
         "Green Day"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2437,11 +2286,6 @@
         "The Killers",
         "blink-182"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2601,11 +2445,6 @@
         "AC/DC",
         "Ozzy Osbourne"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "3x Platinum (US)",
         "Silver (UK)"
@@ -2644,7 +2483,6 @@
         "Panic! At The Disco"
       ],
       "title": "Misery Business",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Paramore retired 'Misery Business' from live sets in 2018 due to controversial lyrics about another woman — they brought it back in 2022 by popular demand.",
@@ -2678,11 +2516,6 @@
         "The Proclaimers",
         "Queen"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2758,11 +2591,6 @@
         "Nickelback",
         "The Offspring"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -2798,7 +2626,6 @@
         "Queens of the Stone Age"
       ],
       "title": "Supermassive Black Hole",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "'Supermassive Black Hole' gained second life in 2008 when Stephenie Meyer placed it in the baseball scene of the first 'Twilight' film.",
@@ -3028,7 +2855,6 @@
         "Goo Goo Dolls"
       ],
       "title": "Semi-Charmed Life",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "“Semi-Charmed Life” by Third Eye Blind was originally released in 1997; the year is based on matched recording and release metadata.",
@@ -3062,11 +2888,6 @@
         "The Goo Goo Dolls",
         "Taxiride"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3102,7 +2923,6 @@
         "PJ Harvey"
       ],
       "title": "You Oughta Know",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Flea (Red Hot Chili Peppers) played bass on 'You Oughta Know' — the target of Alanis's wrath is rumored to be actor Dave Coulier.",
@@ -3136,11 +2956,6 @@
         "The Goo Goo Dolls",
         "Prince"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3176,11 +2991,6 @@
         "Third Eye Blind",
         "Muse"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "Platinum (US)",
         "Silver (UK)"
@@ -3219,11 +3029,6 @@
         "Duran Duran",
         "David Bowie"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [
         "3x Platinum (US)",
         "Platinum (UK)"
@@ -3276,11 +3081,6 @@
         "blink-182",
         "Lash"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3316,11 +3116,6 @@
         "Led Zeppelin",
         "Fleetwood Mac"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3412,11 +3207,6 @@
         "Portugal. The Man",
         "Muse"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3452,11 +3242,6 @@
         "Prince",
         "David Bowie"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3522,11 +3307,6 @@
         "Duran Duran",
         "a-ha"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3562,11 +3342,6 @@
         "Alanis Morissette",
         "Paramore"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -3783,11 +3558,6 @@
         "Jimi Hendrix"
       ],
       "title": "Start Me Up",
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_nl": [],
@@ -4045,11 +3815,6 @@
         "The Goo Goo Dolls",
         "Matchbox Twenty"
       ],
-      "chart_info": {
-        "billboard_peak": null,
-        "uk_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4160,10 +3925,6 @@
       "fun_fact_es": "«Sideways», de Balu Brigada, se publicó originalmente en 2025; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Sideways » de Balu Brigada est sorti à l’origine en 2025 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Sideways” van Balu Brigada verscheen oorspronkelijk in 2025; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4200,10 +3961,6 @@
       "fun_fact_es": "«Born To Be Wild», de Steppenwolf, se publicó originalmente en 1968; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Born To Be Wild » de Steppenwolf est sorti à l’origine en 1968 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Born To Be Wild” van Steppenwolf verscheen oorspronkelijk in 1968; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4240,10 +3997,6 @@
       "fun_fact_es": "«Black Fingernails, Red Wine», de Eskimo Joe, se publicó originalmente en 2006; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Black Fingernails, Red Wine » de Eskimo Joe est sorti à l’origine en 2006 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Black Fingernails, Red Wine” van Eskimo Joe verscheen oorspronkelijk in 2006; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4280,10 +4033,6 @@
       "fun_fact_es": "«Sweet Child O' Mine», de Guns N' Roses, se publicó originalmente en 1987; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Sweet Child O' Mine » de Guns N' Roses est sorti à l’origine en 1987 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Sweet Child O' Mine” van Guns N' Roses verscheen oorspronkelijk in 1987; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4320,10 +4069,6 @@
       "fun_fact_es": "«Wonderwall (Remastered)», de Oasis, se publicó originalmente en 1995; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Wonderwall (Remastered) » de Oasis est sorti à l’origine en 1995 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Wonderwall (Remastered)” van Oasis verscheen oorspronkelijk in 1995; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4432,10 +4177,6 @@
       "fun_fact_es": "«Living in the 70's - 2009 Remaster», de Skyhooks, se publicó originalmente en 1974; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Living in the 70's - 2009 Remaster » de Skyhooks est sorti à l’origine en 1974 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Living in the 70's - 2009 Remaster” van Skyhooks verscheen oorspronkelijk in 1974; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4514,10 +4255,6 @@
       "fun_fact_es": "«A Little Love», de Biffy Clyro, se publicó originalmente en 2025; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« A Little Love » de Biffy Clyro est sorti à l’origine en 2025 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“A Little Love” van Biffy Clyro verscheen oorspronkelijk in 2025; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4592,10 +4329,6 @@
       "fun_fact_es": "«I Got You», de Split Enz, se publicó originalmente en 1979; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« I Got You » de Split Enz est sorti à l’origine en 1979 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“I Got You” van Split Enz verscheen oorspronkelijk in 1979; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4632,10 +4365,6 @@
       "fun_fact_es": "«Priscilla», de Les Votives, se publicó originalmente en 2024; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Priscilla » de Les Votives est sorti à l’origine en 2024 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Priscilla” van Les Votives verscheen oorspronkelijk in 2024; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4653,7 +4382,6 @@
         "Cake"
       ],
       "title": "Loser",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Beck recorded 'Loser' in a friend's kitchen for $135 — the slide guitar samples a Dr. John track, and Beck's slacker rap shaped '90s alt-rap.",
@@ -4706,10 +4434,6 @@
       "fun_fact_es": "«Gravity», de Jon Toogood, se publicó originalmente en 2024; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Gravity » de Jon Toogood est sorti à l’origine en 2024 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Gravity” van Jon Toogood verscheen oorspronkelijk in 2024; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4746,10 +4470,6 @@
       "fun_fact_es": "«Know Your Product - 2004 Remaster», de The Saints, se publicó originalmente en 1978; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Know Your Product - 2004 Remaster » de The Saints est sorti à l’origine en 1978 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Know Your Product - 2004 Remaster” van The Saints verscheen oorspronkelijk in 1978; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4941,10 +4661,6 @@
       "fun_fact_es": "«Down with the Sickness», de Disturbed, se publicó originalmente en 2000; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Down with the Sickness » de Disturbed est sorti à l’origine en 2000 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Down with the Sickness” van Disturbed verscheen oorspronkelijk in 2000; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
@@ -4981,10 +4697,6 @@
       "fun_fact_es": "«Give It Away», de Red Hot Chili Peppers, se publicó originalmente en 1991; el año se basa en datos de grabación y publicación contrastados.",
       "fun_fact_fr": "« Give It Away » de Red Hot Chili Peppers est sorti à l’origine en 1991 ; l’année repose sur des métadonnées d’enregistrement et de parution recoupées.",
       "fun_fact_nl": "“Give It Away” van Red Hot Chili Peppers verscheen oorspronkelijk in 1991; het jaar is gebaseerd op gecontroleerde opname- en uitgavegegevens.",
-      "chart_info": {
-        "billboard_peak": null,
-        "weeks_on_chart": null
-      },
       "certifications": [],
       "awards": [],
       "awards_de": [],
