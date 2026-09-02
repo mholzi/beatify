@@ -1,3 +1,19 @@
+// Beatify Cloudflare Worker (#2526: keep this file pure ASCII).
+//
+// This worker is deployed by copying the file into the Cloudflare dashboard.
+// That copy path has been round-tripped through a terminal-style buffer at
+// least once, which read the UTF-8 bytes as Latin-1 and then wrote the
+// resulting control characters back out in caret notation. Every non-ASCII
+// literal in the source was destroyed by it, so the issues this worker files
+// arrived titled "data: wrong year reported \xc3\xa2^@^T ..." instead of
+// carrying an em dash.
+//
+// The fix is structural: no byte in this file may be >= 0x80. Characters that
+// have to reach GitHub (em dash, en dash, the zero-width spaces that break
+// @mentions, emoji) are written as \u escapes, which are themselves ASCII and
+// therefore survive any such round trip untouched. The runtime output is
+// unchanged. tests/unit/test_worker_ascii_only_2526.py enforces the rule.
+
 async function handleReportData(request, env, corsHeaders) {
   let body;
   try {
@@ -9,11 +25,11 @@ async function handleReportData(request, env, corsHeaders) {
   if (!artist || !title) {
     return Response.json({ success: false, error: 'MISSING_FIELDS' }, { status: 400, headers: corsHeaders });
   }
-  const issueTitle = `data: wrong year reported — ${artist} – ${title}`;
+  const issueTitle = `data: wrong year reported \u2014 ${artist} \u2013 ${title}`;
   const issueBody = [
     '## Wrong Year Report', '', 'A player flagged incorrect data during a game.', '',
     '| Field | Value |', '|-------|-------|',
-    `| **Song** | ${artist} – ${title} |`,
+    `| **Song** | ${artist} \u2013 ${title} |`,
     `| **Year in playlist** | ${year ?? '?'} |`,
     `| **Playlist file** | \`${playlist_file}\` |`,
     `| **Reported by** | ${reporter} |`, '',
@@ -43,12 +59,12 @@ async function handleReportData(request, env, corsHeaders) {
 
 
 // ===========================================================================
-// Quizify community-pack submission (additive — Beatify logic above/below is
+// Quizify community-pack submission (additive - Beatify logic above/below is
 // untouched). Mounted on any path starting with `/quizify` (e.g.
 // `/quizify/submit-pack`). Self-contained: own secret gate, own GitHub repo,
 // own (no-)CORS policy. Ported from the standalone quizify-api worker so both
 // HA integrations can share one deployed Worker.
-//   Secrets:  SHARED_SECRET        (REQUIRED — fail-closed gate, #292/#316)
+//   Secrets:  SHARED_SECRET        (REQUIRED - fail-closed gate, #292/#316)
 //             QUIZIFY_GITHUB_PAT   (Issues R+W on mholzi/quizify; falls back to
 //                                   GITHUB_PAT if that token also covers quizify)
 // ===========================================================================
@@ -77,7 +93,7 @@ function qzTimingSafeEqualStr(a, b) {
   return crypto.subtle.timingSafeEqual(bufA, bufB);
 }
 
-/** Validate the pack against the #179 schema — mirrors
+/** Validate the pack against the #179 schema - mirrors
  *  server/pack_submission.py::validate_pack exactly. */
 function qzValidatePack(pack) {
   if (!pack || typeof pack !== 'object' || Array.isArray(pack)) return 'Top-level JSON must be an object.';
@@ -118,14 +134,14 @@ function qzEsc(s) {
     .replace(/[\r\n]+/g, ' ')
     .replace(/[`|\\]/g, '\\$&')
     .replace(/[[\]()!]/g, '\\$&')
-    .replace(/@/g, '@​')
-    .replace(/#(?=\d)/g, '#​')
+    .replace(/@/g, '@\u200B')
+    .replace(/#(?=\d)/g, '#\u200B')
     .slice(0, 500);
 }
 
 function qzBuildIssue(pack) {
   const qs = pack.questions || [];
-  const title = `pack: ${qzEsc(pack.name)} (${qzEsc(pack.language || 'de')}) — ${qs.length} questions`;
+  const title = `pack: ${qzEsc(pack.name)} (${qzEsc(pack.language || 'de')}) \u2014 ${qs.length} questions`;
   const lines = [
     '## Community pack submission', '',
     'A host submitted a community question pack from the in-app composer.', '',
@@ -138,7 +154,7 @@ function qzBuildIssue(pack) {
   qs.forEach((q, i) => {
     lines.push(`**${i + 1}. ${qzEsc(q.question)}**`);
     (q.answers || []).forEach((a) => {
-      lines.push(`- ${a && a.correct === true ? '✅ ' : ''}${qzEsc(a && a.text)}`);
+      lines.push(`- ${a && a.correct === true ? '\u2705 ' : ''}${qzEsc(a && a.text)}`);
     });
     lines.push('');
   });
@@ -151,7 +167,7 @@ async function handleQuizifySubmit(request, env) {
   if (!pat) {
     return qzJsonError('GITHUB_ERROR', 'Worker is missing its GitHub PAT secret.', 500);
   }
-  // Shared-secret gate — FAIL CLOSED (#292/#316): reject 401 if SHARED_SECRET is
+  // Shared-secret gate - FAIL CLOSED (#292/#316): reject 401 if SHARED_SECRET is
   // unset OR the X-Quizify-Secret header is missing / doesn't match. The worker
   // must never be an open, unauthenticated proxy that files issues with the PAT.
   if (!env.SHARED_SECRET) {
@@ -195,8 +211,8 @@ async function handleQuizifySubmit(request, env) {
 
 export default {
   async fetch(request, env) {
-    // Quizify community-pack route (additive). Fully self-contained — owns its
-    // method guard, secret gate and (no-)CORS — so every non-/quizify request
+    // Quizify community-pack route (additive). Fully self-contained - owns its
+    // method guard, secret gate and (no-)CORS - so every non-/quizify request
     // falls through to the Beatify handling below byte-for-byte as before.
     const qzUrl = new URL(request.url);
     if (qzUrl.pathname.startsWith('/quizify')) {
@@ -275,7 +291,7 @@ export default {
       }
 
       // Create GitHub issue
-      const issueBody = `## 🎵 Playlist Request
+      const issueBody = `## \u{1F3B5} Playlist Request
 
 **Playlist:** ${playlist_name}
 **Spotify URL:** ${spotify_url}
@@ -307,7 +323,7 @@ ${thumbnail_url ? `![Playlist Cover](${thumbnail_url})` : ''}
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title: `🎵 Playlist Request: ${playlist_name}`,
+          title: `\u{1F3B5} Playlist Request: ${playlist_name}`,
           body: issueBody,
           labels: ['playlist-request'],
         }),
