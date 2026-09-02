@@ -1,0 +1,626 @@
+{
+  "name": "Música Colombiana Alegre",
+  "version": "0.1",
+  "tags": [
+    "latin",
+    "spanish",
+    "colombia",
+    "pop",
+    "vallenato",
+    "cumbia"
+  ],
+  "language": "es",
+  "author": "Beatify Team",
+  "added_date": "2026-09-02",
+  "description": "Colombia's coast turned into pop — Carlos Vives and Fonseca, Bacilos and Cabas, Jorge Celedón and Piso 21, from Otto Serge in 1983 to Silvestre Dangond meeting reggaeton in 2018.",
+  "songs": [
+    {
+      "year": 1983,
+      "uri": "spotify:track:1S2WEX1RBJL1ebpEldMG4V",
+      "artist": "Otto Serge, Rafael Ricardo",
+      "alt_artists": [
+        "Fonseca",
+        "Fanny Lu",
+        "Jorge Celedón",
+        "Piso 21"
+      ],
+      "title": "Señora",
+      "fun_fact": "Otto Serge and accordionist Rafael Ricardo were the smooth, radio-friendly end of eighties vallenato.",
+      "fun_fact_de": "Otto Serge und der Akkordeonist Rafael Ricardo standen für das glatte, radiotaugliche Ende des Achtziger-Vallenato.",
+      "fun_fact_es": "Otto Serge y el acordeonero Rafael Ricardo eran el lado pulido y radial del vallenato ochentero.",
+      "fun_fact_fr": "Otto Serge et l'accordéoniste Rafael Ricardo incarnaient le versant lisse et radiophonique du vallenato des années 80.",
+      "fun_fact_nl": "Otto Serge en accordeonist Rafael Ricardo stonden voor de gladde, radiovriendelijke kant van de jaren-tachtigvallenato.",
+      "isrc": "COC018315793",
+      "uri_deezer": "deezer://track/1700971297"
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:2xZhP2Dw5izHDfJ0MHBDjj",
+      "artist": "Binomio de Oro",
+      "alt_artists": [
+        "Diomedes Díaz",
+        "Carlos Vives",
+        "Maluma",
+        "Piso 21"
+      ],
+      "title": "Sólo para Ti",
+      "fun_fact": "One of the last records Binomio de Oro made with Rafael Orozco, who was murdered the following year.",
+      "fun_fact_de": "Eine der letzten Platten, die Binomio de Oro mit Rafael Orozco machte — er wurde im Jahr darauf ermordet.",
+      "fun_fact_es": "Uno de los últimos discos que Binomio de Oro hizo con Rafael Orozco, asesinado al año siguiente.",
+      "fun_fact_fr": "L'un des derniers disques de Binomio de Oro avec Rafael Orozco, assassiné l'année suivante.",
+      "fun_fact_nl": "Een van de laatste platen die Binomio de Oro met Rafael Orozco maakte; hij werd het jaar daarop vermoord.",
+      "isrc": "COC019121031",
+      "uri_deezer": "deezer://track/37800681"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:5SbG6XwfQeNlI8GSwvFpfd",
+      "artist": "Carlos Vives",
+      "alt_artists": [
+        "Maía",
+        "Fonseca",
+        "Juanes",
+        "Bacilos"
+      ],
+      "title": "El Cantor de Fonseca",
+      "fun_fact": "From Clásicos de la Provincia, the album on which Carlos Vives put a rock band behind vallenato standards.",
+      "fun_fact_de": "Von Clásicos de la Provincia — dem Album, auf dem Carlos Vives eine Rockband hinter Vallenato-Standards stellte.",
+      "fun_fact_es": "De Clásicos de la Provincia, el álbum en que Carlos Vives puso una banda de rock detrás de los clásicos vallenatos.",
+      "fun_fact_fr": "Extrait de Clásicos de la Provincia, l'album où Carlos Vives a placé un groupe de rock derrière les standards vallenato.",
+      "fun_fact_nl": "Van Clásicos de la Provincia, het album waarop Carlos Vives een rockband achter vallenatostandards zette.",
+      "isrc": "COSO11300340",
+      "uri_deezer": "deezer://track/1170737072"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:6l6AFwKwn5IlZStnfGJX3d",
+      "artist": "Carlos Vives",
+      "alt_artists": [
+        "Peter Manjarrés",
+        "Maía",
+        "Silvestre Dangond",
+        "Shakira"
+      ],
+      "title": "Alicia Adorada",
+      "fun_fact": "Juancho Polo Valencia wrote Alicia Adorada after his wife died while he was away playing music.",
+      "fun_fact_de": "Juancho Polo Valencia schrieb Alicia Adorada, nachdem seine Frau gestorben war, während er auswärts Musik machte.",
+      "fun_fact_es": "Juancho Polo Valencia escribió Alicia Adorada tras morir su esposa mientras él andaba tocando lejos de casa.",
+      "fun_fact_fr": "Juancho Polo Valencia a écrit Alicia Adorada après la mort de sa femme, alors qu'il jouait loin de chez lui.",
+      "fun_fact_nl": "Juancho Polo Valencia schreef Alicia Adorada nadat zijn vrouw stierf terwijl hij ver van huis speelde.",
+      "isrc": "COSO11300338",
+      "uri_deezer": "deezer://track/1170737052"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:42R1D09Q3wP8qBvHjd0xUy",
+      "artist": "Miguel Morales",
+      "alt_artists": [
+        "Maluma",
+        "ChocQuibTown",
+        "Silvestre Dangond",
+        "Diomedes Díaz"
+      ],
+      "title": "Mi Diosa Humana",
+      "fun_fact": "Morales was one of the two voices Los Inquietos launched before both singers went out on their own.",
+      "fun_fact_de": "Morales war eine der beiden Stimmen, die Los Inquietos hervorbrachten, bevor beide Sänger eigene Wege gingen.",
+      "fun_fact_es": "Morales fue una de las dos voces que lanzó Los Inquietos antes de que ambos cantantes siguieran por su cuenta.",
+      "fun_fact_fr": "Morales était l'une des deux voix lancées par Los Inquietos avant que les deux chanteurs ne partent chacun de leur côté.",
+      "fun_fact_nl": "Morales was een van de twee stemmen die Los Inquietos voortbracht voordat beide zangers hun eigen weg gingen.",
+      "isrc": "COC019422073",
+      "uri_deezer": "deezer://track/12479030"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:5zqb9vPcTA8rCwvIJQSxoO",
+      "artist": "Carlos Vives",
+      "alt_artists": [
+        "Andrés Cepeda",
+        "Diomedes Díaz",
+        "Los Diablitos",
+        "Silvestre Dangond"
+      ],
+      "title": "La Tierra del Olvido",
+      "fun_fact": "The title track of the album that pulled accordion music into Colombian rock, and back out again as pop.",
+      "fun_fact_de": "Der Titelsong des Albums, das Akkordeonmusik in den kolumbianischen Rock zog — und als Pop wieder heraus.",
+      "fun_fact_es": "La canción que da título al álbum que metió la música de acordeón en el rock colombiano y la sacó como pop.",
+      "fun_fact_fr": "La chanson-titre de l'album qui a fait entrer la musique d'accordéon dans le rock colombien, et ressortir en pop.",
+      "fun_fact_nl": "Het titelnummer van het album dat accordeonmuziek de Colombiaanse rock in trok en er als pop weer uit.",
+      "isrc": "QMDA62527660",
+      "uri_deezer": "deezer://track/3484258841"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:72wEtgEkcLQ5x4F4ktiVSH",
+      "artist": "Carlos Vives",
+      "alt_artists": [
+        "Piso 21",
+        "Silvestre Dangond",
+        "Bacilos",
+        "Los Diablitos"
+      ],
+      "title": "Pa' Mayté",
+      "fun_fact": "Thirty years on, this is still the song that gets played when a Colombian party needs restarting.",
+      "fun_fact_de": "Dreissig Jahre später ist das immer noch der Song, der läuft, wenn eine kolumbianische Feier neu anspringen muss.",
+      "fun_fact_es": "Treinta años después sigue siendo la canción que se pone cuando una fiesta colombiana necesita arrancar de nuevo.",
+      "fun_fact_fr": "Trente ans après, c'est toujours le morceau qu'on met quand une fête colombienne a besoin de repartir.",
+      "fun_fact_nl": "Dertig jaar later is dit nog steeds het nummer dat opstaat als een Colombiaans feest opnieuw moet aanslaan.",
+      "isrc": "COSO11300351",
+      "uri_deezer": "deezer://track/1169356972"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:1kM1BcO9nbQJtPhcbL2WU5",
+      "artist": "Donato Y Estefano",
+      "alt_artists": [
+        "Maluma",
+        "Peter Manjarrés",
+        "Fanny Lu",
+        "Cabas"
+      ],
+      "title": "Sin Ti",
+      "fun_fact": "Donato and Estéfano were a Colombian duo who later wrote hits for half of Latin pop.",
+      "fun_fact_de": "Donato und Estéfano waren ein kolumbianisches Duo, das später Hits für den halben Latin-Pop schrieb.",
+      "fun_fact_es": "Donato y Estéfano fueron un dúo colombiano que luego escribió éxitos para medio pop latino.",
+      "fun_fact_fr": "Donato et Estéfano formaient un duo colombien qui a ensuite écrit des tubes pour la moitié de la pop latine.",
+      "fun_fact_nl": "Donato en Estéfano waren een Colombiaans duo dat later hits schreef voor de halve latinpop.",
+      "isrc": "NLB639550001",
+      "uri_deezer": "deezer://track/15213957"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:2hYJG9xfiIHtbHLodOrwzu",
+      "artist": "Binomio de Oro de América",
+      "alt_artists": [
+        "Andrés Cepeda",
+        "Diomedes Díaz",
+        "Fanny Lu",
+        "Shakira"
+      ],
+      "title": "Como Te Olvido",
+      "fun_fact": "After Orozco's murder the group added 'de América' and kept going with a new singer.",
+      "fun_fact_de": "Nach Orozcos Ermordung ergänzte die Gruppe «de América» und machte mit einem neuen Sänger weiter.",
+      "fun_fact_es": "Tras el asesinato de Orozco el grupo añadió «de América» y siguió con un nuevo cantante.",
+      "fun_fact_fr": "Après l'assassinat d'Orozco, le groupe a ajouté « de América » et continué avec un nouveau chanteur.",
+      "fun_fact_nl": "Na de moord op Orozco voegde de groep 'de América' toe en ging verder met een nieuwe zanger.",
+      "isrc": "COC019622909",
+      "uri_deezer": "deezer://track/1963806"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:1XIbVdp8h98ZTtRKmsHeBy",
+      "artist": "Los Diablitos",
+      "alt_artists": [
+        "Carlos Vives",
+        "Sebastián Yatra",
+        "Peter Manjarrés",
+        "Cabas"
+      ],
+      "title": "Busca Un Confidente",
+      "fun_fact": "Los Diablitos spent the nineties as the group every other vallenato band was measured against.",
+      "fun_fact_de": "Los Diablitos waren in den Neunzigern die Gruppe, an der sich jede andere Vallenato-Band messen lassen musste.",
+      "fun_fact_es": "Los Diablitos pasaron los noventa siendo el grupo con el que se medía a cualquier otra banda vallenata.",
+      "fun_fact_fr": "Los Diablitos ont passé les années 90 comme le groupe auquel on mesurait toutes les autres formations vallenato.",
+      "fun_fact_nl": "Los Diablitos waren in de jaren negentig de groep waaraan elke andere vallenatoband werd afgemeten.",
+      "isrc": "COC019723289",
+      "uri_deezer": "deezer://track/1401641"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:0HPVcdtXABd0hUudn4UceE",
+      "artist": "Binomio de Oro de América",
+      "alt_artists": [
+        "Fanny Lu",
+        "Juanes",
+        "Jorge Celedón",
+        "Cabas"
+      ],
+      "title": "Un Osito Dormilón",
+      "fun_fact": "A lullaby dressed as a love song, and one of the group's most requested numbers at weddings.",
+      "fun_fact_de": "Ein Wiegenlied im Gewand eines Liebeslieds — und eine der meistgewünschten Nummern der Gruppe auf Hochzeiten.",
+      "fun_fact_es": "Una canción de cuna disfrazada de canción de amor, y uno de los temas más pedidos del grupo en las bodas.",
+      "fun_fact_fr": "Une berceuse déguisée en chanson d'amour, et l'un des morceaux les plus demandés du groupe aux mariages.",
+      "fun_fact_nl": "Een wiegelied vermomd als liefdeslied, en een van de meest gevraagde nummers van de groep op bruiloften.",
+      "isrc": "COC019823618",
+      "uri_deezer": "deezer://track/1963860"
+    },
+    {
+      "year": 2000,
+      "uri": "spotify:track:48svUiwMMYQRPyesVEnof1",
+      "artist": "Bacilos",
+      "alt_artists": [
+        "Jorge Celedón",
+        "Maía",
+        "ChocQuibTown",
+        "Binomio de Oro de América"
+      ],
+      "title": "Tabaco y Chanel",
+      "fun_fact": "Bacilos were a Colombian singer and two Brazilians who met in Miami and sang in Spanish anyway.",
+      "fun_fact_de": "Bacilos waren ein kolumbianischer Sänger und zwei Brasilianer, die sich in Miami trafen und trotzdem spanisch sangen.",
+      "fun_fact_es": "Bacilos eran un cantante colombiano y dos brasileños que se conocieron en Miami y cantaron en español igual.",
+      "fun_fact_fr": "Bacilos, c'était un chanteur colombien et deux Brésiliens rencontrés à Miami, qui chantaient quand même en espagnol.",
+      "fun_fact_nl": "Bacilos waren een Colombiaanse zanger en twee Brazilianen die elkaar in Miami troffen en toch in het Spaans zongen.",
+      "isrc": "USWL10000454",
+      "uri_deezer": "deezer://track/3588703"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:2DlBKIc6XugYSmhP75h1BF",
+      "artist": "Jorge Celedón, Jimmy Zambrano",
+      "alt_artists": [
+        "Silvestre Dangond",
+        "Maía",
+        "Shakira",
+        "Carlos Vives"
+      ],
+      "title": "No Podrán Separarnos",
+      "fun_fact": "Celedón and accordionist Jimmy Zambrano worked as a fixed pair, which in vallenato counts as a marriage.",
+      "fun_fact_de": "Celedón und der Akkordeonist Jimmy Zambrano arbeiteten als festes Paar — im Vallenato gilt das als Ehe.",
+      "fun_fact_es": "Celedón y el acordeonero Jimmy Zambrano trabajaban como dupla fija, que en el vallenato cuenta como matrimonio.",
+      "fun_fact_fr": "Celedón et l'accordéoniste Jimmy Zambrano formaient un duo fixe, ce qui au vallenato vaut mariage.",
+      "fun_fact_nl": "Celedón en accordeonist Jimmy Zambrano vormden een vast duo, wat in de vallenato als huwelijk telt.",
+      "isrc": "COS010100093",
+      "uri_deezer": "deezer://track/13256477"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:7DhYjNLksXZhbRQeheAums",
+      "artist": "Bacilos",
+      "alt_artists": [
+        "Diomedes Díaz",
+        "Fonseca",
+        "Peter Manjarrés",
+        "Sebastián Yatra"
+      ],
+      "title": "Caraluna",
+      "fun_fact": "The title track of the album that won Bacilos a Latin Grammy the following year.",
+      "fun_fact_de": "Der Titelsong des Albums, das Bacilos im Jahr darauf einen Latin Grammy einbrachte.",
+      "fun_fact_es": "La canción que da título al álbum con el que Bacilos ganó un Latin Grammy al año siguiente.",
+      "fun_fact_fr": "La chanson-titre de l'album qui a valu à Bacilos un Latin Grammy l'année suivante.",
+      "fun_fact_nl": "Het titelnummer van het album waarmee Bacilos het jaar daarop een Latin Grammy won.",
+      "isrc": "USWL10200073",
+      "uri_deezer": "deezer://track/3588702"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:3hTJ7huvFJMTL87XndFbDj",
+      "artist": "Jorge Celedón, Jimmy Zambrano",
+      "alt_artists": [
+        "Shakira",
+        "Fanny Lu",
+        "Bacilos",
+        "Andrés Cepeda"
+      ],
+      "title": "Sin Perdón",
+      "fun_fact": "Two years before the pair won a Latin Grammy and took the genre to the ceremony for the first time.",
+      "fun_fact_de": "Zwei Jahre bevor das Duo einen Latin Grammy gewann und das Genre erstmals zur Verleihung brachte.",
+      "fun_fact_es": "Dos años antes de que la dupla ganara un Latin Grammy y llevara el género a la ceremonia por primera vez.",
+      "fun_fact_fr": "Deux ans avant que le duo ne remporte un Latin Grammy et n'amène le genre à la cérémonie pour la première fois.",
+      "fun_fact_nl": "Twee jaar voordat het duo een Latin Grammy won en het genre voor het eerst naar de ceremonie bracht.",
+      "isrc": "COS010400083",
+      "uri_deezer": "deezer://track/13256481"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:3s5W3XmSSi2E4bM7qyus9O",
+      "artist": "Lucas Arnau",
+      "alt_artists": [
+        "Sebastián Yatra",
+        "Bacilos",
+        "Binomio de Oro de América",
+        "Shakira"
+      ],
+      "title": "Te Doy Mi Vida",
+      "fun_fact": "Lucas Arnau came out of Medellín's pop scene, which by then was competing with the coast for the charts.",
+      "fun_fact_de": "Lucas Arnau kam aus der Pop-Szene von Medellín, die damals mit der Küste um die Charts konkurrierte.",
+      "fun_fact_es": "Lucas Arnau salió de la escena pop de Medellín, que para entonces competía con la costa por las listas.",
+      "fun_fact_fr": "Lucas Arnau venait de la scène pop de Medellín, qui rivalisait alors avec la côte pour les classements.",
+      "fun_fact_nl": "Lucas Arnau kwam uit de popscene van Medellín, die toen met de kust om de hitlijsten streed.",
+      "isrc": "COS010400073",
+      "uri_deezer": "deezer://track/1279459542"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:2QAIZKsNICW0TxAulZj1Dq",
+      "artist": "Fanny Lu",
+      "alt_artists": [
+        "Peter Manjarrés",
+        "Jorge Celedón",
+        "Maía",
+        "Piso 21"
+      ],
+      "title": "No Te Pido Flores",
+      "fun_fact": "Fanny Lu trained as an engineer and worked in television before this made her a singer full time.",
+      "fun_fact_de": "Fanny Lu studierte Ingenieurwesen und arbeitete beim Fernsehen, bevor sie das hier hauptberuflich zur Sängerin machte.",
+      "fun_fact_es": "Fanny Lu estudió ingeniería y trabajó en televisión antes de que esto la volviera cantante a tiempo completo.",
+      "fun_fact_fr": "Fanny Lu a fait des études d'ingénieur et travaillé à la télévision avant que ceci n'en fasse une chanteuse à plein temps.",
+      "fun_fact_nl": "Fanny Lu studeerde techniek en werkte bij de televisie voordat dit haar fulltime zangeres maakte.",
+      "isrc": "COUM70500081",
+      "uri_deezer": "deezer://track/1677541027"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:6OpHDI8lRiqHLqmUIYUxVr",
+      "artist": "Fonseca",
+      "alt_artists": [
+        "ChocQuibTown",
+        "Otto Serge",
+        "Silvestre Dangond",
+        "Juanes"
+      ],
+      "title": "Te Mando Flores",
+      "fun_fact": "Fonseca's breakthrough, and the record that proved vallenato rhythms could carry a straight pop ballad.",
+      "fun_fact_de": "Fonsecas Durchbruch — die Platte, die zeigte, dass Vallenato-Rhythmen eine reine Pop-Ballade tragen können.",
+      "fun_fact_es": "El éxito que lanzó a Fonseca y demostró que los ritmos vallenatos podían sostener una balada pop pura.",
+      "fun_fact_fr": "La percée de Fonseca, le disque qui a prouvé que les rythmes vallenato pouvaient porter une ballade pop.",
+      "fun_fact_nl": "Fonseca's doorbraak, en de plaat die bewees dat vallenatoritmes een rechttoe rechtaan popballade kunnen dragen.",
+      "isrc": "COH010500153",
+      "uri_deezer": "deezer://track/3462875"
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:367Cb3sFU9yiHJ9T3vciHk",
+      "artist": "Jorge Celedón, Jimmy Zambrano",
+      "alt_artists": [
+        "Los Diablitos",
+        "Diomedes Díaz",
+        "Piso 21",
+        "Juanes"
+      ],
+      "title": "Esta Vida",
+      "fun_fact": "Que bonita es esta vida won the Latin Grammy for best vallenato album and became the genre's calling card.",
+      "fun_fact_de": "Que bonita es esta vida gewann den Latin Grammy für das beste Vallenato-Album und wurde zur Visitenkarte des Genres.",
+      "fun_fact_es": "Que bonita es esta vida ganó el Latin Grammy al mejor álbum vallenato y se volvió la carta de presentación del género.",
+      "fun_fact_fr": "Que bonita es esta vida a remporté le Latin Grammy du meilleur album vallenato et est devenu la carte de visite du genre.",
+      "fun_fact_nl": "Que bonita es esta vida won de Latin Grammy voor beste vallenato-album en werd het visitekaartje van het genre.",
+      "isrc": "COSO10600390",
+      "uri_deezer": "deezer://track/13322048"
+    },
+    {
+      "year": 2007,
+      "uri": "spotify:track:5tQXpp3ciJYkqu2NEXiZHh",
+      "artist": "Binomio de Oro",
+      "alt_artists": [
+        "Juanes",
+        "ChocQuibTown",
+        "Maía",
+        "Bacilos"
+      ],
+      "title": "Me Sobran las Palabras",
+      "fun_fact": "Israel Romero has played the accordion in this group since he founded it in 1976.",
+      "fun_fact_de": "Israel Romero spielt das Akkordeon in dieser Gruppe, seit er sie 1976 gegründet hat.",
+      "fun_fact_es": "Israel Romero toca el acordeón en este grupo desde que lo fundó en 1976.",
+      "fun_fact_fr": "Israel Romero joue de l'accordéon dans ce groupe depuis qu'il l'a fondé en 1976.",
+      "fun_fact_nl": "Israel Romero speelt accordeon in deze groep sinds hij haar in 1976 oprichtte.",
+      "isrc": "USALH0702002",
+      "uri_deezer": "deezer://track/63269551"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:6HNsJQihjxODgGWQafAJau",
+      "artist": "Cabas",
+      "alt_artists": [
+        "ChocQuibTown",
+        "Maía",
+        "Juanes",
+        "Diomedes Díaz"
+      ],
+      "title": "Bonita",
+      "fun_fact": "Cabas built his sound on cumbia rather than vallenato, which on the coast is a different family entirely.",
+      "fun_fact_de": "Cabas baute seinen Sound auf Cumbia statt Vallenato — an der Küste sind das zwei verschiedene Familien.",
+      "fun_fact_es": "Cabas armó su sonido sobre la cumbia y no el vallenato, que en la costa son familias distintas.",
+      "fun_fact_fr": "Cabas a bâti son son sur la cumbia plutôt que le vallenato, qui sur la côte sont deux familles distinctes.",
+      "fun_fact_nl": "Cabas bouwde zijn geluid op cumbia in plaats van vallenato, aan de kust twee heel verschillende families.",
+      "isrc": "ES5080700484",
+      "uri_deezer": "deezer://track/3407308"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:46pI1pvEp4ueEofBO7VE4S",
+      "artist": "Peter Manjarrés, Emiliano Zuleta, Sergio Luis Rodríguez",
+      "alt_artists": [
+        "Jorge Celedón",
+        "Bacilos",
+        "Shakira",
+        "Maía"
+      ],
+      "title": "Obsesión",
+      "fun_fact": "Emiliano Zuleta guests here — the surname belongs to one of vallenato's founding families.",
+      "fun_fact_de": "Emiliano Zuleta ist hier zu Gast — der Nachname gehört zu einer der Gründerfamilien des Vallenato.",
+      "fun_fact_es": "Emiliano Zuleta aparece aquí como invitado; el apellido pertenece a una de las familias fundadoras del vallenato.",
+      "fun_fact_fr": "Emiliano Zuleta est ici en invité ; ce nom appartient à l'une des familles fondatrices du vallenato.",
+      "fun_fact_nl": "Emiliano Zuleta is hier te gast; die achternaam hoort bij een van de stichtende families van de vallenato.",
+      "isrc": "COC010827434",
+      "uri_deezer": "deezer://track/16341871"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:0fZbwXikuLa4ZFPIHbN3ot",
+      "artist": "Los inquietos del vallenato",
+      "alt_artists": [
+        "Binomio de Oro de América",
+        "Diomedes Díaz",
+        "Maía",
+        "Fanny Lu"
+      ],
+      "title": "Entregame Tu Amor",
+      "fun_fact": "Los Inquietos reformed more than once; every line-up insists it is the one that counts.",
+      "fun_fact_de": "Los Inquietos formierten sich mehrfach neu — jede Besetzung besteht darauf, die eigentliche zu sein.",
+      "fun_fact_es": "Los Inquietos se reformaron más de una vez; cada alineación insiste en que es la que cuenta.",
+      "fun_fact_fr": "Los Inquietos se sont reformés plus d'une fois ; chaque formation soutient être la bonne.",
+      "fun_fact_nl": "Los Inquietos hervormden zich meer dan eens; elke bezetting houdt vol dé bezetting te zijn.",
+      "isrc": "ES7511027507",
+      "uri_deezer": "deezer://track/1255474312"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:3xOKZR7rwQYEx7l5Mc9jQ6",
+      "artist": "Peter Manjarrés, Sergio Luis Rodríguez",
+      "alt_artists": [
+        "Fonseca",
+        "Diomedes Díaz",
+        "ChocQuibTown",
+        "Los Diablitos"
+      ],
+      "title": "Traga'o De Ti",
+      "fun_fact": "Manjarrés is billed as the Caballero del Vallenato, a title the coast hands out sparingly.",
+      "fun_fact_de": "Manjarrés läuft als Caballero del Vallenato — ein Titel, den die Küste sparsam vergibt.",
+      "fun_fact_es": "A Manjarrés lo anuncian como el Caballero del Vallenato, un título que la costa reparte con cuentagotas.",
+      "fun_fact_fr": "Manjarrés est présenté comme le Caballero del Vallenato, un titre que la côte décerne avec parcimonie.",
+      "fun_fact_nl": "Manjarrés wordt aangekondigd als de Caballero del Vallenato, een titel die de kust spaarzaam uitdeelt.",
+      "isrc": "COC010927769",
+      "uri_deezer": "deezer://track/4839674"
+    },
+    {
+      "year": 2012,
+      "uri": "spotify:track:1P4FdxMW67mPPbbM4FBhqR",
+      "artist": "Maía",
+      "alt_artists": [
+        "Cabas",
+        "Maluma",
+        "Otto Serge",
+        "Silvestre Dangond"
+      ],
+      "title": "Niña Bonita",
+      "fun_fact": "Maía sang backing vocals on other people's records for years before this one carried her own name.",
+      "fun_fact_de": "Maía sang jahrelang Backing Vocals auf fremden Platten, bevor dieses Lied ihren eigenen Namen trug.",
+      "fun_fact_es": "Maía cantó coros en discos ajenos durante años antes de que esta canción llevara su propio nombre.",
+      "fun_fact_fr": "Maía a fait les chœurs sur les disques des autres pendant des années avant que ce titre porte son nom.",
+      "fun_fact_nl": "Maía zong jarenlang achtergrondvocalen op andermans platen voordat dit nummer haar eigen naam droeg.",
+      "isrc": "COS010200637",
+      "uri_deezer": "deezer://track/19778021"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:6Al0Kpd4VrRZ0Z4kTThNPa",
+      "artist": "Carlos Vives",
+      "alt_artists": [
+        "Diomedes Díaz",
+        "Shakira",
+        "Bacilos",
+        "Otto Serge"
+      ],
+      "title": "Volví a Nacer",
+      "fun_fact": "Vives returned after years away from music, and this was the record that said so out loud.",
+      "fun_fact_de": "Vives kehrte nach Jahren ohne Musik zurück, und diese Platte sagte es laut.",
+      "fun_fact_es": "Vives volvió tras años alejado de la música, y este fue el disco que lo dijo en voz alta.",
+      "fun_fact_fr": "Vives est revenu après des années loin de la musique, et ce disque le disait haut et fort.",
+      "fun_fact_nl": "Vives keerde terug na jaren zonder muziek, en deze plaat zei dat hardop.",
+      "isrc": "USSD11300003",
+      "uri_deezer": "deezer://track/64029983"
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:0wOSBQBoXmwRBFDUsU6Ywx",
+      "artist": "Carlos Vives, ChocQuibTown",
+      "alt_artists": [
+        "Bacilos",
+        "Binomio de Oro de América",
+        "Juanes",
+        "Peter Manjarrés"
+      ],
+      "title": "El Mar de Sus Ojos (feat. ChocQuibTown)",
+      "fun_fact": "ChocQuibTown come from the Pacific coast, a different Colombia entirely from the accordion one.",
+      "fun_fact_de": "ChocQuibTown kommen von der Pazifikküste — einem ganz anderen Kolumbien als dem des Akkordeons.",
+      "fun_fact_es": "ChocQuibTown vienen de la costa pacífica, una Colombia distinta por completo a la del acordeón.",
+      "fun_fact_fr": "ChocQuibTown viennent de la côte pacifique, une tout autre Colombie que celle de l'accordéon.",
+      "fun_fact_nl": "ChocQuibTown komt van de Pacifische kust, een heel ander Colombia dan dat van het accordeon.",
+      "isrc": "USSD11400026",
+      "uri_deezer": "deezer://track/78068431"
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:59hfezbTqi7I68O4OyLfcR",
+      "artist": "Carlos Vives, Marc Anthony",
+      "alt_artists": [
+        "Maía",
+        "Peter Manjarrés",
+        "Piso 21",
+        "Sebastián Yatra"
+      ],
+      "title": "Cuando Nos Volvamos a Encontrar (feat. Marc Anthony)",
+      "fun_fact": "A Colombian and a New Yorker of Puerto Rican descent, singing over an accordion figure.",
+      "fun_fact_de": "Ein Kolumbianer und ein New Yorker puerto-ricanischer Herkunft, singend über einer Akkordeonfigur.",
+      "fun_fact_es": "Un colombiano y un neoyorquino de origen puertorriqueño, cantando sobre una figura de acordeón.",
+      "fun_fact_fr": "Un Colombien et un New-Yorkais d'origine portoricaine, chantant sur une figure d'accordéon.",
+      "fun_fact_nl": "Een Colombiaan en een New Yorker van Puerto Ricaanse afkomst, zingend over een accordeonfiguur.",
+      "isrc": "USSD11400075",
+      "uri_deezer": "deezer://track/78068432"
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:1zrBvM2YUSrysy3HTyKNFS",
+      "artist": "Fonseca, Cocha Molina",
+      "alt_artists": [
+        "Piso 21",
+        "Cabas",
+        "Diomedes Díaz",
+        "ChocQuibTown"
+      ],
+      "title": "Tres Canciones (La Ventana Marroncita) (feat. Cocha Molina)",
+      "fun_fact": "Cocha Molina is an accordionist from a dynasty of them, which on the coast is how the instrument travels.",
+      "fun_fact_de": "Cocha Molina ist Akkordeonist aus einer Dynastie von Akkordeonisten — an der Küste reist das Instrument so.",
+      "fun_fact_es": "Cocha Molina es acordeonero de una dinastía de acordeoneros, que en la costa es como viaja el instrumento.",
+      "fun_fact_fr": "Cocha Molina est accordéoniste issu d'une dynastie d'accordéonistes, la façon dont l'instrument voyage sur la côte.",
+      "fun_fact_nl": "Cocha Molina is accordeonist uit een dynastie van accordeonisten; zo reist het instrument aan de kust.",
+      "isrc": "QM9F81500022",
+      "uri_deezer": "deezer://track/107970536"
+    },
+    {
+      "year": 2016,
+      "uri": "spotify:track:43it4kot08akLzFIEMhXNN",
+      "artist": "Carlos Vives, Shakira",
+      "alt_artists": [
+        "Shakira",
+        "Peter Manjarrés",
+        "Silvestre Dangond",
+        "Juanes"
+      ],
+      "title": "La Bicicleta",
+      "fun_fact": "Two people from the same Caribbean coast, forty kilometres apart, who had to become famous first.",
+      "fun_fact_de": "Zwei Menschen von derselben Karibikküste, vierzig Kilometer voneinander entfernt — die erst berühmt werden mussten.",
+      "fun_fact_es": "Dos personas de la misma costa caribe, a cuarenta kilómetros la una de la otra, que primero tuvieron que hacerse famosas.",
+      "fun_fact_fr": "Deux personnes de la même côte caraïbe, à quarante kilomètres l'une de l'autre, qui ont dû devenir célèbres d'abord.",
+      "fun_fact_nl": "Twee mensen van dezelfde Caribische kust, veertig kilometer uit elkaar, die eerst beroemd moesten worden.",
+      "isrc": "USSD11600112",
+      "uri_deezer": "deezer://track/420364332"
+    },
+    {
+      "year": 2016,
+      "uri": "spotify:track:3jpqMaJREkmVDYlRvW1qWC",
+      "artist": "Piso 21",
+      "alt_artists": [
+        "Los Diablitos",
+        "Silvestre Dangond",
+        "Otto Serge",
+        "Diomedes Díaz"
+      ],
+      "title": "Me Llamas",
+      "fun_fact": "Piso 21 are from Medellín and named themselves after the flat where they started rehearsing.",
+      "fun_fact_de": "Piso 21 kommen aus Medellín und nannten sich nach der Wohnung, in der sie zu proben begannen.",
+      "fun_fact_es": "Piso 21 son de Medellín y se pusieron el nombre del apartamento donde empezaron a ensayar.",
+      "fun_fact_fr": "Piso 21 viennent de Medellín et se sont nommés d'après l'appartement où ils ont commencé à répéter.",
+      "fun_fact_nl": "Piso 21 komt uit Medellín en noemde zich naar het appartement waar ze begonnen te repeteren.",
+      "isrc": "MXF151600405",
+      "uri_deezer": "deezer://track/137209148"
+    },
+    {
+      "year": 2018,
+      "uri": "spotify:track:6f4UPdDBQONKJBRqwZGjaJ",
+      "artist": "Silvestre Dangond, Nicky Jam",
+      "alt_artists": [
+        "ChocQuibTown",
+        "Juanes",
+        "Cabas",
+        "Diomedes Díaz"
+      ],
+      "title": "Cásate Conmigo",
+      "fun_fact": "Vallenato meeting reggaeton head-on: the accordion stays, the beat comes from somewhere else entirely.",
+      "fun_fact_de": "Vallenato trifft frontal auf Reggaeton: Das Akkordeon bleibt, der Beat kommt von ganz woanders her.",
+      "fun_fact_es": "El vallenato de frente con el reguetón: el acordeón se queda, el ritmo viene de otro lugar por completo.",
+      "fun_fact_fr": "Le vallenato face au reggaeton : l'accordéon reste, le beat vient de tout autre part.",
+      "fun_fact_nl": "Vallenato botst frontaal op reggaeton: het accordeon blijft, de beat komt ergens heel anders vandaan.",
+      "isrc": "USSD11700403",
+      "uri_deezer": "deezer://track/406447452"
+    }
+  ]
+}
