@@ -20,6 +20,7 @@ from custom_components.beatify.const import (
     ERR_NO_SONGS_REMAINING,
     ERR_NOT_ADMIN,
     ERR_UNAUTHORIZED,
+    MIN_PLAYERS,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.serializers import build_state_message
@@ -129,6 +130,21 @@ async def admin_start_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Game already started",
+            }
+        )
+        return
+
+    # #2497: the minimum-player check used to live in GameState.start_game(),
+    # which no production path calls — so a game could be started with a single
+    # player. It belongs here rather than inside start_round(): start_round runs
+    # for every round of every game, while this is a property of *starting* one,
+    # and only here is there a socket to tell the host why nothing happened.
+    if len(game_state.players) < MIN_PLAYERS:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_GAME_NOT_STARTED,
+                "message": f"Need at least {MIN_PLAYERS} players to start",
             }
         )
         return

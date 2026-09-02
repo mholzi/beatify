@@ -23,6 +23,7 @@ from custom_components.beatify.const import (
     ERR_MEDIA_PLAYER_UNAVAILABLE,
     ERR_NO_PLAYABLE_SONGS,
     ERR_NO_PLAYLISTS_SELECTED,
+    MIN_PLAYERS,
     PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEEZER,
@@ -1211,6 +1212,18 @@ class StartGameplayView(BeatifyAdminView):
 
         if game_state.phase != GamePhase.LOBBY:
             return _json_error("Game already started", 409, code="INVALID_PHASE")
+
+        # #2497: the minimum-player floor. It used to live in
+        # GameState.start_game(), which no production path calls, so a game
+        # could be started alone. Enforced at the two places a *user* starts a
+        # game — here and in the websocket admin handler — rather than inside
+        # start_round(), which runs for every round of every game.
+        if len(game_state.players) < MIN_PLAYERS:
+            return _json_error(
+                f"Need at least {MIN_PLAYERS} players to start",
+                409,
+                code="NOT_ENOUGH_PLAYERS",
+            )
 
         # Issue #827: Sudden Death requires >=3 players. Players join the LOBBY
         # *after* create_game (which clears sessions), so the floor can only be
