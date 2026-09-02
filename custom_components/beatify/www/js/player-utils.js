@@ -19,6 +19,7 @@ export var state = {
     hasReactedThisPhase: false,
     currentRoundNumber: 0,
     joinTimeoutId: null,  // #1663: initial-join watchdog timer id
+    joinPending: false,   // #2499: a connect attempt is waiting for its ack
     gameId: new URLSearchParams(window.location.search).get('game'),
     // Connection functions set by core module (avoids circular deps)
     connectWithSession: null,
@@ -272,6 +273,32 @@ export function escapeHtml(text) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
+}
+
+/**
+ * #2499: does this server error mean the join was refused?
+ *
+ * The four codes below are the ones the server answers a join with when it
+ * will not let the player in. It keeps the socket open, so nothing else marks
+ * the attempt as failed.
+ *
+ * The second argument is what makes the decision correct. ``state.playerName``
+ * looks like the obvious signal and is not: it is set optimistically when the
+ * socket opens, before any acknowledgement, so it is already truthy while the
+ * join is still in flight. ``joinPending`` is raised on the connect attempt and
+ * lowered by join_ack / reconnect_ack, so it is true exactly for the window in
+ * which a rejection can arrive. GAME_ENDED reaches both paths and means
+ * different things in each — a refused join, or a game that has just finished
+ * around a player who is already in it.
+ *
+ * @param {string} code - server error code
+ * @param {boolean} joinPending - a connect attempt is waiting for its ack
+ * @returns {boolean}
+ */
+export var JOIN_REJECTED_CODES = ['NAME_TAKEN', 'NAME_INVALID', 'GAME_FULL', 'GAME_ENDED'];
+
+export function isJoinRejection(code, joinPending) {
+    return Boolean(joinPending) && JOIN_REJECTED_CODES.indexOf(code) !== -1;
 }
 
 /**
