@@ -22,6 +22,62 @@ ES = json.loads((I18N / "es.json").read_text(encoding="utf-8"))
 # Word-bounded, so "mano", "piano" and "plano" are untouched.
 BARE_ANO = re.compile(r"\b[Aa]nos?\b")
 
+# The second pass: words whose unaccented spelling is not a Spanish word at all,
+# so seeing one is always a defect and never a legitimate choice. Words where
+# both spellings exist and mean different things — esta/está, tu/tú, como/cómo,
+# mas/más, aun/aún, valida/válida, acabo/acabó, bloqueo/bloqueó — are
+# deliberately absent: only a reader can tell those apart, and a guard that
+# cannot would fail on correct Spanish.
+MUST_CARRY_AN_ACCENT = (
+    "accion",
+    "ahi",
+    "anfitrion",
+    "asegurate",
+    "boton",
+    "campeon",
+    "cancion",
+    "clasificacion",
+    "codigo",
+    "conexion",
+    "configuracion",
+    "continuara",
+    "dias",
+    "dificil",
+    "distribucion",
+    "envie",
+    "esten",
+    "estadisticas",
+    "estandar",
+    "exito",
+    "facil",
+    "grafico",
+    "historico",
+    "increible",
+    "intentalo",
+    "maquina",
+    "musica",
+    "ningun",
+    "ocurrio",
+    "pagina",
+    "pestana",
+    "posicion",
+    "precision",
+    "proxima",
+    "puntuacion",
+    "rapido",
+    "record",
+    "reproduccion",
+    "sacudete",
+    "salon",
+    "seran",
+    "sesion",
+    "solida",
+    "titulo",
+    "todavia",
+    "uniendose",
+)
+BARE_WORD = re.compile(r"\b(" + "|".join(MUST_CARRY_AN_ACCENT) + r")\b", re.IGNORECASE)
+
 
 def _strings(node, path=""):
     if isinstance(node, dict):
@@ -53,3 +109,29 @@ class TestSpanishYearIsSpelledWithTheTilde:
 
     def test_the_scan_reaches_the_whole_file(self):
         assert sum(1 for _ in _strings(ES)) > 500
+
+
+class TestSpanishCarriesItsAccents:
+    """The same file wrote "Puntuacion", "Estadisticas" and "Cancion mas dificil"
+    beside fully accented strings — the accents were dropped by hand, not by
+    policy. 118 strings were corrected; this keeps them corrected."""
+
+    def test_no_string_drops_a_required_accent(self):
+        offenders = []
+        for path, text in _strings(ES):
+            for match in BARE_WORD.finditer(text):
+                offenders.append(f"{path}: {match.group(0)!r} in {text!r}")
+        assert not offenders, "es.json is missing accents:\n" + "\n".join(offenders)
+
+    def test_placeholders_were_not_swept_up(self):
+        """{version}, {min} and friends are tokens, not Spanish — a careless
+        accent pass would rename them and break the interpolation."""
+        for key, expected in (
+            ("admin.updateAvailable", "{version}"),
+            ("analyticsDashboard.pagination", "{current}"),
+            ("wizard.step4.roundsHint", "{min}"),
+        ):
+            node = ES
+            for part in key.split("."):
+                node = node[part]
+            assert expected in node, f"{key}: {node!r}"
