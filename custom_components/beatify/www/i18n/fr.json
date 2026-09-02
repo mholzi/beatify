@@ -1248,7 +1248,7 @@
   },
   "onboarding": {
     "stepLabel": "Étape",
-    "stepOf": "sur 4",
+    "stepOf": "sur",
     "skip": "Ignorer le tour",
     "skipBtn": "Passer",
     "nextBtn": "Suivant",

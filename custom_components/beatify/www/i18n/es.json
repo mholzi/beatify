@@ -1248,7 +1248,7 @@
   },
   "onboarding": {
     "stepLabel": "Paso",
-    "stepOf": "de 4",
+    "stepOf": "de",
     "skip": "Saltar tour",
     "skipBtn": "Saltar",
     "nextBtn": "Siguiente",

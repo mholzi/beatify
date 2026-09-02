@@ -1248,7 +1248,7 @@
   },
   "onboarding": {
     "stepLabel": "Stap",
-    "stepOf": "van 4",
+    "stepOf": "van",
     "skip": "Tour overslaan",
     "skipBtn": "Overslaan",
     "nextBtn": "Volgende",

@@ -85,8 +85,17 @@ function scheduleAutoAdvance() {
 
 /**
  * Render the progress segments for the current step.
+ *
+ * #2500: the total comes from the DOM here, it is no longer baked into the
+ * translated string. The tour read "Step 5 of 4" because the fifth card
+ * arrived with Title & Artist mode and the six ``stepOf`` strings did not.
+ * ``stepOf`` is now the connecting word alone — "of", "von", "de" — and every
+ * number on this header is written from ``totalCards()``, so the count cannot
+ * disagree with the cards again.
+ *
+ * Exported for the #2500 tests.
  */
-function renderProgress() {
+export function renderProgress() {
     var segs = document.querySelectorAll('.tour-wiz-seg');
     for (var i = 0; i < segs.length; i++) {
         segs[i].classList.remove('filled', 'active');
@@ -106,10 +115,15 @@ function renderProgress() {
     if (stepCountEl) {
         stepCountEl.textContent = String(tour.currentIdx + 1);
     }
+    var stepTotalEl = document.getElementById('tour-step-total');
+    if (stepTotalEl) {
+        stepTotalEl.textContent = String(totalCards());
+    }
     // A11y: progress bar value must update so screen readers announce each step
     var progressBar = document.querySelector('.tour-wiz-progress');
     if (progressBar) {
         progressBar.setAttribute('aria-valuenow', String(tour.currentIdx + 1));
+        progressBar.setAttribute('aria-valuemax', String(totalCards()));
     }
 }
 
