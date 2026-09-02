@@ -91,7 +91,17 @@ async def handle_join(
     # add_player() will take its reconnection path.
     was_existing_player = game_state.get_player(name) is not None
 
-    success, error_code = game_state.add_player(name, ws)
+    # #998: claiming the host role requires a logged-in HA user. The check runs
+    # here, before add_player, because add_player needs the answer too: #2501
+    # closed the hole where a join *without* the flag could re-attach to the
+    # host's session by name and inherit is_admin without ever being asked for
+    # a login. Called once — it logs, and the rejection reasons are diagnostics
+    # for the #1120/#1131 Companion saga, not something to duplicate.
+    authed = _is_ha_authenticated(handler, data, ws) if is_admin else False
+
+    success, error_code = game_state.add_player(
+        name, ws, admin_claim_authenticated=authed
+    )
     _LOGGER.debug(
         "[WS-Debug] join add_player name=%r success=%s error_code=%s was_existing=%s",
         name,
@@ -104,10 +114,8 @@ async def handle_join(
         player = game_state.get_player(name)
 
         if is_admin:
-            # #998: claiming the host role requires a logged-in HA user.
             # Normal players join with no auth — only the admin claim is
             # gated. add_player() already ran, so undo it on rejection.
-            authed = _is_ha_authenticated(handler, data, ws)
             _LOGGER.debug(
                 "[WS-Debug] join is_admin=True _is_ha_authenticated=%s",
                 authed,
@@ -248,6 +256,7 @@ async def handle_join(
             ERR_NAME_INVALID: "Please enter a name",
             ERR_GAME_FULL: "Game is full",
             ERR_GAME_ENDED: "This game has ended",
+            ERR_UNAUTHORIZED: "Home Assistant login required to rejoin as host",
         }
         await ws.send_json(
             {

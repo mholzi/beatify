@@ -109,11 +109,23 @@ class PlayerLifecycleMixin:
         return self._player_registry.get_average_score()
 
     def add_player(
-        self, name: str, ws: web.WebSocketResponse
+        self,
+        name: str,
+        ws: web.WebSocketResponse,
+        admin_claim_authenticated: bool = False,
     ) -> tuple[bool, str | None]:
-        """Add a player to the game. Delegates to PlayerRegistry."""
+        """Add a player to the game. Delegates to PlayerRegistry.
+
+        ``admin_claim_authenticated`` (#2501) must be True to re-attach to a
+        session that holds the host role; the default refuses it.
+        """
         return self._player_registry.add_player(
-            name, ws, self.phase, self.get_average_score, self.round
+            name,
+            ws,
+            self.phase,
+            self.get_average_score,
+            self.round,
+            admin_claim_authenticated=admin_claim_authenticated,
         )
 
     def get_player(self, name: str) -> PlayerSession | None:

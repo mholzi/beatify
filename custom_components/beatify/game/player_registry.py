@@ -11,6 +11,7 @@ from ..const import (
     ERR_GAME_FULL,
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
+    ERR_UNAUTHORIZED,
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
     MIN_NAME_LENGTH,
@@ -99,6 +100,7 @@ class PlayerRegistry:
         phase: GamePhase,
         average_score_fn: Callable[[], int],
         current_round: int = 0,
+        admin_claim_authenticated: bool = False,
     ) -> tuple[bool, str | None]:
         """
         Add a player to the game.
@@ -114,6 +116,9 @@ class PlayerRegistry:
             current_round: The round in progress (#1752). Recorded as
                 ``joined_round`` for late joiners so Sudden Death can grant them
                 one grace round (excluded from that round's elimination pool).
+            admin_claim_authenticated: True only when the caller has already
+                verified an HA login for this join (#2501). Required to re-attach
+                to a session whose ``is_admin`` is set — see the fallback below.
 
         Returns:
             (success, error_code) - error_code is None on success
@@ -142,6 +147,22 @@ class PlayerRegistry:
         existing_id = self._name_index.get(name.lower())
         existing_player = self.players.get(existing_id) if existing_id else None
         if existing_player is not None:
+            # #2501 (security): the fallback above matches on a display name,
+            # and the host's name is on the TV for the whole room to read. For
+            # an ordinary player that is a cosmetic risk; for the host it hands
+            # over the ``is_admin`` flag that every admin action is gated on,
+            # and the #998 token check never runs because nothing was declared.
+            # So the fallback stays open for players and closes for a host
+            # session: regaining the host role always goes through HA login,
+            # either as an authenticated ``is_admin`` join or via the
+            # session_id reconnect path, which needs the secret from join_ack.
+            if existing_player.is_admin and not admin_claim_authenticated:
+                _LOGGER.warning(
+                    "Refused name-based reconnect to the host session for %s "
+                    "— no verified Home Assistant login (#2501)",
+                    existing_player.name,
+                )
+                return False, ERR_UNAUTHORIZED
             if not existing_player.connected:
                 existing_player.ws = ws
                 existing_player.connected = True
