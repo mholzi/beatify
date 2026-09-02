@@ -627,6 +627,26 @@ function renderChartBadges(chartInfo) {
         );
     }
 
+    // Eurovision placements live in their own fields (eurovision-winners.json
+    // carries position, points and country for 72 songs). They are not a chart
+    // peak, so they get their own badge instead of being folded into one of the
+    // three above — and they show alongside a chart peak rather than instead of
+    // it, because a song can have both.
+    if (chartInfo.eurovision_position && chartInfo.eurovision_position > 0) {
+        var evCountry = chartInfo.country
+            ? ' <span class="chart-weeks">· ' + escapeHtml(chartInfo.country) + '</span>'
+            : '';
+        var evPoints = chartInfo.eurovision_points
+            ? ' <span class="chart-weeks">· ' + chartInfo.eurovision_points + ' ' + utils.t('reveal.pointsShort') + '</span>'
+            : '';
+        badges.push(
+            '<span class="song-badge song-badge--chart">' +
+            '<span class="song-badge-icon">🏆</span>' +
+            '#' + chartInfo.eurovision_position + ' ' + utils.t('reveal.chartEurovision') + evCountry + evPoints +
+            '</span>'
+        );
+    }
+
     if (chartInfo.uk_peak && chartInfo.uk_peak > 0 && !chartInfo.billboard_peak) {
         badges.push(
             '<span class="song-badge song-badge--chart">' +

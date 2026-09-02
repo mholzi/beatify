@@ -317,6 +317,8 @@
     "chartBillboard": "Billboard Hot 100",
     "chartGerman": "Duitse hitlijsten",
     "chartUK": "UK-hitlijsten",
+    "chartEurovision": "Eurovisie",
+    "pointsShort": "ptn",
     "weeksOnChart": "weken in de hitlijst",
     "weeksShort": "wk",
     "moreAwards": "meer",

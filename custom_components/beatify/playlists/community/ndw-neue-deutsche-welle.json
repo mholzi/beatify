@@ -25,8 +25,8 @@
       ],
       "title": "Major Tom (Völlig losgelöst)",
       "chart_info": {
-        "de_peak": 1,
-        "at_peak": 1
+        "at_peak": 1,
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -62,7 +62,7 @@
       ],
       "title": "Ohne Dich (schlaf' ich heut Nacht nicht ein)",
       "chart_info": {
-        "de_peak": 2
+        "german_peak": 2
       },
       "certifications": [],
       "awards": [],
@@ -100,8 +100,8 @@
       "chart_info": {
         "us_peak": 1,
         "uk_peak": 1,
-        "de_peak": 1,
-        "at_peak": 1
+        "at_peak": 1,
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -137,7 +137,7 @@
       ],
       "title": "Skandal im Sperrbezirk",
       "chart_info": {
-        "de_peak": 1
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -173,8 +173,8 @@
       ],
       "title": "Goldener Reiter",
       "chart_info": {
-        "de_peak": 2,
-        "at_peak": 1
+        "at_peak": 1,
+        "german_peak": 2
       },
       "certifications": [],
       "awards": [],
@@ -210,7 +210,7 @@
       ],
       "title": "Sternenhimmel",
       "chart_info": {
-        "de_peak": 3
+        "german_peak": 3
       },
       "certifications": [],
       "awards": [],
@@ -245,7 +245,6 @@
         "Extrabreit"
       ],
       "title": "Computerliebe (Die Module spielen verrückt)",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Paso Doble's 'Computerliebe' was an early ode to digital romance, predating the internet age. The Vienna duo perfectly captured NDW's fascination with technology and modern alienation.",
@@ -280,8 +279,8 @@
       ],
       "title": "Der Kommissar",
       "chart_info": {
-        "de_peak": 1,
-        "at_peak": 1
+        "at_peak": 1,
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -317,7 +316,7 @@
       ],
       "title": "Terra Titanic",
       "chart_info": {
-        "de_peak": 4
+        "german_peak": 4
       },
       "certifications": [],
       "awards": [],
@@ -354,7 +353,7 @@
       "title": "Das Modell",
       "chart_info": {
         "uk_peak": 1,
-        "de_peak": 25
+        "german_peak": 25
       },
       "certifications": [],
       "awards": [],
@@ -389,7 +388,7 @@
       ],
       "title": "König von Deutschland",
       "chart_info": {
-        "de_peak": 1
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -425,8 +424,8 @@
       ],
       "title": "Ba-Ba Banküberfall",
       "chart_info": {
-        "de_peak": 5,
-        "at_peak": 2
+        "at_peak": 2,
+        "german_peak": 5
       },
       "certifications": [],
       "awards": [],
@@ -462,8 +461,8 @@
       ],
       "title": "Codo (...düse im Sauseschritt)",
       "chart_info": {
-        "de_peak": 1,
-        "at_peak": 1
+        "at_peak": 1,
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -499,7 +498,7 @@
       ],
       "title": "Über sieben Brücken musst du gehn",
       "chart_info": {
-        "de_peak": 4
+        "german_peak": 4
       },
       "certifications": [],
       "awards": [],
@@ -536,7 +535,7 @@
       "title": "Eisbär",
       "chart_info": {
         "ch_peak": 1,
-        "de_peak": 10
+        "german_peak": 10
       },
       "certifications": [],
       "awards": [],
@@ -572,7 +571,7 @@
       ],
       "title": "Hurra, hurra, die Schule brennt",
       "chart_info": {
-        "de_peak": 15
+        "german_peak": 15
       },
       "certifications": [],
       "awards": [],
@@ -608,7 +607,7 @@
       ],
       "title": "Ich will Spaß",
       "chart_info": {
-        "de_peak": 1
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -644,7 +643,7 @@
       ],
       "title": "Taxi nach Paris",
       "chart_info": {
-        "de_peak": 20
+        "german_peak": 20
       },
       "certifications": [],
       "awards": [],
@@ -679,7 +678,6 @@
         "Rio Reiser"
       ],
       "title": "Alt wie ein Baum",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Puhdys' 'Alt wie ein Baum' is a pre-NDW classic from East Germany's most popular rock band. Released in 1976, this timeless ballad became one of the most beloved German rock songs ever.",
@@ -714,8 +712,8 @@
       ],
       "title": "Dschinghis Khan",
       "chart_info": {
-        "de_peak": 5,
-        "eurovision_position": 4
+        "eurovision_position": 4,
+        "german_peak": 5
       },
       "certifications": [],
       "awards": [],
@@ -750,7 +748,6 @@
         "Fehlfarben"
       ],
       "title": "Flieger, grüß mir die Sonne",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Extrabreit's 'Flieger, grüß mir die Sonne' is a militaristic NDW anthem that deliberately played with imagery from the Nazi era — a provocative and controversial artistic choice that sparked debate.",
@@ -784,7 +781,6 @@
         "Grauzone"
       ],
       "title": "Blaue Augen",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Ideal's 'Blaue Augen' is a 1980 post-punk NDW classic from Berlin. The band, with vocalist Annette Humpe, was one of the most critically acclaimed NDW acts and helped define the Berlin sound.",
@@ -818,7 +814,6 @@
         "Karat"
       ],
       "title": "Der blaue Planet",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Karat's 'Der blaue Planet' is a 1982 environmental anthem from East Germany. Unlike most NDW tracks, it carried a serious ecological message about Earth's fragility, making it unique within the genre.",
@@ -852,7 +847,6 @@
         "Münchener Freiheit"
       ],
       "title": "Am Fenster",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "City's 'Am Fenster' is a 1977 East German rock ballad featuring a soaring saxophone that became legendary. Often considered a precursor to NDW, it remains one of the most beloved German rock songs ever recorded.",
@@ -887,7 +881,7 @@
       ],
       "title": "Rosemarie",
       "chart_info": {
-        "de_peak": 10
+        "german_peak": 10
       },
       "certifications": [],
       "awards": [],
@@ -923,7 +917,7 @@
       ],
       "title": "Neue Männer braucht das Land",
       "chart_info": {
-        "de_peak": 8
+        "german_peak": 8
       },
       "certifications": [],
       "awards": [],
@@ -958,7 +952,6 @@
         "Lilli Berlin"
       ],
       "title": "Ein Jahr (Es geht voran)",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Fehlfarben's 'Ein Jahr (Es geht voran)' is one of the most politically charged NDW tracks. The Düsseldorf punk band used irony to critique West German society in the early 1980s.",
@@ -993,7 +986,7 @@
       ],
       "title": "Sonderzug nach Pankow",
       "chart_info": {
-        "de_peak": 5
+        "german_peak": 5
       },
       "certifications": [],
       "awards": [],
@@ -1029,7 +1022,7 @@
       ],
       "title": "Fred vom Jupiter",
       "chart_info": {
-        "de_peak": 18
+        "german_peak": 18
       },
       "certifications": [],
       "awards": [],
@@ -1065,7 +1058,7 @@
       ],
       "title": "Kleine Taschenlampe brenn'",
       "chart_info": {
-        "de_peak": 7
+        "german_peak": 7
       },
       "certifications": [],
       "awards": [],
@@ -1101,7 +1094,7 @@
       ],
       "title": "Tausendmal Du",
       "chart_info": {
-        "de_peak": 3
+        "german_peak": 3
       },
       "certifications": [],
       "awards": [],
@@ -1136,7 +1129,6 @@
         "Markus"
       ],
       "title": "Ich schau' dich an (Peep Peep)",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Spider Murphy Gang's 'Ich schau' dich an (Peep Peep)' continued the Munich band's tradition of playful, Bavarian-flavored pop. The flirtatious energy and catchy hook made it another crowd-pleasing NDW single.",
@@ -1170,7 +1162,6 @@
         "Extrabreit"
       ],
       "title": "Berlin",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Ideal's 'Berlin' is a dark, atmospheric tribute to the divided city. Released in 1980, the song captured the unique tension and creative energy of West Berlin, a hotbed of the NDW and new wave movements.",
@@ -1205,7 +1196,7 @@
       ],
       "title": "Tretboot in Seenot",
       "chart_info": {
-        "de_peak": 13
+        "german_peak": 13
       },
       "certifications": [],
       "awards": [],
@@ -1240,7 +1231,6 @@
         "Markus"
       ],
       "title": "Tri Tra Trullala (Herbergsvater)",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Joachim Witt's 'Tri Tra Trullala' was a playful change of pace from his earlier, more serious NDW work. The children's rhyme in the title masked a more adult, sardonic commentary on conformity.",
@@ -1274,7 +1264,6 @@
         "Döf"
       ],
       "title": "Wissenswertes über Erlangen",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Foyer Des Arts' 'Wissenswertes über Erlangen' is one of NDW's most absurdist songs — a deadpan travelogue about a minor Bavarian town. It perfectly captured NDW's post-Dada sensibility.",
@@ -1308,7 +1297,6 @@
         "Münchener Freiheit"
       ],
       "title": "Jede Stunde",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Karat's 'Jede Stunde' is a deeply personal East German ballad about love and the passage of time. Its simplicity and emotional sincerity stood in contrast to the more flamboyant West German NDW acts.",
@@ -1342,7 +1330,6 @@
         "Hubert Kah"
       ],
       "title": "Am weißen Strand von Helgoland",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Niko's 'Am weißen Strand von Helgoland' is a nostalgic NDW ode to the North Sea island. The wistful longing for escape from everyday life captured a mood shared by many in early 1980s Germany.",
@@ -1376,7 +1363,6 @@
         "Purple Schulz"
       ],
       "title": "Hohe Berge",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Frl. Menke's 'Hohe Berge' continued the Hamburg singer's career after 'Tretboot in Seenot'. The mountain imagery and alpine themes gave the song a distinctive character within the urban NDW scene.",
@@ -1410,7 +1396,6 @@
         "Fehlfarben"
       ],
       "title": "Radio",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Spliff's 'Radio' is a satirical ode to broadcast media from the Berlin band that also spawned Nena. The song's commentary on radio as both escape and propaganda was notably ahead of its time.",
@@ -1444,7 +1429,6 @@
         "Fehlfarben"
       ],
       "title": "Ostberlin - Wahnsinn",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Lilli Berlin's 'Ostberlin - Wahnsinn' captured the absurdity of divided Berlin from a perspective rarely heard in NDW. The song is a rare artifact of the alternative Berlin scene of the early 1980s.",
@@ -1478,7 +1462,6 @@
         "EAV"
       ],
       "title": "Eine Königin mit Rädern untendran",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Foyer Des Arts' 'Eine Königin mit Rädern untendran' continued the group's tradition of cheerfully nonsensical NDW. The whimsical imagery matched NDW's dadaist playfulness perfectly.",
@@ -1512,7 +1495,6 @@
         "Felix De Luxe"
       ],
       "title": "Ich will nicht älter werden",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Bärchen und die Milchbubis' 'Ich will nicht älter werden' is a charming piece of Kindermusik-meets-NDW quirk. The group's whimsical, childlike aesthetic was unique in the NDW landscape.",
@@ -1546,7 +1528,7 @@
       ],
       "title": "Verliebte Jungs",
       "chart_info": {
-        "de_peak": 9
+        "german_peak": 9
       },
       "certifications": [],
       "awards": [],
@@ -1582,9 +1564,9 @@
       ],
       "title": "99 Luftballons",
       "chart_info": {
-        "de_peak": 1,
         "us_peak": 2,
-        "uk_peak": 1
+        "uk_peak": 1,
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -1618,7 +1600,6 @@
         "Grauzone"
       ],
       "title": "Vor all den Jahren",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Stahlnetz's 'Vor all den Jahren' is a melancholic NDW gem from Hamburg. The group's introspective style and atmospheric production made them one of the more artistically ambitious acts of the scene.",
@@ -1653,7 +1634,7 @@
       ],
       "title": "1000 und 1 Nacht",
       "chart_info": {
-        "de_peak": 1
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
@@ -1688,7 +1669,6 @@
         "Fehlfarben"
       ],
       "title": "Carbonara",
-      "chart_info": {},
       "certifications": [],
       "awards": [],
       "fun_fact": "Spliff's 'Carbonara' was a cheerfully absurdist ode to the Italian pasta dish. The Berlin band — whose members included future Nena bandmate Carlo Karges — brought wry humor to the NDW scene.",
@@ -1723,7 +1703,7 @@
       ],
       "title": "Bruttosozialprodukt",
       "chart_info": {
-        "de_peak": 8
+        "german_peak": 8
       },
       "certifications": [],
       "awards": [],
@@ -1759,7 +1739,7 @@
       ],
       "title": "Irgendwie, irgendwo, irgendwann",
       "chart_info": {
-        "de_peak": 1
+        "german_peak": 1
       },
       "certifications": [],
       "awards": [],
