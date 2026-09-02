@@ -1,0 +1,797 @@
+{
+  "name": "Vallenato Clásico",
+  "version": "0.1",
+  "tags": [
+    "vallenato",
+    "latin",
+    "spanish",
+    "colombia",
+    "classics",
+    "accordion"
+  ],
+  "language": "es",
+  "author": "Beatify Team",
+  "added_date": "2026-09-02",
+  "description": "Accordion, caja and guacharaca from Colombia's Caribbean coast — Diomedes Díaz and Jorge Oñate, Los Diablitos and Binomio de Oro, Patricia Teherán and Silvestre Dangond, 1992 to 2020.",
+  "songs": [
+    {
+      "year": 1992,
+      "uri": "spotify:track:3wytE1CpXkaTkkuy8vs0nz",
+      "artist": "Jorge Oñate, Álvaro López",
+      "alt_artists": [
+        "El Gran Martín Elías",
+        "Poncho Zuleta",
+        "Los Inquietos del Vallenato",
+        "Miguel Morales"
+      ],
+      "title": "Una Aventura Mas",
+      "fun_fact": "Oñate was called 'el Jilguero de América', the goldfinch, for a voice that stayed high and clean for forty years.",
+      "fun_fact_de": "Oñate hiess «el Jilguero de América», der Stieglitz — für eine Stimme, die vierzig Jahre hoch und klar blieb.",
+      "fun_fact_es": "A Oñate le decían «el Jilguero de América» por una voz que se mantuvo alta y limpia durante cuarenta años.",
+      "fun_fact_fr": "On appelait Oñate « el Jilguero de América », le chardonneret, pour une voix restée haute et claire quarante ans.",
+      "fun_fact_nl": "Oñate heette 'el Jilguero de América', de putter, vanwege een stem die veertig jaar hoog en helder bleef.",
+      "isrc": "COS019800939",
+      "uri_deezer": "deezer://track/1260967672"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:0RsiDjNVEUlMNDThfYpObB",
+      "artist": "Diomedes Diaz, Juancho Rois",
+      "alt_artists": [
+        "Kaleth Morales",
+        "Felipe Peláez",
+        "Binomio de Oro de América",
+        "Carlos Vives"
+      ],
+      "title": "Ven Conmigo",
+      "fun_fact": "Diomedes Díaz and accordionist Juancho Rois were the pairing of the era; Rois died in a plane crash the next year.",
+      "fun_fact_de": "Diomedes Díaz und der Akkordeonist Juancho Rois waren das Duo der Ära; Rois starb im Jahr darauf bei einem Flugzeugabsturz.",
+      "fun_fact_es": "Diomedes Díaz y el acordeonero Juancho Rois fueron la dupla de la época; Rois murió al año siguiente en un accidente aéreo.",
+      "fun_fact_fr": "Diomedes Díaz et l'accordéoniste Juancho Rois formaient le duo de l'époque ; Rois est mort l'année suivante dans un crash aérien.",
+      "fun_fact_nl": "Diomedes Díaz en accordeonist Juancho Rois waren het duo van dat tijdperk; Rois kwam het jaar daarop om bij een vliegtuigcrash.",
+      "isrc": "COS010400219",
+      "uri_deezer": "deezer://track/13321262"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:5UhuxE4OXSEtbsY7dsd6e9",
+      "artist": "Los Diablitos",
+      "alt_artists": [
+        "Los Inquietos del Vallenato",
+        "Felipe Peláez",
+        "Carlos Vives",
+        "Omar Geles"
+      ],
+      "title": "Donde Estan Esos Amores",
+      "fun_fact": "Los Diablitos formed in Valledupar and spent the nineties as the group every wedding band tried to sound like.",
+      "fun_fact_de": "Los Diablitos gründeten sich in Valledupar und waren in den Neunzigern die Band, nach der jede Hochzeitskapelle klingen wollte.",
+      "fun_fact_es": "Los Diablitos nacieron en Valledupar y pasaron los noventa siendo el grupo que toda banda de bodas quería imitar.",
+      "fun_fact_fr": "Los Diablitos se sont formés à Valledupar et ont passé les années 90 comme le groupe que toute formation de mariage voulait imiter.",
+      "fun_fact_nl": "Los Diablitos ontstonden in Valledupar en waren in de jaren negentig de band waar elke bruiloftsband op wilde lijken.",
+      "isrc": "COC019321636",
+      "uri_deezer": "deezer://track/11108567"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:3xMLWeaF5GejsfnUq9zzn6",
+      "artist": "Los Diablitos",
+      "alt_artists": [
+        "Iván Villazón",
+        "Los Inquietos del Vallenato",
+        "Jorge Celedón",
+        "Silvestre Dangond"
+      ],
+      "title": "Los Caminos De La Vida",
+      "fun_fact": "Omar Geles wrote it about watching his mother struggle, and it became the most covered vallenato song there is.",
+      "fun_fact_de": "Omar Geles schrieb es darüber, wie er seine Mutter kämpfen sah — es wurde das meistgecoverte Vallenato-Lied überhaupt.",
+      "fun_fact_es": "Omar Geles la escribió viendo luchar a su madre, y se convirtió en la canción vallenata más versionada que existe.",
+      "fun_fact_fr": "Omar Geles l'a écrite en voyant sa mère se battre, et elle est devenue la chanson vallenato la plus reprise qui soit.",
+      "fun_fact_nl": "Omar Geles schreef het toen hij zijn moeder zag ploeteren, en het werd het meest gecoverde vallenatolied dat er is.",
+      "isrc": "COC019321633",
+      "uri_deezer": "deezer://track/1401666"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:6OIvXRQYGEhmvLjcYNcV4n",
+      "artist": "Diomedes Diaz, El Cocha Molina",
+      "alt_artists": [
+        "Miguel Morales",
+        "Rafael Orozco",
+        "Los Gigantes del Vallenato",
+        "Jorge Celedón"
+      ],
+      "title": "Sin Medir Distancias",
+      "fun_fact": "The title album of 1994, and the record that made 'el Cacique de La Junta' a household name far beyond Colombia.",
+      "fun_fact_de": "Das Titelalbum von 1994 — die Platte, die «el Cacique de La Junta» weit über Kolumbien hinaus bekannt machte.",
+      "fun_fact_es": "El álbum homónimo de 1994, el disco que hizo del Cacique de La Junta un nombre conocido mucho más allá de Colombia.",
+      "fun_fact_fr": "L'album éponyme de 1994, le disque qui a fait du « Cacique de La Junta » un nom connu bien au-delà de la Colombie.",
+      "fun_fact_nl": "Het titelalbum uit 1994, de plaat die 'el Cacique de La Junta' ver buiten Colombia bekend maakte.",
+      "isrc": "COS019800092",
+      "uri_deezer": "deezer://track/431501782"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:4TTYsYuhG7W8JpM1tBrwwI",
+      "artist": "Los Chiches Vallenatos, Amin Martinez",
+      "alt_artists": [
+        "Kaleth Morales",
+        "Poncho Zuleta",
+        "Patricia Teherán",
+        "Los Diablitos"
+      ],
+      "title": "Tierra Mala",
+      "fun_fact": "A nineties staple from the Magdalena coast, back when a hit travelled on cassette from bus to bus.",
+      "fun_fact_de": "Ein Neunziger-Klassiker von der Magdalena-Küste, als ein Hit noch per Kassette von Bus zu Bus reiste.",
+      "fun_fact_es": "Un clásico noventero de la costa del Magdalena, cuando un éxito viajaba en casete de bus en bus.",
+      "fun_fact_fr": "Un classique des années 90 de la côte du Magdalena, quand un tube voyageait en cassette de bus en bus.",
+      "fun_fact_nl": "Een jarennegentigklassieker van de Magdalenakust, toen een hit op cassette van bus naar bus reisde.",
+      "isrc": "COF019400762",
+      "uri_deezer": "deezer://track/113292858"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:21WuHLELxNjGJ8vdkZMlHe",
+      "artist": "Los Diablitos",
+      "alt_artists": [
+        "Peter Manjarrés",
+        "Poncho Zuleta",
+        "Los Gigantes del Vallenato",
+        "Kaleth Morales"
+      ],
+      "title": "Despues De Tantos Años",
+      "fun_fact": "The accordion, the caja drum and the scraped guacharaca — three instruments, and UNESCO heritage since 2015.",
+      "fun_fact_de": "Akkordeon, Caja-Trommel und die geschabte Guacharaca — drei Instrumente, seit 2015 UNESCO-Kulturerbe.",
+      "fun_fact_es": "Acordeón, caja y guacharaca raspada — tres instrumentos, patrimonio de la UNESCO desde 2015.",
+      "fun_fact_fr": "Accordéon, tambour caja et guacharaca raclée — trois instruments, patrimoine de l'UNESCO depuis 2015.",
+      "fun_fact_nl": "Accordeon, cajatrommel en geschraapte guacharaca — drie instrumenten, sinds 2015 UNESCO-erfgoed.",
+      "isrc": "COC019422066",
+      "uri_deezer": "deezer://track/1441559132"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:3LhmbxCgjX7E7xYBEUn30Y",
+      "artist": "Miguel Morales, Juan David Herrera",
+      "alt_artists": [
+        "Carlos Vives",
+        "Los Diablitos",
+        "Omar Geles",
+        "Peter Manjarrés"
+      ],
+      "title": "Sirena Encantada",
+      "fun_fact": "Morales has one of the highest voices in the genre, which is why his songs sit where the accordion does.",
+      "fun_fact_de": "Morales hat eine der höchsten Stimmen des Genres — deshalb liegen seine Lieder genau dort, wo das Akkordeon spielt.",
+      "fun_fact_es": "Morales tiene una de las voces más altas del género, y por eso sus canciones se sitúan donde está el acordeón.",
+      "fun_fact_fr": "Morales a l'une des voix les plus aiguës du genre, d'où des chansons qui se placent là où joue l'accordéon.",
+      "fun_fact_nl": "Morales heeft een van de hoogste stemmen van het genre, daarom liggen zijn liedjes precies waar het accordeon speelt.",
+      "isrc": "COC019522545",
+      "uri_deezer": "deezer://track/1982972"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:3J8blQzr6m5cPAlrmoHe93",
+      "artist": "Patricia Teherán",
+      "alt_artists": [
+        "Peter Manjarrés",
+        "Jorge Oñate",
+        "Rafael Orozco",
+        "Los Inquietos del Vallenato"
+      ],
+      "title": "Tarde Lo Conoci",
+      "fun_fact": "Patricia Teherán was one of the very few women fronting a vallenato act. She died in a road accident at 26.",
+      "fun_fact_de": "Patricia Teherán war eine der ganz wenigen Frauen an der Spitze einer Vallenato-Gruppe. Sie starb mit 26 bei einem Verkehrsunfall.",
+      "fun_fact_es": "Patricia Teherán fue una de las poquísimas mujeres al frente de un grupo vallenato. Murió en un accidente de carretera a los 26.",
+      "fun_fact_fr": "Patricia Teherán fut l'une des très rares femmes à mener un groupe de vallenato. Elle est morte dans un accident de la route à 26 ans.",
+      "fun_fact_nl": "Patricia Teherán was een van de zeer weinige vrouwen die een vallenatogroep leidde. Ze stierf op haar 26e bij een verkeersongeluk.",
+      "isrc": "COC019421831",
+      "uri_deezer": "deezer://track/11531391"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:00Yl6SEMlkvr0mnZGhvvcr",
+      "artist": "Patricia Teherán, Las Musas Del Vallenato",
+      "alt_artists": [
+        "Miguel Morales",
+        "Los Gigantes del Vallenato",
+        "Jorge Celedón",
+        "Kaleth Morales"
+      ],
+      "title": "Me Dejaste Sin Nada",
+      "fun_fact": "She came out of Las Musas del Vallenato, an all-female group formed to prove the genre had room for one.",
+      "fun_fact_de": "Sie kam von Las Musas del Vallenato, einer reinen Frauengruppe, gegründet als Beweis, dass das Genre Platz dafür hat.",
+      "fun_fact_es": "Salió de Las Musas del Vallenato, un grupo solo de mujeres formado para probar que el género tenía sitio para uno.",
+      "fun_fact_fr": "Elle venait de Las Musas del Vallenato, groupe entièrement féminin fondé pour prouver que le genre avait de la place.",
+      "fun_fact_nl": "Ze kwam uit Las Musas del Vallenato, een vrouwengroep opgericht om te bewijzen dat het genre daar ruimte voor had.",
+      "isrc": "COC019120680",
+      "uri_deezer": "deezer://track/11531388"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:31zIqaMytBKRmFbCK2gnRa",
+      "artist": "Los Gigantes Del Vallenato",
+      "alt_artists": [
+        "Iván Villazón",
+        "Poncho Zuleta",
+        "Omar Geles",
+        "Rafael Orozco"
+      ],
+      "title": "Despues Del Adios",
+      "fun_fact": "The nineties were the decade when vallenato groups started outselling salsa orchestras on the coast.",
+      "fun_fact_de": "Die Neunziger waren das Jahrzehnt, in dem Vallenato-Gruppen an der Küste die Salsa-Orchester überholten.",
+      "fun_fact_es": "Los noventa fueron la década en que los grupos de vallenato superaron en ventas a las orquestas de salsa en la costa.",
+      "fun_fact_fr": "Les années 90 sont la décennie où les groupes de vallenato ont dépassé les orchestres de salsa sur la côte.",
+      "fun_fact_nl": "De jaren negentig waren het decennium waarin vallenatogroepen aan de kust de salsaorkesten voorbijstreefden.",
+      "isrc": "COC019622727",
+      "uri_deezer": "deezer://track/489726042"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:5Q9eoqeg4Z3c8wIsesbkaI",
+      "artist": "Los inquietos del vallenato",
+      "alt_artists": [
+        "Rafael Orozco",
+        "Los Diablitos",
+        "Iván Villazón",
+        "Peter Manjarrés"
+      ],
+      "title": "Quiero Saber De Ti",
+      "fun_fact": "Los Inquietos launched two solo careers at once: Miguel Morales and Nelson Velásquez both sang here first.",
+      "fun_fact_de": "Los Inquietos brachten zwei Solokarrieren auf einmal hervor: Miguel Morales und Nelson Velásquez sangen hier zuerst.",
+      "fun_fact_es": "Los Inquietos lanzaron dos carreras solistas a la vez: Miguel Morales y Nelson Velásquez cantaron aquí primero.",
+      "fun_fact_fr": "Los Inquietos ont lancé deux carrières solo d'un coup : Miguel Morales et Nelson Velásquez y ont d'abord chanté.",
+      "fun_fact_nl": "Los Inquietos lanceerden twee solocarrières tegelijk: Miguel Morales en Nelson Velásquez zongen hier eerst.",
+      "isrc": "COC011308934",
+      "uri_deezer": "deezer://track/104857252"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:6PJlqc0VY2xHVRpdG64O09",
+      "artist": "La Combinación Vallenata, Alex Manga, Morre Romero",
+      "alt_artists": [
+        "Silvestre Dangond",
+        "Omar Geles",
+        "Los Gigantes del Vallenato",
+        "Diomedes Díaz"
+      ],
+      "title": "A Pesar De Todo",
+      "fun_fact": "The group changed singers often enough that fans argue about which line-up counts as the real one.",
+      "fun_fact_de": "Die Gruppe wechselte so oft die Sänger, dass Fans bis heute streiten, welche Besetzung die echte ist.",
+      "fun_fact_es": "El grupo cambió tanto de cantantes que los fans todavía discuten cuál alineación es la verdadera.",
+      "fun_fact_fr": "Le groupe a tant changé de chanteurs que les fans débattent encore de la formation qui compte vraiment.",
+      "fun_fact_nl": "De groep wisselde zo vaak van zangers dat fans nog steeds ruziën over welke bezetting de echte is.",
+      "isrc": "COC019723063",
+      "uri_deezer": "deezer://track/695600752"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:4MaCRgEVU0iP2gIfnCLATK",
+      "artist": "Los inquietos del vallenato",
+      "alt_artists": [
+        "Omar Geles",
+        "Kaleth Morales",
+        "Felipe Peláez",
+        "Silvestre Dangond"
+      ],
+      "title": "Recuérdame",
+      "fun_fact": "Their run in the second half of the nineties is the stretch older listeners mean by 'the good years'.",
+      "fun_fact_de": "Ihre Serie in der zweiten Hälfte der Neunziger ist das, was ältere Hörer «die guten Jahre» nennen.",
+      "fun_fact_es": "Su racha en la segunda mitad de los noventa es lo que los oyentes mayores llaman «los años buenos».",
+      "fun_fact_fr": "Leur série de la seconde moitié des années 90 est ce que les auditeurs plus âgés appellent « les bonnes années ».",
+      "fun_fact_nl": "Hun reeks in de tweede helft van de jaren negentig is wat oudere luisteraars 'de goede jaren' noemen.",
+      "isrc": "COC011308948",
+      "uri_deezer": "deezer://track/106211306"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:4YgZDUVyWaNPwwHFPZFURi",
+      "artist": "Omar Geles",
+      "alt_artists": [
+        "Binomio de Oro de América",
+        "Los Gigantes del Vallenato",
+        "Los Diablitos",
+        "Kaleth Morales"
+      ],
+      "title": "Es Dolor",
+      "fun_fact": "Geles wrote for half the genre before recording for himself; other people's hits paid for his own records.",
+      "fun_fact_de": "Geles schrieb für das halbe Genre, bevor er selbst aufnahm — fremde Hits bezahlten seine eigenen Platten.",
+      "fun_fact_es": "Geles compuso para medio género antes de grabar lo suyo; los éxitos ajenos pagaron sus propios discos.",
+      "fun_fact_fr": "Geles a écrit pour la moitié du genre avant d'enregistrer pour lui ; les tubes des autres ont payé ses disques.",
+      "fun_fact_nl": "Geles schreef voor het halve genre voordat hij zelf opnam; andermans hits betaalden zijn eigen platen.",
+      "isrc": "COC019723192",
+      "uri_deezer": "deezer://track/1442700"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:3G5OfJVzos5wI0L09oyTOW",
+      "artist": "Omar Geles, ESMERALDA OROZCO",
+      "alt_artists": [
+        "Los Diablitos",
+        "Rafael Orozco",
+        "Patricia Teherán",
+        "Silvestre Dangond"
+      ],
+      "title": "Una Hoja en Blanco",
+      "fun_fact": "He died in May 2024, and the tributes were mostly other artists singing songs he had written for them.",
+      "fun_fact_de": "Er starb im Mai 2024 — die Nachrufe bestanden vor allem daraus, dass andere Lieder sangen, die er für sie geschrieben hatte.",
+      "fun_fact_es": "Murió en mayo de 2024, y los homenajes fueron sobre todo otros artistas cantando canciones que él les había escrito.",
+      "fun_fact_fr": "Il est mort en mai 2024, et les hommages furent surtout d'autres artistes chantant des chansons qu'il leur avait écrites.",
+      "fun_fact_nl": "Hij stierf in mei 2024, en de eerbetonen waren vooral andere artiesten die liedjes zongen die hij voor hen had geschreven.",
+      "isrc": "COC019723194",
+      "uri_deezer": "deezer://track/1442732"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:3QorC3YeHA1zuGHwGCmBja",
+      "artist": "Binomio de Oro de América",
+      "alt_artists": [
+        "Jorge Celedón",
+        "El Gran Martín Elías",
+        "Omar Geles",
+        "Carlos Vives"
+      ],
+      "title": "Olvídala",
+      "fun_fact": "Binomio de Oro added 'de América' after singer Rafael Orozco was murdered in 1992 and the group carried on.",
+      "fun_fact_de": "Binomio de Oro ergänzte «de América», nachdem Sänger Rafael Orozco 1992 ermordet wurde und die Gruppe weitermachte.",
+      "fun_fact_es": "Binomio de Oro añadió «de América» después de que el cantante Rafael Orozco fuera asesinado en 1992 y el grupo siguiera.",
+      "fun_fact_fr": "Binomio de Oro a ajouté « de América » après l'assassinat du chanteur Rafael Orozco en 1992, le groupe ayant continué.",
+      "fun_fact_nl": "Binomio de Oro voegde 'de América' toe nadat zanger Rafael Orozco in 1992 werd vermoord en de groep doorging.",
+      "isrc": "COC019823620",
+      "uri_deezer": "deezer://track/1963948"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:3zbrd7Tx6O1Q56rXtMAmqp",
+      "artist": "Jesús Manuel, Víctor Nain, Sagitario",
+      "alt_artists": [
+        "Carlos Vives",
+        "Iván Villazón",
+        "El Gran Martín Elías",
+        "Patricia Teherán"
+      ],
+      "title": "Tres Noches",
+      "fun_fact": "A romantic vallenato from the late nineties, when the genre's ballads were outselling its dance numbers.",
+      "fun_fact_de": "Ein romantischer Vallenato aus den späten Neunzigern, als die Balladen des Genres seine Tanznummern überholten.",
+      "fun_fact_es": "Un vallenato romántico de finales de los noventa, cuando las baladas del género vendían más que sus temas bailables.",
+      "fun_fact_fr": "Un vallenato romantique de la fin des années 90, quand les ballades du genre se vendaient mieux que ses morceaux dansants.",
+      "fun_fact_nl": "Een romantische vallenato uit de late jaren negentig, toen de ballades van het genre beter verkochten dan de dansnummers.",
+      "isrc": "COC019823506",
+      "uri_deezer": "deezer://track/1021507152"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:7336imQWhy7LdINkWc0VEZ",
+      "artist": "Binomio de Oro de América",
+      "alt_artists": [
+        "Carlos Vives",
+        "Felipe Peláez",
+        "El Gran Martín Elías",
+        "Los Gigantes del Vallenato"
+      ],
+      "title": "Realízame mis Sueños",
+      "fun_fact": "Israel Romero's accordion is the constant: he founded the group in 1976 and never left it.",
+      "fun_fact_de": "Israel Romeros Akkordeon ist die Konstante: Er gründete die Gruppe 1976 und verliess sie nie.",
+      "fun_fact_es": "El acordeón de Israel Romero es la constante: fundó el grupo en 1976 y nunca lo dejó.",
+      "fun_fact_fr": "L'accordéon d'Israel Romero est la constante : il a fondé le groupe en 1976 et ne l'a jamais quitté.",
+      "fun_fact_nl": "Het accordeon van Israel Romero is de constante: hij richtte de groep in 1976 op en verliet haar nooit.",
+      "isrc": "COC019924109",
+      "uri_deezer": "deezer://track/1913357"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:012cYVnGDH4YYAyKhSdIus",
+      "artist": "Binomio de Oro de América",
+      "alt_artists": [
+        "Los Inquietos del Vallenato",
+        "Diomedes Díaz",
+        "Jorge Oñate",
+        "Jorge Celedón"
+      ],
+      "title": "Me Vas A Extrañar",
+      "fun_fact": "A farewell song that became a staple at parties where nobody is leaving anybody.",
+      "fun_fact_de": "Ein Abschiedslied, das zum Standard auf Festen wurde, bei denen niemand irgendwen verlässt.",
+      "fun_fact_es": "Una canción de despedida que se volvió fija en fiestas donde nadie está dejando a nadie.",
+      "fun_fact_fr": "Une chanson d'adieu devenue un incontournable des fêtes où personne ne quitte personne.",
+      "fun_fact_nl": "Een afscheidslied dat een vaste waarde werd op feesten waar niemand iemand verlaat.",
+      "isrc": "COC019924107",
+      "uri_deezer": "deezer://track/1963988"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:2jHaeV9nx3KARH8srHZFER",
+      "artist": "Diomedes Diaz, Franco Argüelles",
+      "alt_artists": [
+        "Los Gigantes del Vallenato",
+        "Kaleth Morales",
+        "El Gran Martín Elías",
+        "Jorge Celedón"
+      ],
+      "title": "Ilusiones",
+      "fun_fact": "Diomedes recorded more than thirty albums and is still the voice most Colombians mean when they say vallenato.",
+      "fun_fact_de": "Diomedes nahm über dreissig Alben auf und ist bis heute die Stimme, die die meisten Kolumbianer meinen, wenn sie Vallenato sagen.",
+      "fun_fact_es": "Diomedes grabó más de treinta álbumes y sigue siendo la voz que la mayoría de los colombianos tiene en mente al decir vallenato.",
+      "fun_fact_fr": "Diomedes a enregistré plus de trente albums et reste la voix que la plupart des Colombiens ont en tête en disant vallenato.",
+      "fun_fact_nl": "Diomedes nam meer dan dertig albums op en is nog altijd de stem die de meeste Colombianen bedoelen als ze vallenato zeggen.",
+      "isrc": "COS019900557",
+      "uri_deezer": "deezer://track/13320958"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:2VZDlhQZTvsWIWvX77Kdgi",
+      "artist": "Los Gigantes Del Vallenato",
+      "alt_artists": [
+        "Los Diablitos",
+        "Carlos Vives",
+        "Los Inquietos del Vallenato",
+        "Miguel Morales"
+      ],
+      "title": "Dejando Huellas",
+      "fun_fact": "Vallenato albums of this era were built the same way: four paseos, a merengue, a son, and a puya to finish.",
+      "fun_fact_de": "Vallenato-Alben dieser Zeit waren gleich gebaut: vier Paseos, ein Merengue, ein Son und zum Schluss eine Puya.",
+      "fun_fact_es": "Los álbumes vallenatos de esta época se armaban igual: cuatro paseos, un merengue, un son y una puya para cerrar.",
+      "fun_fact_fr": "Les albums vallenato de cette époque se construisaient pareil : quatre paseos, un merengue, un son et une puya pour finir.",
+      "fun_fact_nl": "Vallenato-albums uit die tijd waren identiek opgebouwd: vier paseos, een merengue, een son en een puya als slot.",
+      "isrc": "COC019923868",
+      "uri_deezer": "deezer://track/489726432"
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:0XWWn8bfpir8M3YHq1h7uJ",
+      "artist": "Los inquietos del vallenato",
+      "alt_artists": [
+        "Los Diablitos",
+        "Carlos Vives",
+        "Silvestre Dangond",
+        "Diomedes Díaz"
+      ],
+      "title": "Nunca Niegues Que Te Amo",
+      "fun_fact": "By the end of the decade the group was big enough that its break-up made the national news.",
+      "fun_fact_de": "Am Ende des Jahrzehnts war die Gruppe so gross, dass ihre Trennung in die landesweiten Nachrichten kam.",
+      "fun_fact_es": "Para el final de la década el grupo era tan grande que su separación llegó a los noticieros nacionales.",
+      "fun_fact_fr": "À la fin de la décennie, le groupe était assez grand pour que sa séparation fasse les journaux nationaux.",
+      "fun_fact_nl": "Aan het eind van het decennium was de groep zo groot dat de breuk het landelijke nieuws haalde.",
+      "isrc": "COC011308930",
+      "uri_deezer": "deezer://track/106660326"
+    },
+    {
+      "year": 2001,
+      "uri": "spotify:track:1PzNTsLotxFs3VFxxB9doX",
+      "artist": "Jorge Celedón, Jimmy Zambrano",
+      "alt_artists": [
+        "Los Gigantes del Vallenato",
+        "Peter Manjarrés",
+        "Binomio de Oro de América",
+        "Patricia Teherán"
+      ],
+      "title": "Por Tu Primer Beso",
+      "fun_fact": "Celedón and accordionist Jimmy Zambrano worked as a fixed pair for years, which in vallenato is a marriage.",
+      "fun_fact_de": "Celedón und der Akkordeonist Jimmy Zambrano arbeiteten jahrelang als festes Paar — im Vallenato ist das eine Ehe.",
+      "fun_fact_es": "Celedón y el acordeonero Jimmy Zambrano trabajaron como dupla fija durante años, que en el vallenato es un matrimonio.",
+      "fun_fact_fr": "Celedón et l'accordéoniste Jimmy Zambrano ont formé un duo fixe pendant des années, ce qui au vallenato est un mariage.",
+      "fun_fact_nl": "Celedón en accordeonist Jimmy Zambrano vormden jarenlang een vast duo, wat in de vallenato een huwelijk is.",
+      "isrc": "COS010100098",
+      "uri_deezer": "deezer://track/57236501"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:6hlmfSjhKSWuZDujvW7p74",
+      "artist": "Jorge Celedón, Jimmy Zambrano",
+      "alt_artists": [
+        "Kaleth Morales",
+        "Omar Geles",
+        "Peter Manjarrés",
+        "Felipe Peláez"
+      ],
+      "title": "Ay Hombe",
+      "fun_fact": "'Ay hombe' is a coastal exclamation for anything from delight to disbelief, and Celedón made it his signature.",
+      "fun_fact_de": "«Ay hombe» ist ein Küsten-Ausruf für alles von Entzücken bis Unglauben — Celedón machte ihn zu seinem Markenzeichen.",
+      "fun_fact_es": "«Ay hombe» es una exclamación costeña que sirve para todo, del gusto a la incredulidad, y Celedón la hizo su sello.",
+      "fun_fact_fr": "« Ay hombe » est une exclamation de la côte qui va du ravissement à l'incrédulité ; Celedón en a fait sa signature.",
+      "fun_fact_nl": "'Ay hombe' is een kustuitroep voor alles van verrukking tot ongeloof, en Celedón maakte er zijn handelsmerk van.",
+      "isrc": "COS010200058",
+      "uri_deezer": "deezer://track/13255682"
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:2QcUxndr7skMMHLElnl4Bo",
+      "artist": "Jose Luis Carrascal",
+      "alt_artists": [
+        "Jorge Oñate",
+        "Miguel Morales",
+        "Iván Villazón",
+        "Felipe Peláez"
+      ],
+      "title": "Como Duele El Frio",
+      "fun_fact": "Vallenato's love songs are almost always about being left, never about leaving — this one keeps to the rule.",
+      "fun_fact_de": "Die Liebeslieder des Vallenato handeln fast immer vom Verlassenwerden, nie vom Verlassen — dieses hält sich daran.",
+      "fun_fact_es": "Las canciones de amor del vallenato casi siempre tratan de que te dejen, nunca de dejar — esta cumple la regla.",
+      "fun_fact_fr": "Les chansons d'amour du vallenato parlent presque toujours d'être quitté, jamais de quitter — celle-ci suit la règle.",
+      "fun_fact_nl": "De liefdesliedjes van de vallenato gaan bijna altijd over verlaten worden, nooit over verlaten — deze houdt zich eraan.",
+      "isrc": "COC010225263",
+      "uri_deezer": "deezer://track/2512993391"
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:39pCrC5AA7xhJb98tqWDgb",
+      "artist": "Jorge Celedón, Jimmy Zambrano",
+      "alt_artists": [
+        "El Gran Martín Elías",
+        "Miguel Morales",
+        "Iván Villazón",
+        "Felipe Peláez"
+      ],
+      "title": "Cuatro Rosas",
+      "fun_fact": "Three years later Celedón and Zambrano won a Latin Grammy — the genre's arrival at the ceremony.",
+      "fun_fact_de": "Drei Jahre später gewannen Celedón und Zambrano einen Latin Grammy — die Ankunft des Genres bei der Verleihung.",
+      "fun_fact_es": "Tres años después Celedón y Zambrano ganaron un Latin Grammy: la llegada del género a la ceremonia.",
+      "fun_fact_fr": "Trois ans plus tard, Celedón et Zambrano remportaient un Latin Grammy — l'arrivée du genre à la cérémonie.",
+      "fun_fact_nl": "Drie jaar later wonnen Celedón en Zambrano een Latin Grammy — de aankomst van het genre op de ceremonie.",
+      "isrc": "COS010400081",
+      "uri_deezer": "deezer://track/57236701"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:5B5V1oyRLS1yVNavjnSwY1",
+      "artist": "Juancho De La Espriella, Silvestre Dangond",
+      "alt_artists": [
+        "Iván Villazón",
+        "Binomio de Oro de América",
+        "Omar Geles",
+        "Diomedes Díaz"
+      ],
+      "title": "Una vez mas",
+      "fun_fact": "De la Espriella is an accordionist, and in vallenato the accordionist gets his name on the record beside the singer.",
+      "fun_fact_de": "De la Espriella ist Akkordeonist — und im Vallenato steht der Akkordeonist mit auf dem Cover, neben dem Sänger.",
+      "fun_fact_es": "De la Espriella es acordeonero, y en el vallenato el acordeonero va en la portada junto al cantante.",
+      "fun_fact_fr": "De la Espriella est accordéoniste, et au vallenato l'accordéoniste figure sur la pochette à côté du chanteur.",
+      "fun_fact_nl": "De la Espriella is accordeonist, en in de vallenato staat de accordeonist mét de zanger op de hoes.",
+      "isrc": "COS010500095",
+      "uri_deezer": "deezer://track/13307180"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:6qvCE9WhoF57af6boMwaOz",
+      "artist": "Kaleth Morales, Andres Herrera",
+      "alt_artists": [
+        "Poncho Zuleta",
+        "Silvestre Dangond",
+        "Iván Villazón",
+        "Los Inquietos del Vallenato"
+      ],
+      "title": "Vivo en el limbo",
+      "fun_fact": "His last album. He died in a car crash at 21, weeks after it appeared, and the nueva ola outlived him.",
+      "fun_fact_de": "Sein letztes Album. Er starb mit 21 bei einem Autounfall, Wochen nach dem Erscheinen — die nueva ola überlebte ihn.",
+      "fun_fact_es": "Su último álbum. Murió en un accidente de auto a los 21, semanas después de que saliera, y la nueva ola lo sobrevivió.",
+      "fun_fact_fr": "Son dernier album. Il est mort dans un accident de voiture à 21 ans, quelques semaines après sa sortie ; la nueva ola lui a survécu.",
+      "fun_fact_nl": "Zijn laatste album. Hij stierf op zijn 21e bij een auto-ongeluk, weken na het verschijnen; de nueva ola overleefde hem.",
+      "isrc": "COS010500007",
+      "uri_deezer": "deezer://track/14927757"
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:7ynTwByYTgs1UsWoQvWdvI",
+      "artist": "Kaleth Morales, Juank Ricardo",
+      "alt_artists": [
+        "Patricia Teherán",
+        "Rafael Orozco",
+        "Carlos Vives",
+        "Los Gigantes del Vallenato"
+      ],
+      "title": "Ella Es Mi Todo",
+      "fun_fact": "Kaleth Morales invented the 'nueva ola' — vallenato with pop chords, aimed at people his own age.",
+      "fun_fact_de": "Kaleth Morales erfand die «nueva ola» — Vallenato mit Pop-Akkorden, gemacht für Leute seines Alters.",
+      "fun_fact_es": "Kaleth Morales inventó la «nueva ola»: vallenato con acordes de pop, dirigido a gente de su edad.",
+      "fun_fact_fr": "Kaleth Morales a inventé la « nueva ola » : du vallenato aux accords pop, destiné à ceux de son âge.",
+      "fun_fact_nl": "Kaleth Morales bedacht de 'nueva ola': vallenato met popakkoorden, gericht op leeftijdsgenoten.",
+      "isrc": "COSO10500162",
+      "uri_deezer": "deezer://track/13322836"
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:2iXtZSokZMtYdnwP8Cp6et",
+      "artist": "Felipe Peláez, Zabaleta",
+      "alt_artists": [
+        "Jorge Celedón",
+        "Miguel Morales",
+        "Peter Manjarrés",
+        "Omar Geles"
+      ],
+      "title": "El Amor Más Grande del Planeta",
+      "fun_fact": "Peláez trained as a doctor before deciding that singing vallenato was the better use of a good memory.",
+      "fun_fact_de": "Peláez studierte Medizin, bevor er entschied, dass Vallenato zu singen die bessere Verwendung eines guten Gedächtnisses ist.",
+      "fun_fact_es": "Peláez estudió medicina antes de decidir que cantar vallenato era mejor uso para una buena memoria.",
+      "fun_fact_fr": "Peláez a fait médecine avant de décider que chanter le vallenato était un meilleur emploi d'une bonne mémoire.",
+      "fun_fact_nl": "Peláez studeerde geneeskunde voordat hij besloot dat vallenato zingen een beter gebruik van een goed geheugen was.",
+      "isrc": "COSO10801045",
+      "uri_deezer": "deezer://track/71784107"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:6oBDyVn7NZIwfDEAqnlRWO",
+      "artist": "Peter Manjarrés, Sergio Luis Rodríguez",
+      "alt_artists": [
+        "Silvestre Dangond",
+        "Omar Geles",
+        "Kaleth Morales",
+        "Iván Villazón"
+      ],
+      "title": "Te Dejé",
+      "fun_fact": "Manjarrés is billed as 'el Caballero del Vallenato', a title the coast hands out sparingly.",
+      "fun_fact_de": "Manjarrés läuft als «el Caballero del Vallenato» — ein Titel, den die Küste sparsam vergibt.",
+      "fun_fact_es": "A Manjarrés lo anuncian como «el Caballero del Vallenato», un título que la costa reparte con cuentagotas.",
+      "fun_fact_fr": "Manjarrés est présenté comme « el Caballero del Vallenato », un titre que la côte décerne avec parcimonie.",
+      "fun_fact_nl": "Manjarrés wordt aangekondigd als 'el Caballero del Vallenato', een titel die de kust spaarzaam uitdeelt.",
+      "isrc": "COC010927729",
+      "uri_deezer": "deezer://track/4839657"
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:6r7r0LzRkw9gQjfQJor6rQ",
+      "artist": "Rolando Ochoa, El Gran Martín Elías",
+      "alt_artists": [
+        "Los Inquietos del Vallenato",
+        "Binomio de Oro de América",
+        "Miguel Morales",
+        "Jorge Celedón"
+      ],
+      "title": "20 Vidas Mas",
+      "fun_fact": "Ochoa is an accordionist who has partnered nearly every big voice of the last twenty years, including this one.",
+      "fun_fact_de": "Ochoa ist ein Akkordeonist, der fast jede grosse Stimme der letzten zwanzig Jahre begleitet hat — auch diese hier.",
+      "fun_fact_es": "Ochoa es un acordeonero que ha acompañado a casi toda voz grande de los últimos veinte años, incluida esta.",
+      "fun_fact_fr": "Ochoa est un accordéoniste qui a accompagné presque toutes les grandes voix des vingt dernières années, celle-ci comprise.",
+      "fun_fact_nl": "Ochoa is een accordeonist die bijna elke grote stem van de laatste twintig jaar heeft begeleid, ook deze.",
+      "isrc": "FRX202111727",
+      "uri_deezer": "deezer://track/1385283342"
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:1O1oiYp892ws9NBdKpGUNj",
+      "artist": "El Gran Martín Elías, Rolando Ochoa",
+      "alt_artists": [
+        "Los Diablitos",
+        "Diomedes Díaz",
+        "Silvestre Dangond",
+        "Poncho Zuleta"
+      ],
+      "title": "El Complemento de Mi Vida",
+      "fun_fact": "Martín Elías was Diomedes Díaz's son and carried the family name into a faster, poppier vallenato.",
+      "fun_fact_de": "Martín Elías war der Sohn von Diomedes Díaz und trug den Familiennamen in einen schnelleren, poppigeren Vallenato.",
+      "fun_fact_es": "Martín Elías era hijo de Diomedes Díaz y llevó el apellido familiar hacia un vallenato más rápido y pop.",
+      "fun_fact_fr": "Martín Elías était le fils de Diomedes Díaz et a porté le nom familial vers un vallenato plus rapide et plus pop.",
+      "fun_fact_nl": "Martín Elías was de zoon van Diomedes Díaz en bracht de familienaam naar een sneller, popperiger vallenato.",
+      "isrc": "COC011128185",
+      "uri_deezer": "deezer://track/61787325"
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:5QdhkDIPHIkQDVylUHmkM1",
+      "artist": "Jean Carlos Centeno, Ronal Urbina",
+      "alt_artists": [
+        "Jorge Celedón",
+        "Miguel Morales",
+        "Felipe Peláez",
+        "Carlos Vives"
+      ],
+      "title": "Siempre Te Esperaré",
+      "fun_fact": "Centeno sang for Los Diablitos before going solo, which is why the phrasing sounds so familiar.",
+      "fun_fact_de": "Centeno sang bei Los Diablitos, bevor er solo ging — daher kommt einem die Phrasierung so bekannt vor.",
+      "fun_fact_es": "Centeno cantó en Los Diablitos antes de lanzarse como solista, y por eso el fraseo suena tan conocido.",
+      "fun_fact_fr": "Centeno a chanté chez Los Diablitos avant sa carrière solo, d'où ce phrasé si familier.",
+      "fun_fact_nl": "Centeno zong bij Los Diablitos voordat hij solo ging, vandaar dat de frasering zo vertrouwd klinkt.",
+      "isrc": "COC011128517",
+      "uri_deezer": "deezer://track/24020291"
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:6eyGmsEahNlvSUZBEa0rRw",
+      "artist": "Silvestre Dangond, Rolando Ochoa",
+      "alt_artists": [
+        "Kaleth Morales",
+        "Los Diablitos",
+        "Peter Manjarrés",
+        "Diomedes Díaz"
+      ],
+      "title": "Loco Paranoico",
+      "fun_fact": "Dangond is the genre's stadium act, and this is the song that turned his concerts into singalongs.",
+      "fun_fact_de": "Dangond ist der Stadion-Act des Genres, und dieses Lied machte seine Konzerte zu Mitsing-Abenden.",
+      "fun_fact_es": "Dangond es el acto de estadio del género, y esta es la canción que convirtió sus conciertos en coros.",
+      "fun_fact_fr": "Dangond est la tête d'affiche des stades du genre, et c'est la chanson qui a transformé ses concerts en chorales.",
+      "fun_fact_nl": "Dangond is de stadionact van het genre, en dit is het lied dat zijn concerten in meezingavonden veranderde.",
+      "isrc": "COSO11300077",
+      "uri_deezer": "deezer://track/67526510"
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:4mGRIaDuszXYCTGZfLjjpA",
+      "artist": "Silvestre Dangond",
+      "alt_artists": [
+        "El Gran Martín Elías",
+        "Patricia Teherán",
+        "Jorge Oñate",
+        "Los Inquietos del Vallenato"
+      ],
+      "title": "Niégame Tres Veces",
+      "fun_fact": "The title borrows from Peter denying Christ three times, which is a lot of weight for a dance record.",
+      "fun_fact_de": "Der Titel leiht sich Petrus' dreifache Verleugnung — reichlich Gewicht für eine Tanzplatte.",
+      "fun_fact_es": "El título toma prestada la triple negación de Pedro, que es mucho peso para un disco bailable.",
+      "fun_fact_fr": "Le titre emprunte au triple reniement de Pierre, ce qui fait beaucoup de poids pour un disque de danse.",
+      "fun_fact_nl": "De titel leent van Petrus die Christus driemaal verloochent, wat veel gewicht is voor een dansplaat.",
+      "isrc": "COSO11400454",
+      "uri_deezer": "deezer://track/90697283"
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:6jD818CoibqddGqCEyhjCy",
+      "artist": "El Gran Martín Elías",
+      "alt_artists": [
+        "Jorge Celedón",
+        "Los Inquietos del Vallenato",
+        "Binomio de Oro de América",
+        "Carlos Vives"
+      ],
+      "title": "Mi Ex",
+      "fun_fact": "Two years after this he died in a road accident at 26, the same age his father's accordionist had been mourned at.",
+      "fun_fact_de": "Zwei Jahre später starb er mit 26 bei einem Verkehrsunfall — so jung wie kaum jemand in diesem Genre alt wird.",
+      "fun_fact_es": "Dos años después murió en un accidente de carretera a los 26, una edad que este género ha llorado demasiadas veces.",
+      "fun_fact_fr": "Deux ans plus tard, il mourait dans un accident de la route à 26 ans, un âge que ce genre a pleuré trop souvent.",
+      "fun_fact_nl": "Twee jaar later kwam hij op zijn 26e om bij een verkeersongeluk, een leeftijd die dit genre te vaak heeft betreurd.",
+      "isrc": "COSO11500348",
+      "uri_deezer": "deezer://track/105183412"
+    },
+    {
+      "year": 2017,
+      "uri": "spotify:track:6RbTILaocvHxdrgLUYS8Mi",
+      "artist": "Grupo Kvrass",
+      "alt_artists": [
+        "Diomedes Díaz",
+        "Peter Manjarrés",
+        "Miguel Morales",
+        "Los Inquietos del Vallenato"
+      ],
+      "title": "Cuando lleguen los millones",
+      "fun_fact": "Kvrass built its following on the coast's party circuit rather than on radio, one open-air dance at a time.",
+      "fun_fact_de": "Kvrass baute sein Publikum nicht im Radio auf, sondern auf dem Fest-Zirkel der Küste — ein Freilufttanz nach dem anderen.",
+      "fun_fact_es": "Kvrass construyó su público en el circuito de fiestas de la costa y no en la radio, un baile al aire libre a la vez.",
+      "fun_fact_fr": "Kvrass s'est fait un public sur le circuit des fêtes de la côte plutôt qu'à la radio, un bal en plein air à la fois.",
+      "fun_fact_nl": "Kvrass bouwde zijn publiek op via het feestcircuit van de kust in plaats van de radio, één openluchtdansfeest per keer.",
+      "isrc": "COC011732269",
+      "uri_deezer": "deezer://track/414935302"
+    },
+    {
+      "year": 2019,
+      "uri": "spotify:track:4HQa0epS8B23YEHqyA2fKr",
+      "artist": "Elder Dayán Díaz, Rolando Ochoa",
+      "alt_artists": [
+        "Los Diablitos",
+        "Rafael Orozco",
+        "Miguel Morales",
+        "Silvestre Dangond"
+      ],
+      "title": "Amantes",
+      "fun_fact": "Another of Diomedes Díaz's sons, and proof that in vallenato the surname is half the career.",
+      "fun_fact_de": "Ein weiterer Sohn von Diomedes Díaz — und der Beleg, dass im Vallenato der Nachname die halbe Karriere ist.",
+      "fun_fact_es": "Otro de los hijos de Diomedes Díaz, y la prueba de que en el vallenato el apellido es media carrera.",
+      "fun_fact_fr": "Un autre fils de Diomedes Díaz, et la preuve qu'au vallenato le nom de famille fait la moitié de la carrière.",
+      "fun_fact_nl": "Nog een zoon van Diomedes Díaz, en het bewijs dat in de vallenato de achternaam de halve carrière is.",
+      "isrc": "COC011933298",
+      "uri_deezer": "deezer://track/712895702"
+    },
+    {
+      "year": 2020,
+      "uri": "spotify:track:58sCyRSFBV0m60kbV9rtp9",
+      "artist": "Silvestre Dangond",
+      "alt_artists": [
+        "Los Diablitos",
+        "Diomedes Díaz",
+        "Patricia Teherán",
+        "Kaleth Morales"
+      ],
+      "title": "Las Locuras Mías",
+      "fun_fact": "By 2020 Dangond was filling arenas outside Colombia, which no vallenato singer had reliably managed before.",
+      "fun_fact_de": "2020 füllte Dangond Arenen ausserhalb Kolumbiens — was vor ihm kein Vallenato-Sänger verlässlich geschafft hatte.",
+      "fun_fact_es": "Para 2020 Dangond llenaba arenas fuera de Colombia, algo que ningún vallenatero había logrado de forma constante.",
+      "fun_fact_fr": "En 2020, Dangond remplissait des salles hors de Colombie, ce qu'aucun chanteur de vallenato n'avait réussi durablement.",
+      "fun_fact_nl": "In 2020 vulde Dangond zalen buiten Colombia, iets wat geen vallenatozanger eerder betrouwbaar lukte.",
+      "isrc": "USSD12000513",
+      "uri_deezer": "deezer://track/1111735572"
+    }
+  ]
+}
