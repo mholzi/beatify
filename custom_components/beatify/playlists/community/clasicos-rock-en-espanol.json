@@ -1,0 +1,759 @@
+{
+  "name": "Clásicos del Rock en Español",
+  "version": "1.0",
+  "tags": [
+    "rock",
+    "spanish",
+    "latin",
+    "80s",
+    "90s",
+    "classics"
+  ],
+  "language": "es",
+  "author": "Beatify Team",
+  "added_date": "2026-09-02",
+  "description": "Rock en español from Madrid to Mendoza — Hombres G and Duncan Dhu, Soda Stereo and Los Fabulosos Cadillacs, Los Prisioneros, Aterciopelados, Caifanes and Maná, 1984 to 1998.",
+  "songs": [
+    {
+      "year": 1985,
+      "uri": "spotify:track:5kYpgh4WVAdpax6Y7QQArZ",
+      "artist": "Hombres G",
+      "alt_artists": [
+        "Duncan Dhu",
+        "La Unión",
+        "Nacha Pop",
+        "Radio Futura"
+      ],
+      "title": "Devuélveme a mi chica",
+      "fun_fact": "Everyone knows it by the line the crowd shouts back — sufre mamón — rather than by its actual title.",
+      "fun_fact_de": "Jeder kennt das Lied über die Zeile, die das Publikum zurückbrüllt — sufre mamón — und nicht über seinen Titel.",
+      "fun_fact_es": "Todo el mundo la conoce por la línea que corea el público, sufre mamón, y no por su título real.",
+      "fun_fact_fr": "Tout le monde la connaît par la phrase que le public hurle en retour, sufre mamón, et pas par son vrai titre.",
+      "fun_fact_nl": "Iedereen kent het door de zin die het publiek terugbrult — sufre mamón — en niet door de echte titel.",
+      "isrc": "ES5018572005",
+      "uri_deezer": "deezer://track/14932729"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:12bFEh5jNHYzOSqMehtDEq",
+      "artist": "Hombres G",
+      "alt_artists": [
+        "Duncan Dhu",
+        "Los Toreros Muertos",
+        "Nacha Pop",
+        "Alaska y Dinarama"
+      ],
+      "title": "Marta tiene un marcapasos",
+      "fun_fact": "The title track of an album named after Burt Lancaster — La cagaste... Burt Lancaster — which is a line from a dubbed film, not a reference to the actor's work.",
+      "fun_fact_de": "Vom Album, das nach Burt Lancaster benannt ist — La cagaste... Burt Lancaster — nach einer Zeile aus einer Synchronfassung, nicht nach dem Werk des Schauspielers.",
+      "fun_fact_es": "Del álbum bautizado con el nombre de Burt Lancaster, La cagaste... Burt Lancaster, tomado de una frase de doblaje y no de su filmografía.",
+      "fun_fact_fr": "De l'album nommé d'après Burt Lancaster, La cagaste... Burt Lancaster, tiré d'une réplique de doublage et non de sa filmographie.",
+      "fun_fact_nl": "Van het album vernoemd naar Burt Lancaster — La cagaste... Burt Lancaster — naar een zin uit een nasynchronisatie, niet naar zijn werk.",
+      "isrc": "ES5018672005",
+      "uri_deezer": "deezer://track/814665"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:7BFkTU3ChEuLpbeVZOKvYr",
+      "artist": "Hombres G",
+      "alt_artists": [
+        "Duncan Dhu",
+        "Mecano",
+        "La Unión",
+        "Los Secretos"
+      ],
+      "title": "Suéltate el pelo",
+      "fun_fact": "The band made a film of the same name, and this is its title song — Spanish pop of the eighties at its most commercial.",
+      "fun_fact_de": "Die Band drehte einen gleichnamigen Film, und das hier ist dessen Titelsong — spanischer Achtziger-Pop in seiner kommerziellsten Form.",
+      "fun_fact_es": "El grupo rodó una película con el mismo nombre, y esta es su canción principal: el pop español de los ochenta en su faceta más comercial.",
+      "fun_fact_fr": "Le groupe a tourné un film du même nom, et voici sa chanson-titre : la pop espagnole des années quatre-vingt dans sa version la plus commerciale.",
+      "fun_fact_nl": "De band maakte een gelijknamige film, en dit is het titelnummer — Spaanse jarentachtigpop op zijn commercieelst.",
+      "isrc": "ES5018872005",
+      "uri_deezer": "deezer://track/814803"
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:26hcO3f7yZNuOTQzwl1isj",
+      "artist": "Hombres G",
+      "alt_artists": [
+        "Duncan Dhu",
+        "Nacha Pop",
+        "La Unión",
+        "Los Secretos"
+      ],
+      "title": "Venezia",
+      "fun_fact": "From the same 1985 debut as Devuélveme a mi chica, recorded when the band were barely out of their teens.",
+      "fun_fact_de": "Vom selben Debütalbum von 1985 wie Devuélveme a mi chica, aufgenommen, als die Band kaum den Teenagerjahren entwachsen war.",
+      "fun_fact_es": "Del mismo álbum debut de 1985 que Devuélveme a mi chica, grabado cuando el grupo apenas salía de la adolescencia.",
+      "fun_fact_fr": "Du même premier album de 1985 que Devuélveme a mi chica, enregistré quand le groupe sortait à peine de l'adolescence.",
+      "fun_fact_nl": "Van hetzelfde debuutalbum uit 1985 als Devuélveme a mi chica, opgenomen toen de band net de tienerjaren ontgroeid was.",
+      "isrc": "ES5018572000",
+      "uri_deezer": "deezer://track/3918195"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:4bus2q9CQeh0c4qboNWJTz",
+      "artist": "Los Toreros Muertos",
+      "alt_artists": [
+        "Hombres G",
+        "Siniestro Total",
+        "Kaka de Luxe",
+        "Alaska y Dinarama"
+      ],
+      "title": "Yo No Me Llamo Javier",
+      "fun_fact": "A whole song built on denying a name — the joke is that the denial keeps repeating the name it denies.",
+      "fun_fact_de": "Ein ganzes Lied darüber, einen Namen zu bestreiten — der Witz ist, dass das Bestreiten den Namen unablässig wiederholt.",
+      "fun_fact_es": "Una canción entera construida sobre negar un nombre: la gracia está en que la negación repite sin parar el nombre que niega.",
+      "fun_fact_fr": "Une chanson entière bâtie sur le déni d'un prénom : la blague, c'est que le déni répète sans cesse le prénom qu'il nie.",
+      "fun_fact_nl": "Een heel nummer gebouwd op het ontkennen van een naam — de grap is dat de ontkenning die naam blijft herhalen.",
+      "isrc": "ES5028600142",
+      "uri_deezer": "deezer://track/93888288"
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:3UIENhLRdFIOuRan92cAQu",
+      "artist": "Duncan Dhu",
+      "alt_artists": [
+        "Hombres G",
+        "La Unión",
+        "Nacha Pop",
+        "Los Secretos"
+      ],
+      "title": "En algún lugar",
+      "fun_fact": "From El grito del tiempo, the album that took the Basque trio out of the indie circuit and onto national radio.",
+      "fun_fact_de": "Vom Album El grito del tiempo, mit dem das baskische Trio aus dem Indie-Zirkel ins landesweite Radio kam.",
+      "fun_fact_es": "De El grito del tiempo, el álbum que sacó al trío vasco del circuito independiente y lo llevó a la radio nacional.",
+      "fun_fact_fr": "Extrait de El grito del tiempo, l'album qui a fait sortir le trio basque du circuit indépendant vers les radios nationales.",
+      "fun_fact_nl": "Van El grito del tiempo, het album dat het Baskische trio uit het indiecircuit naar de landelijke radio bracht.",
+      "isrc": "ES5018760000",
+      "uri_deezer": "deezer://track/674813"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:6U24wat60mMB1CIq4mMORW",
+      "artist": "Duncan Dhu",
+      "alt_artists": [
+        "Hombres G",
+        "La Unión",
+        "Los Secretos",
+        "Nacha Pop"
+      ],
+      "title": "A tu lado",
+      "fun_fact": "From Piedras, recorded years after the band's eighties peak and their last widely heard single.",
+      "fun_fact_de": "Vom Album Piedras, Jahre nach der Hochzeit der Achtziger aufgenommen — die letzte breit gehörte Single der Band.",
+      "fun_fact_es": "De Piedras, grabado años después del apogeo ochentero del grupo y su última canción de amplia difusión.",
+      "fun_fact_fr": "Extrait de Piedras, enregistré des années après l'apogée des années quatre-vingt et dernier single largement diffusé.",
+      "fun_fact_nl": "Van Piedras, jaren na het hoogtepunt in de jaren tachtig opgenomen en hun laatste breed gehoorde single.",
+      "isrc": "ES5019460010",
+      "uri_deezer": "deezer://track/3894270"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:3M1H1CWjrSq7nxABHc8EXv",
+      "artist": "La Unión",
+      "alt_artists": [
+        "Hombres G",
+        "Mecano",
+        "Nacha Pop",
+        "Alaska y Dinarama"
+      ],
+      "title": "Lobo-hombre en París",
+      "fun_fact": "The first single from the band's first album, and its werewolf comes from a Boris Vian short story rather than a horror film.",
+      "fun_fact_de": "Die erste Single des ersten Albums — und der Werwolf darin stammt aus einer Erzählung von Boris Vian, nicht aus einem Horrorfilm.",
+      "fun_fact_es": "El primer sencillo del primer álbum, y su lobo-hombre viene de un relato de Boris Vian, no de una película de terror.",
+      "fun_fact_fr": "Le premier single du premier album, et son loup-garou vient d'une nouvelle de Boris Vian, pas d'un film d'horreur.",
+      "fun_fact_nl": "De eerste single van het eerste album, en de weerwolf komt uit een kort verhaal van Boris Vian, niet uit een horrorfilm.",
+      "isrc": "ES5159401001",
+      "uri_deezer": "deezer://track/3899862"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:2LsbizbOeNa4x6qsi2jAMb",
+      "artist": "Jarabe De Palo",
+      "alt_artists": [
+        "Hombres G",
+        "Jarabe de Palo",
+        "Café Quijano",
+        "Los Rodríguez"
+      ],
+      "title": "La flaca",
+      "fun_fact": "Pau Donés wrote it after a trip to Cuba, and it became the debut single that named the album and the band's whole career.",
+      "fun_fact_de": "Pau Donés schrieb es nach einer Kubareise; die Debütsingle gab dem Album den Namen und der ganzen Laufbahn die Richtung.",
+      "fun_fact_es": "Pau Donés la escribió tras un viaje a Cuba, y el sencillo debut acabó dando nombre al álbum y rumbo a toda su carrera.",
+      "fun_fact_fr": "Pau Donés l'a écrite après un voyage à Cuba ; ce premier single a donné son nom à l'album et sa direction à toute la carrière.",
+      "fun_fact_nl": "Pau Donés schreef het na een reis naar Cuba; de debuutsingle gaf het album zijn naam en de hele carrière zijn richting.",
+      "isrc": "ES5039600004",
+      "uri_deezer": "deezer://track/3092625"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:2lpIh6Gr6HYjg1CFBaucS5",
+      "artist": "Soda Stereo",
+      "alt_artists": [
+        "Los Fabulosos Cadillacs",
+        "Virus",
+        "Charly García",
+        "Los Prisioneros"
+      ],
+      "title": "De Música Ligera - Remasterizado 2007",
+      "fun_fact": "The band closed both their 1997 farewell concert and their 2007 reunion with it — the same song ended the story twice.",
+      "fun_fact_de": "Die Band beendete damit sowohl ihr Abschiedskonzert 1997 als auch die Wiedervereinigung 2007 — derselbe Song schloss die Geschichte zweimal.",
+      "fun_fact_es": "El grupo cerró con ella tanto su concierto de despedida de 1997 como el reencuentro de 2007: la misma canción terminó la historia dos veces.",
+      "fun_fact_fr": "Le groupe a clôturé avec elle son concert d'adieu de 1997 et ses retrouvailles de 2007 : la même chanson a fini l'histoire deux fois.",
+      "fun_fact_nl": "De band sloot er zowel het afscheidsconcert van 1997 als de reünie van 2007 mee af — hetzelfde nummer beëindigde het verhaal twee keer.",
+      "isrc": "ARFSB0700930",
+      "uri_deezer": "deezer://track/13247459"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:71awpJoi5bqGMBrTkHDDoL",
+      "artist": "Soda Stereo",
+      "alt_artists": [
+        "Los Fabulosos Cadillacs",
+        "Virus",
+        "Charly García",
+        "Sumo"
+      ],
+      "title": "Persiana Americana - Remasterizado 2007",
+      "fun_fact": "From Signos, the record on which the trio stopped sounding like a new-wave band and started sounding like themselves.",
+      "fun_fact_de": "Vom Album Signos, mit dem das Trio aufhörte, nach New Wave zu klingen, und anfing, nach sich selbst zu klingen.",
+      "fun_fact_es": "De Signos, el disco en el que el trío dejó de sonar a new wave y empezó a sonar a sí mismo.",
+      "fun_fact_fr": "Extrait de Signos, le disque où le trio a cessé de sonner new wave pour sonner comme lui-même.",
+      "fun_fact_nl": "Van Signos, de plaat waarop het trio ophield als newwaveband te klinken en zichzelf werd.",
+      "isrc": "ARFSB0700903",
+      "uri_deezer": "deezer://track/13247454"
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:3uMYq07Kj5m564OQwdSCrD",
+      "artist": "Soda Stereo",
+      "alt_artists": [
+        "Los Fabulosos Cadillacs",
+        "Charly García",
+        "Virus",
+        "Sumo"
+      ],
+      "title": "Cuando Pase El Temblor - Remasterizado 2007",
+      "fun_fact": "From Nada Personal, the second album — the andean drum pattern under it was unusual enough in 1985 to sound like a statement.",
+      "fun_fact_de": "Vom zweiten Album Nada Personal — das andine Trommelmuster darunter war 1985 ungewöhnlich genug, um wie ein Bekenntnis zu klingen.",
+      "fun_fact_es": "De Nada Personal, el segundo álbum: el patrón de percusión andina que lo sostiene era lo bastante raro en 1985 como para sonar a declaración.",
+      "fun_fact_fr": "Extrait de Nada Personal, le deuxième album : le motif de percussion andine qui le porte était assez inhabituel en 1985 pour sonner comme une déclaration.",
+      "fun_fact_nl": "Van Nada Personal, het tweede album — het Andes-slagwerkpatroon eronder was in 1985 ongewoon genoeg om als statement te klinken.",
+      "isrc": "ARFSB0700891",
+      "uri_deezer": "deezer://track/13247451"
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:7J2885UBOaG6x3LLkp2YGf",
+      "artist": "Soda Stereo",
+      "alt_artists": [
+        "Los Fabulosos Cadillacs",
+        "Virus",
+        "Sumo",
+        "Charly García"
+      ],
+      "title": "En La Ciudad De La Furia - Remasterizado 2007",
+      "fun_fact": "Doble Vida was recorded in New York with Carlos Alomar, who had played guitar for David Bowie, producing.",
+      "fun_fact_de": "Doble Vida entstand in New York, produziert von Carlos Alomar, der zuvor bei David Bowie Gitarre gespielt hatte.",
+      "fun_fact_es": "Doble Vida se grabó en Nueva York con la producción de Carlos Alomar, que había sido guitarrista de David Bowie.",
+      "fun_fact_fr": "Doble Vida a été enregistré à New York, produit par Carlos Alomar, ancien guitariste de David Bowie.",
+      "fun_fact_nl": "Doble Vida werd in New York opgenomen, geproduceerd door Carlos Alomar, ooit gitarist bij David Bowie.",
+      "isrc": "ARF039600760",
+      "uri_deezer": "deezer://track/4095498"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:7d4pdMym8ZBOgf1oVPTiPb",
+      "artist": "Los Fabulosos Cadillacs",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Auténticos Decadentes",
+        "Todos Tus Muertos",
+        "Attaque 77"
+      ],
+      "title": "Matador - Remasterizado 2008",
+      "fun_fact": "It won an MTV Video Award in 1994 and is about the murder of the Argentine poet and activist Rodolfo Walsh.",
+      "fun_fact_de": "Der Song gewann 1994 einen MTV Video Award und handelt vom Mord am argentinischen Schriftsteller und Aktivisten Rodolfo Walsh.",
+      "fun_fact_es": "Ganó un MTV Video Award en 1994 y habla del asesinato del escritor y militante argentino Rodolfo Walsh.",
+      "fun_fact_fr": "Il a remporté un MTV Video Award en 1994 et parle de l'assassinat de l'écrivain et militant argentin Rodolfo Walsh.",
+      "fun_fact_nl": "Het won in 1994 een MTV Video Award en gaat over de moord op de Argentijnse schrijver en activist Rodolfo Walsh.",
+      "isrc": "ARFSB0800334",
+      "uri_deezer": "deezer://track/6686670"
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:198qSChSMQFuSimdeeY9gK",
+      "artist": "Los Fabulosos Cadillacs",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Auténticos Decadentes",
+        "Celia Cruz",
+        "Todos Tus Muertos"
+      ],
+      "title": "Vasos Vacíos - Remasterizado 2008",
+      "fun_fact": "A duet with Celia Cruz, recorded when the Cuban salsa singer was nearly seventy and the band barely thirty.",
+      "fun_fact_de": "Ein Duett mit Celia Cruz, aufgenommen, als die kubanische Salsa-Sängerin fast siebzig war und die Band kaum dreißig.",
+      "fun_fact_es": "Un dueto con Celia Cruz, grabado cuando la cantante cubana rozaba los setenta y el grupo apenas los treinta.",
+      "fun_fact_fr": "Un duo avec Celia Cruz, enregistré quand la chanteuse cubaine frôlait les soixante-dix ans et le groupe à peine trente.",
+      "fun_fact_nl": "Een duet met Celia Cruz, opgenomen toen de Cubaanse salsazangeres bijna zeventig was en de band nauwelijks dertig.",
+      "isrc": "ARF100100531",
+      "uri_deezer": "deezer://track/6686072"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:5nofWp3plvxYX1xgHpe4fi",
+      "artist": "Los Fabulosos Cadillacs",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Auténticos Decadentes",
+        "Attaque 77",
+        "Todos Tus Muertos"
+      ],
+      "title": "Mal Bicho - Remasterizado 2008",
+      "fun_fact": "Rey Azúcar was produced by Tina Weymouth and Chris Frantz of Talking Heads, which is where the album's tighter groove comes from.",
+      "fun_fact_de": "Rey Azúcar wurde von Tina Weymouth und Chris Frantz von den Talking Heads produziert — daher der straffere Groove des Albums.",
+      "fun_fact_es": "Rey Azúcar fue producido por Tina Weymouth y Chris Frantz, de Talking Heads, de ahí el groove más ceñido del disco.",
+      "fun_fact_fr": "Rey Azúcar a été produit par Tina Weymouth et Chris Frantz de Talking Heads, d'où le groove plus serré de l'album.",
+      "fun_fact_nl": "Rey Azúcar werd geproduceerd door Tina Weymouth en Chris Frantz van Talking Heads — vandaar de strakkere groove.",
+      "isrc": "ARFSB0800352",
+      "uri_deezer": "deezer://track/6686599"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:41MfyUSxQoo1BgIsNj8eDS",
+      "artist": "Los Fabulosos Cadillacs",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Auténticos Decadentes",
+        "Todos Tus Muertos",
+        "Attaque 77"
+      ],
+      "title": "Manuel Santillán, el León (Versión Reggae) - Remasterizado 2008",
+      "fun_fact": "From El León, the album where the band's ska turned into something slower and heavier.",
+      "fun_fact_de": "Vom Album El León, auf dem der Ska der Band langsamer und schwerer wurde.",
+      "fun_fact_es": "De El León, el álbum en el que el ska del grupo se volvió más lento y más pesado.",
+      "fun_fact_fr": "Extrait de El León, l'album où le ska du groupe est devenu plus lent et plus lourd.",
+      "fun_fact_nl": "Van El León, het album waarop de ska van de band trager en zwaarder werd.",
+      "isrc": "ARFSB0800319",
+      "uri_deezer": "deezer://track/6686677"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:6Pur3hWy6Nzc27ilmsp5HA",
+      "artist": "Los Enanitos Verdes",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Fabulosos Cadillacs",
+        "Maná",
+        "Caifanes"
+      ],
+      "title": "Lamento Boliviano",
+      "fun_fact": "Big Bang carried the band out of Argentina and across the continent; this is the song that did the carrying.",
+      "fun_fact_de": "Big Bang trug die Band über Argentinien hinaus durch den ganzen Kontinent — und dieser Song war es, der trug.",
+      "fun_fact_es": "Big Bang sacó al grupo de Argentina y lo llevó por todo el continente; esta es la canción que lo cargó.",
+      "fun_fact_fr": "Big Bang a porté le groupe hors d'Argentine à travers tout le continent ; c'est cette chanson qui l'a porté.",
+      "fun_fact_nl": "Big Bang bracht de band buiten Argentinië over het hele continent — en dit is het nummer dat dat deed.",
+      "isrc": "ARF049400245",
+      "uri_deezer": "deezer://track/3538068"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:1qvY1z3Wm3sAYeHfPTnrbI",
+      "artist": "Los Enanitos Verdes",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Fabulosos Cadillacs",
+        "Virus",
+        "Charly García"
+      ],
+      "title": "La Muralla Verde",
+      "fun_fact": "From Contrarreloj, the second album, recorded in Mendoza long before the band were known outside Argentina.",
+      "fun_fact_de": "Vom zweiten Album Contrarreloj, aufgenommen in Mendoza, lange bevor die Band ausserhalb Argentiniens bekannt war.",
+      "fun_fact_es": "De Contrarreloj, el segundo álbum, grabado en Mendoza mucho antes de que el grupo fuera conocido fuera de Argentina.",
+      "fun_fact_fr": "Extrait de Contrarreloj, le deuxième album, enregistré à Mendoza bien avant que le groupe soit connu hors d'Argentine.",
+      "fun_fact_nl": "Van Contrarreloj, het tweede album, opgenomen in Mendoza lang voordat de band buiten Argentinië bekend was.",
+      "isrc": "ARF109400173",
+      "uri_deezer": "deezer://track/6080021"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:0jIbByLdRl02nWKmeA6Dgv",
+      "artist": "Los Enanitos Verdes",
+      "alt_artists": [
+        "Soda Stereo",
+        "Maná",
+        "Caifanes",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Mi Primer Dia Sin Ti",
+      "fun_fact": "From the same 1994 album as Lamento Boliviano, and the two singles ran in the charts almost side by side.",
+      "fun_fact_de": "Vom selben Album von 1994 wie Lamento Boliviano — die beiden Singles liefen fast nebeneinander in den Charts.",
+      "fun_fact_es": "Del mismo álbum de 1994 que Lamento Boliviano, y los dos sencillos corrieron por las listas casi a la par.",
+      "fun_fact_fr": "Du même album de 1994 que Lamento Boliviano, et les deux singles ont couru les classements presque côte à côte.",
+      "fun_fact_nl": "Van hetzelfde album uit 1994 als Lamento Boliviano; beide singles liepen bijna gelijktijdig in de hitlijsten.",
+      "isrc": "ARF049400340",
+      "uri_deezer": "deezer://track/3538021"
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:4BlMZN5TUA3O1NbtnMZOEh",
+      "artist": "Los Enanitos Verdes",
+      "alt_artists": [
+        "Soda Stereo",
+        "Virus",
+        "Los Fabulosos Cadillacs",
+        "Charly García"
+      ],
+      "title": "El Extraño del Pelo Largo",
+      "fun_fact": "From Habitaciones Extrañas — the long-haired stranger of the title was already a well-worn image in Argentine rock by then.",
+      "fun_fact_de": "Vom Album Habitaciones Extrañas — der langhaarige Fremde des Titels war im argentinischen Rock damals längst ein vertrautes Bild.",
+      "fun_fact_es": "De Habitaciones Extrañas: el extraño de pelo largo del título ya era una imagen muy transitada en el rock argentino.",
+      "fun_fact_fr": "Extrait de Habitaciones Extrañas : l'étranger aux cheveux longs du titre était déjà une image bien usée du rock argentin.",
+      "fun_fact_nl": "Van Habitaciones Extrañas — de langharige vreemdeling uit de titel was toen al een vertrouwd beeld in de Argentijnse rock.",
+      "isrc": "ARF109400172",
+      "uri_deezer": "deezer://track/13233546"
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:6j3ojnNuHpEhCrtzxaA68r",
+      "artist": "Los Prisioneros",
+      "alt_artists": [
+        "Soda Stereo",
+        "Virus",
+        "Los Fabulosos Cadillacs",
+        "Charly García"
+      ],
+      "title": "El Baile De Los Que Sobran",
+      "fun_fact": "A song about the children school leaves behind, written in 1986 and sung again by crowds in the Chilean streets decades later.",
+      "fun_fact_de": "Ein Lied über die Kinder, die die Schule zurücklässt, 1986 geschrieben und Jahrzehnte später auf Chiles Strassen wieder gesungen.",
+      "fun_fact_es": "Una canción sobre los niños que la escuela deja atrás, escrita en 1986 y coreada de nuevo en las calles chilenas décadas después.",
+      "fun_fact_fr": "Une chanson sur les enfants que l'école laisse de côté, écrite en 1986 et reprise dans les rues chiliennes des décennies plus tard.",
+      "fun_fact_nl": "Een lied over de kinderen die school achterlaat, geschreven in 1986 en decennia later opnieuw gezongen op straat in Chili.",
+      "isrc": "CLBB28600013",
+      "uri_deezer": "deezer://track/52849281"
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:0VNPPvHCju1p4c2lapyIXu",
+      "artist": "Los Prisioneros",
+      "alt_artists": [
+        "Soda Stereo",
+        "Los Fabulosos Cadillacs",
+        "Virus",
+        "Charly García"
+      ],
+      "title": "Tren Al Sur - 1996 Remaster",
+      "fun_fact": "From Corazones, the album on which the band swapped guitars for synthesisers and lost half their audience doing it.",
+      "fun_fact_de": "Vom Album Corazones, auf dem die Band Gitarren gegen Synthesizer tauschte und darüber die Hälfte ihres Publikums verlor.",
+      "fun_fact_es": "De Corazones, el álbum en el que la banda cambió guitarras por sintetizadores y perdió a la mitad de su público.",
+      "fun_fact_fr": "Extrait de Corazones, l'album où le groupe a troqué les guitares contre des synthétiseurs, y perdant la moitié de son public.",
+      "fun_fact_nl": "Van Corazones, het album waarop de band gitaren inruilde voor synthesizers en daarmee de helft van het publiek verloor.",
+      "isrc": "CLBB29000001",
+      "uri_deezer": "deezer://track/3538899"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:2IItQgaV85DHaooE8HZ9fQ",
+      "artist": "Los Prisioneros",
+      "alt_artists": [
+        "Soda Stereo",
+        "Virus",
+        "Los Fabulosos Cadillacs",
+        "Charly García"
+      ],
+      "title": "La Voz De Los '80",
+      "fun_fact": "The title track of the debut, made by three schoolfriends from San Miguel who recorded it while Chile was still under Pinochet.",
+      "fun_fact_de": "Der Titelsong des Debüts, gemacht von drei Schulfreunden aus San Miguel, aufgenommen, als Chile noch unter Pinochet stand.",
+      "fun_fact_es": "La canción que da título al debut, hecha por tres compañeros de colegio de San Miguel y grabada con Chile aún bajo Pinochet.",
+      "fun_fact_fr": "La chanson-titre du premier album, faite par trois camarades de lycée de San Miguel et enregistrée alors que le Chili était encore sous Pinochet.",
+      "fun_fact_nl": "Het titelnummer van het debuut, gemaakt door drie schoolvrienden uit San Miguel en opgenomen toen Chili nog onder Pinochet stond.",
+      "isrc": "CLAC28400001",
+      "uri_deezer": "deezer://track/3234660331"
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:6aq0jKmaxLzS8o82abgSxR",
+      "artist": "Los Prisioneros",
+      "alt_artists": [
+        "Soda Stereo",
+        "Virus",
+        "Charly García",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "¿Quién Mató a Marilyn?",
+      "fun_fact": "Also from the 1984 debut — the question in the title is asked without ever being answered.",
+      "fun_fact_de": "Ebenfalls vom Debüt von 1984 — die Frage im Titel wird gestellt und nie beantwortet.",
+      "fun_fact_es": "También del debut de 1984: la pregunta del título se formula y jamás se responde.",
+      "fun_fact_fr": "Également extrait du premier album de 1984 : la question du titre est posée sans jamais recevoir de réponse.",
+      "fun_fact_nl": "Ook van het debuut uit 1984 — de vraag in de titel wordt gesteld en nooit beantwoord.",
+      "isrc": "CLAC28400006",
+      "uri_deezer": "deezer://track/3234660381"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:5yMXpZhVnUAFT154F3MQ8G",
+      "artist": "Aterciopelados",
+      "alt_artists": [
+        "Café Tacvba",
+        "Los Fabulosos Cadillacs",
+        "Maná",
+        "Caifanes"
+      ],
+      "title": "Bolero Falaz",
+      "fun_fact": "From El Dorado, the record that made a bolero out of Bogotá punk and turned the duo into the face of Colombian rock.",
+      "fun_fact_de": "Vom Album El Dorado, das aus Bogotáer Punk einen Bolero machte und das Duo zum Gesicht des kolumbianischen Rock.",
+      "fun_fact_es": "De El Dorado, el disco que hizo un bolero con el punk bogotano y convirtió al dúo en la cara del rock colombiano.",
+      "fun_fact_fr": "Extrait de El Dorado, le disque qui a fait un boléro du punk de Bogotá et fait du duo le visage du rock colombien.",
+      "fun_fact_nl": "Van El Dorado, de plaat die van Bogotá-punk een bolero maakte en het duo tot gezicht van de Colombiaanse rock.",
+      "isrc": "USBL10100446",
+      "uri_deezer": "deezer://track/13235072"
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:7dg3Q2HXM5tlaV5B5KXhTr",
+      "artist": "Aterciopelados",
+      "alt_artists": [
+        "Café Tacvba",
+        "Maná",
+        "Caifanes",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Florecita Rockera",
+      "fun_fact": "Also from El Dorado, and the song that put Andrea Echeverri's voice on radios across the continent.",
+      "fun_fact_de": "Ebenfalls von El Dorado — der Song, der Andrea Echeverris Stimme in die Radios des ganzen Kontinents brachte.",
+      "fun_fact_es": "También de El Dorado, y la canción que llevó la voz de Andrea Echeverri a las radios de todo el continente.",
+      "fun_fact_fr": "Également extrait de El Dorado, la chanson qui a porté la voix d'Andrea Echeverri sur les radios de tout le continent.",
+      "fun_fact_nl": "Ook van El Dorado, en het nummer dat Andrea Echeverri's stem op radio's over het hele continent bracht.",
+      "isrc": "USBL10100445",
+      "uri_deezer": "deezer://track/13186104"
+    },
+    {
+      "year": 1998,
+      "uri": "spotify:track:1mJcdYX9gUBzsv80P7utib",
+      "artist": "Aterciopelados",
+      "alt_artists": [
+        "Café Tacvba",
+        "Maná",
+        "Caifanes",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "El Estuche",
+      "fun_fact": "From Caribe Atómico, the album on which the duo swapped guitars for electronics — the argument that split their audience.",
+      "fun_fact_de": "Vom Album Caribe Atómico, auf dem das Duo Gitarren gegen Elektronik tauschte — der Streit, der das Publikum spaltete.",
+      "fun_fact_es": "De Caribe Atómico, el álbum en el que el dúo cambió guitarras por electrónica: la discusión que dividió a su público.",
+      "fun_fact_fr": "Extrait de Caribe Atómico, l'album où le duo a troqué les guitares contre l'électronique : la querelle qui a divisé son public.",
+      "fun_fact_nl": "Van Caribe Atómico, het album waarop het duo gitaren inruilde voor elektronica — de discussie die het publiek splitste.",
+      "isrc": "USBL10100431",
+      "uri_deezer": "deezer://track/599362"
+    },
+    {
+      "year": 1996,
+      "uri": "spotify:track:1SBwYuWcbpJOXZBlzWfJQw",
+      "artist": "Aterciopelados",
+      "alt_artists": [
+        "Café Tacvba",
+        "Maná",
+        "Caifanes",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Baracunatana",
+      "fun_fact": "From La Pipa de la Paz, produced by Phil Manzanera of Roxy Music — an English art-rock guitarist working on a Colombian record.",
+      "fun_fact_de": "Vom Album La Pipa de la Paz, produziert von Phil Manzanera von Roxy Music — ein englischer Art-Rock-Gitarrist an einer kolumbianischen Platte.",
+      "fun_fact_es": "De La Pipa de la Paz, producido por Phil Manzanera, de Roxy Music: un guitarrista inglés de art rock trabajando en un disco colombiano.",
+      "fun_fact_fr": "Extrait de La Pipa de la Paz, produit par Phil Manzanera de Roxy Music : un guitariste anglais d'art rock sur un disque colombien.",
+      "fun_fact_nl": "Van La Pipa de la Paz, geproduceerd door Phil Manzanera van Roxy Music — een Engelse artrockgitarist op een Colombiaanse plaat.",
+      "isrc": "USBL10100434",
+      "uri_deezer": "deezer://track/13188346"
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:5DIlFQ3VgdTJVQK4JdapMv",
+      "artist": "Ekhymosis",
+      "alt_artists": [
+        "Aterciopelados",
+        "Kraken",
+        "La Derecha",
+        "1280 Almas"
+      ],
+      "title": "De Madrugada",
+      "fun_fact": "By 1997 the Medellín band had softened from thrash metal into rock ballads, which is the shift this song sits in.",
+      "fun_fact_de": "Bis 1997 hatte sich die Band aus Medellín vom Thrash Metal zur Rockballade gewandelt — in diesem Umbruch steht der Song.",
+      "fun_fact_es": "Para 1997 la banda de Medellín había pasado del thrash metal a la balada rock, y esta canción vive justo en ese giro.",
+      "fun_fact_fr": "En 1997, le groupe de Medellín était passé du thrash metal à la ballade rock : cette chanson se situe dans ce virage.",
+      "fun_fact_nl": "Tegen 1997 was de band uit Medellín van thrashmetal naar rockballades geschoven — in die omslag zit dit nummer.",
+      "isrc": "USFI29702425",
+      "uri_deezer": "deezer://track/15518792"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:5wHXlUg1W9IL2WKqm1JG3g",
+      "artist": "Ekhymosis",
+      "alt_artists": [
+        "Aterciopelados",
+        "Kraken",
+        "La Derecha",
+        "1280 Almas"
+      ],
+      "title": "Ciudad Pacifico",
+      "fun_fact": "Ekhymosis was Juanes's band — he sang and played guitar in it for a decade before anyone knew his first name.",
+      "fun_fact_de": "Ekhymosis war die Band von Juanes — er sang und spielte dort ein Jahrzehnt lang Gitarre, bevor irgendwer seinen Vornamen kannte.",
+      "fun_fact_es": "Ekhymosis era la banda de Juanes: cantó y tocó la guitarra en ella durante una década antes de que nadie supiera su nombre de pila.",
+      "fun_fact_fr": "Ekhymosis, c'était le groupe de Juanes : il y a chanté et joué de la guitare pendant une décennie avant que quiconque connaisse son prénom.",
+      "fun_fact_nl": "Ekhymosis was de band van Juanes — hij zong en speelde er tien jaar gitaar voordat iemand zijn voornaam kende.",
+      "isrc": "COC019421873",
+      "uri_deezer": "deezer://track/11112815"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:3pJfnBjO3kjudEchcPEDxS",
+      "artist": "Caifanes",
+      "alt_artists": [
+        "Maná",
+        "Café Tacvba",
+        "El Tri",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Afuera",
+      "fun_fact": "From El nervio del volcán, the fourth and last album — the band broke up the year after it.",
+      "fun_fact_de": "Vom vierten und letzten Album El nervio del volcán — die Band löste sich im Jahr danach auf.",
+      "fun_fact_es": "De El nervio del volcán, el cuarto y último álbum: la banda se separó al año siguiente.",
+      "fun_fact_fr": "Extrait de El nervio del volcán, quatrième et dernier album : le groupe s'est séparé l'année suivante.",
+      "fun_fact_nl": "Van El nervio del volcán, het vierde en laatste album — de band ging het jaar erna uit elkaar.",
+      "isrc": "MXF019400341",
+      "uri_deezer": "deezer://track/13272449"
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:6cVHu0HmKo4oEOSOqooTa3",
+      "artist": "Caifanes",
+      "alt_artists": [
+        "Maná",
+        "Los Fabulosos Cadillacs",
+        "Café Tacvba",
+        "El Tri"
+      ],
+      "title": "La Negra Tomasa - Bilongo - Versión Tropical",
+      "fun_fact": "A Cuban guaracha from the 1930s played as rock, released as a single in 1989 and only added to the debut album on its CD reissue.",
+      "fun_fact_de": "Eine kubanische Guaracha aus den Dreissigern, als Rock gespielt, 1989 als Single erschienen und erst auf der CD-Neuauflage des Debüts ergänzt.",
+      "fun_fact_es": "Una guaracha cubana de los años treinta tocada como rock, publicada como sencillo en 1989 y añadida al álbum debut solo en su reedición en CD.",
+      "fun_fact_fr": "Une guaracha cubaine des années trente jouée en rock, sortie en single en 1989 et ajoutée au premier album seulement lors de sa réédition CD.",
+      "fun_fact_nl": "Een Cubaanse guaracha uit de jaren dertig als rock gespeeld, in 1989 als single uitgebracht en pas op de cd-heruitgave aan het debuut toegevoegd.",
+      "isrc": "MXF018801171",
+      "uri_deezer": "deezer://track/13274429"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:7w4ojcH8NJ4LBmJZhSBTcT",
+      "artist": "Caifanes",
+      "alt_artists": [
+        "Maná",
+        "Café Tacvba",
+        "El Tri",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Nubes",
+      "fun_fact": "El Silencio was produced by Adrian Belew, the guitarist from King Crimson and David Bowie's band.",
+      "fun_fact_de": "El Silencio wurde von Adrian Belew produziert, dem Gitarristen von King Crimson und aus David Bowies Band.",
+      "fun_fact_es": "El Silencio fue producido por Adrian Belew, guitarrista de King Crimson y de la banda de David Bowie.",
+      "fun_fact_fr": "El Silencio a été produit par Adrian Belew, guitariste de King Crimson et du groupe de David Bowie.",
+      "fun_fact_nl": "El Silencio werd geproduceerd door Adrian Belew, gitarist van King Crimson en van David Bowies band.",
+      "isrc": "MXF019701449",
+      "uri_deezer": "deezer://track/13302028"
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:1bWcjMOceu7dFyBGBo3jJ9",
+      "artist": "Caifanes",
+      "alt_artists": [
+        "Maná",
+        "Café Tacvba",
+        "El Tri",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Miedo",
+      "fun_fact": "Also from the last album, recorded while the split between singer and guitarist was already under way.",
+      "fun_fact_de": "Ebenfalls vom letzten Album, aufgenommen, als der Bruch zwischen Sänger und Gitarrist bereits im Gange war.",
+      "fun_fact_es": "También del último álbum, grabado cuando la ruptura entre cantante y guitarrista ya estaba en marcha.",
+      "fun_fact_fr": "Également du dernier album, enregistré alors que la rupture entre le chanteur et le guitariste était déjà entamée.",
+      "fun_fact_nl": "Ook van het laatste album, opgenomen terwijl de breuk tussen zanger en gitarist al gaande was.",
+      "isrc": "MXF019700411",
+      "uri_deezer": "deezer://track/13272450"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:5EJ2THuhAapEIeQOtXUQ0x",
+      "artist": "Maná",
+      "alt_artists": [
+        "Caifanes",
+        "Café Tacvba",
+        "El Tri",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Oye Mi Amor",
+      "fun_fact": "From ¿Dónde jugarán los niños?, which sold over ten million copies and remains the best-selling Spanish-language rock album ever made.",
+      "fun_fact_de": "Vom Album ¿Dónde jugarán los niños?, das sich über zehn Millionen Mal verkaufte und bis heute das meistverkaufte spanischsprachige Rockalbum ist.",
+      "fun_fact_es": "De ¿Dónde jugarán los niños?, que vendió más de diez millones de copias y sigue siendo el álbum de rock en español más vendido de la historia.",
+      "fun_fact_fr": "Extrait de ¿Dónde jugarán los niños?, vendu à plus de dix millions d'exemplaires et toujours l'album de rock hispanophone le plus vendu.",
+      "fun_fact_nl": "Van ¿Dónde jugarán los niños?, dat meer dan tien miljoen keer verkocht en nog altijd het bestverkochte Spaanstalige rockalbum is.",
+      "isrc": "MXF159200061",
+      "uri_deezer": "deezer://track/7505025"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:3G9RQLOSjsXVUDyQSv2PQR",
+      "artist": "Maná",
+      "alt_artists": [
+        "Caifanes",
+        "Café Tacvba",
+        "El Tri",
+        "Los Fabulosos Cadillacs"
+      ],
+      "title": "Vivir Sin Aire",
+      "fun_fact": "The ninth and last single pulled from that same album — a record that kept yielding hits for years after its release.",
+      "fun_fact_de": "Die neunte und letzte Single aus demselben Album — eine Platte, die noch Jahre nach Erscheinen Hits abwarf.",
+      "fun_fact_es": "El noveno y último sencillo extraído de ese mismo álbum, un disco que siguió dando éxitos años después de salir.",
+      "fun_fact_fr": "Le neuvième et dernier single tiré de ce même album, un disque qui a continué à donner des tubes des années après sa sortie.",
+      "fun_fact_nl": "De negende en laatste single van datzelfde album — een plaat die nog jaren na verschijnen hits bleef opleveren.",
+      "isrc": "MXF150900236",
+      "uri_deezer": "deezer://track/3081259"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:0NfdbvWFwlVMA183QibxCB",
+      "artist": "Maná",
+      "alt_artists": [
+        "Caifanes",
+        "Café Tacvba",
+        "El Tri",
+        "Maldita Vecindad"
+      ],
+      "title": "Me Vale",
+      "fun_fact": "From the same 1992 album, and the one where the band's reggae side is hardest to miss.",
+      "fun_fact_de": "Vom selben Album von 1992 — und der Titel, an dem die Reggae-Seite der Band am wenigsten zu überhören ist.",
+      "fun_fact_es": "Del mismo álbum de 1992, y el tema en el que el costado reggae del grupo resulta más difícil de pasar por alto.",
+      "fun_fact_fr": "Du même album de 1992, et le morceau où le côté reggae du groupe est le plus difficile à manquer.",
+      "fun_fact_nl": "Van hetzelfde album uit 1992, en het nummer waarop de reggaekant van de band het minst te missen is.",
+      "isrc": "MXF159200071",
+      "uri_deezer": "deezer://track/7505035"
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:3CZmruyW7xH7k9Q61T8EYQ",
+      "artist": "Maná",
+      "alt_artists": [
+        "Caifanes",
+        "Café Tacvba",
+        "El Tri",
+        "Maldita Vecindad"
+      ],
+      "title": "El Desierto",
+      "fun_fact": "Also from ¿Dónde jugarán los niños? — the album title asks an environmental question the band kept asking for decades.",
+      "fun_fact_de": "Ebenfalls von ¿Dónde jugarán los niños? — der Albumtitel stellt eine Umweltfrage, die die Band jahrzehntelang weiterstellte.",
+      "fun_fact_es": "También de ¿Dónde jugarán los niños?: el título del álbum plantea una pregunta ambiental que el grupo siguió haciendo durante décadas.",
+      "fun_fact_fr": "Également de ¿Dónde jugarán los niños? : le titre de l'album pose une question écologique que le groupe n'a cessé de reposer.",
+      "fun_fact_nl": "Ook van ¿Dónde jugarán los niños? — de albumtitel stelt een milieuvraag die de band decennialang bleef stellen.",
+      "isrc": "MXF159200065",
+      "uri_deezer": "deezer://track/7505029"
+    }
+  ]
+}
