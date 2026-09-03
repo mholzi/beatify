@@ -22,7 +22,7 @@ import {
     renderPlayerList, renderDifficultyBadge, renderQRCode,
     setupQRModal, setupInviteModal, closeInviteModal,
     updateAdminControls, setupAdminControls,
-    showWelcomeBackToast, showEarlyRevealToast
+    showWelcomeBackToast, showEarlyRevealToast, handleStartFailure
 } from './player-lobby.js';
 
 import {
@@ -41,6 +41,7 @@ import {
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
     setupRevealLeaderboardToggle,
     resetSongStoppedState,
+    renderPausedAdminActions, syncVolumeFromState,
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
@@ -762,6 +763,7 @@ function handleServerMessage(data) {
             setupLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('PLAYING');
+            syncVolumeFromState(data);  // #2557
             hideReactionBar();
         } else if (data.phase === 'REVEAL') {
             stopCountdown();
@@ -775,6 +777,7 @@ function handleServerMessage(data) {
             setupRevealLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('REVEAL');
+            syncVolumeFromState(data);  // #2557
             // #1757: reset the one-per-reveal reaction budget + button used-
             // state only when a NEW reveal round begins, not on every REVEAL
             // re-broadcast (vote tallies etc.), so the used-state feedback
@@ -795,6 +798,9 @@ function handleServerMessage(data) {
             setEnergyLevel('warmup');
             showView('paused-view');
             updatePausedView(data);
+            // #2551: the control bar is hidden in PAUSED, so the host needs
+            // their own resume/end inside the paused view itself.
+            renderPausedAdminActions();
         } else if (data.phase === 'END') {
             stopCountdown();
             stopRevealCountdown();
@@ -921,6 +927,10 @@ function handleServerMessage(data) {
         // on its own. Anything else is surfaced inline, which means a new
         // server-side code can no longer throw anyone out.
         console.warn('[Beatify] Action rejected:', data.code, data.message);
+        // #2551: in the lobby this is a failed START, not a failed guess.
+        // handleSubmitError writes onto the hidden in-game submit button, so
+        // the host was left staring at "Starting…" with the reason invisible.
+        if (handleStartFailure(data)) return;
         handleSubmitError(data);
     } else if (data.type === 'song_stopped') {
         handleSongStopped();

@@ -30,6 +30,7 @@ no cyclic imports.
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import logging
 from typing import TYPE_CHECKING
 
@@ -185,6 +186,24 @@ class MediaControlMixin:
                 task.add_done_callback(self._bg_tasks.discard)
             except Exception:  # noqa: BLE001
                 _LOGGER.warning("Party Lights flash failed")
+
+    def current_volume(self) -> float:
+        """The speaker's volume right now, 0.0-1.0 (#2557).
+
+        The host's phone used to assume 0.5 because no volume ever reached the
+        client: ``volume_changed`` is only sent back in reply to the host's own
+        tap, and the state payload carried nothing. So the first press of
+        up/down was made blind, and the at-the-limit guard was checking an
+        invented number.
+
+        Reads through to the media player when one is attached, so the value
+        follows changes made outside Beatify (the speaker's own app, another HA
+        automation) rather than only the taps we made ourselves.
+        """
+        if self._media_player_service:
+            with contextlib.suppress(Exception):
+                self.volume_level = self._media_player_service.get_volume()
+        return self.volume_level
 
     def adjust_volume(self, direction: str) -> float:
         """

@@ -7967,6 +7967,36 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-container {
     color: var(--color-text-light);
 }
 
+/* #2551: the host's way out of a paused game, shown only to the admin.
+   Sits under the hint because the first thing to read is WHY the game
+   stopped; the buttons are the answer to that, not the headline. */
+/* #2557: the live level, sitting between the two volume buttons it explains. */
+.control-volume-readout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3.5ch;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-light);
+}
+
+.paused-admin-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+    width: min(100%, 320px);
+    margin: var(--space-lg) auto 0;
+}
+.paused-admin-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    text-align: center;
+    text-decoration: underline;
+}
+
 /* ============================================
    Reconnecting Overlay (Story 7-3)
    ============================================ */
