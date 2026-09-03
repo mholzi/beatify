@@ -1,6 +1,6 @@
 {
   "name": "Clásicos del Rock en Español",
-  "version": "1.0",
+  "version": "1.1",
   "tags": [
     "rock",
     "spanish",
@@ -31,7 +31,8 @@
       "fun_fact_fr": "Tout le monde la connaît par la phrase que le public hurle en retour, sufre mamón, et pas par son vrai titre.",
       "fun_fact_nl": "Iedereen kent het door de zin die het publiek terugbrult — sufre mamón — en niet door de echte titel.",
       "isrc": "ES5018572005",
-      "uri_deezer": "deezer://track/14932729"
+      "uri_deezer": "deezer://track/14932729",
+      "uri_apple_music": "applemusic://track/979321016"
     },
     {
       "year": 1986,
@@ -50,7 +51,8 @@
       "fun_fact_fr": "De l'album nommé d'après Burt Lancaster, La cagaste... Burt Lancaster, tiré d'une réplique de doublage et non de sa filmographie.",
       "fun_fact_nl": "Van het album vernoemd naar Burt Lancaster — La cagaste... Burt Lancaster — naar een zin uit een nasynchronisatie, niet naar zijn werk.",
       "isrc": "ES5018672005",
-      "uri_deezer": "deezer://track/814665"
+      "uri_deezer": "deezer://track/814665",
+      "uri_apple_music": "applemusic://track/131367623"
     },
     {
       "year": 1988,
@@ -69,7 +71,8 @@
       "fun_fact_fr": "Le groupe a tourné un film du même nom, et voici sa chanson-titre : la pop espagnole des années quatre-vingt dans sa version la plus commerciale.",
       "fun_fact_nl": "De band maakte een gelijknamige film, en dit is het titelnummer — Spaanse jarentachtigpop op zijn commercieelst.",
       "isrc": "ES5018872005",
-      "uri_deezer": "deezer://track/814803"
+      "uri_deezer": "deezer://track/814803",
+      "uri_apple_music": "applemusic://track/80836759"
     },
     {
       "year": 1985,
@@ -88,7 +91,8 @@
       "fun_fact_fr": "Du même premier album de 1985 que Devuélveme a mi chica, enregistré quand le groupe sortait à peine de l'adolescence.",
       "fun_fact_nl": "Van hetzelfde debuutalbum uit 1985 als Devuélveme a mi chica, opgenomen toen de band net de tienerjaren ontgroeid was.",
       "isrc": "ES5018572000",
-      "uri_deezer": "deezer://track/3918195"
+      "uri_deezer": "deezer://track/3918195",
+      "uri_apple_music": "applemusic://track/979321011"
     },
     {
       "year": 1986,
@@ -107,7 +111,8 @@
       "fun_fact_fr": "Une chanson entière bâtie sur le déni d'un prénom : la blague, c'est que le déni répète sans cesse le prénom qu'il nie.",
       "fun_fact_nl": "Een heel nummer gebouwd op het ontkennen van een naam — de grap is dat de ontkenning die naam blijft herhalen.",
       "isrc": "ES5028600142",
-      "uri_deezer": "deezer://track/93888288"
+      "uri_deezer": "deezer://track/93888288",
+      "uri_apple_music": "applemusic://track/964104304"
     },
     {
       "year": 1987,
@@ -126,7 +131,8 @@
       "fun_fact_fr": "Extrait de El grito del tiempo, l'album qui a fait sortir le trio basque du circuit indépendant vers les radios nationales.",
       "fun_fact_nl": "Van El grito del tiempo, het album dat het Baskische trio uit het indiecircuit naar de landelijke radio bracht.",
       "isrc": "ES5018760000",
-      "uri_deezer": "deezer://track/674813"
+      "uri_deezer": "deezer://track/674813",
+      "uri_apple_music": "applemusic://track/101291785"
     },
     {
       "year": 1994,
@@ -145,7 +151,8 @@
       "fun_fact_fr": "Extrait de Piedras, enregistré des années après l'apogée des années quatre-vingt et dernier single largement diffusé.",
       "fun_fact_nl": "Van Piedras, jaren na het hoogtepunt in de jaren tachtig opgenomen en hun laatste breed gehoorde single.",
       "isrc": "ES5019460010",
-      "uri_deezer": "deezer://track/3894270"
+      "uri_deezer": "deezer://track/3894270",
+      "uri_apple_music": "applemusic://track/81256859"
     },
     {
       "year": 1984,
@@ -164,7 +171,8 @@
       "fun_fact_fr": "Le premier single du premier album, et son loup-garou vient d'une nouvelle de Boris Vian, pas d'un film d'horreur.",
       "fun_fact_nl": "De eerste single van het eerste album, en de weerwolf komt uit een kort verhaal van Boris Vian, niet uit een horrorfilm.",
       "isrc": "ES5159401001",
-      "uri_deezer": "deezer://track/3899862"
+      "uri_deezer": "deezer://track/3899862",
+      "uri_apple_music": "applemusic://track/256662823"
     },
     {
       "year": 1996,
@@ -183,7 +191,8 @@
       "fun_fact_fr": "Pau Donés l'a écrite après un voyage à Cuba ; ce premier single a donné son nom à l'album et sa direction à toute la carrière.",
       "fun_fact_nl": "Pau Donés schreef het na een reis naar Cuba; de debuutsingle gaf het album zijn naam en de hele carrière zijn richting.",
       "isrc": "ES5039600004",
-      "uri_deezer": "deezer://track/3092625"
+      "uri_deezer": "deezer://track/3092625",
+      "uri_apple_music": "applemusic://track/696616314"
     },
     {
       "year": 1990,
@@ -278,7 +287,8 @@
       "fun_fact_fr": "Il a remporté un MTV Video Award en 1994 et parle de l'assassinat de l'écrivain et militant argentin Rodolfo Walsh.",
       "fun_fact_nl": "Het won in 1994 een MTV Video Award en gaat over de moord op de Argentijnse schrijver en activist Rodolfo Walsh.",
       "isrc": "ARFSB0800334",
-      "uri_deezer": "deezer://track/6686670"
+      "uri_deezer": "deezer://track/6686670",
+      "uri_apple_music": "applemusic://track/1555328828"
     },
     {
       "year": 1993,
@@ -297,7 +307,8 @@
       "fun_fact_fr": "Un duo avec Celia Cruz, enregistré quand la chanteuse cubaine frôlait les soixante-dix ans et le groupe à peine trente.",
       "fun_fact_nl": "Een duet met Celia Cruz, opgenomen toen de Cubaanse salsazangeres bijna zeventig was en de band nauwelijks dertig.",
       "isrc": "ARF100100531",
-      "uri_deezer": "deezer://track/6686072"
+      "uri_deezer": "deezer://track/6686072",
+      "uri_apple_music": "applemusic://track/1555328435"
     },
     {
       "year": 1995,
@@ -316,7 +327,8 @@
       "fun_fact_fr": "Rey Azúcar a été produit par Tina Weymouth et Chris Frantz de Talking Heads, d'où le groove plus serré de l'album.",
       "fun_fact_nl": "Rey Azúcar werd geproduceerd door Tina Weymouth en Chris Frantz van Talking Heads — vandaar de strakkere groove.",
       "isrc": "ARFSB0800352",
-      "uri_deezer": "deezer://track/6686599"
+      "uri_deezer": "deezer://track/6686599",
+      "uri_apple_music": "applemusic://track/298978638"
     },
     {
       "year": 1992,
@@ -335,7 +347,8 @@
       "fun_fact_fr": "Extrait de El León, l'album où le ska du groupe est devenu plus lent et plus lourd.",
       "fun_fact_nl": "Van El León, het album waarop de ska van de band trager en zwaarder werd.",
       "isrc": "ARFSB0800319",
-      "uri_deezer": "deezer://track/6686677"
+      "uri_deezer": "deezer://track/6686677",
+      "uri_apple_music": "applemusic://track/297762618"
     },
     {
       "year": 1994,
@@ -354,7 +367,8 @@
       "fun_fact_fr": "Big Bang a porté le groupe hors d'Argentine à travers tout le continent ; c'est cette chanson qui l'a porté.",
       "fun_fact_nl": "Big Bang bracht de band buiten Argentinië over het hele continent — en dit is het nummer dat dat deed.",
       "isrc": "ARF049400245",
-      "uri_deezer": "deezer://track/3538068"
+      "uri_deezer": "deezer://track/3538068",
+      "uri_apple_music": "applemusic://track/721632344"
     },
     {
       "year": 1986,
@@ -373,7 +387,8 @@
       "fun_fact_fr": "Extrait de Contrarreloj, le deuxième album, enregistré à Mendoza bien avant que le groupe soit connu hors d'Argentine.",
       "fun_fact_nl": "Van Contrarreloj, het tweede album, opgenomen in Mendoza lang voordat de band buiten Argentinië bekend was.",
       "isrc": "ARF109400173",
-      "uri_deezer": "deezer://track/6080021"
+      "uri_deezer": "deezer://track/6080021",
+      "uri_apple_music": "applemusic://track/187443614"
     },
     {
       "year": 1994,
@@ -392,7 +407,8 @@
       "fun_fact_fr": "Du même album de 1994 que Lamento Boliviano, et les deux singles ont couru les classements presque côte à côte.",
       "fun_fact_nl": "Van hetzelfde album uit 1994 als Lamento Boliviano; beide singles liepen bijna gelijktijdig in de hitlijsten.",
       "isrc": "ARF049400340",
-      "uri_deezer": "deezer://track/3538021"
+      "uri_deezer": "deezer://track/3538021",
+      "uri_apple_music": "applemusic://track/721632554"
     },
     {
       "year": 1987,
@@ -411,7 +427,8 @@
       "fun_fact_fr": "Extrait de Habitaciones Extrañas : l'étranger aux cheveux longs du titre était déjà une image bien usée du rock argentin.",
       "fun_fact_nl": "Van Habitaciones Extrañas — de langharige vreemdeling uit de titel was toen al een vertrouwd beeld in de Argentijnse rock.",
       "isrc": "ARF109400172",
-      "uri_deezer": "deezer://track/13233546"
+      "uri_deezer": "deezer://track/13233546",
+      "uri_apple_music": "applemusic://track/187443606"
     },
     {
       "year": 1986,
@@ -430,7 +447,8 @@
       "fun_fact_fr": "Une chanson sur les enfants que l'école laisse de côté, écrite en 1986 et reprise dans les rues chiliennes des décennies plus tard.",
       "fun_fact_nl": "Een lied over de kinderen die school achterlaat, geschreven in 1986 en decennia later opnieuw gezongen op straat in Chili.",
       "isrc": "CLBB28600013",
-      "uri_deezer": "deezer://track/52849281"
+      "uri_deezer": "deezer://track/52849281",
+      "uri_apple_music": "applemusic://track/714026688"
     },
     {
       "year": 1990,
@@ -468,7 +486,8 @@
       "fun_fact_fr": "La chanson-titre du premier album, faite par trois camarades de lycée de San Miguel et enregistrée alors que le Chili était encore sous Pinochet.",
       "fun_fact_nl": "Het titelnummer van het debuut, gemaakt door drie schoolvrienden uit San Miguel en opgenomen toen Chili nog onder Pinochet stond.",
       "isrc": "CLAC28400001",
-      "uri_deezer": "deezer://track/3234660331"
+      "uri_deezer": "deezer://track/3234660331",
+      "uri_apple_music": "applemusic://track/933144890"
     },
     {
       "year": 1984,
@@ -487,7 +506,8 @@
       "fun_fact_fr": "Également extrait du premier album de 1984 : la question du titre est posée sans jamais recevoir de réponse.",
       "fun_fact_nl": "Ook van het debuut uit 1984 — de vraag in de titel wordt gesteld en nooit beantwoord.",
       "isrc": "CLAC28400006",
-      "uri_deezer": "deezer://track/3234660381"
+      "uri_deezer": "deezer://track/3234660381",
+      "uri_apple_music": "applemusic://track/933144905"
     },
     {
       "year": 1995,
@@ -506,7 +526,8 @@
       "fun_fact_fr": "Extrait de El Dorado, le disque qui a fait un boléro du punk de Bogotá et fait du duo le visage du rock colombien.",
       "fun_fact_nl": "Van El Dorado, de plaat die van Bogotá-punk een bolero maakte en het duo tot gezicht van de Colombiaanse rock.",
       "isrc": "USBL10100446",
-      "uri_deezer": "deezer://track/13235072"
+      "uri_deezer": "deezer://track/13235072",
+      "uri_apple_music": "applemusic://track/254793125"
     },
     {
       "year": 1995,
@@ -525,7 +546,8 @@
       "fun_fact_fr": "Également extrait de El Dorado, la chanson qui a porté la voix d'Andrea Echeverri sur les radios de tout le continent.",
       "fun_fact_nl": "Ook van El Dorado, en het nummer dat Andrea Echeverri's stem op radio's over het hele continent bracht.",
       "isrc": "USBL10100445",
-      "uri_deezer": "deezer://track/13186104"
+      "uri_deezer": "deezer://track/13186104",
+      "uri_apple_music": "applemusic://track/254793001"
     },
     {
       "year": 1998,
@@ -544,7 +566,8 @@
       "fun_fact_fr": "Extrait de Caribe Atómico, l'album où le duo a troqué les guitares contre l'électronique : la querelle qui a divisé son public.",
       "fun_fact_nl": "Van Caribe Atómico, het album waarop het duo gitaren inruilde voor elektronica — de discussie die het publiek splitste.",
       "isrc": "USBL10100431",
-      "uri_deezer": "deezer://track/599362"
+      "uri_deezer": "deezer://track/599362",
+      "uri_apple_music": "applemusic://track/268462708"
     },
     {
       "year": 1996,
@@ -563,7 +586,8 @@
       "fun_fact_fr": "Extrait de La Pipa de la Paz, produit par Phil Manzanera de Roxy Music : un guitariste anglais d'art rock sur un disque colombien.",
       "fun_fact_nl": "Van La Pipa de la Paz, geproduceerd door Phil Manzanera van Roxy Music — een Engelse artrockgitarist op een Colombiaanse plaat.",
       "isrc": "USBL10100434",
-      "uri_deezer": "deezer://track/13188346"
+      "uri_deezer": "deezer://track/13188346",
+      "uri_apple_music": "applemusic://track/254839122"
     },
     {
       "year": 1997,
@@ -582,7 +606,8 @@
       "fun_fact_fr": "En 1997, le groupe de Medellín était passé du thrash metal à la ballade rock : cette chanson se situe dans ce virage.",
       "fun_fact_nl": "Tegen 1997 was de band uit Medellín van thrashmetal naar rockballades geschoven — in die omslag zit dit nummer.",
       "isrc": "USFI29702425",
-      "uri_deezer": "deezer://track/15518792"
+      "uri_deezer": "deezer://track/15518792",
+      "uri_apple_music": "applemusic://track/1443545608"
     },
     {
       "year": 1994,
@@ -601,7 +626,8 @@
       "fun_fact_fr": "Ekhymosis, c'était le groupe de Juanes : il y a chanté et joué de la guitare pendant une décennie avant que quiconque connaisse son prénom.",
       "fun_fact_nl": "Ekhymosis was de band van Juanes — hij zong en speelde er tien jaar gitaar voordat iemand zijn voornaam kende.",
       "isrc": "COC019421873",
-      "uri_deezer": "deezer://track/11112815"
+      "uri_deezer": "deezer://track/11112815",
+      "uri_apple_music": "applemusic://track/1712535821"
     },
     {
       "year": 1994,
@@ -620,7 +646,8 @@
       "fun_fact_fr": "Extrait de El nervio del volcán, quatrième et dernier album : le groupe s'est séparé l'année suivante.",
       "fun_fact_nl": "Van El nervio del volcán, het vierde en laatste album — de band ging het jaar erna uit elkaar.",
       "isrc": "MXF019400341",
-      "uri_deezer": "deezer://track/13272449"
+      "uri_deezer": "deezer://track/13272449",
+      "uri_apple_music": "applemusic://track/205385055"
     },
     {
       "year": 1989,
@@ -658,7 +685,8 @@
       "fun_fact_fr": "El Silencio a été produit par Adrian Belew, guitariste de King Crimson et du groupe de David Bowie.",
       "fun_fact_nl": "El Silencio werd geproduceerd door Adrian Belew, gitarist van King Crimson en van David Bowies band.",
       "isrc": "MXF019701449",
-      "uri_deezer": "deezer://track/13302028"
+      "uri_deezer": "deezer://track/13302028",
+      "uri_apple_music": "applemusic://track/322133795"
     },
     {
       "year": 1994,
@@ -677,7 +705,8 @@
       "fun_fact_fr": "Également du dernier album, enregistré alors que la rupture entre le chanteur et le guitariste était déjà entamée.",
       "fun_fact_nl": "Ook van het laatste album, opgenomen terwijl de breuk tussen zanger en gitarist al gaande was.",
       "isrc": "MXF019700411",
-      "uri_deezer": "deezer://track/13272450"
+      "uri_deezer": "deezer://track/13272450",
+      "uri_apple_music": "applemusic://track/205385095"
     },
     {
       "year": 1992,
@@ -696,7 +725,8 @@
       "fun_fact_fr": "Extrait de ¿Dónde jugarán los niños?, vendu à plus de dix millions d'exemplaires et toujours l'album de rock hispanophone le plus vendu.",
       "fun_fact_nl": "Van ¿Dónde jugarán los niños?, dat meer dan tien miljoen keer verkocht en nog altijd het bestverkochte Spaanstalige rockalbum is.",
       "isrc": "MXF159200061",
-      "uri_deezer": "deezer://track/7505025"
+      "uri_deezer": "deezer://track/7505025",
+      "uri_apple_music": "applemusic://track/358349018"
     },
     {
       "year": 1992,
@@ -715,7 +745,8 @@
       "fun_fact_fr": "Le neuvième et dernier single tiré de ce même album, un disque qui a continué à donner des tubes des années après sa sortie.",
       "fun_fact_nl": "De negende en laatste single van datzelfde album — een plaat die nog jaren na verschijnen hits bleef opleveren.",
       "isrc": "MXF150900236",
-      "uri_deezer": "deezer://track/3081259"
+      "uri_deezer": "deezer://track/3081259",
+      "uri_apple_music": "applemusic://track/358349025"
     },
     {
       "year": 1992,
@@ -734,7 +765,8 @@
       "fun_fact_fr": "Du même album de 1992, et le morceau où le côté reggae du groupe est le plus difficile à manquer.",
       "fun_fact_nl": "Van hetzelfde album uit 1992, en het nummer waarop de reggaekant van de band het minst te missen is.",
       "isrc": "MXF159200071",
-      "uri_deezer": "deezer://track/7505035"
+      "uri_deezer": "deezer://track/7505035",
+      "uri_apple_music": "applemusic://track/358349041"
     },
     {
       "year": 1992,
@@ -753,7 +785,8 @@
       "fun_fact_fr": "Également de ¿Dónde jugarán los niños? : le titre de l'album pose une question écologique que le groupe n'a cessé de reposer.",
       "fun_fact_nl": "Ook van ¿Dónde jugarán los niños? — de albumtitel stelt een milieuvraag die de band decennialang bleef stellen.",
       "isrc": "MXF159200065",
-      "uri_deezer": "deezer://track/7505029"
+      "uri_deezer": "deezer://track/7505029",
+      "uri_apple_music": "applemusic://track/358349033"
     }
   ]
 }
