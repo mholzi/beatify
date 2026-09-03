@@ -10,6 +10,7 @@ GameState.get_state() becomes a thin wrapper calling
 
 from __future__ import annotations
 
+import contextlib
 import logging
 import time
 from typing import TYPE_CHECKING, Any
@@ -180,6 +181,12 @@ class GameStateSerializer:
             state["seconds_remaining"] = max(0, round(gs.deadline / 1000 - gs._now()))
         state["last_round"] = gs.last_round
         state["songs_remaining"] = gs.songs_remaining
+        # #2557: the host's volume buttons had no idea what the speaker was set
+        # to — volume_changed only comes back in reply to their own tap, so the
+        # first press was blind and the at-the-limit guard checked an assumed
+        # 0.5. Not secret: every client gets it, only the host renders it.
+        with contextlib.suppress(Exception):
+            state["volume_level"] = gs.current_volume()
         # Issue #1725: Finale ×2 is live this round (last round + opt-in) — drives
         # the "Finale ×2" finish banner. Playoff flag lets the client badge a
         # tiebreaker round.

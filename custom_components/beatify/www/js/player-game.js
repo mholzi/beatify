@@ -1230,8 +1230,29 @@ export function handleSubmitError(data) {
     } else if (data.code === 'ALREADY_SUBMITTED') {
         handleSubmitAck();
     } else {
-        showSubmitError(data.message || 'Submission failed');
+        // #2553: the server's English prose used to land under the player's
+        // thumb — a sabotaged guest at a German party read "Frozen — hold on".
+        // Same fix as #2532 did for the join rejection: translate by code and
+        // keep the server text only as the last fallback.
+        showSubmitError(errorText(data));
     }
+}
+
+/**
+ * Translate a server error to the player's language (#2553).
+ *
+ * Order: the code's own translation, then the server's message, then a generic
+ * line — so a code the frontend has never heard of still says something.
+ */
+function errorText(data) {
+    var code = data && data.code;
+    if (code) {
+        var translated = utils.t('errors.' + code);
+        // utils.t returns the key itself when it does not know it.
+        if (translated && translated !== 'errors.' + code) return translated;
+    }
+    return (data && data.message)
+        || utils.t('errors.submissionFailed', 'Submission failed');
 }
 
 /**
@@ -1244,7 +1265,12 @@ export function showSubmitError(message) {
         submitBtn.textContent = message;
         submitBtn.classList.add('is-error');
         setTimeout(function() {
-            submitBtn.textContent = utils.t('game.submitGuess');
+            // #2553: restoring the year-mode label in Title & Artist mode left
+            // the button reading "Submit Guess" where it should read the
+            // mode's own label.
+            submitBtn.textContent = titleArtistMode
+                ? utils.t('titleArtist.submitGuess')
+                : utils.t('game.submitGuess');
             submitBtn.classList.remove('is-error');
         }, 2000);
     }
@@ -2177,6 +2203,42 @@ export function showFloatingReaction(senderName, emoji) {
 }
 
 /**
+ * Show the host's way out of a paused game (#2551).
+ *
+ * The player screen hides the admin control bar in PAUSED, so a host who
+ * joined from their phone saw the same spinner as everyone else with no
+ * resume, no end, and no link to the page that has both. `resume_game` and
+ * `end_game` have accepted PAUSED server-side all along.
+ */
+export function renderPausedAdminActions() {
+    var box = document.getElementById('paused-admin-actions');
+    if (!box) return;
+    box.classList.toggle('hidden', !state.isAdmin);
+    if (!state.isAdmin || box.dataset.wired === '1') return;
+    box.dataset.wired = '1';
+
+    var resumeBtn = document.getElementById('paused-resume-btn');
+    if (resumeBtn) resumeBtn.addEventListener('click', handleResumeGame);
+    var endBtn = document.getElementById('paused-end-btn');
+    if (endBtn) endBtn.addEventListener('click', handleEndGame);
+}
+
+/**
+ * Resume a paused game from the player screen (#2551).
+ */
+function handleResumeGame() {
+    if (!debounceAdminAction()) return;
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        showToast(utils.t('errors.CONNECTION_LOST'));
+        return;
+    }
+    state.ws.send(JSON.stringify({
+        type: 'admin',
+        action: 'resume_game'
+    }));
+}
+
+/**
  * Update control bar button states based on phase
  * @param {string} phase - Current game phase
  */
@@ -2496,8 +2558,32 @@ export function resetSongStoppedState() {
  */
 export function handleVolumeChanged(level) {
     currentVolume = level;
+    renderVolumeReadout(level);
     showVolumeIndicator(level);
     updateVolumeLimitStates(level);
+}
+
+/**
+ * Adopt the speaker's real level from a state broadcast (#2557).
+ *
+ * Without this the host's phone assumed 0.5 until their first tap: the level
+ * only ever came back in reply to their own button press. That made the first
+ * press blind and the at-the-limit guard wrong from the start.
+ */
+export function syncVolumeFromState(data) {
+    if (!data || typeof data.volume_level !== 'number') return;
+    currentVolume = data.volume_level;
+    renderVolumeReadout(currentVolume);
+    updateVolumeLimitStates(currentVolume);
+}
+
+/**
+ * Keep the percentage between the two buttons up to date (#2557).
+ */
+function renderVolumeReadout(level) {
+    var el = document.getElementById('volume-readout');
+    if (!el) return;
+    el.textContent = Math.round(level * 100) + '%';
 }
 
 /**

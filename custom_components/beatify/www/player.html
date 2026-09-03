@@ -851,6 +851,18 @@
                     <div class="spinner"></div>
                 </div>
                 <p id="pause-hint" class="paused-hint" data-i18n="game.pausedHint">The game will resume when the host returns</p>
+                <!-- #2551: the host playing along on their phone used to have no
+                     way out of PAUSED. resume_game and end_game both accept it
+                     server-side; the controls only ever existed on /beatify/admin,
+                     and nothing on this screen linked there. -->
+                <div id="paused-admin-actions" class="paused-admin-actions hidden">
+                    <button id="paused-resume-btn" class="btn btn-primary btn-large btn-full-width" type="button">
+                        <span class="btn-icon" aria-hidden="true">▶</span>
+                        <span data-i18n="admin.resumeGame">Resume Game</span>
+                    </button>
+                    <button id="paused-end-btn" class="btn btn-secondary btn-full-width" type="button" data-i18n="admin.endGame">End Game</button>
+                    <a class="paused-admin-link" href="/beatify/admin" data-i18n="admin.openAdminPage">Open the admin page</a>
+                </div>
             </div>
         </div>
 
@@ -966,6 +978,8 @@
                 <span class="control-icon">🔉</span>
                 <span class="control-label" data-i18n="admin.volDown">Down</span>
             </button>
+            <!-- #2557: the actual level, so the host is not adjusting blind. -->
+            <span id="volume-readout" class="control-volume-readout" aria-live="polite">--</span>
             <button id="volume-up-btn" class="control-btn" type="button">
                 <span class="control-icon">🔊</span>
                 <span class="control-label" data-i18n="admin.volUp">Up</span>

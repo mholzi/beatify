@@ -101,13 +101,21 @@ export var MAX_NAME_LENGTH = 20;
  * Validate a typed player name. Pure — moved here from player-core (#2506) so
  * the join view's button state has one owner that can reach it.
  */
+/** utils.t with the same optional-utils guard the rest of this module uses. */
+function tr(key, fallback) {
+    return utils.t ? utils.t(key, fallback) : fallback;
+}
+
 export function validateName(name) {
     var trimmed = (name || '').trim();
     if (!trimmed) {
-        return { valid: false, error: 'Please enter a name' };
+        // #2553: these two were the only join-screen strings still hard-coded
+        // in English, on the very first screen a guest sees.
+        return { valid: false, error: tr('errors.nameEmpty', 'Please enter a name') };
     }
     if (trimmed.length > MAX_NAME_LENGTH) {
-        return { valid: false, error: 'Name too long (max 20 characters)' };
+        var tooLong = tr('errors.nameTooLong', 'Name too long (max {max} characters)');
+        return { valid: false, error: tooLong.replace(/\{max\}/g, MAX_NAME_LENGTH) };
     }
     return { valid: true, name: trimmed };
 }

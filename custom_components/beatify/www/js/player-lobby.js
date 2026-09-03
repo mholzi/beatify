@@ -8,6 +8,7 @@ import {
     initVirtualPlayerList, setVirtualPlayerListItems,
     createModalFocusTrap
 } from './player-utils.js';
+import { showToast } from './notify.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -463,6 +464,46 @@ export function setupAdminControls() {
             action: 'start_game'
         }));
     });
+}
+
+/**
+ * Surface a failed game start in the lobby (#2551).
+ *
+ * A start that the server refuses — no media player, no playable songs, no
+ * playlist — used to be routed to the in-game submit-error handler, which
+ * wrote the message onto the HIDDEN #submit-btn. On screen the Start button
+ * simply sat on "Starting…" forever with no explanation.
+ *
+ * Returns true when the error belonged to the lobby and has been handled.
+ */
+export function handleStartFailure(data) {
+    var lobby = document.getElementById('lobby-view');
+    if (!lobby || lobby.classList.contains('hidden')) return false;
+
+    var startBtn = document.getElementById('start-game-btn');
+    if (!startBtn) return false;
+
+    // The click handler flattened the button to a text node, so rebuild the
+    // icon + label it ships with rather than leaving a bare string.
+    startBtn.disabled = false;
+    startBtn.textContent = '';
+    var icon = document.createElement('span');
+    icon.className = 'btn-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = '🎉';
+    var label = document.createElement('span');
+    label.setAttribute('data-i18n', 'lobby.startGame');
+    label.textContent = utils.t('lobby.startGame', 'Start Game');
+    startBtn.appendChild(icon);
+    startBtn.appendChild(label);
+
+    var code = data && data.code;
+    var message = code ? utils.t('errors.' + code) : null;
+    if (!message || message === 'errors.' + code) {
+        message = (data && data.message) || utils.t('errors.startNotPossible');
+    }
+    showToast(message);
+    return true;
 }
 
 // ============================================
