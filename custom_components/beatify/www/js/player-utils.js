@@ -343,6 +343,34 @@ export function isJoinRejection(code, joinPending) {
 }
 
 /**
+ * The text a refused guest reads (#2532).
+ *
+ * #2511 gave the rejection a home on the join view but passed the server's own
+ * ``message`` straight through, so a German or Spanish guest read "Name taken,
+ * choose another" on an otherwise translated screen. All four codes in
+ * ``JOIN_REJECTED_CODES`` have an ``errors.<CODE>`` entry in every locale — the
+ * lookup simply never happened.
+ *
+ * **Why the second argument and not ``||``.** The tempting form is
+ * ``t('errors.' + code) || serverMessage``, and it can never reach the right
+ * side: ``t`` returns the key itself when the lookup misses, and for a missing
+ * key with no fallback it *generates* one from the key ("Name Taken"). Both are
+ * truthy, so the server message would be dead code and an unknown code would
+ * surface as ``errors.SOMETHING`` on screen. ``t``'s two-argument form is the
+ * only one that actually falls back.
+ *
+ * @param {string} code - server error code, e.g. NAME_TAKEN
+ * @param {string} serverMessage - the server's English text, used as fallback
+ * @param {function} t - translation helper (utils.t)
+ * @returns {string} localized text, the server's message, or a last resort
+ */
+export function joinRejectionMessage(code, serverMessage, t) {
+    var fallback = serverMessage || 'Could not join';
+    if (typeof t !== 'function' || !code) return fallback;
+    return t('errors.' + code, fallback);
+}
+
+/**
  * #1664 item 3: single source of truth for "are we in Title & Artist mode?".
  *
  * The server ships the top-level `title_artist_mode` flag on EVERY serialized
