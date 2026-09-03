@@ -3200,6 +3200,21 @@ function showAdminEndView(data) {
             var scoreEl = document.getElementById('admin-podium-' + i + '-score');
             if (nameEl) nameEl.textContent = entry ? entry.name : '---';
             if (scoreEl) scoreEl.textContent = entry ? entry.score : '0';
+
+            // #2534: hide a stand nobody is on. player-end.js and dashboard.js
+            // have done this since #2130; the host's own screen was the one
+            // view that kept showing "---" and 0 on an empty plinth.
+            //
+            // This uses `hidden` and not dashboard.js's `podium-place--empty`
+            // on purpose: that class's only rule lives in dashboard.css, which
+            // admin.html does not load. Copying the class here would look like
+            // a fix and change nothing on screen. `hidden` is what player-end.js
+            // uses, and it works on both pages because styles.css — the sheet
+            // admin.html does load — declares `.hidden { display: none
+            // !important }`, which beats .podium-place's display:flex.
+            var placeEl = (nameEl || scoreEl);
+            placeEl = placeEl && placeEl.closest ? placeEl.closest('.podium-place') : null;
+            if (placeEl) placeEl.classList.toggle('hidden', !entry);
         }
     }
 
