@@ -4,6 +4,68 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.2-rc1] - 2026-09-03
+
+Fifteen defects from a multi-agent review of the running code, every one verified against `main`
+before it was touched. Two of them could end a party mid-game; the rest are the kind you notice
+once, shrug at, and never report.
+
+### Fixed
+- **Auto-advance could pause the game without telling anyone (#2544).** When `start_round()` fails
+  after the song ends — three playback timeouts, a rate limit — it calls `pause_game()`, which only
+  notifies the HA sensors. With no broadcast the backend sat in PAUSED while the admin UI, every
+  phone and the TV still rendered REVEAL; the Next button answered `ERR_INVALID_ACTION` and the
+  recovery banner never appeared, so only a reload got the host out. `admin_next_round` already
+  handled this branch, and since #1012 the automatic path is how every round begins.
+- **The round timer ran during an unconfirmed intro splash (#2543).** With intro mode and TTS both
+  on, `start_timer_at_playback` re-stamped the deadline and armed a countdown even though playback
+  was still held back for the splash. A host slower than `round_duration` saw the round end in
+  silence with everyone scored as "missed". Confirming afterwards started the song inside REVEAL.
+- **The #1211 timer delay had no effect where it was meant to (#2546).** The announce helpers queue
+  their phrases rather than blocking, so the same re-stamp discarded both the measured announcement
+  cost and the user's manual allowance.
+- **Eliminated players held the early reveal open (#2545).** `all_submitted()` has excluded them
+  since #827, but the three follow-up loops filtered on `is_active` alone — and the guess handlers
+  refuse an eliminated player, so those flags could never arrive. From the first Sudden Death cut
+  onward every round ran its full timer with the room already finished.
+- **The finale tiebreaker could not fire in the last round (#2547).** With a round cap the pool is
+  sampled down to exactly `max_rounds`, so a game played to the end has zero songs remaining by
+  construction and the "unplayed songs remain" guard declined every tie — the one case #1725 exists
+  for. The capped-out songs are kept in reserve and a playoff releases one.
+- **The speaker crowned the wrong winner in Sudden Death (#2548).** `announce_winner` and
+  `announce_podium` sorted by raw score while the end screen and leaderboard have ranked survivors
+  first since #1749.
+- **Guests were turned away from a paused game (#2549).** `add_player` only rejects END, but
+  `can_join` omitted PAUSED — the window an admin phone opens every time its screen locks.
+- **An active artist challenge shipped its own answer (#2550).** During PLAYING `song.artist` is
+  the answer being guessed, but redaction only covered `title_artist_mode`.
+- **A host on their phone could not leave a paused game (#2551).** The player screen hides the
+  admin control bar in PAUSED, so there was no resume, no end and no link to the page that had
+  both. The same issue covered a refused game start, whose error was written onto the hidden
+  in-game submit button while the Start button sat on "Starting…".
+- **A speaker failure was reported as a missing host (#2552).** `pause_reason` was in the state
+  payload all along and the dashboard ignored it, so the TV told a room the host had disconnected
+  while the host stood next to it, and the guests were told to check a media player that was not
+  theirs.
+- **In-round errors arrived as English server prose (#2553).** Same class as #2532, for everything
+  after the join. Twelve codes gained translations in all six locales, the two hard-coded join-screen
+  validation strings go through `utils.t`, and the restored button label follows the game mode.
+- **Stopping the song was invisible to everyone but the host (#2554).** The broadcast reached every
+  client and only the host's own button changed, so the room heard the music cut out with the timer
+  still running.
+- **Player names were double-escaped on the phone podium (#2555).** Fixed for the TV in #1402-B8;
+  the phone kept the old line.
+- **The TV lobby never told guests to scan (#2556).** The `lobby.scanToJoin` key existed and was
+  used only in the phone modal.
+- **The volume buttons assumed a level (#2557).** `volume_changed` only comes back in reply to the
+  host's own tap and the state carried nothing, so the first press was blind and the at-the-limit
+  guard checked an invented 0.5. The state now carries `volume_level`, read through to the media
+  player so it follows changes made outside Beatify too.
+
+### Changed
+- The footer language count says six. `SUPPORTED_LANGUAGES` has carried `it` alongside `en`, `de`,
+  `es`, `fr` and `nl` for some time; the notes still said five.
+
 ## [4.4.1] - 2026-09-03
 
 Everything from the `v4.4.1-rc1` candidate, plus three defects found by testing the candidate
