@@ -93,6 +93,21 @@ from .playlist import PlaylistManager
 _LOGGER = logging.getLogger(__name__)
 
 
+class NoPlayableSongsError(ValueError):
+    """The chosen provider has no playable song in the selected playlist(s).
+
+    #2530: ``create_game`` raises ``ValueError`` for two unrelated reasons — an
+    out-of-range round duration and this one. The HTTP layer has a distinct
+    error code for each (``INVALID_REQUEST`` / ``NO_PLAYABLE_SONGS``) and cannot
+    tell them apart from a bare ``ValueError`` without matching on the message
+    text, which a translation or a reword would silently break.
+
+    It subclasses ``ValueError`` deliberately: every existing caller and test
+    that expects a ``ValueError`` from ``create_game`` keeps working, so this
+    adds a distinction without changing the contract.
+    """
+
+
 class GameSetupMixin:
     """Game-setup (create / reset / end / rematch) behavior for :class:`GameState`.
 
@@ -202,7 +217,7 @@ class GameSetupMixin:
         # #709: if the chosen provider has zero playable songs, fail fast with
         # a clear error rather than silently starting a game that will stall.
         if not playlist_manager.has_playable_songs():
-            raise ValueError(
+            raise NoPlayableSongsError(
                 f"No playable songs for provider '{provider}' in the selected "
                 f"playlist(s). Pick a different playlist or provider."
             )
