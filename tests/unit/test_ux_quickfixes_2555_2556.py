@@ -18,7 +18,8 @@ import re
 from pathlib import Path
 
 WWW = Path(__file__).resolve().parents[2] / "custom_components" / "beatify" / "www"
-LOCALES = ("en", "de", "fr", "nl", "it")
+# This repo ships six locales, not the five the docs mention.
+LOCALES = ("en", "de", "es", "fr", "it", "nl")
 
 
 class TestPodiumNameIsNotDoubleEscaped:
