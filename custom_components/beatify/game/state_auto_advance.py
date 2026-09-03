@@ -232,6 +232,21 @@ class RevealAutoAdvanceMixin:
                 else:
                     await self.advance_to_end()
                 success = True
+            # #2544: start_round() can also fail by PAUSING — three playback
+            # timeouts or a rate limit end in pause_game("media_player_error").
+            # pause_game only notifies the HA sensors, so without a broadcast
+            # here the backend sits in PAUSED while every client still shows
+            # REVEAL with a Next button that answers ERR_INVALID_ACTION, and the
+            # recovery banner carrying Resume never renders — only a reload gets
+            # the host out. admin_next_round already broadcasts on this branch;
+            # since #1012 made song-end auto-advance the default way into a
+            # round, this path needs it more than the manual one does.
+            if not success and self.phase == GamePhase.PAUSED:
+                _LOGGER.warning(
+                    "REVEAL auto-advance could not start the next round — game "
+                    "paused, broadcasting so clients can offer recovery"
+                )
+
             # start_round() only fires sync state-callbacks via
             # _notify_state_callbacks; the async WebSocket broadcast
             # (`_on_round_end` = ws_handler.broadcast_state) is what actually
@@ -240,7 +255,7 @@ class RevealAutoAdvanceMixin:
             # after start_round / advance_to_end — mirror that here, otherwise
             # music starts (or the game ends) but the admin + player UIs stay
             # frozen on REVEAL.
-            if success and self._on_round_end:
+            if (success or self.phase == GamePhase.PAUSED) and self._on_round_end:
                 try:
                     await self._on_round_end()
                 except (ConnectionError, OSError, TypeError) as err:
