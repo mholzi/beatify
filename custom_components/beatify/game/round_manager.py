@@ -174,7 +174,9 @@ class RoundManager:
         """Mark the stamped deadline as not-yet-started (announcements)."""
         self._deadline_deferred = True
 
-    def start_timer_at_playback(self, timer_countdown: Any = None) -> None:
+    def start_timer_at_playback(
+        self, timer_countdown: Any = None, extra_seconds: float = 0.0
+    ) -> None:
         """Re-stamp the deadline from NOW, because the song is now audible.
 
         Round-start announcements run between ``initialize_round`` and the
@@ -187,15 +189,35 @@ class RoundManager:
         and re-arm the countdown. Idempotent — calling it without a deferral
         pending does nothing, so a provider that never announces is
         unaffected.
+
+        #2543: an intro-splash round must NOT be started here. With intro mode
+        and TTS both on, ``_start_round_locked`` defers the deadline for the
+        announcements while ``_prepare_intro_round`` also holds playback back
+        for the splash. Re-stamping here would arm a real countdown on a round
+        whose song has not played yet — a host who takes longer than
+        ``round_duration`` to confirm would see the round end in silence, every
+        player scored as "missed". The deferral is left standing for
+        ``confirm_intro_splash``, which owns the clock for that round.
+
+        ``extra_seconds`` (#2546) keeps the announcement budget the caller
+        already computed: the announce_* helpers queue their phrases rather
+        than blocking until the speaker is done, so at this point the room may
+        still be listening to the round number and the countdown. Without it
+        the re-stamp silently discards both the measured announcement cost and
+        the user's #1211 "Timer delay" — the very setting that exists to keep
+        that time out of the round.
         """
+        if self._intro_splash_pending:
+            return
         if not self._deadline_deferred:
             return
         self._deadline_deferred = False
         self.cancel_timer()
         now = self._now()
         self.round_start_time = now
-        self.deadline = int(now * 1000) + int(self.round_duration * 1000)
-        delay = self.round_duration
+        extra_ms = max(0, int(float(extra_seconds) * 1000))
+        self.deadline = int(now * 1000) + int(self.round_duration * 1000) + extra_ms
+        delay = self.round_duration + (extra_ms / 1000.0)
         countdown = timer_countdown or self._timer_countdown
         self._timer_task = asyncio.create_task(countdown(delay))
         self._timer_task.add_done_callback(_log_timer_task_failure)
@@ -439,6 +461,11 @@ class RoundManager:
 
         self._intro_splash_pending = False
         self._intro_splash_shown = True
+        # #2543: this method stamps its own deadline below, so any deferral
+        # taken out for the round-start announcements is consumed here. Left
+        # standing it would make is_deadline_passed() report False for the rest
+        # of the round, disabling the client-side round watchdog.
+        self._deadline_deferred = False
 
         song = self._intro_splash_deferred_song
         if song:
