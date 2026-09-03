@@ -15,7 +15,7 @@ import {
     setEnergyLevel, triggerConfetti, stopConfetti,
     initQrCollapsible, setupLobbyCollapsible,
     requestWakeLock, releaseWakeLock,
-    isJoinRejection, validateName
+    isJoinRejection, joinRejectionMessage, validateName
 } from './player-utils.js';
 
 import {
@@ -848,7 +848,8 @@ function handleServerMessage(data) {
         // "something went wrong mid-game" — GAME_ENDED reaches both paths and
         // means different things in each.
         if (isJoinRejection(data.code, state.joinPending)) {
-            failJoin(data.message || 'Could not join');
+            // #2532: look the code up instead of echoing the server's English.
+            failJoin(joinRejectionMessage(data.code, data.message, utils.t));
             return;
         }
         if (data.code === 'GAME_ENDED') {
