@@ -219,6 +219,17 @@
     color: var(--color-accent-secondary);
 }
 
+/* #2556: the call to action above the QR code. Same weight as the player
+   count so it reads from across the room, but in the plain text colour — the
+   accent belongs to the count, which is the number people watch. */
+.dashboard-scan-hint {
+    margin: 0 0 var(--space-md);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-white);
+    text-align: center;
+}
+
 .lobby-players-section {
     display: flex;
     flex-direction: column;
@@ -802,6 +813,10 @@
     }
 
     .dashboard-player-count {
+        font-size: var(--font-size-3xl);
+    }
+
+    .dashboard-scan-hint {
         font-size: var(--font-size-3xl);
     }
 

@@ -36,7 +36,12 @@ export function updateEndView(data) {
         if (slotEl) slotEl.classList.toggle('hidden', !player);
         var nameEl = document.getElementById('podium-' + place + '-name');
         var scoreEl = document.getElementById('podium-' + place + '-score');
-        if (nameEl) nameEl.textContent = player ? escapeHtml(player.name) : '---';
+        // #2555: textContent already neutralizes markup, so feeding it
+        // escapeHtml() output double-escapes — "Tom & Jerry" rendered as
+        // "Tom &amp; Jerry" in the podium moment, when everyone is looking at
+        // their name. The TV was fixed for exactly this in #1402-B8; the phone
+        // kept the old line. Assign the raw name directly.
+        if (nameEl) nameEl.textContent = player ? player.name : '---';
         if (scoreEl) scoreEl.textContent = player ? player.score : '0';
     });
 

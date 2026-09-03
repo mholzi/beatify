@@ -286,6 +286,12 @@
             <div class="dashboard-lobby-content">
                 <!-- QR Code Section (left) -->
                 <div class="lobby-qr-section">
+                    <!-- #2556: the QR code, the URL and the player count said
+                         nothing about what to DO with them. A first-time guest
+                         on the couch has no reason to know the code is the way
+                         into the game. Reuses the existing lobby.scanToJoin
+                         key, already translated in all five locales. -->
+                    <p class="dashboard-scan-hint" data-i18n="lobby.scanToJoin">Scan to join the game</p>
                     <div id="dashboard-qr-code" class="dashboard-qr-code">
                         <!-- QR code rendered here -->
                     </div>
