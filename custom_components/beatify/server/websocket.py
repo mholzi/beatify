@@ -438,14 +438,23 @@ class BeatifyWebSocketHandler:
                 GamePhase,
             )
 
-            if (
-                game_state.title_artist_mode
-                and game_state.phase == GamePhase.PLAYING
-                and isinstance(message.get("song"), dict)
-            ):
+            playing_with_song = game_state.phase == GamePhase.PLAYING and isinstance(
+                message.get("song"), dict
+            )
+            if game_state.title_artist_mode and playing_with_song:
                 song = dict(message["song"])
                 song["artist"] = REDACTED_PLACEHOLDER
                 song["title"] = REDACTED_PLACEHOLDER
+                return {**message, "song": song}
+            # #2550: an active artist challenge makes song.artist the answer
+            # here too. The title is not part of that challenge and stays.
+            if (
+                playing_with_song
+                and getattr(game_state, "artist_challenge_enabled", False)
+                and getattr(game_state, "artist_challenge", None) is not None
+            ):
+                song = dict(message["song"])
+                song["artist"] = REDACTED_PLACEHOLDER
                 return {**message, "song": song}
         return message
 

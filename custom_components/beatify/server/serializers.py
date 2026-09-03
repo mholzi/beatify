@@ -72,6 +72,9 @@ def redact_state_for_player(message: dict[str, Any]) -> dict[str, Any]:
       are replaced with a placeholder. ``album_art`` is left intact (players
       need it to play along). The REVEAL payload is untouched — by then the
       answers are public.
+    * When an artist challenge is running in ``PLAYING``, ``song.artist`` alone
+      is the answer and is replaced the same way (#2550). The title is not part
+      of that challenge and stays visible.
 
     The input is not mutated; only the keys that need changing are shallow
     copied.
@@ -81,12 +84,22 @@ def redact_state_for_player(message: dict[str, Any]) -> dict[str, Any]:
 
     # Nothing to redact if neither answer-bearing key is present.
     has_admin_song = "admin_song" in message
-    redact_song = (
-        message.get("title_artist_mode")
-        and message.get("phase") == "PLAYING"
-        and isinstance(message.get("song"), dict)
+    playing_with_song = message.get("phase") == "PLAYING" and isinstance(
+        message.get("song"), dict
     )
-    if not has_admin_song and not redact_song:
+    redact_song = bool(message.get("title_artist_mode")) and playing_with_song
+    # #2550: an artist challenge asks players to name the artist, so during
+    # PLAYING `song.artist` is the answer just as much as in title_artist_mode.
+    # No client renders it, but the frame is on every player socket and the
+    # network tab is enough to read it — the same leak #1366 closed for
+    # admin_song and title_artist_mode. The title is not part of this challenge
+    # and stays visible.
+    redact_artist_only = (
+        not redact_song
+        and playing_with_song
+        and isinstance(message.get("artist_challenge"), dict)
+    )
+    if not has_admin_song and not redact_song and not redact_artist_only:
         return message
 
     redacted = dict(message)
@@ -95,6 +108,10 @@ def redact_state_for_player(message: dict[str, Any]) -> dict[str, Any]:
         song = dict(redacted["song"])
         song["artist"] = REDACTED_PLACEHOLDER
         song["title"] = REDACTED_PLACEHOLDER
+        redacted["song"] = song
+    elif redact_artist_only:
+        song = dict(redacted["song"])
+        song["artist"] = REDACTED_PLACEHOLDER
         redacted["song"] = song
     return redacted
 
@@ -212,7 +229,13 @@ def build_game_status_response(
         }
 
     phase = game_state.phase.value
-    can_join = phase in ("LOBBY", "PLAYING", "REVEAL")
+    # #2549: PAUSED accepts joins too — add_player only rejects END, and an
+    # admin phone whose screen locked pauses the game after a 5s grace period
+    # (#841), which is a common window for a guest to be scanning the QR code.
+    # Without PAUSED here they were told "game in progress, try again in a
+    # moment" and had to keep retrying by hand against a server that would have
+    # let them straight in.
+    can_join = phase in ("LOBBY", "PLAYING", "REVEAL", "PAUSED")
 
     return {
         "exists": True,

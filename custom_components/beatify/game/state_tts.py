@@ -341,12 +341,20 @@ class TtsAnnouncerMixin:
         await self._tts_announce(message)
 
     async def announce_winner(self) -> None:
-        """Announce the winner (use case 18)."""
+        """Announce the winner (use case 18).
+
+        #2548: reads ``compute_winners()`` rather than a plain score max. In a
+        Sudden Death game the finish order is survival-first (#827/#1749), so a
+        late-eliminated high scorer is NOT the winner — the END screen and the
+        leaderboard have said so since #1749, while the speaker went on
+        crowning them and contradicted the screen in front of the whole room.
+        """
         if not self._tts_service or not self._tts_announce_winner or not self.players:
             return
         lang = self._lang()
-        top_score = max(p.score for p in self.players.values())
-        winners = [p for p in self.players.values() if p.score == top_score]
+        winners, top_score = self.compute_winners()
+        if not winners:
+            return
         points = tts_phrases.spoken_number(lang, top_score)
         if len(winners) == 1:
             message = tts_phrases.phrase(
@@ -549,14 +557,18 @@ class TtsAnnouncerMixin:
         """
         if not self._tts_service or not self._tts_announce_podium:
             return
-        ranked = sorted(self.players.values(), key=lambda p: p.score, reverse=True)
-        podium = [p for p in ranked if p.score > 0][:3]
+        # #2548: the podium follows get_final_leaderboard's ranking, which is
+        # survival-first once Sudden Death has claimed anyone (#827). Sorting by
+        # score here put eliminated players on a podium the screen ranks below
+        # the cut-line.
+        ranked = self.get_final_leaderboard()
+        podium = [entry for entry in ranked if entry.get("score", 0) > 0][:3]
         if not podium:
             return
         lang = self._lang()
         segments = [
             f"{tts_phrases.place_label(lang, i + 1)}: "
-            f"{podium[i].name}{'!' if i == 0 else '.'}"
+            f"{podium[i]['name']}{'!' if i == 0 else '.'}"
             for i in reversed(range(len(podium)))
         ]
         await self._tts_announce(" ".join(segments))
