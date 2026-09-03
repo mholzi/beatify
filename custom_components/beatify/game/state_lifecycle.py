@@ -601,10 +601,26 @@ class RoundLifecycleMixin:
             # The song is (or is about to be) audible: start the round clock
             # from here rather than from initialize_round, so players get the
             # full round duration of MUSIC.
+            # #2543: on an intro-splash round the clock belongs to
+            # confirm_intro_splash — the song has not played yet, so there is
+            # nothing to start here and the "clock started" log would lie.
             start_now = getattr(self._round_manager, "start_timer_at_playback", None)
-            if callable(start_now):
+            if callable(start_now) and not will_defer_for_splash:
                 with contextlib.suppress(Exception):
-                    start_now(self._timer_countdown)
+                    # #2546: hand the remaining announcement budget along. The
+                    # announce_* calls above queue their phrases (see
+                    # _tts_announce) instead of blocking until the speaker is
+                    # free, so "the song is audible" is not yet true when we get
+                    # here. announcement_busy_seconds() is what the queue itself
+                    # believes is left, and _tts_pre_round_delay is the user's
+                    # manual #1211 allowance for device overhead we cannot see.
+                    _extra = 0.0
+                    with contextlib.suppress(Exception):
+                        busy = getattr(self, "announcement_busy_seconds", None)
+                        if callable(busy):
+                            _extra += max(0.0, float(busy()))
+                    _extra += max(0.0, float(self._tts_pre_round_delay or 0.0))
+                    start_now(self._timer_countdown, _extra)
                     _LOGGER.info(
                         "Round %s: clock started at playback (%.0fs of music)",
                         getattr(self, "round", "?"),
