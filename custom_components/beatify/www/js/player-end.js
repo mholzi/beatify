@@ -673,15 +673,25 @@ function downloadBlob(blob) {
  * @param {Object} data - State data with pause_reason
  */
 export function updatePausedView(data) {
+    var speakerDown = data.pause_reason === 'media_player_error';
     var messageEl = document.getElementById('pause-message');
     if (messageEl) {
         if (data.pause_reason === 'admin_disconnected') {
             messageEl.textContent = utils.t('player.waitingForHostReconnect');
-        } else if (data.pause_reason === 'media_player_error') {
+        } else if (speakerDown) {
             messageEl.textContent = utils.t('player.speakerUnavailable');
         } else {
             messageEl.textContent = utils.t('player.gamePaused');
         }
+    }
+    // #2552: the hint under the spinner was hard-coded to "the game will resume
+    // when the host returns". On a speaker failure the host never left, so the
+    // guest was told to wait for something that was not happening.
+    var hintEl = document.getElementById('pause-hint');
+    if (hintEl) {
+        hintEl.textContent = speakerDown
+            ? utils.t('game.pausedHintSpeaker')
+            : utils.t('game.pausedHint');
     }
 }
 

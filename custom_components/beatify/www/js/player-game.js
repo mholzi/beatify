@@ -443,7 +443,8 @@ function syncArcChipRow() {
         'sabotage-indicator',  // #1665
         'closest-wins-badge',
         'intro-badge',
-        'last-round-banner'
+        'last-round-banner',
+        'song-stopped-chip'  // #2554
     ];
     var anyVisible = childIds.some(function(id) {
         var el = document.getElementById(id);
@@ -2447,6 +2448,14 @@ export function setupAdminControlBar() {
  */
 export function handleSongStopped() {
     songStopped = true;
+    // #2554: tell the room, not just the host. Everyone else hears the music
+    // stop with the timer still running and has no way to know it was
+    // deliberate.
+    var chip = document.getElementById('song-stopped-chip');
+    if (chip) {
+        chip.classList.remove('hidden');
+        syncArcChipRow();
+    }
     var stopBtn = document.getElementById('stop-song-btn');
     if (stopBtn) {
         stopBtn.classList.add('is-stopped');
@@ -2464,6 +2473,11 @@ export function handleSongStopped() {
  */
 export function resetSongStoppedState() {
     songStopped = false;
+    var chip = document.getElementById('song-stopped-chip');
+    if (chip) {
+        chip.classList.add('hidden');
+        syncArcChipRow();
+    }
     var stopBtn = document.getElementById('stop-song-btn');
     if (stopBtn) {
         stopBtn.classList.remove('is-stopped');

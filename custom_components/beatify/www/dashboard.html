@@ -331,6 +331,12 @@
                     <span data-i18n="game.ofLabel">of</span>
                     <strong id="dashboard-total-rounds">10</strong>
                 </div>
+                <!-- #2554: the host stopped the song on purpose. Without this
+                     the music simply cuts out while the timer runs on. -->
+                <span id="dashboard-song-stopped" class="chip-badge chip-badge--stopped hidden">
+                    <span class="chip-badge-icon" aria-hidden="true">⏹</span>
+                    <span data-i18n="game.songStoppedChip">Song stopped — keep guessing</span>
+                </span>
                 <div id="dashboard-submissions-meter" class="chip-meter" data-submissions="0/0">
                     <div class="chip-meter-fill" style="width:0%"></div>
                     <div class="chip-meter-label">
@@ -582,9 +588,14 @@
         <!-- Paused view -->
         <div id="dashboard-paused" class="dashboard-view hidden">
             <div class="dashboard-centered">
-                <div class="paused-icon">||</div>
+                <!-- #2552: was the literal string "||", which renders as two
+                     pipes in the page font rather than a pause glyph. -->
+                <div class="paused-icon" aria-hidden="true">⏸</div>
                 <h1 data-i18n="game.paused">Game Paused</h1>
-                <p class="dashboard-message" data-i18n="game.waitingForHost">Waiting for host to reconnect...</p>
+                <!-- #2552: the text follows pause_reason (dashboard.js). It used
+                     to always say the host had disconnected — in front of a room
+                     where the host was standing next to the TV. -->
+                <p id="dashboard-pause-message" class="dashboard-message" data-i18n="game.waitingForHost">Waiting for host to reconnect...</p>
             </div>
         </div>
     </main>

@@ -61,6 +61,12 @@
     // the clock is unchanged, so the running timer must be left ticking).
     var lastCountdownDeadline = null;
 
+    // #2554: `song_stopped` is an event, not part of the state payload, so the
+    // chip is pinned to the round it arrived in and clears itself once the next
+    // round renders.
+    var songStoppedRound = null;
+    var lastRenderedRound = null;
+
     // --- #1705: WS-broadcast render coalescing ------------------------------
     // Mirrors admin's createRenderCoalescer (#1584): the dashboard used to push
     // EVERY `state` broadcast straight into a full re-render (leaderboard
@@ -517,8 +523,14 @@
             // broadcast replaces it.
             stopCountdown();
             showView('dashboard-starting');
+        } else if (data.type === 'song_stopped') {
+            // #2554: the dashboard used to ignore this. To the room the music
+            // just stopped while the timer kept running, which is
+            // indistinguishable from the speaker dying.
+            songStoppedRound = lastRenderedRound;
+            setSongStoppedChip(true);
         }
-        // Dashboard ignores submit_ack, song_stopped, volume_changed since it doesn't interact
+        // Dashboard ignores submit_ack and volume_changed since it doesn't interact
     }
 
     /**
@@ -646,11 +658,50 @@
                 break;
             case 'PAUSED':
                 stopCountdown();
+                renderPausedView(state);
                 showView('dashboard-paused');
                 break;
             default:
                 debug('[Dashboard] Unknown phase:', phase);
         }
+    }
+
+    /**
+     * #2552: the paused screen names the actual reason.
+     *
+     * `pause_reason` has been in the state payload all along
+     * (game/serializers.py) and the dashboard ignored it, so a speaker failure
+     * told the room the host had disconnected — in front of a host standing
+     * next to the TV. The guests' phones meanwhile read "check your media
+     * player", which is not theirs to check.
+     */
+    function renderPausedView(state) {
+        var el = document.getElementById('dashboard-pause-message');
+        if (!el) return;
+        var reason = state && state.pause_reason;
+        var key = 'game.waitingForHost';
+        var fallback = 'Waiting for host to reconnect...';
+        if (reason === 'media_player_error') {
+            key = 'game.pausedSpeaker';
+            fallback = 'Speaker is not responding — the host is on it';
+        } else if (reason === 'no_songs_available') {
+            key = 'game.pausedNoSongs';
+            fallback = 'No more songs available';
+        }
+        el.setAttribute('data-i18n', key);
+        el.textContent = utils.t(key, fallback);
+    }
+
+    /**
+     * #2554: show or clear the "song stopped" chip in the PLAYING strip.
+     *
+     * `song_stopped` is an event, not part of the state payload, so the chip is
+     * pinned to the round it arrived in and clears itself when the next round
+     * renders.
+     */
+    function setSongStoppedChip(visible) {
+        var chip = document.getElementById('dashboard-song-stopped');
+        if (chip) chip.classList.toggle('hidden', !visible);
     }
 
     // ============================================
@@ -817,6 +868,13 @@
     function renderPlayingView(data) {
         var song = data.song || {};
         var players = data.players || [];
+
+        // #2554: a stop belongs to the round it happened in.
+        lastRenderedRound = data.round;
+        if (songStoppedRound !== data.round) {
+            songStoppedRound = null;
+            setSongStoppedChip(false);
+        }
 
         // Update round indicator
         var currentRound = document.getElementById('dashboard-current-round');
