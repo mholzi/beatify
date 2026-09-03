@@ -170,8 +170,18 @@ class PlaylistManager:
         #   a plain ``[:n]`` would serve only the first playlist of a
         #   multi-playlist selection. Sampling keeps the mix.
         self._max_rounds = max(max_rounds, MIN_ROUNDS) if max_rounds else 0
+        # #2547: the songs the cap drops are kept aside rather than discarded.
+        # A capped game ends with get_remaining_count() == 0 by construction, so
+        # the finale tiebreaker (#1725) — which only arms while unplayed songs
+        # remain — could never fire in the actual last round, the one case it
+        # was written for. reserve_songs_for_playoff() hands them back one at a
+        # time, so the cap still governs normal play.
+        self._reserve_songs: list[dict[str, Any]] = []
         if self._max_rounds and len(self._songs) > self._max_rounds:
-            self._songs = random.sample(self._songs, self._max_rounds)
+            sampled = random.sample(self._songs, self._max_rounds)
+            sampled_ids = {id(song) for song in sampled}
+            self._reserve_songs = [s for s in self._songs if id(s) not in sampled_ids]
+            self._songs = sampled
             # #2418: regroup the buckets from the sampled pool. Until this line
             # existed the cap applied to `self._songs` alone, while
             # `self._buckets` — assigned above, before the sample — kept every
@@ -361,6 +371,34 @@ class PlaylistManager:
         # #707: mark_played() accepts any URI (incl. unknown ones), so naive
         # subtraction can go negative. Clamp at 0.
         return max(0, len(self._songs) - len(self._played_uris))
+
+    def reserve_songs_for_playoff(self, count: int = 1) -> int:
+        """Move up to ``count`` capped-out songs back into the playable pool.
+
+        Returns the number of songs actually released (0 when the round cap was
+        never applied, or the reserve is spent).
+
+        The finale tiebreaker (#1725) arms only while unplayed songs remain.
+        With a round cap the pool is sampled down to exactly ``max_rounds``, so
+        after the last round nothing remains and the tiebreaker was unreachable
+        in the situation it exists for — a tie at the end of a normal game
+        (#2547). Rather than lifting the cap and letting normal play run long,
+        the dropped songs stay in reserve and a playoff draws from them.
+        """
+        if count <= 0 or not self._reserve_songs:
+            return 0
+        released = self._reserve_songs[:count]
+        self._reserve_songs = self._reserve_songs[count:]
+        self._songs.extend(released)
+        for song in released:
+            source = song.get("_playlist_source", "__default__")
+            self._buckets.setdefault(source, []).append(song)
+        self._multi_playlist = len(self._buckets) > 1
+        _LOGGER.info(
+            "Finale tiebreaker: released %d reserved song(s) for a playoff round",
+            len(released),
+        )
+        return len(released)
 
     def has_playable_songs(self) -> bool:
         """True if this manager has any songs for its provider (#709)."""

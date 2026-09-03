@@ -123,24 +123,20 @@ class RevealTransitionMixin:
         # or if no one has guessed yet (don't block early reveal for ignored challenges)
         if self.artist_challenge_enabled and self.artist_challenge:
             has_winner = getattr(self.artist_challenge, "winner", None) is not None
-            anyone_guessed = any(
-                p.has_artist_guess for p in self.players.values() if p.is_active
-            )
+            anyone_guessed = any(p.has_artist_guess for p in self._active_guessers())
             if not has_winner and anyone_guessed:
-                for player in self.players.values():
-                    if player.is_active and not player.has_artist_guess:
+                for player in self._active_guessers():
+                    if not player.has_artist_guess:
                         return False
 
         # Issue #28: If movie quiz enabled and active, check movie guesses
         # Skip check if challenge already has correct guesses or no one interacted
         if self.movie_quiz_enabled and self.movie_challenge:
             has_correct = len(self.movie_challenge.correct_guesses) > 0
-            anyone_guessed = any(
-                p.has_movie_guess for p in self.players.values() if p.is_active
-            )
+            anyone_guessed = any(p.has_movie_guess for p in self._active_guessers())
             if not has_correct and anyone_guessed:
-                for player in self.players.values():
-                    if player.is_active and not player.has_movie_guess:
+                for player in self._active_guessers():
+                    if not player.has_movie_guess:
                         return False
 
         # #1180: In Title & Artist mode, wait for every active player to submit
@@ -148,11 +144,24 @@ class RevealTransitionMixin:
         # year guess, so there is no "winner" short-circuit — each player guesses
         # independently and we hold PLAYING until all are in.
         if self.title_artist_mode and self.title_artist_challenge:
-            for player in self.players.values():
-                if player.is_active and not player.has_title_artist_guess:
+            for player in self._active_guessers():
+                if not player.has_title_artist_guess:
                     return False
 
         return True
+
+    def _active_guessers(self) -> list:
+        """Players whose guess the early reveal is allowed to wait for (#2545).
+
+        ``all_submitted()`` has excluded eliminated players since #827, but the
+        follow-up loops below filtered on ``is_active`` alone. An eliminated
+        player is refused by the guess handlers (ERR_ELIMINATED), so they can
+        never satisfy ``has_*_guess`` — from the first sudden-death cut onward
+        every round ran out its full timer with the whole room already done.
+        The same held for the finale playoff round, where #1725 marks every
+        non-leader eliminated.
+        """
+        return [p for p in self.players.values() if p.is_active and not p.eliminated]
 
     async def _trigger_early_reveal(self) -> None:
         """

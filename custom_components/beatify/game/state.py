@@ -1099,6 +1099,24 @@ class GameState(
     # Finale sudden-death tiebreaker (Issue #1725)
     # ------------------------------------------------------------------
 
+    def _release_playoff_song(self) -> bool:
+        """Free one capped-out song so a playoff can be played (#2547).
+
+        With a round cap the playable pool is sampled down to exactly
+        ``max_rounds`` (#1475), so a game that runs to its last round ends with
+        ``songs_remaining == 0`` by construction. The tiebreaker guard below
+        then declined every tie at the end of a normal game — the one situation
+        it was written for. The songs the cap dropped are kept in reserve and
+        released one per playoff round, so the cap still governs normal play.
+
+        Returns ``True`` when a song was released and the playoff may proceed.
+        """
+        manager = getattr(self, "_playlist_manager", None)
+        release = getattr(manager, "reserve_songs_for_playoff", None)
+        if not callable(release):
+            return False
+        return release(1) > 0
+
     async def maybe_start_finale_playoff(self) -> bool:
         """Arm + start a finale tiebreaker playoff round, if one is warranted.
 
@@ -1143,7 +1161,7 @@ class GameState(
                 FINALE_PLAYOFF_MAX_ROUNDS,
             )
             return False
-        if self.songs_remaining < 1:
+        if self.songs_remaining < 1 and not self._release_playoff_song():
             return False
         winners, _top = self.compute_winners()
         if len(winners) <= 1:
