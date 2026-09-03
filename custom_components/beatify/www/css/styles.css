@@ -12539,6 +12539,14 @@ body.is-ingame .player-header { display: none; }
     border: 1px solid rgba(255, 45, 106, 0.5);
     text-transform: uppercase;
 }
+/* #2554: the host stopped the song. Deliberately muted — this is information,
+   not a prize or an alarm, and it must not compete with the steal / sabotage
+   chips next to it. */
+.arc-chip--stopped {
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
 
 /* Year XXL */
 .year-xxl {

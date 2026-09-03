@@ -1364,6 +1364,12 @@
     font-size: 22px;
     filter: drop-shadow(0 0 8px var(--color-accent-primary));
 }
+/* #2554: song stopped by the host. Neutral on purpose — it explains silence,
+   it does not celebrate anything. */
+.chip-badge.chip-badge--stopped {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+}
 .chip-badge.chip-badge--closest {
     background: rgba(0, 245, 255, 0.15);
     border: 1px solid rgba(0, 245, 255, 0.5);

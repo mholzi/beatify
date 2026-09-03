@@ -436,6 +436,14 @@
                         <span data-i18n="game.introRound">INTRO ROUND</span>
                     </span>
                     <span id="last-round-banner" class="arc-chip arc-chip--final hidden" data-i18n="game.finalRound">Final Round!</span>
+                    <!-- #2554: the host can stop the song mid-round. Until now
+                         only the host's own button changed; to everyone else the
+                         music just cut out while the timer kept running, which
+                         reads as a failure. -->
+                    <span id="song-stopped-chip" class="arc-chip arc-chip--stopped hidden">
+                        <span aria-hidden="true">⏹</span>
+                        <span data-i18n="game.songStoppedChip">Song stopped — keep guessing</span>
+                    </span>
                 </div>
 
                 <!-- Year XXL display — turns green + gets "locked" class after submit -->
@@ -842,7 +850,7 @@
                 <div class="paused-spinner">
                     <div class="spinner"></div>
                 </div>
-                <p class="paused-hint" data-i18n="game.pausedHint">The game will resume when the host returns</p>
+                <p id="pause-hint" class="paused-hint" data-i18n="game.pausedHint">The game will resume when the host returns</p>
             </div>
         </div>
 
