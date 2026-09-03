@@ -4,6 +4,43 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.1] - 2026-09-03
+
+Everything from the `v4.4.1-rc1` candidate, plus three defects found by testing the candidate
+against a live install and one that an external report surfaced.
+
+### Fixed
+- **A playlist with nothing playable said "Server got itself in trouble" (#2530).**
+  `StartGameView.post` called `create_game` without a `try`/`except`, so the #709 fail-fast
+  `ValueError` escaped into aiohttp and became a bare 500 — a response with no `code` at all,
+  which defeated #2294 for that path and left the `errors.<CODE>` lookup with nothing to resolve.
+  The no-playable-songs case now raises `NoPlayableSongsError`, a `ValueError` subclass, so the
+  view can map it to `NO_PLAYABLE_SONGS` without mislabelling the round-duration rejection.
+- **The host's game-over podium showed stands nobody was on (#2534).** `player-end.js` and
+  `dashboard.js` have hidden empty stands since #2130; `showAdminEndView` was the one view the fix
+  never reached. It uses `hidden` rather than dashboard's `podium-place--empty`, whose only rule
+  lives in `dashboard.css` — a sheet `admin.html` does not load. Ranks skip on a tie, so a full
+  room with two players sharing first place showed two empty plinths.
+- **A refused join answered in English on a translated screen (#2532).** #2511 passed the
+  server's `message` straight through. All four codes in `JOIN_REJECTED_CODES` have an
+  `errors.<CODE>` entry in every locale; the lookup simply never happened. It now uses `t`'s
+  two-argument form — `t(key) || message` can never reach its right-hand side, because `t`
+  returns the key on a miss.
+- **Auto-generated issue titles arrived as Latin-1 mojibake (#2526).** The Cloudflare Worker is
+  deployed by hand, and that copy once passed through a terminal buffer. The source is now pure
+  ASCII with `\u` escapes, which survives the same route; a guard test fails on the next raw
+  character.
+
+### Changed
+- **The five playlists new in 4.4.1-rc1 play on Apple Music (#2540).** They shipped with Spotify
+  and Deezer URIs only, so `create_game` refused to start them on Apple. 138 of 159 gaps were
+  filled through the iTunes search path — Odesli still answers 401. Tidal is untouched on purpose:
+  it is in `_NAME_FALLBACK_PROVIDERS` and already plays these tracks by name search.
+- **Thirty-four playlists carry a raised `version` again.** #2489 rewrote them without bumping,
+  and `_copy_bundled_playlists` only overwrites an installed playlist when the bundled version is
+  strictly greater — the chart badges it added would never have reached an existing install.
+
+
 ## [4.4.1-rc1] - 2026-09-02
 
 A patch number, and it holds: no new mechanic, no new provider. Six defects from a full review of
