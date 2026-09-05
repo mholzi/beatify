@@ -528,7 +528,11 @@ window.BeatifyUtils = (function() {
                 is_admin: p.is_admin,
                 connected: p.connected,
                 eliminated: p.eliminated,
-                eliminated_round: p.eliminated_round
+                eliminated_round: p.eliminated_round,
+                // #2584: who hit this player this round and with what. Already
+                // in the players array (#1665) — the TV just never read it.
+                sabotaged_by: p.sabotaged_by,
+                sabotage_effect: p.sabotage_effect
             }, entry);
         });
     }

@@ -636,6 +636,30 @@
     animation: bet-pulse 2s ease-in-out infinite;
 }
 
+/* #2584: Sabotage-Treffer in der Zeile des Getroffenen. Bewusst ruhiger als
+   .bet-badge — kein Verlauf, kein Puls: es steht den ganzen Reveal lang da und
+   soll die Zahl daneben nicht ueberstrahlen. Aus vier Metern zaehlt der Kontrast
+   des Symbols, nicht die Flaeche. */
+.sabotage-badge {
+    display: inline-block;
+    background: rgba(90, 169, 214, 0.18);
+    color: #9fd2ee;
+    border: 1px solid rgba(90, 169, 214, 0.45);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: var(--space-xs);
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.sabotage-badge small {
+    font-weight: var(--font-weight-normal);
+    opacity: 0.75;
+    margin-left: 3px;
+}
+
 .bet-badge--won {
     background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-hover) 100%);
 }
