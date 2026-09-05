@@ -123,6 +123,11 @@ MA_FIRST_PLAY_TIMEOUT_FACTOR = 4 / 3
 # position, not the track — the song comes back either way, just from 0:00.
 MA_QUEUE_RESTORE_WAIT = 5.0
 MA_QUEUE_RESTORE_POLL = 0.25
+# #2605: wie lange auf die Bestaetigung der Pause gewartet wird, je Versuch.
+# Kuerzer als MA_QUEUE_RESTORE_WAIT, weil hier nichts geladen werden muss — der
+# Lautsprecher spielt bereits und soll nur anhalten. Zwei Versuche a 2 s haengen
+# den Abbau um hoechstens vier Sekunden, und das nur im Fehlerfall.
+MA_PAUSE_CONFIRM_WAIT = 2.0
 
 # #1381: Fast-path Path 2 (title-advanced-without-exact-match) must not
 # instant-accept an *arbitrary* title change. If a requested URI fails to
@@ -643,12 +648,6 @@ class MediaPlayerService:
                     },
                     blocking=False,
                 )
-            await self._hass.services.async_call(
-                "media_player",
-                "media_pause",
-                {"entity_id": entity_id},
-                blocking=False,
-            )
             if queue.get("shuffle") is not None:
                 await self._hass.services.async_call(
                     "media_player",
@@ -663,17 +662,65 @@ class MediaPlayerService:
                     {"entity_id": entity_id, "repeat": queue["repeat_mode"]},
                     blocking=False,
                 )
+            # #2605: die Pause steht ZULETZT und wird gegengelesen.
+            #
+            # Sie stand vorher vor `shuffle_set`/`repeat_set` und wurde mit
+            # `blocking=False` abgeschickt, ohne dass jemand nachsah. Gemessen am
+            # 05.09.2026: der Lautsprecher stand danach dreimal in Folge auf
+            # `playing` — beim Spielende laeuft also die alte Warteschlange
+            # weiter, ueber das Podium hinweg, in voller Party-Lautstaerke.
+            # Die Log-Zeile unten meldete trotzdem „(paused)", weil sie die
+            # Absicht beschrieb und nicht das Ergebnis.
+            paused = await self._pause_and_confirm(entity_id)
         except (HomeAssistantError, ServiceNotFound) as err:
             _LOGGER.warning("Queue restore on %s failed: %s", entity_id, err)
             return False
         else:
             _LOGGER.info(
-                "Queue restored on %s: %s at %.0fs (paused)",
+                "Queue restored on %s: %s at %.0fs (%s)",
                 entity_id,
                 queue.get("name") or queue["uri"],
                 queue.get("elapsed_time", 0),
+                "paused" if paused else "STILL PLAYING — pause not confirmed",
             )
             return True
+
+    async def _pause_and_confirm(self, entity_id: str) -> bool:
+        """Pausieren und gegenlesen, mit genau einem zweiten Versuch (#2605).
+
+        Ein `media_pause` mit ``blocking=False`` ist eine Bitte, keine Tatsache.
+        Beim Abbau der Warteschlange kam sie dreimal in Folge nicht an: der
+        Lautsprecher spielte weiter, waehrend das Log „(paused)" meldete.
+
+        Deshalb wird hier gelesen statt geglaubt — und genau einmal wiederholt.
+        Ein zweiter Versuch faengt das Rennen zwischen dem gerade geladenen Track
+        und der Pause ab; ein dritter wuerde nur den Abbau verlaengern, ohne eine
+        neue Ursache abzudecken.
+
+        Returns:
+            True, wenn der Lautsprecher danach nicht mehr ``playing`` meldet.
+        """
+        for versuch in (1, 2):
+            await self._hass.services.async_call(
+                "media_player",
+                "media_pause",
+                {"entity_id": entity_id},
+                blocking=False,
+            )
+            deadline = asyncio.get_event_loop().time() + MA_PAUSE_CONFIRM_WAIT
+            while asyncio.get_event_loop().time() < deadline:
+                state = self._hass.states.get(entity_id)
+                # `None` heisst: die Entitaet ist verschwunden. Dann ist nichts
+                # mehr zu pausieren, und ein Warten darauf haelt nur den Abbau auf.
+                if state is None or state.state != "playing":
+                    return True
+                await asyncio.sleep(MA_QUEUE_RESTORE_POLL)
+            _LOGGER.debug(
+                "Queue restore on %s: still playing after pause attempt %d",
+                entity_id,
+                versuch,
+            )
+        return False
 
     async def _wait_for_playing(self, entity_id: str) -> bool:
         """Poll until the speaker reports playback, at most MA_QUEUE_RESTORE_WAIT."""
