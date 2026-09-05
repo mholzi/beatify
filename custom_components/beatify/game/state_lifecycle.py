@@ -685,6 +685,30 @@ class RoundLifecycleMixin:
                         pass
                 for tick in range(20):
                     await _asyncio.sleep(1.0)
+                    # #2576: der Wachhund darf nur wiederbeleben, was von allein
+                    # stehengeblieben ist — nie etwas, das jemand absichtlich
+                    # angehalten hat.
+                    #
+                    # Ohne diese Pruefung liest er zwei gewollte Zustaende als
+                    # Haenger: der Host tippt „Song stoppen" (media_stop laesst
+                    # einen MA-Player als `idle` MIT Titel zurueck — genau die
+                    # Signatur, die weiter unten als steckengeblieben gilt), und
+                    # das Spiel pausiert (pause_game stoppt den Lautsprecher).
+                    # In beiden Faellen startete er die Musik wieder: einmal
+                    # gegen den ausdruecklichen Wunsch des Gastgebers, einmal
+                    # unter dem Pause-Banner.
+                    from .state import GamePhase  # noqa: PLC0415 — Zirkelbezug
+
+                    if self.phase != GamePhase.PLAYING or getattr(
+                        self, "song_stopped", False
+                    ):
+                        _LOGGER.info(
+                            "Resume watchdog: phase=%s song_stopped=%s — exit "
+                            "(playback stopped on purpose)",
+                            self.phase,
+                            getattr(self, "song_stopped", None),
+                        )
+                        return
                     st = self._hass.states.get(self.media_player)
                     if st is None:
                         _LOGGER.info("Resume watchdog: entity vanished — exit")
