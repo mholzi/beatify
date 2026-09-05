@@ -2045,163 +2045,18 @@ function handleAdminJoin() {
     }
 }
 
-/**
- * Setup language selector buttons (Story 12.4)
- */
-function setupLanguageSelector() {
-    var langButtons = document.querySelectorAll('.lang-btn');
-
-    langButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var lang = btn.getAttribute('data-lang');
-            if (lang && lang !== adminState.selectedLanguage) {
-                setLanguage(lang);
-            }
-        });
-    });
-}
-
-/**
- * Update language button states (Story 12.4)
- * @param {string} lang - Language code ('en', 'de', or 'es')
- */
-function updateLanguageButtons(lang) {
-    var langButtons = document.querySelectorAll('.lang-btn');
-    langButtons.forEach(function(btn) {
-        var btnLang = btn.getAttribute('data-lang');
-        if (btnLang === lang) {
-            btn.classList.add('lang-btn--active');
-        } else {
-            btn.classList.remove('lang-btn--active');
-        }
-    });
-}
-
-/**
- * Set language and update UI (Story 12.4, 16.3)
- * @param {string} lang - Language code ('en', 'de', or 'es')
- */
-async function setLanguage(lang) {
-    if (lang !== 'en' && lang !== 'de' && lang !== 'es') {
-        lang = 'en';
-    }
-
-    adminState.selectedLanguage = lang;
-    updateLanguageButtons(lang);
-
-    // Update i18n and re-render page
-    await BeatifyI18n.setLanguage(lang);
-    BeatifyI18n.initPageTranslations();
-}
-
-// #1867: the flat-admin timer selector (`setupTimerSelector`,
-// `updateTimerButtons`, `setTimerDuration`) lived here and was removed. It
-// bound to `.timer-btn`, which no longer appears in any template — the wizard
-// uses `.chip[data-duration]` in admin/sections/game-settings.js. So it was
-// unreachable: `setupTimerSelector` had no caller and `setTimerDuration` was
-// only ever called from the listener it installed.
-//
-// It is called out rather than deleted quietly because its "clamp anything
-// non-numeric to exactly 30" line was the prime suspect for #1867's 30s timer,
-// and a reader tracing that bug should learn here that the code could not run.
-// The clamp behaviour it stood for is replaced by `normalizeRoundDuration` in
-// admin/util.js, which returns null instead of substituting a value.
-// The matching `.timer-btn` CSS in styles.css is likewise dead.
-
-// ==========================================
-// Difficulty Selector Functions (Story 14.1)
-// ==========================================
-
-/**
- * Setup difficulty selector buttons
- */
-function setupDifficultySelector() {
-    var difficultyButtons = document.querySelectorAll('.difficulty-btn');
-
-    difficultyButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var difficulty = btn.getAttribute('data-difficulty');
-            if (difficulty && difficulty !== adminState.selectedDifficulty) {
-                setDifficulty(difficulty);
-            }
-        });
-    });
-}
-
-/**
- * Update difficulty button states
- * @param {string} difficulty - Difficulty level ('easy', 'normal', or 'hard')
- */
-function updateDifficultyButtons(difficulty) {
-    var difficultyButtons = document.querySelectorAll('.difficulty-btn');
-    difficultyButtons.forEach(function(btn) {
-        var btnDifficulty = btn.getAttribute('data-difficulty');
-        if (btnDifficulty === difficulty) {
-            btn.classList.add('difficulty-btn--active');
-        } else {
-            btn.classList.remove('difficulty-btn--active');
-        }
-    });
-}
-
-/**
- * Set difficulty level and update UI
- * @param {string} difficulty - Difficulty level ('easy', 'normal', or 'hard')
- */
-function setDifficulty(difficulty) {
-    // Validate difficulty
-    var validDifficulties = ['easy', 'normal', 'hard'];
-    if (validDifficulties.indexOf(difficulty) === -1) {
-        difficulty = 'normal';
-    }
-
-    adminState.selectedDifficulty = difficulty;
-    updateDifficultyButtons(difficulty);
-}
-
-/**
- * Update difficulty badge in lobby view
- * @param {string} difficulty - Difficulty level ('easy', 'normal', or 'hard')
- */
-function updateLobbyDifficultyBadge(difficulty) {
-    var badge = document.getElementById('lobby-difficulty-badge');
-    if (!badge) return;
-
-    var labelKey = {
-        easy: 'game.difficultyEasy',
-        normal: 'game.difficultyNormal',
-        hard: 'game.difficultyHard'
-    }[difficulty] || 'game.difficultyNormal';
-
-    var label = utils.t(labelKey);
-    badge.textContent = label;
-    badge.className = 'difficulty-badge difficulty-badge--' + (difficulty || 'normal');
-}
-
-// ==========================================
-// Artist Challenge Toggle Functions (Story 20.7)
-// ==========================================
-
-/**
- * Setup artist challenge toggle
- */
-function setupArtistChallengeToggle() {
-    var toggle = document.getElementById('artist-challenge-toggle');
-    if (!toggle) return;
-
-    // Load saved preference
-    var saved = localStorage.getItem('beatify_artist_challenge');
-    if (saved !== null) {
-        adminState.artistChallengeEnabled = saved === 'true';
-        toggle.checked = adminState.artistChallengeEnabled;
-    }
-
-    toggle.addEventListener('change', function() {
-        adminState.artistChallengeEnabled = toggle.checked;
-        // Save preference
-        localStorage.setItem('beatify_artist_challenge', adminState.artistChallengeEnabled.toString());
-    });
-}
+// #1867/#2583: the flat-admin language, difficulty and artist-challenge
+// controls lived here — `setupLanguageSelector`, `setLanguage`,
+// `updateLanguageButtons`, `setupDifficultySelector`, `setDifficulty`,
+// `updateDifficultyButtons`, `updateLobbyDifficultyBadge` and
+// `setupArtistChallengeToggle`, together with the timer selector removed
+// in #1867. They bound to `.lang-btn`, `.timer-btn` and `.difficulty-btn`,
+// none of which appear in any template: admin.html uses `.chip[data-lang]`
+// / `.chip[data-difficulty]`, wired in admin/sections/game-settings.js,
+// and the artist-challenge checkbox is bound there too. Not one of them
+// had a caller, and esbuild already dropped them from admin.min.js — so
+// nothing shipped changes here. The matching `.lang-btn*`,
+// `.timer-btn*` and `.difficulty-btn*` rules in styles.css go with them.
 
 // ==========================================
 // Lobby Player List Functions (Story 16.8)

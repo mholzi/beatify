@@ -664,14 +664,8 @@ export function updatePreviousState(players, leaderboard) {
     previousState.initialized = true;
 }
 
-/**
- * Reset previous state (called on game end/new game)
- */
-export function resetPreviousState() {
-    previousState.players = {};
-    previousState.leaderboard = [];
-    previousState.initialized = false;
-}
+// #2583: `resetPreviousState` reset the three fields above and was
+// exported with no caller — game end and new-game go elsewhere.
 
 // ============================================
 // Animation Performance Utilities (Story 18.3)

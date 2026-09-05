@@ -169,7 +169,7 @@ npx -y esbuild css/library.css --minify --sourcemap --outfile=css/library.min.cs
    │ 2. ENRICH             pool.async_build_pool                          │
    │    ├── genres:    MA detail fetch → MusicBrainz tags → Deezer album  │
    │    ├── year:      year_resolver.resolve_year (MusicBrainz primary)   │
-   │    └── fame:      popularity.async_deezer_rank → global_score 0-100  │
+   │    └── fame:      popularity.async_deezer_rank_album → score 0-100   │
    │    Checkpointed every 200 songs (crash-safe, resumable, additive)    │
    └───────────────────────────────┬──────────────────────────────────────┘
                                    │

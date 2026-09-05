@@ -1008,8 +1008,7 @@ class AnalyticsStorage:
         }
 
 
-# Error type constants (AC: #2)
+# Error type constants (AC: #2). #2583: the three siblings defined here
+# (MEDIA_PLAYER_ERROR, PLAYBACK_FAILURE, STATE_TRANSITION_ERROR) were never
+# recorded by anything; add one back when a caller exists.
 ERROR_WEBSOCKET_DISCONNECT = "WEBSOCKET_DISCONNECT"
-ERROR_MEDIA_PLAYER_ERROR = "MEDIA_PLAYER_ERROR"
-ERROR_PLAYBACK_FAILURE = "PLAYBACK_FAILURE"
-ERROR_STATE_TRANSITION = "STATE_TRANSITION_ERROR"
