@@ -340,7 +340,8 @@
     "fixYearBtn": "🎯 Falsches Jahr? Korrigieren",
     "flagYearBtn": "🚩 Falsches Jahr? Gastgeber informieren",
     "flaggedForHost": "✓ Für den Gastgeber markiert",
-    "finalePlayoff": "Finale"
+    "finalePlayoff": "Finale",
+    "coverHint": "Cover — {year} war das Original, gesucht ist die gespielte Fassung."
   },
   "leaderboard": {
     "leader": "Spitzenreiter",

@@ -5374,6 +5374,21 @@ body.theme-dark .movie-reveal-section {
     text-align: left;
 }
 
+/* #2588: der Cover-Hinweis steht ueber dem Fun Fact und ist bewusst leiser als
+   er — er raeumt einen Widerspruch aus, er erzaehlt keine Geschichte. */
+.cover-hint {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    border-left: 2px solid var(--color-accent-secondary);
+    padding-left: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    line-height: 1.4;
+}
+
+.cover-hint.hidden {
+    display: none;
+}
+
 .fun-fact-section .fun-fact-text {
     font-size: 0.875rem;
     color: var(--color-text-white);

@@ -340,7 +340,8 @@
     "fixYearBtn": "🎯 ¿Año incorrecto? Corrígelo",
     "flagYearBtn": "🚩 ¿Año incorrecto? Avisa al anfitrión",
     "flaggedForHost": "✓ Avisado al anfitrión",
-    "finalePlayoff": "Final"
+    "finalePlayoff": "Final",
+    "coverHint": "Versión — {year} fue el original; la respuesta es la versión que has escuchado."
   },
   "leaderboard": {
     "leader": "líder",

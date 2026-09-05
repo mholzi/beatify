@@ -340,7 +340,8 @@
     "fixYearBtn": "🎯 Mauvaise année ? Corriger",
     "flagYearBtn": "🚩 Mauvaise année ? Prévenir l'hôte",
     "flaggedForHost": "✓ Signalé à l'hôte",
-    "finalePlayoff": "Finale"
+    "finalePlayoff": "Finale",
+    "coverHint": "Reprise — {year} était l'original ; la réponse est la version que vous venez d'entendre."
   },
   "leaderboard": {
     "leader": "en tête",
