@@ -83,6 +83,24 @@ class PlayerSession:
     # Sudden Death tracking (Issue #827) - CUMULATIVE, NOT reset in reset_round()
     eliminated: bool = False  # True once eliminated; stays out for the rest of the game
     eliminated_round: int | None = None  # Round number the player was eliminated in
+    # #2578: im Finale-Stechen sitzen alle Nicht-Fuehrenden eine Runde aus. Das
+    # lief bisher ueber `eliminated`, weil der Scoring-Skip daran haengt — nur
+    # sieht der Fernseher dann sechs Totenkoepfe, obwohl niemand rausgeflogen
+    # ist. Ein eigenes Feld trennt „zaehlt diese Runde nicht" von „ist raus".
+    playoff_spectator: bool = False
+
+    @property
+    def out_of_play(self) -> bool:
+        """Spielt diese Runde nicht mit — egal aus welchem Grund.
+
+        Zwei verschiedene Sachverhalte, die derselben Rechenregel folgen:
+        ``eliminated`` heisst „ist raus und bleibt raus" (Sudden Death, #827),
+        ``playoff_spectator`` heisst „sitzt dieses Stechen aus" (#2578). Fuer
+        die Punktevergabe sind beide gleich; fuer die Anzeige eben nicht, und
+        genau daran ist die alte Loesung gescheitert.
+        """
+        return self.eliminated or self.playoff_spectator
+
     # #1752: round number a late joiner entered the game in. None for LOBBY joins
     # (and after reset_for_new_game). Used to grant a mid-round joiner one grace
     # round — they are excluded from the Sudden Death elimination candidate pool
@@ -299,6 +317,7 @@ class PlayerSession:
         # Reset Sudden Death state (Issue #827)
         self.eliminated = False
         self.eliminated_round = None
+        self.playoff_spectator = False
         # #1752: clear late-join grace tracking so a rematch/new game never
         # grants a carried-over player Sudden Death grace on a stale round number.
         self.joined_round = None

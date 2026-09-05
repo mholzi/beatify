@@ -77,7 +77,7 @@ class PowerUpManager:
             for player in players.values()
             if player.name != stealer_name
             and player.submitted
-            and not player.eliminated
+            and not player.out_of_play  # #2578: Zuschauer im Stechen ebenso
         ]
 
     def use_steal(
@@ -193,7 +193,7 @@ class PowerUpManager:
             for player in players.values()
             if player.name != saboteur_name
             and not player.submitted
-            and not player.eliminated
+            and not player.out_of_play  # #2578: Zuschauer im Stechen ebenso
             and player.sabotaged_by is None
         ]
 

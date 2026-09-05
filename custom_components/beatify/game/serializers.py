@@ -416,6 +416,11 @@ class GameStateSerializer:
                 # Issue #827: Sudden Death state
                 "eliminated": p.eliminated,
                 "eliminated_round": p.eliminated_round,
+                # #2578: „sitzt dieses Stechen aus" ist etwas anderes als
+                # „ist ausgeschieden". Ohne das eigene Feld zeigte der
+                # Fernseher bei acht Spielern und zwei im Stechen sechs
+                # Totenkoepfe.
+                "playoff_spectator": p.playoff_spectator,
                 # Issue #2324: the player's collected row — every song they
                 # placed inside close_range, oldest first. Sent at REVEAL
                 # because that is where it just grew ("you kept it"), and it

@@ -339,7 +339,8 @@
     "streakShieldHeld": "Scudo della serie pronto",
     "fixYearBtn": "🎯 Anno sbagliato? Correggilo",
     "flagYearBtn": "🚩 Anno sbagliato? Dillo all'host",
-    "flaggedForHost": "✓ Segnalato all'host"
+    "flaggedForHost": "✓ Segnalato all'host",
+    "finalePlayoff": "Finale"
   },
   "leaderboard": {
     "leader": "in testa",

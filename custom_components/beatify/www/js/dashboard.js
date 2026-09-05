@@ -1127,6 +1127,21 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
+            // #2578: Variante B aus dem Design-Entwurf — im Finale-Stechen
+            // bekommen die ZWEI Finalisten ein Abzeichen, alle anderen bleiben
+            // normal. Vorher trugen die Nicht-Fuehrenden `eliminated` und der
+            // Fernseher zeigte bei acht Spielern sechs Totenkoepfe, obwohl
+            // niemand rausgeflogen war.
+            //
+            // Der Bildschirm sagt jetzt, was wahr ist („zwei sind im Stechen"),
+            // statt etwas Falsches zu behaupten — und das sind zwei Abzeichen
+            // statt sechs Entwertungen.
+            var playoffLaeuft = leaderboard.some(function (x) { return x.playoff_spectator; });
+            var finalistBadge = (playoffLaeuft && !entry.playoff_spectator)
+                ? '<span class="finalist-badge">⚔️ ' + utils.escapeHtml(
+                    utils.t('reveal.finalePlayoff') || 'Finale') + '</span>'
+                : '';
+
             // #2584: Sabotage sichtbar machen — Variante B aus dem Design-Entwurf
             // vom 05.09.2026. Bis dahin sahen den Treffer nur Taeter und Opfer
             // auf ihren Handys; der halbe Raum schaut aber auf den Fernseher,
@@ -1167,7 +1182,7 @@
 
             var html = '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + sabotageBadge + '</span>' +
+                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + finalistBadge + sabotageBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +

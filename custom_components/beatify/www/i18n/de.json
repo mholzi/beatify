@@ -339,7 +339,8 @@
     "streakShieldHeld": "Streak-Schild bereit",
     "fixYearBtn": "🎯 Falsches Jahr? Korrigieren",
     "flagYearBtn": "🚩 Falsches Jahr? Gastgeber informieren",
-    "flaggedForHost": "✓ Für den Gastgeber markiert"
+    "flaggedForHost": "✓ Für den Gastgeber markiert",
+    "finalePlayoff": "Finale"
   },
   "leaderboard": {
     "leader": "Spitzenreiter",
