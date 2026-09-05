@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.2-rc3] - 2026-09-05
+
+Der rc2 hat seinen eigenen Live-Test bestanden und dabei einen Fehler gefunden, der erst nach dem
+Abpfiff beginnt. Dieser Kandidat ist rc2 plus dieser eine Fix.
+
+### Fixed
+- **Der Lautsprecher spielte nach dem Spielende weiter (#2605).** Nach `end-game` kam die alte
+  Warteschlange zurueck — und lief. Das Log meldete trotzdem „Queue restored … (paused)", weil die
+  Zeile die Absicht beschrieb und nicht das Ergebnis. Zwei Ursachen: die Pause wurde mit
+  `blocking=False` abgeschickt und nie gegengelesen, und sie stand **vor** `shuffle_set`/`repeat_set`.
+  Jetzt steht sie zuletzt, wird bestaetigt und bei Bedarf einmal wiederholt.
+
 ## [4.4.2-rc2] - 2026-09-05
 
 The week's editorial plan, all fourteen entries. Most of them share a shape: the backend did the
