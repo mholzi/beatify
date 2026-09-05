@@ -100,6 +100,11 @@ _LOGGER = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
+# #2579: wie viele Meldungen die Datei haelt. Sie ist eine Arbeitsliste fuer den
+# music-data-check-Job, kein Archiv — die dauerhafte Spur ist das GitHub-Issue.
+MAX_DATA_QUALITY_REPORTS = 500
+
+
 def _write_report(reports_path: Path, report: dict) -> None:
     """Append a data quality report to the JSON file (blocking I/O).
 
@@ -111,6 +116,12 @@ def _write_report(reports_path: Path, report: dict) -> None:
     if reports_path.exists():
         existing = json.loads(reports_path.read_text(encoding="utf-8"))
     existing.append(report)
+    # #2579: Deckel. Die Datei wird bei jedem Report komplett gelesen und neu
+    # geschrieben — ohne Grenze wird jeder weitere Eintrag teurer als der
+    # vorige. Aeltere fallen hinten weg; wer sie braucht, findet sie als
+    # GitHub-Issue, das ist der eigentliche Ausgang dieser Meldungen.
+    if len(existing) > MAX_DATA_QUALITY_REPORTS:
+        existing = existing[-MAX_DATA_QUALITY_REPORTS:]
     reports_path.write_text(
         json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8"
     )
@@ -166,6 +177,29 @@ async def handle_report_data(
 
     if game_state.phase != GamePhase.REVEAL:
         return
+
+    # #2579: ein Report je Spieler und Runde.
+    #
+    # Der Knopf sitzt neben der Aufloesung, und Spieler sind bewusst nicht
+    # angemeldet — das ist der Punkt eines Partyspiels, bei dem Gaeste einen
+    # QR-Code scannen. Ohne Riegel konnte ein Gast mit einem Skript in einer
+    # einzigen Reveal-Phase beliebig viele **oeffentliche GitHub-Issues**
+    # ausloesen und die Report-Datei aufblaehen, bis jeder weitere Schreibvorgang
+    # teurer wird. Das `disabled` am Knopf steht nur im Frontend und ist
+    # umgehbar.
+    #
+    # Das Gegenstueck fuer Crate Digger (`_flag_library_song`, gleich unten)
+    # kappt sich seit jeher ausdruecklich — „must never be able to grow
+    # unboundedly from repeated taps". Dieser Pfad zieht damit nach.
+    if player.reported_round == game_state.round:
+        _LOGGER.debug(
+            "Ignoring repeat data report from %s in round %s",
+            player.name,
+            game_state.round,
+        )
+        await ws.send_json({"type": "report_data_ack", "duplicate": True})
+        return
+    player.reported_round = game_state.round
 
     song = game_state.current_song or {}
     artist = song.get("artist", "Unknown")
