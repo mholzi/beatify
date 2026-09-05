@@ -1170,7 +1170,13 @@
         "step3": "Vuelve — tu {platform} aparece como un altavoz de Music Assistant",
         "primary": "Configurar Music Assistant →",
         "ghost": "Elegir otro servicio",
-        "footer": "¿Prefieres Spotify? Funciona directamente en {platform} — sin complementos."
+        "footer": "¿Prefieres Spotify? Funciona directamente en {platform} — sin complementos.",
+        "amazonTitle": "Amazon Music necesita un Amazon Echo",
+        "amazonBody": "Amazon Music no está disponible a través de Music Assistant. Para usarlo, selecciona un dispositivo Amazon Echo (mediante la integración alexa_media) como altavoz.",
+        "amazonStep1": "Instala la integración <strong>Alexa Media Player</strong> en Home Assistant",
+        "amazonStep2": "Vincula tu cuenta de Amazon y tu Echo",
+        "amazonStep3": "Vuelve aquí: tu Echo aparecerá como altavoz disponible",
+        "amazonPrimary": "Configurar Alexa Media Player →"
       }
     },
     "step3": {
@@ -1253,7 +1259,8 @@
         "presetCustom": "Personalizado",
         "test": "Enviar anuncio de prueba",
         "testOk": "Enviado",
-        "testFail": "Falló"
+        "testFail": "Falló",
+        "testNoSpeaker": "Elige primero un altavoz"
       }
     },
     "summary": {
@@ -1487,7 +1494,10 @@
       "copyJson": "Copiar JSON validado",
       "saveLocal": "Guardar localmente (v1.1)",
       "copyResult": "Copiar resultado para el LLM",
-      "close": "Cerrar"
+      "close": "Cerrar",
+      "captureIssue": "Seguir este envío",
+      "dismissSubmission": "Omitir",
+      "working": "Trabajando…"
     },
     "hints": {
       "promptCopied": "Prompt copiado al portapapeles — pégalo en tu LLM.",
@@ -1522,6 +1532,16 @@
       "step4": "Haz clic en <b>Validar</b> — verás ✓/✗ por cada campo.",
       "warnTitle": "¿Más de ~32 canciones?",
       "warnBody": "ChatGPT &amp; Claude suelen cortar las listas grandes a la mitad. Divídelas en <b>lotes de 30 canciones</b>: ejecuta el prompt por lote y luego fusiona los arrays de songs. Si ChatGPT se interrumpe con un error poco claro, casi siempre la causa es la longitud de la respuesta."
+    },
+    "saveLocal": {
+      "success": "Guardada como {filename}. Aparecerá en Playlist Hub → Community al actualizar.",
+      "error": "Error al guardar: {error}"
+    },
+    "submit": {
+      "pasteIssuePrompt": "Termina la incidencia en GitHub y pega aquí su URL: así aparecerá en tu pestaña Mine junto a tus peticiones de playlist.",
+      "captured": "Registrada como incidencia #{n}. Consulta el progreso en Playlist Hub → Mine.",
+      "captureError": "No se pudo registrar el envío: {error}",
+      "invalidIssueUrl": "Eso no parece la URL de una incidencia de GitHub. Se espera algo como https://github.com/mholzi/beatify/issues/123."
     }
   },
   "starting": {
