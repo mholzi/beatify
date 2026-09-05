@@ -175,7 +175,14 @@ class TestQueueRestore:
 
         # Paused, not playing: the host just ended the game. Starting their
         # music unasked would be its own surprise.
-        assert len(_calls_to(hass, "media_player", "media_pause")) == 1
+        #
+        # #2605: this used to assert exactly ONE pause. The fixture's speaker
+        # reports `playing` on every read — it never stops — and since #2605 a
+        # pause that does not take is sent a second time. One call was the old
+        # behaviour, not the requirement; what this test is about is that we
+        # pause and never resume.
+        assert len(_calls_to(hass, "media_player", "media_pause")) >= 1
+        assert not _calls_to(hass, "media_player", "media_play")
         assert _calls_to(hass, "media_player", "shuffle_set")[0].args[2]["shuffle"]
         assert _calls_to(hass, "media_player", "repeat_set")[0].args[2]["repeat"] == (
             "all"
