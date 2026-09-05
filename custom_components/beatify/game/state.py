@@ -880,8 +880,15 @@ class GameState(
     # ------------------------------------------------------------------
 
     def non_eliminated_players(self) -> list[PlayerSession]:
-        """Players still in the game (not yet eliminated). Issue #827."""
-        return [p for p in self.players.values() if not p.eliminated]
+        """Spieler, die gerade mitspielen. Issue #827.
+
+        #2578: prueft ``out_of_play`` statt ``eliminated``, damit ein Zuschauer
+        im Finale-Stechen genauso ausgenommen ist — er soll weder als
+        Sudden-Death-Kandidat gelten noch einen Comeback-Token bekommen. Der
+        Unterschied zwischen beiden Zustaenden zaehlt fuer die **Anzeige**, nicht
+        fuer die Frage, wer diese Runde mitspielt.
+        """
+        return [p for p in self.players.values() if not p.out_of_play]
 
     def _title_artist_scoring_deferred(self) -> bool:
         """Whether this round's scoring is deferred past the vote window (#1180).
@@ -1168,14 +1175,24 @@ class GameState(
             return False
 
         # Arm the playoff: freeze everyone who is NOT tied for first out of the
-        # game (reusing the Sudden-Death `eliminated` flag so scoring skips them
-        # and the leaderboard renders them below the cut-line). Leave
-        # `eliminated_round` unset so they are not mislabelled as a Sudden-Death
-        # "eliminated this round" cut.
+        # round, so scoring skips them.
+        #
+        # #2578: das lief bis hierher ueber dasselbe `eliminated`, das Sudden
+        # Death benutzt — bequem fuer den Scoring-Skip, falsch fuer alles andere.
+        # Bei acht Spielern und zwei im Stechen zeigte der Fernseher **sechs
+        # Totenkoepfe**, obwohl niemand ausgeschieden war; das Leaderboard
+        # sortierte sie unter die Schnittlinie, und `_superlative_last_one_standing`
+        # zaehlte sie als Ausgeschiedene, sodass der Sieger „Last One Standing"
+        # mit der falschen Zahl bekam.
+        #
+        # `playoff_spectator` traegt jetzt die Bedeutung „zaehlt diese Runde
+        # nicht", `eliminated` bleibt „ist raus". Wer schon vor dem Stechen
+        # ausgeschieden war, behaelt `eliminated` — beide Zustaende koennen
+        # gleichzeitig gelten.
         winner_names = {w.name for w in winners}
         for player in self.players.values():
-            if player.name not in winner_names and not player.eliminated:
-                player.eliminated = True
+            if player.name not in winner_names:
+                player.playoff_spectator = True
         self._finale_playoff_rounds += 1
         self._finale_playoff_active = True
         _LOGGER.info(

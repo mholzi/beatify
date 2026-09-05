@@ -193,8 +193,15 @@ class TestFinaleTiebreaker:
         assert gs.phase == GamePhase.PLAYING  # playoff round is live
         assert gs._finale_playoff_active is True
         assert gs._finale_playoff_rounds == 1
-        # Only the non-tied player is frozen out.
-        assert gs.get_player("Carol").eliminated is True
+        # Only the non-tied player is frozen out — as a PLAYOFF SPECTATOR, not
+        # as eliminated (#2578). Before that split the TV showed a skull for
+        # every non-leader and `last_one_standing` counted them as knocked out.
+        assert gs.get_player("Carol").playoff_spectator is True
+        assert gs.get_player("Carol").eliminated is False
+        assert gs.get_player("Carol").out_of_play is True
+        # The two tied for first keep playing.
+        assert gs.get_player("Alice").playoff_spectator is False
+        assert gs.get_player("Bob").playoff_spectator is False
         assert gs.get_player("Alice").eliminated is False
         assert gs.get_player("Bob").eliminated is False
         # Not mislabelled as a Sudden-Death cut.

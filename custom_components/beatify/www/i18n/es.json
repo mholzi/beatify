@@ -339,7 +339,8 @@
     "streakShieldHeld": "Escudo de racha listo",
     "fixYearBtn": "🎯 ¿Año incorrecto? Corrígelo",
     "flagYearBtn": "🚩 ¿Año incorrecto? Avisa al anfitrión",
-    "flaggedForHost": "✓ Avisado al anfitrión"
+    "flaggedForHost": "✓ Avisado al anfitrión",
+    "finalePlayoff": "Final"
   },
   "leaderboard": {
     "leader": "líder",

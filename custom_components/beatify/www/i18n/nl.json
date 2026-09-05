@@ -339,7 +339,8 @@
     "streakShieldHeld": "Reeksschild gereed",
     "fixYearBtn": "🎯 Verkeerd jaar? Corrigeer het",
     "flagYearBtn": "🚩 Verkeerd jaar? Laat het de host weten",
-    "flaggedForHost": "✓ Gemeld aan de host"
+    "flaggedForHost": "✓ Gemeld aan de host",
+    "finalePlayoff": "Finale"
   },
   "leaderboard": {
     "leader": "koploper",

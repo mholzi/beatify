@@ -333,8 +333,11 @@ class PlayerRegistry:
         for the whole room — #928. Eliminated players (#827) never submit, so
         they are excluded from the all-submitted (early reveal) check.
         """
+        # #2578: `out_of_play` deckt Ausgeschiedene UND Zuschauer im
+        # Finale-Stechen ab — beide geben nicht ab und duerfen die
+        # Alle-haben-abgegeben-Pruefung nicht blockieren.
         active_players = [
-            p for p in self.players.values() if p.is_active and not p.eliminated
+            p for p in self.players.values() if p.is_active and not p.out_of_play
         ]
         if not active_players:
             return False

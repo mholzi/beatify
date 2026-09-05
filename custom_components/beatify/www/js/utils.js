@@ -532,7 +532,9 @@ window.BeatifyUtils = (function() {
                 // #2584: who hit this player this round and with what. Already
                 // in the players array (#1665) — the TV just never read it.
                 sabotaged_by: p.sabotaged_by,
-                sabotage_effect: p.sabotage_effect
+                sabotage_effect: p.sabotage_effect,
+                // #2578: sitzt dieses Stechen aus — nicht dasselbe wie eliminated.
+                playoff_spectator: p.playoff_spectator
             }, entry);
         });
     }

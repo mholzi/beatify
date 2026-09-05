@@ -339,7 +339,8 @@
     "streakShieldHeld": "Bouclier de série prêt",
     "fixYearBtn": "🎯 Mauvaise année ? Corriger",
     "flagYearBtn": "🚩 Mauvaise année ? Prévenir l'hôte",
-    "flaggedForHost": "✓ Signalé à l'hôte"
+    "flaggedForHost": "✓ Signalé à l'hôte",
+    "finalePlayoff": "Finale"
   },
   "leaderboard": {
     "leader": "en tête",

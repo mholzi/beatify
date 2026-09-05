@@ -636,6 +636,22 @@
     animation: bet-pulse 2s ease-in-out infinite;
 }
 
+/* #2578: die zwei Finalisten im Stechen. Bewusst das einzige Abzeichen mit
+   Akzentfarbe in der Zeile — es markiert genau zwei Spieler und sagt, warum
+   die Runde anders heisst. */
+.finalist-badge {
+    display: inline-block;
+    background: var(--color-accent-secondary, #c8a24a);
+    color: var(--color-text-dark, #11131a);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: var(--space-xs);
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
 /* #2584: Sabotage-Treffer in der Zeile des Getroffenen. Bewusst ruhiger als
    .bet-badge — kein Verlauf, kein Puls: es steht den ganzen Reveal lang da und
    soll die Zahl daneben nicht ueberstrahlen. Aus vier Metern zaehlt der Kontrast

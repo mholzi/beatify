@@ -468,7 +468,9 @@ def _score_intro_round(
         if p is not player
         # #1748: an eliminated player (Sudden Death) is out of the game and must
         # not occupy a slot in the intro speed ranking that survivors compete for.
-        and not p.eliminated
+        # #2578: dasselbe gilt fuer einen Zuschauer im Finale-Stechen — er
+        # spielt die Runde nicht mit, ist aber nicht ausgeschieden.
+        and not p.out_of_play
         and _intro_qualified(
             p,
             cutoff=cutoff,
@@ -736,10 +738,11 @@ class ScoringService:
         # #1748: an eliminated player (Sudden Death) must not enter the
         # closest-distance calculation — a stale-client submission from someone
         # already OUT could otherwise become "closest" and zero every survivor.
+        # #2578: gilt genauso fuer Zuschauer im Finale-Stechen.
         submitted = [
             p
             for p in players
-            if p.submitted and p.current_guess is not None and not p.eliminated
+            if p.submitted and p.current_guess is not None and not p.out_of_play
         ]
         if not submitted:
             return
