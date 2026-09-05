@@ -88,6 +88,11 @@ class PlayerSession:
     # sieht der Fernseher dann sechs Totenkoepfe, obwohl niemand rausgeflogen
     # ist. Ein eigenes Feld trennt „zaehlt diese Runde nicht" von „ist raus".
     playoff_spectator: bool = False
+    # #2579: die Runde, in der dieser Spieler zuletzt einen Datenfehler gemeldet
+    # hat. Ein Report je Spieler und Runde reicht — der Knopf sitzt neben der
+    # Aufloesung, und ohne Riegel oeffnet jeder weitere Tipp ein weiteres
+    # oeffentliches Issue.
+    reported_round: int | None = None
 
     @property
     def out_of_play(self) -> bool:
@@ -318,6 +323,7 @@ class PlayerSession:
         self.eliminated = False
         self.eliminated_round = None
         self.playoff_spectator = False
+        self.reported_round = None
         # #1752: clear late-join grace tracking so a rematch/new game never
         # grants a carried-over player Sudden Death grace on a stale round number.
         self.joined_round = None
