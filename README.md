@@ -456,9 +456,9 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,403 songs across 66 curated playlists:
+Beatify comes with 8,432 songs across 66 curated playlists:
 
-- 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
+- 🎸 **100 Greatest Rock Songs** — 151 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
 - 🇧🇷 **100% Brasil** — 66 Brazilian hits across the decades
 - 🇪🇸 **100% en Español** — 127 Latin & Spanish classics
@@ -512,7 +512,7 @@ Beatify comes with 8,403 songs across 66 curated playlists:
 - 🎸 **Rock Rioplatense** — 36 tracks of Argentine and Uruguayan rock from 1983 to 2013
 - 💃 **Salsa y Merengue** — 531 Latin dance-floor classics, the second-largest list here
 - 🏆 **Sanremo: I Vincitori** — 68 Sanremo festival winners, one for every year since 1951
-- 🇩🇪 **Schlager Classics** — 175 German schlager classics from the 60s to today
+- 🇩🇪 **Schlager Classics** — 193 German schlager classics from the 60s to today
 - 🇨🇭 **Schweizer Hits** — 97 Swiss tracks
 - ☀️ **Sommerklassiker** — 60 international summer hits from 1978–2023
 - 🎪 **Tomorrowland Top 1000** — 825 tracks from the festival's own all-time ranking
@@ -687,7 +687,7 @@ comparison — including where the card game wins.
 
 | | Card-based music party game | Beatify |
 |---|---|---|
-| **What you buy** | A box, and a new box or expansion for more music | Nothing. 66 playlists ship with it, 8,403 songs |
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 66 playlists ship with it, 8,432 songs |
 | **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
 | **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |
