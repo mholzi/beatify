@@ -334,6 +334,22 @@ class PauseResumeMixin:
                     "Vote window deadline elapsed during pause — finalizing on resume"
                 )
                 await self._finalize_title_artist_window()
+                # #2575: finalizing scores the round but arms nothing. The vote
+                # window had taken over the _auto_advance_task slot, so REVEAL is
+                # left with no song-end advance and no idle-halt — the game holds
+                # until the host taps Next by hand.
+                #
+                # The regular window already re-arms after finalizing
+                # (state_vote_window.py, #1755); the resume path never got the
+                # same follow-up. Same guard as there: only while still in
+                # REVEAL, since finalizing can end the game.
+                from .state import GamePhase  # noqa: PLC0415 — avoid circular import
+
+                if self.phase == GamePhase.REVEAL:
+                    self._schedule_song_end_auto_advance()
+                    _LOGGER.info(
+                        "REVEAL auto-advance re-armed after an elapsed vote window"
+                    )
             return
 
         # No vote window was open — re-arm the song-end auto-advance / idle-halt.
