@@ -383,7 +383,26 @@ export function saveGameSettings() {
             sabotage: adminState.sabotageEnabled,  // Issue #1665
             provider: adminState.selectedProvider
         };
-        localStorage.setItem(STORAGE_GAME_SETTINGS, JSON.stringify(settings));
+        // #2573: in den bestehenden Blob MERGEN statt ihn zu ersetzen.
+        //
+        // Das Objekt oben wird aus adminState gebaut, und zwei Einstellungen
+        // haben dort kein Feld: `suddenDeathMode` und `maxRounds`. Beide
+        // stammen aus dem Wizard und werden in admin.js beim Start direkt aus
+        // dem localStorage gelesen — die Kommentare dort sagen das ausdruecklich.
+        // Ein Ueberschreiben loeschte sie also: der Gastgeber waehlte im Wizard
+        // Sudden Death und 20 Runden, tippte danach irgendeinen Chip im Admin
+        // an, und das Spiel lief ohne beides.
+        //
+        // Der Merge behebt den Verlust unabhaengig davon, welche Schluessel
+        // adminState kennt — auch fuer jeden kuenftigen, der denselben Weg geht.
+        let bestehend = {};
+        try {
+            bestehend = JSON.parse(localStorage.getItem(STORAGE_GAME_SETTINGS) || '{}') || {};
+        } catch (e) { bestehend = {}; }
+        localStorage.setItem(
+            STORAGE_GAME_SETTINGS,
+            JSON.stringify(Object.assign({}, bestehend, settings)),
+        );
     } catch (e) {
         console.warn('Failed to save settings:', e);
     }
