@@ -4,6 +4,52 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.2-rc2] - 2026-09-05
+
+The week's editorial plan, all fourteen entries. Most of them share a shape: the backend did the
+right thing and told nobody.
+
+### Fixed
+- **The streak shield never reached a player (#2601).** `renderStreakShieldUsed` was only ever
+  called from `renderPersonalResult`, which lost its last caller in the #1611 reveal rework. The
+  shield fired, the streak survived, and the reveal said nothing — the exact state #1666 was written
+  to prevent, where a wrong answer that leaves the streak standing reads as a scoring bug.
+- **Sudden Death and the round count were dropped on save (#2573).** `saveGameSettings` rebuilds the
+  settings blob from 17 `adminState` fields; `suddenDeathMode` and `maxRounds` had none. Choosing
+  both in the wizard and then tapping any chip played the game without either.
+- **The finale tiebreaker could not fire on auto-advance (#2574).** `_reveal_auto_advance` called
+  `start_round()` unconditionally in the last round, and the playoff bails out when the phase is no
+  longer REVEAL. Two players tied at the top, nobody touching Next, and the game ended shared.
+- **A resumed game hung after an elapsed vote window (#2575).** The elapsed branch in
+  `_rearm_reveal_after_resume` finalised the window without re-arming
+  `_schedule_song_end_auto_advance()`.
+- **The TTS watchdog restarted deliberately stopped songs (#2576).** It checked neither phase nor
+  `song_stopped` and pressed `media_play` as soon as the player reported idle.
+- **Leaving on purpose did not trigger the early reveal (#2577).** `handle_leave` removed the player
+  before `_handle_disconnect` reached the check, so the others waited out the timer.
+- **A finale playoff marked six players as eliminated (#2578).** `maybe_start_finale_playoff` set
+  `eliminated=True` on every non-leader to reuse the scoring skip. `playoff_spectator` now carries
+  that meaning and `out_of_play` is the union the scoring actually asks for.
+- **Anyone at the party could open unlimited issues (#2579).** `handle_report_data` had no per-player
+  guard; the rate limit caps connections, not messages. Players are deliberately unauthenticated —
+  that is the point of a QR-code party game.
+- **16 i18n keys existed in none of the six locales (#2582).** Amazon Music setup, the submit flow
+  and the TV podium fell back to English silently.
+- **The TV missed sabotage, steals and the movie bonus (#2584).** The fields were in the state
+  broadcast; `dashboard.js` never rendered them.
+- **The reveal contradicted itself on covers (#2588).** Where an entry carries a cover artist, the
+  fun fact often names the original's year right next to the correct answer. 1110 entries can
+  trigger it; the hint now appears only where the fun fact really disagrees.
+
+### Changed
+- **Startup parsed 13.7 MB to read a version field (#2572).** `_copy_bundled_playlists` took one
+  executor hop per playlist and fully parsed each file for a five-character version. One hop for the
+  whole run, with a stat signature that skips the parse.
+- **The CI matrix now runs Python 3.14 (#2581).** Home Assistant has required 3.14.2 since 2026.3;
+  the matrix tested 3.12 and 3.13, so every user on current HA ran untested code.
+- **Removed 14 dead symbols from the code-review sweep (#2583).** The fifteenth was not dead and was
+  split off as #2601.
+
 ## [4.4.2-rc1] - 2026-09-03
 
 Fifteen defects from a multi-agent review of the running code, every one verified against `main`
