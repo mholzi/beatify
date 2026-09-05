@@ -303,6 +303,10 @@ export function updateRevealView(data) {
         renderChipRow(currentPlayer, data);
     }
     renderScoreRow(currentPlayer);
+    // #2601: outside the taMode branch on purpose — a shield can absorb a
+    // missed round in Title & Artist mode too, and that mode hides the duel
+    // and the chip row.
+    renderStreakShield(currentPlayer);
     renderCollection(currentPlayer);
 
     // Cache context for bottom-sheet renderers that run on demand.
@@ -902,285 +906,45 @@ function showRevealEmotion(player, correctYear) {
 }
 
 // ============================================
-// Personal Result (Story 4.6)
+// Streak shield (#1666, rewired #2601)
 // ============================================
 
 /**
- * Render personal result in reveal view
- * @param {Object} player - Current player data
- * @param {number} correctYear - The correct year
- */
-/**
- * The "your shield took it" line (#1666).
+ * The "your shield took it" line (#1666), rewired for the current reveal (#2601).
  *
  * Deliberately states the streak it saved rather than a bare "shield used":
  * the value of the moment is the run that survived, and the number is what
- * makes it land. Rendered on both the missed-round and the wrong-answer path,
- * because a shield only ever fires on a round the player got wrong.
+ * makes it land.
+ *
+ * It lives directly under the score row because that is where the question
+ * arises — the round scored zero and the streak is still standing. Until #2601
+ * this markup was built by `renderPersonalResult`, which lost its last caller
+ * in the #1611 reveal rework: the shield fired, the streak survived, and the
+ * player was told nothing. One element, filled on both paths (wrong answer and
+ * missed round), because a shield only ever fires on a round the player got
+ * wrong and both of those run through this same card.
+ *
+ * @param {Object|null} player - Current player data from the REVEAL payload
  */
-function renderStreakShieldUsed(player) {
+export function renderStreakShield(player) {
+    var el = document.getElementById('reveal-streak-shield');
+    if (!el) return;
+
+    if (!player || !player.streak_shield_used) {
+        el.classList.add('hidden');
+        el.innerHTML = '';
+        return;
+    }
+
     var streak = player.streak || 0;
-    var text = utils.t('reveal.streakShieldUsed', { streak: streak });
-    return '<div class="streak-shield-used">' +
-               '<span class="streak-shield-icon">🛡️</span>' +
-               '<span class="streak-shield-text">' + text + '</span>' +
-           '</div>';
+    var text = utils.t('reveal.streakShieldUsed', { streak: streak }) ||
+               ('Shield used \u2014 ' + streak + '-streak saved!');
+    el.innerHTML =
+        '<span class="streak-shield-icon" aria-hidden="true">\ud83d\udee1\ufe0f</span>' +
+        '<span class="streak-shield-text">' + escapeHtml(text) + '</span>';
+    el.classList.remove('hidden');
 }
 
-function renderPersonalResult(player, correctYear) {
-    var resultContent = document.getElementById('result-content');
-    if (!resultContent) return;
-
-    if (!player) {
-        resultContent.innerHTML = '<div class="result-missed">' + utils.t('reveal.playerNotFound') + '</div>';
-        return;
-    }
-
-    if (player.missed_round) {
-        var missedHtml =
-            '<div class="result-missed-container">' +
-                '<div class="result-missed-icon">⏰</div>' +
-                '<div class="result-missed-text">' + utils.t('reveal.noSubmission') + '</div>' +
-            '</div>';
-
-        // #1666: a shield absorbed this miss — the streak is intact, so the
-        // "lost your streak" line would be a lie. Say what actually happened
-        // instead; a wrong answer that leaves the streak standing with no
-        // explanation reads as a scoring bug.
-        if (player.streak_shield_used) {
-            missedHtml += renderStreakShieldUsed(player);
-        }
-        var previousStreak = player.previous_streak || 0;
-        if (previousStreak >= 2) {
-            missedHtml +=
-                '<div class="streak-broken">' +
-                    '<span class="streak-broken-icon">💔</span>' +
-                    '<span class="streak-broken-text">Lost ' + previousStreak + '-streak!</span>' +
-                '</div>';
-        }
-
-        missedHtml += '<div class="result-score is-zero">0 pts</div>';
-        resultContent.innerHTML = missedHtml;
-        return;
-    }
-
-    var yearsOff = player.years_off || 0;
-    var yearsOffText = yearsOff === 0 ? utils.t('reveal.exact') :
-                       yearsOff === 1 ? utils.t('reveal.yearOff', { years: 1 }) :
-                       utils.t('reveal.yearsOff', { years: yearsOff });
-
-    var resultClass = yearsOff === 0 ? 'is-exact' :
-                      yearsOff <= 3 ? 'is-close' : 'is-far';
-
-    var speedMultiplier = player.speed_multiplier || 1.0;
-    var baseScore = player.base_score || 0;
-    var hasSpeedBonus = speedMultiplier > 1.0;
-
-    var streakBonus = player.streak_bonus || 0;
-
-    var artistBonus = player.artist_bonus || 0;
-
-    var scoreBreakdown = '';
-    if (hasSpeedBonus && baseScore > 0) {
-        scoreBreakdown =
-            '<div class="result-row">' +
-                '<span class="result-label">' + utils.t('reveal.baseScore') + '</span>' +
-                '<span class="result-value">' + baseScore + ' pts</span>' +
-            '</div>' +
-            '<div class="result-row">' +
-                '<span class="result-label">' + utils.t('reveal.speedBonus') + '</span>' +
-                '<span class="result-value is-bonus">' + speedMultiplier.toFixed(2) + 'x</span>' +
-            '</div>';
-    }
-
-    var betOutcomeHtml = '';
-    if (player.bet_outcome === 'won') {
-        betOutcomeHtml =
-            '<div class="result-row bet-won-row">' +
-                '<span class="result-label">🎲 ' + utils.t('reveal.betWon').replace('! 2x points', '') + '</span>' +
-                '<span class="result-value is-bet-won">2x</span>' +
-            '</div>';
-    } else if (player.bet_outcome === 'lost') {
-        betOutcomeHtml =
-            '<div class="result-row bet-lost-row">' +
-                '<span class="result-label">🎲 ' + utils.t('reveal.betLost') + '</span>' +
-                '<span class="result-value is-bet-lost">-</span>' +
-            '</div>';
-    }
-
-    var streakBonusHtml = '';
-    if (streakBonus > 0) {
-        streakBonusHtml =
-            '<div class="result-row streak-bonus-row">' +
-                '<span class="result-label">' + player.streak + '-streak bonus!</span>' +
-                '<span class="result-value is-streak">+' + streakBonus + ' pts</span>' +
-            '</div>';
-    }
-
-    var artistBonusHtml = '';
-    if (artistBonus > 0) {
-        artistBonusHtml =
-            '<div class="result-row artist-bonus-row">' +
-                '<span class="result-label">🎤 ' + (utils.t('artistChallenge.artistBonus') || 'Artist Bonus') + '</span>' +
-                '<span class="result-value">+' + artistBonus + ' pts</span>' +
-            '</div>';
-    }
-
-    var totalScore = player.round_score + streakBonus + artistBonus;
-    var hasBonuses = streakBonus > 0 || artistBonus > 0;
-
-    var isBigScore = player.round_score >= 20;
-    var prevPlayer = previousState.players[player.name];
-    var prevScore = prevPlayer ? prevPlayer.score : (player.score - totalScore);
-    var prevStreak = prevPlayer ? prevPlayer.streak : 0;
-    var streakMilestone = isStreakMilestone(prevStreak, player.streak || 0);
-
-    resultContent.innerHTML =
-        '<div class="result-row">' +
-            '<span class="result-label">' + utils.t('reveal.yourGuess') + '</span>' +
-            '<span class="result-value">' + (player.guess || 'n/a') + '</span>' +
-        '</div>' +
-        '<div class="result-row">' +
-            '<span class="result-label">' + utils.t('reveal.correctYear') + '</span>' +
-            '<span class="result-value">' + correctYear + '</span>' +
-        '</div>' +
-        '<div class="result-row">' +
-            '<span class="result-label">' + utils.t('reveal.accuracy') + '</span>' +
-            '<span class="result-value ' + resultClass + '">' + yearsOffText + '</span>' +
-        '</div>' +
-        scoreBreakdown +
-        betOutcomeHtml +
-        '<div class="result-score" id="personal-result-score">+<span class="score-value">0</span> pts</div>' +
-        (player.streak_shield_used ? renderStreakShieldUsed(player) : '') +
-        streakBonusHtml +
-        artistBonusHtml +
-        (hasBonuses ? '<div class="result-total">' + utils.t('reveal.total') + ': +<span class="total-value">0</span> pts</div>' : '');
-
-    var scoreValueEl = resultContent.querySelector('.score-value');
-    if (scoreValueEl) {
-        animateScoreChange(scoreValueEl, 0, player.round_score, {
-            betWon: player.bet_outcome === 'won',
-            betLost: player.bet_outcome === 'lost',
-            streakMilestone: streakMilestone,
-            isBigScore: isBigScore
-        });
-
-        if (player.bet_outcome === 'won' && player.round_score > 0) {
-            setTimeout(function() {
-                var scoreEl = document.getElementById('personal-result-score');
-                if (scoreEl) {
-                    showPointsPopup(scoreEl, player.round_score, { isBetWin: true });
-                }
-            }, 200);
-        }
-    }
-
-    var totalValueEl = resultContent.querySelector('.total-value');
-    if (totalValueEl && hasBonuses) {
-        setTimeout(function() {
-            animateValue(totalValueEl, 0, totalScore, 600);
-        }, 300);
-
-        if (streakMilestone) {
-            setTimeout(function() {
-                var totalEl = resultContent.querySelector('.result-total');
-                if (totalEl) {
-                    var milestoneBonus = {3: 20, 5: 50, 10: 100}[streakMilestone] || 0;
-                    showPointsPopup(totalEl, milestoneBonus, {
-                        isStreak: true,
-                        text: '+' + milestoneBonus + ' ' + streakMilestone + '-Streak!'
-                    });
-                }
-            }, 500);
-        }
-    }
-}
-
-// ============================================
-// Player Result Cards (Story 9.10)
-// ============================================
-
-/**
- * Render player result cards on reveal (Story 9.10)
- * @param {Array} players - All players from state
- */
-function renderPlayerResultCards(players, closestWinsMode) {
-    var container = document.getElementById('reveal-results-cards');
-    if (!container) return;
-
-    if (!players || players.length === 0) {
-        container.innerHTML = '';
-        return;
-    }
-
-    // Issue #442: Determine closest player(s) for highlight
-    var bestDiff = null;
-    if (closestWinsMode) {
-        players.forEach(function(p) {
-            if (!p.missed_round && p.years_off != null) {
-                if (bestDiff === null || p.years_off < bestDiff) {
-                    bestDiff = p.years_off;
-                }
-            }
-        });
-    }
-
-    var sorted = players.slice().sort(function(a, b) {
-        return (b.round_score || 0) - (a.round_score || 0);
-    });
-
-    var html = '<div class="results-cards-scroll">';
-
-    sorted.forEach(function(player) {
-        var isCurrentPlayer = player.name === state.playerName;
-        var isMissed = player.missed_round === true;
-        var yearsOff = player.years_off || 0;
-        var roundScore = player.round_score || 0;
-
-        var scoreClass = isMissed ? 'is-score-zero' :
-                         roundScore >= 10 ? 'is-score-high' :
-                         roundScore >= 1 ? 'is-score-medium' : 'is-score-zero';
-
-        // Issue #442: Mark closest player(s) in Closest Wins mode
-        var isClosest = closestWinsMode && !isMissed && bestDiff !== null && (player.years_off || 0) === bestDiff;
-        var closestClass = isClosest ? ' is-closest-winner' : '';
-
-        var guessDisplay = isMissed ? '—' : (player.guess || 'n/a');
-        var yearsOffDisplay = isMissed ? utils.t('reveal.noGuessShort') :
-                              yearsOff === 0 ? utils.t('reveal.exact') :
-                              utils.t('reveal.shortOff', { years: yearsOff });
-
-        var betIndicator = player.bet ? '<span class="card-bet">🎲</span>' : '';
-
-        var closestBadge = isClosest ? '<span class="closest-winner-badge">🎯</span>' : '';
-
-        var artistBadge = '';
-        if (player.artist_bonus && player.artist_bonus > 0) {
-            artistBadge = '<span class="player-card-artist-badge">🎤 +' + player.artist_bonus + '</span>';
-        }
-
-        var stealIndicator = '';
-        if (player.stole_from) {
-            stealIndicator = '<div class="steal-badge"><span class="steal-badge-icon">🥷</span>' +
-                utils.t('steal.stolenFrom', { name: escapeHtml(player.stole_from) }) + '</div>';
-        } else if (player.was_stolen_by && player.was_stolen_by.length > 0) {
-            var stealerNames = player.was_stolen_by.map(escapeHtml).join(', ');
-            stealIndicator = '<div class="steal-badge steal-badge-victim"><span class="steal-badge-icon">🎯</span>' +
-                utils.t('steal.stolenBy', { name: stealerNames }) + '</div>';
-        }
-
-        html += '<div class="result-card ' + scoreClass + closestClass + (isCurrentPlayer ? ' is-current' : '') + '">' +
-            '<div class="card-name">' + escapeHtml(player.name) + betIndicator + closestBadge + '</div>' +
-            '<div class="card-guess">' + guessDisplay + '</div>' +
-            '<div class="card-accuracy">' + yearsOffDisplay + '</div>' +
-            stealIndicator +
-            '<div class="card-score">+' + roundScore + artistBadge + '</div>' +
-        '</div>';
-    });
-
-    html += '</div>';
-    container.innerHTML = html;
-}
 
 // ===========================================================================
 // Round-reveal v2: Duel / Chips / Score row / Sheets (DESIGN.md Variant B)

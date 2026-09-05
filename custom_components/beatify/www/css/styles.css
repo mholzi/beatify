@@ -6496,28 +6496,34 @@ body.theme-dark .result-value.is-bet-lost {
     color: var(--color-error-dark);
 }
 
-/* Streak-Shield (#1666) — the counterpart to .streak-broken above. Same
-   shape on purpose: both explain what just happened to a streak, so they
-   should read as one pair rather than two unrelated notices. Success colours
-   because the run survived. */
+/* Streak-Shield (#1666, restyled #2601). The strip now sits under the score
+   row of the round-reveal v2 card, not in the old light result card. The
+   previous rule filled it with --color-success-light (#d1fae5) and set the
+   text in --color-success-hover — a pale mint block that glares on the dark
+   reveal. Same green semantic, because the run survived; a translucent tint
+   with a border reads as a sibling of the score row above it. The negative
+   top margin pulls the strip against that row: the two belong together, the
+   line explains the number. */
 .streak-shield-used {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    margin-top: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-success-light);
-    border-radius: var(--radius-md);
+    margin: calc(-1 * var(--space-sm)) 0 var(--space-md);
+    padding: 10px 16px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.38);
+    border-radius: var(--radius-lg);
 }
 
 .streak-shield-icon {
     font-size: var(--font-size-xl);
+    line-height: 1;
 }
 
 .streak-shield-text {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-success-hover);
+    color: #6ee7b7;
 }
 
 .result-score.is-zero {
