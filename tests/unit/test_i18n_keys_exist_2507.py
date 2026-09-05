@@ -30,6 +30,11 @@ DYNAMIC_PREFIXES = (
     "superlatives.",
     "game.difficulty",
     "errors.",
+    # #2584: the sabotage badge on the TV resolves
+    # 'sabotage.effect.' + <rolled effect>. The effect is picked server-side
+    # from SABOTAGE_EFFECTS, so the leaf is never a literal here — but the
+    # section is, and the test below still asserts it exists.
+    "sabotage.effect.",
 )
 
 _HTML_KEY = re.compile(r'data-i18n(?:-[a-z]+)?="([A-Za-z0-9_.]+)"')

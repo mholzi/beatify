@@ -1127,6 +1127,31 @@
                 streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
             }
 
+            // #2584: Sabotage sichtbar machen — Variante B aus dem Design-Entwurf
+            // vom 05.09.2026. Bis dahin sahen den Treffer nur Taeter und Opfer
+            // auf ihren Handys; der halbe Raum schaut aber auf den Fernseher,
+            // und genau dort passierte das lauteste soziale Element des Spiels
+            // unsichtbar.
+            //
+            // Das Abzeichen steht in der Zeile des GETROFFENEN, nicht als
+            // Einblendung ueber dem Jahr: es beantwortet die Frage, die im Raum
+            // gestellt wird („wen hat's erwischt?"), es bleibt den ganzen Reveal
+            // lesbar, und zwei Treffer in einer Runde stapeln sich nicht.
+            // Der Taeter wird genannt — Sabotage ist ein soziales Element, ohne
+            // Namen fehlt ihr die Pointe.
+            var sabotageBadge = '';
+            if (entry.sabotaged_by) {
+                var effektName = utils.t('sabotage.effect.' + (entry.sabotage_effect || ''), '');
+                var effektKurz = effektName && effektName.indexOf('sabotage.effect.') !== 0
+                    ? effektName
+                    : '';
+                sabotageBadge = '<span class="sabotage-badge" title="'
+                    + utils.escapeHtml(entry.sabotaged_by) + (effektKurz ? ' · ' + utils.escapeHtml(effektKurz) : '')
+                    + '">❄️ ' + utils.escapeHtml(entry.sabotaged_by)
+                    + (effektKurz ? ' <small>' + utils.escapeHtml(effektKurz) + '</small>' : '')
+                    + '</span>';
+            }
+
             // Bet badge next to name during playing phase
             var betBadge = '';
             if (showBet && betMap[entry.name]) {
@@ -1142,7 +1167,7 @@
 
             var html = '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
                 '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + '</span>' +
+                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + sabotageBadge + '</span>' +
                 '<span class="entry-meta">' +
                     streakIndicator +
                     changeIndicator +
