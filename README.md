@@ -456,7 +456,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,330 songs across 64 curated playlists:
+Beatify comes with 8,403 songs across 66 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 122 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -687,7 +687,7 @@ comparison — including where the card game wins.
 
 | | Card-based music party game | Beatify |
 |---|---|---|
-| **What you buy** | A box, and a new box or expansion for more music | Nothing. 55 playlists ship with it, ~6,000 songs |
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 66 playlists ship with it, 8,403 songs |
 | **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
 | **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |
