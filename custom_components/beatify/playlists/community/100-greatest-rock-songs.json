@@ -1,19 +1,23 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "rock",
     "classic-rock",
     "alternative",
     "hard-rock",
     "international",
-    "classics"
+    "classics",
+    "60s",
+    "70s",
+    "80s",
+    "90s"
   ],
   "source": "https://open.spotify.com/playlist/61jNo7WKLOIQkahju8i0hw",
   "language": "en",
   "author": "Community",
   "added_date": "2026-07-16",
-  "description": "122 unique rock tracks spanning 1964–2026, acquired from all 123 entries of the requested Spotify source. One later duplicate recording of “Welcome To The Jungle” was removed while preserving source order.",
+  "description": "151 unique rock tracks spanning 1964–2026. Extended in September 2026 with 29 classic-rock tracks from the 60s–90s request (#2539); the source's Rolling Stones entry was already curated and was dropped by ISRC, along with 19 padding entries by unknown 2023–2026 artists and one re-recorded version.",
   "songs": [
     {
       "year": 2002,
@@ -4703,6 +4707,816 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": []
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:3AhXZa8sUQht0UEdBJgpGc",
+      "artist": "Bob Dylan",
+      "alt_artists": [
+        "Neil Young",
+        "The Byrds",
+        "Van Morrison"
+      ],
+      "title": "Like a Rolling Stone",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Columbia thought six minutes was unplayable on radio, so the single was split across both sides of the 45 — DJs simply flipped it back over.",
+      "fun_fact_de": "Columbia hielt sechs Minuten fuer radiountauglich und presste den Song auf beide Seiten der Single — die DJs drehten sie einfach um.",
+      "fun_fact_es": "Columbia creia que seis minutos eran impensables en la radio y partio el sencillo en dos caras; los DJ simplemente le daban la vuelta.",
+      "fun_fact_fr": "Columbia jugeait six minutes impossibles a la radio et coupa le 45 tours en deux faces ; les DJ le retournaient tout simplement.",
+      "fun_fact_nl": "Columbia vond zes minuten onspeelbaar op de radio en zette het nummer op beide kanten van de single — dj's draaiden hem gewoon om.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/201281527",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/14477354",
+      "isrc": "USSM19922509",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/201281527"
+      }
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:1IqFh00G2kvvMm8pRMpehA",
+      "artist": "Janis Joplin",
+      "alt_artists": [
+        "Big Brother and the Holding Company",
+        "Grace Slick",
+        "Bonnie Raitt"
+      ],
+      "title": "Me and Bobby McGee",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Kris Kristofferson wrote it, but only heard Joplin's version after her death — it became her sole number-one single.",
+      "fun_fact_de": "Kris Kristofferson schrieb den Song, hoerte Joplins Fassung aber erst nach ihrem Tod — es wurde ihre einzige Nummer eins.",
+      "fun_fact_es": "Kris Kristofferson la escribio, pero solo escucho la version de Joplin tras su muerte: fue su unico numero uno.",
+      "fun_fact_fr": "Kris Kristofferson l'a ecrite mais n'a entendu la version de Joplin qu'apres sa mort ; ce fut son seul numero un.",
+      "fun_fact_nl": "Kris Kristofferson schreef het nummer maar hoorde Joplins versie pas na haar dood — het werd haar enige nummer een.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/917030915",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1040945",
+      "isrc": "USSM17000790",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/917030915"
+      }
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:4OTw5splgMdlYklwHMHxLK",
+      "artist": "The Hollies",
+      "alt_artists": [
+        "Creedence Clearwater Revival",
+        "The Hollies",
+        "Badfinger"
+      ],
+      "title": "Long Cool Woman (In a Black Dress)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Allan Clarke played the Creedence-style guitar himself and had already left the band by the time the song became a hit.",
+      "fun_fact_de": "Allan Clarke spielte die Creedence-artige Gitarre selbst und hatte die Band bereits verlassen, als der Song zum Hit wurde.",
+      "fun_fact_es": "Allan Clarke toco el mismo la guitarra al estilo Creedence y ya habia dejado el grupo cuando la cancion triunfo.",
+      "fun_fact_fr": "Allan Clarke a joue lui-meme la guitare facon Creedence et avait deja quitte le groupe quand le titre est devenu un tube.",
+      "fun_fact_nl": "Allan Clarke speelde de Creedence-achtige gitaar zelf en had de band al verlaten toen het nummer een hit werd.",
+      "awards_nl": [],
+      "uri_apple_music": null,
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3161471",
+      "isrc": "GBGYU0300038",
+      "uri_apple_music_by_region": {}
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:76kITm22xAXmFWDV4Mxq1E",
+      "artist": "Hello",
+      "alt_artists": [
+        "Sweet",
+        "Slade",
+        "Mud"
+      ],
+      "title": "New York Groove",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Russ Ballard wrote it for glam band Hello in 1975; Ace Frehley's cover three years later is the version most people know.",
+      "fun_fact_de": "Russ Ballard schrieb den Song 1975 fuer die Glamband Hello; bekannter wurde Ace Frehleys Version drei Jahre spaeter.",
+      "fun_fact_es": "Russ Ballard la escribio en 1975 para la banda glam Hello; la version de Ace Frehley, tres anos despues, es la mas conocida.",
+      "fun_fact_fr": "Russ Ballard l'a ecrite en 1975 pour le groupe glam Hello ; la reprise d'Ace Frehley trois ans plus tard est la plus connue.",
+      "fun_fact_nl": "Russ Ballard schreef het in 1975 voor glamband Hello; de cover van Ace Frehley drie jaar later is de bekendste versie.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/277746983",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1271164422",
+      "isrc": "GBBGF9810001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/277746983"
+      }
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:3pHx8jI1ZBVYcMG2QCZaKG",
+      "artist": "Jo Jo Gunne",
+      "alt_artists": [
+        "Spirit",
+        "三",
+        "Humble Pie"
+      ],
+      "title": "Run Run Run",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jo Jo Gunne formed when Jay Ferguson and Mark Andes walked out of Spirit; this was their only chart hit.",
+      "fun_fact_de": "Jo Jo Gunne entstand, als Jay Ferguson und Mark Andes bei Spirit ausstiegen — es blieb ihr einziger Charterfolg.",
+      "fun_fact_es": "Jo Jo Gunne nacio cuando Jay Ferguson y Mark Andes dejaron Spirit; fue su unico exito en listas.",
+      "fun_fact_fr": "Jo Jo Gunne est ne quand Jay Ferguson et Mark Andes ont quitte Spirit ; ce fut leur seul succes au classement.",
+      "fun_fact_nl": "Jo Jo Gunne ontstond toen Jay Ferguson en Mark Andes bij Spirit vertrokken; dit bleef hun enige hit.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/64808924",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/674063",
+      "isrc": "USEE10184779",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/64808924"
+      }
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:7MRyJPksH3G2cXHN8UKYzP",
+      "artist": "Tom Petty and the Heartbreakers",
+      "alt_artists": [
+        "The Byrds",
+        "Bruce Springsteen",
+        "Bob Seger"
+      ],
+      "title": "American Girl",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The persistent rumour that the lyric describes a student suicide in Gainesville is one Petty denied for decades.",
+      "fun_fact_de": "Das hartnaeckige Geruecht, der Text beschreibe einen Studentensuizid in Gainesville, hat Petty jahrzehntelang bestritten.",
+      "fun_fact_es": "Petty desmintio durante decadas el rumor de que la letra describe el suicidio de una estudiante en Gainesville.",
+      "fun_fact_fr": "Petty a dementi pendant des decennies la rumeur selon laquelle le texte decrirait le suicide d'une etudiante a Gainesville.",
+      "fun_fact_nl": "Petty ontkende decennialang het hardnekkige gerucht dat de tekst een studentenzelfmoord in Gainesville beschrijft.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1469579559",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/588236252",
+      "isrc": "USUG10400001",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1469579559"
+      }
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:6xMoOFdqr5PYifDZnnL3sx",
+      "artist": "Mink DeVille",
+      "alt_artists": [
+        "Television",
+        "Blondie",
+        "Dr. Feelgood"
+      ],
+      "title": "Spanish Stroll",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mink DeVille played CBGB alongside the punk bands but sounded like Latin soul from a New York street corner.",
+      "fun_fact_de": "Mink DeVille spielten im CBGB neben den Punkbands, klangen aber wie Latin-Soul von einer New Yorker Strassenecke.",
+      "fun_fact_es": "Mink DeVille tocaba en el CBGB junto a las bandas punk, pero sonaba a soul latino de una esquina neoyorquina.",
+      "fun_fact_fr": "Mink DeVille jouait au CBGB aux cotes des groupes punk mais sonnait comme de la soul latine d'un coin de rue new-yorkais.",
+      "fun_fact_nl": "Mink DeVille speelde in CBGB naast de punkbands maar klonk als latin soul van een New Yorkse straathoek.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/725816792",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3332066",
+      "isrc": "USCA28800036",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/725816792"
+      }
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:0j3p1p06deJ7f9xmJ9yG22",
+      "artist": "The Beatles",
+      "alt_artists": [
+        "The Beach Boys",
+        "The Kinks",
+        "The Rolling Stones"
+      ],
+      "title": "Back In The U.S.S.R.",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ringo had quit the band that week, so Paul McCartney played the drums himself.",
+      "fun_fact_de": "Ringo war in jener Woche ausgestiegen, also spielte Paul McCartney das Schlagzeug selbst.",
+      "fun_fact_es": "Ringo habia dejado el grupo esa semana, asi que Paul McCartney toco la bateria el mismo.",
+      "fun_fact_fr": "Ringo avait quitte le groupe cette semaine-la ; Paul McCartney a donc joue la batterie lui-meme.",
+      "fun_fact_nl": "Ringo was die week opgestapt, dus speelde Paul McCartney zelf de drums.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1441133197",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/116348192",
+      "isrc": "GBAYE0601644",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1441133197"
+      }
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:5cfYurP1XKldMBtvBBJiTs",
+      "artist": "The Allman Brothers Band",
+      "alt_artists": [
+        "Lynyrd Skynyrd",
+        "The Marshall Tucker Band",
+        "Marshall Tucker"
+      ],
+      "title": "Ramblin' Man",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dickey Betts wrote it in the kitchen of the band's communal house; it became their biggest hit and their only US top ten.",
+      "fun_fact_de": "Dickey Betts schrieb den Song in der Kueche des Bandhauses — es wurde ihr groesster Hit und ihre einzige US-Top-Ten.",
+      "fun_fact_es": "Dickey Betts la escribio en la cocina de la casa comun de la banda; fue su mayor exito y su unico top ten en EE.UU.",
+      "fun_fact_fr": "Dickey Betts l'a ecrite dans la cuisine de la maison commune du groupe ; ce fut leur plus grand succes et leur seul top dix americain.",
+      "fun_fact_nl": "Dickey Betts schreef het in de keuken van het bandhuis; het werd hun grootste hit en enige Amerikaanse top tien.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1455534880",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/541866052",
+      "isrc": "USPR37330006",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1455534880"
+      }
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:7mc1UtdrlJ9nHKxOXL3lBv",
+      "artist": "Spirit",
+      "alt_artists": [
+        "Steppenwolf",
+        "Jo Jo Gunne",
+        "Iron Butterfly"
+      ],
+      "title": "I Got A Line On You",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Spirit's drummer Ed Cassidy was in his late forties and bald — the oldest man on any psychedelic rock stage of 1968.",
+      "fun_fact_de": "Spirits Schlagzeuger Ed Cassidy war Ende vierzig und kahl — der aelteste Mann auf jeder Psychedelic-Buehne von 1968.",
+      "fun_fact_es": "El baterista de Spirit, Ed Cassidy, tenia casi cincuenta anos y era calvo: el mayor de cualquier escenario psicodelico de 1968.",
+      "fun_fact_fr": "Le batteur de Spirit, Ed Cassidy, avait pres de cinquante ans et le crane rase — le doyen des scenes psychedeliques de 1968.",
+      "fun_fact_nl": "Spirits drummer Ed Cassidy was bijna vijftig en kaal — de oudste man op elk psychedelisch podium van 1968.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/171076717",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13228340",
+      "isrc": "USSM10021131",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/171076717"
+      }
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:5izGeTxueiFX1UPFGohY9w",
+      "artist": "Robert Palmer",
+      "alt_artists": [
+        "Bryan Ferry",
+        "Simply Red",
+        "Huey Lewis and the News"
+      ],
+      "title": "Addicted To Love",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The video's identical pale-faced 'band' of models was copied so often that Palmer said he had lost count of the parodies.",
+      "fun_fact_de": "Die gleichfoermige Model-Band aus dem Video wurde so oft kopiert, dass Palmer sagte, er habe die Parodien nicht mehr gezaehlt.",
+      "fun_fact_es": "La 'banda' de modelos identicas del video se copio tanto que Palmer dijo haber perdido la cuenta de las parodias.",
+      "fun_fact_fr": "Le 'groupe' de mannequins identiques du clip fut tant copie que Palmer disait avoir perdu le compte des parodies.",
+      "fun_fact_nl": "De identieke modellenband uit de clip werd zo vaak nagedaan dat Palmer zei de parodieen niet meer te tellen.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440651176",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2461767",
+      "isrc": "USIR28500003",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440651176"
+      }
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:4lJ6YVXQ0jUk5ILu0PSrA4",
+      "artist": "Faces",
+      "alt_artists": [
+        "The Small Faces",
+        "Rod Stewart",
+        "Humble Pie"
+      ],
+      "title": "Ooh La La",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Rod Stewart refused the vocal, so guitarist Ronnie Wood sang it — and Stewart later called that the right decision.",
+      "fun_fact_de": "Rod Stewart lehnte den Gesang ab, also sang Gitarrist Ronnie Wood — Stewart nannte das spaeter die richtige Entscheidung.",
+      "fun_fact_es": "Rod Stewart rechazo cantarla, asi que lo hizo el guitarrista Ronnie Wood; Stewart admitio despues que fue lo correcto.",
+      "fun_fact_fr": "Rod Stewart a refuse de la chanter ; c'est le guitariste Ronnie Wood qui s'en est charge, et Stewart a reconnu que c'etait le bon choix.",
+      "fun_fact_nl": "Rod Stewart weigerde te zingen, dus deed gitarist Ronnie Wood het — later noemde Stewart dat de juiste keuze.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1031010969",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3858835",
+      "isrc": "USWB10104988",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1031010969"
+      }
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:6FBmHx1FuaSnTnnnaThgbF",
+      "artist": "Quiet Riot",
+      "alt_artists": [
+        "Slade",
+        "Twisted Sister",
+        "Ratt"
+      ],
+      "title": "Cum on Feel the Noize",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Quiet Riot hated the idea of covering Slade and recorded it badly on purpose; it went to number five anyway.",
+      "fun_fact_de": "Quiet Riot fanden die Slade-Coveridee schrecklich und spielten sie absichtlich schlecht ein — sie wurde trotzdem Nummer fuenf.",
+      "fun_fact_es": "A Quiet Riot le horrorizaba versionar a Slade y la grabo mal a proposito; aun asi llego al numero cinco.",
+      "fun_fact_fr": "Quiet Riot detestait l'idee de reprendre Slade et l'a enregistree mal expres ; elle est quand meme montee a la cinquieme place.",
+      "fun_fact_nl": "Quiet Riot haatte het idee om Slade te coveren en nam het expres slecht op; toch werd het nummer vijf.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/169782152",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/626119",
+      "isrc": "USSM18300031",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/169782152"
+      }
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:6YlOxoHWLjH6uVQvxUIUug",
+      "artist": "Status Quo",
+      "alt_artists": [
+        "Creedence Clearwater Revival",
+        "Slade",
+        "Dr. Feelgood"
+      ],
+      "title": "Rockin' All Over The World",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "John Fogerty wrote and released it first; Status Quo's version opened Live Aid at Wembley eight years later.",
+      "fun_fact_de": "John Fogerty schrieb und veroeffentlichte den Song zuerst; die Quo-Fassung eroeffnete acht Jahre spaeter Live Aid in Wembley.",
+      "fun_fact_es": "John Fogerty la escribio y publico primero; la version de Status Quo abrio el Live Aid de Wembley ocho anos despues.",
+      "fun_fact_fr": "John Fogerty l'a ecrite et publiee le premier ; la version de Status Quo a ouvert le Live Aid de Wembley huit ans plus tard.",
+      "fun_fact_nl": "John Fogerty schreef en bracht het eerst uit; de versie van Status Quo opende acht jaar later Live Aid in Wembley.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1845835721",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2718504",
+      "isrc": "GBF087700030",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1845835721"
+      }
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:6V50MyHPGhEmwYu0Wdyf0t",
+      "artist": "Bruce Hornsby and the Range",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Don Henley",
+        "Steve Winwood"
+      ],
+      "title": "The Way It Is",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The piano figure was sampled by 2Pac for 'Changes' — Hornsby's civil-rights lyric reached a second audience that way.",
+      "fun_fact_de": "Die Klavierfigur sampelte 2Pac fuer 'Changes' — so erreichte Hornsbys Buergerrechtstext ein zweites Publikum.",
+      "fun_fact_es": "2Pac sampleo el piano para 'Changes'; asi la letra sobre derechos civiles de Hornsby llego a un segundo publico.",
+      "fun_fact_fr": "2Pac a samplé le piano pour 'Changes' ; le texte sur les droits civiques de Hornsby a ainsi touche un second public.",
+      "fun_fact_nl": "2Pac sampelde de pianopartij voor 'Changes' — zo bereikte Hornsby's burgerrechtentekst een tweede publiek.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/258517392",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/628518",
+      "isrc": "USRC10301338",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/258517392"
+      }
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:6s0NHplywwr1IjnQpUpWJk",
+      "artist": "George Thorogood & The Destroyers",
+      "alt_artists": [
+        "ZZ Top",
+        "John Lee Hooker",
+        "Stevie Ray Vaughan"
+      ],
+      "title": "Bad To The Bone",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It never cracked the US top forty, yet film and television have licensed the riff so often it reads as shorthand for menace.",
+      "fun_fact_de": "Der Song kam nie in die US-Top-40, doch Film und Fernsehen lizenzierten das Riff so oft, dass es fuer Bedrohung steht.",
+      "fun_fact_es": "Nunca entro en el top cuarenta de EE.UU., pero el cine y la television han licenciado tanto el riff que ya significa amenaza.",
+      "fun_fact_fr": "Le titre n'est jamais entre dans le top quarante americain, mais le cinema et la television ont tant repris le riff qu'il signifie la menace.",
+      "fun_fact_nl": "Het haalde nooit de Amerikaanse top veertig, maar film en tv leenden de riff zo vaak dat hij dreiging betekent.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1476772799",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3102776",
+      "isrc": "USEM30000046",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1476772799"
+      }
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:4vO9dmzNRqDhFY3jD1a3P7",
+      "artist": "Mountain",
+      "alt_artists": [
+        "Grand Funk Railroad",
+        "Cream",
+        "Free"
+      ],
+      "title": "Mississippi Queen",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Leslie West's cowbell count-in exists because the band kept losing the tempo on stage.",
+      "fun_fact_de": "Leslie Wests Kuhglocken-Einzaehler entstand, weil die Band auf der Buehne staendig das Tempo verlor.",
+      "fun_fact_es": "El conteo con cencerro de Leslie West existe porque la banda perdia el tempo en el escenario.",
+      "fun_fact_fr": "Le decompte a la cloche de Leslie West existe parce que le groupe perdait sans cesse le tempo sur scene.",
+      "fun_fact_nl": "Leslie West telde met een koebel af omdat de band op het podium steeds het tempo kwijtraakte.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/192492200",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13157931",
+      "isrc": "USSM17100079",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/192492200"
+      }
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:6NdcSEhpGGAYXNnnhGS2s6",
+      "artist": "The Romantics",
+      "alt_artists": [
+        "The Knack",
+        "Cheap Trick",
+        "The Cars"
+      ],
+      "title": "What I Like About You",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Drummer Jimmy Marinos sang lead, the only Romantics hit where he did — and it charted higher in Australia than at home.",
+      "fun_fact_de": "Schlagzeuger Jimmy Marinos sang die Leadstimme, der einzige Romantics-Hit mit ihm — in Australien lief er besser als daheim.",
+      "fun_fact_es": "El baterista Jimmy Marinos canto como solista, el unico exito de los Romantics asi, y funciono mejor en Australia que en casa.",
+      "fun_fact_fr": "Le batteur Jimmy Marinos tenait le chant, seul tube des Romantics dans ce cas, et il marcha mieux en Australie qu'au pays.",
+      "fun_fact_nl": "Drummer Jimmy Marinos zong de leadpartij, de enige Romantics-hit zo, en scoorde in Australie beter dan thuis.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/203280224",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1066565",
+      "isrc": "USSM10020612",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/203280224"
+      }
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:6xq5DxZWGgdStAxGAil0yw",
+      "artist": "Rainbow",
+      "alt_artists": [
+        "Rainbow",
+        "Deep Purple",
+        "Foreigner"
+      ],
+      "title": "Since You Been Gone",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Russ Ballard wrote this one too; Ritchie Blackmore used it to steer Rainbow deliberately towards radio.",
+      "fun_fact_de": "Auch dieser Song stammt von Russ Ballard; Ritchie Blackmore steuerte Rainbow damit bewusst Richtung Radio.",
+      "fun_fact_es": "Tambien esta la escribio Russ Ballard; Ritchie Blackmore la uso para llevar a Rainbow hacia la radio.",
+      "fun_fact_fr": "Celle-ci aussi est de Russ Ballard ; Ritchie Blackmore s'en est servi pour orienter Rainbow vers la radio.",
+      "fun_fact_nl": "Ook dit nummer is van Russ Ballard; Ritchie Blackmore stuurde Rainbow er bewust mee richting radio.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1443913369",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2262518",
+      "isrc": "USPR37930021",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443913369"
+      }
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:2F1fnE1a8zQCogM6jJifHH",
+      "artist": "Rick Springfield",
+      "alt_artists": [
+        "Rick Astley",
+        "John Waite",
+        "Loverboy"
+      ],
+      "title": "Jessie's Girl",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Springfield met the real couple in a stained-glass class and had to change the friend's name because it did not scan.",
+      "fun_fact_de": "Springfield lernte das echte Paar in einem Glasmalerei-Kurs kennen und musste den Namen des Freundes aendern, weil er nicht ins Metrum passte.",
+      "fun_fact_es": "Springfield conocio a la pareja real en una clase de vidrieras y cambio el nombre del amigo porque no encajaba en la metrica.",
+      "fun_fact_fr": "Springfield a rencontre le vrai couple a un cours de vitrail et a du changer le prenom de l'ami, qui ne tenait pas dans la mesure.",
+      "fun_fact_nl": "Springfield ontmoette het echte stel op een glas-in-loodcursus en moest de naam van de vriend veranderen omdat die niet paste.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/286005748",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/454843722",
+      "isrc": "USRC18108188",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/286005748"
+      }
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:57460SJgSpCXaRJ9YIYHxy",
+      "artist": "Canned Heat",
+      "alt_artists": [
+        "Creedence Clearwater Revival",
+        "The Band",
+        "Ten Years After"
+      ],
+      "title": "Going Up The Country",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The flute line copies a 1928 Henry Thomas recording made on quills; the song became the unofficial anthem of Woodstock.",
+      "fun_fact_de": "Die Floetenlinie kopiert eine Henry-Thomas-Aufnahme von 1928 auf Panfloete; der Song wurde zur inoffiziellen Woodstock-Hymne.",
+      "fun_fact_es": "La linea de flauta copia una grabacion de Henry Thomas de 1928 con flautas de cana; la cancion fue el himno extraoficial de Woodstock.",
+      "fun_fact_fr": "La ligne de flute reprend un enregistrement d'Henry Thomas de 1928 joue au flageolet ; le morceau devint l'hymne officieux de Woodstock.",
+      "fun_fact_nl": "De fluitlijn kopieert een opname van Henry Thomas uit 1928 op rietfluit; het nummer werd het onofficiele Woodstock-volkslied.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/725789244",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3151773",
+      "isrc": "USCA20500172",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/725789244"
+      }
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:3Wqi68rdm2OAwlue6TIc8u",
+      "artist": "Golden Earring",
+      "alt_artists": [
+        "Focus",
+        "Thin Lizzy",
+        "Deep Purple"
+      ],
+      "title": "Radar Love",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Golden Earring had already existed for eight years in the Netherlands before this driving song made them international.",
+      "fun_fact_de": "Golden Earring existierten in den Niederlanden schon acht Jahre, bevor dieser Autofahrer-Song sie international machte.",
+      "fun_fact_es": "Golden Earring llevaba ocho anos en los Paises Bajos antes de que esta cancion de carretera los hiciera internacionales.",
+      "fun_fact_fr": "Golden Earring existait depuis huit ans aux Pays-Bas avant que ce morceau de route ne les rende internationaux.",
+      "fun_fact_nl": "Golden Earring bestond al acht jaar in Nederland voordat dit rijnummer hen internationaal maakte.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/81667968",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/60702996",
+      "isrc": "NLC287300054",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/81667968"
+      }
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:1BvpeiApX8qhof8Pmi3YlH",
+      "artist": "Ace Frehley",
+      "alt_artists": [
+        "Kiss",
+        "Peter Criss",
+        "Sweet"
+      ],
+      "title": "New York Groove",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "All four Kiss members released solo albums on the same day in 1978; Frehley's sold best, largely because of this track.",
+      "fun_fact_de": "Alle vier Kiss-Mitglieder veroeffentlichten 1978 am selben Tag Soloalben; Frehleys verkaufte sich am besten, vor allem wegen dieses Songs.",
+      "fun_fact_es": "Los cuatro miembros de Kiss publicaron discos en solitario el mismo dia de 1978; el de Frehley vendio mas, sobre todo por este tema.",
+      "fun_fact_fr": "Les quatre membres de Kiss ont sorti des albums solo le meme jour en 1978 ; celui de Frehley s'est le mieux vendu, grace a ce titre.",
+      "fun_fact_nl": "Alle vier Kiss-leden brachten in 1978 op dezelfde dag soloalbums uit; dat van Frehley verkocht het best, vooral door dit nummer.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1440855387",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/5885699",
+      "isrc": "USMR17800036",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440855387"
+      }
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:2uE5JDb0ZJsJkzZ8gvL5jw",
+      "artist": "Dave Edmunds",
+      "alt_artists": [
+        "Rockpile",
+        "Nick Lowe",
+        "Status Quo"
+      ],
+      "title": "I Hear You Knocking",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Edmunds name-checks the original R&B artists mid-song, a nod to Smiley Lewis, who had the 1955 version.",
+      "fun_fact_de": "Edmunds nennt mitten im Song die Original-R&B-Kuenstler, eine Verbeugung vor Smiley Lewis und dessen Fassung von 1955.",
+      "fun_fact_es": "Edmunds cita a los artistas de R&B originales en plena cancion, un guino a Smiley Lewis y su version de 1955.",
+      "fun_fact_fr": "Edmunds cite les artistes R&B d'origine en plein morceau, clin d'oeil a Smiley Lewis et sa version de 1955.",
+      "fun_fact_nl": "Edmunds noemt midden in het nummer de originele r&b-artiesten, een knipoog naar Smiley Lewis en diens versie uit 1955.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/699276150",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3431870",
+      "isrc": "GBAYE7100063",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/699276150"
+      }
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:0GTK6TesV108Jj5D3MHsYb",
+      "artist": "Yes",
+      "alt_artists": [
+        "Asia",
+        "Genesis",
+        "The Police"
+      ],
+      "title": "Owner of a Lonely Heart",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Trevor Rabin had the song on a demo before he joined Yes; the orchestral stab is a sampled brass hit, an early Fairlight trick.",
+      "fun_fact_de": "Trevor Rabin hatte den Song schon als Demo, bevor er zu Yes kam; der Orchesterschlag ist ein gesampelter Blaeser, ein frueher Fairlight-Trick.",
+      "fun_fact_es": "Trevor Rabin ya tenia la cancion en una maqueta antes de entrar en Yes; el golpe orquestal es un metal sampleado, truco temprano de Fairlight.",
+      "fun_fact_fr": "Trevor Rabin avait deja le titre en maquette avant d'entrer chez Yes ; le coup d'orchestre est un cuivre samplé, une astuce Fairlight precoce.",
+      "fun_fact_nl": "Trevor Rabin had het nummer al op demo voor hij bij Yes kwam; de orkestklap is een gesampelde blazer, een vroege Fairlight-truc.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1082025496",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3613215",
+      "isrc": "USAT20702539",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1082025496"
+      }
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:6Q5xDA2wc7WUp0nBoY7S33",
+      "artist": "April Wine",
+      "alt_artists": [
+        "Loverboy",
+        "Triumph",
+        "Bachman-Turner Overdrive"
+      ],
+      "title": "Wanna Rock",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "April Wine came from Nova Scotia and were headlining arenas in Canada while still opening clubs in the United States.",
+      "fun_fact_de": "April Wine kamen aus Nova Scotia und fuellten in Kanada Arenen, waehrend sie in den USA noch Clubs eroeffneten.",
+      "fun_fact_es": "April Wine venia de Nueva Escocia y llenaba pabellones en Canada mientras aun teloneaba en clubes de EE.UU.",
+      "fun_fact_fr": "April Wine venait de Nouvelle-Ecosse et remplissait des arenes au Canada alors qu'il ouvrait encore des clubs aux Etats-Unis.",
+      "fun_fact_nl": "April Wine kwam uit Nova Scotia en vulde arena's in Canada terwijl het in de VS nog clubs opende.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1673136166",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2158223987",
+      "isrc": "USCA29101731",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1673136166"
+      }
+    },
+    {
+      "year": 1981,
+      "uri": "spotify:track:0odIT9B9BvOCnXfS0e4lB5",
+      "artist": "Kim Carnes",
+      "alt_artists": [
+        "Pat Benatar",
+        "Stevie Nicks",
+        "Juice Newton"
+      ],
+      "title": "Bette Davis Eyes",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written in 1974 as a piano shuffle, it only worked once Carnes' producer replaced the piano with a synth hook seven years later.",
+      "fun_fact_de": "1974 als Klavier-Shuffle geschrieben, funktionierte der Song erst, als Carnes' Produzent das Klavier sieben Jahre spaeter durch einen Synthesizer ersetzte.",
+      "fun_fact_es": "Escrita en 1974 como un shuffle de piano, solo funciono cuando el productor de Carnes cambio el piano por un sinte siete anos despues.",
+      "fun_fact_fr": "Ecrite en 1974 comme un shuffle au piano, elle n'a marche que lorsque le producteur de Carnes a remplace le piano par un synthe sept ans plus tard.",
+      "fun_fact_nl": "Geschreven in 1974 als pianoshuffle, werkte het pas toen Carnes' producer zeven jaar later de piano door een synth verving.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/724363409",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3153065",
+      "isrc": "USCA28100081",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724363409"
+      }
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:3QTLZ2m7xJy5VGr5owxewO",
+      "artist": "Mud",
+      "alt_artists": [
+        "Sweet",
+        "Slade",
+        "Suzi Quatro"
+      ],
+      "title": "Tiger Feet",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It was the best-selling single in Britain in 1974, ahead of everything Slade and Sweet released that year.",
+      "fun_fact_de": "Es war 1974 die meistverkaufte Single Grossbritanniens — vor allem, was Slade und Sweet in jenem Jahr herausbrachten.",
+      "fun_fact_es": "Fue el sencillo mas vendido en Gran Bretana en 1974, por delante de todo lo que publicaron Slade y Sweet.",
+      "fun_fact_fr": "Ce fut le 45 tours le plus vendu au Royaume-Uni en 1974, devant tout ce que Slade et Sweet ont sorti cette annee-la.",
+      "fun_fact_nl": "Het was in 1974 de best verkochte single van Groot-Brittannie, voor alles wat Slade en Sweet uitbrachten.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/697229785",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3102884",
+      "isrc": "GBAYE7400036",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/697229785"
+      }
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:2jtUGFsqanQ82zqDlhiKIp",
+      "artist": "The Beatles",
+      "alt_artists": [
+        "Joe Cocker",
+        "Badfinger",
+        "The Kinks"
+      ],
+      "title": "She Came In Through The Bathroom Window",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A fan really did climb through McCartney's bathroom window in London; he wrote the song about the break-in.",
+      "fun_fact_de": "Ein Fan kletterte in London tatsaechlich durch McCartneys Badezimmerfenster — ueber diesen Einbruch schrieb er den Song.",
+      "fun_fact_es": "Una fan entro de verdad por la ventana del bano de McCartney en Londres; sobre ese allanamiento escribio la cancion.",
+      "fun_fact_fr": "Une fan est vraiment passee par la fenetre de la salle de bains de McCartney a Londres ; il a ecrit la chanson sur cette effraction.",
+      "fun_fact_nl": "Een fan klom in Londen echt door McCartneys badkamerraam; over die inbraak schreef hij het nummer.",
+      "awards_nl": [],
+      "uri_apple_music": "applemusic://track/1441164599",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/116348476",
+      "isrc": "GBAYE0601702",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1441164599"
+      }
     }
   ]
 }
