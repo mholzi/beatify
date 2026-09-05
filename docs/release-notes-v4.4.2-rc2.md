@@ -1,6 +1,6 @@
 ## 4.4.2-rc2 — Nothing Unsaid
 
-Fourteen fixes for moments the game handled correctly and then kept to itself.
+Fourteen fixes for small moments that went wrong — or went right without anyone noticing.
 
 ### 📺 The room can see what happened
 

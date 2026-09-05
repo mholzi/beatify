@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.2] - 2026-09-05
+
+Die Woche 2026-W37: fuenfzehn Eintraege aus der Redaktionskonferenz, alle gebaut, getestet und
+gemergt. Die Abschnitte der drei Kandidaten stehen unveraendert darunter — sie sind der Inhalt
+dieses Stables.
+
+**Ein Fix aus rc3 ist ausdruecklich NICHT wirksam**: der Lautsprecher spielt nach dem Spielende
+weiter ([#2605](https://github.com/mholzi/beatify/issues/2605)). Der Versuch liegt im Code, der
+Live-Test hat ihn widerlegt, das Issue ist wieder offen und steht auf der Liste fuer die naechste
+Woche. Deshalb nennen die Release Notes ihn nicht.
+
 ## [4.4.2-rc3] - 2026-09-05
 
 Der rc2 hat seinen eigenen Live-Test bestanden und dabei einen Fehler gefunden, der erst nach dem
