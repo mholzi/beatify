@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import os
 import random
 import re
 from collections.abc import Callable
@@ -577,6 +578,97 @@ def _prune_relocated_playlists(
     return removed
 
 
+def _copy_bundled_playlists_sync(
+    bundled_dir: Path, dest_dir: Path
+) -> tuple[list[tuple[str, str]], list[Path]]:
+    """Copy/refresh every bundled playlist into ``dest_dir``, in ONE executor job.
+
+    #2572: this used to be a loop on the event loop that awaited a separate
+    executor round-trip per playlist, and each round-trip parsed both JSON
+    documents in full just to read the ``version`` field. With 66 bundled
+    playlists at 13.7 MB that is 66 hops and ~110 ms of parsing on every setup,
+    growing with the catalogue. ``_discover_playlists_sync`` further down
+    already had the right shape: one job for the whole walk, plus a stat-based
+    signature that skips the parse when nothing changed. This does the same.
+
+    The stat shortcut is deliberately conservative. A destination counts as
+    current only when it has **exactly** the byte size of the bundled file and
+    was written no earlier than it — which is what :func:`_copy_playlist_file`
+    leaves behind, and what an untouched install looks like at every restart
+    after the first. Anything else (a release that re-installed the bundle, a
+    file the user edited, a truncated copy) fails the check and falls through
+    to the version comparison, so no update can be missed by it.
+
+    Returns ``(log_records, playlist_files)``. Log records are finished
+    ``(level, message)`` pairs the caller emits on the event loop: only the
+    handful of playlists that actually changed produce one, so nothing is
+    formatted for the up-to-date case.
+    """
+    log: list[tuple[str, str]] = []
+    playlist_files = list(bundled_dir.glob("**/*.json"))
+
+    for playlist_file in playlist_files:
+        # Preserve relative path (e.g. community/greatest-metal-songs.json)
+        rel = playlist_file.relative_to(bundled_dir)
+        dest_file = dest_dir / rel
+        try:
+            src_stat = playlist_file.stat()
+            try:
+                dst_stat: os.stat_result | None = dest_file.stat()
+            except FileNotFoundError:
+                dst_stat = None
+
+            if dst_stat is None:
+                # New playlist — copy it. The bundled document is parsed only
+                # here, on the path that writes something anyway.
+                _copy_playlist_file(playlist_file, dest_file)
+                bundled_ver = _get_playlist_version(dest_file)
+                log.append(
+                    (
+                        "info",
+                        f"Copied bundled playlist {playlist_file.name} (v{bundled_ver})",
+                    )
+                )
+                continue
+
+            if (
+                dst_stat.st_size == src_stat.st_size
+                and dst_stat.st_mtime_ns >= src_stat.st_mtime_ns
+            ):
+                # Byte-identical copy written after the bundled file: the common
+                # case at every restart, and it costs two stats instead of two
+                # full JSON parses.
+                continue
+
+            bundled_ver = _get_playlist_version(playlist_file)
+            existing_ver = _get_playlist_version(dest_file)
+            if _compare_versions(bundled_ver, existing_ver) > 0:
+                _copy_playlist_file(playlist_file, dest_file)
+                log.append(
+                    (
+                        "info",
+                        f"Updated playlist {playlist_file.name}: "
+                        f"v{existing_ver} -> v{bundled_ver}",
+                    )
+                )
+        except OSError as err:
+            log.append(
+                ("warning", f"Failed to process playlist {playlist_file.name}: {err}")
+            )
+
+    return log, playlist_files
+
+
+def _copy_playlist_file(src: Path, dst: Path) -> None:
+    """Copy file contents, creating parent dirs (runs in executor).
+
+    #1402 B3: folds the previously-on-event-loop ``mkdir`` in here.
+    """
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    content = src.read_text(encoding="utf-8")
+    dst.write_text(content, encoding="utf-8")
+
+
 async def _copy_bundled_playlists(dest_dir: Path) -> None:
     """Copy bundled playlists to destination, updating if bundled version is newer."""
     # Bundled playlists are in custom_components/beatify/playlists/
@@ -584,68 +676,17 @@ async def _copy_bundled_playlists(dest_dir: Path) -> None:
 
     loop = asyncio.get_running_loop()
 
-    # #1402 B3: `exists()` is a blocking syscall — run it (and the glob) in the
+    # #1402 B3: `exists()` is a blocking syscall — run it (and the walk) in the
     # executor instead of on the event loop.
     if not await loop.run_in_executor(None, bundled_dir.exists):
         return
 
-    def _copy_file(src: Path, dst: Path) -> None:
-        """Copy file contents, creating parent dirs (runs in executor).
-
-        #1402 B3: folds the previously-on-event-loop ``mkdir`` in here.
-        """
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        content = src.read_text(encoding="utf-8")
-        dst.write_text(content, encoding="utf-8")
-
-    def _get_versions(src: Path, dst: Path) -> tuple[str, str, bool]:
-        """Get versions from both files + whether dst exists (runs in executor).
-
-        #1402 B3: returns ``dst_exists`` so the caller reuses this single stat
-        instead of re-running a blocking ``dst.exists()`` on the event loop.
-        """
-        bundled_ver = _get_playlist_version(src)
-        dst_exists = dst.exists()
-        existing_ver = _get_playlist_version(dst) if dst_exists else "0.0"
-        return bundled_ver, existing_ver, dst_exists
-
-    # Offload blocking glob to executor to avoid scandir in event loop (#516)
-    playlist_files = await loop.run_in_executor(
-        None, lambda: list(bundled_dir.glob("**/*.json"))
+    # #2572: walk + stat + copy in a single hop instead of one per playlist.
+    log, playlist_files = await loop.run_in_executor(
+        None, _copy_bundled_playlists_sync, bundled_dir, dest_dir
     )
-    for playlist_file in playlist_files:
-        # Preserve relative path (e.g. community/greatest-metal-songs.json)
-        rel = playlist_file.relative_to(bundled_dir)
-        dest_file = dest_dir / rel
-        try:
-            # Get versions (+ existence, reused below — _copy_file makes the dir)
-            bundled_ver, existing_ver, dest_exists = await loop.run_in_executor(
-                None, _get_versions, playlist_file, dest_file
-            )
-
-            if not dest_exists:
-                # New playlist - copy it
-                await loop.run_in_executor(None, _copy_file, playlist_file, dest_file)
-                _LOGGER.info(
-                    "Copied bundled playlist %s (v%s)", playlist_file.name, bundled_ver
-                )
-            elif _compare_versions(bundled_ver, existing_ver) > 0:
-                # Bundled version is newer - update
-                await loop.run_in_executor(None, _copy_file, playlist_file, dest_file)
-                _LOGGER.info(
-                    "Updated playlist %s: v%s -> v%s",
-                    playlist_file.name,
-                    existing_ver,
-                    bundled_ver,
-                )
-            else:
-                _LOGGER.debug(
-                    "Playlist %s is up to date (v%s)", playlist_file.name, existing_ver
-                )
-        except OSError as err:
-            _LOGGER.warning(
-                "Failed to process playlist %s: %s", playlist_file.name, err
-            )
+    for level, message in log:
+        getattr(_LOGGER, level)(message)
 
     # #1864: every current playlist is on disk now, so anything left at a former
     # path is a stranded duplicate. Runs after the copy loop precisely so the
