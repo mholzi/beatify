@@ -1170,7 +1170,13 @@
         "step3": "Torna qui: il tuo {platform} comparirà come altoparlante Music Assistant",
         "primary": "Configura Music Assistant →",
         "ghost": "Scegli un altro servizio",
-        "footer": "Preferisci Spotify? Funziona su {platform} direttamente, senza add-on."
+        "footer": "Preferisci Spotify? Funziona su {platform} direttamente, senza add-on.",
+        "amazonTitle": "Amazon Music richiede un Amazon Echo",
+        "amazonBody": "Amazon Music non è disponibile tramite Music Assistant. Per usarlo, seleziona un Amazon Echo (tramite l'integrazione alexa_media) come altoparlante.",
+        "amazonStep1": "Installa l'integrazione <strong>Alexa Media Player</strong> in Home Assistant",
+        "amazonStep2": "Collega il tuo account Amazon e il tuo Echo",
+        "amazonStep3": "Torna qui: il tuo Echo comparirà tra gli altoparlanti disponibili",
+        "amazonPrimary": "Configura Alexa Media Player →"
       }
     },
     "step3": {
@@ -1253,7 +1259,8 @@
         "presetCustom": "Personalizzata",
         "test": "Invia un annuncio di prova",
         "testOk": "Inviato",
-        "testFail": "Non riuscito"
+        "testFail": "Non riuscito",
+        "testNoSpeaker": "Scegli prima un altoparlante"
       }
     },
     "summary": {
@@ -1487,7 +1494,10 @@
       "copyJson": "Copia il JSON convalidato",
       "saveLocal": "Salva in locale (v1.1)",
       "copyResult": "Copia il risultato per il modello",
-      "close": "Chiudi"
+      "close": "Chiudi",
+      "captureIssue": "Segui questo invio",
+      "dismissSubmission": "Salta",
+      "working": "In corso…"
     },
     "hints": {
       "promptCopied": "Prompt copiato negli appunti: incollalo nel tuo modello.",
@@ -1522,6 +1532,16 @@
       "step4": "Premi <b>Convalida</b>: vedrai ✓/✗ per ogni campo.",
       "warnTitle": "Più di ~32 canzoni?",
       "warnBody": "ChatGPT &amp; Claude spesso troncano le playlist lunghe a metà. Dividile in <b>blocchi da 30 canzoni</b>: esegui il prompt per ogni blocco, poi unisci gli array songs. Se ChatGPT si interrompe con un errore poco chiaro, la causa è quasi sempre la lunghezza della risposta."
+    },
+    "saveLocal": {
+      "success": "Salvata come {filename}. Comparirà in Playlist Hub → Community al prossimo aggiornamento.",
+      "error": "Salvataggio non riuscito: {error}"
+    },
+    "submit": {
+      "pasteIssuePrompt": "Completa la issue su GitHub e incolla qui il suo URL: comparirà nella scheda Mine insieme alle tue richieste di playlist.",
+      "captured": "Registrata come issue #{n}. Controlla i progressi in Playlist Hub → Mine.",
+      "captureError": "Impossibile registrare l'invio: {error}",
+      "invalidIssueUrl": "Non sembra l'URL di una issue GitHub. Atteso qualcosa come https://github.com/mholzi/beatify/issues/123."
     }
   },
   "starting": {

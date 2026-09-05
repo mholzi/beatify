@@ -21,7 +21,15 @@ let _dlg = null;
 let _state = { uri: null, songTitle: '', songArtist: '', current: null, candidates: [], busy: false };
 
 function _t(key, fallback) {
-    return (window.BeatifyI18n && window.BeatifyI18n.t(key)) || fallback;
+    // #2582: `BeatifyI18n.t()` gibt bei einem fehlenden Schluessel den
+    // **Schluessel selbst** zurueck (i18n.js) — und der ist truthy, also kam
+    // `fallback` nie zum Zug. Genau dieser Fehler wurde als #1402-B8 in
+    // `playlist-hub.js` behoben; diese neuere Kopie hat ihn wieder eingebaut.
+    // Heute latent, weil alle Schluessel in en.json stehen — aber vor dem
+    // i18n-Load oder beim naechsten vergessenen Schluessel stuende
+    // „admin.library.fixSave" im Dialog.
+    var s = window.BeatifyI18n ? window.BeatifyI18n.t(key) : '';
+    return !s || s === key ? fallback : s;
 }
 
 function _esc(value) {

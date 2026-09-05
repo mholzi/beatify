@@ -1170,7 +1170,13 @@
         "step3": "Reviens — ton {platform} apparaît comme une enceinte Music Assistant",
         "primary": "Configurer Music Assistant →",
         "ghost": "Choisir un autre service",
-        "footer": "Tu préfères Spotify ? Ça marche directement sur {platform} — pas besoin d'add-on."
+        "footer": "Tu préfères Spotify ? Ça marche directement sur {platform} — pas besoin d'add-on.",
+        "amazonTitle": "Amazon Music nécessite un Amazon Echo",
+        "amazonBody": "Amazon Music n'est pas disponible via Music Assistant. Pour l'utiliser, choisissez un Amazon Echo (via l'intégration alexa_media) comme enceinte.",
+        "amazonStep1": "Installez l'intégration <strong>Alexa Media Player</strong> dans Home Assistant",
+        "amazonStep2": "Reliez votre compte Amazon et votre Echo",
+        "amazonStep3": "Revenez ici : votre Echo apparaîtra comme enceinte disponible",
+        "amazonPrimary": "Configurer Alexa Media Player →"
       }
     },
     "step3": {
@@ -1253,7 +1259,8 @@
         "presetCustom": "Personnalisé",
         "test": "Envoyer une annonce test",
         "testOk": "Envoyé",
-        "testFail": "Échec"
+        "testFail": "Échec",
+        "testNoSpeaker": "Choisissez d'abord une enceinte"
       }
     },
     "summary": {
@@ -1487,7 +1494,10 @@
       "copyJson": "Copier le JSON validé",
       "saveLocal": "Enregistrer localement (v1.1)",
       "copyResult": "Copier le résultat pour le LLM",
-      "close": "Fermer"
+      "close": "Fermer",
+      "captureIssue": "Suivre cet envoi",
+      "dismissSubmission": "Passer",
+      "working": "En cours…"
     },
     "hints": {
       "promptCopied": "Prompt copié dans le presse-papiers — collez-le dans votre LLM.",
@@ -1522,6 +1532,16 @@
       "step4": "Cliquez sur <b>Valider</b> — vous verrez ✓/✗ par champ.",
       "warnTitle": "Plus de ~32 titres ?",
       "warnBody": "ChatGPT &amp; Claude coupent souvent les grandes playlists en cours de route. Divisez-les en <b>lots de 30 titres</b> : exécutez le prompt par lot, puis fusionnez les tableaux songs. Si ChatGPT s’interrompt avec une erreur peu claire, c’est presque toujours la longueur de la réponse qui est en cause."
+    },
+    "saveLocal": {
+      "success": "Enregistrée sous {filename}. Elle apparaîtra dans Playlist Hub → Community au prochain rafraîchissement.",
+      "error": "Échec de l'enregistrement : {error}"
+    },
+    "submit": {
+      "pasteIssuePrompt": "Terminez le ticket sur GitHub, puis collez son URL ici : il apparaîtra dans votre onglet Mine avec vos demandes de playlist.",
+      "captured": "Enregistré comme ticket #{n}. Suivez l'avancement dans Playlist Hub → Mine.",
+      "captureError": "Impossible d'enregistrer l'envoi : {error}",
+      "invalidIssueUrl": "Cela ne ressemble pas à l'URL d'un ticket GitHub. Attendu : quelque chose comme https://github.com/mholzi/beatify/issues/123."
     }
   },
   "starting": {

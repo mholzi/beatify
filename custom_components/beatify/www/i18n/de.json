@@ -1170,7 +1170,13 @@
         "step3": "Zurückkommen — dein {platform} erscheint als Music Assistant-Lautsprecher",
         "primary": "Music Assistant einrichten →",
         "ghost": "Anderen Dienst wählen",
-        "footer": "Lieber Spotify? Läuft direkt auf {platform} — kein Add-on nötig."
+        "footer": "Lieber Spotify? Läuft direkt auf {platform} — kein Add-on nötig.",
+        "amazonTitle": "Amazon Music braucht einen Amazon Echo",
+        "amazonBody": "Amazon Music ist über Music Assistant nicht verfügbar. Wähle stattdessen einen Amazon Echo (über die Integration alexa_media) als Lautsprecher.",
+        "amazonStep1": "Installiere die Integration <strong>Alexa Media Player</strong> in Home Assistant",
+        "amazonStep2": "Verknüpfe dein Amazon-Konto und deinen Echo",
+        "amazonStep3": "Komm zurück — dein Echo erscheint dann als verfügbarer Lautsprecher",
+        "amazonPrimary": "Alexa Media Player einrichten →"
       }
     },
     "step3": {
@@ -1253,7 +1259,8 @@
         "presetCustom": "Eigene",
         "test": "Testansage senden",
         "testOk": "Gesendet",
-        "testFail": "Fehlgeschlagen"
+        "testFail": "Fehlgeschlagen",
+        "testNoSpeaker": "Erst einen Lautsprecher wählen"
       }
     },
     "summary": {
@@ -1487,7 +1494,10 @@
       "copyJson": "Validiertes JSON kopieren",
       "saveLocal": "Lokal speichern (v1.1)",
       "copyResult": "Ergebnis für das LLM kopieren",
-      "close": "Schließen"
+      "close": "Schließen",
+      "captureIssue": "Einreichung verfolgen",
+      "dismissSubmission": "Überspringen",
+      "working": "Arbeite…"
     },
     "hints": {
       "promptCopied": "Prompt in die Zwischenablage kopiert — füge ihn in dein LLM ein.",
@@ -1522,6 +1532,16 @@
       "step4": "<b>Validieren</b> klicken — pro Zeile siehst du ✓/✗ je Feld.",
       "warnTitle": "Mehr als ~32 Songs?",
       "warnBody": "ChatGPT &amp; Claude brechen bei großen Playlists oft mittendrin ab. Teile sie in <b>Batches zu 30 Songs</b>: Prompt pro Batch ausführen, die songs-Arrays anschließend zusammenführen. Bricht ChatGPT mit unklarem Fehler ab, ist fast immer die Antwortlänge die Ursache."
+    },
+    "saveLocal": {
+      "success": "Als {filename} gespeichert. Beim nächsten Aktualisieren erscheint sie im Playlist-Hub → Community.",
+      "error": "Speichern fehlgeschlagen: {error}"
+    },
+    "submit": {
+      "pasteIssuePrompt": "Schließe das Issue auf GitHub ab und füge die Issue-URL hier ein — dann erscheint es unter „Meine“ neben deinen bisherigen Playlist-Wünschen.",
+      "captured": "Als Issue #{n} vermerkt. Den Fortschritt siehst du im Playlist-Hub → Meine.",
+      "captureError": "Einreichung konnte nicht vermerkt werden: {error}",
+      "invalidIssueUrl": "Das sieht nicht nach einer GitHub-Issue-URL aus. Erwartet wird etwas wie https://github.com/mholzi/beatify/issues/123."
     }
   },
   "starting": {

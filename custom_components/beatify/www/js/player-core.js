@@ -897,7 +897,17 @@ function handleServerMessage(data) {
         if (data.code === 'ADMIN_CANNOT_LEAVE') {
             state.intentionalLeave = false;
             // #1663 item 1: non-blocking toast (was blocking alert()).
-            showToast(data.message || 'Host cannot leave. End the game instead.');
+            // #2582: erst den uebersetzten Code, dann erst den Servertext.
+            // #2532 und #2553 haben die uebrigen Fehlerpfade auf diese
+            // Reihenfolge gebracht; dieser Zweig blieb auf `data.message ||`
+            // stehen und las `errors.ADMIN_CANNOT_LEAVE` deshalb nie — obwohl
+            // der Schluessel in allen sechs Sprachen existiert.
+            var admLeave = typeof utils.t === 'function'
+                ? utils.t('errors.ADMIN_CANNOT_LEAVE') : '';
+            if (!admLeave || String(admLeave).indexOf('errors.') === 0) {
+                admLeave = data.message || 'Host cannot leave. End the game instead.';
+            }
+            showToast(admLeave);
             return;
         }
         if (data.code === 'INVALID_ACTION' && data.message === 'No song playing') {

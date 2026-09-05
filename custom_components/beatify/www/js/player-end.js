@@ -12,6 +12,19 @@ import { showToast } from './notify.js';
 
 var utils = window.BeatifyUtils || {};
 
+// #2582: die Punkte-Einheit fuer die Vinyl-Grafik, die Gaeste teilen. Sie stand
+// dort hartkodiert englisch, waehrend der Rest des Endbildschirms uebersetzt
+// ist. `reveal.pointsShort` gibt es in allen sechs Sprachen (de „Pkt.").
+//
+// Faellt auf 'PTS' zurueck, wenn i18n noch nicht geladen ist oder `t()` den
+// Schluessel selbst zurueckgibt: eine englische Einheit ist besser als eine
+// Grafik mit „reveal.pointsShort" darauf.
+function _ptsLabel() {
+    var s = typeof utils.t === 'function' ? utils.t('reveal.pointsShort') : '';
+    if (!s || String(s).indexOf('reveal.') === 0) return 'PTS';
+    return String(s).toUpperCase();
+}
+
 // ============================================
 // End View (Story 5.6)
 // ============================================
@@ -548,7 +561,7 @@ function renderVisualCard(stats, playlistName) {
         ctx.font = '900 48px Outfit, system-ui, sans-serif';
         ctx.fillText(score, vinylCX, vinylCY - 10);
         ctx.font = '800 14px Inter, system-ui, sans-serif';
-        ctx.fillText('PTS', vinylCX, vinylCY + 26);
+        ctx.fillText(_ptsLabel(), vinylCX, vinylCY + 26);
 
         // Spindle hole (tiny center dot)
         ctx.fillStyle = '#0a0a12';
