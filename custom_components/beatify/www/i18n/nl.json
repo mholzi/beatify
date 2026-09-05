@@ -340,7 +340,8 @@
     "fixYearBtn": "🎯 Verkeerd jaar? Corrigeer het",
     "flagYearBtn": "🚩 Verkeerd jaar? Laat het de host weten",
     "flaggedForHost": "✓ Gemeld aan de host",
-    "finalePlayoff": "Finale"
+    "finalePlayoff": "Finale",
+    "coverHint": "Cover — {year} was het origineel; het antwoord is de versie die je net hoorde."
   },
   "leaderboard": {
     "leader": "koploper",

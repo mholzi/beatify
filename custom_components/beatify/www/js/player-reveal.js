@@ -238,6 +238,31 @@ export function updateRevealView(data) {
         funFactHeader.style.display = localizedFunFact ? 'flex' : 'none';
     }
 
+    // #2588: Cover-Hinweis, aber nur bei echtem Widerspruch (Variante D).
+    //
+    // Der Fun Fact eines Covers nennt haeufig das Jahr des Originals — direkt
+    // neben der Antwort, mit dem Melde-Knopf daneben. Genau so entstand #2587:
+    // „Randy Newman schrieb den Song 1972" stand neben der richtigen Antwort
+    // 1986, und der Spieler meldete einen Fehler, der keiner war.
+    //
+    // Der Hinweis erscheint deshalb nicht bei jedem der 740 Cover-Eintraege,
+    // sondern nur, wenn im Text wirklich eine andere Jahreszahl steht — der
+    // Server rechnet das aus (`cover_original_year`), weil `alt_artists`
+    // bewusst nicht im Reveal-Payload liegt. Und er nennt die Zahl, statt um
+    // sie herumzureden: die Verwechslung loest man auf, indem man sie benennt.
+    var coverHint = document.getElementById('cover-hint');
+    if (coverHint) {
+        var origJahr = song.cover_original_year;
+        if (origJahr) {
+            coverHint.textContent = utils.t('reveal.coverHint', { year: origJahr })
+                || ('Cover — ' + origJahr + ' war das Original, gesucht ist die gespielte Fassung.');
+            coverHint.classList.remove('hidden');
+        } else {
+            coverHint.textContent = '';
+            coverHint.classList.add('hidden');
+        }
+    }
+
     renderRichSongInfo(song);
 
     renderSongDifficulty(data.song_difficulty);

@@ -11,7 +11,9 @@ GameState.get_state() becomes a thin wrapper calling
 from __future__ import annotations
 
 import contextlib
+import datetime
 import logging
+import re
 import time
 from typing import TYPE_CHECKING, Any
 
@@ -35,6 +37,57 @@ class GameStateSerializer:
     All methods are static — the serializer is stateless and receives
     the GameState instance as an explicit argument.
     """
+
+    # #2588: Jahreszahlen im Fun Fact, die der Antwort widersprechen.
+    _JAHR = re.compile(r"\b(19[3-9]\d|20[0-2]\d)\b")
+
+    @staticmethod
+    def _cover_original_year(song: dict[str, Any]) -> int | None:
+        """Das Jahr, das der Fun Fact nennt und das nicht die Antwort ist.
+
+        Gibt ``None`` zurueck, wenn der Eintrag kein Cover ist oder kein
+        abweichendes Jahr im Text steht — dann braucht es keinen Hinweis.
+
+        **Nur fuer Cover** (``alt_artists`` gesetzt): eine Jahreszahl im Fun Fact
+        eines Originals ist meist ein historischer Bezug und kein Widerspruch —
+        Jamalas „1944" handelt von einer Deportation. Ueber alle 66 Playlists
+        gemessen nennen 1110 von 8403 Eintraegen eine abweichende Jahreszahl,
+        aber nur 740 tragen ``alt_artists``; die Cover-Bedingung ist der
+        Unterschied zwischen einem Hinweis und einem Rauschen.
+
+        Durchsucht **alle** Sprachfassungen: welche der Spieler liest, weiss der
+        Server nicht, und eine Uebersetzung kann die Zahl tragen, wo das Original
+        sie umschreibt.
+
+        Von mehreren abweichenden Jahren gewinnt das **frueheste** — ein Cover
+        ist juenger als sein Original, also ist die kleinere Zahl die, die den
+        Widerspruch erzeugt.
+        """
+        if not song.get("alt_artists"):
+            return None
+        jahr = song.get("year")
+        if not isinstance(jahr, int):
+            return None
+        text = " ".join(
+            str(song.get(k) or "")
+            for k in (
+                "fun_fact",
+                "fun_fact_de",
+                "fun_fact_es",
+                "fun_fact_fr",
+                "fun_fact_nl",
+                "fun_fact_it",
+            )
+        )
+        if not text.strip():
+            return None
+        heute = datetime.date.today().year
+        gefunden = {
+            int(m)
+            for m in GameStateSerializer._JAHR.findall(text)
+            if int(m) != jahr and int(m) <= heute
+        }
+        return min(gefunden) if gefunden else None
 
     @staticmethod
     def serialize(gs: GameState) -> dict[str, Any] | None:
@@ -219,6 +272,9 @@ class GameStateSerializer:
                 "fun_fact_fr": gs.current_song.get("fun_fact_fr", ""),
                 "fun_fact_nl": gs.current_song.get("fun_fact_nl", ""),
                 "fun_fact_it": gs.current_song.get("fun_fact_it", ""),
+                "cover_original_year": GameStateSerializer._cover_original_year(
+                    gs.current_song
+                ),
             }
         # Leaderboard (Story 5.5)
         state["leaderboard"] = gs.get_leaderboard()
@@ -248,6 +304,17 @@ class GameStateSerializer:
         state["finale_playoff_active"] = gs._finale_playoff_active
         # Filtered song info during REVEAL — exclude URIs, alt_artists, internal fields
         if gs.current_song:
+            # #2588: der Fun Fact eines Covers nennt oft das Jahr des Originals —
+            # direkt neben der Antwort, mit dem Melde-Knopf daneben. So entstand
+            # #2587: „Randy Newman schrieb den Song 1972" stand neben der
+            # richtigen Antwort 1986, und der Spieler meldete einen Fehler, der
+            # keiner war.
+            #
+            # Variante D aus dem Design-Entwurf: der Hinweis erscheint **nur bei
+            # echtem Widerspruch**, nicht bei jedem der 740 Cover-Eintraege — und
+            # er nennt die Zahl, um die es geht, statt um sie herumzureden. Die
+            # Erkennung laeuft hier und nicht im Client, weil `alt_artists`
+            # bewusst nicht im Reveal-Payload steht (eine Zeile tiefer).
             state["song"] = {
                 # Crate Digger: a boolean, deliberately NOT the URI. The host
                 # can then offer "fix this song" at reveal (the pool is theirs
