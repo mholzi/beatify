@@ -197,6 +197,28 @@ class RevealAutoAdvanceMixin:
                 timer_seconds,
                 elapsed,
             )
+            # #2574: on the LAST round, end the game from REVEAL instead of
+            # calling start_round() and letting it fail into END.
+            #
+            # Both paths reached the same ceremony, so this looked like a
+            # detour rather than a bug — but `maybe_start_finale_playoff`
+            # (state.py) only fires while `phase == REVEAL`, deliberately:
+            # a tie is only real once the round that produced it has final
+            # scores. Going through start_round() flips the phase to END
+            # first, so by the time the gate runs, the playoff has already
+            # declined itself. The finale tiebreaker therefore worked when
+            # the host tapped Next and silently did not when the timer fired.
+            #
+            # admin_next_round (ws_handlers/admin.py) has always done it this
+            # way; this is the same branch, not a new mechanism.
+            if self.last_round and self._on_game_end is not None:
+                _LOGGER.info(
+                    "REVEAL auto-advance on the final round — ending from "
+                    "REVEAL so the finale tiebreaker can still fire"
+                )
+                await self._on_game_end()
+                return
+
             # #1697: honors the round-start lock transitively — start_round()
             # acquires _round_start_lock and no-ops (returns True) if a manual
             # admin_next_round already advanced to PLAYING, so this auto-advance
