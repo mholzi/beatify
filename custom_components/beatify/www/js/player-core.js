@@ -1006,31 +1006,11 @@ function handleLeftGame() {
     showView('join-view');
 }
 
-async function handleLeaveGame() {
-    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
-        return;
-    }
-
-    if (state.isAdmin) {
-        // #1663 item 1: non-blocking toast (was blocking alert()).
-        showToast(utils.t('player.hostCannotLeave'));
-        return;
-    }
-
-    var confirmed = await showConfirmModal(
-        utils.t('player.leaveGameTitle') || 'Leave Game?',
-        utils.t('player.leaveGameWarning') || 'Your score will be lost.',
-        utils.t('player.leaveGame') || 'Leave',
-        utils.t('common.cancel')
-    );
-    if (!confirmed) {
-        return;
-    }
-
-    state.intentionalLeave = true;
-
-    state.ws.send(JSON.stringify({ type: 'leave' }));
-}
+// #2583: `handleLeaveGame` sat here — the confirm-modal flow behind a
+// leave button that player.html has never had. `handleLeftGame` above
+// still runs: the server can end a player's session, and that path is
+// live. Only the client-initiated half was unreachable. The
+// `.leave-game-container` rules in styles.css went with it.
 
 function handleGameEnded() {
     var wasAdmin = state.isAdmin;

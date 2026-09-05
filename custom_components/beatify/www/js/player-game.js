@@ -2419,7 +2419,8 @@ async function handleEndGame() {
 
 // Debounce state to prevent rapid clicks
 var nextRoundPending = false;
-var NEXT_ROUND_DEBOUNCE_MS = 2000;
+// #2583: NEXT_ROUND_DEBOUNCE_MS was declared here and never read —
+// handleNextRound guards with a flag and its own 10s timeout.
 
 /**
  * Handle next round button click

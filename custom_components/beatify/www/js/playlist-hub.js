@@ -266,13 +266,9 @@ export function mount(rootEl, options = {}) {
     _loadData();
 }
 
-export function unmount() {
-    if (!state.mounted) return;
-    _detachDelegates(state.root);
-    if (state.root) state.root.innerHTML = '';
-    state.mounted = false;
-    state.root = null;
-}
+// #2583: `unmount()` was exported here and never called — the hub is
+// mounted once and lives for the page. Its only helper,
+// `_detachDelegates`, went with it.
 
 export function getSelection() {
     return Array.from(state.selectedPaths);
@@ -344,13 +340,6 @@ function _attachDelegates(rootEl) {
     rootEl.addEventListener('click', _onClick);
     rootEl.addEventListener('input', _onInput);
     rootEl.addEventListener('keydown', _onKeyDown);
-}
-
-function _detachDelegates(rootEl) {
-    if (!rootEl) return;
-    rootEl.removeEventListener('click', _onClick);
-    rootEl.removeEventListener('input', _onInput);
-    rootEl.removeEventListener('keydown', _onKeyDown);
 }
 
 function _onClick(e) {

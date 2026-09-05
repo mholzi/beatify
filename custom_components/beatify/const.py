@@ -93,7 +93,9 @@ TITLE_ARTIST_VOTE_WINDOW_SECONDS = 30
 
 # Intro mode constants (Issue #23)
 INTRO_DURATION_SECONDS = 15
-INTRO_ROUND_CHANCE = 0.20  # 20% chance per round
+# #2583: INTRO_ROUND_CHANCE lived here and was never read — the per-round
+# probability is `_INTRO_PROBABILITY` in game/round_manager.py. Two homes
+# for one number meant either could drift without anyone noticing.
 INTRO_BONUS_TIERS: list[int] = [5, 3, 1]  # Same as movie bonus
 MIN_INTRO_BONUSES_FOR_AWARD = 1  # Minimum to qualify for superlative
 

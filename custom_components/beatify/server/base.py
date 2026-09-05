@@ -378,8 +378,5 @@ class BeatifyAdminView(HomeAssistantView):
         """Initialize the view with hass reference."""
         self.hass = hass
 
-    # -- helpers available to subclasses --
-
-    def _get_game_state(self) -> Any | None:
-        """Return the current GameState or None."""
-        return self.hass.data.get(DOMAIN, {}).get("game")
+    # #2583: a `_get_game_state` helper sat here, advertised for subclasses
+    # and used by none of the four — they all call `get_game_state(self.hass)`.

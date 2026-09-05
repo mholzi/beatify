@@ -49,9 +49,10 @@ _LOGGER = logging.getLogger(__name__)
 # Plausibility window for any resolved year.
 YEAR_FLOOR = 1900
 
-# Trusted/untrusted album types (music_assistant_models AlbumType values:
-# album, single, ep, compilation, soundtrack, live, unknown).
-_TRUSTED_ALBUM_TYPES = {"album", "single", "ep"}
+# Album types we do not trust for a release year (music_assistant_models
+# AlbumType values: album, single, ep, compilation, soundtrack, live,
+# unknown). #2583: a matching _TRUSTED_ALBUM_TYPES set was never consulted
+# — the code only ever asks whether a type is in this one.
 _COMPILATION_ALBUM_TYPES = {"compilation", "soundtrack", "live"}
 
 _VARIOUS_ARTIST_MARKERS = {

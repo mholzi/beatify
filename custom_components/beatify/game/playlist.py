@@ -1249,43 +1249,7 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
     return metas
 
 
-async def async_load_and_validate_playlist(
-    path: str | Path,
-) -> tuple[dict | None, list[str]]:
-    """Load and validate a playlist file."""
-    path = Path(path)
-
-    loop = asyncio.get_running_loop()
-
-    # #1402 B3: `exists()` is a blocking syscall — run it in the executor.
-    if not await loop.run_in_executor(None, path.exists):
-        return (None, [f"File not found: {path}"])
-
-    def _read_file(p: Path) -> str:
-        """Read file contents (runs in executor)."""
-        return p.read_text(encoding="utf-8")
-
-    try:
-        content = await loop.run_in_executor(None, _read_file, path)
-        data = json.loads(content)
-    except json.JSONDecodeError as e:
-        return (None, [f"Invalid JSON: {e}"])
-
-    rejected_songs: list[dict[str, Any]] = []
-    is_valid, errors = validate_playlist(data, rejected_songs=rejected_songs)
-
-    if is_valid:
-        return (data, [])
-
-    # #1576: a host loading a flawed playlist used to get zero feedback on
-    # which tracks dropped (per-song problems were DEBUG-only). Log a concise
-    # INFO summary naming the offending songs + reasons so it is visible in
-    # the HA log without flipping the integration to DEBUG.
-    if rejected_songs:
-        _LOGGER.info(
-            "Playlist %s: %d song(s) failed validation: %s",
-            path.name,
-            len(rejected_songs),
-            summarize_rejected_songs(rejected_songs),
-        )
-    return (None, errors)
+# #2583: `async_load_and_validate_playlist` ended this file. It read,
+# parsed and validated a playlist in one call, but all three production
+# paths call `validate_playlist()` on an already-parsed document instead,
+# and no caller for it exists anywhere in the history available here.

@@ -94,34 +94,9 @@ def deezer_result_matches(
     return title_ok and artist_ok
 
 
-async def async_deezer_rank(
-    session: Any, artist: str, title: str, *, timeout: float = 8.0
-) -> float | None:
-    """Keyless popularity via Deezer's `rank` field. None on miss/failure."""
-    q = quote(f'artist:"{artist}" track:"{title}"')
-    url = f"{_DEEZER_SEARCH}?q={q}&limit=5"
-    try:
-        async with session.get(url, timeout=timeout) as resp:
-            if resp.status != 200:
-                return None
-            data = await resp.json()
-    except (TimeoutError, asyncio.TimeoutError):
-        return None
-    except Exception as err:  # noqa: BLE001
-        _LOGGER.debug("Deezer error for %s - %s: %s", artist, title, err)
-        return None
-
-    # VERIFIED match only: scan the top results and take the first whose
-    # artist+title actually correspond to the query. Never inherit a famous
-    # lookalike's rank (the "top 5% shows obscure cues" bug).
-    for item in data.get("data") or []:
-        res_artist = ((item.get("artist") or {}).get("name")) or ""
-        res_title = item.get("title") or item.get("title_short") or ""
-        if not deezer_result_matches(artist, title, res_artist, res_title):
-            continue
-        rank = item.get("rank")
-        return float(rank) if isinstance(rank, (int, float)) else None
-    return None
+# #2583: `async_deezer_rank` stood here and returned the rank alone. It was
+# superseded by `async_deezer_rank_album` below, which returns the rank AND
+# the matched album id; pool.py has used only that one for a long time.
 
 
 async def async_deezer_rank_album(

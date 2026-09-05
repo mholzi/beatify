@@ -45,12 +45,8 @@ function _t(key, fallback) {
     return fallback;
 }
 
-/** Map the slider value to its human label (mirrors backend banding). */
-export function difficultyLabelFor(v) {
-    if (v <= 33) return _t('admin.library.diffEasy', 'Crowd-pleasers');
-    if (v <= 66) return _t('admin.library.diffBalanced', 'Balanced');
-    return _t('admin.library.diffHard', 'Deep cuts');
-}
+// #2583: `difficultyLabelFor` mapped the slider value to its human label
+// and was exported with no consumer anywhere.
 
 /** The library settings for the start-game payload. */
 export function getLibraryConfig() {
