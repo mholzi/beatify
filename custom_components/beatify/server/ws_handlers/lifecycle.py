@@ -486,5 +486,16 @@ async def handle_leave(
     game_state.remove_player(player_name)
     await ws.send_json({"type": "left"})
     await ws.close()
+
+    # #2577: the deliberate exit has to trigger the same early reveal as a
+    # dropped connection. `_handle_disconnect` runs the #928 check, but it
+    # resolves the player through `get_player_by_ws` — and this handler has
+    # already removed them, so it returns before it gets there. The polite way
+    # out was the one case that left the room waiting on somebody who is gone.
+    try:
+        await game_state.trigger_early_reveal_if_complete()
+    except Exception:  # noqa: BLE001
+        _LOGGER.warning("Early-reveal check after leave failed")
+
     await handler.broadcast_state()
     _LOGGER.info("Player left game intentionally: %s", player_name)
