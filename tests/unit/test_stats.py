@@ -629,6 +629,19 @@ def _make_real_fs_service(stats_path) -> StatsService:
     return StatsService(mock_hass)
 
 
+def _make_threaded_executor_service(stats_path) -> StatsService:
+    """Like _make_real_fs_service, but executor jobs run on a REAL worker thread
+    so the event loop keeps running while the save serializes (#2642)."""
+    mock_hass = MagicMock()
+    mock_hass.config.path.return_value = str(stats_path)
+
+    async def _run_in_executor(fn, *args):
+        return await asyncio.get_running_loop().run_in_executor(None, fn, *args)
+
+    mock_hass.async_add_executor_job = _run_in_executor
+    return StatsService(mock_hass)
+
+
 class TestAtomicSave:
     """save() must write stats.json atomically (temp file + os.replace)."""
 
@@ -824,9 +837,12 @@ class TestSaveSnapshotIsolation:
         assert service._save_dirty is False
 
     @pytest.mark.asyncio
-    async def test_snapshot_is_deepcopy_not_reference(self, tmp_path):
-        """The object handed to json.dumps must be a distinct deepcopy, so
-        nested containers aren't shared with the live store (#1762)."""
+    async def test_snapshot_containers_are_not_shared_with_live_store(self, tmp_path):
+        """The object handed to json.dumps must not share the containers the
+        recording paths mutate (#1762). Since #2642 the leaf entries ARE shared
+        on purpose — the mutation sites replace them instead of editing them —
+        so what has to hold is that the snapshot's VALUE never changes, which
+        the copy-on-write tests below cover."""
         import json as _json
 
         stats_path = tmp_path / "beatify" / "stats.json"
@@ -848,11 +864,156 @@ class TestSaveSnapshotIsolation:
 
         snap = captured["obj"]
         assert snap is not service._stats
-        assert snap["songs"] is not service._stats["songs"]
-        assert snap["songs"]["s1"] is not service._stats["songs"]["s1"]
-        # Mutating the live store after the snapshot must not touch the copy.
-        service._stats["songs"]["s1"]["times_played"] = 999
+        for key in ("songs", "games", "playlists", "all_time"):
+            assert snap[key] is not service._stats[key]
+        # Adding/removing keys in the live store must not touch the snapshot.
+        service._stats["songs"]["s2"] = {"times_played": 5}
+        del service._stats["songs"]["s1"]
+        assert "s2" not in snap["songs"]
         assert snap["songs"]["s1"]["times_played"] == 1
+
+    @pytest.mark.asyncio
+    async def test_record_song_result_does_not_change_a_taken_snapshot(self, tmp_path):
+        """#2642 copy-on-write contract: recording further rounds for a song
+        that is already in the store must leave an outstanding snapshot — the
+        view an in-flight save is serializing — bit-for-bit unchanged."""
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        await service.record_song_result(
+            "spotify:track:abc",
+            [{"submitted": True, "years_off": 0}],
+            song_metadata={"title": "Song", "artist": "Artist", "year": 1999},
+            playlist_name="Party",
+        )
+
+        snap = service._snapshot()
+        before = _json.dumps(snap, sort_keys=True)
+
+        # Keep playing: same song (in-place update), same playlist (nested map),
+        # plus a brand-new song.
+        for _ in range(3):
+            await service.record_song_result(
+                "spotify:track:abc",
+                [{"submitted": True, "years_off": 7}],
+                song_metadata={"title": "Song", "artist": "Artist", "year": 1999},
+                playlist_name="Party",
+            )
+        await service.record_song_result(
+            "spotify:track:new",
+            [{"submitted": True, "years_off": 1}],
+            playlist_name="Party",
+        )
+
+        assert _json.dumps(snap, sort_keys=True) == before
+        # ...while the live store really did advance (nothing was lost).
+        live = service._stats["songs"]["spotify_track_abc"]
+        assert live["times_played"] == 4
+        assert live["playlists"]["Party"] == 4
+        assert "spotify_track_new" in service._stats["songs"]
+
+    @pytest.mark.asyncio
+    async def test_record_game_does_not_change_a_taken_snapshot(self, tmp_path):
+        """#2642 copy-on-write contract for the playlist and all_time entries
+        that record_game updates."""
+        import json as _json
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_real_fs_service(stats_path)
+
+        summary = {
+            "playlist": "80s Hits",
+            "rounds": 10,
+            "player_count": 4,
+            "winner": "Ann",
+            "winner_score": 80,
+            "total_points": 200,
+        }
+        await service.record_game(dict(summary))
+
+        snap = service._snapshot()
+        before = _json.dumps(snap, sort_keys=True)
+
+        await service.record_game(dict(summary))
+
+        assert _json.dumps(snap, sort_keys=True) == before
+        assert service._stats["all_time"]["games_played"] == 2
+        assert service._stats["playlists"]["80s Hits"]["times_played"] == 2
+
+    @pytest.mark.asyncio
+    async def test_written_state_is_consistent_while_play_continues(self, tmp_path):
+        """The guarantee the snapshot exists for, exercised with a REAL executor
+        thread (#1762, #2642): while json.dumps runs off-loop, the loop keeps
+        recording rounds. The bytes that reach stats.json must be exactly the
+        store as it stood when the save started — no torn state, no crash."""
+        import json as _json
+        import threading
+
+        stats_path = tmp_path / "beatify" / "stats.json"
+        service = _make_threaded_executor_service(stats_path)
+
+        # Seed the entries the loop will touch mid-save.
+        await service.record_song_result(
+            "spotify:track:abc",
+            [{"submitted": True, "years_off": 0}],
+            song_metadata={"title": "Song", "artist": "Artist", "year": 1999},
+            playlist_name="Party",
+        )
+        service._stats["all_time"]["games_played"] = 3
+        service._stats["games"] = [{"id": f"g{i}"} for i in range(3)]
+
+        real_dumps = _json.dumps
+        expected = _json.loads(real_dumps(service._stats))
+
+        entered = threading.Event()
+        release = threading.Event()
+        captured: dict = {}
+
+        def _slow_dumps(obj, *args, **kwargs):
+            entered.set()
+            release.wait(10)
+            captured["content"] = real_dumps(obj, *args, **kwargs)
+            return captured["content"]
+
+        with patch(
+            "custom_components.beatify.services.stats.json.dumps",
+            side_effect=_slow_dumps,
+        ):
+            save_task = asyncio.create_task(service.save())
+
+            # Wait until the executor thread is parked inside json.dumps.
+            for _ in range(500):
+                if entered.is_set():
+                    break
+                await asyncio.sleep(0.01)
+            assert entered.is_set(), "executor never reached json.dumps"
+
+            # The party goes on while the write is in flight.
+            for _ in range(3):
+                await service.record_song_result(
+                    "spotify:track:abc",
+                    [{"submitted": True, "years_off": 7}],
+                    playlist_name="Party",
+                )
+            await service.record_song_result(
+                "spotify:track:new",
+                [{"submitted": True, "years_off": 2}],
+                playlist_name="Party",
+            )
+
+            release.set()
+            await save_task
+
+        assert save_task.exception() is None
+        # What the executor serialized, and what landed on disk, is the state
+        # from before those rounds — one coherent point in time.
+        assert _json.loads(captured["content"]) == expected
+        assert _json.loads(stats_path.read_text()) == expected
+        # And the rounds recorded mid-save are still in memory for the next save.
+        assert service._stats["songs"]["spotify_track_abc"]["times_played"] == 4
+        assert "spotify_track_new" in service._stats["songs"]
 
     @pytest.mark.asyncio
     async def test_serialize_runtimeerror_sets_dirty_for_retry(self, tmp_path):
