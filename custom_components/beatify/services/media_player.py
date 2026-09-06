@@ -238,6 +238,36 @@ def _artist_matches(expected_artist: str, media_artist: str) -> bool:
     return bool(_title_tokens(expected_artist) & _title_tokens(media_artist))
 
 
+def _content_id_advanced(
+    content_id: str, content_id_before: str, match_tokens: list[str]
+) -> bool:
+    """True when media_content_id proves the REQUESTED track is now loaded (#2616).
+
+    `media_title` is not a track identity. Two different songs can share one
+    title — round N plays "Hello" (Adele), round N+1 draws "Hello" (Lionel
+    Richie) — and the title-must-change invariant (#2333/#795) then reads a
+    perfectly successful switch as "the speaker never left the prior track".
+
+    `media_content_id` IS an identity, and `_uri_match_tokens` already knows
+    how to recognise our URI inside it (#1380). Two conditions, both required:
+
+      * the id contains a token of the URI we just asked for — so an unrelated
+        auto-advance of the prior queue cannot qualify, and
+      * the id differs from the one playing before the call — so the #2333
+        failure (MA never switched, prior track keeps running) still cannot
+        qualify, not even when the prior round happened to play this same URI.
+
+    Anything the speaker does not report (`media_content_id` missing on this
+    platform) yields False and leaves the title comparison in sole charge, as
+    before.
+    """
+    if not content_id or not match_tokens:
+        return False
+    if content_id == content_id_before:
+        return False
+    return any(token in content_id for token in match_tokens)
+
+
 # Timeout for waiting for metadata to update after playing (seconds)
 # Wait up to 2s for MA to push fresh metadata (album art, etc.) after a
 # playback transition. Reduced from 5s — that earlier value was the
@@ -1207,9 +1237,18 @@ class MediaPlayerService:
             position_updated_before = state_before.attributes.get(
                 "media_position_updated_at"
             )
+            # #2616: the title alone cannot tell "same song still playing"
+            # apart from "different song, same title". The content id can.
+            content_id_before = state_before.attributes.get("media_content_id") or ""
         else:
             title_before = ""
             position_updated_before = None
+            content_id_before = ""
+
+        # #2616: the substrings that identify THIS uri inside MA's
+        # media_content_id — the same tokens wait_for_metadata_update matches
+        # on (#1380).
+        match_tokens = self._uri_match_tokens(uri)
 
         # #2143: remember the host's own queue BEFORE the replace below wipes
         # it. Idempotent, so this only costs a get_queue call in round one.
@@ -1325,10 +1364,24 @@ class MediaPlayerService:
                 # which is the cold-start case and genuinely a change.
                 title_changed = current_title != title_before
 
+                # #2616: a changed title is sufficient proof of a new track,
+                # but it is not necessary. Two different songs can carry the
+                # same title ("Hello" by Adele, then "Hello" by Lionel
+                # Richie), and #2333's title check then rejects a switch that
+                # actually happened. `media_content_id` settles it: if it now
+                # carries the id of the URI we requested AND differs from what
+                # was loaded before, the speaker demonstrably moved to OUR
+                # track. The #2333 failure stays rejected — there MA never
+                # switched, so the content id never changes either.
+                content_id = state.attributes.get("media_content_id") or ""
+                track_changed = title_changed or _content_id_advanced(
+                    content_id, content_id_before, match_tokens
+                )
+
                 # Path 1: exact-ish title match (substring) — strongest signal,
                 # the only path strong enough to learn a preferred URI field.
                 if (
-                    title_changed
+                    track_changed
                     and expected_lower
                     and expected_lower in current_title.lower()
                 ):
@@ -1344,7 +1397,7 @@ class MediaPlayerService:
                 # title is plausibly our track (shared token / prefix) OR the
                 # artist matches. A bare "any different title" no longer
                 # qualifies — that is the prior-queue auto-advance trap.
-                if current_title and title_changed:
+                if current_title and track_changed:
                     if _titles_plausibly_match(
                         expected_title, current_title
                     ) or _artist_matches(expected_artist, current_artist):
@@ -1458,8 +1511,21 @@ class MediaPlayerService:
             if current_state
             else None
         )
+        content_id_after = (
+            (current_state.attributes.get("media_content_id") or "")
+            if current_state
+            else ""
+        )
         title_advanced = title_after != title_before
-        if not title_advanced:
+        # #2616: same reasoning as in the fast path — an unchanged title is
+        # only evidence of a stuck speaker when the content id has not moved
+        # to the track we asked for. Stopping the speaker here is what made
+        # the collision audible: the room heard the correct song for the full
+        # budget, then silence, then a different song.
+        track_advanced = title_advanced or _content_id_advanced(
+            content_id_after, content_id_before, match_tokens
+        )
+        if not track_advanced:
             position_changed = position_updated_after != position_updated_before
             # #808 follow-up: this is the storefront/region-mismatch
             # signature — MA accepted the URI but couldn't resolve a stream
@@ -1510,6 +1576,16 @@ class MediaPlayerService:
             # subset IS in their catalog.
             self.last_failure_reason = "unavailable"
             return False
+
+        if not title_advanced:
+            _LOGGER.debug(
+                "MA playback: title stayed %r for %s, but media_content_id "
+                "moved to %r — the requested track IS loaded, the two songs "
+                "merely share a title. Not a stale-title failure. (#2616)",
+                title_before,
+                uri,
+                content_id_after,
+            )
 
         # #1863: "still buffering" requires that Music Assistant actually owns
         # this player. An MA-platform entity reports the queue it is playing
