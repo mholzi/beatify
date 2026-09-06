@@ -158,6 +158,16 @@ import {
     setupResetModal,
 } from './admin/sections/force-reset.js';
 
+// #2637: the TTS + party-lights setup sections. Both used to be classic
+// <script> tags at the very bottom of admin.html that published their config
+// getter on `window` for this file to read back when a game starts. That
+// handshake depended on the order of two script tags and on nothing at all
+// verifying it — the #1263 failure mode. They are ES modules now, so the
+// start-game payload is built from real imports and `npm run build:check`
+// covers their source.
+import { ttsConfig } from './tts-settings.js';
+import { partyLightsConfig } from './party-lights.js';
+
 // Token helpers in util.js need the live `currentGame`. The resolver reads it
 // off the shared `adminState` object (#1279 step 5), so it stays in sync across
 // every `adminState.currentGame = …` without touching each assignment site.
@@ -1316,8 +1326,8 @@ async function startGame() {
                 comeback_token_enabled: adminState.comebackTokenEnabled,  // Issue #1724
                 difficulty_bet_scaling_enabled: adminState.difficultyBetScalingEnabled,  // Issue #1727
                 sabotage_enabled: adminState.sabotageEnabled,  // Issue #1665
-                party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,  // Issue #331
-                tts: window._ttsConfig ? window._ttsConfig() : null,
+                party_lights: partyLightsConfig(),  // Issue #331
+                tts: ttsConfig(),
                 library: (typeof getLibraryConfig === 'function') ? getLibraryConfig() : null,  // Issue #447
             })
         });
@@ -1435,8 +1445,8 @@ async function startGameplay() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 media_player: (adminState.selectedMediaPlayer || {}).entityId || null,
-                tts: window._ttsConfig ? window._ttsConfig() : null,
-                party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,
+                tts: ttsConfig(),
+                party_lights: partyLightsConfig(),
             }),
         });
     } catch (e) { /* never block the start on a failed push */ }

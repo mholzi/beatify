@@ -1662,14 +1662,17 @@
          loaded before admin.min.js so window.NoSleep is available when
          _requestWakeLock() runs on game start. -->
     <script src="/beatify/static/js/vendor/no-sleep.min.js?v={{ASSET_VER}}"></script>
-    <!-- #1279 step 2: admin.min.js is now an ES module (imports admin/util.js).
-         type="module" loads deferred — its window.* compat shims (escapeHtml,
-         loadStatus, BeatifyHome, …) are set before any consumer reads them,
-         because every consumer (party-lights, tts-settings, wizard) reads admin
-         globals event-driven (after DOMContentLoaded / on click), never at
-         parse time. -->
+    <!-- #1279 step 2: admin.min.js is an ES module (type="module", deferred).
+         #2637: party-lights.js and tts-settings.js used to follow as two classic
+         <script> tags whose only job was to hand admin.js a config getter on
+         `window`. They are imports of the bundle now, so they cannot be loaded
+         in the wrong order and `npm run build:check` covers them.
+         The window globals this bundle still publishes (loadStatus,
+         loadSavedSettings, BeatifyHome, BeatifyPersistSetup,
+         BeatifyNoteLocalSetupWrite, BEATIFY_VERSION) exist for wizard.js and
+         playlist-requests.js, which are separate top-level scripts and cannot
+         import from the bundle. Every one of those reads is event-driven (after
+         DOMContentLoaded / on click), never at parse time. -->
     <script type="module" src="/beatify/static/js/admin.min.js?v={{ASSET_VER}}"></script>
-    <script src="/beatify/static/js/party-lights.min.js?v={{ASSET_VER}}"></script>
-    <script src="/beatify/static/js/tts-settings.js?v={{ASSET_VER}}"></script>
 </body>
 </html>

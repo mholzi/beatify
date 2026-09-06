@@ -34,14 +34,15 @@ const JS_DIR = `${WWW_DIR}/js`;
 const CSS_DIR = `${WWW_DIR}/css`;
 
 // Per-file minify: readable IIFE source → minified IIFE, 1:1.
+// #2637 removed "party-lights" and "tts-settings" from this list: both are ES
+// modules imported by admin.js now, so they arrive through the admin bundle and
+// a standalone .min.js for them would be a second, unloaded copy.
 const MINIFY = [
   "analytics",
   "dashboard",
   "i18n",
-  "party-lights",
   "playlist-generator",
   "playlist-requests",
-  "tts-settings",
   "utils",
 ];
 

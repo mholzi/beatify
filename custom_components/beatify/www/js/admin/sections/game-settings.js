@@ -34,6 +34,11 @@ import {
     normalizeRevealAutoAdvance,
 } from '../../game-constants.js';
 import { renderPlaylists } from './playlists.js';
+// #2637: the TTS + party-lights config getters used to be page globals set by
+// two classic scripts at the bottom of admin.html. Both are ES modules in the
+// admin bundle now, so this section imports them like anything else.
+import { ttsConfig } from '../../tts-settings.js';
+import { partyLightsConfig } from '../../party-lights.js';
 import {
     setupLibrarySettings,
     syncLibraryControls,
@@ -445,8 +450,8 @@ export function saveGameSettings() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 media_player: (adminState.selectedMediaPlayer || {}).entityId || null,
-                tts: window._ttsConfig ? window._ttsConfig() : null,
-                party_lights: window._partyLightsConfig ? window._partyLightsConfig() : null,
+                tts: ttsConfig(),
+                party_lights: partyLightsConfig(),
             }),
         });
     } catch (e) { /* fire-and-forget */ }
