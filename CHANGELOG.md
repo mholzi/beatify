@@ -4,10 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.4.3-rc1] - 2026-09-06
+## [4.4.3] - 2026-09-06
 
 Die Woche 2026-W38: zweiunddreissig Eintraege aus der Redaktionskonferenz, alle gebaut und gemergt —
-am Sonntag statt am Mittwoch. Der Kandidat traegt sie vollstaendig.
+am Sonntag statt am Mittwoch. Der Live-Test gegen den Kandidaten war sauber; **`main` lag beim Cut
+exakt auf dem getesteten Tag** (`ahead_by 0`), das Stable traegt also genau den geprueften Stand.
+Ein Befund steht offen und haelt das Release nicht auf: bei einer von 23 Wiedergaben blieben unter
+Apple-Music-Drosselung nur 0,4 s bis zum Timeout ([#2682](https://github.com/mholzi/beatify/issues/2682)).
 
 ### Fixed
 - **Der Lautsprecher spielte nach dem Spielende weiter (#2605).** Zweiter Anlauf: der Fix aus rc3 der
