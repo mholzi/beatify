@@ -273,6 +273,13 @@ class GameSetupMixin:
 
         # Reset error detail
         self.last_error_detail = ""
+        # #2614: the #1936 consecutive-timeout budget belongs to ONE game.
+        # It is not config-managed, so nothing above clears it — and
+        # create_game does not route through _reset_game_internals. Without
+        # this line a game that ended two timeouts deep hands the next game a
+        # budget of one: a single slow start in round 1 pauses it with the
+        # re-authenticate banner instead of skipping the song.
+        self._consecutive_playback_failures = 0
 
         self._playlist_manager = playlist_manager
 
@@ -405,6 +412,13 @@ class GameSetupMixin:
         # auto-advance and double-scoring the round on host-advance.
         self._title_artist_voting_open = False
         self._title_artist_vote_deadline = None
+
+        # #2614: same story for the #1936 consecutive-playback-failure streak.
+        # It is round-start retry state, not a config field, so _apply_config
+        # leaves it alone. Clearing it here covers both teardown paths at once
+        # — end_game and rematch_game — which is exactly what this shared
+        # reset exists for.
+        self._consecutive_playback_failures = 0
 
         # Issue #351: Reset power-up state
         self._powerup_manager.reset()
