@@ -115,6 +115,10 @@ DESIGN.md
 # Run `make build` locally or see .github/workflows/build-assets.yml
 custom_components/beatify/www/**/*.min.js
 custom_components/beatify/www/**/*.min.css
+# The pre-compressed `.gz` siblings (#2640) are deliberately NOT listed here.
+# HACS copies the repo directory onto the box and runs no build step, so a `.gz`
+# that only existed after `npm run build` would never reach a user. They are
+# tracked like any other file; `npm run build:check` fails if one goes stale.
 scripts/.env
 .gstack/
 
