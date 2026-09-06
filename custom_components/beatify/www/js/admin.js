@@ -139,9 +139,14 @@ import {
 // qr-modal.js: the tap-to-enlarge join-QR modal. admin.js init calls
 // setupQRModal() once; the home-view handlers call openQRModal() (still behind
 // their `typeof openQRModal === 'function'` guards). closeQRModal is internal.
+// #2621 added the in-game triggers: setupInviteTriggers() wires the PLAYING and
+// REVEAL header buttons to the same modal, syncInviteTriggers() hides them
+// while no join URL is cached.
 import {
     openQRModal,
     setupQRModal,
+    setupInviteTriggers,
+    syncInviteTriggers,
 } from './admin/sections/qr-modal.js';
 // force-reset.js: the emergency #777 recovery modal (no admin token needed).
 // Only setupResetModal() crosses the module boundary (admin.js init); show/
@@ -791,6 +796,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // QR modal close/backdrop/escape — wired once at init so the home-view
     // tap-to-enlarge and the admin-playing-view both share the same modal.
     setupQRModal();
+
+    // #2621: the same modal, reachable from the running game. The home-view
+    // trigger disappears with home-mode, so PLAYING and REVEAL carry their own
+    // button in the round header.
+    setupInviteTriggers();
 
     // Admin join setup
     setupAdminJoin();
@@ -2477,6 +2487,12 @@ function handleAdminStateUpdate(data) {
     // render is deferred and coalesced. renderAdminState re-assigns the same
     // value when it flushes — idempotent.
     adminState.currentGame = data;
+    // #2621: keep the join URL alive past the lobby. It used to be captured only
+    // by the home-view renderer, so a host who reloaded mid-game had a cache of
+    // null and the invite modal opened onto nothing. The serializer sends
+    // join_url in LOBBY, PLAYING and REVEAL (game/serializers.py), so take it
+    // from the state frame itself.
+    if (data && data.join_url) adminState.cachedQRUrl = data.join_url;
     // #1715: a fresh state broadcast means the last in-game control command was
     // processed — release the in-flight guard so Next/Stop/Volume are live again.
     releaseAllAdminControls();
@@ -2547,6 +2563,9 @@ function showAdminPlayingView(data) {
     // Show fixed control bar (matches player admin-control-bar)
     var controlBar = document.getElementById('admin-control-bar');
     if (controlBar) controlBar.classList.remove('hidden');
+
+    // #2621: invite button in the round header — only once a join URL is known.
+    syncInviteTriggers();
 
     // Round info (player-style separate spans)
     var roundEl = document.getElementById('admin-current-round');
@@ -2735,6 +2754,9 @@ function showAdminRevealView(data) {
     // #1048: replace the Next button icon with a 1-Hz auto-advance countdown
     // when one is running. Idle-halt and Off both keep the plain icon.
     _updateRevealAdvanceCountdown(data);
+
+    // #2621: invite button in the reveal header — only once a join URL is known.
+    syncInviteTriggers();
 
     // Emotion display (summary for spectator admin)
     var emotionEl = document.getElementById('admin-reveal-emotion');

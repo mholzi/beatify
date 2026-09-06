@@ -80,3 +80,39 @@ export function setupQRModal() {
     // #1402 B7: Escape handled by the consolidated setupModalEscapeHandler().
     registerModalClose('qr-modal', closeQRModal);
 }
+
+/**
+ * #2621 — the in-game invite triggers.
+ *
+ * The join QR had exactly one trigger, `#home-qr-code` in `#home-view`, and
+ * home-view is exited the moment the game leaves LOBBY. A guest arriving in
+ * round 3 therefore left the host with no way to hand out the link, even
+ * though the backend accepts late joins (`game/player_registry.py`). These are
+ * the header buttons in the PLAYING and REVEAL sections; both open the same
+ * modal, so there is one QR implementation on the admin page, not three.
+ */
+export const INVITE_TRIGGER_IDS = ['admin-invite-playing', 'admin-invite-reveal'];
+
+/**
+ * Wire the in-game invite buttons to the shared modal. Called once at init,
+ * next to setupQRModal(); the buttons live in sections that are only shown
+ * later, but they exist in the DOM from page load, so one wiring pass holds.
+ */
+export function setupInviteTriggers(doc = document) {
+    INVITE_TRIGGER_IDS.forEach(function (id) {
+        var btn = doc.getElementById(id);
+        if (btn) btn.addEventListener('click', openQRModal);
+    });
+}
+
+/**
+ * Show the invite buttons only once a join URL is cached — openQRModal() is a
+ * silent no-op without one, and a button that does nothing when tapped is
+ * worse than no button. Called from the PLAYING/REVEAL renderers.
+ */
+export function syncInviteTriggers(doc = document) {
+    INVITE_TRIGGER_IDS.forEach(function (id) {
+        var btn = doc.getElementById(id);
+        if (btn) btn.classList.toggle('hidden', !adminState.cachedQRUrl);
+    });
+}

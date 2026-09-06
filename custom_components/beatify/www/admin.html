@@ -1138,6 +1138,21 @@
                         </span>
                     </div>
                     <div class="stat-badge-bar">
+                        <!-- #2621: invite a late guest without leaving the game.
+                             The only join-QR trigger used to sit in #home-view,
+                             which is hidden the moment the game leaves LOBBY.
+                             This re-opens the very same #qr-modal. Shown by
+                             showAdminPlayingView() once a join URL is known. -->
+                        <button id="admin-invite-playing" type="button" class="btn btn-ghost hidden"
+                                data-i18n-title="lobby.invitePlayers" title="Invite Players">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="8.5" cy="7" r="4"/>
+                                <line x1="20" y1="8" x2="20" y2="14"/>
+                                <line x1="23" y1="11" x2="17" y2="11"/>
+                            </svg>
+                            <span class="sr-only" data-i18n="lobby.invitePlayers">Invite Players</span>
+                        </button>
                         <span id="admin-game-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
                     </div>
                 </div>
@@ -1287,6 +1302,20 @@
                         </span>
                     </div>
                     <div class="stat-badge-bar">
+                        <!-- #2621: same invite target on the reveal screen — the
+                             music has stopped and the room is talking, which is
+                             when a newcomer actually walks up. Leaving it out
+                             here would blink the button off every round. -->
+                        <button id="admin-invite-reveal" type="button" class="btn btn-ghost hidden"
+                                data-i18n-title="lobby.invitePlayers" title="Invite Players">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="8.5" cy="7" r="4"/>
+                                <line x1="20" y1="8" x2="20" y2="14"/>
+                                <line x1="23" y1="11" x2="17" y2="11"/>
+                            </svg>
+                            <span class="sr-only" data-i18n="lobby.invitePlayers">Invite Players</span>
+                        </button>
                         <span id="admin-reveal-difficulty-badge" class="stat-badge stat-badge--difficulty"></span>
                     </div>
                 </div>
