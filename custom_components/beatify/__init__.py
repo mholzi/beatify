@@ -32,7 +32,6 @@ from .game.playlist import (
     async_discover_playlists,
     async_ensure_playlist_directory,
 )
-from .game.service import GameService
 from .game.state import GameState
 from .server import async_register_static_paths
 from .server.views import (
@@ -195,9 +194,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Connect analytics to websocket handler for error recording (Story 19.1)
     ws_handler.set_analytics(analytics)
 
-    # Issue #603/#609: Create GameService facade
-    game_service = GameService(hass, game_state)
-
     # #1357: Companion auth-bypass opt-in. Read once at setup; the auth helper
     # in server/companion_auth.py reads this live from hass.data per request,
     # so the options-update listener below can flip it without a full reload.
@@ -213,7 +209,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "playlists": playlists,
         "playlist_dir": str(playlist_dir),
         "game": game_state,
-        "game_service": game_service,
         "ws_handler": ws_handler,
         "stats": stats_service,
         "analytics": analytics,

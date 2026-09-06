@@ -20,7 +20,6 @@ from custom_components.beatify.const import (
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
-    from custom_components.beatify.game.service import GameService
     from custom_components.beatify.game.state import GameState
 
 _LOGGER = logging.getLogger(__name__)
@@ -32,14 +31,6 @@ def get_game_state(hass: HomeAssistant) -> GameState | None:
     Returns None when no game has been created yet.
     """
     return hass.data.get(DOMAIN, {}).get("game")
-
-
-def get_game_service(hass: HomeAssistant) -> GameService | None:
-    """Look up the GameService facade from hass.data.
-
-    Returns None when the integration has not been set up yet.
-    """
-    return hass.data.get(DOMAIN, {}).get("game_service")
 
 
 def build_state_message(game_state: GameState) -> dict[str, Any] | None:

@@ -22,8 +22,8 @@ unchanged.
   storefront skips vs. systemic playback failures per #808 / #949), builds the
   round metadata, commits the round state, flips the lights and fires the
   round-start TTS announcements (#471 / #841 / #842). The single entry point
-  every "advance to the next round" caller (``ws_handlers``, ``game_views``,
-  ``GameService``) hits.
+  every "advance to the next round" caller (``ws_handlers``, ``game_views``)
+  hits.
 * ``_ensure_media_player_service`` — lazily constructs the
   :class:`MediaPlayerService` on the first round (and wires analytics for
   error recording, Story 19.1) so the service is only created once a media

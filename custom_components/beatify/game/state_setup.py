@@ -143,11 +143,11 @@ class GameSetupMixin:
                 Defaults to every option at its default value.
             **option_overrides: Individual :class:`GameOptions` fields, applied
                 on top of ``options``. This is what keeps the long-standing
-                ``create_game(..., sudden_death_mode=True)`` call style working
-                — including from ``GameService.create_game(**kwargs)`` — now
-                that the option list lives in the dataclass (#2635). An unknown
-                name raises ``TypeError``, exactly as a stray keyword argument
-                did when every option was spelled out in this signature.
+                ``create_game(..., sudden_death_mode=True)`` call style
+                working now that the option list lives in the dataclass
+                (#2635). An unknown name raises ``TypeError``, exactly as a
+                stray keyword argument did when every option was spelled out
+                in this signature.
 
         Returns:
             dict with game_id, join_url, song_count, phase

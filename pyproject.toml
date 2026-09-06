@@ -58,7 +58,6 @@ files = [
     "custom_components/beatify/game/tts_phrases.py",
     "custom_components/beatify/game/text_match.py",
     "custom_components/beatify/game/share.py",
-    "custom_components/beatify/game/service.py",
     "custom_components/beatify/game/protocols.py",
     "custom_components/beatify/game/powerups.py",
     "custom_components/beatify/game/playlist.py",
