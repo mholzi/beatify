@@ -1,4 +1,4 @@
-"""Game state configuration for Beatify (Issue #464).
+"""Game state configuration for Beatify (Issue #464, #2635).
 
 ``GameStateConfig`` is a dataclass whose fields define every resettable
 attribute on ``GameState`` that is **not** delegated to a subsystem manager
@@ -7,6 +7,11 @@ attribute on ``GameState`` that is **not** delegated to a subsystem manager
 ``GameState.__init__`` and ``_reset_game_internals`` call
 ``_apply_config(self._default_config)`` to (re-)set these attributes
 to their default values.
+
+``GameOptions`` (#2635) answers the other half of the question: what the admin
+*configured* this game with.  It is the single list that ``create_game``,
+``rematch_game`` and the HTTP create-game view all read, so a new game option
+is one field here instead of four parallel edits.
 """
 
 from __future__ import annotations
@@ -15,6 +20,7 @@ from dataclasses import dataclass, field, fields
 from typing import Any
 
 from custom_components.beatify.const import (
+    DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
     PROVIDER_DEFAULT,
 )
@@ -98,3 +104,109 @@ class GameStateConfig:
         """
         delegated = {"title_artist_mode"}
         return [f.name for f in fields(cls) if f.name not in delegated]
+
+
+#: Session attributes a rematch carries over that are **not** game options
+#: (#2635): the session's content, the derived join URL, and the language,
+#: which the HTTP layer sets *after* ``create_game`` returns.  They are all
+#: ``GameStateConfig`` fields, so ``_reset_game_internals`` clears them and the
+#: rematch has to put them back.  Unlike the options below, this tuple does not
+#: grow when a new game option is added.
+REMATCH_CARRYOVER_ATTRS: tuple[str, ...] = (
+    "playlists",
+    "songs",
+    "media_player",
+    "join_url",
+    "language",
+)
+
+
+@dataclass
+class GameOptions:
+    """The admin-configured options of one game session (Issue #2635).
+
+    **One list.**  Before this dataclass the same option was written out four
+    times — as a parameter of ``create_game``, as a field of
+    ``GameStateConfig``, as an entry in the hand-written ``preserved`` dict of
+    ``rematch_game`` and as a key of ``create_kwargs`` in ``game_views``.
+    Forgetting one of them broke the rematch *silently*: the option fell back
+    to its default with no error anywhere.
+
+    Now ``create_game`` takes this object, ``rematch_game`` captures and
+    re-applies it, and the HTTP layer builds it from the request body.  Adding
+    a game option means adding a field here.
+
+    Every field name is also an attribute (or a manager-delegating property) of
+    ``GameState``, which is what makes :meth:`capture` and :meth:`apply_to`
+    work by name.
+
+    Note the overlap with :class:`GameStateConfig`, which is a *different*
+    question: ``GameStateConfig`` says what ``_reset_game_internals`` resets,
+    this says what a game is configured with.  The state-owned flags appear in
+    both; ``tests/unit/test_game_options_2635.py`` asserts their defaults stay
+    in step.
+    """
+
+    # --- Playback / scoring basics -------------------------------------
+    round_duration: int = DEFAULT_ROUND_DURATION
+    difficulty: str = DIFFICULTY_DEFAULT
+    provider: str = PROVIDER_DEFAULT
+    #: Platform identifier for playback routing (music_assistant, sonos, ...).
+    platform: str = "unknown"
+    #: #1475: 0 = play every playable song (the historic behaviour).
+    max_rounds: int = 0
+    #: #1012: seconds to dwell in REVEAL before advancing (0 = manual only).
+    reveal_auto_advance: int = 0
+
+    # --- Challenges (owned by ChallengeManager) ------------------------
+    artist_challenge_enabled: bool = True
+    movie_quiz_enabled: bool = True
+    #: Issue #1180: Title & Artist guessing replaces the year guess.
+    title_artist_mode: bool = False
+
+    # --- Round flow (owned by RoundManager) ----------------------------
+    #: Issue #23: intro mode (~20% random rounds).
+    intro_mode_enabled: bool = False
+
+    # --- Mode flags (owned by GameState) -------------------------------
+    #: Issue #442: only the closest guess(es) earn points.
+    closest_wins_mode: bool = False
+    #: Issue #1726: songs arranged into a difficulty arc instead of random.
+    rampup_order_enabled: bool = False
+    #: Issue #827: last-place player eliminated each round.
+    sudden_death_mode: bool = False
+    #: Issue #1725: the last round's score is doubled.
+    finale_double_enabled: bool = False
+    #: Issue #1725: a tie for first with songs left triggers a playoff.
+    finale_tiebreaker_enabled: bool = False
+    #: Issue #1724: bottom-third players get a one-time catch-up steal.
+    comeback_token_enabled: bool = False
+    #: Issue #1727: the won-bet payout scales with difficulty (2x/3x/5x).
+    difficulty_bet_scaling_enabled: bool = False
+    #: Issue #1665: one sabotage token per player per game.
+    sabotage_enabled: bool = False
+
+    @classmethod
+    def field_names(cls) -> list[str]:
+        """Return the option names, in declaration order."""
+        return [f.name for f in fields(cls)]
+
+    @classmethod
+    def capture(cls, state: Any) -> GameOptions:
+        """Read the current options off a ``GameState``.
+
+        Used by ``rematch_game`` in place of the hand-written ``preserved``
+        dict: whatever the admin configured is read back by field name, so a
+        newly added field is carried over without touching the rematch.
+        """
+        return cls(**{name: getattr(state, name) for name in cls.field_names()})
+
+    def apply_to(self, state: Any) -> None:
+        """Write every option onto a ``GameState``.
+
+        Plain ``setattr`` throughout — the manager-owned names (challenges,
+        round flow) go through ``GameState``'s delegation properties, exactly
+        as the old ``preserved``-restore loop did.
+        """
+        for name in self.field_names():
+            setattr(state, name, getattr(self, name))

@@ -6,6 +6,7 @@ import contextlib
 import functools
 import json
 import logging
+from dataclasses import replace
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -14,7 +15,6 @@ from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers import entity_registry as er
 
 from custom_components.beatify.const import (
-    DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
     DIFFICULTY_EASY,
     DIFFICULTY_HARD,
@@ -36,6 +36,7 @@ from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
+from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
     async_discover_playlists_detailed,
 )
@@ -443,34 +444,33 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 details={"speaker": speaker_name, "provider": "Amazon Music"},
             )
 
-        # Build create_game kwargs with optional round_duration (Story 13.1),
-        # difficulty (Story 14.1), provider (Story 17.2), platform,
-        # and artist_challenge_enabled (Story 20.7)
-        create_kwargs: dict[str, Any] = {
-            "playlists": playlist_paths,
-            "songs": songs,
-            "media_player": media_player,
-            "base_url": base_url,
-            "difficulty": difficulty,
-            "provider": provider,
-            "platform": platform,
-            "artist_challenge_enabled": artist_challenge_enabled,  # Story 20.7
-            "movie_quiz_enabled": movie_quiz_enabled,  # Issue #28
-            "intro_mode_enabled": intro_mode_enabled,  # Issue #23
-            "closest_wins_mode": closest_wins_mode,  # Issue #442
-            "sudden_death_mode": sudden_death_mode,  # Issue #827
-            "title_artist_mode": title_artist_mode,  # #1180
-            "rampup_order_enabled": rampup_order_enabled,  # Issue #1726
-            "finale_double_enabled": finale_double_enabled,  # Issue #1725
-            "finale_tiebreaker_enabled": finale_tiebreaker_enabled,  # Issue #1725
-            "comeback_token_enabled": comeback_token_enabled,  # Issue #1724
-            "difficulty_bet_scaling_enabled": difficulty_bet_scaling_enabled,  # Issue #1727
-            "sabotage_enabled": sabotage_enabled,  # Issue #1665
-            "reveal_auto_advance": reveal_auto_advance,  # #1012
-            "max_rounds": max_rounds,  # #1475
-        }
+        # #2635: the admin's options as ONE object, not a kwargs dict that had
+        # to be kept in step with create_game's parameter list by hand. An
+        # option missing here used to reach create_game as its default with no
+        # error; a wrong name is now a TypeError at construction.
+        # Story 13.1 (round_duration), Story 14.1 (difficulty),
+        # Story 17.2 (provider), Story 20.7 (artist_challenge_enabled).
+        create_options = GameOptions(
+            difficulty=difficulty,
+            provider=provider,
+            platform=platform,
+            artist_challenge_enabled=artist_challenge_enabled,  # Story 20.7
+            movie_quiz_enabled=movie_quiz_enabled,  # Issue #28
+            intro_mode_enabled=intro_mode_enabled,  # Issue #23
+            closest_wins_mode=closest_wins_mode,  # Issue #442
+            sudden_death_mode=sudden_death_mode,  # Issue #827
+            title_artist_mode=title_artist_mode,  # #1180
+            rampup_order_enabled=rampup_order_enabled,  # Issue #1726
+            finale_double_enabled=finale_double_enabled,  # Issue #1725
+            finale_tiebreaker_enabled=finale_tiebreaker_enabled,  # Issue #1725
+            comeback_token_enabled=comeback_token_enabled,  # Issue #1724
+            difficulty_bet_scaling_enabled=difficulty_bet_scaling_enabled,  # Issue #1727
+            sabotage_enabled=sabotage_enabled,  # Issue #1665
+            reveal_auto_advance=reveal_auto_advance,  # #1012
+            max_rounds=max_rounds,  # #1475
+        )
         if round_duration is not None:
-            create_kwargs["round_duration"] = round_duration
+            create_options = replace(create_options, round_duration=round_duration)
 
         # #1867: state the round timer's provenance at the one moment it is
         # decided. The only prior trace was "Round N started (%.1fs timer)",
@@ -480,7 +480,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # which no log had; one line here makes the next report a lookup.
         _LOGGER.info(
             "Game created with round_duration=%ss (client sent %r)",
-            create_kwargs.get("round_duration", DEFAULT_ROUND_DURATION),
+            create_options.round_duration,
             body.get("round_duration"),
         )
 
@@ -491,7 +491,13 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # rejection gets its own code so the client can say WHICH one fired) and
         # sends the i18n lookup in errors.<CODE> looking for nothing.
         try:
-            result = game_state.create_game(**create_kwargs)
+            result = game_state.create_game(
+                playlists=playlist_paths,
+                songs=songs,
+                media_player=media_player,
+                base_url=base_url,
+                options=create_options,
+            )
         except NoPlayableSongsError as err:
             return _json_error(str(err), 400, code=ERR_NO_PLAYABLE_SONGS)
         except ValueError as err:

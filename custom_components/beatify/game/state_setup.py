@@ -17,8 +17,10 @@ the two builders attach to their PlaylistManager. It is **behavior-preserving**:
 it carries the exact same methods that previously lived on ``GameState``, so its
 public API and every caller / test are unchanged.
 
-* ``create_game`` — the new-session builder. Validates the round duration,
-  clears any leftover sessions, mints a fresh ``game_id`` / ``admin_token``,
+* ``create_game`` — the new-session builder, taking its options as a single
+  :class:`~custom_components.beatify.game.config.GameOptions` (#2635) rather
+  than 18 parameters. Validates the round duration, clears any leftover
+  sessions, mints a fresh ``game_id`` / ``admin_token``,
   builds the join URL, constructs the :class:`PlaylistManager` (failing fast on
   a provider with zero playable songs, #709), resets round tracking + the
   config-managed fields, and configures the challenge / power-up / intro / mode
@@ -37,6 +39,10 @@ public API and every caller / test are unchanged.
   settings, runs ``_reset_game_internals``, restores the snapshot, re-detects the
   storefront + re-creates the PlaylistManager, resets each player's per-game
   stats, mints a new ``game_id`` / ``admin_token`` and regenerates the join URL.
+  The snapshot is a :class:`~custom_components.beatify.game.config.GameOptions`
+  read back by field name (#2635), not a hand-written dict — the dict was a
+  transcript of ``create_game``'s parameter list, and an option missing from it
+  silently fell back to its default on the rematch.
 * ``_detect_storefront`` — resolves the Apple-Music storefront (#808 follow-up)
   from ``hass.config.country`` (lower-cased) or ``None``; used only by the two
   builders above.
@@ -78,16 +84,15 @@ from __future__ import annotations
 
 import logging
 import secrets
+from dataclasses import replace
 from typing import Any
 
 from custom_components.beatify.const import (
-    DEFAULT_ROUND_DURATION,
-    DIFFICULTY_DEFAULT,
-    PROVIDER_DEFAULT,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
 
+from .config import REMATCH_CARRYOVER_ATTRS, GameOptions
 from .playlist import PlaylistManager
 
 _LOGGER = logging.getLogger(__name__)
@@ -117,30 +122,14 @@ class GameSetupMixin:
     expects on ``self`` at runtime.
     """
 
-    def create_game(  # noqa: PLR0913
+    def create_game(
         self,
         playlists: list[str],
         songs: list[dict[str, Any]],
         media_player: str,
         base_url: str,
-        round_duration: int = DEFAULT_ROUND_DURATION,
-        difficulty: str = DIFFICULTY_DEFAULT,
-        provider: str = PROVIDER_DEFAULT,
-        platform: str = "unknown",
-        artist_challenge_enabled: bool = True,
-        movie_quiz_enabled: bool = True,
-        intro_mode_enabled: bool = False,
-        closest_wins_mode: bool = False,
-        sudden_death_mode: bool = False,
-        title_artist_mode: bool = False,
-        reveal_auto_advance: int = 0,
-        rampup_order_enabled: bool = False,
-        finale_double_enabled: bool = False,
-        finale_tiebreaker_enabled: bool = False,
-        comeback_token_enabled: bool = False,
-        difficulty_bet_scaling_enabled: bool = False,
-        sabotage_enabled: bool = False,
-        max_rounds: int = 0,
+        options: GameOptions | None = None,
+        **option_overrides: Any,
     ) -> dict[str, Any]:
         """
         Create a new game session.
@@ -150,40 +139,36 @@ class GameSetupMixin:
             songs: List of song dicts loaded from playlists
             media_player: Entity ID of media player
             base_url: HA base URL for join URL construction
-            round_duration: Round timer duration in seconds (10-60, default 30)
-            difficulty: Difficulty level (easy/normal/hard, default normal)
-            provider: Music provider (spotify/apple_music, default spotify)
-            platform: Platform identifier for playback routing (music_assistant, sonos, alexa_media)
-            artist_challenge_enabled: Whether to enable artist guessing (default True)
-            movie_quiz_enabled: Whether to enable movie quiz bonus (default True)
-            intro_mode_enabled: Whether to enable intro mode (~20% random rounds)
-            closest_wins_mode: Whether only the closest guess(es) earn points
-            title_artist_mode: Whether title/artist guessing replaces the year guess
-            rampup_order_enabled: Whether to order songs into a difficulty arc
-                instead of uniform random (#1726). Opt-in; default False.
-            finale_double_enabled: Whether the last round's score is doubled
-                (#1725). Opt-in; default False.
-            finale_tiebreaker_enabled: Whether an end-game tie for first with
-                songs remaining triggers a sudden-death playoff (#1725). Opt-in;
-                default False.
-            comeback_token_enabled: Whether bottom-third players are handed a
-                one-time catch-up steal after the halfway round (#1724). Opt-in;
-                default False.
-            difficulty_bet_scaling_enabled: Whether the won-bet payout scales
-                with difficulty (easy 2x / normal 3x / hard 5x) instead of a flat
-                3x (#1727). Opt-in; default False = flat 3x, unchanged.
+            options: The admin-configured game options (:class:`GameOptions`).
+                Defaults to every option at its default value.
+            **option_overrides: Individual :class:`GameOptions` fields, applied
+                on top of ``options``. This is what keeps the long-standing
+                ``create_game(..., sudden_death_mode=True)`` call style working
+                — including from ``GameService.create_game(**kwargs)`` — now
+                that the option list lives in the dataclass (#2635). An unknown
+                name raises ``TypeError``, exactly as a stray keyword argument
+                did when every option was spelled out in this signature.
 
         Returns:
             dict with game_id, join_url, song_count, phase
 
         Raises:
+            TypeError: If an unknown option name is passed
             ValueError: If round_duration is outside valid range (10-60)
 
         """
         from .state import GamePhase
 
+        # #2635: one list. The options arrive as a dataclass instead of 18
+        # parameters that had to be repeated in the rematch's `preserved` dict
+        # and in game_views' `create_kwargs` — miss one there and the option
+        # silently fell back to its default on the rematch.
+        opts = options if options is not None else GameOptions()
+        if option_overrides:
+            opts = replace(opts, **option_overrides)
+
         # Validate round duration (Story 13.1)
-        if not (ROUND_DURATION_MIN <= round_duration <= ROUND_DURATION_MAX):
+        if not (ROUND_DURATION_MIN <= opts.round_duration <= ROUND_DURATION_MAX):
             raise ValueError(
                 f"Round duration must be between {ROUND_DURATION_MIN} "
                 f"and {ROUND_DURATION_MAX} seconds"
@@ -211,14 +196,18 @@ class GameSetupMixin:
         # provider). #1726: when ramp-up ordering is opted in, the manager also
         # gets a difficulty-lookup so it can arrange the songs into an arc.
         playlist_manager = self._build_playlist_manager(
-            songs, provider, storefront, rampup_order_enabled, max_rounds
+            songs,
+            opts.provider,
+            storefront,
+            opts.rampup_order_enabled,
+            opts.max_rounds,
         )
 
         # #709: if the chosen provider has zero playable songs, fail fast with
         # a clear error rather than silently starting a game that will stall.
         if not playlist_manager.has_playable_songs():
             raise NoPlayableSongsError(
-                f"No playable songs for provider '{provider}' in the selected "
+                f"No playable songs for provider '{opts.provider}' in the selected "
                 f"playlist(s). Pick a different playlist or provider."
             )
 
@@ -259,15 +248,14 @@ class GameSetupMixin:
         self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
         self.players = {}
 
-        # #1475: gewaehlte Rundenzahl merken (0 = alle). Der Rematch liest sie
-        # aus `preserved` zurueck, damit die Revanche gleich lang ist.
-        self.max_rounds = max_rounds
-
-        # Store provider setting (Story 17.2)
-        self.provider = provider
-
-        # Store platform for playback routing
-        self.platform = platform
+        # #2635: every admin-configured option in one go — round_duration,
+        # difficulty, provider, platform, max_rounds (#1475), the REVEAL dwell
+        # (#1012) and all the mode flags. The rematch re-applies the very same
+        # object, so an option can no longer be forgotten on the way back.
+        # The challenge configure() below still runs afterwards: it is what
+        # nulls the per-round challenge objects and enforces the
+        # artist-challenge / Title & Artist exclusion.
+        opts.apply_to(self)
 
         self.storefront = storefront
 
@@ -292,22 +280,20 @@ class GameSetupMixin:
         self.pause_reason = None
         self._previous_phase = None
 
-        # Reset timing for speed bonus (Story 5.1) and configurable duration (Story 13.1)
+        # Reset timing for speed bonus (Story 5.1). The configurable duration
+        # (Story 13.1) came from opts.apply_to above.
         self.round_start_time = None
-        self.round_duration = round_duration
 
-        # Set difficulty (Story 14.1). Explicit annotation so mypy has a
-        # declared type at the assignment point — without it the gated
+        # Set difficulty (Story 14.1) — already written by opts.apply_to; this
+        # repeats it purely for the explicit annotation, which mypy needs as a
+        # declared type at an assignment point. Without it the gated
         # game/service.py read (self._game_state.difficulty) hit a mypy
         # has-type deferral once GameState grew to 9 mixins (#1271).
-        self.difficulty: str = difficulty
+        self.difficulty: str = opts.difficulty
 
         # Reset song stopped flag (Story 6.2)
         self.song_stopped = False
 
-        # #1012: REVEAL auto-advance — seconds to wait in REVEAL before
-        # starting the next round automatically (0 = off / manual only).
-        self.reveal_auto_advance = reveal_auto_advance
         # #1359: cancel any leftover auto-advance / vote-window task from a
         # prior game instead of just dropping the handle — a bare
         # ``self._auto_advance_task = None`` would orphan a still-running
@@ -332,33 +318,19 @@ class GameSetupMixin:
         # Issue #351: Reset power-up state for new game
         self._powerup_manager.reset()
 
-        # Story 20.1 / Issue #28 / Issue #1180: Set challenge configuration
+        # Story 20.1 / Issue #28 / Issue #1180: Set challenge configuration.
+        # Runs after opts.apply_to so the Title & Artist exclusion wins and the
+        # per-round challenge objects are nulled for the new game.
         self._challenge_manager.configure(
-            artist_challenge_enabled=artist_challenge_enabled,
-            movie_quiz_enabled=movie_quiz_enabled,
-            title_artist_mode=title_artist_mode,
+            artist_challenge_enabled=opts.artist_challenge_enabled,
+            movie_quiz_enabled=opts.movie_quiz_enabled,
+            title_artist_mode=opts.title_artist_mode,
         )
 
-        # Issue #23: Set intro mode configuration
-        self.intro_mode_enabled = intro_mode_enabled
-
-        # Issue #442: Set closest wins mode
-        self.closest_wins_mode = closest_wins_mode
-        # Issue #1726: Set ramp-up (difficulty-arc) ordering mode
-        self.rampup_order_enabled = rampup_order_enabled
-        # Issue #827: Set sudden death mode
-        self.sudden_death_mode = sudden_death_mode
-        # Issue #1725: Finale ×2 + finale sudden-death tiebreaker (opt-in)
-        self.finale_double_enabled = finale_double_enabled
-        self.finale_tiebreaker_enabled = finale_tiebreaker_enabled
+        # #1725: runtime bookkeeping for the tiebreaker playoff — not an
+        # option, so opts.apply_to does not cover it.
         self._finale_playoff_rounds = 0
         self._finale_playoff_active = False
-        # Issue #1724: Comeback Token — opt-in catch-up steal for trailing players
-        self.comeback_token_enabled = comeback_token_enabled
-        # Issue #1727: Difficulty-aware bet scaling (opt-in; default flat 3x)
-        self.difficulty_bet_scaling_enabled = difficulty_bet_scaling_enabled
-        # Issue #1665: Sabotage powerup (opt-in; default off = no tokens)
-        self.sabotage_enabled = sabotage_enabled
         self.is_intro_round = False
         self.intro_stopped = False
         self._round_manager._intro_round_start_time = None
@@ -496,31 +468,18 @@ class GameSetupMixin:
         _LOGGER.info("Rematch initiated from game: %s", self.game_id)
         self.cancel_timer()
 
-        # Preserve game settings that the admin configured (Issue #591)
-        preserved = {
-            "playlists": self.playlists,
-            "songs": list(self.songs),
-            "media_player": self.media_player,
-            "join_url": self.join_url,
-            "provider": self.provider,
-            "platform": self.platform,
-            "difficulty": self.difficulty,
-            "language": self.language,
-            "round_duration": self.round_duration,
-            "artist_challenge_enabled": self.artist_challenge_enabled,
-            "movie_quiz_enabled": self.movie_quiz_enabled,
-            "intro_mode_enabled": self.intro_mode_enabled,
-            "closest_wins_mode": self.closest_wins_mode,
-            "sudden_death_mode": self.sudden_death_mode,
-            "title_artist_mode": self.title_artist_mode,
-            "rampup_order_enabled": self.rampup_order_enabled,  # #1726
-            "finale_double_enabled": self.finale_double_enabled,  # #1725
-            "finale_tiebreaker_enabled": self.finale_tiebreaker_enabled,  # #1725
-            "comeback_token_enabled": self.comeback_token_enabled,  # #1724
-            "difficulty_bet_scaling_enabled": self.difficulty_bet_scaling_enabled,  # #1727
-            "sabotage_enabled": self.sabotage_enabled,  # #1665
-            "max_rounds": self.max_rounds,  # #1475
-        }
+        # Preserve game settings that the admin configured (Issue #591).
+        # #2635: read back by field name from GameOptions instead of a
+        # hand-written dict. That dict was a transcript of create_game's
+        # parameter list, and a new option that missed it fell back to its
+        # default on the rematch with no error anywhere.
+        preserved = GameOptions.capture(self)
+        # The rest of the session the rematch keeps: content, the derived join
+        # URL, and the language the HTTP layer sets after create_game. All of
+        # them are GameStateConfig fields, so the reset below clears them.
+        carryover = {name: getattr(self, name) for name in REMATCH_CARRYOVER_ATTRS}
+        # The rematch works on its own copy of the song list.
+        carryover["songs"] = list(carryover["songs"])
 
         self._reset_game_internals()
         # #1725: the playoff counters are runtime state, not config fields, so
@@ -529,8 +488,9 @@ class GameSetupMixin:
         self._finale_playoff_active = False
 
         # Restore preserved settings for seamless rematch
-        for attr, value in preserved.items():
+        for attr, value in carryover.items():
             setattr(self, attr, value)
+        preserved.apply_to(self)
 
         # Re-create PlaylistManager with fresh song list
         # #808 follow-up: re-detect storefront for the rematch (in case
@@ -541,11 +501,11 @@ class GameSetupMixin:
         # einzelnen Partie. Ohne diese Zeile waere die Revanche wieder ueber
         # die volle Playlist gelaufen, obwohl der Gastgeber 20 eingestellt hat.
         self._playlist_manager = self._build_playlist_manager(
-            preserved["songs"],
-            preserved["provider"],
+            carryover["songs"],
+            preserved.provider,
             self.storefront,
-            preserved["rampup_order_enabled"],
-            preserved["max_rounds"],
+            preserved.rampup_order_enabled,
+            preserved.max_rounds,
         )
         # #1377: derive total_rounds from the filtered/deduped playable pool
         # (exactly like create_game, state_setup.py), not the raw song list.
@@ -567,8 +527,8 @@ class GameSetupMixin:
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386
 
         # Regenerate join_url with new game_id
-        if preserved["join_url"]:
-            base_url = preserved["join_url"].split("/beatify/play")[0]
+        if carryover["join_url"]:
+            base_url = carryover["join_url"].split("/beatify/play")[0]
             self.join_url = f"{base_url}/beatify/play?game={self.game_id}"
 
         _LOGGER.info(
