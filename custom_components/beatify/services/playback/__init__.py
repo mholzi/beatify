@@ -14,12 +14,14 @@ from __future__ import annotations
 
 from .base import PLAYBACK_TIMEOUT, PlaybackStrategy
 from .context import PlayerContext
+from .sonos import SonosStrategy
 from .uris import convert_uri_for_ma, uri_match_tokens
 
 __all__ = [
     "PLAYBACK_TIMEOUT",
     "PlaybackStrategy",
     "PlayerContext",
+    "SonosStrategy",
     "convert_uri_for_ma",
     "uri_match_tokens",
 ]
