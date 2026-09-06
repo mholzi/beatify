@@ -15,9 +15,10 @@ Design goals (kept deliberately minimal-invasive):
 * Transient mixes land in ``<config>/beatify/playlists/mix/__mix__-<uuid>.json``
   with a UNIQUE stem per run (so two parallel games never clobber each other —
   #1547) — they are an implementation detail, not a saved artefact. Stale
-  transient files are best-effort cleaned up on each write. The ``mix/`` folder
-  is treated as ``bundled`` by discovery (only ``community``/``user`` count as
-  community), so a transient mix never pollutes the Community tab.
+  transient files are best-effort cleaned up on each write. Discovery skips the
+  ``mix/`` folder entirely (#2639), so a transient mix neither shows up in the
+  playlist list nor churns the discovery cache; start-game reads the returned
+  path directly through its own cache-miss fallback.
 * When the host ticks "save as community playlist" the assembled set is instead
   persisted into ``user/<slug>.json`` (the same place ``SavePlaylistView`` uses)
   so ``async_discover_playlists`` surfaces it in the Community tab on refresh.
@@ -40,10 +41,13 @@ from homeassistant.components.http import HomeAssistantView
 from custom_components.beatify.const import PROVIDER_DEFAULT
 from custom_components.beatify.game.playlist import (
     MIN_YEAR,
+    TRANSIENT_MIX_PREFIX,
+    TRANSIENT_MIX_SUBDIR,
     _max_year,
     async_discover_playlists_detailed,
     get_playlist_directory,
     get_song_uri,
+    is_transient_mix,
     validate_playlist,
 )
 from custom_components.beatify.server.base import (
@@ -68,35 +72,14 @@ DEFAULT_TARGET_COUNT = 50
 # is far smaller).
 MAX_TAGS = 40
 
-# Filename-stem prefix for transient (non-saved) mixes. Each mix run gets a
-# UNIQUE stem (``__mix__-<short-uuid>.json``) so two games started in parallel
-# never clobber each other's transient file (#1547 — was a fixed
-# ``__mix__.json`` with last-writer-wins). Anything whose name starts with this
-# prefix — OR lives in the ``mix/`` subdir — is treated as a transient mix and
-# excluded from re-mixing / the Community tab.
-TRANSIENT_MIX_PREFIX = "__mix__"
-# Subdirectory (under the playlist dir) that holds transient mixes.
-TRANSIENT_MIX_SUBDIR = "mix"
+# Naming of transient mixes (``mix/__mix__-<uuid>.json``) lives in
+# ``game/playlist.py`` next to the discovery walk that has to skip it (#2639) —
+# this module imports it above and re-exports it for existing importers.
+#
 # Transient mixes older than this are removed on the next write. Must comfortably
 # exceed the POST /mix → start-game gap so a concurrent run's fresh file is never
 # cleaned out from under it (#1657).
 TRANSIENT_MIX_MAX_AGE_S = 3600
-
-
-def _is_transient_mix(path: str) -> bool:
-    """True if ``path`` points at a transient mix file.
-
-    Matches on the ``mix/`` parent dir OR a ``__mix__``-prefixed filename so
-    EVERY uniquely-named transient mix (``__mix__-<uuid>.json``) is recognised,
-    not just the legacy fixed ``__mix__.json``. Used to keep transient mixes out
-    of the re-mix source set (and, defensively, out of any name-based filter).
-    """
-    if not path:
-        return False
-    p = Path(path)
-    return p.parent.name == TRANSIENT_MIX_SUBDIR or p.name.startswith(
-        TRANSIENT_MIX_PREFIX
-    )
 
 
 def _assemble_mix_songs(
@@ -132,8 +115,10 @@ def _assemble_mix_songs(
         # Never re-mix a previous transient mix into a new one. Match on the
         # mix/ dir or the __mix__ prefix so EVERY uniquely-named transient file
         # is excluded, not just the legacy fixed __mix__.json (#1547).
+        # Defensive only since #2639 — discovery no longer returns transient
+        # mixes at all, so this can normally never match.
         path = meta.get("path") or ""
-        if _is_transient_mix(path):
+        if is_transient_mix(path):
             continue
 
         songs = songs_by_path.get(path)

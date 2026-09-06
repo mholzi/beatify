@@ -1030,6 +1030,46 @@ def filter_songs_for_provider(
 # hass.data[DOMAIN] key holding the memoised discovery result (#1704).
 _DISCOVERY_CACHE_KEY = "_playlist_discovery_cache"
 
+# --- Transient smart-mix files (#1538 / #1547, excluded here since #2639) ----
+# The Smart Playlist Mixer writes one throwaway document per game start to
+# ``<playlist dir>/mix/__mix__-<uuid>.json`` and unlinks stale ones an hour
+# later. It is an implementation detail of a single start-game call, never
+# catalogue content — which is why the mixer itself already refuses to re-mix
+# one.
+#
+# #2639: it must therefore stay out of discovery altogether. Fingerprinting it
+# meant every mix write AND every cleanup unlink changed the signature, so the
+# start-game call that follows milliseconds later — the one that exists to reuse
+# the cached parse (#1766) — plus the 3 s lobby poll re-read, re-parsed and
+# re-validated the entire catalogue (66 files / 13 MB / 8.4k songs) while the
+# host was already looking at a spinner. Skipping these files keeps the
+# signature made of catalogue content only: a real add / edit / delete still
+# changes it and still invalidates, a mix no longer does. Skipping them from the
+# walk (rather than from the fingerprint alone) also keeps the transient
+# document out of the hub playlist list, where it used to appear as a
+# ``source: "bundled"`` playlist until cleanup.
+#
+# These constants live here, not in ``server/mix_views.py``, because that module
+# imports from this one — the reverse direction would be an import cycle.
+TRANSIENT_MIX_PREFIX = "__mix__"
+TRANSIENT_MIX_SUBDIR = "mix"
+
+
+def is_transient_mix(path: str | Path) -> bool:
+    """True if ``path`` points at a transient smart-mix file.
+
+    Matches on the ``mix/`` parent dir OR a ``__mix__``-prefixed filename so
+    EVERY uniquely-named transient mix (``__mix__-<uuid>.json``) is recognised,
+    not just the legacy fixed ``__mix__.json`` (#1547).
+    """
+    if not path:
+        return False
+    p = Path(path)
+    return p.parent.name == TRANSIENT_MIX_SUBDIR or p.name.startswith(
+        TRANSIENT_MIX_PREFIX
+    )
+
+
 # Signature entry per playlist file: (absolute path, mtime_ns, size). The whole
 # tuple of these — sorted, over every *.json under the playlist dir — is the
 # cache key. It changes on add / delete (path set changes) AND on in-place edit
@@ -1062,7 +1102,11 @@ def _discover_playlists_sync(
         return [], {}, empty_sig
 
     # Offload blocking glob to executor to avoid scandir in event loop (#516).
-    json_files = sorted(playlist_dir.glob("**/*.json"))
+    # Transient smart-mix files are skipped here so neither the signature nor
+    # the parsed result ever sees them (#2639, see ``is_transient_mix``).
+    json_files = sorted(
+        f for f in playlist_dir.glob("**/*.json") if not is_transient_mix(f)
+    )
 
     sig_parts: list[tuple[str, int, int]] = []
     for f in json_files:
