@@ -14,9 +14,13 @@
  * imports `renderPlaylists` from here; admin.js imports the loadStatus-driven
  * renderers + the validation helpers.
  *
- * `clearPlaylistFilters` is referenced from inline `onclick="..."` in the
- * HTML this module generates, so admin.js re-exports it on `window` (the shim
- * lives there alongside the other admin window globals).
+ * #2637: the two "clear the filters" buttons this module renders used to carry
+ * an inline `onclick="clearPlaylistFilters()"`, which only resolved because
+ * admin.js re-published this module's own export on `window`. The round trip
+ * through the page global is gone: the buttons are marked
+ * `data-action="clear-filters"` and wired with an event listener right after
+ * each render, so the section owns its own clicks and no longer needs its
+ * importer to hold anything for it.
  */
 
 import { adminState } from '../state.js';
@@ -171,9 +175,10 @@ export function renderPlaylists(playlists, playlistDir, preserveSelection = fals
         container.innerHTML = `
             <div class="empty-state">
                 <p>${tr('admin.noPlaylistsMatchFilter', 'No playlists match the selected filter.')}</p>
-                <button type="button" class="btn btn-secondary" onclick="clearPlaylistFilters()">${tr('admin.clearFilters', 'Clear Filters')}</button>
+                <button type="button" class="btn btn-secondary" data-action="clear-filters">${tr('admin.clearFilters', 'Clear Filters')}</button>
             </div>
         `;
+        wireClearFilterButtons(container);
         return;
     }
 
@@ -390,7 +395,7 @@ export function renderPlaylistFilterBar(playlists) {
         html += `
             <div class="filter-summary">
                 <span class="filter-summary-text">Showing: ${activeFiltersList.join(' • ')}</span>
-                <button type="button" class="filter-clear" onclick="clearPlaylistFilters()">Clear</button>
+                <button type="button" class="filter-clear" data-action="clear-filters">Clear</button>
             </div>
         `;
     }
@@ -404,6 +409,7 @@ export function renderPlaylistFilterBar(playlists) {
             handleFilterDropdownChange(this.dataset.category, this.value);
         });
     });
+    wireClearFilterButtons(filterBar);
 }
 
 /**
@@ -427,6 +433,21 @@ export function handleFilterDropdownChange(category, value) {
 export function updateActiveFilterTags() {
     const selectedTags = Object.values(adminState.activeFilters).filter(v => v);
     adminState.activeFilterTags = selectedTags.length > 0 ? selectedTags : ['all'];
+}
+
+/**
+ * Wire every `data-action="clear-filters"` button inside `root` (#2637).
+ *
+ * Called after each innerHTML write that can emit one. Re-rendering replaces
+ * the nodes, so the listeners go with them and there is nothing to detach.
+ *
+ * @param {ParentNode|null} root - container that was just re-rendered
+ */
+function wireClearFilterButtons(root) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+    root.querySelectorAll('[data-action="clear-filters"]').forEach((btn) => {
+        btn.addEventListener('click', () => clearPlaylistFilters());
+    });
 }
 
 /**

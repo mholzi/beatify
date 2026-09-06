@@ -96,12 +96,11 @@ import {
 // playlists.js: list render + selection + tag-filter, plus the shared
 // selection-summary / start-button-validation helpers. The intra-section
 // callees (handlePlaylistToggle, filter-bar render, etc.) are wired up inside
-// the module; admin.js core only drives the entry points below.
-// `clearPlaylistFilters` is shimmed onto `window` (below) for the inline
-// `onclick=` in the HTML the module generates.
+// the module; admin.js core only drives the entry points below. Since #2637 it
+// also wires its own "clear the filters" buttons, so nothing of it has to be
+// held on `window` by this file.
 import {
     renderPlaylists,
-    clearPlaylistFilters,
     updateStartButtonState,
 } from './admin/sections/playlists.js';
 
@@ -169,11 +168,6 @@ setCurrentGameResolver(() => adminState.currentGame);
 // its own escapeHtml (party-lights.js:7) and no file in www/ reads any of the
 // six off `window`. They were dead weight that made admin.js look like a
 // dependency of scripts that do not depend on it.
-
-// #1279 step 4b: playlists.js generates HTML with inline onclick="clearPlaylistFilters()"
-// (empty-filter "Clear Filters" button + active-filter "Clear" link), so the
-// function must stay reachable as a window global.
-window.clearPlaylistFilters = clearPlaylistFilters;
 
 // Screen Wake Lock (#622, #1122)
 // Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox.
