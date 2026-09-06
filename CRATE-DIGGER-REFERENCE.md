@@ -243,12 +243,11 @@ Key functions:
 | `async_probe_library_total(hass, entry_id)` | Cheap total-count probe (drives the UI's progress) |
 | `async_sample_new_tracks(…)` | Fetch a subset for additive scans |
 | `async_fetch_track_genres(hass, jobs, …)` | **Detail** fetches, concurrent, failure-tolerant |
-| `async_resolve_uri_by_name(hass, title, artist)` | Name→URI fallback when a stored URI goes stale |
 | `split_library_uri(uri)` | `provider--instance://track/id` → `(provider, item_id)` |
 
 **Why detail fetches for genres:** MA's list models are slim. A 16 000-track list enumeration produced **zero** genres. Genres only appear on the per-item detail model, so the pool builder issues a detail fetch per new track. These are LAN-local and cheap, executed concurrently, and any individual failure is swallowed (a missing genre is not worth failing a scan over).
 
-**URI volatility:** library URIs are only valid for the MA server that produced them. That is why `const.URI_PATTERN_MA_LIBRARY` is permissive and why playback has a name-based fallback (§7.5). If a user rebuilds their Plex library, URIs can change; the fallback keeps games playable without a rescan.
+**URI volatility:** library URIs are only valid for the MA server that produced them. That is why `const.URI_PATTERN_MA_LIBRARY` is permissive and why playback has a name-based fallback. If a user rebuilds their Plex library, URIs can change; the fallback keeps games playable without a rescan. That fallback does **not** live here: it is `services/media_player.py` asking Music Assistant to resolve the track from name + artist (§7.5). `ma_client` had a second, never-wired candidate for the same job (`async_resolve_uri_by_name`); it was removed rather than wired (#2632), so §7.5 is the only name-based resolution path.
 
 ### 4.2 `year_resolver.py` — the trust ladder
 

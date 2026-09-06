@@ -413,8 +413,8 @@ async def async_musicbrainz_candidates(
 ) -> list[dict[str, Any]]:
     """Return MusicBrainz recording candidates for host review.
 
-    Unlike :func:`async_musicbrainz_year`, which answers "what year is this"
-    and discards everything it isn't sure about, this returns the raw field
+    Unlike :func:`async_musicbrainz_year_genres`, which answers "what year is
+    this" and discards everything it isn't sure about, this returns the raw field
     of options so the host can SEE what was matched — including the case
     where the automatic pick was a different song entirely. Artist filtering
     is deliberately NOT applied: a wrong artist in the pool is exactly the
@@ -461,49 +461,6 @@ async def async_musicbrainz_candidates(
     return out
 
 
-async def async_musicbrainz_year(
-    session: Any,  # aiohttp.ClientSession
-    artist: str,
-    title: str,
-    throttle: MusicBrainzThrottle,
-    *,
-    timeout: float = 8.0,
-    min_score: int = _MB_MIN_SCORE,
-) -> int | None:
-    """Look up a verified original-release year on MusicBrainz.
-
-    Returns None on any failure or low-confidence match. Uses the cleaned title
-    (version suffixes stripped) so remasters match the underlying recording.
-    """
-
-    async def _query(q_title: str) -> int | None:
-        query = f'recording:"{_mb_escape(q_title)}" AND artist:"{_mb_escape(artist)}"'
-        params = {"query": query, "fmt": "json", "limit": "25"}
-        headers = {"User-Agent": _MB_USER_AGENT}
-        await throttle.wait()
-        try:
-            async with session.get(
-                _MB_BASE, params=params, headers=headers, timeout=timeout
-            ) as resp:
-                if resp.status != 200:
-                    _LOGGER.debug("MB %s for %s - %s", resp.status, artist, title)
-                    return None
-                data = await resp.json()
-        except (TimeoutError, asyncio.TimeoutError):
-            _LOGGER.debug("MB timeout for %s - %s", artist, title)
-            return None
-        except Exception as err:  # noqa: BLE001 - never let MB break a pool build
-            _LOGGER.debug("MB error for %s - %s: %s", artist, title, err)
-            return None
-        return pick_mb_year(data.get("recordings") or [], artist, min_score=min_score)
-
-    for candidate in title_query_candidates(title):
-        year = await _query(candidate)
-        if year is not None:
-            return year
-    return None
-
-
 async def async_musicbrainz_year_genres(
     session: Any,
     artist: str,
@@ -513,8 +470,13 @@ async def async_musicbrainz_year_genres(
     min_score: int = _MB_MIN_SCORE,
     timeout: float = 8.0,
 ) -> tuple[int | None, list[str]]:
-    """Like async_musicbrainz_year, but also returns MB genre tags (free —
-    same responses). Genres may be present even when no confident year is."""
+    """Look up a verified original-release year plus MB genre tags.
+
+    Returns None for the year on any failure or low-confidence match. Uses the
+    cleaned title (version suffixes stripped) so remasters match the underlying
+    recording. The genre tags ride along on the same responses, so they are
+    free; they may be present even when no confident year is.
+    """
     genres: list[str] = []
 
     async def _query(q_title: str) -> int | None:

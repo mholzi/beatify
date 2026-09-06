@@ -119,33 +119,6 @@ async def async_iter_all_library_tracks(
     return out
 
 
-async def async_resolve_uri_by_name(
-    hass: HomeAssistant, config_entry_id: str, artist: str, title: str
-) -> str | None:
-    """Last-resort playback resolution: search the library for artist+title."""
-    mass = _get_client(hass, config_entry_id)
-    try:
-        results = await mass.music.search(
-            search_query=title, media_types=["track"], limit=5, library_only=True
-        )
-    except Exception as err:  # noqa: BLE001
-        _LOGGER.debug("MA search failed for %s - %s: %s", artist, title, err)
-        return None
-
-    tracks = getattr(results, "tracks", None) or []
-    artist_l = artist.strip().lower()
-    fallback: str | None = None
-    for t in tracks:
-        norm = _normalize_track(t)
-        if not norm or not norm.get("uri"):
-            continue
-        if fallback is None:
-            fallback = norm["uri"]
-        if norm.get("artist", "").strip().lower() == artist_l:
-            return norm["uri"]
-    return fallback
-
-
 # --------------------------------------------------------------------------- #
 # Track model -> plain dict. Uses getattr throughout so a minor model bump
 # (renamed/missing optional field) degrades gracefully instead of crashing.
