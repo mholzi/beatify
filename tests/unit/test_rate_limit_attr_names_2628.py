@@ -33,9 +33,7 @@ def _view_classes():
     import custom_components.beatify.server as server_pkg
 
     for mod in pkgutil.iter_modules(server_pkg.__path__):
-        module = importlib.import_module(
-            f"custom_components.beatify.server.{mod.name}"
-        )
+        module = importlib.import_module(f"custom_components.beatify.server.{mod.name}")
         for _, obj in inspect.getmembers(module, inspect.isclass):
             if obj is RateLimitMixin or not issubclass(obj, RateLimitMixin):
                 continue
@@ -67,7 +65,9 @@ class TestAttributeNames:
         ("view_name", "expected"),
         [("LibraryPlaylistResolveView", 30), ("LibraryPlaylistGenerateView", 15)],
     )
-    def test_the_two_library_views_carry_their_intended_limit(self, view_name, expected):
+    def test_the_two_library_views_carry_their_intended_limit(
+        self, view_name, expected
+    ):
         from custom_components.beatify.server import library_views
 
         assert getattr(library_views, view_name).RATE_LIMIT_REQUESTS == expected
