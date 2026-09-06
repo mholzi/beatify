@@ -31,6 +31,33 @@ _LOGGER = logging.getLogger(__name__)
 _SLIDER_DEFAULT_MIN_YEAR = 1950
 
 
+def year_range(gs: GameState) -> dict[str, int]:
+    """Which years a player may offer: a fixed default, widened to cover the
+    playlist (#2337).
+
+    The upper default follows the clock rather than a literal, for the same
+    reason ``_max_year`` does in the playlist schema (#706): a hardcoded year
+    goes stale every January, quietly, and nobody notices until a song from the
+    new year comes up mid-party.
+
+    **This is deliberately module-level and public.** It answers one question —
+    which years are valid in this game — and that question is asked twice: once
+    to draw the slider, once to accept the guess. While the answers lived apart,
+    the slider reached down to the oldest song in the playlist and the handler
+    kept rejecting anything below ``YEAR_MIN``; a player could set the correct
+    year and have the guess thrown away (#2623).
+    """
+    from datetime import datetime, timezone
+
+    low, high = _SLIDER_DEFAULT_MIN_YEAR, datetime.now(timezone.utc).year
+    pm = getattr(gs, "_playlist_manager", None)
+    span = pm.get_year_span() if pm is not None else None
+    if span is not None:
+        low = min(low, span[0])
+        high = max(high, span[1])
+    return {"min": low, "max": high}
+
+
 class GameStateSerializer:
     """Builds broadcast-ready dicts from GameState.
 
@@ -195,22 +222,8 @@ class GameStateSerializer:
 
     @staticmethod
     def _year_range(gs: GameState) -> dict[str, int]:
-        """Slider bounds: a fixed default, widened to cover the playlist (#2337).
-
-        The upper default follows the clock rather than a literal, for the
-        same reason ``_max_year`` does in the playlist schema (#706): a
-        hardcoded year goes stale every January, quietly, and nobody notices
-        until a song from the new year comes up mid-party.
-        """
-        from datetime import datetime, timezone
-
-        low, high = _SLIDER_DEFAULT_MIN_YEAR, datetime.now(timezone.utc).year
-        pm = getattr(gs, "_playlist_manager", None)
-        span = pm.get_year_span() if pm is not None else None
-        if span is not None:
-            low = min(low, span[0])
-            high = max(high, span[1])
-        return {"min": low, "max": high}
+        """Slider bounds for the state payload. See :func:`year_range`."""
+        return year_range(gs)
 
     @staticmethod
     def _add_playing_state(gs: GameState, state: dict[str, Any]) -> None:

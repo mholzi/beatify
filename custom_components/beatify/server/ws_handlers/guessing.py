@@ -28,9 +28,8 @@ from custom_components.beatify.const import (
     ERR_ROUND_EXPIRED,
     ERR_TARGET_ALREADY_SABOTAGED,
     ERR_TARGET_ALREADY_SUBMITTED,
-    YEAR_MAX,
-    YEAR_MIN,
 )
+from custom_components.beatify.game.serializers import year_range
 from custom_components.beatify.game.state import GamePhase, GameState
 
 if TYPE_CHECKING:
@@ -136,7 +135,13 @@ async def handle_submit(
             return
 
     year = data.get("year")
-    if not isinstance(year, int) or year < YEAR_MIN or year > YEAR_MAX:
+    # #2623: validate against the range the player was actually offered, not
+    # against two constants. The slider widens to cover the playlist, so a
+    # fixed floor of 1950 rejected correct answers for the 27 catalogue songs
+    # dated 1937-1949 — and a fixed ceiling of 2026 would start rejecting the
+    # current year every January.
+    allowed = year_range(game_state)
+    if not isinstance(year, int) or year < allowed["min"] or year > allowed["max"]:
         await ws.send_json(
             {
                 "type": "error",
