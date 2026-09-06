@@ -925,7 +925,7 @@ class LibraryPlaylistResolveView(RateLimitMixin, HomeAssistantView):
     name = "beatify:api:library-playlists:resolve"
     requires_auth = False  # auth handled in-handler
 
-    RATE_LIMIT_MAX_REQUESTS = 30
+    RATE_LIMIT_REQUESTS = 30
     RATE_LIMIT_WINDOW = 60
     MAX_PICKS = 300
 
@@ -997,7 +997,7 @@ class LibraryPlaylistGenerateView(RateLimitMixin, HomeAssistantView):
     name = "beatify:api:library-playlists:generate"
     requires_auth = False  # auth handled in-handler
 
-    RATE_LIMIT_MAX_REQUESTS = 15
+    RATE_LIMIT_REQUESTS = 15
     RATE_LIMIT_WINDOW = 60
 
     def __init__(self, hass: HomeAssistant) -> None:
