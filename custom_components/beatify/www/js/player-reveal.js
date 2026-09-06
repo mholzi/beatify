@@ -110,12 +110,70 @@ export function renderCollection(player) {
 }
 
 /**
+ * i18n keys for the idle-halt banner, by who is reading it (#2622).
+ *
+ * The banner used to carry ONE sentence for everybody: "Game idle — no one
+ * played this round. Tap Next round to keep going." But "Next round" lives in
+ * `#reveal-admin-controls`, which is `hidden` for guests — so every guest hunted
+ * their phone for an announced button that is not there and then asked out loud,
+ * and the host had to explain that only they can advance. Exported so the pairing
+ * of audience to sentence is testable without a DOM.
+ */
+export var IDLE_HALT_KEYS = {
+    host: 'reveal.idleHaltBanner',
+    guest: 'reveal.idleHaltBannerGuest',
+};
+
+/**
+ * Render the idle-halt banner for the reader in front of it (#2622).
+ *
+ * Both audiences still see the banner — the round really did stall, and a guest
+ * staring at a frozen screen needs to know why. Only the second half of the
+ * sentence changes: the host is told to tap, the guest is told to wait.
+ *
+ * The `data-i18n` attribute is rewritten alongside the text, not just the text:
+ * `initPageTranslations()` re-renders every `[data-i18n]` node on a language
+ * switch, and would otherwise put the host sentence back on a guest's phone.
+ *
+ * @param {HTMLElement|null} banner - #reveal-idle-halt
+ * @param {boolean} halted - server's idle_halt flag
+ * @param {boolean} isHost - is this phone the host's?
+ */
+export function renderIdleHalt(banner, halted, isHost) {
+    if (!banner) return;
+    banner.classList.toggle('hidden', !halted);
+    if (!halted) return;
+
+    var textEl = document.getElementById('reveal-idle-halt-text');
+    if (!textEl) return;
+
+    var key = isHost ? IDLE_HALT_KEYS.host : IDLE_HALT_KEYS.guest;
+    textEl.setAttribute('data-i18n', key);
+    var text = typeof utils.t === 'function' ? utils.t(key) : '';
+    if (text && text !== key) textEl.textContent = text;
+}
+
+/**
  * Update reveal view with round results
  * @param {Object} data - State data from server
  */
 export function updateRevealView(data) {
     var song = data.song || {};
     var players = data.players || [];
+
+    // #2622: hoisted from further down. The idle-halt banner needs to know who
+    // is looking, and it must use the SAME predicate that decides whether the
+    // "Next round" button is on screen (`#reveal-admin-controls` below) — two
+    // separate host checks are exactly how the banner started announcing a
+    // button the reader does not have.
+    var currentPlayer = null;
+    for (var i = 0; i < players.length; i++) {
+        if (players[i].name === state.playerName) {
+            currentPlayer = players[i];
+            break;
+        }
+    }
+    var isHost = !!(currentPlayer && currentPlayer.is_admin);
 
     var roundEl = document.getElementById('reveal-round');
     var totalEl = document.getElementById('reveal-total');
@@ -124,8 +182,8 @@ export function updateRevealView(data) {
 
     // #1012 follow-up: idle-halt notice — the round ended with zero guesses,
     // playback has stopped, and the game is holding here until "Next round".
-    var idleHalt = document.getElementById('reveal-idle-halt');
-    if (idleHalt) idleHalt.classList.toggle('hidden', !data.idle_halt);
+    // #2622: the sentence depends on the reader, see renderIdleHalt().
+    renderIdleHalt(document.getElementById('reveal-idle-halt'), !!data.idle_halt, isHost);
 
     // Auto-advance countdown — mirrors the admin sticky-Next countdown (#1048)
     // and the TV dashboard ring (#1185). Players had no way to see how long the
@@ -274,13 +332,8 @@ export function updateRevealView(data) {
         funFactContainer.classList.toggle('hidden', !hasFunFact && !hasRichInfo);
     }
 
-    var currentPlayer = null;
-    for (var i = 0; i < players.length; i++) {
-        if (players[i].name === state.playerName) {
-            currentPlayer = players[i];
-            break;
-        }
-    }
+    // #2622: currentPlayer is resolved at the top of this function now — the
+    // idle-halt banner needs the same host flag the admin controls use.
 
     // #1180: in Title & Artist mode there is no year, so the year duel /
     // emotion ("BINGO" + "You said × N years × Actually <year>") and the

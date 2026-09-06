@@ -648,7 +648,10 @@
                      ended with zero guesses and the game is holding here. -->
                 <div id="reveal-idle-halt" class="idle-halt-banner hidden" role="status">
                     <span class="idle-halt-icon" aria-hidden="true">⏸️</span>
-                    <span data-i18n="reveal.idleHaltBanner">Game idle — no one played this round. Tap Next round to keep going.</span>
+                    <!-- #2622: the sentence swaps for guests (renderIdleHalt in
+                         player-reveal.js) — "Tap Next round" points at a button
+                         that only the host has. -->
+                    <span id="reveal-idle-halt-text" data-i18n="reveal.idleHaltBanner">Game idle — no one played this round. Tap Next round to keep going.</span>
                 </div>
 
                 <!-- Header: round count + difficulty badge + round-stats ⓘ -->

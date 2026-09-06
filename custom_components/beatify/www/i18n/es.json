@@ -182,6 +182,7 @@
     "wrong": "Incorrecto",
     "theYearWas": "El año era",
     "idleHaltBanner": "Juego en pausa — nadie jugó esta ronda. Toca «Siguiente ronda» para continuar.",
+    "idleHaltBannerGuest": "Juego en pausa — nadie jugó esta ronda. El anfitrión iniciará la siguiente ronda.",
     "funFact": "Dato curioso",
     "collection": {
       "title": "Tu colección",

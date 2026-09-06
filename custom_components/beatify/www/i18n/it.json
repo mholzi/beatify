@@ -182,6 +182,7 @@
     "wrong": "Sbagliato",
     "theYearWas": "L'anno era",
     "idleHaltBanner": "Partita ferma: nessuno ha giocato questo turno. Tocca Turno successivo per proseguire.",
+    "idleHaltBannerGuest": "Partita ferma: nessuno ha giocato questo turno. L'host avvierà il turno successivo.",
     "funFact": "Curiosità",
     "collection": {
       "title": "La tua collezione",
