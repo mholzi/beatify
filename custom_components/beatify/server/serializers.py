@@ -7,6 +7,7 @@ need to be made in one place (#352).
 
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
@@ -21,6 +22,8 @@ if TYPE_CHECKING:
 
     from custom_components.beatify.game.service import GameService
     from custom_components.beatify.game.state import GameState
+
+_LOGGER = logging.getLogger(__name__)
 
 
 def get_game_state(hass: HomeAssistant) -> GameState | None:
@@ -55,35 +58,191 @@ def build_state_message(game_state: GameState) -> dict[str, Any] | None:
 REDACTED_PLACEHOLDER = "???"
 
 
+# ---------------------------------------------------------------------------
+# Player-visible state — an allowlist, not a denylist (#2634)
+# ---------------------------------------------------------------------------
+#
+# The ``state`` broadcast carries ~59 top-level keys. Until #2634 the filtering
+# was a denylist of two (``admin_song``, ``song.artist``/``song.title``), so
+# every key added to the serializer reached the player sockets by default. That
+# default produced two leaks — #1366 (``admin_song``) and #2550
+# (``artist_challenge``) — each closed afterwards by widening the denylist.
+#
+# The direction is now reversed: a key reaches a player only if it is listed
+# here, and ``tests/unit/test_player_state_allowlist_2634.py`` fails the build
+# when the serializer grows a key that is in neither set. A new answer field is
+# therefore a red CI run, not a line in someone's network tab.
+#
+# Adding a key here is a deliberate act: ask whether a guest holding the phone
+# may see it *before* they guess.
+
+#: Base keys, present in every phase (``GameStateSerializer.serialize``).
+_PLAYER_VISIBLE_BASE = frozenset(
+    {
+        # ``type`` is the envelope from build_state_message; the HTTP
+        # ``active_game`` payload has no envelope and simply never carries it.
+        "type",
+        "game_id",
+        "phase",
+        "player_count",
+        "players",
+        "language",
+        "difficulty",
+        "round_duration",
+        "intro_mode_enabled",
+        "closest_wins_mode",
+        "rampup_order_enabled",
+        "comeback_token_enabled",
+        "sabotage_enabled",
+        "difficulty_bet_scaling_enabled",
+        "bet_win_multiplier",
+        "sudden_death_mode",
+        "finale_double_enabled",
+        "finale_tiebreaker_enabled",
+        "title_artist_mode",
+        "is_intro_round",
+        "intro_stopped",
+        "intro_splash_pending",
+        "year_range",
+    }
+)
+
+#: LOBBY / PLAYING / REVEAL round context.
+_PLAYER_VISIBLE_ROUND = frozenset(
+    {
+        "join_url",
+        "round",
+        "total_rounds",
+        "last_round",
+        "songs_remaining",
+        "deadline",
+        "server_now_ms",
+        "seconds_remaining",
+        "finale_double_active",
+        "finale_playoff_active",
+        "submitted_count",
+        "all_submitted",
+        # The song card. Its *contents* are filtered separately during PLAYING —
+        # see PLAYING_SONG_PLAYER_KEYS below.
+        "song",
+        "leaderboard",
+        # The three challenge blocks are built with ``include_answer=False``
+        # during PLAYING and ``include_answer=True`` at REVEAL, so the answer
+        # gating lives in the challenge managers, not here.
+        "artist_challenge",
+        "movie_challenge",
+        "title_artist_challenge",
+        # #2557: the host renders the volume, but the frame goes to everyone.
+        "volume_level",
+    }
+)
+
+#: PAUSED-phase recovery banner.
+_PLAYER_VISIBLE_PAUSED = frozenset(
+    {
+        "pause_reason",
+        "last_error_detail",
+        "provider",
+        "media_player",
+    }
+)
+
+#: REVEAL-phase result surface. Everything here is public by the time it is
+#: sent — REVEAL is the moment the answer becomes common knowledge.
+_PLAYER_VISIBLE_REVEAL = frozenset(
+    {
+        "eliminated_this_round",
+        "round_analytics",
+        "game_performance",
+        "song_difficulty",
+        "early_reveal",
+        "idle_halt",
+        "reveal_auto_advance",
+        "reveal_started_at",
+    }
+)
+
+#: END-phase podium.
+_PLAYER_VISIBLE_END = frozenset(
+    {
+        "game_stats",
+        "winner",
+        "superlatives",
+        "highlights",
+        "share_data",
+    }
+)
+
+#: Every top-level key a non-admin socket may receive.
+PLAYER_VISIBLE_KEYS: frozenset[str] = (
+    _PLAYER_VISIBLE_BASE
+    | _PLAYER_VISIBLE_ROUND
+    | _PLAYER_VISIBLE_PAUSED
+    | _PLAYER_VISIBLE_REVEAL
+    | _PLAYER_VISIBLE_END
+)
+
+#: Top-level keys that stay on the spectator-admin socket. Listing a key here
+#: rather than simply leaving it out of the allowlist is what makes the
+#: completeness test meaningful: an unlisted key is an oversight, a listed one
+#: is a decision.
+ADMIN_ONLY_KEYS: frozenset[str] = frozenset(
+    {
+        # #648/#1366: the year answer, the fun facts and the library URI.
+        "admin_song",
+    }
+)
+
+#: Keys of the PLAYING-phase ``song`` sub-dict a player may receive. The song
+#: card is where the answer lives, so it gets the same default-deny treatment
+#: one level down: a ``year`` accidentally added to the PLAYING payload would
+#: otherwise be the answer, printed, before anyone guesses.
+#:
+#: The REVEAL ``song`` is deliberately NOT filtered — by then the year, the fun
+#: facts and the cover hint are the point of the screen.
+PLAYING_SONG_PLAYER_KEYS: frozenset[str] = frozenset(
+    {
+        "artist",
+        "title",
+        "album_art",
+    }
+)
+
+# Keys already reported as unclassified, so the warning below fires once per
+# key per process instead of once per broadcast.
+_UNCLASSIFIED_SEEN: set[str] = set()
+
+
 def redact_state_for_player(message: dict[str, Any]) -> dict[str, Any]:
     """Return a player-safe copy of a ``state`` / ``metadata_update`` message.
 
-    The full broadcast payload built by :func:`build_state_message` (and the
-    ``metadata_update`` payload) carries the round's answers so the spectator
-    admin / TV can display them. Those frames are broadcast identically to
-    every connection, so a player can read the answer straight off the
-    WebSocket before guessing (#1366). This strips the answers for non-admin
-    recipients:
+    The full broadcast payload built by :func:`build_state_message` carries the
+    round's answers so the spectator admin / TV can display them. Those frames
+    are broadcast identically to every connection, so a player could read the
+    answer straight off the WebSocket before guessing (#1366).
 
-    * ``admin_song`` (the year answer + fun facts) is removed entirely — it is
-      never meant for players in any mode.
-    * When ``title_artist_mode`` is active and the game is still ``PLAYING``,
-      ``song.artist`` / ``song.title`` ARE the answers being guessed, so they
-      are replaced with a placeholder. ``album_art`` is left intact (players
-      need it to play along). The REVEAL payload is untouched — by then the
-      answers are public.
-    * When an artist challenge is running in ``PLAYING``, ``song.artist`` alone
-      is the answer and is replaced the same way (#2550). The title is not part
-      of that challenge and stays visible.
+    Three things happen here:
 
-    The input is not mutated; only the keys that need changing are shallow
-    copied.
+    * **Top-level allowlist (#2634).** Only :data:`PLAYER_VISIBLE_KEYS` survive.
+      Anything else is dropped — including, by name, :data:`ADMIN_ONLY_KEYS`
+      (``admin_song``: the year answer, the fun facts, the library URI). A key
+      in neither set is dropped *and* logged, and fails the build in
+      ``tests/unit/test_player_state_allowlist_2634.py``.
+    * **Song allowlist during PLAYING.** The ``song`` card is reduced to
+      :data:`PLAYING_SONG_PLAYER_KEYS`. The REVEAL card is untouched.
+    * **Answer masking.** When ``title_artist_mode`` is active and the game is
+      still ``PLAYING``, ``song.artist`` / ``song.title`` ARE the answers being
+      guessed, so they become :data:`REDACTED_PLACEHOLDER`. ``album_art`` stays
+      — players need it to play along. An artist challenge (#2550) masks
+      ``song.artist`` alone; the title is not part of that challenge.
+
+    The input is never mutated. When nothing needs changing the *same object* is
+    returned, which the broadcast path relies on to serialize a payload once
+    instead of twice (#1711).
     """
     if not isinstance(message, dict):
         return message
 
-    # Nothing to redact if neither answer-bearing key is present.
-    has_admin_song = "admin_song" in message
     playing_with_song = message.get("phase") == "PLAYING" and isinstance(
         message.get("song"), dict
     )
@@ -91,27 +250,52 @@ def redact_state_for_player(message: dict[str, Any]) -> dict[str, Any]:
     # #2550: an artist challenge asks players to name the artist, so during
     # PLAYING `song.artist` is the answer just as much as in title_artist_mode.
     # No client renders it, but the frame is on every player socket and the
-    # network tab is enough to read it — the same leak #1366 closed for
-    # admin_song and title_artist_mode. The title is not part of this challenge
-    # and stays visible.
+    # network tab is enough to read it.
     redact_artist_only = (
         not redact_song
         and playing_with_song
         and isinstance(message.get("artist_challenge"), dict)
     )
-    if not has_admin_song and not redact_song and not redact_artist_only:
+
+    stripped = [key for key in message if key not in PLAYER_VISIBLE_KEYS]
+    song_stripped = (
+        [key for key in message["song"] if key not in PLAYING_SONG_PLAYER_KEYS]
+        if playing_with_song
+        else []
+    )
+    if (
+        not stripped
+        and not song_stripped
+        and not redact_song
+        and not redact_artist_only
+    ):
         return message
 
-    redacted = dict(message)
-    redacted.pop("admin_song", None)
-    if redact_song:
-        song = dict(redacted["song"])
-        song["artist"] = REDACTED_PLACEHOLDER
-        song["title"] = REDACTED_PLACEHOLDER
-        redacted["song"] = song
-    elif redact_artist_only:
-        song = dict(redacted["song"])
-        song["artist"] = REDACTED_PLACEHOLDER
+    for key in stripped:
+        if key in ADMIN_ONLY_KEYS or key in _UNCLASSIFIED_SEEN:
+            continue
+        _UNCLASSIFIED_SEEN.add(key)
+        _LOGGER.warning(
+            "State key %r is in neither PLAYER_VISIBLE_KEYS nor ADMIN_ONLY_KEYS "
+            "(server/serializers.py) — it is being withheld from players. If it "
+            "belongs on a player screen, add it to the allowlist (#2634).",
+            key,
+        )
+
+    redacted = {
+        key: value for key, value in message.items() if key in PLAYER_VISIBLE_KEYS
+    }
+    if playing_with_song:
+        song = {
+            key: value
+            for key, value in message["song"].items()
+            if key in PLAYING_SONG_PLAYER_KEYS
+        }
+        if redact_song:
+            song["artist"] = REDACTED_PLACEHOLDER
+            song["title"] = REDACTED_PLACEHOLDER
+        elif redact_artist_only:
+            song["artist"] = REDACTED_PLACEHOLDER
         redacted["song"] = song
     return redacted
 
