@@ -538,105 +538,6 @@ export function animateValue(element, start, end, duration, easing) {
     };
 }
 
-/**
- * Animate score change with visual effects
- * @param {HTMLElement} element - Score element to animate
- * @param {number} oldScore - Previous score value
- * @param {number} newScore - New score value
- * @param {Object} options - Effect options: { betWon, betLost, streakMilestone, isBigScore }
- */
-export function animateScoreChange(element, oldScore, newScore, options) {
-    options = options || {};
-
-    var duration = 500;
-    if (options.betWon) {
-        duration = 800;
-    } else if (options.isBigScore) {
-        duration = 700;
-    } else if (options.betLost) {
-        duration = 400;
-    }
-
-    element.classList.add('score-animating');
-
-    var animationClass = null;
-    if (options.betWon) {
-        animationClass = 'score-glow-gold';
-    } else if (options.betLost) {
-        animationClass = 'score-shake';
-        element.classList.add('score-flash-red');
-    } else if (options.streakMilestone) {
-        animationClass = 'score-burst';
-    } else if (options.isBigScore) {
-        animationClass = 'score-pop';
-    }
-
-    if (animationClass && !prefersReducedMotion()) {
-        element.classList.add(animationClass);
-    }
-
-    animateValue(element, oldScore, newScore, duration);
-
-    function cleanup() {
-        element.classList.remove('score-animating');
-        if (animationClass) {
-            element.classList.remove(animationClass);
-        }
-        element.classList.remove('score-flash-red');
-    }
-
-    if (animationClass && !prefersReducedMotion()) {
-        element.addEventListener('animationend', function onEnd() {
-            element.removeEventListener('animationend', onEnd);
-            cleanup();
-        });
-    } else {
-        setTimeout(cleanup, duration + 50);
-    }
-}
-
-/**
- * Show floating points popup above target element
- * @param {HTMLElement} targetElement - Element to position popup relative to
- * @param {number} points - Points value to display
- * @param {Object} options - Options: { text, isStreak, isBetWin }
- */
-export function showPointsPopup(targetElement, points, options) {
-    options = options || {};
-
-    if (prefersReducedMotion()) {
-        return;
-    }
-
-    var popup = document.createElement('div');
-    popup.className = 'points-popup';
-    popup.textContent = options.text || ('+' + points);
-
-    if (options.isStreak) {
-        popup.classList.add('points-popup--streak');
-    } else if (options.isBetWin) {
-        popup.classList.add('points-popup--gold');
-    }
-
-    var rect = targetElement.getBoundingClientRect();
-    popup.style.left = (rect.left + rect.width / 2) + 'px';
-    popup.style.top = rect.top + 'px';
-
-    document.body.appendChild(popup);
-
-    popup.addEventListener('animationend', function() {
-        if (popup.parentNode) {
-            popup.parentNode.removeChild(popup);
-        }
-    });
-
-    setTimeout(function() {
-        if (popup.parentNode) {
-            popup.parentNode.removeChild(popup);
-        }
-    }, 1200);
-}
-
 // ============================================
 // Previous State Cache (Story 13.2)
 // ============================================
@@ -653,24 +554,6 @@ export var previousState = {
  */
 export function isPreviousStateInitialized() {
     return previousState.initialized;
-}
-
-var STREAK_MILESTONES = [3, 5, 10, 15, 20, 25];
-
-/**
- * Check if a streak milestone was just reached
- * @param {number} oldStreak - Previous streak value
- * @param {number} newStreak - Current streak value
- * @returns {number|null} Milestone reached or null
- */
-export function isStreakMilestone(oldStreak, newStreak) {
-    for (var i = 0; i < STREAK_MILESTONES.length; i++) {
-        var milestone = STREAK_MILESTONES[i];
-        if (oldStreak < milestone && newStreak >= milestone) {
-            return milestone;
-        }
-    }
-    return null;
 }
 
 /**

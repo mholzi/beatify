@@ -5,8 +5,8 @@
 
 import {
     state, escapeHtml, showConfirmModal,
-    prefersReducedMotion, animateValue, animateScoreChange, showPointsPopup,
-    previousState, isPreviousStateInitialized, isStreakMilestone, detectRankChanges,
+    prefersReducedMotion, animateValue,
+    previousState, isPreviousStateInitialized, detectRankChanges,
     updatePreviousState, AnimationUtils, AnimationQueue,
     LEADERBOARD_LAZY_CONFIG, lazyLeaderboardState,
     initLeaderboardObserver, renderLazyLeaderboardRange,

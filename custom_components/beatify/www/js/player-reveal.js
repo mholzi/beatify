@@ -5,8 +5,8 @@
 
 import {
     state, escapeHtml,
-    prefersReducedMotion, animateValue, animateScoreChange, showPointsPopup,
-    previousState, isPreviousStateInitialized, isStreakMilestone,
+    prefersReducedMotion, animateValue,
+    previousState, isPreviousStateInitialized,
     AnimationUtils, updatePreviousState,
     triggerConfetti, stopConfetti, isTitleArtistMode,
     createModalFocusTrap, classifyYearsOff
