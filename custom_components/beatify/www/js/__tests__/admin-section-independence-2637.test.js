@@ -202,6 +202,11 @@ function makeDocument(ids) {
     };
 }
 
+// Timers started while a page is booted. mix.js debounces its preview by 60ms;
+// if that fires after the stub `document` is torn down it becomes an unhandled
+// error in whichever test file happens to be running next.
+const pendingTimers = [];
+
 /** Install the sentinel window + a stub document, then import modules fresh. */
 function bootPage(elementIds, { fetchImpl } = {}) {
     vi.resetModules();
@@ -227,16 +232,24 @@ function bootPage(elementIds, { fetchImpl } = {}) {
     globalThis.BeatifyAuth = base.BeatifyAuth;
     globalThis.localStorage = base.localStorage;
     globalThis.CSS = globalThis.CSS || { escape: (s) => String(s) };
+    const realSetTimeout = globalThis.setTimeout;
+    globalThis.setTimeout = (...args) => {
+        const id = realSetTimeout(...args);
+        pendingTimers.push(id);
+        return id;
+    };
+    savedGlobals.setTimeout = realSetTimeout;
     return doc;
 }
 
 const savedGlobals = {};
 beforeEach(() => {
-    for (const k of ['window', 'document', 'BeatifyI18n', 'BeatifyAuth', 'localStorage']) {
+    for (const k of ['window', 'document', 'BeatifyI18n', 'BeatifyAuth', 'localStorage', 'setTimeout']) {
         savedGlobals[k] = globalThis[k];
     }
 });
 afterEach(() => {
+    while (pendingTimers.length) globalThis.clearTimeout(pendingTimers.pop());
     for (const [k, v] of Object.entries(savedGlobals)) {
         if (v === undefined) delete globalThis[k];
         else globalThis[k] = v;

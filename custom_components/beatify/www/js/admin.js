@@ -3,10 +3,16 @@
  * Vanilla JS - no frameworks
  *
  * #1279 Schritt 2/6: admin.js is now an ES module (`<script type="module">`).
- * Pure helpers live in ./admin/util.js; their previous top-level globals are
- * re-exposed on `window` below (compat shim) for classic scripts that still
- * read them. Token helpers read the live `adminState.currentGame` via a resolver
- * registered once at module init.
+ * Pure helpers live in ./admin/util.js. Token helpers read the live
+ * `adminState.currentGame` via a resolver registered once at module init.
+ *
+ * #2637: this file used to publish 14 names on `window` and the extracted
+ * sections called back through six of them. Six were dead, one was a section's
+ * own export routed out and back, one was never defined by anyone, and the two
+ * config getters belonged to classic scripts that are now bundle modules. The
+ * six that remain are listed in full below, next to the shim block they
+ * replaced; all six cross to a separate entry point, none of them to a sibling
+ * module.
  */
 
 // #1279 Schritt 5/6: centralized mutable setup-/game-state. Previously the ~24
@@ -180,6 +186,26 @@ setCurrentGameResolver(() => adminState.currentGame);
 // its own escapeHtml (party-lights.js:7) and no file in www/ reads any of the
 // six off `window`. They were dead weight that made admin.js look like a
 // dependency of scripts that do not depend on it.
+//
+// What this file still publishes on `window`, and why — the whole list, so the
+// next person does not have to grep for it:
+//
+//   window.loadStatus                 ← wizard.js (refresh after the wizard finishes)
+//   window.loadSavedSettings          ← wizard.js (re-read the settings it just wrote)
+//   window.BeatifyHome                ← wizard.js (enter/refresh the home view)
+//   window.BeatifyPersistSetup        ← wizard.js (publish the host's picks)
+//   window.BeatifyNoteLocalSetupWrite ← wizard.js (stamp a local-only setup write)
+//   window.BEATIFY_VERSION            ← playlist-requests.js (version gate)
+//
+// Every one of them crosses from this bundle to a script the page loads as its
+// own entry point (`<script type="module" src="wizard.js">`,
+// `<script src="playlist-requests.min.js">`). Those cannot import from
+// admin.min.js — an import would fetch a second copy of the module with its own
+// state — so `window` is the only channel available and this is a boundary
+// between entry points, not the cycle #2637 was about. Nothing under
+// `./admin/` reads any of them; `__tests__/admin-section-independence-2637.test.js`
+// fails if that changes. Every read above is event-driven (after
+// DOMContentLoaded, or on a click), so the deferred module has always run first.
 
 // Screen Wake Lock (#622, #1122)
 // Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox.
