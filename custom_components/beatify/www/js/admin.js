@@ -45,10 +45,6 @@ import {
     setCurrentGameResolver,
     _getAdminToken,
     _setAdminToken,
-    _adminHeaders,
-    groupPlayersByPlatform,
-    REQUEST_STATUS_LABELS,
-    buildRequestRowHtml,
     escapeHtml,
     errorHeadlineAndDetail,
     acquireWakeLockFirst,
@@ -166,17 +162,14 @@ import {
 // every `adminState.currentGame = …` without touching each assignment site.
 setCurrentGameResolver(() => adminState.currentGame);
 
-// Compat shim (#1279 step 2): admin.js is now a module, so its top-level
-// helper declarations are no longer global. Classic scripts loaded after this
-// module (party-lights.min.js, tts-settings.js) and module siblings that read
-// these by name keep working by reading them off `window`. These helpers were
-// implicitly global before the module migration; the shim makes that explicit.
-window.escapeHtml = escapeHtml;
-window.groupPlayersByPlatform = groupPlayersByPlatform;
-window.buildRequestRowHtml = buildRequestRowHtml;
-window._getAdminToken = _getAdminToken;
-window._setAdminToken = _setAdminToken;
-window._adminHeaders = _adminHeaders;
+// #2637: the six helper shims that used to sit here (escapeHtml,
+// groupPlayersByPlatform, buildRequestRowHtml, _getAdminToken, _setAdminToken,
+// _adminHeaders) are gone. The comment claimed party-lights.js and
+// tts-settings.js read them by name; neither ever did — party-lights.js carries
+// its own escapeHtml (party-lights.js:7) and no file in www/ reads any of the
+// six off `window`. They were dead weight that made admin.js look like a
+// dependency of scripts that do not depend on it.
+
 // #1279 step 4b: playlists.js generates HTML with inline onclick="clearPlaylistFilters()"
 // (empty-filter "Clear Filters" button + active-filter "Clear" link), so the
 // function must stay reachable as a window global.
