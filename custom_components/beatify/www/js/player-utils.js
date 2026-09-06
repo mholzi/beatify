@@ -3,6 +3,11 @@
  * AnimationQueue, easing functions, score popups, confetti helpers, DOM utilities
  */
 
+// #2627: the name cap comes from the shared mirror of const.py, not from a
+// local literal. It used to be declared here AND written out as
+// `name.length > 20` twice in admin.js AND as `maxlength="20"` in two forms.
+import { MAX_NAME_LENGTH } from './game-constants.js';
+
 var utils = window.BeatifyUtils || {};
 
 // ============================================
@@ -80,6 +85,10 @@ export function showView(viewId) {
     }
 
     if (viewId === 'join-view') {
+        // #2627: the cap the field enforces is the cap the server enforces.
+        // player.html no longer ships `maxlength="20"` — a second copy of the
+        // number that a server-side change would have left behind.
+        applyNameLengthCap(document.getElementById('name-input'));
         // #2506: tapping Join disables the button and relabels it "Joining…",
         // and only the join-timeout path ever put it back. Leaving a game, a
         // session takeover, a failed reconnect and an unknown session all
@@ -95,7 +104,24 @@ export function showView(viewId) {
     }
 }
 
-export var MAX_NAME_LENGTH = 20;
+// Re-exported so existing importers of this module keep working; the value
+// itself is defined once, in game-constants.js (#2627).
+export { MAX_NAME_LENGTH };
+
+/**
+ * Stamp the shared cap onto a name field (#2627).
+ *
+ * The markup deliberately carries no `maxlength`: an attribute is a literal
+ * that no server-side change can reach, which is how the join button and the
+ * two forms drifted apart from `const.py` in the first place. Setting it here
+ * means the field, `validateName()` and `game/player_registry.py` all cap at
+ * the same number.
+ *
+ * @param {HTMLInputElement|null} input
+ */
+export function applyNameLengthCap(input) {
+    if (input) input.maxLength = MAX_NAME_LENGTH;
+}
 
 /**
  * Validate a typed player name. Pure — moved here from player-core (#2506) so

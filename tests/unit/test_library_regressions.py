@@ -268,11 +268,18 @@ class TestSetupCompleteness:
         )
 
     def test_client_fallback_matches_the_server_rule(self):
-        code = src("www/js/admin.js")
         # Source syntax, checked in the SOURCE file — variable names do not
         # survive minification, so bundle checks use string constants only.
-        assert "(s.provider || s.selectedProvider) === 'ma_library'" in code
-        assert "libraryPlaylistLabel" in code
+        #
+        # The two halves live in two modules since #2620: admin.js reads the
+        # provider out of the stored settings blob, and admin/util.js
+        # (buildHomeMeta) turns that into the label. What the host actually
+        # ends up reading is asserted in
+        # www/js/__tests__/home-status-line-i18n-2620.test.js.
+        assert "(s.provider || s.selectedProvider) === 'ma_library'" in src(
+            "www/js/admin.js"
+        )
+        assert "libraryPlaylistLabel" in src("www/js/admin/util.js")
 
 
 class TestCreateGameAcceptsAGeneratingProvider:

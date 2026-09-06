@@ -24,7 +24,15 @@
 
 import { adminState } from '../state.js';
 import { STORAGE_GAME_SETTINGS } from '../constants.js';
-import { normalizeRoundDuration } from '../util.js';
+import { normalizeRoundDuration, tr } from '../util.js';
+// #2625/#2626: the auto-advance chips and the difficulty hint are BUILT from
+// the shared mirror of const.py instead of being typed out in admin.html.
+import {
+    REVEAL_AUTO_ADVANCE_OPTIONS,
+    autoAdvanceChipLabel,
+    difficultyHint,
+    normalizeRevealAutoAdvance,
+} from '../../game-constants.js';
 import { renderPlaylists } from './playlists.js';
 import {
     setupLibrarySettings,
@@ -52,9 +60,72 @@ export function selectChip(groupSelector, isActive) {
 }
 
 /**
+ * Build the reveal auto-advance chip group from the shared option list (#2626).
+ *
+ * admin.html used to carry the four chips as static markup — a third copy of a
+ * list that also lives in `const.py` and in the wizard. Adding a chip there was
+ * enough to ship a setting the server silently turns off, with no error and no
+ * sign of it until the first reveal. Rendering the group means the markup can
+ * no longer offer a value the server does not accept.
+ *
+ * Idempotent: safe to call again after a language switch, which is what
+ * re-translates the "Off" label.
+ */
+export function renderAutoAdvanceChips() {
+    const group = document.getElementById('reveal-advance-chips');
+    if (!group) return;
+    group.innerHTML = autoAdvanceChipsHtml(adminState.revealAutoAdvance, tr);
+}
+
+/**
+ * The chip-group markup for a given selection. Pure, so a test can read back
+ * which delays the UI offers and check the server would accept every one of
+ * them (#2626).
+ *
+ * @param {number} selected - the host's current choice, normalized here
+ * @param {(key: string, fallback: string) => string} t
+ * @returns {string} one `<button>` per entry of REVEAL_AUTO_ADVANCE_OPTIONS
+ */
+export function autoAdvanceChipsHtml(selected, t) {
+    const active = normalizeRevealAutoAdvance(selected);
+    return REVEAL_AUTO_ADVANCE_OPTIONS.map((seconds) => {
+        const label = autoAdvanceChipLabel(seconds);
+        // Keep the i18n key on the element so BeatifyI18n.initPageTranslations()
+        // keeps owning the label, exactly as it did for the static markup.
+        const i18n = label.key ? ` data-i18n="${label.key}"` : '';
+        const on = seconds === active;
+        return `<button type="button" class="chip${on ? ' chip--active' : ''}"`
+            + ` aria-pressed="${on ? 'true' : 'false'}"`
+            + ` data-reveal-advance="${seconds}"${i18n}>`
+            + `${label.key ? t(label.key, label.fallback) : label.fallback}</button>`;
+    }).join('');
+}
+
+/**
+ * Write the difficulty hint under the chips, derived from the scoring table
+ * (#2625).
+ *
+ * The string in admin.html/en.json was a hand-written summary and had drifted:
+ * it promised "Hard: only close guesses score" where the code pays 3 points
+ * within ±2 years. There is nothing left to drift now — the numbers come from
+ * `DIFFICULTY_SCORING`, and the locale files only carry the sentence around
+ * them.
+ */
+export function renderDifficultyHint() {
+    const el = document.getElementById('admin-difficulty-hint');
+    if (!el) return;
+    el.textContent = difficultyHint(adminState.selectedDifficulty, tr);
+}
+
+/**
  * Setup game settings controls (chips for language, timer, difficulty, toggle for artist challenge)
  */
 export function setupGameSettings() {
+    // #2626: the chip group is markup-free in admin.html — render it before any
+    // handler below queries `.chip[data-reveal-advance]`.
+    renderAutoAdvanceChips();
+    renderDifficultyHint();
+
     // Language chips
     document.querySelectorAll('.chip[data-lang]').forEach(chip => {
         chip.addEventListener('click', async function() {
@@ -65,6 +136,11 @@ export function setupGameSettings() {
                 await BeatifyI18n.setLanguage(lang);
                 BeatifyI18n.initPageTranslations();
             }
+            // #2620/#2625: both of these are composed in JS, so a language
+            // switch has to rebuild them — initPageTranslations only reaches
+            // elements carrying a data-i18n attribute.
+            renderAutoAdvanceChips();
+            renderDifficultyHint();
             updateGameSettingsSummary();
             saveGameSettings();
         });
@@ -81,13 +157,15 @@ export function setupGameSettings() {
         });
     });
 
-    // Reveal auto-advance chips (#1012)
-    document.querySelectorAll('.chip[data-reveal-advance]').forEach(chip => {
-        chip.addEventListener('click', function() {
-            adminState.revealAutoAdvance = parseInt(this.dataset.revealAdvance, 10) || 0;
-            selectChip('.chip[data-reveal-advance]', (c) => c === this);
-            saveGameSettings();
-        });
+    // Reveal auto-advance chips (#1012). Delegated: renderAutoAdvanceChips()
+    // replaces the buttons on every language switch, so a per-button listener
+    // would be thrown away with them (#2626).
+    document.getElementById('reveal-advance-chips')?.addEventListener('click', (event) => {
+        const chip = event.target.closest('.chip[data-reveal-advance]');
+        if (!chip) return;
+        adminState.revealAutoAdvance = normalizeRevealAutoAdvance(chip.dataset.revealAdvance);
+        selectChip('.chip[data-reveal-advance]', (c) => c === chip);
+        saveGameSettings();
     });
 
     // Difficulty chips
@@ -96,6 +174,7 @@ export function setupGameSettings() {
             const difficulty = this.dataset.difficulty;
             selectChip('.chip[data-difficulty]', (c) => c === this);
             adminState.selectedDifficulty = difficulty;
+            renderDifficultyHint();
             updateGameSettingsSummary();
             saveGameSettings();
         });
@@ -230,6 +309,10 @@ export async function loadSavedSettings() {
                 if (window.BeatifyI18n) {
                     await BeatifyI18n.setLanguage(settings.language);
                     BeatifyI18n.initPageTranslations();
+                    // The two JS-composed surfaces don't carry a data-i18n
+                    // attribute, so initPageTranslations cannot reach them.
+                    renderAutoAdvanceChips();
+                    renderDifficultyHint();
                 }
             }
 
@@ -242,16 +325,20 @@ export async function loadSavedSettings() {
                 selectChip('.chip[data-duration]', (c) => parseInt(c.dataset.duration, 10) === storedDuration);
             }
 
-            // Apply reveal auto-advance (#1012)
+            // Apply reveal auto-advance (#1012). #2626: normalize first — a blob
+            // written by an older build (or another device) can hold a value
+            // the server no longer accepts, and selecting a chip for it would
+            // show a setting the game is not running.
             if (typeof settings.revealAutoAdvance === 'number') {
-                adminState.revealAutoAdvance = settings.revealAutoAdvance;
-                selectChip('.chip[data-reveal-advance]', (c) => parseInt(c.dataset.revealAdvance, 10) === settings.revealAutoAdvance);
+                adminState.revealAutoAdvance = normalizeRevealAutoAdvance(settings.revealAutoAdvance);
+                selectChip('.chip[data-reveal-advance]', (c) => parseInt(c.dataset.revealAdvance, 10) === adminState.revealAutoAdvance);
             }
 
             // Apply difficulty
             if (settings.difficulty) {
                 adminState.selectedDifficulty = settings.difficulty;
                 selectChip('.chip[data-difficulty]', (c) => c.dataset.difficulty === settings.difficulty);
+                renderDifficultyHint();
             }
 
             // Apply artist challenge

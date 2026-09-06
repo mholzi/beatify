@@ -36,11 +36,30 @@
     <!-- Preconnect for faster font loading (Story 9.8) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <!-- #2641: the font stylesheet is fetched non-blocking. A cross-origin
+         <link rel=stylesheet> in the head stops rendering until the CDN answers
+         or times out, and on party wifi with no working internet that is 5-30
+         seconds of blank screen before anything appears. media="print" makes
+         the browser fetch it at low priority without blocking the render; the
+         onload swap applies it the moment it arrives. The page is fully
+         readable in the fallback stack until then. -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet"></noscript>
     <!-- Story 18.4: Use minified CSS in production -->
     <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v={{ASSET_VER}}">
-    <!-- Confetti library for celebrations (Story 14.5) -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Confetti library for celebrations (Story 14.5).
+         #2641: `async`, not plain and not `defer`. Loaded synchronously it
+         stopped the parser until jsdelivr answered — on party wifi with flaky
+         internet, 5-30 seconds before the join button existed. `defer` would
+         have been almost as bad: deferred scripts run in document order with
+         the `type="module"` bundle below and hold up DOMContentLoaded, so the
+         page would have rendered and then sat there unwired. `async` blocks
+         neither. Every call site already guards with
+         `typeof confetti === 'undefined'` (player-utils.js, dashboard.js), so
+         a confetti that never arrives costs the celebration animation and
+         nothing else. The service worker passes foreign origins through
+         (sw.js), so this is never served from cache. -->
+    <script async src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 <body class="theme-dark">
     <header class="player-header">
@@ -113,9 +132,13 @@
             <div class="join-form">
                 <p data-i18n="join.enterName">Enter your name to play</p>
                 <div class="form-group">
+                    <!-- #2627: no maxlength attribute on purpose. The cap is set
+                    from MAX_NAME_LENGTH (the mirror of const.py) in JS, so a
+                    server-side change reaches the field instead of leaving a
+                    stale literal behind. -->
                     <input type="text" id="name-input" class="name-input"
                            data-i18n-placeholder="join.namePlaceholder"
-                           placeholder="Your name" maxlength="20"
+                           placeholder="Your name"
                            autocomplete="off" autocapitalize="words"
                            aria-describedby="name-validation-msg">
                     <p id="name-validation-msg" class="validation-msg hidden"></p>

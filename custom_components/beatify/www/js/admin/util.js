@@ -15,6 +15,14 @@
  * that still reads the old globals.
  */
 
+// #2620/#2626/#2627: the values the server also knows about live in ONE place.
+import {
+    DIFFICULTY_LABELS,
+    DIFFICULTY_DEFAULT,
+    MAX_NAME_LENGTH,
+    normalizeRevealAutoAdvance,
+} from '../game-constants.js';
+
 // --- currentGame injection -------------------------------------------------
 // admin.js owns the mutable `currentGame`; we read it through a resolver so the
 // token helpers see live updates without util.js importing admin state.
@@ -72,17 +80,31 @@ export function groupPlayersByPlatform(players) {
  * the supplied English string when i18n is unavailable (e.g. in unit tests /
  * before the module loads) or the key is missing. BeatifyI18n.t() returns the
  * key itself for a missing translation, so we treat that as "not found".
+ *
+ * `params` (#2620) fills `{placeholder}` slots. BeatifyI18n.t interpolates them
+ * itself; the fallback path has to do it here, otherwise a host who hits the
+ * fallback reads a literal "{count} playlists".
+ *
  * @param {string} key
  * @param {string} fallback
+ * @param {Object} [params] - `{placeholder}` values
  * @returns {string}
  */
-export function tr(key, fallback) {
+export function tr(key, fallback, params) {
     const m = (typeof window !== 'undefined') && window.BeatifyI18n;
     if (m && typeof m.t === 'function') {
-        const v = m.t(key);
+        const v = m.t(key, params);
         if (typeof v === 'string' && v && v !== key) return v;
     }
-    return fallback;
+    return _interpolate(fallback, params);
+}
+
+function _interpolate(text, params) {
+    if (!params || typeof text !== 'string') return text;
+    return Object.keys(params).reduce(
+        (out, name) => out.replace(new RegExp('\\{' + name + '\\}', 'g'), params[name]),
+        text,
+    );
 }
 
 // --- request-row rendering -------------------------------------------------
@@ -517,4 +539,88 @@ export function bannerAnchorFor(startButton) {
         ? startButton.closest('.home-cta-bar')
         : null;
     return bar || startButton;
+}
+
+// --- home status line (#2620) ----------------------------------------------
+/**
+ * Readable name for one entry of `beatify_game_settings.selectedPlaylists`.
+ *
+ * The stored entry is either the playlist object or its bare path, so both
+ * shapes have to work: `party/80s-classics.json` → `80s classics`. A file name
+ * is not translatable, which is why this one fragment stays as it is.
+ *
+ * @param {{path?: string}|string} entry
+ * @returns {string}
+ */
+export function playlistDisplayName(entry) {
+    const path = (entry && entry.path) || entry || '';
+    return String(path).split('/').pop().replace('.json', '').replace(/-/g, ' ');
+}
+
+/**
+ * The one-line setup summary under the home Start button (#2620).
+ *
+ * Pure, and every fragment goes through `t` — this is the line a host reads
+ * every single time they set up a game, and it used to arrive half-translated:
+ * "🔊 Wohnzimmer · 3 playlists · normal · 45s · DE · ⏭️ Off", with the speaker
+ * name and the duration localized and the rest in English literals.
+ *
+ * @param {Object} setup
+ * @param {string} setup.speakerLabel - already-resolved "🔊 <room>" (see setup-sync.js)
+ * @param {Array} setup.playlists - `selectedPlaylists` from the stored settings blob
+ * @param {boolean} setup.isLibrary - Crate Digger generates its own playlist
+ * @param {string} setup.difficulty - 'easy' | 'normal' | 'hard'
+ * @param {string} setup.roundDurationLabel - from `roundDurationLabel(adminState)`
+ * @param {string} setup.language - game language code
+ * @param {number} setup.revealAutoAdvance - seconds, 0 = off
+ * @param {(key: string, fallback: string, params?: Object) => string} t
+ * @returns {string}
+ */
+export function buildHomeMeta(setup, t) {
+    const playlists = Array.isArray(setup.playlists) ? setup.playlists : [];
+    let playlistLabel;
+    if (setup.isLibrary) {
+        // Crate Digger generates its playlist from the host's own library at
+        // game start, so it never selects one — "no playlist" would misreport a
+        // fully configured setup.
+        playlistLabel = t('admin.home.libraryPlaylistLabel', 'your library');
+    } else if (playlists.length === 0) {
+        playlistLabel = t('admin.home.noPlaylist', 'no playlist');
+    } else if (playlists.length === 1) {
+        playlistLabel = playlistDisplayName(playlists[0]);
+    } else {
+        playlistLabel = t('admin.home.playlistCount', '{count} playlists', {
+            count: playlists.length,
+        });
+    }
+
+    const advance = normalizeRevealAutoAdvance(setup.revealAutoAdvance);
+    const autoLabel = advance > 0
+        ? `${advance}s`
+        : t('admin.revealAdvanceOff', 'Off');
+
+    const level = DIFFICULTY_LABELS[setup.difficulty] ? setup.difficulty : DIFFICULTY_DEFAULT;
+    const difficultyLabel = t(
+        DIFFICULTY_LABELS[level].key,
+        DIFFICULTY_LABELS[level].fallback,
+    );
+
+    const language = String(setup.language || 'en').toUpperCase();
+    const mode = `${difficultyLabel} · ${setup.roundDurationLabel} · ${language} · ⏭️ ${autoLabel}`;
+    return `${setup.speakerLabel} · ${playlistLabel} · ${mode}`;
+}
+
+/**
+ * Whether the admin join modal's button may be enabled for `name` (#2627).
+ *
+ * The cap is the shared mirror of `const.py`, not the literal 20 this used to
+ * be written as in two places — a server-side raise left the button disabled
+ * for names the server would have accepted.
+ *
+ * @param {string} name - the trimmed contents of the name field
+ * @returns {boolean}
+ */
+export function adminJoinNameValid(name) {
+    const trimmed = String(name || '').trim();
+    return trimmed.length > 0 && trimmed.length <= MAX_NAME_LENGTH;
 }

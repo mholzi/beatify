@@ -34,6 +34,8 @@ from custom_components.beatify.const import (
     MIN_ROUNDS_FOR_COMEBACK,
     MIN_STREAK_FOR_AWARD,
     MIN_SUBMISSIONS_FOR_SPEED,
+    POINTS_EXACT,
+    POINTS_WRONG,
     STEAL_UNLOCK_STREAK,
     STREAK_MILESTONES,
 )
@@ -45,9 +47,9 @@ from custom_components.beatify.game.text_match import (
     STATUS_NEAR_MISS,
 )
 
-# Points awarded
-POINTS_EXACT = 10
-POINTS_WRONG = 0
+# Points awarded. Re-exported from const.py (#2625) so the whole year-guess
+# payout — the two flat tiers and the per-difficulty bands — is defined in one
+# file. Callers keep importing them from here.
 
 # #1722: the speed bonus holds at its maximum for an initial grace window so a
 # player isn't punished for actually listening to the song before committing to

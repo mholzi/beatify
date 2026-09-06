@@ -23,6 +23,9 @@ import { adminState } from './admin/state.js';
 // #1279 step 4b: shared constants (localStorage keys) extracted so both this
 // core and the setup-section modules import the same literals.
 import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js';
+// #2626/#2627: the values that must match the server. One mirror of const.py
+// for the whole frontend — see js/game-constants.js.
+import { MAX_NAME_LENGTH } from './game-constants.js';
 // #1927: reconcile the server-side setup blob with this browser's localStorage
 // so a stale local speaker can no longer outlive a newer pick from another device.
 import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
@@ -55,6 +58,9 @@ import {
     createRenderCoalescer,
     adminStateEqual,
     bannerAnchorFor,
+    tr,
+    buildHomeMeta,
+    adminJoinNameValid,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -623,32 +629,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
                 const s = raw ? JSON.parse(raw) : {};
-                const pls = Array.isArray(s.selectedPlaylists) ? s.selectedPlaylists : [];
-                // Crate Digger generates its playlist from the host's own
-                // library at game start, so it never selects one — "no
-                // playlist" would misreport a fully configured setup.
-                // The persisted blob uses `provider`; `selectedProvider` is
-                // only the in-memory name in adminState. Accept both so a
-                // half-migrated blob can't misreport the setup.
-                const isLib = (s.provider || s.selectedProvider) === 'ma_library';
-                const playlistLabel = isLib
-                    ? (window.BeatifyI18n?.t('admin.home.libraryPlaylistLabel') || 'your library')
-                    : pls.length === 0 ? 'no playlist'
-                    : pls.length === 1 ? (pls[0].path || pls[0]).split('/').pop().replace('.json', '').replace(/-/g, ' ')
-                    : `${pls.length} playlists`;
-                const autoAdv = typeof s.revealAutoAdvance === 'number' ? s.revealAutoAdvance : 0;
-                const autoLabel = autoAdv > 0 ? `${autoAdv}s` : 'Off';
-                // #1867: once a game exists, show the duration the SERVER is
-                // running (`active_game.round_duration`), not what this browser
-                // intends to send. `round_duration` is fixed at create_game and
-                // no endpoint changes it afterwards, so every settings edit made
-                // after the lobby was minted is inert — yet the chip used to
-                // render the new value as though it had taken effect. Reading
-                // client-side state (the previous fix) could not close that gap
-                // because the wizard rewrites that same state post-create.
-                // When the two disagree, both are shown: the number in force,
-                // and what the next game will use.
-                const mode = `${s.difficulty || 'normal'} · ${roundDurationLabel(adminState)} · ${(s.language || 'en').toUpperCase()} · ⏭️ ${autoLabel}`;
                 // #1927: name the speaker that will actually be played on. The
                 // wrong-room bug was invisible precisely because no screen ever
                 // said which entity the game targets — it took a log dive to
@@ -656,7 +636,30 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const speakerId = (adminState.selectedMediaPlayer && adminState.selectedMediaPlayer.entityId)
                     || localStorage.getItem(STORAGE_LAST_PLAYER)
                     || '';
-                const meta = `${speakerLabelFor(speakerId, adminState.mediaPlayers)} · ${playlistLabel} · ${mode}`;
+                // #2620: the whole line is assembled by buildHomeMeta so every
+                // fragment goes through i18n. It used to be half German, half
+                // English literals ("… · 3 playlists · normal · … · ⏭️ Off").
+                //
+                // #1867: once a game exists, `roundDurationLabel` shows the
+                // duration the SERVER is running (`active_game.round_duration`),
+                // not what this browser intends to send. `round_duration` is
+                // fixed at create_game and no endpoint changes it afterwards, so
+                // every settings edit made after the lobby was minted is inert —
+                // yet the chip used to render the new value as though it had
+                // taken effect. When the two disagree, both are shown.
+                //
+                // The persisted blob uses `provider`; `selectedProvider` is only
+                // the in-memory name in adminState. Accept both so a
+                // half-migrated blob can't misreport the setup.
+                const meta = buildHomeMeta({
+                    speakerLabel: speakerLabelFor(speakerId, adminState.mediaPlayers, tr),
+                    playlists: s.selectedPlaylists,
+                    isLibrary: (s.provider || s.selectedProvider) === 'ma_library',
+                    difficulty: s.difficulty,
+                    roundDurationLabel: roundDurationLabel(adminState),
+                    language: s.language,
+                    revealAutoAdvance: s.revealAutoAdvance,
+                }, tr);
                 const metaEl = document.getElementById('home-meta');
                 if (metaEl) metaEl.textContent = meta;
             } catch (e) { /* ignore */ }
@@ -1387,7 +1390,7 @@ async function startGame() {
         connectAdminWebSocket();
 
     } catch (err) {
-        showError('Network error. Please try again.');
+        showError(tr('errors.networkRetry', 'Network error. Please try again.'));
         console.error('Start game error:', err);
     } finally {
         adminState._startInFlight = false;  // #1365: release the in-flight guard
@@ -1472,7 +1475,7 @@ async function startGameplay() {
         await loadStatus();
 
     } catch (err) {
-        showError('Network error. Please try again.');
+        showError(tr('errors.networkRetry', 'Network error. Please try again.'));
         console.error('Start gameplay error:', err);
     } finally {
         if (btn && originalHTML != null) {
@@ -1656,7 +1659,7 @@ async function confirmEndGame() {
         }
     } catch (err) {
         console.error('End game error:', err);
-        showError('Network error. Please try again.');
+        showError(tr('errors.networkRetry', 'Network error. Please try again.'));
     }
 }
 
@@ -1884,7 +1887,7 @@ function resetAdminJoinModalState() {
     if (joinBtn) {
         joinBtn.textContent = BeatifyI18n.t('admin.join');
         const name = nameInput ? nameInput.value.trim() : '';
-        joinBtn.disabled = !name || name.length > 20;
+        joinBtn.disabled = !adminJoinNameValid(name);
     }
     if (errorMsg) {
         errorMsg.classList.add('hidden');
@@ -1918,9 +1921,13 @@ function setupAdminJoin() {
     cancelBtn?.addEventListener('click', closeAdminJoinModal);
     backdrop?.addEventListener('click', closeAdminJoinModal);
 
+    // #2627: the field caps at the same number the server does — set from the
+    // shared constant rather than a `maxlength` attribute in admin.html, which
+    // no server-side change could have reached.
+    if (nameInput) nameInput.maxLength = MAX_NAME_LENGTH;
+
     nameInput?.addEventListener('input', function() {
-        const name = this.value.trim();
-        joinBtn.disabled = !name || name.length > 20;
+        joinBtn.disabled = !adminJoinNameValid(this.value.trim());
     });
 
     nameInput?.addEventListener('keypress', function(e) {
@@ -3160,7 +3167,7 @@ function _renderPauseRecoveryBanner(data) {
     if (speakerEl) {
         var speakerId = data && data.media_player ? data.media_player : '';
         if (speakerId) {
-            speakerEl.textContent = speakerLabelFor(speakerId, adminState.mediaPlayers);
+            speakerEl.textContent = speakerLabelFor(speakerId, adminState.mediaPlayers, tr);
             speakerEl.classList.remove('hidden');
         } else {
             speakerEl.textContent = '';

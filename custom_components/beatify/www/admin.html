@@ -55,7 +55,15 @@
     <!-- Preconnect for faster font loading (Story 9.8) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <!-- #2641: the font stylesheet is fetched non-blocking. A cross-origin
+         <link rel=stylesheet> in the head stops rendering until the CDN answers
+         or times out, and on party wifi with no working internet that is 5-30
+         seconds of blank screen before anything appears. media="print" makes
+         the browser fetch it at low priority without blocking the render; the
+         onload swap applies it the moment it arrives. The page is fully
+         readable in the fallback stack until then. -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet"></noscript>
     <!-- Story 18.4: Use minified CSS in production -->
     <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v={{ASSET_VER}}">
     <link rel="stylesheet" href="/beatify/static/css/library.min.css?v={{ASSET_VER}}">
@@ -457,12 +465,11 @@
                             <span class="setting-icon" aria-hidden="true">⏭️</span>
                             <span data-i18n="admin.revealAdvance">Auto-advance</span>
                         </span>
-                        <div class="chip-group" role="group" aria-label="Reveal auto-advance">
-                            <button type="button" class="chip chip--active" aria-pressed="true" data-reveal-advance="0" data-i18n="admin.revealAdvanceOff">Off</button>
-                            <button type="button" class="chip" aria-pressed="false" data-reveal-advance="30">30s</button>
-                            <button type="button" class="chip" aria-pressed="false" data-reveal-advance="60">60s</button>
-                            <button type="button" class="chip" aria-pressed="false" data-reveal-advance="90">90s</button>
-                        </div>
+                        <!-- #2626: filled by renderAutoAdvanceChips() from
+                             REVEAL_AUTO_ADVANCE_OPTIONS (the mirror of const.py).
+                             Kept empty here so the markup cannot offer a delay
+                             the server would silently turn into "Off". -->
+                        <div class="chip-group" id="reveal-advance-chips" role="group" aria-label="Reveal auto-advance"></div>
                     </div>
                     <p class="setting-hint" data-i18n="admin.revealAdvanceHint">After the reveal, automatically start the next round — so the game runs without anyone at the admin screen. "Off" means you advance each round manually.</p>
                 </div>
@@ -480,7 +487,11 @@
                             <button type="button" class="chip" aria-pressed="false" data-difficulty="hard" data-i18n="admin.hard">Hard</button>
                         </div>
                     </div>
-                    <p class="setting-hint" id="admin-difficulty-hint" data-i18n="admin.difficultyHint">Easy: wide tolerance (±7 years). Normal: medium (±3 years). Hard: only close guesses score.</p>
+                    <!-- #2625: written by renderDifficultyHint(), which composes the
+                         sentence from DIFFICULTY_SCORING. The string that stood
+                         here promised "Hard: only close guesses score" while the
+                         code paid 3 points within ±2 years. -->
+                    <p class="setting-hint" id="admin-difficulty-hint"></p>
                     <p class="setting-hint hidden" id="admin-difficulty-ta-summary" data-i18n="wizard.step4.taScoring">Title 10 · Artist 5 · Partial 5/3</p>
                 </div>
 
@@ -1478,9 +1489,13 @@
             <h2 data-i18n="admin.joinTheGame">Join the Game</h2>
             <p data-i18n="admin.enterDisplayName">Enter your display name to join as a player with admin controls.</p>
             <div class="form-group">
+                <!-- #2627: no maxlength attribute on purpose. The cap is set
+                from MAX_NAME_LENGTH (the mirror of const.py) in JS, so a
+                server-side change reaches the field instead of leaving a
+                stale literal behind. -->
                 <input type="text" id="admin-name-input" class="name-input"
                        data-i18n-placeholder="join.namePlaceholder"
-                       placeholder="Your name" maxlength="20"
+                       placeholder="Your name"
                        autocomplete="off" autocapitalize="words">
                 <p id="admin-name-error" class="validation-msg hidden"></p>
             </div>

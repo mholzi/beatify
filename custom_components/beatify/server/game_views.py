@@ -33,6 +33,7 @@ from custom_components.beatify.const import (
     PROVIDER_YTMUSIC_FREE,
     PROVIDER_TIDAL,
     PROVIDER_YOUTUBE_MUSIC,
+    REVEAL_AUTO_ADVANCE_OPTIONS,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
 )
@@ -63,6 +64,40 @@ if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def normalize_reveal_auto_advance(value: Any) -> int:
+    """Coerce the client's REVEAL auto-advance to a delay the game can run.
+
+    #1012: 0 means off — the host advances manually, or the round ends when the
+    song does. Anything else must be one of ``REVEAL_AUTO_ADVANCE_OPTIONS``.
+
+    #2626: the allowed delays used to be a literal tuple inside the create-game
+    handler while ``wizard.js`` and ``admin.html`` each kept their own chip
+    list, and a value that fell through this check was replaced by 0 in
+    silence. A chip added to either UI list therefore looked selected while the
+    game ran with auto-advance off, and the host found out at the first reveal.
+    The list now lives in ``const.py``; both chip groups are rendered from the
+    JS mirror of it (``www/js/game-constants.js``), and a rejection is logged
+    rather than swallowed.
+
+    Returns 0 for a missing, unparseable or unsupported value — a party must
+    not fail to start over this setting.
+    """
+    try:
+        seconds = int(value)
+    except (ValueError, TypeError):
+        seconds = 0
+    if seconds not in REVEAL_AUTO_ADVANCE_OPTIONS:
+        if seconds != 0:
+            _LOGGER.warning(
+                "Ignoring unsupported reveal_auto_advance=%r (allowed: %s) — "
+                "auto-advance is off for this game",
+                value,
+                ", ".join(str(v) for v in REVEAL_AUTO_ADVANCE_OPTIONS),
+            )
+        return 0
+    return seconds
 
 
 def _validate_provider(provider: str) -> str:
@@ -192,14 +227,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         party_lights_config = body.get("party_lights")  # Issue #331
         tts_config = body.get("tts")  # Issue #447
 
-        # #1012: REVEAL auto-advance — 0 (off, manual + song-end advance)
-        # or 30/60/90 seconds. Default 0: host stays in control.
-        try:
-            reveal_auto_advance = int(reveal_auto_advance)
-        except (ValueError, TypeError):
-            reveal_auto_advance = 0
-        if reveal_auto_advance not in (0, 30, 60, 90):
-            reveal_auto_advance = 0
+        reveal_auto_advance = normalize_reveal_auto_advance(reveal_auto_advance)
 
         # Validate difficulty (Story 14.1)
         valid_difficulties = (DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD)

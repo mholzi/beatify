@@ -24,6 +24,15 @@ import {
     availableSongs,
     estimateGameMinutes,
 } from './round-count.js';
+// #2625/#2626: the difficulty hints and the auto-advance delays come from the
+// shared mirror of const.py. Both used to be written out again right here — the
+// hints under a "keep in sync" comment that was the only safeguard.
+import {
+    REVEAL_AUTO_ADVANCE_OPTIONS,
+    autoAdvanceChipLabel,
+    difficultyHint,
+    normalizeRevealAutoAdvance,
+} from './game-constants.js';
 
 const LS_WIZARD_STATE = 'beatify_wizard_state';   // 'step1'|'step2'|'step3'|'step4'|'done'|'dismissed'
 const LS_SELECTED_PLAYER = 'beatify_last_player'; // set by admin.js when a speaker is picked
@@ -882,29 +891,17 @@ const DIFFICULTIES = [
     { id: 'hard', labelKey: 'wizard.step4.hard', labelFallback: 'Hard' },
 ];
 
-// Mirrors DIFFICULTY_SCORING in custom_components/beatify/const.py — keep in sync.
-// Scoring tiers: exact match, "close" band, "near" band.
-const DIFFICULTY_HINTS = {
-    easy: {
-        fallback: 'Forgiving: 10 pts for an exact year, 5 pts within ±7 years, 1 pt within ±10 years.',
-        key: 'wizard.step4.difficultyHintEasy',
-    },
-    normal: {
-        fallback: 'Balanced: 10 pts for an exact year, 5 pts within ±3 years, 1 pt within ±5 years.',
-        key: 'wizard.step4.difficultyHintNormal',
-    },
-    hard: {
-        fallback: 'Sharp: 10 pts for an exact year, 3 pts within ±2 years, otherwise 0.',
-        key: 'wizard.step4.difficultyHintHard',
-    },
-};
 const DURATIONS = [15, 30, 45, 60]; // seconds per round
-const AUTO_ADVANCE_OPTIONS = [
-    { id: 0, labelKey: 'wizard.step4.autoAdvanceOff', labelFallback: 'Off' },
-    { id: 30, label: '30s' },
-    { id: 60, label: '60s' },
-    { id: 90, label: '90s' },
-];
+// #2626: built from REVEAL_AUTO_ADVANCE_OPTIONS (the mirror of const.py) rather
+// than hand-listed. A delay the server does not accept can no longer reach a
+// chip, which is how a chip could look selected while the game ran with
+// auto-advance off.
+export const AUTO_ADVANCE_OPTIONS = REVEAL_AUTO_ADVANCE_OPTIONS.map((seconds) => {
+    const label = autoAdvanceChipLabel(seconds);
+    return label.key
+        ? { id: seconds, labelKey: label.key, labelFallback: label.fallback }
+        : { id: seconds, label: label.fallback };
+});
 const LANGUAGES = [
     { id: 'en', label: 'English' },
     { id: 'de', label: 'Deutsch' },
@@ -1159,8 +1156,9 @@ function _renderGameModes() {
 function _renderDifficultyHint() {
     const el = document.getElementById('wiz-difficulty-hint');
     if (!el) return;
-    const hint = DIFFICULTY_HINTS[chosenDifficulty] || DIFFICULTY_HINTS.normal;
-    el.textContent = _t(hint.key, hint.fallback);
+    // #2625: composed from DIFFICULTY_SCORING, not restated. The locale strings
+    // hold the sentence; every number in it comes from const.py.
+    el.textContent = difficultyHint(chosenDifficulty, _t);
 }
 
 // Difficulty area depends on the core mode. Jahr: year-distance chips + hint.
@@ -1283,7 +1281,7 @@ function _renderGameMode() {
     });
     _renderRounds();
     _renderChipGroup('wiz-autoadvance', AUTO_ADVANCE_OPTIONS, chosenRevealAutoAdvance, (val) => {
-        chosenRevealAutoAdvance = parseInt(val, 10) || 0;
+        chosenRevealAutoAdvance = normalizeRevealAutoAdvance(val);
         _renderGameMode();
     });
     _renderChipGroup('wiz-language', LANGUAGES, chosenLanguage, async (val) => {
@@ -1812,7 +1810,10 @@ export async function show(stepOverride) {
             if (typeof s.maxRounds === 'number' && Number.isFinite(s.maxRounds) && s.maxRounds > 0) {
                 chosenMaxRounds = Math.floor(s.maxRounds);
             }
-            if (typeof s.revealAutoAdvance === 'number') chosenRevealAutoAdvance = s.revealAutoAdvance;
+            // #2626: a blob from an older build (or another device) can hold a
+            // delay the server no longer accepts — normalize before it becomes a
+            // selected chip.
+            if (typeof s.revealAutoAdvance === 'number') chosenRevealAutoAdvance = normalizeRevealAutoAdvance(s.revealAutoAdvance);
             if (typeof s.artistChallenge === 'boolean') chosenArtistChallenge = s.artistChallenge;
             if (typeof s.movieQuiz === 'boolean') chosenMovieQuiz = s.movieQuiz;
             if (typeof s.introMode === 'boolean') chosenIntroMode = s.introMode;

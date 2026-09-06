@@ -84,13 +84,21 @@ export function reconcileSavedSetup(savedSetup, storage) {
  * the saved entity is gone) — showing `media_player.kuche_2` is still far more
  * useful than showing nothing, which is what the home view did before.
  *
+ * #2620: the "no speaker" case is the only translatable part (a friendly_name
+ * and an entity_id are proper nouns), and it was hard English in the middle of
+ * an otherwise German status line. `t` is injected rather than imported to keep
+ * this module pure and testable under the `node` vitest env, the same reason
+ * `reconcileSavedSetup` takes its storage as an argument.
+ *
  * @param {string|null|undefined} entityId - Resolved speaker entity_id.
  * @param {Array<{entity_id: string, friendly_name?: string}>} mediaPlayers - `adminState.mediaPlayers`.
+ * @param {(key: string, fallback: string) => string} [t] - i18n lookup with fallback.
  * @returns {string} e.g. `🔊 Esszimmer`
  */
-export function speakerLabelFor(entityId, mediaPlayers) {
+export function speakerLabelFor(entityId, mediaPlayers, t) {
+    const translate = typeof t === 'function' ? t : (_key, fallback) => fallback;
     if (!entityId) {
-        return '🔊 no speaker';
+        return `🔊 ${translate('admin.home.noSpeaker', 'no speaker')}`;
     }
     const match = (mediaPlayers || []).find((p) => p && p.entity_id === entityId);
     return `🔊 ${(match && match.friendly_name) || entityId}`;
