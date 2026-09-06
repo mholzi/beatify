@@ -1528,6 +1528,40 @@
     }
 
     /**
+     * Message types StatsService emits (services/stats.py) mapped onto the
+     * translated strings that already exist in every locale. The server sends
+     * the type plus the raw numbers; it does not know which language the TV is
+     * showing, so the wording is picked here, where the locale is known.
+     * @type {Object.<string, string>}
+     */
+    var MOTIVATIONAL_KEYS = {
+        'first': 'stats.firstGame',
+        'record': 'stats.newRecord',
+        'strong': 'stats.strongGame',
+        'above': 'stats.aboveAverage',
+        'close': 'stats.closeToAverage'
+    };
+
+    /**
+     * Translate a motivational message, falling back to the server's English
+     * text for an unknown type or a missing key. utils.t() returns the key on
+     * a miss and a key is truthy (#1402-B8), so the miss is checked explicitly.
+     * @param {Object} message - {type, message} from get_motivational_message
+     * @param {number} difference - pts/round vs the all-time average
+     * @returns {string} - Text for the chip
+     */
+    function motivationalText(message, difference) {
+        var key = MOTIVATIONAL_KEYS[message.type];
+        if (!key) return message.message || '';
+        // Every template that interpolates states the direction in words, so
+        // the number itself is always unsigned.
+        var diff = Math.abs(typeof difference === 'number' ? difference : 0).toFixed(1);
+        var translated = utils.t(key, { diff: diff });
+        if (!translated || translated === key) return message.message || '';
+        return translated;
+    }
+
+    /**
      * Render motivational message during reveal phase (Story 14.4)
      * @param {Object|null} performance - Game performance data from state
      */
@@ -1557,7 +1591,7 @@
             'close': '💪'
         };
         if (iconEl) iconEl.textContent = icons[message.type] || '';
-        if (textEl) textEl.textContent = message.message || '';
+        if (textEl) textEl.textContent = motivationalText(message, performance.difference);
     }
 
     /**
@@ -1863,21 +1897,34 @@
         var text = '';
         var cssClass = 'stats-comparison';
 
+        var avg = performance.current_avg.toFixed(1);
+
         if (performance.is_first_game) {
             icon = '🌟';
-            text = 'First game recorded! Avg: ' + performance.current_avg.toFixed(1) + ' pts/round';
+            text = utils.t('stats.firstGameRecorded', { avg: avg });
             cssClass += ' stats-comparison--first';
         } else if (performance.is_new_record) {
             icon = '🏆';
-            text = 'NEW RECORD! ' + performance.current_avg.toFixed(1) + ' pts/round (prev: ' + performance.all_time_avg.toFixed(1) + ')';
+            text = utils.t('stats.newRecordEnd', {
+                avg: avg,
+                prev: performance.all_time_avg.toFixed(1)
+            });
             cssClass += ' stats-comparison--record';
         } else if (performance.is_above_average) {
+            // The '+' sign lives in the template, so pass the bare number.
             icon = '📈';
-            text = performance.current_avg.toFixed(1) + ' pts/round (+' + performance.difference.toFixed(1) + ' vs all-time avg)';
+            text = utils.t('stats.aboveAverageEnd', {
+                avg: avg,
+                diff: performance.difference.toFixed(1)
+            });
             cssClass += ' stats-comparison--above';
         } else {
+            // difference is <= 0 here, so toFixed already carries the minus.
             icon = '📊';
-            text = performance.current_avg.toFixed(1) + ' pts/round (' + performance.difference.toFixed(1) + ' vs all-time avg)';
+            text = utils.t('stats.belowAverageEnd', {
+                avg: avg,
+                diff: performance.difference.toFixed(1)
+            });
             cssClass += ' stats-comparison--below';
         }
 

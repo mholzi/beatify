@@ -1034,7 +1034,7 @@
   "stats": {
     "firstGame": "Erstes Spiel! Maßstab gesetzt",
     "newRecord": "Neuer Rekord! Höchste Punktzahl aller Zeiten!",
-    "strongGame": "Excellent! {diff} Pkt über Durchschnitt",
+    "strongGame": "Ausgezeichnet! {diff} Pkt über Durchschnitt",
     "aboveAverage": "Starkes Spiel! {diff} Pkt über Durchschnitt",
     "closeToAverage": "Knapp am Durchschnitt! Nur {diff} Pkt darunter",
     "firstGameRecorded": "Erstes Spiel erfasst! Durchschnitt: {avg} Pkt/Runde",
