@@ -14,9 +14,11 @@
  * UI is the chips owned by game-settings + this capability gate), so it is NOT
  * a standalone module (see PR body).
  *
- * The no-compatible-players empty state renders inline `onclick="loadStatus()"`;
- * `loadStatus` lives in admin.js core and is already shimmed onto `window` there,
- * so this module needs no extra shim for it.
+ * The no-compatible-players empty state offers a "Refresh" button. It used to
+ * be an inline `onclick="loadStatus()"` that only resolved because admin.js
+ * published its core `loadStatus` on `window`. #2637 replaced that with a
+ * `refreshStatus` dependency handed in through `initMediaPlayers()`, so this
+ * module no longer needs admin.js to have run first for its own button to work.
  */
 
 import { adminState } from '../state.js';
@@ -27,6 +29,22 @@ import { tr } from '../util.js';
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
 const utils = window.BeatifyUtils || {};
+
+// Admin-core dependencies, injected once at init (#2637).
+const deps = {
+    refreshStatus: null,   // admin.js `loadStatus`
+};
+
+/**
+ * Wire the media-players section's admin-core dependencies once at init.
+ *
+ * @param {{ refreshStatus?: Function }} injected - `refreshStatus` re-runs the
+ *   admin core's status fetch; the no-compatible-players empty state's Refresh
+ *   button calls it.
+ */
+export function initMediaPlayers(injected = {}) {
+    deps.refreshStatus = injected.refreshStatus || null;
+}
 
 /**
  * Update media player summary badge
@@ -99,12 +117,14 @@ export function renderMediaPlayers(players) {
                        target="_blank" class="btn btn-secondary">
                         ${tr('admin.musicAssistantSetupGuide', '📖 Music Assistant Setup Guide')}
                     </a>
-                    <button onclick="loadStatus()" class="btn btn-primary">
+                    <button type="button" data-action="refresh-status" class="btn btn-primary">
                         ${tr('admin.refresh', '🔄 Refresh')}
                     </button>
                 </div>
             </div>
         `;
+        container.querySelector('[data-action="refresh-status"]')
+            ?.addEventListener('click', () => { deps.refreshStatus?.(); });
         if (validationMsg) {
             validationMsg.classList.add('hidden');
         }

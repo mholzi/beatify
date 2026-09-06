@@ -114,12 +114,14 @@ import {
 } from './admin/sections/mix.js';
 
 // media-players.js: speaker list render + radio-selection + platform-capability
-// gate (updateProviderOptions toggles the music-service provider chips). No
-// window shim: the no-players empty state's inline onclick="loadStatus()" resolves
-// to the loadStatus core fn already shimmed onto window below. admin.js core
-// drives renderMediaPlayers (from loadStatus) + handleMediaPlayerSelect (from
+// gate (updateProviderOptions toggles the music-service provider chips).
+// #2637: the no-players empty state's Refresh button used to be an inline
+// onclick="loadStatus()" resolved through a window shim; it now runs on the
+// `refreshStatus` handed to initMediaPlayers() at init. admin.js core drives
+// renderMediaPlayers (from loadStatus) + handleMediaPlayerSelect (from
 // BeatifyHome.hydrateFromStorage); the rest are intra-section.
 import {
+    initMediaPlayers,
     renderMediaPlayers,
     handleMediaPlayerSelect,
     expandMediaPlayersSection,
@@ -776,7 +778,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // #1538: Smart Playlist Mixer "Mix" tab. Inject startGame so the mixer
     // funnels through the validated start-game path after assembling its set.
-    initMixTab({ startGame });
+    // #2637: refreshStatus goes in the same way — the mixer needs a status
+    // reload after "save as community playlist" and used to reach for
+    // window.loadStatus.
+    initMixTab({ startGame, refreshStatus: loadStatus });
+
+    // #2637: the media-players section's "no compatible players → Refresh"
+    // button. Same reason, same shape.
+    initMediaPlayers({ refreshStatus: loadStatus });
 
     // #1402 B7: one document-level Escape handler for all registered modals.
     // Wire it before the per-modal setups so their registerModalClose() calls

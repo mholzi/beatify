@@ -15,6 +15,11 @@
  * State: reads the shared `adminState` (admin/state.js) directly — same pattern
  * as playlists.js. The mixer's own selection lives in module-local state because
  * it never crosses a module boundary.
+ *
+ * Dependencies on the admin core (`startGame`, `refreshStatus`) arrive through
+ * `initMixTab()`. #2637 moved `refreshStatus` there; it used to be a
+ * `window.loadStatus` lookup, which made this module silently depend on
+ * admin.js having executed first.
  */
 
 import { adminState } from '../state.js';
@@ -42,6 +47,7 @@ const mixState = {
     targetCount: 50,
     _previewTimer: null,
     _startGame: null,        // injected admin-core startGame()
+    _refreshStatus: null,    // injected admin-core loadStatus() (#2637)
 };
 
 const t = (key, fallback) =>
@@ -522,9 +528,11 @@ async function startMix() {
         ];
 
         const saveAsCommunity = !!document.getElementById('mix-save-community')?.checked;
-        if (saveAsCommunity && typeof window.loadStatus === 'function') {
+        if (saveAsCommunity && typeof mixState._refreshStatus === 'function') {
             // Refresh so the new community playlist appears in the list tab.
-            try { await window.loadStatus(); } catch (e) { /* non-fatal */ }
+            // #2637: injected at init, not read off `window` — this module must
+            // not depend on admin.js having run first.
+            try { await mixState._refreshStatus(); } catch (e) { /* non-fatal */ }
             // loadStatus re-renders playlists and would reset selection — re-apply.
             adminState.selectedPlaylists = [
                 { path: result.path, songCount: result.songCount },
@@ -612,11 +620,15 @@ export function bindMixPanel() {
 
 /**
  * Wire the Mix tab once at admin init.
- * @param {{ startGame: Function }} deps - admin-core startGame, injected so the
- *   mixer reuses the validated start-game path without duplicating its payload.
+ * @param {{ startGame: Function, refreshStatus: Function }} deps - admin-core
+ *   `startGame` (so the mixer reuses the validated start-game path without
+ *   duplicating its payload) and `loadStatus` as `refreshStatus` (#2637: used
+ *   after "save as community playlist" so the new entry shows up in the list
+ *   tab; it used to be read off `window.loadStatus`).
  */
 export function initMixTab(deps = {}) {
     mixState._startGame = deps.startGame || null;
+    mixState._refreshStatus = deps.refreshStatus || null;
 
     // The Mix panel now lives inside the component-owned Playlist Hub, which
     // renders its markup on mount — long after admin init runs. Expose the
