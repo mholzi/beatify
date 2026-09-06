@@ -99,3 +99,44 @@ class TestAnnouncementBudgetSurvivesTheRestamp:
         rm.cancel_timer()
 
         assert rm.deadline == int(now * 1000) + 15_000
+
+
+class TestResetClearsTheDeferral:
+    """#2615: a deferral must not leak from one game into the next."""
+
+    def test_reset_clears_a_standing_deferral(self):
+        rm = _make_rm()
+        rm.defer_deadline()
+
+        rm.reset()
+
+        assert rm._deadline_deferred is False
+
+    def test_reset_clears_the_deferral_of_an_unconfirmed_splash(self):
+        rm = _make_rm()
+        rm._intro_splash_pending = True
+        rm.defer_deadline()
+
+        rm.reset()
+
+        assert rm._intro_splash_pending is False
+        assert rm._deadline_deferred is False
+
+    def test_next_game_still_sees_its_own_deadline_pass(self):
+        """The failure the leak causes: game B never reports a passed deadline."""
+        now = 1_000_000.0
+        rm = RoundManager(lambda: now)
+        rm.round_duration = 15
+
+        # Game A: TTS round, announcements still running, host ends the game
+        # while an intro splash is open — neither start_timer_at_playback nor
+        # confirm_intro_splash ever runs, so the deferral is still standing.
+        rm._intro_splash_pending = True
+        rm.defer_deadline()
+        rm.reset()
+
+        # Game B: no TTS, no intro splash. A plain round whose deadline has
+        # long passed must be reported as passed.
+        rm.deadline = int((now - 30) * 1000)
+
+        assert rm.is_deadline_passed() is True

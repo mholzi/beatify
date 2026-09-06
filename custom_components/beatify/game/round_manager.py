@@ -135,6 +135,15 @@ class RoundManager:
         self.intro_stopped = False
         self._intro_round_start_time = None
         self._intro_splash_pending = False
+        # #2615: the deferral is per-round state like the splash flag above,
+        # so it must not survive into the next game. It is otherwise cleared
+        # only by start_timer_at_playback and confirm_intro_splash, and a game
+        # ended while either was still outstanding (TTS announcements running,
+        # or an unconfirmed intro splash) leaves it True. is_deadline_passed()
+        # then answers False for every round of the next game, which silently
+        # disables force_end_round_if_overdue, the client round watchdogs and
+        # the late-guess guard in handle_submit.
+        self._deadline_deferred = False
         self._intro_splash_shown = False
         self._intro_splash_deferred_song = None
         self._rounds_since_intro = 0
