@@ -44,7 +44,13 @@ coverage/
 .nox/
 
 # ---- Node ----
+# Both spellings on purpose: the trailing slash matches the directory, the
+# bare name also matches a SYMLINK called node_modules. Agents building in
+# throwaway worktrees link the real tree in rather than reinstalling, and on
+# 2026-09-06 one such link was committed to main by a `git add -A` — a dead
+# absolute path into someone's home directory, for everyone who clones.
 node_modules/
+node_modules
 
 # ---- Python artifacts ----
 __pycache__/
