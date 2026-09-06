@@ -658,7 +658,7 @@
                 break;
             case 'PAUSED':
                 stopCountdown();
-                renderPausedView(state);
+                renderPausedView(data);
                 showView('dashboard-paused');
                 break;
             default:
