@@ -26,8 +26,26 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
+from custom_components.beatify.services import media_player as mp
 from custom_components.beatify.services.media_player import MediaPlayerService
 from tests.conftest import make_game_state, make_songs
+
+
+@pytest.fixture(autouse=True)
+def _fast_pause_guard(monkeypatch):
+    """Run the #2605 pause guard on a compressed clock.
+
+    The fixtures here model a speaker that never stops, so the guard spends its
+    full production budget (a 5s hold inside a 12s window) on every restore in
+    this file. Only the durations shrink; the logic is untouched, and the
+    #2605 contract itself is tested in
+    ``test_queue_restore_stays_paused_2605.py``.
+    """
+    monkeypatch.setattr(mp, "MA_PAUSE_CONFIRM_WAIT", 0.05)
+    monkeypatch.setattr(mp, "MA_PAUSE_SETTLE_HOLD", 0.05)
+    monkeypatch.setattr(mp, "MA_PAUSE_GUARD_WINDOW", 0.30)
+    monkeypatch.setattr(mp, "MA_PAUSE_POLL", 0.01)
+
 
 QUEUE_RESPONSE = {
     "media_player.esszimmer": {
@@ -178,9 +196,9 @@ class TestQueueRestore:
         #
         # #2605: this used to assert exactly ONE pause. The fixture's speaker
         # reports `playing` on every read — it never stops — and since #2605 a
-        # pause that does not take is sent a second time. One call was the old
-        # behaviour, not the requirement; what this test is about is that we
-        # pause and never resume.
+        # pause that does not take is sent again until the guard window runs
+        # out. One call was the old behaviour, not the requirement; what this
+        # test is about is that we pause and never resume.
         assert len(_calls_to(hass, "media_player", "media_pause")) >= 1
         assert not _calls_to(hass, "media_player", "media_play")
         assert _calls_to(hass, "media_player", "shuffle_set")[0].args[2]["shuffle"]

@@ -73,6 +73,8 @@ The mixin relies on attributes / methods the host class owns and that live on
 * ``self._lights_set_phase`` / ``self._lights_flash`` / ``self._party_lights`` /
   ``self.disable_party_lights`` — the party-light hooks (live on
   ``MediaControlMixin``).
+* ``self.stop_media`` — the #2605 terminal stop in ``advance_to_end`` (also
+  lives on ``MediaControlMixin``).
 * ``self._cancel_auto_advance`` — the #1012 REVEAL auto-advance cancel hook
   (lives on ``RevealAutoAdvanceMixin``).
 * ``self.end_round`` / ``self.play_deferred_song`` / ``self._on_round_end`` —
@@ -375,6 +377,27 @@ class RevealTransitionMixin:
         self._cancel_auto_advance()  # #1012
         # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
         self._set_phase(GamePhase.END)
+
+        # #2605: stop the round's song here, at the terminal, not only in the
+        # callers that happen to remember.
+        #
+        # `admin_end_game`, `admin_next_round` and the REST `end-game` view all
+        # call `stop_media()` before they get here. The unattended final round
+        # does not: `_reveal_auto_advance` breaks out of its wait loop on
+        # `elapsed >= hard_cap` as well as on `_song_finished()`, and on the
+        # last round that goes straight into the game-end ceremony. With a
+        # REVEAL timer set, the game therefore ended while the round's song was
+        # still playing, and nothing on the way to END asked the speaker to
+        # stop — the podium went up over Beatify's own music.
+        #
+        # Idempotent: `media_stop` on an already-idle speaker is a no-op, so
+        # the callers that stop first lose nothing. It runs BEFORE the podium
+        # TTS below on purpose — announce_winner speaks through this same
+        # speaker, and a stop afterwards would cut it off.
+        try:
+            await self.stop_media()
+        except Exception as err:  # noqa: BLE001 — a stop must never break the podium
+            _LOGGER.warning("advance_to_end: stop playback failed: %s (#2605)", err)
 
         # Issue #331: Celebrate with Party Lights, then stop (#553)
         if self._party_lights:
