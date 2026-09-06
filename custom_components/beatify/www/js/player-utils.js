@@ -417,6 +417,62 @@ export function easeOutQuart(t) {
     return 1 - Math.pow(1 - t, 4);
 }
 
+// ============================================
+// Year-guess classification (#2624)
+// ============================================
+
+/**
+ * Mirrors ``DIFFICULTY_SCORING`` in ``custom_components/beatify/const.py``.
+ *
+ * The reveal screen used to decide "so close" against fixed distances of 2 and
+ * 5 years while the server awarded points from this table. On easy that showed
+ * the sad face over a 5-point round; on hard it said "so close" over a
+ * 0-pointer. One table, two readings, and the player saw them contradict each
+ * other on screen.
+ *
+ * ``tests/unit/test_reveal_difficulty_parity_2624.py`` fails if these numbers
+ * ever stop matching const.py, so the copy cannot drift silently.
+ */
+export var DIFFICULTY_SCORING = {
+    easy: { close_range: 7, close_points: 5, near_range: 10, near_points: 1 },
+    normal: { close_range: 3, close_points: 5, near_range: 5, near_points: 1 },
+    hard: { close_range: 2, close_points: 3, near_range: 0, near_points: 0 },
+};
+
+/** Difficulty used when the state carries none or an unknown one (const.py DIFFICULTY_DEFAULT). */
+export var DIFFICULTY_DEFAULT = 'normal';
+
+/**
+ * Classify a year guess exactly the way the server scores it (#2624).
+ *
+ * Returns the server's own vocabulary from
+ * ``GameState._apply_round_results`` — deliberately, so there is one set of
+ * names for one rule instead of a second frontend one that can drift:
+ *
+ *   'exact'  — bang on, POINTS_EXACT
+ *   'scored' — inside close_range, close_points
+ *   'close'  — inside near_range, near_points (a consolation point)
+ *   'missed' — no points, or no guess at all
+ *
+ * A range of 0 disables its band (hard has no near band), which is why both
+ * checks test the range before the distance.
+ *
+ * @param {number|null|undefined} yearsOff - absolute distance to the real year
+ * @param {string} difficulty - 'easy' | 'normal' | 'hard'
+ * @returns {string} one of exact | scored | close | missed
+ */
+export function classifyYearsOff(yearsOff, difficulty) {
+    if (yearsOff == null || isNaN(yearsOff)) return 'missed';
+
+    var cfg = DIFFICULTY_SCORING[difficulty] || DIFFICULTY_SCORING[DIFFICULTY_DEFAULT];
+    var diff = Math.abs(yearsOff);
+
+    if (diff === 0) return 'exact';
+    if (cfg.close_range > 0 && diff <= cfg.close_range) return 'scored';
+    if (cfg.near_range > 0 && diff <= cfg.near_range) return 'close';
+    return 'missed';
+}
+
 /**
  * Animate a numeric value from start to end
  * Story 18.3: Now device-tier aware with instant updates for low-end devices

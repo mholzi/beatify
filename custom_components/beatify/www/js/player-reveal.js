@@ -9,7 +9,7 @@ import {
     previousState, isPreviousStateInitialized, isStreakMilestone,
     AnimationUtils, updatePreviousState,
     triggerConfetti, stopConfetti, isTitleArtistMode,
-    createModalFocusTrap
+    createModalFocusTrap, classifyYearsOff
 } from './player-utils.js';
 
 import { renderArtistReveal, renderMovieReveal } from './player-game.js';
@@ -350,9 +350,13 @@ export function updateRevealView(data) {
         var chipRowEl = document.getElementById('reveal-chip-row');
         if (chipRowEl) chipRowEl.classList.add('hidden');
     } else {
-        showRevealEmotion(currentPlayer, song.year);
+        // #2624: `difficulty` is the game setting the server scores by; it has
+        // always been in the state and was never read here. state.lastDifficulty
+        // is the lobby's copy, kept only for a payload that omits the field.
+        var difficulty = data.difficulty || state.lastDifficulty || '';
+        showRevealEmotion(currentPlayer, song.year, difficulty);
         // Round-reveal v2: duel + chips + score row replace the old personal result + all-guesses cards.
-        renderDuel(currentPlayer, song.year);
+        renderDuel(currentPlayer, song.year, difficulty);
         renderChipRow(currentPlayer, data);
     }
     renderScoreRow(currentPlayer);
@@ -868,10 +872,18 @@ function getAwardIcon(award) {
 
 /**
  * Show celebration-first emotion before data (Story 9.4)
+ *
+ * #2624: the tiers used to be fixed distances of 2 and 5 years, which agreed
+ * with the server on Normal and nowhere else — on Easy a 6-year miss scored 5
+ * points under the "way off" face, on Hard a 3-year miss scored nothing under
+ * "so close". The bands now come from `classifyYearsOff`, i.e. from the same
+ * `DIFFICULTY_SCORING` table that awards the points.
+ *
  * @param {Object} player - Current player data
  * @param {number} correctYear - The correct year
+ * @param {string} difficulty - Game difficulty from the state ('easy'|'normal'|'hard')
  */
-function showRevealEmotion(player, correctYear) {
+function showRevealEmotion(player, correctYear, difficulty) {
     var emotionEl = document.getElementById('reveal-emotion');
     var personalResult = document.getElementById('personal-result');
     if (!emotionEl) return;
@@ -909,16 +921,21 @@ function showRevealEmotion(player, correctYear) {
 
     if (player && !player.missed_round) {
         var yearsOff = player.years_off || 0;
+        // Server vocabulary: exact > scored (close_range) > close (near_range) > missed.
+        var tier = classifyYearsOff(yearsOff, difficulty);
 
-        if (yearsOff === 0) {
+        if (tier === 'exact') {
             emotionType = 'exact';
             emotionText = randomFrom(emotions.exact);
             subtitle = randomFrom(emotions.exactSub);
-        } else if (yearsOff <= 2) {
+        } else if (tier === 'scored') {
+            // Full points band — worth the praise line on top of the distance.
             emotionType = 'close';
             emotionText = randomFrom(emotions.close);
             subtitle = randomFrom(emotions.closeSub) + ' ' + getOffByText(yearsOff);
-        } else if (yearsOff <= 5) {
+        } else if (tier === 'close') {
+            // Consolation band (near_points): still a friendly face, but the
+            // bare distance rather than a compliment.
             emotionType = 'close';
             emotionText = randomFrom(emotions.close);
             subtitle = getOffByText(yearsOff);
@@ -1007,8 +1024,9 @@ export function renderStreakShield(player) {
  * Populate the duel — your guess × gap × correct year.
  * @param {Object|null} player - Current player data
  * @param {number|null} correctYear - Server-reported correct year
+ * @param {string} difficulty - Game difficulty from the state ('easy'|'normal'|'hard')
  */
-function renderDuel(player, correctYear) {
+function renderDuel(player, correctYear, difficulty) {
     var yourEl = document.getElementById('duel-your-year');
     var gapCountEl = document.getElementById('duel-gap-count');
     var gapUnitEl = document.getElementById('duel-gap-unit');
@@ -1030,13 +1048,15 @@ function renderDuel(player, correctYear) {
         ? (utils.t('reveal.duel.yearUnit') || 'year')
         : (utils.t('reveal.duel.yearsUnit') || 'years');
 
-    // Color the gap by proximity. Matches the emotion color of the duel header.
+    // Color the gap by proximity. Matches the emotion color of the duel header
+    // — same classifier, so the number and the face can never disagree (#2624).
     var gapEl = gapCountEl.closest('.duel-gap');
     if (gapEl) {
+        var tier = classifyYearsOff(yearsOff, difficulty);
         gapEl.classList.remove('duel-gap--exact', 'duel-gap--close', 'duel-gap--wrong');
-        if (yearsOff === 0) gapEl.classList.add('duel-gap--exact');
-        else if (yearsOff <= 5) gapEl.classList.add('duel-gap--close');
-        else gapEl.classList.add('duel-gap--wrong');
+        if (tier === 'exact') gapEl.classList.add('duel-gap--exact');
+        else if (tier === 'missed') gapEl.classList.add('duel-gap--wrong');
+        else gapEl.classList.add('duel-gap--close');
     }
 }
 
