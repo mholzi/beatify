@@ -4,6 +4,47 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.4.3-rc1] - 2026-09-06
+
+Die Woche 2026-W38: zweiunddreissig Eintraege aus der Redaktionskonferenz, alle gebaut und gemergt —
+am Sonntag statt am Mittwoch. Der Kandidat traegt sie vollstaendig.
+
+### Fixed
+- **Der Lautsprecher spielte nach dem Spielende weiter (#2605).** Zweiter Anlauf: der Fix aus rc3 der
+  Vorwoche sah nach dem Pausieren zwei Sekunden lang nach und bekam die Bestaetigung beim ersten
+  Blick. Die Pause wird jetzt gehalten und bei einem Rueckfall erneut geschickt, `buffering` zaehlt
+  als spielend. Dabei kam ein **zweites Loch mit demselben Titel** heraus: endete die letzte Runde
+  unbeaufsichtigt ueber den REVEAL-Timer statt per Knopf, hat niemand den Lautsprecher gestoppt.
+- **Der Fernseher fror ein, statt den Pausen-Screen zu zeigen (#2617).**
+- **Zuschauer im Finale wurden gewertet und durften raten (#2612).**
+- **Auto-Advance beendete das Spiel ohne Broadcast (#2613).**
+- **Die Jahres-Pruefung ignorierte den geweiteten Schieberegler (#2623).**
+- **Zwei Songs mit gleichem Titel liefen hintereinander (#2616).**
+- **Der Fehlerzaehler ueberlebte das Spielende (#2614)**, das Deferral-Flag den Reset (#2615).
+- **Ein spaeter Gast liess sich nicht mehr einladen (#2621).**
+- **Halb deutsche, halb englische Zeilen** auf Startkarte, Fernseher, Endbild und im Reveal
+  (#2620, #2618, #2619, #2624).
+- **Ein totes Rate-Limit-Attribut** liess zwei Library-Views auf dem 5/min-Default laufen (#2628).
+
+### Changed
+- **Geteilte Konstanten haben je eine Definition** statt drei bis acht Kopien — Punktetabelle,
+  Auto-Advance-Werte, Namenslaenge, Spieloptionen (#2625, #2626, #2627, #2635).
+- **`MediaPlayerService` 2526 -> 1196 Zeilen**, je ein Modul pro Plattform hinter einer
+  Dispatch-Stelle (#2636).
+- **`admin.js` und seine Sektionen haengen nicht mehr im Kreis** ueber 14 `window`-Globals; sechs
+  davon waren tot (#2637).
+- **`GameState` baut sich seine HA-Dienste nicht mehr selbst** und haelt keinen Server-Socket mehr
+  (#2638).
+- **Der Spieler-Zustand ist eine Allowlist** statt einer Denylist ueber ~59 Felder (#2634).
+- **Statische Dateien werden vorkomprimiert ausgeliefert** (#2640); das Konfetti-Skript blockiert den
+  Beitritt nicht mehr (#2641).
+- **`main` hat Branch-Schutz** — 13 Pflicht-Checks (#2644).
+
+### Removed
+- Tote `GameService`-Fassade (#2629), `async_musicbrainz_year` (#2631), ein dokumentierter Fallback
+  ohne Verdrahtung (#2632), `PartyLightsService.strobe` (#2633), drei Animationshelfer ohne Aufrufer
+  (#2630).
+
 ## [4.4.2] - 2026-09-05
 
 Die Woche 2026-W37: fuenfzehn Eintraege aus der Redaktionskonferenz, alle gebaut, getestet und
