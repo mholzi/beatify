@@ -1,7 +1,7 @@
 """#2605: every way a game can end has to stop the speaker.
 
 The reopened #2605 was two defects wearing one title. The loud one is in
-``MediaPlayerService._pause_and_confirm`` — see
+``MaQueueRestorer.pause_and_confirm`` — see
 ``test_queue_restore_stays_paused_2605.py``. The quiet one is here: not every
 route to the podium asked the speaker to stop.
 

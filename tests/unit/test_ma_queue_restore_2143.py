@@ -26,7 +26,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from custom_components.beatify.services import media_player as mp
+from custom_components.beatify.services.playback import queue_restore
 from custom_components.beatify.services.media_player import MediaPlayerService
 from tests.conftest import make_game_state, make_songs
 
@@ -41,10 +41,10 @@ def _fast_pause_guard(monkeypatch):
     #2605 contract itself is tested in
     ``test_queue_restore_stays_paused_2605.py``.
     """
-    monkeypatch.setattr(mp, "MA_PAUSE_CONFIRM_WAIT", 0.05)
-    monkeypatch.setattr(mp, "MA_PAUSE_SETTLE_HOLD", 0.05)
-    monkeypatch.setattr(mp, "MA_PAUSE_GUARD_WINDOW", 0.30)
-    monkeypatch.setattr(mp, "MA_PAUSE_POLL", 0.01)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_CONFIRM_WAIT", 0.05)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_SETTLE_HOLD", 0.05)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_GUARD_WINDOW", 0.30)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_POLL", 0.01)
 
 
 QUEUE_RESPONSE = {
@@ -235,7 +235,7 @@ class TestQueueRestore:
                 new_callable=AsyncMock,
             ),
             patch(
-                "custom_components.beatify.services.media_player.MA_QUEUE_RESTORE_WAIT",
+                "custom_components.beatify.services.playback.queue_restore.MA_QUEUE_RESTORE_WAIT",
                 0.05,
             ),
         ):
@@ -393,11 +393,11 @@ class TestPlayPathTakesTheSnapshotFirst:
                 new_callable=AsyncMock,
             ),
             patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 0.05,
             ),
         ):
-            await svc._try_ma_play("spotify:track:abc", "New Song")
+            await svc._strategy.try_play("spotify:track:abc", "New Song")
 
         services = [c.args[:2] for c in hass.services.async_call.await_args_list]
         assert services.index(("music_assistant", "get_queue")) < services.index(

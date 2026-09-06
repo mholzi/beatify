@@ -17,8 +17,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from custom_components.beatify.services.media_player import (
-    MediaPlayerService,
+from custom_components.beatify.services.media_player import MediaPlayerService
+from custom_components.beatify.services.playback.music_assistant import (
     _edition_matches,
 )
 
@@ -114,8 +114,8 @@ class TestTidalNameFallback:
             calls.append(uri)
             return True
 
-        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
-            assert await svc._play_via_music_assistant(song) is True
+        with patch.object(svc._strategy, "try_play", side_effect=fake_try):
+            assert await svc._strategy.play(song) is True
 
         # The stored id is normalised to a browse URL on the way out; what
         # matters is that exactly one call happened and it was not the name.
@@ -135,8 +135,8 @@ class TestTidalNameFallback:
             calls.append(uri)
             return True
 
-        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
-            assert await svc._play_via_music_assistant(song) is True
+        with patch.object(svc._strategy, "try_play", side_effect=fake_try):
+            assert await svc._strategy.play(song) is True
 
         assert calls == ["Song"]
 
@@ -151,8 +151,8 @@ class TestTidalNameFallback:
             calls.append(uri)
             return uri == "Song"  # the stored URI is dead, the name works
 
-        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
-            assert await svc._play_via_music_assistant(song) is True
+        with patch.object(svc._strategy, "try_play", side_effect=fake_try):
+            assert await svc._strategy.play(song) is True
 
         assert len(calls) == 2
         assert "999" in calls[0]  # stored URI first, normalised to a browse URL
@@ -167,8 +167,8 @@ class TestTidalNameFallback:
         )
         song = {"title": "Satisfaction", "artist": "Benny Benassi"}
 
-        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=True)):
-            assert await svc._play_via_music_assistant(song) is False
+        with patch.object(svc._strategy, "try_play", AsyncMock(return_value=True)):
+            assert await svc._strategy.play(song) is False
 
         assert svc.last_failure_reason == "wrong_track"
 
@@ -179,8 +179,8 @@ class TestTidalNameFallback:
         song = {"title": "Song", "artist": "Artist"}
         try_ma = AsyncMock(return_value=True)
 
-        with patch.object(svc, "_try_ma_play", try_ma):
-            assert await svc._play_via_music_assistant(song) is False
+        with patch.object(svc._strategy, "try_play", try_ma):
+            assert await svc._strategy.play(song) is False
 
         try_ma.assert_not_called()
         assert svc.last_failure_reason == "unavailable"
@@ -192,8 +192,8 @@ class TestTidalNameFallback:
         song = {"title": "Song"}
         try_ma = AsyncMock(return_value=True)
 
-        with patch.object(svc, "_try_ma_play", try_ma):
-            assert await svc._play_via_music_assistant(song) is False
+        with patch.object(svc._strategy, "try_play", try_ma):
+            assert await svc._strategy.play(song) is False
 
         try_ma.assert_not_called()
         assert svc.last_failure_reason == "unavailable"

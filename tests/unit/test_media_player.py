@@ -16,6 +16,9 @@ from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     proxy_album_art,
 )
+from custom_components.beatify.services.playback import (
+    uri_match_tokens,
+)
 
 
 def _make_state(
@@ -277,7 +280,7 @@ class TestMANonBlockingPlayback:
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
@@ -324,7 +327,7 @@ class TestMANonBlockingPlayback:
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
@@ -383,7 +386,7 @@ class TestMANonBlockingPlayback:
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
@@ -437,7 +440,7 @@ class TestMANonBlockingPlayback:
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
@@ -485,7 +488,7 @@ class TestMANonBlockingPlayback:
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
@@ -539,7 +542,7 @@ class TestMANonBlockingPlayback:
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
                 result = await svc.play_song(_make_song(title="New Song"))
@@ -595,17 +598,19 @@ class TestMANonBlockingPlayback:
         hass = _make_hass("idle", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         # Simulate the prior candidate's media_stop having already fired.
-        svc._stopped_for_cascade = True
+        svc._strategy._stopped_for_cascade = True
 
         with patch(
             "custom_components.beatify.services.media_player.asyncio.sleep",
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
-                result = await svc._try_ma_play("apple_music://track/302229811", "X")
+                result = await svc._strategy.try_play(
+                    "apple_music://track/302229811", "X"
+                )
 
         assert result is False
         assert svc.last_failure_reason == "unavailable"
@@ -618,17 +623,19 @@ class TestMANonBlockingPlayback:
         """
         hass = _make_hass("idle", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
-        assert svc._stopped_for_cascade is False
+        assert svc._strategy._stopped_for_cascade is False
 
         with patch(
             "custom_components.beatify.services.media_player.asyncio.sleep",
             new_callable=AsyncMock,
         ):
             with patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ):
-                result = await svc._try_ma_play("apple_music://track/302229811", "X")
+                result = await svc._strategy.try_play(
+                    "apple_music://track/302229811", "X"
+                )
 
         assert result is False
         assert svc.last_failure_reason == "error"
@@ -640,13 +647,13 @@ class TestMANonBlockingPlayback:
         """
         hass = _make_hass("idle", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
-        svc._stopped_for_cascade = True  # leftover from a prior song
+        svc._strategy._stopped_for_cascade = True  # leftover from a prior song
 
         # _play_via_music_assistant must reset the flag before the cascade.
-        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=False)):
-            await svc._play_via_music_assistant(_make_song())
+        with patch.object(svc._strategy, "try_play", AsyncMock(return_value=False)):
+            await svc._strategy.play(_make_song())
 
-        assert svc._stopped_for_cascade is False
+        assert svc._strategy._stopped_for_cascade is False
 
     @pytest.mark.asyncio
     async def test_sonos_still_uses_blocking_true(self):
@@ -794,17 +801,17 @@ class TestMANonBlockingPlayback:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            confirmed = await svc._try_ma_play(
+            confirmed = await svc._strategy.try_play(
                 "spotify:track:our-song", "Sweet Child O' Mine", "Guns N' Roses"
             )
 
         # The fast-path (Path 2) must NOT have confirmed this unrelated track.
         # (It falls through to the post-timeout #345 tolerance, path 0.)
-        assert svc._last_confirm_path != 2
+        assert svc._strategy._last_confirm_path != 2
         # And whatever the final outcome, an unrelated auto-advance must never
         # be learned as a working URI field.
         assert confirmed is True  # #345 tolerance still returns True post-timeout
-        assert svc._last_confirm_path == 0
+        assert svc._strategy._last_confirm_path == 0
 
     @pytest.mark.asyncio
     async def test_fast_path_accepts_title_token_overlap(self):
@@ -831,12 +838,12 @@ class TestMANonBlockingPlayback:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         hass.states.get = MagicMock(side_effect=[before, current])
 
-        confirmed = await svc._try_ma_play(
+        confirmed = await svc._strategy.try_play(
             "spotify:track:x", "Sweet Child O' Mine", "Different Artist"
         )
 
         assert confirmed is True
-        assert svc._last_confirm_path == 2
+        assert svc._strategy._last_confirm_path == 2
 
     @pytest.mark.asyncio
     async def test_fast_path_accepts_artist_match_on_title_mismatch(self):
@@ -860,10 +867,12 @@ class TestMANonBlockingPlayback:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         hass.states.get = MagicMock(side_effect=[before, current])
 
-        confirmed = await svc._try_ma_play("spotify:track:x", "Das Modell", "Kraftwerk")
+        confirmed = await svc._strategy.try_play(
+            "spotify:track:x", "Das Modell", "Kraftwerk"
+        )
 
         assert confirmed is True
-        assert svc._last_confirm_path == 2
+        assert svc._strategy._last_confirm_path == 2
 
     @pytest.mark.asyncio
     async def test_preferred_uri_field_not_learned_on_path2_confirmation(self):
@@ -891,22 +900,24 @@ class TestMANonBlockingPlayback:
         ) -> bool:
             ok = uri == "spotify:track:legacy"
             if ok:
-                svc._last_confirm_path = 2  # weak (similarity-gate) confirmation
+                svc._strategy._last_confirm_path = (
+                    2  # weak (similarity-gate) confirmation
+                )
             return ok
 
-        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
-            result = await svc._play_via_music_assistant(song)
+        with patch.object(svc._strategy, "try_play", side_effect=fake_try):
+            result = await svc._strategy.play(song)
 
         assert result is True
         # Path-2-only confirmation must not learn the field.
-        assert svc._ma_preferred_uri_field is None
+        assert svc._strategy._ma_preferred_uri_field is None
 
 
 class TestTitleSimilarityGate:
     """#1381: unit tests for the fast-path Path 2 similarity helpers."""
 
     def test_token_overlap_matches_suffix(self):
-        from custom_components.beatify.services.media_player import (
+        from custom_components.beatify.services.playback.music_assistant import (
             _titles_plausibly_match,
         )
 
@@ -914,14 +925,14 @@ class TestTitleSimilarityGate:
         assert _titles_plausibly_match("Sweet Child O' Mine", "Sweet Child o Mine")
 
     def test_prefix_matches_remaster_suffix(self):
-        from custom_components.beatify.services.media_player import (
+        from custom_components.beatify.services.playback.music_assistant import (
             _titles_plausibly_match,
         )
 
         assert _titles_plausibly_match("Africa", "Africa (Remastered 2020)")
 
     def test_unrelated_titles_do_not_match(self):
-        from custom_components.beatify.services.media_player import (
+        from custom_components.beatify.services.playback.music_assistant import (
             _titles_plausibly_match,
         )
 
@@ -932,7 +943,9 @@ class TestTitleSimilarityGate:
         assert not _titles_plausibly_match("Go", "No")
 
     def test_artist_match_helper(self):
-        from custom_components.beatify.services.media_player import _artist_matches
+        from custom_components.beatify.services.playback.music_assistant import (
+            _artist_matches,
+        )
 
         assert _artist_matches("Kraftwerk", "Kraftwerk")
         assert _artist_matches("The Beatles", "Beatles")
@@ -1023,7 +1036,7 @@ class TestMAProviderFallback:
         hass = _make_hass()
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         song = {"uri": "spotify:track:abc", "_resolved_uri": "spotify:track:abc"}
-        candidates = svc._get_ma_uri_candidates(song)
+        candidates = svc._strategy.uri_candidates(song)
         assert candidates == [(None, "spotify:track:abc")]
 
     def test_candidates_skip_other_providers_when_apple_music_only(self):
@@ -1049,7 +1062,7 @@ class TestMAProviderFallback:
             "uri_deezer": "deezer://track/333",
             "_resolved_uri": "applemusic://track/111",
         }
-        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        uris = [uri for _, uri in svc._strategy.uri_candidates(song)]
         # Only the Apple Music URI (converted to MA's native form) should be tried.
         assert uris == ["apple_music://track/111"]
 
@@ -1072,7 +1085,7 @@ class TestMAProviderFallback:
             "uri_apple_music": "applemusic://track/111",
             "uri_tidal": "tidal://track/222",
         }
-        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        uris = [uri for _, uri in svc._strategy.uri_candidates(song)]
         assert "spotify:track:canonical" in uris
         assert "spotify:track:legacy" in uris
         # Apple Music + Tidal must be excluded.
@@ -1093,7 +1106,7 @@ class TestMAProviderFallback:
             "uri_spotify": "spotify:track:abc",  # same as uri
             "_resolved_uri": "spotify:track:abc",
         }
-        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        uris = [uri for _, uri in svc._strategy.uri_candidates(song)]
         assert uris == ["spotify:track:abc"]
 
     def test_candidates_converts_apple_music(self):
@@ -1109,7 +1122,7 @@ class TestMAProviderFallback:
             "_resolved_uri": "applemusic://track/999",
             "uri_apple_music": "applemusic://track/999",
         }
-        candidates = svc._get_ma_uri_candidates(song)
+        candidates = svc._strategy.uri_candidates(song)
         assert candidates[0][1] == "apple_music://track/999"
 
     def test_candidates_keeps_deezer_native_form(self):
@@ -1132,7 +1145,7 @@ class TestMAProviderFallback:
             "_resolved_uri": "deezer://track/12345",
             "uri_deezer": "deezer://track/12345",
         }
-        candidates = svc._get_ma_uri_candidates(song)
+        candidates = svc._strategy.uri_candidates(song)
         assert candidates[0][1] == "deezer://track/12345"
 
     def test_candidates_learned_preference_within_same_provider(self):
@@ -1150,13 +1163,13 @@ class TestMAProviderFallback:
             provider="spotify",
         )
         # Cached: legacy `uri` field worked last time.
-        svc._ma_preferred_uri_field = "uri"
+        svc._strategy._ma_preferred_uri_field = "uri"
         song = {
             "uri": "spotify:track:legacy",
             "uri_spotify": "spotify:track:canonical",
             "_resolved_uri": "spotify:track:canonical",
         }
-        candidates = svc._get_ma_uri_candidates(song)
+        candidates = svc._strategy.uri_candidates(song)
         # Primary (`_resolved_uri`) is always first.
         assert candidates[0] == (None, "spotify:track:canonical")
         # Cached field is ordered ahead of the other alternates, behind primary.
@@ -1177,13 +1190,13 @@ class TestMAProviderFallback:
             platform="music_assistant",
             provider="apple_music",
         )
-        svc._ma_preferred_uri_field = "uri_spotify"  # stale cache
+        svc._strategy._ma_preferred_uri_field = "uri_spotify"  # stale cache
         song = {
             "uri_spotify": "spotify:track:abc",
             "uri_apple_music": "applemusic://track/111",
             "_resolved_uri": "applemusic://track/111",
         }
-        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        uris = [uri for _, uri in svc._strategy.uri_candidates(song)]
         # Stale cached field is ignored; only Apple Music URI is tried.
         assert uris == ["apple_music://track/111"]
 
@@ -1191,7 +1204,7 @@ class TestMAProviderFallback:
         """Song with no URI fields yields no candidates."""
         hass = _make_hass()
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
-        assert svc._get_ma_uri_candidates({"title": "x", "artist": "y"}) == []
+        assert svc._strategy.uri_candidates({"title": "x", "artist": "y"}) == []
 
     def test_candidates_skip_legacy_us_field_when_regional_map_present(self):
         """#1379: non-US Apple-Music user must NOT get the legacy US ID appended.
@@ -1213,7 +1226,7 @@ class TestMAProviderFallback:
             "uri_apple_music_by_region": {"de": "applemusic://track/DE222"},
             "_resolved_uri": "applemusic://track/DE222",  # DE-resolved
         }
-        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        uris = [uri for _, uri in svc._strategy.uri_candidates(song)]
         # Only the storefront-resolved DE URI is tried; the US legacy ID is gone.
         assert uris == ["apple_music://track/DE222"]
         assert "apple_music://track/US111" not in uris
@@ -1233,7 +1246,7 @@ class TestMAProviderFallback:
             "uri_apple_music": "applemusic://track/111",
             "_resolved_uri": "applemusic://track/111",
         }
-        uris = [uri for _, uri in svc._get_ma_uri_candidates(song)]
+        uris = [uri for _, uri in svc._strategy.uri_candidates(song)]
         assert uris == ["apple_music://track/111"]
 
     def test_candidates_learned_us_field_never_outranks_resolved_uri(self):
@@ -1249,13 +1262,13 @@ class TestMAProviderFallback:
             provider="apple_music",
         )
         # A prior song without a regional map "learned" the legacy US field.
-        svc._ma_preferred_uri_field = "uri_apple_music"
+        svc._strategy._ma_preferred_uri_field = "uri_apple_music"
         song = {
             "uri_apple_music": "applemusic://track/US111",  # wrong storefront
             "uri_apple_music_by_region": {"de": "applemusic://track/DE222"},
             "_resolved_uri": "applemusic://track/DE222",  # DE-resolved
         }
-        candidates = svc._get_ma_uri_candidates(song)
+        candidates = svc._strategy.uri_candidates(song)
         # Storefront-resolved URI first; learned US field dropped entirely.
         assert candidates == [(None, "apple_music://track/DE222")]
 
@@ -1281,7 +1294,7 @@ class TestMAProviderFallback:
             "_resolved_uri": "spotify:track:abc",
         }
         with caplog.at_level("WARNING"):
-            candidates = svc._get_ma_uri_candidates(song)
+            candidates = svc._strategy.uri_candidates(song)
         # _resolved_uri is still honored as a last resort.
         assert candidates == [(None, "spotify:track:abc")]
         # Warning names the unknown provider so the mismatch is debuggable.
@@ -1304,7 +1317,7 @@ class TestMAProviderFallback:
             provider="amazon_music",
         )
         with caplog.at_level("WARNING"):
-            svc._get_ma_uri_candidates({"artist": "A", "title": "T"})
+            svc._strategy.uri_candidates({"artist": "A", "title": "T"})
         assert not any("unknown provider" in rec.message for rec in caplog.records)
 
     @pytest.mark.asyncio
@@ -1320,7 +1333,7 @@ class TestMAProviderFallback:
         # Song has no apple_music URI → no candidates.
         song = {"artist": "Artist", "title": "Title", "uri_spotify": "spotify:track:x"}
         with caplog.at_level("WARNING"):
-            result = await svc._play_via_music_assistant(song)
+            result = await svc._strategy.play(song)
         assert result is False
         assert svc.last_failure_reason == "unavailable"
         assert any(
@@ -1356,15 +1369,15 @@ class TestMAProviderFallback:
             if ok:
                 # Simulate a Path-1 (expected-title substring) confirmation —
                 # the only path strong enough to learn a preferred URI field.
-                svc._last_confirm_path = 1
+                svc._strategy._last_confirm_path = 1
             return ok
 
-        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
-            result = await svc._play_via_music_assistant(song)
+        with patch.object(svc._strategy, "try_play", side_effect=fake_try):
+            result = await svc._strategy.play(song)
 
         assert result is True
         assert calls == ["spotify:track:canonical", "spotify:track:legacy"]
-        assert svc._ma_preferred_uri_field == "uri"
+        assert svc._strategy._ma_preferred_uri_field == "uri"
 
     @pytest.mark.asyncio
     async def test_primary_success_does_not_update_preference(self):
@@ -1382,11 +1395,11 @@ class TestMAProviderFallback:
             "uri_spotify": "spotify:track:abc",
         }
 
-        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=True)):
-            result = await svc._play_via_music_assistant(song)
+        with patch.object(svc._strategy, "try_play", AsyncMock(return_value=True)):
+            result = await svc._strategy.play(song)
 
         assert result is True
-        assert svc._ma_preferred_uri_field is None
+        assert svc._strategy._ma_preferred_uri_field is None
 
     @pytest.mark.asyncio
     async def test_all_candidates_fail_returns_false(self):
@@ -1404,11 +1417,11 @@ class TestMAProviderFallback:
             "uri_apple_music": "applemusic://track/111",
         }
 
-        with patch.object(svc, "_try_ma_play", AsyncMock(return_value=False)):
-            result = await svc._play_via_music_assistant(song)
+        with patch.object(svc._strategy, "try_play", AsyncMock(return_value=False)):
+            result = await svc._strategy.play(song)
 
         assert result is False
-        assert svc._ma_preferred_uri_field is None
+        assert svc._strategy._ma_preferred_uri_field is None
 
     @pytest.mark.asyncio
     async def test_learned_preference_orders_alternates_behind_primary(self):
@@ -1450,12 +1463,14 @@ class TestMAProviderFallback:
             # Canonical never works in this user's setup; legacy always does.
             ok = uri.endswith("-legacy")
             if ok:
-                svc._last_confirm_path = 1  # Path-1 confirmation learns the field
+                svc._strategy._last_confirm_path = (
+                    1  # Path-1 confirmation learns the field
+                )
             return ok
 
-        with patch.object(svc, "_try_ma_play", side_effect=fake_try):
-            assert await svc._play_via_music_assistant(song_a) is True
-            assert await svc._play_via_music_assistant(song_b) is True
+        with patch.object(svc._strategy, "try_play", side_effect=fake_try):
+            assert await svc._strategy.play(song_a) is True
+            assert await svc._strategy.play(song_b) is True
 
         # Song A: canonical (primary) fails, legacy succeeds → learns "uri".
         # Song B: #1379 — primary `_resolved_uri` is STILL tried first (fails),
@@ -1475,8 +1490,8 @@ class TestMAProviderFallback:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
         mock_try = AsyncMock(return_value=True)
-        with patch.object(svc, "_try_ma_play", mock_try):
-            result = await svc._play_via_music_assistant({"title": "x"})
+        with patch.object(svc._strategy, "try_play", mock_try):
+            result = await svc._strategy.play({"title": "x"})
 
         assert result is False
         mock_try.assert_not_awaited()
@@ -2143,7 +2158,7 @@ class TestUriMatchTokens:
         ],
     )
     def test_tokens_match_ma_content_id_and_bare_id(self, uri, ma_content_id, bare_id):
-        tokens = MediaPlayerService._uri_match_tokens(uri)
+        tokens = uri_match_tokens(uri)
         # The MA-converted form is always reproducible in content_id.
         assert any(tok in ma_content_id for tok in tokens), (
             f"{uri!r} tokens {tokens!r} don't match MA content_id {ma_content_id!r}"
@@ -2152,14 +2167,12 @@ class TestUriMatchTokens:
         assert bare_id in tokens
 
     def test_youtube_watch_url_strips_extra_query_params(self):
-        tokens = MediaPlayerService._uri_match_tokens(
-            "https://music.youtube.com/watch?v=XYZ&list=PL1"
-        )
+        tokens = uri_match_tokens("https://music.youtube.com/watch?v=XYZ&list=PL1")
         assert "XYZ" in tokens
         assert "XYZ&list=PL1" not in tokens
 
     def test_empty_uri_yields_no_tokens(self):
-        assert MediaPlayerService._uri_match_tokens("") == []
+        assert uri_match_tokens("") == []
 
 
 class TestWaitForMetadataUpdateCrossProvider:
@@ -2285,14 +2298,14 @@ class TestAlexaContentType:
     @pytest.mark.asyncio
     async def test_spotify_maps_to_spotify(self):
         svc, hass = self._service("spotify")
-        await svc._play_via_alexa(_make_song())
+        await svc._strategy.play(_make_song())
         call = hass.services.async_call.call_args
         assert call[0][2]["media_content_type"] == "SPOTIFY"
 
     @pytest.mark.asyncio
     async def test_amazon_maps_to_amazon_music(self):
         svc, hass = self._service("amazon_music")
-        await svc._play_via_alexa(_make_song())
+        await svc._strategy.play(_make_song())
         call = hass.services.async_call.call_args
         assert call[0][2]["media_content_type"] == "AMAZON_MUSIC"
 
@@ -2300,9 +2313,9 @@ class TestAlexaContentType:
     async def test_apple_music_maps_to_apple_music_no_warning(self):
         svc, hass = self._service("apple_music")
         with patch(
-            "custom_components.beatify.services.media_player._LOGGER"
+            "custom_components.beatify.services.playback.alexa._LOGGER"
         ) as mock_log:
-            await svc._play_via_alexa(_make_song())
+            await svc._strategy.play(_make_song())
         call = hass.services.async_call.call_args
         assert call[0][2]["media_content_type"] == "APPLE_MUSIC"
         assert not any(
@@ -2315,9 +2328,9 @@ class TestAlexaContentType:
         APPLE_MUSIC but logs a warning naming the provider (#1402)."""
         svc, hass = self._service("deezer")
         with patch(
-            "custom_components.beatify.services.media_player._LOGGER"
+            "custom_components.beatify.services.playback.alexa._LOGGER"
         ) as mock_log:
-            await svc._play_via_alexa(_make_song())
+            await svc._strategy.play(_make_song())
         call = hass.services.async_call.call_args
         assert call[0][2]["media_content_type"] == "APPLE_MUSIC"
         warnings = [str(c) for c in mock_log.warning.call_args_list]
@@ -2737,7 +2750,7 @@ class TestFirstPlayBudget:
     """#1936 — the first play of a game gets a third more time (cold speaker)."""
 
     def test_factor_is_derived_from_the_base_timeout(self):
-        from custom_components.beatify.services.media_player import (  # noqa: PLC0415
+        from custom_components.beatify.services.playback.music_assistant import (  # noqa: PLC0415
             MA_FIRST_PLAY_TIMEOUT_FACTOR,
             MA_PLAYBACK_TIMEOUT,
         )
@@ -2748,7 +2761,7 @@ class TestFirstPlayBudget:
         svc = MediaPlayerService(
             MagicMock(), "media_player.test", platform="music_assistant"
         )
-        assert svc._first_play_pending is True
+        assert svc._strategy._first_play_pending is True
 
     @pytest.mark.asyncio
     async def test_the_longer_budget_is_used_once_and_then_dropped(self):
@@ -2768,7 +2781,7 @@ class TestFirstPlayBudget:
 
         with (
             patch(
-                "custom_components.beatify.services.media_player.MA_PLAYBACK_TIMEOUT",
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
                 1.0,
             ),
             patch(

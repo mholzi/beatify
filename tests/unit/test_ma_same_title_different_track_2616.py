@@ -83,12 +83,12 @@ class TestTitleCollisionBetweenRounds:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         hass.states.get = MagicMock(side_effect=[before, after])
 
-        confirmed = await svc._try_ma_play(RICHIE_URI, "Hello", "Lionel Richie")
+        confirmed = await svc._strategy.try_play(RICHIE_URI, "Hello", "Lionel Richie")
 
         assert confirmed is True, (
             "Gleicher Titel, andere content id — der Wechsel hat stattgefunden"
         )
-        assert svc._last_confirm_path == 1
+        assert svc._strategy._last_confirm_path == 1
         assert svc.last_failure_reason is None
 
     @pytest.mark.asyncio
@@ -119,7 +119,9 @@ class TestTitleCollisionBetweenRounds:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            confirmed = await svc._try_ma_play(RICHIE_URI, "Hello", "Lionel Richie")
+            confirmed = await svc._strategy.try_play(
+                RICHIE_URI, "Hello", "Lionel Richie"
+            )
 
         assert confirmed is True
         assert svc.last_failure_reason != "unavailable"
@@ -160,10 +162,10 @@ class TestTheInvariantFrom2333StillHolds:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            confirmed = await svc._try_ma_play(RICHIE_URI, "Stay", "Rihanna")
+            confirmed = await svc._strategy.try_play(RICHIE_URI, "Stay", "Rihanna")
 
         assert confirmed is False
-        assert svc._last_confirm_path != 1
+        assert svc._strategy._last_confirm_path != 1
         assert svc.last_failure_reason == "unavailable"
 
     @pytest.mark.asyncio
@@ -192,10 +194,12 @@ class TestTheInvariantFrom2333StillHolds:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            confirmed = await svc._try_ma_play(RICHIE_URI, "Hello", "Lionel Richie")
+            confirmed = await svc._strategy.try_play(
+                RICHIE_URI, "Hello", "Lionel Richie"
+            )
 
         assert confirmed is False
-        assert svc._last_confirm_path != 1
+        assert svc._strategy._last_confirm_path != 1
 
     @pytest.mark.asyncio
     async def test_a_speaker_without_content_id_is_unaffected(self):
@@ -221,7 +225,9 @@ class TestTheInvariantFrom2333StillHolds:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            confirmed = await svc._try_ma_play(RICHIE_URI, "Hello", "Lionel Richie")
+            confirmed = await svc._strategy.try_play(
+                RICHIE_URI, "Hello", "Lionel Richie"
+            )
 
         assert confirmed is False
         assert svc.last_failure_reason == "unavailable"

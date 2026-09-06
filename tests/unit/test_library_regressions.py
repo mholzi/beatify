@@ -165,7 +165,7 @@ class TestAnnouncementsAndPlayback:
     def test_each_round_replaces_the_playback_queue(self):
         """Without enqueue=replace, rounds accumulated in MA's queue and a
         post-announcement resume advanced into earlier rounds' songs."""
-        assert '"enqueue": "replace"' in src("services/media_player.py")
+        assert '"enqueue": "replace"' in src("services/playback/music_assistant.py")
 
 
 class TestPlaybackWiring:
@@ -187,7 +187,7 @@ class TestPlaybackWiring:
         asserts on the guard that actually decides whether the fallback runs
         instead of on the wording of a log message.
         """
-        code = src("services/media_player.py")
+        code = src("services/playback/music_assistant.py")
         assert "_NAME_FALLBACK_PROVIDERS" in code
         assert '"ma_library"' in code
         assert "MA name fallback" in code

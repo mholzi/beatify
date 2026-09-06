@@ -1,4 +1,11 @@
-"""Media player discovery and control service for Beatify."""
+"""Media player discovery and control service for Beatify.
+
+Playback itself lives in :mod:`custom_components.beatify.services.playback` —
+one strategy per platform behind one dispatch point (#2636). What stays here is
+what is not per-platform: discovery, the album-art proxy, analytics, volume
+save/restore, the metadata wait, the pre-flight check, and the game-lifecycle
+bookkeeping that decides WHEN the host's queue is captured and handed back.
+"""
 
 from __future__ import annotations
 
@@ -6,7 +13,6 @@ import asyncio
 import hashlib
 import hmac
 import logging
-import re
 import secrets
 from asyncio import timeout as async_timeout
 from datetime import datetime, timezone
@@ -17,6 +23,14 @@ from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
 from custom_components.beatify.game.playlist import get_playback_uri
+
+from .playback import (
+    MaQueueRestorer,
+    PlayerContext,
+    build_strategy,
+    uri_match_tokens,
+)
+from .playback.base import PLAYBACK_TIMEOUT
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -92,202 +106,6 @@ def get_platform_capabilities(platform: str) -> dict[str, Any]:
 
 # Timeout for pre-flight connectivity check (seconds)
 PREFLIGHT_TIMEOUT = 3.0
-
-# Timeout for play_song service calls (seconds) - prevents long hangs (#179)
-PLAYBACK_TIMEOUT = 8.0
-
-# Music Assistant playback timeout. Higher than PLAYBACK_TIMEOUT because MA
-# routes through the speaker's own buffering layer and AirPlay (HomePods,
-# Denon AirPlay, some MA-wrapped Sonos setups) can take 10-12s to acknowledge
-# a new track on the first round. #777 showed 8s was too aggressive — rounds
-# advanced before the track had actually swapped on the speaker.
-MA_PLAYBACK_TIMEOUT = 15.0
-
-# #1936: the FIRST play of a game gets a third more time (15.0s → 20.0s). A
-# speaker idle for a while was measured at 10.1s to first audio (Sonos via MA,
-# Apple Music) — close enough to the deadline that a cold start regularly lost
-# the race and the game paused before a single note had played. Later rounds
-# keep the shorter deadline: by then the speaker is warm and a longer wait is
-# just silence in front of the players.
-#
-# Expressed as a FACTOR, not a second absolute constant, so the one existing
-# patch point still governs both budgets — eight tests patch
-# MA_PLAYBACK_TIMEOUT down to keep the suite fast, and a separate absolute
-# constant would have silently made each of them wait the full 20s.
-MA_FIRST_PLAY_TIMEOUT_FACTOR = 4 / 3
-
-# #2143: how long the queue restore waits for the host's track to actually
-# start before it seeks to the saved position. Deliberately far below
-# MA_PLAYBACK_TIMEOUT: this runs during game teardown, where every second is a
-# second the admin UI sits on a dead screen. Missing the window costs the
-# position, not the track — the song comes back either way, just from 0:00.
-MA_QUEUE_RESTORE_WAIT = 5.0
-MA_QUEUE_RESTORE_POLL = 0.25
-# #2605: the pause at the end of the queue restore is read back — and the check
-# has to OUTLIVE the device settling rather than fit inside it.
-#
-# The first attempt (#2606) looked once, inside a two-second window, and then
-# stopped looking. On the real installation (Sonos through Music Assistant) the
-# speaker reported `idle` inside exactly that window, the pause counted as
-# confirmed — and from second five onwards it was playing again, for three
-# minutes. The window was the defect, not the state check.
-#
-# So now: confirm, and then KEEP WATCHING. The teardown only counts as done
-# once the speaker has stayed quiet for MA_PAUSE_SETTLE_HOLD seconds in a row;
-# if it starts again before that, it is paused again. MA_PAUSE_GUARD_WINDOW
-# caps the whole thing so `end-game` cannot hang on a speaker something else
-# owns.
-MA_PAUSE_CONFIRM_WAIT = 2.0
-MA_PAUSE_SETTLE_HOLD = 5.0
-MA_PAUSE_GUARD_WINDOW = 12.0
-MA_PAUSE_MAX_ATTEMPTS = 3
-MA_PAUSE_POLL = 0.25
-
-# #2605: "not playing" is too generous. MA reports `buffering` while a track
-# loads, and a reading that lands there looks exactly like a successful pause —
-# the track starts a second later anyway. Both states therefore count as "still
-# going".
-MA_ACTIVE_STATES = frozenset({"playing", "buffering"})
-
-# #1381: Fast-path Path 2 (title-advanced-without-exact-match) must not
-# instant-accept an *arbitrary* title change. If a requested URI fails to
-# resolve in MA while the speaker's prior queue naturally auto-advances to its
-# next track within the wait window, the title changes to an unrelated song and
-# the old code confirmed it as success in ~1s — silently running a round whose
-# audio is the wrong track (the #795 failure class). Path 2 now requires cheap
-# evidence that the new title is plausibly OUR track: either a token overlap
-# with the expected title (remaster/translation tolerance, e.g. "Das Modell"
-# vs "The Model" share no tokens but the artist matches) OR the expected artist
-# appearing in the speaker's media_artist. The unbounded "any new title"
-# acceptance is reserved for the post-timeout #345 branch, where it is logged.
-_TITLE_TOKEN_MIN_LEN = 3
-
-# Providers whose missing/failed URI may be retried by asking Music Assistant to
-# resolve the track from name + artist. `ma_library` has done this since the
-# Crate Digger work; `tidal` joins because its URIs can no longer be refreshed —
-# Odesli's public API, the only source they ever came from, was retired on
-# 2026-07-31 and now answers 401.
-_NAME_FALLBACK_PROVIDERS = frozenset({"ma_library", "tidal", "ytmusic_free"})
-
-# Words that mark a *different recording of the same song*. A name search is
-# free to return any of them, which is exactly the risk this fallback carries:
-# measured against ~2000 catalogue tracks with a known Deezer id, a plain
-# "artist title" search returned the wrong edition for 2 % of mainstream tracks
-# but 19 % of EDM ones ("Satisfaction" → "Satisfaction (Uk Radio Edit)",
-# "Scary Monsters and Nice Sprites" → "… (Zedd Remix)").
-#
-# `_titles_plausibly_match` does NOT catch these: it accepts a normalized
-# prefix, and the expected title is always a prefix of its own remix. That
-# leniency is deliberate and load-bearing for #1381 ("Das Modell" vs "The
-# Model"), so it stays — the stricter check below is applied only on the name
-# fallback path, where the extra risk actually lives.
-_EDITION_MARKERS = re.compile(
-    r"\b("
-    r"radio edit|extended|club mix|original mix|dub mix|"
-    r"remix|re-?edit|mixed|karaoke|instrumental|acapella|a cappella|"
-    r"acoustic|unplugged|live|demo|cover|tribute|playback|"
-    r"edit|mix|version"
-    r")\b",
-    re.IGNORECASE,
-)
-
-
-def _edition_markers(text: str) -> set[str]:
-    """Edition words present in a title, lower-cased."""
-    return {m.group(0).lower() for m in _EDITION_MARKERS.finditer(text or "")}
-
-
-def _edition_matches(expected_title: str, played_title: str) -> bool:
-    """False when the played title carries an edition the expected title lacks.
-
-    Deliberately one-directional. A catalogue entry named "Waves - Robin Schulz
-    Radio Edit" may legitimately play back as plain "Waves" (the provider drops
-    the suffix), so markers the *expected* side has are not required on the
-    played side. The reverse is the failure we are guarding against: plain
-    "Burn" must not be satisfied by "Burn (Aybsent Mynded Remix)".
-
-    This matters more for Beatify than it would for a music player. The game
-    asks players to guess the release *year*; a 2014 remix standing in for a
-    1998 original does not merely sound different, it makes the round's correct
-    answer wrong — and nothing on screen reveals that.
-    """
-    if not expected_title or not played_title:
-        return True
-    return not (_edition_markers(played_title) - _edition_markers(expected_title))
-
-
-def _normalize_for_match(text: str) -> str:
-    """Lower-case and strip non-alphanumeric to ASCII-ish tokens for matching."""
-    return "".join(c if c.isalnum() else " " for c in text.lower())
-
-
-def _title_tokens(text: str) -> set[str]:
-    """Significant word tokens of a title (drops short noise words/suffixes)."""
-    return {
-        tok
-        for tok in _normalize_for_match(text).split()
-        if len(tok) >= _TITLE_TOKEN_MIN_LEN
-    }
-
-
-def _titles_plausibly_match(expected_title: str, current_title: str) -> bool:
-    """Cheap similarity gate for fast-path Path 2 (#1381).
-
-    True when the two titles share at least one significant token, or one
-    normalized title is a prefix of the other (covers "(Remastered)" suffixes
-    and minor punctuation differences). False for genuinely unrelated titles
-    (e.g. the prior queue auto-advancing to a different song).
-    """
-    exp_norm = _normalize_for_match(expected_title).strip()
-    cur_norm = _normalize_for_match(current_title).strip()
-    if not exp_norm or not cur_norm:
-        return False
-    if cur_norm.startswith(exp_norm) or exp_norm.startswith(cur_norm):
-        return True
-    return bool(_title_tokens(expected_title) & _title_tokens(current_title))
-
-
-def _artist_matches(expected_artist: str, media_artist: str) -> bool:
-    """True when the expected artist is plausibly present in media_artist (#1381)."""
-    exp = _normalize_for_match(expected_artist).strip()
-    cur = _normalize_for_match(media_artist).strip()
-    if not exp or not cur:
-        return False
-    if exp in cur or cur in exp:
-        return True
-    return bool(_title_tokens(expected_artist) & _title_tokens(media_artist))
-
-
-def _content_id_advanced(
-    content_id: str, content_id_before: str, match_tokens: list[str]
-) -> bool:
-    """True when media_content_id proves the REQUESTED track is now loaded (#2616).
-
-    `media_title` is not a track identity. Two different songs can share one
-    title — round N plays "Hello" (Adele), round N+1 draws "Hello" (Lionel
-    Richie) — and the title-must-change invariant (#2333/#795) then reads a
-    perfectly successful switch as "the speaker never left the prior track".
-
-    `media_content_id` IS an identity, and `_uri_match_tokens` already knows
-    how to recognise our URI inside it (#1380). Two conditions, both required:
-
-      * the id contains a token of the URI we just asked for — so an unrelated
-        auto-advance of the prior queue cannot qualify, and
-      * the id differs from the one playing before the call — so the #2333
-        failure (MA never switched, prior track keeps running) still cannot
-        qualify, not even when the prior round happened to play this same URI.
-
-    Anything the speaker does not report (`media_content_id` missing on this
-    platform) yields False and leaves the title comparison in sole charge, as
-    before.
-    """
-    if not content_id or not match_tokens:
-        return False
-    if content_id == content_id_before:
-        return False
-    return any(token in content_id for token in match_tokens)
-
-
 # Timeout for waiting for metadata to update after playing (seconds)
 # Wait up to 2s for MA to push fresh metadata (album art, etc.) after a
 # playback transition. Reduced from 5s — that earlier value was the
@@ -313,44 +131,6 @@ ENTITY_PICTURE_WAIT = 1.0
 # placeholder before the real cover loads — Phase 2 must NOT treat that
 # transient as "the new art has arrived" (issue #1260 follow-up).
 NO_ARTWORK_PLACEHOLDER = "/beatify/static/img/no-artwork.svg"
-
-# Candidate URI fields on a song, by user-selected provider (#805).
-#
-# Each provider lists its own playable URI fields in priority order. The
-# fallback cascade in `_get_ma_uri_candidates` only walks the fields for
-# `self._provider` — never tries a different provider's URI.
-#
-# Why: prior to #805 the cascade walked ALL six URI fields regardless of
-# which provider the user picked in the wizard. On Levtos's Apple-Music-only
-# MA setup, every round paid 4×15s of timeouts on Spotify/YT/Tidal URIs that
-# his MA had no provider configured for, before getting to the Apple Music
-# URI that actually worked. After 3 cumulative play_song failures the game
-# was force-paused and the admin couldn't recover.
-#
-# The "fall through to other providers when primary fails" intent of #768
-# only makes sense when the user's MA actually has those other providers
-# configured — which the wizard already gates. If the user picked Apple
-# Music, they're saying "this is the provider MA is set up for". Trust
-# them.
-_PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
-    "spotify": ("uri_spotify", "uri"),
-    "apple_music": ("uri_apple_music",),
-    "youtube_music": ("uri_youtube_music",),
-    "tidal": ("uri_tidal",),
-    "deezer": ("uri_deezer",),
-    # Crate Digger: URIs come from the user's own MA library.
-    "ma_library": ("uri_ma_library",),
-    # Amazon Music uses Alexa text search — no URI fields; playback via
-    # _play_via_alexa() with content_type="AMAZON_MUSIC".
-    "amazon_music": (),
-    # #2426: the ytmusic_free URI is DERIVED from uri_youtube_music by
-    # get_song_uri(), so there is no catalogue field to walk. The empty tuple
-    # is deliberate rather than an omission: a missing key would log the
-    # "unknown provider" warning below and imply a mapping bug, while an empty
-    # one says the provider has no stored fields and lets _resolved_uri — which
-    # already holds the derived URI — do the work.
-    "ytmusic_free": (),
-}
 
 
 # Process-global key used to sign the absolute URLs that the album-art proxy
@@ -433,55 +213,28 @@ class MediaPlayerService:
         """
         self._hass = hass
         self._entity_id = entity_id
-        self._platform = platform
-        self._provider = provider
         self._analytics: AnalyticsStorage | None = None
         self._preflight_verified: bool = False
-        # Which URI field last succeeded against MA — used to reorder the
-        # candidate list so subsequent songs don't pay the primary-attempt
-        # timeout on every round (#768).
-        self._ma_preferred_uri_field: str | None = None
-        # #1381: which acceptance path confirmed the most recent successful
-        # _try_ma_play. 1 = expected-title substring (Path 1, strongest), 2 =
-        # similarity/artist gate (Path 2), 0 = post-timeout #345 tolerance.
-        # Only Path 1 is strong enough to promote a URI field to preferred.
-        self._last_confirm_path: int = 0
-        # #808 follow-up: classify the most recent failure mode so the
-        # caller (game/state.py:start_round) can decide whether to count
-        # this against MAX_SONG_RETRIES (real failure) or skip silently
-        # (track unavailable in the user's catalog/storefront).
+
+        # #2636: everything platform-specific now lives behind one interface.
+        # The context is the speaker; the strategy is the platform; the
+        # dispatch happened once, in `build_strategy`, instead of in an
+        # `if self._platform ==` chain spread over five methods.
         #
-        # Values:
-        #   None         — last call succeeded or hasn't been called yet
-        #   "unavailable" — MA accepted the URI but speaker stayed on the
-        #                   prior track. Almost always means the track ID
-        #                   isn't in the user's Apple Music storefront, or
-        #                   MA's provider needs re-authentication for this
-        #                   track. Skipping silently lets the game continue
-        #                   with whatever subset IS playable.
-        #   "error"       — speaker idle/off/unavailable, or hard speaker
-        #                   problem. Counts toward MAX_SONG_RETRIES so the
-        #                   game pauses on systemic issues (offline speaker,
-        #                   broken provider auth across the board).
-        self.last_failure_reason: str | None = None
-
-        # #1927 follow-up: the URI actually handed to the player for the most
-        # recent attempt. `state_lifecycle` used to log `song["uri"]` on a
-        # playback failure — the song's Spotify base field — so an Apple Music
-        # attempt was reported as `spotify:track:…` and every reader was sent
-        # hunting in the wrong provider. None until the first attempt.
-        self.last_attempted_uri: str | None = None
-
-        # #1936: True until the first playback attempt of this game has been
-        # made. Drives the longer cold-start budget in _try_ma_play.
-        self._first_play_pending: bool = True
-
-        # #1363: set when Beatify itself issues a same-song media_stop after a
-        # stale-title detect (line ~729). The stop forces the speaker to
-        # 'idle'; if the NEXT cascade candidate also fails to resolve, the
-        # idle-failure branch must NOT misread that self-induced idle as a
-        # systemic 'error' (which pauses the game). Reset before each song.
-        self._stopped_for_cascade: bool = False
+        # `save_queue` is handed over as a callback rather than called from
+        # here because only the strategy knows the moment the host's queue is
+        # about to be replaced (#2143) — while the bookkeeping around it
+        # (capture once, hand back at game end, survive a speaker switch) is
+        # game lifecycle and stays below.
+        self._context = PlayerContext(
+            hass,
+            entity_id,
+            platform=platform,
+            provider=provider,
+            save_queue=self.save_queue,
+        )
+        self._strategy = build_strategy(self._context)
+        self._restorer = MaQueueRestorer(hass)
 
         # #1516: the speaker's volume as it was BEFORE Beatify first changed it
         # this game. Captured once (via save_volume) on the first in-game volume
@@ -490,7 +243,7 @@ class MediaPlayerService:
         self._saved_volume: float | None = None
 
         # #2143: what the speaker was playing before Beatify claimed the queue.
-        # `_try_ma_play` sends `enqueue: "replace"`, which wipes whatever the
+        # The MA strategy sends `enqueue: "replace"`, which wipes whatever the
         # host had queued — in EVERY round, for every Music Assistant user,
         # whether or not they use Crate Digger. Captured once per game (like
         # `_saved_volume`) and handed back at game end.
@@ -519,6 +272,60 @@ class MediaPlayerService:
         if own_snapshot:
             self._saved_volume = own_snapshot.get("volume")
             self._saved_queue = own_snapshot.get("queue")
+
+    @property
+    def _platform(self) -> str:
+        """The speaker's platform. Lives on the context so the strategy and the
+        shell can never disagree about which speaker this is."""
+        return self._context.platform
+
+    @property
+    def _provider(self) -> str:
+        """The music provider the wizard settled on."""
+        return self._context.provider
+
+    @property
+    def last_failure_reason(self) -> str | None:
+        """Why the most recent play failed — set by whichever strategy ran.
+
+        #808 follow-up: classify the most recent failure mode so the caller
+        (``game/state.py:start_round``) can decide whether to count this
+        against MAX_SONG_RETRIES (real failure) or skip silently (track
+        unavailable in the user's catalog/storefront).
+
+        Values:
+          None          — last call succeeded or hasn't been called yet
+          "unavailable" — MA accepted the URI but speaker stayed on the prior
+                          track. Almost always means the track ID isn't in the
+                          user's Apple Music storefront, or MA's provider needs
+                          re-authentication for this track. Skipping silently
+                          lets the game continue with whatever subset IS
+                          playable.
+          "error"       — speaker idle/off/unavailable, or hard speaker
+                          problem. Counts toward MAX_SONG_RETRIES so the game
+                          pauses on systemic issues (offline speaker, broken
+                          provider auth across the board).
+        """
+        return self._context.last_failure_reason
+
+    @last_failure_reason.setter
+    def last_failure_reason(self, value: str | None) -> None:
+        self._context.last_failure_reason = value
+
+    @property
+    def last_attempted_uri(self) -> str | None:
+        """The URI actually handed to the player for the most recent attempt.
+
+        #1927 follow-up: `state_lifecycle` used to log `song["uri"]` on a
+        playback failure — the song's Spotify base field — so an Apple Music
+        attempt was reported as `spotify:track:…` and every reader was sent
+        hunting in the wrong provider. None until the first attempt.
+        """
+        return self._context.last_attempted_uri
+
+    @last_attempted_uri.setter
+    def last_attempted_uri(self, value: str | None) -> None:
+        self._context.last_attempted_uri = value
 
     def snapshot_saved_states(self) -> dict[str, dict[str, Any]]:
         """Everything this game still owes the user's speakers (#1516/#2143).
@@ -582,61 +389,19 @@ class MediaPlayerService:
         per game captures. Round two would otherwise "capture" Beatify's own
         track and hand the host that instead of their music.
 
-        Music Assistant only — the snapshot is read from ``get_queue``, which
-        no other platform provides. A failure here is deliberately swallowed:
-        not being able to remember the queue must never stop the round from
-        playing.
+        WHAT is remembered is the platform's business — only Music Assistant
+        can report it, and only its strategy overrides
+        :meth:`~.playback.base.PlaybackStrategy.capture_queue`. WHEN it is
+        remembered is this shell's, which is why the guard below stayed here
+        (#2636). A strategy that reports None (every platform but MA, and a
+        platform Beatify cannot play on at all) leaves ``_saved_queue`` unset,
+        so ``restore_queue`` hands nothing back — exactly as before.
         """
-        if self._platform != "music_assistant" or self._saved_queue is not None:
+        if self._saved_queue is not None or self._strategy is None:
             return
-        try:
-            response = await self._hass.services.async_call(
-                "music_assistant",
-                "get_queue",
-                {"entity_id": self._entity_id},
-                blocking=True,
-                return_response=True,
-            )
-        except (HomeAssistantError, ServiceNotFound, TypeError) as err:
-            # TypeError guards older MA versions whose get_queue takes no
-            # response — there is nothing to remember then, and pretending
-            # otherwise would make restore_queue play a phantom track.
-            _LOGGER.debug("Queue snapshot unavailable on %s: %s", self._entity_id, err)
-            self._saved_queue = {}
-            return
-
-        # HA hands back None when a service has no response payload, and older
-        # cores ignore `return_response` outright — neither is an error worth a
-        # log line, but both must not be walked as if they were the mapping.
-        if not isinstance(response, dict):
-            self._saved_queue = {}
-            return
-        data = response.get(self._entity_id)
-        if not isinstance(data, dict):
-            self._saved_queue = {}
-            return
-        media_item = (data.get("current_item") or {}).get("media_item") or {}
-        uri = media_item.get("uri")
-        if not uri:
-            # Idle speaker: captured, but there is nothing to hand back. Stored
-            # as {} rather than None so round two doesn't try again.
-            self._saved_queue = {}
-            _LOGGER.debug("Queue snapshot on %s: speaker idle", self._entity_id)
-            return
-
-        self._saved_queue = {
-            "uri": uri,
-            "name": media_item.get("name") or "",
-            "elapsed_time": float(data.get("elapsed_time") or 0),
-            "shuffle": bool(data.get("shuffle_enabled")),
-            "repeat_mode": data.get("repeat_mode"),
-        }
-        _LOGGER.debug(
-            "Queue snapshot on %s: %s at %.0fs",
-            self._entity_id,
-            uri,
-            self._saved_queue["elapsed_time"],
-        )
+        snapshot = await self._strategy.capture_queue()
+        if snapshot is not None:
+            self._saved_queue = snapshot
 
     async def restore_queue(self) -> bool:
         """Hand the speaker back what it was playing before the game (#2143).
@@ -655,218 +420,12 @@ class MediaPlayerService:
         restored = False
         for entity_id, snapshot in list(self._inherited_states.items()):
             queue = snapshot.pop("queue", None)
-            if await self._restore_queue_on(entity_id, queue):
+            if await self._restorer.restore_on(entity_id, queue):
                 restored = True
         queue = self._saved_queue
         # Clear BEFORE the awaits so a re-entrant call can't double-restore.
         self._saved_queue = None
-        return await self._restore_queue_on(self._entity_id, queue) or restored
-
-    async def _restore_queue_on(
-        self, entity_id: str, queue: dict[str, Any] | None
-    ) -> bool:
-        """Replay one captured queue snapshot onto one speaker."""
-        if not queue or not queue.get("uri"):
-            return False
-        try:
-            await self._hass.services.async_call(
-                "music_assistant",
-                "play_media",
-                {
-                    "media_id": queue["uri"],
-                    "media_type": "track",
-                    "enqueue": "replace",
-                },
-                target={"entity_id": entity_id},
-                blocking=False,
-            )
-            # The seek below needs the track actually loaded — a seek against
-            # the still-playing Beatify track would move the wrong song. Wait
-            # for the speaker to report a position, bounded, then give up and
-            # leave it playing from the start rather than hang the teardown.
-            if not await self._wait_for_playing(entity_id):
-                _LOGGER.debug(
-                    "Queue restore on %s: track loaded but never confirmed", entity_id
-                )
-            elif queue.get("elapsed_time", 0) >= 1:
-                await self._hass.services.async_call(
-                    "media_player",
-                    "media_seek",
-                    {
-                        "entity_id": entity_id,
-                        "seek_position": queue["elapsed_time"],
-                    },
-                    blocking=False,
-                )
-            if queue.get("shuffle") is not None:
-                await self._hass.services.async_call(
-                    "media_player",
-                    "shuffle_set",
-                    {"entity_id": entity_id, "shuffle": bool(queue["shuffle"])},
-                    blocking=False,
-                )
-            if queue.get("repeat_mode"):
-                await self._hass.services.async_call(
-                    "media_player",
-                    "repeat_set",
-                    {"entity_id": entity_id, "repeat": queue["repeat_mode"]},
-                    blocking=False,
-                )
-            # #2605: the pause runs LAST, and it is guarded.
-            #
-            # It originally sat before `shuffle_set`/`repeat_set` and was fired
-            # with `blocking=False` with nobody looking. Measured 2026-09-05:
-            # the speaker read `playing` afterwards three times in a row — the
-            # host's old queue playing on over the podium, at party volume.
-            #
-            # Every call above is deliberately `blocking=False` (MA hangs on
-            # `blocking=True` for `play_media`, see `play_song`). Submission
-            # order is therefore NOT execution order: the `media_seek` can land
-            # after the pause and start Sonos playing again. Rather than guess
-            # which call did it, `_pause_and_confirm` holds the silence instead
-            # of measuring it once.
-            paused = await self._pause_and_confirm(entity_id)
-        except (HomeAssistantError, ServiceNotFound) as err:
-            _LOGGER.warning("Queue restore on %s failed: %s", entity_id, err)
-            return False
-        else:
-            _LOGGER.info(
-                "Queue restored on %s: %s at %.0fs (%s)",
-                entity_id,
-                queue.get("name") or queue["uri"],
-                queue.get("elapsed_time", 0),
-                "paused"
-                if paused
-                else "PAUSE NOT CONFIRMED — see the warning above (#2605)",
-            )
-            return True
-
-    async def _pause_and_confirm(self, entity_id: str) -> bool:
-        """Pause, read it back — and then keep looking (#2605).
-
-        A `media_pause` with ``blocking=False`` is a request, not a fact. That
-        was the finding of #2605, and #2606 answered it by reading the state
-        back. On the real installation that still did not hold: the pause
-        landed, was confirmed, and from second five the speaker was playing
-        again. The check sat in a two-second window; the device takes longer
-        than that to settle.
-
-        So the pause is not merely confirmed here, it is **held**:
-
-        1. pause,
-        2. wait until the speaker no longer reports active playback,
-        3. then watch it for ``MA_PAUSE_SETTLE_HOLD`` seconds in a row.
-
-        If it starts again during step 3 — whether from a ``media_seek`` still
-        in flight, a ``play_media`` that had not finished loading, or Music
-        Assistant resuming its own queue — it is paused again. The guard is
-        deliberately blind to the mechanism; it reacts to what the room does.
-
-        ``MA_PAUSE_GUARD_WINDOW`` caps the whole thing so a speaker something
-        else owns cannot hang the ``end-game`` teardown.
-
-        Returns:
-            True when the speaker actually held the silence (or the entity is
-            gone). False means unconfirmed — the warning in the log says why.
-        """
-        deadline = asyncio.get_event_loop().time() + MA_PAUSE_GUARD_WINDOW
-        for versuch in range(1, MA_PAUSE_MAX_ATTEMPTS + 1):
-            await self._hass.services.async_call(
-                "media_player",
-                "media_pause",
-                {"entity_id": entity_id},
-                blocking=False,
-            )
-            if not await self._wait_until_quiet(entity_id, deadline):
-                _LOGGER.debug(
-                    "Queue restore on %s: still playing after pause attempt %d",
-                    entity_id,
-                    versuch,
-                )
-            elif await self._stays_quiet(entity_id, deadline):
-                if versuch > 1:
-                    _LOGGER.info(
-                        "Queue restore on %s: speaker stayed paused after "
-                        "attempt %d (#2605)",
-                        entity_id,
-                        versuch,
-                    )
-                return True
-            else:
-                # This is the observation #2606 could not make: the pause
-                # arrived, and the speaker started itself again afterwards.
-                _LOGGER.info(
-                    "Queue restore on %s: speaker started playing again after "
-                    "pause attempt %d — pausing once more (#2605)",
-                    entity_id,
-                    versuch,
-                )
-            if asyncio.get_event_loop().time() >= deadline:
-                break
-        _LOGGER.warning(
-            "Queue restore on %s: could not get the speaker to stay paused "
-            "within %.0fs — it is still playing the host's queue (#2605)",
-            entity_id,
-            MA_PAUSE_GUARD_WINDOW,
-        )
-        return False
-
-    async def _wait_until_quiet(self, entity_id: str, deadline: float) -> bool:
-        """Wait until the speaker stops reporting active playback (#2605).
-
-        ``media_pause`` settles Sonos-through-Music-Assistant to ``idle``, not
-        to ``paused`` — measured 2026-09-05, visible in the service response as
-        playing → idle. So this tests for "not active" rather than for one
-        particular target state.
-
-        ``None`` means the entity is gone. There is nothing left to pause then,
-        and waiting on it would only stall the teardown.
-        """
-        loop = asyncio.get_event_loop()
-        limit = min(loop.time() + MA_PAUSE_CONFIRM_WAIT, deadline)
-        while True:
-            state = self._hass.states.get(entity_id)
-            if state is None or state.state not in MA_ACTIVE_STATES:
-                return True
-            if loop.time() >= limit:
-                return False
-            await asyncio.sleep(MA_PAUSE_POLL)
-
-    async def _stays_quiet(self, entity_id: str, deadline: float) -> bool:
-        """Read the silence back for ``MA_PAUSE_SETTLE_HOLD`` seconds (#2605).
-
-        This is precisely the step #2606 was missing. There the first quiet
-        reading counted as proof — and because it fell inside a two-second
-        window, it was a reading of a speaker that had not finished settling.
-
-        Returns:
-            False as soon as playback is reported again, or when the guard
-            window runs out before the silence has held long enough.
-        """
-        loop = asyncio.get_event_loop()
-        hold_until = loop.time() + MA_PAUSE_SETTLE_HOLD
-        while True:
-            now = loop.time()
-            if now >= hold_until:
-                return True
-            if now >= deadline:
-                return False
-            await asyncio.sleep(MA_PAUSE_POLL)
-            state = self._hass.states.get(entity_id)
-            if state is None:
-                return True
-            if state.state in MA_ACTIVE_STATES:
-                return False
-
-    async def _wait_for_playing(self, entity_id: str) -> bool:
-        """Poll until the speaker reports playback, at most MA_QUEUE_RESTORE_WAIT."""
-        deadline = asyncio.get_event_loop().time() + MA_QUEUE_RESTORE_WAIT
-        while asyncio.get_event_loop().time() < deadline:
-            state = self._hass.states.get(entity_id)
-            if state is not None and state.state == "playing":
-                return True
-            await asyncio.sleep(MA_QUEUE_RESTORE_POLL)
-        return False
+        return await self._restorer.restore_on(self._entity_id, queue) or restored
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -890,51 +449,19 @@ class MediaPlayerService:
         if self._analytics:
             self._analytics.record_error(error_type, message)
 
-    def _safe_state(self):
-        """Read entity state, return None on any exception.
-
-        Resilience for the playback-confirmation read sites in `_play_via_ma`.
-        A transient exception from `hass.states.get()` (rare but possible during
-        HA restarts / state-machine reload) used to propagate up and abort the
-        whole song play, even though the existing code paths gracefully handle
-        a None return. Catching here lets the flow downgrade to "state unknown"
-        and continue. (#777 follow-up — the polling-resilience scope flagged in
-        TestMAPollingResilience.)
-        """
-        try:
-            return self._hass.states.get(self._entity_id)
-        except Exception as err:  # noqa: BLE001 — defensive read of HA state
-            _LOGGER.warning(
-                "hass.states.get(%s) raised %s; treating as unknown",
-                self._entity_id,
-                err,
-            )
-            return None
-
-    async def _safe_state_with_retry(self, retries: int = 3, delay: float = 0.5):
-        """Read entity state with short retry loop; for the post-timeout site
-        where having a state is critical for the title-advance check.
-
-        Most reads succeed on attempt 1; this only kicks in when HA's state
-        machine is briefly unreadable (HA restart edge, MA reload). Returns
-        None if all attempts return None.
-        """
-        for attempt in range(retries):
-            state = self._safe_state()
-            if state is not None:
-                return state
-            if attempt < retries - 1:
-                await asyncio.sleep(delay)
-        return None
-
     async def play_song(self, song: dict[str, Any]) -> bool:
         """
         Play a song using appropriate method for platform.
 
-        Routes playback based on platform:
+        The platform was resolved once, at construction, into a
+        :class:`~.playback.base.PlaybackStrategy` (#2636):
+
         - music_assistant: Uses music_assistant.play_media with URI
         - sonos: Uses media_player.play_media with Spotify URI
         - alexa_media: Uses media_player.play_media with text search
+
+        What is left here is what every platform shares: the URI precondition,
+        the timeout and error log lines, and the analytics record.
 
         Args:
             song: Song dict with _resolved_uri, artist, title keys
@@ -957,15 +484,12 @@ class MediaPlayerService:
             self._record_error("PLAYBACK_FAILURE", "Song has no URI")
             return False
 
-        try:
-            if self._platform == "music_assistant":
-                return await self._play_via_music_assistant(song)
-            if self._platform == "sonos":
-                return await self._play_via_sonos(song)
-            if self._platform in ("alexa_media", "alexa"):
-                return await self._play_via_alexa(song)
+        if self._strategy is None:
             _LOGGER.error("Unsupported platform: %s", self._platform)
             return False
+
+        try:
+            return await self._strategy.play(song)
         except (TimeoutError, asyncio.TimeoutError):
             _LOGGER.error(
                 "Playback timed out after %ss for %s: %s",
@@ -979,860 +503,6 @@ class MediaPlayerService:
             _LOGGER.error("Playback failed for %s: %s", uri, err)  # noqa: TRY400
             self._record_error("PLAYBACK_FAILURE", f"Failed to play {uri}: {err}")
             return False
-
-    @staticmethod
-    def _convert_uri_for_ma(uri: str) -> str:
-        """
-        Convert Beatify-internal URIs to formats Music Assistant understands.
-
-        Beatify playlists store URIs in internal formats:
-        - applemusic://track/<id>  → apple_music://track/<id>  (MA native, #772)
-        - deezer://track/<id>      → unchanged (MA native, #797)
-        - tidal://track/<id>       → https://tidal.com/browse/track/<id>
-        - spotify:track:<id>       → unchanged (MA native format)
-        - https://music.youtube.com/... → unchanged (already a URL)
-
-        Args:
-            uri: Beatify-internal URI string
-
-        Returns:
-            URI converted to a format Music Assistant can resolve
-
-        """
-        if not uri:
-            return uri
-
-        if uri.startswith("deezer://track/"):
-            # MA's Deezer provider has domain "deezer". The previous
-            # https://www.deezer.com/track/<id> form was being routed to the
-            # "builtin" provider via MA's generic http(s):// branch — and
-            # builtin doesn't know Deezer, so playback failed with
-            # "No playable items found". Pass through the native form. (#797)
-            return uri
-
-        if uri.startswith("applemusic://track/"):
-            # MA's Apple Music provider has domain "apple_music". Use MA's native
-            # provider-URI form; the short "music.apple.com/song/<id>" URL fails
-            # MA's parser (needs storefront+slug, 6+ path parts). (#772)
-            track_id = uri.removeprefix("applemusic://track/")
-            return f"apple_music://track/{track_id}"
-
-        if uri.startswith("tidal://track/"):
-            track_id = uri.removeprefix("tidal://track/")
-            return f"https://tidal.com/browse/track/{track_id}"
-
-        if uri.startswith("https://music.youtube.com/watch?v="):
-            track_id = uri.removeprefix("https://music.youtube.com/watch?v=")
-            return f"ytmusic://track/{track_id}"
-
-        # spotify:track:<id> and https:// URLs are passed through unchanged
-        return uri
-
-    @classmethod
-    def _uri_match_tokens(cls, uri: str) -> list[str]:
-        """Tokens to look for in MA's media_content_id to confirm playback.
-
-        Issue #1380: the raw Beatify-internal URI is not what MA reports in
-        media_content_id — MA echoes the _convert_uri_for_ma form. To reliably
-        detect that the requested track started, match against BOTH the
-        MA-converted URI and the bare track ID (last path/ID segment), which is
-        identical across the internal and the MA-converted form for every
-        provider (Spotify, Apple Music, Tidal, YT Music, Deezer).
-
-        Args:
-            uri: The Beatify-internal URI that was requested.
-
-        Returns:
-            Ordered, deduped, non-empty substring tokens.
-
-        """
-        tokens: list[str] = []
-
-        def _add(token: str | None) -> None:
-            if token and token not in tokens:
-                tokens.append(token)
-
-        # The form MA actually reports.
-        _add(cls._convert_uri_for_ma(uri))
-        # The raw form too, in case a provider echoes the internal URI verbatim.
-        _add(uri)
-
-        # Bare track ID — stable across both forms.
-        if uri.startswith("spotify:"):
-            _add(uri.split(":")[-1])
-        elif "watch?v=" in uri:
-            # https://music.youtube.com/watch?v=<id>[&extra]
-            _add(uri.split("watch?v=", 1)[-1].split("&", 1)[0])
-        elif "://" in uri:
-            # applemusic://track/<id>, tidal://track/<id>, deezer://track/<id>,
-            # and plain https URLs — the bare ID is the last "/"-segment.
-            tail = uri.rstrip("/").rsplit("/", 1)[-1]
-            _add(tail.split("?", 1)[0])
-
-        return tokens
-
-    def _get_ma_uri_candidates(
-        self, song: dict[str, Any]
-    ) -> list[tuple[str | None, str]]:
-        """
-        Build the ordered list of MA-ready URIs to try for this song (#805).
-
-        Only walks URI fields belonging to the user's selected provider
-        (`self._provider`). The wizard's provider choice represents what's
-        actually configured in MA — trying URIs from other providers when
-        the user said "Apple Music only" just buys 15s timeouts per
-        unsupported provider before MA reports `MediaNotFoundError`.
-
-        Order: the user's selected URI (`_resolved_uri`, storefront-resolved by
-        the caller) ALWAYS first, then the previously-successful field (if any),
-        then any remaining provider URI fields. URIs are converted for MA and
-        deduped by their converted form.
-
-        For apple_music, the legacy `uri_apple_music` field (a single,
-        historically US-storefront ID) is dropped from the alternates whenever
-        the song carries a `uri_apple_music_by_region` map — otherwise a non-US
-        user would re-pay the wrong-storefront timeout #808 eliminated, and a
-        cross-storefront-lucky US hit could become the learned preferred field
-        and bypass region-correct resolution for the rest of the session (#1379).
-
-        Returns:
-            List of `(field_name, converted_uri)`. `field_name` is `None` for
-            the `_resolved_uri` entry, a `uri_*` field name otherwise.
-
-        """
-        seen: set[str] = set()
-        candidates: list[tuple[str | None, str]] = []
-        # Validate the dispatch key explicitly (#1276). An unknown provider
-        # (key absent from the table) is a config-level mismatch — the wizard
-        # is supposed to gate it, but if it slips through, `.get(..., ())`
-        # would silently yield zero candidates and playback would fail with
-        # no actionable diagnostic. This is the silent-fail pattern behind
-        # #768/#808. A KNOWN provider mapped to `()` (e.g. amazon_music, which
-        # plays via Alexa text-search, not URIs) is intentional and stays
-        # quiet. `_resolved_uri` is still honored below as a last resort so an
-        # unexpected provider doesn't hard-fail when the song does carry a URI.
-        provider_fields = _PROVIDER_URI_FIELDS.get(self._provider)
-        if provider_fields is None:
-            _LOGGER.warning(
-                "MA dispatch: unknown provider %r — no URI field mapping; "
-                "falling back to _resolved_uri only for %s - %s (#1276)",
-                self._provider,
-                song.get("artist"),
-                song.get("title"),
-            )
-            provider_fields = ()
-
-        def _add(field: str | None, raw: str | None) -> None:
-            if not raw:
-                return
-            converted = self._convert_uri_for_ma(raw)
-            if not converted or converted in seen:
-                return
-            seen.add(converted)
-            candidates.append((field, converted))
-
-        # #1379: storefront-unaware fallback guard. For apple_music, the legacy
-        # `uri_apple_music` field holds a single (historically US-storefront)
-        # track ID. The caller (`get_song_uri`) already resolves `_resolved_uri`
-        # storefront-aware from `uri_apple_music_by_region` when that map exists.
-        # Appending the legacy US field as an alternate for a non-US user
-        # re-introduces exactly the wrong-storefront 15s stale-title timeout that
-        # #808 eliminated — and if that US ID ever resolves cross-storefront, it
-        # becomes the learned preferred field and systematically outranks the
-        # region-correct URI for the rest of the session. When a regional map is
-        # present, drop the legacy field entirely so only `_resolved_uri` (the
-        # region-correct ID, or None when unavailable) is tried.
-        skip_legacy_apple = self._provider == "apple_music" and bool(
-            song.get("uri_apple_music_by_region")
-        )
-
-        def _field_eligible(field: str) -> bool:
-            return not (skip_legacy_apple and field == "uri_apple_music")
-
-        # #1379: `_resolved_uri` is ALWAYS tried first — it is the URI Beatify
-        # resolved for the user's selected provider AND storefront. The learned
-        # preference must never outrank it (a US ID that resolved once must not
-        # systematically bypass storefront-correct resolution); the preference is
-        # used only to order the REMAINING alternates below.
-        _add(None, song.get("_resolved_uri"))
-
-        # Learned preference — but only if it's a field belonging to the
-        # current provider (the cache survives across games where provider
-        # may have changed) and not a legacy field we're skipping for storefront
-        # reasons (#1379). Ordered ahead of the other alternates, behind primary.
-        if (
-            self._ma_preferred_uri_field
-            and self._ma_preferred_uri_field in provider_fields
-            and _field_eligible(self._ma_preferred_uri_field)
-        ):
-            _add(self._ma_preferred_uri_field, song.get(self._ma_preferred_uri_field))
-
-        # Remaining alternates within the same provider.
-        for field in provider_fields:
-            if field != self._ma_preferred_uri_field and _field_eligible(field):
-                _add(field, song.get(field))
-
-        return candidates
-
-    async def _play_via_music_assistant(self, song: dict[str, Any]) -> bool:
-        """
-        Play via Music Assistant, walking the user-provider's URI fields (#805).
-
-        Only candidates from `_PROVIDER_URI_FIELDS[self._provider]` are tried —
-        the wizard's provider choice represents what MA is configured for, so
-        attempting other providers' URIs just burns 15s timeouts per
-        unsupported provider before MA reports `MediaNotFoundError`. This was
-        the originating bug for #805 (Levtos's Apple-Music-only setup paid
-        4×15s of Spotify/YT/Tidal timeouts on every failed round).
-        """
-        # #808 follow-up: clear stale failure classification before each
-        # attempt so start_round reads only the result of THIS song.
-        self.last_failure_reason = None
-        # #1363: clear the cascade-stop flag at the start of each song so a
-        # stop from a PRIOR song never leaks into this song's classification.
-        self._stopped_for_cascade = False
-
-        candidates = self._get_ma_uri_candidates(song)
-        expected_title = song.get("title") or ""
-        expected_artist = song.get("artist") or ""
-
-        # The name fallback below needs both fields; without them there is
-        # nothing to search for and nothing to verify the result against.
-        name_fallback = bool(
-            self._provider in _NAME_FALLBACK_PROVIDERS
-            and expected_title
-            and expected_artist
-        )
-
-        if not candidates and not name_fallback:
-            # #1276: surface the provider so a missing-URI miss is debuggable
-            # (which provider was selected vs. which fields the song carries).
-            _LOGGER.warning(
-                "MA playback: no playable URI for provider %r — %s - %s (#1276)",
-                self._provider,
-                song.get("artist"),
-                song.get("title"),
-            )
-            self.last_failure_reason = "unavailable"
-            return False
-
-        if not expected_title:
-            _LOGGER.warning(
-                "MA playback: no expected title — skipping title verification"
-            )
-
-        for idx, (field, uri) in enumerate(candidates):
-            if idx > 0:
-                _LOGGER.info(
-                    "MA fallback %d/%d: trying %s (prior URI did not resolve) (#768)",
-                    idx + 1,
-                    len(candidates),
-                    uri,
-                )
-            success = await self._try_ma_play(uri, expected_title, expected_artist)
-            if success:
-                # #1381: only learn a candidate's URI field as the new preferred
-                # one when an EXPECTED-TITLE substring match (Path 1) confirmed
-                # it. A weaker confirmation (artist/token gate, or the
-                # post-timeout #345 tolerance) is not strong enough proof that
-                # THIS field actually resolved our track — promoting it would
-                # reorder future candidates wrongly for a field that never
-                # really worked.
-                if (
-                    field
-                    and field != self._ma_preferred_uri_field
-                    and self._last_confirm_path == 1
-                ):
-                    _LOGGER.debug("MA preferred URI field now: %s (#768)", field)
-                    self._ma_preferred_uri_field = field
-                self.last_failure_reason = None
-                return True
-
-        # Last resort: let MA resolve the track from name + artist.
-        #
-        # `ma_library`: the stored URI is normally exact, but the item may have
-        # moved or changed since the pool was built.
-        # `tidal`: the URI may be absent entirely and can no longer be obtained
-        # — Odesli, the only source Beatify ever had for Tidal ids, retired its
-        # public API on 2026-07-31. This path is a safety net *behind* the
-        # stored URIs, never a replacement for them: the loop above has already
-        # run, so a song that carries a working `uri_tidal` never reaches here.
-        if name_fallback:
-            _LOGGER.info(
-                "MA name fallback (%s): resolving by name -- %s - %s",
-                self._provider,
-                expected_artist,
-                expected_title,
-            )
-            if await self._try_ma_play(
-                expected_title,
-                expected_title,
-                expected_artist,
-                artist_filter=expected_artist,
-            ):
-                # A name search can land on a remix, a live take or a karaoke
-                # version of the right song. `_try_ma_play` will happily accept
-                # those (its title gate is a prefix/token check by design), so
-                # the edition is checked here instead.
-                state = self._safe_state()
-                played_title = (
-                    state.attributes.get("media_title", "") if state else ""
-                ) or ""
-                if not _edition_matches(expected_title, played_title):
-                    _LOGGER.warning(
-                        "MA name fallback: rejecting wrong edition — wanted %r, "
-                        "got %r (%s)",
-                        expected_title,
-                        played_title,
-                        expected_artist,
-                    )
-                    self.last_failure_reason = "wrong_track"
-                    return False
-                self.last_failure_reason = None
-                return True
-
-        _LOGGER.error(
-            "MA playback: all %d URI candidate(s) failed for %s - %s (#768)",
-            len(candidates),
-            song.get("artist"),
-            song.get("title"),
-        )
-        # last_failure_reason carries the classification of the last
-        # _try_ma_play attempt (set by that method); start_round reads it.
-        return False
-
-    async def _try_ma_play(
-        self,
-        uri: str,
-        expected_title: str,
-        expected_artist: str = "",
-        artist_filter: str | None = None,
-    ) -> bool:
-        """
-        Attempt a single MA `play_media` call and wait for playback confirmation.
-
-        Returns False on hard failure (speaker idle/unavailable, or the track
-        clearly never swapped on the speaker) so the caller can try the next
-        URI. Returns True both when playback is confirmed AND when the speaker
-        is showing ambiguous-but-changing state (MA may still be buffering —
-        preserving the #345 tolerance so we don't chase flaky retries).
-
-        `expected_artist` (#1381) feeds the fast-path Path 2 similarity gate so
-        an arbitrary title change from the prior queue auto-advancing is not
-        instant-accepted as our track.
-        """
-        # #1927 follow-up: remember what we are about to play, so a failure is
-        # reported with the URI that was really tried.
-        self.last_attempted_uri = uri
-        # #1936: cold-start budget for the very first attempt of a game only.
-        timeout = MA_PLAYBACK_TIMEOUT * (
-            MA_FIRST_PLAY_TIMEOUT_FACTOR if self._first_play_pending else 1
-        )
-        self._first_play_pending = False
-        _LOGGER.debug(
-            "MA playback: %s on %s (budget %.0fs)", uri, self._entity_id, timeout
-        )
-
-        # Snapshot speaker state before the call — we need both fields to
-        # distinguish #345 slow-buffer (one of them changed during the wait)
-        # from #777 silent failure (neither changed, speaker still on prior
-        # track).
-        state_before = self._safe_state()
-        if state_before is not None:
-            title_before = state_before.attributes.get("media_title", "")
-            position_updated_before = state_before.attributes.get(
-                "media_position_updated_at"
-            )
-            # #2616: the title alone cannot tell "same song still playing"
-            # apart from "different song, same title". The content id can.
-            content_id_before = state_before.attributes.get("media_content_id") or ""
-        else:
-            title_before = ""
-            position_updated_before = None
-            content_id_before = ""
-
-        # #2616: the substrings that identify THIS uri inside MA's
-        # media_content_id — the same tokens wait_for_metadata_update matches
-        # on (#1380).
-        match_tokens = self._uri_match_tokens(uri)
-
-        # #2143: remember the host's own queue BEFORE the replace below wipes
-        # it. Idempotent, so this only costs a get_queue call in round one.
-        await self.save_queue()
-
-        # Fire-and-forget the service call — blocking=True hangs on MA+YTMusic
-        # enqueue=replace: each round's track REPLACES the queue. Without it
-        # MA keeps prior rounds queued, and after a TTS announcement the queue
-        # resume can advance into stale entries — observed as the player
-        # returning to PREVIOUS rounds' songs, sometimes mid-round.
-        service_data: dict[str, Any] = {
-            "media_id": uri,
-            "media_type": "track",
-            "enqueue": "replace",
-        }
-        # Crate Digger name fallback: when a stored library URI no longer
-        # resolves (library rebuilds change item ids), media_id carries the
-        # track NAME and the artist disambiguates it inside MA's resolver.
-        if artist_filter:
-            service_data["artist"] = artist_filter
-        await self._hass.services.async_call(
-            "music_assistant",
-            "play_media",
-            service_data,
-            target={"entity_id": self._entity_id},
-            blocking=False,
-        )
-
-        # Wait for the EXPECTED song to actually play on the speaker:
-        # - media_title contains expected title (the strongest single signal —
-        #   speaker explicitly identifies our requested track)
-        # - media_position_updated_at changed (MA is actively reporting state)
-        #
-        # We used to also require media_position >= 1 here as a guard against
-        # MA reporting `state=playing` while a track was only queued. In
-        # practice that case shows itself by `media_position_updated_at`
-        # *not* changing — the queued track's position never updates. So
-        # `position_fresh` already filters it out, and the position-value
-        # check was needlessly delaying confirmation.
-        #
-        # Ziigmund84 reported (#803) on cold MA start the speaker shows
-        # state=playing + correct title within seconds, but media_position
-        # lags at 0 for 10-15s. Old fast-path didn't fire; user heard music
-        # while UI sat in REVEAL waiting for the timeout.
-        expected_lower = expected_title.lower()
-
-        confirmed = asyncio.Event()
-        start_time = asyncio.get_event_loop().time()
-
-        def _check_state(state) -> bool:
-            """Return True if the state confirms expected playback.
-
-            Two acceptance paths:
-              1. Title contains expected (substring) — the strongest signal.
-              2. Title moved to a *plausibly-our-track* new title — MA is
-                 making progress on a new track that shares a token with the
-                 expected title, or whose artist matches the expected artist.
-
-            Path 2 was previously only reachable via the 15-second slow-buffer
-            tolerance below. Levtos reported that pressing "next" caused the
-            UI to lag while the music had already started: the playlist had
-            a song with a slightly different title format (e.g. German
-            "Das Modell" vs MA's English "The Model", or "(Remastered)"
-            suffix mismatches) so the substring-match in path 1 failed and
-            the wait timed out. With path 2 in the fast-path, the UI now
-            returns within ~1s of MA actually starting playback.
-
-            #1381 tightened Path 2: it used to accept ANY title that differed
-            from `title_before`. If the requested URI failed to resolve in MA
-            while the speaker's prior queue auto-advanced to its next track
-            during the 15s window, that unrelated title was instant-confirmed
-            as success — the #795 "guess the year of SongX with no SongX audio"
-            class, but silently. Path 2 now requires a cheap similarity gate
-            (token overlap / normalized-prefix vs expected_title, OR expected
-            artist present in media_artist). The unbounded "any new title"
-            acceptance is reserved for the post-timeout #345 branch, where it
-            is logged.
-
-            #795 invariant still holds: if the title is unchanged from
-            before the call (`title_before`), neither path fires and we
-            fall through to the title-must-advance hard-failure check.
-            """
-            if not state or state.state != "playing":
-                return False
-            try:
-                current_title = state.attributes.get("media_title", "") or ""
-                current_artist = state.attributes.get("media_artist", "") or ""
-                position_updated = state.attributes.get("media_position_updated_at")
-
-                position_fresh = position_updated != position_updated_before
-                if not position_fresh:
-                    return False
-
-                # #2333: the track has to have actually changed. The
-                # docstring above promised this of BOTH paths, and Path 2
-                # honoured it while Path 1 did not — it accepted a substring
-                # match against whatever was playing, including the song from
-                # the previous round still running.
-                #
-                # `position_fresh` above is no help: a track that simply keeps
-                # playing keeps advancing its own position.
-                #
-                # The failure it allowed: round N plays "Stay With Me", round
-                # N+1 draws "Stay" whose URI is missing from the household's
-                # storefront, MA never switches, and `"stay" in "stay with
-                # me"` confirms success within a second. The room then guesses
-                # a song they already heard.
-                #
-                # Substring containment makes that reachable well beyond one
-                # example — covers, "One", "Hurt", remaster suffixes.
-                #
-                # An empty `title_before` (nothing was playing) still passes,
-                # which is the cold-start case and genuinely a change.
-                title_changed = current_title != title_before
-
-                # #2616: a changed title is sufficient proof of a new track,
-                # but it is not necessary. Two different songs can carry the
-                # same title ("Hello" by Adele, then "Hello" by Lionel
-                # Richie), and #2333's title check then rejects a switch that
-                # actually happened. `media_content_id` settles it: if it now
-                # carries the id of the URI we requested AND differs from what
-                # was loaded before, the speaker demonstrably moved to OUR
-                # track. The #2333 failure stays rejected — there MA never
-                # switched, so the content id never changes either.
-                content_id = state.attributes.get("media_content_id") or ""
-                track_changed = title_changed or _content_id_advanced(
-                    content_id, content_id_before, match_tokens
-                )
-
-                # Path 1: exact-ish title match (substring) — strongest signal,
-                # the only path strong enough to learn a preferred URI field.
-                if (
-                    track_changed
-                    and expected_lower
-                    and expected_lower in current_title.lower()
-                ):
-                    self._last_confirm_path = 1
-                    return True
-                # If no expected title was supplied, position-fresh alone is
-                # all the signal we have — accept (matches old behavior).
-                if not expected_lower:
-                    self._last_confirm_path = 2
-                    return True
-
-                # Path 2 (#1381): title moved to a DIFFERENT title AND that
-                # title is plausibly our track (shared token / prefix) OR the
-                # artist matches. A bare "any different title" no longer
-                # qualifies — that is the prior-queue auto-advance trap.
-                if current_title and track_changed:
-                    if _titles_plausibly_match(
-                        expected_title, current_title
-                    ) or _artist_matches(expected_artist, current_artist):
-                        self._last_confirm_path = 2
-                        return True
-
-                return False
-            except (AttributeError, KeyError):
-                return False
-
-        def _state_changed(ev):
-            new_state = ev.data.get("new_state")
-            if _check_state(new_state):
-                confirmed.set()
-
-        unsub = async_track_state_change_event(
-            self._hass, [self._entity_id], _state_changed
-        )
-        try:
-            # Check current state first — may already be playing
-            current = self._safe_state()
-            if _check_state(current):
-                elapsed = asyncio.get_event_loop().time() - start_time
-                _LOGGER.debug(
-                    "MA playback confirmed after %.1fs: %s (pos=%.1f)",
-                    elapsed,
-                    current.attributes.get("media_title", ""),
-                    current.attributes.get("media_position", 0),
-                )
-                return True
-
-            await asyncio.wait_for(confirmed.wait(), timeout=timeout)
-            elapsed = asyncio.get_event_loop().time() - start_time
-            final = self._safe_state()
-            _LOGGER.debug(
-                "MA playback confirmed after %.1fs: %s (pos=%.1f)",
-                elapsed,
-                final.attributes.get("media_title", "") if final else "?",
-                final.attributes.get("media_position", 0) if final else 0,
-            )
-            return True
-        except asyncio.TimeoutError:
-            pass
-        finally:
-            unsub()
-
-        current_state = await self._safe_state_with_retry()
-        speaker_state = current_state.state if current_state else "unknown"
-
-        # Hard failure: speaker is idle/unavailable/off — song won't play
-        if speaker_state in ("idle", "unavailable", "off", "unknown"):
-            # #1363: if the speaker is 'idle' only because WE stopped it after a
-            # prior same-song stale-title detect, this is a storefront-gap
-            # cascade (e.g. apple_music's `_resolved_uri` and a differing
-            # `uri_apple_music` both point at an unavailable catalog entry), NOT
-            # a systemic speaker/provider failure. Misclassifying it as 'error'
-            # makes state_lifecycle pause the whole game on a per-track gap —
-            # the exact #805/#808 regression. Keep it 'unavailable' so the game
-            # skips the song silently and tries the next one.
-            if self._stopped_for_cascade and speaker_state == "idle":
-                _LOGGER.warning(
-                    "MA playback failed after %.1fs for %s — speaker idle, but "
-                    "Beatify stopped it after a same-song stale-title detect. "
-                    "Treating as a storefront/catalog gap (unavailable), not a "
-                    "systemic error — game will skip this song silently. (#1363)",
-                    timeout,
-                    uri,
-                )
-                self.last_failure_reason = "unavailable"
-                return False
-            _LOGGER.error(
-                "MA playback failed after %.1fs for %s (state: %s). "
-                "Either the speaker is offline, MA's provider is unauthenticated, "
-                "or the track is not available in your provider's catalog. If this "
-                "happens for many tracks, re-authenticate your music provider in MA. "
-                "A rate-limiting provider looks the same from here — Music "
-                "Assistant then retries the track after its own backoff, which "
-                "can outlast this budget. (#1936)",
-                timeout,
-                uri,
-                speaker_state,
-            )
-            # Conservative: speaker-idle failures could be systemic (provider
-            # broken across the board) so we keep counting them toward
-            # MAX_SONG_RETRIES. The recovery banner will guide the user to
-            # the re-auth fix once 3 land in a row.
-            self.last_failure_reason = "error"
-            return False
-
-        # Hard failure: speaker title did not advance. If the title field is
-        # identical to what it was before we called play_media, the new track
-        # never started on the speaker — even if media_position_updated_at
-        # changed (that just means the *prior* track is still ticking).
-        #
-        # #777 originally caught only "title unchanged AND position unchanged"
-        # (everything frozen), but #795 surfaced the more common pattern:
-        # the prior track keeps playing, position advances, and the #345
-        # tolerance below would falsely return True. Levtos's playthrough
-        # had the speaker stuck on 'Sugar, Sugar' then 'Lazy Sunday (Mono)'
-        # for multiple rounds while UI advanced into "guess the year of
-        # SongX" with no actual SongX audio.
-        #
-        # Title-must-advance is the right invariant: if a new track really
-        # started, the title field must eventually become *something*
-        # different. Position alone is not proof of a new track.
-        title_after = (
-            current_state.attributes.get("media_title", "") if current_state else ""
-        )
-        position_updated_after = (
-            current_state.attributes.get("media_position_updated_at")
-            if current_state
-            else None
-        )
-        content_id_after = (
-            (current_state.attributes.get("media_content_id") or "")
-            if current_state
-            else ""
-        )
-        title_advanced = title_after != title_before
-        # #2616: same reasoning as in the fast path — an unchanged title is
-        # only evidence of a stuck speaker when the content id has not moved
-        # to the track we asked for. Stopping the speaker here is what made
-        # the collision audible: the room heard the correct song for the full
-        # budget, then silence, then a different song.
-        track_advanced = title_advanced or _content_id_advanced(
-            content_id_after, content_id_before, match_tokens
-        )
-        if not track_advanced:
-            position_changed = position_updated_after != position_updated_before
-            # #808 follow-up: this is the storefront/region-mismatch
-            # signature — MA accepted the URI but couldn't resolve a stream
-            # for it, so the speaker just keeps playing the prior track.
-            # @Levtos hit this for `apple_music://track/302229811` (US-only
-            # 'All Together Now' on a DE-storefront MA), and the iTunes
-            # Lookup confirmed: track in US catalog, NOT in DE catalog.
-            _LOGGER.warning(
-                "MA playback failed after %.1fs for %s — speaker still on "
-                "prior track %r (position timestamp %s). Track is likely "
-                "not available in your provider's catalog/storefront, OR "
-                "your provider needs re-authentication in MA. Skipping "
-                "this song silently — game will try the next one. (#795)",
-                timeout,
-                uri,
-                title_before,
-                "advanced — prior track still playing"
-                if position_changed
-                else "also unchanged",
-            )
-            # #801: Hard-stop the speaker so the prior track doesn't keep
-            # playing while the fallback cascade tries the next URI. Without
-            # this, Levtos's setup heard 'Kill Bill' continuing for multiple
-            # rounds while the UI advanced — strict-detection was rejecting
-            # candidates correctly but nobody was telling the speaker to
-            # actually stop. Best-effort: failure here doesn't change the
-            # outcome (we're already returning False).
-            try:
-                await self._hass.services.async_call(
-                    "media_player",
-                    "media_stop",
-                    {"entity_id": self._entity_id},
-                    blocking=False,
-                )
-                # #1363: record that the next cascade candidate will see an
-                # 'idle' speaker WE caused, so its idle-failure isn't
-                # misclassified as a systemic 'error'.
-                self._stopped_for_cascade = True
-            except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError):
-                _LOGGER.debug(
-                    "media_stop call after stale-title detect failed for %s",
-                    self._entity_id,
-                )
-            # #808 follow-up: classify as "unavailable" so start_round skips
-            # silently without counting against MAX_SONG_RETRIES. Storefront
-            # gaps shouldn't pause the game — the user can't fix individual
-            # track availability and the game should keep playing whatever
-            # subset IS in their catalog.
-            self.last_failure_reason = "unavailable"
-            return False
-
-        if not title_advanced:
-            _LOGGER.debug(
-                "MA playback: title stayed %r for %s, but media_content_id "
-                "moved to %r — the requested track IS loaded, the two songs "
-                "merely share a title. Not a stale-title failure. (#2616)",
-                title_before,
-                uri,
-                content_id_after,
-            )
-
-        # #1863: "still buffering" requires that Music Assistant actually owns
-        # this player. An MA-platform entity reports the queue it is playing
-        # from in `active_queue`; while MA is buffering a track it has already
-        # taken the queue, so `active_queue` is set. A *null* `active_queue`
-        # means MA never accepted the play_media call for this player at all —
-        # the entity is only mirroring whatever the underlying speaker was
-        # doing before the game (in the report: a leftover Spotify context,
-        # `state: paused`, `media_position: 0`). That is a silent failure, not
-        # slow buffering, and the #345 tolerance below would wave it through as
-        # success: the round then starts, the timer arms, and the players get a
-        # silent PLAYING phase with no music and no error.
-        #
-        # Deliberately narrow: only when the attribute is PRESENT and falsy. If
-        # a Music Assistant / HA version does not expose `active_queue` at all
-        # the key is missing, and we keep the old tolerance rather than turning
-        # every slow buffer on that version into a failure.
-        attrs_after = current_state.attributes if current_state else {}
-        if "active_queue" in attrs_after and not attrs_after.get("active_queue"):
-            _LOGGER.error(
-                "MA playback failed after %.1fs for %s — the player reports no "
-                "active Music Assistant queue (state: %s, title %r → %r). MA "
-                "never took ownership of this speaker, so nothing was ever "
-                "dispatched. Check that the speaker is exposed to Music "
-                "Assistant and that your provider is authenticated there. "
-                "(#1863)",
-                timeout,
-                uri,
-                speaker_state,
-                title_before,
-                title_after,
-            )
-            # Systemic, not a per-track catalog gap: MA declined the whole
-            # play_media call, so the next song would fail identically.
-            # Classify as "error" so start_round pauses the game and shows the
-            # recovery banner within seconds instead of silently burning
-            # through the playlist one unplayable song at a time.
-            self.last_failure_reason = "error"
-            return False
-
-        # #345 slow-buffer tolerance, narrowed to "title genuinely changed":
-        # title is now different from what it was before the call, so MA is
-        # making progress on *some* new track. We still don't require the
-        # title to match expected_title (AirPlay sometimes delivers
-        # remasters/alternates with mismatched-but-valid titles), but we do
-        # require title evidence of forward motion. Returning False here
-        # would re-trigger the race condition #345 was originally filed for.
-        _LOGGER.warning(
-            "MA playback not confirmed after %.1fs for %s (state: %s). "
-            "Title moved %r → %r. Continuing anyway — MA may still be "
-            "buffering. (#345)",
-            timeout,
-            uri,
-            speaker_state,
-            title_before,
-            title_after,
-        )
-        # #1381: a post-timeout #345 tolerance confirmation is the weakest
-        # acceptance — it must NOT promote this candidate's URI field to
-        # preferred (it never proved THIS field actually resolved our track).
-        self._last_confirm_path = 0
-        return True
-
-    async def _play_via_sonos(self, song: dict[str, Any]) -> bool:
-        """Play via Sonos (URI-based)."""
-        uri = song.get("_resolved_uri")
-        _LOGGER.debug("Sonos playback: %s on %s", uri, self._entity_id)
-
-        async with async_timeout(PLAYBACK_TIMEOUT):
-            await self._hass.services.async_call(
-                "media_player",
-                "play_media",
-                {
-                    "entity_id": self._entity_id,
-                    "media_content_id": uri,
-                    "media_content_type": "music",
-                },
-                blocking=True,
-            )
-        return True
-
-    async def _play_via_alexa(self, song: dict[str, Any]) -> bool:
-        """Play via Alexa (text search-based)."""
-        search_text = self._get_alexa_search_text(song)
-        if self._provider == "spotify":
-            content_type = "SPOTIFY"
-        elif self._provider == "amazon_music":
-            content_type = "AMAZON_MUSIC"
-        elif self._provider == "apple_music":
-            content_type = "APPLE_MUSIC"
-        else:
-            # Unknown provider slipped past the wizard gate. Previously every
-            # non-spotify/non-amazon provider was silently mapped to
-            # APPLE_MUSIC, so a deezer/tidal/ytmusic mismatch played the wrong
-            # catalog with no diagnostic — the same silent-fail class as
-            # #768/#808. Surface it (mirrors the #1276 dispatch warning) before
-            # falling back to APPLE_MUSIC. (#1402)
-            _LOGGER.warning(
-                "Alexa dispatch: unexpected provider %r — no Alexa content-type "
-                "mapping; falling back to APPLE_MUSIC for %s - %s (#1402)",
-                self._provider,
-                song.get("artist"),
-                song.get("title"),
-            )
-            content_type = "APPLE_MUSIC"
-
-        _LOGGER.debug(
-            "Alexa playback: '%s' (%s) on %s",
-            search_text,
-            content_type,
-            self._entity_id,
-        )
-
-        async with async_timeout(PLAYBACK_TIMEOUT):
-            await self._hass.services.async_call(
-                "media_player",
-                "play_media",
-                {
-                    "entity_id": self._entity_id,
-                    "media_content_id": search_text,
-                    "media_content_type": content_type,
-                },
-                blocking=True,
-            )
-        return True
-
-    def _get_alexa_search_text(self, song: dict[str, Any]) -> str:
-        """Generate Alexa-compatible search text from song metadata."""
-        artist = song.get("artist", "")
-        title = song.get("title", "")
-
-        # Playlists may store multiple artists as "A;B" — use only the first.
-        if artist and ";" in artist:
-            artist = artist.split(";")[0].strip()
-
-        if artist and title:
-            return f"{title} by {artist}"
-        if title:
-            return title
-        _LOGGER.warning("Song missing artist/title for Alexa search")
-        return "unknown song"
 
     async def get_metadata(self) -> dict[str, Any]:
         """
@@ -1892,7 +562,7 @@ class MediaPlayerService:
         # https://tidal.com/browse/track/123, ytmusic://track/ABC). Match
         # against the MA-converted URI AND the bare track ID (the last path/ID
         # segment), which is stable across both forms.
-        match_tokens = self._uri_match_tokens(uri)
+        match_tokens = uri_match_tokens(uri)
 
         # Get initial state for comparison
         initial_state = self._hass.states.get(self._entity_id)
@@ -2178,7 +848,7 @@ class MediaPlayerService:
         song has finished — the player drops out of "playing" once the
         track ends.
         """
-        state = self._safe_state()
+        state = self._context.state()
         return state.state if state else None
 
     async def verify_responsive(self) -> tuple[bool, str]:

@@ -31,8 +31,8 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from custom_components.beatify.services import media_player as mp
-from custom_components.beatify.services.media_player import MediaPlayerService
+from custom_components.beatify.services.playback import queue_restore
+from custom_components.beatify.services.playback.queue_restore import MaQueueRestorer
 
 QUEUE = {
     "uri": "apple_music://track/1705321808",
@@ -53,12 +53,12 @@ def _fast_guard(monkeypatch):
     Sonos, unbearable in a unit suite. Only the durations shrink; the logic
     under test is untouched.
     """
-    monkeypatch.setattr(mp, "MA_PAUSE_CONFIRM_WAIT", 0.20)
-    monkeypatch.setattr(mp, "MA_PAUSE_SETTLE_HOLD", 0.30)
-    monkeypatch.setattr(mp, "MA_PAUSE_GUARD_WINDOW", 2.0)
-    monkeypatch.setattr(mp, "MA_PAUSE_POLL", 0.02)
-    monkeypatch.setattr(mp, "MA_QUEUE_RESTORE_WAIT", 0.20)
-    monkeypatch.setattr(mp, "MA_QUEUE_RESTORE_POLL", 0.02)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_CONFIRM_WAIT", 0.20)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_SETTLE_HOLD", 0.30)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_GUARD_WINDOW", 2.0)
+    monkeypatch.setattr(queue_restore, "MA_PAUSE_POLL", 0.02)
+    monkeypatch.setattr(queue_restore, "MA_QUEUE_RESTORE_WAIT", 0.20)
+    monkeypatch.setattr(queue_restore, "MA_QUEUE_RESTORE_POLL", 0.02)
 
 
 class Speaker:
@@ -120,8 +120,15 @@ def _hass_for(speaker: Speaker | None = None, fixed_state: str = "playing"):
     return hass
 
 
-def _service(hass) -> MediaPlayerService:
-    return MediaPlayerService(hass, ENTITY, platform="music_assistant")
+def _guard(hass) -> MaQueueRestorer:
+    """The guard on its own — no service, no strategy, no game (#2636).
+
+    This used to read ``MediaPlayerService(hass, ENTITY,
+    platform="music_assistant")``, which dragged in the URI cascade, the
+    provider table, the analytics hook and the volume bookkeeping to test a
+    ``media_pause``. The guard now takes a ``hass`` and nothing else.
+    """
+    return MaQueueRestorer(hass)
 
 
 def _services_called(hass) -> list[tuple[str, str]]:
@@ -151,9 +158,9 @@ class TestTheGuardOutlivesTheSettling:
         """
         speaker = Speaker(resume_after=0.08, obeys_from=2)
         hass = _hass_for(speaker)
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._restore_queue_on(ENTITY, QUEUE) is True
+        assert await guard.restore_on(ENTITY, QUEUE) is True
 
         assert speaker.pause_count >= 2, (
             "the speaker started playing again after the first pause and the "
@@ -170,19 +177,19 @@ class TestTheGuardOutlivesTheSettling:
         """
         speaker = Speaker(resume_after=0.08)  # never settles
         hass = _hass_for(speaker)
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._pause_and_confirm(ENTITY) is False
+        assert await guard.pause_and_confirm(ENTITY) is False
         assert speaker.pause_count >= 2
 
     @pytest.mark.asyncio
     async def test_the_log_line_says_the_speaker_is_still_playing(self, caplog):
         speaker = Speaker(resume_after=0.08)
         hass = _hass_for(speaker)
-        svc = _service(hass)
+        guard = _guard(hass)
 
         with caplog.at_level("INFO"):
-            await svc._restore_queue_on(ENTITY, QUEUE)
+            await guard.restore_on(ENTITY, QUEUE)
 
         restored = [r for r in caplog.records if "Queue restored on" in r.getMessage()]
         assert restored, "no restore line was logged at all"
@@ -199,9 +206,9 @@ class TestTheGuardOutlivesTheSettling:
         half of why a single reading cannot be trusted.
         """
         hass = _hass_for(fixed_state="buffering")
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._pause_and_confirm(ENTITY) is False
+        assert await guard.pause_and_confirm(ENTITY) is False
         assert _pause_calls(hass) >= 2
 
 
@@ -210,9 +217,9 @@ class TestTheCommonCaseDoesNotPayForIt:
     async def test_a_speaker_that_stays_paused_is_paused_once(self):
         speaker = Speaker(resume_after=99.0, obeys_from=1)
         hass = _hass_for(speaker)
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._restore_queue_on(ENTITY, QUEUE) is True
+        assert await guard.restore_on(ENTITY, QUEUE) is True
         assert speaker.pause_count == 1
 
     @pytest.mark.asyncio
@@ -220,9 +227,9 @@ class TestTheCommonCaseDoesNotPayForIt:
         """``states.get`` returning None means there is nothing left to pause."""
         hass = _hass_for()
         hass.states.get = MagicMock(return_value=None)
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._restore_queue_on(ENTITY, QUEUE) is True
+        assert await guard.restore_on(ENTITY, QUEUE) is True
 
     @pytest.mark.asyncio
     async def test_an_entity_that_vanishes_mid_hold_ends_the_watch(self):
@@ -240,9 +247,9 @@ class TestTheCommonCaseDoesNotPayForIt:
             return st
 
         hass.states.get = MagicMock(side_effect=_get)
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._pause_and_confirm(ENTITY) is True
+        assert await guard.pause_and_confirm(ENTITY) is True
 
 
 class TestOrderingStillHolds:
@@ -258,9 +265,9 @@ class TestOrderingStillHolds:
         """
         speaker = Speaker(resume_after=99.0, obeys_from=1)
         hass = _hass_for(speaker)
-        svc = _service(hass)
+        guard = _guard(hass)
 
-        assert await svc._restore_queue_on(ENTITY, QUEUE) is True
+        assert await guard.restore_on(ENTITY, QUEUE) is True
 
         calls = _services_called(hass)
         pause_at = calls.index(("media_player", "media_pause"))

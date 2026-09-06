@@ -60,9 +60,9 @@ class TestSubstringOfTheStillPlayingTrack:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            await svc._try_ma_play("spotify:track:x", "Stay", "Rihanna")
+            await svc._strategy.try_play("spotify:track:x", "Stay", "Rihanna")
 
-        assert svc._last_confirm_path != 1, (
+        assert svc._strategy._last_confirm_path != 1, (
             "Weg 1 hat den weiterlaufenden Vorgaenger bestaetigt"
         )
 
@@ -91,9 +91,9 @@ class TestSubstringOfTheStillPlayingTrack:
             "custom_components.beatify.services.media_player.asyncio.wait_for",
             new=_instant_timeout,
         ):
-            await svc._try_ma_play("spotify:track:x", "One", "Metallica")
+            await svc._strategy.try_play("spotify:track:x", "One", "Metallica")
 
-        assert svc._last_confirm_path != 1
+        assert svc._strategy._last_confirm_path != 1
 
 
 class TestWhatMustKeepWorking:
@@ -117,10 +117,10 @@ class TestWhatMustKeepWorking:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         hass.states.get = MagicMock(side_effect=[before, current])
 
-        confirmed = await svc._try_ma_play("spotify:track:x", "Stay", "Rihanna")
+        confirmed = await svc._strategy.try_play("spotify:track:x", "Stay", "Rihanna")
 
         assert confirmed is True
-        assert svc._last_confirm_path == 1
+        assert svc._strategy._last_confirm_path == 1
 
     @pytest.mark.asyncio
     async def test_the_cold_start_still_confirms(self):
@@ -143,7 +143,7 @@ class TestWhatMustKeepWorking:
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
         hass.states.get = MagicMock(side_effect=[before, current])
 
-        confirmed = await svc._try_ma_play("spotify:track:x", "Stay", "Rihanna")
+        confirmed = await svc._strategy.try_play("spotify:track:x", "Stay", "Rihanna")
 
         assert confirmed is True
-        assert svc._last_confirm_path == 1
+        assert svc._strategy._last_confirm_path == 1

@@ -1,16 +1,24 @@
 """Per-platform playback, and the one place that picks between them (#2636).
 
-``MediaPlayerService`` answers "how do I play this?" with an
+``MediaPlayerService`` used to answer "how do I play this?" with an
 ``if self._platform ==`` chain inside a 2300-line class, so Music Assistant,
-Sonos and Alexa share one class body, one test file and one blast radius.
+Sonos and Alexa shared one class body, one test file and one blast radius.
 
-This package is where each platform is getting its own module behind one
-interface. It starts with what they have in common: the speaker
-(:class:`~.context.PlayerContext`) and the contract
-(:class:`~.base.PlaybackStrategy`).
+Now each platform is a :class:`~.base.PlaybackStrategy` in its own module, and
+the choice between them happens exactly once, in :func:`build_strategy`. A
+strategy claims its platform identifiers itself (``platforms`` on the class),
+so adding Plex or Jellyfin is a new module plus one entry in ``_STRATEGIES`` —
+no existing method is cut open, and nothing about the other platforms is
+touched.
+
+The service shell keeps what is genuinely not per-platform: timeouts and
+analytics, volume save/restore, the metadata wait, the pre-flight check and the
+game-lifecycle bookkeeping around the queue snapshot.
 """
 
 from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from .alexa import AlexaStrategy
 from .base import PLAYBACK_TIMEOUT, PlaybackStrategy
@@ -20,6 +28,47 @@ from .queue_restore import MaQueueRestorer
 from .sonos import SonosStrategy
 from .uris import convert_uri_for_ma, uri_match_tokens
 
+if TYPE_CHECKING:
+    pass
+
+#: Every platform Beatify can play on. Order is irrelevant — a platform
+#: identifier belongs to exactly one strategy, which the assertion below keeps
+#: true at import time.
+_STRATEGIES: tuple[type[PlaybackStrategy], ...] = (
+    MusicAssistantStrategy,
+    SonosStrategy,
+    AlexaStrategy,
+)
+
+_BY_PLATFORM: dict[str, type[PlaybackStrategy]] = {}
+for _strategy in _STRATEGIES:
+    for _platform in _strategy.platforms:
+        if _platform in _BY_PLATFORM:  # pragma: no cover - guards a typo
+            raise RuntimeError(f"two strategies claim platform {_platform!r}")
+        _BY_PLATFORM[_platform] = _strategy
+del _strategy, _platform
+
+
+def build_strategy(context: PlayerContext) -> PlaybackStrategy | None:
+    """The dispatch point — the only place a platform name picks an implementation.
+
+    Args:
+        context: the speaker to play on, carrying its platform identifier.
+
+    Returns:
+        The strategy for that platform, or None when Beatify cannot play on it
+        (Cast without Music Assistant, an unknown entity type). The caller logs
+        that; deciding it is this function's whole job.
+    """
+    strategy = _BY_PLATFORM.get(context.platform)
+    return strategy(context) if strategy else None
+
+
+def supported_platforms() -> tuple[str, ...]:
+    """Every platform identifier some strategy answers to."""
+    return tuple(_BY_PLATFORM)
+
+
 __all__ = [
     "PLAYBACK_TIMEOUT",
     "AlexaStrategy",
@@ -28,6 +77,8 @@ __all__ = [
     "PlaybackStrategy",
     "PlayerContext",
     "SonosStrategy",
+    "build_strategy",
     "convert_uri_for_ma",
+    "supported_platforms",
     "uri_match_tokens",
 ]
