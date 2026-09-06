@@ -358,6 +358,7 @@
     "thanksForPlaying": "Thanks for playing Beatify",
     "thanksEmoji": "Thanks for playing!",
     "waitForHost": "Wait for the host to start a new game",
+    "rejoinHint": "Scan the QR code again to join the next game.",
     "bestStreak": "Best Streak",
     "roundsPlayed": "Rounds Played",
     "betsWon": "Bets Won",
