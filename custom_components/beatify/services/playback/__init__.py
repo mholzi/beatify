@@ -12,6 +12,7 @@ interface. It starts with what they have in common: the speaker
 
 from __future__ import annotations
 
+from .alexa import AlexaStrategy
 from .base import PLAYBACK_TIMEOUT, PlaybackStrategy
 from .context import PlayerContext
 from .sonos import SonosStrategy
@@ -19,6 +20,7 @@ from .uris import convert_uri_for_ma, uri_match_tokens
 
 __all__ = [
     "PLAYBACK_TIMEOUT",
+    "AlexaStrategy",
     "PlaybackStrategy",
     "PlayerContext",
     "SonosStrategy",
