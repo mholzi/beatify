@@ -47,7 +47,7 @@ import {
 
 import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown } from './player-reveal.js';
 
-import { updateEndView, updatePausedView, handleNewGame } from './player-end.js';
+import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
 
 // #1706/#1707: coalesce REVEAL/PLAYING re-renders. REVEAL broadcasts fire for
 // every reaction/vote/override and PLAYING for every submission; without this a
@@ -1042,13 +1042,11 @@ function handleGameEnded() {
         return;
     }
 
-    var endMessage = document.getElementById('end-player-message');
-    if (endMessage) {
-        endMessage.innerHTML =
-            '<p>Thanks for playing!</p>' +
-            '<p class="rejoin-hint">Scan the QR code again to join the next game.</p>';
-        endMessage.classList.remove('hidden');
-    }
+    // #2618: this block used to be two English literals written straight into
+    // innerHTML, in the middle of an otherwise translated page. The rendering
+    // moved to player-end.js, where the rest of the end view lives, and now
+    // goes through i18n.
+    renderEndPlayerMessage(document.getElementById('end-player-message'));
 
     showView('end-view');
 }

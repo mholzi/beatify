@@ -182,6 +182,7 @@
     "wrong": "Wrong",
     "theYearWas": "The year was",
     "idleHaltBanner": "Game idle — no one played this round. Tap Next round to keep going.",
+    "idleHaltBannerGuest": "Game idle — no one played this round. The host will start the next round.",
     "funFact": "Fun fact",
     "collection": {
       "title": "Your collection",
@@ -358,6 +359,7 @@
     "thanksForPlaying": "Thanks for playing Beatify",
     "thanksEmoji": "Thanks for playing!",
     "waitForHost": "Wait for the host to start a new game",
+    "rejoinHint": "Scan the QR code again to join the next game.",
     "bestStreak": "Best Streak",
     "roundsPlayed": "Rounds Played",
     "betsWon": "Bets Won",

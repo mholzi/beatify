@@ -30,6 +30,54 @@ function _ptsLabel() {
 // ============================================
 
 /**
+ * #2618: fill the "the game is over, you are a guest" block on the end view.
+ *
+ * `handleGameEnded` in player-core.js used to write two English literals here
+ * ("Thanks for playing!" / "Scan the QR code again to join the next game."),
+ * so every game ended with untranslated text inside an otherwise translated
+ * page. The first sentence has an i18n key the static markup in player.html
+ * already uses (`leaderboard.thanksEmoji`); the second one got its own key in
+ * all six locales.
+ *
+ * Lives here rather than in the core entry point because the end view is this
+ * module's job, and because it makes the block testable on its own.
+ *
+ * The nodes are built with createElement instead of an innerHTML string: a
+ * translation is data, and data must not be parsed as markup.
+ *
+ * @param {HTMLElement|null} container - #end-player-message
+ */
+export function renderEndPlayerMessage(container) {
+    if (!container) return;
+
+    var thanksEl = document.createElement('p');
+    thanksEl.textContent = _endText('leaderboard.thanksEmoji', 'Thanks for playing!');
+
+    var hintEl = document.createElement('p');
+    hintEl.className = 'rejoin-hint';
+    hintEl.textContent = _endText(
+        'leaderboard.rejoinHint',
+        'Scan the QR code again to join the next game.'
+    );
+
+    container.innerHTML = '';
+    container.appendChild(thanksEl);
+    container.appendChild(hintEl);
+    container.classList.remove('hidden');
+}
+
+/**
+ * i18n lookup with a real fallback. `t()` returns the KEY on a miss (#1402-B8),
+ * so `t(k) || fallback` can never fire — the key is truthy. Same guard shape as
+ * `_ptsLabel` above.
+ */
+function _endText(key, fallback) {
+    var s = typeof utils.t === 'function' ? utils.t(key) : '';
+    if (!s || String(s) === key) return fallback;
+    return String(s);
+}
+
+/**
  * Update end view with final standings and stats
  * @param {Object} data - State data with leaderboard and game_stats
  */

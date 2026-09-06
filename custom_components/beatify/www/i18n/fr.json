@@ -182,6 +182,7 @@
     "wrong": "Raté",
     "theYearWas": "L'année était",
     "idleHaltBanner": "Jeu en pause — personne n'a joué ce tour. Appuie sur « Tour suivant » pour continuer.",
+    "idleHaltBannerGuest": "Jeu en pause — personne n'a joué ce tour. L'hôte lancera le tour suivant.",
     "funFact": "Le saviez-vous",
     "collection": {
       "title": "Ta collection",
@@ -358,6 +359,7 @@
     "thanksForPlaying": "Merci d'avoir joué à Beatify",
     "thanksEmoji": "Merci d'avoir joué !",
     "waitForHost": "Attends que l'hôte lance une nouvelle partie",
+    "rejoinHint": "Scanne à nouveau le code QR pour rejoindre la prochaine partie.",
     "bestStreak": "Meilleure série",
     "roundsPlayed": "Manches jouées",
     "betsWon": "Paris gagnés",

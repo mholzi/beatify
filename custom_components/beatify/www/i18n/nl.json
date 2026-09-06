@@ -182,6 +182,7 @@
     "wrong": "Fout",
     "theYearWas": "Het jaar was",
     "idleHaltBanner": "Spel gepauzeerd — niemand speelde deze ronde. Tik op Volgende ronde om door te gaan.",
+    "idleHaltBannerGuest": "Spel gepauzeerd — niemand speelde deze ronde. De host start de volgende ronde.",
     "funFact": "Leuk weetje",
     "collection": {
       "title": "Jouw verzameling",
@@ -358,6 +359,7 @@
     "thanksForPlaying": "Bedankt voor het spelen van Beatify",
     "thanksEmoji": "Bedankt voor het spelen!",
     "waitForHost": "Wacht tot de host een nieuw spel start",
+    "rejoinHint": "Scan de QR-code opnieuw om aan het volgende spel mee te doen.",
     "bestStreak": "Beste Reeks",
     "roundsPlayed": "Gespeelde Rondes",
     "betsWon": "Gewonnen Inzetten",

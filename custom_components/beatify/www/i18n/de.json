@@ -182,6 +182,7 @@
     "wrong": "Falsch",
     "theYearWas": "Das Jahr war",
     "idleHaltBanner": "Spielpause — in dieser Runde hat niemand mitgespielt. Tippe auf Nächste Runde, um weiterzuspielen.",
+    "idleHaltBannerGuest": "Spielpause — in dieser Runde hat niemand mitgespielt. Der Gastgeber startet die nächste Runde.",
     "funFact": "Fun Fact",
     "collection": {
       "title": "Deine Sammlung",
@@ -358,6 +359,7 @@
     "thanksForPlaying": "Danke fürs Mitspielen",
     "thanksEmoji": "Danke fürs Mitspielen!",
     "waitForHost": "Warte auf neues Spiel",
+    "rejoinHint": "Scanne den QR-Code erneut, um beim nächsten Spiel mitzuspielen.",
     "bestStreak": "Beste Serie",
     "roundsPlayed": "Gespielte Runden",
     "betsWon": "Gewonnene Wetten",

@@ -182,6 +182,7 @@
     "wrong": "Sbagliato",
     "theYearWas": "L'anno era",
     "idleHaltBanner": "Partita ferma: nessuno ha giocato questo turno. Tocca Turno successivo per proseguire.",
+    "idleHaltBannerGuest": "Partita ferma: nessuno ha giocato questo turno. L'host avvierà il turno successivo.",
     "funFact": "Curiosità",
     "collection": {
       "title": "La tua collezione",
@@ -358,6 +359,7 @@
     "thanksForPlaying": "Grazie per aver giocato a Beatify",
     "thanksEmoji": "Grazie per aver giocato!",
     "waitForHost": "Aspetta che l'host avvii una nuova partita",
+    "rejoinHint": "Scansiona di nuovo il codice QR per partecipare alla prossima partita.",
     "bestStreak": "Serie migliore",
     "roundsPlayed": "Turni giocati",
     "betsWon": "Scommesse vinte",

@@ -182,6 +182,7 @@
     "wrong": "Incorrecto",
     "theYearWas": "El año era",
     "idleHaltBanner": "Juego en pausa — nadie jugó esta ronda. Toca «Siguiente ronda» para continuar.",
+    "idleHaltBannerGuest": "Juego en pausa — nadie jugó esta ronda. El anfitrión iniciará la siguiente ronda.",
     "funFact": "Dato curioso",
     "collection": {
       "title": "Tu colección",
@@ -358,6 +359,7 @@
     "thanksForPlaying": "Gracias por jugar Beatify",
     "thanksEmoji": "Gracias por jugar!",
     "waitForHost": "Espera a que el anfitrión inicie un nuevo juego",
+    "rejoinHint": "Vuelve a escanear el código QR para unirte a la siguiente partida.",
     "bestStreak": "Mejor racha",
     "roundsPlayed": "Rondas jugadas",
     "betsWon": "Apuestas ganadas",
