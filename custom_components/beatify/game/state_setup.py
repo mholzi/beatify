@@ -367,8 +367,12 @@ class GameSetupMixin:
         service refs (_stats_service, _on_round_end, _on_metadata_update),
         or volume_level (caller's responsibility).
         """
-        # Issue #477: Clear admin spectator WS (connection stays open, just de-ref)
-        self._admin_ws = None
+        # #2638: the admin spectator WebSocket is an aiohttp socket the server
+        # opens; it used to be de-referenced here. GameState no longer holds
+        # it, so instead we tell whoever registered — in production
+        # ``BeatifyWebSocketHandler.clear_admin_socket`` — at the exact same
+        # point in the teardown (Issue #477 behaviour, unchanged).
+        self._notify_reset_callbacks()
 
         # Issue #464: Reset round lifecycle (timers, metadata, intro state)
         self._round_manager.reset()

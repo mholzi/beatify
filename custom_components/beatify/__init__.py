@@ -88,6 +88,7 @@ from .server.library_views import (
 from .server.setup_state import clear_setup
 from .server.websocket import BeatifyWebSocketHandler
 from .server.ws_handlers._helpers import finalize_and_end
+from .services.factories import ha_service_factories
 from .services.media_player import async_get_media_players
 from .services.stats import StatsService
 
@@ -153,8 +154,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         len(playlists),
     )
 
-    # Initialize game state
-    game_state = GameState()
+    # Initialize game state. #2638: this is the composition root — the only
+    # place that decides the game's outputs are Home-Assistant-backed. The
+    # domain package itself never names a concrete service class, which is what
+    # makes GameState constructible (and testable) without hass.
+    game_state = GameState(service_factories=ha_service_factories(hass))
     game_state.set_hass(hass)
 
     # Initialize stats service (Story 14.4)
@@ -193,6 +197,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Connect analytics to websocket handler for error recording (Story 19.1)
     ws_handler.set_analytics(analytics)
+
+    # #2638: the admin spectator socket belongs to the WebSocket handler now.
+    # A game teardown/rebuild used to null it inside _reset_game_internals; the
+    # reset callback fires at that same point so the timing is unchanged.
+    game_state.register_reset_callback(ws_handler.clear_admin_socket)
 
     # #1357: Companion auth-bypass opt-in. Read once at setup; the auth helper
     # in server/companion_auth.py reads this live from hass.data per request,

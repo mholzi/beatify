@@ -57,7 +57,7 @@ async def handle_admin_connect(
         )
         return
 
-    game_state._admin_ws = ws
+    handler.admin_ws = ws
     _LOGGER.info("Admin spectator connected via WebSocket")
 
     await ws.send_json({"type": "admin_connect_ack", "game_id": game_state.game_id})
@@ -75,7 +75,7 @@ async def handle_admin(
     """Handle admin action messages — dispatches to admin sub-handlers."""
     action = data.get("action")
 
-    is_admin_ws = game_state._admin_ws is not None and game_state._admin_ws is ws
+    is_admin_ws = handler.admin_ws is not None and handler.admin_ws is ws
 
     sender = None
     for player in list(game_state.players.values()):
@@ -212,7 +212,7 @@ async def admin_next_round(
         # ends, so accepted near-misses count toward the leaderboard.
         await game_state.resolve_title_artist_if_pending()
         # #1702: a second admin-capable socket (participant WS + spectator
-        # _admin_ws) may have advanced/ended the game while we awaited above.
+        # handler.admin_ws) may have advanced/ended the game while we awaited above.
         # Re-check before driving the round forward; if it already left REVEAL,
         # just re-broadcast the current state.
         if game_state.phase != GamePhase.REVEAL:
@@ -456,7 +456,7 @@ async def admin_rematch_game(
     await game_state.announce_rematch()
     _LOGGER.info("Rematch started with %d players", player_count)
 
-    game_state._admin_ws = ws
+    handler.admin_ws = ws
     await ws.send_json(
         {
             "type": "admin_token_update",

@@ -18,7 +18,9 @@ at runtime:
 * ``self._media_player_service`` — :class:`MediaPlayerProtocol` instance (or
   ``None`` before the first round), the transport all playback flows through.
 * ``self._party_lights`` — :class:`PartyLightsProtocol` instance (or ``None``).
-* ``self._hass`` — Home Assistant instance (to construct the lights service).
+* ``self._service_factories`` — the #2638 injection bundle; its ``party_lights``
+  factory builds the service ``configure_party_lights`` installs. The mixin no
+  longer touches ``self._hass`` at all.
 * ``self._bg_tasks`` — set of fire-and-forget background tasks.
 * ``self.volume_level`` — current game volume, clamped 0.0–1.0.
 
@@ -136,10 +138,16 @@ class MediaControlMixin:
         light_mode: str = "dynamic",
         wled_presets: dict[str, int] | None = None,
     ) -> None:
-        """Configure and start Party Lights for the game."""
-        # Lazy import: only the concrete class for instantiation; type hints
-        # use PartyLightsProtocol (module-level) to keep the import graph acyclic.
-        from custom_components.beatify.services.lights import PartyLightsService  # noqa: PLC0415
+        """Configure and start Party Lights for the game.
+
+        #2638: the concrete service is built by the injected ``party_lights``
+        factory. With no factory wired (a game-logic unit test) this is a
+        silent no-op and the game runs without lights.
+        """
+        factory = self._service_factories.party_lights
+        if factory is None:
+            _LOGGER.debug("No party-lights factory wired — party lights unavailable")
+            return
 
         # #1402 B2: a reconfigure (admin changes intensity / mode / entities
         # mid-game via admin_set_party_lights) previously replaced the active
@@ -154,7 +162,7 @@ class MediaControlMixin:
             self._party_lights.snapshot_saved_states() if self._party_lights else None
         )
 
-        self._party_lights = PartyLightsService(self._hass)
+        self._party_lights = factory()
         await self._party_lights.start(
             entity_ids,
             intensity,

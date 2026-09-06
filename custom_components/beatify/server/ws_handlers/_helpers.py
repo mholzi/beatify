@@ -26,19 +26,22 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def _send_state_to(
-    ws: web.WebSocketResponse, state_msg: dict, game_state: GameState
+    handler: BeatifyWebSocketHandler, ws: web.WebSocketResponse, state_msg: dict
 ) -> None:
     """Send a ``state`` message to a single recipient, redacted for players.
 
     #1366: ``state`` frames carry the round's answers (admin_song year;
     song.artist/title in title_artist_mode). Only the spectator admin WS
-    (``game_state._admin_ws``) may receive them unfiltered; every other
-    connection — including an admin who joined as a *participant* — gets a
-    redacted copy, matching the per-recipient filtering in
+    (``handler.admin_ws``) may receive them unfiltered; every other connection —
+    including an admin who joined as a *participant* — gets a redacted copy,
+    matching the per-recipient filtering in
     ``BeatifyWebSocketHandler.broadcast``.
+
+    #2638: the recipient check reads the socket off the handler, which owns it,
+    instead of off ``GameState``.
     """
     payload = state_msg
-    if ws is not game_state._admin_ws:
+    if ws is not handler.admin_ws:
         payload = redact_state_for_player(state_msg)
     await ws.send_json(payload)
 
@@ -144,7 +147,7 @@ async def finalize_and_end(
 
     The final-round terminal path is reachable from THREE places at the same
     time: the two admin-capable sockets (participant WS + spectator
-    ``_admin_ws``) driving ``next_round``/``end_game``, and the unattended
+    ``handler.admin_ws``) driving ``next_round``/``end_game``, and the unattended
     REVEAL auto-advance carrying the final round (#1753, wired via
     ``GameState.set_game_end_callback``). Gating on the handler's one-shot claim
     keyed by ``game_id`` makes ``finalize_game`` / ``record_game`` (double

@@ -1930,6 +1930,9 @@ class TestStartRoundGhostRoundGuard:
     """
 
     def _setup(self) -> GameState:
+        # #2638: the speaker comes from the injected factory, so the round path
+        # picks up the mock on its own — no monkey-patching of
+        # _ensure_media_player_service to "keep our mock service".
         state = make_game_state()
         _create_fresh_game(state)
         state.add_player("Admin", MagicMock())
@@ -1943,7 +1946,6 @@ class TestStartRoundGhostRoundGuard:
         media = AsyncMock()
         media.is_available = MagicMock(return_value=True)
         state._media_player_service = media
-        state._ensure_media_player_service = MagicMock()  # keep our mock service
         return state
 
     @pytest.mark.asyncio
@@ -2308,14 +2310,28 @@ class TestPauseSnapshotRace:
         assert state._previous_phase == GamePhase.PLAYING
 
 
+class _RecordingLights:
+    """A party-lights stub that records what ``start`` was handed."""
+
+    def __init__(self) -> None:
+        self.inherited = None
+
+    async def start(self, *args, **kwargs):
+        self.inherited = kwargs.get("inherited_states")
+
+
 class TestConfigurePartyLightsPreservesStates:
     """#1402 B2 finding 5: a reconfigure must carry the genuine pre-party light
-    states forward, not lose them by replacing the service outright."""
+    states forward, not lose them by replacing the service outright.
+
+    #2638: no ``hass`` and no patching of the concrete service — the game is
+    handed a party-lights factory and the test reads what it built.
+    """
 
     @pytest.mark.asyncio
     async def test_reconfigure_inherits_prior_saved_states(self):
-        state = make_game_state()
-        state._hass = MagicMock()
+        lights = _RecordingLights()
+        state = make_game_state(party_lights=lambda: lights)
 
         snap_calls = {"n": 0}
 
@@ -2326,46 +2342,29 @@ class TestConfigurePartyLightsPreservesStates:
 
         state._party_lights = PriorService()
 
-        captured = {}
-
-        class FakeService:
-            def __init__(self, hass):
-                self.hass = hass
-
-            async def start(self, *args, **kwargs):
-                captured["inherited"] = kwargs.get("inherited_states")
-
-        with patch(
-            "custom_components.beatify.services.lights.PartyLightsService",
-            FakeService,
-        ):
-            await state.configure_party_lights(["light.a"], "medium")
+        await state.configure_party_lights(["light.a"], "medium")
 
         assert snap_calls["n"] == 1
-        assert captured["inherited"] == {"light.a": {"state": "on", "brightness": 42}}
+        assert lights.inherited == {"light.a": {"state": "on", "brightness": 42}}
 
     @pytest.mark.asyncio
     async def test_first_configure_passes_no_inherited_states(self):
-        state = make_game_state()
-        state._hass = MagicMock()
+        lights = _RecordingLights()
+        state = make_game_state(party_lights=lambda: lights)
         state._party_lights = None
 
-        captured = {}
+        await state.configure_party_lights(["light.a"], "medium")
 
-        class FakeService:
-            def __init__(self, hass):
-                pass
+        assert lights.inherited is None
 
-            async def start(self, *args, **kwargs):
-                captured["inherited"] = kwargs.get("inherited_states")
+    @pytest.mark.asyncio
+    async def test_no_factory_means_no_party_lights(self):
+        """#2638: a game with no lights factory runs without lights."""
+        state = make_game_state()
 
-        with patch(
-            "custom_components.beatify.services.lights.PartyLightsService",
-            FakeService,
-        ):
-            await state.configure_party_lights(["light.a"], "medium")
+        await state.configure_party_lights(["light.a"], "medium")
 
-        assert captured["inherited"] is None
+        assert state._party_lights is None
 
 
 # ---------------------------------------------------------------------------
@@ -2549,10 +2548,10 @@ class TestSuddenDeathAutoEnd:
         state.get_player("Carol").eliminated = True
         state.round = 3
         state.phase = GamePhase.PLAYING
-        # Stub playback so start_round can proceed past the guard without media.
-        with patch.object(state, "_ensure_media_player_service"):
-            state._media_player_service = None
-            await state.start_round()
+        # #2638: no media-player factory is wired, so start_round proceeds past
+        # the guard with no speaker at all — nothing to stub.
+        assert state._media_player_service is None
+        await state.start_round()
         # The auto-end guard did not fire (phase is not END from the guard).
         assert state.phase != GamePhase.END
 

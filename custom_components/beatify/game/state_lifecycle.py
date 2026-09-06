@@ -24,9 +24,9 @@ unchanged.
   round-start TTS announcements (#471 / #841 / #842). The single entry point
   every "advance to the next round" caller (``ws_handlers``, ``game_views``)
   hits.
-* ``_ensure_media_player_service`` — lazily constructs the
-  :class:`MediaPlayerService` on the first round (and wires analytics for
-  error recording, Story 19.1) so the service is only created once a media
+* ``_ensure_media_player_service`` — lazily builds the media-player service on
+  the first round via the injected factory (#2638) and wires analytics for
+  error recording (Story 19.1), so the service is only created once a media
   player is configured.
 * ``_prepare_intro_round`` — thin pass-through to
   ``RoundManager.prepare_intro_round`` (intro-splash deferral decision).
@@ -62,6 +62,8 @@ The mixin relies on attributes / methods the host class owns and that live on
   ``self.media_player`` — URI resolution and media-player dispatch context.
 * ``self._media_player_service`` / ``self._stats_service`` — lazily-built
   playback service + the analytics sink wired into it.
+* ``self._service_factories`` — the #2638 injection bundle; supplies the
+  media-player factory ``_ensure_media_player_service`` calls.
 * ``self._round_manager`` — the :class:`RoundManager` the intro/metadata/commit
   helpers delegate to; also supplies ``_timer_countdown`` / ``_on_round_end``
   callbacks.
@@ -85,8 +87,9 @@ The mixin relies on attributes / methods the host class owns and that live on
 
 It carries no state of its own. ``GamePhase`` is imported lazily inside the
 methods that need it (``# noqa: PLC0415``) to avoid a top-level circular import
-back into ``state.py``; ``MediaPlayerService`` is likewise imported lazily
-inside ``_ensure_media_player_service`` (matching the original).
+back into ``state.py``. The concrete ``MediaPlayerService`` is no longer
+imported here at all (#2638) — ``_ensure_media_player_service`` calls the
+injected factory, so the import graph stays acyclic without a lazy import.
 """
 
 from __future__ import annotations
@@ -855,22 +858,25 @@ class RoundLifecycleMixin:
         return True
 
     def _ensure_media_player_service(self) -> None:
-        """Create MediaPlayerService lazily on first round.
+        """Create the media-player service lazily on first round.
 
         Idempotent: if the service was already built (e.g. by the #1540 LOBBY
         pre-warm — see :meth:`prewarm_media_player_service`), the
         ``not self._media_player_service`` guard makes this a no-op, so the
         round path keeps working unchanged whether or not the pre-warm ran.
+
+        #2638: the concrete class is no longer named here. The injected
+        ``media_player`` factory builds it; with no factory wired (a game-logic
+        unit test) the game simply has no speaker, which every caller of
+        ``self._media_player_service`` already guards for.
         """
-        # Lazy import: only the concrete class for instantiation; type hints
-        # use MediaPlayerProtocol (module-level) to keep the import graph acyclic.
-        from custom_components.beatify.services.media_player import (
-            MediaPlayerService,
-        )
+        factory = self._service_factories.media_player
+        if factory is None:
+            _LOGGER.debug("No media-player factory wired — playback unavailable")
+            return
 
         if self.media_player and not self._media_player_service:
-            self._media_player_service = MediaPlayerService(
-                self._hass,
+            self._media_player_service = factory(
                 self.media_player,
                 platform=self.platform,
                 provider=self.provider,

@@ -14,7 +14,9 @@ and every caller / test are unchanged.
 The mixin relies on attributes that the host class owns and that live on
 ``self`` at runtime:
 
-* ``self._hass`` — Home Assistant instance (for the TTS provider).
+* ``self._service_factories`` — the #2638 injection bundle; its ``tts`` factory
+  builds the announcement service ``configure_tts`` installs.
+  The mixin no longer touches ``self._hass`` at all.
 * ``self._bg_tasks`` — set of fire-and-forget background tasks.
 * ``self.media_player`` — speaker entity the audio is routed through.
 * ``self.language`` — game language (resolved defensively via ``_lang``).
@@ -32,9 +34,12 @@ import asyncio
 import contextlib
 import logging
 import time
-from typing import Any
+from typing import TYPE_CHECKING
 
 from . import tts_phrases
+
+if TYPE_CHECKING:
+    from .protocols import TtsProtocol
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -53,7 +58,8 @@ class TtsAnnouncerMixin:
         bloating ``GameState.__init__``.
         """
         # Issue #447: TTS announcement service
-        self._tts_service: Any = None  # TTSService (lazy import)
+        # #2638: built by the injected TTS factory (see game/protocols.py).
+        self._tts_service: TtsProtocol | None = None
         self._tts_announce_game_start: bool = True
         self._tts_announce_winner: bool = True
         # Issue #471 Phase 1: Game Flow announcements
@@ -137,13 +143,19 @@ class TtsAnnouncerMixin:
         the most common host expectation (round start + time's up + correct
         answer announced; per-round 3-2-1 countdown opt-in only).
         """
-        from custom_components.beatify.services.tts import TTSService
-
-        self._tts_service = TTSService(
-            self._hass,
-            tts_entity_id=entity_id,
-            media_player_entity_id=self.media_player,
-        )
+        # #2638: the concrete TTSService is built by the injected ``tts``
+        # factory. With no factory wired (a game-logic unit test) the flags
+        # below are still applied but no announcement is ever spoken — every
+        # announce_* method already guards on ``self._tts_service``.
+        factory = self._service_factories.tts
+        if factory is None:
+            _LOGGER.debug("No TTS factory wired — announcements unavailable")
+            self._tts_service = None
+        else:
+            self._tts_service = factory(
+                tts_entity_id=entity_id,
+                media_player_entity_id=self.media_player,
+            )
         self._tts_announce_game_start = announce_game_start
         self._tts_announce_winner = announce_winner
         self._tts_announce_round_start = announce_round_start

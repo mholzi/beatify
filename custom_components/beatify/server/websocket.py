@@ -85,11 +85,17 @@ class BeatifyWebSocketHandler:
         """
         self.hass = hass
         self.connections: set[web.WebSocketResponse] = set()
+        # Issue #477 / #2638: the admin spectator socket (a host watching
+        # without being a player). This handler opens it, redacts for it and
+        # drops it on disconnect, so it lives here rather than on GameState —
+        # an aiohttp socket is not game logic. GameState calls back into
+        # clear_admin_socket on teardown (see register_reset_callback).
+        self.admin_ws: web.WebSocketResponse | None = None
         self._admin_disconnect_task: asyncio.Task | None = None
         self._analytics: AnalyticsStorage | None = None
         # #1702: game_ids whose terminal end sequence (finalize_game +
         # record_game + advance_to_end) has already been claimed. An admin has
-        # two admin-capable sockets (participant WS + spectator _admin_ws); on
+        # two admin-capable sockets (participant WS + spectator admin_ws); on
         # the final round both can pass the REVEAL/last_round checks. The claim
         # (see _claim_game_end) makes the end run exactly once per game.
         self._recorded_game_ids: set[str] = set()
@@ -120,6 +126,17 @@ class BeatifyWebSocketHandler:
             "report_data": handle_report_data,
             "round_timeout": handle_round_timeout,
         }
+
+    def clear_admin_socket(self) -> None:
+        """Forget the admin spectator socket (#477 / #2638).
+
+        Wired into ``GameState.register_reset_callback`` at the composition
+        root, so a game teardown (``end_game``) or rebuild (``rematch_game``)
+        drops the reference exactly where ``_reset_game_internals`` used to
+        null ``GameState._admin_ws``. The connection itself stays open — this
+        is a de-reference, not a close.
+        """
+        self.admin_ws = None
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -386,8 +403,9 @@ class BeatifyWebSocketHandler:
 
         # Issue #550: Ensure admin spectator WS is included
         game_state = get_game_state(self.hass)
-        if game_state and game_state._admin_ws is not None:
-            targets.add(game_state._admin_ws)
+        admin_ws = self.admin_ws if game_state else None
+        if admin_ws is not None:
+            targets.add(admin_ws)
 
         if not targets:
             return
@@ -398,8 +416,6 @@ class BeatifyWebSocketHandler:
         # before guessing. Redact per-recipient: only the spectator admin WS
         # gets the answers; every player connection gets a redacted copy.
         player_message = self._redact_for_player(message, game_state)
-
-        admin_ws = game_state._admin_ws if game_state else None
 
         # #1711: there are at most two payload variants per broadcast (the
         # admin/spectator copy and the redacted player copy). Serialize each to a
@@ -565,8 +581,8 @@ class BeatifyWebSocketHandler:
             player.connected = False
 
         # Issue #477: Clear admin spectator WS if it disconnected
-        if game_state._admin_ws is ws:
-            game_state._admin_ws = None
+        if self.admin_ws is ws:
+            self.admin_ws = None
             _LOGGER.info("Admin spectator WebSocket disconnected")
 
         if not player_name or not player:
@@ -681,5 +697,9 @@ class BeatifyWebSocketHandler:
                         "Error closing WebSocket during unload", exc_info=True
                     )
         self.connections.clear()
+        # #2638: the admin spectator socket is one of the connections just
+        # closed above, so drop the handler's own reference too — the owner
+        # closes it AND forgets it.
+        self.admin_ws = None
 
         _LOGGER.debug("Closed all WebSocket connections on unload")

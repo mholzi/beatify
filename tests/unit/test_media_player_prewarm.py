@@ -86,10 +86,22 @@ async def test_prewarm_constructs_service_and_probes() -> None:
 
 @pytest.mark.asyncio
 async def test_prewarm_is_idempotent_with_ensure() -> None:
-    """A real round-path _ensure_media_player_service reuses the pre-warmed service."""
-    state = make_game_state()
+    """A real round-path _ensure_media_player_service reuses the pre-warmed service.
+
+    #2638: the speaker service comes from the injected factory, so the "was it
+    built twice?" question is answered by counting factory calls instead of by
+    standing up a mock Home Assistant.
+    """
+    builds = []
+
+    def _factory(entity_id, **kwargs):
+        svc = MagicMock()
+        svc.verify_responsive = AsyncMock(return_value=(True, ""))
+        builds.append(svc)
+        return svc
+
+    state = make_game_state(media_player=_factory)
     hass = MagicMock()
-    hass.states.get.return_value = None  # verify_responsive bails gracefully
     hass.async_create_background_task = MagicMock(side_effect=_closing_background_task)
     state.set_hass(hass)
     _create_game(state)
@@ -97,10 +109,23 @@ async def test_prewarm_is_idempotent_with_ensure() -> None:
     await state.prewarm_media_player_service()
     warmed = state._media_player_service
     assert warmed is not None
+    assert len(builds) == 1
 
     # The round path's lazy fallback must NOT rebuild — same instance is kept.
     state._ensure_media_player_service()
     assert state._media_player_service is warmed
+    assert len(builds) == 1
+
+
+@pytest.mark.asyncio
+async def test_no_factory_means_no_speaker_service() -> None:
+    """#2638: without a media-player factory the game simply has no speaker."""
+    state = make_game_state()
+    _create_game(state)
+
+    state._ensure_media_player_service()
+
+    assert state._media_player_service is None
 
 
 @pytest.mark.asyncio

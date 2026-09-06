@@ -59,6 +59,9 @@ def _make_handler_and_game(
     mock_hass.data = {DOMAIN: {"game": game_state}}
 
     handler = BeatifyWebSocketHandler(mock_hass)
+    # #2638: mirror the composition root — the handler owns the admin spectator
+    # socket and drops it when the game is torn down or rebuilt.
+    game_state.register_reset_callback(handler.clear_admin_socket)
     mock_ws = AsyncMock()
     mock_ws.send_json = AsyncMock()
     mock_ws.closed = False
@@ -828,7 +831,7 @@ class TestAdminConnect:
             ws, {"type": "admin_connect", "ha_token": "valid-ha-token"}
         )
 
-        assert game_state._admin_ws is ws
+        assert handler.admin_ws is ws
         # First call: ack, second call: state
         calls = ws.send_json.call_args_list
         assert calls[0][0][0]["type"] == "admin_connect_ack"
@@ -844,7 +847,7 @@ class TestAdminConnect:
             ws, {"type": "admin_connect", "ha_token": "wrong-token"}
         )
 
-        assert game_state._admin_ws is None
+        assert handler.admin_ws is None
         msg = ws.send_json.call_args[0][0]
         assert msg["type"] == "error"
         assert msg["code"] == ERR_UNAUTHORIZED
@@ -854,7 +857,7 @@ class TestAdminConnect:
 
         await handler._handle_message(ws, {"type": "admin_connect"})
 
-        assert game_state._admin_ws is None
+        assert handler.admin_ws is None
         msg = ws.send_json.call_args[0][0]
         assert msg["code"] == ERR_UNAUTHORIZED
 
@@ -900,19 +903,20 @@ class TestAdminConnect:
 
     async def test_disconnect_clears_admin_ws(self):
         handler, game_state, ws = _make_handler_and_game()
-        game_state._admin_ws = ws
+        handler.admin_ws = ws
 
         await handler._handle_disconnect(ws)
 
-        assert game_state._admin_ws is None
+        assert handler.admin_ws is None
 
     async def test_game_reset_clears_admin_ws(self):
+        """#2638: the teardown still drops the socket — via the reset callback."""
         handler, game_state, ws = _make_handler_and_game()
-        game_state._admin_ws = ws
+        handler.admin_ws = ws
 
         game_state._reset_game_internals()
 
-        assert game_state._admin_ws is None
+        assert handler.admin_ws is None
 
 
 class TestBroadcastDebounceSupersede:

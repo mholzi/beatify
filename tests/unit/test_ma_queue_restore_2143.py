@@ -340,16 +340,25 @@ class TestGameStateKeepsThePromiseAcrossTheSwitch:
         assert gs._pending_speaker_states == {"media_player.esszimmer": {"volume": 0.2}}
 
     def test_the_new_service_inherits_what_the_old_one_owed(self):
-        gs = make_game_state()
+        # #2638: the game asks its injected factory for a speaker service; the
+        # fake records what it was handed, so no hass is needed to see the
+        # promise travel.
+        built = {}
+
+        def _factory(entity_id, **kwargs):
+            built["entity_id"] = entity_id
+            built.update(kwargs)
+            return MagicMock()
+
+        gs = make_game_state(media_player=_factory)
         gs.media_player = "media_player.kueche"
         gs.platform = "music_assistant"
         gs._pending_speaker_states = {"media_player.esszimmer": {"volume": 0.2}}
 
         gs._ensure_media_player_service()
 
-        assert gs._media_player_service._inherited_states == {
-            "media_player.esszimmer": {"volume": 0.2}
-        }
+        assert built["entity_id"] == "media_player.kueche"
+        assert built["inherited_states"] == {"media_player.esszimmer": {"volume": 0.2}}
         # Handed over, not shared — a later release/build cycle must not
         # restore the same speaker twice.
         assert gs._pending_speaker_states == {}

@@ -54,6 +54,7 @@ from custom_components.beatify.server.serializers import (
     build_state_message,
 )
 from custom_components.beatify.server.setup_state import clear_setup
+from custom_components.beatify.services.factories import ha_service_factories
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     get_platform_capabilities,
@@ -373,7 +374,10 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         # Initialize game state if needed
         if not game_state:
-            game_state = GameState()
+            # #2638: a composition point, so it wires the HA-backed service
+            # factories just like async_setup_entry does. (Defensive branch:
+            # async_setup_entry always seeds hass.data[DOMAIN]["game"].)
+            game_state = GameState(service_factories=ha_service_factories(self.hass))
             self.hass.data[DOMAIN]["game"] = game_state
             # Connect stats service if available (Story 14.4)
             stats_service = self.hass.data.get(DOMAIN, {}).get("stats")

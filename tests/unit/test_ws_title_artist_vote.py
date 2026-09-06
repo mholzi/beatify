@@ -19,11 +19,11 @@ def _ta_songs(n: int = 3) -> list[dict]:
 
 
 def _stub_media_service() -> MagicMock:
-    """A fake MediaPlayerService that reports a healthy, playing speaker.
+    """A fake media-player service that reports a healthy, playing speaker.
 
-    Injected so _ensure_media_player_service skips constructing a real
-    (hass-less) service — tests stub the dependency instead of branching
-    production code on a None hass.
+    #2638: handed to ``make_game_state(media_player=...)`` as the game's
+    speaker factory, so the game builds it the same way production builds the
+    real one — no hass, and no ordering trap around ``create_game``.
     """
     svc = MagicMock()
     svc.is_available.return_value = True
@@ -34,7 +34,7 @@ def _stub_media_service() -> MagicMock:
 
 def _make_handler_game():
     mock_hass = MagicMock()
-    gs = make_game_state()
+    gs = make_game_state(media_player=lambda *_a, **_kw: _stub_media_service())
     gs.create_game(
         playlists=["t.json"],
         songs=_ta_songs(3),
@@ -42,10 +42,6 @@ def _make_handler_game():
         base_url="http://h",
         title_artist_mode=True,
     )
-    # Inject a truthy stub service so the lazy _ensure_media_player_service is a
-    # no-op and real (hass-less) playback never runs during start_round. Must be
-    # after create_game, which nulls _media_player_service for a fresh game (#1526).
-    gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"  # skip the verify_responsive branch
     mock_hass.data = {DOMAIN: {"game": gs}}
     handler = BeatifyWebSocketHandler(mock_hass)

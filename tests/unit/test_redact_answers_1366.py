@@ -135,7 +135,7 @@ class TestBroadcastRedaction:
 
         admin_ws = _make_ws()
         player_ws = _make_ws()
-        gs._admin_ws = admin_ws
+        handler.admin_ws = admin_ws
         handler.connections = {admin_ws, player_ws}
 
         msg = build_state_message(gs)
@@ -160,7 +160,7 @@ class TestBroadcastRedaction:
 
         admin_ws = _make_ws()
         player_ws = _make_ws()
-        gs._admin_ws = admin_ws
+        handler.admin_ws = admin_ws
         handler.connections = {admin_ws, player_ws}
 
         await handler.broadcast_metadata_update(

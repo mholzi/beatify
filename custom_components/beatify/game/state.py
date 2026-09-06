@@ -11,11 +11,20 @@ a reference to) the following subsystems:
 * ``RoundManager`` — round number, timer/deadline, intro mode, metadata
 * ``HighlightsTracker`` — game highlights reel (exact matches, streaks, …)
 
-It **references** (does not own, receives via setter):
+It **references** (does not own, receives from outside):
 
 * ``StatsService`` — historical game statistics and song difficulty
-* ``MediaPlayerService`` — lazy-created on first round via Home Assistant
-* ``PartyLightsService`` — optional party-lights integration
+* media player — built on first round from the injected factory (#2638)
+* party lights — optional, built from the injected factory (#2638)
+* TTS announcer — optional, built from the injected factory (#2638)
+
+#2638: GameState does not import ``services.*`` and does not know Home
+Assistant exists when it builds these. It is handed a
+``GameOutputFactories`` bundle (game/protocols.py) at construction; the
+composition root fills it with HA-backed factories, a test fills it with fakes
+or leaves it empty. The admin spectator WebSocket used to live here too — it is
+an aiohttp socket the server opens and closes, so it now lives on
+``BeatifyWebSocketHandler``.
 
 Serialization is handled by ``GameStateSerializer`` (game/serializers.py)
 which builds broadcast-ready dicts from GameState without GameState
@@ -50,7 +59,11 @@ from .round_manager import RoundManager
 from .scoring import (
     ScoringService,
 )
-from .protocols import MediaPlayerProtocol, PartyLightsProtocol
+from .protocols import (
+    GameOutputFactories,
+    MediaPlayerProtocol,
+    PartyLightsProtocol,
+)
 from .state_auto_advance import RevealAutoAdvanceMixin
 from .state_challenge import ChallengeMixin
 from .state_leaderboard import LeaderboardMixin
@@ -71,7 +84,6 @@ from .types import RoundAnalytics, _get_decade_label
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
 
-    from aiohttp import web
     from homeassistant.core import HomeAssistant
 
     from custom_components.beatify.services.stats import StatsService
@@ -268,15 +280,25 @@ class GameState(
     :class:`~custom_components.beatify.game.state_round_delegation.RoundManagerDelegationMixin`.
     """
 
-    def __init__(self, time_fn: Callable[[], float] | None = None) -> None:
+    def __init__(
+        self,
+        time_fn: Callable[[], float] | None = None,
+        *,
+        service_factories: GameOutputFactories | None = None,
+    ) -> None:
         """
         Initialize game state.
 
         Args:
             time_fn: Optional time function for testing. Defaults to time.time.
+            service_factories: How to build the media player / party lights /
+                TTS services (#2638). Omitted = none of them are wired, which is
+                how the game logic is constructed without Home Assistant.
 
         """
         self._now = time_fn or time.time
+        # #2638: the only route from the domain to a concrete output service.
+        self._service_factories = service_factories or GameOutputFactories()
         self._hass: HomeAssistant | None = None
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
@@ -400,9 +422,6 @@ class GameState(
         # an opponent who is still guessing. Opt-in; default off = no tokens.
         self.sabotage_enabled: bool = False
 
-        # Issue #477: Admin spectator WebSocket (host without being a player)
-        self._admin_ws: web.WebSocketResponse | None = None
-
         # Issue #42: Metadata update callback
         self._on_metadata_update: Callable[[dict[str, Any]], Awaitable[None]] | None = (
             None
@@ -416,6 +435,11 @@ class GameState(
 
         # Issue #441: Observer callbacks for HA entity updates
         self._state_callbacks: list[Callable[[], None]] = []
+
+        # #2638: observers notified when a game is torn down or rebuilt
+        # (``_reset_game_internals``). The server uses this to drop its admin
+        # spectator socket at exactly the moment GameState used to null it.
+        self._reset_callbacks: list[Callable[[], None]] = []
 
     def _apply_config(self, config: GameStateConfig) -> None:
         """Apply a GameStateConfig to self, setting all config-managed fields."""
@@ -440,6 +464,19 @@ class GameState(
     def _notify_state_callbacks(self) -> None:
         """Notify all registered state observers (Issue #441)."""
         for cb in self._state_callbacks:
+            cb()
+
+    def register_reset_callback(self, cb: Callable[[], None]) -> None:
+        """Register a callback invoked on every game teardown/rebuild (#2638).
+
+        Fired from ``_reset_game_internals`` — i.e. by ``end_game()`` and
+        ``rematch_game()``, at the one point both share.
+        """
+        self._reset_callbacks.append(cb)
+
+    def _notify_reset_callbacks(self) -> None:
+        """Notify all registered reset observers (#2638)."""
+        for cb in self._reset_callbacks:
             cb()
 
     def async_shutdown(self) -> None:

@@ -18,11 +18,11 @@ def _ta_songs(n: int = 3) -> list[dict]:
 
 
 def _stub_media_service() -> MagicMock:
-    """A fake MediaPlayerService that reports a healthy, playing speaker.
+    """A fake media-player service that reports a healthy, playing speaker.
 
-    Injected so _ensure_media_player_service skips constructing a real
-    (hass-less) service — tests stub the dependency instead of branching
-    production code on a None hass.
+    #2638: handed to ``make_game_state(media_player=...)`` as the game's
+    speaker factory, so the game builds it the same way production builds the
+    real one — no hass, and no ordering trap around ``create_game``.
     """
     svc = MagicMock()
     svc.is_available.return_value = True
@@ -35,6 +35,11 @@ def _stub_media_service() -> MagicMock:
     return svc
 
 
+def _make_gs():
+    """A GameState whose speaker factory hands out the stub above (#2638)."""
+    return make_game_state(media_player=lambda *_a, **_kw: _stub_media_service())
+
+
 async def _start_round(gs):
     gs.create_game(
         playlists=["t.json"],
@@ -43,11 +48,6 @@ async def _start_round(gs):
         base_url="http://h",
         title_artist_mode=True,
     )
-    # Inject a stub service (truthy) so the lazy _ensure_media_player_service
-    # is a no-op and real playback never runs. Must come *after* create_game,
-    # which now nulls _media_player_service so a fresh game rebuilds it with the
-    # new selection (#1526) — injecting before would be wiped out by that reset.
-    gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"  # skip the verify_responsive branch
     gs.add_player("Alice", MagicMock())
     gs.add_player("Bob", MagicMock())
@@ -57,14 +57,14 @@ async def _start_round(gs):
 
 class TestDelegation:
     def test_delegation_methods_present(self):
-        gs = make_game_state()
+        gs = _make_gs()
         assert hasattr(gs, "register_title_artist_vote")
         assert hasattr(gs, "set_title_artist_override")
         assert hasattr(gs, "get_near_misses")
         assert hasattr(gs, "has_near_misses")
 
     def test_register_vote_delegates(self):
-        gs = make_game_state()
+        gs = _make_gs()
         gs._challenge_manager.configure(
             artist_challenge_enabled=False,
             movie_quiz_enabled=False,
@@ -81,7 +81,7 @@ class TestDelegation:
 
 class TestConditionalWindow:
     async def test_no_near_miss_resolves_immediately(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         # Both guess exactly -> no near-misses.
@@ -100,7 +100,7 @@ class TestConditionalWindow:
         assert gs.is_title_artist_voting_open() is False
 
     async def test_near_miss_opens_window(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -119,7 +119,7 @@ class TestConditionalWindow:
         gs._cancel_auto_advance()
 
     async def test_host_advance_resolves_first(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -144,7 +144,7 @@ class TestConditionalWindow:
         assert gs.is_title_artist_voting_open() is False
 
     async def test_window_resolves_after_timeout(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -194,7 +194,7 @@ class TestVoteWindowScoring:
 
     async def test_scoring_deferred_while_window_open(self):
         """With a near-miss pending, scoring is held until the window closes."""
-        gs = make_game_state()
+        gs = _make_gs()
         await self._setup_near_miss(gs)
         await gs.end_round()
         assert gs.is_title_artist_voting_open() is True
@@ -206,7 +206,7 @@ class TestVoteWindowScoring:
         gs._cancel_auto_advance()
 
     async def test_override_accept_increases_leaderboard(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await self._setup_near_miss(gs)
         await gs.end_round()
         gs.set_title_artist_override("Alice:title", True)
@@ -225,7 +225,7 @@ class TestVoteWindowScoring:
         assert bob.rounds_played == 1
 
     async def test_rejected_near_miss_scores_without_partial(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await self._setup_near_miss(gs)
         await gs.end_round()
         # No vote and no override -> default reject on resolve.
@@ -238,7 +238,7 @@ class TestVoteWindowScoring:
         assert alice.rounds_played == 1
 
     async def test_vote_accept_increases_leaderboard(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await self._setup_near_miss(gs)
         await gs.end_round()
         # Bob votes 👍 on Alice's title near-miss (majority of one).
@@ -251,7 +251,7 @@ class TestVoteWindowScoring:
         assert alice.rounds_played == 1
 
     async def test_timeout_applies_accepted_points(self):
-        gs = make_game_state()
+        gs = _make_gs()
         await self._setup_near_miss(gs)
         gs.set_title_artist_override("Alice:title", True)
         import custom_components.beatify.game.state_vote_window as state_mod
@@ -271,7 +271,7 @@ class TestVoteWindowScoring:
 
     async def test_no_near_miss_scores_in_main_loop(self):
         """Immediate-resolve path scores during end_round (no window)."""
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -293,7 +293,7 @@ class TestVoteWindowScoring:
 
     async def test_resolve_is_idempotent(self):
         """A double finalize (host-advance + late timer) must not double-count."""
-        gs = make_game_state()
+        gs = _make_gs()
         await self._setup_near_miss(gs)
         await gs.end_round()
         gs.set_title_artist_override("Alice:title", True)
@@ -321,7 +321,7 @@ class TestRoundResultsShareGrid:
 
     async def test_all_exact_grid_is_not_missed(self):
         """Immediate-resolve path: both fields exact -> 'exact', not 'missed'."""
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -340,7 +340,7 @@ class TestRoundResultsShareGrid:
 
     async def test_title_only_correct_is_scored(self):
         """One field exact, other wrong (no near-miss) -> 'scored'."""
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         # Exact title, clearly-wrong artist (not a near-miss -> immediate resolve).
@@ -365,7 +365,7 @@ class TestRoundResultsShareGrid:
         round_results append must run AFTER the window resolves so it sees the
         promoted near_miss_accepted status.
         """
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -388,7 +388,7 @@ class TestRoundResultsShareGrid:
 
     async def test_rejected_near_miss_only_is_close(self):
         """A near-miss accepted with no other full-points field -> 'close'."""
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         # Alice: near-miss title AND wrong artist -> only the accepted title
@@ -408,7 +408,7 @@ class TestRoundResultsShareGrid:
 
     async def test_no_submission_is_missed(self):
         """A player who didn't guess in title/artist mode -> 'missed'."""
-        gs = make_game_state()
+        gs = _make_gs()
         await _start_round(gs)
         await gs.start_round()
         gs._challenge_manager.submit_title_artist_guess(
@@ -449,7 +449,7 @@ class TestVoteWindowFlagReset:
 
     async def test_end_game_clears_open_vote_flag(self):
         """Force-ending while the window is open must reset the flag."""
-        gs = make_game_state()
+        gs = _make_gs()
         await self._open_window(gs)
         # Admin force-ends the game mid vote-window.
         await gs.end_game()
@@ -463,7 +463,7 @@ class TestVoteWindowFlagReset:
         and asserts the next create_game scrubs it, so the new game keeps its
         REVEAL auto-advance and never double-scores.
         """
-        gs = make_game_state()
+        gs = _make_gs()
         # Pretend a prior game leaked the flag.
         gs._title_artist_voting_open = True
         gs._title_artist_vote_deadline = 123.0
@@ -479,7 +479,7 @@ class TestVoteWindowFlagReset:
 
     async def test_cancelled_window_task_clears_flag(self):
         """Cancelling the window task (defense in depth) clears the flag."""
-        gs = make_game_state()
+        gs = _make_gs()
         await self._open_window(gs)
         # Let the freshly-created window task actually enter its try-block so
         # the cancellation lands inside the except handler (not before start).
@@ -498,7 +498,7 @@ class TestVoteWindowFlagReset:
     async def test_next_year_game_keeps_reveal_auto_advance(self):
         """End-to-end: after a force-end mid-window, a plain year game still
         schedules REVEAL auto-advance (the leak previously disabled it)."""
-        gs = make_game_state()
+        gs = _make_gs()
         await self._open_window(gs)
         await gs.end_game()
         # Start a fresh plain year-mode game.
@@ -510,8 +510,8 @@ class TestVoteWindowFlagReset:
             title_artist_mode=False,
             reveal_auto_advance=5,
         )
-        # Stub the service after create_game, which nulls it for a fresh game (#1526).
-        gs._media_player_service = _stub_media_service()
+        # #2638: the injected factory rebuilds the stub for the fresh game, so
+        # the old "re-inject after create_game" step (#1526) is gone.
         gs.platform = "music_assistant"
         gs.add_player("Alice", MagicMock())
         for p in gs.players.values():
