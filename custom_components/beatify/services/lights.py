@@ -203,9 +203,8 @@ class PartyLightsService:
         """Build the service data (color + intensity-adjusted brightness) for a phase.
 
         Single source of truth for the subtle/intensity brightness logic so that
-        set_phase() and the flash()/strobe() restore paths all agree — in subtle
-        mode they must restore to the gentle pre-game level, not full brightness
-        (#1389).
+        set_phase() and the flash() restore path agree — in subtle mode they
+        must restore to the gentle pre-game level, not full brightness (#1389).
         """
         phase_data = PHASE_COLORS.get(phase_name)
         if not phase_data:
@@ -329,29 +328,6 @@ class PartyLightsService:
                 await asyncio.sleep(interval)
         except asyncio.CancelledError:
             pass
-
-    async def strobe(self, count: int = 5, interval: float = 0.4) -> None:
-        """Rapid on/off strobe for countdown tension (#517)."""
-        for _ in range(count):
-            if not self._active:
-                break
-            await self._apply(
-                self._entity_ids,
-                {"rgb_color": [255, 0, 0], "brightness": 255},
-                transition=0.05,
-            )
-            await asyncio.sleep(interval / 2)
-            await self._apply(
-                self._entity_ids,
-                {"brightness": 10},
-                transition=0.05,
-            )
-            await asyncio.sleep(interval / 2)
-        # Restore phase color at the intensity-adjusted brightness (#1389) — in
-        # subtle mode this restores the gentle pre-game level, not full brightness.
-        restore_data = self._phase_service_data(self._current_phase or "")
-        if restore_data is not None:
-            await self._apply(self._entity_ids, restore_data, transition=0.3)
 
     async def celebrate(self) -> None:
         """Rainbow cycle celebration for ~5 seconds."""
