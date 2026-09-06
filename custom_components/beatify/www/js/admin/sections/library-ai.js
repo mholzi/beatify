@@ -254,7 +254,10 @@ function _ensureModal() {
             const data = await resp.json().catch(() => ({}));
             if (resp.ok) {
                 result.innerHTML = `<p class="library-ai-good">${_t('admin.libraryAi.saved', 'Saved! Find it under Playlists → Mine.')}</p>`;
-                if (typeof window.loadPlaylists === 'function') { try { window.loadPlaylists(); } catch (e) { /* optional */ } }
+                // #2637: same dead `window.loadPlaylists?.()` nudge as in
+                // library.js — the global has never existed, so the refresh
+                // never happened. Removed; the missing refresh is tracked
+                // separately.
             } else {
                 result.innerHTML = `<p class="library-ai-bad">${data.message || 'Save failed'}</p>`;
                 saveBtn.disabled = false;
