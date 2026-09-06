@@ -17,6 +17,9 @@ on ``GameState``, so its public API and every caller / test are unchanged.
 * ``_song_finished`` — poll helper: ``True`` once the round's song is no longer
   playing (the media player drops out of "playing"/"buffering"), the song-end
   signal both auto-advance tasks wait on.
+* ``_auto_advance_broadcast`` — the single place the auto-advance pushes state
+  to the clients (#2613). Every terminal branch of ``_reveal_auto_advance``
+  (next round, pause, game end, finale playoff) ends here.
 * ``_reveal_auto_advance`` — the auto-advance task: advances to the next round on
   whichever comes first, song-end or the configured ``timer_seconds`` dwell
   (0 = wait for song-end), with a generous hard cap so an undetectable song-end
@@ -164,6 +167,26 @@ class RevealAutoAdvanceMixin:
                     pass
         return pstate not in ("playing", "buffering")
 
+    async def _auto_advance_broadcast(self) -> None:
+        """Push the post-advance state to the clients (#2544/#2613).
+
+        ``start_round`` / ``pause_game`` / ``advance_to_end`` only fire the sync
+        HA state-callbacks; ``_on_round_end`` (= ``ws_handler.broadcast_state``)
+        is the async WebSocket push that actually moves the admin, the players
+        and the TV off REVEAL. Every terminal branch of the auto-advance has to
+        end here, which is why it is one helper instead of an inline call per
+        branch — the #2613 regression was exactly one branch that forgot it.
+
+        A dead socket must not take the game down with it, so the same narrow
+        exception set as before is swallowed and logged.
+        """
+        if self._on_round_end is None:
+            return
+        try:
+            await self._on_round_end()
+        except (ConnectionError, OSError, TypeError) as err:
+            _LOGGER.error("Auto-advance broadcast failed: %s", err)
+
     async def _reveal_auto_advance(self, timer_seconds: int) -> None:
         """Auto-advance from REVEAL to the next round (#1012).
 
@@ -217,6 +240,15 @@ class RevealAutoAdvanceMixin:
                     "REVEAL so the finale tiebreaker can still fire"
                 )
                 await self._on_game_end()
+                # #2613: the gate (finalize_and_end) records stats and runs
+                # advance_to_end — neither pushes anything to the sockets, and
+                # its own docstring says the caller performs the broadcast.
+                # admin_next_round awaits broadcast_state() right after it; this
+                # branch returned instead, so the backend went to END (or, with
+                # the finale tiebreaker armed, straight into a fresh PLAYING
+                # playoff round with a new song) while every phone and the TV
+                # stayed frozen on REVEAL until someone reloaded.
+                await self._auto_advance_broadcast()
                 return
 
             # #1697: honors the round-start lock transitively — start_round()
@@ -277,11 +309,8 @@ class RevealAutoAdvanceMixin:
             # after start_round / advance_to_end — mirror that here, otherwise
             # music starts (or the game ends) but the admin + player UIs stay
             # frozen on REVEAL.
-            if (success or self.phase == GamePhase.PAUSED) and self._on_round_end:
-                try:
-                    await self._on_round_end()
-                except (ConnectionError, OSError, TypeError) as err:
-                    _LOGGER.error("Auto-advance broadcast failed: %s", err)
+            if success or self.phase == GamePhase.PAUSED:
+                await self._auto_advance_broadcast()
         except asyncio.CancelledError:
             _LOGGER.debug("REVEAL auto-advance cancelled")
             raise
