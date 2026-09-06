@@ -653,12 +653,13 @@ class GameState(
             self._challenge_manager if self.title_artist_mode else None
         )
         for player in self.players.values():
-            # #1748: an eliminated player (Sudden Death) is out of the game — do
-            # not accumulate any further score for them. Their frozen totals must
-            # stand, so skip the per-player scoring pass entirely. (The intro
-            # speed-rank pool in _score_intro_round independently excludes
-            # eliminated players so survivors' ranks are unaffected.)
-            if player.eliminated:
+            # #1748 / #2612: an eliminated player or a finale-playoff spectator
+            # is out of the round — do not accumulate any further score for
+            # them. Their frozen totals must stand, so skip the per-player
+            # scoring pass entirely. (The intro speed-rank pool in
+            # _score_intro_round independently excludes out-of-play players so
+            # survivors' ranks are unaffected.)
+            if player.out_of_play:
                 continue
             try:
                 ScoringService.score_player_round(

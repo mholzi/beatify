@@ -153,15 +153,12 @@ class RevealTransitionMixin:
     def _active_guessers(self) -> list:
         """Players whose guess the early reveal is allowed to wait for (#2545).
 
-        ``all_submitted()`` has excluded eliminated players since #827, but the
-        follow-up loops below filtered on ``is_active`` alone. An eliminated
-        player is refused by the guess handlers (ERR_ELIMINATED), so they can
-        never satisfy ``has_*_guess`` — from the first sudden-death cut onward
-        every round ran out its full timer with the whole room already done.
-        The same held for the finale playoff round, where #1725 marks every
-        non-leader eliminated.
+        ``all_submitted()`` has excluded out-of-play players since #827/#2578,
+        but the follow-up loops below used to filter only ``is_active`` and
+        ``eliminated``. A finale-playoff spectator is not eliminated, so their
+        missing challenge guess could hold the room until the timer expired.
         """
-        return [p for p in self.players.values() if p.is_active and not p.eliminated]
+        return [p for p in self.players.values() if p.is_active and not p.out_of_play]
 
     async def _trigger_early_reveal(self) -> None:
         """

@@ -334,9 +334,9 @@ export function updateGameView(data) {
         }
     }
 
-    // Issue #827: Sudden Death — gate the play UI on whether the current
-    // player is eliminated. Must run before syncing the chip row / submission
-    // tracker so the eliminated-view album art and locked state are consistent.
+    // Issue #827 / #2612: gate the play UI on whether the current player is
+    // eliminated or sitting out a finale playoff. Must run before syncing the
+    // chip row / submission tracker so the locked state is consistent.
     applySuddenDeathState(data);
 
     // Arcade chip row — hide the wrapper when every child chip is hidden
@@ -469,9 +469,15 @@ function syncNoBonusFiller(data) {
     filler.classList.toggle('hidden', hasArtist || hasMovie || taMode);
 }
 
-// Issue #827: Sudden Death — true when the current player ("me") is eliminated.
-// Used to defensively block submissions and drive the eliminated view.
+// Issue #827 / #2612: true when the current player cannot act in this round.
+// The two server states remain separate for display, but share the client-side
+// submission guard.
 var meEliminated = false;
+var mePlayoffSpectator = false;
+
+function meOutOfPlay() {
+    return meEliminated || mePlayoffSpectator;
+}
 
 /**
  * Find the current player ("me") in a players array. Matches the existing
@@ -513,22 +519,23 @@ export function renderBetPayout(data) {
 }
 
 /**
- * Issue #827: Sudden Death — apply elimination state for the current player.
- * When `sudden_death_mode` is on AND the current player is eliminated, hide the
- * normal play UI (slider, year display, bet, submit, challenges) and show the
- * #eliminated-view. Otherwise restore the normal UI and keep the view hidden.
- * Guarded so a non-Sudden-Death game is completely unaffected.
+ * Issue #827 / #2612: apply the current player's out-of-play state.
+ * Eliminated players and finale-playoff spectators both lose the normal play
+ * UI (slider, year display, bet, submit, challenges), while only a genuine
+ * elimination gets the skull treatment.
  * @param {Object} data - State data from server
  */
 function applySuddenDeathState(data) {
     var eliminatedView = document.getElementById('eliminated-view');
     if (!eliminatedView) return;
 
-    var suddenDeath = !!(data && data.sudden_death_mode);
     var me = findMe(data && data.players);
-    var amOut = suddenDeath && !!(me && me.eliminated);
+    var amEliminated = !!(me && me.eliminated);
+    var amPlayoffSpectator = !!(me && me.playoff_spectator);
+    var amOut = amEliminated || amPlayoffSpectator;
 
-    meEliminated = amOut;
+    meEliminated = amEliminated;
+    mePlayoffSpectator = amPlayoffSpectator;
 
     // Elements that make up the normal active-play UI.
     var playEls = [
@@ -554,14 +561,24 @@ function applySuddenDeathState(data) {
             elimCover.src = albumCover.src;
         }
 
-        // "Eliminated · Round N" — prefer the round they went out on.
+        var titleEl = document.getElementById('eliminated-title');
         var subEl = document.getElementById('eliminated-sub');
-        if (subEl) {
-            var round = (me && me.eliminated_round != null)
-                ? me.eliminated_round
-                : (data && data.round) || '';
-            subEl.textContent = utils.t('game.eliminatedRound', { round: round })
-                || ('Eliminated · Round ' + round);
+        var skull = eliminatedView.querySelector('.eliminated-skull');
+        if (amPlayoffSpectator && !amEliminated) {
+            if (titleEl) titleEl.textContent = utils.t('reveal.finalePlayoff') || 'Finale playoff';
+            if (subEl) subEl.textContent = utils.t('game.watchingSidelines') || 'Watching from the sidelines';
+            if (skull) skull.classList.add('hidden');
+        } else {
+            // "Eliminated · Round N" — prefer the round they went out on.
+            if (titleEl) titleEl.textContent = utils.t('game.youreOut') || "You're out";
+            if (subEl) {
+                var round = (me && me.eliminated_round != null)
+                    ? me.eliminated_round
+                    : (data && data.round) || '';
+                subEl.textContent = utils.t('game.eliminatedRound', { round: round })
+                    || ('Eliminated · Round ' + round);
+            }
+            if (skull) skull.classList.remove('hidden');
         }
 
         // Issue #827: eliminated players are spectators — surface the existing
@@ -578,6 +595,12 @@ function applySuddenDeathState(data) {
             if (el) el.classList.remove('hidden');
         });
         eliminatedView.classList.add('hidden');
+        var restoreTitleEl = document.getElementById('eliminated-title');
+        var restoreSubEl = document.getElementById('eliminated-sub');
+        var restoreSkull = eliminatedView.querySelector('.eliminated-skull');
+        if (restoreTitleEl) restoreTitleEl.textContent = utils.t('game.youreOut') || "You're out";
+        if (restoreSubEl) restoreSubEl.textContent = '';
+        if (restoreSkull) restoreSkull.classList.remove('hidden');
 
         // submitted-banner visibility is owned by handleSubmitAck/reset — it
         // should stay hidden unless this player has submitted. We removed the
@@ -596,11 +619,10 @@ function renderSubmissionTracker(players) {
     if (!tracker || !container) return;
 
     var playerList = players || [];
-    // Issue #827: Sudden Death — eliminated players are out of the round and
-    // must not count toward the "submitted / waiting" totals. activeList is the
-    // set still in play; counts derive from it.
+    // #827 / #2612: eliminated players and playoff spectators are out of the
+    // round and must not count toward the "submitted / waiting" totals.
     var activeList = playerList.filter(function(p) {
-        return !p.eliminated;
+        return !p.eliminated && !p.playoff_spectator;
     });
     var submittedCount = activeList.filter(function(p) {
         return p.submitted;
@@ -640,10 +662,12 @@ function renderSubmissionTracker(players) {
         var isCurrentPlayer = player.name === state.playerName;
         var isDisconnected = player.connected === false;
         var isEliminated = !!player.eliminated;  // Issue #827
+        var isPlayoffSpectator = !!player.playoff_spectator;  // Issue #2612
+        var isOutOfPlay = isEliminated || isPlayoffSpectator;
         var classes = [
             'player-indicator',
-            // Issue #827: eliminated chips never read as "submitted".
-            (player.submitted && !isEliminated) ? 'is-submitted' : '',
+            // #827 / #2612: out-of-play chips never read as "submitted".
+            (player.submitted && !isOutOfPlay) ? 'is-submitted' : '',
             isCurrentPlayer ? 'is-current-player' : '',
             isDisconnected ? 'player-indicator--disconnected' : '',
             isEliminated ? 'is-eliminated' : ''
@@ -973,7 +997,7 @@ export function initYearSelector() {
     yearSelectorInitialized = true;  // #854 — set only after DOM was found
 
     slider.addEventListener('input', function() {
-        if (meEliminated) return;  // Issue #827: eliminated players can't change the year
+        if (meOutOfPlay()) return;  // #827 / #2612: out-of-play players can't act
         yearDisplay.textContent = this.value;
     });
 
@@ -998,7 +1022,7 @@ export function initYearSelector() {
         var longPressTimeoutId = null;
 
         btn.addEventListener('pointerdown', function(e) {
-            if (hasSubmitted || meEliminated) return;  // Issue #827
+            if (hasSubmitted || meOutOfPlay()) return;  // #827 / #2612
             e.preventDefault();
             adjustYear(delta);
             longPressTimeoutId = setTimeout(function() {
@@ -1016,7 +1040,7 @@ export function initYearSelector() {
 
         // Keyboard fallback (Space / Enter when the button has focus)
         btn.addEventListener('keydown', function(e) {
-            if (hasSubmitted || meEliminated) return;  // Issue #827
+            if (hasSubmitted || meOutOfPlay()) return;  // #827 / #2612
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 adjustYear(delta);
@@ -1117,7 +1141,7 @@ export function initYearSelector() {
  */
 export function handleSubmitGuess() {
     if (hasSubmitted) return;
-    if (meEliminated) return;  // Issue #827: eliminated players can't submit
+    if (meOutOfPlay()) return;  // #827 / #2612: out-of-play players can't submit
 
     // #1665: freeze effect — the server rejects the submit with ERR_FROZEN, so
     // reflect that locally instead of firing a doomed request. A short toast
@@ -1375,7 +1399,7 @@ export function renderTitleArtistInput(data) {
     // before this in updateGameView and has hidden the play UI + shown the
     // blackout view; don't re-show any year/TA/bet control here regardless of
     // mode, or the controls leak in next to the eliminated-view.
-    if (meEliminated) {
+    if (meOutOfPlay()) {
         if (taContainer) taContainer.classList.add('hidden');
         if (yearWrap) yearWrap.classList.add('hidden');
         if (yearXxl) yearXxl.classList.add('hidden');
@@ -1406,7 +1430,7 @@ export function renderTitleArtistInput(data) {
  */
 export function handleTitleArtistSubmit() {
     if (hasSubmitted) return;
-    if (meEliminated) return;  // Issue #827: eliminated players can't submit
+    if (meOutOfPlay()) return;  // #827 / #2612: out-of-play players can't submit
 
     var titleInput = document.getElementById('ta-title-input');
     var artistInput = document.getElementById('ta-artist-input');
