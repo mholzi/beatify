@@ -571,8 +571,11 @@ class StatusView(HomeAssistantView):
         # Discover playlists (#1704: memoised — reuses the parsed corpus unless a
         # file changed on disk; the heavy json.loads/validate/count now runs in
         # the executor, not on the event loop, on every /api/status request).
+        # #2716: the result is no longer written back to hass.data[DOMAIN].
+        # Nothing read that copy — it was rewritten on every request and then
+        # ignored, including by build_status_response below, which takes the
+        # list as a parameter.
         playlists = await async_discover_playlists(self.hass)
-        self.hass.data.setdefault(DOMAIN, {})["playlists"] = playlists
 
         # #1663: server-side "setup complete" flag + saved picks so a configured
         # instance stays configured on a new device/browser. Disk read offloaded

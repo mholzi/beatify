@@ -120,9 +120,8 @@ def _patch_heavy_helpers(monkeypatch):
     monkeypatch.setattr(
         beatify_init, "async_discover_playlists", AsyncMock(return_value=[])
     )
-    monkeypatch.setattr(
-        beatify_init, "async_get_media_players", AsyncMock(return_value=[])
-    )
+    # #2716 removed the async_get_media_players call from async_setup_entry —
+    # it fed nothing but a log line — so there is no longer a name to patch.
 
     # StatsService / AnalyticsStorage do real Store I/O — replace with stubs that
     # carry just the attributes async_setup_entry reads/wires.

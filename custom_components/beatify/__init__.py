@@ -89,7 +89,6 @@ from .server.setup_state import clear_setup
 from .server.websocket import BeatifyWebSocketHandler
 from .server.ws_handlers._helpers import finalize_and_end
 from .services.factories import ha_service_factories
-from .services.media_player import async_get_media_players
 from .services.stats import StatsService
 
 if TYPE_CHECKING:
@@ -144,15 +143,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # Ensure playlist directory exists
     playlist_dir = await async_ensure_playlist_directory(hass)
 
-    # Discover media players and playlists
-    media_players = await async_get_media_players(hass)
+    # Warm the playlist discovery memo (#2716). The result is deliberately not
+    # stored in hass.data: every consumer rediscovers from scratch — the status
+    # view calls async_discover_playlists itself on each request — so a stored
+    # copy would only go stale. The memo this call fills is the real effect.
+    # The companion async_get_media_players call that used to sit here fed
+    # nothing but the log line and was dropped with it.
     playlists = await async_discover_playlists(hass)
 
-    _LOGGER.info(
-        "Found %d media players, %d playlists",
-        len(media_players),
-        len(playlists),
-    )
+    _LOGGER.info("Found %d playlists", len(playlists))
 
     # Initialize game state. #2638: this is the composition root — the only
     # place that decides the game's outputs are Home-Assistant-backed. The
@@ -210,12 +209,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         CONF_ENABLE_COMPANION_AUTH_BYPASS, DEFAULT_ENABLE_COMPANION_AUTH_BYPASS
     )
 
-    # Store discovery results and game infrastructure
+    # Store game infrastructure. #2716 dropped "entry_id", "media_players" and
+    # "playlists" from this dict: nothing ever read them. build_status_response
+    # is the only consumer of such lists and takes them as parameters from a
+    # fresh discovery in the status view, not from here.
     hass.data[DOMAIN] = {
-        "entry_id": entry.entry_id,
         "version": version,  # #784 — single source of truth from manifest.json
-        "media_players": media_players,
-        "playlists": playlists,
         "playlist_dir": str(playlist_dir),
         "game": game_state,
         "ws_handler": ws_handler,
