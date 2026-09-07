@@ -27,6 +27,13 @@
 
 import { PROVIDERS_BY_ID } from '../../providers.generated.js';
 
+// #2718: `t()` below returns the KEY on a miss, and a key is truthy, so the
+// `t(...) || 'literal'` shape used by the older helpers can never reach its
+// fallback (the #1402-B8 defect, re-found by #2582). `tr()` from admin/util.js
+// is the corrected form — key-aware and interpolating — so the newer helpers
+// take it rather than repeat the broken idiom.
+import { tr } from '../util.js';
+
 // Resolve escapeHtml the way admin.js's `utils` alias does (window.BeatifyUtils),
 // with an identity fallback so render never throws if the util is missing.
 function escapeHtml(value) {
@@ -197,4 +204,68 @@ export function _providerDisplayName(provider) {
     var spec = PROVIDERS_BY_ID[provider];
     if (!spec || !spec.pauseRecoveryKey) return '';
     return t(spec.pauseRecoveryKey) || spec.label || '';
+}
+
+/**
+ * Build the host's lobby tile grid — the markup only, no DOM writes (#2718).
+ *
+ * Two things beyond the guest's name:
+ *
+ * 1. **The away state.** `connected === false` has been on the TV since Story
+ *    11.4 (`dashboard.js` paints "(away)") but never on the host's phone, and
+ *    the host is the one who decides who stays. Without it "remove" is a coin
+ *    flip between the guest who left for good and the guest who is in the
+ *    bathroom with a locked screen.
+ * 2. **A tap target on the guests who can actually be removed.** Only those:
+ *    `admin_kick_player` (server/ws_handlers/admin.py) refuses a connected
+ *    player and refuses the admin, so a button on either could only ever fail.
+ *    Present guests and the host stay plain `<div>`s.
+ *
+ * Kept pure (players in, HTML out) so the tile states are unit-testable —
+ * `BeatifyHome.renderPlayers` does the DOM write and the click wiring.
+ *
+ * @param {Array<{name?:string, id?:string, is_admin?:boolean, connected?:boolean, onboarded?:boolean}>} players
+ * @returns {string} HTML for `#home-players`
+ */
+export function buildHomePlayerTiles(players) {
+    var guestVariants = ['c1', 'c2', 'c3', 'c4'];
+    var guestIdx = 0;
+    return (players || []).map(function(p) {
+        var isHost = !!p.is_admin;
+        // Explicit `=== false`: a payload without the field (an older server,
+        // a REST poll) must not paint every guest as gone.
+        var isAway = p.connected === false;
+        var isLearning = !isHost && p.onboarded === false;
+        var canRemove = isAway && !isHost;
+        var variant = isHost ? 'host' : guestVariants[guestIdx++ % guestVariants.length];
+        var raw = String(p.name == null ? (p.id == null ? '?' : p.id) : p.name).trim();
+        var label = raw || 'Guest';
+        var initial = (raw.charAt(0) || '?').toUpperCase();
+        var crown = isHost
+            ? '<span class="home-player-tile-crown" aria-hidden="true">👑</span>'
+            : '';
+        var tour = isLearning
+            ? '<span class="home-player-tile-tour" aria-hidden="true">TOUR</span>'
+            : '';
+        var away = isAway
+            ? '<span class="home-player-tile-away">' + escapeHtml(tr('lobby.away', 'away')) + '</span>'
+            : '';
+        var cls = ['home-player-tile', 'home-player-tile--' + variant];
+        if (isLearning) cls.push('home-player-tile--learning');
+        if (isAway) cls.push('home-player-tile--away');
+        var inner = '<span class="home-player-tile-initial">' + escapeHtml(initial) + '</span>'
+            + '<span class="home-player-tile-name">' + escapeHtml(label) + '</span>'
+            + crown + tour + away;
+        if (!canRemove) {
+            return '<div class="' + cls.join(' ') + '">' + inner + '</div>';
+        }
+        cls.push('home-player-tile--removable');
+        var aria = tr('admin.kickPlayerAria', 'Remove {name} from the lobby', { name: label });
+        return '<button type="button" class="' + cls.join(' ') + '"'
+            + ' data-player="' + escapeHtml(label) + '"'
+            + ' aria-label="' + escapeHtml(aria) + '">'
+            + inner
+            + '<span class="home-player-tile-remove" aria-hidden="true">×</span>'
+            + '</button>';
+    }).join('');
 }

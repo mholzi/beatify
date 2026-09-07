@@ -76,6 +76,7 @@ let deps = {
     stopLobbyPolling: () => {},
     showError: () => {},
     showSpeakerSetupError: () => {},
+    showKickError: () => {},
     resetHomeStartButton: () => {},
 };
 
@@ -111,6 +112,14 @@ let adminWsConnecting = false;
 // failure (reset the home button + blocking error). Unrelated mid-game command
 // errors (set_volume, stop_song, …) must NOT rewrite the home button.
 let startPending = false;
+// #2718: the display name of the player a `kick_player` is in flight for, or
+// null. Same shape and lifetime as `startPending` above, and for the same
+// reason: without it a kick rejection lands in the catch-all branch below and
+// is only console.warn'd, so the host taps Remove, nothing happens, and no
+// screen ever says why. The one rejection that realistically fires is
+// "Cannot remove a connected player" — the guest reconnected between the
+// render that offered the tile and the tap.
+let kickPending = null;
 
 // --- WS accessors (used by admin.js view code instead of touching adminWs) -
 
@@ -135,6 +144,11 @@ export function sendAdminWs(payload) {
         // the error handler (start rejected).
         if (payload && payload.action === 'start_game') {
             startPending = true;
+        }
+        // #2718: same arming for kick_player, carrying the name so the error
+        // branch can say WHO could not be removed.
+        if (payload && payload.action === 'kick_player') {
+            kickPending = payload.player_name || '';
         }
         adminWs.send(JSON.stringify(payload));
         return true;
@@ -321,6 +335,9 @@ export function handleAdminWsMessage(data) {
             // disarm start-failure handling so a later unrelated command error
             // doesn't get mistaken for a start failure.
             startPending = false;
+            // #2718: the kick broadcasts state on success, so a state frame
+            // disarms the pending kick exactly as it disarms a pending start.
+            kickPending = null;
             deps.handleAdminStateUpdate(data);
             break;
 
@@ -441,6 +458,13 @@ export function handleAdminWsMessage(data) {
                     joinBtn.textContent =
                         (window.BeatifyI18n && BeatifyI18n.t('admin.join')) || 'Join';
                 }
+            } else if (kickPending !== null) {
+                // #2718: a kick_player rejection. Non-blocking toast naming the
+                // guest — the home Start button is not involved, so nothing
+                // else on the screen may be rewritten here.
+                var kickedName = kickPending;
+                kickPending = null;
+                deps.showKickError(kickedName, data.code, data.message);
             } else if (startPending) {
                 // #949: a start_game rejection — MEDIA_PLAYER_UNAVAILABLE,
                 // GAME_NOT_STARTED, NO_SONGS_REMAINING, INVALID_ACTION, … startGameplay()

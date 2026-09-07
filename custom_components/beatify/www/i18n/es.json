@@ -641,6 +641,10 @@
     "points": "Puntos",
     "kickPlayerTitle": "¿Eliminar jugador?",
     "kickPlayerConfirm": "¿Eliminar a {name} de la sala?",
+    "kickPlayerRemove": "Eliminar",
+    "kickPlayerNote": "Ha perdido la conexión. Al eliminarlo se libera su plaza: puede volver a escanear el código QR cuando quiera.",
+    "kickPlayerAria": "Eliminar a {name} de la sala",
+    "kickPlayerFailed": "No se pudo eliminar a {name}: quizá haya vuelto a conectarse. Inténtalo de nuevo en un momento.",
     "home": {
       "editSetup": "Atrás",
       "startGame": "Comenzar partida",

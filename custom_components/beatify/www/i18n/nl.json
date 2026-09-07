@@ -641,6 +641,10 @@
     "points": "Punten",
     "kickPlayerTitle": "Speler verwijderen?",
     "kickPlayerConfirm": "{name} uit de lobby verwijderen?",
+    "kickPlayerRemove": "Verwijderen",
+    "kickPlayerNote": "De verbinding is weg. Verwijderen maakt de plek vrij — de gast kan de QR-code altijd opnieuw scannen.",
+    "kickPlayerAria": "{name} uit de lobby verwijderen",
+    "kickPlayerFailed": "{name} kon niet worden verwijderd — misschien is de gast weer online. Probeer het zo opnieuw.",
     "home": {
       "editSetup": "Terug",
       "startGame": "Spel starten",

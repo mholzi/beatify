@@ -641,6 +641,10 @@
     "points": "Punti",
     "kickPlayerTitle": "Togliere il giocatore?",
     "kickPlayerConfirm": "Togliere {name} dalla sala d'attesa?",
+    "kickPlayerRemove": "Togli",
+    "kickPlayerNote": "Ha perso la connessione. Toglierlo libera il posto: può scansionare di nuovo il codice QR quando vuole.",
+    "kickPlayerAria": "Togliere {name} dalla sala d'attesa",
+    "kickPlayerFailed": "Impossibile togliere {name}: forse è di nuovo online. Riprova tra un momento.",
     "home": {
       "editSetup": "Indietro",
       "startGame": "Avvia la partita",

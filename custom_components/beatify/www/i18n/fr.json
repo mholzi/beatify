@@ -641,6 +641,10 @@
     "points": "Points",
     "kickPlayerTitle": "Retirer le joueur ?",
     "kickPlayerConfirm": "Retirer {name} du lobby ?",
+    "kickPlayerRemove": "Retirer",
+    "kickPlayerNote": "Sa connexion est perdue. Le retirer libère sa place — il peut rescanner le QR code à tout moment.",
+    "kickPlayerAria": "Retirer {name} du lobby",
+    "kickPlayerFailed": "Impossible de retirer {name} — il est peut-être de retour en ligne. Réessaie dans un instant.",
     "home": {
       "editSetup": "Retour",
       "startGame": "Lancer la partie",

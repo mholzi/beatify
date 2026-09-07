@@ -641,6 +641,10 @@
     "points": "Points",
     "kickPlayerTitle": "Remove player?",
     "kickPlayerConfirm": "Remove {name} from the lobby?",
+    "kickPlayerRemove": "Remove",
+    "kickPlayerNote": "They lost their connection. Removing them frees their slot — they can scan the QR code again any time.",
+    "kickPlayerAria": "Remove {name} from the lobby",
+    "kickPlayerFailed": "Couldn't remove {name} — they may be back online. Try again in a moment.",
     "home": {
       "editSetup": "Back",
       "startGame": "Start game",

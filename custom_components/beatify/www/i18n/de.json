@@ -641,6 +641,10 @@
     "points": "Punkte",
     "kickPlayerTitle": "Spieler entfernen?",
     "kickPlayerConfirm": "{name} aus der Lobby entfernen?",
+    "kickPlayerRemove": "Entfernen",
+    "kickPlayerNote": "Die Verbindung ist weg. Entfernen gibt den Platz frei — der Gast kann den QR-Code jederzeit neu scannen.",
+    "kickPlayerAria": "{name} aus der Lobby entfernen",
+    "kickPlayerFailed": "{name} konnte nicht entfernt werden — vielleicht ist der Gast wieder online. Gleich noch mal versuchen.",
     "home": {
       "editSetup": "Zurück",
       "startGame": "Spiel starten",

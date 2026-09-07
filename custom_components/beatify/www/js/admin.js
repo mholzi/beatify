@@ -89,6 +89,7 @@ import {
     renderAdminLeaderboard,
     renderAdminResultCards,
     renderAdminChallengeOptions,
+    buildHomePlayerTiles,
     _providerDisplayName,
 } from './admin/sections/render-helpers.js';
 
@@ -369,11 +370,27 @@ initAdminApi({
     stopLobbyPolling: () => stopLobbyPolling(),
     showError: (msg) => showError(msg),
     showSpeakerSetupError: (msg) => showSpeakerSetupError(msg),
+    // #2718: a rejected kick_player. The server's `message` is hard English
+    // ("Cannot remove a connected player"), so the host gets the translated
+    // line instead and the raw text only goes to the console.
+    showKickError: (name, code, message) => {
+        console.warn('[Admin WS] kick_player rejected:', code, message);
+        showError(tr(
+            'admin.kickPlayerFailed',
+            "Couldn't remove {name} — they may be back online. Try again in a moment.",
+            { name: name || '' },
+        ));
+    },
     resetHomeStartButton: () => resetHomeStartButton(),
 });
 // #1048: REVEAL auto-advance countdown on the sticky Next button
 let revealAdvanceInterval = null;
 let revealAdvanceOrigIcon = null;
+
+// #2718: teardown of the currently open remove-player modal (null when closed).
+// The modal is opened per tile with one-shot listeners, so both the Escape
+// registry and a second tap have to reach THAT open instance's close().
+let _kickModalClose = null;
 
 // LocalStorage keys + PLATFORM_LABELS now live in ./admin/constants.js (#1279
 // step 4b) so the setup-section modules and this core share the same literals.
@@ -636,35 +653,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Jackbox-style tile grid. Host always wears the pink-primary
             // variant with a 👑 crown badge; guests cycle through the brand
             // neon palette (cyan → green → orange → dim-cyan, then wrap)
-            // so each player reads distinctly in a mixed lobby.
-            const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-            }[c]));
-            const guestVariants = ['c1', 'c2', 'c3', 'c4'];
-            let guestIdx = 0;
-            // Onboarding v2 gate: players render with a dashed outline + TOUR badge
-            // until they flip `onboarded: true` server-side (see DESIGN.md §
-            // "Player onboarding — post-QR education").
-            el.innerHTML = players.map((p) => {
-                const isHost = !!p.is_admin;
-                const isLearning = !isHost && p.onboarded === false;
-                const variant = isHost ? 'host' : guestVariants[guestIdx++ % guestVariants.length];
-                const raw = (p.name || p.id || '?').trim();
-                const initial = (raw.charAt(0) || '?').toUpperCase();
-                const crown = isHost
-                    ? '<span class="home-player-tile-crown" aria-hidden="true">👑</span>'
-                    : '';
-                const tour = isLearning
-                    ? '<span class="home-player-tile-tour" aria-hidden="true">TOUR</span>'
-                    : '';
-                const cls = ['home-player-tile', `home-player-tile--${variant}`];
-                if (isLearning) cls.push('home-player-tile--learning');
-                return `<div class="${cls.join(' ')}">`
-                    + `<span class="home-player-tile-initial">${esc(initial)}</span>`
-                    + `<span class="home-player-tile-name">${esc(raw || 'Guest')}</span>`
-                    + crown + tour
-                    + `</div>`;
-            }).join('');
+            // so each player reads distinctly in a mixed lobby. The onboarding
+            // v2 gate (dashed outline + TOUR badge until `onboarded: true`) and,
+            // since #2718, the away state + remove affordance are built by
+            // buildHomePlayerTiles — pure, so the tile states are unit-tested.
+            el.innerHTML = buildHomePlayerTiles(players);
+            // #2718: an away guest's tile is a <button>. Tapping it opens the
+            // confirm modal; only the confirm sends `kick_player`, because a
+            // misplaced tap on a phone in a dark room must not silently drop a
+            // player. Listeners are attached to freshly written nodes, so no
+            // removal bookkeeping is needed — the innerHTML above dropped the
+            // previous ones with their elements.
+            el.querySelectorAll('.home-player-tile--removable').forEach((tile) => {
+                tile.addEventListener('click', () => {
+                    confirmKickPlayer(tile.dataset.player);
+                });
+            });
 
             // Warning banner above the Start button when any non-admin player is still LEARNING.
             const learning = players.filter((p) => !p.is_admin && p.onboarded === false);
@@ -1679,6 +1683,85 @@ function showStartAnywayModal(message, onConfirm) {
 }
 
 /**
+ * #2718: confirm-then-remove for an away guest in the host's lobby.
+ *
+ * The gap this closes: `kick_player` has been registered server-side since
+ * #659, but PR #1613 deleted the only UI that ever sent it along with the flat
+ * lobby it lived in. Since then a guest who scanned, typed a name and walked
+ * off holds a slot against MAX_PLAYERS — and a survivor slot in Sudden Death —
+ * with no way for the host to reclaim it short of ending the game.
+ *
+ * Confirmation is not ceremony here: the host is holding a phone at a party,
+ * the tiles are 84px apart, and the action is not undoable from the host's
+ * side (the guest has to re-scan). Mirrors the #1758 modal pattern
+ * (Tab-trap + focus restore, one-shot listeners, window.confirm() fallback if
+ * the markup is missing).
+ *
+ * @param {string} playerName display name, as rendered on the tile
+ */
+function confirmKickPlayer(playerName) {
+    if (!playerName) return;
+    const message = tr('admin.kickPlayerConfirm', 'Remove {name} from the lobby?', { name: playerName });
+    const send = () => {
+        if (!sendAdminWs({ type: 'admin', action: 'kick_player', player_name: playerName })) {
+            showError(tr('admin.home.wsReconnecting', 'Reconnecting to game server — please try again.'));
+        }
+    };
+
+    const modal = document.getElementById('kick-player-modal');
+    if (!modal) {
+        if (window.confirm(message)) send();
+        return;
+    }
+    // A previous open that was dismissed by Escape (or by a re-render behind
+    // the overlay) still holds its click listeners; tear them down before
+    // attaching a second pair, or one confirm would send two kicks.
+    if (_kickModalClose) _kickModalClose();
+    const msgEl = document.getElementById('kick-player-message');
+    if (msgEl) msgEl.textContent = message;
+    const confirmBtn = document.getElementById('kick-player-confirm-btn');
+    const cancelBtn = document.getElementById('kick-player-cancel-btn');
+    const backdrop = modal.querySelector('.modal-backdrop');
+
+    function close() {
+        _kickModalClose = null;
+        modal.classList.add('hidden');
+        deactivateModalFocus('kick-player-modal');
+        confirmBtn.removeEventListener('click', onYes);
+        cancelBtn.removeEventListener('click', onNo);
+        if (backdrop) backdrop.removeEventListener('click', onNo);
+    }
+    function onYes() { close(); send(); }
+    function onNo() { close(); }
+    _kickModalClose = close;
+
+    confirmBtn.addEventListener('click', onYes);
+    cancelBtn.addEventListener('click', onNo);
+    if (backdrop) backdrop.addEventListener('click', onNo);
+
+    modal.classList.remove('hidden');
+    // Cancel takes focus, as on every other destructive modal here — the
+    // default must never be the one that removes somebody.
+    activateModalFocus('kick-player-modal', 'kick-player-cancel-btn');
+}
+
+/**
+ * #2718: close the remove-player modal from the shared Escape registry. Routes
+ * through the open modal's own `close()` so its click listeners are dropped
+ * too — Escape must leave nothing armed behind the overlay.
+ */
+function closeKickPlayerModal() {
+    if (_kickModalClose) {
+        _kickModalClose();
+        return;
+    }
+    const modal = document.getElementById('kick-player-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    deactivateModalFocus('kick-player-modal');
+}
+
+/**
  * Show end game confirmation modal (Story 9.10)
  */
 function showEndGameModal() {
@@ -2020,6 +2103,8 @@ function setupAdminJoin() {
     // visible modal now, so a single Escape no longer fires both close fns.
     registerModalClose('admin-join-modal', closeAdminJoinModal);
     registerModalClose('end-game-modal', closeEndGameModal);
+    // #2718: Escape must back out of "Remove player?" like every other modal.
+    registerModalClose('kick-player-modal', closeKickPlayerModal);
 }
 
 /**

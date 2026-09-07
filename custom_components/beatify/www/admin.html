@@ -1559,6 +1559,22 @@
         </div>
     </div>
 
+    <!-- Remove-player confirmation (#2718) — opened by tapping an away guest's
+         lobby tile. Cancel is focused first: the default action must never be
+         the one that removes somebody. -->
+    <div id="kick-player-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="kick-player-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2 id="kick-player-title" data-i18n="admin.kickPlayerTitle">Remove player?</h2>
+            <p id="kick-player-message">Remove this player from the lobby?</p>
+            <p class="modal-hint" data-i18n="admin.kickPlayerNote">They lost their connection. Removing them frees their slot — they can scan the QR code again any time.</p>
+            <div class="modal-actions">
+                <button id="kick-player-confirm-btn" class="btn btn-primary" data-i18n="admin.kickPlayerRemove">Remove</button>
+                <button id="kick-player-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Force-reset confirmation modal (#777 follow-up — emergency escape hatch) -->
     <div id="reset-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
         <div class="modal-backdrop"></div>

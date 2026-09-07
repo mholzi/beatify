@@ -11251,6 +11251,74 @@ body.is-ingame .player-header { display: none; }
 }
 .home-learning-warning.hidden { display: none; }
 
+/* Admin home-view: away guests + the remove affordance (#2718).
+   The TV has painted "(away)" for `connected === false` since Story 11.4; the
+   host's phone never did, which made "remove" a coin flip between the guest
+   who left and the guest who is in the bathroom. An away tile is greyed out
+   and carries the same word the TV uses.
+   Badge slots: 👑 crown and TOUR both sit top-RIGHT, so the remove "×" takes
+   the top-LEFT corner — an away guest who never finished the tour would
+   otherwise stack two badges on the same pixel. */
+.home-player-tile--away {
+    opacity: 0.6;
+    filter: grayscale(0.55);
+}
+.home-player-tile-away {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-text-white);
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* A removable tile is a real <button>: reset the UA chrome the grid does not
+   want, keep the tile's own flex/gradient rules. */
+button.home-player-tile {
+    font: inherit;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.home-player-tile--removable { opacity: 0.75; }
+.home-player-tile--removable:active { transform: scale(0.96); }
+.home-player-tile--removable:focus-visible {
+    outline: 2px solid var(--color-accent-secondary);
+    outline-offset: 3px;
+}
+.home-player-tile-remove {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-primary);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 0 8px rgba(255, 45, 106, 0.55);
+    pointer-events: none;
+}
+
+/* Secondary explainer line inside a confirmation modal (#2718). */
+.modal-hint {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-md);
+}
+
 /* ==========================================================================
    Player lobby — tile grid (mirrors admin .home-player-tile)
    Jackbox-style tiles replace the legacy flat .player-card chips. Host wears
