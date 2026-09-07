@@ -876,7 +876,17 @@
     "drawerOn": "Activé",
     "drawerOff": "Désactivé",
     "suddenDeathOnSub": "Dès la prochaine manche, la réponse la plus lente est éliminée",
-    "suddenDeathOffSub": "Activez-le et dès la prochaine manche la réponse la plus lente est éliminée"
+    "suddenDeathOffSub": "Activez-le et dès la prochaine manche la réponse la plus lente est éliminée",
+    "lightsOff": "Éteintes",
+    "lightsSubtle": "Discrètes",
+    "lightsFull": "Show complet",
+    "lightsOffSub": "Les lumières restent comme elles étaient",
+    "lightsSubtleSub": "Seulement à la révélation, à mi-intensité",
+    "lightsFullSub": "À chaque temps, pleine intensité",
+    "lightsLineOff": "Les lumières sont éteintes pour le reste de la partie",
+    "lightsLineOnRooms": "clignotent à chaque révélation",
+    "lightsLineOnCount": "{count} lumières clignotent à chaque révélation",
+    "lightsRowTitle": "Lumières de fête"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

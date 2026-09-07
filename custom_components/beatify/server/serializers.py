@@ -125,6 +125,9 @@ _PLAYER_VISIBLE_ROUND = frozenset(
         "title_artist_challenge",
         # #2557: the host renders the volume, but the frame goes to everyone.
         "volume_level",
+        # #2649: same shape as volume_level — every client gets it, the host's
+        # phone is the only surface that renders it.
+        "party_lights",
     }
 )
 

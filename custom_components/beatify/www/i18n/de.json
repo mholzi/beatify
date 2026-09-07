@@ -876,7 +876,17 @@
     "drawerOn": "An",
     "drawerOff": "Aus",
     "suddenDeathOnSub": "Ab der nächsten Runde fliegt die langsamste Antwort raus",
-    "suddenDeathOffSub": "Scharfstellen — ab der nächsten Runde fliegt die langsamste Antwort raus"
+    "suddenDeathOffSub": "Scharfstellen — ab der nächsten Runde fliegt die langsamste Antwort raus",
+    "lightsOff": "Aus",
+    "lightsSubtle": "Dezent",
+    "lightsFull": "Volle Show",
+    "lightsOffSub": "Das Licht bleibt, wie es war",
+    "lightsSubtleSub": "Nur beim Reveal, halbe Helligkeit",
+    "lightsFullSub": "Bei jedem Takt, volle Helligkeit",
+    "lightsLineOff": "Licht ist aus für den Rest des Spiels",
+    "lightsLineOnRooms": "blitzen bei jedem Reveal",
+    "lightsLineOnCount": "{count} Lampen blitzen bei jedem Reveal",
+    "lightsRowTitle": "Partylicht"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

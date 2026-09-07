@@ -336,6 +336,10 @@ class GameState(
         self.reveal_started_at: int | None = None
         # Issue #331: Party Lights service
         self._party_lights: PartyLightsProtocol | None = None
+        # #2649: the last party-lights configuration, kept across a disable so
+        # the host can switch them back on from their phone. None until the
+        # lights are configured at all.
+        self.party_lights_config: dict[str, Any] | None = None
         # Issue #447 / #1271: TTS announcement subsystem state lives in
         # TtsAnnouncerMixin; initialize it here so the attributes exist before
         # any announcement fires.

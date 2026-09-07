@@ -2196,6 +2196,9 @@ export function hideAdminControlBar() {
     // The drawer hangs off the bar; leaving it open over the lobby would be a
     // control panel for a game that is not running.
     hideHostDrawer();
+    // #2649: the lights line belongs to a running round.
+    var lightsLine = document.getElementById('party-lights-line');
+    if (lightsLine) lightsLine.classList.add('hidden');
 }
 
 // ============================================
@@ -2242,6 +2245,188 @@ export function renderHostDrawer(data) {
     drawer.classList.remove('hidden');
     _wireHostDrawerGrip();
     _renderSuddenDeathRow(data);
+    _renderPartyLightsRow(data);   // #2649
+}
+
+/**
+ * #2649: the party-lights row — three steps, not a switch.
+ *
+ * The complaint in the issue is not "the light is on", it is "*this* is on":
+ * every lamp flashing at every reveal, at 10pm, with a child asleep upstairs.
+ * Off and on alone force a choice between a disco and darkness; the middle
+ * step is the one that saves the evening, and the server already understands
+ * it — `configure_party_lights` has taken an `intensity` since the wizard was
+ * built, it simply had no caller after the game started.
+ *
+ * Rendered only when lights were ever configured. A three-way control for a
+ * feature the host never set up would be an advert, not a control.
+ */
+function _renderPartyLightsRow(data) {
+    var body = document.getElementById('host-drawer-body');
+    if (!body) return;
+
+    var lights = data.party_lights;
+    var row = document.getElementById('host-drawer-party-lights');
+
+    if (!lights || !lights.configured) {
+        if (row) row.remove();
+        return;
+    }
+
+    if (!row) {
+        row = document.createElement('div');
+        row.id = 'host-drawer-party-lights';
+        row.className = 'host-drawer__row host-drawer__row--static';
+        body.appendChild(row);
+    }
+
+    var current = !lights.active ? 'off' : (lights.intensity === 'subtle' ? 'subtle' : 'party');
+    var steps = [
+        { key: 'off', label: utils.t('admin.lightsOff') || 'Off' },
+        { key: 'subtle', label: utils.t('admin.lightsSubtle') || 'Subtle' },
+        { key: 'party', label: utils.t('admin.lightsFull') || 'Full show' }
+    ];
+
+    var subKey = current === 'off'
+        ? 'admin.lightsOffSub'
+        : (current === 'subtle' ? 'admin.lightsSubtleSub' : 'admin.lightsFullSub');
+    var subFallback = current === 'off'
+        ? 'Lights stay as they were'
+        : (current === 'subtle' ? 'Only on the reveal, at half brightness' : 'Every beat, full brightness');
+
+    row.innerHTML =
+        '<span class="host-drawer__row-icon">💡</span>' +
+        '<span class="host-drawer__row-text">' +
+            '<span class="host-drawer__row-title">' +
+                escapeHtml(utils.t('admin.lightsRowTitle') || 'Party Lights') +
+            '</span>' +
+            '<span class="host-drawer__seg">' +
+                steps.map(function(st) {
+                    return '<button type="button" class="host-drawer__seg-btn' +
+                        (st.key === current ? ' is-on' : '') +
+                        '" data-light-step="' + st.key + '">' +
+                        escapeHtml(st.label) + '</button>';
+                }).join('') +
+            '</span>' +
+            '<span class="host-drawer__row-sub">' + escapeHtml(utils.t(subKey) || subFallback) + '</span>' +
+        '</span>';
+
+    row.querySelectorAll('[data-light-step]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            _setPartyLightStep(btn.dataset.lightStep, lights);
+        });
+    });
+}
+
+/**
+ * Send a party-light step over the admin WebSocket.
+ *
+ * The entity list comes back from the server in every frame precisely because
+ * turning the lights off drops it — without it, "off" would be a one-way door
+ * and the host could not switch them on again mid-game.
+ */
+function _setPartyLightStep(step, lights) {
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) return;
+    state.ws.send(JSON.stringify(partyLightPayload(step, lights)));
+}
+
+/**
+ * The WebSocket message for one party-light step (#2649).
+ *
+ * Pure and exported because the interesting part is not the click, it is that
+ * the two "on" steps carry the entity list back to the server. Turning the
+ * lights off drops the service and with it the entities; without re-sending
+ * them, "off" would be a one-way door and the host could not get the lights
+ * back mid-game — which is the situation the issue describes, only inverted.
+ *
+ * @param {'off'|'subtle'|'party'} step
+ * @param {{entity_ids?: string[]}} lights - the server's party_lights block
+ */
+export function partyLightPayload(step, lights) {
+    if (step === 'off') {
+        return {
+            type: 'admin_action',
+            action: 'set_party_lights',
+            enabled: false
+        };
+    }
+    return {
+        type: 'admin_action',
+        action: 'set_party_lights',
+        enabled: true,
+        entity_ids: (lights && lights.entity_ids) || [],
+        // Anything that is not the middle step is the full show — a typo in a
+        // step name must not silently produce a third, undefined intensity.
+        intensity: step === 'subtle' ? 'subtle' : 'party'
+    };
+}
+
+/**
+ * #2649: the line above the round that says what the lights are doing.
+ *
+ * It exists because of the order of the questions. A host who does not know
+ * lights are configured never looks for a switch — the first sign is the
+ * hallway flashing. So the line reports first and is the way in second: it
+ * names the rooms, and tapping it opens the drawer.
+ *
+ * Host-only. A guest has nothing to do with it and no drawer to open.
+ */
+export function renderPartyLightsLine(data) {
+    var el = document.getElementById('party-lights-line');
+    if (!el) return;
+
+    var lights = data && data.party_lights;
+    if (!state.isAdmin || !lights || !lights.configured) {
+        el.classList.add('hidden');
+        return;
+    }
+
+    var ids = lights.entity_ids || [];
+    var names = ids.map(prettifyEntityId);
+    var textEl = document.getElementById('party-lights-line-text');
+    if (textEl) {
+        if (!lights.active) {
+            // Plain text on purpose: a translated string carrying markup is a
+            // trap for the next locale that gets it slightly wrong.
+            textEl.textContent = utils.t('admin.lightsLineOff')
+                || 'Lights are off for the rest of the game';
+        } else if (names.length && names.length <= 3) {
+            textEl.innerHTML = '<b>' + escapeHtml(names.join(', ')) + '</b> ' +
+                escapeHtml(utils.t('admin.lightsLineOnRooms') || 'flash on every reveal');
+        } else {
+            textEl.textContent = utils.t('admin.lightsLineOnCount', { count: names.length })
+                || (names.length + ' lights flash on every reveal');
+        }
+    }
+    el.classList.toggle('is-off', !lights.active);
+    el.classList.remove('hidden');
+
+    if (el.dataset.wired !== '1') {
+        el.dataset.wired = '1';
+        el.addEventListener('click', function() {
+            // The line is the way in: open the drawer it belongs to.
+            var drawer = document.getElementById('host-drawer');
+            var drawerBody = document.getElementById('host-drawer-body');
+            var grip = document.getElementById('host-drawer-grip');
+            if (!drawer || !drawerBody) return;
+            drawer.classList.add('is-open');
+            drawerBody.hidden = false;
+            if (grip) grip.setAttribute('aria-expanded', 'true');
+        });
+    }
+}
+
+/**
+ * `light.wohnzimmer_decke` → `Wohnzimmer decke`.
+ *
+ * Deliberately not a friendly-name lookup: that would mean a second request
+ * from the player page for a line that is read once an evening. The object id
+ * is what the host named the lamp, so it is close enough to recognise — and
+ * where it is not, the count line takes over anyway.
+ */
+export function prettifyEntityId(entityId) {
+    var raw = String(entityId || '').split('.').pop().replace(/_/g, ' ').trim();
+    return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : '';
 }
 
 /** Wire the grip once. Idempotent — renderHostDrawer runs on every broadcast. */

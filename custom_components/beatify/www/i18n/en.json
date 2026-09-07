@@ -876,7 +876,17 @@
     "drawerOn": "On",
     "drawerOff": "Off",
     "suddenDeathOnSub": "The slowest answer is out from the next round",
-    "suddenDeathOffSub": "Arm it and the slowest answer is out from the next round"
+    "suddenDeathOffSub": "Arm it and the slowest answer is out from the next round",
+    "lightsOff": "Off",
+    "lightsSubtle": "Subtle",
+    "lightsFull": "Full show",
+    "lightsOffSub": "Lights stay as they were",
+    "lightsSubtleSub": "Only on the reveal, at half brightness",
+    "lightsFullSub": "Every beat, full brightness",
+    "lightsLineOff": "Lights are off for the rest of the game",
+    "lightsLineOnRooms": "flash on every reveal",
+    "lightsLineOnCount": "{count} lights flash on every reveal",
+    "lightsRowTitle": "Party Lights"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

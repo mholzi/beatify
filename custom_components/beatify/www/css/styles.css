@@ -7704,6 +7704,80 @@ body.theme-dark .card-score {
     color: var(--color-bg-primary);
 }
 
+/* #2649: the segmented light control inside the drawer row. Three steps,
+   because off/on alone is a choice between a disco and darkness — and the
+   middle one is what saves the evening. */
+.host-drawer__row--static { cursor: default; }
+
+.host-drawer__seg {
+    display: flex;
+    gap: 3px;
+    margin: 6px 0 4px;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+}
+
+.host-drawer__seg-btn {
+    flex: 1;
+    min-height: 32px;
+    padding: 6px 4px;
+    background: none;
+    border: 0;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-neon-muted);
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.host-drawer__seg-btn:hover { color: var(--color-text-white); }
+
+.host-drawer__seg-btn.is-on {
+    background: var(--color-warning-alt);
+    color: #180a00;
+}
+
+/* #2649: the line above the round. It reports first and is the way in second —
+   a host who does not know lights are configured never looks for a switch. */
+.party-lights-line {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-bottom: var(--space-sm);
+    padding: 9px 11px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    color: var(--color-text-neon-muted);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    text-align: left;
+    cursor: pointer;
+}
+
+.party-lights-line.hidden { display: none; }
+
+.party-lights-line__glow {
+    flex: 0 0 auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--color-warning-alt);
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.9);
+}
+
+.party-lights-line.is-off .party-lights-line__glow {
+    background: var(--color-text-dim);
+    box-shadow: none;
+}
+
+.party-lights-line__text { flex: 1; min-width: 0; line-height: 1.35; }
+.party-lights-line__text b { color: var(--color-text-white); font-weight: 600; }
+.party-lights-line__chev { color: var(--color-text-dim); }
+
 /* ============================================
    Sudden Death standing line (#2723)
 

@@ -170,9 +170,24 @@ class MediaControlMixin:
             wled_presets,
             inherited_states=inherited_states,
         )
+        # #2649: remember what was configured. Turning the lights off drops the
+        # service (and with it the entity list), so without this the host could
+        # switch them off from their phone and had no way to switch them back
+        # on — the setup section is hidden during play.
+        self.party_lights_config = {
+            "entity_ids": list(entity_ids),
+            "intensity": intensity,
+            "light_mode": light_mode,
+            "wled_presets": dict(wled_presets) if wled_presets else None,
+        }
 
     async def disable_party_lights(self) -> None:
-        """Stop Party Lights and restore original light states."""
+        """Stop Party Lights and restore original light states.
+
+        #2649: ``party_lights_config`` is deliberately NOT cleared. Switching
+        the lights off at 10pm is a moment, not a decision to unconfigure them
+        — and the phone needs the entity list to switch them back on.
+        """
         if self._party_lights:
             await self._party_lights.stop()
             self._party_lights = None

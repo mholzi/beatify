@@ -435,6 +435,16 @@
                     <div class="eliminated-hint" id="eliminated-hint" data-i18n="game.watchingSidelines">Watching from the sidelines</div>
                 </div>
 
+                <!-- #2649: what the party lights are doing. The host does not
+                     find out that lights are running until the hallway flashes;
+                     this says which rooms, and is itself the way in. Host-only,
+                     hidden for guests. -->
+                <button type="button" id="party-lights-line" class="party-lights-line hidden">
+                    <span class="party-lights-line__glow" aria-hidden="true"></span>
+                    <span class="party-lights-line__text" id="party-lights-line-text"></span>
+                    <span class="party-lights-line__chev" aria-hidden="true">›</span>
+                </button>
+
                 <!-- Chip row: steal unlocked · closest-wins · intro · final round (conditional) -->
                 <div id="arc-chip-row" class="arc-chip-row hidden" aria-live="polite">
                     <span id="game-difficulty-badge" class="stat-badge stat-badge--difficulty hidden"></span>

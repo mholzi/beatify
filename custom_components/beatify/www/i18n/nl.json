@@ -876,7 +876,17 @@
     "drawerOn": "Aan",
     "drawerOff": "Uit",
     "suddenDeathOnSub": "Vanaf de volgende ronde ligt het traagste antwoord eruit",
-    "suddenDeathOffSub": "Zet het aan en vanaf de volgende ronde ligt het traagste antwoord eruit"
+    "suddenDeathOffSub": "Zet het aan en vanaf de volgende ronde ligt het traagste antwoord eruit",
+    "lightsOff": "Uit",
+    "lightsSubtle": "Ingetogen",
+    "lightsFull": "Volle show",
+    "lightsOffSub": "De lampen blijven zoals ze waren",
+    "lightsSubtleSub": "Alleen bij de onthulling, op halve sterkte",
+    "lightsFullSub": "Bij elke tel, op volle sterkte",
+    "lightsLineOff": "De verlichting staat uit voor de rest van het spel",
+    "lightsLineOnRooms": "flitsen bij elke onthulling",
+    "lightsLineOnCount": "{count} lampen flitsen bij elke onthulling",
+    "lightsRowTitle": "Feestverlichting"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

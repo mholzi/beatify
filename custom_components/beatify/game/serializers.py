@@ -58,6 +58,27 @@ def year_range(gs: GameState) -> dict[str, int]:
     return {"min": low, "max": high}
 
 
+def _party_lights_state(gs: GameState) -> dict[str, Any] | None:
+    """#2649: the party-lights block, or None when lights were never set up.
+
+    `configured` and `active` are two different facts and the phone needs both:
+    after the host switches the lights off, `disable_party_lights()` drops the
+    service (so `active` is False) but the configuration survives — which is
+    what makes switching them back on possible at all.
+    """
+    cfg = gs.party_lights_config
+    if not cfg:
+        return None
+    return {
+        "configured": True,
+        # `_party_lights` is dropped by disable_party_lights(), so its presence
+        # *is* the on/off state.
+        "active": gs._party_lights is not None,
+        "intensity": cfg.get("intensity", "medium"),
+        "entity_ids": list(cfg.get("entity_ids", [])),
+    }
+
+
 class GameStateSerializer:
     """Builds broadcast-ready dicts from GameState.
 
@@ -168,6 +189,11 @@ class GameStateSerializer:
                 gs.difficulty,
                 scaling_enabled=gs.difficulty_bet_scaling_enabled,
             ),
+            # #2649: what the party lights are doing right now. In the base
+            # block on purpose — the host's line is rendered in PLAYING *and*
+            # REVEAL, and a field that only appears in one of the two would
+            # make the line blink out every time the answer comes up.
+            "party_lights": _party_lights_state(gs),
             # Issue #827: Sudden Death mode (drives wizard chip, player view,
             # leaderboard cut-line, admin live toggle)
             "sudden_death_mode": gs.sudden_death_mode,

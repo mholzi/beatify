@@ -37,7 +37,7 @@ import {
     showAdminControlBar, hideAdminControlBar,
     showReactionBar, hideReactionBar, setupReactionBar, resetReactionButtons,
     showFloatingReaction,
-    updateControlBarState, renderHostDrawer, handleSongStopped, handleVolumeChanged,
+    updateControlBarState, renderHostDrawer, renderPartyLightsLine, handleSongStopped, handleVolumeChanged,
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
     resetSongStoppedState,
     renderPausedAdminActions, syncVolumeFromState,
@@ -679,6 +679,7 @@ function handleServerMessage(data) {
                         // label — it has to be rebuilt when the locale lands,
                         // same reason as the lobby brief above.
                         renderHostDrawer(data);
+                        renderPartyLightsLine(data);   // #2649
                     }
                 });
             }
@@ -773,6 +774,7 @@ function handleServerMessage(data) {
             showAdminControlBar();
             updateControlBarState('PLAYING');
             renderHostDrawer(data);     // #2723
+            renderPartyLightsLine(data);  // #2649
             syncVolumeFromState(data);  // #2557
             hideReactionBar();
         } else if (data.phase === 'REVEAL') {
@@ -792,6 +794,7 @@ function handleServerMessage(data) {
             showAdminControlBar();
             updateControlBarState('REVEAL');
             renderHostDrawer(data);     // #2723
+            renderPartyLightsLine(data);  // #2649
             syncVolumeFromState(data);  // #2557
             // #1757: reset the one-per-reveal reaction budget + button used-
             // state only when a NEW reveal round begins, not on every REVEAL
