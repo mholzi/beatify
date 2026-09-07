@@ -27,6 +27,7 @@ unit-testable without Home Assistant installed.
 
 from __future__ import annotations
 
+import functools
 import logging
 from typing import TYPE_CHECKING, Any
 
@@ -45,6 +46,7 @@ __all__ = [
     "async_build_pool",
     "async_generate_library_playlist",
     "async_load_pool",
+    "async_load_pool_cached",
     "pool_path",
     "pool_stats",
 ]
@@ -57,7 +59,13 @@ def __getattr__(name: str) -> Any:
     breaks standalone use/tests of the pure logic. PEP 562 module __getattr__
     defers that import until one of these names is actually accessed.
     """
-    if name in ("async_build_pool", "async_load_pool", "pool_path", "pool_stats"):
+    if name in (
+        "async_build_pool",
+        "async_load_pool",
+        "async_load_pool_cached",
+        "pool_path",
+        "pool_stats",
+    ):
         from . import pool as _pool
 
         return getattr(_pool, name)
@@ -91,20 +99,19 @@ async def async_generate_library_playlist(
     """
     from . import pool as _pool
 
-    cached = await _pool.async_load_pool(hass)
+    # #2694: read-only, cached parse. This runs twice per game — at game
+    # creation and again from the pre-start hook that fires on the host's
+    # "Start" tap — and re-parsing an 11 MB pool blocked the event loop both
+    # times. The cache keys on the file's mtime+size, so a scan or correction
+    # invalidates it by itself. NOTHING below may mutate `cached`.
+    #
+    # The familiarity_band recompute that used to sit here (older pools stored
+    # an absolute, miscalibrated band) now happens once per pool version
+    # inside pool.prepare_pool_for_generate, in the executor.
+    cached = await _pool.async_load_pool_cached(hass)
     if not cached or not cached.get("songs"):
         _LOGGER.warning("No library pool built yet; run beatify.build_library_pool")
         return None
-
-    # Older pools stored an absolute (miscalibrated) familiarity_band. If the
-    # percentiles are present, recompute the band from them so existing pools
-    # get the corrected difficulty split without requiring a rescan.
-    from .popularity import percentile_band as _pband
-
-    for _s in cached["songs"]:
-        _pct = _s.get("popularity_percentile")
-        if _pct is not None:
-            _s["familiarity_band"] = _pband(_pct)
 
     band = slider_to_target_band(difficulty_slider)
 
@@ -117,15 +124,23 @@ async def async_generate_library_playlist(
         p = max(1, min(100, int(popularity_percent)))
         pop_min_pct = 1.0 - (p / 100.0)
 
-    playlist = generate_playlist(
-        cached["songs"],
-        size=size,
-        difficulty_band=band,
-        popularity_min_percentile=pop_min_pct,
-        genres=set(genres) if genres else None,
-        min_confidence=min_confidence,
-        balance_decades=balance_decades,
-        exclude_uris=exclude_uris,
+    # #2694: generate_playlist is pure and CPU-bound (dedupe + filtering +
+    # decade balancing over the whole pool). On an 18k-song library it blocked
+    # the event loop for ~40 ms here on Apple Silicon and several hundred on a
+    # Raspberry Pi, immediately in front of the first play_song. Off to a
+    # worker thread it goes.
+    playlist = await hass.async_add_executor_job(
+        functools.partial(
+            generate_playlist,
+            cached["songs"],
+            size=size,
+            difficulty_band=band,
+            popularity_min_percentile=pop_min_pct,
+            genres=set(genres) if genres else None,
+            min_confidence=min_confidence,
+            balance_decades=balance_decades,
+            exclude_uris=exclude_uris,
+        )
     )
     # Observability: one INFO line per generation so setting/effect mismatches
     # are visible in the HA log instead of needing UI archaeology.

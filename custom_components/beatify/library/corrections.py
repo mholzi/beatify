@@ -20,6 +20,7 @@ from __future__ import annotations
 import time
 from typing import Any
 
+from .generator import NORM_KEY_FIELD
 from .year_resolver import YearConfidence, _norm
 
 # Marks an entry a human has fixed. Enrichment and refresh both skip these, so
@@ -141,6 +142,10 @@ def apply_correction(
         updated["year_source"] = CORRECTION_SOURCE
 
     if identity_changed:
+        # The precomputed dedupe key (#2694) was derived from the OLD name.
+        # Drop it; entry_key falls back to computing one until the next
+        # finalize_pool writes a fresh one.
+        updated.pop(NORM_KEY_FIELD, None)
         # Genres inferred for the wrong track are wrong too; let the next
         # enrichment pass redo them for the corrected identity.
         updated["genres_checked"] = 0

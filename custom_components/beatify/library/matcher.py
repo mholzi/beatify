@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from .generator import _norm_key, _to_song_entry
+from .generator import _norm_key, _to_song_entry, entry_key
 from .year_resolver import YearConfidence
 
 
@@ -49,7 +49,7 @@ def build_pool_index(
             continue
         if not s.get("uri_ma_library"):
             continue
-        key = _norm_key(s.get("artist", ""), s.get("title", ""))
+        key = entry_key(s)
         prev = index.get(key)
         if prev is None or int(s.get("year_confidence", 0)) > int(
             prev.get("year_confidence", 0)

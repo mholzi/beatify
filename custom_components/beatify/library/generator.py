@@ -50,22 +50,43 @@ _BAND_SPILL_ORDER = {
 }
 
 
+# Precompiled once at import: `_norm_key` runs twice per song, so on an 18k
+# pool these two patterns were looked up 72,000 times per generated playlist.
+_VERSION_SUFFIX_RE = re.compile(
+    r"\s*[\(\[-].*?(remaster|remastered|live|mono|stereo|version|"
+    r"edit|mix|deluxe|feat\.?|featuring|explicit|radio).*?[\)\]]?$"
+)
+_NON_ALNUM_RE = re.compile(r"[^a-z0-9]+")
+
+#: Pool entries carry the precomputed dedupe key under this field (written by
+#: :func:`custom_components.beatify.library.pool.finalize_pool`). Pools built
+#: before that existed simply lack it and are recomputed on the fly.
+NORM_KEY_FIELD = "_norm_key"
+
+
+def _clean_part(s: str) -> str:
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = s.lower()
+    s = _VERSION_SUFFIX_RE.sub("", s)
+    return _NON_ALNUM_RE.sub(" ", s).strip()
+
+
 def _norm_key(artist: str, title: str) -> str:
     """Normalized dedupe key: lowercased, accent-stripped, version-suffix-free."""
+    return f"{_clean_part(artist)}|{_clean_part(title)}"
 
-    def clean(s: str) -> str:
-        s = unicodedata.normalize("NFKD", s)
-        s = "".join(c for c in s if not unicodedata.combining(c))
-        s = s.lower()
-        s = re.sub(
-            r"\s*[\(\[-].*?(remaster|remastered|live|mono|stereo|version|"
-            r"edit|mix|deluxe|feat\.?|featuring|explicit|radio).*?[\)\]]?$",
-            "",
-            s,
-        )
-        return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
-    return f"{clean(artist)}|{clean(title)}"
+def entry_key(entry: dict[str, Any]) -> str:
+    """Dedupe key for a pool entry — precomputed if the pool has it.
+
+    Older pools (written before ``_norm_key`` was stored) have no such field;
+    they fall back to computing it, so nothing breaks on an existing install.
+    """
+    key = entry.get(NORM_KEY_FIELD)
+    if isinstance(key, str) and key:
+        return key
+    return _norm_key(entry.get("artist") or "", entry.get("title") or "")
 
 
 def _decade(year: int) -> int:
@@ -153,7 +174,7 @@ def count_eligible(
     seen: set[str] = set()
     deduped: list[dict[str, Any]] = []
     for s_ in usable:
-        key = _norm_key(s_.get("artist") or "", s_.get("title") or "")
+        key = entry_key(s_)
         if key in seen:
             continue
         seen.add(key)
@@ -228,7 +249,7 @@ def generate_playlist(
     # 2) Dedupe by normalized (artist, title); keep the higher-confidence copy.
     by_key: dict[str, dict[str, Any]] = {}
     for s in trusted:
-        key = _norm_key(s.get("artist", ""), s.get("title", ""))
+        key = entry_key(s)
         prev = by_key.get(key)
         if prev is None or int(s.get("year_confidence", 0)) > int(
             prev.get("year_confidence", 0)

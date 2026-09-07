@@ -32,6 +32,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from . import corrections
+from .generator import NORM_KEY_FIELD, _norm_key
 from .ma_client import (
     async_fetch_track_genres,
     async_iter_all_library_tracks,
@@ -70,6 +71,16 @@ _LOGGER = logging.getLogger(__name__)
 # **/*.json under that tree and would list the pool as a broken playlist in
 # the "Mine" tab. The pool is engine data, not a playlist.
 POOL_RELATIVE_PATH = "beatify/library_pool.json"
+
+# Parsed-pool cache (issue #2694). An 18k-song pool is a ~11 MB JSON document
+# and Crate Digger loads it TWICE per game — once at create, once from the
+# pre-start hook that fires on the host's "Start" tap. The parse is keyed by
+# the file's (path, mtime_ns, size), so any write — a scan checkpoint, a year
+# correction, a manual edit — produces a new key and the next load re-reads.
+# Held for a while, then dropped: a Raspberry Pi should not carry the pool in
+# RAM between parties.
+_POOL_CACHE_KEY = "library_pool_cache"
+_POOL_CACHE_TTL = 900.0  # seconds
 
 # Concurrency for popularity lookups (Deezer tolerates a few in flight).
 # MusicBrainz is serialized separately by its 1 req/s throttle.
@@ -137,6 +148,98 @@ async def async_load_pool(hass: HomeAssistant) -> dict[str, Any] | None:
         return None
 
 
+def _pool_signature(path: Path) -> tuple[str, int, int] | None:
+    """(path, mtime_ns, size) of the pool file, or None when it is unreadable.
+
+    Any write to the pool — scan checkpoint, refresh, correction, or a manual
+    edit — changes at least the mtime, so a stale parse can never be served.
+    """
+    try:
+        st = path.stat()
+    except OSError:
+        return None
+    return (str(path), st.st_mtime_ns, st.st_size)
+
+
+def prepare_pool_for_generate(pool: dict[str, Any]) -> dict[str, Any]:
+    """Do the per-song fix-ups the generate path needs, once. Blocking.
+
+    Both of these used to run on the event loop on EVERY generate call:
+
+    * ``familiarity_band`` — older pools stored an absolute (miscalibrated)
+      band; recomputing it from the stored percentile gives existing pools the
+      corrected difficulty split without a rescan.
+    * ``_norm_key`` — pools written before #2694 have no precomputed dedupe
+      key. Filling it here means the generator computes it once per pool
+      version instead of twice per song per game.
+
+    Call it from an executor. Mutates ``pool`` in place and returns it.
+    """
+    for entry in pool.get("songs") or ():
+        pct = entry.get("popularity_percentile")
+        if pct is not None:
+            entry["familiarity_band"] = percentile_band(pct)
+        if not entry.get(NORM_KEY_FIELD):
+            entry[NORM_KEY_FIELD] = _norm_key(
+                entry.get("artist") or "", entry.get("title") or ""
+            )
+    return pool
+
+
+def _cache_store(hass: HomeAssistant) -> dict[str, Any]:
+    from custom_components.beatify.const import DOMAIN
+
+    return hass.data.setdefault(DOMAIN, {})
+
+
+def invalidate_pool_cache(hass: HomeAssistant) -> None:
+    """Forget the cached parse (and cancel its eviction timer)."""
+    cached = _cache_store(hass).pop(_POOL_CACHE_KEY, None)
+    if cached is not None:
+        with contextlib.suppress(Exception):
+            cached["evict"].cancel()
+
+
+async def async_load_pool_cached(hass: HomeAssistant) -> dict[str, Any] | None:
+    """Load the pool for READ-ONLY use, reusing the previous parse.
+
+    Crate Digger loads the pool twice per game (game creation, then the
+    pre-start hook on the host's "Start" tap) and an 18k-song pool is ~11 MB
+    of JSON — a parse that blocked the event loop both times (#2694). The
+    parse is cached under ``hass.data`` keyed by the file's mtime and size, so
+    the second load is a dict lookup and any write invalidates it by itself.
+
+    THE RETURNED DICT IS SHARED. Callers must not mutate it; anything that
+    writes the pool back (build, refresh, corrections) must keep using
+    :func:`async_load_pool`, which always returns a fresh parse.
+    """
+    path = pool_path(hass)
+    store = _cache_store(hass)
+    signature = await hass.async_add_executor_job(_pool_signature, path)
+
+    cached = store.get(_POOL_CACHE_KEY)
+    if cached is not None and signature is not None and cached["sig"] == signature:
+        return cached["pool"]
+
+    invalidate_pool_cache(hass)
+    pool = await async_load_pool(hass)
+    if pool is None:
+        return None
+    await hass.async_add_executor_job(prepare_pool_for_generate, pool)
+
+    if signature is not None:
+        # Drop it again after a while: an idle Raspberry Pi should not hold
+        # the whole library in RAM between parties.
+        store[_POOL_CACHE_KEY] = {
+            "sig": signature,
+            "pool": pool,
+            "evict": hass.loop.call_later(
+                _POOL_CACHE_TTL, lambda: store.pop(_POOL_CACHE_KEY, None)
+            ),
+        }
+    return pool
+
+
 def finalize_pool(
     entries: dict[str, dict[str, Any]],
     *,
@@ -157,6 +260,13 @@ def finalize_pool(
         # Band by percentile within THIS library (fair + robust across
         # libraries); keep the absolute score only as an info hint.
         x["familiarity_band"] = percentile_band(pct)
+        # Precomputed dedupe key (#2694): the generator needed it twice per
+        # song per game, each time re-running NFKD + two regex passes. Written
+        # once here, when the entry is created. Recomputed only for entries
+        # that lack it (a rebuild does not redo the whole pool) or whose
+        # artist/title changed (async_build_pool drops the field in that case).
+        if not x.get(NORM_KEY_FIELD):
+            x[NORM_KEY_FIELD] = _norm_key(x.get("artist") or "", x.get("title") or "")
     usable = sum(
         1 for x in songs if int(x.get("year_confidence", 0)) >= DEFAULT_MIN_CONFIDENCE
     )
@@ -266,9 +376,12 @@ async def async_build_pool(
         if entry is None:
             new_tracks.append(t)
             continue
+        _prev_name = (entry.get("artist"), entry.get("title"))
         entry["title"] = t.get("title") or entry.get("title")
         entry["artist"] = t.get("artist") or entry.get("artist")
         entry["album"] = t.get("album") or entry.get("album")
+        if (entry.get("artist"), entry.get("title")) != _prev_name:
+            entry.pop(NORM_KEY_FIELD, None)  # stale; finalize_pool recomputes
         if t.get("genres"):
             entry["genres"] = t["genres"]
         refreshed += 1
@@ -481,6 +594,10 @@ async def async_build_pool(
 
 async def _write_pool(hass: HomeAssistant, pool: dict[str, Any]) -> None:
     path = pool_path(hass)
+    # The read cache keys on mtime+size, which already covers this; dropping it
+    # explicitly closes the window where a rewrite happens to land on the same
+    # mtime_ns AND the same byte count.
+    invalidate_pool_cache(hass)
 
     def _write() -> None:
         path.parent.mkdir(parents=True, exist_ok=True)

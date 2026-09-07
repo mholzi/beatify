@@ -7,6 +7,32 @@ end-to-end on real hardware.
 
 CHANGELOG
 ---------
+0.9.3  The pool stops blocking the event loop on the way to the first song.
+       - Sampling a game's songs ran ENTIRELY on the event loop, twice per
+         game: once at create, once from the pre-start hook that fires on the
+         host's "Start" tap. Nothing else could run — no WebSocket frame, no
+         game timer, no unrelated Home Assistant automation — and it sat
+         directly in front of the first play_song, whose budget #2682 already
+         measured at 14.6 s of 15.
+       - Three changes, measured on an 18k-song / 10.5 MB pool:
+         * generate_playlist is pure, so it moved to async_add_executor_job.
+         * The parsed pool is cached under hass.data, keyed by the file's
+           mtime and size, so the pre-start load is a dict lookup instead of
+           an 11 MB json.loads. Any write — scan checkpoint, refresh, host
+           correction — changes the key and the next load re-reads. The cache
+           is dropped again after 15 idle minutes; a Pi should not hold the
+           library in RAM between parties.
+         * The dedupe key (NFKD + two regex passes, previously run twice per
+           song per game) is precomputed at build time and stored on the
+           entry as `_norm_key`. Entries written before this simply lack the
+           field and are computed on the fly, so no rescan is needed and
+           POOL_SCHEMA_VERSION stays at 1. An identity correction drops the
+           stale key; so does a scan that refreshes an entry's artist/title.
+       - generate_playlist: 38.2 ms -> 3.8 ms on that pool (and 32.7 ms on a
+         pre-0.9.3 pool, from precompiling the two regexes). Event-loop time
+         on the generate path: ~73 ms x2 -> 0.
+       - +14 checks (test_library_pool_cache.py).
+
 0.9.2  Players flag, the host fixes — no more reports about private libraries.
        - A player tapping "Wrong year?" on a Crate Digger song was still
          taking the public path: appending to the shared data-quality file
@@ -1109,7 +1135,7 @@ CHANGELOG
        - Beatify-schema output via uri_ma_library; const.py + playlist.py wired.
 """
 
-__version__ = "0.9.2"
+__version__ = "0.9.3"
 __author__ = "DMW"
 __mode_name__ = "Crate Digger"
 
