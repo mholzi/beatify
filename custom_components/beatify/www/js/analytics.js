@@ -395,40 +395,90 @@
             renderSongStats(songStatsData);
         } catch (err) {
             console.error('Song stats API error:', err);
-            showSongStatsEmpty();
+            clearSongStats();
         }
     }
 
     /**
-     * Render song statistics (AC1, AC2)
+     * Render song statistics (AC1)
+     *
+     * #2697: the summary-card grid (#song-summary-cards) and the per-playlist
+     * card grid (#playlist-song-stats) were removed from analytics.html when
+     * the section became compact rows. The three rows plus "View All Songs"
+     * are the whole section now, so there is nothing else to fill.
+     *
      * @param {Object} data - Song stats from API
      */
     function renderSongStats(data) {
-        var emptyEl = document.getElementById('song-stats-empty');
-        var summaryEl = document.getElementById('song-summary-cards');
-        var playlistEl = document.getElementById('playlist-song-stats');
+        var hasPlaylists = !!(data && data.by_playlist && data.by_playlist.length);
 
         // Check if we have any data
-        if (!data || (!data.most_played && !data.by_playlist.length)) {
-            showSongStatsEmpty();
+        if (!data || (!data.most_played && !hasPlaylists)) {
+            clearSongStats();
             return;
         }
 
-        if (emptyEl) emptyEl.classList.add('hidden');
-        if (summaryEl) summaryEl.classList.remove('hidden');
-
-        // Render summary cards (AC1)
+        // Render summary rows (AC1)
         renderSongSummaryCard('song-most-played', data.most_played, 'play_count');
         renderSongSummaryCard('song-hardest', data.hardest, 'accuracy');
         renderSongSummaryCard('song-easiest', data.easiest, 'accuracy');
 
-        // Render playlist grid (AC2)
-        renderPlaylistSongGrid(data.by_playlist);
+        setViewAllSongsEnabled(hasPlaylists);
     }
 
     /**
-     * Render a single song summary card (AC1)
-     * @param {string} cardId - Card element ID
+     * Empty state for the song section (AC7).
+     *
+     * #2697: replaces showSongStatsEmpty(), which unhid a #song-stats-empty
+     * element that no page contains — so no empty state ever appeared. The
+     * live markup shows emptiness by resetting the rows to "--" and by taking
+     * away the two affordances that would otherwise open nothing.
+     */
+    function clearSongStats() {
+        renderSongSummaryCard('song-most-played', null, 'play_count');
+        renderSongSummaryCard('song-hardest', null, 'accuracy');
+        renderSongSummaryCard('song-easiest', null, 'accuracy');
+        setViewAllSongsEnabled(false);
+    }
+
+    /**
+     * Enable/disable the "View All Songs" button.
+     * @param {boolean} enabled - Whether playlist data exists to show
+     */
+    function setViewAllSongsEnabled(enabled) {
+        var btn = document.getElementById('view-all-songs-btn');
+        if (btn) btn.disabled = !enabled;
+    }
+
+    /**
+     * Point a summary row at a playlist, or make it inert (#2697).
+     *
+     * The rows are <div>s, so a tap target needs role + tabindex to be
+     * reachable by keyboard and screen reader. A row with no playlist keeps
+     * neither, and carries aria-disabled, so it never looks tappable while
+     * doing nothing.
+     *
+     * @param {HTMLElement} row - The .song-row element
+     * @param {string} playlistName - Playlist name from the API, or ''
+     */
+    function setRowPlaylist(row, playlistName) {
+        row.dataset.playlist = playlistName || '';
+        if (playlistName) {
+            row.setAttribute('role', 'button');
+            row.setAttribute('tabindex', '0');
+            row.removeAttribute('aria-disabled');
+            row.classList.add('song-row--tappable');
+        } else {
+            row.removeAttribute('role');
+            row.removeAttribute('tabindex');
+            row.setAttribute('aria-disabled', 'true');
+            row.classList.remove('song-row--tappable');
+        }
+    }
+
+    /**
+     * Render a single song summary row (AC1)
+     * @param {string} cardId - Row element ID
      * @param {Object} song - Song data
      * @param {string} statType - Type of stat to display
      */
@@ -436,26 +486,21 @@
         var card = document.getElementById(cardId);
         if (!card) return;
 
-        // Support both old card format and new compact row format
-        var titleEl = card.querySelector('.song-card-title') || card.querySelector('.song-row-title');
-        var artistEl = card.querySelector('.song-card-artist');
-        var statEl = card.querySelector('.stat-number') || card.querySelector('.song-row-stat');
+        var titleEl = card.querySelector('.song-row-title');
+        var statEl = card.querySelector('.song-row-stat');
 
         if (!song) {
             if (titleEl) titleEl.textContent = '--';
-            if (artistEl) artistEl.textContent = '--';
             if (statEl) statEl.textContent = '--';
-            if (card.disabled !== undefined) card.disabled = true;
-            card.dataset.playlist = '';
+            card.dataset.songTitle = '';
+            setRowPlaylist(card, '');
             return;
         }
 
-        if (card.disabled !== undefined) card.disabled = false;
-        card.dataset.playlist = song.playlist || '';
+        setRowPlaylist(card, song.playlist || '');
         card.dataset.songTitle = song.title || '';
 
         if (titleEl) titleEl.textContent = song.title || 'Unknown';
-        if (artistEl) artistEl.textContent = song.artist || 'Unknown';
 
         if (statEl) {
             if (statType === 'play_count') {
@@ -471,70 +516,6 @@
                 else statEl.classList.add('accuracy-low');
             }
         }
-    }
-
-    /**
-     * Render playlist song statistics grid (AC2)
-     * @param {Array} playlists - Playlist data array
-     */
-    function renderPlaylistSongGrid(playlists) {
-        var container = document.getElementById('playlist-song-stats');
-        if (!container) return;
-
-        if (!playlists || playlists.length === 0) {
-            container.innerHTML = '';
-            return;
-        }
-
-        container.innerHTML = playlists.map(function(p) {
-            var avgAccuracy = ((p.avg_accuracy || 0) * 100).toFixed(0);
-            var accuracyClass = getAccuracyClass(avgAccuracy);
-
-            // Strip file path to get clean playlist name
-            var displayName = p.playlist_name;
-            if (displayName && displayName.includes('/')) {
-                displayName = displayName.split('/').pop();
-            }
-            displayName = displayName.replace(/\.json$/i, '');
-
-            return '<div class="playlist-song-card" data-playlist-id="' + escapeHtml(p.playlist_id) + '">' +
-                '<div class="playlist-song-header">' +
-                    '<h3 class="playlist-song-name">' + escapeHtml(displayName) + '</h3>' +
-                    '<div class="playlist-song-summary">' +
-                        '<span class="summary-stat">' +
-                            '<span class="summary-value">' + p.unique_songs_played + '</span>' +
-                            '<span class="summary-label" data-i18n="analyticsDashboard.songsPlayed">songs played</span>' +
-                        '</span>' +
-                        '<span class="summary-stat">' +
-                            '<span class="summary-value ' + accuracyClass + '">' + avgAccuracy + '%</span>' +
-                            '<span class="summary-label" data-i18n="analyticsDashboard.avgAccuracy">avg accuracy</span>' +
-                        '</span>' +
-                    '</div>' +
-                '</div>' +
-                '<button type="button" class="view-details-btn" data-playlist-id="' + escapeHtml(p.playlist_id) + '" ' +
-                    'aria-label="View details for ' + escapeHtml(displayName) + '">' +
-                    '<span data-i18n="analyticsDashboard.viewDetails">View Details</span>' +
-                '</button>' +
-            '</div>';
-        }).join('');
-
-        // Apply translations if available
-        if (window.applyTranslations) {
-            window.applyTranslations();
-        }
-    }
-
-    /**
-     * Show song stats empty state (AC7)
-     */
-    function showSongStatsEmpty() {
-        var emptyEl = document.getElementById('song-stats-empty');
-        var summaryEl = document.getElementById('song-summary-cards');
-        var playlistEl = document.getElementById('playlist-song-stats');
-
-        if (emptyEl) emptyEl.classList.remove('hidden');
-        if (summaryEl) summaryEl.classList.add('hidden');
-        if (playlistEl) playlistEl.innerHTML = '';
     }
 
     /**
@@ -764,19 +745,23 @@
     }
 
     /**
-     * Handle summary card click - scroll to song in playlist (AC1)
-     * @param {Event} e - Click event
+     * Open the playlist a summary row points at (#2697).
+     *
+     * `row.dataset.playlist` holds the playlist NAME the song-stats API
+     * reports as that song's primary playlist. The server derives
+     * `by_playlist[].playlist_id` from the same name with
+     * `name.lower().replace(" ", "-")` (services/stats.py compute_song_stats),
+     * so slugging it here lands on the matching entry.
+     *
+     * @param {HTMLElement} row - The .song-row element that was activated
      */
-    function handleSummaryCardClick(e) {
-        var card = e.target.closest('.song-summary-card');
-        if (!card || card.disabled) return;
+    function handleSongRowActivate(row) {
+        if (!row || row.getAttribute('aria-disabled') === 'true') return;
 
-        var playlistName = card.dataset.playlist;
-        if (playlistName) {
-            // Find and open the playlist
-            var playlistId = playlistName.toLowerCase().replace(/ /g, '-');
-            openPlaylistModal(playlistId);
-        }
+        var playlistName = row.dataset.playlist;
+        if (!playlistName) return;
+
+        openPlaylistModal(playlistName.toLowerCase().replace(/ /g, '-'));
     }
 
     /**
@@ -918,7 +903,24 @@
     /**
      * Initialize analytics dashboard
      */
-    function init() {
+    async function init() {
+        // #2696: this page never initialised i18n. `translations` stayed empty,
+        // so `t()` handed every key straight back — the header printed the
+        // literal "analyticsDashboard.none", the modal printed
+        // "analyticsDashboard.pagination", and all ~40 data-i18n spans stayed
+        // English in every language. analytics.html loads i18n.js synchronously
+        // before this bundle and does not load utils.js, so the guard is on the
+        // global itself, the way launcher.html does it.
+        //
+        // Awaited before the first fetch so the runtime strings below are
+        // translated on their first render, not one repaint later.
+        if (window.BeatifyI18n) {
+            await BeatifyI18n.init();
+            BeatifyI18n.initPageTranslations();
+        } else {
+            console.error('[Analytics] BeatifyI18n module failed to load - UI will use fallback text');
+        }
+
         // Period selector
         var periodSelector = document.querySelector('.period-selector');
         if (periodSelector) {
@@ -946,21 +948,25 @@
         // Song Statistics Event Listeners (Story 19.7)
         // =====================================================
 
-        // Summary card clicks (AC1)
-        var summaryCards = document.getElementById('song-summary-cards');
-        if (summaryCards) {
-            summaryCards.addEventListener('click', handleSummaryCardClick);
-        }
-
-        // Playlist card "View Details" button clicks (AC2)
-        var playlistSongStats = document.getElementById('playlist-song-stats');
-        if (playlistSongStats) {
-            playlistSongStats.addEventListener('click', function(e) {
-                var btn = e.target.closest('.view-details-btn');
-                if (btn) {
-                    var playlistId = btn.dataset.playlistId;
-                    if (playlistId) openPlaylistModal(playlistId);
-                }
+        // Summary row activation (AC1) — #2697: bound to the live compact rows
+        // in #song-summary-compact. The old binding sat on #song-summary-cards
+        // and the delegated .view-details-btn listener on #playlist-song-stats;
+        // neither element has existed since the section became compact rows, so
+        // both were no-ops and a row tap did nothing.
+        var songSummary = document.getElementById('song-summary-compact');
+        if (songSummary) {
+            songSummary.addEventListener('click', function(e) {
+                var row = e.target.closest('.song-row');
+                if (row) handleSongRowActivate(row);
+            });
+            // The rows are <div role="button">, so Enter/Space need wiring by
+            // hand — a real <button> would get them for free.
+            songSummary.addEventListener('keydown', function(e) {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                var row = e.target.closest('.song-row');
+                if (!row) return;
+                e.preventDefault();
+                handleSongRowActivate(row);
             });
         }
 

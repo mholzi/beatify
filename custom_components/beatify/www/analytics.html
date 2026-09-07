@@ -188,8 +188,11 @@
                         <span class="song-row-stat accuracy-high">--</span>
                     </div>
                 </div>
-                <!-- Playlist Details - Hidden by default, view button -->
-                <button type="button" class="btn btn-secondary btn-full-width" id="view-all-songs-btn">
+                <!-- Playlist Details - Hidden by default, view button.
+                     #2697: starts disabled and is enabled once the song-stats
+                     API reports at least one playlist, so it can never be a
+                     button that opens nothing. -->
+                <button type="button" class="btn btn-secondary btn-full-width" id="view-all-songs-btn" disabled>
                     <span data-i18n="analyticsDashboard.viewAllSongs">View All Songs</span>
                 </button>
             </div>
