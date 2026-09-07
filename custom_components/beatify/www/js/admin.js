@@ -172,7 +172,7 @@ import {
 // start-game payload is built from real imports and `npm run build:check`
 // covers their source.
 import { ttsConfig } from './tts-settings.js';
-import { partyLightsConfig } from './party-lights.js';
+import { partyLightsConfig, refreshPartyLightsLabels } from './party-lights.js';
 
 // Token helpers in util.js need the live `currentGame`. The resolver reads it
 // off the shared `adminState` object (#1279 step 5), so it stays in sync across
@@ -364,6 +364,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         await BeatifyI18n.init();
         BeatifyI18n.initPageTranslations();
+        // #2704: the party-lights labels are composed in JS and were painted
+        // before the locale finished loading, so initPageTranslations cannot
+        // reach them.
+        refreshPartyLightsLabels();
         adminState.selectedLanguage = BeatifyI18n.getLanguage();
     }
     // Set initial language chip active state
@@ -1676,7 +1680,7 @@ async function confirmEndGame() {
 
     // Issue #569: Check for valid admin token before REST fallback
     if (!_getAdminToken()) {
-        showError('Admin session expired. Please reload the page.');
+        showError(BeatifyI18n.t('admin.sessionExpired'));
         return;
     }
 
@@ -2083,7 +2087,7 @@ function handleAdminJoin() {
         if (gameId) {
             window.location.href = '/beatify/play?game=' + encodeURIComponent(gameId);
         } else {
-            showError('No active game found');
+            showError(BeatifyI18n.t('admin.noActiveGame'));
             joinBtn.disabled = false;
             joinBtn.textContent = BeatifyI18n.t('admin.join');
         }

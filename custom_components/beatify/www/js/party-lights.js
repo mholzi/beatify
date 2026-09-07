@@ -12,6 +12,23 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+/**
+ * Translate, with the English wording as the fallback (#2704).
+ *
+ * init() runs at DOMContentLoaded while admin.js is still awaiting
+ * BeatifyI18n.init(), so the first paint happens before any locale is loaded —
+ * BeatifyI18n.t() would hand back the raw key. The static markup carries
+ * data-i18n and is fixed up by initPageTranslations(); the labels this module
+ * composes are refreshed by refreshPartyLightsLabels(), which admin.js calls
+ * once translations are in.
+ */
+function tr(key, fallback, params) {
+    var i18n = typeof window !== 'undefined' ? window.BeatifyI18n : null;
+    if (!i18n || typeof i18n.t !== 'function' || !i18n.isReady()) return fallback;
+    var value = i18n.t(key, params);
+    return value === key ? fallback : value;
+}
+
 var STORAGE_KEY = 'beatify_party_lights';
 var selectedLights = [];
 var selectedIntensity = 'medium';
@@ -64,7 +81,11 @@ async function fetchLights() {
     } catch (e) {
         console.warn('[PartyLights] Failed to fetch lights:', e);
         var list = document.getElementById('party-lights-list');
-        if (list) list.innerHTML = '<span class="loading-text">No lights found</span>';
+        if (list) {
+            list.innerHTML = '<span class="loading-text">'
+                + escapeHtml(tr('wizard.step5.lights.noneFound', 'No lights available'))
+                + '</span>';
+        }
     }
 }
 
@@ -73,7 +94,9 @@ function renderLightPicker() {
     if (!list) return;
 
     if (lightsData.length === 0) {
-        list.innerHTML = '<span class="loading-text">No lights found in Home Assistant</span>';
+        list.innerHTML = '<span class="loading-text">'
+            + escapeHtml(tr('wizard.step5.lights.unavailable', 'No lights found in Home Assistant.'))
+            + '</span>';
         return;
     }
 
@@ -117,13 +140,40 @@ function updateCount() {
     var countEl = document.getElementById('lights-selected-count');
     var previewBtn = document.getElementById('party-lights-preview');
     var summary = document.getElementById('party-lights-summary');
+    var n = selectedLights.length;
 
-    if (countEl) countEl.textContent = selectedLights.length;
-    if (previewBtn) previewBtn.disabled = selectedLights.length === 0;
+    if (countEl) {
+        countEl.textContent = tr(
+            'admin.partyLights.selected', n + ' lights selected', { n: n });
+    }
+    if (previewBtn) previewBtn.disabled = n === 0;
     if (summary) {
-        summary.textContent = partyLightsEnabled && selectedLights.length > 0
-            ? selectedLights.length + ' lights'
-            : 'Off';
+        summary.textContent = partyLightsEnabled && n > 0
+            ? tr('admin.partyLights.lights', n + ' lights', { n: n })
+            : tr('admin.partyLights.off', 'Off');
+    }
+}
+
+/**
+ * Re-render the labels this module owns after a locale change (#2704).
+ *
+ * initPageTranslations() only reaches elements carrying a data-i18n
+ * attribute; the selection count, the section summary and the select-all
+ * toggle are composed here, so admin.js and the language chips call this
+ * alongside it — the same arrangement game-settings.js uses for the
+ * auto-advance chips and the difficulty hint.
+ */
+export function refreshPartyLightsLabels() {
+    updateCount();
+    var selectAllBtn = document.getElementById('lights-select-all');
+    var list = document.getElementById('party-lights-list');
+    if (selectAllBtn && list) {
+        var boxes = list.querySelectorAll('input[type="checkbox"]');
+        var allChecked = boxes.length > 0
+            && list.querySelectorAll('input[type="checkbox"]:checked').length === boxes.length;
+        selectAllBtn.textContent = allChecked
+            ? tr('admin.partyLights.deselectAll', 'Deselect All')
+            : tr('admin.partyLights.selectAll', 'Select All');
     }
 }
 
@@ -211,18 +261,23 @@ function init() {
             list.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
                 cb.checked = !allChecked;
             });
-            selectAllBtn.textContent = allChecked ? 'Select All' : 'Deselect All';
+            selectAllBtn.textContent = allChecked
+                ? tr('admin.partyLights.selectAll', 'Select All')
+                : tr('admin.partyLights.deselectAll', 'Deselect All');
             updateSelection();
         });
     }
 
     // Preview button
     var previewBtn = document.getElementById('party-lights-preview');
+    function resetPreviewLabel() {
+        if (previewBtn) previewBtn.textContent = tr('admin.partyLights.preview', '✨ Preview');
+    }
     if (previewBtn) {
         previewBtn.addEventListener('click', function() {
             if (selectedLights.length === 0) return;
             previewBtn.disabled = true;
-            previewBtn.textContent = '✨ Running...';
+            previewBtn.textContent = tr('admin.partyLights.previewRunning', '✨ Running…');
 
             BeatifyAuth.fetch('/beatify/api/preview-lights', {
                 method: 'POST',
@@ -231,15 +286,15 @@ function init() {
             }).then(function(resp) {
                 if (!resp.ok) {
                     console.warn('[PartyLights] Preview failed:', resp.status);
-                    previewBtn.textContent = '✨ Failed';
-                    setTimeout(function() { previewBtn.textContent = '✨ Preview'; }, 3000);
+                    previewBtn.textContent = tr('admin.partyLights.previewFailed', '✨ Failed');
+                    setTimeout(resetPreviewLabel, 3000);
                     return;
                 }
-                previewBtn.textContent = '✨ Preview';
+                resetPreviewLabel();
             }).catch(function(err) {
                 console.warn('[PartyLights] Preview error:', err);
-                previewBtn.textContent = '✨ Error';
-                setTimeout(function() { previewBtn.textContent = '✨ Preview'; }, 3000);
+                previewBtn.textContent = tr('admin.partyLights.previewError', '✨ Error');
+                setTimeout(resetPreviewLabel, 3000);
             }).finally(function() {
                 previewBtn.disabled = false;
             });

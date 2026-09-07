@@ -250,7 +250,11 @@
       "playedBeforeSub": "in tutte le partite di Beatify",
       "furthestOff": "Più lontano di tutti in questo turno",
       "onlyPercent": "Solo il {percent}% dei giocatori la indovina.",
-      "empty": "Ancora nessuna statistica per questo turno."
+      "empty": "Ancora nessuna statistica per questo turno.",
+      "avgLate": "{n} anni in più",
+      "avgEarly": "{n} anni in meno",
+      "yearOff": "{n} anno di scarto",
+      "yearsOff": "{n} anni di scarto"
     },
     "reportBtn": "🚩 Anno sbagliato?",
     "reportBtnDone": "✓ Segnalato — grazie!",
@@ -795,7 +799,33 @@
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Ritardo del tempo (s)",
-    "ttsPreRoundDelayHelp": "Secondi aggiunti al tempo del turno per compensare la durata degli annunci."
+    "ttsPreRoundDelayHelp": "Secondi aggiunti al tempo del turno per compensare la durata degli annunci.",
+    "sessionExpired": "Sessione di amministrazione scaduta. Ricarica la pagina.",
+    "partyLights": {
+      "enable": "Attiva le luci da festa",
+      "off": "Spente",
+      "lights": "{n} luci",
+      "selected": "{n} luci selezionate",
+      "selectAll": "Seleziona tutte",
+      "deselectAll": "Deseleziona tutte",
+      "loading": "Caricamento delle luci…",
+      "preview": "✨ Anteprima",
+      "previewRunning": "✨ In corso…",
+      "previewFailed": "✨ Non riuscita",
+      "previewError": "✨ Errore",
+      "phaseLobby": "Sala d'attesa",
+      "phasePlaying": "In riproduzione",
+      "phaseReveal": "Rivelazione",
+      "phaseStreak": "Serie",
+      "phaseCountdown": "Conto alla rovescia",
+      "phaseEnd": "Fine"
+    },
+    "pwa": {
+      "installTitle": "Installa Beatify",
+      "installHint": "Tocca ⬆️ Condividi, poi «Aggiungi a Home»",
+      "installAria": "Installa l'app Beatify",
+      "analyticsAria": "Pannello delle statistiche"
+    }
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

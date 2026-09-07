@@ -37,9 +37,14 @@ DYNAMIC_PREFIXES = (
     "sabotage.effect.",
 )
 
-_HTML_KEY = re.compile(r'data-i18n(?:-[a-z]+)?="([A-Za-z0-9_.]+)"')
-# t('a.b') / t("a.b") on any of the wrappers: utils.t, BeatifyI18n.t, bare t.
-_JS_KEY = re.compile(r"""\bt\(\s*['"]([A-Za-z0-9_.]+)['"]""")
+# `data-i18n`, `data-i18n-placeholder`, `data-i18n-title`, `data-i18n-aria-label`.
+# The aria variant carries two dashes, so the old single-segment suffix never
+# matched it — eight player.html controls sat outside this scan until #2705.
+_HTML_KEY = re.compile(r'data-i18n(?:-[a-z]+(?:-[a-z]+)?)?="([A-Za-z0-9_.]+)"')
+# t('a.b') / t("a.b") on any of the wrappers: utils.t, BeatifyI18n.t, bare t —
+# and the local `tr(key, fallback)` guards several modules define (#2704 added
+# one to party-lights.js), which the bare-`t` pattern used to walk straight past.
+_JS_KEY = re.compile(r"""\b(?:t|tr)\(\s*['"]([A-Za-z0-9_.]+)['"]""")
 
 
 def _lookup(key: str):

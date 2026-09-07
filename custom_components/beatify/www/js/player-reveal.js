@@ -1419,10 +1419,17 @@ export function renderRoundStatsSheet() {
         var cards = [];
         if (analytics.average_guess != null) {
             var avgDiff = correctYear ? Math.round(analytics.average_guess - correctYear) : null;
-            var avgSub = avgDiff != null
-                ? (avgDiff === 0 ? (utils.t('analytics.onTarget') || 'On target')
-                    : (Math.abs(avgDiff) + ' ' + (utils.t('reveal.duel.yearsUnit') || 'years') + ' ' + (avgDiff > 0 ? 'late' : 'early')))
-                : '';
+            // #2705: "late"/"early" used to be glued on in English, so a German
+            // reveal read "3 Jahre late". One key per direction, {n} inside —
+            // written out so the #2507 key scanner can see both literals.
+            var avgSub = '';
+            if (avgDiff === 0) {
+                avgSub = utils.t('analytics.onTarget') || 'On target';
+            } else if (avgDiff != null) {
+                avgSub = avgDiff > 0
+                    ? utils.t('reveal.stats.avgLate', { n: avgDiff })
+                    : utils.t('reveal.stats.avgEarly', { n: -avgDiff });
+            }
             cards.push(
                 '<div class="stats-card">' +
                     '<div class="lbl">' + escapeHtml(utils.t('reveal.stats.avgGuess') || 'Avg guess') + '</div>' +
@@ -1435,9 +1442,15 @@ export function renderRoundStatsSheet() {
         // Closest guess — pull the first entry of all_guesses (sorted by years_off)
         if (analytics.all_guesses && analytics.all_guesses.length > 0) {
             var closest = analytics.all_guesses[0];
-            var closestSub = closest.name + ' · ' +
-                (closest.years_off === 0 ? (utils.t('reveal.exact') || 'Exact!')
-                  : closest.years_off + ' ' + (closest.years_off === 1 ? (utils.t('reveal.duel.yearUnit') || 'year') : (utils.t('reveal.duel.yearsUnit') || 'years')) + ' off');
+            var closestOff;
+            if (closest.years_off === 0) {
+                closestOff = utils.t('reveal.exact') || 'Exact!';
+            } else if (closest.years_off === 1) {
+                closestOff = utils.t('reveal.stats.yearOff', { n: 1 });
+            } else {
+                closestOff = utils.t('reveal.stats.yearsOff', { n: closest.years_off });
+            }
+            var closestSub = closest.name + ' · ' + closestOff;
             cards.push(
                 '<div class="stats-card">' +
                     '<div class="lbl">' + escapeHtml(utils.t('reveal.stats.closest') || 'Closest') + '</div>' +
@@ -1496,13 +1509,13 @@ export function renderRoundStatsSheet() {
     if (analytics && analytics.furthest_players && analytics.furthest_players.length > 0 && analytics.all_guesses && analytics.all_guesses.length > 0) {
         var furthest = analytics.all_guesses[analytics.all_guesses.length - 1];
         if (furthest && furthest.years_off > 0) {
+            var furthestOff = furthest.years_off === 1
+                ? utils.t('reveal.stats.yearOff', { n: 1 })
+                : utils.t('reveal.stats.yearsOff', { n: furthest.years_off });
             var furthestRows = analytics.furthest_players.map(function(n) {
                 return '<div class="furthest-row">' +
                     '<span class="name">' + escapeHtml(n) + '</span>' +
-                    '<span class="off">' + furthest.years_off + ' ' +
-                        (furthest.years_off === 1 ? (utils.t('reveal.duel.yearUnit') || 'yr')
-                            : (utils.t('reveal.duel.yearsUnit') || 'yrs')) +
-                    ' off</span>' +
+                    '<span class="off">' + escapeHtml(furthestOff) + '</span>' +
                 '</div>';
             }).join('');
             parts.push(

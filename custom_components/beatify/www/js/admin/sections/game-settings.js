@@ -38,7 +38,7 @@ import { renderPlaylists } from './playlists.js';
 // two classic scripts at the bottom of admin.html. Both are ES modules in the
 // admin bundle now, so this section imports them like anything else.
 import { ttsConfig } from '../../tts-settings.js';
-import { partyLightsConfig } from '../../party-lights.js';
+import { partyLightsConfig, refreshPartyLightsLabels } from '../../party-lights.js';
 import {
     setupLibrarySettings,
     syncLibraryControls,
@@ -146,6 +146,7 @@ export function setupGameSettings() {
             // elements carrying a data-i18n attribute.
             renderAutoAdvanceChips();
             renderDifficultyHint();
+            refreshPartyLightsLabels();
             updateGameSettingsSummary();
             saveGameSettings();
         });
@@ -318,6 +319,7 @@ export async function loadSavedSettings() {
                     // attribute, so initPageTranslations cannot reach them.
                     renderAutoAdvanceChips();
                     renderDifficultyHint();
+                    refreshPartyLightsLabels();
                 }
             }
 

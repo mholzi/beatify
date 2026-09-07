@@ -286,6 +286,22 @@ window.BeatifyI18n = (function() {
                 }
             }
         });
+
+        // Handle aria-labels (#2705). player.html has carried
+        // data-i18n-aria-label on eight controls since the reveal sheet
+        // landed, but nothing ever read the attribute — every screen reader
+        // heard "Fire reaction" and "Next round countdown" in English no
+        // matter the locale. admin.html's icon-only buttons need the same.
+        var ariaElements = document.querySelectorAll('[data-i18n-aria-label]');
+        ariaElements.forEach(function(el) {
+            var key = el.getAttribute('data-i18n-aria-label');
+            if (key) {
+                var translated = t(key);
+                if (translated !== key) {
+                    el.setAttribute('aria-label', translated);
+                }
+            }
+        });
     }
 
     /**

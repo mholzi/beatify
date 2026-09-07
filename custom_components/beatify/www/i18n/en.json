@@ -250,7 +250,11 @@
       "playedBeforeSub": "across all Beatify games",
       "furthestOff": "Furthest off this round",
       "onlyPercent": "Only {percent}% of all players guess it right.",
-      "empty": "No stats for this round yet."
+      "empty": "No stats for this round yet.",
+      "avgLate": "{n} years late",
+      "avgEarly": "{n} years early",
+      "yearOff": "{n} year off",
+      "yearsOff": "{n} years off"
     },
     "reportBtn": "🚩 Wrong year?",
     "reportBtnDone": "✓ Reported — thanks!",
@@ -795,7 +799,33 @@
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Timer delay (s)",
-    "ttsPreRoundDelayHelp": "Seconds added to the round timer to compensate for announcement overhead."
+    "ttsPreRoundDelayHelp": "Seconds added to the round timer to compensate for announcement overhead.",
+    "sessionExpired": "Admin session expired. Please reload the page.",
+    "partyLights": {
+      "enable": "Enable Party Lights",
+      "off": "Off",
+      "lights": "{n} lights",
+      "selected": "{n} lights selected",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "loading": "Loading lights…",
+      "preview": "✨ Preview",
+      "previewRunning": "✨ Running…",
+      "previewFailed": "✨ Failed",
+      "previewError": "✨ Error",
+      "phaseLobby": "Lobby",
+      "phasePlaying": "Playing",
+      "phaseReveal": "Reveal",
+      "phaseStreak": "Streak",
+      "phaseCountdown": "Countdown",
+      "phaseEnd": "End"
+    },
+    "pwa": {
+      "installTitle": "Install Beatify",
+      "installHint": "Tap ⬆️ Share, then “Add to Home Screen”",
+      "installAria": "Install Beatify App",
+      "analyticsAria": "Analytics Dashboard"
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

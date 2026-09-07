@@ -204,11 +204,11 @@
             <!-- "Finish setup" pill — visible when user dismissed wizard with incomplete required steps -->
             <button type="button" class="finish-setup-pill hidden" id="finish-setup-pill" data-i18n="wizard.finishPill">Finish setup</button>
             <!-- PWA Install Button (#226) — hidden by default, shown via JS -->
-            <button type="button" class="pwa-install-btn hidden" id="pwa-install-btn" aria-label="Install Beatify App">
+            <button type="button" class="pwa-install-btn hidden" id="pwa-install-btn" aria-label="Install Beatify App" data-i18n-aria-label="admin.pwa.installAria">
                 <span aria-hidden="true">📲</span>
             </button>
             <!-- Analytics Link (Story 19.2, updated 19.13) -->
-            <a href="/beatify/analytics" class="analytics-icon-link" id="analytics-link" aria-label="Analytics Dashboard">
+            <a href="/beatify/analytics" class="analytics-icon-link" id="analytics-link" aria-label="Analytics Dashboard" data-i18n-aria-label="admin.pwa.analyticsAria">
                 <span aria-hidden="true">📊</span>
             </a>
             <!-- Emergency reset (#777 follow-up) — visible escape hatch when state gets stuck -->
@@ -221,9 +221,9 @@
     <!-- PWA iOS Install Hint (#226) -->
     <div class="pwa-ios-hint hidden" id="pwa-ios-hint">
         <div class="pwa-ios-hint-content">
-            <button type="button" class="pwa-ios-hint-close" id="pwa-ios-hint-close" aria-label="Close">&times;</button>
-            <p><strong>Install Beatify</strong></p>
-            <p>Tap <span class="pwa-ios-share-icon">⬆️</span> Share, then <strong>"Add to Home Screen"</strong></p>
+            <button type="button" class="pwa-ios-hint-close" id="pwa-ios-hint-close" aria-label="Close" data-i18n-aria-label="common.close">&times;</button>
+            <p><strong data-i18n="admin.pwa.installTitle">Install Beatify</strong></p>
+            <p data-i18n="admin.pwa.installHint">Tap ⬆️ Share, then “Add to Home Screen”</p>
         </div>
     </div>
 
@@ -666,8 +666,8 @@
         <section id="party-lights" class="section-collapsible collapsed" aria-labelledby="party-lights-heading">
             <button type="button" class="section-header-collapsible" id="party-lights-toggle" aria-expanded="false" aria-controls="party-lights-content">
                 <span class="section-icon" aria-hidden="true">🎆</span>
-                <span>Party Lights</span>
-                <span class="section-summary" id="party-lights-summary">Off</span>
+                <span data-i18n="wizard.step5.lights.title">Party Lights</span>
+                <span class="section-summary" id="party-lights-summary" data-i18n="admin.partyLights.off">Off</span>
                 <span class="section-toggle" aria-hidden="true">▼</span>
             </button>
             <div class="section-content" id="party-lights-content">
@@ -675,7 +675,7 @@
                 <div class="setting-row">
                     <span class="setting-label">
                         <span class="setting-icon" aria-hidden="true">💡</span>
-                        <span>Enable Party Lights</span>
+                        <span data-i18n="admin.partyLights.enable">Enable Party Lights</span>
                     </span>
                     <label class="toggle-compact">
                         <input type="checkbox" id="party-lights-enable">
@@ -687,12 +687,12 @@
                 <div class="setting-row" id="party-lights-intensity-row">
                     <span class="setting-label">
                         <span class="setting-icon" aria-hidden="true">🎨</span>
-                        <span>Intensity</span>
+                        <span data-i18n="wizard.step5.lights.intensity">Intensity</span>
                     </span>
-                    <div class="chip-group" role="group" aria-label="Light intensity">
-                        <button type="button" class="chip" data-intensity="subtle">Subtle</button>
-                        <button type="button" class="chip chip--active" data-intensity="medium">Medium</button>
-                        <button type="button" class="chip" data-intensity="party">Party</button>
+                    <div class="chip-group" role="group" aria-label="Light intensity" data-i18n-aria-label="wizard.step5.lights.intensity">
+                        <button type="button" class="chip" data-intensity="subtle" data-i18n="wizard.step5.lights.subtle">Subtle</button>
+                        <button type="button" class="chip chip--active" data-intensity="medium" data-i18n="wizard.step5.lights.medium">Medium</button>
+                        <button type="button" class="chip" data-intensity="party" data-i18n="wizard.step5.lights.party">Party</button>
                     </div>
                 </div>
 
@@ -700,11 +700,11 @@
                 <div class="setting-row">
                     <span class="setting-label">
                         <span class="setting-icon" aria-hidden="true">⚡</span>
-                        <span>Light Mode</span>
+                        <span data-i18n="wizard.step5.lights.mode">Light Mode</span>
                     </span>
-                    <div class="chip-group" role="group" aria-label="Light mode">
-                        <button type="button" class="chip" data-light-mode="static">Static</button>
-                        <button type="button" class="chip chip--active" data-light-mode="dynamic">Dynamic</button>
+                    <div class="chip-group" role="group" aria-label="Light mode" data-i18n-aria-label="wizard.step5.lights.mode">
+                        <button type="button" class="chip" data-light-mode="static" data-i18n="wizard.step5.lights.modeStatic">Static</button>
+                        <button type="button" class="chip chip--active" data-light-mode="dynamic" data-i18n="wizard.step5.lights.modeDynamic">Dynamic</button>
                         <button type="button" class="chip" data-light-mode="wled">WLED</button>
                     </div>
                 </div>
@@ -713,31 +713,31 @@
                 <div id="party-lights-wled-presets" class="setting-row setting-row--vertical hidden">
                     <span class="setting-label">
                         <span class="setting-icon" aria-hidden="true">🔢</span>
-                        <span>WLED Preset IDs</span>
+                        <span data-i18n="wizard.step5.lights.wledPresets">WLED Preset IDs</span>
                     </span>
                     <div class="wled-presets-grid">
-                        <label class="wled-preset-item"><span>Lobby</span><input type="number" data-wled-phase="LOBBY" min="0" value="1" class="input-sm"></label>
-                        <label class="wled-preset-item"><span>Playing</span><input type="number" data-wled-phase="PLAYING" min="0" value="2" class="input-sm"></label>
-                        <label class="wled-preset-item"><span>Reveal</span><input type="number" data-wled-phase="REVEAL" min="0" value="3" class="input-sm"></label>
-                        <label class="wled-preset-item"><span>Streak</span><input type="number" data-wled-phase="STREAK" min="0" value="4" class="input-sm"></label>
-                        <label class="wled-preset-item"><span>Countdown</span><input type="number" data-wled-phase="COUNTDOWN" min="0" value="5" class="input-sm"></label>
-                        <label class="wled-preset-item"><span>End</span><input type="number" data-wled-phase="END" min="0" value="6" class="input-sm"></label>
+                        <label class="wled-preset-item"><span data-i18n="admin.partyLights.phaseLobby">Lobby</span><input type="number" data-wled-phase="LOBBY" min="0" value="1" class="input-sm"></label>
+                        <label class="wled-preset-item"><span data-i18n="admin.partyLights.phasePlaying">Playing</span><input type="number" data-wled-phase="PLAYING" min="0" value="2" class="input-sm"></label>
+                        <label class="wled-preset-item"><span data-i18n="admin.partyLights.phaseReveal">Reveal</span><input type="number" data-wled-phase="REVEAL" min="0" value="3" class="input-sm"></label>
+                        <label class="wled-preset-item"><span data-i18n="admin.partyLights.phaseStreak">Streak</span><input type="number" data-wled-phase="STREAK" min="0" value="4" class="input-sm"></label>
+                        <label class="wled-preset-item"><span data-i18n="admin.partyLights.phaseCountdown">Countdown</span><input type="number" data-wled-phase="COUNTDOWN" min="0" value="5" class="input-sm"></label>
+                        <label class="wled-preset-item"><span data-i18n="admin.partyLights.phaseEnd">End</span><input type="number" data-wled-phase="END" min="0" value="6" class="input-sm"></label>
                     </div>
                 </div>
 
                 <!-- Light picker -->
                 <div id="party-lights-picker" class="party-lights-picker">
                     <div class="party-lights-picker-header">
-                        <span class="party-lights-count"><span id="lights-selected-count">0</span> lights selected</span>
-                        <button type="button" id="lights-select-all" class="btn-link">Select All</button>
+                        <span class="party-lights-count" id="lights-selected-count">0 lights selected</span>
+                        <button type="button" id="lights-select-all" class="btn-link" data-i18n="admin.partyLights.selectAll">Select All</button>
                     </div>
                     <div id="party-lights-list" class="party-lights-list">
-                        <span class="loading-text">Loading lights...</span>
+                        <span class="loading-text" data-i18n="admin.partyLights.loading">Loading lights…</span>
                     </div>
                 </div>
 
                 <!-- Preview button -->
-                <button type="button" id="party-lights-preview" class="btn btn-secondary btn-full-width" disabled>
+                <button type="button" id="party-lights-preview" class="btn btn-secondary btn-full-width" data-i18n="admin.partyLights.preview" disabled>
                     ✨ Preview
                 </button>
             </div>

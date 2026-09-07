@@ -128,7 +128,9 @@ export function updateEndView(data) {
         listEl.innerHTML = leaderboard.map(function(entry) {
             var currentClass = entry.is_current ? 'is-current' : '';
             var disconnectedClass = entry.connected === false ? 'final-entry--disconnected' : '';
-            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+            var awayBadge = entry.connected === false
+                ? '<span class="away-badge">(' + escapeHtml(utils.t('lobby.away', 'away')) + ')</span>'
+                : '';
             return '<div class="final-entry ' + currentClass + ' ' + disconnectedClass + '">' +
                 '<span class="final-rank">#' + entry.rank + '</span>' +
                 '<span class="final-name">' + escapeHtml(entry.name) + awayBadge + '</span>' +

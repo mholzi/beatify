@@ -967,7 +967,9 @@ export function renderLeaderboardEntry(entry) {
     }
 
     var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-    var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+    var awayBadge = entry.connected === false
+        ? '<span class="away-badge">(' + escapeHtml(tr('lobby.away', 'away')) + ')</span>'
+        : '';
 
     var displayScore = entry._displayScore !== undefined ? entry._displayScore : score;
 

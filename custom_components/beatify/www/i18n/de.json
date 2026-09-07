@@ -250,7 +250,11 @@
       "playedBeforeSub": "über alle Beatify-Partien",
       "furthestOff": "Am weitesten daneben",
       "onlyPercent": "Nur {percent}% aller Spieler raten richtig.",
-      "empty": "Noch keine Statistiken."
+      "empty": "Noch keine Statistiken.",
+      "avgLate": "{n} Jahre zu spät",
+      "avgEarly": "{n} Jahre zu früh",
+      "yearOff": "{n} Jahr daneben",
+      "yearsOff": "{n} Jahre daneben"
     },
     "reportBtn": "🚩 Falsches Jahr?",
     "reportBtnDone": "✓ Gemeldet — Danke!",
@@ -795,7 +799,33 @@
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Timer-Verzögerung (s)",
-    "ttsPreRoundDelayHelp": "Sekunden, die dem Rundentimer hinzugefügt werden, um die Dauer der Ansagen auszugleichen."
+    "ttsPreRoundDelayHelp": "Sekunden, die dem Rundentimer hinzugefügt werden, um die Dauer der Ansagen auszugleichen.",
+    "sessionExpired": "Admin-Sitzung abgelaufen. Bitte die Seite neu laden.",
+    "partyLights": {
+      "enable": "Party-Licht aktivieren",
+      "off": "Aus",
+      "lights": "{n} Lampen",
+      "selected": "{n} Lampen ausgewählt",
+      "selectAll": "Alle auswählen",
+      "deselectAll": "Alle abwählen",
+      "loading": "Lampen werden geladen…",
+      "preview": "✨ Vorschau",
+      "previewRunning": "✨ Läuft…",
+      "previewFailed": "✨ Fehlgeschlagen",
+      "previewError": "✨ Fehler",
+      "phaseLobby": "Lobby",
+      "phasePlaying": "Song läuft",
+      "phaseReveal": "Auflösung",
+      "phaseStreak": "Serie",
+      "phaseCountdown": "Countdown",
+      "phaseEnd": "Ende"
+    },
+    "pwa": {
+      "installTitle": "Beatify installieren",
+      "installHint": "Auf ⬆️ Teilen tippen, dann „Zum Home-Bildschirm“",
+      "installAria": "Beatify-App installieren",
+      "analyticsAria": "Statistik-Dashboard"
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

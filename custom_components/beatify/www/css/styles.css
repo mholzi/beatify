@@ -546,10 +546,6 @@ body.theme-dark .analytics-icon-link:focus {
     opacity: 1;
 }
 
-.pwa-ios-share-icon {
-    font-size: 1.2rem;
-}
-
 @keyframes slideUp {
     from { transform: translateY(100%); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
