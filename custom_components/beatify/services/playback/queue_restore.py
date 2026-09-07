@@ -14,15 +14,32 @@ first speaker its queue back, and that debt is settled through
 it — so it lives here, taking an entity id and a snapshot, and asks nothing
 about platforms.
 
-The #2605 guard (:meth:`MaQueueRestorer.pause_and_confirm`) is the second fix
-for a bug that came back once. It is reproduced here unchanged; its behaviour
-is pinned by ``tests/unit/test_queue_restore_stays_paused_2605.py``.
+The #2605 guard (:meth:`MaQueueRestorer.pause_and_confirm`) is the third fix
+for a bug that came back twice. Its behaviour is pinned by
+``tests/unit/test_queue_restore_stays_paused_2605.py``.
+
+The two corrections in that third round are both about what the guard could
+*not* see:
+
+* #2691 — the guard used to confirm silence on a track that had never started.
+  ``media_pause`` on an idle player is a no-op, and the ``idle`` left behind by
+  ``advance_to_end``'s ``media_stop`` reads exactly like a settled pause. When
+  Music Assistant started the track afterwards — Apple Music throttles and
+  retries at roughly 15.7s, and #2682 measured 14.6s live — nobody was
+  watching. A restore that never saw ``playing`` now holds the watch for the
+  whole window instead of accepting the pre-play ``idle`` as proof.
+* #2707 — ``_stays_quiet`` reported a relapse and a deadline expiry with the
+  same ``False``, so the caller could not tell them apart and the closing
+  WARNING claimed the speaker was still playing while it was in fact paused.
+  It now returns a :class:`QuietOutcome`, and the window is sized from the
+  attempt budget rather than guessed at.
 """
 
 from __future__ import annotations
 
 import asyncio
 import logging
+from enum import Enum
 from typing import TYPE_CHECKING, Any
 
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
@@ -55,15 +72,66 @@ MA_QUEUE_RESTORE_POLL = 0.25
 # owns.
 MA_PAUSE_CONFIRM_WAIT = 2.0
 MA_PAUSE_SETTLE_HOLD = 5.0
-MA_PAUSE_GUARD_WINDOW = 12.0
 MA_PAUSE_MAX_ATTEMPTS = 3
 MA_PAUSE_POLL = 0.25
+# #2707: the window used to be a round 12.0 that had nothing to do with what an
+# attempt costs. One attempt can spend a full MA_PAUSE_CONFIRM_WAIT waiting for
+# the speaker to go quiet plus a full MA_PAUSE_SETTLE_HOLD holding the silence,
+# so a second attempt could not fit and MA_PAUSE_MAX_ATTEMPTS was decoration.
+# The window is therefore derived from the attempt cost instead of guessed at:
+# two worst-case attempts always fit, and a third fits whenever the relapse
+# arrives before the hold is over — which is the shape every live run has had
+# (the speaker restarts itself about five seconds after the pause).
+MA_PAUSE_ATTEMPT_COST = MA_PAUSE_CONFIRM_WAIT + MA_PAUSE_SETTLE_HOLD
+MA_PAUSE_GUARD_WINDOW = 2 * MA_PAUSE_ATTEMPT_COST
+
+# #2691: a restore whose track never reported `playing` gets a LONGER watch,
+# because it has nothing to confirm — the `idle` it is reading predates the
+# `play_media` and proves only that nothing has started YET.
+#
+# The number has to outlive Music Assistant's Apple Music provider, which
+# throttles and retries on its own backoff: roughly 15.7s, documented in
+# `game/state_lifecycle.py`, and 14.6s measured on the live installation in
+# #2682. Counted from the end of MA_QUEUE_RESTORE_WAIT, this covers
+# 5 + 18 = 23s after the `play_media` went out.
+#
+# It is bought with teardown latency — the admin's end-game round trip can sit
+# here for the whole 18s — and that is the deliberate trade: a spinner the host
+# is already looking at, against the host's own music coming back up in a room
+# where the game is over. #2605 has now been reopened twice for the second one.
+MA_LATE_START_WATCH = 18.0
 
 # #2605: "not playing" is too generous. MA reports `buffering` while a track
 # loads, and a reading that lands there looks exactly like a successful pause —
 # the track starts a second later anyway. Both states therefore count as "still
 # going".
 MA_ACTIVE_STATES = frozenset({"playing", "buffering"})
+
+
+class QuietOutcome(Enum):
+    """Why :meth:`MaQueueRestorer._stays_quiet` stopped watching (#2707).
+
+    The three cases used to be two booleans, and the two that mattered shared
+    the ``False``. A relapse means the speaker started itself again and has to
+    be paused once more; an expiry means the guard ran out of window while the
+    room was silent. Reporting the second as the first is what produced the
+    WARNING "it is still playing the host's queue" over a paused speaker — the
+    exact line the live test read to identify the mechanism behind #2605.
+    """
+
+    HELD = "held"
+    """The silence lasted the full hold. The pause is confirmed."""
+
+    RELAPSED = "relapsed"
+    """Active playback was reported again. Pause it once more."""
+
+    WINDOW_EXPIRED = "window-expired"
+    """The guard window ran out while the speaker was quiet.
+
+    Not a confirmation and not a failure: the room is silent, the guard simply
+    stopped being allowed to look. The teardown counts it as paused and says so
+    in the log rather than claiming either more or less than it saw.
+    """
 
 
 class MaQueueRestorer:
@@ -97,7 +165,15 @@ class MaQueueRestorer:
             # the still-playing Beatify track would move the wrong song. Wait
             # for the speaker to report a position, bounded, then give up and
             # leave it playing from the start rather than hang the teardown.
-            if not await self._wait_for_playing(entity_id):
+            started = await self._wait_for_playing(entity_id)
+            if not started:
+                # #2691: this is NOT a cosmetic miss. The seek is skipped
+                # below, which was always right, but the pause that follows is
+                # then aimed at a player that is still idle from
+                # `advance_to_end`'s `media_stop` — where `media_pause` is a
+                # no-op and the reading that comes back is the state from
+                # BEFORE the `play_media`. The guard has to be told, or it
+                # confirms a silence nothing has disturbed yet.
                 _LOGGER.debug(
                     "Queue restore on %s: track loaded but never confirmed", entity_id
                 )
@@ -138,7 +214,7 @@ class MaQueueRestorer:
             # after the pause and start Sonos playing again. Rather than guess
             # which call did it, `_pause_and_confirm` holds the silence instead
             # of measuring it once.
-            paused = await self.pause_and_confirm(entity_id)
+            paused = await self.pause_and_confirm(entity_id, started=started)
         except (HomeAssistantError, ServiceNotFound) as err:
             _LOGGER.warning("Queue restore on %s failed: %s", entity_id, err)
             return False
@@ -148,13 +224,27 @@ class MaQueueRestorer:
                 entity_id,
                 queue.get("name") or queue["uri"],
                 queue.get("elapsed_time", 0),
-                "paused"
-                if paused
-                else "PAUSE NOT CONFIRMED — see the warning above (#2605)",
+                self._outcome_label(paused=paused, started=started),
             )
             return True
 
-    async def pause_and_confirm(self, entity_id: str) -> bool:
+    @staticmethod
+    def _outcome_label(*, paused: bool, started: bool) -> str:
+        """What the closing restore line says about the speaker (#2691/#2707).
+
+        Three states, not two. A restore whose track never reported ``playing``
+        did not confirm a pause — it watched an idle speaker and can only say
+        the room stayed quiet, whether that is because nothing ever started or
+        because a late start was caught and stopped. Printing either as
+        ``(paused)`` is what let #2691 hide inside a green log line.
+        """
+        if not paused:
+            return "PAUSE NOT CONFIRMED — see the warning above (#2605)"
+        if not started:
+            return "quiet after the late-start watch, not a confirmed pause (#2691)"
+        return "paused"
+
+    async def pause_and_confirm(self, entity_id: str, *, started: bool = True) -> bool:
         """Pause, read it back — and then keep looking (#2605).
 
         A `media_pause` with ``blocking=False`` is a request, not a fact. That
@@ -178,11 +268,30 @@ class MaQueueRestorer:
         ``MA_PAUSE_GUARD_WINDOW`` caps the whole thing so a speaker something
         else owns cannot hang the ``end-game`` teardown.
 
+        Args:
+            entity_id: the speaker to hold quiet.
+            started: whether the caller actually saw the restored track reach
+                ``playing``. False switches the guard into its #2691 mode: the
+                window becomes ``MA_LATE_START_WATCH`` and step 3 runs to the
+                end of it instead of stopping after ``MA_PAUSE_SETTLE_HOLD``,
+                because a speaker that has not started yet produces exactly the
+                same ``idle`` reading as one that has settled. Silence is only
+                evidence once there was something to silence.
+
         Returns:
-            True when the speaker actually held the silence (or the entity is
-            gone). False means unconfirmed — the warning in the log says why.
+            True when the speaker actually held the silence, when the window
+            ran out with the room quiet, or when the entity is gone. False
+            means it was still playing when the guard had to stop — the
+            warning in the log says so, and only then.
         """
-        deadline = asyncio.get_event_loop().time() + MA_PAUSE_GUARD_WINDOW
+        loop = asyncio.get_event_loop()
+        window = MA_PAUSE_GUARD_WINDOW if started else MA_LATE_START_WATCH
+        deadline = loop.time() + window
+        # Flips the moment the speaker is seen playing — including a late start
+        # caught inside the #2691 watch. From then on this is an ordinary
+        # relapse and gets the ordinary MA_PAUSE_SETTLE_HOLD, not another full
+        # window of waiting.
+        seen_playing = started
         for versuch in range(1, MA_PAUSE_MAX_ATTEMPTS + 1):
             await self._hass.services.async_call(
                 "media_player",
@@ -191,36 +300,70 @@ class MaQueueRestorer:
                 blocking=False,
             )
             if not await self._wait_until_quiet(entity_id, deadline):
+                # `_wait_until_quiet` only gives up on a reading that is still
+                # active, so this branch is always a genuinely playing speaker.
+                seen_playing = True
                 _LOGGER.debug(
                     "Queue restore on %s: still playing after pause attempt %d",
                     entity_id,
                     versuch,
                 )
-            elif await self._stays_quiet(entity_id, deadline):
-                if versuch > 1:
-                    _LOGGER.info(
-                        "Queue restore on %s: speaker stayed paused after "
-                        "attempt %d (#2605)",
-                        entity_id,
-                        versuch,
-                    )
-                return True
             else:
+                hold = MA_PAUSE_SETTLE_HOLD if seen_playing else None
+                outcome = await self._stays_quiet(entity_id, deadline, hold)
+                if outcome is QuietOutcome.HELD:
+                    if versuch > 1:
+                        _LOGGER.info(
+                            "Queue restore on %s: speaker stayed paused after "
+                            "attempt %d (#2605)",
+                            entity_id,
+                            versuch,
+                        )
+                    return True
+                if outcome is QuietOutcome.WINDOW_EXPIRED:
+                    # #2707: quiet room, spent window. The old code fell
+                    # through to the WARNING here and told the maintainer the
+                    # speaker was still playing the host's queue.
+                    if seen_playing:
+                        _LOGGER.info(
+                            "Queue restore on %s: %.0fs guard window ran out "
+                            "with the speaker quiet after attempt %d — pause "
+                            "held, though not for the full %.0fs (#2707)",
+                            entity_id,
+                            window,
+                            versuch,
+                            MA_PAUSE_SETTLE_HOLD,
+                        )
+                    else:
+                        # #2691: the track never started at all. Worth an INFO
+                        # rather than silence, because the host's music did not
+                        # actually come back — the restore returns True for the
+                        # room, not for the promise.
+                        _LOGGER.info(
+                            "Queue restore on %s: the track never started "
+                            "within %.0fs and the speaker stayed quiet for all "
+                            "of it (#2691)",
+                            entity_id,
+                            window,
+                        )
+                    return True
                 # This is the observation #2606 could not make: the pause
                 # arrived, and the speaker started itself again afterwards.
+                # Under #2691 it is the late start finally landing.
+                seen_playing = True
                 _LOGGER.info(
                     "Queue restore on %s: speaker started playing again after "
                     "pause attempt %d — pausing once more (#2605)",
                     entity_id,
                     versuch,
                 )
-            if asyncio.get_event_loop().time() >= deadline:
+            if loop.time() >= deadline:
                 break
         _LOGGER.warning(
             "Queue restore on %s: could not get the speaker to stay paused "
             "within %.0fs — it is still playing the host's queue (#2605)",
             entity_id,
-            MA_PAUSE_GUARD_WINDOW,
+            window,
         )
         return False
 
@@ -234,6 +377,11 @@ class MaQueueRestorer:
 
         ``None`` means the entity is gone. There is nothing left to pause then,
         and waiting on it would only stall the teardown.
+
+        Returns:
+            True as soon as the speaker is not reporting active playback.
+            False only ever after a reading that WAS active — which is why the
+            caller may treat it as "still playing" without a second check.
         """
         loop = asyncio.get_event_loop()
         limit = min(loop.time() + MA_PAUSE_CONFIRM_WAIT, deadline)
@@ -245,31 +393,45 @@ class MaQueueRestorer:
                 return False
             await asyncio.sleep(MA_PAUSE_POLL)
 
-    async def _stays_quiet(self, entity_id: str, deadline: float) -> bool:
-        """Read the silence back for ``MA_PAUSE_SETTLE_HOLD`` seconds (#2605).
+    async def _stays_quiet(
+        self, entity_id: str, deadline: float, hold: float | None
+    ) -> QuietOutcome:
+        """Read the silence back and say why the watch ended (#2605/#2707).
 
-        This is precisely the step #2606 was missing. There the first quiet
-        reading counted as proof — and because it fell inside a two-second
-        window, it was a reading of a speaker that had not finished settling.
+        Holding the silence is precisely the step #2606 was missing. There the
+        first quiet reading counted as proof — and because it fell inside a
+        two-second window, it was a reading of a speaker that had not finished
+        settling.
+
+        Args:
+            entity_id: the speaker to watch.
+            deadline: the guard window's end; never watched past it.
+            hold: how many seconds of unbroken silence count as proof, or
+                ``None`` to watch until the deadline. ``None`` is the #2691
+                case: a track that never started has no settling to outlive,
+                so no length of quiet is proof and the guard simply watches
+                for as long as it is allowed to.
 
         Returns:
-            False as soon as playback is reported again, or when the guard
-            window runs out before the silence has held long enough.
+            The reason the watch stopped. ``RELAPSED`` and ``WINDOW_EXPIRED``
+            used to share a ``False``, and the caller has to tell them apart —
+            one needs another pause, the other needs the guard to stop lying
+            about a silent room (#2707).
         """
         loop = asyncio.get_event_loop()
-        hold_until = loop.time() + MA_PAUSE_SETTLE_HOLD
+        hold_until = None if hold is None else loop.time() + hold
         while True:
             now = loop.time()
-            if now >= hold_until:
-                return True
+            if hold_until is not None and now >= hold_until:
+                return QuietOutcome.HELD
             if now >= deadline:
-                return False
+                return QuietOutcome.WINDOW_EXPIRED
             await asyncio.sleep(MA_PAUSE_POLL)
             state = self._hass.states.get(entity_id)
             if state is None:
-                return True
+                return QuietOutcome.HELD
             if state.state in MA_ACTIVE_STATES:
-                return False
+                return QuietOutcome.RELAPSED
 
     async def _wait_for_playing(self, entity_id: str) -> bool:
         """Poll until the speaker reports playback, at most MA_QUEUE_RESTORE_WAIT."""

@@ -44,6 +44,11 @@ def _fast_pause_guard(monkeypatch):
     monkeypatch.setattr(queue_restore, "MA_PAUSE_CONFIRM_WAIT", 0.05)
     monkeypatch.setattr(queue_restore, "MA_PAUSE_SETTLE_HOLD", 0.05)
     monkeypatch.setattr(queue_restore, "MA_PAUSE_GUARD_WINDOW", 0.30)
+    # #2691: the restore that never sees `playing` gets the longer late-start
+    # watch instead of the guard window. One fixture in this file (the idle
+    # speaker in the seek test) takes that path and would otherwise sit here
+    # for the full production 18s.
+    monkeypatch.setattr(queue_restore, "MA_LATE_START_WATCH", 0.30)
     monkeypatch.setattr(queue_restore, "MA_PAUSE_POLL", 0.01)
 
 
