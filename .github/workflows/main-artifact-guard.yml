@@ -83,6 +83,18 @@ jobs:
           set -o pipefail
           node scripts/build.mjs --check 2>&1 | tee "$RUNNER_TEMP/build-check.log"
 
+      # www/js/providers.generated.js is a SOURCE to esbuild but a derived file
+      # to the repo: it is generated from custom_components/beatify/providers.py
+      # and committed, so it drifts the same way a .gz sibling does (#2713). A
+      # stale mirror means a provider exists in the integration and not in the
+      # admin — no error, just a chip the host never sees. The PR suite catches
+      # it in tests/unit/test_provider_registry_2713.py; this catches the
+      # combination that is main.
+      - name: The generated provider mirror matches providers.py
+        if: always()
+        shell: bash
+        run: python3 tools/gen_providers_js.py --check
+
       # Everything below only runs when the tree is wrong. A red X on a main
       # commit is not an alarm in a repo that merges several times a day — on
       # 2026-09-06 main was red for 23 minutes and the repair happened by
