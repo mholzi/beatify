@@ -717,6 +717,12 @@
                 <!-- Chip row: bet / streak / other mode indicators (conditional) -->
                 <div id="reveal-chip-row" class="chip-row hidden"></div>
 
+                <!-- #2723: Sudden Death standing line. The reveal is the
+                     loudest second of the game — a one-off sentence is read by
+                     nobody. This sits in the same place every round and answers
+                     the question a guest actually has: am I still in it? -->
+                <div id="reveal-sd-standing" class="sd-standing hidden"></div>
+
                 <!-- Duel: your guess vs. correct year as two facing tickets,
                      with the gap as a delta pill overlapping their base and the
                      emotion headline above. -->
@@ -1027,6 +1033,20 @@
                 <span class="control-icon">🛑</span>
                 <span class="control-label" data-i18n="admin.end">End</span>
             </button>
+        </div>
+
+        <!-- #2723: host drawer. The control bar carries what is needed every
+             second (transport + volume); anything that changes the *course* of
+             the game lives one grip below it. Built as a container, not as a
+             Sudden Death control — #2649 (party lights) and #2646 (drop a song)
+             are meant to land here as further rows. -->
+        <div id="host-drawer" class="host-drawer hidden">
+            <button id="host-drawer-grip" class="host-drawer__grip" type="button"
+                    aria-expanded="false" aria-controls="host-drawer-body">
+                <span class="host-drawer__grip-bar"></span>
+                <span class="host-drawer__grip-label" data-i18n="admin.drawerTitle">Game flow</span>
+            </button>
+            <div id="host-drawer-body" class="host-drawer__body" hidden></div>
         </div>
 
         <!-- Reaction Bar (Story 18.9) - visible during REVEAL only -->
