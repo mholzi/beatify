@@ -235,7 +235,6 @@ class TestJoin:
         game_state.add_player("Host", admin_ws)
         game_state.set_admin("Host")
         game_state.add_player("Player2", _make_ws())
-        game_state.start_game()
         # Simulate admin disconnect and game pause
         game_state.get_player("Host").connected = False
         game_state.phase = GamePhase.PAUSED

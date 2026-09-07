@@ -122,10 +122,10 @@ class GamePhase(Enum):
 # checked — a resume legitimately restores PAUSED→PLAYING / PAUSED→REVEAL.
 #
 # Edges (source → allowed targets):
-#   * LOBBY and END are valid targets from ANY phase — ``start_game`` /
+#   * LOBBY and END are valid targets from ANY phase — create_game /
 #     rematch / reset re-initialise to LOBBY from anywhere, and
 #     ``advance_to_end`` is a documented universal terminal.
-#   * LOBBY   → PLAYING            (start_game)
+#   * LOBBY   → PLAYING            (first round via ``_initialize_round``)
 #   * PLAYING → REVEAL, PAUSED     (reveal / pause)
 #   * REVEAL  → PLAYING, PAUSED    (next-round commit / pause)
 # Same-phase forward writes (LOBBY→LOBBY re-init, PLAYING→PLAYING next round)
@@ -215,8 +215,8 @@ class GameState(
     :class:`~custom_components.beatify.game.state_serialization.StateSerializationMixin`.
 
     The round-lifecycle / round-start subsystem (Issue #1271 next-increment
-    extraction, stacked on the state-serialization cut — the LOBBY→PLAYING
-    start gate (``start_game``) plus the full ``start_round`` orchestration
+    extraction, stacked on the state-serialization cut — the full
+    ``start_round`` orchestration
     (song selection, playback dispatch, metadata build, round-state commit) and
     its setup helpers (``_ensure_media_player_service``, ``_prepare_intro_round``,
     ``_build_round_metadata``, ``_initialize_round``); the round-*end* /

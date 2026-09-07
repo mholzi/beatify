@@ -4,7 +4,7 @@ Issue #1587: ``tests/integration/`` held only ``test_placeholder.py`` (skipped
 WebSocket stubs from #197). The most load-bearing untested path is the *round
 lifecycle* — the seam where the #1271 mixins cooperate: ``GameSetupMixin``
 (create), ``PlayerLifecycleMixin`` (join), ``RoundLifecycleMixin``
-(start_game), ``RoundScoringMixin`` + ``ScoringService`` (end_round scoring),
+(start_round), ``RoundScoringMixin`` + ``ScoringService`` (end_round scoring),
 and ``LeaderboardMixin`` (ranking). ``test_state.py`` exercises only the
 *resilience* of ``end_round`` (one player throwing); it never asserts the
 **happy-path scoring outcome** of a real round driven through the public API.
@@ -18,7 +18,7 @@ plus the pure ``ScoringService`` make the flow fully deterministic.
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
@@ -47,14 +47,28 @@ def _begin_round(state, *, year: int) -> None:
     state.phase = GamePhase.PLAYING
 
 
-def _setup_started_game(*names: str):
-    """Create a game, join ``names``, and start it — returns the GameState."""
+async def _setup_started_game(*names: str):
+    """Create a game, join ``names``, and start it — returns the GameState.
+
+    #2717: this used to call ``GameState.start_game()``, so the "start" leg of
+    the flow this module claims to cover was a synchronous phase flip no host
+    ever reaches. It now drives ``start_round()``, the method both the
+    websocket admin handler and the REST start view call, with only the media
+    player stubbed out. ``_begin_round`` still pins the song afterwards so the
+    scoring assertions stay deterministic.
+    """
     state = make_game_state()
     _create_fresh_game(state)
+    media = MagicMock()
+    media.is_available.return_value = True
+    media.play_song = AsyncMock(return_value=True)
+    media.verify_responsive = AsyncMock(return_value=(True, None))
+    state._media_player_service = media
+    state.platform = "music_assistant"
     for name in names:
         state.add_player(name, MagicMock())
-    started, _ = state.start_game()
-    assert started is True
+    assert await state.start_round() is True
+    assert state.phase == GamePhase.PLAYING
     return state
 
 
@@ -69,7 +83,7 @@ class TestSingleRoundScoring:
         """A full round: exact guess > near guess > far miss, and the phase
         transitions to REVEAL with the broadcast callback fired exactly once.
         """
-        state = _setup_started_game("Alice", "Bob", "Carol")
+        state = await _setup_started_game("Alice", "Bob", "Carol")
         broadcast = MagicMock()
 
         async def _broadcast() -> None:
@@ -102,7 +116,7 @@ class TestSingleRoundScoring:
     async def test_non_submitter_scores_zero_and_is_marked_missed(self):
         """A player who never submits earns nothing and is recorded as a miss
         in the shareable round_results card (#120)."""
-        state = _setup_started_game("Alice", "Bob")
+        state = await _setup_started_game("Alice", "Bob")
         _begin_round(state, year=2000)
         state.get_player("Alice").submit_guess(2000, state._now())
         # Bob stays silent.
@@ -127,7 +141,7 @@ class TestMultiRoundLeaderboard:
         """Two rounds with a lead change: scores accumulate and the leaderboard
         reports the rank movement (previous_rank -> rank_change) from round 1.
         """
-        state = _setup_started_game("Alice", "Bob")
+        state = await _setup_started_game("Alice", "Bob")
 
         # Round 1: Bob nails it, Alice is far off -> Bob leads.
         _begin_round(state, year=1990)
@@ -168,7 +182,7 @@ class TestMultiRoundLeaderboard:
     async def test_final_leaderboard_reflects_played_game(self):
         """After a played round the final leaderboard carries the end-of-game
         stat block and ranks players by their accumulated score."""
-        state = _setup_started_game("Alice", "Bob")
+        state = await _setup_started_game("Alice", "Bob")
         _begin_round(state, year=1990)
         state.get_player("Alice").submit_guess(1990, state._now())
         state.get_player("Bob").submit_guess(1995, state._now())

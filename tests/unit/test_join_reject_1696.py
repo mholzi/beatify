@@ -136,9 +136,9 @@ class TestRejectPreservesReconnectedPlayer:
 
         game_state.add_player("Alice", _make_ws())
         game_state.get_player("Alice").score = 900
-        # Need a second player so the game can start.
+        # Need a second player so the game looks like a real, running room.
         game_state.add_player("Bob", _make_ws())
-        game_state.start_game()
+        game_state.phase = GamePhase.PLAYING
         assert game_state.phase != GamePhase.LOBBY
 
         _disconnect(game_state, "Alice")

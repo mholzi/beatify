@@ -134,11 +134,13 @@ async def admin_start_game(
         )
         return
 
-    # #2497: the minimum-player check used to live in GameState.start_game(),
-    # which no production path calls — so a game could be started with a single
+    # #2497: the minimum-player check used to live in a GameState.start_game()
+    # that no production path called — so a game could be started with a single
     # player. It belongs here rather than inside start_round(): start_round runs
     # for every round of every game, while this is a property of *starting* one,
     # and only here is there a socket to tell the host why nothing happened.
+    # #2717 deleted start_game(), so this and StartGameplayView are now the only
+    # two copies of the floor, one per surface a host can start a game from.
     if len(game_state.players) < MIN_PLAYERS:
         await ws.send_json(
             {

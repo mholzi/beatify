@@ -6,15 +6,19 @@ the **round-start / round-setup orchestration** cluster is pulled out of the
 ``game/state.py`` God-Object into this ``RoundLifecycleMixin``.
 
 The cluster is the "kick off the game and set up each new round" half of the
-class: the LOBBY→PLAYING start gate plus the full ``start_round`` orchestration
-(song selection, playback dispatch, metadata build, round-state commit). It is
-**behavior-preserving**: it carries the exact same methods that previously
-lived on ``GameState``, so its public API and every caller / test are
-unchanged.
+class: the full ``start_round`` orchestration (song selection, playback
+dispatch, metadata build, round-state commit) and its setup helpers.
 
-* ``start_game`` — the LOBBY→PLAYING start gate: validates the phase and the
-  minimum player count, then flips to PLAYING (#390 precursor). Called by the
-  admin ``start_game`` WebSocket / view handlers.
+#2717: there used to be a ``start_game`` here as well — a synchronous
+LOBBY→PLAYING flip with its own phase + minimum-player gate. Nothing in
+production ever called it (both start paths go straight to ``start_round``),
+and it could not be adopted either: ``start_round`` keys the sabotage grant and
+the crate-digger pre-start hook on ``self.phase == GamePhase.LOBBY``, so
+flipping to PLAYING first would silently skip both. It is gone; the phase flip
+belongs to ``_initialize_round`` and the start gate to the two handlers a host
+actually reaches (``ws_handlers/admin.admin_start_game`` and
+``server/game_views.StartGameplayView``).
+
 * ``start_round`` — the round-start orchestrator (#390): pulls the next
   playable song from the :class:`PlaylistManager`, skips/retries songs with no
   provider URI (capped at ``MAX_SONG_RETRIES``), dispatches playback through
@@ -53,9 +57,9 @@ The mixin relies on attributes / methods the host class owns and that live on
 ``self`` at runtime:
 
 * ``self.phase`` / ``self._set_phase`` — phase read + the single transition
-  chokepoint used by ``start_game`` / ``start_round`` / ``_initialize_round``.
-* ``self.players`` — minimum-player-count gate (``start_game``) and the
-  per-player round reset list passed to ``RoundManager.initialize_round``.
+  chokepoint used by ``start_round`` / ``_initialize_round``.
+* ``self.players`` — the sabotage-grant recipients and the per-player round
+  reset list passed to ``RoundManager.initialize_round``.
 * ``self._playlist_manager`` — next-song selection, remaining-count
   (``last_round``) and ``mark_played`` for skipped songs.
 * ``self.provider`` / ``self.storefront`` / ``self.platform`` /
@@ -106,12 +110,7 @@ import asyncio
 import contextlib
 import logging
 
-from custom_components.beatify.const import (
-    ERR_GAME_ALREADY_STARTED,
-    ERR_GAME_NOT_STARTED,
-    MAX_CONSECUTIVE_PLAYBACK_FAILURES,
-    MIN_PLAYERS,
-)
+from custom_components.beatify.const import MAX_CONSECUTIVE_PLAYBACK_FAILURES
 
 from .playlist import get_playback_uri, get_song_uri
 
@@ -121,35 +120,10 @@ _LOGGER = logging.getLogger(__name__)
 class RoundLifecycleMixin:
     """Round-start / round-setup behavior for :class:`GameState`.
 
-    Carries the LOBBY→PLAYING start gate plus the full ``start_round``
-    orchestration and its round-setup helpers (#1271 extraction). See the
-    module docstring for the full attribute / method contract this mixin
-    expects on ``self`` at runtime.
+    Carries the full ``start_round`` orchestration and its round-setup
+    helpers (#1271 extraction). See the module docstring for the full
+    attribute / method contract this mixin expects on ``self`` at runtime.
     """
-
-    def start_game(self) -> tuple[bool, str | None]:
-        """
-        Start the game, transitioning from LOBBY to PLAYING.
-
-        Returns:
-            (success, error_code) - error_code is None on success
-
-        """
-        from .state import GamePhase
-
-        if self.phase != GamePhase.LOBBY:
-            return False, ERR_GAME_ALREADY_STARTED
-
-        if len(self.players) < MIN_PLAYERS:
-            return False, ERR_GAME_NOT_STARTED  # Need at least MIN_PLAYERS to play
-
-        self._set_phase(GamePhase.PLAYING)
-
-        self._grant_sabotage_tokens()
-
-        # Round and song selection will be implemented in Epic 4
-        _LOGGER.info("Game started: %d players", len(self.players))
-        return True, None
 
     def _grant_sabotage_tokens(self) -> None:
         """Hand every player their single sabotage token (#1665).
@@ -159,10 +133,11 @@ class RoundLifecycleMixin:
         short game. No-op when the setting is off, so default games are
         unchanged, and idempotent, so being called twice cannot hand out two.
 
-        #2497: this used to live inline in ``start_game()``, which no
-        production path calls — both real start paths go straight to
-        ``start_round()``. It is called from the LOBBY transition there as well
-        now, and lives in its own method so the two callers cannot drift.
+        #2497: this used to live inline in a ``start_game()`` that no
+        production path called — both real start paths go straight to
+        ``start_round()``. The grant moved to the LOBBY transition there;
+        #2717 then deleted ``start_game()`` itself, so this method now has a
+        single caller and the drift it was factored out to prevent is gone.
         """
         if not self.sabotage_enabled:
             return
@@ -252,11 +227,12 @@ class RoundLifecycleMixin:
         # the worst case is the room keeping its creation-time songs.
         # #2497: the sabotage grant belongs to the LOBBY -> first-round
         # transition, and this is the only place both start paths pass through.
-        # It used to sit in start_game(), which nothing in production calls: the
-        # websocket admin handler and the REST start view both call start_round()
-        # directly and the phase flip happens inside _initialize_round. Same
-        # reasoning as the pre-start hook below, which is here for exactly that
-        # reason.
+        # It used to sit in a start_game() that nothing in production called
+        # (#2717 deleted it): the websocket admin handler and the REST start
+        # view both call start_round() directly and the phase flip happens
+        # inside _initialize_round. Note that this guard and the pre-start hook
+        # below both read GamePhase.LOBBY — any caller that flipped the phase
+        # before start_round would skip the grant AND the crate-digger hook.
         if self.phase == GamePhase.LOBBY and _retry_count == 0:
             self._grant_sabotage_tokens()
 

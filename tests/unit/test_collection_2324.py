@@ -27,11 +27,14 @@ from tests.conftest import make_game_state, make_player, make_songs
 
 
 def _started_game(*names: str, difficulty: str = "normal"):
-    """Start a game with ``names`` plus a silent extra player.
+    """Build a game with ``names`` plus a silent extra player.
 
-    ``MIN_PLAYERS`` is 2, so a one-player test still needs a body in the room.
     "Nobody" never submits, so it never collects and never affects a threshold
-    assertion — it exists only to clear the start gate.
+    assertion. It was added because ``MIN_PLAYERS`` is 2 and the old
+    ``start_game()`` shortcut refused a one-player room; #2717 deleted that
+    method (nothing in production called it) and ``_begin_round`` below owns
+    the PLAYING flip anyway. The extra body stays so the fixture shape — and
+    every round_results / leaderboard assertion built on it — is unchanged.
     """
     state = make_game_state()
     state.create_game(
@@ -43,8 +46,6 @@ def _started_game(*names: str, difficulty: str = "normal"):
     state.difficulty = difficulty
     for name in (*names, "Nobody"):
         state.add_player(name, MagicMock())
-    started, _ = state.start_game()
-    assert started is True
     return state
 
 

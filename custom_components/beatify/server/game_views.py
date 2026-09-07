@@ -1273,11 +1273,13 @@ class StartGameplayView(BeatifyAdminView):
         if game_state.phase != GamePhase.LOBBY:
             return _json_error("Game already started", 409, code="INVALID_PHASE")
 
-        # #2497: the minimum-player floor. It used to live in
-        # GameState.start_game(), which no production path calls, so a game
+        # #2497: the minimum-player floor. It used to live in a
+        # GameState.start_game() that no production path called, so a game
         # could be started alone. Enforced at the two places a *user* starts a
         # game — here and in the websocket admin handler — rather than inside
         # start_round(), which runs for every round of every game.
+        # #2717 deleted start_game() and its third, unreachable copy of this
+        # gate, which returned error codes no client ever saw.
         if len(game_state.players) < MIN_PLAYERS:
             return _json_error(
                 f"Need at least {MIN_PLAYERS} players to start",

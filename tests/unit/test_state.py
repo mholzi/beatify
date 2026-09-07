@@ -11,10 +11,8 @@ import pytest
 from custom_components.beatify.const import (
     DOMAIN,
     ERR_CANNOT_STEAL_SELF,
-    ERR_GAME_ALREADY_STARTED,
     ERR_GAME_ENDED,
     ERR_GAME_FULL,
-    ERR_GAME_NOT_STARTED,
     ERR_INVALID_ACTION,
     ERR_NAME_INVALID,
     ERR_NAME_TAKEN,
@@ -22,6 +20,7 @@ from custom_components.beatify.const import (
     ERR_NOT_IN_GAME,
     ERR_TARGET_NOT_SUBMITTED,
     MAX_PLAYERS,
+    MIN_PLAYERS,
     SUDDEN_DEATH_MIN_PLAYERS,
 )
 from custom_components.beatify.game.state import (
@@ -632,44 +631,6 @@ class TestAddPlayer:
 
 
 # ---------------------------------------------------------------------------
-# GameState.start_game
-# ---------------------------------------------------------------------------
-
-
-class TestStartGame:
-    def setup_method(self):
-        self.state = make_game_state()
-        _create_fresh_game(self.state)
-
-    def test_start_with_players(self):
-        self.state.add_player("Alice", MagicMock())
-        self.state.add_player("Bob", MagicMock())
-        ok, err = self.state.start_game()
-        assert ok is True
-        assert err is None
-        assert self.state.phase == GamePhase.PLAYING
-
-    def test_start_with_one_player_rejected(self):
-        self.state.add_player("Alice", MagicMock())
-        ok, err = self.state.start_game()
-        assert ok is False
-        assert err == ERR_GAME_NOT_STARTED
-
-    def test_start_with_no_players(self):
-        ok, err = self.state.start_game()
-        assert ok is False
-        assert err == ERR_GAME_NOT_STARTED
-
-    def test_double_start_rejected(self):
-        self.state.add_player("Alice", MagicMock())
-        self.state.add_player("Bob", MagicMock())
-        self.state.start_game()
-        ok, err = self.state.start_game()
-        assert ok is False
-        assert err == ERR_GAME_ALREADY_STARTED
-
-
-# ---------------------------------------------------------------------------
 # GameState.all_submitted
 # ---------------------------------------------------------------------------
 
@@ -1261,7 +1222,6 @@ def _setup_playing_game(state: GameState) -> None:
     ws = MagicMock()
     state.add_player("Admin", ws)
     state.set_admin("Admin")
-    state.start_game()
     state.phase = GamePhase.PLAYING
     state.deadline = int(state._now() * 1000) + 30_000  # 30s remaining
 
@@ -1546,7 +1506,7 @@ class TestEndRoundResilience:
         _create_fresh_game(self.state)
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.start_game()
+        self.state.phase = GamePhase.PLAYING
         # Set up a current song so end_round has correct_year context.
         self.state.current_song = {
             "title": "Test Song",
@@ -1628,7 +1588,7 @@ class TestTimerExpiryNoSubmissions:
         _create_fresh_game(self.state)
         self.state.add_player("Alice", MagicMock())
         self.state.add_player("Bob", MagicMock())
-        self.state.start_game()
+        self.state.phase = GamePhase.PLAYING
         self.state.current_song = {
             "title": "Test Song",
             "artist": "Test Artist",
@@ -1939,7 +1899,6 @@ class TestStartRoundGhostRoundGuard:
         state.add_player("Admin", MagicMock())
         state.add_player("Bob", MagicMock())
         state.set_admin("Admin")
-        state.start_game()  # LOBBY -> PLAYING (needs MIN_PLAYERS)
         state.phase = GamePhase.PLAYING
         # music_assistant platform skips the verify_responsive branch so the
         # only await before _initialize_round is play_song.
@@ -2141,7 +2100,6 @@ class TestMetadataCoroNoLeak:
         _create_fresh_game(state)
         state.add_player("Admin", MagicMock())
         state.set_admin("Admin")
-        state.start_game()
 
         # Force the intro-splash deferral path and a present media player.
         state._media_player_service = AsyncMock()
@@ -2169,7 +2127,6 @@ class TestEndGameSerializesWithRoundEnd:
         _create_fresh_game(state)
         state.add_player("Admin", MagicMock())
         state.set_admin("Admin")
-        state.start_game()
         state.phase = GamePhase.PLAYING
 
         order = []
@@ -2651,6 +2608,100 @@ class TestSuddenDeathLiveToggle:
         assert state._apply_sudden_death_elimination() == []
         # ...but Alice, already eliminated, stays out.
         assert state.get_player("Alice").eliminated is True
+
+
+class TestStartGameplayFloor:
+    """The minimum-player gate on the REST start path (#2717).
+
+    These four cases used to live in a ``TestStartGame`` class that drove
+    ``GameState.start_game()`` — a method no production path called. The gate
+    they were asserting was a third copy, with error codes (``(False,
+    ERR_GAME_NOT_STARTED)``) no client ever received. The floor a host actually
+    meets is this view's 409 ``NOT_ENOUGH_PLAYERS`` and the websocket handler's
+    error frame (covered in ``test_sabotage_start_path_2497.py``), so the cases
+    were repointed here rather than deleted.
+
+    ``start_round`` is stubbed for the same reason ``TestSuddenDeathStartFloor``
+    below stubs it: only the gate is under test, not the first-round machinery.
+    """
+
+    def _hass(self, state: GameState) -> MagicMock:
+        hass = MagicMock()
+        hass.data = {DOMAIN: {"game": state}}  # no ws_handler
+        return hass
+
+    @patch(
+        "custom_components.beatify.server.game_views.is_authorized_http",
+        return_value=True,
+    )
+    async def test_start_at_the_floor_is_allowed(self, _auth):
+        state = make_game_state()
+        _create_fresh_game(state)
+        for i in range(MIN_PLAYERS):
+            _add_live_player(state, f"P{i}")
+        state.start_round = AsyncMock(return_value=True)
+
+        resp = await StartGameplayView(self._hass(state)).post(MagicMock())
+
+        assert resp.status == 200
+        state.start_round.assert_awaited_once()
+
+    @patch(
+        "custom_components.beatify.server.game_views.is_authorized_http",
+        return_value=True,
+    )
+    async def test_one_short_of_the_floor_is_refused(self, _auth):
+        state = make_game_state()
+        _create_fresh_game(state)
+        for i in range(MIN_PLAYERS - 1):
+            _add_live_player(state, f"P{i}")
+        state.start_round = AsyncMock(return_value=True)
+
+        resp = await StartGameplayView(self._hass(state)).post(MagicMock())
+        body = json.loads(resp.body)
+
+        assert resp.status == 409
+        assert body["code"] == "NOT_ENOUGH_PLAYERS"
+        # The message names the floor, so raising MIN_PLAYERS cannot leave the
+        # host reading the old number (same guarantee as #2699's warning).
+        assert str(MIN_PLAYERS) in body["message"]
+        assert state.phase == GamePhase.LOBBY
+        state.start_round.assert_not_awaited()
+
+    @patch(
+        "custom_components.beatify.server.game_views.is_authorized_http",
+        return_value=True,
+    )
+    async def test_empty_lobby_is_refused(self, _auth):
+        state = make_game_state()
+        _create_fresh_game(state)
+        state.start_round = AsyncMock(return_value=True)
+
+        resp = await StartGameplayView(self._hass(state)).post(MagicMock())
+
+        assert resp.status == 409
+        assert json.loads(resp.body)["code"] == "NOT_ENOUGH_PLAYERS"
+        assert state.phase == GamePhase.LOBBY
+        state.start_round.assert_not_awaited()
+
+    @patch(
+        "custom_components.beatify.server.game_views.is_authorized_http",
+        return_value=True,
+    )
+    async def test_starting_an_already_started_game_is_refused(self, _auth):
+        """The double-start case: the phase gate fires before the floor."""
+        state = make_game_state()
+        _create_fresh_game(state)
+        for i in range(MIN_PLAYERS):
+            _add_live_player(state, f"P{i}")
+        state._set_phase(GamePhase.PLAYING)
+        state.start_round = AsyncMock(return_value=True)
+
+        resp = await StartGameplayView(self._hass(state)).post(MagicMock())
+
+        assert resp.status == 409
+        assert json.loads(resp.body)["code"] == "INVALID_PHASE"
+        state.start_round.assert_not_awaited()
 
 
 class TestSuddenDeathStartFloor:

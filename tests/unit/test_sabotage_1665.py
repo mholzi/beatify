@@ -21,7 +21,7 @@ Guarantees under test:
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import (
     ERR_CANNOT_SABOTAGE_SELF,
@@ -71,6 +71,19 @@ def _make_game(names, **create_kwargs):
     return state
 
 
+def _startable_game(**create_kwargs):
+    """A LOBBY game whose media player is stubbed, so ``start_round`` runs."""
+    state = make_game_state()
+    _create_fresh_game(state, **create_kwargs)
+    media = MagicMock()
+    media.is_available.return_value = True
+    media.play_song = AsyncMock(return_value=True)
+    media.verify_responsive = AsyncMock(return_value=(True, None))
+    state._media_player_service = media
+    state.platform = "music_assistant"
+    return state
+
+
 def _roll(effect):
     """An ``effect_roll`` chooser that always returns ``effect`` (test injection)."""
     return lambda _effects: effect
@@ -82,22 +95,34 @@ def _roll(effect):
 
 
 class TestTokenHandout:
-    def test_token_handed_out_when_enabled(self):
-        state = make_game_state()
-        _create_fresh_game(state, sabotage_enabled=True)
+    """The handout on the path a host actually takes.
+
+    These two used to drive ``GameState.start_game()``. That method granted the
+    tokens itself, and nothing in production called it — which is exactly how
+    #2497 shipped a sabotage setting that handed out nothing while these tests
+    stayed green. #2717 deleted the method; the assertions now run against
+    ``start_round()``, the LOBBY transition both real start paths go through.
+    """
+
+    async def test_token_handed_out_when_enabled(self):
+        state = _startable_game(sabotage_enabled=True)
         state.add_player("Alice", MagicMock())
         state.add_player("Bob", MagicMock())
-        ok, err = state.start_game()
-        assert ok is True and err is None
+        assert state.get_player("Alice").sabotage_available is False
+
+        assert await state.start_round() is True
+
+        assert state.phase == GamePhase.PLAYING
         assert state.get_player("Alice").sabotage_available is True
         assert state.get_player("Bob").sabotage_available is True
 
-    def test_no_token_when_disabled(self):
-        state = make_game_state()
-        _create_fresh_game(state, sabotage_enabled=False)
+    async def test_no_token_when_disabled(self):
+        state = _startable_game(sabotage_enabled=False)
         state.add_player("Alice", MagicMock())
         state.add_player("Bob", MagicMock())
-        state.start_game()
+
+        assert await state.start_round() is True
+
         assert state.get_player("Alice").sabotage_available is False
         assert state.get_player("Bob").sabotage_available is False
 
