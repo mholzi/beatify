@@ -10,11 +10,13 @@ bookkeeping that decides WHEN the host's queue is captured and handed back.
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import hashlib
 import hmac
 import logging
 import secrets
 from asyncio import timeout as async_timeout
+from collections.abc import Callable
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any
 from urllib.parse import quote
@@ -753,9 +755,15 @@ class MediaPlayerService:
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to stop: {err}")
             return False
 
-    async def play(self) -> bool:
+    async def play(self, *, blocking: bool = False) -> bool:
         """
         Resume playback (e.g. after intro pause).
+
+        Args:
+            blocking: wait for the service call to complete. The resume
+                watchdog (#2710) needs this — it re-reads the player one
+                second later and must not race its own kick. Everyone else
+                fires and forgets, which is what the call has always done.
 
         Returns:
             True if successful, False otherwise
@@ -766,12 +774,169 @@ class MediaPlayerService:
                 "media_player",
                 "media_play",
                 {"entity_id": self._entity_id},
+                blocking=blocking,
             )
             return True
         except (HomeAssistantError, ServiceNotFound) as err:
             _LOGGER.error("Failed to resume playback: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to resume: {err}")
             return False
+
+    async def resume_after_announcement(
+        self,
+        *,
+        lead_seconds: float,
+        should_continue: Callable[[], bool],
+    ) -> None:
+        """Watch the speaker through a TTS announcement and press play if it
+        does not resume on its own (#2710).
+
+        Announcements interrupt the just-started song, and some devices
+        (observed: Music Assistant voice satellites) never come back — the
+        player sits ``paused`` or ``idle``-with-a-title until a human presses
+        play. This walks a ~20 second window after the announcement chain and
+        kicks the speaker on its behalf, at most three times.
+
+        It lives here, not in ``game/state_lifecycle.py``, because every line
+        of it is a conversation with one speaker: read the state, press play,
+        undo a volume ratchet. Running it from the game logic meant a second,
+        analytics-free way to press play — a platform quirk fixed in
+        :meth:`play` was absent from the watchdog — and made the whole path
+        invisible to the injected fake from #2638.
+
+        Args:
+            lead_seconds: how long the announcements are still expected to
+                occupy the speaker. The caller owns that estimate (it is the
+                TTS queue's own reservation); we only wait it out and then
+                kick immediately instead of spending three more ticks
+                confirming what we already expect.
+            should_continue: asked once per tick, BEFORE the player is read.
+                False means playback stopped on purpose — the host tapped
+                "stop song", or the game paused — and the watchdog must not
+                undo that (#2576). Deciding after the read would still fire
+                one kick on the very tick the host stopped the song.
+
+        """
+        # v0.7.22 — triggers verified on hardware via the narrating build:
+        # * VA satellites stick in state='idle' after an announcement (HA
+        #   never reports 'paused' even while MA's UI shows the paused track)
+        #   -> sustained idle WITH a loaded title is the kick signature.
+        # * 'playing' is healthy, full stop: media_position on MA entities is
+        #   a snapshot+timestamp, not a live counter, so the old
+        #   frozen-position stall heuristic false-positived on a perfectly
+        #   playing ShieldTV. Removed.
+        # v0.7.30 — ANTICIPATE instead of observe. Playback starts BEFORE the
+        # announcements are fired, so every announcement interrupts the song
+        # and the device has to resume. Waiting for 3 consecutive idle ticks
+        # to prove that meant a 3-4s silence after "…3, 2, 1, go" (reported).
+
+        # The level as it is BEFORE the announcements duck and restore it, so
+        # the ratchet guard below can undo an upward drift.
+        vol_before: float | None = None
+        with contextlib.suppress(Exception):
+            st_before = self._hass.states.get(self._entity_id)
+            level = st_before.attributes.get("volume_level") if st_before else None
+            if isinstance(level, (int, float)):
+                vol_before = float(level)
+
+        kicks = 0
+        idle_streak = 0
+        vol_restored = False
+
+        if lead_seconds > 0:
+            await asyncio.sleep(lead_seconds + 0.4)
+            st0 = self._hass.states.get(self._entity_id)
+            if st0 is not None and st0.state in ("idle", "paused"):
+                kicks += 1
+                _LOGGER.info(
+                    "Resume watchdog: announcement window over, resuming "
+                    "immediately (state=%s)",
+                    st0.state,
+                )
+                with contextlib.suppress(Exception):
+                    await self.play(blocking=True)
+            elif st0 is not None and st0.state == "playing":
+                # Device resumed on its own (ShieldTV behaviour) — nothing to
+                # do, but keep polling as a safety net.
+                pass
+
+        for tick in range(20):
+            await asyncio.sleep(1.0)
+            # #2576: der Wachhund darf nur wiederbeleben, was von allein
+            # stehengeblieben ist — nie etwas, das jemand absichtlich
+            # angehalten hat. Der Aufrufer kennt den Unterschied, wir nicht.
+            if not should_continue():
+                return
+            st = self._hass.states.get(self._entity_id)
+            if st is None:
+                _LOGGER.info("Resume watchdog: entity vanished — exit")
+                return
+            title = st.attributes.get("media_title")
+            _LOGGER.info(
+                "Resume watchdog[%02d]: state=%s title=%s",
+                tick,
+                st.state,
+                title,
+            )
+
+            # Volume ratchet guard. Music Assistant raises the volume for an
+            # announcement and restores it afterwards; on a ShieldTV feeding
+            # an AV receiver the restore wrote back a HIGHER level each round,
+            # so the music grew painfully loud within a few rounds. Beatify
+            # itself never changes volume here, but it is the only component
+            # positioned to notice — so undo an upward drift once per round,
+            # inside the announcement window only, leaving the host's own
+            # volume buttons alone for the rest of the round.
+            if vol_before is not None and not vol_restored and tick <= 10:
+                cur = st.attributes.get("volume_level")
+                if isinstance(cur, (int, float)) and float(cur) > vol_before + 0.05:
+                    vol_restored = True
+                    _LOGGER.warning(
+                        "Volume rose from %.2f to %.2f across the TTS "
+                        "announcement — restoring (announcement "
+                        "duck/restore ratchet)",
+                        vol_before,
+                        float(cur),
+                    )
+                    with contextlib.suppress(Exception):
+                        await self._set_volume_on(
+                            self._entity_id, vol_before, blocking=True
+                        )
+            if st.state == "idle" and title:
+                idle_streak += 1
+            else:
+                idle_streak = 0
+            # 2 ticks, not 3: the anticipatory kick above handles the normal
+            # case, so this fallback should react faster to the cases it
+            # misses. Satellites flap idle<->playing for SINGLE ticks during
+            # healthy playback, so 2 consecutive remains the floor — and a
+            # spurious media_play on a playing device is a no-op anyway.
+            if st.state == "paused" or idle_streak >= 2:
+                kicks += 1
+                idle_streak = 0
+                _LOGGER.warning(
+                    "Media player %s after TTS announcement — "
+                    "resuming playback (kick %d)",
+                    "paused" if st.state == "paused" else "idle-stuck",
+                    kicks,
+                )
+                try:
+                    kicked = await self.play(blocking=True)
+                except Exception as err:  # noqa: BLE001
+                    _LOGGER.warning("Resume watchdog: media_play failed: %s", err)
+                    return
+                if not kicked:
+                    # play() has already logged it and recorded the analytics
+                    # event the old inline watchdog never produced.
+                    _LOGGER.warning("Resume watchdog: media_play failed — exit")
+                    return
+                if kicks >= 3:
+                    _LOGGER.info("Resume watchdog: 3 kicks — exit")
+                    return
+            elif st.state == "off":
+                _LOGGER.info("Resume watchdog: player off — exit")
+                return
+        _LOGGER.info("Resume watchdog: 20s window elapsed — exit")
 
     def get_volume(self) -> float:
         """
@@ -802,12 +967,15 @@ class MediaPlayerService:
         """
         return await self._set_volume_on(self._entity_id, level)
 
-    async def _set_volume_on(self, entity_id: str, level: float) -> bool:
+    async def _set_volume_on(
+        self, entity_id: str, level: float, *, blocking: bool = False
+    ) -> bool:
         """Set the volume of an explicit entity.
 
         Split out of :meth:`set_volume` so ``restore_volume`` can hand back a
         speaker the game has since switched away from (#2143) — that one is no
-        longer ``self._entity_id``.
+        longer ``self._entity_id``. ``blocking`` exists for the same reason as
+        on :meth:`play` (#2710).
         """
         try:
             await self._hass.services.async_call(
@@ -817,6 +985,7 @@ class MediaPlayerService:
                     "entity_id": entity_id,
                     "volume_level": max(0.0, min(1.0, level)),
                 },
+                blocking=blocking,
             )
             return True
         except (HomeAssistantError, ServiceNotFound) as err:

@@ -19,7 +19,9 @@ It **references** (does not own, receives from outside):
 * TTS announcer — optional, built from the injected factory (#2638)
 
 #2638: GameState does not import ``services.*`` and does not know Home
-Assistant exists when it builds these. It is handed a
+Assistant exists when it builds these — nor, since #2710, when it drives them:
+the post-announcement resume watchdog was the last place the game logic read
+``hass.states`` and called a ``media_player`` service itself. It is handed a
 ``GameOutputFactories`` bundle (game/protocols.py) at construction; the
 composition root fills it with HA-backed factories, a test fills it with fakes
 or leaves it empty. The admin spectator WebSocket used to live here too — it is

@@ -150,11 +150,6 @@ class TestAnnouncementsAndPlayback:
             "game/state_lifecycle.py"
         )
 
-    def test_resume_watchdog_triggers_on_idle_not_only_paused(self):
-        """MA voice satellites stick in 'idle' with a title loaded; HA never
-        reports 'paused' for them."""
-        assert "idle_streak >= 2" in src("game/state_lifecycle.py")
-
     def test_announcement_is_not_mistaken_for_a_song_ending(self):
         """With auto-advance "Off" (= advance at song end), an announcement
         interruption read as a finished song and skipped the round."""
@@ -376,18 +371,12 @@ class TestRoundClockStartsWithTheMusic:
         assert "_notify_state_callbacks()" in src("game/state_lifecycle.py")
 
 
-class TestVolumeRatchetGuard:
-    def test_an_upward_drift_across_an_announcement_is_undone(self):
-        """MA's announce duck/restore wrote back a HIGHER level each round on
-        a ShieldTV feeding an AV receiver — painfully loud within a few
-        rounds."""
-        code = src("game/state_lifecycle.py")
-        assert "_vol_before" in code and "volume_set" in code
-
-    def test_the_guard_fires_once_and_only_during_the_announcement_window(self):
-        """The host's own volume buttons must keep working."""
-        code = src("game/state_lifecycle.py")
-        assert "not vol_restored" in code and "tick <= 10" in code
+# The resume watchdog's own guards — idle-streak detection and the volume
+# ratchet — used to be checked here by reading the source, because the loop was
+# a closure inside `_start_round_locked` that reached into `hass` directly and
+# could not be called. #2710 moved it onto the media-player port, so those
+# three checks are real behaviour tests now: see
+# tests/unit/test_watchdog_respects_deliberate_stop_2576.py.
 
 
 class TestClientClockIndependence:

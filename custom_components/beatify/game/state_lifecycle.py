@@ -90,6 +90,14 @@ methods that need it (``# noqa: PLC0415``) to avoid a top-level circular import
 back into ``state.py``. The concrete ``MediaPlayerService`` is no longer
 imported here at all (#2638) — ``_ensure_media_player_service`` calls the
 injected factory, so the import graph stays acyclic without a lazy import.
+
+#2710: the post-announcement resume watchdog used to run here too — 215 lines
+of ``hass.states.get`` / ``hass.services.async_call("media_player", …)`` inside
+``_start_round_locked``, which is why "the game logic does not know Home
+Assistant exists" was false on every round with TTS enabled. The loop now lives
+on the media-player port (``resume_after_announcement``), next to every other
+way this game presses play; what stays here is the announcement budget, the
+"was this stopped on purpose" answer only the game can give, and the task.
 """
 
 from __future__ import annotations
@@ -406,9 +414,11 @@ class RoundLifecycleMixin:
                 # "error" / unset → systemic failure (speaker offline, MA
                 # provider broken). Count toward MAX_SONG_RETRIES so the
                 # recovery banner kicks in for real problems.
-                failure_reason = getattr(
-                    self._media_player_service, "last_failure_reason", None
-                )
+                # #2711: a plain read. The port declares this attribute, so
+                # a `getattr(..., None)` guard would only hide a fake that
+                # does not — by classifying its failures as "error" and
+                # quietly disabling the skip logic below.
+                failure_reason = self._media_player_service.last_failure_reason
                 self._playlist_manager.mark_played(get_playback_uri(song))
 
                 if failure_reason == "unavailable":
@@ -476,9 +486,9 @@ class RoundLifecycleMixin:
                 # defect and sends the next reader into the wrong provider.
                 # Falls back to the base field when no attempt was recorded
                 # (e.g. the song carried no playable URI at all).
-                attempted_uri = getattr(
-                    self._media_player_service, "last_attempted_uri", None
-                ) or song.get("uri")
+                attempted_uri = (
+                    self._media_player_service.last_attempted_uri or song.get("uri")
+                )
                 # #1927: name the speaker too. The pause banner used to explain
                 # *what* failed and *which provider* to re-authenticate, but
                 # never *where* it was playing — the whole reason a game running
@@ -589,17 +599,20 @@ class RoundLifecycleMixin:
         # fail to auto-resume afterwards — the player sits "paused" until a
         # human presses play. Verify playback shortly after the announcement
         # chain and press play on the device's behalf if needed.
-        if self._tts_service and self._hass and self.media_player:
+        #
+        # #2710: the watching itself is a conversation with one speaker, so it
+        # lives on the media-player port (``resume_after_announcement``) next
+        # to every other way this game presses play. What stays here is what
+        # only the game knows — how long the announcements still run, whether
+        # playback stopped on purpose, and who owns the task.
+        #
+        # The old `self._hass` in this condition went with the old body. It
+        # meant "we are running under Home Assistant, so there is a state
+        # machine to poll"; nothing below polls one any more, and keeping it
+        # would have left the whole path reachable only from a `hass` stub —
+        # which is the #2638 complaint this change exists to answer.
+        if self._tts_service and self.media_player:
             import asyncio as _asyncio
-
-            # Snapshot the level BEFORE announcements duck/restore it, so the
-            # watchdog below can undo an upward ratchet.
-            _vol_before = None
-            with contextlib.suppress(Exception):
-                _st0 = self._hass.states.get(self.media_player)
-                _v = _st0.attributes.get("volume_level") if _st0 else None
-                if isinstance(_v, (int, float)):
-                    _vol_before = float(_v)
 
             # The song is (or is about to be) audible: start the round clock
             # from here rather than from initialize_round, so players get the
@@ -635,176 +648,58 @@ class RoundLifecycleMixin:
                     with contextlib.suppress(Exception):
                         self._notify_state_callbacks()
 
-            _LOGGER.info("TTS resume watchdog armed for %s", self.media_player)
+            # How long the speaker is still expected to be busy announcing.
+            # The TTS queue's own reservation, capped: the watchdog waits it
+            # out and then kicks immediately, rather than spending three more
+            # seconds confirming a hang we already expect.
+            lead = 0.0
+            _busy = getattr(self, "announcement_busy_seconds", None)
+            if callable(_busy):
+                with contextlib.suppress(Exception):
+                    lead = min(float(_busy()), 15.0)
 
-            async def _resume_watchdog() -> None:
-                # v0.7.22 — triggers verified on hardware via the narrating
-                # build:
-                # * VA satellites stick in state='idle' after an announcement
-                #   (HA never reports 'paused' even while MA's UI shows the
-                #   paused track) -> sustained idle WITH a loaded title is
-                #   the kick signature.
-                # * 'playing' is healthy, full stop: media_position on MA
-                #   entities is a snapshot+timestamp, not a live counter, so
-                #   the old frozen-position stall heuristic false-positived
-                #   on a perfectly playing ShieldTV. Removed.
-                # v0.7.30 — ANTICIPATE instead of observe. Playback starts
-                # BEFORE the announcements are fired, so every announcement
-                # interrupts the song and the device has to resume. Waiting
-                # for 3 consecutive idle ticks to prove that meant a 3-4s
-                # silence after "…3, 2, 1, go" (reported). We now know how
-                # long the announcements should take, so: wait out that
-                # window, then kick IMMEDIATELY if the speaker isn't playing,
-                # instead of spending three more seconds confirming what we
-                # already expect.
-                kicks = 0
-                idle_streak = 0
-                vol_restored = False
-                lead = 0.0
-                _busy = getattr(self, "announcement_busy_seconds", None)
-                if callable(_busy):
-                    with contextlib.suppress(Exception):
-                        lead = min(float(_busy()), 15.0)
-                if lead > 0:
-                    await _asyncio.sleep(lead + 0.4)
-                    st0 = self._hass.states.get(self.media_player)
-                    if st0 is not None and st0.state in ("idle", "paused"):
-                        kicks += 1
-                        _LOGGER.info(
-                            "Resume watchdog: announcement window over, resuming "
-                            "immediately (state=%s)",
-                            st0.state,
-                        )
-                        with contextlib.suppress(Exception):
-                            await self._hass.services.async_call(
-                                "media_player",
-                                "media_play",
-                                {"entity_id": self.media_player},
-                                blocking=True,
-                            )
-                    elif st0 is not None and st0.state == "playing":
-                        # Device resumed on its own (ShieldTV behaviour) —
-                        # nothing to do, but keep polling as a safety net.
-                        pass
-                for tick in range(20):
-                    await _asyncio.sleep(1.0)
-                    # #2576: der Wachhund darf nur wiederbeleben, was von allein
-                    # stehengeblieben ist — nie etwas, das jemand absichtlich
-                    # angehalten hat.
-                    #
-                    # Ohne diese Pruefung liest er zwei gewollte Zustaende als
-                    # Haenger: der Host tippt „Song stoppen" (media_stop laesst
-                    # einen MA-Player als `idle` MIT Titel zurueck — genau die
-                    # Signatur, die weiter unten als steckengeblieben gilt), und
-                    # das Spiel pausiert (pause_game stoppt den Lautsprecher).
-                    # In beiden Faellen startete er die Musik wieder: einmal
-                    # gegen den ausdruecklichen Wunsch des Gastgebers, einmal
-                    # unter dem Pause-Banner.
-                    from .state import GamePhase  # noqa: PLC0415 — Zirkelbezug
+            def _watchdog_should_continue() -> bool:
+                """False once playback stopped on purpose (#2576).
 
-                    if self.phase != GamePhase.PLAYING or getattr(
-                        self, "song_stopped", False
-                    ):
-                        _LOGGER.info(
-                            "Resume watchdog: phase=%s song_stopped=%s — exit "
-                            "(playback stopped on purpose)",
-                            self.phase,
-                            getattr(self, "song_stopped", None),
-                        )
-                        return
-                    st = self._hass.states.get(self.media_player)
-                    if st is None:
-                        _LOGGER.info("Resume watchdog: entity vanished — exit")
-                        return
-                    title = st.attributes.get("media_title")
+                Two *wanted* states are indistinguishable from a hang when you
+                only look at the speaker: the host taps "stop song"
+                (``media_stop`` leaves a Music Assistant player ``idle`` WITH a
+                title — exactly the stuck signature), and the game pauses
+                (``pause_game`` stops the speaker). Only the game can tell the
+                difference, so the port asks before every read.
+                """
+                from .state import GamePhase  # noqa: PLC0415 — Zirkelbezug
+
+                if self.phase != GamePhase.PLAYING or getattr(
+                    self, "song_stopped", False
+                ):
                     _LOGGER.info(
-                        "Resume watchdog[%02d]: state=%s title=%s",
-                        tick,
-                        st.state,
-                        title,
+                        "Resume watchdog: phase=%s song_stopped=%s — exit "
+                        "(playback stopped on purpose)",
+                        self.phase,
+                        getattr(self, "song_stopped", None),
                     )
+                    return False
+                return True
 
-                    # Volume ratchet guard. Music Assistant raises the volume
-                    # for an announcement and restores it afterwards; on a
-                    # ShieldTV feeding an AV receiver the restore wrote back a
-                    # HIGHER level each round, so the music grew painfully
-                    # loud within a few rounds. Beatify itself never changes
-                    # volume here, but it is the only component positioned to
-                    # notice — so undo an upward drift once per round, inside
-                    # the announcement window only, leaving the host's own
-                    # volume buttons alone for the rest of the round.
-                    if _vol_before is not None and not vol_restored and tick <= 10:
-                        cur = st.attributes.get("volume_level")
-                        if (
-                            isinstance(cur, (int, float))
-                            and float(cur) > _vol_before + 0.05
-                        ):
-                            vol_restored = True
-                            _LOGGER.warning(
-                                "Volume rose from %.2f to %.2f across the TTS "
-                                "announcement — restoring (announcement "
-                                "duck/restore ratchet)",
-                                _vol_before,
-                                float(cur),
-                            )
-                            with contextlib.suppress(Exception):
-                                await self._hass.services.async_call(
-                                    "media_player",
-                                    "volume_set",
-                                    {
-                                        "entity_id": self.media_player,
-                                        "volume_level": _vol_before,
-                                    },
-                                    blocking=True,
-                                )
-                    if st.state == "idle" and title:
-                        idle_streak += 1
-                    else:
-                        idle_streak = 0
-                    # 2 ticks, not 3: the anticipatory kick above handles the
-                    # normal case, so this fallback should react faster to the
-                    # cases it misses. Satellites flap idle<->playing for
-                    # SINGLE ticks during healthy playback, so 2 consecutive
-                    # remains the floor — and a spurious media_play on a
-                    # playing device is a no-op anyway.
-                    if st.state == "paused" or idle_streak >= 2:
-                        kicks += 1
-                        idle_streak = 0
-                        _LOGGER.warning(
-                            "Media player %s after TTS announcement — "
-                            "resuming playback (kick %d)",
-                            "paused" if st.state == "paused" else "idle-stuck",
-                            kicks,
-                        )
-                        try:
-                            await self._hass.services.async_call(
-                                "media_player",
-                                "media_play",
-                                {"entity_id": self.media_player},
-                                blocking=True,
-                            )
-                        except Exception as err:  # noqa: BLE001
-                            _LOGGER.warning(
-                                "Resume watchdog: media_play failed: %s", err
-                            )
-                            return
-                        if kicks >= 3:
-                            _LOGGER.info("Resume watchdog: 3 kicks — exit")
-                            return
-                    elif st.state == "off":
-                        _LOGGER.info("Resume watchdog: player off — exit")
-                        return
-                _LOGGER.info("Resume watchdog: 20s window elapsed — exit")
-
-            # Retain the task reference: asyncio's loop keeps only WEAK refs,
-            # so an unreferenced task can be garbage-collected before running.
-            prev = getattr(self, "_tts_resume_task", None)
-            if prev is not None and not prev.done():
-                prev.cancel()
-            self._tts_resume_task = _asyncio.create_task(_resume_watchdog())
-            self._tts_resume_task.add_done_callback(
-                lambda _t: setattr(self, "_tts_resume_task", None)
-            )
+            service = self._media_player_service
+            if service is not None:
+                _LOGGER.info("TTS resume watchdog armed for %s", self.media_player)
+                # Retain the task reference: asyncio's loop keeps only WEAK
+                # refs, so an unreferenced task can be garbage-collected before
+                # running.
+                prev = getattr(self, "_tts_resume_task", None)
+                if prev is not None and not prev.done():
+                    prev.cancel()
+                self._tts_resume_task = _asyncio.create_task(
+                    service.resume_after_announcement(
+                        lead_seconds=lead,
+                        should_continue=_watchdog_should_continue,
+                    )
+                )
+                self._tts_resume_task.add_done_callback(
+                    lambda _t: setattr(self, "_tts_resume_task", None)
+                )
 
         return True
 

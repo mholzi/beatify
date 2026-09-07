@@ -17,13 +17,24 @@ instead of mocking Home Assistant.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any, Protocol, runtime_checkable
 
 
 @runtime_checkable
 class MediaPlayerProtocol(Protocol):
-    """Interface that GameState expects from a media-player service."""
+    """Interface that GameState expects from a media-player service.
+
+    #2711: this list is the whole contract, so it has to name everything the
+    domain actually calls. It did not: ``seek_forward``,
+    ``get_playback_state`` and the two failure-report attributes were called
+    without being declared, and a fake written against the Protocol therefore
+    raised on them. The reveal auto-advance swallows that exception as "still
+    playing" (``state_auto_advance.py``), so song-end auto-advance was
+    silently dead in every test that used such a fake. Anything the domain
+    reaches for belongs here.
+    """
 
     def set_analytics(self, analytics: Any) -> None: ...
     def is_available(self) -> bool: ...
@@ -38,6 +49,22 @@ class MediaPlayerProtocol(Protocol):
     async def restore_volume(self) -> bool: ...
     async def restore_queue(self) -> bool: ...
     def snapshot_saved_states(self) -> dict[str, dict[str, Any]]: ...
+    async def seek_forward(self, seconds: int) -> bool: ...
+    def get_playback_state(self) -> str | None: ...
+    async def resume_after_announcement(
+        self,
+        *,
+        lead_seconds: float,
+        should_continue: Callable[[], bool],
+    ) -> None: ...
+
+    # Why the last attempt failed, and which URI it used. Read by
+    # ``state_lifecycle`` to tell a storefront gap (#808: skip the song) from
+    # a systemic failure (#949/#1936: pause the game), and to name the URI
+    # that was really tried in the pause banner (#1927). Both are ``None``
+    # until the first attempt.
+    last_failure_reason: str | None
+    last_attempted_uri: str | None
 
 
 @runtime_checkable

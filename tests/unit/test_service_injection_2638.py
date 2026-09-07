@@ -17,9 +17,13 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 from custom_components.beatify.const import DOMAIN
-from custom_components.beatify.game.protocols import GameOutputFactories
+from custom_components.beatify.game.protocols import (
+    GameOutputFactories,
+    MediaPlayerProtocol,
+)
 from custom_components.beatify.game.state import GameState
 from custom_components.beatify.server.websocket import BeatifyWebSocketHandler
+from custom_components.beatify.services.media_player import MediaPlayerService
 from tests.conftest import make_game_state, make_songs
 
 
@@ -124,6 +128,61 @@ class TestFactoriesReceiveTheGameContext:
             "media_player_entity_id": "media_player.test",
         }
         assert state._tts_service is not None
+
+
+# ---------------------------------------------------------------------------
+# The Protocol is the whole contract (#2711)
+# ---------------------------------------------------------------------------
+
+
+class TestMediaPlayerProtocolConformance:
+    """A fake is only safe if the Protocol names everything the domain calls.
+
+    It did not. ``seek_forward``, ``get_playback_state`` and the two
+    failure-report attributes were called without being declared, so a fake
+    written against the Protocol raised on them — and the reveal auto-advance
+    swallows that as "still playing", which silently disabled song-end
+    auto-advance in every test using such a fake.
+    """
+
+    def test_the_real_service_satisfies_the_protocol(self):
+        service = MediaPlayerService(MagicMock(), "media_player.esszimmer")
+        assert isinstance(service, MediaPlayerProtocol)
+
+    @pytest.mark.parametrize(
+        "member",
+        [
+            "seek_forward",  # state_media.seek_forward
+            "get_playback_state",  # state_auto_advance._song_finished
+            "resume_after_announcement",  # state_lifecycle, #2710
+            "last_failure_reason",  # state_lifecycle, #808 skip logic
+            "last_attempted_uri",  # state_lifecycle, #1927 pause banner
+        ],
+    )
+    def test_a_fake_missing_one_of_them_is_rejected(self, member):
+        """Each is called by the domain, so each has to be part of the
+        contract — a fake without it must fail the check rather than fail at
+        3 a.m. inside an ``except Exception``."""
+
+        class Speaker:
+            """Answers to anything except the one member under test."""
+
+            def __getattr__(self, name):
+                if name == member:
+                    raise AttributeError(name)
+                return lambda *_a, **_kw: None
+
+        assert not isinstance(Speaker(), MediaPlayerProtocol)
+        assert hasattr(MediaPlayerService, member)
+
+    def test_a_bare_fake_is_not_mistaken_for_a_speaker(self):
+        """The isinstance check has to be worth something."""
+
+        class HalfASpeaker:
+            async def play(self) -> bool:
+                return True
+
+        assert not isinstance(HalfASpeaker(), MediaPlayerProtocol)
 
 
 # ---------------------------------------------------------------------------
