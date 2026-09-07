@@ -104,6 +104,35 @@ def get_platform_capabilities(platform: str) -> dict[str, Any]:
     )
 
 
+def resolve_entity_platform(hass: HomeAssistant, entity_id: str) -> str:
+    """The integration that owns ``entity_id``, straight from the entity registry.
+
+    #2693: the platform is what :func:`~.playback.build_strategy` dispatches on,
+    so it must describe the speaker that is actually about to play — not
+    whatever was written next to a previous selection. Reading it from the
+    registry at the moment the speaker is used makes it impossible for the two
+    to disagree.
+
+    Returns ``"unknown"`` when the entity has no registry entry (a YAML-only
+    player, a test double) or when the registry is unreadable; every caller
+    treats that the same way it always has.
+    """
+    # Late import: mirrors async_get_media_players — entity_registry is not
+    # importable in the unit-test env without a full HA setup. (noqa: PLC0415)
+    from homeassistant.helpers import entity_registry as er
+
+    try:
+        entry = er.async_get(hass).async_get(entity_id)
+    except Exception as err:  # noqa: BLE001 — a registry read must never abort a game
+        _LOGGER.warning(
+            "Entity registry lookup for %s raised %s; platform unknown",
+            entity_id,
+            err,
+        )
+        return "unknown"
+    return entry.platform if entry else "unknown"
+
+
 # Timeout for pre-flight connectivity check (seconds)
 PREFLIGHT_TIMEOUT = 3.0
 # Timeout for waiting for metadata to update after playing (seconds)

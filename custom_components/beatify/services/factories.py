@@ -11,6 +11,7 @@ import cycle.
 
 from __future__ import annotations
 
+import logging
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.game.protocols import (
@@ -21,11 +22,13 @@ from custom_components.beatify.game.protocols import (
 )
 
 from .lights import PartyLightsService
-from .media_player import MediaPlayerService
+from .media_player import MediaPlayerService, resolve_entity_platform
 from .tts import TTSService
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
+
+_LOGGER = logging.getLogger(__name__)
 
 
 def ha_service_factories(hass: HomeAssistant) -> GameOutputFactories:
@@ -38,10 +41,34 @@ def ha_service_factories(hass: HomeAssistant) -> GameOutputFactories:
         provider: str = "spotify",
         inherited_states: dict[str, dict[str, Any]] | None = None,
     ) -> MediaPlayerProtocol:
+        # #2693: the platform is DERIVED here, not taken on trust. Since #2636
+        # it is the key `build_strategy` dispatches on, so a caller that
+        # changes the speaker but forgets the platform (the Crate Digger
+        # pre-start hook did exactly that) would route a Sonos entity through
+        # `MusicAssistantStrategy` — the game starts, the first song times out,
+        # and nothing in the log points at the cause.
+        #
+        # This factory already closes over `hass`, so the registry that owns
+        # the answer is one call away. Deriving it here means the platform can
+        # only ever describe the entity this very service is being built for,
+        # whatever the caller believed.
+        resolved = resolve_entity_platform(hass, entity_id)
+        if resolved == "unknown":
+            # No registry entry (YAML-only player, test double). Fall back to
+            # what the caller passed rather than downgrading a known platform.
+            resolved = platform
+        elif resolved != platform and platform != "unknown":
+            _LOGGER.warning(
+                "Media player %s is on platform %s, not %s — using the "
+                "registry (#2693)",
+                entity_id,
+                resolved,
+                platform,
+            )
         return MediaPlayerService(
             hass,
             entity_id,
-            platform=platform,
+            platform=resolved,
             provider=provider,
             inherited_states=inherited_states,
         )

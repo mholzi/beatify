@@ -60,6 +60,11 @@ class TtsAnnouncerMixin:
         # Issue #447: TTS announcement service
         # #2638: built by the injected TTS factory (see game/protocols.py).
         self._tts_service: TtsProtocol | None = None
+        # #2724: the announcement tasks still waiting for their turn at the
+        # speaker. `_bg_tasks` also holds party-light flashes and media work,
+        # so a caller that wants to wait for *speech* — the REST end-game
+        # teardown — needs the narrower set. Tasks remove themselves when done.
+        self._announce_tasks: set[asyncio.Task] = set()
         self._tts_announce_game_start: bool = True
         self._tts_announce_winner: bool = True
         # Issue #471 Phase 1: Game Flow announcements
@@ -188,6 +193,47 @@ class TtsAnnouncerMixin:
     async def disable_tts(self) -> None:
         """Disable TTS announcements."""
         self._tts_service = None
+
+    #: How long :meth:`drain_announcements` will wait at most (#2724). Two
+    #: queued phrases can reserve at most 2 x ``_TTS_MAX_ESTIMATE_S`` of
+    #: speaker time, so this never truncates a real end-game ceremony; it
+    #: exists so a wedged TTS provider cannot hold an HTTP request open.
+    _ANNOUNCE_DRAIN_TIMEOUT_S = 26.0
+
+    async def drain_announcements(self, timeout: float | None = None) -> bool:
+        """Wait until every queued announcement has reached the speaker (#2724).
+
+        ``_tts_announce`` does not speak inline: it reserves a slot in the
+        estimated speaker timeline and hands the phrase to a background task
+        that sleeps until its turn. So right after ``advance_to_end`` has
+        called ``announce_winner`` and ``announce_podium``, both phrases are
+        still only *queued* — the podium one typically sleeps out the winner's
+        estimate first.
+
+        Anything that tears the game down in the same breath therefore has to
+        wait here first. ``end_game`` calls ``disable_tts`` (``_tts_service =
+        None``) and then ``_reset_game_internals`` (which moves ``self.round``,
+        tripping the staleness guard): a podium task that wakes after either of
+        those is dropped, or dies on ``None.speak`` and is swallowed as "TTS
+        announcement failed" — silently, which is how #2724 stayed invisible.
+
+        Returns:
+            True when the queue drained, False when ``timeout`` cut it short.
+        """
+        pending = {t for t in self._announce_tasks if not t.done()}
+        if not pending:
+            return True
+        limit = self._ANNOUNCE_DRAIN_TIMEOUT_S if timeout is None else timeout
+        _, still_pending = await asyncio.wait(pending, timeout=limit)
+        if still_pending:
+            _LOGGER.warning(
+                "Announcement queue did not drain within %.1fs — %d phrase(s) "
+                "may be lost (#2724)",
+                limit,
+                len(still_pending),
+            )
+            return False
+        return True
 
     def _lang(self) -> str:
         """Resolve the game's TTS language, defaulting to English.
@@ -336,6 +382,10 @@ class TtsAnnouncerMixin:
             task = asyncio.create_task(_run())
             self._bg_tasks.add(task)
             task.add_done_callback(self._bg_tasks.discard)
+            # #2724: also tracked on their own so a teardown can wait for
+            # speech alone, without waiting on light flashes or media work.
+            self._announce_tasks.add(task)
+            task.add_done_callback(self._announce_tasks.discard)
         except Exception:  # noqa: BLE001
             _LOGGER.warning("TTS announcement failed")
 

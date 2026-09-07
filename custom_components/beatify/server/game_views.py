@@ -59,6 +59,7 @@ from custom_components.beatify.services.factories import ha_service_factories
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     get_platform_capabilities,
+    resolve_entity_platform,
 )
 
 if TYPE_CHECKING:
@@ -570,6 +571,16 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     if isinstance(mp, str) and mp and self.hass.states.get(mp):
                         if gs.media_player != mp:
                             gs.media_player = mp
+                            # #2693: the speaker and its platform are one fact.
+                            # This hook used to move only the entity_id, so a
+                            # stored Sonos speaker kept the platform of the one
+                            # it replaced. `build_strategy` dispatches on the
+                            # platform (#2636) and the factory now derives it
+                            # per entity, so playback is safe either way — but
+                            # `start_round` and the pre-warm still read
+                            # `gs.platform` to decide whether to run the
+                            # non-MA responsiveness probe. Keep the pair honest.
+                            gs.platform = resolve_entity_platform(self.hass, mp)
                             # #2143: same release-instead-of-null as the lobby
                             # switch below. This path runs pre-start, so there
                             # is usually nothing captured yet — but a force-
@@ -579,7 +590,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                             if callable(_cp):
                                 with contextlib.suppress(Exception):
                                     _cp()
-                            _LOGGER.info("Pre-start: media_player -> %s", mp)
+                            _LOGGER.info(
+                                "Pre-start: media_player -> %s (platform %s)",
+                                mp,
+                                gs.platform,
+                            )
                     if "tts" in out:
                         with contextlib.suppress(Exception):
                             applied = await _apply_tts_config(gs, out["tts"])
@@ -745,6 +760,29 @@ class EndGameView(BeatifyAdminView):
                 await ws_handler.broadcast_state()
             else:
                 await game_state.advance_to_end()
+
+            # #2724: advance_to_end has QUEUED the winner and podium phrases,
+            # not spoken them — `_tts_announce` reserves a slot on the
+            # estimated speaker timeline and lets a background task sleep
+            # until its turn. `end_game()` below calls `disable_tts()` and
+            # then resets the round counter, so a podium task that wakes
+            # afterwards either finds `_tts_service is None` (the exception is
+            # swallowed as "TTS announcement failed") or is dropped by the
+            # staleness guard. Either way the host hears nothing.
+            #
+            # The WebSocket path does not need this: it leaves the game in END
+            # and only tears down on Dismiss, by which time the ceremony is
+            # over. This endpoint is the fallback for a CLOSED admin socket —
+            # the host is not looking at a screen, which is exactly when the
+            # spoken podium is the whole point. So wait for it here.
+            drain = getattr(game_state, "drain_announcements", None)
+            if callable(drain):
+                try:
+                    await drain()
+                except Exception as err:  # noqa: BLE001 — teardown must run
+                    _LOGGER.warning(
+                        "Waiting for the end-game announcements failed: %s", err
+                    )
 
         await game_state.end_game()
 
