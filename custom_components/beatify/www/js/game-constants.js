@@ -42,6 +42,18 @@ export const MAX_NAME_LENGTH = 20;
 export const SUDDEN_DEATH_MIN_PLAYERS = 3;
 
 /**
+ * Mirror of `REACTION_THROTTLE_SECONDS` in const.py: the fewest seconds between
+ * two reactions from the same player (#2562).
+ *
+ * game/player_registry.py is what actually enforces it; the phone imports the
+ * number only so the cooldown bar can be drawn the instant a tap is sent,
+ * before the server's ack has made the round trip. The ack then carries the
+ * authoritative remainder, so a slow link cannot leave the bar promising a tap
+ * the server is still going to swallow.
+ */
+export const REACTION_THROTTLE_SECONDS = 8;
+
+/**
  * Mirror of `REVEAL_AUTO_ADVANCE_OPTIONS` in const.py: the delays a host can
  * pick at the reveal, in seconds. `0` is "off" — advance manually or when the
  * song ends. Order is display order; index 0 is the default.

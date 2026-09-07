@@ -25,6 +25,24 @@ DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
 
+# #2562: the one place the reaction brake is defined. Reactions used to be
+# capped at one per player per REVEAL phase, which is a sane budget for a
+# five-second reveal and a nonsensical one for a 45-second round — and #2562
+# opens reactions to anyone who has already submitted. Dropping the cap without
+# a replacement lets one phone flood the TV, so the per-phase budget is replaced
+# by this interval: the fewest seconds between two reactions from the SAME
+# player. game/player_registry.py enforces it, server/ws_handlers/lifecycle.py
+# echoes it back to the sender so the phone can draw the cooldown, and
+# www/js/game-constants.js mirrors it (guarded by
+# www/js/__tests__/game-constants-mirror.test.js) so the bar on the phone counts
+# down exactly the interval the server is enforcing.
+#
+# 8 is a STARTING GUESS, not a measurement: it is roughly five reactions across
+# a 45-second round, which felt like "a room reacting" rather than "a child
+# hammering a button" on paper. Nobody has run a party on it yet. Tuning it is
+# meant to be this one line.
+REACTION_THROTTLE_SECONDS = 8
+
 # #1936: how many playback timeouts IN A ROW count as a systemic failure that
 # pauses the game. Below this, a timeout skips the song and play continues —
 # a rate-limiting provider is not a broken one, and pausing on the first

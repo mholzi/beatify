@@ -23,6 +23,7 @@ from custom_components.beatify.const import (
     ERR_SESSION_NOT_FOUND,
     ERR_SESSION_TAKEOVER,
     ERR_UNAUTHORIZED,
+    REACTION_THROTTLE_SECONDS,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.serializers import build_state_message
@@ -355,12 +356,32 @@ async def handle_reaction(
     data: dict,
     game_state: GameState,
 ) -> None:
-    """Handle live reaction during reveal (Story 18.9)."""
+    """Handle a live reaction (Story 18.9, widened by #2562).
+
+    Reactions used to exist only at the reveal. #2562 opens them to a player who
+    is already done with the round — they have nothing left to do but watch a
+    timer, and the TV has a `reaction-container` that has always been
+    phase-independent. The gate is therefore *not* "any phase": during PLAYING a
+    player may react only once they are out of the round themselves, either
+    because they submitted or because they are out of play (Sudden Death
+    elimination / finale-playoff spectator). Someone still dragging their slider
+    cannot react — that is what keeps this encouragement rather than a way to
+    guess and heckle at the same time.
+
+    Note that the out-of-play half is a bug fix as much as a feature: #827
+    already shows the reaction bar to eliminated players during PLAYING, and
+    every tap on it has been silently dropped by the old REVEAL-only gate ever
+    since.
+    """
     player = game_state.get_player_by_ws(ws)
     if not player:
         return
 
-    if game_state.phase != GamePhase.REVEAL:
+    phase = game_state.phase
+    if phase == GamePhase.PLAYING:
+        if not (player.submitted or player.out_of_play):
+            return
+    elif phase != GamePhase.REVEAL:
         return
 
     emoji = data.get("emoji", "")
@@ -375,6 +396,23 @@ async def handle_reaction(
                 "emoji": emoji,
             }
         )
+        # #2562: the sender's own cooldown, from the server that enforces it.
+        # The phone draws a bar from this instead of running its own timer, so
+        # the two cannot drift apart over a slow link and hand the player a tap
+        # that looks accepted and is not.
+        retry_after: float = REACTION_THROTTLE_SECONDS
+        throttled = False
+    else:
+        retry_after = game_state.reaction_retry_after(player.name)
+        throttled = True
+
+    await ws.send_json(
+        {
+            "type": "reaction_ack",
+            "retry_after": retry_after,
+            "throttled": throttled,
+        }
+    )
 
 
 async def handle_reconnect(
