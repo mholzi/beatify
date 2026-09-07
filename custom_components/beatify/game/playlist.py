@@ -1453,10 +1453,10 @@ def build_next_playlist_tiles(
     for stem in recent_stems:
         if len(tiles) >= limit:
             break
-        meta = by_stem.get(stem)
-        if meta is None:
+        recent_meta = by_stem.get(stem)
+        if recent_meta is None:
             continue
-        rel = playlist_rel_path(playlist_dir, meta)
+        rel = playlist_rel_path(playlist_dir, recent_meta)
         if rel in used:
             continue
         used.add(rel)
