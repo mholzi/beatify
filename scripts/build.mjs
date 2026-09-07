@@ -49,7 +49,10 @@ const MINIFY = [
 // ESM bundles: an entry module that `import`s its siblings → one minified bundle.
 // admin (#1279 step 2): now an ES module that imports ./admin/util.js; bundled
 // to admin.min.js and loaded via `<script type="module">` in admin.html.
-const BUNDLES = [
+// Exported so `__tests__/admin-window-contract-2712.test.js` can ask esbuild for
+// the same module graphs the shipped bundles are built from, instead of keeping
+// its own copy of which file ends up in which bundle.
+export const BUNDLES = [
   { entry: "player-core", out: "player.bundle.min.js", format: "esm" },
   { entry: "admin", out: "admin.min.js", format: "esm" },
 ];

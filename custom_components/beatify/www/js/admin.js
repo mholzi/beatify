@@ -225,10 +225,26 @@ setCurrentGameResolver(() => adminState.currentGame);
 // module of this bundle now, so it *could* import them — but this file imports
 // wizard.js in turn, so a direct import would close a cycle. `window` stays as
 // the cycle-breaker; what it no longer papers over is a second copy of the
-// module graph. Nothing under `./admin/` reads any of the six;
-// `__tests__/admin-section-independence-2637.test.js` fails if that changes.
+// module graph.
 // Every read above is event-driven (after DOMContentLoaded, or on a click), so
 // the assignment has always happened first.
+//
+// Two modules under `./admin/` do read one of these after all (#2712), which
+// this comment used to deny: `admin/sections/mix.js` reads `BeatifyHome` and
+// `admin/sections/media-players.js` reads `BeatifyPersistSetup`. Both write
+// `globalThis.` rather than `window.`, and that is the only reason #2637's
+// sentinel — a Proxy around `window` — does not refuse them. Both should take
+// the dependency as a parameter the way `initMixTab({ startGame, refreshStatus })`
+// already does; neither is pinned by #2637 today.
+//
+// What IS pinned, on every run: `__tests__/admin-window-contract-2712.test.js`
+// derives both ends of every `window` handshake from the tree — the page's
+// `<script>` list, esbuild's metafile, an acorn parse of each file — and fails
+// when a name appears, disappears or changes ends. Every read on the far side
+// is guarded with `typeof … === 'function'` or `?.()`, so without that check a
+// name that goes missing does not throw; it just stops happening (#2679). The
+// table there carries a verdict per handshake and cannot go stale the way the
+// list above has, more than once.
 
 // Screen Wake Lock (#622, #1122)
 // Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox.
