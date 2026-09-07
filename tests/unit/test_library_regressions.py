@@ -215,9 +215,18 @@ class TestWizardIntegration:
 
     def test_provider_entry_explains_what_it_plays(self):
         """ "Crate Digger" alone doesn't tell a new host that this is their
-        own library."""
-        code = src("www/js/wizard.js")
-        assert "wizard.providerLibrarySub" in code
+        own library.
+
+        #2713 moved the chip list into the provider registry, so the second
+        line is asserted where it is now declared — and in the generated mirror
+        the wizard actually reads.
+        """
+        from custom_components.beatify.providers import PROVIDERS_BY_ID
+
+        spec = PROVIDERS_BY_ID["ma_library"]
+        assert spec.sub_key == "wizard.providerLibrarySub"
+        assert spec.sub
+        assert "wizard.providerLibrarySub" in src("www/js/providers.generated.js")
         assert "wiz-provider-sub" in src("www/css/library.css")
 
 
