@@ -432,11 +432,19 @@ class RoundLifecycleMixin:
 
                 # #1936: a timeout is not proof of a broken system. Music
                 # Assistant's Apple Music provider rate-limits and then retries
-                # after its OWN backoff — measured at 15.7s, i.e. longer than
-                # the deadline we just gave it. Pausing the whole game on that
-                # first timeout ended the evening for a provider that was
-                # working, and handed the host a re-authenticate banner for a
-                # problem they did not have.
+                # on its OWN exponential backoff, which can outlast whatever
+                # deadline we gave it. Pausing the whole game on that first
+                # timeout ended the evening for a provider that was working,
+                # and handed the host a re-authenticate banner for a problem
+                # they did not have.
+                #
+                # #2682 moved the deadline out to 25s so a start throttled to
+                # MA's fifth retry (~23s) now lands instead of timing out, and
+                # made the log say which cause it was — `last_failure_reason`
+                # is "rate_limited" when a recent start was measurably slow,
+                # "error" when none was. Both count here, deliberately: past
+                # the fifth retry the next one is ~16s away, and skipping the
+                # song beats holding the room in silence for it.
                 #
                 # So the first failures skip the song, exactly like a
                 # storefront gap; only MAX_CONSECUTIVE_PLAYBACK_FAILURES in a

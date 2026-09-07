@@ -19,10 +19,16 @@ ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
 
 # #1936: how many playback timeouts IN A ROW count as a systemic failure that
 # pauses the game. Below this, a timeout skips the song and play continues —
-# a rate-limiting provider (Music Assistant's Apple Music backs off ~15.7s,
-# longer than our own deadline) is not a broken one, and pausing on the first
+# a rate-limiting provider is not a broken one, and pausing on the first
 # timeout ended whole games over it. A genuinely offline speaker still reaches
 # the recovery banner, just a few songs later.
+#
+# #2682 raised MA_PLAYBACK_TIMEOUT to 25s, which now covers Music Assistant's
+# backoff up to its fifth retry (~23s to first audio). A timeout that still
+# happens under that budget means MA is at its sixth attempt or later, where
+# the next retry alone is ~16s — so waiting is no longer the better answer and
+# this counter is what keeps the game moving instead. Three of them in a row
+# still pauses, and the log now says which of the two causes it was.
 MAX_CONSECUTIVE_PLAYBACK_FAILURES = 3
 
 # Server-side round backstop (#1865). A periodic tick ends a round whose

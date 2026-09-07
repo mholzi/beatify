@@ -80,9 +80,12 @@ class PlaybackStrategy(ABC):
     @property
     def last_failure_reason(self) -> str | None:
         """Why the most recent attempt failed — ``"unavailable"``, ``"error"``,
-        ``"wrong_track"`` — or None when it succeeded. Read by
-        ``game/state_lifecycle.py`` to decide whether a failure counts against
-        ``MAX_SONG_RETRIES``."""
+        ``"wrong_track"``, ``"rate_limited"`` — or None when it succeeded. Read
+        by ``game/state_lifecycle.py`` to decide whether a failure counts
+        against ``MAX_SONG_RETRIES``: only ``"unavailable"`` skips without
+        counting, so ``"rate_limited"`` (#2682) behaves exactly as ``"error"``
+        does and exists to carry the *reason* across the boundary rather than
+        to change what the game does with it."""
         return self.context.last_failure_reason
 
     @last_failure_reason.setter

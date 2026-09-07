@@ -33,20 +33,86 @@ _LOGGER = logging.getLogger(__name__)
 # Denon AirPlay, some MA-wrapped Sonos setups) can take 10-12s to acknowledge
 # a new track on the first round. #777 showed 8s was too aggressive — rounds
 # advanced before the track had actually swapped on the speaker.
-MA_PLAYBACK_TIMEOUT = 15.0
+#
+# #2682 raised it from 15.0s, and the number comes from Music Assistant's own
+# retry schedule rather than from rounding up. 23 starts were timed on the real
+# installation during the v4.4.3-rc1 live test: median 4s to first audio, and
+# one at 14.6s — 0.4s inside the old deadline. The Music Assistant add-on log
+# named the cause: its Apple Music rate limiter had failed and slept 1.0s, then
+# 2.0s, then 4.3s, on an exponential schedule that runs to 8 attempts.
+#
+# That schedule is the whole arithmetic. Sleeping before attempt N costs
+# 2^(N-1) - 1 seconds, and the 4.3s observed for a nominal 4.0s puts the real
+# figure about 7% above nominal:
+#
+#     attempt 2 at   1.1s      attempt 5 at  16.1s
+#     attempt 3 at   3.2s      attempt 6 at  33.3s
+#     attempt 4 at   7.5s      attempt 7 at  67.7s
+#
+# On top of that sits the cost of the failed API calls (~0.8s each, so ~3s by
+# attempt 5) and the speaker's own start, which the same run measured at a 4s
+# median warm. So a start that only succeeds on Music Assistant's FIFTH attempt
+# is audible at about 16.1 + 3 + 4 = 23s, and one that needs the SIXTH at about
+# 33.3 + 3 + 4 = 40s.
+#
+# The budget is therefore set past attempt 5 and deliberately short of attempt
+# 6. 40 seconds of silence in front of guests is worse for the room than
+# skipping the song and drawing another one — and with
+# MAX_CONSECUTIVE_PLAYBACK_FAILURES the game would spend two minutes on it
+# before saying anything. 25.0 clears attempt 5 with ~2s to spare, and turns
+# the measured 14.6s start from 0.4s of headroom into 10.4s.
+#
+# The cost is paid by a genuinely dead URI, which now waits 25s instead of 15
+# before the cascade moves on. That is the trade #2682 asked for explicitly: a
+# longer deadline costs nothing when playback is fast, and the failure it slows
+# down is the one the log now names (see MA_SLOW_START_SECONDS below).
+MA_PLAYBACK_TIMEOUT = 25.0
 
-# #1936: the FIRST play of a game gets a third more time (15.0s → 20.0s). A
+# #1936: the FIRST play of a game gets a third more time (25.0s → 33.3s). A
 # speaker idle for a while was measured at 10.1s to first audio (Sonos via MA,
 # Apple Music) — close enough to the deadline that a cold start regularly lost
 # the race and the game paused before a single note had played. Later rounds
 # keep the shorter deadline: by then the speaker is warm and a longer wait is
 # just silence in front of the players.
 #
+# The factor still holds after #2682 raised the base, and for the same reason
+# the base was raised: a cold speaker (10.1s) that is ALSO throttled to Music
+# Assistant's fifth attempt (16.1s of backoff plus ~3s of failed calls) is
+# audible at ~29s, which 25.0 alone would not cover and 33.3 does.
+#
 # Expressed as a FACTOR, not a second absolute constant, so the one existing
 # patch point still governs both budgets — eight tests patch
 # MA_PLAYBACK_TIMEOUT down to keep the suite fast, and a separate absolute
-# constant would have silently made each of them wait the full 20s.
+# constant would have silently made each of them wait the full budget.
 MA_FIRST_PLAY_TIMEOUT_FACTOR = 4 / 3
+
+# #2682: how slow a CONFIRMED start has to be before it is worth a WARNING.
+#
+# This is the second half of the ticket, and the more useful half. A start that
+# is being throttled and a start whose URI is dead end at the same deadline
+# with the same message, and until now the only place the difference was
+# visible was the Music Assistant add-on log — a separate file most people
+# never open. But the two are not actually symmetric: throttling produces
+# something a dead URI never produces, namely a start that SUCCEEDS and takes
+# far too long. That is exactly what #2682 was written from.
+#
+# So the slow success is logged, loudly, at the moment it happens. Twice the
+# measured 4s median is a threshold no healthy warm start reaches and every
+# throttled one does (the run that produced the ticket sat at 14.6s).
+MA_SLOW_START_SECONDS = 8.0
+
+# #2682: how long a slow start stays evidence that the provider is throttling.
+#
+# Throttling is a property of the minute, not of the track — Apple was leaning
+# on that household for a window, and every start inside it paid. A dead URI is
+# the opposite: a property of one song, with the songs on either side of it
+# starting in four seconds. So "was a recent start slow?" is what separates the
+# two once a timeout has actually happened, and this is how far back to look.
+#
+# Long enough to span the gap between two consecutive starts, or it would
+# forget between rounds and never fire: a round is up to 60s of music and the
+# reveal dwell can be a full 90s auto-advance, so 150s is the gap to cover.
+MA_THROTTLE_MEMORY_SECONDS = 180.0
 
 # #1381: Fast-path Path 2 (title-advanced-without-exact-match) must not
 # instant-accept an *arbitrary* title change. If a requested URI fails to
@@ -243,6 +309,73 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # must NOT misread that self-induced idle as a systemic 'error' (which
         # pauses the game). Reset before each song.
         self._stopped_for_cascade: bool = False
+        # #2682: when a start last took longer than MA_SLOW_START_SECONDS, and
+        # how long it took. A slow SUCCESS is the only in-band evidence that
+        # Music Assistant's provider is backing off — a dead URI never produces
+        # one — so it is remembered and used to explain the next timeout.
+        # NOT reset per song: throttling spans songs, which is the point.
+        self._last_slow_start: tuple[float, float] | None = None
+
+    # -- #2682: telling a throttled start apart from a dead URI --------------
+
+    def _note_start_duration(
+        self, elapsed: float, uri: str, timeout: float, *, first_play: bool
+    ) -> None:
+        """Log a confirmed start, loudly when it was slow (#2682).
+
+        The fast case stays at DEBUG, where it has always been. A start past
+        MA_SLOW_START_SECONDS is the throttling fingerprint and is raised to
+        WARNING, because the person who needs it is reading Beatify's log after
+        a party and would otherwise have to open the Music Assistant add-on log
+        to learn that anything was wrong at all.
+
+        The first play of a game is exempted from the *memory*, not from the
+        warning: a cold speaker was measured at 10.1s in #1936 with nothing
+        throttling it, so treating it as evidence would arm the throttle
+        explanation at the start of every game.
+        """
+        if elapsed < MA_SLOW_START_SECONDS:
+            return
+        if first_play:
+            _LOGGER.info(
+                "MA playback confirmed after %.1fs for %s — slow, but this is "
+                "the first start of the game and a cold speaker was measured "
+                "at ~10s on its own (#1936). Not counting it as evidence that "
+                "the provider is throttling.",
+                elapsed,
+                uri,
+            )
+            return
+        self._last_slow_start = (asyncio.get_event_loop().time(), elapsed)
+        _LOGGER.warning(
+            "MA playback confirmed after %.1fs for %s — past the %.0fs "
+            "slow-start mark, on a %.0fs budget (a healthy warm start is about "
+            "4s). Nothing failed, but Music Assistant's provider is very "
+            "likely backing off: its Apple Music rate limiter retries on an "
+            "exponential schedule (1s, 2s, 4s, 8s, ...) and that wait lands on "
+            "top of every start. The next one may not fit in the budget. "
+            "Confirm it in the Music Assistant add-on log — look for 'Rate "
+            "Limiter'. (#2682)",
+            elapsed,
+            uri,
+            MA_SLOW_START_SECONDS,
+            timeout,
+        )
+
+    def _recent_slow_start(self) -> tuple[float, float] | None:
+        """``(seconds ago, how long it took)`` of a recent slow start (#2682).
+
+        None when there was none inside MA_THROTTLE_MEMORY_SECONDS — which is
+        the reading that says "the provider was answering promptly for the
+        other songs", i.e. this failure is about THIS track or the speaker.
+        """
+        if self._last_slow_start is None:
+            return None
+        when, elapsed = self._last_slow_start
+        ago = asyncio.get_event_loop().time() - when
+        if ago > MA_THROTTLE_MEMORY_SECONDS:
+            return None
+        return ago, elapsed
 
     def uri_candidates(self, song: dict[str, Any]) -> list[tuple[str | None, str]]:
         """
@@ -555,8 +688,9 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # reported with the URI that was really tried.
         self.last_attempted_uri = uri
         # #1936: cold-start budget for the very first attempt of a game only.
+        first_play = self._first_play_pending
         timeout = MA_PLAYBACK_TIMEOUT * (
-            MA_FIRST_PLAY_TIMEOUT_FACTOR if self._first_play_pending else 1
+            MA_FIRST_PLAY_TIMEOUT_FACTOR if first_play else 1
         )
         self._first_play_pending = False
         _LOGGER.debug(
@@ -763,6 +897,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
                     current.attributes.get("media_title", ""),
                     current.attributes.get("media_position", 0),
                 )
+                self._note_start_duration(elapsed, uri, timeout, first_play=first_play)
                 return True
 
             await asyncio.wait_for(confirmed.wait(), timeout=timeout)
@@ -774,6 +909,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 final.attributes.get("media_title", "") if final else "?",
                 final.attributes.get("media_position", 0) if final else 0,
             )
+            self._note_start_duration(elapsed, uri, timeout, first_play=first_play)
             return True
         except asyncio.TimeoutError:
             pass
@@ -782,6 +918,12 @@ class MusicAssistantStrategy(PlaybackStrategy):
 
         current_state = await self.context.state_with_retry()
         speaker_state = current_state.state if current_state else "unknown"
+
+        # #2682: the one question this timeout cannot answer on its own —
+        # was the provider throttling us in this window? A slow but successful
+        # start inside MA_THROTTLE_MEMORY_SECONDS says yes, and nothing else
+        # available on this side of the boundary does. See _recent_slow_start.
+        slow = self._recent_slow_start()
 
         # Hard failure: speaker is idle/unavailable/off — song won't play
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
@@ -804,17 +946,51 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 )
                 self.last_failure_reason = "unavailable"
                 return False
+            if slow is not None:
+                # #2682: a rate-limited start used to be indistinguishable
+                # from a dead URI here — same deadline, same sentence, and the
+                # only place the difference showed was the Music Assistant
+                # add-on log. It is distinguishable now, because a recent
+                # start already ran long and finished: the provider was
+                # answering slowly in this window, so this timeout is very
+                # likely the same backoff one step further along its curve.
+                _LOGGER.error(
+                    "MA playback failed after %.1fs for %s (state: %s) — and a "
+                    "start %.0fs ago already took %.1fs, so Music Assistant's "
+                    "provider was backing off during this window. Read this as "
+                    "rate limiting, NOT as a missing track and NOT as a "
+                    "provider that needs re-authenticating: the schedule "
+                    "doubles (1s, 2s, 4s, 8s, ...) and a start that lands one "
+                    "step further along it outlasts any budget worth waiting "
+                    "in front of guests. Nothing to fix — confirm it in the "
+                    "Music Assistant add-on log by searching for 'Rate "
+                    "Limiter'. (#2682)",
+                    timeout,
+                    uri,
+                    speaker_state,
+                    slow[0],
+                    slow[1],
+                )
+                # Counts exactly as "error" does in state_lifecycle (only
+                # "unavailable" skips without counting), so the game behaves
+                # as it did: skip, and pause once
+                # MAX_CONSECUTIVE_PLAYBACK_FAILURES land in a row. The value
+                # is separate so the reason survives the boundary instead of
+                # being flattened into the same word as a dead speaker.
+                self.last_failure_reason = "rate_limited"
+                return False
             _LOGGER.error(
                 "MA playback failed after %.1fs for %s (state: %s). "
                 "Either the speaker is offline, MA's provider is unauthenticated, "
                 "or the track is not available in your provider's catalog. If this "
                 "happens for many tracks, re-authenticate your music provider in MA. "
-                "A rate-limiting provider looks the same from here — Music "
-                "Assistant then retries the track after its own backoff, which "
-                "can outlast this budget. (#1936)",
+                "No start in the last %.0fs ran long, so the provider was "
+                "answering promptly for the other songs — this is about this "
+                "track or this speaker, not about rate limiting. (#2682)",
                 timeout,
                 uri,
                 speaker_state,
+                MA_THROTTLE_MEMORY_SECONDS,
             )
             # Conservative: speaker-idle failures could be systemic (provider
             # broken across the board) so we keep counting them toward
@@ -869,19 +1045,51 @@ class MusicAssistantStrategy(PlaybackStrategy):
             # @Levtos hit this for `apple_music://track/302229811` (US-only
             # 'All Together Now' on a DE-storefront MA), and the iTunes
             # Lookup confirmed: track in US catalog, NOT in DE catalog.
-            _LOGGER.warning(
-                "MA playback failed after %.1fs for %s — speaker still on "
-                "prior track %r (position timestamp %s). Track is likely "
-                "not available in your provider's catalog/storefront, OR "
-                "your provider needs re-authentication in MA. Skipping "
-                "this song silently — game will try the next one. (#795)",
-                timeout,
-                uri,
-                title_before,
+            # #2682: this branch is where the two failures are easiest to
+            # confuse. "Speaker still on the prior track" is the storefront-gap
+            # signature #795 was filed for, but it is ALSO what a throttled
+            # start looks like from here: Music Assistant is still sleeping
+            # between retries, so it never swapped the track either. A recent
+            # slow-but-successful start is what separates them.
+            position_note = (
                 "advanced — prior track still playing"
                 if position_changed
-                else "also unchanged",
+                else "also unchanged"
             )
+            if slow is not None:
+                _LOGGER.warning(
+                    "MA playback failed after %.1fs for %s — speaker still on "
+                    "prior track %r (position timestamp %s). A start %.0fs ago "
+                    "already took %.1fs, so read this as Music Assistant's "
+                    "provider rate-limiting us rather than the track being "
+                    "missing from your catalog/storefront: MA is still sleeping "
+                    "between retries and has not swapped the track yet. Search "
+                    "the Music Assistant add-on log for 'Rate Limiter' to "
+                    "confirm. Skipping this song silently — the game will try "
+                    "the next one, and there is nothing to re-authenticate. "
+                    "(#795, #2682)",
+                    timeout,
+                    uri,
+                    title_before,
+                    position_note,
+                    slow[0],
+                    slow[1],
+                )
+            else:
+                _LOGGER.warning(
+                    "MA playback failed after %.1fs for %s — speaker still on "
+                    "prior track %r (position timestamp %s). No start in the "
+                    "last %.0fs ran long, so the provider was answering "
+                    "promptly: the track is likely not available in your "
+                    "provider's catalog/storefront, OR your provider needs "
+                    "re-authentication in MA. Skipping this song silently — "
+                    "game will try the next one. (#795, #2682)",
+                    timeout,
+                    uri,
+                    title_before,
+                    position_note,
+                    MA_THROTTLE_MEMORY_SECONDS,
+                )
             # #801: Hard-stop the speaker so the prior track doesn't keep
             # playing while the fallback cascade tries the next URI. Without
             # this, Levtos's setup heard 'Kill Bill' continuing for multiple

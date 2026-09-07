@@ -2750,12 +2750,15 @@ class TestFirstPlayBudget:
     """#1936 — the first play of a game gets a third more time (cold speaker)."""
 
     def test_factor_is_derived_from_the_base_timeout(self):
+        """#2682 moved the base from 15s to 25s; the factor rides along."""
         from custom_components.beatify.services.playback.music_assistant import (  # noqa: PLC0415
             MA_FIRST_PLAY_TIMEOUT_FACTOR,
             MA_PLAYBACK_TIMEOUT,
         )
 
-        assert MA_PLAYBACK_TIMEOUT * MA_FIRST_PLAY_TIMEOUT_FACTOR == 20.0
+        assert MA_PLAYBACK_TIMEOUT * MA_FIRST_PLAY_TIMEOUT_FACTOR == pytest.approx(
+            33.33, abs=0.01
+        )
 
     def test_a_fresh_service_is_pending_its_first_play(self):
         svc = MediaPlayerService(

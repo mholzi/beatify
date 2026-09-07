@@ -90,10 +90,16 @@ MA_PAUSE_GUARD_WINDOW = 2 * MA_PAUSE_ATTEMPT_COST
 # `play_media` and proves only that nothing has started YET.
 #
 # The number has to outlive Music Assistant's Apple Music provider, which
-# throttles and retries on its own backoff: roughly 15.7s, documented in
-# `game/state_lifecycle.py`, and 14.6s measured on the live installation in
-# #2682. Counted from the end of MA_QUEUE_RESTORE_WAIT, this covers
-# 5 + 18 = 23s after the `play_media` went out.
+# throttles and retries on its own backoff — 14.6s measured on the live
+# installation in #2682. Counted from the end of MA_QUEUE_RESTORE_WAIT, this
+# covers 5 + 18 = 23s after the `play_media` went out.
+#
+# #2682 later derived the same 23s from MA's retry schedule rather than from a
+# single measurement (see MA_PLAYBACK_TIMEOUT: backoff to MA's fifth attempt
+# plus the speaker's own start is ~23s), so this window and the play budget now
+# cover the same point on the same curve. They are still separate numbers on
+# purpose: this one is bought with teardown latency the host is watching a
+# spinner for, so it is not raised in step when the play budget moves.
 #
 # It is bought with teardown latency — the admin's end-game round trip can sit
 # here for the whole 18s — and that is the deliberate trade: a spinner the host
