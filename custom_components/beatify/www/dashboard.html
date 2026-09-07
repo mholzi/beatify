@@ -50,21 +50,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet"></noscript>
     <!-- Story 18.4: Use minified CSS in production -->
-    <link rel="stylesheet" href="/beatify/static/css/styles.css?v={{ASSET_VER}}">
+    <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v={{ASSET_VER}}">
     <link rel="stylesheet" href="/beatify/static/css/dashboard.min.css?v={{ASSET_VER}}">
-    <!-- Confetti library for celebrations (Story 14.5).
-         #2641: `async`, not plain and not `defer`. Loaded synchronously it
-         stopped the parser until jsdelivr answered — on party wifi with flaky
-         internet, 5-30 seconds before the join button existed. `defer` would
-         have been almost as bad: deferred scripts run in document order with
-         the `type="module"` bundle below and hold up DOMContentLoaded, so the
-         page would have rendered and then sat there unwired. `async` blocks
-         neither. Every call site already guards with
-         `typeof confetti === 'undefined'` (player-utils.js, dashboard.js), so
-         a confetti that never arrives costs the celebration animation and
-         nothing else. The service worker passes foreign origins through
-         (sw.js), so this is never served from cache. -->
-    <script async src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- #2698: canvas-confetti no longer comes from jsdelivr. It moved to
+         /beatify/static/js/vendor/ and is loaded next to qrcode.min.js and
+         no-sleep.min.js at the end of the body — see the script block there. -->
     <!-- Wake-Lock banner styles (#1285, design option 2). Inline + self-contained
          so the dezenter Bottom-Banner ships with the directly-served HTML and
          introduces no dashboard.css / dashboard.min.css drift. Uses the same
@@ -694,6 +684,19 @@
          loaded before dashboard.min.js so window.NoSleep is available when
          requestWakeLock() runs on dashboard init. -->
     <script src="/beatify/static/js/vendor/no-sleep.min.js?v={{ASSET_VER}}"></script>
+    <!-- canvas-confetti for celebrations (Story 14.5), vendored in #2698.
+         It used to hang off cdn.jsdelivr.net: the one runtime dependency
+         fetched from someone else's server, with no integrity= to check it
+         against — and no way to add one, because jsDelivr generates that
+         `.min.js` on the fly and says so in the file's own header. Local also
+         means the service worker precaches it (sw.js), so on party wifi with
+         no working internet confetti is simply there instead of waiting out a
+         CDN timeout. #2641's `async` is no longer needed or wanted: this is a
+         same-origin file next to the other vendored libraries, and a plain
+         script here runs before the deferred module bundle, so window.confetti
+         exists by the time any call site looks for it. The guards in
+         player-utils.js and dashboard.js stay as they are. -->
+    <script src="/beatify/static/js/vendor/confetti.browser.js?v={{ASSET_VER}}"></script>
     <script src="/beatify/static/js/dashboard.min.js?v={{ASSET_VER}}"></script>
     <!-- v3.2.1 Arcade shims: submission meter fill, album ring progress, reveal round mirror.
          Pure view-layer helpers — no state, no API calls. Safe to remove if dashboard.js

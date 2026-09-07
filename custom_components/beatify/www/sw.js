@@ -38,6 +38,10 @@ var PRECACHE_ASSETS = [
     '/beatify/static/js/dashboard.min.js',
     '/beatify/static/js/i18n.min.js',
     '/beatify/static/js/vendor/qrcode.min.js',
+    // #2698: vendored canvas-confetti. Precaching it is half the point of
+    // taking it off jsdelivr — a foreign origin is passed straight through
+    // below and can never land here.
+    '/beatify/static/js/vendor/confetti.browser.js',
     '/beatify/static/img/no-artwork.svg',
     '/beatify/static/site.webmanifest',
     '/beatify/static/img/icon-256.png',

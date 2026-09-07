@@ -61,12 +61,39 @@ def test_there_are_pages_to_scan() -> None:
 
 
 def test_the_scan_sees_the_third_party_assets_at_all() -> None:
-    """The regexes must actually match the resources this issue is about."""
+    """The regexes must actually match the resources this issue is about.
+
+    #2698 vendored canvas-confetti, so jsdelivr is gone from every page and
+    there is no third-party *script* left to find. The Google Fonts stylesheet
+    is still loaded from a CDN, and it is enough to prove the scan is live: if
+    the stylesheet regex ever stopped matching, the render-blocking assertions
+    below would pass on an empty list and mean nothing.
+    """
     joined = "\n".join(_visible(p.read_text(encoding="utf-8")) for p in _pages())
-    assert any("jsdelivr" in tag for tag in _EXTERNAL_SCRIPT.findall(joined))
     assert any(
         "fonts.googleapis.com" in tag for tag in _EXTERNAL_STYLESHEET.findall(joined)
     )
+
+
+def test_confetti_is_served_from_this_box() -> None:
+    """#2698: no page may pull canvas-confetti off a CDN again.
+
+    It was the only runtime dependency fetched from someone else's server, with
+    no `integrity=` — and none was possible: jsDelivr minifies that file on the
+    fly and its own header says not to use SRI with it. The vendored copy sits
+    next to qrcode.min.js and lands in the service-worker precache, so on party
+    wifi with no internet the celebration is simply there.
+    """
+    offenders = {
+        page.name: [
+            tag
+            for tag in _EXTERNAL_SCRIPT.findall(_visible(page.read_text("utf-8")))
+            if "confetti" in tag.lower()
+        ]
+        for page in _pages()
+    }
+    offenders = {name: tags for name, tags in offenders.items() if tags}
+    assert not offenders, f"confetti is back on a CDN: {offenders}"
 
 
 @pytest.mark.parametrize("page", _pages(), ids=lambda p: p.name)
