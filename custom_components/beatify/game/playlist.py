@@ -18,18 +18,12 @@ from custom_components.beatify.const import (
     PROVIDER_AMAZON_MUSIC,
     PROVIDER_APPLE_MUSIC,
     PROVIDER_DEFAULT,
-    PROVIDER_DEEZER,
-    PROVIDER_MA_LIBRARY,
-    PROVIDER_SPOTIFY,
     PROVIDER_YTMUSIC_FREE,
-    PROVIDER_TIDAL,
-    PROVIDER_YOUTUBE_MUSIC,
-    URI_PATTERN_APPLE_MUSIC,
-    URI_PATTERN_DEEZER,
-    URI_PATTERN_MA_LIBRARY,
-    URI_PATTERN_SPOTIFY,
-    URI_PATTERN_TIDAL,
-    URI_PATTERN_YOUTUBE_MUSIC,
+)
+from custom_components.beatify.providers import (
+    PROVIDERS,
+    catalogue_uri_fields,
+    get_provider,
 )
 
 if TYPE_CHECKING:
@@ -37,22 +31,12 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-_URI_FIELDS = [
-    ("uri", URI_PATTERN_SPOTIFY, "spotify:track:{22-char-id}"),
-    ("uri_spotify", URI_PATTERN_SPOTIFY, "spotify:track:{22-char-id}"),
-    ("uri_apple_music", URI_PATTERN_APPLE_MUSIC, "applemusic://track/id"),
-    (
-        "uri_youtube_music",
-        URI_PATTERN_YOUTUBE_MUSIC,
-        "https://music.youtube.com/watch?v=...",
-    ),
-    ("uri_tidal", URI_PATTERN_TIDAL, "tidal://track/{id}"),
-    ("uri_deezer", URI_PATTERN_DEEZER, "deezer://track/{id}"),
-    # Crate Digger: Music Assistant library URIs. Permissive by
-    # design — the provider prefix varies per MA instance/provider
-    # (library://track/123, plex--<id>://track/<key>, jellyfin--…).
-    ("uri_ma_library", URI_PATTERN_MA_LIBRARY, "library://track/{id}"),
-]
+# Every playlist field that may hold a track URI, with the pattern it must
+# match and the wording an author sees when it does not. Derived from the
+# provider registry (#2713) so a new provider's catalogue field is validated by
+# the same commit that introduces it — a field missing here was never an error,
+# it just meant a malformed URI passed validation and failed at the speaker.
+_URI_FIELDS = [(f.name, f.pattern, f.example) for f in catalogue_uri_fields()]
 
 
 # Song ordering modes (#1726).
@@ -877,6 +861,77 @@ def _ytmusic_free_uri(youtube_music_uri: str | None) -> str | None:
     return f"ytmusic_free://track/{match.group(1)}"
 
 
+def _resolve_apple_music(song: dict[str, Any], storefront: str | None) -> str | None:
+    """Apple Music: storefront-aware resolution (#808 follow-up).
+
+    Beatify's playlists historically stored a single Apple Music URI per song
+    (typically a US-storefront track ID); for users on other storefronts (DE,
+    GB, FR, ...) some subset isn't in their regional catalog. The
+    ``uri_apple_music_by_region`` map (populated by
+    ``scripts/fetch_apple_music_regions.py``) gives per-region track IDs, or an
+    explicit None for confirmed-unavailable — which is why an explicit key wins
+    even when its value is None: the caller then skips the song silently
+    instead of asking MA for a track that is not there.
+    """
+    if storefront:
+        regional = song.get("uri_apple_music_by_region") or {}
+        if storefront in regional:
+            # Explicit per-region answer (URI string OR None).
+            return regional[storefront]
+    # No storefront, or no per-region data: fall back to legacy field.
+    return song.get("uri_apple_music") or None
+
+
+def _resolve_ytmusic_free(song: dict[str, Any], _storefront: str | None) -> str | None:
+    """ytmusic_free: derived, not stored (#2426).
+
+    The third-party ``ytmusic_free`` provider keys tracks by the YouTube video
+    id, which is exactly what sits in ``uri_youtube_music`` — so the URI is
+    built here instead of adding a second catalogue field holding a copy of the
+    same id that could then drift out of step with it.
+
+    Deriving in this one function is enough for the whole stack:
+    ``filter_songs_for_provider`` calls it, ``PlaylistManager`` caches the
+    result as ``_precomputed_uri``, and ``_get_ma_uri_candidates`` always tries
+    ``_resolved_uri`` first — so nothing downstream needs a branch.
+    """
+    return _ytmusic_free_uri(song.get("uri_youtube_music"))
+
+
+def _resolve_amazon_music(song: dict[str, Any], _storefront: str | None) -> str | None:
+    """Amazon Music: a synthetic identity, because there is no track URI.
+
+    Alexa is asked for the song in words, so nothing per-track exists to
+    return. We still must return a *distinct* value per song, because
+    ``PlaylistManager`` uses it both as the dedup key (``__init__``) and as the
+    played-tracking key (``mark_played``). Returning a single constant for
+    every song collapsed the whole playlist to one playable track and ended
+    every Alexa game after round 1 (#1361). ``_resolved_uri`` is only ever
+    consumed for Alexa text search (artist+title), never as a real media URI,
+    so this synthetic key is purely internal.
+    """
+    artist = (song.get("artist") or "").strip().casefold()
+    title = (song.get("title") or "").strip().casefold()
+    if artist or title:
+        return f"amazon:{artist}|{title}"
+    # No metadata at all — fall back to the song's id so it stays distinct.
+    song_id = song.get("id")
+    if song_id is not None:
+        return f"amazon:id:{song_id}"
+    return None
+
+
+#: Providers whose URI is not simply "the first stored field that has a value".
+#: A provider absent here is resolved from its ``playback_uri_fields``; one
+#: present here says so with a function instead of an ``if`` in a chain that
+#: used to grow by one branch per provider (#2713).
+_SPECIAL_RESOLVERS: dict[str, Callable[[dict[str, Any], str | None], str | None]] = {
+    PROVIDER_APPLE_MUSIC: _resolve_apple_music,
+    PROVIDER_YTMUSIC_FREE: _resolve_ytmusic_free,
+    PROVIDER_AMAZON_MUSIC: _resolve_amazon_music,
+}
+
+
 def get_song_uri(
     song: dict[str, Any],
     provider: str,
@@ -887,7 +942,7 @@ def get_song_uri(
 
     Args:
         song: Song dictionary with uri fields
-        provider: Provider identifier (PROVIDER_SPOTIFY, PROVIDER_APPLE_MUSIC, or PROVIDER_YOUTUBE_MUSIC)
+        provider: Provider identifier (a key of ``providers.PROVIDERS_BY_ID``)
         storefront: For Apple Music, the user's regional storefront code
             (e.g. "us", "de", "gb"). Used to resolve per-region track IDs
             from ``uri_apple_music_by_region`` when present (#808 follow-up).
@@ -902,72 +957,21 @@ def get_song_uri(
         skip the song silently without ever calling MA.
 
     """
-    if provider == PROVIDER_SPOTIFY:
-        # For Spotify, prefer uri_spotify, fall back to legacy uri field
-        return song.get("uri_spotify") or song.get("uri") or None
-    if provider == PROVIDER_APPLE_MUSIC:
-        # #808 follow-up: storefront-aware resolution. Beatify's playlists
-        # historically stored a single Apple Music URI per song (typically
-        # a US-storefront track ID); for users on other storefronts (DE,
-        # GB, FR, ...) some subset isn't in their regional catalog. The
-        # `uri_apple_music_by_region` map (populated by
-        # `scripts/fetch_apple_music_regions.py`) gives per-region track
-        # IDs (or explicit None for confirmed-unavailable).
-        if storefront:
-            regional = song.get("uri_apple_music_by_region") or {}
-            if storefront in regional:
-                # Explicit per-region answer (URI string OR None).
-                return regional[storefront]
-        # No storefront, or no per-region data: fall back to legacy field.
-        return song.get("uri_apple_music") or None
-    if provider == PROVIDER_YOUTUBE_MUSIC:
-        # For YouTube Music, only use uri_youtube_music
-        return song.get("uri_youtube_music") or None
-    if provider == PROVIDER_YTMUSIC_FREE:
-        # #2426: derived, not stored. The third-party `ytmusic_free` provider
-        # keys tracks by the YouTube video id, which is exactly what sits in
-        # `uri_youtube_music` — so the URI is built here instead of adding a
-        # second catalogue field holding a copy of the same id that could then
-        # drift out of step with it.
-        #
-        # Deriving in this one function is enough for the whole stack:
-        # `filter_songs_for_provider` calls it, `PlaylistManager` caches the
-        # result as `_precomputed_uri`, and `_get_ma_uri_candidates` always
-        # tries `_resolved_uri` first — so nothing downstream needs a branch.
-        return _ytmusic_free_uri(song.get("uri_youtube_music"))
-    if provider == PROVIDER_TIDAL:
-        # For Tidal, only use uri_tidal
-        return song.get("uri_tidal") or None
-    if provider == PROVIDER_DEEZER:
-        # For Deezer, only use uri_deezer
-        return song.get("uri_deezer") or None
-    if provider == PROVIDER_MA_LIBRARY:
-        # Crate Digger: the URI comes from the user's own Music
-        # Assistant library, resolved during the library scan. Playback falls
-        # back to an artist+title lookup in MA when a stored URI no longer
-        # resolves (library rebuilds change item ids), so a missing URI here
-        # is not fatal — see services/media_player.py.
-        return song.get("uri_ma_library") or None
-    if provider == PROVIDER_AMAZON_MUSIC:
-        # Amazon Music uses Alexa text search — there is no real per-track URI.
-        # We still must return a *distinct* identity per song, because the
-        # PlaylistManager uses this value both as the dedup key (__init__) and
-        # as the played-tracking key (mark_played). Returning a single constant
-        # for every song collapsed the whole playlist to one playable track and
-        # ended every Alexa game after round 1 (#1361). Derive a stable key from
-        # the song's artist+title so each track survives dedup and is tracked
-        # independently. `_resolved_uri` is only ever consumed for Alexa
-        # text-search (artist+title), never as a real media URI, so this
-        # synthetic key is purely internal.
-        artist = (song.get("artist") or "").strip().casefold()
-        title = (song.get("title") or "").strip().casefold()
-        if artist or title:
-            return f"amazon:{artist}|{title}"
-        # No metadata at all — fall back to the song's id so it stays distinct.
-        song_id = song.get("id")
-        if song_id is not None:
-            return f"amazon:id:{song_id}"
+    spec = get_provider(provider)
+    if spec is None:
         return None
+
+    special = _SPECIAL_RESOLVERS.get(provider)
+    if special is not None:
+        return special(song, storefront)
+
+    # The ordinary case: the first stored field that has a value. Spotify's
+    # explicit `uri_spotify` outranks the legacy `uri`; every other provider
+    # has a single field.
+    for field in spec.playback_uri_fields:
+        value = song.get(field)
+        if value:
+            return value
     return None
 
 
@@ -1025,6 +1029,39 @@ def filter_songs_for_provider(
             skipped += 1
 
     return (filtered, skipped)
+
+
+def count_songs_per_provider(songs: list[dict[str, Any]]) -> dict[str, int]:
+    """``{"<provider>_count": n}`` — how many songs each provider can play.
+
+    A song counts when any of that provider's catalogue URI fields holds a
+    value matching its pattern (#708); Spotify's legacy ``uri`` counts as well
+    as ``uri_spotify``, which falls out of the registry rather than out of a
+    special case here. Alexa text search plays anything, so Amazon Music counts
+    every song. Providers that keep no catalogue coverage — Crate Digger reads
+    the host's own library, ytmusic_free derives its URI — report no count at
+    all, which is what the admin already expects.
+
+    Derived from the registry (#2713): a new provider gets its count in the
+    same commit it is declared, instead of a coverage number that silently
+    stays at zero.
+    """
+    counts: dict[str, int] = {}
+    for provider in PROVIDERS:
+        if not provider.counted:
+            continue
+        if provider.counts_every_song:
+            counts[provider.count_key] = len(songs)
+            continue
+        counts[provider.count_key] = sum(
+            1
+            for song in songs
+            if any(
+                isinstance(song.get(f.name), str) and re.match(f.pattern, song[f.name])
+                for f in provider.catalogue_uris
+            )
+        )
+    return counts
 
 
 # hass.data[DOMAIN] key holding the memoised discovery result (#1704).
@@ -1137,36 +1174,7 @@ def _discover_playlists_sync(
 
             # Count songs per provider (Story 17.1), validating URI patterns (#708).
             songs = data.get("songs", [])
-
-            def _count(field: str, pattern: str, songs: list = songs) -> int:
-                n = 0
-                for s in songs:
-                    v = s.get(field)
-                    if isinstance(v, str) and v and re.match(pattern, v):
-                        n += 1
-                return n
-
-            spotify_count = sum(
-                1
-                for s in songs
-                if (
-                    (
-                        isinstance(s.get("uri_spotify"), str)
-                        and re.match(URI_PATTERN_SPOTIFY, s["uri_spotify"])
-                    )
-                    or (
-                        isinstance(s.get("uri"), str)
-                        and re.match(URI_PATTERN_SPOTIFY, s["uri"])
-                    )
-                )
-            )
-            apple_music_count = _count("uri_apple_music", URI_PATTERN_APPLE_MUSIC)
-            youtube_music_count = _count("uri_youtube_music", URI_PATTERN_YOUTUBE_MUSIC)
-            tidal_count = _count("uri_tidal", URI_PATTERN_TIDAL)
-            deezer_count = _count("uri_deezer", URI_PATTERN_DEEZER)
-            # Amazon Music uses Alexa text search — every song in the playlist is
-            # playable, so the count always equals the total song count.
-            amazon_music_count = len(songs)
+            provider_counts = count_songs_per_provider(songs)
 
             # #716: skip playlists with no songs entirely — they only confuse the UI.
             if not is_valid and len(songs) == 0:
@@ -1192,12 +1200,7 @@ def _discover_playlists_sync(
                     "version": data.get("version"),
                     "tags": data.get("tags", []),  # Issue #70: Tag-based filtering
                     "song_count": len(songs),
-                    "spotify_count": spotify_count,
-                    "apple_music_count": apple_music_count,
-                    "youtube_music_count": youtube_music_count,
-                    "tidal_count": tidal_count,
-                    "deezer_count": deezer_count,
-                    "amazon_music_count": amazon_music_count,
+                    **provider_counts,
                     "is_valid": is_valid,
                     "errors": errors,
                     # #1576: structured per-song rejections so the playlist
@@ -1229,12 +1232,7 @@ def _discover_playlists_sync(
                     "version": None,
                     "tags": [],  # Issue #70
                     "song_count": 0,
-                    "spotify_count": 0,
-                    "apple_music_count": 0,
-                    "youtube_music_count": 0,
-                    "tidal_count": 0,
-                    "deezer_count": 0,
-                    "amazon_music_count": 0,
+                    **count_songs_per_provider([]),
                     "is_valid": False,
                     "errors": [f"Invalid JSON: {e}"],
                     "rejected_songs": [],

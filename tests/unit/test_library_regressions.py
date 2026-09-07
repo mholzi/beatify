@@ -166,13 +166,25 @@ class TestAnnouncementsAndPlayback:
 class TestPlaybackWiring:
     def test_library_uri_field_survives_rebases(self):
         """This branch has been silently dropped by a rebase before; without
-        it every library game resolves no URIs at all."""
-        code = src("game/playlist.py")
-        assert "uri_ma_library" in code
-        assert "PROVIDER_MA_LIBRARY" in code
+        it every library game resolves no URIs at all.
+
+        #2713 moved the branch into the provider registry, so this asks the
+        resolver for an answer instead of grepping for the field name — the
+        same regression, caught one step closer to the symptom.
+        """
+        from custom_components.beatify.game.playlist import get_song_uri
+
+        assert (
+            get_song_uri({"uri_ma_library": "library://track/42"}, "ma_library")
+            == "library://track/42"
+        )
 
     def test_library_provider_is_declared_playable(self):
-        assert '"ma_library"' in src("services/media_player.py")
+        from custom_components.beatify.services.media_player import (
+            get_platform_capabilities,
+        )
+
+        assert get_platform_capabilities("music_assistant")["ma_library"] is True
 
     def test_stale_uris_fall_back_to_a_name_lookup(self):
         """Library item ids change when a library is rebuilt.
@@ -182,10 +194,12 @@ class TestPlaybackWiring:
         asserts on the guard that actually decides whether the fallback runs
         instead of on the wording of a log message.
         """
-        code = src("services/playback/music_assistant.py")
-        assert "_NAME_FALLBACK_PROVIDERS" in code
-        assert '"ma_library"' in code
-        assert "MA name fallback" in code
+        from custom_components.beatify.services.playback.music_assistant import (
+            _NAME_FALLBACK_PROVIDERS,
+        )
+
+        assert "ma_library" in _NAME_FALLBACK_PROVIDERS
+        assert "MA name fallback" in src("services/playback/music_assistant.py")
 
 
 class TestWizardIntegration:
@@ -335,7 +349,10 @@ class TestProviderIsAccepted:
     def test_players_advertise_library_support(self):
         """The wizard greys out providers a speaker can't play; without this
         flag Crate Digger would be offered on speakers that cannot serve it."""
-        assert '"supports_ma_library"' in src("services/media_player.py")
+        from custom_components.beatify.providers import supports_keys
+
+        assert supports_keys("music_assistant")["supports_ma_library"] is True
+        assert supports_keys("sonos")["supports_ma_library"] is False
 
 
 class TestRoundClockStartsWithTheMusic:

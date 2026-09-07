@@ -25,15 +25,8 @@ from custom_components.beatify.const import (
     ERR_NO_PLAYABLE_SONGS,
     ERR_NO_PLAYLISTS_SELECTED,
     MIN_PLAYERS,
-    PROVIDER_AMAZON_MUSIC,
-    PROVIDER_APPLE_MUSIC,
-    PROVIDER_DEEZER,
     PROVIDER_DEFAULT,
     PROVIDER_MA_LIBRARY,
-    PROVIDER_SPOTIFY,
-    PROVIDER_YTMUSIC_FREE,
-    PROVIDER_TIDAL,
-    PROVIDER_YOUTUBE_MUSIC,
     REVEAL_AUTO_ADVANCE_OPTIONS,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
@@ -44,6 +37,7 @@ from custom_components.beatify.game.playlist import (
 )
 from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
+from custom_components.beatify.providers import PROVIDERS_BY_ID, get_provider
 from custom_components.beatify.server.ws_handlers._helpers import finalize_and_end
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
@@ -114,24 +108,11 @@ def _validate_provider(provider: str) -> str:
     getting Spotify-only candidates, all of which fail on MA without a
     Spotify provider configured.
     """
-    valid_providers = (
-        PROVIDER_SPOTIFY,
-        PROVIDER_APPLE_MUSIC,
-        PROVIDER_YOUTUBE_MUSIC,
-        PROVIDER_TIDAL,
-        PROVIDER_DEEZER,
-        PROVIDER_AMAZON_MUSIC,
-        # Crate Digger. Omitting it here silently coerced the selection to
-        # PROVIDER_DEFAULT, after which the "no playlists" guard fired and
-        # create-game answered 400 with no log line — the same failure mode
-        # this docstring records for Apple Music in #808.
-        PROVIDER_MA_LIBRARY,
-        # #2426: third-party MA provider. Same reason it has to be listed here
-        # as the line above — an unlisted provider is coerced to the default
-        # and then fails the "no playlists" guard with a 400 and no log line.
-        PROVIDER_YTMUSIC_FREE,
-    )
-    return provider if provider in valid_providers else PROVIDER_DEFAULT
+    #: #2713: the list is the registry. It was written out here twice before —
+    #: once as this tuple and once as the validation blocks below — and both
+    #: omissions this docstring records (apple_music in #808, ma_library, then
+    #: ytmusic_free in #2426) were a provider missing from a hand-kept copy.
+    return provider if provider in PROVIDERS_BY_ID else PROVIDER_DEFAULT
 
 
 class StartGameView(RateLimitMixin, HomeAssistantView):
@@ -442,45 +423,23 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 details={"speaker": speaker_name},
             )
 
-        # Validate provider is supported by platform
-        if provider == "apple_music" and not capabilities.get("apple_music"):
+        # Validate the provider is one this speaker can actually serve.
+        #
+        # #2713: one check against the registry, where there were five
+        # copy-pasted blocks. They covered apple_music, youtube_music, tidal,
+        # deezer and amazon_music — so Crate Digger or ytmusic_free on a Sonos
+        # or an Echo passed this gate and started a game that could never play
+        # a note, even though the wizard had already greyed the chip out. The
+        # message and the `provider` detail are built from the same fields the
+        # blocks spelled out, so the five wordings they produced are unchanged.
+        provider_spec = get_provider(provider)
+        if provider_spec is not None and not provider_spec.plays_on(platform):
             return _json_error(
-                "Apple Music is not supported on this speaker. Use Music Assistant.",
+                f"{provider_spec.label} is not supported on this speaker. "
+                f"{provider_spec.unsupported_hint}",
                 400,
                 code="PROVIDER_NOT_SUPPORTED",
-                details={"speaker": speaker_name, "provider": "Apple Music"},
-            )
-
-        if provider == PROVIDER_YOUTUBE_MUSIC and not capabilities.get("youtube_music"):
-            return _json_error(
-                "YouTube Music is not supported on this speaker. Use Music Assistant.",
-                400,
-                code="PROVIDER_NOT_SUPPORTED",
-                details={"speaker": speaker_name, "provider": "YouTube Music"},
-            )
-
-        if provider == PROVIDER_TIDAL and not capabilities.get("tidal"):
-            return _json_error(
-                "Tidal is not supported on this speaker. Use Music Assistant.",
-                400,
-                code="PROVIDER_NOT_SUPPORTED",
-                details={"speaker": speaker_name, "provider": "Tidal"},
-            )
-
-        if provider == PROVIDER_DEEZER and not capabilities.get("deezer"):
-            return _json_error(
-                "Deezer is not supported on this speaker. Use Music Assistant.",
-                400,
-                code="PROVIDER_NOT_SUPPORTED",
-                details={"speaker": speaker_name, "provider": "Deezer"},
-            )
-
-        if provider == PROVIDER_AMAZON_MUSIC and not capabilities.get("amazon_music"):
-            return _json_error(
-                "Amazon Music is not supported on this speaker. Use an Amazon Echo (alexa_media).",
-                400,
-                code="PROVIDER_NOT_SUPPORTED",
-                details={"speaker": speaker_name, "provider": "Amazon Music"},
+                details={"speaker": speaker_name, "provider": provider_spec.label},
             )
 
         # #2635: the admin's options as ONE object, not a kwargs dict that had
