@@ -16815,6 +16815,43 @@ body.theme-dark .your-result-stats .stat-value {
     box-shadow: 0 0 16px rgba(255, 45, 106, 0.3);
 }
 
+/* --- Spectator TV: the three notices that explain a changing number (#2703,
+       #2719, #2722). All three reuse the S5-C pill above and only re-tint it,
+       so a chip strip carrying two of them still reads as one row. --- */
+
+/* #2719 Finale ×2 — gold, because it is a reward, not a threat. */
+.sd-final-banner--finale {
+    color: var(--color-warning, #f59e0b);
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.3);
+}
+
+/* #2722 Finale playoff — purple, the colour the ⚔️ finalist badge already
+   uses in the leaderboard (#2578), so badge and banner read as one event. */
+.sd-final-banner--playoff {
+    color: var(--color-neon-purple, #9d4edd);
+    background: rgba(157, 78, 221, 0.12);
+    border-color: rgba(157, 78, 221, 0.5);
+    box-shadow: 0 0 16px rgba(157, 78, 221, 0.3);
+}
+
+/* #2703 idle halt — deliberately quiet. It reports a pause; a glowing pink
+   alarm would make a stalled round look like a failure. It also carries a
+   whole sentence rather than a label, so it drops the display face and the
+   wide tracking the other two use. */
+.sd-final-banner--idle {
+    color: var(--color-text-neon-muted, #b3b3c2);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0;
+    max-width: 46ch;
+    text-align: left;
+}
+
 /* --- END: Last One Standing superlative + trophy hero (S6-C) --- */
 .superlative-card--last_one_standing {
     box-shadow: 0 0 18px rgba(255, 45, 106, 0.3);

@@ -213,8 +213,25 @@ export function updateGameView(data) {
     if (currentRound) currentRound.textContent = data.round || 1;
     if (totalRounds) totalRounds.textContent = data.total_rounds || 10;
 
+    // #2722: the two finalists in a tiebreak playoff were the only people in
+    // the room told nothing. Everyone sitting the round out gets the
+    // "watching from the sidelines" screen below, the TV now carries a banner
+    // — but the phones of the two still playing said "Final Round!", the same
+    // as every other last round, while an extra song they never asked for
+    // started. The playoff chip outranks the finale copy: an extra round
+    // needs explaining more urgently than doubled points do.
+    var amFinalist = !!(data.finale_playoff_active &&
+        (function() {
+            var me = findMe(data.players);
+            return me && !me.playoff_spectator && !me.eliminated;
+        })());
+
     if (lastRoundBanner) {
-        if (data.last_round) {
+        if (amFinalist) {
+            lastRoundBanner.classList.remove('hidden');
+            lastRoundBanner.textContent = utils.t('game.finalePlayoffChip');
+            lastRoundBanner.classList.add('arc-chip--finale');
+        } else if (data.last_round) {
             lastRoundBanner.classList.remove('hidden');
             // Issue #1725: on the final round with Finale ×2 active, upgrade the
             // banner copy to advertise the doubled points; otherwise the plain

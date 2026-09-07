@@ -366,6 +366,14 @@
                 <!-- Issue #827: Sudden-Death FINAL banner (design S5-C) — shown by
                      dashboard.js when exactly 2 players remain in Sudden Death. -->
                 <div id="sd-final-banner-playing" class="sd-final-banner hidden"></div>
+                <!-- #2719: Finale ×2 is live this round. The phones have said so
+                     since #1725; the TV showed the doubled scores and nothing
+                     else, which reads as a scoring bug in the deciding round. -->
+                <div id="dashboard-finale-banner-playing" class="sd-final-banner sd-final-banner--finale hidden"></div>
+                <!-- #2722: the finale playoff round. The scoreboard says the game
+                     should have ended and another song starts anyway; this names
+                     the two who are still playing and why. -->
+                <div id="dashboard-playoff-banner-playing" class="sd-final-banner sd-final-banner--playoff hidden"></div>
             </div>
             <!-- Legacy round-stats block — hidden via CSS but JS still writes to IDs -->
             <div id="dashboard-round-stats" class="dashboard-round-stats" aria-hidden="true">
@@ -431,6 +439,19 @@
                 <!-- Issue #827: Sudden-Death FINAL banner (design S5-C) — shown by
                      dashboard.js when exactly 2 players remain in Sudden Death. -->
                 <div id="sd-final-banner-reveal" class="sd-final-banner hidden"></div>
+                <!-- #2703: the round stalled — nobody guessed, playback stopped and
+                     the game holds here until the host advances. The countdown ring
+                     above hides itself in that case (#1185), which left the TV with
+                     a reveal and no explanation while every phone had one (#2622).
+                     The TV is always an observer, so it reads the guest sentence. -->
+                <div id="dashboard-idle-halt" class="sd-final-banner sd-final-banner--idle hidden">
+                    <span aria-hidden="true">⏸</span>
+                    <span id="dashboard-idle-halt-text" data-i18n="reveal.idleHaltBannerGuest">Game idle — no one played this round. The host will start the next round.</span>
+                </div>
+                <!-- #2719 / #2722: mirrors of the PLAYING banners so the finale
+                     stays explained while the scores are being read out. -->
+                <div id="dashboard-finale-banner-reveal" class="sd-final-banner sd-final-banner--finale hidden"></div>
+                <div id="dashboard-playoff-banner-reveal" class="sd-final-banner sd-final-banner--playoff hidden"></div>
             </div>
 
             <!-- "Broadcast Lower-Third" reveal (design-shotgun C): upper stage
@@ -455,6 +476,11 @@
                             <div id="song-difficulty" class="song-difficulty hidden"></div>
                             <!-- Year-mode artist-challenge result (🎤 who guessed the artist) -->
                             <div id="reveal-artist-challenge" class="reveal-artist-challenge hidden"></div>
+                            <!-- #2720: movie-quiz result (🎬 who named the film). The
+                                 quiz is on by default and the server has always sent
+                                 the winner; only the phone rendered it, so the round's
+                                 point happened on one guest's screen. -->
+                            <div id="reveal-movie-challenge" class="reveal-artist-challenge reveal-movie-challenge hidden"></div>
                         </div>
                     </div>
 

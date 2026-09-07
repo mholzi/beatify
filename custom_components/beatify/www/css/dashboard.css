@@ -2485,6 +2485,13 @@
 #dashboard-reveal .reveal-ac-result--won { color: var(--color-success-neon, #39ff14); background: rgba(57, 255, 20, 0.12); border: 1px solid rgba(57, 255, 20, 0.4); }
 #dashboard-reveal .reveal-ac-result--none { color: var(--color-text-neon-muted, #b3b3c2); background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); }
 
+/* #2720: the movie-quiz result sits directly under the artist-challenge chip
+   and shares its shape. Only the accent changes, so two decided mini-games in
+   one reveal are told apart at TV distance without reading them. */
+#dashboard-reveal .reveal-movie-challenge {
+    border-color: rgba(99, 102, 241, 0.45);
+}
+
 /* --- Standings card --- */
 #dashboard-reveal .reveal-standings-card {
     background: rgba(255, 255, 255, 0.05);

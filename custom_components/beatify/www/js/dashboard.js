@@ -958,6 +958,11 @@
 
         // Issue #827: Sudden-Death FINAL banner (2 players left).
         renderSuddenDeathFinalBanner(data, 'sd-final-banner-playing');
+
+        // #2719 / #2722: say why the deciding round is different — doubled
+        // points, or an extra song because the top of the table is tied.
+        renderFinaleDoubleBanner(data, 'dashboard-finale-banner-playing');
+        renderFinalePlayoffBanner(data, 'dashboard-playoff-banner-playing');
     }
 
     /**
@@ -1247,6 +1252,12 @@
         // Year mode: the guess-the-artist mini-game result (🎤 who got it).
         renderDashboardArtistChallenge(taMode ? null : data.artist_challenge);
 
+        // #2720: the movie-quiz result (🎬 who named the film). Not gated on
+        // Title & Artist mode the way the artist challenge is — the movie quiz
+        // runs independently of it (game/challenges.py), and its answer is
+        // never the thing being voted on.
+        renderDashboardMovieChallenge(data.movie_challenge);
+
         // Render fun fact (Story 16.4)
         renderFunFact(song);
 
@@ -1260,6 +1271,15 @@
         // eliminations + FINAL banner (2 players left).
         renderSuddenDeathOut(data);
         renderSuddenDeathFinalBanner(data, 'sd-final-banner-reveal');
+
+        // #2703: the round stalled and the game is waiting for the host — the
+        // countdown ring below hides itself in that case, so without this the
+        // TV shows a reveal and no reason for the pause.
+        renderIdleHaltBanner(data);
+
+        // #2719 / #2722: keep the finale explained while the scores are read.
+        renderFinaleDoubleBanner(data, 'dashboard-finale-banner-reveal');
+        renderFinalePlayoffBanner(data, 'dashboard-playoff-banner-reveal');
 
         // Render motivational message (Story 14.4)
         renderMotivationalMessage(data.game_performance);
@@ -1390,6 +1410,146 @@
                 outcomesEl.classList.add('hidden');
             }
         }
+    }
+
+    /**
+     * #2720: movie-quiz result on the TV — the mirror of
+     * renderDashboardArtistChallenge above.
+     *
+     * The quiz ships ON by default (wizard.js) and the server has sent the
+     * decided winner since #1723, but "movie" appeared nowhere in dashboard.js
+     * or dashboard.html: one guest earned +5 for naming the film and the room
+     * saw only a number move. Winner-takes-all, so `results.winners` holds at
+     * most one entry (game/challenges.py `_build_results`); index 0 is the
+     * fastest correct guesser and later-correct guessers scored 0 and are not
+     * shown — the same shape the phone renders.
+     *
+     * @param {Object|null} mc - data.movie_challenge
+     *   { correct_movie, results: { winners: [{name, time, bonus}] } }
+     */
+    function renderDashboardMovieChallenge(mc) {
+        var el = document.getElementById('reveal-movie-challenge');
+        if (!el) return;
+        if (!mc || !mc.correct_movie) {
+            el.classList.add('hidden');
+            el.innerHTML = '';
+            return;
+        }
+        var label = utils.t('movieChallenge.theMovieWas', 'The movie was');
+        var winners = (mc.results && mc.results.winners) || [];
+        var resultHtml;
+        if (winners.length && winners[0].name) {
+            var pts = winners[0].bonus || 5;
+            resultHtml = '<span class="reveal-ac-result reveal-ac-result--won">' +
+                utils.escapeHtml(winners[0].name) + ' +' + pts + '</span>';
+        } else {
+            resultHtml = '<span class="reveal-ac-result reveal-ac-result--none">' +
+                utils.escapeHtml(utils.t('movieChallenge.noWinner', 'No one guessed the movie')) +
+                '</span>';
+        }
+        el.innerHTML =
+            '<span class="reveal-ac-ic" aria-hidden="true">🎬</span>' +
+            '<span class="reveal-ac-label">' + utils.escapeHtml(label) + '</span>' +
+            '<span class="reveal-ac-name">' + utils.escapeHtml(mc.correct_movie) + '</span>' +
+            resultHtml;
+        el.classList.remove('hidden');
+    }
+
+    /**
+     * #2703: the idle-halt notice on the TV.
+     *
+     * A round where nobody guessed stops playback and holds the game on REVEAL
+     * until the host taps "Next round". The phones have explained that since
+     * #1012, and since #2622 they say it in the words that fit the reader.
+     * The TV said nothing at all: `updateRevealCountdown` hides the
+     * auto-advance ring on `idle_halt`, so the one element that would have
+     * hinted at a wait disappeared and the screen just sat there.
+     *
+     * The TV is a read-only observer — it can never tap "Next round" — so it
+     * gets the GUEST sentence, the same one the guests' phones show. The
+     * `data-i18n` attribute stays on the element so a mid-game language switch
+     * re-renders it (`initPageTranslations`).
+     *
+     * @param {Object} data - REVEAL state data (reads `idle_halt`)
+     */
+    function renderIdleHaltBanner(data) {
+        var banner = document.getElementById('dashboard-idle-halt');
+        if (!banner) return;
+        var halted = !!(data && data.idle_halt);
+        banner.classList.toggle('hidden', !halted);
+        if (!halted) return;
+        var textEl = document.getElementById('dashboard-idle-halt-text');
+        if (!textEl) return;
+        var text = utils.t('reveal.idleHaltBannerGuest');
+        if (text && text !== 'reveal.idleHaltBannerGuest') textEl.textContent = text;
+    }
+
+    /**
+     * #2719: the Finale ×2 banner on the TV.
+     *
+     * On the last round with the opt-in finale bonus armed, every score earned
+     * is doubled (game/state.py). The player's phone has advertised that since
+     * #1725 and the TTS mentions it once if TTS is on; the TV showed a round
+     * counter reading "10/10" and then scores jumping by twice the usual step.
+     * To a room watching one screen that reads as a scoring bug, in the single
+     * round where the result is decided.
+     *
+     * `finale_double_active` is already `finale_double_enabled and last_round`
+     * server-side (game/serializers.py), so this is a straight toggle — the
+     * client must not re-derive it from `last_round`.
+     *
+     * @param {Object} data - State data (reads `finale_double_active`)
+     * @param {string} bannerId - id of the banner element for this phase
+     */
+    function renderFinaleDoubleBanner(data, bannerId) {
+        var banner = document.getElementById(bannerId);
+        if (!banner) return;
+        if (data && data.finale_double_active) {
+            banner.textContent = utils.t('game.finaleDouble', 'Finale ×2 — Double Points!');
+            banner.classList.remove('hidden');
+        } else {
+            banner.classList.add('hidden');
+        }
+    }
+
+    /**
+     * #2722: the finale playoff banner on the TV.
+     *
+     * When the last round ends in a tie for first, the game quietly arms a
+     * playoff (game/state.py `_maybe_start_finale_playoff`) and starts another
+     * song. Until now the only sign of it was the ⚔️ badge #2578 put next to
+     * the tied names in the leaderboard — a badge answers "who?", not "why is
+     * this still going?". The scoreboard said the game should have ended, a
+     * song started anyway, and nobody in the room had been told.
+     *
+     * The finalists are the players NOT sitting the round out: the backend
+     * marks everyone else `playoff_spectator` (never `eliminated` — that was
+     * the #2578 bug), so the same predicate the badge uses picks them here.
+     * Falls back to a nameless sentence if the roster hasn't arrived yet,
+     * because the banner explaining the extra song matters more than the names
+     * in it.
+     *
+     * @param {Object} data - State data (reads `finale_playoff_active` + leaderboard)
+     * @param {string} bannerId - id of the banner element for this phase
+     */
+    function renderFinalePlayoffBanner(data, bannerId) {
+        var banner = document.getElementById(bannerId);
+        if (!banner) return;
+        if (!data || !data.finale_playoff_active) {
+            banner.classList.add('hidden');
+            banner.textContent = '';
+            return;
+        }
+        var roster = data.leaderboard || data.players || [];
+        var finalists = roster.filter(function(p) {
+            return p && !p.playoff_spectator && !p.eliminated && p.name;
+        }).map(function(p) { return p.name; });
+        var names = finalists.join(' · ');
+        var text = names
+            ? utils.t('dashboard.finalePlayoffBanner', { players: names })
+            : utils.t('dashboard.finalePlayoffBannerAnon');
+        banner.textContent = '⚔️ ' + text;
+        banner.classList.remove('hidden');
     }
 
     /**
