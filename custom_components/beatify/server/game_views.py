@@ -20,6 +20,7 @@ from custom_components.beatify.const import (
     DIFFICULTY_HARD,
     DIFFICULTY_NORMAL,
     DOMAIN,
+    ERR_INTERNAL,
     ERR_MEDIA_PLAYER_UNAVAILABLE,
     ERR_NO_PLAYABLE_SONGS,
     ERR_NO_PLAYLISTS_SELECTED,
@@ -41,7 +42,7 @@ from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
     async_discover_playlists_detailed,
 )
-from custom_components.beatify.game.state import GamePhase, GameState
+from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
 from custom_components.beatify.server.ws_handlers._helpers import finalize_and_end
 from custom_components.beatify.server.base import (
@@ -55,7 +56,6 @@ from custom_components.beatify.server.serializers import (
     build_state_message,
 )
 from custom_components.beatify.server.setup_state import clear_setup
-from custom_components.beatify.services.factories import ha_service_factories
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     get_platform_capabilities,
@@ -160,8 +160,26 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
 
+        # #2675: there is exactly one composition root, and it is
+        # ``async_setup_entry``. It builds the GameState, calls ``set_hass``,
+        # attaches the stats service and registers four callbacks that only the
+        # setup path holds references to. This view used to carry a second,
+        # partial copy of that wiring for the case where the domain key is
+        # missing — a branch ``async_setup_entry`` makes unreachable, and one
+        # that had already drifted: it never called ``set_hass``, so the game it
+        # built started fine and then failed at the first song. A second
+        # construction path is not defence, it is a copy that goes stale
+        # unnoticed. If the key is missing, the config entry is not set up; say
+        # so here rather than hand the host a game that cannot play music.
+        if game_state is None:
+            return _json_error(
+                "Beatify is not set up — reload the integration",
+                500,
+                code=ERR_INTERNAL,
+            )
+
         # Check for existing game
-        if game_state and game_state.game_id:
+        if game_state.game_id:
             if game_state.phase == GamePhase.END:
                 # Game is already finished -- auto-clean state so a new game can start
                 # without requiring the user to explicitly dismiss the end screen (#206)
@@ -400,18 +418,6 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         # Get base URL for join URL construction (from request URL)
         base_url = self._get_base_url(request)
-
-        # Initialize game state if needed
-        if not game_state:
-            # #2638: a composition point, so it wires the HA-backed service
-            # factories just like async_setup_entry does. (Defensive branch:
-            # async_setup_entry always seeds hass.data[DOMAIN]["game"].)
-            game_state = GameState(service_factories=ha_service_factories(self.hass))
-            self.hass.data[DOMAIN]["game"] = game_state
-            # Connect stats service if available (Story 14.4)
-            stats_service = self.hass.data.get(DOMAIN, {}).get("stats")
-            if stats_service:
-                game_state.set_stats_service(stats_service)
 
         # Detect platform and validate compatibility (resolves #38, #39)
 

@@ -109,6 +109,7 @@ DESIGN.md
 .github/workflows/*
 !.github/workflows/test.yml
 !.github/workflows/validate.yml
+!.github/workflows/main-artifact-guard.yml
 
 # Test infra needed by CI to run pytest cleanly. Without these, the test
 # workflow imports beatify and hits a homeassistant metaclass conflict

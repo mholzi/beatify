@@ -1,0 +1,163 @@
+# Main artifact guard (#2673)
+#
+# Every gate in `test.yml` runs against a pull request branch. A PR is green
+# against its own base; `main` is a combination no PR ever evaluated. For
+# hand-written code that is tolerable. For a *derived* artifact it is not: a
+# minified bundle or a `.gz` sibling silently encodes the state of the whole
+# tree it was generated from, so a PR that only regenerates artifacts is
+# instantly wrong the moment another PR lands a source change beside it.
+#
+# That is what happened on 2026-09-06. #2666 added 77 `.gz` siblings compressed
+# from its own branch snapshot; #2650 and #2663 landed frontend sources in
+# between. `main` then served five siblings that decompressed to the *previous*
+# version of their file for about twenty minutes. HA's static handler serves
+# `<file>.gz` verbatim to anything sending `Accept-Encoding: gzip` and derives
+# the ETag from the compressed file, so those stale bytes were served *and
+# cached* as current. A `curl` without the header saw the fresh file.
+#
+# `build:check` already ran on pushes to main and it did report the drift — but
+# only by luck. Seven PRs squashed onto main inside 30 seconds, and `test.yml`'s
+# `concurrency: cancel-in-progress: true` cancelled six of the seven runs. Only
+# the last commit of the burst was ever checked. Had one more merge followed it,
+# nothing would have reported anything.
+#
+# So this workflow is deliberately narrow: it does one thing, it cannot be
+# cancelled by the next merge, and it says out loud which files drifted.
+name: Main artifact guard
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One group per commit — not per branch. `test.yml` groups by `github.ref`, so
+# every merge into main kills the run of the merge before it. Here each commit
+# gets its own group and `cancel-in-progress: false` on top, which means a burst
+# of merges produces a burst of guards instead of one survivor.
+concurrency:
+  group: main-artifact-guard-${{ github.sha }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  derived-artifacts:
+    name: Derived artifacts match main's sources
+    runs-on: ubuntu-latest
+    # A guard nobody waits for is a guard nobody reads. This job installs node
+    # deps and rebuilds ~13 bundles plus ~77 gzip siblings in memory; it has no
+    # matrix, no linter, no test suite. Under two minutes, warm or cold.
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main at this commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # There is no package-lock.json in the tree, so `npm ci` and setup-node's
+      # built-in npm cache are both out. Caching the download directory keyed on
+      # package.json still takes the install from ~30s to a few seconds.
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+
+      - name: Install build dependencies
+        run: npm install --no-audit --no-fund
+
+      # Rebuilds every minified bundle and every `.gz` sibling in memory and
+      # compares against what this commit of main actually ships. Deliberately
+      # not `npm run lint` or `npm test` — those belong on the PR, and bolting
+      # them on here would make the guard slow enough to be ignored.
+      - name: Rebuild every derived artifact and compare with main
+        id: check
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/build.mjs --check 2>&1 | tee "$RUNNER_TEMP/build-check.log"
+
+      # Everything below only runs when the tree is wrong. A red X on a main
+      # commit is not an alarm in a repo that merges several times a day — on
+      # 2026-09-06 main was red for 23 minutes and the repair happened by
+      # accident, when an unrelated rebase conflict forced a full rebuild.
+      - name: Name the drifted files
+        if: failure() && steps.check.outcome == 'failure'
+        shell: bash
+        run: |
+          log="$RUNNER_TEMP/build-check.log"
+          [ -f "$log" ] || exit 0
+
+          # `build.mjs --check` prints one "   - <path> (reason)" line per
+          # offender. Turn each into a file annotation so the drift shows up on
+          # the commit and in the run's file view, not only in the raw log.
+          drifted=$(sed -n 's/^[[:space:]]*-[[:space:]]*//p' "$log")
+
+          {
+            echo "## Derived artifacts on \`main\` do not match their sources"
+            echo
+            echo "Commit \`${GITHUB_SHA:0:8}\` ships derived files that were generated"
+            echo "from a different state of the tree. Home Assistant serves \`<file>.gz\`"
+            echo "verbatim to every browser and builds the ETag from the compressed file,"
+            echo "so a stale sibling is served **and cached** as if it were current."
+            echo
+            echo "### Files"
+            echo
+            while IFS= read -r line; do
+              [ -n "$line" ] && echo "- \`$line\`"
+            done <<< "$drifted"
+            echo
+            echo "### Fix"
+            echo
+            echo '```'
+            echo "git checkout main && git pull"
+            echo "npm run build"
+            echo "git commit -am 'build: regenerate derived artifacts'"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          while IFS= read -r line; do
+            [ -n "$line" ] || continue
+            file="${line%% *}"
+            echo "::error file=${file},title=Stale derived artifact on main::${line}"
+          done <<< "$drifted"
+
+      - name: Open or update the drift issue
+        if: failure() && steps.check.outcome == 'failure' && github.repository == 'mholzi/beatify'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          title="main is serving stale derived artifacts"
+          log="$RUNNER_TEMP/build-check.log"
+          body="$RUNNER_TEMP/issue-body.md"
+
+          {
+            echo "\`main\` at \`${GITHUB_SHA}\` ships derived artifacts that do not match"
+            echo "their sources. Browsers receive the stale \`.gz\` siblings and cache them"
+            echo "under an ETag derived from the compressed file, so this is live for users"
+            echo "until \`npm run build\` is committed."
+            echo
+            echo '```'
+            cat "$log"
+            echo '```'
+            echo
+            echo "Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          } > "$body"
+
+          # One open issue for the condition, commented on each recurrence —
+          # a fresh issue per red commit would train everyone to ignore them.
+          existing=$(gh issue list --state open --search "\"$title\" in:title" \
+            --json number,title --jq "[.[] | select(.title == \"$title\")][0].number")
+
+          if [ -n "$existing" ] && [ "$existing" != "null" ]; then
+            gh issue comment "$existing" --body-file "$body"
+          else
+            gh issue create --title "$title" --body-file "$body"
+          fi

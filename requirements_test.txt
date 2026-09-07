@@ -7,3 +7,4 @@ aiohttp>=3.11
 num2words>=0.5.14  # spoken-number rendering for TTS announcements
 jsonschema>=4.0   # playlist JSON-schema gate (#1284)
 mypy==1.18.2      # static type checking gate (#1275)
+pyyaml>=6.0       # parse .github/workflows in the CI-plumbing tests (#2673)

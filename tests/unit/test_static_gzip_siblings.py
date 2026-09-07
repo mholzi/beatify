@@ -89,3 +89,46 @@ def test_corrupt_sibling_is_reported(tmp_path: Path) -> None:
 
     assert len(problems) == 1
     assert "not a readable gzip stream" in problems[0]
+
+
+def test_the_2026_09_06_combination_is_reported(tmp_path: Path) -> None:
+    """Replay the shape that shipped: siblings from one snapshot, sources from another.
+
+    #2666 generated 77 siblings from its own branch. #2650 and #2663 landed four
+    frontend sources and one i18n file beside it, with no siblings to update —
+    their branches predated the feature. Neither PR was wrong on its own; the
+    combination on ``main`` was, and no job evaluated the combination.
+
+    Five files came out of that: ``i18n/de.json``, ``js/dashboard.js``,
+    ``js/dashboard.min.js``, ``js/player-game.js`` and
+    ``js/player.bundle.min.js``. Every one has to be named — reporting "the
+    build is stale" without the list is what makes people stop reading.
+    """
+    drifted = [
+        "i18n/de.json",
+        "js/dashboard.js",
+        "js/dashboard.min.js",
+        "js/player-game.js",
+        "js/player.bundle.min.js",
+    ]
+    untouched = ["js/admin.min.js", "css/styles.min.css"]
+
+    for rel in drifted + untouched:
+        target = tmp_path / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        # The sibling is written first, from the state #2666 saw.
+        target.write_bytes(b"/* snapshot the .gz siblings were built from */\n")
+        (target.with_name(target.name + ".gz")).write_bytes(
+            gzip.compress(target.read_bytes())
+        )
+
+    # Then the two source PRs land on top, touching only their own files.
+    for rel in drifted:
+        (tmp_path / rel).write_bytes(b"/* landed after the siblings were built */\n")
+
+    problems = _gz_problems(tmp_path)
+
+    assert len(problems) == len(drifted)
+    assert all("stale" in problem for problem in problems)
+    for rel in drifted:
+        assert any(rel in problem for problem in problems), f"{rel} went unreported"

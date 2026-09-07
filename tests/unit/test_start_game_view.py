@@ -56,6 +56,54 @@ class TestStartGameExistingGameGuard:
         assert json.loads(resp.body)["error"] == "GAME_ALREADY_STARTED"
 
 
+class TestMissingGameStateIsRefused:
+    """One composition root, and start-game is not it (#2675).
+
+    ``async_setup_entry`` builds the GameState, calls ``set_hass``, attaches the
+    stats service and registers four callbacks. This view used to keep a second,
+    partial copy of that wiring for the case where ``hass.data[DOMAIN]["game"]``
+    is missing. The copy had drifted: it never called ``set_hass``, so it
+    produced a game that started cleanly and then failed on the first playback
+    attempt, with the error surfacing at song one rather than at Start.
+
+    The branch is unreachable in a set-up integration, so it was deleted. What
+    remains has to be an honest refusal — never a half-built game.
+    """
+
+    async def test_missing_domain_key_returns_internal_error(self):
+        hass = MagicMock()
+        hass.data = {DOMAIN: {}}
+
+        resp = await StartGameView(hass).post(_request())
+
+        assert resp.status == 500
+        assert json.loads(resp.body)["error"] == "INTERNAL_ERROR"
+
+    async def test_missing_domain_entirely_returns_internal_error(self):
+        """An unloaded entry leaves no DOMAIN key at all — not even a dict."""
+        hass = MagicMock()
+        hass.data = {}
+
+        resp = await StartGameView(hass).post(_request())
+
+        assert resp.status == 500
+        assert json.loads(resp.body)["error"] == "INTERNAL_ERROR"
+
+    async def test_no_game_state_is_constructed_behind_the_hosts_back(self):
+        """The refusal must not leave a stray GameState in hass.data.
+
+        That is the whole failure mode: a second construction path seeds the
+        domain key with something the setup path never wired, and every later
+        request finds it and believes the integration is healthy.
+        """
+        hass = MagicMock()
+        hass.data = {DOMAIN: {}}
+
+        await StartGameView(hass).post(_request())
+
+        assert "game" not in hass.data[DOMAIN]
+
+
 # ---------------------------------------------------------------------------
 # Happy-path start-game: body flags reach game_state (#1180)
 # ---------------------------------------------------------------------------
