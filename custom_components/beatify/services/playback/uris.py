@@ -9,6 +9,15 @@ metadata to catch up (#1380).
 
 from __future__ import annotations
 
+from ...providers import ma_uri_rules
+
+#: (internal prefix, Music Assistant template) per provider, from the registry
+#: (#2713). Each provider states its own rewrite next to its URI patterns, so
+#: adding one cannot leave a URI that never converts — the failure this used to
+#: invite, since a missing branch here returns the internal URI unchanged and MA
+#: answers "No playable items found" with nothing pointing back at this file.
+_MA_URI_RULES = ma_uri_rules()
+
 
 def convert_uri_for_ma(uri: str) -> str:
     """
@@ -19,7 +28,7 @@ def convert_uri_for_ma(uri: str) -> str:
     - deezer://track/<id>      → unchanged (MA native, #797)
     - tidal://track/<id>       → https://tidal.com/browse/track/<id>
     - spotify:track:<id>       → unchanged (MA native format)
-    - https://music.youtube.com/... → unchanged (already a URL)
+    - https://music.youtube.com/watch?v=<id> → ytmusic://track/<id>
 
     Args:
         uri: Beatify-internal URI string
@@ -31,30 +40,12 @@ def convert_uri_for_ma(uri: str) -> str:
     if not uri:
         return uri
 
-    if uri.startswith("deezer://track/"):
-        # MA's Deezer provider has domain "deezer". The previous
-        # https://www.deezer.com/track/<id> form was being routed to the
-        # "builtin" provider via MA's generic http(s):// branch — and
-        # builtin doesn't know Deezer, so playback failed with
-        # "No playable items found". Pass through the native form. (#797)
-        return uri
+    for prefix, template in _MA_URI_RULES:
+        if uri.startswith(prefix):
+            return template.format(track_id=uri.removeprefix(prefix))
 
-    if uri.startswith("applemusic://track/"):
-        # MA's Apple Music provider has domain "apple_music". Use MA's native
-        # provider-URI form; the short "music.apple.com/song/<id>" URL fails
-        # MA's parser (needs storefront+slug, 6+ path parts). (#772)
-        track_id = uri.removeprefix("applemusic://track/")
-        return f"apple_music://track/{track_id}"
-
-    if uri.startswith("tidal://track/"):
-        track_id = uri.removeprefix("tidal://track/")
-        return f"https://tidal.com/browse/track/{track_id}"
-
-    if uri.startswith("https://music.youtube.com/watch?v="):
-        track_id = uri.removeprefix("https://music.youtube.com/watch?v=")
-        return f"ytmusic://track/{track_id}"
-
-    # spotify:track:<id> and https:// URLs are passed through unchanged
+    # Providers MA already understands (spotify:track:<id>, deezer://track/<id>,
+    # library://track/<id>) and any other https:// URL pass through unchanged.
     return uri
 
 

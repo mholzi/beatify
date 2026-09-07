@@ -69,6 +69,19 @@ def supported_platforms() -> tuple[str, ...]:
     return tuple(_BY_PLATFORM)
 
 
+def strategy_for_platform(platform: str) -> type[PlaybackStrategy] | None:
+    """The strategy class that claims ``platform``, or None (#2713/#2678).
+
+    The class-level answer to :func:`build_strategy`'s per-speaker one, so the
+    admin can describe a platform ("plays by URI", "needs Spotify linked in the
+    Sonos app") without constructing a strategy for a speaker nobody picked.
+    ``PLATFORM_CAPABILITIES`` used to answer that from a second, hand-kept
+    table, and its ``cast: supported: False`` row said exactly what
+    ``build_strategy`` returning None says.
+    """
+    return _BY_PLATFORM.get(platform)
+
+
 __all__ = [
     "PLAYBACK_TIMEOUT",
     "AlexaStrategy",
@@ -79,6 +92,7 @@ __all__ = [
     "SonosStrategy",
     "build_strategy",
     "convert_uri_for_ma",
+    "strategy_for_platform",
     "supported_platforms",
     "uri_match_tokens",
 ]

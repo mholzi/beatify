@@ -21,6 +21,7 @@ from typing import Any, ClassVar
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
+from ...providers import name_fallback_providers, provider_uri_fields
 from .base import PlaybackStrategy
 from .uris import convert_uri_for_ma, uri_match_tokens
 
@@ -64,8 +65,9 @@ _TITLE_TOKEN_MIN_LEN = 3
 # resolve the track from name + artist. `ma_library` has done this since the
 # Crate Digger work; `tidal` joins because its URIs can no longer be refreshed —
 # Odesli's public API, the only source they ever came from, was retired on
-# 2026-07-31 and now answers 401.
-_NAME_FALLBACK_PROVIDERS = frozenset({"ma_library", "tidal", "ytmusic_free"})
+# 2026-07-31 and now answers 401. Which providers those are is a property of the
+# provider, so it is declared there (#2713).
+_NAME_FALLBACK_PROVIDERS = name_fallback_providers()
 
 # Words that mark a *different recording of the same song*. A name search is
 # free to return any of them, which is exactly the risk this fallback carries:
@@ -204,31 +206,22 @@ def _content_id_advanced(
 # configured — which the wizard already gates. If the user picked Apple
 # Music, they're saying "this is the provider MA is set up for". Trust
 # them.
-_PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = {
-    "spotify": ("uri_spotify", "uri"),
-    "apple_music": ("uri_apple_music",),
-    "youtube_music": ("uri_youtube_music",),
-    "tidal": ("uri_tidal",),
-    "deezer": ("uri_deezer",),
-    # Crate Digger: URIs come from the user's own MA library.
-    "ma_library": ("uri_ma_library",),
-    # Amazon Music uses Alexa text search — no URI fields; playback via
-    # AlexaStrategy with content_type="AMAZON_MUSIC".
-    "amazon_music": (),
-    # #2426: the ytmusic_free URI is DERIVED from uri_youtube_music by
-    # get_song_uri(), so there is no catalogue field to walk. The empty tuple
-    # is deliberate rather than an omission: a missing key would log the
-    # "unknown provider" warning below and imply a mapping bug, while an empty
-    # one says the provider has no stored fields and lets _resolved_uri — which
-    # already holds the derived URI — do the work.
-    "ytmusic_free": (),
-}
+#
+# #2713: the mapping now comes from the provider registry. Every provider gets
+# an entry, so `None` below still means "provider Beatify has never heard of"
+# while an empty tuple still means "this provider stores no catalogue URI"
+# (amazon_music plays by Alexa text search; ytmusic_free's URI is derived from
+# `uri_youtube_music` by `get_song_uri`, so `_resolved_uri` already holds it).
+_PROVIDER_URI_FIELDS: dict[str, tuple[str, ...]] = provider_uri_fields()
 
 
 class MusicAssistantStrategy(PlaybackStrategy):
     """Play through Music Assistant, and prove the speaker actually followed."""
 
     platforms: ClassVar[tuple[str, ...]] = ("music_assistant",)
+    setup_warning: ClassVar[str | None] = (
+        "Premium account must be configured in Music Assistant"
+    )
 
     def __init__(self, context) -> None:
         super().__init__(context)

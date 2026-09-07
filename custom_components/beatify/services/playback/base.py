@@ -35,6 +35,22 @@ class PlaybackStrategy(ABC):
     #: it — instead of in an ``if self._platform ==`` chain.
     platforms: ClassVar[tuple[str, ...]] = ()
 
+    # -- What the admin needs to describe this platform (#2713) --------------
+    # These used to live a second time in ``PLATFORM_CAPABILITIES``, which is
+    # the duplication #2678 names: the capability table and this dispatch table
+    # both answered "which platforms exist", and nothing kept them in step.
+    # The table is now derived from the strategies, so a platform says these
+    # things once, next to the code that plays on it.
+
+    #: How this platform is asked to play — ``"uri"`` or ``"text_search"``.
+    playback_method: ClassVar[str] = "uri"
+
+    #: One-line setup requirement shown next to the speaker in the admin.
+    setup_warning: ClassVar[str | None] = None
+
+    #: A caveat about how well playback works, when there is one.
+    setup_caveat: ClassVar[str | None] = None
+
     def __init__(self, context: PlayerContext) -> None:
         self.context = context
 

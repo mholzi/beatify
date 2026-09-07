@@ -25,11 +25,18 @@ from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
 from custom_components.beatify.game.playlist import get_playback_uri
+from custom_components.beatify.providers import (
+    normalise_platform,
+    platform_provider_flags,
+    supports_keys,
+)
 
 from .playback import (
     MaQueueRestorer,
     PlayerContext,
     build_strategy,
+    strategy_for_platform,
+    supported_platforms,
     uri_match_tokens,
 )
 from .playback.base import PLAYBACK_TIMEOUT
@@ -42,46 +49,53 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-# Platform capability definitions for multi-platform routing
-# Resolves GitHub issues #38 (Nest Audio) and #39 (Google TV Streamer)
+# Why a platform Beatify knows about still cannot play. Only platforms a user
+# is likely to pick need a line here; everything else gets the generic reason.
+# Resolves GitHub issues #38 (Nest Audio) and #39 (Google TV Streamer).
+_UNSUPPORTED_PLATFORM_REASONS: dict[str, str] = {
+    "cast": "Cast devices require Music Assistant",
+}
+
+_UNKNOWN_PLATFORM_REASON = "Unknown player type"
+
+
+def _capabilities_for(platform: str) -> dict[str, Any]:
+    """Build one platform's capability row from the two registries (#2713).
+
+    The provider columns come from ``providers.py`` — one entry per provider,
+    for every platform, so the table can never fall a provider behind again.
+    The platform half (is it supported at all, does it play by URI or by voice,
+    what has to be set up first) comes from the strategy that implements it,
+    which is what #2678 asked for: ``build_strategy`` and this table no longer
+    answer "which platforms exist" separately.
+    """
+    strategy = strategy_for_platform(platform)
+    if strategy is None:
+        return {
+            "supported": False,
+            "reason": _UNSUPPORTED_PLATFORM_REASONS.get(
+                platform, _UNKNOWN_PLATFORM_REASON
+            ),
+        }
+    row: dict[str, Any] = {
+        "supported": True,
+        **platform_provider_flags(platform),
+        "method": strategy.playback_method,
+        "warning": strategy.setup_warning,
+    }
+    if strategy.setup_caveat is not None:
+        row["caveat"] = strategy.setup_caveat
+    return row
+
+
+#: Platform capability definitions for multi-platform routing. Derived, not
+#: written: see :func:`_capabilities_for`. Kept as a module-level mapping
+#: because callers read it directly.
 PLATFORM_CAPABILITIES: dict[str, dict[str, Any]] = {
-    "music_assistant": {
-        "supported": True,
-        "ma_library": True,
-        "spotify": True,
-        "apple_music": True,
-        "youtube_music": True,
-        "tidal": True,
-        "deezer": True,
-        "amazon_music": False,
-        "method": "uri",
-        "warning": "Premium account must be configured in Music Assistant",
-    },
-    "sonos": {
-        "supported": True,
-        "spotify": True,
-        "apple_music": False,
-        "youtube_music": False,
-        "tidal": False,
-        "amazon_music": False,
-        "method": "uri",
-        "warning": "Spotify must be linked in Sonos app",
-    },
-    "alexa_media": {
-        "supported": True,
-        "spotify": True,
-        "apple_music": True,
-        "youtube_music": False,
-        "tidal": False,
-        "amazon_music": True,
-        "method": "text_search",
-        "warning": "Service must be linked in Alexa app",
-        "caveat": "Uses voice search - may occasionally play different version",
-    },
-    "cast": {
-        "supported": False,
-        "reason": "Cast devices require Music Assistant",
-    },
+    platform: _capabilities_for(platform)
+    for platform in (*supported_platforms(), *_UNSUPPORTED_PLATFORM_REASONS)
+    # "alexa" is an alias of "alexa_media"; normalise_platform folds it.
+    if normalise_platform(platform) == platform
 }
 
 
@@ -97,12 +111,11 @@ def get_platform_capabilities(platform: str) -> dict[str, Any]:
 
     """
     # Handle alexa as alias for alexa_media
-    if platform == "alexa":
-        platform = "alexa_media"
+    platform = normalise_platform(platform)
 
     return PLATFORM_CAPABILITIES.get(
         platform,
-        {"supported": False, "reason": "Unknown player type"},
+        {"supported": False, "reason": _UNKNOWN_PLATFORM_REASON},
     )
 
 
@@ -1288,15 +1301,14 @@ def _build_media_player_list(
                 "friendly_name": state.attributes.get("friendly_name", state.entity_id),
                 "state": state.state,
                 "platform": platform,
-                "supports_spotify": capabilities.get("spotify", False),
-                "supports_apple_music": capabilities.get("apple_music", False),
-                "supports_youtube_music": capabilities.get("youtube_music", False),
-                "supports_tidal": capabilities.get("tidal", False),
-                "supports_deezer": capabilities.get("deezer", False),
-                # Crate Digger plays from the host's own Music Assistant
-                # library, so only MA-backed players can serve it. The wizard
-                # greys the provider out for speakers that can't.
-                "supports_ma_library": capabilities.get("ma_library", False),
+                # One `supports_<provider>` key per registered provider (#2713).
+                # Written out by hand until this issue, which is how
+                # `supports_amazon_music` came to be consumed by the admin but
+                # never sent: the Amazon Music chip could not enable even on an
+                # Echo. Crate Digger and ytmusic_free are here for the same
+                # reason — the wizard greys out a provider the speaker cannot
+                # serve, and it can only do that for a key it receives.
+                **supports_keys(platform),
                 "playback_method": capabilities.get("method", "uri"),
                 "warning": capabilities.get("warning"),
                 "caveat": capabilities.get("caveat"),

@@ -22,6 +22,7 @@ class SonosStrategy(PlaybackStrategy):
     """Play via Sonos (URI-based)."""
 
     platforms: ClassVar[tuple[str, ...]] = ("sonos",)
+    setup_warning: ClassVar[str | None] = "Spotify must be linked in Sonos app"
 
     async def play(self, song: dict[str, Any]) -> bool:
         """Play via Sonos (URI-based)."""
