@@ -175,7 +175,17 @@
     "sdYouAreIn": "Du bist noch dabei",
     "sdYouAreOut": "Du bist raus",
     "sdStanding": "{alive} von {total} stehen noch",
-    "sdOutNames": "{names} raus"
+    "sdOutNames": "{names} raus",
+    "pauseReasonFood": "Das Essen ist da",
+    "pauseReasonDoor": "Jemand an der Tür",
+    "pauseReasonAway": "Kurz weg",
+    "pauseReasonSub": "Musik aus, Uhr steht — niemand verpasst etwas",
+    "pauseMusicOff": "Nur die Musik aus",
+    "pauseMusicOffSub": "Die Uhr läuft weiter — wer jetzt nicht tippt, verpasst die Runde",
+    "pausedLabel": "Pause",
+    "pausedClockStopped": "Die Uhr steht — nichts geht verloren",
+    "pausedHintHost": "Es geht gleich weiter",
+    "pausedGuessesSaved": "Eure Tipps sind gespeichert"
   },
   "steal": {
     "available": "Klauen verfügbar!",
@@ -888,7 +898,12 @@
     "lightsLineOff": "Licht ist aus für den Rest des Spiels",
     "lightsLineOnRooms": "blitzen bei jedem Reveal",
     "lightsLineOnCount": "{count} Lampen blitzen bei jedem Reveal",
-    "lightsRowTitle": "Partylicht"
+    "lightsRowTitle": "Partylicht",
+    "pauseGame": "Pause",
+    "pauseGameSub": "Musik aus, Uhr steht, niemand verpasst etwas",
+    "pauseAnnouncement": "Ansage ändern",
+    "pauseOnEveryScreen": "Steht auf allen Schirmen",
+    "resume": "Weiter"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

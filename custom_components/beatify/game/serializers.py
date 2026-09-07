@@ -232,6 +232,13 @@ class GameStateSerializer:
 
         elif gs.phase == GamePhase.PAUSED:
             state["pause_reason"] = gs.pause_reason
+            # #2645: which phase the pause interrupted. The host's pause screen
+            # offers "Just the music off" as a fourth tile next to the pause
+            # reasons — that swap only means anything for a round that is still
+            # running, so the tile is rendered off a fact rather than a guess.
+            state["paused_from"] = (
+                gs._previous_phase.value if gs._previous_phase else None
+            )
             # #805: surface human-readable error detail so the admin sees
             # *why* the game paused instead of staring at a blank "⏸ Paused"
             # label. Empty string for non-error pauses (admin disconnect etc).

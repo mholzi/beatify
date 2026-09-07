@@ -20,6 +20,8 @@ from custom_components.beatify.const import (
     ERR_NO_SONGS_REMAINING,
     ERR_NOT_ADMIN,
     ERR_UNAUTHORIZED,
+    HOST_PAUSE_REASON,
+    HOST_PAUSE_REASONS,
     MIN_PLAYERS,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
@@ -100,6 +102,7 @@ async def handle_admin(
         "set_volume": admin_set_volume,
         "seek_forward": admin_seek_forward,
         "end_game": admin_end_game,
+        "pause_game": admin_pause_game,
         "resume_game": admin_resume_game,
         "dismiss_game": admin_dismiss_game,
         "rematch_game": admin_rematch_game,
@@ -258,7 +261,46 @@ async def admin_stop_song(
     data: dict,
     game_state: GameState,
 ) -> None:
-    """Handle admin stop_song action."""
+    """Handle admin stop_song action.
+
+    #2645: also reachable *out of* a host pause. On the pause screen "Just the
+    music off" sits as the fourth tile under the three pause reasons, each with
+    its consequence spelled out — that juxtaposition is the whole point, since
+    Stop and Pause were previously two buttons in two places and the host had
+    to already know which one they meant. Picking the fourth tile out of a
+    pause means the host did not want a pause at all: leave the pause and
+    silence the song, so the round runs on.
+    """
+    if game_state.phase == GamePhase.PAUSED:
+        # Only a pause the host set may be swapped for a plain stop. A pause
+        # the server owns (dead speaker, empty playlist) is not a mislabelled
+        # Stop, and resuming into it would just re-fail.
+        if game_state.pause_reason not in HOST_PAUSE_REASONS:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "No song playing",
+                }
+            )
+            return
+        if not await game_state.resume_game():
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "Resume failed — no previous phase to restore",
+                }
+            )
+            return
+        _LOGGER.info("Host swapped a pause for a plain stop")
+        await handler.broadcast_state()
+        if game_state.phase != GamePhase.PLAYING:
+            # The round's deadline elapsed while the pause stood, so the resume
+            # landed in REVEAL. The pause is lifted, which was the larger half
+            # of the intent; there is no round left to silence.
+            return
+
     if game_state.phase != GamePhase.PLAYING:
         await ws.send_json(
             {
@@ -372,6 +414,81 @@ async def admin_end_game(
         "Admin ended game early at round %d - players preserved for rematch",
         game_state.round,
     )
+    await handler.broadcast_state()
+
+
+async def admin_pause_game(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin pause_game action — the host's own pause (#2645).
+
+    ``GameState.pause_game(reason)`` has existed for a long time, but every
+    caller was server-side; the host's only "pause" was locking their phone,
+    which trips ``admin_disconnected``, or Stop, which leaves the clock running
+    and marks the room as missing the round.
+
+    The tap pauses **immediately**. ``reason`` only names the announcement the
+    room reads, and a host who tapped Pause without picking one has still
+    paused — the screens then simply say "Pause". The same action arriving
+    while already paused re-labels the announcement without leaving the pause,
+    which is why the pizza can turn into "back in a minute" halfway through.
+    """
+    reason = data.get("reason") or HOST_PAUSE_REASON
+    if reason not in HOST_PAUSE_REASONS:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": f"Unknown pause reason: {reason}",
+            }
+        )
+        return
+
+    if game_state.phase == GamePhase.PAUSED:
+        # Re-labelling an existing host pause. A pause the server owns keeps
+        # its reason: "Pizza is here" must never be able to cover a speaker
+        # that stopped answering — the room would wait for a host who is
+        # waiting for a speaker.
+        if game_state.pause_reason not in HOST_PAUSE_REASONS:
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_INVALID_ACTION,
+                    "message": "This pause was not set by the host",
+                }
+            )
+            return
+        if game_state.pause_reason == reason:
+            return
+        game_state.pause_reason = reason
+        _LOGGER.info("Host pause re-labelled: %s", reason)
+        await handler.broadcast_state()
+        return
+
+    if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "No round to pause",
+            }
+        )
+        return
+
+    if not await game_state.pause_game(reason):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Could not pause the game",
+            }
+        )
+        return
+
+    _LOGGER.info("Host paused the game: %s", reason)
     await handler.broadcast_state()
 
 

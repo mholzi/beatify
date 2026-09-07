@@ -633,9 +633,18 @@
         <div id="dashboard-paused" class="dashboard-view hidden">
             <div class="dashboard-centered">
                 <!-- #2552: was the literal string "||", which renders as two
-                     pipes in the page font rather than a pause glyph. -->
-                <div class="paused-icon" aria-hidden="true">⏸</div>
-                <h1 data-i18n="game.paused">Game Paused</h1>
+                     pipes in the page font rather than a pause glyph.
+                     #2645: on a pause the host set, this is the announcement's
+                     emoji instead — 🍕 for the pizza that just arrived. -->
+                <div id="dashboard-pause-icon" class="paused-icon" aria-hidden="true">⏸</div>
+                <!-- #2645: written by dashboard.js. On a host pause the
+                     hierarchy inverts — the *reason* is the headline and the
+                     word "Pause" moves to the small line below it, because
+                     "why" is the question twenty people in a living room are
+                     actually asking. No data-i18n: a later translation pass
+                     would put the generic heading back over the announcement. -->
+                <h1 id="dashboard-pause-title">Game Paused</h1>
+                <p id="dashboard-pause-state" class="dashboard-pause-state hidden"></p>
                 <!-- #2552: the text follows pause_reason (dashboard.js). It used
                      to always say the host had disconnected — in front of a room
                      where the host was standing next to the TV. -->

@@ -42,6 +42,12 @@ import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escap
 // double-taps that would otherwise skip a whole round).
 import { createControlGuard } from './admin/control-guard.js';
 
+// #2645: the host's pause and its announcement — shared with the player page's
+// drawer so a reason added once shows up on every surface.
+import {
+    HOST_PAUSE_GENERIC, HOST_PAUSE_TILES, isHostPause, hostPauseAnnouncement
+} from './host-pause.js';
+
 // #1663 item 1: non-blocking notices replace the old blocking alert(). Transient
 // notices → neon top-toast; setup/validation errors → inline panel-banner docked
 // above the home Start button.
@@ -899,6 +905,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Issue #477: Wire game phase control buttons
     document.getElementById('admin-stop-song')?.addEventListener('click', adminStopSong);
+    // #2645: one button, two jobs — Pause while a round runs, Resume while a
+    // host pause stands. The same physical key does and undoes it, so the host
+    // never has to look for the way back somewhere else on the page.
+    document.getElementById('admin-pause-game')?.addEventListener('click', adminTogglePause);
     document.getElementById('admin-vol-down')?.addEventListener('click', adminVolumeDown);
     document.getElementById('admin-vol-up')?.addEventListener('click', adminVolumeUp);
     document.getElementById('admin-end-game-playing')?.addEventListener('click', endGame);
@@ -2615,6 +2625,11 @@ function renderAdminState(data) {
         window.BeatifyHome.enter();
     }
 
+    // #2645: the Pause key's label follows the phase, and the PLAYING branch
+    // below can return early (handing over to the player view), so it is set
+    // before the switch rather than inside it.
+    _renderPauseControl(data);
+
     switch (data.phase) {
         case 'LOBBY':
             showLobbyView(data);
@@ -2738,6 +2753,9 @@ function showAdminPlayingView(data) {
 
     // #805: clear any pause-recovery banner left over from a prior PAUSED phase.
     _hidePauseRecoveryBanner();
+    // #2645: and the host-pause announcement, for the same reason — both live
+    // inside this section and would otherwise survive into the next round.
+    _hideHostPausePanel();
 
     // Show fixed control bar (matches player admin-control-bar)
     var controlBar = document.getElementById('admin-control-bar');
@@ -2920,6 +2938,9 @@ function showAdminRevealView(data) {
 
     // #805: clear any pause-recovery banner left over from a prior PAUSED phase.
     _hidePauseRecoveryBanner();
+    // #2645: and the host-pause announcement, for the same reason — both live
+    // inside this section and would otherwise survive into the next round.
+    _hideHostPausePanel();
 
     // #1012 follow-up: idle-halt notice — the round ended with zero guesses,
     // playback has stopped, and the game is holding here until "Next round".
@@ -3385,6 +3406,18 @@ function showAdminPausedView(data) {
     // #805: surface the recovery banner if the pause was caused by a
     // playback error. Admin-disconnect pauses leave the banner hidden.
     _renderPauseRecoveryBanner(data);
+
+    // #2645: a pause the host set gets the announcement instead — and the
+    // timer's "⏸ Paused" above is replaced by the reason, because on this
+    // screen too the question is "why", not "whether".
+    var announce = hostPauseAnnouncement(data && data.pause_reason, function (key) {
+        return BeatifyI18n.t(key);
+    });
+    if (announce && timerEl) {
+        timerEl.textContent = announce.emoji + ' ' + announce.headline;
+    }
+    _renderHostPausePanel(data);
+    _renderPauseControl(data);
 }
 
 // ---- Admin game controls (sent via WS) ----
@@ -3415,6 +3448,154 @@ function adminStopSong() {
     _controlGuard.run('stop_song', ['admin-stop-song'],
         function () { return sendAdminCommand({ type: 'admin', action: 'stop_song' }); },
         ADMIN_CONTROL_GUARD_MS);
+}
+
+/**
+ * #2645: Pause / Resume on the control bar.
+ *
+ * Reads the live phase rather than a local flag: the game can be paused from
+ * the host's phone, and a second copy of "am I paused" on this page would be
+ * the wrong one within a second of that happening.
+ */
+function adminTogglePause() {
+    var game = adminState.currentGame;
+    var paused = !!(game && game.phase === 'PAUSED');
+    _controlGuard.run('pause_game', ['admin-pause-game'],
+        function () {
+            return sendAdminCommand(paused
+                ? { type: 'admin', action: 'resume_game' }
+                : { type: 'admin', action: 'pause_game', reason: HOST_PAUSE_GENERIC });
+        },
+        ADMIN_CONTROL_GUARD_MS);
+}
+
+/** Send a re-label of the standing host pause (#2645). */
+function adminSetPauseReason(reason) {
+    _controlGuard.run('pause_game', ['admin-pause-game'],
+        function () {
+            return sendAdminCommand({ type: 'admin', action: 'pause_game', reason: reason });
+        },
+        ADMIN_CONTROL_GUARD_MS);
+}
+
+/**
+ * Swap a host pause for the plain Stop it was maybe meant to be (#2645).
+ *
+ * The server lifts the pause and silences the song in one action, so the round
+ * keeps running — which is the whole difference the fourth tile advertises.
+ */
+function adminMusicOffInstead() {
+    _controlGuard.run('stop_song', ['admin-stop-song'],
+        function () { return sendAdminCommand({ type: 'admin', action: 'stop_song' }); },
+        ADMIN_CONTROL_GUARD_MS);
+}
+
+/**
+ * The control bar's Pause key, relabelled for the phase it is looking at
+ * (#2645).
+ *
+ * A pause the *server* set is not the host's to undo from here — the recovery
+ * banner owns that, with the explanation of what broke next to its button. So
+ * the key goes quiet rather than offering a Resume that would drop the host
+ * back into the same dead speaker.
+ */
+function _renderPauseControl(data) {
+    var btn = document.getElementById('admin-pause-game');
+    if (!btn) return;
+    var phase = data && data.phase;
+    var paused = phase === 'PAUSED';
+    var hostPause = paused && isHostPause(data && data.pause_reason);
+
+    var icon = btn.querySelector('.control-icon');
+    var label = btn.querySelector('.control-label');
+    if (icon) icon.textContent = paused ? '▶️' : '⏸️';
+    if (label) {
+        label.textContent = paused
+            ? (BeatifyI18n.t('admin.resume') || 'Resume')
+            : (BeatifyI18n.t('admin.pauseGame') || 'Pause');
+    }
+
+    var usable = hostPause || phase === 'PLAYING' || phase === 'REVEAL';
+    btn.disabled = !usable;
+    btn.classList.toggle('is-disabled', !usable);
+}
+
+/**
+ * The announcement panel on the admin page (#2645) — the same four tiles the
+ * host's phone shows, on the screen the host is standing at.
+ */
+function _renderHostPausePanel(data) {
+    var panel = document.getElementById('admin-host-pause');
+    var list = document.getElementById('admin-pause-reason-tiles');
+    if (!panel || !list) return;
+
+    var announce = hostPauseAnnouncement(data && data.pause_reason, function (key) {
+        return BeatifyI18n.t(key);
+    });
+    if (!announce) {
+        panel.classList.add('hidden');
+        list.innerHTML = '';
+        return;
+    }
+    panel.classList.remove('hidden');
+
+    var emojiEl = document.getElementById('admin-host-pause-emoji');
+    if (emojiEl) emojiEl.textContent = announce.emoji;
+    var titleEl = document.getElementById('admin-host-pause-title');
+    if (titleEl) titleEl.textContent = announce.headline;
+
+    var tiles = HOST_PAUSE_TILES.map(function (tile) {
+        return {
+            code: tile.code,
+            emoji: tile.emoji,
+            title: BeatifyI18n.t(tile.titleKey),
+            sub: BeatifyI18n.t('game.pauseReasonSub'),
+            warn: false,
+            active: data.pause_reason === tile.code,
+        };
+    });
+    // Same rule as the phone: the swap into a plain Stop is only offered while
+    // there is a round left to run on. Out of a pause taken in the reveal,
+    // "the clock keeps running" would be a promise about a stopped clock.
+    if (data.paused_from === 'PLAYING') {
+        tiles.push({
+            code: 'music_off',
+            emoji: '🔇',
+            title: BeatifyI18n.t('game.pauseMusicOff'),
+            sub: BeatifyI18n.t('game.pauseMusicOffSub'),
+            warn: true,
+            active: false,
+        });
+    }
+
+    list.innerHTML = tiles.map(function (tile) {
+        return '<button type="button" class="pause-reason' +
+            (tile.active ? ' is-on' : '') +
+            (tile.warn ? ' pause-reason--warn' : '') +
+            '" data-code="' + escapeHtml(tile.code) + '"' +
+            ' aria-pressed="' + (tile.active ? 'true' : 'false') + '">' +
+            '<span class="pause-reason__emoji" aria-hidden="true">' + tile.emoji + '</span>' +
+            '<span class="pause-reason__text">' +
+                '<span class="pause-reason__title">' + escapeHtml(tile.title) + '</span>' +
+                '<span class="pause-reason__sub">' + escapeHtml(tile.sub) + '</span>' +
+            '</span>' +
+        '</button>';
+    }).join('');
+
+    if (list.dataset.wired === '1') return;
+    list.dataset.wired = '1';
+    list.addEventListener('click', function (ev) {
+        var btn = ev.target && ev.target.closest ? ev.target.closest('.pause-reason') : null;
+        if (!btn) return;
+        var code = btn.getAttribute('data-code');
+        if (code === 'music_off') adminMusicOffInstead();
+        else adminSetPauseReason(code);
+    });
+}
+
+function _hideHostPausePanel() {
+    var panel = document.getElementById('admin-host-pause');
+    if (panel) panel.classList.add('hidden');
 }
 
 function adminVolumeUp() {

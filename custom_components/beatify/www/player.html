@@ -916,8 +916,19 @@
         <!-- Paused View (Story 7-1) -->
         <div id="paused-view" class="view hidden">
             <div class="paused-container">
-                <div class="paused-icon">⏸️</div>
-                <h1 data-i18n="game.paused">Game Paused</h1>
+                <!-- #2645: the icon and the heading are written by
+                     updatePausedView, because on a host pause they carry the
+                     *announcement* — 🍕 and "Pizza is here" — and only fall
+                     back to ⏸️ / "Game Paused" when nobody named a reason.
+                     They deliberately carry no data-i18n: a later
+                     initPageTranslations pass would put the generic heading
+                     back over the announcement. -->
+                <div id="pause-icon" class="paused-icon">⏸️</div>
+                <h1 id="paused-title">Game Paused</h1>
+                <!-- The word the announcement replaces, kept small underneath
+                     it so the *state* is still readable when the headline is
+                     about pizza. Hidden unless a reason was named. -->
+                <p id="pause-state-label" class="paused-state-label hidden"></p>
                 <p id="pause-message" data-i18n="game.waitingForHost">Waiting for host to reconnect...</p>
                 <div class="paused-spinner">
                     <div class="spinner"></div>
@@ -928,6 +939,17 @@
                      server-side; the controls only ever existed on /beatify/admin,
                      and nothing on this screen linked there. -->
                 <div id="paused-admin-actions" class="paused-admin-actions hidden">
+                    <!-- #2645: the announcement list. The tiles do not open the
+                         pause — the tap already did that — they name it, and
+                         the fourth one is the old Stop standing next to them
+                         with its consequence written out, so the difference
+                         between "clock stopped" and "clock running" is read at
+                         the moment of choosing rather than learned afterwards.
+                         Rendered by player-game.js; empty here on purpose. -->
+                    <div id="paused-announce-block" class="pause-announce hidden">
+                        <div class="pause-announce-label" data-i18n="admin.pauseAnnouncement">Change the announcement</div>
+                        <div id="paused-reason-tiles" class="pause-reasons"></div>
+                    </div>
                     <button id="paused-resume-btn" class="btn btn-primary btn-large btn-full-width" type="button">
                         <span class="btn-icon" aria-hidden="true">▶</span>
                         <span data-i18n="admin.resumeGame">Resume Game</span>

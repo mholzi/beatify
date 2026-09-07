@@ -698,6 +698,14 @@ function handleServerMessage(data) {
                         renderHostDrawer(data);
                         renderPartyLightsLine(data);   // #2649
                     }
+                    // #2645: the pause screen is an announcement plus four
+                    // sentences — generated prose, not labels, and the
+                    // headline carries no data-i18n at all, so a locale
+                    // arriving late has to rebuild it rather than swap it.
+                    if (data.phase === 'PAUSED') {
+                        updatePausedView(data);
+                        renderPausedAdminActions(data);
+                    }
                 });
             }
         }
@@ -835,7 +843,8 @@ function handleServerMessage(data) {
             updatePausedView(data);
             // #2551: the control bar is hidden in PAUSED, so the host needs
             // their own resume/end inside the paused view itself.
-            renderPausedAdminActions();
+            // #2645: and, for a pause the host set, the announcement list.
+            renderPausedAdminActions(data);
         } else if (data.phase === 'END') {
             stopCountdown();
             stopRevealCountdown();

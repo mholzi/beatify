@@ -8121,6 +8121,165 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-container {
 }
 
 /* ============================================
+   The host's pause, as an announcement (#2645)
+
+   The hierarchy is inverted on purpose: the *reason* is the headline and the
+   word "Pause" sits small underneath it, because "what is going on" is the
+   question a room asks and "something stopped" is not an answer to it.
+   ============================================ */
+
+/* The headline when a reason was named. It is prose, not a status label, so it
+   gets the accent colour the rest of the app reserves for the live thing. */
+.paused-title--announce {
+    color: var(--color-accent-primary);
+}
+
+.paused-state-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.paused-state-label.hidden {
+    display: none;
+}
+
+.pause-announce {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    text-align: left;
+}
+
+.pause-announce.hidden {
+    display: none;
+}
+
+.pause-announce-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+}
+
+.pause-reasons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+/* One tile per announcement. The subtitle wraps rather than truncating: it is
+   the sentence that separates a pause from Stop, and half of it separates
+   nothing. */
+.pause-reason {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    min-height: 48px;
+    padding: var(--space-sm);
+    background: var(--color-dark-surface);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    text-align: left;
+    cursor: pointer;
+}
+
+.pause-reason:hover {
+    background: var(--color-dark-surface-hover);
+}
+
+.pause-reason.is-on {
+    border-color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.12);
+}
+
+/* The fourth tile is the old Stop. It is not a warning about a mistake — it is
+   a different, legitimate choice — so it is marked out rather than greyed out. */
+.pause-reason--warn {
+    border-color: rgba(255, 102, 0, 0.5);
+    background: rgba(255, 102, 0, 0.07);
+}
+
+.pause-reason--warn .pause-reason__sub {
+    color: var(--color-warning-alt);
+}
+
+.pause-reason__emoji {
+    font-size: var(--font-size-lg);
+    line-height: 1;
+}
+
+.pause-reason__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.pause-reason__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.pause-reason__sub {
+    font-size: var(--font-size-xs);
+    line-height: 1.35;
+    color: var(--color-text-neon-muted);
+}
+
+/* The same panel on the admin page (#2645). It sits above the round card, next
+   to — not inside — the #805 recovery banner: that one is an alert about
+   something broken, this one is the announcement the room is reading. */
+.admin-host-pause {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    background: var(--color-dark-card);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+}
+
+.admin-host-pause.hidden {
+    display: none;
+}
+
+.admin-host-pause-headline {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.admin-host-pause-emoji {
+    font-size: var(--font-size-2xl);
+    line-height: 1;
+}
+
+.admin-host-pause-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-primary);
+}
+
+.admin-host-pause-sub {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* ============================================
    Reconnecting Overlay (Story 7-3)
    ============================================ */
 

@@ -91,11 +91,13 @@ class TestHostCanLeaveAPausedGame:
 
     def test_the_paused_branch_renders_them(self):
         js = (WWW / "js" / "player-core.js").read_text(encoding="utf-8")
-        assert "renderPausedAdminActions()" in js
+        # #2645 gave the renderer the state payload — the announcement tiles it
+        # now also draws depend on `pause_reason` / `paused_from`.
+        assert "renderPausedAdminActions(data)" in js
 
     def test_the_actions_are_admin_only(self):
         js = (WWW / "js" / "player-game.js").read_text(encoding="utf-8")
-        body = js.split("export function renderPausedAdminActions()", 1)[1].split(
+        body = js.split("export function renderPausedAdminActions(", 1)[1].split(
             "\n}", 1
         )[0]
         assert "state.isAdmin" in body

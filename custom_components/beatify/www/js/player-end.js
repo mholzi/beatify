@@ -9,6 +9,8 @@ import {
 } from './player-utils.js';
 // #1663 item 1: non-blocking toast replaces the blocking alert() (rematch failed).
 import { showToast } from './notify.js';
+// #2645: the paused screen's announcement.
+import { hostPauseAnnouncement } from './host-pause.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -738,8 +740,41 @@ function downloadBlob(blob) {
 export function updatePausedView(data) {
     var speakerDown = data.pause_reason === 'media_player_error';
     var messageEl = document.getElementById('pause-message');
+
+    // #2645: a pause the host set is an announcement, and the announcement is
+    // the headline. The guest's screen answers the question the guest is
+    // actually asking — "what is going on?" — instead of only stating that
+    // something stopped.
+    var announce = hostPauseAnnouncement(data.pause_reason, function(key) {
+        return utils.t(key);
+    });
+
+    var iconEl = document.getElementById('pause-icon');
+    if (iconEl) iconEl.textContent = announce ? announce.emoji : '⏸️';
+
+    var titleEl = document.getElementById('paused-title');
+    if (titleEl) {
+        titleEl.textContent = announce ? announce.headline : utils.t('game.paused');
+        titleEl.classList.toggle('paused-title--announce', !!(announce && announce.named));
+    }
+
+    // The state under the headline. Only worth its line when the headline is
+    // about pizza — when the headline already says "Game Paused", repeating
+    // "Pause" underneath it says nothing.
+    var stateEl = document.getElementById('pause-state-label');
+    if (stateEl) {
+        var named = !!(announce && announce.named);
+        stateEl.classList.toggle('hidden', !named);
+        stateEl.textContent = named ? utils.t('game.pausedLabel') : '';
+    }
+
     if (messageEl) {
-        if (data.pause_reason === 'admin_disconnected') {
+        if (announce) {
+            // Nobody is missing points while this stands — that is the one
+            // thing a guest needs to hear, and the one thing Stop could never
+            // promise.
+            messageEl.textContent = utils.t('game.pausedClockStopped');
+        } else if (data.pause_reason === 'admin_disconnected') {
             messageEl.textContent = utils.t('player.waitingForHostReconnect');
         } else if (speakerDown) {
             messageEl.textContent = utils.t('player.speakerUnavailable');
@@ -752,9 +787,15 @@ export function updatePausedView(data) {
     // guest was told to wait for something that was not happening.
     var hintEl = document.getElementById('pause-hint');
     if (hintEl) {
-        hintEl.textContent = speakerDown
-            ? utils.t('game.pausedHintSpeaker')
-            : utils.t('game.pausedHint');
+        if (announce) {
+            // #2645: "the game will resume when the host returns" is wrong for
+            // a pause the host set on purpose — the host never left.
+            hintEl.textContent = utils.t('game.pausedHintHost');
+        } else {
+            hintEl.textContent = speakerDown
+                ? utils.t('game.pausedHintSpeaker')
+                : utils.t('game.pausedHint');
+        }
     }
 }
 

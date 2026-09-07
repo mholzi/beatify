@@ -175,6 +175,38 @@ DIFFICULTY_SCORING: dict[str, dict[str, int]] = {
     },
 }
 
+# ---------------------------------------------------------------------------
+# Host pause reasons (#2645)
+# ---------------------------------------------------------------------------
+# Every pause reason that existed before #2645 is one the *server* decided: the
+# admin socket dropped, the speaker stopped answering, the playlist ran dry.
+# ``pause_game()`` has taken a reason string for a long time, but no code path
+# let the host name one — the host had Stop, which takes the music away while
+# the clock keeps running and scores the whole room as "missed".
+#
+# These four are the reasons a host picks on purpose, and they double as the
+# announcement the room reads: the TV prints the reason large with the word
+# "Pause" small underneath, so twenty people learn what is happening without
+# anyone having to shout it. ``HOST_PAUSE_REASON`` is what a bare Pause tap
+# sends — a host who opened the door without picking a tile has still paused,
+# and the TV then simply says "Pause".
+HOST_PAUSE_REASON = "host_pause"
+HOST_PAUSE_REASON_FOOD = "host_pause_food"
+HOST_PAUSE_REASON_DOOR = "host_pause_door"
+HOST_PAUSE_REASON_AWAY = "host_pause_away"
+
+#: The reasons an admin socket may set. A reason outside this set is rejected,
+#: and — just as important — a pause the *server* owns can never be relabelled
+#: into one of these: "Pizza is here" must not be able to cover a dead speaker.
+HOST_PAUSE_REASONS: frozenset[str] = frozenset(
+    {
+        HOST_PAUSE_REASON,
+        HOST_PAUSE_REASON_FOOD,
+        HOST_PAUSE_REASON_DOOR,
+        HOST_PAUSE_REASON_AWAY,
+    }
+)
+
 # Error codes
 ERR_NAME_TAKEN = "NAME_TAKEN"
 ERR_NAME_INVALID = "NAME_INVALID"

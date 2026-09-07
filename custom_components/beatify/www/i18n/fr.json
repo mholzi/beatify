@@ -175,7 +175,17 @@
     "sdYouAreIn": "Tu es toujours là",
     "sdYouAreOut": "Tu es éliminé",
     "sdStanding": "{alive} sur {total} encore en lice",
-    "sdOutNames": "{names} éliminé(s)"
+    "sdOutNames": "{names} éliminé(s)",
+    "pauseReasonFood": "Le repas est arrivé",
+    "pauseReasonDoor": "Quelqu'un à la porte",
+    "pauseReasonAway": "Je reviens tout de suite",
+    "pauseReasonSub": "Musique coupée, chrono arrêté — personne ne rate rien",
+    "pauseMusicOff": "Couper seulement la musique",
+    "pauseMusicOffSub": "Le chrono continue — qui ne répond pas maintenant rate la manche",
+    "pausedLabel": "Pause",
+    "pausedClockStopped": "Le chrono est arrêté — rien n'est perdu",
+    "pausedHintHost": "L'hôte reprend dans un instant",
+    "pausedGuessesSaved": "Vos réponses sont enregistrées"
   },
   "steal": {
     "available": "Vol disponible !",
@@ -888,7 +898,12 @@
     "lightsLineOff": "Les lumières sont éteintes pour le reste de la partie",
     "lightsLineOnRooms": "clignotent à chaque révélation",
     "lightsLineOnCount": "{count} lumières clignotent à chaque révélation",
-    "lightsRowTitle": "Lumières de fête"
+    "lightsRowTitle": "Lumières de fête",
+    "pauseGame": "Pause",
+    "pauseGameSub": "Musique coupée, chrono arrêté, personne ne rate rien",
+    "pauseAnnouncement": "Changer l'annonce",
+    "pauseOnEveryScreen": "Affiché sur tous les écrans",
+    "resume": "Reprendre"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

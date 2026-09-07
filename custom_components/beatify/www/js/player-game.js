@@ -15,6 +15,10 @@ import {
     triggerConfetti, stopConfetti, isTitleArtistMode,
     createModalFocusTrap
 } from './player-utils.js';
+// #2645: the host's pause and the announcement that goes with it.
+import {
+    HOST_PAUSE_GENERIC, HOST_PAUSE_TILES, isHostPause
+} from './host-pause.js';
 
 // #1760: focus traps for the steal + intro-splash dialogs (lazily created once
 // per dialog element). Trap Tab within the dialog and restore focus on close.
@@ -2244,6 +2248,10 @@ export function renderHostDrawer(data) {
 
     drawer.classList.remove('hidden');
     _wireHostDrawerGrip();
+    // #2645: Pause is the first row on purpose. It is the one the host reaches
+    // for while carrying a pizza box, and the control bar above has no space
+    // left for it — six elements on 270 px is what created this drawer.
+    _renderPauseRow();
     _renderSuddenDeathRow(data);
     _renderPartyLightsRow(data);   // #2649
 }
@@ -2446,7 +2454,66 @@ function _wireHostDrawerGrip() {
 }
 
 /**
- * The drawer's first row: arm or disarm Sudden Death (#827's endpoint, #2723's
+ * The drawer's Pause row (#2645).
+ *
+ * The tap pauses immediately — it does not open a reason picker first. A host
+ * with a doorbell going has one thing to do, and making them choose a label
+ * before the music stops would be the second-worst version of a pause button.
+ * The reasons are offered afterwards, on the pause screen, as the announcement.
+ *
+ * The subtitle is the sentence that separates this from Stop, which is the
+ * button sitting three centimetres above it in the control bar.
+ */
+function _renderPauseRow() {
+    var body = document.getElementById('host-drawer-body');
+    if (!body) return;
+
+    var row = document.getElementById('host-drawer-pause');
+    if (!row) {
+        row = document.createElement('button');
+        row.id = 'host-drawer-pause';
+        row.type = 'button';
+        row.className = 'host-drawer__row';
+        row.addEventListener('click', function() {
+            sendHostPause(HOST_PAUSE_GENERIC);
+        });
+        body.appendChild(row);
+    }
+
+    row.innerHTML =
+        '<span class="host-drawer__row-icon">⏸️</span>' +
+        '<span class="host-drawer__row-text">' +
+            '<span class="host-drawer__row-title">' +
+                escapeHtml(utils.t('admin.pauseGame')) + '</span>' +
+            '<span class="host-drawer__row-sub">' +
+                escapeHtml(utils.t('admin.pauseGameSub')) + '</span>' +
+        '</span>';
+}
+
+/**
+ * Send the host's pause / re-label (#2645).
+ *
+ * The same action does both: the server pauses when the game is running and
+ * only re-writes the announcement when it is already paused, so the host can
+ * change "pizza" into "back in a minute" without leaving the pause.
+ *
+ * @param {string} reason - one of HOST_PAUSE_CODES
+ */
+function sendHostPause(reason) {
+    if (!debounceAdminAction()) return;
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        showToast(utils.t('errors.CONNECTION_LOST'));
+        return;
+    }
+    state.ws.send(JSON.stringify({
+        type: 'admin',
+        action: 'pause_game',
+        reason: reason
+    }));
+}
+
+/**
+ * The drawer's second row: arm or disarm Sudden Death (#827's endpoint, #2723's
  * reachable place for it).
  *
  * The subtitle says what the switch *does*, not what it is called. The host
@@ -2643,17 +2710,119 @@ export function showFloatingReaction(senderName, emoji) {
  * resume, no end, and no link to the page that has both. `resume_game` and
  * `end_game` have accepted PAUSED server-side all along.
  */
-export function renderPausedAdminActions() {
+export function renderPausedAdminActions(data) {
     var box = document.getElementById('paused-admin-actions');
     if (!box) return;
     box.classList.toggle('hidden', !state.isAdmin);
-    if (!state.isAdmin || box.dataset.wired === '1') return;
-    box.dataset.wired = '1';
+    if (!state.isAdmin) return;
 
-    var resumeBtn = document.getElementById('paused-resume-btn');
-    if (resumeBtn) resumeBtn.addEventListener('click', handleResumeGame);
-    var endBtn = document.getElementById('paused-end-btn');
-    if (endBtn) endBtn.addEventListener('click', handleEndGame);
+    if (box.dataset.wired !== '1') {
+        box.dataset.wired = '1';
+        var resumeBtn = document.getElementById('paused-resume-btn');
+        if (resumeBtn) resumeBtn.addEventListener('click', handleResumeGame);
+        var endBtn = document.getElementById('paused-end-btn');
+        if (endBtn) endBtn.addEventListener('click', handleEndGame);
+    }
+
+    renderPauseReasonTiles(data || {});
+}
+
+/** The value the fourth tile carries — the old Stop, not a pause reason. */
+export var PAUSE_TILE_MUSIC_OFF = 'music_off';
+
+/**
+ * Which tiles the host's pause screen offers (#2645) — the decision, without
+ * the DOM, so it can be checked without a browser.
+ *
+ * Three announcements plus the old Stop. Standing them in one list, each with
+ * its consequence in a whole sentence, is the entire point of this variant:
+ * before it, Pause and Stop were two buttons in two places and the host had to
+ * already know which one they meant. Reading them side by side once is enough.
+ *
+ * The fourth tile is only offered when there is a round left to run on. Out of
+ * a pause taken during the reveal, "the clock keeps running" would be a
+ * promise about a clock that has already stopped.
+ *
+ * @param {Object} data - state payload (`pause_reason`, `paused_from`)
+ * @returns {Array<{code: string, emoji: string, titleKey: string, subKey: string,
+ *                  warn: boolean, active: boolean}>} empty for a server pause
+ */
+export function pauseReasonTileModel(data) {
+    if (!data || !isHostPause(data.pause_reason)) return [];
+
+    var tiles = HOST_PAUSE_TILES.map(function(tile) {
+        return {
+            code: tile.code,
+            emoji: tile.emoji,
+            titleKey: tile.titleKey,
+            subKey: 'game.pauseReasonSub',
+            warn: false,
+            active: data.pause_reason === tile.code,
+        };
+    });
+
+    if (data.paused_from === 'PLAYING') {
+        tiles.push({
+            code: PAUSE_TILE_MUSIC_OFF,
+            emoji: '🔇',
+            titleKey: 'game.pauseMusicOff',
+            subKey: 'game.pauseMusicOffSub',
+            warn: true,
+            active: false,
+        });
+    }
+    return tiles;
+}
+
+/**
+ * Paint the announcement list and wire it once (#2645).
+ *
+ * Delegated click: the list is rebuilt on every broadcast (the active tile
+ * moves), so per-button listeners would have to be re-attached each time.
+ */
+function renderPauseReasonTiles(data) {
+    var block = document.getElementById('paused-announce-block');
+    var list = document.getElementById('paused-reason-tiles');
+    if (!block || !list) return;
+
+    var tiles = pauseReasonTileModel(data);
+    block.classList.toggle('hidden', tiles.length === 0);
+    if (!tiles.length) {
+        list.innerHTML = '';
+        return;
+    }
+
+    list.innerHTML = tiles.map(function(tile) {
+        return '<button type="button" class="pause-reason' +
+            (tile.active ? ' is-on' : '') +
+            (tile.warn ? ' pause-reason--warn' : '') +
+            '" data-code="' + escapeHtml(tile.code) + '"' +
+            (tile.active ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' +
+            '<span class="pause-reason__emoji" aria-hidden="true">' + tile.emoji + '</span>' +
+            '<span class="pause-reason__text">' +
+                '<span class="pause-reason__title">' +
+                    escapeHtml(utils.t(tile.titleKey)) + '</span>' +
+                '<span class="pause-reason__sub">' +
+                    escapeHtml(utils.t(tile.subKey)) + '</span>' +
+            '</span>' +
+        '</button>';
+    }).join('');
+
+    if (list.dataset.wired === '1') return;
+    list.dataset.wired = '1';
+    list.addEventListener('click', function(ev) {
+        var btn = ev.target && ev.target.closest ? ev.target.closest('.pause-reason') : null;
+        if (!btn) return;
+        var code = btn.getAttribute('data-code');
+        if (code === PAUSE_TILE_MUSIC_OFF) {
+            // The host did not want a pause at all. `stop_song` lifts the host
+            // pause and silences the song server-side (#2645), so the round
+            // carries on — which is exactly what the tile's sentence promised.
+            handleStopSong({ fromPause: true });
+            return;
+        }
+        sendHostPause(code);
+    });
 }
 
 /**
@@ -2725,13 +2894,19 @@ export function updateControlBarState(phase) {
 
 /**
  * Handle Stop Song button (Story 16.6)
+ *
+ * @param {{fromPause?: boolean}} [opts] - #2645: sent from the "Just the music
+ *   off" tile on the pause screen rather than from the control bar. The bar is
+ *   hidden there, and the local `songStopped` latch must not swallow the
+ *   message — the server has a pause to lift before it silences anything.
  */
-function handleStopSong() {
-    if (songStopped) return;
+function handleStopSong(opts) {
+    var fromPause = !!(opts && opts.fromPause);
+    if (songStopped && !fromPause) return;
 
     if (!debounceAdminAction()) return;
 
-    var stopBtn = document.getElementById('stop-song-btn');
+    var stopBtn = fromPause ? null : document.getElementById('stop-song-btn');
     if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
         // #880: the WebSocket can briefly be CONNECTING right after an
         // admin->player handoff or a tab-return reconnect. The old code
@@ -2739,6 +2914,8 @@ function handleStopSong() {
         // looked dead. Flash visible feedback on the label so they know the
         // click registered and to retry once reconnected.
         console.warn('[Beatify] Cannot stop song: WebSocket not connected');
+        // #2645: from the pause screen there is no control-bar label to flash.
+        if (fromPause) showToast(utils.t('errors.CONNECTION_LOST'));
         if (stopBtn) {
             var warnLabel = stopBtn.querySelector('.control-label');
             if (warnLabel) {

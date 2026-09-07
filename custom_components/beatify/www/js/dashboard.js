@@ -687,6 +687,39 @@
         var el = document.getElementById('dashboard-pause-message');
         if (!el) return;
         var reason = state && state.pause_reason;
+
+        // #2645: a pause the host set is an announcement, and the TV is where
+        // it is read. The reason takes the headline and "Pause" drops to the
+        // small line, so the room learns *why* the music stopped instead of
+        // being told, in the largest type on the wall, only that it did.
+        var announce = hostPauseAnnouncement(reason);
+        var iconEl = document.getElementById('dashboard-pause-icon');
+        if (iconEl) iconEl.textContent = announce ? announce.emoji : '⏸';
+        var titleEl = document.getElementById('dashboard-pause-title');
+        if (titleEl) {
+            titleEl.textContent = announce
+                ? announce.headline
+                : utils.t('game.paused', 'Game Paused');
+            titleEl.classList.toggle('is-announcement', !!(announce && announce.named));
+        }
+        // Kept in the accent colour rather than grey: the whole cost of this
+        // layout is that a glance reads the reason and not the state, and a
+        // grey line at this size would not be read at all.
+        var stateEl = document.getElementById('dashboard-pause-state');
+        if (stateEl) {
+            var named = !!(announce && announce.named);
+            stateEl.classList.toggle('hidden', !named);
+            stateEl.textContent = named ? utils.t('game.pausedLabel', 'Pause') : '';
+        }
+
+        if (announce) {
+            // The one thing the room needs to know, and the one thing Stop
+            // could never promise: the clock is not running.
+            el.setAttribute('data-i18n', 'game.pausedGuessesSaved');
+            el.textContent = utils.t('game.pausedGuessesSaved', 'Your guesses are saved');
+            return;
+        }
+
         var key = 'game.waitingForHost';
         var fallback = 'Waiting for host to reconnect...';
         if (reason === 'media_player_error') {
@@ -698,6 +731,40 @@
         }
         el.setAttribute('data-i18n', key);
         el.textContent = utils.t(key, fallback);
+    }
+
+    /**
+     * #2645: the host-pause announcement, for the TV.
+     *
+     * dashboard.js is a standalone IIFE bundle and cannot import
+     * `js/host-pause.js`, which is where the canonical list lives for the two
+     * ESM bundles. This is the second copy, and
+     * `__tests__/host-pause-2645.test.js` fails the moment the two disagree —
+     * a reason added in only one of them would render on the TV as its raw
+     * code, in poster size, in front of the whole room.
+     */
+    var HOST_PAUSE_GENERIC = 'host_pause';
+    var HOST_PAUSE_TILES = [
+        { code: 'host_pause_food', emoji: '🍕', titleKey: 'game.pauseReasonFood' },
+        { code: 'host_pause_door', emoji: '🚪', titleKey: 'game.pauseReasonDoor' },
+        { code: 'host_pause_away', emoji: '⏸', titleKey: 'game.pauseReasonAway' },
+    ];
+
+    function hostPauseAnnouncement(reason) {
+        for (var i = 0; i < HOST_PAUSE_TILES.length; i++) {
+            if (HOST_PAUSE_TILES[i].code === reason) {
+                return {
+                    emoji: HOST_PAUSE_TILES[i].emoji,
+                    headline: utils.t(HOST_PAUSE_TILES[i].titleKey),
+                    named: true,
+                };
+            }
+        }
+        if (reason === HOST_PAUSE_GENERIC) {
+            // Paused without picking a tile — the room is told that much.
+            return { emoji: '⏸', headline: utils.t('game.paused', 'Game Paused'), named: false };
+        }
+        return null;
     }
 
     /**

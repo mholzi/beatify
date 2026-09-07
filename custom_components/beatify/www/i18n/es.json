@@ -175,7 +175,17 @@
     "sdYouAreIn": "Sigues dentro",
     "sdYouAreOut": "Estás fuera",
     "sdStanding": "{alive} de {total} siguen en pie",
-    "sdOutNames": "{names} fuera"
+    "sdOutNames": "{names} fuera",
+    "pauseReasonFood": "Ya llegó la comida",
+    "pauseReasonDoor": "Alguien en la puerta",
+    "pauseReasonAway": "Vuelvo enseguida",
+    "pauseReasonSub": "Música apagada, reloj parado: nadie se pierde nada",
+    "pauseMusicOff": "Solo quitar la música",
+    "pauseMusicOffSub": "El reloj sigue corriendo: quien no responda ahora pierde la ronda",
+    "pausedLabel": "Pausa",
+    "pausedClockStopped": "El reloj está parado: no se pierde nada",
+    "pausedHintHost": "El anfitrión continúa en un momento",
+    "pausedGuessesSaved": "Vuestras respuestas están guardadas"
   },
   "steal": {
     "available": "Robo disponible!",
@@ -888,7 +898,12 @@
     "lightsLineOff": "Las luces están apagadas el resto de la partida",
     "lightsLineOnRooms": "parpadean en cada revelación",
     "lightsLineOnCount": "{count} luces parpadean en cada revelación",
-    "lightsRowTitle": "Luces de fiesta"
+    "lightsRowTitle": "Luces de fiesta",
+    "pauseGame": "Pausa",
+    "pauseGameSub": "Música apagada, reloj parado, nadie se pierde nada",
+    "pauseAnnouncement": "Cambiar el aviso",
+    "pauseOnEveryScreen": "Se ve en todas las pantallas",
+    "resume": "Reanudar"
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",
