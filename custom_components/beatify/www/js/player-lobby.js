@@ -28,7 +28,6 @@ var previousPlayers = [];
  */
 export function renderPlayerList(players) {
     var listEl = document.getElementById('player-list');
-    var countEl = document.getElementById('player-count');
     var countBadgeEl = document.getElementById('player-count-badge');
     var playersSummaryEl = document.getElementById('players-summary');
     var playersEmptyEl = document.getElementById('players-empty');
@@ -38,12 +37,6 @@ export function renderPlayerList(players) {
     }
 
     var count = players.length;
-
-    if (countEl) {
-        countEl.textContent = count === 1
-            ? utils.t('lobby.playerJoined')
-            : utils.t('lobby.playersJoined', { count: count });
-    }
 
     if (countBadgeEl) {
         countBadgeEl.textContent = count;

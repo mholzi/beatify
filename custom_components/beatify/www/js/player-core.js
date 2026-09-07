@@ -13,7 +13,7 @@ import {
     cleanupLeaderboardObserver, setupLeaderboardResizeHandler,
     cleanupVirtualPlayerList,
     setEnergyLevel, triggerConfetti, stopConfetti,
-    initQrCollapsible, setupLobbyCollapsible,
+    setupLobbyCollapsible,
     requestWakeLock, releaseWakeLock,
     isJoinRejection, joinRejectionMessage, validateName
 } from './player-utils.js';
@@ -39,7 +39,6 @@ import {
     showFloatingReaction,
     updateControlBarState, handleSongStopped, handleVolumeChanged,
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
-    setupRevealLeaderboardToggle,
     resetSongStoppedState,
     renderPausedAdminActions, syncVolumeFromState,
     showIntroSplashModal, hideIntroSplashModal
@@ -774,7 +773,6 @@ function handleServerMessage(data) {
             showView('reveal-view');
             pushGameRender.cancel();     // #1707: leaving PLAYING — drop stale render
             pushRevealRender(data);      // #1706: coalesced REVEAL render
-            setupRevealLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('REVEAL');
             syncVolumeFromState(data);  // #2557
@@ -1288,11 +1286,6 @@ async function initAll() {
         BeatifyI18n.initPageTranslations();
     }
 
-    var dashboardHintEl = document.getElementById('dashboard-hint-url');
-    if (dashboardHintEl) {
-        dashboardHintEl.textContent = window.location.origin + '/beatify/dashboard';
-    }
-
     var playerDashboardUrl = document.getElementById('player-dashboard-url');
     if (playerDashboardUrl) {
         playerDashboardUrl.href = window.location.origin + '/beatify/dashboard';
@@ -1310,7 +1303,6 @@ async function initAll() {
     setupAdminControlBar();
     setupRetryConnection();
     setupLeaderboardResizeHandler();
-    initQrCollapsible();
     setupLobbyCollapsible();
     setupReactionBar();
 

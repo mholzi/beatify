@@ -826,8 +826,6 @@ export function updateLeaderboard(data, targetListId, isRevealPhase) {
         scrollToCurrentPlayer(listEl);
     }
 
-    updateYouIndicator(leaderboard);
-
     updateLeaderboardSummary(leaderboard);
 
     updatePreviousState(data.players || [], leaderboard);
@@ -874,19 +872,6 @@ function scrollToCurrentPlayer(listEl) {
     var currentEntry = listEl.querySelector('.leaderboard-entry.is-current');
     if (currentEntry) {
         currentEntry.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-}
-
-/**
- * Update "You: #X" quick indicator
- * @param {Array} leaderboard - Leaderboard entries
- */
-function updateYouIndicator(leaderboard) {
-    var youEl = document.getElementById('leaderboard-you');
-    var currentPlayer = leaderboard.find(function(e) { return e.is_current; });
-    if (youEl && currentPlayer) {
-        youEl.textContent = utils.t('leaderboard.you') + ' #' + currentPlayer.rank;
-        youEl.classList.remove('hidden');
     }
 }
 
@@ -939,21 +924,6 @@ export function resetLeaderboardSummary(summaryId) {
         var summaryEl = document.getElementById(id);
         if (summaryEl) summaryEl.textContent = '';
     });
-}
-
-/**
- * Setup reveal leaderboard toggle behavior (collapsible section pattern)
- */
-export function setupRevealLeaderboardToggle() {
-    var toggle = document.getElementById('reveal-leaderboard-toggle');
-    var leaderboard = document.getElementById('reveal-leaderboard');
-    if (toggle && leaderboard && !toggle.hasAttribute('data-initialized')) {
-        toggle.setAttribute('data-initialized', 'true');
-        toggle.addEventListener('click', function() {
-            var isCollapsed = leaderboard.classList.toggle('collapsed');
-            toggle.setAttribute('aria-expanded', !isCollapsed);
-        });
-    }
 }
 
 // ============================================

@@ -60,7 +60,7 @@ const state = {};
 vi.mock('../player-utils.js', () => mockNamespace(
     ['showConfirmModal', 'AnimationQueue', 'AnimationUtils', 'cleanupLeaderboardObserver',
      'setupLeaderboardResizeHandler', 'cleanupVirtualPlayerList', 'setEnergyLevel',
-     'triggerConfetti', 'stopConfetti', 'initQrCollapsible', 'setupLobbyCollapsible',
+     'triggerConfetti', 'stopConfetti', 'setupLobbyCollapsible',
      'requestWakeLock', 'releaseWakeLock'],
     { state, showView },
 ));
@@ -77,7 +77,7 @@ vi.mock('../player-game.js', () => mockNamespace(
      'showReactionBar', 'hideReactionBar', 'setupReactionBar', 'showFloatingReaction',
      'updateControlBarState', 'handleSongStopped', 'handleVolumeChanged', 'handleNextRound',
      'resetNextRoundPending', 'setupAdminControlBar', 'setupRevealControls',
-     'setupRevealLeaderboardToggle', 'resetSongStoppedState', 'showIntroSplashModal',
+     'resetSongStoppedState', 'showIntroSplashModal',
      'hideIntroSplashModal']));
 vi.mock('../player-reveal.js', () => mockNamespace(
     ['updateRevealView', 'setupRevealSheets', 'setupRevealReportBtn', 'setupTitleArtistVoting',

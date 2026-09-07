@@ -885,7 +885,6 @@ function getAwardIcon(award) {
  */
 function showRevealEmotion(player, correctYear, difficulty) {
     var emotionEl = document.getElementById('reveal-emotion');
-    var personalResult = document.getElementById('personal-result');
     if (!emotionEl) return;
 
     // Round-reveal v2: the emotion lives inside the duel (.duel-emotion).
@@ -895,10 +894,6 @@ function showRevealEmotion(player, correctYear, difficulty) {
     emotionEl.className = isDuel ? 'duel-emotion' : (isCompact ? 'reveal-emotion-inline' : 'reveal-emotion');
     emotionEl.innerHTML = '';
     emotionEl.classList.add('hidden');
-
-    if (personalResult) {
-        personalResult.classList.remove('is-delayed');
-    }
 
     stopConfetti();
 
@@ -968,10 +963,6 @@ function showRevealEmotion(player, correctYear, difficulty) {
 
     if (emotionType === 'exact') {
         triggerConfetti();
-    }
-
-    if (personalResult && emotionType !== 'missed') {
-        personalResult.classList.add('is-delayed');
     }
 }
 

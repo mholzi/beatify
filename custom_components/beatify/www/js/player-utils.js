@@ -1057,30 +1057,6 @@ export function setupLeaderboardResizeHandler() {
 }
 
 // ============================================
-// QR Section - Responsive Collapse (Story 18.8)
-// ============================================
-
-export function initQrCollapsible() {
-    var qrSection = document.getElementById('qr-share-area');
-    if (!qrSection || qrSection.tagName !== 'DETAILS') return;
-
-    var STORAGE_KEY = 'beatify_qr_expanded';
-    var MOBILE_BREAKPOINT = 768;
-
-    var savedState = sessionStorage.getItem(STORAGE_KEY);
-
-    if (savedState !== null) {
-        qrSection.open = savedState === 'true';
-    } else {
-        qrSection.open = window.innerWidth >= MOBILE_BREAKPOINT;
-    }
-
-    qrSection.addEventListener('toggle', function() {
-        sessionStorage.setItem(STORAGE_KEY, qrSection.open.toString());
-    });
-}
-
-// ============================================
 // Lobby Collapsible Sections
 // ============================================
 

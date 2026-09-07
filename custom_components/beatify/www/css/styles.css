@@ -1866,22 +1866,7 @@ body.theme-dark .join-btn:hover {
     box-shadow: var(--glow-primary);
 }
 
-/* Dark theme QR area */
-body.theme-dark .qr-share-area {
-    background: var(--color-dark-surface);
-    border: 1px solid var(--color-border-neon);
-}
-
 body.theme-dark .qr-hint {
-    color: var(--color-text-neon-muted);
-}
-
-/* Dark theme - QR collapsible (Story 18.8) */
-body.theme-dark .qr-share-header {
-    color: var(--color-text-white);
-}
-
-body.theme-dark .qr-share-chevron {
     color: var(--color-text-neon-muted);
 }
 
@@ -2713,15 +2698,6 @@ body.theme-dark .qr-modal-label {
     box-sizing: border-box;
 }
 
-/* QR Share Area (Story 3.4) */
-.qr-share-area {
-    text-align: center;
-    padding: var(--space-lg) var(--space-md);
-    background: var(--color-bg-card);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--space-md);
-}
-
 .qr-icon {
     font-size: var(--font-size-xl);
 }
@@ -2757,77 +2733,6 @@ body.theme-dark .qr-modal-label {
     color: var(--color-text-muted);
 }
 
-/* QR Share Section - Collapsible (Story 18.8) */
-.qr-collapsible {
-    /* Override base qr-share-area padding for collapsible */
-    padding: 0;
-}
-
-.qr-share-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
-    padding: var(--space-md);
-    cursor: pointer;
-    user-select: none;
-    list-style: none; /* Remove default marker */
-    font-size: var(--font-size-md);
-    font-weight: 600;
-    color: var(--color-text-primary);
-    min-height: 44px; /* Touch target */
-}
-
-.qr-share-header::-webkit-details-marker {
-    display: none; /* Hide Safari default marker */
-}
-
-.qr-share-chevron {
-    margin-left: var(--space-sm);
-    transition: transform var(--transition-normal);
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-}
-
-.qr-collapsible[open] .qr-share-chevron {
-    transform: rotate(180deg);
-}
-
-.qr-share-content {
-    padding: 0 var(--space-md) var(--space-lg);
-    animation: qrSlideDown var(--transition-normal) ease-out;
-}
-
-@keyframes qrSlideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Collapsed state - just show header */
-.qr-collapsible:not([open]) {
-    padding-bottom: 0;
-}
-
-.qr-collapsible:not([open]) .qr-share-header {
-    padding-bottom: var(--space-md);
-}
-
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-    .qr-share-chevron {
-        transition: none;
-    }
-    .qr-share-content {
-        animation: none;
-    }
-}
-
 /* Dashboard Hint (Story 16.4) */
 .dashboard-hint-container {
     margin-top: var(--space-md);
@@ -2856,12 +2761,6 @@ body.theme-dark .qr-modal-label {
 
 .dashboard-hint-icon {
     font-size: var(--font-size-base);
-}
-
-.dashboard-hint-url {
-    font-family: monospace;
-    color: var(--color-accent-secondary);
-    font-size: var(--font-size-sm);
 }
 
 /* QR Modal (Story 3.4) */
@@ -6204,41 +6103,16 @@ body.theme-dark .movie-reveal-section {
     40%, 80% { transform: translateX(5px); }
 }
 
-/* Confetti Canvas (Story 9.4, Story 14.5) */
-.confetti-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: var(--z-modal);
-}
-
 /* canvas-confetti library creates canvas dynamically at body level - ensure non-blocking (AC6) */
 /* M2 fix: Scoped to body > canvas to avoid affecting other fixed canvases */
 body > canvas[style*="position: fixed"] {
     pointer-events: none !important;
 }
 
-/* Score breakdown fade-in delay (Story 9.4) */
-.personal-result.is-delayed {
-    opacity: 0;
-    animation: fade-in-delay 0.5s ease-out 1s forwards;
-}
-
-@keyframes fade-in-delay {
-    to { opacity: 1; }
-}
-
 /* Reduced motion support for reveal */
 @media (prefers-reduced-motion: reduce) {
     .reveal-emotion,
     .reveal-emotion--close {
-        animation: none;
-    }
-    .personal-result.is-delayed {
-        opacity: 1;
         animation: none;
     }
 }
@@ -6823,18 +6697,6 @@ body.theme-dark .result-value.is-bet-lost {
     .streak-indicator--hot {
         animation: none;
     }
-}
-
-/* Quick you indicator */
-.leaderboard-you {
-    position: sticky;
-    bottom: 0;
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-accent-blue);
-    color: var(--color-text-white);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    text-align: center;
 }
 
 /* ============================================
@@ -12809,31 +12671,6 @@ body.is-ingame .player-header { display: none; }
 /* Legacy "Submitted!" stamp — hidden in arcade but kept for any residual path */
 .submitted-confirmation.hidden { display: none; }
 
-/* Closest-wins ephemeral splash (rc30 parity) */
-.closest-wins-splash {
-    position: fixed; inset: 0;
-    z-index: 50;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(10, 10, 18, 0.7);
-    backdrop-filter: blur(4px);
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 40px;
-    color: var(--color-success-neon);
-    letter-spacing: 0.08em;
-    gap: 12px;
-    pointer-events: none;
-    text-shadow: 0 0 32px rgba(57, 255, 20, 0.55);
-    animation: closest-wins-splash-in 1.6s ease-out both;
-}
-.closest-wins-splash.hidden { display: none; }
-@keyframes closest-wins-splash-in {
-    0%   { opacity: 0; transform: scale(0.8); }
-    20%  { opacity: 1; transform: scale(1); }
-    80%  { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.05); }
-}
-
 /* sr-only helper (if not already in the stylesheet) */
 #round-indicator.sr-only {
     position: absolute;
@@ -15488,11 +15325,8 @@ body.theme-dark .your-result-stats .stat-value {
     background: radial-gradient(ellipse 320px 360px at 50% 24%,
         rgba(0, 245, 255, 0.13) 0%, rgba(0, 245, 255, 0) 62%);
 }
-/* Lift every real child above the backdrop/scrim — but NOT the confetti
-   canvas, which must keep its own `position: fixed` (full-screen overlay).
-   Without this exclusion the canvas drops into normal flow and adds a tall
-   empty gap between the duel and the score row. */
-#reveal-view .reveal-container--duel > *:not(.reveal-backdrop):not(.reveal-scrim):not(.confetti-canvas) {
+/* Lift every real child above the backdrop/scrim. */
+#reveal-view .reveal-container--duel > *:not(.reveal-backdrop):not(.reveal-scrim) {
     position: relative;
     z-index: 1;
 }
