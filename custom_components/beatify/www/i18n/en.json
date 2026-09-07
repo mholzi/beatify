@@ -169,7 +169,11 @@
     "out": "OUT",
     "halftime": "Halftime",
     "comebackFieldClosing": "The field is closing up",
-    "comebackYours": "You get a steal."
+    "comebackYours": "You get a steal.",
+    "sdYouAreIn": "You're still in",
+    "sdYouAreOut": "You're out",
+    "sdStanding": "{alive} of {total} still standing",
+    "sdOutNames": "{names} out"
   },
   "steal": {
     "available": "Steal Available!",
@@ -867,7 +871,12 @@
       "installHint": "Tap ⬆️ Share, then “Add to Home Screen”",
       "installAria": "Install Beatify App",
       "analyticsAria": "Analytics Dashboard"
-    }
+    },
+    "drawerTitle": "Game flow",
+    "drawerOn": "On",
+    "drawerOff": "Off",
+    "suddenDeathOnSub": "The slowest answer is out from the next round",
+    "suddenDeathOffSub": "Arm it and the slowest answer is out from the next round"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

@@ -129,6 +129,8 @@
 
     /* Z-Index Tokens */
     --z-control-bar: 100;
+    /* #2723: height of .admin-control-bar, used to stack the host drawer on it */
+    --control-bar-h: 60px;
     --z-reaction-bar: 101;  /* Story 18.9: Above control bar */
     --z-modal: 1000;
     --z-overlay: 1100;
@@ -7554,6 +7556,205 @@ body.theme-dark .card-score {
 
 .has-control-bar .end-container {
     padding-bottom: 140px;
+}
+
+/* ============================================
+   Host drawer (#2723)
+
+   Sits directly above the fixed control bar. The bar keeps what is needed
+   every second; anything that changes the *course* of the game lives one grip
+   below it. Built as a container — #2649 (party lights) and #2646 (drop a
+   song) are meant to arrive as further `.host-drawer__row` entries.
+   ============================================ */
+
+.host-drawer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    /* Sits on top of the fixed control bar. --control-bar-h is the bar's own
+       height (44px button + 2x 8px padding); it is a declared token rather than
+       a number sprinkled here, because the bar's padding and the drawer's
+       offset have to move together or the drawer overlaps the buttons. */
+    bottom: calc(var(--control-bar-h) + env(safe-area-inset-bottom));
+    z-index: var(--z-control-bar);
+    /* The gap between grip and body must not swallow taps meant for the page
+       behind it; only the grip and the body itself are interactive. */
+    pointer-events: none;
+}
+
+.host-drawer.hidden {
+    display: none;
+}
+
+.host-drawer__grip,
+.host-drawer__body {
+    pointer-events: auto;
+}
+
+.host-drawer__grip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    width: 100%;
+    padding: var(--space-xs) 0 var(--space-sm);
+    background: none;
+    border: none;
+    color: var(--color-text-neon-muted);
+    font-family: var(--font-display);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.host-drawer__grip-bar {
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.host-drawer__grip:hover .host-drawer__grip-bar {
+    background: rgba(255, 255, 255, 0.34);
+}
+
+.host-drawer__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    margin: 0 var(--space-sm);
+    background: rgba(10, 10, 18, 0.96);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+}
+
+.host-drawer__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    min-height: 48px;
+    padding: var(--space-sm);
+    background: var(--color-dark-surface);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    text-align: left;
+    cursor: pointer;
+}
+
+.host-drawer__row:hover:not(:disabled) {
+    background: var(--color-dark-surface-hover);
+}
+
+.host-drawer__row:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.host-drawer__row.is-on {
+    border-color: rgba(255, 0, 64, 0.45);
+    background: rgba(255, 0, 64, 0.12);
+}
+
+.host-drawer__row-icon {
+    font-size: var(--font-size-lg);
+    line-height: 1;
+}
+
+.host-drawer__row-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.host-drawer__row-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+/* The sentence that says what the switch does. Wrapping is correct here —
+   truncating it would leave exactly the bare label it exists to replace. */
+.host-drawer__row-sub {
+    font-size: var(--font-size-xs);
+    line-height: 1.35;
+    color: var(--color-text-dim, var(--color-text-neon-muted));
+}
+
+.host-drawer__pill {
+    flex: 0 0 auto;
+    padding: 3px 10px;
+    border: 1px solid var(--color-border-neon);
+    border-radius: 999px;
+    color: var(--color-text-neon-muted);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+}
+
+.host-drawer__pill.is-on {
+    background: var(--color-success-neon);
+    border-color: var(--color-success-neon);
+    color: var(--color-bg-primary);
+}
+
+/* ============================================
+   Sudden Death standing line (#2723)
+
+   One line under the reveal, in the same place every round, so the guest's
+   standing survives the loudest second of the game.
+   ============================================ */
+
+.sd-standing {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border-neon);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+}
+
+.sd-standing.hidden {
+    display: none;
+}
+
+.sd-standing__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 99px;
+    background: var(--color-success-neon);
+}
+
+.sd-standing__dot.is-out {
+    background: var(--color-error-neon);
+}
+
+.sd-standing__you {
+    color: var(--color-text-white);
+    font-weight: 600;
+}
+
+.sd-standing.is-out .sd-standing__you {
+    color: var(--color-error-neon);
+}
+
+.sd-standing__sep {
+    opacity: 0.5;
+}
+
+.sd-standing__out {
+    text-decoration: line-through;
+    opacity: 0.75;
 }
 
 /* ============================================
