@@ -166,7 +166,11 @@
     "outRound": "Out · R{round}",
     "finalShowdown": "FINAL — SUDDEN DEATH",
     "winnerTakesAll": "Winner Takes All",
-    "out": "OUT"
+    "out": "OUT",
+    "sdYouAreIn": "You're still in",
+    "sdYouAreOut": "You're out",
+    "sdStanding": "{alive} of {total} still standing",
+    "sdOutNames": "{names} out"
   },
   "steal": {
     "available": "Steal Available!",
@@ -862,7 +866,12 @@
       "installHint": "Tap ⬆️ Share, then “Add to Home Screen”",
       "installAria": "Install Beatify App",
       "analyticsAria": "Analytics Dashboard"
-    }
+    },
+    "drawerTitle": "Game flow",
+    "drawerOn": "On",
+    "drawerOff": "Off",
+    "suddenDeathOnSub": "The slowest answer is out from the next round",
+    "suddenDeathOffSub": "Arm it and the slowest answer is out from the next round"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

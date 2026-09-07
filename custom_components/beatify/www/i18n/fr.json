@@ -166,7 +166,11 @@
     "outRound": "Sorti · M{round}",
     "finalShowdown": "FINALE — MORT SUBITE",
     "winnerTakesAll": "Le gagnant rafle tout",
-    "out": "ÉLIMINÉ"
+    "out": "ÉLIMINÉ",
+    "sdYouAreIn": "Tu es toujours là",
+    "sdYouAreOut": "Tu es éliminé",
+    "sdStanding": "{alive} sur {total} encore en lice",
+    "sdOutNames": "{names} éliminé(s)"
   },
   "steal": {
     "available": "Vol disponible !",
@@ -862,7 +866,12 @@
       "installHint": "Touchez ⬆️ Partager, puis « Sur l'écran d'accueil »",
       "installAria": "Installer l'application Beatify",
       "analyticsAria": "Tableau de bord des statistiques"
-    }
+    },
+    "drawerTitle": "Déroulement",
+    "drawerOn": "Activé",
+    "drawerOff": "Désactivé",
+    "suddenDeathOnSub": "Dès la prochaine manche, la réponse la plus lente est éliminée",
+    "suddenDeathOffSub": "Activez-le et dès la prochaine manche la réponse la plus lente est éliminée"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

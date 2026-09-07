@@ -166,7 +166,11 @@
     "outRound": "Fuori · T{round}",
     "finalShowdown": "FINALE — MORTE IMPROVVISA",
     "winnerTakesAll": "Chi vince prende tutto",
-    "out": "FUORI"
+    "out": "FUORI",
+    "sdYouAreIn": "Sei ancora in gioco",
+    "sdYouAreOut": "Sei fuori",
+    "sdStanding": "{alive} su {total} ancora in gioco",
+    "sdOutNames": "{names} fuori"
   },
   "steal": {
     "available": "Furto disponibile!",
@@ -862,7 +866,12 @@
       "installHint": "Tocca ⬆️ Condividi, poi «Aggiungi a Home»",
       "installAria": "Installa l'app Beatify",
       "analyticsAria": "Pannello delle statistiche"
-    }
+    },
+    "drawerTitle": "Svolgimento",
+    "drawerOn": "Sì",
+    "drawerOff": "No",
+    "suddenDeathOnSub": "Dal prossimo turno la risposta più lenta viene eliminata",
+    "suddenDeathOffSub": "Attivalo e dal prossimo turno la risposta più lenta viene eliminata"
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

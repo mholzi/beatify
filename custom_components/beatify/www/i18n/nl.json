@@ -166,7 +166,11 @@
     "outRound": "Eruit · R{round}",
     "finalShowdown": "FINALE — SUDDEN DEATH",
     "winnerTakesAll": "Winnaar pakt alles",
-    "out": "ERUIT"
+    "out": "ERUIT",
+    "sdYouAreIn": "Je doet nog mee",
+    "sdYouAreOut": "Je ligt eruit",
+    "sdStanding": "{alive} van {total} staan nog",
+    "sdOutNames": "{names} eruit"
   },
   "steal": {
     "available": "Stelen beschikbaar!",
@@ -862,7 +866,12 @@
       "installHint": "Tik op ⬆️ Delen en dan “Zet op beginscherm”",
       "installAria": "Beatify-app installeren",
       "analyticsAria": "Statistiekendashboard"
-    }
+    },
+    "drawerTitle": "Spelverloop",
+    "drawerOn": "Aan",
+    "drawerOff": "Uit",
+    "suddenDeathOnSub": "Vanaf de volgende ronde ligt het traagste antwoord eruit",
+    "suddenDeathOffSub": "Zet het aan en vanaf de volgende ronde ligt het traagste antwoord eruit"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

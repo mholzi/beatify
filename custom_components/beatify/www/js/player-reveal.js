@@ -360,6 +360,10 @@ export function updateRevealView(data) {
         renderChipRow(currentPlayer, data);
     }
     renderScoreRow(currentPlayer);
+    // #2723: outside the taMode branch for the same reason as the shield below
+    // — Sudden Death runs in Title & Artist mode too, and that mode hides the
+    // chip row a one-off elimination line would otherwise have used.
+    renderSuddenDeathStanding(data, currentPlayer);
     // #2601: outside the taMode branch on purpose — a shield can absorb a
     // missed round in Title & Artist mode too, and that mode hides the duel
     // and the chip row.
@@ -1212,6 +1216,98 @@ function renderChipRow(player, data) {
         row.classList.remove('hidden');
         row.innerHTML = chips.join('');
     }
+}
+
+/** Above this many eliminated players the line drops the names (#2723). */
+export var SD_NAME_CAP = 4;
+
+/**
+ * #2723: what the standing line says, as data.
+ *
+ * Kept separate from the DOM on purpose — the two decisions worth getting
+ * wrong live here, not in the markup:
+ *
+ *  - **Who counts.** Playoff spectators (#2612) were never in the running.
+ *    Counting them would report "4 of 9 still standing" in a game where five
+ *    people never had a chance to be eliminated in the first place.
+ *  - **When names stop helping.** Past SD_NAME_CAP a phone line becomes a
+ *    wrapped paragraph that pushes the reveal off screen, and the count in
+ *    front of it already carries the same information.
+ *
+ * @returns {null|{alive:number,total:number,amOut:boolean,outNames:string[]}}
+ *   null when the line should not be shown at all.
+ */
+export function suddenDeathStandingModel(data, currentPlayer) {
+    if (!data || !data.sudden_death_mode) return null;
+
+    var players = data.players || [];
+    var contenders = players.filter(function(p) { return !p.playoff_spectator; });
+    if (contenders.length === 0) return null;
+
+    var alive = contenders.filter(function(p) { return !p.eliminated; });
+    var out = contenders.filter(function(p) { return p.eliminated; });
+
+    return {
+        alive: alive.length,
+        total: contenders.length,
+        amOut: !!(currentPlayer && currentPlayer.eliminated),
+        outNames: out.length <= SD_NAME_CAP
+            ? out.map(function(p) { return p.name; })
+            : []
+    };
+}
+
+/**
+ * #2723: the Sudden Death standing line.
+ *
+ * Why a line that is always there instead of a message when somebody goes out:
+ * the reveal is the loudest second of the game. A one-off "Lena is out" appears
+ * in the middle of the cheering and is gone. This sits in the same place every
+ * round and answers the question a guest in Sudden Death actually carries
+ * around — am I still in it, and how many of us are left.
+ *
+ * Names are only spelled out while they still fit. Past the cap the line falls
+ * back to a count, because a wrapped list of nine names pushes the reveal off
+ * the screen — the thing the guest came to look at.
+ */
+export function renderSuddenDeathStanding(data, currentPlayer) {
+    var el = document.getElementById('reveal-sd-standing');
+    if (!el) return;
+
+    var model = suddenDeathStandingModel(data, currentPlayer);
+    if (!model) {
+        el.classList.add('hidden');
+        el.innerHTML = '';
+        return;
+    }
+
+    var amOut = model.amOut;
+    var out = model.outNames;
+    var youText = amOut
+        ? (utils.t('game.sdYouAreOut') || "You're out")
+        : (utils.t('game.sdYouAreIn') || "You're still in");
+
+    var standing = utils.t('game.sdStanding', { alive: model.alive, total: model.total })
+        || (model.alive + ' of ' + model.total + ' still standing');
+
+    var html =
+        '<span class="sd-standing__dot' + (amOut ? ' is-out' : '') + '"></span>' +
+        '<span class="sd-standing__you">' + escapeHtml(youText) + '</span>' +
+        '<span class="sd-standing__sep">·</span>' +
+        '<span class="sd-standing__count">' + escapeHtml(standing) + '</span>';
+
+    // suddenDeathStandingModel() has already decided whether the names fit.
+    if (out.length > 0) {
+        var names = out.join(', ');
+        var outText = utils.t('game.sdOutNames', { names: names })
+            || (names + ' out');
+        html += '<span class="sd-standing__sep">·</span>' +
+            '<span class="sd-standing__out">' + escapeHtml(outText) + '</span>';
+    }
+
+    el.innerHTML = html;
+    el.classList.remove('hidden');
+    el.classList.toggle('is-out', amOut);
 }
 
 /**

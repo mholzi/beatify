@@ -2161,6 +2161,139 @@ export function hideAdminControlBar() {
         bar.classList.add('hidden');
         document.body.classList.remove('has-control-bar');
     }
+    // The drawer hangs off the bar; leaving it open over the lobby would be a
+    // control panel for a game that is not running.
+    hideHostDrawer();
+}
+
+// ============================================
+// Host drawer (#2723)
+// ============================================
+
+/**
+ * Hide the host drawer and collapse it.
+ *
+ * Collapsing on hide is deliberate: the open/closed state is per-moment, not a
+ * preference. A drawer that reopens by itself at the start of the next game
+ * covers the transport bar the host is reaching for.
+ */
+export function hideHostDrawer() {
+    var drawer = document.getElementById('host-drawer');
+    if (!drawer) return;
+    drawer.classList.add('hidden');
+    drawer.classList.remove('is-open');
+    var body = document.getElementById('host-drawer-body');
+    if (body) body.hidden = true;
+    var grip = document.getElementById('host-drawer-grip');
+    if (grip) grip.setAttribute('aria-expanded', 'false');
+}
+
+/**
+ * Render the host drawer for the current state (#2723).
+ *
+ * The drawer is a *container*, not a Sudden Death control. #2649 (party lights)
+ * and #2646 (drop a song without scoring) are meant to arrive as further rows
+ * in the same body — that is the whole reason it exists rather than a seventh
+ * button being squeezed into a bar that already carries six on 270 px.
+ *
+ * Only the host sees it, and only while a game is running.
+ */
+export function renderHostDrawer(data) {
+    var drawer = document.getElementById('host-drawer');
+    if (!drawer) return;
+
+    if (!state.isAdmin || !data) {
+        hideHostDrawer();
+        return;
+    }
+
+    drawer.classList.remove('hidden');
+    _wireHostDrawerGrip();
+    _renderSuddenDeathRow(data);
+}
+
+/** Wire the grip once. Idempotent — renderHostDrawer runs on every broadcast. */
+function _wireHostDrawerGrip() {
+    var grip = document.getElementById('host-drawer-grip');
+    if (!grip || grip.dataset.wired === '1') return;
+    grip.dataset.wired = '1';
+    grip.addEventListener('click', function() {
+        var drawer = document.getElementById('host-drawer');
+        var body = document.getElementById('host-drawer-body');
+        if (!drawer || !body) return;
+        var open = !drawer.classList.contains('is-open');
+        drawer.classList.toggle('is-open', open);
+        body.hidden = !open;
+        grip.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+}
+
+/**
+ * The drawer's first row: arm or disarm Sudden Death (#827's endpoint, #2723's
+ * reachable place for it).
+ *
+ * The subtitle says what the switch *does*, not what it is called. The host
+ * arming this mode has to know that a non-submitter counts as the slowest
+ * player — that rule is why #2646 exists at all, and a bare label hides it.
+ */
+function _renderSuddenDeathRow(data) {
+    var body = document.getElementById('host-drawer-body');
+    if (!body) return;
+
+    var row = document.getElementById('host-drawer-sudden-death');
+    if (!row) {
+        row = document.createElement('button');
+        row.id = 'host-drawer-sudden-death';
+        row.type = 'button';
+        row.className = 'host-drawer__row';
+        row.addEventListener('click', function() {
+            if (row.disabled) return;
+            // POST the inverse of the current *server* state and let the WS
+            // broadcast repaint — no optimistic flip, same rule as the admin
+            // page's toggle (admin.js `_renderSuddenDeathLiveToggle`).
+            var enable = !row.classList.contains('is-on');
+            row.disabled = true;
+            var auth = window.BeatifyAuth;
+            if (!auth || !auth.fetch) {
+                console.warn('[Beatify] Sudden Death: no auth helper');
+                row.disabled = false;
+                return;
+            }
+            auth.fetch('/beatify/api/sudden-death', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: enable })
+            }).catch(function(err) {
+                console.warn('[Beatify] Sudden Death toggle failed:', err);
+                row.disabled = false;   // let the host retry
+            });
+        });
+        body.appendChild(row);
+    }
+
+    var isOn = !!data.sudden_death_mode;
+    var players = data.players || [];
+    var remaining = players.filter(function(p) { return !p.eliminated; }).length;
+
+    var title = utils.t('admin.suddenDeathLive') || 'Sudden Death';
+    var sub = isOn
+        ? (utils.t('admin.suddenDeathOnSub') || 'The slowest answer is out from the next round')
+        : (utils.t('admin.suddenDeathOffSub') || 'Arm it and the slowest answer is out from the next round');
+    var pill = isOn
+        ? (utils.t('admin.drawerOn') || 'On')
+        : (utils.t('admin.drawerOff') || 'Off');
+
+    row.innerHTML =
+        '<span class="host-drawer__row-icon">💀</span>' +
+        '<span class="host-drawer__row-text">' +
+            '<span class="host-drawer__row-title">' + escapeHtml(title) + '</span>' +
+            '<span class="host-drawer__row-sub">' + escapeHtml(sub) + '</span>' +
+        '</span>' +
+        '<span class="host-drawer__pill' + (isOn ? ' is-on' : '') + '">' + escapeHtml(pill) + '</span>';
+    row.classList.toggle('is-on', isOn);
+    // Below three survivors arming changes nothing (2 = the final already,
+    // 1 = a winner). Same guard as the admin page.
+    row.disabled = remaining < 3;
 }
 
 // ============================================

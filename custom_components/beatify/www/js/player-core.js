@@ -37,7 +37,7 @@ import {
     showAdminControlBar, hideAdminControlBar,
     showReactionBar, hideReactionBar, setupReactionBar, resetReactionButtons,
     showFloatingReaction,
-    updateControlBarState, handleSongStopped, handleVolumeChanged,
+    updateControlBarState, renderHostDrawer, handleSongStopped, handleVolumeChanged,
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
     resetSongStoppedState,
     renderPausedAdminActions, syncVolumeFromState,
@@ -675,6 +675,10 @@ function handleServerMessage(data) {
                     // updateControlBarState() uses utils.t() which needs i18n ready
                     if (data.phase === 'PLAYING' || data.phase === 'REVEAL') {
                         updateControlBarState(data.phase);
+                        // #2723: the drawer's subtitle is a sentence, not a
+                        // label — it has to be rebuilt when the locale lands,
+                        // same reason as the lobby brief above.
+                        renderHostDrawer(data);
                     }
                 });
             }
@@ -768,6 +772,7 @@ function handleServerMessage(data) {
             setupLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('PLAYING');
+            renderHostDrawer(data);     // #2723
             syncVolumeFromState(data);  // #2557
             hideReactionBar();
         } else if (data.phase === 'REVEAL') {
@@ -786,6 +791,7 @@ function handleServerMessage(data) {
             pushRevealRender(data);      // #1706: coalesced REVEAL render
             showAdminControlBar();
             updateControlBarState('REVEAL');
+            renderHostDrawer(data);     // #2723
             syncVolumeFromState(data);  // #2557
             // #1757: reset the one-per-reveal reaction budget + button used-
             // state only when a NEW reveal round begins, not on every REVEAL

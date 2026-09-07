@@ -166,7 +166,11 @@
     "outRound": "Raus · R{round}",
     "finalShowdown": "FINALE — SUDDEN DEATH",
     "winnerTakesAll": "Alles oder nichts",
-    "out": "RAUS"
+    "out": "RAUS",
+    "sdYouAreIn": "Du bist noch dabei",
+    "sdYouAreOut": "Du bist raus",
+    "sdStanding": "{alive} von {total} stehen noch",
+    "sdOutNames": "{names} raus"
   },
   "steal": {
     "available": "Klauen verfügbar!",
@@ -862,7 +866,12 @@
       "installHint": "Auf ⬆️ Teilen tippen, dann „Zum Home-Bildschirm“",
       "installAria": "Beatify-App installieren",
       "analyticsAria": "Statistik-Dashboard"
-    }
+    },
+    "drawerTitle": "Spielverlauf",
+    "drawerOn": "An",
+    "drawerOff": "Aus",
+    "suddenDeathOnSub": "Ab der nächsten Runde fliegt die langsamste Antwort raus",
+    "suddenDeathOffSub": "Scharfstellen — ab der nächsten Runde fliegt die langsamste Antwort raus"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
