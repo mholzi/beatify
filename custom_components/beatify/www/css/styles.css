@@ -11604,6 +11604,125 @@ body.is-ingame .player-header { display: none; }
     font-size: 13px;
     color: var(--color-accent-secondary);
 }
+
+/* #2702: the ring after the countdown has run out and the next round has not
+   started yet. It keeps its place and its size — only the meaning changes: the
+   digit gives way to an ellipsis, the drained gauge gives way to a quarter arc
+   that turns, and the colour moves from the timer cyan to the accent so the two
+   states are not mistaken for each other at a glance. Movement is the point;
+   the complaint in #2702 was "this looks frozen", and no label answers that. */
+@keyframes reveal-advance-spin {
+    from { transform: rotate(-90deg); }
+    to   { transform: rotate(270deg); }
+}
+.reveal-advance-pill.is-waiting .reveal-advance-svg {
+    animation: reveal-advance-spin 1.15s linear infinite;
+}
+.reveal-advance-pill.is-waiting .reveal-advance-fg {
+    stroke: var(--color-accent-primary);
+    filter: drop-shadow(0 0 5px rgba(255, 45, 106, 0.55));
+}
+.reveal-advance-pill.is-waiting .reveal-advance-num {
+    font-size: 16px;
+    line-height: 0.5;
+    color: var(--color-accent-primary);
+}
+@media (prefers-reduced-motion: reduce) {
+    /* Static, but never the frozen zero it replaced: the gauge is gone, the
+       digit is an ellipsis, the track is dashed and the colour has changed. */
+    .reveal-advance-pill.is-waiting .reveal-advance-svg { animation: none; }
+    .reveal-advance-pill.is-waiting .reveal-advance-bg {
+        stroke-dasharray: 5 7;
+        stroke: rgba(255, 45, 106, 0.35);
+    }
+}
+
+/* #2702: the reveal in three beats — the answer, then who got it right, then
+   the standings. The stage attribute is written by player-reveal.js on its own
+   timer; when it is ABSENT everything shows, so a client whose timers never ran
+   loses nothing. Leaving REVEAL drops the attribute, which is what makes a fast
+   round simply cut whatever beat was on screen. */
+#reveal-view[data-reveal-stage="1"] [data-stage="2"],
+#reveal-view[data-reveal-stage="1"] [data-stage="3"],
+#reveal-view[data-reveal-stage="2"] [data-stage="3"] {
+    display: none;
+}
+@keyframes reveal-beat-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+#reveal-view[data-reveal-stage] [data-stage] {
+    animation: reveal-beat-in 300ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+    #reveal-view[data-reveal-stage] [data-stage] { animation: none; }
+}
+
+/* #2702 beat two: who got it right this round. */
+#reveal-view .whogot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+#reveal-view .whogot-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+#reveal-view .whogot-row--you {
+    border-color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.06);
+}
+#reveal-view .whogot-rank {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1;
+    width: 18px;
+    flex-shrink: 0;
+    color: var(--color-text-neon-muted);
+}
+#reveal-view .whogot-name {
+    flex: 1;
+    min-width: 0;
+    font-weight: 700;
+    color: var(--color-text-white);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#reveal-view .whogot-you {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--color-accent-primary);
+}
+#reveal-view .whogot-guess {
+    font-size: 13px;
+    color: var(--color-text-neon-muted);
+    flex-shrink: 0;
+}
+#reveal-view .whogot-pts {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--color-success-neon);
+    flex-shrink: 0;
+}
+
+/* #2702: the elision between the podium and your own row. */
+#reveal-view .rstand-gap {
+    text-align: center;
+    color: var(--color-text-neon-muted);
+    font-size: 14px;
+    line-height: 1;
+    padding: 2px 0;
+}
 .info-btn {
     width: 28px; height: 28px;
     border-radius: 50%;
@@ -15695,9 +15814,10 @@ body.theme-dark .your-result-stats .stat-value {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* The reveal standings show every player (taper-dim lower ranks), so undo
-       the shared .leaderboard-list scroll box (max-height:200px; overflow:auto)
-       the in-game lazy leaderboard uses — otherwise rows 4+ get clipped. */
+    /* #2702: the phone shows the podium plus the reader's own row, never the
+       whole table — but the own row can still be the fourth or fifth element,
+       so the shared .leaderboard-list scroll box (max-height:200px;
+       overflow:auto) the in-game lazy leaderboard uses is still undone here. */
     max-height: none;
     overflow: visible;
 }

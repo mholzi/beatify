@@ -751,6 +751,19 @@
                      row because that is where the question arises. -->
                 <div id="reveal-streak-shield" class="streak-shield-used hidden" role="status"></div>
 
+                <!-- #2702 beat two: who got it right this round. Hidden until
+                     the second beat is due (data-stage), and hidden outright
+                     when nobody scored. -->
+                <section id="reveal-whogot" class="card-section whogot-section hidden" data-stage="2">
+                    <h2 class="section-header">
+                        <span class="section-icon" aria-hidden="true">&#127919;</span>
+                        <span data-i18n="dashboard.topGuesses">Top Guesses This Round</span>
+                    </h2>
+                    <div class="section-content-padded">
+                        <div id="reveal-whogot-list" class="whogot-list"></div>
+                    </div>
+                </section>
+
                 <!-- Your collection (#2324): every song you placed close
                      enough to keep, oldest year first. The row a score cannot
                      be — it is still there when the game is over. -->
@@ -815,7 +828,8 @@
                 </section>
 
                 <!-- Standings (compact list, kept with existing leaderboard-list id for renderer) -->
-                <section id="reveal-leaderboard" class="card-section standings-section">
+                <!-- #2702 beat three: the standings land last. -->
+                <section id="reveal-leaderboard" class="card-section standings-section" data-stage="3">
                     <h2 class="section-header">
                         <span class="section-icon" aria-hidden="true">🏆</span>
                         <span data-i18n="leaderboard.standings">Standings</span>

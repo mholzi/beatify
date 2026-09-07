@@ -1575,6 +1575,57 @@
     color: rgba(255, 159, 67, 0.92);
 }
 
+/* #2702: the TV ring once the countdown has run out and the next round has not
+   started. Same place, same size — the digit becomes an ellipsis and the
+   drained gauge becomes a quarter arc that turns. At TV distance the rotation
+   is the whole message: it answers "is this thing frozen?" without a word, and
+   a static "next song…" chip would have been exactly as silent as the zero it
+   replaced. The label swaps to the cold-start string that already exists in all
+   six locales, so nothing new had to be translated. */
+@keyframes chip-countdown-spin {
+    from { transform: rotate(-90deg); }
+    to   { transform: rotate(270deg); }
+}
+#dashboard-reveal .chip-countdown.is-waiting .chip-countdown-svg {
+    animation: chip-countdown-spin 1.15s linear infinite;
+}
+#dashboard-reveal .chip-countdown.is-waiting .chip-countdown-num {
+    font-size: 26px;
+    line-height: 0.5;
+}
+@media (prefers-reduced-motion: reduce) {
+    /* Static, but never the frozen zero: the gauge is gone, the digit is an
+       ellipsis and the track is dashed. */
+    #dashboard-reveal .chip-countdown.is-waiting .chip-countdown-svg { animation: none; }
+    #dashboard-reveal .chip-countdown.is-waiting .chip-countdown-bg {
+        stroke-dasharray: 5 7;
+        stroke: rgba(255, 159, 67, 0.35);
+    }
+}
+
+/* #2702: the reveal in three beats — the answer, then who got it right, then
+   the standings. The TV grid is fixed, so the later beats fade up in place
+   instead of being pulled out of the layout: a collapsing grid area would make
+   the whole screen jump twice per round. When the stage attribute is ABSENT
+   everything shows, so a TV whose timers never ran loses nothing. */
+#dashboard-reveal[data-reveal-stage] [data-stage] {
+    opacity: 1;
+    transform: none;
+    transition: opacity 340ms ease-out, transform 340ms ease-out;
+}
+#dashboard-reveal[data-reveal-stage="1"] [data-stage="2"],
+#dashboard-reveal[data-reveal-stage="1"] [data-stage="3"],
+#dashboard-reveal[data-reveal-stage="2"] [data-stage="3"] {
+    opacity: 0;
+    transform: translateY(14px);
+}
+@media (prefers-reduced-motion: reduce) {
+    #dashboard-reveal[data-reveal-stage] [data-stage] { transition: none; }
+    #dashboard-reveal[data-reveal-stage="1"] [data-stage="2"],
+    #dashboard-reveal[data-reveal-stage="1"] [data-stage="3"],
+    #dashboard-reveal[data-reveal-stage="2"] [data-stage="3"] { transform: none; }
+}
+
 /* Hide the legacy absolutely-positioned round indicator (replaced by chip strip) */
 .dashboard-round-indicator { display: none !important; }
 

@@ -44,7 +44,7 @@ import {
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
-import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown } from './player-reveal.js';
+import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown, startRevealStaging } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
 
@@ -770,6 +770,11 @@ function handleServerMessage(data) {
                 showEarlyRevealToast();
             }
             setEnergyLevel('party');
+            // #2702: arm the reveal's three beats BEFORE the view is shown.
+            // pushRevealRender defers to the next frame, so starting the beats
+            // inside the renderer would paint the whole reveal once and then
+            // collapse it back to beat one — a flash instead of a build-up.
+            startRevealStaging(data);
             showView('reveal-view');
             pushGameRender.cancel();     // #1707: leaving PLAYING — drop stale render
             pushRevealRender(data);      // #1706: coalesced REVEAL render

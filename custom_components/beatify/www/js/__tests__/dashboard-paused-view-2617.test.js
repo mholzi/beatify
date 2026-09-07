@@ -47,6 +47,9 @@ function dispatch(data) {
         utils: { hydrateLeaderboard: (lb) => lb },
         showView: (view) => calls.push({ fn: 'showView', arg: view }),
         stopCountdown: () => calls.push({ fn: 'stopCountdown' }),
+        // #2702: the dispatcher ends the reveal's three beats on every phase
+        // that is not REVEAL.
+        stopRevealStaging: () => calls.push({ fn: 'stopRevealStaging' }),
         debug: () => calls.push({ fn: 'debug' }),
     };
     for (const [, renderer] of PHASES) {
@@ -96,6 +99,8 @@ describe('#2617 dashboard phase dispatch', () => {
 
     it('leaves an unknown phase to the default branch without throwing', () => {
         const calls = dispatch({ phase: 'TELEPORTING', game_id: 'g1' });
-        expect(calls.map((c) => c.fn)).toEqual(['debug']);
+        // #2702 added one unconditional call before the switch: an unknown
+        // phase is not REVEAL, so the reveal's beats are ended like any other.
+        expect(calls.map((c) => c.fn)).toEqual(['stopRevealStaging', 'debug']);
     });
 });

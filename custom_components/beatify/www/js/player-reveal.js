@@ -388,6 +388,9 @@ export function updateRevealView(data) {
         triggerConfetti('record');
     }
 
+    // #2702 beat two — rendered every time, shown by CSS when its beat is due.
+    renderRoundWinners(data);
+
     if (data.leaderboard) {
         renderRevealStandings(data);
     }
@@ -419,6 +422,111 @@ export function updateRevealView(data) {
 
 var _revealAdvanceTick = null;
 
+// #2702: the ring is the only thing on a guest's phone that claims to know what
+// happens next, and when the countdown ran out it stopped dead — digit still
+// reading "0" — for the whole 5–25 s that `start_round()` blocks (longer since
+// #2682 raised MA_PLAYBACK_TIMEOUT). A stopped clock does not read as "waiting",
+// it reads as "broken": it goes on asserting that a timer is running while the
+// timer stands still. The issue proposed swapping the ring for a "next song…"
+// chip, but a chip that stands still is exactly as silent as a ring that stands
+// still — the complaint is about movement, and only movement answers it.
+//
+// No new server frame is needed. The client already holds both halves of the
+// fact: the countdown reached zero, and no PLAYING state has arrived. So the
+// same ring drops the digit and turns in place.
+var REVEAL_WAIT_GLYPH = '\u2026';   // "…" — a glyph, so no new string in six locales
+
+/**
+ * Put the countdown ring into (or back out of) the indeterminate waiting state.
+ * The ring keeps its place and its size; only what it means changes.
+ *
+ * The digit is replaced rather than hidden so the reduced-motion reader, who
+ * gets no rotation, still sees a state that differs from a frozen zero.
+ *
+ * @param {Element} chip - #player-reveal-countdown
+ * @param {Element} numEl - the digit in the middle of the ring
+ * @param {Element} fgCircle - the drawn arc
+ * @param {boolean} waiting - true once the countdown has run out
+ * @param {number} circumference - the arc's full length in user units
+ */
+function setRevealWaiting(chip, numEl, fgCircle, waiting, circumference) {
+    if (!chip || !numEl || !fgCircle) return;
+    if (waiting) {
+        chip.classList.add('is-waiting');
+        // A quarter arc at a fixed offset. With the gauge meaning gone the
+        // stroke must not go on reading as "three quarters of the time left".
+        fgCircle.style.transition = 'none';
+        fgCircle.style.strokeDasharray = (circumference * 0.25) + ' ' + (circumference * 0.75);
+        fgCircle.style.strokeDashoffset = '0';
+        numEl.textContent = REVEAL_WAIT_GLYPH;
+        // role="timer" stops being true the moment the timer stops. Announce
+        // busy instead, and borrow the string the cold-start screen already
+        // ships in all six languages rather than inventing a seventh.
+        if (chip.setAttribute) {
+            chip.setAttribute('aria-busy', 'true');
+            chip.setAttribute('data-i18n-aria-label', 'game.starting');
+            chip.setAttribute('aria-label', utils.t('game.starting') || 'Starting...');
+        }
+    } else {
+        chip.classList.remove('is-waiting');
+        fgCircle.style.transition = '';
+        if (chip.setAttribute) {
+            chip.setAttribute('aria-busy', 'false');
+            chip.setAttribute('data-i18n-aria-label', 'reveal.autoAdvanceAria');
+            chip.setAttribute('aria-label', utils.t('reveal.autoAdvanceAria') || 'Next round countdown');
+        }
+    }
+}
+
+// #2702: the reveal is staged in three beats — the answer, then who got it
+// right, then the standings. The beats run on their OWN clock, deliberately not
+// on any loading signal: gating them on "the next round is late" would make a
+// fast round flash all three at once, and would make the room's best thirty
+// seconds depend on how slow the speaker is. If the next round arrives first,
+// the phase change simply cuts whatever beat was showing.
+var REVEAL_BEAT_2_MS = 1500;
+var REVEAL_BEAT_3_MS = 3000;
+var _revealStageTimers = [];
+var _revealStageKey = null;
+
+function _setRevealStage(root, stage) {
+    if (root && root.setAttribute) root.setAttribute('data-reveal-stage', String(stage));
+}
+
+/**
+ * Clear the staging timers and drop the stage attribute, so nothing is left
+ * hidden for the next phase. Absent attribute means "show everything" in CSS,
+ * which is also what a client whose timers never ran should see.
+ */
+export function stopRevealStaging() {
+    for (var i = 0; i < _revealStageTimers.length; i++) clearTimeout(_revealStageTimers[i]);
+    _revealStageTimers = [];
+    _revealStageKey = null;
+    var root = document.getElementById('reveal-view');
+    if (root && root.removeAttribute) root.removeAttribute('data-reveal-stage');
+}
+
+/**
+ * Start the three beats for THIS reveal. REVEAL re-broadcasts are constant
+ * (reactions, live title/artist voting, host overrides), so the run is keyed on
+ * the round + its start stamp — a re-render must never rewind beats the room
+ * has already watched.
+ *
+ * @param {Object} data - REVEAL state payload (reads round + reveal_started_at)
+ */
+export function startRevealStaging(data) {
+    var root = document.getElementById('reveal-view');
+    if (!root || !root.setAttribute) return;
+    var key = String((data && data.round) || 0) + ':' + String((data && data.reveal_started_at) || 0);
+    if (_revealStageKey === key) return;
+    for (var i = 0; i < _revealStageTimers.length; i++) clearTimeout(_revealStageTimers[i]);
+    _revealStageTimers = [];
+    _revealStageKey = key;
+    _setRevealStage(root, 1);
+    _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 2); }, REVEAL_BEAT_2_MS));
+    _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 3); }, REVEAL_BEAT_3_MS));
+}
+
 /**
  * Stop and reset the reveal auto-advance countdown. Safe to call any time;
  * called from player-core on every phase that leaves REVEAL.
@@ -429,7 +537,12 @@ export function stopRevealCountdown() {
         _revealAdvanceTick = null;
     }
     var chip = document.getElementById('player-reveal-countdown');
-    if (chip) chip.classList.add('hidden');
+    if (chip) {
+        chip.classList.add('hidden');
+        chip.classList.remove('is-waiting');
+    }
+    // #2702: the beats belong to the reveal that is ending.
+    stopRevealStaging();
     // #1706: leaving REVEAL — drop the cover/backdrop caches so the NEXT round's
     // REVEAL re-applies the (new) art even if the DOM was reused.
     _lastRevealCoverSrc = null;
@@ -466,22 +579,40 @@ export function updateRevealCountdown(data) {
     chip.classList.remove('hidden');
     // SVG circle r=25 -> circumference 2*pi*r ~= 157.08
     var circumference = 157.08;
+    // #2702: clear any waiting state left by the previous round BEFORE the
+    // gauge geometry is re-applied — the waiting arc is written inline.
+    setRevealWaiting(chip, numEl, fgCircle, false, circumference);
     fgCircle.style.strokeDasharray = circumference;
+
+    // #2702: true once the countdown has run out and the next round has not
+    // arrived. Set inside paint(), read outside it to decide whether a ticking
+    // interval is still worth having.
+    var waiting = false;
 
     function paint() {
         var remainingMs = Math.max(0, startedAt + duration * 1000 - Date.now());
+        if (remainingMs <= 0) {
+            // #2702: out of time, still on REVEAL — the ring stops counting and
+            // starts turning. Derived here, not signalled by the server: the
+            // client knows the countdown ended and that no PLAYING state came.
+            waiting = true;
+            if (_revealAdvanceTick !== null) {
+                clearInterval(_revealAdvanceTick);
+                _revealAdvanceTick = null;
+            }
+            setRevealWaiting(chip, numEl, fgCircle, true, circumference);
+            return;
+        }
         var remaining = Math.ceil(remainingMs / 1000);
         numEl.textContent = remaining;
         // Drained progress: ring is full at start, empties as time elapses.
         var pctRemaining = remainingMs / (duration * 1000);
         fgCircle.style.strokeDashoffset = String(circumference * (1 - pctRemaining));
-        if (remainingMs <= 0 && _revealAdvanceTick !== null) {
-            clearInterval(_revealAdvanceTick);
-            _revealAdvanceTick = null;
-        }
     }
     paint();
-    _revealAdvanceTick = setInterval(paint, 500);
+    // A phone that joins mid-gap paints straight into the waiting state; no
+    // point starting an interval that would only re-apply it.
+    if (!waiting) _revealAdvanceTick = setInterval(paint, 500);
 }
 
 /**
@@ -1121,6 +1252,59 @@ function renderScoreRow(player) {
     }
 }
 
+/**
+ * #2702 beat two: who got it right.
+ *
+ * The answer lands first, the standings land last, and this is the line the
+ * room actually says out loud in between — the three who scored best on the
+ * song that just played. The TV has shown it since 10.4.4 (`renderTopGuesses`);
+ * the phone never did, which left the middle beat with nothing to fill it on
+ * the one surface the complaint in #2702 came from.
+ *
+ * Ranked by the same total the score row and the standings delta use, so the
+ * three surfaces cannot disagree about who won the round. Nobody scoring hides
+ * the section outright: an empty podium is worse than a shorter reveal.
+ *
+ * @param {Object} data - REVEAL state payload (reads players[])
+ */
+export function renderRoundWinners(data) {
+    var section = document.getElementById('reveal-whogot');
+    var listEl = document.getElementById('reveal-whogot-list');
+    if (!section || !listEl) return;
+
+    var scored = ((data && data.players) || []).filter(function(p) {
+        return p && !p.missed_round && computeTotalPoints(p) > 0;
+    }).sort(function(a, b) {
+        return computeTotalPoints(b) - computeTotalPoints(a);
+    }).slice(0, 3);
+
+    if (!scored.length) {
+        section.classList.add('hidden');
+        listEl.innerHTML = '';
+        return;
+    }
+
+    var youLabel = (utils.t('analytics.youMarker') || 'YOU').replace(/[()]/g, '');
+    var html = '';
+    scored.forEach(function(p, i) {
+        var isMe = p.name === state.playerName;
+        // The guessed year is the interesting half of "who got it right" in
+        // year mode; Title & Artist has no year, so the cell simply drops.
+        var guess = (p.guess != null && p.guess !== '') ? String(p.guess) : '';
+        html +=
+            '<div class="whogot-row' + (isMe ? ' whogot-row--you' : '') + '">' +
+                '<span class="whogot-rank num">' + (i + 1) + '</span>' +
+                '<span class="whogot-name">' + escapeHtml(p.name || '?') +
+                    (isMe ? ' <span class="whogot-you">' + escapeHtml(youLabel) + '</span>' : '') +
+                '</span>' +
+                (guess ? '<span class="whogot-guess num">' + escapeHtml(guess) + '</span>' : '') +
+                '<span class="whogot-pts num">+' + computeTotalPoints(p) + '</span>' +
+            '</div>';
+    });
+    listEl.innerHTML = html;
+    section.classList.remove('hidden');
+}
+
 // ---------- Reveal standings (Round-Delta Ledger, design-shotgun A) ----------
 
 /**
@@ -1151,6 +1335,41 @@ function _revStandGradient(name) {
  *
  * @param {Object} data - REVEAL state payload (leaderboard[] + players[])
  */
+export var PHONE_STANDINGS_TOP = 3;
+
+/**
+ * #2702: which standings rows a phone shows.
+ *
+ * The TV has room for the whole table; a phone does not, and the rows it used
+ * to drop off the bottom were the ones the reader most needed — their own.
+ * Podium plus your own line means a guest in tenth place still learns
+ * something from the beat, instead of reading three names they are not.
+ *
+ * Returns render instructions rather than entries so the caller keeps each
+ * row's true rank index (for the taper) and knows where the elision goes.
+ *
+ * @param {Array} leaderboard - server-ranked entries, best first
+ * @param {string} meName - the reader's player name
+ * @returns {Array} [{entry, index} | {gap: true}]
+ */
+export function phoneStandingsRows(leaderboard, meName) {
+    var list = leaderboard || [];
+    var rows = [];
+    var top = Math.min(PHONE_STANDINGS_TOP, list.length);
+    for (var i = 0; i < top; i++) rows.push({ entry: list[i], index: i });
+    var meIdx = -1;
+    for (var j = 0; j < list.length; j++) {
+        if (list[j] && list[j].name === meName) { meIdx = j; break; }
+    }
+    if (meIdx >= top) {
+        // Only elide when something was actually skipped: 4th place sits
+        // directly under the podium and an "…" there would be a lie.
+        if (meIdx > top) rows.push({ gap: true });
+        rows.push({ entry: list[meIdx], index: meIdx });
+    }
+    return rows;
+}
+
 export function renderRevealStandings(data) {
     var listEl = document.getElementById('reveal-leaderboard-list');
     if (!listEl) return;
@@ -1163,7 +1382,13 @@ export function renderRevealStandings(data) {
     var youLabel = (utils.t('analytics.youMarker') || 'YOU').replace(/[()]/g, '');
 
     var html = '';
-    leaderboard.forEach(function(entry, idx) {
+    phoneStandingsRows(leaderboard, state.playerName).forEach(function(row) {
+        if (row.gap) {
+            html += '<div class="rstand-gap" aria-hidden="true">\u22EF</div>';
+            return;
+        }
+        var entry = row.entry;
+        var idx = row.index;
         var p = byName[entry.name] || {};
         var isMe = entry.name === state.playerName;
         var initial = ((entry.name || '?').trim().charAt(0) || '?').toUpperCase();
@@ -1210,7 +1435,9 @@ export function renderRevealStandings(data) {
         var deltaCls = delta > 0 ? '' : ' rstand-delta--zero';
         var deltaTxt = (delta >= 0 ? '+' : '') + delta;
 
-        var taperCls = idx >= 4 ? ' rstand-row--taper2' : (idx >= 3 ? ' rstand-row--taper1' : '');
+        // #2702: only the podium and your own row survive on the phone, so the
+        // taper is down to the one case left — a 4th place that is not yours.
+        var taperCls = (idx >= PHONE_STANDINGS_TOP && !isMe) ? ' rstand-row--taper1' : '';
         var meCls = isMe ? ' rstand-row--you' : '';
         var youTag = isMe ? ' <span class="rstand-you">' + escapeHtml(youLabel) + '</span>' : '';
 

@@ -636,6 +636,10 @@
             return;
         }
 
+        // #2702: the beats belong to one reveal. Anything that is not REVEAL
+        // ends them, which is what lets a fast next round cut the staging.
+        if (phase !== 'REVEAL') stopRevealStaging();
+
         switch (phase) {
             case 'LOBBY':
                 stopCountdown();
@@ -1288,6 +1292,10 @@
         // TV dashboard didn't until @Dtrieb asked for it).
         updateRevealCountdown(data);
 
+        // #2702: run the three beats. Keyed on the round inside, so calling it
+        // on every re-broadcast is cheap and does not restart anything.
+        startRevealStaging(data);
+
         // Render song difficulty rating (Story 15.1)
         renderSongDifficulty(data.song_difficulty);
 
@@ -1645,6 +1653,51 @@
      * submissions, game holds on REVEAL until manual advance).
      */
     var _countdownTick = null;
+
+    // #2702: the TV ring had the same defect as the phone's — it stopped at
+    // zero and sat there for the 5-25 s `start_round()` blocks (longer since
+    // #2682 raised MA_PLAYBACK_TIMEOUT), which is what made the room ask the
+    // host whether the game had crashed. A stopped clock claims a timer is
+    // running; only movement withdraws that claim, so the ring turns instead.
+    // Derived here from what the client already knows (the countdown ended, no
+    // PLAYING state arrived) rather than from a new server frame.
+    var REVEAL_WAIT_GLYPH = '\u2026';
+
+    /**
+     * Toggle the TV countdown chip between counting and waiting.
+     * @param {Element} chip - #reveal-countdown
+     * @param {Element} numEl - the digit inside the ring
+     * @param {Element} fgCircle - the drawn arc
+     * @param {boolean} waiting - true once the countdown has run out
+     * @param {number} circumference - the arc's full length in user units
+     */
+    function setRevealWaiting(chip, numEl, fgCircle, waiting, circumference) {
+        if (!chip || !numEl || !fgCircle) return;
+        var labelEl = chip.querySelector ? chip.querySelector('.chip-countdown-label') : null;
+        if (waiting) {
+            chip.classList.add('is-waiting');
+            // A quarter arc at a fixed offset: with the gauge meaning gone the
+            // stroke must not read as "three quarters of the time is left".
+            fgCircle.style.transition = 'none';
+            fgCircle.style.strokeDasharray = (circumference * 0.25) + ' ' + (circumference * 0.75);
+            fgCircle.style.strokeDashoffset = '0';
+            numEl.textContent = REVEAL_WAIT_GLYPH;
+            if (labelEl) {
+                // Keep data-i18n in step so a mid-game language switch
+                // re-renders the label that is actually on screen (#2619).
+                labelEl.setAttribute('data-i18n', 'game.starting');
+                labelEl.textContent = utils.t('game.starting') || 'Starting...';
+            }
+        } else {
+            chip.classList.remove('is-waiting');
+            fgCircle.style.transition = '';
+            if (labelEl) {
+                labelEl.setAttribute('data-i18n', 'dashboard.autoAdvance');
+                labelEl.textContent = utils.t('dashboard.autoAdvance') || 'Auto-advance';
+            }
+        }
+    }
+
     function updateRevealCountdown(data) {
         var chip = document.getElementById('reveal-countdown');
         var numEl = document.getElementById('reveal-countdown-num');
@@ -1663,28 +1716,82 @@
 
         if (duration <= 0 || !startedAt || idleHalt) {
             chip.classList.add('hidden');
+            chip.classList.remove('is-waiting');
             return;
         }
 
         chip.classList.remove('hidden');
         // SVG circle r=25 → circumference 2πr ≈ 157.08
         var circumference = 157.08;
+        // #2702: clear a waiting state left by the previous round BEFORE the
+        // gauge geometry is re-applied — the waiting arc is written inline.
+        setRevealWaiting(chip, numEl, fgCircle, false, circumference);
         fgCircle.style.strokeDasharray = circumference;
+
+        var waiting = false;
 
         function paint() {
             var remainingMs = Math.max(0, startedAt + duration * 1000 - Date.now());
+            if (remainingMs <= 0) {
+                waiting = true;
+                if (_countdownTick !== null) {
+                    clearInterval(_countdownTick);
+                    _countdownTick = null;
+                }
+                setRevealWaiting(chip, numEl, fgCircle, true, circumference);
+                return;
+            }
             var remaining = Math.ceil(remainingMs / 1000);
             numEl.textContent = remaining;
             // Drained progress: ring is full at start, empties as time elapses.
             var pctRemaining = remainingMs / (duration * 1000);
             fgCircle.style.strokeDashoffset = String(circumference * (1 - pctRemaining));
-            if (remainingMs <= 0 && _countdownTick !== null) {
-                clearInterval(_countdownTick);
-                _countdownTick = null;
-            }
         }
         paint();
-        _countdownTick = setInterval(paint, 500);
+        // A TV that renders straight into the gap needs no ticking interval.
+        if (!waiting) _countdownTick = setInterval(paint, 500);
+    }
+
+    // #2702: the reveal in three beats — the answer, then who got it right,
+    // then the standings. Own clock, deliberately NOT the loading signal: gating
+    // the beats on "the next round is late" would make a fast round flash all
+    // three at once. If the next round starts first, the phase change cuts it.
+    var REVEAL_BEAT_2_MS = 1500;
+    var REVEAL_BEAT_3_MS = 3000;
+    var _revealStageTimers = [];
+    var _revealStageKey = null;
+
+    function _setRevealStage(root, stage) {
+        if (root && root.setAttribute) root.setAttribute('data-reveal-stage', String(stage));
+    }
+
+    /** Clear the beats and drop the attribute (absent = show everything). */
+    function stopRevealStaging() {
+        for (var i = 0; i < _revealStageTimers.length; i++) clearTimeout(_revealStageTimers[i]);
+        _revealStageTimers = [];
+        _revealStageKey = null;
+        var root = document.getElementById('dashboard-reveal');
+        if (root && root.removeAttribute) root.removeAttribute('data-reveal-stage');
+    }
+
+    /**
+     * Start the beats for THIS reveal. REVEAL re-broadcasts are constant (live
+     * title/artist voting, reactions, host overrides), so the run is keyed on
+     * the round + start stamp — a re-render must not rewind beats the room has
+     * already watched.
+     * @param {Object} data - REVEAL state payload (round + reveal_started_at)
+     */
+    function startRevealStaging(data) {
+        var root = document.getElementById('dashboard-reveal');
+        if (!root || !root.setAttribute) return;
+        var key = String((data && data.round) || 0) + ':' + String((data && data.reveal_started_at) || 0);
+        if (_revealStageKey === key) return;
+        for (var i = 0; i < _revealStageTimers.length; i++) clearTimeout(_revealStageTimers[i]);
+        _revealStageTimers = [];
+        _revealStageKey = key;
+        _setRevealStage(root, 1);
+        _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 2); }, REVEAL_BEAT_2_MS));
+        _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 3); }, REVEAL_BEAT_3_MS));
     }
 
     /**
