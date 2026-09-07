@@ -124,8 +124,13 @@ export function renderDifficultyHint() {
 
 /**
  * Setup game settings controls (chips for language, timer, difficulty, toggle for artist challenge)
+ *
+ * @param {{reloadPlaylists?: () => void}} opts  #2679: passed straight through
+ *   to the Crate Digger panel, which saves playlists and has to refresh the
+ *   list afterwards. Injected rather than reached for on `window` — see
+ *   `initMixTab` / `initMediaPlayers` for the same seam.
  */
-export function setupGameSettings() {
+export function setupGameSettings(opts = {}) {
     // #2626: the chip group is markup-free in admin.html — render it before any
     // handler below queries `.chip[data-reveal-advance]`.
     renderAutoAdvanceChips();
@@ -288,7 +293,7 @@ export function setupGameSettings() {
     // Crate Digger (ma_library) panel: settings, scan controls, backup and
     // the live match count. Mounted here so it shares the game-settings
     // persistence round-trip.
-    setupLibrarySettings(saveGameSettings);
+    setupLibrarySettings(saveGameSettings, opts.reloadPlaylists);
 }
 
 /**

@@ -109,6 +109,10 @@ export function parseAiAnswer(text) {
 
 let _modal = null;
 let _resolved = null; // last successfully resolved playlist (ready to save)
+// #2679: handed in by whoever opens the modal (library.js), read at click time
+// so the single wired-once handler always uses the current one. It replaces the
+// `window.loadPlaylists?.()` that used to sit in the save handler and never ran.
+let _reloadPlaylists = null;
 
 function _ensureModal() {
     if (_modal) return _modal;
@@ -254,10 +258,9 @@ function _ensureModal() {
             const data = await resp.json().catch(() => ({}));
             if (resp.ok) {
                 result.innerHTML = `<p class="library-ai-good">${_t('admin.libraryAi.saved', 'Saved! Find it under Playlists → Mine.')}</p>`;
-                // #2637: same dead `window.loadPlaylists?.()` nudge as in
-                // library.js — the global has never existed, so the refresh
-                // never happened. Removed; the missing refresh is tracked
-                // separately.
+                // #2679: the modal has just told the user where to find the
+                // playlist, so the list behind it has to be re-pulled.
+                _reloadPlaylists?.();
             } else {
                 result.innerHTML = `<p class="library-ai-bad">${data.message || 'Save failed'}</p>`;
                 saveBtn.disabled = false;
@@ -282,7 +285,12 @@ function _close() {
     if (_modal) _modal.classList.add('hidden');
 }
 
-export function openLibraryAiModal() {
+/**
+ * @param {{reloadPlaylists?: () => void}} opts  #2679: how to refresh the
+ *   playlist list once a curated playlist has been saved.
+ */
+export function openLibraryAiModal(opts = {}) {
+    _reloadPlaylists = typeof opts.reloadPlaylists === 'function' ? opts.reloadPlaylists : null;
     const m = _ensureModal();
     m.classList.remove('hidden');
     m.querySelector('[data-ai="name"]')?.focus();

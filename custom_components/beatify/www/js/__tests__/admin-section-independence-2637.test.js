@@ -19,6 +19,14 @@
  * module graph: no file may be both an input of admin.min.js and a separate
  * `<script>` in admin.html, because that is two copies of one module with an
  * ordering problem between them.
+ *
+ * #2680 widened that last block. Comparing the `<script src>` names against the
+ * bundle inputs only catches a file listed on the page *by name*. It missed
+ * `admin/sections/library.js`, which admin.min.js inlines while `wizard.js` —
+ * its own module tag — `import`ed it over the network: two instances, two sets
+ * of module-level state, load order deciding which one a click reached. So the
+ * check now walks each non-bundled script's whole import graph, not just its
+ * filename.
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { readFile } from 'node:fs/promises';
@@ -26,236 +34,17 @@ import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, relative, resolve } from 'node:path';
 import { build } from 'esbuild';
+// #2679 extracted the page harness (the sentinel `window`, the hand-rolled DOM,
+// bootPage) so a second suite could drive a section the same way.
+import { bootPage, restoreGlobals, saveGlobals } from './helpers/admin-page.js';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const JS_DIR = resolve(HERE, '..');
 const WWW_DIR = resolve(JS_DIR, '..');
 const REPO_ROOT = resolve(WWW_DIR, '..', '..', '..');
 
-/**
- * Names that belong to the admin core (admin.js) or to what used to be a
- * classic script it handshook with.
- *
- * Six of these still exist on the page on purpose — wizard.js and
- * playlist-requests.js are separate top-level scripts that cannot import from
- * the admin bundle, so `window` is the only channel they have. That is a
- * boundary between two entry points, not a cycle. What must never come back is
- * a module UNDER admin/ reading one of them: those modules are inside the same
- * bundle and can import what they need.
- *
- * The eight that no longer exist are listed too, so re-adding one and quietly
- * depending on it also trips the sentinel.
- */
-const ADMIN_CORE_GLOBALS = [
-    // still published by admin.js, for wizard.js / playlist-requests.js only
-    'loadStatus',
-    'loadSavedSettings',
-    'BeatifyHome',
-    'BeatifyPersistSetup',
-    'BeatifyNoteLocalSetupWrite',
-    'BEATIFY_VERSION',
-    // removed by #2637 — must not come back
-    'escapeHtml',
-    'groupPlayersByPlatform',
-    'buildRequestRowHtml',
-    '_getAdminToken',
-    '_setAdminToken',
-    '_adminHeaders',
-    'clearPlaylistFilters',
-    'loadPlaylists',
-    '_ttsConfig',
-    '_partyLightsConfig',
-];
-
-/**
- * A `window` that refuses to hand out an admin-core global.
- *
- * Reads and `in` checks both throw, which covers every shape the old code used:
- * `window.x()`, `window.x?.()`, `typeof window.x === 'function'` and
- * `'x' in window`. Writes are allowed — a section is free to publish something
- * of its own (mix.js exposes `window.BeatifyMixPanel` for the playlist hub).
- */
-function sentinelWindow(base) {
-    const refuse = (prop) => {
-        throw new Error(
-            `load-order violation: a module under admin/ read window.${prop}. ` +
-            'That name is owned by the admin core, so reading it here means this ' +
-            'module only works when admin.js has already run. Pass the dependency ' +
-            'in (see initMixTab / initMediaPlayers) or import it.',
-        );
-    };
-    return new Proxy(base, {
-        get(target, prop, receiver) {
-            if (typeof prop === 'string' && ADMIN_CORE_GLOBALS.includes(prop)) refuse(prop);
-            return Reflect.get(target, prop, receiver);
-        },
-        has(target, prop) {
-            if (typeof prop === 'string' && ADMIN_CORE_GLOBALS.includes(prop)) refuse(prop);
-            return Reflect.has(target, prop);
-        },
-    });
-}
-
-// ---------------------------------------------------------------------------
-// A DOM small enough to hand-roll and real enough to answer the two questions
-// the sections ask of it: "did the markup I just wrote land?" and "give me the
-// node I want to attach a listener to". vitest runs in the `node` environment
-// here, like the rest of this suite.
-// ---------------------------------------------------------------------------
-
-const ATTR_RE = /([:a-zA-Z_][-:.\w]*)\s*=\s*"([^"]*)"/g;
-const TAG_RE = /<([a-zA-Z][-\w]*)((?:\s+[^<>]*?)?)\/?>/g;
-
-function camel(name) {
-    return name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-}
-
-function makeElement(tagName = 'div', attrs = {}) {
-    const listeners = new Map();
-    const classes = new Set((attrs.class || '').split(/\s+/).filter(Boolean));
-    const dataset = {};
-    for (const [k, v] of Object.entries(attrs)) {
-        if (k.startsWith('data-')) dataset[camel(k.slice(5))] = v;
-    }
-    let html = '';
-    let children = [];
-
-    const el = {
-        tagName: tagName.toUpperCase(),
-        attrs: { ...attrs },
-        dataset,
-        textContent: '',
-        value: '',
-        disabled: false,
-        checked: false,
-        classList: {
-            add: (...c) => c.forEach((x) => classes.add(x)),
-            remove: (...c) => c.forEach((x) => classes.delete(x)),
-            toggle: (c, on) => (on === undefined ? (classes.has(c) ? classes.delete(c) : classes.add(c)) : (on ? classes.add(c) : classes.delete(c))),
-            contains: (c) => classes.has(c),
-        },
-        get innerHTML() { return html; },
-        set innerHTML(v) {
-            html = String(v);
-            children = parseElements(html);
-        },
-        setAttribute(name, value) { el.attrs[name] = String(value); },
-        getAttribute(name) { return name in el.attrs ? el.attrs[name] : null; },
-        removeAttribute(name) { delete el.attrs[name]; },
-        addEventListener(type, fn) {
-            if (!listeners.has(type)) listeners.set(type, []);
-            listeners.get(type).push(fn);
-        },
-        dispatch(type) {
-            for (const fn of listeners.get(type) || []) fn({ type, target: el, currentTarget: el });
-        },
-        click() { el.dispatch('click'); },
-        closest: () => null,
-        querySelector(sel) { return children.find((c) => matches(c, sel)) || null; },
-        querySelectorAll(sel) { return children.filter((c) => matches(c, sel)); },
-    };
-    return el;
-}
-
-/** Turn a markup string into the element stubs its open tags describe. */
-function parseElements(markup) {
-    const out = [];
-    for (const tag of markup.matchAll(TAG_RE)) {
-        const attrs = {};
-        for (const a of (tag[2] || '').matchAll(ATTR_RE)) attrs[a[1]] = a[2];
-        out.push(makeElement(tag[1], attrs));
-    }
-    return out;
-}
-
-/** Simple-selector match: `tag`, `#id`, `.class`, `[attr]`, `[attr="v"]`. */
-function matches(el, selector) {
-    const parts = selector.trim().match(/(\[[^\]]+\]|[.#]?[-\w]+)/g) || [];
-    return parts.every((part) => {
-        if (part.startsWith('#')) return el.attrs.id === part.slice(1);
-        if (part.startsWith('.')) return el.classList.contains(part.slice(1));
-        if (part.startsWith('[')) {
-            const m = /^\[([-\w:.]+)(?:=["']?([^"'\]]*)["']?)?\]$/.exec(part);
-            if (!m) return false;
-            if (!(m[1] in el.attrs)) return false;
-            return m[2] === undefined || el.attrs[m[1]] === m[2];
-        }
-        return el.tagName === part.toUpperCase();
-    });
-}
-
-/** A `document` backed by a fixed set of elements, keyed by id. */
-function makeDocument(ids) {
-    const byId = {};
-    for (const id of ids) {
-        byId[id] = makeElement('div', { id });
-    }
-    return {
-        byId,
-        readyState: 'complete',
-        getElementById: (id) => byId[id] || null,
-        querySelector: () => null,
-        querySelectorAll: () => [],
-        createElement: (tag) => makeElement(tag),
-        addEventListener() {},
-        body: makeElement('body'),
-    };
-}
-
-// Timers started while a page is booted. mix.js debounces its preview by 60ms;
-// if that fires after the stub `document` is torn down it becomes an unhandled
-// error in whichever test file happens to be running next.
-const pendingTimers = [];
-
-/** Install the sentinel window + a stub document, then import modules fresh. */
-function bootPage(elementIds, { fetchImpl } = {}) {
-    vi.resetModules();
-    const doc = makeDocument(elementIds);
-    const base = {
-        BeatifyUtils: { escapeHtml: (s) => String(s == null ? '' : s) },
-        BeatifyI18n: { t: (k) => k },
-        BeatifyAuth: { fetch: fetchImpl || (async () => ({ ok: true, json: async () => ({}) })) },
-        localStorage: {
-            _s: {},
-            getItem(k) { return k in this._s ? this._s[k] : null; },
-            setItem(k, v) { this._s[k] = String(v); },
-            removeItem(k) { delete this._s[k]; },
-        },
-        fetch: fetchImpl || (async () => ({ ok: true, json: async () => ({}) })),
-        setTimeout: (fn) => globalThis.setTimeout(fn, 0),
-        clearTimeout: (id) => globalThis.clearTimeout(id),
-    };
-    const win = sentinelWindow(base);
-    globalThis.window = win;
-    globalThis.document = doc;
-    globalThis.BeatifyI18n = base.BeatifyI18n;
-    globalThis.BeatifyAuth = base.BeatifyAuth;
-    globalThis.localStorage = base.localStorage;
-    globalThis.CSS = globalThis.CSS || { escape: (s) => String(s) };
-    const realSetTimeout = globalThis.setTimeout;
-    globalThis.setTimeout = (...args) => {
-        const id = realSetTimeout(...args);
-        pendingTimers.push(id);
-        return id;
-    };
-    savedGlobals.setTimeout = realSetTimeout;
-    return doc;
-}
-
-const savedGlobals = {};
-beforeEach(() => {
-    for (const k of ['window', 'document', 'BeatifyI18n', 'BeatifyAuth', 'localStorage', 'setTimeout']) {
-        savedGlobals[k] = globalThis[k];
-    }
-});
-afterEach(() => {
-    while (pendingTimers.length) globalThis.clearTimeout(pendingTimers.pop());
-    for (const [k, v] of Object.entries(savedGlobals)) {
-        if (v === undefined) delete globalThis[k];
-        else globalThis[k] = v;
-    }
-    vi.resetModules();
-});
+beforeEach(saveGlobals);
+afterEach(restoreGlobals);
 
 // ---------------------------------------------------------------------------
 
@@ -395,6 +184,20 @@ describe('#2637 the Mix tab refreshes through its injected dependency', () => {
     });
 });
 
+/** Every module esbuild pulls in when `entry` is bundled, as JS_DIR-relative paths. */
+async function moduleGraph(entry) {
+    const result = await build({
+        entryPoints: [join(JS_DIR, entry)],
+        bundle: true,
+        format: 'esm',
+        write: false,
+        metafile: true,
+        logLevel: 'silent',
+    });
+    return Object.keys(result.metafile.inputs)
+        .map((p) => relative(JS_DIR, resolve(REPO_ROOT, p)));
+}
+
 describe('#2637 nothing is both bundled and loaded on its own', () => {
     /**
      * admin.html's `<script src>` list is the page's load order; the bundle's
@@ -406,18 +209,7 @@ describe('#2637 nothing is both bundled and loaded on its own', () => {
     let scripts;
 
     beforeEach(async () => {
-        if (!inputs) {
-            const result = await build({
-                entryPoints: [join(JS_DIR, 'admin.js')],
-                bundle: true,
-                format: 'esm',
-                write: false,
-                metafile: true,
-                logLevel: 'silent',
-            });
-            inputs = Object.keys(result.metafile.inputs)
-                .map((p) => relative(JS_DIR, resolve(REPO_ROOT, p)));
-        }
+        if (!inputs) inputs = await moduleGraph('admin.js');
         if (!scripts) {
             const html = await readFile(join(WWW_DIR, 'admin.html'), 'utf8');
             scripts = [...html.matchAll(/<script[^>]+src="\/beatify\/static\/js\/([^"?]+)/g)]
@@ -437,5 +229,40 @@ describe('#2637 nothing is both bundled and loaded on its own', () => {
             .map((src) => src.replace(/\.min\.js$/, '.js'))
             .filter((src) => inputs.includes(src));
         expect(duplicated).toEqual([]);
+    });
+
+    /**
+     * #2680: the check above compares filenames, so it only sees a duplicate
+     * that admin.html names out loud. `wizard.js` was never named as a bundle
+     * input — it reached `admin/sections/library.js` by `import`, one level
+     * down, and the page ran two copies of it for months with every test green.
+     *
+     * So: take each script the page loads that is NOT the admin bundle, bundle
+     * it the way the browser would resolve its imports, and intersect its whole
+     * graph with the admin bundle's. A shared file means two instances with two
+     * sets of module-level state and load order picking the winner.
+     *
+     * The rule this enforces: a file is a bundle input OR its own entry point,
+     * never both. Fixing a hit means moving the entry point into the bundle
+     * (what #2680 did with wizard.js) or taking the shared file out of it —
+     * never leaving both.
+     */
+    it('does not reach a bundled module by import from another entry point', async () => {
+        const bundled = new Set(inputs);
+        const entryPoints = scripts
+            .filter((src) => src !== 'admin.min.js')
+            // Vendor drops are third-party artifacts with no source graph here.
+            .filter((src) => !src.startsWith('vendor/'))
+            // A `.min.js` on the page is built from the readable sibling; that
+            // sibling is what has the imports.
+            .map((src) => src.replace(/\.min\.js$/, '.js'));
+
+        const shared = [];
+        for (const entry of entryPoints) {
+            for (const dep of await moduleGraph(entry)) {
+                if (dep !== entry && bundled.has(dep)) shared.push(`${entry} imports ${dep}`);
+            }
+        }
+        expect(shared).toEqual([]);
     });
 });

@@ -260,11 +260,16 @@ export function wireSeasonalSuggestionHub(container, onAdd, now = new Date()) {
     });
 }
 
-// #1570: the Playlist Hub (playlist-hub.js) is loaded as a standalone <script
-// type="module"> and can't import this bundled module without duplicating
-// admin/state.js. Expose the seasonal API on window — the same cross-module
-// bridge the Smart Playlist Mixer uses (window.BeatifyMixPanel, #1568/#1569) —
-// so the hub can render + wire the chip from its own (filtered) playlist set.
+// #1570: the Playlist Hub reads the seasonal API off `window` — the same
+// cross-module bridge the Smart Playlist Mixer uses (window.BeatifyMixPanel,
+// #1568/#1569) — so the hub can render + wire the chip from its own (filtered)
+// playlist set.
+//
+// #2680 removed the reason it HAD to be a bridge: playlist-hub.js was a
+// standalone <script type="module"> back then and importing this module would
+// have duplicated admin/state.js. It is a module of the admin bundle now, so a
+// plain import would work. Left as a bridge here because turning it into one is
+// a separate change with its own blast radius, not because it is still forced.
 if (typeof window !== 'undefined') {
     window.BeatifySeasonal = {
         pickSeasonalSuggestion,

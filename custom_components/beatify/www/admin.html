@@ -1651,10 +1651,16 @@
     <script src="/beatify/static/js/utils.js?v={{ASSET_VER}}"></script>
     <!-- Story 44.1: Playlist requests module -->
     <script src="/beatify/static/js/playlist-requests.min.js?v={{ASSET_VER}}"></script>
-    <!-- #1052: LLM-assisted playlist generator (load before playlist-hub so the Mine-tab button finds it) -->
+    <!-- #1052: LLM-assisted playlist generator. Read off `window` by the hub's
+         Mine tab; a classic script, so it must precede admin.min.js. -->
     <script src="/beatify/static/js/playlist-generator.min.js?v={{ASSET_VER}}"></script>
-    <script type="module" src="/beatify/static/js/playlist-hub.js?v={{ASSET_VER}}"></script>
-    <script type="module" src="/beatify/static/js/wizard.js?v={{ASSET_VER}}"></script>
+    <!-- #2680: playlist-hub.js and wizard.js used to be two more module tags
+         right here. wizard.js imports ./admin/sections/library.js, which
+         admin.min.js inlines — so the page ran two copies of library.js (and of
+         library-ai.js, admin/state.js, game-constants.js,
+         providers.generated.js), each with its own module-level state, and load
+         order decided which one a click reached. Both are imports of the admin
+         bundle now: one copy, one state, two fewer requests. -->
     <!-- #1180: Title & Artist mode bonus-flag precedence (exposes
          window.BeatifyTitleArtist; must load before admin.min.js uses it). -->
     <script type="module" src="/beatify/static/js/title-artist-bonuses.js?v={{ASSET_VER}}"></script>
@@ -1669,10 +1675,12 @@
          in the wrong order and `npm run build:check` covers them.
          The window globals this bundle still publishes (loadStatus,
          loadSavedSettings, BeatifyHome, BeatifyPersistSetup,
-         BeatifyNoteLocalSetupWrite, BEATIFY_VERSION) exist for wizard.js and
-         playlist-requests.js, which are separate top-level scripts and cannot
-         import from the bundle. Every one of those reads is event-driven (after
-         DOMContentLoaded / on click), never at parse time. -->
+         BeatifyNoteLocalSetupWrite) are read by wizard.js, which is a bundle
+         module since #2680 but also a dependency of admin.js — `window` breaks
+         that cycle. BEATIFY_VERSION is read by playlist-requests.js, a classic
+         script that cannot import from the bundle at all. Every one of those
+         reads is event-driven (after DOMContentLoaded / on click), never at
+         parse time. -->
     <script type="module" src="/beatify/static/js/admin.min.js?v={{ASSET_VER}}"></script>
 </body>
 </html>

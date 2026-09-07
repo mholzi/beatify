@@ -197,13 +197,24 @@ function _panelHtml(mode) {
 
 /**
  * Mount the library panel into `rootEl`.
+ *
+ * #2679: `reloadPlaylists` is injected, the same way `initMixTab({ startGame,
+ * refreshStatus })` and `initMediaPlayers({ refreshStatus })` take theirs. The
+ * panel writes new playlists to the server and has to say so; before, it
+ * reached for `window.loadPlaylists`, a global nothing ever assigned, so the
+ * `typeof … === 'function'` guard was always false and the refresh never ran.
+ * A parameter cannot be silently absent that way — it is either wired or the
+ * test below it fails.
+ *
  * @param {HTMLElement} rootEl  empty container to render into
- * @param {{mode?: 'admin'|'wizard', onChanged?: () => void}} opts
+ * @param {{mode?: 'admin'|'wizard', onChanged?: () => void,
+ *          reloadPlaylists?: () => void}} opts
  * @returns {{refresh: () => void, destroy: () => void}}
  */
 export function mountLibraryPanel(rootEl, opts = {}) {
     const mode = opts.mode || 'admin';
     const onChanged = opts.onChanged || null;
+    const reloadPlaylists = typeof opts.reloadPlaylists === 'function' ? opts.reloadPlaylists : null;
     rootEl.classList.add('library-settings');
     rootEl.innerHTML = _panelHtml(mode);
     if (window.BeatifyI18n && typeof window.BeatifyI18n.apply === 'function') {
@@ -332,12 +343,11 @@ export function mountLibraryPanel(rootEl, opts = {}) {
                 const data = await resp.json().catch(() => ({}));
                 if (resp.ok && data.saved) {
                     _toast(inst, _t('admin.library.mixSaved', 'Saved as playlist: ') + data.name + ` (${data.songs})`);
-                    // #2637: a `window.loadPlaylists?.()` nudge stood here,
-                    // meant to refresh the Mine tab. Nothing in www/ has ever
-                    // defined that global, so the guard was always false and the
-                    // call never ran — removed rather than left as a decoy. The
-                    // Mine tab still does not refresh after a save; that gap is
-                    // tracked separately and is not changed here.
+                    // #2679: the playlist exists on the server now, so the list
+                    // the user is about to open must be re-pulled. The dead
+                    // `window.loadPlaylists?.()` that stood here until #2637 is
+                    // replaced by the injected dependency.
+                    reloadPlaylists?.();
                 } else {
                     _toast(inst, data.message || _t('admin.library.mixSaveFailed', 'Could not save mix'));
                 }
@@ -347,7 +357,10 @@ export function mountLibraryPanel(rootEl, opts = {}) {
             if (btn) btn.disabled = false;
         });
         rootEl.querySelector('[data-lib="ai-create"]')?.addEventListener('click', () => {
-            openLibraryAiModal();
+            // #2679: the AI modal saves through the same playlist store, so it
+            // needs the same refresh. Handed over at open time rather than
+            // imported, so there is exactly one place that knows how to reload.
+            openLibraryAiModal({ reloadPlaylists });
         });
     }
 
@@ -874,12 +887,17 @@ function _renderProviderVersion(inst, version) {
 
 let _adminInstance = null;
 
-/** Mount (once) into the admin settings panel root. */
-export function setupLibrarySettings(onChanged) {
+/**
+ * Mount (once) into the admin settings panel root.
+ *
+ * @param {() => void} onChanged        persist the game settings
+ * @param {() => void} reloadPlaylists  re-pull the playlist list after a save (#2679)
+ */
+export function setupLibrarySettings(onChanged, reloadPlaylists) {
     const root = document.getElementById('library-settings');
     if (!root) return;
     if (!_adminInstance) {
-        _adminInstance = mountLibraryPanel(root, { mode: 'admin', onChanged });
+        _adminInstance = mountLibraryPanel(root, { mode: 'admin', onChanged, reloadPlaylists });
     }
     updateLibraryPanelVisibility();
 }

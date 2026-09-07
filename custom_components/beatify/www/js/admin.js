@@ -136,8 +136,10 @@ import {
 // game-settings.js: chip/toggle wiring (language, timer, difficulty, bonus
 // flags + the music-service provider chips), the localStorage load/save
 // round-trip, the summary badge, and the Title&Artist-mode UI sync. admin.js
-// core calls setupGameSettings() + loadSavedSettings() at init; the rest are
-// intra-section. `loadSavedSettings` is shimmed onto window below for wizard.js.
+// core calls setupGameSettings(opts) + loadSavedSettings() at init; the rest
+// are intra-section. #2679: the opts bag exists because the Crate Digger panel
+// this section mounts saves playlists and has to refresh the list.
+// `loadSavedSettings` is shimmed onto window below for wizard.js.
 import {
     setupGameSettings,
     loadSavedSettings,
@@ -174,6 +176,23 @@ import {
 import { ttsConfig } from './tts-settings.js';
 import { partyLightsConfig, refreshPartyLightsLabels } from './party-lights.js';
 
+// #2680: the first-run wizard and the playlist hub it mounts are part of this
+// bundle now. They used to be their own `<script type="module">` tags in
+// admin.html while wizard.js also `import`ed ./admin/sections/library.js — a
+// file this bundle inlines. The page therefore evaluated library.js (and
+// library-ai.js, admin/state.js, game-constants.js, providers.generated.js)
+// twice, as two module instances with two separate sets of module-level state,
+// and whichever instance a call path reached was the state it saw. A file may
+// be a bundle input OR its own entry point, never both; wizard.js is now the
+// former, and playlist-hub.js comes with it because wizard.js imports it.
+//
+// Imported for its side effect only. wizard.js publishes `window.BeatifyWizard`
+// and reads `window.loadStatus` / `loadSavedSettings` / `BeatifyHome` /
+// `BeatifyPersistSetup` back off this file — a genuine mutual dependency, so
+// `window` stays as the cycle-breaker rather than becoming a circular import.
+// What changed is that there is exactly one copy of each module now.
+import './wizard.js';
+
 // Token helpers in util.js need the live `currentGame`. The resolver reads it
 // off the shared `adminState` object (#1279 step 5), so it stays in sync across
 // every `adminState.currentGame = …` without touching each assignment site.
@@ -197,15 +216,19 @@ setCurrentGameResolver(() => adminState.currentGame);
 //   window.BeatifyNoteLocalSetupWrite ← wizard.js (stamp a local-only setup write)
 //   window.BEATIFY_VERSION            ← playlist-requests.js (version gate)
 //
-// Every one of them crosses from this bundle to a script the page loads as its
-// own entry point (`<script type="module" src="wizard.js">`,
-// `<script src="playlist-requests.min.js">`). Those cannot import from
-// admin.min.js — an import would fetch a second copy of the module with its own
-// state — so `window` is the only channel available and this is a boundary
-// between entry points, not the cycle #2637 was about. Nothing under
-// `./admin/` reads any of them; `__tests__/admin-section-independence-2637.test.js`
-// fails if that changes. Every read above is event-driven (after
-// DOMContentLoaded, or on a click), so the deferred module has always run first.
+// `window.BEATIFY_VERSION` crosses from this bundle to `playlist-requests.min.js`,
+// a classic `<script>` that cannot import from admin.min.js — an import would
+// fetch a second copy of the module with its own state. That is a boundary
+// between entry points, not the cycle #2637 was about.
+//
+// The five wizard.js names are a different case since #2680: wizard.js is a
+// module of this bundle now, so it *could* import them — but this file imports
+// wizard.js in turn, so a direct import would close a cycle. `window` stays as
+// the cycle-breaker; what it no longer papers over is a second copy of the
+// module graph. Nothing under `./admin/` reads any of the six;
+// `__tests__/admin-section-independence-2637.test.js` fails if that changes.
+// Every read above is event-driven (after DOMContentLoaded, or on a click), so
+// the assignment has always happened first.
 
 // Screen Wake Lock (#622, #1122)
 // Layer 1: navigator.wakeLock — Safari ≥16.4, Chrome, Edge, Firefox.
@@ -878,8 +901,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Collapsible sections setup
     setupCollapsibleSections();
 
-    // Game settings setup (language, timer, difficulty, artist challenge)
-    setupGameSettings();
+    // Game settings setup (language, timer, difficulty, artist challenge).
+    // #2679: the Crate Digger panel inside it saves playlists; hand it the
+    // status reload so the list it just added to is re-pulled.
+    setupGameSettings({ reloadPlaylists: loadStatus });
 
     // Playlist requests setup (Story 44.2, 44.3)
     setupPlaylistRequests();
