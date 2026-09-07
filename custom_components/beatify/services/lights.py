@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from math import ceil
 from typing import TYPE_CHECKING, Any
 
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
@@ -62,6 +63,28 @@ BEAT_COLORS: list[list[int]] = [
     [0, 60, 200],
 ]
 
+# --- Beat-loop command budget (#2708) --------------------------------------
+# A Zigbee coordinator and a Hue bridge both start queueing commands somewhere
+# around ten per second. Past that point every later command — including the
+# REVEAL colour change, the one cue that is supposed to land on a beat — waits
+# behind the backlog and arrives seconds late.
+#
+# The beat loop therefore works to a fixed downstream budget instead of to the
+# music alone. Three limits together guarantee it:
+#
+# * ``BEAT_MAX_LIGHTS`` — only the first N configured lamps pulse. The rest
+#   hold the static PLAYING colour, so a twenty-lamp setup still looks lit
+#   without putting twenty commands per pulse on the radio.
+# * ``BEAT_MIN_BEATS_PER_PULSE`` — half time. One pulse every second beat, not
+#   one per beat.
+# * ``BEAT_COMMANDS_PER_SECOND`` — the pulse is stretched to a further whole
+#   number of beats if the lamp count would otherwise exceed this rate, so the
+#   budget holds at any BPM. It stays a whole number of beats so the pulse
+#   stays on the music.
+BEAT_MAX_LIGHTS: int = 6
+BEAT_MIN_BEATS_PER_PULSE: int = 2
+BEAT_COMMANDS_PER_SECOND: float = 6.0
+
 # Subtle mode: brightness offsets added to the saved (pre-game) brightness.
 # Values are fractions of 255 (0.2 = +51 out of 255).
 SUBTLE_BRIGHTNESS_OFFSETS: dict[str, float] = {
@@ -88,6 +111,8 @@ class PartyLightsService:
         self._light_mode: str = "dynamic"  # "static", "dynamic", "wled"
         self._wled_presets: dict[str, int] = dict(WLED_PRESET_DEFAULTS)
         self._wled_entities: set[str] = set()
+        # entity_id -> "rgb"/"ct"/"dim"/"onoff", resolved once (#2708)
+        self._capabilities: dict[str, str] = {}
 
     def snapshot_saved_states(self) -> dict[str, dict[str, Any]]:
         """Return a copy of the captured pre-party light states (#1402 B2).
@@ -133,6 +158,7 @@ class PartyLightsService:
         if wled_presets:
             self._wled_presets.update(wled_presets)
         self._saved_states = {}
+        self._capabilities = {}
 
         # Detect WLED entities via entity registry platform (reliable) or entity_id fallback
         self._wled_entities = set()
@@ -307,14 +333,30 @@ class PartyLightsService:
             self._beat_task.cancel()
             self._beat_task = None
 
+    def _beat_plan(self, bpm: int) -> tuple[list[str], float]:
+        """Pick the lamps that pulse and how long a pulse lasts (#2708).
+
+        Returns ``(entities, interval_seconds)``. The interval is always a
+        whole number of beats — at least ``BEAT_MIN_BEATS_PER_PULSE``, and more
+        when the lamp count would otherwise push the loop past
+        ``BEAT_COMMANDS_PER_SECOND`` downstream commands per second.
+        """
+        beat = 60.0 / max(bpm, 1)
+        # Only non-WLED entities pulse; WLED runs its own presets.
+        entities = [e for e in self._entity_ids if e not in self._wled_entities]
+        entities = entities[:BEAT_MAX_LIGHTS]
+        beats_per_pulse = BEAT_MIN_BEATS_PER_PULSE
+        if entities:
+            needed = len(entities) / (BEAT_COMMANDS_PER_SECOND * beat)
+            beats_per_pulse = max(BEAT_MIN_BEATS_PER_PULSE, ceil(needed))
+        return entities, beats_per_pulse * beat
+
     async def _beat_loop(self, bpm: int) -> None:
-        """Pulse between blue shades at the given BPM."""
-        interval = 60.0 / bpm
+        """Pulse between blue shades, within the beat-loop budget (#2708)."""
         i = 0
         try:
             while self._active:
-                # Only pulse non-WLED entities
-                entities = [e for e in self._entity_ids if e not in self._wled_entities]
+                entities, interval = self._beat_plan(bpm)
                 if entities:
                     await self._apply(
                         entities,
@@ -419,23 +461,37 @@ class PartyLightsService:
         self._current_phase = None
 
     def _get_capability(self, entity_id: str) -> str:
-        """Check entity attributes for supported_color_modes."""
+        """Check entity attributes for supported_color_modes.
+
+        The answer is a property of the hardware, so it is cached for the life
+        of the service (#2708) — the beat loop asked the state machine for it
+        once per lamp per pulse, several times a second, for the whole game.
+        Only a real state is cached; a missing entity may still appear later.
+        """
+        cached = self._capabilities.get(entity_id)
+        if cached is not None:
+            return cached
+
         state = self._hass.states.get(entity_id)
         if not state:
             return "onoff"
 
         color_modes = state.attributes.get("supported_color_modes", [])
         if not color_modes:
+            self._capabilities[entity_id] = "onoff"
             return "onoff"
 
         # Check from most capable to least
         if any(m in color_modes for m in ("rgb", "rgbw", "rgbww", "hs", "xy")):
-            return "rgb"
-        if any(m in color_modes for m in ("color_temp",)):
-            return "ct"
-        if any(m in color_modes for m in ("brightness",)):
-            return "dim"
-        return "onoff"
+            capability = "rgb"
+        elif any(m in color_modes for m in ("color_temp",)):
+            capability = "ct"
+        elif any(m in color_modes for m in ("brightness",)):
+            capability = "dim"
+        else:
+            capability = "onoff"
+        self._capabilities[entity_id] = capability
+        return capability
 
     async def _apply(
         self,
@@ -443,11 +499,21 @@ class PartyLightsService:
         service_data: dict[str, Any],
         transition: float = 1.0,
     ) -> None:
-        """Batch call hass.services for lights, adapting per capability."""
+        """Call ``light.turn_on`` once per distinct payload, not once per lamp.
+
+        Lamps of the same capability get byte-identical service data, so they
+        are collected into a single call carrying an ``entity_id`` list
+        (#2708). Six RGB lamps used to mean six service calls per pulse; they
+        now mean one. Grouping is by resolved payload rather than by capability
+        name so a future per-lamp adjustment cannot silently merge two lamps
+        that should have been told different things.
+        """
+        groups: dict[tuple[tuple[str, str], ...], list[str]] = {}
+        payloads: dict[tuple[tuple[str, str], ...], dict[str, Any]] = {}
+
         for entity_id in entity_ids:
             cap = self._get_capability(entity_id)
             call_data: dict[str, Any] = {
-                "entity_id": entity_id,
                 "transition": transition,
             }
 
@@ -477,12 +543,20 @@ class PartyLightsService:
                 # On/off only — just turn on
                 pass
 
+            key = tuple(sorted((k, repr(v)) for k, v in call_data.items()))
+            groups.setdefault(key, []).append(entity_id)
+            payloads.setdefault(key, call_data)
+
+        for key, group in groups.items():
             try:
                 await self._hass.services.async_call(
-                    "light", "turn_on", call_data, blocking=False
+                    "light",
+                    "turn_on",
+                    {**payloads[key], "entity_id": group},
+                    blocking=False,
                 )
             except (HomeAssistantError, ServiceNotFound):  # noqa: BLE001
-                _LOGGER.warning("Failed to control light: %s", entity_id)
+                _LOGGER.warning("Failed to control lights: %s", ", ".join(group))
 
     async def _apply_wled(self, entity_id: str, preset_id: int) -> None:
         """Activate a WLED preset by ID (#517).

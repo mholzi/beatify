@@ -13,6 +13,7 @@ import logging
 import socket
 from ipaddress import ip_address
 from pathlib import Path
+from time import monotonic
 from typing import TYPE_CHECKING
 from urllib.parse import urlencode, urlsplit
 
@@ -759,6 +760,16 @@ class TtsEntitiesView(HomeAssistantView):
         return web.json_response({"entities": entities})
 
 
+# Error bodies for the album-art proxy, so the shared fetch can report a
+# status to every waiting client and each one renders the same page (#2709).
+_ALBUM_ART_ERRORS: dict[int, str] = {
+    403: "forbidden",
+    413: "image too large",
+    415: "not an image",
+    502: "upstream fetch failed",
+}
+
+
 class AlbumArtView(HomeAssistantView):
     """Same-origin proxy for media-player album art (#933).
 
@@ -777,9 +788,25 @@ class AlbumArtView(HomeAssistantView):
     # Cap the re-served image so a hostile/huge upstream can't exhaust memory.
     _MAX_BYTES = 5 * 1024 * 1024
 
+    # How long a fetched cover stays servable from memory (#2709). Everyone in
+    # the room asks for the same cover within one round, so this only has to
+    # outlive a round; the next round brings a different signed URL anyway.
+    _CACHE_TTL = 300.0
+
     def __init__(self, hass: HomeAssistant) -> None:
         """Initialize the album-art proxy view."""
         self.hass = hass
+        # Single-entry cache (#2709): only the current round's cover is ever
+        # asked for, so a second entry would be dead weight and a second copy
+        # of up to 5 MB. A new cover evicts the old one.
+        self._cached_url: str | None = None
+        self._cached_body: bytes = b""
+        self._cached_type: str = ""
+        self._cached_at: float = 0.0
+        # In-flight fetches, keyed by signed URL. Twenty phones asking at the
+        # same instant join the one fetch already running instead of starting
+        # twenty of their own.
+        self._inflight: dict[str, asyncio.Task] = {}
 
     async def get(self, request: web.Request) -> web.Response:
         """Fetch the upstream image and re-serve it same-origin (#933, hardened #1356).
@@ -796,6 +823,13 @@ class AlbumArtView(HomeAssistantView):
           that is exactly where the Music Assistant LAN server lives (#933).
         * **No redirects**, a **read-size cap** and an **``image/*``
           content-type check** so the proxy can only ever return a bounded image.
+
+        Everyone in the room wants the same picture at the same moment, so the
+        fetch is shared (#2709): a server-side single-entry cache keyed by the
+        signed URL, plus in-flight coalescing so twenty phones asking at once
+        become one upstream request. ``Cache-Control`` alone helped only a
+        browser that had already seen the image — useless in round one of a
+        party where every phone is new.
         """
         raw_url = request.query.get("url", "")
         signature = request.query.get("sig", "")
@@ -805,10 +839,68 @@ class AlbumArtView(HomeAssistantView):
             _LOGGER.warning("Album-art proxy rejected an unsigned/forged URL")
             return web.Response(status=403, text="forbidden")
 
+        # Only past the signature gate — the cache must never be a way to read
+        # bytes without presenting a signature the integration itself issued.
+        cached = self._cache_get(raw_url)
+        if cached is not None:
+            return self._image_response(*cached)
+
+        task = self._inflight.get(raw_url)
+        if task is None:
+            task = asyncio.create_task(self._fetch(raw_url))
+            self._inflight[raw_url] = task
+            task.add_done_callback(lambda _t: self._inflight.pop(raw_url, None))
+
+        # shield(): a guest closing their browser cancels their handler, and
+        # that must not cancel the fetch the other twenty are waiting on.
+        try:
+            status, body, content_type = await asyncio.shield(task)
+        except asyncio.CancelledError:
+            raise
+        except Exception:  # noqa: BLE001 — a failed share is still just a 502
+            _LOGGER.warning("Album-art proxy fetch failed")
+            return web.Response(status=502, text="upstream fetch failed")
+
+        if status != 200:
+            return web.Response(status=status, text=_ALBUM_ART_ERRORS[status])
+        return self._image_response(body, content_type)
+
+    def _cache_get(self, raw_url: str) -> tuple[bytes, str] | None:
+        """Return the cached image for ``raw_url`` while it is still fresh."""
+        if self._cached_url != raw_url or not self._cached_body:
+            return None
+        if monotonic() - self._cached_at > self._CACHE_TTL:
+            return None
+        return self._cached_body, self._cached_type
+
+    def _cache_put(self, raw_url: str, body: bytes, content_type: str) -> None:
+        """Store one image, evicting whatever the previous round left behind."""
+        self._cached_url = raw_url
+        self._cached_body = body
+        self._cached_type = content_type
+        self._cached_at = monotonic()
+
+    @staticmethod
+    def _image_response(body: bytes, content_type: str) -> web.Response:
+        """Re-serve an image same-origin."""
+        return web.Response(
+            body=body,
+            content_type=content_type,
+            headers={"Cache-Control": "public, max-age=86400"},
+        )
+
+    async def _fetch(self, raw_url: str) -> tuple[int, bytes, str]:
+        """Fetch one image upstream, for every client waiting on it (#2709).
+
+        Returns ``(status, body, content_type)``; on anything but 200 the body
+        is empty and the caller turns the status into the matching error page.
+        Only a successful fetch is cached — a transient 502 must not stick
+        around for the rest of the TTL.
+        """
         host = urlsplit(raw_url).hostname
         if not host or not await self._host_is_allowed(host):
             _LOGGER.warning("Album-art proxy refused a disallowed host")
-            return web.Response(status=403, text="forbidden")
+            return 403, b"", ""
 
         session = async_get_clientsession(self.hass)
         try:
@@ -818,28 +910,26 @@ class AlbumArtView(HomeAssistantView):
                 allow_redirects=False,
             ) as resp:
                 if resp.status != 200:
-                    return web.Response(status=502, text="upstream fetch failed")
+                    return 502, b"", ""
                 content_type = resp.headers.get("Content-Type", "")
                 if not content_type.startswith("image/"):
-                    return web.Response(status=415, text="not an image")
+                    return 415, b"", ""
                 declared = resp.headers.get("Content-Length")
                 if declared is not None and declared.isdigit():
                     if int(declared) > self._MAX_BYTES:
-                        return web.Response(status=413, text="image too large")
+                        return 413, b"", ""
                 body = bytearray()
                 async for chunk in resp.content.iter_chunked(65536):
                     body += chunk
                     if len(body) > self._MAX_BYTES:
-                        return web.Response(status=413, text="image too large")
+                        return 413, b"", ""
         except (ClientError, asyncio.TimeoutError):
             _LOGGER.warning("Album-art proxy fetch failed")
-            return web.Response(status=502, text="upstream fetch failed")
+            return 502, b"", ""
 
-        return web.Response(
-            body=bytes(body),
-            content_type=content_type,
-            headers={"Cache-Control": "public, max-age=86400"},
-        )
+        image = bytes(body)
+        self._cache_put(raw_url, image, content_type)
+        return 200, image, content_type
 
     async def _host_is_allowed(self, host: str) -> bool:
         """Reject hosts that resolve to loopback/link-local/reserved ranges (#1356)."""

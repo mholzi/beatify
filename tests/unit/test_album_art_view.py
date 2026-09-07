@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 
 from custom_components.beatify.server.views import AlbumArtView
@@ -191,3 +192,191 @@ class TestAlbumArtView:
         ):
             out = await view.get(_request(_signed_query(url)))
         assert out.status == 413
+
+
+class TestAlbumArtSharedFetch:
+    """One cover, one upstream fetch — however many guests are in the room (#2709)."""
+
+    URL = "http://192.168.1.9:8095/imageproxy?item=round1"
+
+    def _hass(self):
+        """A hass whose DNS resolution is countable as well as allowed."""
+        hass = MagicMock()
+        hass.dns_calls = 0
+
+        async def _resolve(_fn, *_a):
+            hass.dns_calls += 1
+            await asyncio.sleep(0)
+            return [(2, 1, 6, "", ("192.168.1.9", 0))]
+
+        hass.async_add_executor_job = AsyncMock(side_effect=_resolve)
+        return hass
+
+    def _counting_session(self, responses):
+        """A session that hands out ``responses`` in order and counts its GETs."""
+        session = MagicMock()
+        session.upstream = 0
+        queue = list(responses)
+
+        def _get(*_a, **_k):
+            session.upstream += 1
+            return queue.pop(0) if len(queue) > 1 else queue[0]
+
+        session.get = _get
+        return session
+
+    async def test_twenty_two_clients_are_one_upstream_fetch(self):
+        """Twenty guests, the TV and the host, all at the same instant."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session(
+            [_FakeResponse(content_type="image/jpeg", chunks=(b"COVER",))]
+        )
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            responses = await asyncio.gather(
+                *(view.get(_request(_signed_query(self.URL))) for _ in range(22))
+            )
+
+        assert session.upstream == 1
+        assert hass.dns_calls == 1
+        assert all(r.status == 200 for r in responses)
+        assert all(r.body == b"COVER" for r in responses)
+
+    async def test_a_later_request_is_served_from_cache(self):
+        """A phone that joins mid-round costs nothing upstream."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session(
+            [_FakeResponse(content_type="image/png", chunks=(b"PNGDATA",))]
+        )
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            first = await view.get(_request(_signed_query(self.URL)))
+            second = await view.get(_request(_signed_query(self.URL)))
+
+        assert session.upstream == 1
+        assert first.body == second.body == b"PNGDATA"
+
+    async def test_the_next_round_refetches(self):
+        """A new cover means a new signed URL, and the cache holds only one."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session(
+            [
+                _FakeResponse(chunks=(b"ROUND1",)),
+                _FakeResponse(chunks=(b"ROUND2",)),
+            ]
+        )
+        next_url = "http://192.168.1.9:8095/imageproxy?item=round2"
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            first = await view.get(_request(_signed_query(self.URL)))
+            second = await view.get(_request(_signed_query(next_url)))
+            again = await view.get(_request(_signed_query(next_url)))
+
+        assert session.upstream == 2
+        assert first.body == b"ROUND1"
+        assert second.body == again.body == b"ROUND2"
+        assert view._cached_url == next_url
+
+    async def test_a_stale_entry_is_not_served(self):
+        """Past the TTL the cover is fetched again rather than replayed."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session(
+            [_FakeResponse(chunks=(b"OLD",)), _FakeResponse(chunks=(b"NEW",))]
+        )
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            first = await view.get(_request(_signed_query(self.URL)))
+            view._cached_at -= view._CACHE_TTL + 1
+            second = await view.get(_request(_signed_query(self.URL)))
+
+        assert session.upstream == 2
+        assert first.body == b"OLD"
+        assert second.body == b"NEW"
+
+    async def test_a_failed_fetch_is_not_cached(self):
+        """A momentary upstream hiccup must not stick for the whole TTL."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session(
+            [_FakeResponse(status=500), _FakeResponse(chunks=(b"COVER",))]
+        )
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            first = await view.get(_request(_signed_query(self.URL)))
+            second = await view.get(_request(_signed_query(self.URL)))
+
+        assert first.status == 502
+        assert second.status == 200
+        assert second.body == b"COVER"
+
+    async def test_every_waiter_sees_the_shared_error(self):
+        """A shared failure reaches all of them, not just the one who asked first."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session([_FakeResponse(content_type="text/html")])
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            responses = await asyncio.gather(
+                *(view.get(_request(_signed_query(self.URL))) for _ in range(5))
+            )
+
+        assert session.upstream == 1
+        assert [r.status for r in responses] == [415] * 5
+
+    async def test_the_cache_is_behind_the_signature_gate(self):
+        """A cached cover is not a way to skip the HMAC check."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session([_FakeResponse(chunks=(b"COVER",))])
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            await view.get(_request(_signed_query(self.URL)))
+            forged = await view.get(_request({"url": self.URL, "sig": "deadbeef"}))
+
+        assert forged.status == 403
+
+    async def test_a_disconnecting_guest_does_not_cancel_the_shared_fetch(self):
+        """The first phone closing its browser must not strand the other twenty."""
+        hass = self._hass()
+        view = AlbumArtView(hass)
+        session = self._counting_session([_FakeResponse(chunks=(b"COVER",))])
+
+        with patch(
+            "custom_components.beatify.server.views.async_get_clientsession",
+            return_value=session,
+        ):
+            leaver = asyncio.ensure_future(view.get(_request(_signed_query(self.URL))))
+            await asyncio.sleep(0)  # let it start the shared fetch
+            stayer = asyncio.ensure_future(view.get(_request(_signed_query(self.URL))))
+            await asyncio.sleep(0)
+            leaver.cancel()
+            result = await stayer
+
+        assert session.upstream == 1
+        assert result.status == 200
+        assert result.body == b"COVER"
