@@ -166,7 +166,10 @@
     "outRound": "Out · R{round}",
     "finalShowdown": "FINAL — SUDDEN DEATH",
     "winnerTakesAll": "Winner Takes All",
-    "out": "OUT"
+    "out": "OUT",
+    "halftime": "Halftime",
+    "comebackFieldClosing": "The field is closing up",
+    "comebackYours": "You get a steal."
   },
   "steal": {
     "available": "Steal Available!",
@@ -179,7 +182,9 @@
     "confirmButton": "Steal",
     "success": "Stole {name}'s answer: {year}",
     "stolenFrom": "Stolen from {name}",
-    "stolenBy": "Answer stolen by {name}"
+    "stolenBy": "Answer stolen by {name}",
+    "comebackChip": "Catch-up steal",
+    "comebackWhy": "Given at halftime to the trailing players. Works like any steal."
   },
   "sabotage": {
     "available": "Sabotage Ready!",

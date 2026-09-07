@@ -414,6 +414,10 @@ class GameState(
         # Issue #1724: Comeback Token — opt-in catch-up steal for trailing
         # players after the halfway round.
         self.comeback_token_enabled: bool = False
+        # #2721: names granted a Comeback Token in the round that just ended.
+        # Transient — recomputed by _maybe_grant_comeback_tokens() at the end
+        # of every round, and empty in all but the halfway one.
+        self.comeback_granted_this_round: list[str] = []
 
         # Issue #1727: Difficulty-aware bet scaling — the won-bet payout scales
         # with difficulty (easy 2x / normal 3x / hard 5x) instead of a flat 3x,
@@ -1090,6 +1094,12 @@ class GameState(
         happens). Caller holds ``_score_lock`` (same contract as
         :meth:`_apply_sudden_death_elimination`).
         """
+        # #2721: cleared first, on every call. The grant is a one-round event
+        # and this method runs at the end of every round — a value left over
+        # from the halfway round would make the reveal replay the halftime
+        # moment in rounds 6, 7, 8 and so on.
+        self.comeback_granted_this_round = []
+
         if not self.comeback_token_enabled:
             return []
         if self.total_rounds < 2:
@@ -1118,6 +1128,13 @@ class GameState(
             if player.unlock_steal():
                 player.comeback_token_granted = True
                 granted.append(player.name)
+
+        # #2721: the grant is an *event*, and until now it left no trace in
+        # the payload — the clients only ever saw the resulting steal, which
+        # looks exactly like a streak unlock. Recording the names here is what
+        # lets the reveal say why the token appeared, on the phone and on the
+        # TV. Set unconditionally so a later round clears the previous value.
+        self.comeback_granted_this_round = list(granted)
 
         if granted:
             _LOGGER.info(

@@ -684,6 +684,17 @@
         <div class="sd-out__name"><span class="sd-out__skull">💀</span><span id="sd-out-name"></span></div>
     </div>
 
+    <!-- #2721: the halftime takeover. The Comeback Token falls once per game,
+         to a group, at the midpoint — the shape of a game beat, not of a badge.
+         Until now the room heard "Anna unlocked steal" about a player who had
+         got nothing right, which reads as a broken streak counter. -->
+    <div id="comeback-overlay" class="comeback-overlay">
+        <div class="comeback__kicker" id="comeback-round"></div>
+        <div class="comeback__word" id="comeback-word">HALFTIME</div>
+        <div class="comeback__line" id="comeback-line"></div>
+        <div class="comeback__names" id="comeback-names"></div>
+    </div>
+
     <script src="/beatify/static/js/vendor/qrcode.min.js?v={{ASSET_VER}}"></script>
     <!-- Story 18.4: Use minified JS in production with fallback to source -->
     <!-- Version query strings prevent browser caching issues -->

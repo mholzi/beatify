@@ -166,7 +166,10 @@
     "outRound": "Sorti · M{round}",
     "finalShowdown": "FINALE — MORT SUBITE",
     "winnerTakesAll": "Le gagnant rafle tout",
-    "out": "ÉLIMINÉ"
+    "out": "ÉLIMINÉ",
+    "halftime": "Mi-parcours",
+    "comebackFieldClosing": "Les écarts se resserrent",
+    "comebackYours": "Tu reçois un vol."
   },
   "steal": {
     "available": "Vol disponible !",
@@ -179,7 +182,9 @@
     "confirmButton": "Voler",
     "success": "Tu as volé la réponse de {name} : {year}",
     "stolenFrom": "Volé à {name}",
-    "stolenBy": "Réponse volée par {name}"
+    "stolenBy": "Réponse volée par {name}",
+    "comebackChip": "Vol de remontée",
+    "comebackWhy": "Attribué à mi-parcours aux derniers du classement. Fonctionne comme tout vol."
   },
   "sabotage": {
     "available": "Sabotage prêt !",

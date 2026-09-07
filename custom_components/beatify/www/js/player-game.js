@@ -1515,10 +1515,42 @@ function updateStealUI(players) {
     if (hasStealAvailable) {
         if (stealIndicator) stealIndicator.classList.remove('hidden');
         if (stealBtn) stealBtn.classList.remove('hidden');
+        // #2721: a gifted steal is not a streak unlock, and saying so is the
+        // whole issue. The chip is the resting state after the halftime beat —
+        // it is what the player still sees in rounds 6, 7, 8 while the steal
+        // sits unspent, long after the takeover is gone.
+        labelStealChip(stealIndicator, !!currentPlayer.comeback_token_granted);
     } else {
         hideStealUI();
     }
     syncArcChipRow();
+}
+
+/**
+ * #2721: point the steal chip at the right sentence and colour.
+ *
+ * Kept in one place because the two states have to stay mutually exclusive:
+ * a chip left purple after a streak unlock claims a reason that is not there,
+ * which is the same class of bug in the other direction.
+ *
+ * @param {Element|null} chip - the #steal-indicator element
+ * @param {boolean} isComeback - true when this steal was a Comeback Token
+ */
+function labelStealChip(chip, isComeback) {
+    if (!chip) return;
+    var label = document.getElementById('steal-indicator-label');
+    chip.classList.toggle('arc-chip--comeback', isComeback);
+    if (!label) return;
+    if (isComeback) {
+        label.textContent = utils.t('steal.comebackChip') || 'Catch-up steal';
+        // The tooltip carries the reason for anyone who wonders, without
+        // spending a line of a 270 px screen on it.
+        chip.title = utils.t('steal.comebackWhy')
+            || 'Given at halftime to the trailing players. Works like any steal.';
+    } else {
+        label.textContent = utils.t('steal.available') || 'Steal Available!';
+        chip.removeAttribute('title');
+    }
 }
 
 /**
