@@ -72,6 +72,8 @@ import {
 
 // #1663 item 1: non-blocking toast replaces the blocking alert() (host-cannot-leave).
 import { showToast } from './notify.js';
+// #2646: the round-time anchor behind the host's "End round N" card.
+import { noteRoundState } from './round-end-choice.js';
 
 // #1664 item 2: retry game-status on transient errors before showing not-found.
 import { fetchGameStatusWithRetry } from './player-game-status.js';
@@ -717,6 +719,12 @@ function handleServerMessage(data) {
                 });
             }
         }
+
+        // #2646: re-anchor "how much of the round is left" on every broadcast,
+        // in every phase. It decides whether the host's Next asks first, and a
+        // non-PLAYING payload clears the anchor so the reveal's own Next never
+        // does.
+        noteRoundState(data);
 
         // #1009: capture the join URL from any phase, so the in-game
         // "Invite players" button works even when this client never saw

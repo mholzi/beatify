@@ -401,7 +401,8 @@
     "flagYearBtn": "🚩 ¿Año incorrecto? Avisa al anfitrión",
     "flaggedForHost": "✓ Avisado al anfitrión",
     "finalePlayoff": "Final",
-    "coverHint": "Versión — {year} fue el original; la respuesta es la versión que has escuchado."
+    "coverHint": "Versión — {year} fue el original; la respuesta es la versión que has escuchado.",
+    "roundVoidedBanner": "Esta ronda no cuenta: sin puntos, sin rachas rotas."
   },
   "leaderboard": {
     "leader": "líder",
@@ -919,7 +920,24 @@
     "pauseGameSub": "Música apagada, reloj parado, nadie se pierde nada",
     "pauseAnnouncement": "Cambiar el aviso",
     "pauseOnEveryScreen": "Se ve en todas las pantallas",
-    "resume": "Reanudar"
+    "resume": "Reanudar",
+    "roundEndTitle": "Terminar la ronda {n}",
+    "roundEndTitleBare": "Terminar la ronda",
+    "roundEndSecondsLeft": "Quedan {n} segundos",
+    "roundEndAnswered": "{n} de {total} han respondido",
+    "roundEndScore": "Puntuar como siempre",
+    "roundEndCountWrong": "{n} jugadores cuentan como fallo",
+    "roundEndStreaksBreak": "{n} rachas se rompen",
+    "roundEndEliminated": "{name} queda eliminado",
+    "roundEndEliminatedUnknown": "en muerte súbita alguien queda eliminado",
+    "roundEndVoid": "No puntuar",
+    "roundEndVoidSub": "Sin puntos, sin rachas rotas, nadie queda eliminado",
+    "roundEndKeepPlaying": "Dejar que siga sonando",
+    "voidReasonPrompt": "¿Por qué? Opcional.",
+    "voidReasonCover": "Versión (cover)",
+    "voidReasonSilence": "Silencio",
+    "voidReasonWrongYear": "Año incorrecto",
+    "voidReasonWrongTitle": "Título incorrecto"
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",

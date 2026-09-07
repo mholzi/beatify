@@ -1334,6 +1334,14 @@
                     <span data-i18n="reveal.idleHaltBanner">Game idle — no one played this round. Tap Next round to keep going.</span>
                 </div>
 
+                <!-- #2646: the host dropped this round instead of scoring it.
+                     Without this the screen shows a reveal and a leaderboard
+                     that did not move, which reads as a scoring bug. -->
+                <div id="admin-reveal-voided" class="idle-halt-banner hidden" role="status">
+                    <span class="idle-halt-icon" aria-hidden="true">🚫</span>
+                    <span data-i18n="reveal.roundVoidedBanner">This round does not count — no points, no broken streaks.</span>
+                </div>
+
                 <!-- Reveal Header (matches player reveal-header-compact) -->
                 <div class="reveal-header-compact">
                     <div class="reveal-header-left">
@@ -1540,6 +1548,37 @@
     </div>
 
     <!-- End Game confirmation modal (Story 9.10) -->
+    <!-- #2646: "End round N" — the question Next asks when it is pressed while
+         the round is still running. Three exits: score it (what Next always
+         did), drop it without scoring, or close this and let the song play on.
+         The subtitles are filled in from the server's `admin_round_end_preview`
+         at open time, so the consequences are named with real numbers before
+         they happen. The reason chips are optional and record only. -->
+    <div id="round-end-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="round-end-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content round-end-card">
+            <h2 id="round-end-title" data-i18n="admin.roundEndTitleBare">End round</h2>
+            <p id="round-end-sub" class="round-end-sub"></p>
+            <button id="round-end-score" class="round-end-choice round-end-choice--score" type="button">
+                <span class="round-end-choice-label" data-i18n="admin.roundEndScore">Score it as usual</span>
+                <span id="round-end-score-sub" class="round-end-choice-sub" hidden></span>
+            </button>
+            <button id="round-end-void" class="round-end-choice round-end-choice--void" type="button">
+                <span class="round-end-choice-label" data-i18n="admin.roundEndVoid">Do not score it</span>
+                <span class="round-end-choice-sub" data-i18n="admin.roundEndVoidSub">No points, no broken streaks, nobody is eliminated</span>
+            </button>
+            <div class="round-end-reasons">
+                <span class="round-end-reasons-label" data-i18n="admin.voidReasonPrompt">Why? Optional.</span>
+                <!-- Chips are painted from VOID_ROUND_REASONS in
+                     js/round-end-choice.js, not written out here. -->
+                <div id="round-end-reasons" class="round-end-chips"></div>
+            </div>
+            <button id="round-end-keep" class="round-end-choice round-end-choice--keep" type="button">
+                <span class="round-end-choice-label" data-i18n="admin.roundEndKeepPlaying">Let it keep playing</span>
+            </button>
+        </div>
+    </div>
+
     <div id="end-game-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="end-game-modal-title">
         <div class="modal-backdrop"></div>
         <div class="modal-content">

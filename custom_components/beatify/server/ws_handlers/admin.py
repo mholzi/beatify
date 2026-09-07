@@ -25,6 +25,7 @@ from custom_components.beatify.const import (
     HOST_PAUSE_REASONS,
     MAX_REMATCH_PLAYLISTS,
     MIN_PLAYERS,
+    VOID_ROUND_REASONS,
 )
 from custom_components.beatify.game.playlist import async_load_songs_from_paths
 from custom_components.beatify.game.state import GamePhase, GameState
@@ -102,6 +103,7 @@ async def handle_admin(
     admin_handlers = {
         "start_game": admin_start_game,
         "next_round": admin_next_round,
+        "void_round": admin_void_round,  # #2646
         "stop_song": admin_stop_song,
         "set_volume": admin_set_volume,
         "seek_forward": admin_seek_forward,
@@ -204,6 +206,48 @@ async def admin_start_game(
         # lobby / "Starting..." view for the PAUSED recovery banner. Mirror
         # what admin_next_round already does on its paused branch.
         await handler.broadcast_state()
+
+
+async def admin_void_round(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin void_round action — end the round without scoring it (#2646).
+
+    The second exit from PLAYING. ``next_round`` maps straight to
+    ``end_round()`` and always scores; this one drops the round instead, for the
+    case the host cannot fix: a cover version, or silence out of Music
+    Assistant. See :meth:`GameState.void_round` for what a voided round does and
+    does not touch.
+
+    Only valid while PLAYING — a round that already reached REVEAL has been
+    scored and cannot be un-scored.
+    """
+    if game_state.phase != GamePhase.PLAYING:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only drop a round while it is playing",
+            }
+        )
+        return
+
+    reason = data.get("reason")
+    if reason is not None and reason not in VOID_ROUND_REASONS:
+        # An unknown chip is dropped rather than rejected: the reason is
+        # optional decoration on an action the host already committed to, and
+        # failing the whole drop over it would leave the bad song playing.
+        _LOGGER.warning("Ignoring unknown void_round reason: %s", reason)
+        reason = None
+
+    await game_state.void_round(reason)
+    # void_round already fired the round-end callback; broadcast once more the
+    # way admin_next_round's paused branch does, so a spectator admin socket
+    # that is not the round-end callback's target also sees REVEAL.
+    await handler.broadcast_state()
 
 
 async def admin_next_round(

@@ -924,6 +924,126 @@ class GameState(
             )
 
     # ------------------------------------------------------------------
+    # Dropping a round without scoring it (Issue #2646)
+    # ------------------------------------------------------------------
+
+    async def void_round(self, reason: str | None = None) -> bool:
+        """End the current round WITHOUT scoring it. Issue #2646.
+
+        The host's escape hatch for a round the song ruined — a cover version,
+        or twenty seconds of silence out of Music Assistant. ``end_round`` is the
+        only other way out of PLAYING and it always scores: everyone who did not
+        answer is marked as having missed, their streaks reset
+        (``game/scoring.py``), and in Sudden Death one of them is eliminated
+        (:meth:`_apply_sudden_death_elimination`) — a player knocked out of the
+        game by a broken recording.
+
+        A voided round costs nobody anything and pays nobody anything:
+
+        * **No points, for anyone.** Players who already answered lose their
+          guess along with everybody else. Half-scoring a round whose *data* is
+          the thing in doubt would credit an accuracy nobody can vouch for, and
+          it would make the card on the host's phone ("No points, no broken
+          streaks, nobody is eliminated") a lie for three of the eight people in
+          the room.
+        * **No streak is touched.** ``reset_round()`` clears the per-round
+          fields (guess, bet, bonuses) and deliberately leaves ``score``,
+          ``streak`` and the #1666 shield alone, so a run survives the round.
+        * **Nobody is eliminated**, because the elimination pass never runs.
+
+        The round number does **not** rewind: a voided round 5 is followed by
+        round 6, and the game still ends after ``total_rounds`` rounds — one of
+        which scored nothing. ``total_rounds`` is the size of the playable song
+        pool (#2647), so there is no spare song to hand out as a replacement,
+        and rewinding the counter would let a playlist full of covers loop
+        forever while ``last_round`` quietly lied about where the game was.
+
+        Playback is stopped: the reason the host reached for this is that the
+        thing coming out of the speaker is wrong.
+
+        Args:
+            reason: Optional reason chip the host picked (see
+                ``VOID_ROUND_REASONS``). Recorded, never acted on — where such
+                reports should go is not decided, so nothing in the UI promises
+                that anyone will read them.
+
+        Returns:
+            True if the round was voided, False if the phase had already moved
+            on (timer fired, a second admin socket got there first).
+
+        """
+        async with self._score_lock:
+            return await self._void_round_unlocked(reason)
+
+    async def _void_round_unlocked(self, reason: str | None) -> bool:
+        """Inner :meth:`void_round`. Caller MUST hold ``_score_lock``."""
+        # Same guard as _end_round_unlocked: the round timer may have expired
+        # and scored the round while the host was reading the card.
+        if self.phase != GamePhase.PLAYING:
+            _LOGGER.debug("void_round skipped — phase already %s", self.phase.value)
+            return False
+
+        self.cancel_timer()
+        self._round_manager._cancel_intro_timer()
+
+        song = self.current_song or {}
+        self.round_voided = True
+        self.void_reason = reason
+        self.voided_rounds.append(
+            {
+                "round": self.round,
+                "title": song.get("title", ""),
+                "artist": song.get("artist", ""),
+                "uri": song.get("uri_ma_library", ""),
+                "reason": reason,
+                "at": self._now(),
+            }
+        )
+        _LOGGER.info(
+            "Round %d voided by host (reason=%s, song=%s — %s): not scored, "
+            "no streaks broken, no elimination",
+            self.round,
+            reason or "none given",
+            song.get("artist", "?"),
+            song.get("title", "?"),
+        )
+
+        # Drop this round's guesses. Score, streak and the #1666 shield are not
+        # touched by reset_round, which is exactly the promise the card made.
+        for player in self.players.values():
+            player.reset_round()
+
+        # The song is the problem — stop it rather than let it play out under
+        # the reveal card.
+        await self.stop_media()
+
+        # Straight to REVEAL, without the scoring pass, the elimination, the
+        # round-stats recording or the reveal announcement: there is no result
+        # to announce, and _announce_reveal would read the scores we just
+        # cleared. Story 18.9 reaction reset mirrors _transition_to_reveal.
+        self._player_registry._reactions_this_phase = set()
+        self._set_phase(GamePhase.REVEAL)
+        await self._lights_set_phase(GamePhase.REVEAL)
+
+        # No auto-advance is armed. A voided round means the host is already
+        # holding the phone — they tap Next when the room has caught up — and
+        # arming the #1012 song-end advance would wait on a song we just
+        # stopped. This is the same "hold on REVEAL" state the zero-guess
+        # idle-halt path (#1012 follow-up) leaves the game in.
+        self._cancel_auto_advance()
+
+        if self._on_round_end:
+            try:
+                await self._on_round_end()
+            except Exception:  # noqa: BLE001 — a broadcast error must not strand REVEAL
+                _LOGGER.error(
+                    "Round_end callback raised while voiding round %d",
+                    self.round,
+                    exc_info=True,
+                )
+        return True
+
+    # ------------------------------------------------------------------
     # Sudden Death mode (Issue #827)
     # ------------------------------------------------------------------
 
@@ -1001,6 +1121,82 @@ class GameState(
             (player.submission_time is None, player.submission_time or 0.0),
         )
 
+    def _sudden_death_candidates(self) -> list[PlayerSession]:
+        """Players this round's elimination may pick from (empty = nobody goes).
+
+        Extracted from :meth:`_apply_sudden_death_elimination` for #2646 so the
+        "who would go out if I ended the round now" preview asks the same
+        question the elimination itself asks, instead of a second copy of the
+        rules that can drift away from it.
+
+        Empty when Sudden Death is off, in round 1 (never eliminates), with one
+        survivor left (the auto-end guard in ``start_round`` carries that game to
+        END instead), or when every survivor is a mid-round joiner still inside
+        their #1752 grace round.
+        """
+        if not self.sudden_death_mode or self.round < 2:
+            return []
+        survivors = self.non_eliminated_players()
+        if len(survivors) <= 1:
+            return []
+        # #1752: a mid-round joiner never played the round they joined (missed →
+        # round_score 0, submission_time None), which would make them prime
+        # elimination fodder in a round they never saw. Grant one grace round by
+        # excluding them from this round's candidate pool.
+        return [p for p in survivors if p.joined_round != self.round]
+
+    def _predicted_elimination(self) -> str | None:
+        """Who Sudden Death would cut if the round ended right now (#2646).
+
+        Answerable **without running the scoring pass** in exactly the case the
+        issue is about — a round ended while somebody has not answered — because
+        of two properties of the real selection:
+
+        1. Every round delta is >= 0 (a lost bet zeroes the score, it never goes
+           negative), and a non-submitter's delta is exactly 0. So as soon as one
+           candidate has not submitted, the minimum is 0 and every non-submitter
+           is in ``tied_for_last``.
+        2. ``_sudden_death_order_key`` ranks a non-submitter strictly above any
+           submitter — no ``years_off``, no ``base_score``, no
+           ``submission_time`` — and ``max`` therefore never reaches past them.
+           All non-submitters tie on the whole key, so ``max`` keeps the first,
+           which is what this returns.
+
+        When everybody has answered the answer really does depend on the scoring
+        pass, so this returns ``None`` and the host's card falls back to naming
+        the consequence without naming the player.
+        """
+        for player in self._sudden_death_candidates():
+            if not player.submitted:
+                return player.name
+        return None
+
+    def preview_round_end(self) -> dict[str, Any]:
+        """What scoring this round right now would cost (#2646).
+
+        The numbers behind the host's "End round N" card. Every figure is about
+        the players who have **not** answered — they are the ones a premature
+        round end punishes, and their fate is decided before the scoring pass
+        runs, so this needs no dry run of it.
+        """
+        active = [p for p in self.players.values() if not p.out_of_play]
+        missing = [p for p in active if not p.submitted]
+        return {
+            "round": self.round,
+            "player_count": len(active),
+            "submitted_count": len(active) - len(missing),
+            # Non-submitters score nothing and are marked as having missed.
+            "counting_wrong": len(missing),
+            # #1666: a held shield absorbs the miss, so that streak survives.
+            "streaks_breaking": sum(
+                1 for p in missing if p.streak > 0 and not p.streak_shield
+            ),
+            # None = "we cannot name them without scoring"; the card then says
+            # what happens without saying to whom.
+            "eliminated": self._predicted_elimination(),
+            "elimination_possible": bool(self._sudden_death_candidates()),
+        }
+
     def _apply_sudden_death_elimination(self) -> list[str]:
         """Eliminate the lowest round-delta survivor. Issue #827.
 
@@ -1018,20 +1214,7 @@ class GameState(
         the normal path, or ``_finalize_title_artist_window`` for the deferred
         title/artist near-miss path — #1747).
         """
-        if not self.sudden_death_mode or self.round < 2:
-            return []
-
-        survivors = self.non_eliminated_players()
-        # Never eliminate the last player standing — the auto-end guard in
-        # start_round carries a 1-survivor game to END instead.
-        if len(survivors) <= 1:
-            return []
-
-        # #1752: a mid-round joiner never played the round they joined (missed →
-        # round_score 0, submission_time None), which would make them prime
-        # elimination fodder in a round they never saw. Grant one grace round by
-        # excluding them from this round's candidate pool.
-        candidates = [p for p in survivors if p.joined_round != self.round]
+        candidates = self._sudden_death_candidates()
         if not candidates:
             return []
 

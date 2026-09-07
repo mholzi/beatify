@@ -401,7 +401,8 @@
     "flagYearBtn": "🚩 Mauvaise année ? Prévenir l'hôte",
     "flaggedForHost": "✓ Signalé à l'hôte",
     "finalePlayoff": "Finale",
-    "coverHint": "Reprise — {year} était l'original ; la réponse est la version que vous venez d'entendre."
+    "coverHint": "Reprise — {year} était l'original ; la réponse est la version que vous venez d'entendre.",
+    "roundVoidedBanner": "Cette manche ne compte pas — aucun point, aucune série perdue."
   },
   "leaderboard": {
     "leader": "en tête",
@@ -919,7 +920,24 @@
     "pauseGameSub": "Musique coupée, chrono arrêté, personne ne rate rien",
     "pauseAnnouncement": "Changer l'annonce",
     "pauseOnEveryScreen": "Affiché sur tous les écrans",
-    "resume": "Reprendre"
+    "resume": "Reprendre",
+    "roundEndTitle": "Terminer la manche {n}",
+    "roundEndTitleBare": "Terminer la manche",
+    "roundEndSecondsLeft": "Encore {n} secondes",
+    "roundEndAnswered": "{n} sur {total} ont répondu",
+    "roundEndScore": "Compter comme d’habitude",
+    "roundEndCountWrong": "{n} joueurs comptent comme faux",
+    "roundEndStreaksBreak": "{n} séries sont perdues",
+    "roundEndEliminated": "{name} est éliminé",
+    "roundEndEliminatedUnknown": "en mort subite, quelqu’un est éliminé",
+    "roundEndVoid": "Ne pas compter",
+    "roundEndVoidSub": "Aucun point, aucune série perdue, personne n’est éliminé",
+    "roundEndKeepPlaying": "Laisser la musique continuer",
+    "voidReasonPrompt": "Pourquoi ? Facultatif.",
+    "voidReasonCover": "Reprise (cover)",
+    "voidReasonSilence": "Silence",
+    "voidReasonWrongYear": "Mauvaise année",
+    "voidReasonWrongTitle": "Mauvais titre"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

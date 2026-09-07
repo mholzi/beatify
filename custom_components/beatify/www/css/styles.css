@@ -18066,3 +18066,111 @@ body.theme-dark .your-result-stats .stat-value {
     from { transform: scale(0.86); opacity: 0; }
     to   { transform: scale(1);    opacity: 1; }
 }
+
+/* ==========================================
+   #2646 — "End round N" host card
+
+   The three-choice card Next opens while a round is still running. It reuses
+   the `.modal` shell, so only the inside is styled here: a stack of full-width
+   choices whose subtitle is the point of the whole feature ("5 players count as
+   wrong · 4 streaks break · Tom is eliminated"). Scoring is the loud one
+   because it is the irreversible one; "let it keep playing" is quiet because
+   it changes nothing.
+   ========================================== */
+
+.round-end-card {
+    max-width: 380px;
+}
+
+.round-end-sub {
+    /* .modal-content p sets a bottom margin; the choices carry their own gap. */
+    margin-bottom: var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.round-end-choice {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: var(--space-sm);
+    padding: 12px 14px;
+    border: 1.5px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-card);
+    color: var(--color-text-primary);
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.round-end-choice:hover,
+.round-end-choice:focus-visible {
+    border-color: var(--color-border-medium);
+}
+
+.round-end-choice-label {
+    display: block;
+    font-weight: 600;
+    font-size: var(--font-size-base, 14px);
+}
+
+.round-end-choice-sub {
+    display: block;
+    margin-top: 3px;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+.round-end-choice--score {
+    border-color: var(--color-accent-primary);
+}
+
+.round-end-choice--score .round-end-choice-label {
+    color: var(--color-accent-primary);
+}
+
+.round-end-choice--void {
+    border-color: var(--color-accent-brand);
+}
+
+.round-end-choice--void .round-end-choice-label {
+    color: var(--color-accent-brand);
+}
+
+/* The optional reason row belongs to "Do not score it", so it sits tucked
+   under it — indented, quieter, and skippable without a second thought. */
+.round-end-reasons {
+    margin: calc(-1 * var(--space-xs, 4px)) 0 var(--space-md) 14px;
+}
+
+.round-end-reasons-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+}
+
+.round-end-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.round-end-chip {
+    padding: 5px 10px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: inherit;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+}
+
+.round-end-chip[aria-pressed="true"] {
+    border-color: var(--color-purple-primary);
+    background: rgba(139, 92, 246, 0.14);
+    color: var(--color-purple-secondary);
+    font-weight: 600;
+}

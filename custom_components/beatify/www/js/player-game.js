@@ -57,6 +57,9 @@ import {
 
 // #1663 item 1: non-blocking toast replaces the blocking alert() (connection lost).
 import { showToast } from './notify.js';
+// #2646: the "End round N" card that Next opens while a round is still
+// running, and the ask/no-ask rule behind it. Shared with admin.js.
+import { shouldAskBeforeEnding, openRoundEndChoice } from './round-end-choice.js';
 
 var utils = window.BeatifyUtils || {};
 var debug = utils.debug || function() {};
@@ -3216,13 +3219,85 @@ var nextRoundPending = false;
 // handleNextRound guards with a flag and its own 10s timeout.
 
 /**
- * Handle next round button click
+ * Handle next round button click.
+ *
+ * #2646: while a round is still running this asks first. The host who taps
+ * Next in the middle of round 5 is almost always looking at a broken song, and
+ * the tap used to score the round on the spot — every non-answerer marked
+ * wrong, their streaks reset, and in Sudden Death one of them eliminated. The
+ * card names those consequences and offers the two other exits. After the
+ * timer has expired nothing is asked: the round is over either way.
  */
 export function handleNextRound() {
     if (nextRoundPending) {
         return;
     }
+    if (shouldAskBeforeEnding()) {
+        askBeforeEndingRound();
+        return;
+    }
+    sendNextRound();
+}
 
+/**
+ * Show the #2646 card and act on the host's choice.
+ *
+ * Not awaited by the caller: the card is modal, and `nextRoundPending` is only
+ * armed once a command actually goes out, so the button stays live if the host
+ * backs out.
+ */
+function askBeforeEndingRound() {
+    openRoundEndChoice({
+        doc: document,
+        t: _tRoundEnd,
+        focusTrap: createModalFocusTrap,
+    }).then(function (answer) {
+        if (answer.choice === 'score') {
+            sendNextRound();
+        } else if (answer.choice === 'void') {
+            sendVoidRound(answer.reason);
+        }
+        // 'keep' — the misfire the third exit exists for. Nothing is sent.
+    });
+}
+
+/** `t(key, fallback, params)` over BeatifyI18n, for round-end-choice.js. */
+function _tRoundEnd(key, fallback, params) {
+    var out = utils.t ? utils.t(key, params) : null;
+    if (!out || out === key) {
+        out = fallback;
+        // BeatifyI18n interpolates for us; the English fallback has to do its
+        // own, or an untranslated locale shows a literal "{n} seconds left".
+        if (params) {
+            Object.keys(params).forEach(function (name) {
+                out = out.split('{' + name + '}').join(String(params[name]));
+            });
+        }
+    }
+    return out;
+}
+
+/** #2646: end the round without scoring it. */
+function sendVoidRound(reason) {
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        showToast(utils.t('errors.CONNECTION_LOST'));
+        return;
+    }
+    nextRoundPending = true;
+    state.ws.send(JSON.stringify({
+        type: 'admin',
+        action: 'void_round',
+        reason: reason || null
+    }));
+    setTimeout(function() {
+        if (nextRoundPending) {
+            resetNextRoundPending();
+        }
+    }, 10000);
+}
+
+/** The original Next: end the round and score it. */
+function sendNextRound() {
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
         nextRoundPending = true;
 

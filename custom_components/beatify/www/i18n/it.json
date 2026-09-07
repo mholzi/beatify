@@ -401,7 +401,8 @@
     "flagYearBtn": "🚩 Anno sbagliato? Dillo all'host",
     "flaggedForHost": "✓ Segnalato all'host",
     "finalePlayoff": "Finale",
-    "coverHint": "Cover — {year} era l'originale; la risposta è la versione appena ascoltata."
+    "coverHint": "Cover — {year} era l'originale; la risposta è la versione appena ascoltata.",
+    "roundVoidedBanner": "Questo turno non conta: nessun punto, nessuna serie interrotta."
   },
   "leaderboard": {
     "leader": "in testa",
@@ -919,7 +920,24 @@
     "pauseGameSub": "Musica spenta, tempo fermo, nessuno perde nulla",
     "pauseAnnouncement": "Cambia l'annuncio",
     "pauseOnEveryScreen": "Visibile su tutti gli schermi",
-    "resume": "Riprendi"
+    "resume": "Riprendi",
+    "roundEndTitle": "Chiudere il turno {n}",
+    "roundEndTitleBare": "Chiudere il turno",
+    "roundEndSecondsLeft": "Mancano {n} secondi",
+    "roundEndAnswered": "{n} su {total} hanno risposto",
+    "roundEndScore": "Assegna i punti come sempre",
+    "roundEndCountWrong": "{n} giocatori contano come sbagliati",
+    "roundEndStreaksBreak": "{n} serie si interrompono",
+    "roundEndEliminated": "{name} viene eliminato",
+    "roundEndEliminatedUnknown": "con il Sudden Death qualcuno viene eliminato",
+    "roundEndVoid": "Non assegnare punti",
+    "roundEndVoidSub": "Nessun punto, nessuna serie interrotta, nessun eliminato",
+    "roundEndKeepPlaying": "Lascia suonare",
+    "voidReasonPrompt": "Perché? Facoltativo.",
+    "voidReasonCover": "Cover",
+    "voidReasonSilence": "Silenzio",
+    "voidReasonWrongYear": "Anno sbagliato",
+    "voidReasonWrongTitle": "Titolo sbagliato"
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

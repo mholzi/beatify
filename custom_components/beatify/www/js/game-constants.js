@@ -60,6 +60,14 @@ export const REACTION_THROTTLE_SECONDS = 8;
  */
 export const REVEAL_AUTO_ADVANCE_OPTIONS = [0, 30, 60, 90];
 
+/**
+ * Mirror of `VOID_ROUND_REASONS` in const.py: the optional reason chips under
+ * "Do not score it" on the host's end-round card (#2646). Order is display
+ * order. The server drops a reason it does not recognise, so a chip written out
+ * by hand somewhere else would look like it worked and record nothing.
+ */
+export const VOID_ROUND_REASONS = ['cover', 'silence', 'wrong_year', 'wrong_title'];
+
 /** Mirror of `POINTS_EXACT` / `POINTS_WRONG` in const.py. */
 export const POINTS_EXACT = 10;
 export const POINTS_WRONG = 0;

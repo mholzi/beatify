@@ -301,6 +301,15 @@ class GameStateSerializer:
         # Submission tracking (Story 4.4)
         state["submitted_count"] = sum(1 for p in gs.players.values() if p.submitted)
         state["all_submitted"] = gs.all_submitted()
+        # #2646: what scoring the round RIGHT NOW would cost — how many players
+        # count as wrong, how many streaks break, and who Sudden Death would cut.
+        # The host's card names those consequences before they happen, which is
+        # the whole point of the issue; carrying them on the broadcast means the
+        # card opens with real numbers instead of waiting on a round trip.
+        #
+        # Admin-only by convention, like `admin_song` above: every client gets
+        # the field, only the host renders it.
+        state["admin_round_end_preview"] = gs.preview_round_end()
         # Song info WITHOUT year during PLAYING (hidden until reveal)
         if gs.current_song:
             state["song"] = {
@@ -351,6 +360,13 @@ class GameStateSerializer:
         state["round"] = gs.round
         state["total_rounds"] = gs.total_rounds
         state["last_round"] = gs.last_round
+        # #2646: the host dropped this round instead of scoring it. Every screen
+        # branches on this — without it the TV would show a normal reveal with a
+        # year and a leaderboard that did not move, which reads as a scoring bug
+        # rather than as a deliberate call. `void_reason` is the optional chip
+        # the host picked; it is shown to nobody but recorded (see void_round).
+        state["round_voided"] = gs.round_voided
+        state["void_reason"] = gs.void_reason
         # Issue #1725: mirror the PLAYING-phase finale flags so the reveal card
         # can keep the "Finale ×2" / playoff badge visible.
         state["finale_double_active"] = gs.finale_double_enabled and gs.last_round

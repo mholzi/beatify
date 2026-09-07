@@ -38,6 +38,14 @@ import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
 // #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
+// #2646: the "End round N" card Next opens while a round is still running, the
+// ask/no-ask rule behind it, and the reveal's "does not count" banner. Shared
+// with the phone (player-game.js / player-reveal.js) so the wording and the
+// rule cannot drift apart between the two host surfaces.
+import {
+    noteRoundState, shouldAskBeforeEnding, openRoundEndChoice, renderVoidedBanner,
+    closeRoundEndChoice
+} from './round-end-choice.js';
 // #1715: in-flight guard for in-game Next/Skip/Stop/Volume controls (debounce
 // double-taps that would otherwise skip a whole round).
 import { createControlGuard } from './admin/control-guard.js';
@@ -2125,6 +2133,9 @@ function setupAdminJoin() {
     registerModalClose('end-game-modal', closeEndGameModal);
     // #2718: Escape must back out of "Remove player?" like every other modal.
     registerModalClose('kick-player-modal', closeKickPlayerModal);
+    // #2646: Escape on the "End round N" card means "let it keep playing" — the
+    // one choice of the three that changes nothing.
+    registerModalClose('round-end-modal', closeRoundEndChoice);
 }
 
 /**
@@ -2681,6 +2692,10 @@ function handleAdminStateUpdate(data) {
     // render is deferred and coalesced. renderAdminState re-assigns the same
     // value when it flushes — idempotent.
     adminState.currentGame = data;
+    // #2646: re-anchor "how much of the round is left" on every broadcast, in
+    // every phase. It decides whether Next asks first, and a non-PLAYING
+    // payload clears the anchor so the reveal's Next never does.
+    noteRoundState(data);
     // #2621: keep the join URL alive past the lobby. It used to be captured only
     // by the home-view renderer, so a host who reloaded mid-game had a cache of
     // null and the invite modal opened onto nothing. The serializer sends
@@ -2946,6 +2961,9 @@ function showAdminRevealView(data) {
     // playback has stopped, and the game is holding here until "Next round".
     var idleHalt = document.getElementById('admin-reveal-idle-halt');
     if (idleHalt) idleHalt.classList.toggle('hidden', !data.idle_halt);
+
+    // #2646: the host dropped this round instead of scoring it.
+    renderVoidedBanner(document, 'admin-reveal-voided', data);
 
     // Show control bar during reveal too (admin can skip, end game)
     var controlBar = document.getElementById('admin-control-bar');
@@ -3438,10 +3456,67 @@ function releaseAllAdminControls() {
     _controlGuard.releaseAll();
 }
 
+/**
+ * Next — score the round and move on, or, while a round is still running, ask
+ * first (#2646).
+ *
+ * The host who taps Next in the middle of round 5 is almost always looking at
+ * a broken song, and until #2646 that tap scored the round on the spot: every
+ * non-answerer marked wrong, their streaks reset, and in Sudden Death one of
+ * them eliminated. The card names those consequences with the server's real
+ * numbers and offers the two other exits. Once the timer has expired nothing
+ * is asked — the round is over either way.
+ */
 function adminNextRound() {
+    if (shouldAskBeforeEnding()) {
+        askBeforeEndingRound();
+        return;
+    }
     _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
         function () { return sendAdminCommand({ type: 'admin', action: 'next_round' }); },
         ADMIN_CONTROL_GUARD_MS);
+}
+
+/** Show the #2646 card and act on the host's choice. */
+function askBeforeEndingRound() {
+    openRoundEndChoice({
+        doc: document,
+        t: _tRoundEnd,
+    }).then(function (answer) {
+        if (answer.choice === 'score') {
+            _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
+                function () { return sendAdminCommand({ type: 'admin', action: 'next_round' }); },
+                ADMIN_CONTROL_GUARD_MS);
+        } else if (answer.choice === 'void') {
+            _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
+                function () {
+                    return sendAdminCommand({
+                        type: 'admin',
+                        action: 'void_round',
+                        reason: answer.reason || null
+                    });
+                },
+                ADMIN_CONTROL_GUARD_MS);
+        }
+        // 'keep' — the misfire the third exit exists for. Nothing is sent, and
+        // the control guard was never armed, so Next stays live.
+    });
+}
+
+/** `t(key, fallback, params)` over BeatifyI18n, for round-end-choice.js. */
+function _tRoundEnd(key, fallback, params) {
+    var out = (window.BeatifyI18n && BeatifyI18n.t) ? BeatifyI18n.t(key, params) : null;
+    if (!out || out === key) {
+        out = fallback;
+        // BeatifyI18n interpolates for us; the English fallback has to do its
+        // own, or an untranslated locale shows a literal "{n} seconds left".
+        if (params) {
+            Object.keys(params).forEach(function (name) {
+                out = out.split('{' + name + '}').join(String(params[name]));
+            });
+        }
+    }
+    return out;
 }
 
 function adminStopSong() {

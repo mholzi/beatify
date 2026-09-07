@@ -361,3 +361,10 @@ PROVIDER_MA_LIBRARY = "ma_library"
 PROVIDER_AMAZON_MUSIC = "amazon_music"
 PROVIDER_YTMUSIC_FREE = "ytmusic_free"  # #2426, third-party MA provider
 PROVIDER_DEFAULT = PROVIDER_SPOTIFY
+
+# #2646: the reason chips under "Do not score it" on the host's card. Optional
+# and skippable — the host may drop a round without saying why. The value is
+# recorded on the game state and logged; nothing consumes it yet, and the UI
+# deliberately does not promise that anyone will read it (where these reports
+# should go is an open question the design gate left open).
+VOID_ROUND_REASONS = ("cover", "silence", "wrong_year", "wrong_title")

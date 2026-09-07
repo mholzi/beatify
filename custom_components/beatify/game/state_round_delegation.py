@@ -20,6 +20,9 @@ The properties delegated to ``self._round_manager``:
 * ``last_round`` — last-round flag.
 * ``round_start_time`` / ``round_duration`` — round-timer anchors.
 * ``song_stopped`` — playback-stopped flag.
+* ``round_voided`` / ``void_reason`` / ``voided_rounds`` — #2646: the host
+  dropped this round instead of scoring it, the optional reason chip they
+  picked, and the game-level log of every dropped round.
 * ``round_analytics`` — per-round analytics (stored on RoundManager for
   lifecycle coherence).
 * ``intro_mode_enabled`` / ``is_intro_round`` / ``intro_stopped`` /
@@ -133,6 +136,29 @@ class RoundManagerDelegationMixin:
     @song_stopped.setter
     def song_stopped(self, value: bool) -> None:
         self._round_manager.song_stopped = value
+
+    @property
+    def round_voided(self) -> bool:
+        """#2646: host dropped this round instead of scoring it."""
+        return self._round_manager.round_voided
+
+    @round_voided.setter
+    def round_voided(self, value: bool) -> None:
+        self._round_manager.round_voided = value
+
+    @property
+    def void_reason(self) -> str | None:
+        """#2646: reason chip the host picked when dropping the round."""
+        return self._round_manager.void_reason
+
+    @void_reason.setter
+    def void_reason(self, value: str | None) -> None:
+        self._round_manager.void_reason = value
+
+    @property
+    def voided_rounds(self) -> list[dict[str, Any]]:
+        """#2646: every round dropped in this game, oldest first."""
+        return self._round_manager.voided_rounds
 
     @property
     def round_analytics(self) -> RoundAnalytics | None:

@@ -1326,7 +1326,10 @@
         // Artist mode the year row hides and the TA banner carries the answer.
         var taMode = !!data.title_artist_mode;
         var yearRow = document.getElementById('reveal-year-row');
-        if (yearRow) yearRow.classList.toggle('hidden', taMode);
+        // #2646: a voided round hides the year too. "Wrong year" is one of the
+        // reasons a host drops a round, so putting the number on the wall as
+        // the answer is the last thing this screen should do.
+        if (yearRow) yearRow.classList.toggle('hidden', taMode || !!data.round_voided);
 
         // Title & Artist mode (#1180): show truth banner + voting status on TV.
         renderDashboardTitleArtist(data);
@@ -1361,6 +1364,12 @@
         // countdown ring below hides itself in that case, so without this the
         // TV shows a reveal and no reason for the pause.
         renderIdleHaltBanner(data);
+
+        // #2646: the host dropped this round instead of scoring it. The TV is
+        // the one screen the whole room is watching, so it is where "this does
+        // not count" has to be said — otherwise the year is up, the leaderboard
+        // has not moved, and it looks like the game ate everyone's guess.
+        renderRoundVoidedBanner(data);
 
         // #2719 / #2722: keep the finale explained while the scores are read.
         renderFinaleDoubleBanner(data, 'dashboard-finale-banner-reveal');
@@ -1571,6 +1580,21 @@
         if (!textEl) return;
         var text = utils.t('reveal.idleHaltBannerGuest');
         if (text && text !== 'reveal.idleHaltBannerGuest') textEl.textContent = text;
+    }
+
+    /**
+     * #2646: "this round does not count" on the TV.
+     *
+     * Twin of renderIdleHaltBanner above. dashboard.js is a classic script
+     * outside the module graph, so it carries its own copy of the two lines
+     * `round-end-choice.js` exports for the phone and the admin browser.
+     *
+     * @param {Object} data - REVEAL state data (reads `round_voided`)
+     */
+    function renderRoundVoidedBanner(data) {
+        var banner = document.getElementById('dashboard-round-voided');
+        if (!banner) return;
+        banner.classList.toggle('hidden', !(data && data.round_voided));
     }
 
     /**

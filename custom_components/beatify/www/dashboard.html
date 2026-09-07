@@ -446,6 +446,13 @@
                     <span aria-hidden="true">⏸</span>
                     <span id="dashboard-idle-halt-text" data-i18n="reveal.idleHaltBannerGuest">Game idle — no one played this round. The host will start the next round.</span>
                 </div>
+                <!-- #2646: the host dropped this round. The TV is the one
+                     screen the whole room is looking at, so it is where "this
+                     does not count" has to be said. -->
+                <div id="dashboard-round-voided" class="sd-final-banner sd-final-banner--idle hidden">
+                    <span aria-hidden="true">🚫</span>
+                    <span data-i18n="reveal.roundVoidedBanner">This round does not count — no points, no broken streaks.</span>
+                </div>
                 <!-- #2719 / #2722: mirrors of the PLAYING banners so the finale
                      stays explained while the scores are being read out. -->
                 <div id="dashboard-finale-banner-reveal" class="sd-final-banner sd-final-banner--finale hidden"></div>

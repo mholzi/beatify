@@ -401,7 +401,8 @@
     "flagYearBtn": "🚩 Wrong year? Tell the host",
     "flaggedForHost": "✓ Flagged for the host",
     "finalePlayoff": "Finale",
-    "coverHint": "Cover — {year} was the original; the answer is the version you just heard."
+    "coverHint": "Cover — {year} was the original; the answer is the version you just heard.",
+    "roundVoidedBanner": "This round does not count — no points, no broken streaks."
   },
   "leaderboard": {
     "leader": "leader",
@@ -919,7 +920,24 @@
     "pauseGameSub": "Music off, clock stopped, nobody misses anything",
     "pauseAnnouncement": "Change the announcement",
     "pauseOnEveryScreen": "Shown on every screen",
-    "resume": "Resume"
+    "resume": "Resume",
+    "roundEndTitle": "End round {n}",
+    "roundEndTitleBare": "End round",
+    "roundEndSecondsLeft": "{n} seconds left",
+    "roundEndAnswered": "{n} of {total} have answered",
+    "roundEndScore": "Score it as usual",
+    "roundEndCountWrong": "{n} players count as wrong",
+    "roundEndStreaksBreak": "{n} streaks break",
+    "roundEndEliminated": "{name} is eliminated",
+    "roundEndEliminatedUnknown": "in Sudden Death somebody is eliminated",
+    "roundEndVoid": "Do not score it",
+    "roundEndVoidSub": "No points, no broken streaks, nobody is eliminated",
+    "roundEndKeepPlaying": "Let it keep playing",
+    "voidReasonPrompt": "Why? Optional.",
+    "voidReasonCover": "Cover version",
+    "voidReasonSilence": "Silence",
+    "voidReasonWrongYear": "Wrong year",
+    "voidReasonWrongTitle": "Wrong title"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

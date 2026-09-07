@@ -401,7 +401,8 @@
     "flagYearBtn": "🚩 Falsches Jahr? Gastgeber informieren",
     "flaggedForHost": "✓ Für den Gastgeber markiert",
     "finalePlayoff": "Finale",
-    "coverHint": "Cover — {year} war das Original, gesucht ist die gespielte Fassung."
+    "coverHint": "Cover — {year} war das Original, gesucht ist die gespielte Fassung.",
+    "roundVoidedBanner": "Diese Runde zählt nicht — keine Punkte, keine gerissene Serie."
   },
   "leaderboard": {
     "leader": "Spitzenreiter",
@@ -919,7 +920,24 @@
     "pauseGameSub": "Musik aus, Uhr steht, niemand verpasst etwas",
     "pauseAnnouncement": "Ansage ändern",
     "pauseOnEveryScreen": "Steht auf allen Schirmen",
-    "resume": "Weiter"
+    "resume": "Weiter",
+    "roundEndTitle": "Runde {n} beenden",
+    "roundEndTitleBare": "Runde beenden",
+    "roundEndSecondsLeft": "Noch {n} Sekunden",
+    "roundEndAnswered": "{n} von {total} haben abgegeben",
+    "roundEndScore": "Werten wie üblich",
+    "roundEndCountWrong": "{n} Spieler zählen als daneben",
+    "roundEndStreaksBreak": "{n} Serien reißen",
+    "roundEndEliminated": "{name} scheidet aus",
+    "roundEndEliminatedUnknown": "im Sudden Death scheidet jemand aus",
+    "roundEndVoid": "Nicht werten",
+    "roundEndVoidSub": "Keine Punkte, keine gerissene Serie, niemand scheidet aus",
+    "roundEndKeepPlaying": "Doch weiterlaufen lassen",
+    "voidReasonPrompt": "Warum? Optional.",
+    "voidReasonCover": "Coverversion",
+    "voidReasonSilence": "Stille",
+    "voidReasonWrongYear": "Falsches Jahr",
+    "voidReasonWrongTitle": "Falscher Titel"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

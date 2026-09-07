@@ -401,7 +401,8 @@
     "flagYearBtn": "🚩 Verkeerd jaar? Laat het de host weten",
     "flaggedForHost": "✓ Gemeld aan de host",
     "finalePlayoff": "Finale",
-    "coverHint": "Cover — {year} was het origineel; het antwoord is de versie die je net hoorde."
+    "coverHint": "Cover — {year} was het origineel; het antwoord is de versie die je net hoorde.",
+    "roundVoidedBanner": "Deze ronde telt niet — geen punten, geen reeks kwijt."
   },
   "leaderboard": {
     "leader": "koploper",
@@ -919,7 +920,24 @@
     "pauseGameSub": "Muziek uit, klok stil, niemand mist iets",
     "pauseAnnouncement": "Melding wijzigen",
     "pauseOnEveryScreen": "Te zien op alle schermen",
-    "resume": "Hervatten"
+    "resume": "Hervatten",
+    "roundEndTitle": "Ronde {n} beëindigen",
+    "roundEndTitleBare": "Ronde beëindigen",
+    "roundEndSecondsLeft": "Nog {n} seconden",
+    "roundEndAnswered": "{n} van {total} hebben geantwoord",
+    "roundEndScore": "Gewoon meetellen",
+    "roundEndCountWrong": "{n} spelers tellen als fout",
+    "roundEndStreaksBreak": "{n} reeksen gaan eraan",
+    "roundEndEliminated": "{name} valt af",
+    "roundEndEliminatedUnknown": "bij Sudden Death valt er iemand af",
+    "roundEndVoid": "Niet meetellen",
+    "roundEndVoidSub": "Geen punten, geen reeks kwijt, niemand valt af",
+    "roundEndKeepPlaying": "Laat het doorspelen",
+    "voidReasonPrompt": "Waarom? Optioneel.",
+    "voidReasonCover": "Coverversie",
+    "voidReasonSilence": "Stilte",
+    "voidReasonWrongYear": "Verkeerd jaar",
+    "voidReasonWrongTitle": "Verkeerde titel"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

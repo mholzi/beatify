@@ -82,6 +82,13 @@ class RoundManager:
         self.song_stopped: bool = False
         self.round_analytics: RoundAnalytics | None = None
 
+        # #2646: the host dropped this round instead of scoring it. Per-round,
+        # so `initialize_round` clears it; `voided_rounds` is game-level and is
+        # only cleared by `reset()`.
+        self.round_voided: bool = False
+        self.void_reason: str | None = None
+        self.voided_rounds: list[dict[str, Any]] = []
+
         # Metadata
         self.metadata_pending: bool = False
 
@@ -128,6 +135,9 @@ class RoundManager:
         self.round_duration = DEFAULT_ROUND_DURATION
         self.song_stopped = False
         self.round_analytics = None
+        self.round_voided = False  # #2646
+        self.void_reason = None  # #2646
+        self.voided_rounds = []  # #2646 — game-level, so only cleared here
         self.metadata_pending = False
         self._early_reveal = False
 
@@ -398,6 +408,11 @@ class RoundManager:
         self.round += 1
         self.current_song = dict(song)
         self.song_stopped = False
+        # #2646: a new round is never born voided. The flag drives the "this
+        # round does not count" card, and a stale True would put it on the
+        # reveal of a perfectly good round.
+        self.round_voided = False
+        self.void_reason = None
         self._early_reveal = False
         self.metadata_pending = metadata.get("metadata_pending", False)
         self.round_analytics = None

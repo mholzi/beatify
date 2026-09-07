@@ -13,6 +13,8 @@ import {
 } from './player-utils.js';
 
 import { renderArtistReveal, renderMovieReveal } from './player-game.js';
+// #2646: "this round does not count" banner, shared with admin.js.
+import { renderVoidedBanner } from './round-end-choice.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -184,6 +186,17 @@ export function updateRevealView(data) {
     // playback has stopped, and the game is holding here until "Next round".
     // #2622: the sentence depends on the reader, see renderIdleHalt().
     renderIdleHalt(document.getElementById('reveal-idle-halt'), !!data.idle_halt, isHost);
+
+    // #2646: the host dropped this round instead of scoring it. Without the
+    // banner a player who answered sees a reveal, a year and a score that did
+    // not move — which reads as the game losing their guess.
+    renderVoidedBanner(document, 'reveal-voided', data);
+    // #2646: and hide the year duel with it. "Wrong year" is one of the four
+    // reasons a host drops a round, so the number is exactly what must not be
+    // presented as the answer — and the guess it would be compared against was
+    // cleared with the round.
+    var duel = document.getElementById('reveal-duel');
+    if (duel) duel.classList.toggle('hidden', !!data.round_voided);
 
     // Auto-advance countdown — mirrors the admin sticky-Next countdown (#1048)
     // and the TV dashboard ring (#1185). Players had no way to see how long the

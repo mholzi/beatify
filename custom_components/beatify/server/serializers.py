@@ -158,6 +158,11 @@ _PLAYER_VISIBLE_REVEAL = frozenset(
         "song_difficulty",
         "early_reveal",
         "idle_halt",
+        # #2646: the host dropped this round instead of scoring it. Every phone
+        # in the room has to say so — a guest who answered and sees no points is
+        # otherwise looking at what reads like a scoring bug. It reveals nothing
+        # about the song: by REVEAL the round is over either way.
+        "round_voided",
         "reveal_auto_advance",
         "reveal_started_at",
     }
@@ -191,6 +196,15 @@ ADMIN_ONLY_KEYS: frozenset[str] = frozenset(
     {
         # #648/#1366: the year answer, the fun facts and the library URI.
         "admin_song",
+        # #2646: what ending the round right now would cost — including the name
+        # of the player Sudden Death would cut. That is the host's decision to
+        # make, and putting "Tom is eliminated" on Tom's phone a moment before
+        # it might not happen would be worse than useless.
+        "admin_round_end_preview",
+        # #2646: the reason chip the host picked. Recorded for later, shown to
+        # nobody: the room does not need to be told the host called the song a
+        # cover, and nothing has been promised about where the report goes.
+        "void_reason",
     }
 )
 

@@ -18,6 +18,7 @@ import { dirname, join } from 'node:path';
 
 import {
     MAX_NAME_LENGTH,
+    VOID_ROUND_REASONS,
     SUDDEN_DEATH_MIN_PLAYERS,
     REACTION_THROTTLE_SECONDS,
     REVEAL_AUTO_ADVANCE_OPTIONS,
@@ -57,6 +58,13 @@ function pyIntSeq(name) {
         .map(Number);
 }
 
+/** Read a top-level `NAME = ("a", "b")` / `["a", "b"]` of strings. */
+function pyStrSeq(name) {
+    const m = new RegExp(`^${name}\\s*(?::[^=]+)?=\\s*[([]([^)\\]]*)[)\\]]`, 'm').exec(CONST_PY);
+    if (!m) throw new Error(`${name} not found in const.py`);
+    return [...m[1].matchAll(/['"]([^'"]+)['"]/g)].map((hit) => hit[1]);
+}
+
 /**
  * Read `DIFFICULTY_SCORING` out of const.py as `{ level: { field: int } }`.
  *
@@ -91,6 +99,7 @@ describe('the parser finds the Python constants at all', () => {
         expect(pyInt('REACTION_THROTTLE_SECONDS')).toBeGreaterThan(0);
         expect(pyInt('POINTS_EXACT')).toBeGreaterThan(0);
         expect(pyIntSeq('REVEAL_AUTO_ADVANCE_OPTIONS').length).toBeGreaterThan(1);
+        expect(pyStrSeq('VOID_ROUND_REASONS').length).toBeGreaterThan(1);
         expect(Object.keys(pyDifficultyScoring())).toHaveLength(3);
     });
 });
@@ -110,6 +119,10 @@ describe('game-constants.js mirrors const.py', () => {
 
     it('mirrors REVEAL_AUTO_ADVANCE_OPTIONS (#2626)', () => {
         expect(REVEAL_AUTO_ADVANCE_OPTIONS).toEqual(pyIntSeq('REVEAL_AUTO_ADVANCE_OPTIONS'));
+    });
+
+    it('mirrors VOID_ROUND_REASONS (#2646)', () => {
+        expect(VOID_ROUND_REASONS).toEqual(pyStrSeq('VOID_ROUND_REASONS'));
     });
 
     it('mirrors POINTS_EXACT / POINTS_WRONG (#2625)', () => {
