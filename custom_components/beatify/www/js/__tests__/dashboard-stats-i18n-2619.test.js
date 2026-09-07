@@ -16,100 +16,72 @@
  *    the English string stays as the fallback for an unknown type.
  *
  * dashboard.js is a DOM-coupled IIFE with no exports and the vitest env is
- * `node`, so the two renderers are cut out of the shipped source and run
- * against stubs. That makes this a behaviour test, not a grep: it asserts the
- * text that lands in the DOM.
+ * `node`, so the renderers are cut out of the shipped source and run against
+ * stubs. That makes these behaviour tests, not greps: they assert the text that
+ * lands in the DOM.
+ *
+ * #2701 removed the three assertions against `dashboard.min.js`. They tested
+ * the minifier, not the fix: `npm run build:check` rebuilds every bundle in
+ * memory and fails on any drift from its source, so the bundle is already
+ * guaranteed to carry whatever the source carries — while a `toContain` over
+ * terser's output breaks whenever terser changes how it emits a string.
  */
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { join } from 'node:path';
+import {
+    declaration,
+    evaluate,
+    locale,
+    readSource,
+    REPO_DIR,
+} from './helpers/js-source.js';
+import { doc, el, translator } from './helpers/mini-dom.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const JS_DIR = join(__dirname, '..');
-const WWW = join(__dirname, '..', '..');
-const REPO = join(__dirname, '..', '..', '..', '..', '..');
-const SRC = readFileSync(join(JS_DIR, 'dashboard.js'), 'utf8');
-const MIN = readFileSync(join(JS_DIR, 'dashboard.min.js'), 'utf8');
+const SRC = readSource('dashboard.js');
 const STATS_PY = readFileSync(
-    join(REPO, 'custom_components', 'beatify', 'services', 'stats.py'),
+    join(REPO_DIR, 'custom_components', 'beatify', 'services', 'stats.py'),
     'utf8',
 );
 const LOCALES = ['en', 'de', 'es', 'fr', 'it', 'nl'];
-
-const i18n = {};
-beforeAll(() => {
-    for (const l of LOCALES) {
-        i18n[l] = JSON.parse(readFileSync(join(WWW, 'i18n', `${l}.json`), 'utf8'));
-    }
-});
+const i18n = Object.fromEntries(LOCALES.map((l) => [l, locale(l)]));
 
 function lookup(obj, key) {
     return key.split('.').reduce((n, p) => (n && typeof n === 'object' ? n[p] : undefined), obj);
 }
 
-/** Cut a top-level declaration out of the IIFE by matching its braces. */
-function declaration(name) {
-    for (const head of [`    function ${name}(`, `    var ${name} = {`]) {
-        const start = SRC.indexOf(head);
-        if (start === -1) continue;
-        let i = SRC.indexOf('{', start);
-        let depth = 0;
-        for (; i < SRC.length; i++) {
-            if (SRC[i] === '{') depth++;
-            else if (SRC[i] === '}' && --depth === 0) return SRC.slice(start, i + 1);
-        }
-    }
-    throw new Error(`dashboard.js no longer declares ${name}`);
+const decl = (name) => declaration(SRC, name, 'dashboard.js');
+
+/** Run the shipped end-screen renderer and read back what it painted. */
+function renderStats(performance, lang) {
+    const icon = el(null);
+    const text = el(null);
+    const container = el('end-stats-comparison', {
+        children: { '.stats-comparison-icon': icon, '.stats-comparison-text': text },
+    });
+    evaluate(decl('renderStatsComparison'), 'renderStatsComparison', {
+        document: doc({ 'end-stats-comparison': container }),
+        utils: translator(i18n[lang]),
+    })(performance);
+    return { icon: icon.textContent, text: text.textContent, css: container.className };
 }
 
-/** BeatifyI18n.t / utils.t for one locale, same lookup + interpolation. */
-function utilsFor(locale) {
-    return {
-        t(key, params) {
-            const value = lookup(i18n[locale], key);
-            if (typeof value !== 'string') return key;
-            if (!params) return value;
-            return Object.keys(params).reduce(
-                (s, p) => s.replace(new RegExp(`\\{${p}\\}`, 'g'), params[p]),
-                value,
-            );
+/** Run the shipped reveal-chip renderer and read back what it painted. */
+function renderChip(performance, lang) {
+    const icon = el(null);
+    const text = el(null);
+    const container = el('reveal-motivational', {
+        children: { '.motivational-icon': icon, '.motivational-text': text },
+    });
+    evaluate(
+        [decl('MOTIVATIONAL_KEYS'), decl('motivationalText'), decl('renderMotivationalMessage')],
+        'renderMotivationalMessage',
+        {
+            document: doc({ 'reveal-motivational': container }),
+            utils: translator(i18n[lang]),
         },
-    };
-}
-
-/** Minimal stand-in for the end-screen container and its two child spans. */
-function stubDom() {
-    const child = () => ({ textContent: '' });
-    const els = { '.stats-comparison-icon': child(), '.stats-comparison-text': child() };
-    const container = {
-        className: 'stats-comparison',
-        classList: { add() {}, remove() {} },
-        querySelector: (sel) => els[sel],
-    };
-    return { document: { getElementById: () => container }, container, els };
-}
-
-function renderStats(performance, locale) {
-    const dom = stubDom();
-    const run = new Function(
-        'document',
-        'utils',
-        `${declaration('renderStatsComparison')}\nreturn renderStatsComparison;`,
-    )(dom.document, utilsFor(locale));
-    run(performance);
-    return {
-        icon: dom.els['.stats-comparison-icon'].textContent,
-        text: dom.els['.stats-comparison-text'].textContent,
-    };
-}
-
-function motivational(message, difference, locale) {
-    const run = new Function(
-        'utils',
-        `${declaration('MOTIVATIONAL_KEYS')};\n${declaration('motivationalText')}\nreturn motivationalText;`,
-    )(utilsFor(locale));
-    return run(message, difference);
+    )(performance);
+    return { icon: icon.textContent, text: text.textContent, css: container.className };
 }
 
 const FIRST = { is_first_game: true, current_avg: 12.34, all_time_avg: 0, difference: 0 };
@@ -162,21 +134,29 @@ describe('#2619 end-screen stats line', () => {
         }
     });
 
-    it('keeps the icons and the css modifier per branch', () => {
-        expect(renderStats(FIRST, 'de').icon).toBe('🌟');
-        expect(renderStats(RECORD, 'de').icon).toBe('🏆');
-        expect(renderStats(ABOVE, 'de').icon).toBe('📈');
-        expect(renderStats(BELOW, 'de').icon).toBe('📊');
+    it('never leaves a raw key on the screen', () => {
+        // `t()` returns the key on a miss (#1402-B8), so a key that lost its
+        // translation shows up as "stats.newRecordEnd" on the TV rather than
+        // as an empty line — visible, but only to whoever is looking.
+        for (const l of LOCALES) {
+            for (const p of [FIRST, RECORD, ABOVE, BELOW]) {
+                expect(renderStats(p, l).text, l).not.toMatch(/^stats\./);
+                expect(renderStats(p, l).text, l).not.toMatch(/\{[a-z_]+\}/i);
+            }
+        }
     });
 
-    it('no longer carries the literals, in the source or in the bundle', () => {
-        for (const bundle of [SRC, MIN]) {
-            expect(bundle).not.toContain('First game recorded! Avg: ');
-            expect(bundle).not.toContain('NEW RECORD! ');
-            expect(bundle).not.toContain(' vs all-time avg)');
+    it('keeps the icons and the css modifier per branch', () => {
+        for (const [perf, icon, modifier] of [
+            [FIRST, '🌟', 'stats-comparison--first'],
+            [RECORD, '🏆', 'stats-comparison--record'],
+            [ABOVE, '📈', 'stats-comparison--above'],
+            [BELOW, '📊', 'stats-comparison--below'],
+        ]) {
+            const out = renderStats(perf, 'de');
+            expect(out.icon).toBe(icon);
+            expect(out.css).toContain(modifier);
         }
-        expect(MIN).toContain('stats.firstGameRecorded');
-        expect(MIN).toContain('stats.newRecordEnd');
     });
 });
 
@@ -189,46 +169,73 @@ describe('#2619 reveal motivation chip', () => {
         close: { type: 'close', message: 'Close to average! Just 2.5 pts below' },
     };
 
-    it('translates every type the server can emit', () => {
-        expect(motivational(SERVER.first, 0, 'de')).toBe('Erstes Spiel! Maßstab gesetzt');
-        expect(motivational(SERVER.record, 0, 'de')).toBe(
-            'Neuer Rekord! Höchste Punktzahl aller Zeiten!',
-        );
-        expect(motivational(SERVER.strong, 7.5, 'de')).toBe(
-            'Ausgezeichnet! 7.5 Pkt über Durchschnitt',
-        );
-        expect(motivational(SERVER.above, 2.5, 'de')).toBe(
-            'Starkes Spiel! 2.5 Pkt über Durchschnitt',
-        );
-        expect(motivational(SERVER.close, -2.5, 'de')).toBe(
-            'Knapp am Durchschnitt! Nur 2.5 Pkt darunter',
-        );
+    it('paints the translated wording into the chip, not the server string', () => {
+        // The regression this replaces a grep for: the chip used to render
+        // `message.message` verbatim, so a German TV read the English sentence
+        // the server had composed.
+        expect(renderChip({ message: SERVER.first, difference: 0 }, 'de').text)
+            .toBe('Erstes Spiel! Maßstab gesetzt');
+        expect(renderChip({ message: SERVER.record, difference: 0 }, 'de').text)
+            .toBe('Neuer Rekord! Höchste Punktzahl aller Zeiten!');
+        expect(renderChip({ message: SERVER.strong, difference: 7.5 }, 'de').text)
+            .toBe('Ausgezeichnet! 7.5 Pkt über Durchschnitt');
+        expect(renderChip({ message: SERVER.above, difference: 2.5 }, 'de').text)
+            .toBe('Starkes Spiel! 2.5 Pkt über Durchschnitt');
+        expect(renderChip({ message: SERVER.close, difference: -2.5 }, 'de').text)
+            .toBe('Knapp am Durchschnitt! Nur 2.5 Pkt darunter');
+    });
+
+    it('keeps the per-type icon and css modifier', () => {
+        const out = renderChip({ message: SERVER.record, difference: 0 }, 'de');
+        expect(out.icon).toBe('🏆');
+        expect(out.css).toContain('motivational-message--record');
     });
 
     it('drops the sign for the "below average" wording', () => {
         // The template says "below" in words, so a "-2.5 pts below" would read
         // as a double negative.
-        expect(motivational(SERVER.close, -2.5, 'en')).toBe('Close to average! Just 2.5 pts below');
+        expect(renderChip({ message: SERVER.close, difference: -2.5 }, 'en').text)
+            .toBe('Close to average! Just 2.5 pts below');
     });
 
     it('falls back to the server text for a type the map does not know', () => {
-        expect(motivational({ type: 'legendary', message: 'Legendary!' }, 0, 'de')).toBe(
-            'Legendary!',
-        );
+        const unknown = { type: 'legendary', message: 'Legendary!' };
+        expect(renderChip({ message: unknown, difference: 0 }, 'de').text).toBe('Legendary!');
     });
 
-    it('covers every message type services/stats.py emits', () => {
+    it('translates every message type services/stats.py can emit', () => {
+        // Not a grep over the key map: each type the server can send is
+        // actually rendered, and a type the client cannot translate falls back
+        // to the server's English — which is exactly what would show on the TV.
         const types = [...STATS_PY.matchAll(/"type":\s*"(\w+)"/g)].map((m) => m[1]);
         expect(types.length, 'the scan found no types — has stats.py been restructured?')
             .toBeGreaterThanOrEqual(5);
-        const map = declaration('MOTIVATIONAL_KEYS');
-        for (const t of new Set(types)) {
-            expect(map, `dashboard.js has no translation for type "${t}"`).toContain(`'${t}':`);
+        for (const type of new Set(types)) {
+            const english = `SERVER TEXT for ${type}`;
+            const painted = renderChip(
+                { message: { type, message: english }, difference: 2.5 },
+                'de',
+            ).text;
+            expect(painted, `dashboard.js has no translation for type "${type}"`)
+                .not.toBe(english);
         }
     });
 
-    it('no longer prints the server string straight into the chip', () => {
-        expect(SRC).not.toContain("textEl.textContent = message.message || ''");
+    it('hides the chip when the round carries no message', () => {
+        const icon = el(null);
+        const text = el(null);
+        const container = el('reveal-motivational', {
+            children: { '.motivational-icon': icon, '.motivational-text': text },
+        });
+        evaluate(
+            [decl('MOTIVATIONAL_KEYS'), decl('motivationalText'), decl('renderMotivationalMessage')],
+            'renderMotivationalMessage',
+            {
+                document: doc({ 'reveal-motivational': container }),
+                utils: translator(i18n.de),
+            },
+        )(null);
+        expect(container.classList.contains('hidden')).toBe(true);
     });
 });
 

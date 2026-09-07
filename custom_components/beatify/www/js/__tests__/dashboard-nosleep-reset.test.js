@@ -6,11 +6,15 @@
  * dashboard.js is a self-running IIFE (no exports, touches the DOM + registers
  * a service worker on load), so it can't be imported cleanly under vitest.
  * Instead we extract the `requestWakeLock` source straight from the served
- * file and evaluate it in a controlled scope with stubbed globals. This both
- * proves the fix and pins the exact source line so the bug can't silently
- * regress (the build then re-minifies it 1:1 into dashboard.min.js).
+ * file and evaluate it in a controlled scope with stubbed globals: the bytes
+ * under test are the bytes that ship.
+ *
+ * #2701 dropped a fourth test that read the catch handler's text and matched
+ * `/_noSleepActive\s*=\s*false/` against it. The two tests below already drive
+ * that handler — they reject the enable() promise and then read the flag — so
+ * the regex added no coverage and would have gone red on a rename of a local.
  */
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -103,15 +107,6 @@ function makeRequestWakeLock({ enableImpl, hasNativeWakeLock }) {
 describe('#1400 dashboard requestWakeLock NoSleep flag reset', () => {
     beforeEach(() => {
         delete globalThis.__nsa;
-    });
-
-    it('still references _noSleepActive in the rejection handler (source pin)', () => {
-        const body = extractRequestWakeLockBody();
-        // The catch handler must reset the flag, not just log.
-        const catchIdx = body.indexOf('Layer 2 enable promise rejected');
-        expect(catchIdx).toBeGreaterThan(-1);
-        const handler = body.slice(catchIdx - 200, catchIdx);
-        expect(handler).toMatch(/_noSleepActive\s*=\s*false/);
     });
 
     it('resets _noSleepActive to false when enable() rejects async', async () => {

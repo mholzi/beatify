@@ -11,52 +11,91 @@
  * #2551, #2552) was invisible in the room because of it, and the message from
  * #2569 was never displayed.
  *
- * dashboard.js is a DOM-coupled IIFE with no exports and the vitest env is
- * `node` without jsdom, so — as in dashboard-2130-end-stage.test.js — the
- * guard reads the shipped source from disk.
- *
- * The second assertion is the one that matters going forward: it does not
- * hard-code `data`, it requires every phase branch to hand the SAME
- * identifier to its renderer. A future rename of the parameter keeps passing;
- * a single branch drifting off it fails, whatever the name.
+ * #2701: this used to be two regexes over `dashboard.js` plus one over
+ * `dashboard.min.js`. The dispatcher is run for real now — compiled out of the
+ * shipped file in strict mode, exactly as the browser compiles it — so the
+ * ReferenceError reproduces instead of being described. That also removes the
+ * minified assertion: `npm run build:check` already rebuilds every bundle and
+ * fails on any drift from its source, so a test grepping terser's output only
+ * duplicated that guarantee while breaking whenever terser changes its mind.
  */
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { declaration, evaluate, readSource } from './helpers/js-source.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const JS = readFileSync(join(__dirname, '..', 'dashboard.js'), 'utf8');
-const MIN = readFileSync(join(__dirname, '..', 'dashboard.min.js'), 'utf8');
+const DASHBOARD = readSource('dashboard.js');
 
-/** The `switch (phase)` block that dispatches the phase renderers. */
-function phaseSwitch() {
-    const start = JS.indexOf("case 'LOBBY':");
-    expect(start, "the phase switch should still start at case 'LOBBY'").toBeGreaterThan(-1);
-    const end = JS.indexOf("Unknown phase", start);
-    expect(end, 'the phase switch should still end at the default branch').toBeGreaterThan(start);
-    return JS.slice(start, end);
+/** Every phase the dispatcher must handle, with the renderer it belongs to. */
+const PHASES = [
+    ['LOBBY', 'renderLobbyView', 'dashboard-lobby'],
+    ['PLAYING', 'renderPlayingView', 'dashboard-playing'],
+    ['REVEAL', 'renderRevealView', 'dashboard-reveal'],
+    ['END', 'renderEndView', 'dashboard-end'],
+    ['PAUSED', 'renderPausedView', 'dashboard-paused'],
+];
+
+/**
+ * Run the shipped phase dispatcher for one payload.
+ *
+ * Every renderer, `showView` and the countdown are stubs that record what they
+ * were handed. Nothing else is provided on purpose: an identifier the
+ * dispatcher reads and this scope does not name throws a ReferenceError, which
+ * is #2617 itself.
+ */
+function dispatch(data) {
+    const calls = [];
+    const scope = {
+        utils: { hydrateLeaderboard: (lb) => lb },
+        showView: (view) => calls.push({ fn: 'showView', arg: view }),
+        stopCountdown: () => calls.push({ fn: 'stopCountdown' }),
+        debug: () => calls.push({ fn: 'debug' }),
+    };
+    for (const [, renderer] of PHASES) {
+        scope[renderer] = (arg) => calls.push({ fn: renderer, arg });
+    }
+    evaluate(
+        declaration(DASHBOARD, '_applyStateRender', 'dashboard.js'),
+        '_applyStateRender',
+        scope,
+    )(data);
+    return calls;
 }
 
 describe('#2617 dashboard phase dispatch', () => {
-    it('hands the PAUSED branch the same object as every other branch', () => {
-        expect(phaseSwitch()).toMatch(/renderPausedView\(data\)/);
+    it('shows the Paused screen and renders it', () => {
+        // The bug in one line: before the fix this call threw a ReferenceError
+        // on `state` and neither entry below was ever reached.
+        const calls = dispatch({ phase: 'PAUSED', game_id: 'g1', pause_reason: 'speaker' });
+        expect(calls.map((c) => c.fn)).toContain('renderPausedView');
+        expect(calls).toContainEqual({ fn: 'showView', arg: 'dashboard-paused' });
     });
 
-    it('passes one and the same identifier to every phase renderer', () => {
-        const args = [...phaseSwitch().matchAll(/render(\w+)View\((\w+)\)/g)].map((m) => ({
-            view: m[1],
-            arg: m[2],
-        }));
-        // Lobby, Playing, Reveal, End, Paused — a shrinking list would mean a
-        // branch lost its renderer, which this guard should also catch.
-        expect(args.length).toBeGreaterThanOrEqual(5);
-        const distinct = [...new Set(args.map((a) => a.arg))];
-        expect(distinct, `phase renderers disagree on their argument: ${JSON.stringify(args)}`).toHaveLength(1);
+    it('hands the paused renderer the payload, with the pause reason intact', () => {
+        const data = { phase: 'PAUSED', game_id: 'g1', pause_reason: 'media_player_error' };
+        const call = dispatch(data).find((c) => c.fn === 'renderPausedView');
+        // #2552 reads `pause_reason` off this object; an empty stand-in would
+        // put "the host disconnected" on a speaker failure.
+        expect(call.arg.pause_reason).toBe('media_player_error');
     });
 
-    it('ships the fix in the bundle, not only in the source', () => {
-        // The bundle is what the TV loads. #2617 was present in both.
-        expect(MIN).not.toMatch(/case"PAUSED":[^;]*\(state\)/);
+    it.each(PHASES)('routes %s to %s and shows %s', (phase, renderer, view) => {
+        const calls = dispatch({ phase, game_id: 'g1' });
+        expect(calls.map((c) => c.fn)).toContain(renderer);
+        expect(calls).toContainEqual({ fn: 'showView', arg: view });
+    });
+
+    it('gives every phase renderer the same payload', () => {
+        // Rename-proof by construction: it does not care what the parameter is
+        // called, only that no branch drifts off it onto something else.
+        for (const [phase, renderer] of PHASES) {
+            const data = { phase, game_id: 'g1', marker: phase };
+            const call = dispatch(data).find((c) => c.fn === renderer);
+            expect(call, `${phase} rendered nothing`).toBeTruthy();
+            expect(call.arg.marker, `${phase} was handed a different object`).toBe(phase);
+        }
+    });
+
+    it('leaves an unknown phase to the default branch without throwing', () => {
+        const calls = dispatch({ phase: 'TELEPORTING', game_id: 'g1' });
+        expect(calls.map((c) => c.fn)).toEqual(['debug']);
     });
 });

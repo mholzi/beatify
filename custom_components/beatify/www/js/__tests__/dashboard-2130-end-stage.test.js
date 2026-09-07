@@ -12,107 +12,142 @@
  *   2. the award row wrote its values outside the card border,
  *   3. a two-player game showed a third, empty stand with "---" and 0 PTS.
  *
- * dashboard.js is a DOM-coupled IIFE with no exported helpers and the vitest
- * env is `node` with no jsdom, so — as in dashboard-b8.test.js and
- * dashboard-sd-ending.test.js — the load-bearing LOGIC is asserted against a
- * verbatim copy. Unlike those files the copy is not kept in sync by hand: the
- * source guards below read dashboard.js and dashboard.css from disk and fail if
- * the shipped code stops carrying the fix.
+ * #2701: point 3 used to be covered by a hand-written copy of the podium loop
+ * plus three greps over `dashboard.js` that existed to catch the copy drifting.
+ * `renderEndView` is compiled out of the shipped file and run here instead —
+ * the copy is gone, and with it the greps that guarded it.
+ *
+ * Points 1 and 2 are still asserted against the stylesheet text, deliberately:
+ * see the second block.
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { join } from 'node:path';
+import { declaration, evaluate, readSource, WWW_DIR } from './helpers/js-source.js';
+import { doc, el } from './helpers/mini-dom.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const JS = readFileSync(join(__dirname, '..', 'dashboard.js'), 'utf8');
-const CSS = readFileSync(join(__dirname, '..', '..', 'css', 'dashboard.css'), 'utf8');
+const DASHBOARD = readSource('dashboard.js');
+const CSS = readFileSync(join(WWW_DIR, 'css', 'dashboard.css'), 'utf8');
 
-/**
- * Minimal stand-in for one podium slot. `closest` walks to the place element
- * exactly as the browser would; `classList.toggle(name, force)` keeps the
- * two-argument form the fix relies on.
- */
-function makePodium(place) {
-    const classes = new Set(['podium-place', `podium-${place}`]);
-    const placeEl = {
-        classList: {
-            toggle: (name, force) => (force ? classes.add(name) : classes.delete(name)),
-            contains: (name) => classes.has(name),
-        },
-    };
-    const child = () => ({ textContent: '', style: {}, closest: (sel) => (sel === '.podium-place' ? placeEl : null) });
-    return { placeEl, nameEl: child(), scoreEl: child(), avatarEl: child() };
-}
-
-/** Verbatim copy of the per-place body of renderEndView(). */
-function renderPlace(slot, player) {
-    const { nameEl, scoreEl, avatarEl } = slot;
-    if (nameEl) nameEl.textContent = player ? player.name : '---';
-    if (scoreEl) scoreEl.textContent = player ? player.score : '0';
-
-    let placeEl = (nameEl || scoreEl || avatarEl);
-    placeEl = placeEl && placeEl.closest ? placeEl.closest('.podium-place') : null;
-    if (placeEl) placeEl.classList.toggle('podium-place--empty', !player);
-}
-
-/** Runs all three slots against a leaderboard, returns which ones are hidden. */
-function render(leaderboard) {
-    const hidden = [];
+/** The three podium slots plus the elements around them, as one document. */
+function endScreen() {
+    const places = {};
+    const elements = {};
     [1, 2, 3].forEach((place) => {
-        const slot = makePodium(place);
-        const player = leaderboard.find((p) => p.rank === place);
-        renderPlace(slot, player);
-        if (slot.placeEl.classList.contains('podium-place--empty')) hidden.push(place);
+        const placeEl = el(`podium-place-${place}`);
+        places[place] = placeEl;
+        const under = { selector: '.podium-place', node: placeEl };
+        for (const part of ['name', 'score', 'avatar']) {
+            elements[`end-podium-${place}-${part}`] = el(
+                `end-podium-${place}-${part}`,
+                { closest: under },
+            );
+        }
     });
-    return hidden;
+    elements['end-meta-rounds'] = el('end-meta-rounds');
+    elements['end-meta-players'] = el('end-meta-players');
+    elements['end-leaderboard'] = el('end-leaderboard');
+    return { places, elements, document: doc(elements) };
+}
+
+/** Run the shipped `renderEndView` and report what the podium ended up as. */
+function renderEnd(leaderboard, { screen = endScreen(), ...extra } = {}) {
+    const noop = () => {};
+    evaluate(declaration(DASHBOARD, 'renderEndView', 'dashboard.js'), 'renderEndView', {
+        document: screen.document,
+        utils: { escapeHtml: (s) => String(s) },
+        renderSuddenDeathLastStanding: noop,
+        renderStatsComparison: noop,
+        renderSuperlatives: noop,
+        renderHighlights: noop,
+        triggerConfetti: noop,
+        endAvatarGradient: () => 'linear-gradient(#000,#fff)',
+    })({ leaderboard, ...extra });
+
+    const hidden = [1, 2, 3].filter((p) =>
+        screen.places[p].classList.contains('podium-place--empty'));
+    return { ...screen, hidden };
 }
 
 describe('#2130 — no podium stand without a player on it', () => {
     it('hides the third stand in a two-player game', () => {
         // Exactly the game in the reporter's screenshot: Sandra 162, Aaron 128.
-        const hidden = render([
+        expect(renderEnd([
             { rank: 1, name: 'Sandra', score: 162 },
             { rank: 2, name: 'Aaron', score: 128 },
-        ]);
-        expect(hidden).toEqual([3]);
+        ]).hidden).toEqual([3]);
     });
 
     it('hides the second and third stand in a single-player game', () => {
-        expect(render([{ rank: 1, name: 'Sandra', score: 162 }])).toEqual([2, 3]);
+        expect(renderEnd([{ rank: 1, name: 'Sandra', score: 162 }]).hidden).toEqual([2, 3]);
     });
 
     it('hides nothing once three players are ranked', () => {
-        expect(render([
+        expect(renderEnd([
             { rank: 1, name: 'Sandra', score: 162 },
             { rank: 2, name: 'Aaron', score: 128 },
             { rank: 3, name: 'Kim', score: 90 },
-        ])).toEqual([]);
+        ]).hidden).toEqual([]);
+    });
+
+    it('hides the stand with a class, not with `hidden`', () => {
+        // `.podium-place` is display:flex, which beats the UA rule for
+        // [hidden] — a stand hidden that way stays on the screen.
+        const out = renderEnd([{ rank: 1, name: 'Sandra', score: 162 }]);
+        expect(out.places[3].hidden).toBe(false);
+        expect(out.places[3].classList.contains('podium-place--empty')).toBe(true);
     });
 
     it('still fills the placeholders it always filled', () => {
         // The '---' / '0' assignment predates this fix and stays: hiding the
         // stand is a display decision, not a reason to change what it holds.
-        const slot = makePodium(3);
-        renderPlace(slot, undefined);
-        expect(slot.nameEl.textContent).toBe('---');
-        expect(slot.scoreEl.textContent).toBe('0');
+        const out = renderEnd([{ rank: 1, name: 'Sandra', score: 162 }]);
+        expect(out.elements['end-podium-3-name'].textContent).toBe('---');
+        expect(out.elements['end-podium-3-score'].textContent).toBe('0');
+        expect(out.elements['end-podium-1-name'].textContent).toBe('Sandra');
+    });
+
+    it('re-shows a stand that was empty on the previous game', () => {
+        // The toggle has to run in both directions: the dashboard is a
+        // long-lived page and renders one game after another into the same
+        // elements. A one-way `add` would leave the third stand hidden for the
+        // rest of the evening.
+        const screen = endScreen();
+        renderEnd([
+            { rank: 1, name: 'Sandra', score: 162 },
+            { rank: 2, name: 'Aaron', score: 128 },
+        ], { screen });
+        expect(screen.places[3].classList.contains('podium-place--empty')).toBe(true);
+
+        const out = renderEnd([
+            { rank: 1, name: 'Sandra', score: 162 },
+            { rank: 2, name: 'Aaron', score: 128 },
+            { rank: 3, name: 'Kim', score: 90 },
+        ], { screen });
+        expect(out.hidden).toEqual([]);
     });
 });
 
-describe('#2130 — the shipped code still carries the fix', () => {
-    it('toggles a class on the place element, not `hidden`', () => {
-        expect(JS).toContain("closest('.podium-place')");
-        expect(JS).toContain("classList.toggle('podium-place--empty', !player)");
-        // `.podium-place` is display:flex, which beats the UA rule for [hidden].
-        expect(JS).not.toMatch(/placeEl\.hidden\s*=/);
-    });
-
-    it('defines the empty-stand rule the toggle depends on', () => {
+describe('#2130 — the stylesheet rules the fix depends on', () => {
+    /**
+     * These four stay assertions on the stylesheet TEXT, and that is the
+     * intended shape rather than a leftover.
+     *
+     * The defect here is a layout one — a name breaking mid-word, an award
+     * value drawn outside its card — and reproducing it needs a layout engine.
+     * The repo runs vitest in the `node` environment with no jsdom and no CSSOM,
+     * so nothing in this process can compute a box. What CAN be checked is that
+     * the declarations the fix consists of are still in the stylesheet the
+     * browser loads, and that is what these do.
+     *
+     * The first of them is also the other half of the block above: the JS
+     * toggles `.podium-place--empty`, and a class nothing styles hides nothing.
+     */
+    it('defines the empty-stand rule the toggle depends on (stylesheet guard)', () => {
         expect(CSS).toMatch(/\.end-stage-layout \.podium-place--empty \{\s*display: none;\s*\}/);
     });
 
-    it('keeps the podium from shrinking below its stand', () => {
+    it('keeps the podium from shrinking below its stand (stylesheet guard)', () => {
         // The name broke mid-word because the place could shrink under the
         // stand's fixed 200px, not because the font was too large.
         const place = CSS.match(/\.end-stage-layout \.podium-place \{[^}]*\}/)[0];
@@ -123,7 +158,7 @@ describe('#2130 — the shipped code still carries the fix', () => {
         expect(name).toContain('white-space: nowrap');
     });
 
-    it('keeps the award cards inside their grid track', () => {
+    it('keeps the award cards inside their grid track (stylesheet guard)', () => {
         const card = CSS.match(/\.end-stage-layout \.superlative-card \{[^}]*\}/)[0];
         expect(card).toContain('min-width: 0');
         expect(card).toContain('grid-template-columns: auto minmax(0, 1fr) auto');
