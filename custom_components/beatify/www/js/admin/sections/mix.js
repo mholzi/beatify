@@ -25,6 +25,7 @@
 import { adminState } from '../state.js';
 import { errorHeadlineAndDetail } from '../util.js';
 import { TAG_CATEGORIES } from '../constants.js';
+import { providerCountForPlaylist } from '../provider-counts.js';
 
 const utils = (typeof window !== 'undefined' && window.BeatifyUtils) || {};
 
@@ -321,18 +322,14 @@ async function previewMixTracklist() {
     }
 }
 
-/** Provider-specific song count for a playlist (mirrors playlists.js logic). */
+/** Provider-specific song count for a playlist.
+ *
+ * #2713: this was a second copy of playlists.js's switch, labelled "mirrors
+ * playlists.js logic" — which is the shape of the bug, not a mitigation of it.
+ * It calls the original now.
+ */
 function providerCountFor(p) {
-    const songCount = p.song_count || 0;
-    switch (adminState.selectedProvider) {
-        case 'spotify': return p.spotify_count || songCount;
-        case 'apple_music': return p.apple_music_count || 0;
-        case 'youtube_music': return p.youtube_music_count || 0;
-        case 'tidal': return p.tidal_count || 0;
-        case 'deezer': return p.deezer_count || 0;
-        case 'amazon_music': return p.amazon_music_count || songCount;
-        default: return songCount;
-    }
+    return providerCountForPlaylist(p, adminState.selectedProvider);
 }
 
 function showMixError(msg, detail) {

@@ -23,6 +23,7 @@
 
 import { adminState } from '../state.js';
 import { STORAGE_LAST_PLAYER, PLATFORM_LABELS } from '../constants.js';
+import { PROVIDERS } from '../../providers.generated.js';
 import { updateStartButtonState } from './playlists.js';
 import { tr } from '../util.js';
 
@@ -200,6 +201,44 @@ export function expandMediaPlayersSection() {
     }
 }
 
+// #2713: one place that knows how a provider id becomes a DOM attribute.
+// `apple_music` -> `data-supports-apple-music` -> `dataset.supportsAppleMusic`.
+// These three spellings of the same provider used to be typed out per provider
+// in three separate blocks below, which is why `amazon_music` reached the
+// dataset but never the payload and its chip could not enable.
+function supportsAttr(providerId) {
+    return `data-supports-${providerId.replace(/_/g, '-')}`;
+}
+
+function supportsDatasetKey(providerId) {
+    return `supports${providerId
+        .split('_')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join('')}`;
+}
+
+/** The `data-supports-*` attributes for one backend player record. */
+function supportsAttributes(player) {
+    return PROVIDERS
+        .map((p) => `${supportsAttr(p.id)}="${player[p.supportsKey]}"`)
+        .join('\n                       ');
+}
+
+/** `{ providerId: boolean }` read back off a rendered radio's dataset. */
+function supportsFromDataset(dataset) {
+    const supports = {};
+    for (const p of PROVIDERS) {
+        supports[p.id] = dataset[supportsDatasetKey(p.id)] === 'true';
+    }
+    return supports;
+}
+
+/** Does the selected player serve this provider? Unknown player = yes. */
+function playerSupports(player, providerId) {
+    if (!player || !player.supports) return true;
+    return player.supports[providerId] === true;
+}
+
 /**
  * Render a single player item with platform badge and capability data attributes
  * @param {Object} player - Player object from backend
@@ -213,12 +252,7 @@ export function renderPlayerItem(player) {
         <div class="media-player-item list-item is-selectable"
              data-entity-id="${utils.escapeHtml(player.entity_id)}"
              data-platform="${utils.escapeHtml(player.platform)}"
-             data-supports-spotify="${player.supports_spotify}"
-             data-supports-apple-music="${player.supports_apple_music}"
-             data-supports-youtube-music="${player.supports_youtube_music}"
-             data-supports-tidal="${player.supports_tidal}"
-             data-supports-deezer="${player.supports_deezer}"
-             data-supports-amazon-music="${player.supports_amazon_music}">
+             ${supportsAttributes(player)}>
             <label class="radio-label">
                 <input type="radio"
                        class="media-player-radio"
@@ -226,12 +260,7 @@ export function renderPlayerItem(player) {
                        data-entity-id="${utils.escapeHtml(player.entity_id)}"
                        data-state="${utils.escapeHtml(player.state)}"
                        data-platform="${utils.escapeHtml(player.platform)}"
-                       data-supports-spotify="${player.supports_spotify}"
-                       data-supports-apple-music="${player.supports_apple_music}"
-                       data-supports-youtube-music="${player.supports_youtube_music}"
-                       data-supports-tidal="${player.supports_tidal}"
-                       data-supports-deezer="${player.supports_deezer}"
-                       data-supports-amazon-music="${player.supports_amazon_music}">
+                       ${supportsAttributes(player)}>
                 <span class="player-info">
                     <span class="player-name">${utils.escapeHtml(player.friendly_name)}</span>
                     ${platformBadge}
@@ -283,24 +312,14 @@ export function handleMediaPlayerSelect(radio, skipSave = false) {
     const entityId = radio.dataset.entityId;
     const state = radio.dataset.state;
     const platform = radio.dataset.platform;
-    const supportsSpotify = radio.dataset.supportsSpotify === 'true';
-    const supportsAppleMusic = radio.dataset.supportsAppleMusic === 'true';
-    const supportsYoutubeMusic = radio.dataset.supportsYoutubeMusic === 'true';
-    const supportsTidal = radio.dataset.supportsTidal === 'true';
-    const supportsDeezer = radio.dataset.supportsDeezer === 'true';
-    const supportsAmazonMusic = radio.dataset.supportsAmazonMusic === 'true';
 
-    // Update module state with platform capabilities
+    // Update module state with platform capabilities. One `supports` map keyed
+    // by provider id, rather than a named field per provider (#2713).
     adminState.selectedMediaPlayer = {
         entityId,
         state,
         platform,
-        supportsSpotify,
-        supportsAppleMusic,
-        supportsYoutubeMusic,
-        supportsTidal,
-        supportsDeezer,
-        supportsAmazonMusic,
+        supports: supportsFromDataset(radio.dataset),
     };
 
     // Apply the device to an EXISTING lobby immediately (server no-ops when
@@ -365,95 +384,50 @@ export function handleMediaPlayerSelect(radio, skipSave = false) {
  * @param {Object} player - Selected player with capability flags
  */
 export function updateProviderOptions(player) {
-    const spotifyBtn = document.querySelector('.chip[data-provider="spotify"]');
-    const appleBtn = document.querySelector('.chip[data-provider="apple_music"]');
-    const youtubeBtn = document.querySelector('.chip[data-provider="youtube_music"]');
-    const tidalBtn = document.querySelector('.chip[data-provider="tidal"]');
-    const deezerBtn = document.querySelector('.chip[data-provider="deezer"]');
-    const amazonBtn = document.querySelector('.chip[data-provider="amazon_music"]');
+    // #2713: one loop over the registry. This used to be a `const xBtn =`
+    // lookup, an `if (xBtn)` toggle and a "fall back to Spotify" block per
+    // provider — six of each, and the Crate Digger chip that admin.html has
+    // shipped since #1590 was in none of them, so it never dimmed.
+    const chipFor = (id) => document.querySelector(`.chip[data-provider="${id}"]`);
+    const spotifyBtn = chipFor('spotify');
 
-    if (spotifyBtn) {
-        spotifyBtn.disabled = !player.supportsSpotify;
-        spotifyBtn.classList.toggle('chip--disabled', !player.supportsSpotify);
+    for (const p of PROVIDERS) {
+        const btn = chipFor(p.id);
+        if (!btn) continue;  // not every provider has a chip in the flat admin
+        const supported = playerSupports(player, p.id);
+        btn.disabled = !supported;
+        btn.classList.toggle('chip--disabled', !supported);
     }
 
-    if (appleBtn) {
-        appleBtn.disabled = !player.supportsAppleMusic;
-        appleBtn.classList.toggle('chip--disabled', !player.supportsAppleMusic);
-    }
-
-    if (youtubeBtn) {
-        youtubeBtn.disabled = !player.supportsYoutubeMusic;
-        youtubeBtn.classList.toggle('chip--disabled', !player.supportsYoutubeMusic);
-    }
-
-    if (tidalBtn) {
-        tidalBtn.disabled = !player.supportsTidal;
-        tidalBtn.classList.toggle('chip--disabled', !player.supportsTidal);
-    }
-
-    if (deezerBtn) {
-        deezerBtn.disabled = !player.supportsDeezer;
-        deezerBtn.classList.toggle('chip--disabled', !player.supportsDeezer);
-    }
-
-    if (amazonBtn) {
-        amazonBtn.disabled = !player.supportsAmazonMusic;
-        amazonBtn.classList.toggle('chip--disabled', !player.supportsAmazonMusic);
-    }
-
-    // If current selection is now disabled, switch to Spotify
-    if (adminState.selectedProvider === 'apple_music' && !player.supportsAppleMusic) {
-        // Update UI
+    // If current selection is now disabled, switch to Spotify.
+    const selected = adminState.selectedProvider;
+    if (selected && selected !== 'spotify' && !playerSupports(player, selected)) {
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
         if (spotifyBtn) spotifyBtn.classList.add('chip--active');
         adminState.selectedProvider = 'spotify';
     }
 
-    if (adminState.selectedProvider === 'youtube_music' && !player.supportsYoutubeMusic) {
-        // Update UI
-        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
-        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        adminState.selectedProvider = 'spotify';
-    }
-
-    if (adminState.selectedProvider === 'tidal' && !player.supportsTidal) {
-        // Update UI
-        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
-        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        adminState.selectedProvider = 'spotify';
-    }
-
-    if (adminState.selectedProvider === 'deezer' && !player.supportsDeezer) {
-        // Update UI
-        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
-        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        adminState.selectedProvider = 'spotify';
-    }
-
-    if (adminState.selectedProvider === 'amazon_music' && !player.supportsAmazonMusic) {
-        // Update UI
-        document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
-        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        adminState.selectedProvider = 'spotify';
-    }
-
-    // Show hint for disabled providers
+    // Show hint for disabled providers. A provider Music Assistant can serve
+    // is named in the MA line; one it cannot (Amazon Music, which needs an
+    // Echo) gets its own line from the registry's own wording.
     const hint = document.getElementById('provider-hint');
     if (hint) {
         const maSpeakerNeeded = [];
-        if (!player.supportsAppleMusic) maSpeakerNeeded.push('Apple Music');
-        if (!player.supportsYoutubeMusic) maSpeakerNeeded.push('YouTube Music');
-        if (!player.supportsTidal) maSpeakerNeeded.push('Tidal');
-        if (!player.supportsDeezer) maSpeakerNeeded.push('Deezer');
+        const otherParts = [];
+        for (const p of PROVIDERS) {
+            if (p.id === 'spotify' || playerSupports(player, p.id)) continue;
+            if (p.platforms.includes('music_assistant')) {
+                maSpeakerNeeded.push(p.label);
+            } else if (p.id === 'amazon_music') {
+                otherParts.push('Amazon Music requires an Amazon Echo (alexa_media)');
+            }
+        }
 
         const hintParts = [];
         if (maSpeakerNeeded.length > 0) {
             hintParts.push(`${maSpeakerNeeded.join(' and ')} require${maSpeakerNeeded.length === 1 ? 's' : ''} a Music Assistant speaker`);
         }
-        if (!player.supportsAmazonMusic) {
-            hintParts.push('Amazon Music requires an Amazon Echo (alexa_media)');
-        }
+        hintParts.push(...otherParts);
 
         if (hintParts.length > 0) {
             hint.textContent = hintParts.join(' · ');

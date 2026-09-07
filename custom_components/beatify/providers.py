@@ -11,7 +11,7 @@ dozen JavaScript modules.
 Adding ``ytmusic_free`` (#2426) touched about twelve files, and missing one was
 never an error — it was a chip that never enabled, a validation that never
 fired, a URI that never converted. Three such holes were still open when this
-module was written (see ``docs/provider-registry.md``).
+module was written; the commit that introduced it names them.
 
 Everything above now derives from :data:`PROVIDERS`. Adding a provider is one
 entry here, ``python3 tools/gen_providers_js.py`` to refresh the JavaScript

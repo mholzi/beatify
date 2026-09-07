@@ -17,6 +17,7 @@ import {
     refresh as plhRefresh,
     getPlaylistByPath as plhGetPlaylistByPath,
 } from './playlist-hub.js';
+import { PROVIDERS } from './providers.generated.js';
 import {
     MIN_ROUNDS,
     roundCountOptions,
@@ -603,32 +604,11 @@ function _renderSpeakers() {
     });
 }
 
-const PROVIDERS = [
-    { id: 'spotify', label: 'Spotify' },
-    { id: 'apple_music', label: 'Apple Music' },
-    { id: 'youtube_music', label: 'YouTube Music' },
-    { id: 'tidal', label: 'Tidal' },
-    { id: 'deezer', label: 'Deezer' },
-    { id: 'amazon_music', label: 'Amazon Music' },
-    {
-        id: 'ma_library',
-        label: 'Crate Digger',
-        sub: 'Your personal Music Assistant library',
-        subKey: 'wizard.providerLibrarySub',
-    },
-    // #2426: a third-party Music Assistant provider, not part of MA itself.
-    // Listed last, and the subtitle carries the prerequisite rather than the
-    // selling point: the dimmed-chip explainer below only opens for options
-    // the selected speaker cannot serve, and this one is selectable on any MA
-    // speaker whether or not the provider is actually installed. The subtitle
-    // is therefore the only place the user is told what to install.
-    {
-        id: 'ytmusic_free',
-        label: 'YouTube Music (Free)',
-        sub: 'Needs the ytmusic_free provider in Music Assistant',
-        subKey: 'wizard.providerYtmusicFreeSub',
-    },
-];
+// #2713: the chip list IS the integration's provider registry, generated from
+// providers.py. It used to be typed out here as well, so a provider added in
+// Python appeared in the wizard only if somebody remembered this file — and a
+// chip nobody added is not an error, just an option the host never sees.
+// Order, labels and the second lines all come from the registry.
 
 // Lock icon SVG for dimmed provider chips (#772 UX).
 const CHIP_LOCK_ICON = `<svg class="chip-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;

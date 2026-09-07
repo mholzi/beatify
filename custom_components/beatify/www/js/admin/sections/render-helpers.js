@@ -25,6 +25,8 @@
  * `renderAdminResultCards`) — see the shim block in admin.js.
  */
 
+import { PROVIDERS_BY_ID } from '../../providers.generated.js';
+
 // Resolve escapeHtml the way admin.js's `utils` alias does (window.BeatifyUtils),
 // with an identity fallback so render never throws if the util is missing.
 function escapeHtml(value) {
@@ -188,21 +190,11 @@ export function renderAdminChallengeOptions(containerId, options) {
  */
 export function _providerDisplayName(provider) {
     if (!provider) return '';
-    var keyMap = {
-        spotify: 'admin.pauseRecovery.providerSpotify',
-        apple_music: 'admin.pauseRecovery.providerAppleMusic',
-        youtube_music: 'admin.pauseRecovery.providerYouTubeMusic',
-        tidal: 'admin.pauseRecovery.providerTidal',
-        deezer: 'admin.pauseRecovery.providerDeezer'
-    };
-    var fallbackMap = {
-        spotify: 'Spotify',
-        apple_music: 'Apple Music',
-        youtube_music: 'YouTube Music',
-        tidal: 'Tidal',
-        deezer: 'Deezer'
-    };
-    var key = keyMap[provider];
-    if (!key) return '';
-    return t(key) || fallbackMap[provider] || '';
+    // #2713: the i18n key and the English fallback both come from the registry
+    // instead of two parallel maps here. A provider with no `pauseRecoveryKey`
+    // has no translated name yet, so the banner omits it — the behaviour
+    // Crate Digger, Amazon Music and ytmusic_free have always had.
+    var spec = PROVIDERS_BY_ID[provider];
+    if (!spec || !spec.pauseRecoveryKey) return '';
+    return t(spec.pauseRecoveryKey) || spec.label || '';
 }

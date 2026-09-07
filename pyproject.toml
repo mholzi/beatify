@@ -54,6 +54,7 @@ pretty = true
 # Clean subset that passes today. EXPAND this list (and eventually drop it for a
 # whole-package check) as the modules below in the ramp-up plan get fixed.
 files = [
+    "custom_components/beatify/providers.py",
     "custom_components/beatify/game/types.py",
     "custom_components/beatify/game/tts_phrases.py",
     "custom_components/beatify/game/text_match.py",

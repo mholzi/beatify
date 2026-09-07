@@ -27,6 +27,7 @@ import { adminState } from '../state.js';
 import { STORAGE_GAME_SETTINGS, TAG_CATEGORIES } from '../constants.js';
 import { seasonalSuggestionHtml, wireSeasonalSuggestion } from './seasonal-suggestion.js';
 import { tr } from '../util.js';
+import { providerCountForPlaylist } from '../provider-counts.js';
 
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
@@ -42,26 +43,11 @@ const utils = window.BeatifyUtils || {};
  * checkbox dataset. Extracting it lets the selection be restored straight from
  * `adminState.playlistData` (the real data store) without that DOM round-trip.
  *
- * Behaviour is identical to the old inline block (spotify falls back to the
- * raw song_count for legacy playlists; amazon_music uses Alexa text-search so
- * every song is playable; unknown providers get the full song_count).
- *
- * @param {object} playlist  a playlist entry from adminState.playlistData
- * @param {string} provider  adminState.selectedProvider
- * @returns {number}
+ * #2713 moved the body to `admin/provider-counts.js` so the mixer can call it
+ * without pulling this module's `window.BeatifyUtils` lookup into a test
+ * runner; it is re-exported here because that is where callers import it from.
  */
-export function providerCountForPlaylist(playlist, provider) {
-    const songCount = playlist.song_count || 0;
-    switch (provider) {
-        case 'spotify':       return playlist.spotify_count || songCount;
-        case 'apple_music':   return playlist.apple_music_count || 0;
-        case 'youtube_music': return playlist.youtube_music_count || 0;
-        case 'tidal':         return playlist.tidal_count || 0;
-        case 'deezer':        return playlist.deezer_count || 0;
-        case 'amazon_music':  return playlist.amazon_music_count || songCount;
-        default:              return songCount;
-    }
-}
+export { providerCountForPlaylist };
 
 /**
  * #1590: restore `adminState.selectedPlaylists` from the in-memory data store
