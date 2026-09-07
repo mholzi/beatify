@@ -363,9 +363,7 @@ class GameStateSerializer:
         # emitting it here rather than in the shared block is what keeps the
         # halftime moment from lingering over round 6.
         if gs.comeback_granted_this_round:
-            state["comeback_granted_this_round"] = list(
-                gs.comeback_granted_this_round
-            )
+            state["comeback_granted_this_round"] = list(gs.comeback_granted_this_round)
         # Issue #827: Sudden Death — names eliminated *this* round drive the
         # TV "OUT" takeover + the admin elimination highlight card.
         if gs.sudden_death_mode:
