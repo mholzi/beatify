@@ -140,6 +140,24 @@ export function renderPlayerList(players) {
 }
 
 // ============================================
+// Lobby brief (#2647)
+// ============================================
+
+/**
+ * The one sentence that says what game this is, on the guest's phone.
+ *
+ * Same builder, same words, same colours as the TV (`dashboard.js`) — the
+ * wording lives in `utils.js` precisely so the two surfaces cannot drift into
+ * telling the room two different things about the same game.
+ *
+ * @param {Object} data - LOBBY state payload
+ */
+export function renderLobbyBriefLine(data) {
+    if (!utils.renderLobbyBrief) return;
+    utils.renderLobbyBrief(document.getElementById('lobby-brief'), data);
+}
+
+// ============================================
 // Difficulty Badge (Story 14.1)
 // ============================================
 

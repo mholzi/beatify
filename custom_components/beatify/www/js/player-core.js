@@ -19,7 +19,7 @@ import {
 } from './player-utils.js';
 
 import {
-    renderPlayerList, renderDifficultyBadge, renderQRCode,
+    renderPlayerList, renderDifficultyBadge, renderLobbyBriefLine, renderQRCode,
     setupQRModal, setupInviteModal, closeInviteModal,
     updateAdminControls, setupAdminControls,
     showWelcomeBackToast, showEarlyRevealToast, handleStartFailure
@@ -663,6 +663,11 @@ function handleServerMessage(data) {
                     if (data.difficulty) {
                         renderDifficultyBadge(data.difficulty, data.title_artist_mode);
                     }
+                    // #2647: the brief is generated prose — it has to be rebuilt
+                    // when the locale lands, not just re-labelled in place.
+                    if (data.phase === 'LOBBY') {
+                        renderLobbyBriefLine(data);
+                    }
                     if (data.phase === 'REVEAL') {
                         pushRevealRender(data);
                     }
@@ -725,6 +730,7 @@ function handleServerMessage(data) {
             if (data.difficulty) {
                 renderDifficultyBadge(data.difficulty, data.title_artist_mode);
             }
+            renderLobbyBriefLine(data);  // #2647
             updateAdminControls(players);
         } else if (data.phase === 'PLAYING') {
             // If game started while player was on tour, dump them into the game.

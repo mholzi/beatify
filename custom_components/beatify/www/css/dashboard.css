@@ -180,6 +180,46 @@
    Lobby View (AC 10.4.2)
    ========================================== */
 
+/* #2647: the lobby brief — one sentence across the band the lobby left empty,
+   between the header and the QR/players row. Both of those keep their place and
+   their size; this only takes the air above them.
+
+   The colour split IS the message: the running text is the muted secondary,
+   because "10 rounds" is not news. Only what deviates from the server defaults
+   gets a colour, and the deviation that changes the game most gets the brand
+   pink and the glow — that is the skull the room used to meet in round 2.
+
+   Sized in raw px like the wordmark above it (48/64) rather than from the type
+   scale, which tops out at 32px: this has to read from the couch. It stays
+   below the reserved oversize tokens (year 56 / timer 64 / hero 72) — those
+   belong to the game moments, and a lobby line is not one.
+
+   The .lobby-brief-em* accents live in styles.css: the guest's phone shows the
+   same sentence and only loads that file. */
+.dashboard-lobby-brief {
+    flex-shrink: 0;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+    max-width: min(90vw, 28ch);
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    text-align: center;
+    text-wrap: balance;
+    color: var(--color-text-neon-muted);
+}
+
+.dashboard-lobby-brief.hidden {
+    display: none;
+}
+
+/* The glow is the TV's alone — a phone at arm's length does not need it and
+   the accents themselves are shared (styles.css). */
+.dashboard-lobby-brief .lobby-brief-em--key {
+    text-shadow: var(--glow-primary);
+}
+
 .dashboard-lobby-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -858,6 +898,11 @@
 
     .dashboard-scan-hint {
         font-size: var(--font-size-3xl);
+    }
+
+    .dashboard-lobby-brief {
+        font-size: 52px;
+        max-width: min(88vw, 30ch);
     }
 
     .dashboard-album-container {

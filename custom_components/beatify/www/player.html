@@ -296,6 +296,13 @@
                     </div>
                 </div>
 
+                <!-- #2647: the same sentence the TV shows, word for word. What
+                     the room gets read out, every guest also has in his hand.
+                     Filled by player-lobby.js (renderLobbyBriefLine) via
+                     BeatifyUtils.renderLobbyBrief; hidden when there is nothing
+                     trustworthy to say. -->
+                <p id="lobby-brief" class="lobby-brief hidden" role="status"></p>
+
                 <!-- Replay tour link (post-QR onboarding v2) — replaces the old How-to-Play accordion -->
                 <button type="button" id="replay-tour-link" class="replay-tour-link">
                     <span aria-hidden="true">↺</span>

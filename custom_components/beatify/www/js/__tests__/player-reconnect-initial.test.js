@@ -78,7 +78,7 @@ vi.mock('../player-utils.js', () => mockNamespace(
      'requestWakeLock', 'releaseWakeLock', 'showView'],
     { state }));
 vi.mock('../player-lobby.js', () => mockNamespace(
-    ['renderPlayerList', 'renderDifficultyBadge', 'renderQRCode', 'setupQRModal',
+    ['renderPlayerList', 'renderDifficultyBadge', 'renderLobbyBriefLine', 'renderQRCode', 'setupQRModal',
      'setupInviteModal', 'closeInviteModal', 'updateAdminControls', 'setupAdminControls',
      'showWelcomeBackToast', 'showEarlyRevealToast']));
 vi.mock('../player-game.js', () => mockNamespace(

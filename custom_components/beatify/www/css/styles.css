@@ -3216,6 +3216,49 @@ body.theme-dark .admin-controls {
    Mobile-Optimized Compact Lobby Layout
    ===================================================== */
 
+/* #2647: the lobby brief. The same sentence the TV shows, word for word, on
+   the guest's phone — one text for both surfaces rather than two components
+   that drift. Sits under the compact header; the difficulty badge, the player
+   tiles and the invite section are untouched.
+
+   Phone type comes from the scale (the TV's raw 40/52px is a couch-distance
+   exception, see dashboard.css); the accents below are shared by both. */
+.lobby-brief {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    /* 700, not 600: both pages load Outfit at 700/900 only (#2641), so a 600
+       would be synthesised by the browser and read fuzzier, not lighter. */
+    font-weight: var(--font-weight-bold);
+    line-height: 1.45;
+    text-wrap: pretty;
+    color: var(--color-text-neon-muted);
+}
+
+.lobby-brief.hidden {
+    display: none;
+}
+
+/* The deviations, inside the running text. No badge, no tile — the sentence
+   stays one object, and colour is the only thing that separates what is
+   unusual about this game from what is not. */
+.lobby-brief-em {
+    color: var(--color-text-white);
+}
+
+.lobby-brief-em--alt {
+    color: var(--color-accent-secondary);
+}
+
+.lobby-brief-em--key {
+    color: var(--color-accent-primary);
+}
+
+/* The "and N more" tail: present, never louder than what it stands in for. */
+.lobby-brief-em--rest {
+    color: var(--color-text-neon-muted);
+}
+
 /* Compact header with inline badges */
 .lobby-header-compact {
     display: flex;

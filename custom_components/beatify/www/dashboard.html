@@ -292,6 +292,14 @@
                 <!-- Game settings indicator (top-right corner) -->
                 <div id="dashboard-game-settings" class="dashboard-game-settings"></div>
             </header>
+            <!-- #2647: the one sentence that says what game this is. Sits in the
+                 band between the header and the QR/players row, which was empty.
+                 Deliberately NOT a second column: #2556 built the "Scan to join"
+                 hint into the QR corner a week ago and that corner is left
+                 untouched. Filled by dashboard.js (renderLobbyView) via
+                 BeatifyUtils.renderLobbyBrief; hidden while there is nothing
+                 trustworthy to say. -->
+            <p id="dashboard-lobby-brief" class="dashboard-lobby-brief hidden" role="status"></p>
             <div class="dashboard-lobby-content">
                 <!-- QR Code Section (left) -->
                 <div class="lobby-qr-section">

@@ -69,7 +69,33 @@
     "awayMinutes": "{count} min",
     "awayHours": "{count} h",
     "player": "giocatore",
-    "players": "giocatori"
+    "players": "giocatori",
+    "brief": {
+      "rounds": "{n} turni",
+      "roundsOne": "1 turno",
+      "standard": "{rounds}, regole normali.",
+      "one": "{rounds}, {last}.",
+      "two": "{rounds}, {a} — e {last}.",
+      "three": "{rounds}, {a}, {b} — e {last}.",
+      "threePlus": "{rounds}, {a}, {b}, più {more} — e {last}.",
+      "more": "{n} regole speciali aggiuntive",
+      "moreOne": "una regola speciale aggiuntiva",
+      "dev": {
+        "suddenDeath": "chi sbaglia una volta è fuori",
+        "titleArtist": "indovinate titolo e artista invece dell'anno",
+        "duration": "ogni brano dura solo {n} secondi",
+        "closestWins": "fa punti solo chi si avvicina di più",
+        "difficultyEasy": "anche una stima approssimativa fa punti",
+        "difficultyHard": "fanno punti solo le risposte quasi esatte",
+        "sabotage": "ognuno può sabotare una volta",
+        "comeback": "chi è indietro ruba a metà partita",
+        "finaleDouble": "l'ultimo turno vale doppio",
+        "finaleTiebreaker": "un pari in testa si decide allo spareggio",
+        "betScaling": "la scommessa paga in base alla difficoltà",
+        "intro": "in alcuni turni si sente solo l'intro",
+        "rampup": "i brani vanno dal più facile al più difficile"
+      }
+    }
   },
   "game": {
     "yearLabel": "Anno",

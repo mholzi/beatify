@@ -540,6 +540,224 @@ window.BeatifyUtils = (function() {
     }
 
     // ==========================================================================
+    // Lobby brief — the one sentence the lobby reads out (#2647)
+    // ==========================================================================
+
+    /**
+     * What "normal" is, in one place: the server-side default of every game
+     * option the sentence can name.
+     *
+     * Deliberately NOT a hand-curated "these are the interesting settings"
+     * list. A setting is a deviation when, and only when, its value differs
+     * from what the server would have used had the host touched nothing —
+     * i.e. the default of the matching field on `GameOptions`
+     * (`game/config.py`), which is the single list `create_game`, the rematch
+     * and the HTTP create-game view all read.
+     *
+     * `__tests__/lobby-brief-2647.test.js` parses those dataclass defaults out
+     * of the Python source and fails when this map drifts, the same way
+     * `game-constants-mirror.test.js` guards the numbers in game-constants.js.
+     * So a new game option cannot silently change what counts as normal, and
+     * nobody has to remember to edit a second list.
+     */
+    var LOBBY_BRIEF_DEFAULTS = {
+        sudden_death_mode: false,
+        title_artist_mode: false,
+        round_duration: 45,
+        closest_wins_mode: false,
+        difficulty: 'normal',
+        sabotage_enabled: false,
+        comeback_token_enabled: false,
+        finale_double_enabled: false,
+        finale_tiebreaker_enabled: false,
+        difficulty_bet_scaling_enabled: false,
+        intro_mode_enabled: false,
+        rampup_order_enabled: false
+    };
+
+    /** How many deviations the sentence may name before it stops being one glance. */
+    var LOBBY_BRIEF_MAX_NAMED = 3;
+
+    /**
+     * The rank order: most game-changing first.
+     *
+     * It does two jobs, and both need it to be ONE list. It decides which
+     * deviations survive the cap of three — the top of the list is what a
+     * player has to know before the first song, the bottom is bookkeeping he
+     * can discover in play. And it decides where each clause sits in the
+     * sentence: rank 1 is held back to the closing slot (after the dash),
+     * because the surprise the issue is about is the one that should land
+     * last and loudest. The rest run in rank order in front of it.
+     *
+     * `yearRound: false` marks the settings that only mean something while the
+     * year round is the game — the same suppression the admin's icon row does
+     * with `yearRoundActive` (`admin/sections/game-settings.js`). Naming
+     * "only the closest guess scores" in a Title & Artist game would describe
+     * a rule that is not running.
+     */
+    var LOBBY_BRIEF_RULES = [
+        { field: 'sudden_death_mode', clause: 'suddenDeath' },
+        { field: 'title_artist_mode', clause: 'titleArtist' },
+        { field: 'round_duration', clause: 'duration' },
+        { field: 'closest_wins_mode', clause: 'closestWins', yearRound: true },
+        { field: 'difficulty', clause: 'difficulty', yearRound: true },
+        { field: 'sabotage_enabled', clause: 'sabotage' },
+        { field: 'comeback_token_enabled', clause: 'comeback' },
+        { field: 'finale_double_enabled', clause: 'finaleDouble' },
+        { field: 'finale_tiebreaker_enabled', clause: 'finaleTiebreaker' },
+        { field: 'difficulty_bet_scaling_enabled', clause: 'betScaling', yearRound: true },
+        { field: 'intro_mode_enabled', clause: 'intro', yearRound: true },
+        { field: 'rampup_order_enabled', clause: 'rampup' }
+    ];
+
+    /** Which slot gets which accent. Closing clause = the punchline = pink. */
+    var LOBBY_BRIEF_SLOT_CLASS = {
+        last: 'lobby-brief-em lobby-brief-em--key',
+        a: 'lobby-brief-em lobby-brief-em--alt',
+        b: 'lobby-brief-em',
+        more: 'lobby-brief-em lobby-brief-em--rest'
+    };
+
+    /**
+     * Fill `{slot}` placeholders in a locale-owned template.
+     *
+     * A function replacement, not a string one: a `$` in a translated clause
+     * would otherwise be read as a capture reference by String.replace. An
+     * unknown placeholder is left standing so a broken template is visible
+     * rather than silently swallowing a clause.
+     */
+    function lobbyBriefFill(template, slots) {
+        return String(template).replace(/\{(\w+)\}/g, function(whole, name) {
+            return Object.prototype.hasOwnProperty.call(slots, name) ? slots[name] : whole;
+        });
+    }
+
+    /**
+     * The lobby's one sentence, assembled from the game state (#2647).
+     *
+     * The room used to learn in round 2, at the first skull, that Sudden Death
+     * was on: the TV said "10 rounds • Normal" and nothing else, although the
+     * server sends every flag in every phase. This builds the sentence both
+     * the TV and the guest's phone show, from the same state, in the same
+     * words.
+     *
+     * The sentence is never assembled out of translated words. Each locale
+     * owns a whole clause per deviation and a whole sentence shape per number
+     * of clauses (`lobby.brief.one` … `lobby.brief.threePlus`), so German
+     * compounds, Romance word order and the position of the conjunction stay
+     * that locale's business. This function only decides WHICH clauses appear
+     * and in what order.
+     *
+     * @param {Object} data - a LOBBY state payload
+     * @param {Function} [translate] - injectable `t` (tests, and only tests)
+     * @returns {{text: string, html: string, named: number, hidden: number}|null}
+     *   null when there is nothing trustworthy to say — no state, or a round
+     *   count the server has not computed yet. The caller hides the line then,
+     *   which leaves the lobby looking exactly as it did before this existed.
+     */
+    function buildLobbyBrief(data, translate) {
+        var tr = translate || t;
+        if (!data) return null;
+
+        var rounds = Number(data.total_rounds);
+        if (!isFinite(rounds) || rounds < 1) return null;
+        rounds = Math.round(rounds);
+
+        // #1180: Title & Artist replaces the year round, so the year-only
+        // settings describe a rule that is not running this game.
+        var yearRound = data.title_artist_mode !== true;
+
+        var found = [];
+        LOBBY_BRIEF_RULES.forEach(function(rule) {
+            if (rule.yearRound && !yearRound) return;
+            var value = data[rule.field];
+            if (value === undefined || value === null) return;
+            if (value === LOBBY_BRIEF_DEFAULTS[rule.field]) return;
+
+            if (rule.field === 'round_duration') {
+                var seconds = Math.round(Number(value));
+                if (!isFinite(seconds) || seconds < 1) return;
+                if (seconds === LOBBY_BRIEF_DEFAULTS.round_duration) return;
+                found.push({ key: 'lobby.brief.dev.duration', params: { n: seconds } });
+                return;
+            }
+            if (rule.field === 'difficulty') {
+                if (value !== 'easy' && value !== 'hard') return;
+                found.push({
+                    key: 'lobby.brief.dev.difficulty' + value.charAt(0).toUpperCase() + value.slice(1),
+                    params: null
+                });
+                return;
+            }
+            if (value !== true) return;
+            found.push({ key: 'lobby.brief.dev.' + rule.clause, params: null });
+        });
+
+        var roundsPhrase = tr(rounds === 1 ? 'lobby.brief.roundsOne' : 'lobby.brief.rounds', { n: rounds });
+        var slots = { rounds: roundsPhrase };
+        var shape;
+
+        if (found.length === 0) {
+            shape = 'lobby.brief.standard';
+        } else {
+            // Rank 1 closes the sentence; ranks 2..3 run in front of it.
+            var named = found.slice(0, LOBBY_BRIEF_MAX_NAMED);
+            var hidden = found.length - named.length;
+            slots.last = tr(named[0].key, named[0].params || undefined);
+            if (named[1]) slots.a = tr(named[1].key, named[1].params || undefined);
+            if (named[2]) slots.b = tr(named[2].key, named[2].params || undefined);
+            if (hidden > 0) {
+                slots.more = hidden === 1
+                    ? tr('lobby.brief.moreOne', { n: hidden })
+                    : tr('lobby.brief.more', { n: hidden });
+                shape = 'lobby.brief.threePlus';
+            } else {
+                shape = ['lobby.brief.one', 'lobby.brief.two', 'lobby.brief.three'][named.length - 1];
+            }
+        }
+
+        var template = tr(shape);
+        // t() hands back the key itself when a locale is missing it. Printing
+        // "lobby.brief.three" across the TV would be worse than printing
+        // nothing, so treat an un-substituted template as no sentence at all.
+        if (!template || template === shape || template.indexOf('{rounds}') === -1) return null;
+
+        var htmlSlots = {};
+        var textSlots = {};
+        Object.keys(slots).forEach(function(name) {
+            var safe = escapeHtml(slots[name]);
+            var cls = LOBBY_BRIEF_SLOT_CLASS[name];
+            textSlots[name] = slots[name];
+            htmlSlots[name] = cls ? '<span class="' + cls + '">' + safe + '</span>' : safe;
+        });
+
+        return {
+            text: lobbyBriefFill(template, textSlots),
+            html: lobbyBriefFill(escapeHtml(template), htmlSlots),
+            named: Math.min(found.length, LOBBY_BRIEF_MAX_NAMED),
+            hidden: Math.max(0, found.length - LOBBY_BRIEF_MAX_NAMED)
+        };
+    }
+
+    /**
+     * Write the sentence into an element, or hide it when there is none.
+     * Shared so the TV and the phone cannot drift in how they handle "no
+     * sentence" — the case an old server or an unstarted playlist produces.
+     */
+    function renderLobbyBrief(el, data, translate) {
+        if (!el) return null;
+        var brief = buildLobbyBrief(data, translate);
+        if (!brief) {
+            el.innerHTML = '';
+            el.classList.add('hidden');
+            return null;
+        }
+        el.innerHTML = brief.html;
+        el.classList.remove('hidden');
+        return brief;
+    }
+
+    // ==========================================================================
     // Public API
     // ==========================================================================
 
@@ -553,6 +771,10 @@ window.BeatifyUtils = (function() {
         // i18n
         waitForI18n: waitForI18n,
         t: t,
+
+        // Lobby brief (#2647)
+        buildLobbyBrief: buildLobbyBrief,
+        renderLobbyBrief: renderLobbyBrief,
 
         // Title & Artist helpers
         taVerdictLabel: taVerdictLabel,

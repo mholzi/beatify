@@ -143,6 +143,13 @@ class GameStateSerializer:
             # took log archaeology to spot. Emitted in all phases: the lobby
             # needs it before the first round exists.
             "round_duration": gs.round_duration,
+            # #2647: how many rounds this game has. Known from create_game on
+            # (it is the size of the filtered playable pool), but it used to be
+            # emitted only in PLAYING — so the lobby, the one screen whose whole
+            # job is telling the room what it is about to play, fell back to a
+            # hardcoded "10 rounds" in dashboard.js. A number nobody had chosen
+            # and that was wrong for most playlists.
+            "total_rounds": gs.total_rounds,
             # Issue #23: Intro mode (available in all phases)
             "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode
@@ -230,7 +237,7 @@ class GameStateSerializer:
         """Populate PLAYING-phase fields."""
         state["join_url"] = gs.join_url
         state["round"] = gs.round
-        state["total_rounds"] = gs.total_rounds
+        # total_rounds is in the base payload since #2647 — every phase gets it.
         state["deadline"] = gs.deadline
         # Client clocks skew: a device ~20s off displayed "20s remaining" at
         # the exact moment the server's time-up fired. Stamp the server clock

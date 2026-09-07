@@ -69,7 +69,33 @@
     "awayMinutes": "{count} min",
     "awayHours": "{count} uur",
     "player": "speler",
-    "players": "spelers"
+    "players": "spelers",
+    "brief": {
+      "rounds": "{n} rondes",
+      "roundsOne": "1 ronde",
+      "standard": "{rounds}, gewone regels.",
+      "one": "{rounds}, {last}.",
+      "two": "{rounds}, {a} — en {last}.",
+      "three": "{rounds}, {a}, {b} — en {last}.",
+      "threePlus": "{rounds}, {a}, {b}, plus {more} — en {last}.",
+      "more": "{n} extra speciale regels",
+      "moreOne": "nog een speciale regel",
+      "dev": {
+        "suddenDeath": "wie één keer misgokt, ligt eruit",
+        "titleArtist": "jullie raden titel en artiest in plaats van het jaar",
+        "duration": "elk nummer duurt maar {n} seconden",
+        "closestWins": "alleen wie er het dichtst bij zit, scoort",
+        "difficultyEasy": "ook een ruwe gok levert nog punten op",
+        "difficultyHard": "alleen een bijna perfecte gok scoort",
+        "sabotage": "iedereen mag één keer saboteren",
+        "comeback": "wie achterloopt, mag halverwege stelen",
+        "finaleDouble": "de laatste ronde telt dubbel",
+        "finaleTiebreaker": "gelijkspel bovenaan gaat naar een beslissingsronde",
+        "betScaling": "de inzet betaalt uit naar moeilijkheid",
+        "intro": "sommige rondes spelen alleen de intro",
+        "rampup": "de nummers gaan van makkelijk naar moeilijk"
+      }
+    }
   },
   "game": {
     "yearLabel": "Jaar",

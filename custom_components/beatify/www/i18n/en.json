@@ -69,7 +69,33 @@
     "awayMinutes": "{count} min",
     "awayHours": "{count} h",
     "player": "player",
-    "players": "players"
+    "players": "players",
+    "brief": {
+      "rounds": "{n} rounds",
+      "roundsOne": "1 round",
+      "standard": "{rounds}, standard rules.",
+      "one": "{rounds}, {last}.",
+      "two": "{rounds}, {a} — and {last}.",
+      "three": "{rounds}, {a}, {b} — and {last}.",
+      "threePlus": "{rounds}, {a}, {b}, plus {more} — and {last}.",
+      "more": "{n} more twists",
+      "moreOne": "one more twist",
+      "dev": {
+        "suddenDeath": "a single wrong answer knocks you out",
+        "titleArtist": "you are guessing title and artist instead of the year",
+        "duration": "every song runs just {n} seconds",
+        "closestWins": "only the closest guess scores",
+        "difficultyEasy": "even a rough guess still scores",
+        "difficultyHard": "only a near-perfect guess scores",
+        "sabotage": "everyone gets one sabotage to spend",
+        "comeback": "whoever trails gets a steal at halftime",
+        "finaleDouble": "the last round counts double",
+        "finaleTiebreaker": "a tie at the top goes to a playoff",
+        "betScaling": "the bet pays out by difficulty",
+        "intro": "some rounds play the intro only",
+        "rampup": "the songs run easiest to hardest"
+      }
+    }
   },
   "game": {
     "yearLabel": "Year",

@@ -745,6 +745,13 @@
         // Render game settings indicator (top-right corner)
         renderGameSettings(data);
 
+        // #2647: the sentence across the empty middle of the lobby. The room
+        // used to find out in round 2, at the first skull, that Sudden Death
+        // was on — the server has sent every flag all along, no screen said so.
+        // Shared with the guest's phone (player-lobby.js) so both read the same
+        // words; utils owns the wording so they cannot drift.
+        utils.renderLobbyBrief(document.getElementById('dashboard-lobby-brief'), data);
+
         // Update player count
         // #1402-B8: was hardcoded English ("N players joined") on an otherwise
         // localized TV dashboard. Use an i18n key with {n} interpolation plus a
