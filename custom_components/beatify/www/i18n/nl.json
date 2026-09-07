@@ -409,7 +409,20 @@
     "bestStreak": "Beste Reeks",
     "roundsPlayed": "Gespeelde Rondes",
     "betsWon": "Gewonnen Inzetten",
-    "fullRankings": "Volledige Ranglijst"
+    "fullRankings": "Volledige Ranglijst",
+    "nextTitle": "Wat nu?",
+    "nextJustPlayed": "net gespeeld",
+    "nextSongCount": "{count} nummers",
+    "nextMorePlaylists": "+{count} meer",
+    "nextSearchAll": "Alle {count}",
+    "nextSearchSub": "bladeren",
+    "nextSearchPlaceholder": "Playlists zoeken",
+    "nextNoResults": "Geen playlist komt overeen",
+    "nextGo": "Doe {name} maar",
+    "nextEveryoneStays": "Iedereen blijft verbonden",
+    "hostPicking": "{name} kiest de volgende playlist — blijf zitten",
+    "hostPickingNoName": "De host kiest de volgende playlist — blijf zitten",
+    "staysConnected": "Je naam blijft · niet opnieuw scannen"
   },
   "admin": {
     "alreadyJoined": "Je doet al mee als {name}",

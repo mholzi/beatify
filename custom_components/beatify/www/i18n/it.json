@@ -409,7 +409,20 @@
     "bestStreak": "Serie migliore",
     "roundsPlayed": "Turni giocati",
     "betsWon": "Scommesse vinte",
-    "fullRankings": "Classifica completa"
+    "fullRankings": "Classifica completa",
+    "nextTitle": "E adesso?",
+    "nextJustPlayed": "appena suonata",
+    "nextSongCount": "{count} brani",
+    "nextMorePlaylists": "+{count} altre",
+    "nextSearchAll": "Tutte e {count}",
+    "nextSearchSub": "sfoglia",
+    "nextSearchPlaceholder": "Cerca una playlist",
+    "nextNoResults": "Nessuna playlist corrisponde",
+    "nextGo": "Si va con {name}",
+    "nextEveryoneStays": "Restano tutti collegati",
+    "hostPicking": "{name} sta scegliendo la prossima playlist — resta qui",
+    "hostPickingNoName": "L'host sta scegliendo la prossima playlist — resta qui",
+    "staysConnected": "Il tuo nome resta · niente scansione"
   },
   "admin": {
     "alreadyJoined": "Sei già in partita come {name}",

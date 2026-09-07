@@ -278,6 +278,11 @@ MEDIA_PLAYER_DOCS_URL = "https://www.home-assistant.io/integrations/#media-playe
 # Playlist configuration
 PLAYLIST_DIR = "beatify/playlists"
 
+# #2648: upper bound on the playlists one rematch may name. The end-screen
+# picker offers a single tile at a time; the cap only keeps a hand-written
+# request from making the loader read the whole catalogue.
+MAX_REMATCH_PLAYLISTS = 20
+
 # Multi-provider URI patterns (Story 17.1).
 # Restored in #688 — these ARE used by game/playlist.py for URI validation
 # during playlist discovery. Removed in #687 by mistake.

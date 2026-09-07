@@ -17,12 +17,16 @@ from custom_components.beatify.const import (
     ERR_GAME_NOT_STARTED,
     ERR_INVALID_ACTION,
     ERR_MEDIA_PLAYER_UNAVAILABLE,
+    ERR_NO_PLAYABLE_SONGS,
     ERR_NO_SONGS_REMAINING,
     ERR_NOT_ADMIN,
     ERR_UNAUTHORIZED,
+    MAX_REMATCH_PLAYLISTS,
     MIN_PLAYERS,
 )
+from custom_components.beatify.game.playlist import async_load_songs_from_paths
 from custom_components.beatify.game.state import GamePhase, GameState
+from custom_components.beatify.game.state_setup import NoPlayableSongsError
 from custom_components.beatify.server.serializers import build_state_message
 from custom_components.beatify.server.ws_handlers._helpers import (
     _is_ha_authenticated,
@@ -438,6 +442,47 @@ async def admin_dismiss_game(
     await handler.cleanup_game_tasks()
 
 
+async def _resolve_rematch_playlists(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+) -> tuple[list[dict] | None, list[str] | None]:
+    """Turn a rematch's ``playlists`` field into songs (#2648).
+
+    Returns ``(songs, paths)``. ``(None, None)`` means the caller asked for the
+    historic same-playlist rematch and nothing should change. ``(None, paths)``
+    means the request named playlists that produced no usable song — the error
+    has already been sent on ``ws`` and the caller must return.
+    """
+    raw = data.get("playlists")
+    if raw is None:
+        return None, None
+    if not isinstance(raw, list) or not all(isinstance(p, str) for p in raw) or not raw:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "playlists must be a non-empty list of paths",
+            }
+        )
+        return None, []
+
+    paths = [p for p in raw][:MAX_REMATCH_PLAYLISTS]
+    songs, warnings = await async_load_songs_from_paths(handler.hass, paths)
+    if warnings:
+        _LOGGER.debug("Rematch playlist swap warnings: %s", warnings[:5])
+    if not songs:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NO_PLAYABLE_SONGS,
+                "message": "No valid songs found in the selected playlist(s)",
+            }
+        )
+        return None, paths
+    return songs, paths
+
+
 async def admin_rematch_game(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
@@ -455,11 +500,13 @@ async def admin_rematch_game(
         )
         return
 
-    # #1703: cancel any pending admin-disconnect pause task before the rematch.
-    # rematch_game() preserves player records (admin may still be marked
-    # disconnected), so a leftover grace timer would otherwise fire and pause
-    # the brand-new LOBBY. cleanup_game_tasks previously ran only on dismiss.
-    await handler.cleanup_game_tasks()
+    # #2648: the end screen sends the playlist the room just shouted for. No
+    # `playlists` key at all is the historic rematch — same music, untouched.
+    # Everything below this block runs identically either way, which is the
+    # point: swapping the songs must not become a second lifecycle.
+    swap_songs, swap_paths = await _resolve_rematch_playlists(handler, ws, data)
+    if swap_paths is not None and swap_songs is None:
+        return  # the error was already sent; the finished game stands
 
     player_count = len(game_state.players)
     # #2706: remember the spectator socket before rematch_game() runs — its
@@ -468,7 +515,30 @@ async def admin_rematch_game(
     # #2706: decide on the socket identity BEFORE the rebuild, while the player
     # records are guaranteed intact.
     sender_is_participant = game_state.get_player_by_ws(ws) is not None
-    game_state.rematch_game()
+    try:
+        game_state.rematch_game(songs=swap_songs, playlists=swap_paths)
+    except NoPlayableSongsError as err:
+        # rematch_game validates before it mutates, so the finished game is
+        # still intact here — the host keeps the end screen and can pick again.
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NO_PLAYABLE_SONGS,
+                "message": str(err),
+            }
+        )
+        return
+
+    # #1703: cancel any pending admin-disconnect pause task for the rematch.
+    # rematch_game() preserves player records (admin may still be marked
+    # disconnected), so a leftover grace timer would otherwise fire and pause
+    # the brand-new LOBBY. cleanup_game_tasks previously ran only on dismiss.
+    # #2648: it sits after the rebuild rather than before it now. rematch_game
+    # is synchronous, so no timer can fire between the two lines — but a
+    # rejected playlist swap returns above, and that path must not leave the
+    # still-running game with its grace timer cancelled.
+    await handler.cleanup_game_tasks()
+
     # Issue #841 Phase 3: announce the rematch (use case 20). TTS survives
     # rematch_game() — only end_game() tears the service down.
     await game_state.announce_rematch()

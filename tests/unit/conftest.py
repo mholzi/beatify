@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
@@ -95,14 +96,30 @@ def make_start_game_request(hass: MagicMock, body: dict) -> MagicMock:
     return request
 
 
+def write_start_game_playlist(tmp_path: Path) -> Path:
+    """Put ``test.json`` on disk under a real playlist directory.
+
+    #2648: the create-game loader moved into ``game/playlist.py`` and resolves
+    its directory through ``get_playlist_directory``, so a ``Path`` patched on
+    the view module no longer reaches it. Rather than chase the patch into a
+    module that also uses ``Path`` for discovery, these fixtures now hand the
+    code a real directory with a real playlist in it — which is also what the
+    memoised discovery walk expects to find.
+    """
+    playlist_dir = tmp_path / "beatify" / "playlists"
+    playlist_dir.mkdir(parents=True, exist_ok=True)
+    (playlist_dir / "test.json").write_text(VALID_START_GAME_PLAYLIST, encoding="utf-8")
+    return playlist_dir
+
+
 @pytest.fixture
-def start_game_env():
-    """A StartGameView + real GameState + a valid playlist mocked on disk.
+def start_game_env(tmp_path):
+    """A StartGameView + real GameState + a valid playlist on disk.
 
     Returns ``(view, hass, body)`` where the body is a minimal-but-complete
-    start-game payload. The playlist file read and platform capabilities are
-    mocked so ``create_game`` runs and writes the body flags onto the
-    real ``GameState`` stored in ``hass.data[DOMAIN]["game"]``.
+    start-game payload. Platform capabilities are mocked so ``create_game``
+    runs and writes the body flags onto the real ``GameState`` stored in
+    ``hass.data[DOMAIN]["game"]``.
     """
     game_state = GameState()
     hass = MagicMock()
@@ -113,9 +130,10 @@ def start_game_env():
     media_state.state = "playing"
     hass.states.get.return_value = media_state
 
-    hass.config.path.return_value = "/tmp/beatify/playlists"
+    hass.config.path.return_value = str(write_start_game_playlist(tmp_path))
 
-    # Playlist file read runs in an executor; return the valid content.
+    # Kept for the cache-miss fallback path; discovery normally serves the
+    # parse and this is never awaited.
     async def _executor(func, *args):
         return VALID_START_GAME_PLAYLIST
 
@@ -131,7 +149,6 @@ def start_game_env():
             "custom_components.beatify.server.game_views.is_authorized_http",
             new=MagicMock(return_value=True),
         ),
-        patch("custom_components.beatify.server.game_views.Path") as mock_path_cls,
         patch(
             "custom_components.beatify.server.game_views.er.async_get"
         ) as mock_async_get,
@@ -140,16 +157,6 @@ def start_game_env():
             return_value={"supported": True},
         ),
     ):
-        # Make path-traversal + existence checks pass for any playlist path.
-        mock_path = MagicMock()
-        full_path = MagicMock()
-        full_path.resolve.return_value = full_path
-        full_path.is_relative_to.return_value = True
-        full_path.exists.return_value = True
-        mock_path.resolve.return_value = mock_path
-        mock_path.__truediv__.return_value = full_path
-        mock_path_cls.return_value = mock_path
-
         entity_entry = MagicMock()
         entity_entry.platform = "music_assistant"
         mock_async_get.return_value.async_get.return_value = entity_entry

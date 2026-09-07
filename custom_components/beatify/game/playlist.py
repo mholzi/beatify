@@ -1291,6 +1291,188 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
     return metas
 
 
+# Every field a song may carry a playable URI in, as the create-game loader has
+# always checked it. Kept as a literal list rather than derived from the
+# provider registry: this is the historic gate for "is this song usable at
+# all", and widening it here would quietly change which songs a game gets.
+_SONG_URI_FIELDS = (
+    "uri",
+    "uri_spotify",
+    "uri_youtube_music",
+    "uri_tidal",
+    "uri_deezer",
+    "uri_apple_music",
+)
+
+
+async def async_load_songs_from_paths(
+    hass: HomeAssistant, playlist_paths: list[str]
+) -> tuple[list[dict[str, Any]], list[str]]:
+    """Load the songs of ``playlist_paths`` (relative to the playlist dir).
+
+    #2648: the create-game view grew this loader; the rematch needs the same
+    one now, because a rematch may arrive with a different playlist. A second
+    copy of a path-traversal guard is not defence, it is a copy that goes
+    stale — so the loop lives here and both callers share it.
+
+    Each returned song is tagged with ``_playlist_source`` (the relative path
+    the caller sent), exactly as the game has always tagged them. Returns
+    ``(songs, warnings)``; the warnings name every path or song that was
+    skipped, and the caller decides whether an empty song list is an error.
+    """
+    playlist_dir = get_playlist_directory(hass)
+    warnings: list[str] = []
+    songs: list[dict[str, Any]] = []
+
+    # #1766: discovery already read + parsed every playlist file (memoised and
+    # off-loop). Reuse that parse instead of re-reading each ~600-song document
+    # on the event loop at this latency-sensitive moment.
+    _metas, songs_by_path = await async_discover_playlists_detailed(hass)
+
+    for playlist_path in playlist_paths:
+        try:
+            full_path = playlist_dir / playlist_path
+            # Security: prevent path traversal attacks.
+            try:
+                if not full_path.resolve().is_relative_to(playlist_dir.resolve()):
+                    warnings.append(f"Invalid playlist path: {playlist_path}")
+                    continue
+            except ValueError:
+                warnings.append(f"Invalid playlist path: {playlist_path}")
+                continue
+
+            playlist_songs = songs_by_path.get(str(full_path))
+            if playlist_songs is None:
+                # Cache miss (added since the last discovery walk) — fall back
+                # to the executor read + parse so the loop stays unblocked.
+                resolved = full_path.resolve()
+                if not resolved.exists():
+                    warnings.append(f"Playlist not found: {playlist_path}")
+                    continue
+                file_content = await hass.async_add_executor_job(
+                    _read_playlist_text, resolved
+                )
+                playlist_songs = json.loads(file_content).get("songs", [])
+
+            for song in playlist_songs:
+                has_uri = any(song.get(k) for k in _SONG_URI_FIELDS)
+                if "year" in song and has_uri:
+                    tagged = dict(song)
+                    tagged["_playlist_source"] = playlist_path
+                    songs.append(tagged)
+                else:
+                    warnings.append(
+                        f"Invalid song in {playlist_path}: missing year or uri"
+                    )
+
+        except (OSError, ValueError) as err:
+            warnings.append(f"Failed to load {playlist_path}: {err}")
+
+    return songs, warnings
+
+
+def _read_playlist_text(path: Path) -> str:
+    """Read a playlist file (blocking; callers hand this to the executor)."""
+    return path.read_text(encoding="utf-8")
+
+
+#: How many named tiles the end screen offers before the "search all" tile
+#: (#2648). Six tiles fit a phone in two rows; the sixth is always search, so
+#: five of them name a playlist.
+NEXT_PLAYLIST_TILE_COUNT = 5
+
+
+def playlist_rel_path(playlist_dir: Path, meta: dict[str, Any]) -> str:
+    """Return a discovery meta's path relative to the playlist directory.
+
+    Discovery reports absolute paths; every client-facing API — the wizard, the
+    create-game body, ``GameState.playlists`` — speaks the relative one. Falls
+    back to the filename when the meta somehow sits outside the directory,
+    which keeps a malformed entry out of the picker rather than crashing it.
+    """
+    try:
+        return str(Path(meta["path"]).relative_to(playlist_dir))
+    except (KeyError, ValueError):
+        return str(meta.get("filename", ""))
+
+
+def build_next_playlist_tiles(
+    playlists: list[dict[str, Any]],
+    playlist_dir: Path,
+    current_paths: list[str],
+    recent_stems: list[str],
+    limit: int = NEXT_PLAYLIST_TILE_COUNT,
+) -> list[dict[str, Any]]:
+    """Pick the playlists the end screen offers as tiles (#2648).
+
+    The rule is mechanical, in three passes, so the same room always sees the
+    same grid:
+
+    1. **The one just played** comes first and is marked ``current``. A game
+       built from several playlists collapses into a single tile that re-plays
+       the whole selection — that is what "again" means for such a game.
+    2. **Most recently played, newest first**, from the local analytics game
+       log (``recent_stems`` — file stems, which is what a GameRecord stores).
+       This is the answer to "what does this household actually put on".
+    3. **The catalogue, in discovery order**, to fill whatever the first two
+       passes left empty. A fresh install has no history at all, and a grid of
+       two tiles next to a search box is worse than a full one.
+
+    Playlists that discovery found unusable (no playable songs) never make it
+    into a tile — offering one is offering a dead end.
+    """
+    by_rel: dict[str, dict[str, Any]] = {}
+    by_stem: dict[str, dict[str, Any]] = {}
+    for meta in playlists:
+        if not meta.get("song_count"):
+            continue
+        rel = playlist_rel_path(playlist_dir, meta)
+        if not rel:
+            continue
+        by_rel[rel] = meta
+        by_stem.setdefault(Path(rel).stem, meta)
+
+    tiles: list[dict[str, Any]] = []
+    used: set[str] = set()
+
+    def tile(paths: list[str], reason: str) -> dict[str, Any]:
+        metas = [by_rel[p] for p in paths]
+        return {
+            "paths": paths,
+            "name": str(metas[0].get("name") or Path(paths[0]).stem),
+            "extra": len(paths) - 1,
+            "song_count": sum(int(m.get("song_count") or 0) for m in metas),
+            "reason": reason,
+        }
+
+    playable_current = [p for p in current_paths if p in by_rel]
+    if playable_current:
+        tiles.append(tile(playable_current, "current"))
+        used.update(playable_current)
+
+    for stem in recent_stems:
+        if len(tiles) >= limit:
+            break
+        meta = by_stem.get(stem)
+        if meta is None:
+            continue
+        rel = playlist_rel_path(playlist_dir, meta)
+        if rel in used:
+            continue
+        used.add(rel)
+        tiles.append(tile([rel], "recent"))
+
+    for rel in by_rel:
+        if len(tiles) >= limit:
+            break
+        if rel in used:
+            continue
+        used.add(rel)
+        tiles.append(tile([rel], "catalog"))
+
+    return tiles
+
+
 # #2583: `async_load_and_validate_playlist` ended this file. It read,
 # parsed and validated a playlist in one call, but all three production
 # paths call `validate_playlist()` on an already-parsed document instead,

@@ -409,7 +409,20 @@
     "bestStreak": "Beste Serie",
     "roundsPlayed": "Gespielte Runden",
     "betsWon": "Gewonnene Wetten",
-    "fullRankings": "Vollständige Rangliste"
+    "fullRankings": "Vollständige Rangliste",
+    "nextTitle": "Was als Nächstes?",
+    "nextJustPlayed": "gerade gespielt",
+    "nextSongCount": "{count} Titel",
+    "nextMorePlaylists": "+{count} weitere",
+    "nextSearchAll": "Alle {count}",
+    "nextSearchSub": "durchsuchen",
+    "nextSearchPlaceholder": "Playlists durchsuchen",
+    "nextNoResults": "Keine Playlist passt dazu",
+    "nextGo": "Los mit {name}",
+    "nextEveryoneStays": "Alle bleiben verbunden",
+    "hostPicking": "{name} sucht die nächste Playlist aus — bleib dran",
+    "hostPickingNoName": "Der Gastgeber sucht die nächste Playlist aus — bleib dran",
+    "staysConnected": "Dein Name bleibt · kein neues Scannen"
   },
   "admin": {
     "alreadyJoined": "Du bist bereits als {name} dabei",

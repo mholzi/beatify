@@ -47,6 +47,8 @@ import {
 import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown, startRevealStaging } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
+// #2648: the end screen's playlist picker owns the primary button's label.
+import { invalidateNextPlaylists, resetGoButton } from './player-next-playlist.js';
 
 // #2585: the guest's phone speaks the guest's language. `guestLanguage()` is
 // the stored chip tap, else the browser's own preference; null means "no
@@ -989,9 +991,14 @@ function handleServerMessage(data) {
         stopConfetti();
         resetLeaderboardSummary();  // #1663: drop the previous game's leader badge
         showView('lobby-view');
-        // Reset any rematch button spinner (in case admin triggered this)
-        var rematchBtn = document.getElementById('player-rematch-btn');
-        if (rematchBtn) { rematchBtn.disabled = false; rematchBtn.textContent = '🔁'; }
+        // Reset any rematch button spinner (in case admin triggered this).
+        // #2648: the picker owns the label now — it names the playlist the
+        // button will start, so a hard-coded '🔁' here would overwrite it with
+        // an emoji the host never chose.
+        resetGoButton();
+        // The next podium is a different game: the playlist just played and
+        // the recently-played history will both have moved on by then.
+        invalidateNextPlaylists();
         var sessionId = getSessionCookie();
         if (sessionId) {
             if (state.ws && state.ws.readyState === WebSocket.OPEN) {

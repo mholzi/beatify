@@ -42,7 +42,9 @@ public API and every caller / test are unchanged.
   The snapshot is a :class:`~custom_components.beatify.game.config.GameOptions`
   read back by field name (#2635), not a hand-written dict — the dict was a
   transcript of ``create_game``'s parameter list, and an option missing from it
-  silently fell back to its default on the rematch.
+  silently fell back to its default on the rematch. Since #2648 it also takes
+  an optional new song list + playlist selection, so the next game can be a
+  different playlist without anyone leaving the room.
 * ``_detect_storefront`` — resolves the Apple-Music storefront (#808 follow-up)
   from ``hass.config.country`` (lower-cased) or ``None``; used only by the two
   builders above.
@@ -465,11 +467,48 @@ class GameSetupMixin:
             self.clear_all_sessions()
             self._notify_state_callbacks()
 
-    def rematch_game(self) -> None:
-        """Reset game for rematch, preserving connected players (Issue #108)."""
+    def rematch_game(
+        self,
+        songs: list[dict[str, Any]] | None = None,
+        playlists: list[str] | None = None,
+    ) -> None:
+        """Reset game for rematch, preserving connected players (Issue #108).
+
+        #2648: the next game may use different music. Pass ``songs`` (already
+        loaded and tagged) plus the ``playlists`` they came from and the
+        rematch swaps the content while everything else — the players, their
+        names, their sessions, and every setting the host configured — carries
+        over exactly as it always has. Omit both and this is the historic
+        same-playlist rematch, unchanged.
+
+        Raises :class:`NoPlayableSongsError` when the new songs yield nothing
+        the current provider can play. The check runs BEFORE anything is
+        mutated, so a refused swap leaves the finished game standing and the
+        host still looking at the end screen.
+        """
         from .state import GamePhase
 
         _LOGGER.info("Rematch initiated from game: %s", self.game_id)
+
+        swap_songs: list[dict[str, Any]] | None = None
+        if songs is not None:
+            swap_songs = list(songs)
+            # Provider, storefront, ramp-up and the round cap do not change
+            # across a rematch, so probing with today's values is exactly what
+            # the rebuild further down will do with them.
+            probe = self._build_playlist_manager(
+                swap_songs,
+                self.provider,
+                self._detect_storefront(),
+                bool(getattr(self, "rampup_order_enabled", False)),
+                self.max_rounds,
+            )
+            if not probe.has_playable_songs():
+                raise NoPlayableSongsError(
+                    f"No playable songs for provider '{self.provider}' in the "
+                    f"selected playlist(s). Pick a different playlist."
+                )
+
         self.cancel_timer()
 
         # Preserve game settings that the admin configured (Issue #591).
@@ -484,6 +523,12 @@ class GameSetupMixin:
         carryover = {name: getattr(self, name) for name in REMATCH_CARRYOVER_ATTRS}
         # The rematch works on its own copy of the song list.
         carryover["songs"] = list(carryover["songs"])
+        if swap_songs is not None:
+            # #2648: the swap replaces the content only. It goes through the
+            # same carryover dict so the restore loop below stays the single
+            # place that writes these fields.
+            carryover["songs"] = swap_songs
+            carryover["playlists"] = list(playlists or [])
 
         self._reset_game_internals()
         # #1725: the playoff counters are runtime state, not config fields, so

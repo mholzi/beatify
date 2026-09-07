@@ -11,7 +11,11 @@ from custom_components.beatify.const import DEFAULT_ROUND_DURATION, DOMAIN
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.server.views import StartGameView
 
-from .conftest import VALID_START_GAME_PLAYLIST, make_start_game_request
+from .conftest import (
+    VALID_START_GAME_PLAYLIST,
+    make_start_game_request,
+    write_start_game_playlist,
+)
 
 
 def _hass_with_game(phase: GamePhase) -> MagicMock:
@@ -148,7 +152,7 @@ def _twin_registry_entry(entity_id: str, platform: str, unique_id: str) -> Magic
     return entry
 
 
-def _twin_start_game_env(media_player: str, entries: list[MagicMock]):
+def _twin_start_game_env(media_player: str, entries: list[MagicMock], tmp_path=None):
     """A StartGameView whose entity registry serves both the twin remap
     (``.entities.values()``) and per-entity platform lookup (``.async_get``).
 
@@ -167,7 +171,7 @@ def _twin_start_game_env(media_player: str, entries: list[MagicMock]):
     media_state = MagicMock()
     media_state.state = "playing"
     hass.states.get.return_value = media_state
-    hass.config.path.return_value = "/tmp/beatify/playlists"
+    hass.config.path.return_value = str(write_start_game_playlist(tmp_path))
 
     async def _executor(func, *args):
         return VALID_START_GAME_PLAYLIST
@@ -186,7 +190,7 @@ def _twin_start_game_env(media_player: str, entries: list[MagicMock]):
 class TestNativeTwinRemapAtStart:
     """StartGameView remaps a stale native-twin selection to its MA twin (#1627)."""
 
-    async def test_native_twin_id_remapped_to_ma_twin(self):
+    async def test_native_twin_id_remapped_to_ma_twin(self, tmp_path):
         entries = [
             _twin_registry_entry(
                 "media_player.esszimmer", "music_assistant", "RINCON_X"
@@ -194,7 +198,7 @@ class TestNativeTwinRemapAtStart:
             _twin_registry_entry("media_player.unnamed_room", "sonos", "RINCON_X"),
         ]
         game_state, hass, body, registry = _twin_start_game_env(
-            "media_player.unnamed_room", entries
+            "media_player.unnamed_room", entries, tmp_path
         )
 
         with (
@@ -202,7 +206,6 @@ class TestNativeTwinRemapAtStart:
                 "custom_components.beatify.server.game_views.is_authorized_http",
                 new=MagicMock(return_value=True),
             ),
-            patch("custom_components.beatify.server.game_views.Path") as mock_path_cls,
             patch(
                 "custom_components.beatify.server.game_views.er.async_get",
                 return_value=registry,
@@ -212,15 +215,6 @@ class TestNativeTwinRemapAtStart:
                 return_value=registry,
             ),
         ):
-            mock_path = MagicMock()
-            full_path = MagicMock()
-            full_path.resolve.return_value = full_path
-            full_path.is_relative_to.return_value = True
-            full_path.exists.return_value = True
-            mock_path.resolve.return_value = mock_path
-            mock_path.__truediv__.return_value = full_path
-            mock_path_cls.return_value = mock_path
-
             view = StartGameView(hass)
             resp = await view.post(make_start_game_request(hass, body))
 
@@ -229,7 +223,7 @@ class TestNativeTwinRemapAtStart:
         assert game_state.media_player == "media_player.esszimmer"
         assert game_state.platform == "music_assistant"
 
-    async def test_normal_id_untouched(self):
+    async def test_normal_id_untouched(self, tmp_path):
         entries = [
             _twin_registry_entry(
                 "media_player.esszimmer", "music_assistant", "RINCON_X"
@@ -237,7 +231,7 @@ class TestNativeTwinRemapAtStart:
             _twin_registry_entry("media_player.kitchen", "sonos", "RINCON_Y"),
         ]
         game_state, hass, body, registry = _twin_start_game_env(
-            "media_player.esszimmer", entries
+            "media_player.esszimmer", entries, tmp_path
         )
 
         with (
@@ -245,7 +239,6 @@ class TestNativeTwinRemapAtStart:
                 "custom_components.beatify.server.game_views.is_authorized_http",
                 new=MagicMock(return_value=True),
             ),
-            patch("custom_components.beatify.server.game_views.Path") as mock_path_cls,
             patch(
                 "custom_components.beatify.server.game_views.er.async_get",
                 return_value=registry,
@@ -255,15 +248,6 @@ class TestNativeTwinRemapAtStart:
                 return_value=registry,
             ),
         ):
-            mock_path = MagicMock()
-            full_path = MagicMock()
-            full_path.resolve.return_value = full_path
-            full_path.is_relative_to.return_value = True
-            full_path.exists.return_value = True
-            mock_path.resolve.return_value = mock_path
-            mock_path.__truediv__.return_value = full_path
-            mock_path_cls.return_value = mock_path
-
             view = StartGameView(hass)
             resp = await view.post(make_start_game_request(hass, body))
 
@@ -320,7 +304,7 @@ class TestStartGameReusesDiscoveryParse:
                 new=MagicMock(return_value=True),
             ),
             patch(
-                "custom_components.beatify.server.game_views."
+                "custom_components.beatify.game.playlist."
                 "async_discover_playlists_detailed",
                 new=AsyncMock(side_effect=_fake_discovery),
             ),

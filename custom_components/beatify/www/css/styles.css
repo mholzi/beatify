@@ -2260,6 +2260,53 @@ body.theme-dark .rejoin-hint {
     color: var(--color-text-neon-muted);
 }
 
+/* Dark theme — what's next picker (#2648) */
+body.theme-dark .next-playlist-title {
+    color: var(--color-text-white);
+}
+
+body.theme-dark .next-tile,
+body.theme-dark .next-result {
+    background: var(--color-bg-surface);
+    border-color: var(--color-border-neon);
+}
+
+body.theme-dark .next-tile.is-selected,
+body.theme-dark .next-result.is-selected {
+    border-color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.14);
+}
+
+body.theme-dark .next-tile-name,
+body.theme-dark .next-result-name {
+    color: var(--color-text-white);
+}
+
+body.theme-dark .next-tile-sub,
+body.theme-dark .next-result-count,
+body.theme-dark .next-search-empty,
+body.theme-dark .next-playlist-stay {
+    color: var(--color-text-neon-muted);
+}
+
+body.theme-dark .next-tile--current .next-tile-sub {
+    color: var(--color-accent-secondary);
+}
+
+body.theme-dark .next-search-input {
+    color: var(--color-text-white);
+    background: var(--color-bg-surface);
+    border-color: var(--color-border-neon);
+}
+
+body.theme-dark .end-waiting-line {
+    color: var(--color-text-white);
+}
+
+body.theme-dark .end-waiting-keep {
+    color: var(--color-text-neon-muted);
+}
+
 /* Dark theme paused view */
 body.theme-dark .paused-container {
     background: var(--color-bg-primary);
@@ -7059,6 +7106,158 @@ body.theme-dark .result-value.is-bet-lost {
 .new-game-btn:disabled {
     background: var(--color-text-light);
     cursor: not-allowed;
+}
+
+/* ============================================
+   What's next — the end screen's playlist picker (#2648)
+   The podium is followed by the choice itself, not by a menu.
+   ============================================ */
+
+.next-playlist-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+.next-playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-sm);
+}
+
+.next-tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    text-align: left;
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    min-height: 64px;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.next-tile.is-selected {
+    border-color: var(--color-accent-brand);
+    background: var(--color-accent-brand-bg);
+}
+
+.next-tile-name {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.next-tile-sub {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.next-tile--current .next-tile-sub {
+    color: var(--color-accent-brand);
+}
+
+.next-tile--search {
+    border-style: dashed;
+}
+
+.next-playlist-search {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.next-search-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+    background: var(--color-bg-white);
+    border: 2px solid var(--color-border-medium);
+    border-radius: var(--radius-lg);
+}
+
+.next-playlist-results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.next-result {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-sm);
+    text-align: left;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.next-result.is-selected {
+    border-color: var(--color-accent-brand);
+    background: var(--color-accent-brand-bg);
+}
+
+.next-result-name {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    overflow-wrap: anywhere;
+}
+
+.next-result-count {
+    flex: 0 0 auto;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.next-search-empty {
+    margin: 0;
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.next-playlist-stay {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* The way back to the admin page. It has to exist — a host who wants other
+   guests and other settings needs it — but it must not read as a second main
+   exit, or #2648's trap is simply set again in smaller type. */
+.next-playlist-admin-link {
+    align-self: center;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    min-width: auto;
+    min-height: auto;
+}
+
+.end-waiting-line {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.end-waiting-keep {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
 }
 
 /* Player message */

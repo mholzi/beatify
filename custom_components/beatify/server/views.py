@@ -73,6 +73,7 @@ from .library_views import (  # noqa: F401 — re-exported for __init__
 
 # Re-export playlist views
 from custom_components.beatify.server.playlist_views import (  # noqa: F401
+    NextPlaylistsView,
     PlaylistRequestsView,
     SavePlaylistView,
 )

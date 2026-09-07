@@ -409,7 +409,20 @@
     "bestStreak": "Mejor racha",
     "roundsPlayed": "Rondas jugadas",
     "betsWon": "Apuestas ganadas",
-    "fullRankings": "Clasificación completa"
+    "fullRankings": "Clasificación completa",
+    "nextTitle": "¿Qué viene ahora?",
+    "nextJustPlayed": "recién sonada",
+    "nextSongCount": "{count} canciones",
+    "nextMorePlaylists": "+{count} más",
+    "nextSearchAll": "Las {count}",
+    "nextSearchSub": "explorar",
+    "nextSearchPlaceholder": "Buscar listas",
+    "nextNoResults": "Ninguna lista coincide",
+    "nextGo": "Vamos con {name}",
+    "nextEveryoneStays": "Nadie pierde la conexión",
+    "hostPicking": "{name} está eligiendo la siguiente lista — no te vayas",
+    "hostPickingNoName": "El anfitrión está eligiendo la siguiente lista — no te vayas",
+    "staysConnected": "Tu nombre se queda · sin volver a escanear"
   },
   "admin": {
     "alreadyJoined": "Ya te uniste como {name}",

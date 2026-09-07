@@ -9,6 +9,10 @@ import {
 } from './player-utils.js';
 // #1663 item 1: non-blocking toast replaces the blocking alert() (rematch failed).
 import { showToast } from './notify.js';
+// #2648: the end screen's playlist picker (variant B of the design gate).
+import {
+    bindSearchInput, loadNextPlaylists, resetGoButton, selectedPlaylists
+} from './player-next-playlist.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -67,13 +71,82 @@ export function renderEndPlayerMessage(container) {
 }
 
 /**
+ * #2648: the name of whoever is picking the next playlist.
+ *
+ * The host is a leaderboard entry like everyone else — unless they are running
+ * the game from the admin page as a spectator, in which case no entry carries
+ * `is_admin` and there is no name to use. Returns '' there rather than
+ * inventing one; `renderGuestWaiting` has a sentence for both cases.
+ *
+ * @param {Array} leaderboard
+ * @returns {string}
+ */
+export function hostNameOf(leaderboard) {
+    var entries = Array.isArray(leaderboard) ? leaderboard : [];
+    for (var i = 0; i < entries.length; i++) {
+        if (entries[i] && entries[i].is_admin && entries[i].name) {
+            return String(entries[i].name);
+        }
+    }
+    return '';
+}
+
+/**
+ * #2648: what a guest sees while the host picks the next playlist.
+ *
+ * This is the sentence the whole issue is about. Before variant B the end
+ * screen told every guest to scan the QR code again and type their name — at
+ * the moment the room was at its best, and for a disconnection that never
+ * actually happened. They were connected the whole time. So: say who is
+ * choosing, and say the thing they are afraid of losing is not going anywhere.
+ *
+ * Nodes over an innerHTML string, for the same reason as
+ * `renderEndPlayerMessage`: a player name is data.
+ *
+ * @param {HTMLElement|null} container - #end-player-message
+ * @param {string} hostName - '' when the host runs the game from the admin page
+ */
+export function renderGuestWaiting(container, hostName) {
+    if (!container) return;
+
+    var line = document.createElement('p');
+    line.className = 'end-waiting-line';
+    line.textContent = hostName
+        ? _endText(
+            'leaderboard.hostPicking',
+            { name: hostName },
+            hostName + ' is picking the next playlist — stay put'
+        )
+        : _endText(
+            'leaderboard.hostPickingNoName',
+            'The host is picking the next playlist — stay put'
+        );
+
+    var keep = document.createElement('p');
+    keep.className = 'end-waiting-keep';
+    keep.textContent = _endText(
+        'leaderboard.staysConnected',
+        'Your name stays · no rescanning'
+    );
+
+    container.innerHTML = '';
+    container.appendChild(line);
+    container.appendChild(keep);
+    container.classList.remove('hidden');
+}
+
+/**
  * i18n lookup with a real fallback. `t()` returns the KEY on a miss (#1402-B8),
  * so `t(k) || fallback` can never fire — the key is truthy. Same guard shape as
  * `_ptsLabel` above.
  */
-function _endText(key, fallback) {
-    var s = typeof utils.t === 'function' ? utils.t(key) : '';
-    if (!s || String(s) === key) return fallback;
+function _endText(key, paramsOrFallback, fallback) {
+    var s = typeof utils.t === 'function' ? utils.t(key, paramsOrFallback) : '';
+    if (!s || String(s) === key) {
+        // #2648: the second argument doubles as the interpolation params, so
+        // an interpolated key needs a third slot for the English fallback.
+        return typeof paramsOrFallback === 'string' ? paramsOrFallback : (fallback || key);
+    }
     return String(s);
 }
 
@@ -156,23 +229,35 @@ export function updateEndView(data) {
         if (newGameBtn) {
             newGameBtn.onclick = handleNewGame;
         }
+        // #2648: fill the grid before the host looks at it. The picker owns
+        // the button's label from here on — it names the playlist it starts.
+        bindSearchInput();
+        loadNextPlaylists();
         // Wire up rematch button (Issue #254)
         var rematchBtn = document.getElementById('player-rematch-btn');
         if (rematchBtn) {
             rematchBtn.onclick = function() {
                 rematchBtn.disabled = true;
-                var origText = rematchBtn.textContent;
                 rematchBtn.textContent = '⏳';
+
+                // #2648: null means "the playlist that just played", which is
+                // exactly the request the server has always understood. Only a
+                // real change puts a `playlists` field on the wire.
+                var playlists = selectedPlaylists();
 
                 // Issue #535: Prefer WebSocket for rematch (avoids admin token issue)
                 if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-                    state.ws.send(JSON.stringify({ type: 'admin', action: 'rematch_game' }));
+                    var msg = { type: 'admin', action: 'rematch_game' };
+                    if (playlists) msg.playlists = playlists;
+                    state.ws.send(JSON.stringify(msg));
                     return;
                 }
 
                 BeatifyAuth.fetch('/beatify/api/rematch-game', {
                     method: 'POST',
-                    credentials: 'same-origin'
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(playlists ? { playlists: playlists } : {})
                 })
                     .then(function(resp) {
                         if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });
@@ -186,14 +271,16 @@ export function updateEndView(data) {
                     .catch(function(err) {
                         console.error('[Player] Rematch failed:', err);
                         showToast(err.message || 'Failed to start rematch');
-                        rematchBtn.disabled = false;
-                        rematchBtn.textContent = origText;
+                        resetGoButton();
                     });
             };
         }
     } else {
         if (adminControls) adminControls.classList.add('hidden');
         if (playerMessage) playerMessage.classList.remove('hidden');
+        // #2648: nobody is being thrown out any more, so the guest must not be
+        // told to scan a QR code. Say what is actually happening instead.
+        renderGuestWaiting(playerMessage, hostNameOf(leaderboard));
     }
 
     // Story 14.5: Trigger end-game celebrations (AC3, AC4)

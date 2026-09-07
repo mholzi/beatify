@@ -4,10 +4,8 @@ from __future__ import annotations
 
 import contextlib
 import functools
-import json
 import logging
 from dataclasses import replace
-from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from aiohttp import web
@@ -24,6 +22,7 @@ from custom_components.beatify.const import (
     ERR_MEDIA_PLAYER_UNAVAILABLE,
     ERR_NO_PLAYABLE_SONGS,
     ERR_NO_PLAYLISTS_SELECTED,
+    MAX_REMATCH_PLAYLISTS,
     MIN_PLAYERS,
     PROVIDER_DEFAULT,
     PROVIDER_MA_LIBRARY,
@@ -34,7 +33,7 @@ from custom_components.beatify.const import (
 )
 from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
-    async_discover_playlists_detailed,
+    async_load_songs_from_paths,
 )
 from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
@@ -44,7 +43,6 @@ from custom_components.beatify.server.base import (
     BeatifyAdminView,
     RateLimitMixin,
     _json_error,
-    _read_file,
 )
 from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
@@ -330,66 +328,14 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "(popularity/genre settings do not apply to saved playlists)",
                 len(playlist_paths),
             )
-        warnings: list[str] = []
-        playlist_dir = Path(self.hass.config.path("beatify/playlists"))
-
-        # #1766: discovery already read+parsed every playlist file (memoised,
-        # off-loop, and refreshed by the /api/status poll seconds before the
-        # Start tap). Reuse that parse instead of re-reading + re-parsing each
-        # ~600-song document on the event loop at this latency-sensitive moment.
-        # ``songs_by_path`` is keyed by the same unresolved glob path the picker
-        # sends, so a hit is a plain dict lookup; only a playlist added since the
-        # last discovery walk (a cache miss) falls back to an executor read.
-        _metas, songs_by_path = await async_discover_playlists_detailed(self.hass)
-
-        for playlist_path in playlist_paths:
-            try:
-                full_path = playlist_dir / playlist_path
-                # Security: Prevent path traversal attacks
-                try:
-                    if not full_path.resolve().is_relative_to(playlist_dir.resolve()):
-                        warnings.append(f"Invalid playlist path: {playlist_path}")
-                        continue
-                except ValueError:
-                    warnings.append(f"Invalid playlist path: {playlist_path}")
-                    continue
-
-                playlist_songs = songs_by_path.get(str(full_path))
-                if playlist_songs is None:
-                    # Cache miss (added since the last discovery walk) — fall back
-                    # to the executor read + parse so the loop stays unblocked.
-                    resolved = full_path.resolve()
-                    if not resolved.exists():
-                        warnings.append(f"Playlist not found: {playlist_path}")
-                        continue
-                    file_content = await self.hass.async_add_executor_job(
-                        _read_file, resolved
-                    )
-                    playlist_songs = json.loads(file_content).get("songs", [])
-
-                for song in playlist_songs:
-                    has_uri = any(
-                        song.get(k)
-                        for k in (
-                            "uri",
-                            "uri_spotify",
-                            "uri_youtube_music",
-                            "uri_tidal",
-                            "uri_deezer",
-                            "uri_apple_music",
-                        )
-                    )
-                    if "year" in song and has_uri:
-                        tagged = dict(song)
-                        tagged["_playlist_source"] = playlist_path
-                        songs.append(tagged)
-                    else:
-                        warnings.append(
-                            f"Invalid song in {playlist_path}: missing year or uri"
-                        )
-
-            except (OSError, ValueError) as err:
-                warnings.append(f"Failed to load {playlist_path}: {err}")
+        # #2648: the read/validate/tag loop moved to game/playlist.py so the
+        # rematch's playlist swap runs the very same one — including the
+        # path-traversal guard and the #1766 reuse of the memoised discovery
+        # parse. Two copies of that would have been two things to keep in step.
+        file_songs, warnings = await async_load_songs_from_paths(
+            self.hass, playlist_paths
+        )
+        songs.extend(file_songs)
 
         if not songs:
             return _json_error(
@@ -885,8 +831,45 @@ class RematchGameView(HomeAssistantView):
                 "Can only rematch from END phase", 400, code="INVALID_PHASE"
             )
 
+        # #2648: the same optional playlist swap the WebSocket path takes. This
+        # view is the fallback player-end.js uses when the socket is gone, so
+        # it has to understand the same request or the swap silently degrades
+        # into "the same playlist again" at the worst possible moment.
+        swap_songs: list[dict[str, Any]] | None = None
+        swap_paths: list[str] | None = None
+        try:
+            body = await request.json()
+        except (ValueError, UnicodeDecodeError):
+            body = {}
+        raw_playlists = body.get("playlists") if isinstance(body, dict) else None
+        if raw_playlists is not None:
+            if not isinstance(raw_playlists, list) or not all(
+                isinstance(p, str) for p in raw_playlists
+            ):
+                return _json_error(
+                    "playlists must be a list of paths", 400, code="INVALID_REQUEST"
+                )
+            swap_paths = raw_playlists[:MAX_REMATCH_PLAYLISTS]
+            if not swap_paths:
+                return _json_error(
+                    "No playlists selected", 400, code=ERR_NO_PLAYLISTS_SELECTED
+                )
+            swap_songs, _warnings = await async_load_songs_from_paths(
+                self.hass, swap_paths
+            )
+            if not swap_songs:
+                return _json_error(
+                    "No valid songs found in selected playlists",
+                    400,
+                    code=ERR_NO_PLAYABLE_SONGS,
+                )
+
         player_count = len(game_state.players)
-        game_state.rematch_game()
+        try:
+            game_state.rematch_game(songs=swap_songs, playlists=swap_paths)
+        except NoPlayableSongsError as err:
+            # Validated before anything was mutated — the finished game stands.
+            return _json_error(str(err), 400, code=ERR_NO_PLAYABLE_SONGS)
 
         # Broadcast to WebSocket clients
         ws_handler = data.get("ws_handler")

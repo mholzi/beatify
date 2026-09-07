@@ -409,7 +409,20 @@
     "bestStreak": "Best Streak",
     "roundsPlayed": "Rounds Played",
     "betsWon": "Bets Won",
-    "fullRankings": "Full Rankings"
+    "fullRankings": "Full Rankings",
+    "nextTitle": "What's next?",
+    "nextJustPlayed": "just played",
+    "nextSongCount": "{count} songs",
+    "nextMorePlaylists": "+{count} more",
+    "nextSearchAll": "All {count}",
+    "nextSearchSub": "browse",
+    "nextSearchPlaceholder": "Search playlists",
+    "nextNoResults": "No playlist matches that",
+    "nextGo": "Go with {name}",
+    "nextEveryoneStays": "Everyone stays connected",
+    "hostPicking": "{name} is picking the next playlist — stay put",
+    "hostPickingNoName": "The host is picking the next playlist — stay put",
+    "staysConnected": "Your name stays · no rescanning"
   },
   "admin": {
     "alreadyJoined": "Already joined as {name}",

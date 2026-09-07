@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
 import logging
 import re
@@ -15,8 +16,12 @@ from aiohttp import ClientError, web
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
+from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.game.playlist import (
+    async_discover_playlists,
+    build_next_playlist_tiles,
     get_playlist_directory,
+    playlist_rel_path,
     summarize_rejected_songs,
     validate_playlist,
 )
@@ -434,5 +439,76 @@ class SavePlaylistView(RateLimitMixin, HomeAssistantView):
                 "success": True,
                 "path": str(written),
                 "filename": written.name,
+            }
+        )
+
+
+class NextPlaylistsView(HomeAssistantView):
+    """What the end screen offers after the podium (#2648).
+
+    Variant B of the design gate turns the end screen into the start screen: a
+    small grid of playlists plus a way into the whole catalogue, instead of a
+    menu whose only two doors were "the same again" and "throw everyone out".
+    This view answers what goes in that grid.
+
+    Unauthenticated on purpose, exactly like ``StatusView``: it is served to
+    the host's phone, which is a player page with no HA token, and the payload
+    is playlist names and song counts — the same list ``/beatify/api/status``
+    has always handed to the wizard and the playlist hub. Nothing here reveals
+    a running game's answers.
+    """
+
+    url = "/beatify/api/next-playlists"
+    name = "beatify:api:next-playlists"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Return the suggested tiles plus the full catalogue for search."""
+        metas = await async_discover_playlists(self.hass)
+        playlist_dir = get_playlist_directory(self.hass)
+
+        domain_data = self.hass.data.get(DOMAIN, {})
+        game_state = domain_data.get("game")
+        current_paths = list(getattr(game_state, "playlists", None) or [])
+
+        # The local game log records the FIRST playlist of each game as a file
+        # stem (see game/state_serialization.py), which is exactly the key the
+        # tiles need. Analytics is optional — a host who never played a game,
+        # or one running without it, simply gets the catalogue-order fallback.
+        recent_stems: list[str] = []
+        analytics = domain_data.get("analytics")
+        if analytics is not None:
+            with contextlib.suppress(Exception):
+                recent_stems = [
+                    str(item.get("name", ""))
+                    for item in analytics.get_recent_playlists(limit=24)
+                    if item.get("name")
+                ]
+
+        tiles = build_next_playlist_tiles(
+            metas, playlist_dir, current_paths, recent_stems
+        )
+
+        catalogue = [
+            {
+                "path": rel,
+                "name": str(meta.get("name") or Path(rel).stem),
+                "song_count": int(meta.get("song_count") or 0),
+                "source": meta.get("source"),
+            }
+            for meta, rel in ((m, playlist_rel_path(playlist_dir, m)) for m in metas)
+            if rel and meta.get("song_count")
+        ]
+
+        return web.json_response(
+            {
+                "current": current_paths,
+                "suggested": tiles,
+                "all": catalogue,
+                "total": len(catalogue),
             }
         )

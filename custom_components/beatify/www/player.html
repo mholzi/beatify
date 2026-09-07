@@ -1011,11 +1011,24 @@
                     </div>
                 </div>
 
-                <!-- Admin controls -->
+                <!-- Admin controls — #2648: the end screen IS the start screen.
+                     Not a menu with two doors, but the choice itself: a grid of
+                     playlists, one primary button naming what it will start, and
+                     a quiet way back to the admin page that is no longer a
+                     co-equal exit. -->
                 <div id="end-admin-controls" class="end-admin-controls hidden">
+                    <div class="next-playlist-title" data-i18n="leaderboard.nextTitle">What's next?</div>
+                    <div id="next-playlist-grid" class="next-playlist-grid"></div>
+                    <div id="next-playlist-search" class="next-playlist-search hidden">
+                        <input id="next-playlist-search-input" type="search" class="next-search-input"
+                               autocomplete="off" data-i18n-placeholder="leaderboard.nextSearchPlaceholder"
+                               placeholder="Search playlists">
+                        <div id="next-playlist-results" class="next-playlist-results"></div>
+                    </div>
                     <button id="player-rematch-btn" class="btn btn-primary btn-large btn-full-width" data-i18n="admin.rematch">Revanche</button>
-                    <button id="new-game-btn" class="new-game-btn" data-i18n="admin.startNewGame">
-                        Start New Game
+                    <div class="next-playlist-stay" data-i18n="leaderboard.nextEveryoneStays">Everyone stays connected</div>
+                    <button id="new-game-btn" class="next-playlist-admin-link" type="button" data-i18n="admin.openAdminPage">
+                        Open the admin page
                     </button>
                 </div>
 
