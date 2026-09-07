@@ -367,6 +367,30 @@ class TestRegistryShape:
         ids = [p.id for p in PROVIDERS]
         assert len(ids) == len(set(ids)), ids
 
+    def test_const_provider_identifiers_and_the_registry_agree(self):
+        """`const.PROVIDER_*` is the other place an identifier is spelled out.
+
+        They are the names the rest of the codebase imports, so a constant
+        without a registry entry is a provider half the code believes in, and a
+        registry entry without a constant is one the older call sites cannot
+        name.
+        """
+        from custom_components.beatify import const
+
+        constants = {
+            value
+            for name, value in vars(const).items()
+            if name.startswith("PROVIDER_")
+            and name != "PROVIDER_DEFAULT"
+            and isinstance(value, str)
+        }
+        assert constants == set(registry.PROVIDER_IDS), (
+            "const.PROVIDER_* and providers.PROVIDERS disagree: "
+            f"only in const: {sorted(constants - set(registry.PROVIDER_IDS))}, "
+            f"only in the registry: {sorted(set(registry.PROVIDER_IDS) - constants)}"
+        )
+        assert const.PROVIDER_DEFAULT in registry.PROVIDERS_BY_ID
+
     def test_every_provider_names_at_least_one_platform(self):
         orphans = [p.id for p in PROVIDERS if not p.platforms]
         assert not orphans, f"provider(s) no speaker can play: {orphans}"
