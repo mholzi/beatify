@@ -355,7 +355,17 @@ async def admin_end_game(
 
     # #1702: record + end ceremony run once per game (shared claim with the
     # next_round terminal path).
-    await finalize_and_end(handler, game_state)
+    #
+    # #2689: allow_playoff=False, mirroring the REST EndGameView. End is the
+    # host saying "stop now", not a game reaching its natural end, and this WS
+    # path is the one the admin page actually uses. With the finale tiebreaker
+    # armed and a tie for first during REVEAL, the default allow_playoff=True
+    # made maybe_start_finale_playoff freeze every non-leader as a playoff
+    # spectator and start another song — so End visibly continued the game and
+    # only a second tap ended it, with the spectator flags on the end screen.
+    # The finale tiebreaker still fires on the paths it was written for: the
+    # last-round next_round branch and the REVEAL auto-advance.
+    await finalize_and_end(handler, game_state, allow_playoff=False)
     _LOGGER.info(
         "Admin ended game early at round %d - players preserved for rematch",
         game_state.round,
@@ -450,20 +460,41 @@ async def admin_rematch_game(
     await handler.cleanup_game_tasks()
 
     player_count = len(game_state.players)
+    # #2706: remember the spectator socket before rematch_game() runs — its
+    # reset callback (clear_admin_socket) nulls handler.admin_ws.
+    previous_admin_ws = handler.admin_ws
+    # #2706: decide on the socket identity BEFORE the rebuild, while the player
+    # records are guaranteed intact.
+    sender_is_participant = game_state.get_player_by_ws(ws) is not None
     game_state.rematch_game()
     # Issue #841 Phase 3: announce the rematch (use case 20). TTS survives
     # rematch_game() — only end_game() tears the service down.
     await game_state.announce_rematch()
     _LOGGER.info("Rematch started with %d players", player_count)
 
-    handler.admin_ws = ws
-    await ws.send_json(
-        {
-            "type": "admin_token_update",
-            "admin_token": game_state.admin_token,
-            "game_id": game_state.game_id,
-        }
-    )
+    # #2706: this action is reachable from EITHER admin-capable socket, and
+    # www/js/player-end.js sends it over the host's PARTICIPANT socket. Handing
+    # that phone the admin slot gave it the unredacted broadcast (answers,
+    # admin_song) for the whole rematch — exactly what _send_state_to forbids —
+    # while the admin page, which only sends admin_connect once on open, was
+    # left with the redacted copy and blank reveal fields. Only a genuine
+    # spectator socket may claim the slot; a phone-initiated rematch restores
+    # the spectator socket rematch_game() just cleared, if it is still open.
+    if not sender_is_participant:
+        handler.admin_ws = ws
+    elif previous_admin_ws is not None and not previous_admin_ws.closed:
+        handler.admin_ws = previous_admin_ws
+
+    # The new admin_token belongs to whoever holds the admin slot; the
+    # requesting socket gets it too, since it asked for the rematch.
+    token_msg = {
+        "type": "admin_token_update",
+        "admin_token": game_state.admin_token,
+        "game_id": game_state.game_id,
+    }
+    await ws.send_json(token_msg)
+    if handler.admin_ws is not None and handler.admin_ws is not ws:
+        await handler.admin_ws.send_json(token_msg)
     await handler.broadcast({"type": "rematch_started"})
     await handler.broadcast_state()
 

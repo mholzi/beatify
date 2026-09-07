@@ -20,7 +20,12 @@ from custom_components.beatify.game.state import (
     FINALE_PLAYOFF_MAX_ROUNDS,
     GamePhase,
 )
+from custom_components.beatify.server.ws_handlers import (
+    admin_end_game,
+    admin_next_round,
+)
 from tests.conftest import make_game_state, make_songs
+from tests.unit.test_websocket import _make_handler_and_game
 
 
 # ---------------------------------------------------------------------------
@@ -322,3 +327,74 @@ class TestFinalePlumbing:
         assert gs.finale_tiebreaker_enabled is True
         assert gs._finale_playoff_rounds == 0
         assert gs._finale_playoff_active is False
+
+
+# ---------------------------------------------------------------------------
+# #2689 — the End button ends the game; it never arms a playoff
+# ---------------------------------------------------------------------------
+
+
+async def _handler_game_in_reveal_tie():
+    """A tiebreaker-armed game sitting in REVEAL on a two-way tie for first.
+
+    Round 1 of a five-song game, so four unplayed songs remain — every
+    precondition ``maybe_start_finale_playoff`` looks for is satisfied.
+    """
+    handler, game_state, ws = _make_handler_and_game(
+        songs=make_songs(5), finale_tiebreaker_enabled=True
+    )
+    game_state._media_player_service = _stub_media_service()
+    game_state.platform = "music_assistant"
+    for name in ("Alice", "Bob", "Carol"):
+        _add_live_player(game_state, name)
+    await game_state.start_round()
+    _reveal_with_scores(game_state, {"Alice": 10, "Bob": 10, "Carol": 4})
+    assert game_state.songs_remaining >= 1
+
+    game_state.advance_to_end = AsyncMock()
+    game_state.finalize_game = MagicMock(return_value={})
+    handler.broadcast_state = AsyncMock()
+    return handler, game_state, ws
+
+
+class TestEndGameNeverStartsAPlayoff:
+    """#2689 — ``test_no_trigger_outside_reveal`` above covers PLAYING only.
+
+    From REVEAL the gate is meant to fire, which is exactly why the host's End
+    button has to say so explicitly. Before the fix the WebSocket path — the
+    one the admin page uses — ran with the default ``allow_playoff=True``, so
+    End during REVEAL froze every non-leader as a playoff spectator and started
+    another song instead of ending the game.
+    """
+
+    async def test_end_during_reveal_ends_instead_of_arming_a_playoff(self):
+        handler, game_state, ws = await _handler_game_in_reveal_tie()
+        round_before = game_state.round
+
+        await admin_end_game(handler, ws, {"action": "end_game"}, game_state)
+
+        # The end ceremony ran — the game really ended on this one tap.
+        game_state.advance_to_end.assert_awaited_once()
+        # No playoff was armed.
+        assert game_state._finale_playoff_active is False
+        assert game_state._finale_playoff_rounds == 0
+        assert game_state.round == round_before
+        # Nobody was benched — the end screen carries no spectator flags.
+        for name in ("Alice", "Bob", "Carol"):
+            assert game_state.get_player(name).playoff_spectator is False
+
+    async def test_the_natural_end_path_still_arms_the_playoff(self):
+        """The door that must stay open: the last-round ``next_round`` branch.
+
+        Only the host's explicit End opts out; the game reaching its own end
+        still offers the sudden-death round.
+        """
+        handler, game_state, ws = await _handler_game_in_reveal_tie()
+        game_state.last_round = True
+
+        await admin_next_round(handler, ws, {"action": "next_round"}, game_state)
+
+        assert game_state._finale_playoff_active is True
+        assert game_state._finale_playoff_rounds == 1
+        assert game_state.get_player("Carol").playoff_spectator is True
+        game_state.advance_to_end.assert_not_awaited()
