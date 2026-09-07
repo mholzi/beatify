@@ -1858,6 +1858,26 @@ body.theme-dark .name-input::placeholder {
     color: var(--color-text-neon-muted);
 }
 
+/* Dark theme guest language line (#2585) */
+body.theme-dark .join-language-line {
+    color: var(--color-text-neon-muted);
+}
+
+body.theme-dark .join-language-toggle {
+    color: var(--color-accent-primary);
+}
+
+body.theme-dark .join-language-chip {
+    background: var(--color-dark-surface);
+    border-color: var(--color-border-neon);
+    color: var(--color-text-neon-muted);
+}
+
+body.theme-dark .join-language-chip:hover {
+    border-color: var(--color-accent-primary);
+    color: var(--color-text-white);
+}
+
 /* Dark theme join button */
 body.theme-dark .join-btn {
     background: var(--color-accent-primary);
@@ -2576,6 +2596,63 @@ body.theme-dark .qr-modal-label {
     font-size: var(--font-size-base);
     color: var(--color-error);
     text-align: left;
+}
+
+/* #2585: guest language line under the join button. Quiet on purpose — it is a
+   statement the guest may ignore, not a step in the join flow. */
+.join-language {
+    margin-top: var(--space-md);
+    text-align: center;
+}
+
+.join-language-line {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.join-language-current {
+    white-space: nowrap;
+}
+
+.join-language-sep {
+    margin: 0 6px;
+}
+
+.join-language-toggle {
+    background: none;
+    border: none;
+    padding: 6px 4px;
+    font: inherit;
+    color: var(--color-accent-blue);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.join-language-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.join-language-chip {
+    padding: 10px 14px;
+    /* 44px: the chips sit close together on a phone and every guest taps one
+       exactly once, so an undersized target here is a first impression. */
+    min-height: 44px;
+    font-size: var(--font-size-base);
+    background: transparent;
+    border: 1px solid var(--color-border-medium);
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+    cursor: pointer;
+}
+
+.join-language-chip:hover {
+    border-color: var(--color-accent-blue);
+    color: var(--color-accent-blue);
 }
 
 /* ==========================================

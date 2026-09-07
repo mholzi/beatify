@@ -134,6 +134,23 @@
                     <p id="name-validation-msg" class="validation-msg hidden"></p>
                 </div>
                 <button id="join-btn" class="btn btn-primary btn-glow join-btn" disabled data-i18n="join.joinButton">Join Game</button>
+                <!-- #2585: the phone states the language it is going to speak
+                and offers to be contradicted. Not a question: a Dutch phone at
+                a German host's party simply reads Dutch, and the link is there
+                for the guest the guess got wrong. Filled in by
+                player-language.js, which also hides the row when i18n failed to
+                load — a row that cannot name a language is worse than none. -->
+                <div id="join-language" class="join-language hidden">
+                    <p class="join-language-line">
+                        <span id="join-language-current" class="join-language-current"></span>
+                        <span class="join-language-sep" aria-hidden="true">&middot;</span>
+                        <button type="button" id="join-language-toggle" class="join-language-toggle"
+                                aria-expanded="false" aria-controls="join-language-chips"
+                                data-i18n="join.otherLanguage">other language</button>
+                    </p>
+                    <div id="join-language-chips" class="join-language-chips hidden" role="group"
+                         aria-label="Choose your language" data-i18n-aria-label="join.chooseLanguage"></div>
+                </div>
             </div>
         </div>
 

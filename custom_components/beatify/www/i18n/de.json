@@ -20,7 +20,9 @@
     "joiningButton": "Beitritt...",
     "scanQr": "QR-Code scannen",
     "shareQr": "Teile diesen QR-Code",
-    "reconnecting": "Verbinde... (Versuch {attempt}/{max})"
+    "reconnecting": "Verbinde... (Versuch {attempt}/{max})",
+    "otherLanguage": "andere Sprache",
+    "chooseLanguage": "Wähle deine Sprache"
   },
   "player": {
     "leaveGameTitle": "Spiel verlassen?",

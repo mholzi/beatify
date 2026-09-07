@@ -123,8 +123,11 @@ describe('#2723 host drawer — built as a container, not a lid on one switch', 
 
     it('is re-rendered when the locale lands, because its subtitle is a sentence', () => {
         // A label can be swapped in place; generated prose has to be rebuilt.
+        // #2585 made the argument a variable — the frame's language is only the
+        // default now, and a guest's own language outranks it — so match any
+        // identifier rather than the old `data.language` literal.
         const block = PLAYER_CORE.match(
-            /BeatifyI18n\.setLanguage\(data\.language\)[\s\S]*?\}\);/
+            /BeatifyI18n\.setLanguage\([A-Za-z0-9_.]+\)[\s\S]*?\}\);/
         );
         expect(block).not.toBeNull();
         expect(block[0]).toContain('renderHostDrawer(data)');

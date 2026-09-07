@@ -20,7 +20,9 @@
     "joiningButton": "Bezig met deelnemen...",
     "scanQr": "Scan de QR-code om mee te doen",
     "shareQr": "Deel deze QR-code",
-    "reconnecting": "Opnieuw verbinden... (Poging {attempt}/{max})"
+    "reconnecting": "Opnieuw verbinden... (Poging {attempt}/{max})",
+    "otherLanguage": "andere taal",
+    "chooseLanguage": "Kies je taal"
   },
   "player": {
     "leaveGameTitle": "Spel verlaten?",

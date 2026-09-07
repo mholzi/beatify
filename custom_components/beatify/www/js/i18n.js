@@ -198,6 +198,107 @@ window.BeatifyI18n = (function() {
     var SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'nl', 'it'];
 
     /**
+     * How each supported language names itself (#2585).
+     *
+     * Deliberately NOT in the translation JSON: a language's own name is the
+     * same on every phone in the room. The Dutch au pair looking at a German
+     * host's party should read "Nederlands", not "Niederländisch" — the point
+     * of the chip is that she can recognise it without reading the rest of the
+     * screen. So this is data, not translated text.
+     *
+     * `__tests__/guest-language-2585.test.js` asserts that every code in
+     * SUPPORTED_LANGUAGES has an entry here, so adding Polish (#2475) fails a
+     * test rather than shipping a bare "PL" chip.
+     */
+    var LANGUAGE_ENDONYMS = {
+        en: { label: 'English', flag: '🇬🇧' },
+        de: { label: 'Deutsch', flag: '🇩🇪' },
+        es: { label: 'Español', flag: '🇪🇸' },
+        fr: { label: 'Français', flag: '🇫🇷' },
+        nl: { label: 'Nederlands', flag: '🇳🇱' },
+        it: { label: 'Italiano', flag: '🇮🇹' }
+    };
+
+    /**
+     * The supported codes, as a copy so a caller can't reorder the original.
+     * @returns {string[]}
+     */
+    function getSupportedLanguages() {
+        return SUPPORTED_LANGUAGES.slice();
+    }
+
+    /**
+     * One entry per supported language, in SUPPORTED_LANGUAGES order (#2585).
+     * A code with no endonym still renders — as its own uppercased code — so a
+     * seventh locale added in a hurry degrades instead of throwing.
+     * @returns {Array<{code: string, label: string, flag: string}>}
+     */
+    function getLanguageOptions() {
+        return SUPPORTED_LANGUAGES.map(function(code) {
+            var meta = LANGUAGE_ENDONYMS[code] || {};
+            return {
+                code: code,
+                label: meta.label || code.toUpperCase(),
+                flag: meta.flag || '🌐'
+            };
+        });
+    }
+
+    /**
+     * Reduce a BCP-47 tag to a supported two-letter code, or null (#2585).
+     *
+     * 'nl-BE' -> 'nl', 'PT-br' -> null. Replaces the hand-listed
+     * startsWith() ladder detectBrowserLanguage used to carry, which had to
+     * grow a branch per locale and silently answered 'en' for anything the
+     * ladder had not been taught.
+     *
+     * @param {string} tag - e.g. navigator.language
+     * @returns {string|null} - supported code, or null when nothing matches
+     */
+    function normalizeLanguage(tag) {
+        if (!tag || typeof tag !== 'string') {
+            return null;
+        }
+        var base = tag.toLowerCase().trim().split('-')[0].split('_')[0];
+        return SUPPORTED_LANGUAGES.indexOf(base) === -1 ? null : base;
+    }
+
+    /**
+     * The first supported language this browser asks for, or null (#2585).
+     *
+     * Reads navigator.languages (the ordered preference list) before
+     * navigator.language, so a phone set to Portuguese with English second
+     * lands on English rather than on nothing.
+     *
+     * Returns null — not 'en' — when no entry matches, because the caller has
+     * to tell "this phone speaks a language we ship" apart from "we have no
+     * idea"; the join screen answers the second case by following the host.
+     *
+     * @returns {string|null}
+     */
+    function matchBrowserLanguage() {
+        var tags = [];
+        if (typeof navigator !== 'undefined' && navigator) {
+            if (Array.isArray(navigator.languages)) {
+                tags = tags.concat(navigator.languages);
+            }
+            if (navigator.language) {
+                tags.push(navigator.language);
+            }
+            if (navigator.userLanguage) {
+                tags.push(navigator.userLanguage);
+            }
+        }
+        for (var i = 0; i < tags.length; i++) {
+            var code = normalizeLanguage(tags[i]);
+            if (code) {
+                return code;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Set the current language
      * @param {string} langCode - Language code ('en', 'de', 'es', or 'fr')
      * @returns {Promise<string>} - The effectively-applied (normalized) code.
@@ -305,35 +406,17 @@ window.BeatifyI18n = (function() {
     }
 
     /**
-     * Detect browser language and return 'de', 'es', or 'en' (Story 16.3)
-     * Supports Spanish variants: es, es-ES, es-MX, es-AR, etc.
-     * @returns {string} - Detected language code
+     * Detect the browser language, defaulting to English (Story 16.3).
+     *
+     * #2585: the per-locale startsWith() ladder became
+     * matchBrowserLanguage(), which is derived from SUPPORTED_LANGUAGES.
+     * This wrapper keeps the old contract — always a usable code — for
+     * init() and every existing caller.
+     *
+     * @returns {string} - Detected language code, 'en' when nothing matches
      */
     function detectBrowserLanguage() {
-        var browserLang = navigator.language || navigator.userLanguage || 'en';
-        var langLower = browserLang.toLowerCase();
-        // Check for German (de, de-DE, de-AT, etc.)
-        if (langLower.startsWith('de')) {
-            return 'de';
-        }
-        // Check for Spanish (es, es-ES, es-MX, es-AR, es-CO, etc.)
-        if (langLower.startsWith('es')) {
-            return 'es';
-        }
-        // Check for French (fr, fr-FR, fr-CA, fr-BE, fr-CH, etc.)
-        if (langLower.startsWith('fr')) {
-            return 'fr';
-        }
-        // Check for Dutch (nl, nl-NL, nl-BE, etc.)
-        if (langLower.startsWith('nl')) {
-            return 'nl';
-        }
-        // Check for Italian (it, it-IT, it-CH, etc.)
-        if (langLower.startsWith('it')) {
-            return 'it';
-        }
-        // Default to English
-        return 'en';
+        return matchBrowserLanguage() || 'en';
     }
 
     /**
@@ -378,6 +461,10 @@ window.BeatifyI18n = (function() {
         getLanguage: getLanguage,
         initPageTranslations: initPageTranslations,
         detectBrowserLanguage: detectBrowserLanguage,
+        matchBrowserLanguage: matchBrowserLanguage,
+        normalizeLanguage: normalizeLanguage,
+        getSupportedLanguages: getSupportedLanguages,
+        getLanguageOptions: getLanguageOptions,
         init: init,
         isReady: isReady,
         languageReady: languageReady

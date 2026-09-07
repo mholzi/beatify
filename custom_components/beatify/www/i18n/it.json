@@ -20,7 +20,9 @@
     "joiningButton": "Ingresso in corso...",
     "scanQr": "Inquadra il codice QR per entrare",
     "shareQr": "Condividi questo codice QR",
-    "reconnecting": "Riconnessione... (tentativo {attempt}/{max})"
+    "reconnecting": "Riconnessione... (tentativo {attempt}/{max})",
+    "otherLanguage": "altra lingua",
+    "chooseLanguage": "Scegli la tua lingua"
   },
   "player": {
     "leaveGameTitle": "Uscire dalla partita?",

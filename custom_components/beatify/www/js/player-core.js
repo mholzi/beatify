@@ -48,6 +48,13 @@ import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleAr
 
 import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
 
+// #2585: the guest's phone speaks the guest's language. `guestLanguage()` is
+// the stored chip tap, else the browser's own preference; null means "no
+// language of its own", which is the only case that follows the host.
+import {
+    guestLanguage, resolveStateLanguage, setupGuestLanguage, renderGuestLanguage
+} from './player-language.js';
+
 // #1706/#1707: coalesce REVEAL/PLAYING re-renders. REVEAL broadcasts fire for
 // every reaction/vote/override and PLAYING for every submission; without this a
 // single socket frame re-ran the whole render pipeline (full leaderboard
@@ -656,9 +663,19 @@ function handleServerMessage(data) {
         // Apply language from game state (Story 12.4, 16.3)
         if (data.language) {
             storeGameLanguage(data.language);
-            if (typeof BeatifyI18n !== 'undefined' && data.language !== BeatifyI18n.getLanguage()) {
-                BeatifyI18n.setLanguage(data.language).then(function() {
+            // #2585: the host's pick is the room's default, not a command. A
+            // phone that has a supported language of its own — tapped or
+            // detected — keeps it, and re-asserts it here in case a frame
+            // arrived before the join screen had settled. Only a phone with no
+            // supported language of its own follows the host.
+            var targetLanguage = resolveStateLanguage(guestLanguage(), data.language);
+            if (typeof BeatifyI18n !== 'undefined' && targetLanguage !== BeatifyI18n.getLanguage()) {
+                BeatifyI18n.setLanguage(targetLanguage).then(function() {
                     BeatifyI18n.initPageTranslations();
+                    // The join screen's language line names the language in
+                    // force, so it has to be redrawn when the host's pick lands
+                    // on a phone that follows it.
+                    renderGuestLanguage();
                     renderPlayerList(players);
                     if (data.difficulty) {
                         renderDifficultyBadge(data.difficulty, data.title_artist_mode);
@@ -1301,7 +1318,12 @@ async function initAll() {
     if (!i18nAvailable) {
         console.error('[Player] BeatifyI18n module failed to load - UI will use fallback text');
     } else {
-        var storedLang = getStoredLanguage();
+        // #2585: the guest's own language outranks the language the last game
+        // on this device ran in. getStoredLanguage() is a cache of the *host's*
+        // pick; it only decides the first paint when this phone has no
+        // supported language of its own, and the state frame overwrites it a
+        // moment later anyway.
+        var storedLang = guestLanguage() || getStoredLanguage();
         await BeatifyI18n.init(storedLang);
         BeatifyI18n.initPageTranslations();
     }
@@ -1312,6 +1334,7 @@ async function initAll() {
     }
 
     setupJoinForm();
+    setupGuestLanguage();
     setupTour();
     setupQRModal();
     setupInviteModal();
