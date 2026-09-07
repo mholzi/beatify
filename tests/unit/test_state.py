@@ -22,6 +22,7 @@ from custom_components.beatify.const import (
     ERR_NOT_IN_GAME,
     ERR_TARGET_NOT_SUBMITTED,
     MAX_PLAYERS,
+    SUDDEN_DEATH_MIN_PLAYERS,
 )
 from custom_components.beatify.game.state import (
     GamePhase,
@@ -2653,7 +2654,12 @@ class TestSuddenDeathLiveToggle:
 
 
 class TestSuddenDeathStartFloor:
-    """The >=3-connected-player floor enforced in StartGameplayView (#827)."""
+    """The connected-player floor enforced in StartGameplayView (#827).
+
+    #2699: the floor is ``SUDDEN_DEATH_MIN_PLAYERS`` in const.py, so the player
+    counts here are derived from it rather than typed out — moving the floor
+    should not turn these red for a reason that has nothing to do with them.
+    """
 
     def _hass(self, state: GameState) -> MagicMock:
         hass = MagicMock()
@@ -2665,11 +2671,11 @@ class TestSuddenDeathStartFloor:
         return_value=True,
     )
     async def test_below_floor_auto_disables_sudden_death(self, _auth):
-        """Starting gameplay with <3 connected players turns the mode off."""
+        """Starting gameplay one short of the floor turns the mode off."""
         state = make_game_state()
         _create_fresh_game(state, sudden_death_mode=True)  # phase = LOBBY
-        for n in ("Alice", "Bob"):  # only 2 connected
-            _add_live_player(state, n)
+        for i in range(SUDDEN_DEATH_MIN_PLAYERS - 1):  # one short
+            _add_live_player(state, f"P{i}")
         # Skip the real first-round machinery; we only assert the floor logic.
         state.start_round = AsyncMock(return_value=True)
 
@@ -2687,11 +2693,11 @@ class TestSuddenDeathStartFloor:
         return_value=True,
     )
     async def test_at_floor_keeps_sudden_death(self, _auth):
-        """With 3 connected players the mode survives the start, no warning."""
+        """Exactly at the floor the mode survives the start, no warning."""
         state = make_game_state()
         _create_fresh_game(state, sudden_death_mode=True)
-        for n in ("Alice", "Bob", "Carol"):  # exactly 3 connected
-            _add_live_player(state, n)
+        for i in range(SUDDEN_DEATH_MIN_PLAYERS):  # exactly at the floor
+            _add_live_player(state, f"P{i}")
         state.start_round = AsyncMock(return_value=True)
 
         view = StartGameplayView(self._hass(state))

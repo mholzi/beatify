@@ -689,8 +689,8 @@
     "seasonalDismiss": "Saisonvorschlag schließen",
     "suddenDeathMode": "Sudden Death",
     "suddenDeathModeHint": "Der Letzte jeder Runde scheidet aus. Wer übrig bleibt, gewinnt.",
-    "suddenDeathDisabledTooltip": "Sudden Death braucht mindestens 3 Spieler.",
-    "suddenDeathDisabledGate": "Mindestens 3 Spieler nötig",
+    "suddenDeathDisabledTooltip": "Sudden Death braucht mindestens {min} Spieler.",
+    "suddenDeathDisabledGate": "Mindestens {min} Spieler nötig",
     "suddenDeathLive": "Sudden Death",
     "library": {
       "statusLoading": "Bibliothek wird geprüft…",

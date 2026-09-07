@@ -30,6 +30,7 @@ import {
 // hints under a "keep in sync" comment that was the only safeguard.
 import {
     REVEAL_AUTO_ADVANCE_OPTIONS,
+    SUDDEN_DEATH_MIN_PLAYERS,
     autoAdvanceChipLabel,
     difficultyHint,
     normalizeRevealAutoAdvance,
@@ -1004,17 +1005,17 @@ const GAME_MODES = [
         titleKey: 'admin.suddenDeathMode',
         titleFallback: 'Sudden Death',
         hintKey: 'admin.suddenDeathModeHint',
-        hintFallback: 'When the timer runs out, the lowest-scoring player is eliminated. Last player standing wins. Requires at least 3 players.',
+        hintFallback: 'When the timer runs out, the lowest-scoring player is eliminated. Last player standing wins. Requires at least {min} players.',
         get: () => chosenSuddenDeath,
         set: (v) => { chosenSuddenDeath = v; },
     },
 ];
 
-// Issue #827 — Sudden Death needs at least 3 connected players to be playable.
+// Issue #827 — Sudden Death needs SUDDEN_DEATH_MIN_PLAYERS connected players to
+// be playable; the floor itself lives in const.py (#2699).
 // The wizard already fetches /beatify/api/status into cachedStatus; an active
 // game's connected players live under active_game.players (built by
 // build_status_response → game_state.get_state()). No game / no players ⇒ 0.
-const SUDDEN_DEATH_MIN_PLAYERS = 3;
 function _connectedPlayerCount() {
     const game = cachedStatus && cachedStatus.active_game;
     const players = game && Array.isArray(game.players) ? game.players : [];
@@ -1085,8 +1086,8 @@ function _renderCoreMode() {
 function _renderGameModes() {
     const el = document.getElementById('wiz-modes');
     if (!el) return;
-    // Issue #827 — Sudden Death is only playable with >=3 connected players.
-    // When below that, force the choice off so a <3-player game never starts in
+    // Issue #827 — Sudden Death is only playable at or above the const.py floor.
+    // When below that, force the choice off so an undersized game never starts in
     // Sudden Death, and render the card disabled (dimmed, non-interactive).
     const suddenDeathDisabled = _connectedPlayerCount() < SUDDEN_DEATH_MIN_PLAYERS;
     if (suddenDeathDisabled) chosenSuddenDeath = false;
@@ -1098,19 +1099,22 @@ function _renderGameModes() {
             return '';
         }
         // Issue #827 — disabled Sudden Death card: dimmed, non-interactive, with
-        // a tooltip explaining the >=3 player requirement.
+        // a tooltip explaining the player-count requirement.
         // Issue #1799 — the tooltip is hover-only, so on touch (the primary way
         // the wizard is used) the requirement was invisible and the dimmed card
         // read as broken. Swap the hint line for the requirement itself, and
         // mark it .gated so the CSS can keep it legible against the dimming.
         const disabled = m.key === 'suddenDeath' && suddenDeathDisabled;
+        // #2699: the floor is `{min}`-interpolated into all three strings, so
+        // the number on screen can only ever be the one const.py holds.
+        const minParams = { min: SUDDEN_DEATH_MIN_PLAYERS };
         const titleAttr = disabled
-            ? ` title="${escapeAttr(_t('admin.suddenDeathDisabledTooltip', 'Needs at least 3 players'))}"`
+            ? ` title="${escapeAttr(_t('admin.suddenDeathDisabledTooltip', 'Sudden Death needs at least {min} players.', minParams))}"`
             : '';
         const hint = modeHintHtml(
             disabled,
-            _t('admin.suddenDeathDisabledGate', 'Needs at least 3 players'),
-            _t(m.hintKey, m.hintFallback),
+            _t('admin.suddenDeathDisabledGate', 'Needs at least {min} players', minParams),
+            _t(m.hintKey, m.hintFallback, minParams),
         );
         return `<div class="wiz-mode-card ${on ? 'on' : ''}${disabled ? ' disabled' : ''}" data-mode="${m.key}" role="button" tabindex="0" aria-disabled="${disabled}"${titleAttr}>
             <div class="wiz-mode-icon" aria-hidden="true">${m.icon}</div>

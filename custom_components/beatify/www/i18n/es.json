@@ -689,8 +689,8 @@
     "seasonalDismiss": "Descartar sugerencia de temporada",
     "suddenDeathMode": "Muerte Súbita",
     "suddenDeathModeHint": "El último de cada ronda queda eliminado. Gana el último en pie.",
-    "suddenDeathDisabledTooltip": "Muerte Súbita necesita al menos 3 jugadores.",
-    "suddenDeathDisabledGate": "Se necesitan al menos 3 jugadores",
+    "suddenDeathDisabledTooltip": "Muerte Súbita necesita al menos {min} jugadores.",
+    "suddenDeathDisabledGate": "Se necesitan al menos {min} jugadores",
     "suddenDeathLive": "Muerte Súbita",
     "library": {
       "statusLoading": "Comprobando tu biblioteca…",

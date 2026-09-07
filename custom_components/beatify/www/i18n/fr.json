@@ -689,8 +689,8 @@
     "seasonalDismiss": "Ignorer la suggestion saisonnière",
     "suddenDeathMode": "Mort Subite",
     "suddenDeathModeHint": "Le dernier de chaque manche est éliminé. Le dernier en lice gagne.",
-    "suddenDeathDisabledTooltip": "La Mort Subite nécessite au moins 3 joueurs.",
-    "suddenDeathDisabledGate": "Au moins 3 joueurs requis",
+    "suddenDeathDisabledTooltip": "La Mort Subite nécessite au moins {min} joueurs.",
+    "suddenDeathDisabledGate": "Au moins {min} joueurs requis",
     "suddenDeathLive": "Mort Subite",
     "library": {
       "statusLoading": "Vérification de votre bibliothèque…",

@@ -463,6 +463,13 @@ async def handle_sabotage(
                 "type": "sabotaged",
                 "by": player.name,
                 "effect": result["effect"],
+                # #2700: the freeze duration ships WITH the hit, computed by the
+                # same helper the state broadcast uses. The phone locks its
+                # submit button for exactly this many seconds and keeps no copy
+                # of SABOTAGE_FREEZE_SECONDS, so tuning the constant in const.py
+                # moves the button and the server's ERR_FROZEN window together.
+                # 0 for the other two effects — they lock nothing locally.
+                "freeze_remaining": game_state.sabotage_freeze_remaining(target),
             }
         )
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 import time
 from typing import TYPE_CHECKING, Any
 
@@ -279,16 +280,25 @@ class PlayerRegistry:
         self._sessions.clear()
         _LOGGER.info("Cleared %d player sessions", session_count)
 
-    def _sabotage_freeze_remaining(self, player: PlayerSession) -> int:
+    def sabotage_freeze_remaining(self, player: PlayerSession) -> int:
         """Whole seconds left on this player's sabotage freeze (#1665).
 
         0 when no freeze is riding on them or it has already lapsed. Server-computed
         (mirrors ``seconds_remaining``) so the client counts down against its own
         clock rather than subtracting a server epoch from a skewed ``Date.now()``.
+
+        #2700: this is the ONLY duration the phone ever sees — ``player-game.js``
+        locks the submit button for exactly this many seconds instead of keeping
+        its own copy of ``SABOTAGE_FREEZE_SECONDS``. Rounded UP rather than to
+        nearest, because the enforcement in
+        ``server/ws_handlers/guessing.py`` is a strict ``now < freeze_until``:
+        rounding 2.6s down to 2 would unlock the button while the server still
+        answers ERR_FROZEN, which is the exact symptom #2700 is about. Late by
+        under a second is harmless; early is the bug.
         """
         if player.sabotage_freeze_until is None:
             return 0
-        return max(0, round(player.sabotage_freeze_until - self._now()))
+        return max(0, math.ceil(player.sabotage_freeze_until - self._now()))
 
     def get_players_state(self) -> list[dict[str, Any]]:
         """Get player list for state broadcast."""
@@ -315,7 +325,7 @@ class PlayerRegistry:
                 "sabotaged_by": p.sabotaged_by,
                 "sabotage_effect": p.sabotage_effect,
                 "sabotage_forced_bet": p.sabotage_forced_bet,
-                "sabotage_freeze_remaining": self._sabotage_freeze_remaining(p),
+                "sabotage_freeze_remaining": self.sabotage_freeze_remaining(p),
                 "onboarded": p.onboarded,
                 # Issue #827: Sudden Death — eliminated players render the
                 # spectator view and a skull badge on leaderboards.

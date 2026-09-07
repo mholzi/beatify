@@ -30,6 +30,18 @@
 export const MAX_NAME_LENGTH = 20;
 
 /**
+ * Mirror of `SUDDEN_DEATH_MIN_PLAYERS` in const.py: the fewest connected players
+ * a Sudden Death game needs (enforced by server/game_views.py at the
+ * LOBBY->PLAYING transition, which auto-disables the mode below this floor).
+ *
+ * The wizard gates its Sudden Death card on this number, and the gate/tooltip
+ * strings take it as a `{min}` placeholder — so raising the floor in const.py
+ * moves the card, the tooltip and the server backstop together instead of
+ * leaving a card enabled for a game that starts without Sudden Death (#2699).
+ */
+export const SUDDEN_DEATH_MIN_PLAYERS = 3;
+
+/**
  * Mirror of `REVEAL_AUTO_ADVANCE_OPTIONS` in const.py: the delays a host can
  * pick at the reveal, in seconds. `0` is "off" — advance manually or when the
  * song ends. Order is display order; index 0 is the default.

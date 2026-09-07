@@ -957,7 +957,14 @@ var hasSabotageAvailable = false;
 // #1665: while a freeze effect is riding on us, block local submits until this
 // timestamp (ms epoch). The server is authoritative (ERR_FROZEN on submit);
 // this just stops the button from looking tappable during the freeze.
+// #2700: the deadline is derived from the server's own countdown
+// (`freeze_remaining` on the hit, `sabotage_freeze_remaining` on every
+// player-state frame). `Infinity` means "frozen, duration not yet known" — see
+// applySabotageFreeze.
 var sabotageFreezeUntilMs = 0;
+// #2700: id of the timeout that drops the frozen styling, so a later state frame
+// can re-aim it instead of stacking a second one.
+var sabotageFreezeTimeoutId = null;
 // #1665: a rolled forced-bet locks betActive on and disables the toggle.
 var sabotageForcedBet = false;
 
@@ -1352,6 +1359,12 @@ export function resetSubmissionState() {
     // never leaks into this one. The token gating is re-derived from state.
     hasSabotageAvailable = false;
     sabotageFreezeUntilMs = 0;
+    // #2700: drop the pending un-freeze too, so last round's timeout cannot
+    // strip the styling off a fresh freeze.
+    if (sabotageFreezeTimeoutId !== null) {
+        clearTimeout(sabotageFreezeTimeoutId);
+        sabotageFreezeTimeoutId = null;
+    }
     clearForcedBet();
     hideSabotageUI();
 
@@ -1743,9 +1756,12 @@ function showStealConfirmation(target, year) {
 // never chooses or predicts it. Enforcement is authoritative on the server's
 // submit path (ws_handlers/guessing.py) — everything here only reflects it.
 
-// #1665: freeze duration mirrored from const.SABOTAGE_FREEZE_SECONDS. Used only
-// for the immediate local reflection; the server holds the real line.
-var SABOTAGE_FREEZE_MS = 3000;
+// #2700: there is deliberately no SABOTAGE_FREEZE_MS here. The duration is
+// const.py's SABOTAGE_FREEZE_SECONDS and reaches us already counted down —
+// `freeze_remaining` on the private hit, `sabotage_freeze_remaining` on every
+// player-state frame. A copy in this file would unlock the button at the wrong
+// moment the first time that constant is tuned, which is exactly what #2700
+// reported: a live-looking button the server answers with ERR_FROZEN.
 
 /**
  * Update sabotage UI based on player state (#1665). Mirror of updateStealUI:
@@ -1760,6 +1776,16 @@ function updateSabotageUI(players) {
     });
 
     if (!currentPlayer) return;
+
+    // #2700: the freeze window is whatever the server says is left on it. Every
+    // state frame re-aims the local lock, so a reconnect or a reload mid-freeze
+    // picks the countdown back up instead of guessing at it. A payload without
+    // the field (an older server) leaves whatever we already had alone.
+    var freezeRemaining = currentPlayer.sabotage_freeze_remaining;
+    if (typeof freezeRemaining === 'number'
+        && (freezeRemaining > 0 || sabotageFreezeUntilMs !== 0)) {
+        applySabotageFreeze(freezeRemaining);
+    }
 
     hasSabotageAvailable = currentPlayer.sabotage_available && !hasSubmitted;
 
@@ -1935,12 +1961,60 @@ export function handleSabotageAck(data) {
  * Handle the private "you were sabotaged" hit for the TARGET (#1665). Reflects
  * the rolled effect locally — banner + client-side handling — while the server
  * stays the authority on the submit path.
- * @param {Object} data - Message with { by, effect }
+ * @param {Object} data - Message with { by, effect, freeze_remaining } (#2700)
  */
 export function handleSabotaged(data) {
     if (!data) return;
-    applySabotageEffect(data.effect);
+    applySabotageEffect(data.effect, data.freeze_remaining);
     showSabotageBanner(data.by, data.effect);
+}
+
+/**
+ * Lock (or release) the submit button for a server-supplied freeze window (#2700).
+ *
+ * The only input is the server's own countdown in whole seconds. There are three
+ * cases, and the middle one is the point of this function:
+ *  - a number > 0 → lock until now + that many seconds,
+ *  - `null`       → the server says a freeze is on but did not say how long
+ *                   (an older build's `sabotaged` hit). Hold the lock open until
+ *                   a player-state frame supplies the real remainder — the state
+ *                   broadcast follows the hit in the same tick, so this is a
+ *                   frame, not a hang. Erring closed is deliberate: a button that
+ *                   unlocks late is a beat of impatience, one that unlocks early
+ *                   is the ERR_FROZEN rejection #2700 is about. Notably it is NOT
+ *                   a local copy of SABOTAGE_FREEZE_SECONDS — that copy was the bug.
+ *  - 0            → the freeze has lapsed; release the button.
+ *
+ * @param {number|null} secondsRemaining - server-computed seconds left, or null
+ */
+function applySabotageFreeze(secondsRemaining) {
+    if (sabotageFreezeTimeoutId !== null) {
+        clearTimeout(sabotageFreezeTimeoutId);
+        sabotageFreezeTimeoutId = null;
+    }
+
+    var submitBtn = document.getElementById('submit-btn');
+
+    if (secondsRemaining === null) {
+        sabotageFreezeUntilMs = Infinity;
+    } else if (secondsRemaining > 0) {
+        sabotageFreezeUntilMs = Date.now() + secondsRemaining * 1000;
+    } else {
+        sabotageFreezeUntilMs = 0;
+        if (submitBtn) submitBtn.classList.remove('submit-arc--frozen');
+        return;
+    }
+
+    if (submitBtn && !hasSubmitted) {
+        submitBtn.classList.add('submit-arc--frozen');
+        if (secondsRemaining !== null) {
+            sabotageFreezeTimeoutId = setTimeout(function() {
+                sabotageFreezeTimeoutId = null;
+                var btn = document.getElementById('submit-btn');
+                if (btn) btn.classList.remove('submit-arc--frozen');
+            }, secondsRemaining * 1000);
+        }
+    }
 }
 
 /**
@@ -1948,10 +2022,11 @@ export function handleSabotaged(data) {
  *  - timer_cut  → the server shortens this player's deadline; nothing to lock
  *                 here, the banner conveys it (timer is server-authoritative).
  *  - forced_bet → nail the bet toggle on and disable it.
- *  - freeze     → block local submits for the freeze window.
+ *  - freeze     → block local submits for the server's freeze window.
  * @param {string} effect - one of SABOTAGE_EFFECTS
+ * @param {number|null} freezeRemaining - #2700: seconds left, from the payload
  */
-function applySabotageEffect(effect) {
+function applySabotageEffect(effect, freezeRemaining) {
     if (effect === 'forced_bet') {
         sabotageForcedBet = true;
         betActive = true;
@@ -1960,14 +2035,11 @@ function applySabotageEffect(effect) {
             betToggle.classList.add('is-active', 'bet-arc--forced');
         }
     } else if (effect === 'freeze') {
-        sabotageFreezeUntilMs = Date.now() + SABOTAGE_FREEZE_MS;
-        var submitBtn = document.getElementById('submit-btn');
-        if (submitBtn && !hasSubmitted) {
-            submitBtn.classList.add('submit-arc--frozen');
-            setTimeout(function() {
-                if (submitBtn) submitBtn.classList.remove('submit-arc--frozen');
-            }, SABOTAGE_FREEZE_MS);
-        }
+        applySabotageFreeze(
+            typeof freezeRemaining === 'number' && freezeRemaining > 0
+                ? freezeRemaining
+                : null,
+        );
     }
     // timer_cut: no local lock — the server owns the deadline.
 }

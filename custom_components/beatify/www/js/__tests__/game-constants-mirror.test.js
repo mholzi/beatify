@@ -18,6 +18,7 @@ import { dirname, join } from 'node:path';
 
 import {
     MAX_NAME_LENGTH,
+    SUDDEN_DEATH_MIN_PLAYERS,
     REVEAL_AUTO_ADVANCE_OPTIONS,
     POINTS_EXACT,
     POINTS_WRONG,
@@ -85,6 +86,7 @@ describe('the parser finds the Python constants at all', () => {
     // otherwise make every assertion below compare against a throw.
     it('finds every constant it is about to compare', () => {
         expect(pyInt('MAX_NAME_LENGTH')).toBeGreaterThan(0);
+        expect(pyInt('SUDDEN_DEATH_MIN_PLAYERS')).toBeGreaterThan(0);
         expect(pyInt('POINTS_EXACT')).toBeGreaterThan(0);
         expect(pyIntSeq('REVEAL_AUTO_ADVANCE_OPTIONS').length).toBeGreaterThan(1);
         expect(Object.keys(pyDifficultyScoring())).toHaveLength(3);
@@ -94,6 +96,10 @@ describe('the parser finds the Python constants at all', () => {
 describe('game-constants.js mirrors const.py', () => {
     it('mirrors MAX_NAME_LENGTH (#2627)', () => {
         expect(MAX_NAME_LENGTH).toBe(pyInt('MAX_NAME_LENGTH'));
+    });
+
+    it('mirrors SUDDEN_DEATH_MIN_PLAYERS (#2699)', () => {
+        expect(SUDDEN_DEATH_MIN_PLAYERS).toBe(pyInt('SUDDEN_DEATH_MIN_PLAYERS'));
     });
 
     it('mirrors REVEAL_AUTO_ADVANCE_OPTIONS (#2626)', () => {

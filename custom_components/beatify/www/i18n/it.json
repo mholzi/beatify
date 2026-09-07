@@ -689,8 +689,8 @@
     "seasonalDismiss": "Nascondi la proposta di stagione",
     "suddenDeathMode": "Eliminazione diretta",
     "suddenDeathModeHint": "Ogni turno viene eliminato l'ultimo in classifica. Vince chi resta per ultimo.",
-    "suddenDeathDisabledTooltip": "L'eliminazione diretta richiede almeno 3 giocatori.",
-    "suddenDeathDisabledGate": "Servono almeno 3 giocatori",
+    "suddenDeathDisabledTooltip": "L'eliminazione diretta richiede almeno {min} giocatori.",
+    "suddenDeathDisabledGate": "Servono almeno {min} giocatori",
     "suddenDeathLive": "Eliminazione diretta",
     "library": {
       "statusLoading": "Controllo della tua libreria…",

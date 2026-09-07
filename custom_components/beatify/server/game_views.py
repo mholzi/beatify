@@ -30,6 +30,7 @@ from custom_components.beatify.const import (
     REVEAL_AUTO_ADVANCE_OPTIONS,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
+    SUDDEN_DEATH_MIN_PLAYERS,
 )
 from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
@@ -1284,19 +1285,24 @@ class StartGameplayView(BeatifyAdminView):
                 code="NOT_ENOUGH_PLAYERS",
             )
 
-        # Issue #827: Sudden Death requires >=3 players. Players join the LOBBY
-        # *after* create_game (which clears sessions), so the floor can only be
-        # enforced here, at the LOBBY->PLAYING transition. The wizard also
-        # disables the toggle client-side; this is the server-side backstop for
-        # direct API callers. Auto-disable rather than block the start so the
-        # host isn't stuck — surface a warning instead.
+        # Issue #827: Sudden Death needs SUDDEN_DEATH_MIN_PLAYERS connected
+        # players. Players join the LOBBY *after* create_game (which clears
+        # sessions), so the floor can only be enforced here, at the
+        # LOBBY->PLAYING transition. The wizard also disables the toggle
+        # client-side; this is the server-side backstop for direct API callers.
+        # Auto-disable rather than block the start so the host isn't stuck —
+        # surface a warning instead.
+        # #2699: both the comparison and the warning read the constant, so
+        # raising the floor in const.py cannot leave this message promising the
+        # old number.
         sudden_death_warning = None
         if game_state.sudden_death_mode:
             connected_count = sum(1 for p in game_state.players.values() if p.connected)
-            if connected_count < 3:
+            if connected_count < SUDDEN_DEATH_MIN_PLAYERS:
                 game_state.set_sudden_death(False)
                 sudden_death_warning = (
-                    "Sudden Death needs at least 3 players — starting without it."
+                    f"Sudden Death needs at least {SUDDEN_DEATH_MIN_PLAYERS} "
+                    "players — starting without it."
                 )
 
         # Set round end callback for broadcasting

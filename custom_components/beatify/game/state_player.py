@@ -176,6 +176,15 @@ class PlayerLifecycleMixin:
         """Get player list for state broadcast. Delegates to PlayerRegistry."""
         return self._player_registry.get_players_state()
 
+    def sabotage_freeze_remaining(self, player: PlayerSession) -> int:
+        """Whole seconds left on a player's sabotage freeze (#1665/#2700).
+
+        Delegates to PlayerRegistry. The private "you were sabotaged" hit carries
+        this alongside the broadcast so the victim's phone gets the authoritative
+        duration in the same tick it gets the banner.
+        """
+        return self._player_registry.sabotage_freeze_remaining(player)
+
     def all_submitted(self) -> bool:
         """Check if all connected players have submitted. Delegates to PlayerRegistry."""
         return self._player_registry.all_submitted()

@@ -689,8 +689,8 @@
     "seasonalDismiss": "Dismiss seasonal suggestion",
     "suddenDeathMode": "Sudden Death",
     "suddenDeathModeHint": "Last-place player is eliminated each round. Last one standing wins.",
-    "suddenDeathDisabledTooltip": "Sudden Death needs at least 3 players.",
-    "suddenDeathDisabledGate": "Needs at least 3 players",
+    "suddenDeathDisabledTooltip": "Sudden Death needs at least {min} players.",
+    "suddenDeathDisabledGate": "Needs at least {min} players",
     "suddenDeathLive": "Sudden Death",
     "library": {
       "statusLoading": "Checking your library…",

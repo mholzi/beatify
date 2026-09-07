@@ -13,6 +13,14 @@ DEFAULT_ENABLE_COMPANION_AUTH_BYPASS = False
 # Game configuration
 MAX_PLAYERS = 20
 MIN_PLAYERS = 2
+# #2699: the one place the Sudden Death floor is defined. server/game_views.py
+# enforces it at the LOBBY->PLAYING transition, www/js/game-constants.js mirrors
+# it for the wizard card (guarded by
+# www/js/__tests__/game-constants-mirror.test.js), and the six locale files carry
+# it as a `{min}` placeholder rather than a spelled-out digit. Before that the
+# number sat in four places and none of them was the source of truth, so raising
+# it here left the wizard offering a mode the server then quietly dropped.
+SUDDEN_DEATH_MIN_PLAYERS = 3
 DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
