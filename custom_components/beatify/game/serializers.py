@@ -357,6 +357,13 @@ class GameStateSerializer:
             }
         # Include reveal-specific player data (guesses, round_score, missed)
         state["players"] = GameStateSerializer.get_reveal_players_state(gs)
+        # #2721: names that just received a Comeback Token. REVEAL only, and
+        # only in the reveal it happened in. The field itself survives into the
+        # next PLAYING phase (it is cleared at the *end* of a round), so
+        # emitting it here rather than in the shared block is what keeps the
+        # halftime moment from lingering over round 6.
+        if gs.comeback_granted_this_round:
+            state["comeback_granted_this_round"] = list(gs.comeback_granted_this_round)
         # Issue #827: Sudden Death — names eliminated *this* round drive the
         # TV "OUT" takeover + the admin elimination highlight card.
         if gs.sudden_death_mode:

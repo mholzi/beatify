@@ -167,6 +167,9 @@
     "finalShowdown": "FINALE — SUDDEN DEATH",
     "winnerTakesAll": "Winnaar pakt alles",
     "out": "ERUIT",
+    "halftime": "Rust",
+    "comebackFieldClosing": "Het veld sluit aan",
+    "comebackYours": "Jij krijgt een jatkans.",
     "sdYouAreIn": "Je doet nog mee",
     "sdYouAreOut": "Je ligt eruit",
     "sdStanding": "{alive} van {total} staan nog",
@@ -183,7 +186,9 @@
     "confirmButton": "Stelen",
     "success": "Antwoord van {name} gestolen: {year}",
     "stolenFrom": "Gestolen van {name}",
-    "stolenBy": "Antwoord gestolen door {name}"
+    "stolenBy": "Antwoord gestolen door {name}",
+    "comebackChip": "Inhaal-jatkans",
+    "comebackWhy": "In de rust gegeven aan de achterhoede. Werkt als elke jatkans."
   },
   "sabotage": {
     "available": "Sabotage klaar!",

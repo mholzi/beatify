@@ -17236,6 +17236,106 @@ body.theme-dark .your-result-stats .stat-value {
     to { opacity: 1; transform: scale(1); }
 }
 
+/* --- #2721: halftime takeover (Comeback Token) ---
+   Same overlay grammar as the Sudden Death "OUT" screen, in the opposite
+   register: pink and cyan instead of the red of an elimination. It is the one
+   moment in the game where the players at the back get the big screen. */
+.comeback-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    text-align: center;
+    background: rgba(6, 6, 12, 0.96);
+}
+
+.comeback-overlay.show {
+    display: flex;
+    animation: comeback-in var(--transition-slow) ease-out;
+}
+
+.comeback__kicker {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+}
+
+.comeback__word {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(56px, 14vw, 200px);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.comeback__line {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    color: var(--color-text-white);
+}
+
+.comeback__names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+}
+
+.comeback__plate {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 6px 14px;
+    border: 1px solid rgba(157, 78, 221, 0.55);
+    border-radius: 999px;
+    background: rgba(157, 78, 221, 0.12);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-md);
+}
+
+.comeback__plate-icon { color: var(--color-neon-purple); }
+
+.comeback__why {
+    font-size: var(--font-size-base);
+    color: var(--color-text-neon-muted);
+}
+
+.comeback__why.hidden { display: none; }
+
+/* The phone gets the same beat at a phone's scale. */
+.comeback-overlay--phone .comeback__word { font-size: clamp(40px, 17vw, 76px); }
+.comeback-overlay--phone .comeback__line { font-size: var(--font-size-md); }
+.comeback-overlay--phone .comeback__plate { font-size: var(--font-size-sm); }
+
+@keyframes comeback-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* #2721: a gifted steal is not a streak unlock, so the chip does not read like
+   one. Purple is the reserved steal colour; cyan stays the streak unlock. */
+.arc-chip--steal.arc-chip--comeback {
+    color: var(--color-neon-purple);
+    border-color: rgba(157, 78, 221, 0.55);
+    background: rgba(157, 78, 221, 0.10);
+}
+
 /* --- Spectator TV: FINAL banner (S5-C arena) --- */
 .sd-final-banner {
     display: inline-flex;
@@ -17331,6 +17431,7 @@ body.theme-dark .your-result-stats .stat-value {
 
 @media (prefers-reduced-motion: reduce) {
     .sd-out-overlay.show { animation: none; }
+    .comeback-overlay.show { animation: none; }
 }
 
 /* ============================================

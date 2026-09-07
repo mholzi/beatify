@@ -167,6 +167,9 @@
     "finalShowdown": "FINAL — MUERTE SÚBITA",
     "winnerTakesAll": "El ganador se lo lleva todo",
     "out": "FUERA",
+    "halftime": "Mitad",
+    "comebackFieldClosing": "El grupo se acerca",
+    "comebackYours": "Recibes un robo.",
     "sdYouAreIn": "Sigues dentro",
     "sdYouAreOut": "Estás fuera",
     "sdStanding": "{alive} de {total} siguen en pie",
@@ -183,7 +186,9 @@
     "confirmButton": "Robar",
     "success": "Robaste la respuesta de {name}: {year}",
     "stolenFrom": "Robado de {name}",
-    "stolenBy": "Respuesta robada por {name}"
+    "stolenBy": "Respuesta robada por {name}",
+    "comebackChip": "Robo de remontada",
+    "comebackWhy": "Entregado a mitad de partida a los últimos puestos. Funciona como cualquier robo."
   },
   "sabotage": {
     "available": "¡Sabotaje listo!",

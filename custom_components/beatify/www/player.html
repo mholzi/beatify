@@ -438,9 +438,13 @@
                 <!-- Chip row: steal unlocked · closest-wins · intro · final round (conditional) -->
                 <div id="arc-chip-row" class="arc-chip-row hidden" aria-live="polite">
                     <span id="game-difficulty-badge" class="stat-badge stat-badge--difficulty hidden"></span>
+                    <!-- #2721: the label carries an id because a Comeback
+                         Token retargets it. Same chip, different sentence: a
+                         gifted steal that reads "Steal Available!" is exactly
+                         what makes the streak counter look broken. -->
                     <span id="steal-indicator" class="arc-chip arc-chip--steal hidden">
                         <span aria-hidden="true">🥷</span>
-                        <span data-i18n="steal.available">Steal Available!</span>
+                        <span id="steal-indicator-label" data-i18n="steal.available">Steal Available!</span>
                     </span>
                     <!-- #1665: sabotage token available, twin of steal-indicator -->
                     <span id="sabotage-indicator" class="arc-chip arc-chip--sabotage hidden">
@@ -1063,6 +1067,16 @@
         <!-- Floating Reactions Display (Story 18.9) -->
         <div id="reaction-container" class="reaction-container"></div>
     </main>
+
+    <!-- #2721: halftime takeover. The phone gets the same beat as the TV so
+         there is nothing one screen knows and the other does not. It auto-
+         hides; nothing on a party phone waits for a tap. -->
+    <div id="comeback-overlay" class="comeback-overlay comeback-overlay--phone">
+        <div class="comeback__word" id="comeback-word">HALFTIME</div>
+        <div class="comeback__line" id="comeback-line"></div>
+        <div class="comeback__names" id="comeback-names"></div>
+        <div class="comeback__why" id="comeback-why"></div>
+    </div>
 
     <!-- Intro Splash Modal (Issue #292) -->
     <div id="intro-splash-modal" class="intro-splash-modal hidden" role="dialog" aria-modal="true">

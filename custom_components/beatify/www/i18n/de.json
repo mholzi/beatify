@@ -167,6 +167,9 @@
     "finalShowdown": "FINALE — SUDDEN DEATH",
     "winnerTakesAll": "Alles oder nichts",
     "out": "RAUS",
+    "halftime": "Halbzeit",
+    "comebackFieldClosing": "Das Feld rückt zusammen",
+    "comebackYours": "Du bekommst einen Steal.",
     "sdYouAreIn": "Du bist noch dabei",
     "sdYouAreOut": "Du bist raus",
     "sdStanding": "{alive} von {total} stehen noch",
@@ -183,7 +186,9 @@
     "confirmButton": "Klauen",
     "success": "{name}s Antwort geklaut: {year}",
     "stolenFrom": "Geklaut von {name}",
-    "stolenBy": "Antwort geklaut von {name}"
+    "stolenBy": "Antwort geklaut von {name}",
+    "comebackChip": "Aufhol-Steal",
+    "comebackWhy": "Zur Halbzeit an die hinteren Plätze vergeben. Funktioniert wie jeder Steal."
   },
   "sabotage": {
     "available": "Sabotage bereit!",

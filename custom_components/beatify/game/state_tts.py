@@ -539,6 +539,26 @@ class TtsAnnouncerMixin:
             elif p.bet_outcome == "lost" and self._tts_announce_bet_lost:
                 frags.append(tts_phrases.phrase(lang, "bet_lost", name=p.name))
 
+        # #2721: Comeback Tokens are announced as one halftime sentence, not as
+        # N streak unlocks. The old loop said "{name} unlocked steal" for a
+        # player who had just answered nothing right — to the room that reads
+        # as a broken streak counter, which is exactly what #2721 reports.
+        #
+        # The names are still added to the dedup set below, so the per-player
+        # line never fires for them afterwards; they are announced here once,
+        # together, with the reason.
+        comeback_names = list(self.comeback_granted_this_round)
+        for name in comeback_names:
+            self._tts_steal_unlocked_announced.add(name)
+        if comeback_names and self._tts_announce_steal_unlocked:
+            frags.append(
+                tts_phrases.phrase(
+                    lang,
+                    "comeback_tokens",
+                    names=tts_phrases.join_names(lang, comeback_names),
+                )
+            )
+
         # Steal unlocks — once per player per game. The dedup set is updated
         # regardless of the toggle so a mid-game toggle-on can't replay it.
         for p in players:

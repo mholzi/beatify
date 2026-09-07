@@ -360,6 +360,10 @@ export function updateRevealView(data) {
         renderChipRow(currentPlayer, data);
     }
     renderScoreRow(currentPlayer);
+    // #2721: the halftime beat fires from inside the reveal render so it lands
+    // in the same frame as the reveal the TV is showing — a takeover one
+    // broadcast late would sit on top of the next round's question.
+    renderComebackHalftime(data);
     // #2723: outside the taMode branch for the same reason as the shield below
     // — Sudden Death runs in Title & Artist mode too, and that mode hides the
     // chip row a one-off elimination line would otherwise have used.
@@ -1216,6 +1220,74 @@ function renderChipRow(player, data) {
         row.classList.remove('hidden');
         row.innerHTML = chips.join('');
     }
+}
+
+/** #2721: dedup key, so a REVEAL re-broadcast does not replay the takeover. */
+var comebackLastKey = null;
+var comebackTimer = null;
+
+/**
+ * #2721: the halftime takeover on the phone.
+ *
+ * The TV shows the same beat at the same second (dashboard.js
+ * `renderComebackHalftime`); running both from the same payload field is the
+ * point — with only one of the two, either the player knows something the room
+ * does not or the reverse, and that gap is what makes a gifted steal read as a
+ * bug.
+ *
+ * Everyone sees it, not just the recipients: a catch-up mechanism nobody
+ * notices evens out the points but not the mood. The *recipient* gets one extra
+ * line telling them the steal is theirs.
+ */
+export function renderComebackHalftime(data) {
+    var overlay = document.getElementById('comeback-overlay');
+    if (!overlay) return;
+
+    var names = (data && data.comeback_granted_this_round) || [];
+    if (!names.length) return;
+
+    var key = (data.round || 0) + ':' + names.join(',');
+    if (key === comebackLastKey) return;
+    comebackLastKey = key;
+
+    var wordEl = document.getElementById('comeback-word');
+    if (wordEl) {
+        wordEl.textContent =
+            (utils.t('game.halftime') || 'HALFTIME').toUpperCase();
+    }
+
+    var lineEl = document.getElementById('comeback-line');
+    if (lineEl) {
+        lineEl.textContent = utils.t('game.comebackFieldClosing')
+            || 'The field is closing up';
+    }
+
+    var namesEl = document.getElementById('comeback-names');
+    if (namesEl) {
+        namesEl.innerHTML = names.map(function(n) {
+            return '<span class="comeback__plate">' +
+                '<span class="comeback__plate-icon" aria-hidden="true">🥷</span>' +
+                escapeHtml(n) +
+            '</span>';
+        }).join('');
+    }
+
+    // Only the recipients are told it is theirs; everyone else reads the beat.
+    var whyEl = document.getElementById('comeback-why');
+    if (whyEl) {
+        var mine = names.indexOf(state.playerName) !== -1;
+        whyEl.textContent = mine
+            ? (utils.t('game.comebackYours') || 'You get a steal.')
+            : '';
+        whyEl.classList.toggle('hidden', !mine);
+    }
+
+    overlay.classList.add('show');
+    if (comebackTimer) clearTimeout(comebackTimer);
+    comebackTimer = setTimeout(function() {
+        overlay.classList.remove('show');
+        comebackTimer = null;
+    }, 5000);
 }
 
 /** Above this many eliminated players the line drops the names (#2723). */

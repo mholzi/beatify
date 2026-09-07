@@ -53,6 +53,10 @@
     // once per elimination (re-renders / re-broadcasts of the same REVEAL must
     // not re-trigger it). Format: "<round>:<joined names>".
     var sdLastOutKey = null;
+    // #2721: same dedup shape as sdLastOutKey — a REVEAL re-broadcast must not
+    // replay the halftime takeover.
+    var comebackLastKey = null;
+    var comebackTimer = null;
     var sdOutTimer = null;
 
     // #1705: track the countdown's active deadline so the 1Hz timer is torn
@@ -1283,6 +1287,9 @@
         renderSuddenDeathOut(data);
         renderSuddenDeathFinalBanner(data, 'sd-final-banner-reveal');
 
+        // #2721: halftime takeover for the Comeback Token.
+        renderComebackHalftime(data);
+
         // #2703: the round stalled and the game is waiting for the host — the
         // countdown ring below hides itself in that case, so without this the
         // TV shows a reveal and no reason for the pause.
@@ -2297,6 +2304,77 @@
             overlay.classList.remove('show');
             sdOutTimer = null;
         }, 2500);
+    }
+
+    /**
+     * #2721: the halftime takeover for the Comeback Token.
+     *
+     * The token is granted once per game, at the midpoint, to the trailing
+     * third — all in the same second. That is the shape of a game beat, so it
+     * gets one: five seconds of full screen, the reason spelled out, and the
+     * names as a group.
+     *
+     * Why a group and not a per-player line: two names together read as a team,
+     * one name alone reads as a verdict. The phrasing carries that, and the
+     * caller cannot make it say anything else.
+     *
+     * Deduped per (round, names) exactly like the Sudden Death overlay, and it
+     * auto-hides, because this is a TV — nothing here may ever stay on screen
+     * waiting for an input that has no keyboard.
+     *
+     * @param {Object} data - REVEAL state data
+     */
+    function renderComebackHalftime(data) {
+        var overlay = document.getElementById('comeback-overlay');
+        if (!overlay) return;
+
+        var names = data.comeback_granted_this_round || [];
+        if (!names.length) return;
+
+        var key = (data.round || 0) + ':' + names.join(',');
+        if (key === comebackLastKey) return;
+        comebackLastKey = key;
+
+        var wordEl = document.getElementById('comeback-word');
+        if (wordEl) {
+            wordEl.textContent =
+                (utils.t('game.halftime', 'HALFTIME') || 'HALFTIME').toUpperCase();
+        }
+
+        var roundEl = document.getElementById('comeback-round');
+        if (roundEl) {
+            // Reuse the existing round line rather than inventing a second
+            // one — six locales already carry it.
+            roundEl.textContent = utils.t('game.round', {
+                current: data.round || 0,
+                total: data.total_rounds || 0
+            });
+        }
+
+        var lineEl = document.getElementById('comeback-line');
+        if (lineEl) {
+            lineEl.textContent = utils.t(
+                'game.comebackFieldClosing',
+                'The field is closing up'
+            );
+        }
+
+        var namesEl = document.getElementById('comeback-names');
+        if (namesEl) {
+            namesEl.innerHTML = names.map(function(n) {
+                return '<span class="comeback__plate">' +
+                    '<span class="comeback__plate-icon" aria-hidden="true">🥷</span>' +
+                    utils.escapeHtml(n) +
+                '</span>';
+            }).join('');
+        }
+
+        overlay.classList.add('show');
+        if (comebackTimer) clearTimeout(comebackTimer);
+        comebackTimer = setTimeout(function() {
+            overlay.classList.remove('show');
+            comebackTimer = null;
+        }, 5000);
     }
 
     /**

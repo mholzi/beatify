@@ -143,6 +143,10 @@ _PLAYER_VISIBLE_PAUSED = frozenset(
 _PLAYER_VISIBLE_REVEAL = frozenset(
     {
         "eliminated_this_round",
+        # #2721: who was handed a Comeback Token. Public on purpose — the whole
+        # point is that the room hears a reason instead of watching a steal
+        # appear out of nowhere.
+        "comeback_granted_this_round",
         "round_analytics",
         "game_performance",
         "song_difficulty",
