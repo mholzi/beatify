@@ -25,6 +25,24 @@ DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
 
+# #2562: the one place the reaction brake is defined. Reactions used to be
+# capped at one per player per REVEAL phase, which is a sane budget for a
+# five-second reveal and a nonsensical one for a 45-second round — and #2562
+# opens reactions to anyone who has already submitted. Dropping the cap without
+# a replacement lets one phone flood the TV, so the per-phase budget is replaced
+# by this interval: the fewest seconds between two reactions from the SAME
+# player. game/player_registry.py enforces it, server/ws_handlers/lifecycle.py
+# echoes it back to the sender so the phone can draw the cooldown, and
+# www/js/game-constants.js mirrors it (guarded by
+# www/js/__tests__/game-constants-mirror.test.js) so the bar on the phone counts
+# down exactly the interval the server is enforcing.
+#
+# 8 is a STARTING GUESS, not a measurement: it is roughly five reactions across
+# a 45-second round, which felt like "a room reacting" rather than "a child
+# hammering a button" on paper. Nobody has run a party on it yet. Tuning it is
+# meant to be this one line.
+REACTION_THROTTLE_SECONDS = 8
+
 # #1936: how many playback timeouts IN A ROW count as a systemic failure that
 # pauses the game. Below this, a timeout skips the song and play continues —
 # a rate-limiting provider is not a broken one, and pausing on the first
@@ -174,6 +192,38 @@ DIFFICULTY_SCORING: dict[str, dict[str, int]] = {
         "near_points": 0,
     },
 }
+
+# ---------------------------------------------------------------------------
+# Host pause reasons (#2645)
+# ---------------------------------------------------------------------------
+# Every pause reason that existed before #2645 is one the *server* decided: the
+# admin socket dropped, the speaker stopped answering, the playlist ran dry.
+# ``pause_game()`` has taken a reason string for a long time, but no code path
+# let the host name one — the host had Stop, which takes the music away while
+# the clock keeps running and scores the whole room as "missed".
+#
+# These four are the reasons a host picks on purpose, and they double as the
+# announcement the room reads: the TV prints the reason large with the word
+# "Pause" small underneath, so twenty people learn what is happening without
+# anyone having to shout it. ``HOST_PAUSE_REASON`` is what a bare Pause tap
+# sends — a host who opened the door without picking a tile has still paused,
+# and the TV then simply says "Pause".
+HOST_PAUSE_REASON = "host_pause"
+HOST_PAUSE_REASON_FOOD = "host_pause_food"
+HOST_PAUSE_REASON_DOOR = "host_pause_door"
+HOST_PAUSE_REASON_AWAY = "host_pause_away"
+
+#: The reasons an admin socket may set. A reason outside this set is rejected,
+#: and — just as important — a pause the *server* owns can never be relabelled
+#: into one of these: "Pizza is here" must not be able to cover a dead speaker.
+HOST_PAUSE_REASONS: frozenset[str] = frozenset(
+    {
+        HOST_PAUSE_REASON,
+        HOST_PAUSE_REASON_FOOD,
+        HOST_PAUSE_REASON_DOOR,
+        HOST_PAUSE_REASON_AWAY,
+    }
+)
 
 # Error codes
 ERR_NAME_TAKEN = "NAME_TAKEN"

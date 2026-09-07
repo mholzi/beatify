@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import math
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -21,6 +22,7 @@ from custom_components.beatify.const import (
     ERR_TARGET_NOT_SUBMITTED,
     MAX_PLAYERS,
     MIN_PLAYERS,
+    REACTION_THROTTLE_SECONDS,
     SUDDEN_DEATH_MIN_PLAYERS,
 )
 from custom_components.beatify.game.state import (
@@ -819,27 +821,94 @@ class TestUseSteal:
 
 
 class TestRecordReaction:
+    """#2562: the reaction brake is a time throttle, not a per-phase budget.
+
+    Every case here drives the public ``record_reaction`` /
+    ``reaction_retry_after`` pair against an injected clock, so what is asserted
+    is when a reaction is accepted — not which attribute happens to hold the
+    bookkeeping.
+    """
+
     def setup_method(self):
-        self.state = make_game_state()
+        self.clock = 1000.0
+        self.state = make_game_state(time_fn=lambda: self.clock)
         _create_fresh_game(self.state)
         self.state.add_player("Alice", MagicMock())
+
+    def _advance(self, seconds):
+        self.clock += seconds
 
     def test_first_reaction_accepted(self):
         assert self.state.record_reaction("Alice", "🎉") is True
 
-    def test_second_reaction_from_same_player_rejected(self):
+    def test_burst_is_swallowed(self):
+        # A child hammering the bar: one lands, the rest do not.
+        assert self.state.record_reaction("Alice", "🎉") is True
+        for _ in range(20):
+            assert self.state.record_reaction("Alice", "😄") is False
+
+    def test_still_throttled_one_tick_before_the_interval(self):
         self.state.record_reaction("Alice", "🎉")
+        self._advance(REACTION_THROTTLE_SECONDS - 0.01)
         assert self.state.record_reaction("Alice", "😄") is False
 
-    def test_different_players_each_get_one(self):
+    def test_accepted_again_once_the_interval_has_passed(self):
+        self.state.record_reaction("Alice", "🎉")
+        self._advance(REACTION_THROTTLE_SECONDS)
+        assert self.state.record_reaction("Alice", "😄") is True
+
+    def test_spacing_holds_across_a_whole_round(self):
+        # 45 seconds of tapping once a second yields one reaction per interval,
+        # not 45 — the number the TV has to survive.
+        accepted = 0
+        for _ in range(45):
+            if self.state.record_reaction("Alice", "🎉"):
+                accepted += 1
+            self._advance(1.0)
+        assert accepted == math.ceil(45 / REACTION_THROTTLE_SECONDS)
+
+    def test_throttle_is_per_player(self):
         self.state.add_player("Bob", MagicMock())
         assert self.state.record_reaction("Alice", "🎉") is True
+        # Alice's cooldown must not silence Bob.
         assert self.state.record_reaction("Bob", "🎉") is True
+        assert self.state.record_reaction("Alice", "🎉") is False
+        assert self.state.record_reaction("Bob", "🎉") is False
 
-    def test_reset_between_phases(self):
+    def test_retry_after_counts_down(self):
+        assert self.state.reaction_retry_after("Alice") == 0.0
         self.state.record_reaction("Alice", "🎉")
-        # Simulate phase reset (happens in end_round)
-        self.state._player_registry._reactions_this_phase = set()
+        assert self.state.reaction_retry_after("Alice") == pytest.approx(
+            REACTION_THROTTLE_SECONDS
+        )
+        self._advance(3.0)
+        assert self.state.reaction_retry_after("Alice") == pytest.approx(
+            REACTION_THROTTLE_SECONDS - 3.0
+        )
+        self._advance(REACTION_THROTTLE_SECONDS)
+        assert self.state.reaction_retry_after("Alice") == 0.0
+
+    def test_retry_after_never_goes_negative(self):
+        self.state.record_reaction("Alice", "🎉")
+        self._advance(3600)
+        assert self.state.reaction_retry_after("Alice") == 0.0
+
+    def test_phase_change_does_not_lift_the_throttle(self):
+        # The old rule cleared the budget on REVEAL entry. #2562 keeps the
+        # cooldown running across the phase boundary on purpose: the reveal is
+        # exactly when everyone reacts at once.
+        self.state.record_reaction("Alice", "🎉")
+        self.state.phase = GamePhase.REVEAL
+        assert self.state.record_reaction("Alice", "🎉") is False
+        self._advance(REACTION_THROTTLE_SECONDS)
+        assert self.state.record_reaction("Alice", "🎉") is True
+
+    def test_leaving_the_game_drops_the_cooldown(self):
+        # A name freed by a leave must not hand its cooldown to the next
+        # player who takes it.
+        self.state.record_reaction("Alice", "🎉")
+        self.state.remove_player("Alice")
+        self.state.add_player("Alice", MagicMock())
         assert self.state.record_reaction("Alice", "🎉") is True
 
 

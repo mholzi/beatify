@@ -127,6 +127,8 @@
     "noBonusThisRound": "Nessun bonus in questo turno: azzecca l'anno",
     "lockedIn": "Confermata · in attesa degli altri",
     "lockedInWaitingCount": "Confermata · mancano ancora {count}",
+    "lockedInWaitingOne": "Confermata · {name} sta ancora pensando",
+    "lockedInWaitingTwo": "Confermata · {first} e {second} stanno ancora pensando",
     "lockedInAllSubmitted": "Confermata · hanno risposto tutti",
     "waitingForOthers": "In attesa degli altri",
     "allSubmitted": "Tutti dentro",
@@ -175,7 +177,17 @@
     "sdYouAreIn": "Sei ancora in gioco",
     "sdYouAreOut": "Sei fuori",
     "sdStanding": "{alive} su {total} ancora in gioco",
-    "sdOutNames": "{names} fuori"
+    "sdOutNames": "{names} fuori",
+    "pauseReasonFood": "È arrivato da mangiare",
+    "pauseReasonDoor": "Qualcuno alla porta",
+    "pauseReasonAway": "Torno subito",
+    "pauseReasonSub": "Musica spenta, tempo fermo — nessuno perde nulla",
+    "pauseMusicOff": "Via solo la musica",
+    "pauseMusicOffSub": "Il tempo continua a scorrere — chi non risponde ora perde il round",
+    "pausedLabel": "Pausa",
+    "pausedClockStopped": "Il tempo è fermo — non si perde nulla",
+    "pausedHintHost": "L'host riprende tra un istante",
+    "pausedGuessesSaved": "Le vostre risposte sono salvate"
   },
   "steal": {
     "available": "Furto disponibile!",
@@ -215,7 +227,8 @@
     "laugh": "Reazione risata",
     "shocked": "Reazione sbigottito",
     "applause": "Reazione applauso",
-    "thinking": "Reazione pensieroso"
+    "thinking": "Reazione pensieroso",
+    "cooldown": "Attesa prima della prossima reazione"
   },
   "reveal": {
     "correct": "Esatto!",
@@ -901,7 +914,12 @@
     "lightsLineOff": "Le luci sono spente per il resto della partita",
     "lightsLineOnRooms": "lampeggiano a ogni rivelazione",
     "lightsLineOnCount": "{count} luci lampeggiano a ogni rivelazione",
-    "lightsRowTitle": "Luci della festa"
+    "lightsRowTitle": "Luci della festa",
+    "pauseGame": "Pausa",
+    "pauseGameSub": "Musica spenta, tempo fermo, nessuno perde nulla",
+    "pauseAnnouncement": "Cambia l'annuncio",
+    "pauseOnEveryScreen": "Visibile su tutti gli schermi",
+    "resume": "Riprendi"
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

@@ -25,7 +25,13 @@ export var state = {
     reconnectAttempts: 0,
     isReconnecting: false,
     intentionalLeave: false,
-    hasReactedThisPhase: false,
+    // #2562: `Date.now()` at which the reaction bar comes back to life. Replaces
+    // the old `hasReactedThisPhase` flag — the brake is a time throttle now, not
+    // a one-per-phase budget, and the server's ack is what sets this.
+    reactionCooldownUntil: 0,
+    // #2562: the phase of the last state frame. `player_reaction` frames arrive
+    // outside the phase switch and are rendered on the phone only at the reveal.
+    currentPhase: null,
     currentRoundNumber: 0,
     joinTimeoutId: null,  // #1663: initial-join watchdog timer id
     joinPending: false,   // #2499: a connect attempt is waiting for its ack

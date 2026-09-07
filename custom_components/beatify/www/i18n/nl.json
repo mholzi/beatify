@@ -127,6 +127,8 @@
     "noBonusThisRound": "Geen bonus deze ronde — raad het jaar",
     "lockedIn": "Vergrendeld · wachten op anderen",
     "lockedInWaitingCount": "Vergrendeld · wachten op {count} meer",
+    "lockedInWaitingOne": "Vergrendeld · {name} denkt nog na",
+    "lockedInWaitingTwo": "Vergrendeld · {first} en {second} denken nog na",
     "lockedInAllSubmitted": "Vergrendeld · iedereen klaar",
     "waitingForOthers": "Wachten op anderen",
     "allSubmitted": "Iedereen klaar",
@@ -175,7 +177,17 @@
     "sdYouAreIn": "Je doet nog mee",
     "sdYouAreOut": "Je ligt eruit",
     "sdStanding": "{alive} van {total} staan nog",
-    "sdOutNames": "{names} eruit"
+    "sdOutNames": "{names} eruit",
+    "pauseReasonFood": "Het eten is er",
+    "pauseReasonDoor": "Iemand aan de deur",
+    "pauseReasonAway": "Zo terug",
+    "pauseReasonSub": "Muziek uit, klok stil — niemand mist iets",
+    "pauseMusicOff": "Alleen de muziek uit",
+    "pauseMusicOffSub": "De klok loopt door — wie nu niet raadt, mist de ronde",
+    "pausedLabel": "Pauze",
+    "pausedClockStopped": "De klok staat stil — er gaat niets verloren",
+    "pausedHintHost": "De host gaat zo verder",
+    "pausedGuessesSaved": "Jullie antwoorden zijn opgeslagen"
   },
   "steal": {
     "available": "Stelen beschikbaar!",
@@ -215,7 +227,8 @@
     "laugh": "Lachreactie",
     "shocked": "Geschokte reactie",
     "applause": "Applausreactie",
-    "thinking": "Denkreactie"
+    "thinking": "Denkreactie",
+    "cooldown": "Wachttijd tot de volgende reactie"
   },
   "reveal": {
     "correct": "Correct!",
@@ -901,7 +914,12 @@
     "lightsLineOff": "De verlichting staat uit voor de rest van het spel",
     "lightsLineOnRooms": "flitsen bij elke onthulling",
     "lightsLineOnCount": "{count} lampen flitsen bij elke onthulling",
-    "lightsRowTitle": "Feestverlichting"
+    "lightsRowTitle": "Feestverlichting",
+    "pauseGame": "Pauze",
+    "pauseGameSub": "Muziek uit, klok stil, niemand mist iets",
+    "pauseAnnouncement": "Melding wijzigen",
+    "pauseOnEveryScreen": "Te zien op alle schermen",
+    "resume": "Hervatten"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

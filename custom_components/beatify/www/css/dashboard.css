@@ -141,6 +141,32 @@
     margin-bottom: var(--space-lg);
 }
 
+/* #2645: the host's announcement on the TV. The reason takes poster size and
+   the word "Pause" drops to the line under it — inverted on purpose, because
+   the room's question is "why did the music stop", not "did it".
+   The cost of that inversion is that a glance reads the reason and not the
+   state, so the state keeps the accent colour rather than a muted grey: at
+   this size a grey line is not read at all. */
+#dashboard-pause-title.is-announcement {
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 1.05;
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 34px rgba(255, 45, 106, 0.55);
+}
+
+.dashboard-pause-state {
+    margin-top: var(--space-sm);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary);
+}
+
+.dashboard-pause-state.hidden {
+    display: none;
+}
+
 /* ==========================================
    Dashboard Header
    ========================================== */

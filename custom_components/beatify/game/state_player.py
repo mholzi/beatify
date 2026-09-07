@@ -144,6 +144,10 @@ class PlayerLifecycleMixin:
         """Record a player reaction. Delegates to PlayerRegistry."""
         return self._player_registry.record_reaction(player_name, emoji)
 
+    def reaction_retry_after(self, player_name: str) -> float:
+        """Seconds until this player may react again (#2562). Delegates to PlayerRegistry."""
+        return self._player_registry.reaction_retry_after(player_name)
+
     def get_steal_targets(self, stealer_name: str) -> list[str]:
         """Get list of players who can be stolen from (Story 15.3). Delegates to PowerUpManager."""
         return self._powerup_manager.get_steal_targets(stealer_name, self.players)

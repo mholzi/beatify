@@ -1145,6 +1145,20 @@
                     </button>
                 </div>
             </div>
+            <!-- #2645: the host's own pause, on the page the host is standing
+                 at. Sibling of the recovery banner above rather than part of
+                 it: that one is an alert about something broken, this one is
+                 the announcement the room is reading right now. Its tiles are
+                 rendered by admin.js; the list is empty here on purpose. -->
+            <div id="admin-host-pause" class="admin-host-pause hidden">
+                <div class="admin-host-pause-headline">
+                    <span id="admin-host-pause-emoji" class="admin-host-pause-emoji" aria-hidden="true">⏸️</span>
+                    <span id="admin-host-pause-title" class="admin-host-pause-title"></span>
+                </div>
+                <p class="admin-host-pause-sub" data-i18n="admin.pauseOnEveryScreen">Shown on every screen</p>
+                <div class="pause-announce-label" data-i18n="admin.pauseAnnouncement">Change the announcement</div>
+                <div id="admin-pause-reason-tiles" class="pause-reasons"></div>
+            </div>
             <div class="game-container">
                 <!-- Game Header (matches player game-header-compact) -->
                 <div class="game-header-compact">
@@ -1259,6 +1273,16 @@
 
         <!-- Admin control bar (fixed bottom, matches player.html admin-control-bar) -->
         <div id="admin-control-bar" class="admin-control-bar hidden">
+            <!-- #2645: Pause sits to the LEFT of Stop, and that order is the
+                 point. Stop was the leftmost control and reads like the way to
+                 halt a game, while it actually takes the music away and lets
+                 the clock keep scoring the room as "missed". The button a host
+                 grabs first should be the one that does what they mean.
+                 Doubles as Resume while a host pause stands (admin.js). -->
+            <button id="admin-pause-game" class="control-btn" type="button">
+                <span class="control-icon">⏸️</span>
+                <span class="control-label" data-i18n="admin.pauseGame">Pause</span>
+            </button>
             <button id="admin-stop-song" class="control-btn" type="button">
                 <span class="control-icon">⏹️</span>
                 <span class="control-label" data-i18n="admin.stopSong">Stop</span>

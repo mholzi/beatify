@@ -135,6 +135,9 @@ _PLAYER_VISIBLE_ROUND = frozenset(
 _PLAYER_VISIBLE_PAUSED = frozenset(
     {
         "pause_reason",
+        # #2645: the host's phone is a player socket too, and its pause screen
+        # renders off this. It names a phase, never an answer.
+        "paused_from",
         "last_error_detail",
         "provider",
         "media_player",

@@ -16,6 +16,7 @@ from ..const import (
     MAX_NAME_LENGTH,
     MAX_PLAYERS,
     MIN_NAME_LENGTH,
+    REACTION_THROTTLE_SECONDS,
 )
 
 if TYPE_CHECKING:
@@ -55,7 +56,12 @@ class PlayerRegistry:
         # clearing this map invalidates session-based reconnect while leaving
         # the players themselves intact (Story 11.6 leftover-session semantics).
         self._sessions: dict[str, str] = {}
-        self._reactions_this_phase: set[str] = set()
+        # #2562: player name → ``self._now()`` of that player's last accepted
+        # reaction. Replaces the former ``_reactions_this_phase`` set (one
+        # reaction per player per REVEAL phase): reactions now also happen
+        # during PLAYING, where a per-phase budget of one is far too little.
+        # Bounded by MAX_PLAYERS; entries are dropped in remove_player/reset.
+        self._last_reaction_at: dict[str, float] = {}
 
     @property
     def players(self) -> dict[str, PlayerSession]:
@@ -88,11 +94,7 @@ class PlayerRegistry:
         self._players.clear()
         self._name_index.clear()
         self._sessions.clear()
-        self._reactions_this_phase.clear()
-
-    def reset_reactions(self) -> None:
-        """Clear reaction tracking for a new reveal phase."""
-        self._reactions_this_phase.clear()
+        self._last_reaction_at.clear()
 
     def add_player(
         self,
@@ -250,17 +252,45 @@ class PlayerRegistry:
                 return player
         return None
 
-    def record_reaction(self, player_name: str, emoji: str) -> bool:
+    def reaction_retry_after(self, player_name: str) -> float:
+        """Seconds this player must still wait before reacting again (#2562).
+
+        ``0.0`` means a reaction would be accepted right now. The handler sends
+        this back to the phone that was throttled so the cooldown bar shows the
+        real remaining time instead of the client guessing at it — a tap that
+        vanishes without a trace reads as a broken button.
         """
-        Record a player reaction. Rate limited to 1 per player per reveal phase.
+        last = self._last_reaction_at.get(player_name)
+        if last is None:
+            return 0.0
+        remaining = REACTION_THROTTLE_SECONDS - (self._now() - last)
+        return remaining if remaining > 0 else 0.0
+
+    def record_reaction(self, player_name: str, emoji: str) -> bool:
+        """Record a player reaction, throttled to one per REACTION_THROTTLE_SECONDS.
+
+        #2562: the old rule was one reaction per player per REVEAL phase. That
+        budget cannot survive reactions during PLAYING — a 45-second round with
+        a single allowed tap is barely different from no reactions at all — and
+        removing it outright leaves no brake, so a time-based throttle takes its
+        place. The interval is REACTION_THROTTLE_SECONDS in const.py.
+
+        The throttle is deliberately the ONLY brake: it is no longer reset on a
+        phase change. Resetting at REVEAL entry would lift the brake at the one
+        moment the whole room reacts at once, which is precisely the burst it
+        exists to smooth.
+
+        Args:
+            player_name: Display name of the reacting player.
+            emoji: The emoji sent (not stored; the throttle is per player).
 
         Returns:
-            True if reaction was recorded, False if rate limited
+            True if the reaction was recorded, False if it was throttled.
 
         """
-        if player_name in self._reactions_this_phase:
+        if self.reaction_retry_after(player_name) > 0:
             return False
-        self._reactions_this_phase.add(player_name)
+        self._last_reaction_at[player_name] = self._now()
         return True
 
     def remove_player(self, name: str) -> None:
@@ -271,6 +301,9 @@ class PlayerRegistry:
             return
         self._sessions.pop(player.session_id, None)
         self._name_index.pop(player.name.lower(), None)
+        # #2562: drop the throttle stamp with the player, so the name can be
+        # re-used by a fresh join without inheriting somebody else's cooldown.
+        self._last_reaction_at.pop(player.name, None)
         del self._players[player_id]
         _LOGGER.info("Player removed: %s", player.name)
 

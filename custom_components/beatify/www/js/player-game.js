@@ -15,6 +15,15 @@ import {
     triggerConfetti, stopConfetti, isTitleArtistMode,
     createModalFocusTrap
 } from './player-utils.js';
+// #2645: the host's pause and the announcement that goes with it.
+import {
+    HOST_PAUSE_GENERIC, HOST_PAUSE_TILES, isHostPause
+} from './host-pause.js';
+
+// #2562: the reaction throttle, mirrored from const.py. The bar starts its
+// cooldown off this the instant a tap is sent; the server's ack then re-anchors
+// it on the authoritative remainder.
+import { REACTION_THROTTLE_SECONDS } from './game-constants.js';
 
 // #1760: focus traps for the steal + intro-splash dialogs (lazily created once
 // per dialog element). Trap Tab within the dialog and restore focus on close.
@@ -356,6 +365,10 @@ export function updateGameView(data) {
     // chip row / submission tracker so the locked state is consistent.
     applySuddenDeathState(data);
 
+    // #2562: the bar belongs to whoever is done with the round — must run
+    // after applySuddenDeathState so the eliminated view is already settled.
+    syncInRoundReactionBar(data);
+
     // Arcade chip row — hide the wrapper when every child chip is hidden
     syncArcChipRow();
 
@@ -598,10 +611,11 @@ function applySuddenDeathState(data) {
             if (skull) skull.classList.remove('hidden');
         }
 
-        // Issue #827: eliminated players are spectators — surface the existing
-        // reaction bar during PLAYING (it normally only shows in REVEAL) so they
-        // can still cheer the active players. Piggybacks the live-reaction system.
-        showReactionBar();
+        // Issue #827 gave eliminated players the reaction bar during PLAYING so
+        // they could still cheer — but the server gate was REVEAL-only, so every
+        // one of those taps was dropped without a word. #2562 opens the gate and
+        // moves the show/hide decision to syncInRoundReactionBar(), which
+        // applies the same rule to everyone who is done with the round.
     } else {
         // Restore the normal UI. Only un-hide the year-based play controls when
         // NOT in Title & Artist mode (renderTitleArtistInput owns that toggle);
@@ -626,6 +640,41 @@ function applySuddenDeathState(data) {
         var banner = document.getElementById('submitted-banner');
         if (banner && !hasSubmitted) banner.classList.add('hidden');
     }
+}
+
+/**
+ * #2562: the line a player who has already submitted reads while they wait.
+ *
+ * Until now it said "waiting for 2 more" — a number, when the thing the room
+ * actually wants to know is *who*. Nothing in the game named them. The rule is
+ * deliberately mechanical rather than a natural-language list: name one, name
+ * two, and past that fall back to the count. Three or more names is a longer
+ * line than the banner has room for, and it would need per-locale list grammar
+ * to read properly in six languages.
+ *
+ * @param {Array} activeList - Players still in the round (out-of-play excluded).
+ * @returns {string} The banner copy.
+ */
+export function waitingLine(activeList) {
+    var waiting = activeList.filter(function(p) {
+        return !p.submitted;
+    }).map(function(p) {
+        return p.name;
+    });
+
+    if (waiting.length === 0) {
+        return utils.t('game.lockedInAllSubmitted') || 'Locked in · everyone submitted';
+    }
+    if (waiting.length === 1) {
+        return utils.t('game.lockedInWaitingOne', { name: waiting[0] })
+            || ('Locked in · ' + waiting[0] + ' is still thinking');
+    }
+    if (waiting.length === 2) {
+        return utils.t('game.lockedInWaitingTwo', { first: waiting[0], second: waiting[1] })
+            || ('Locked in · ' + waiting[0] + ' and ' + waiting[1] + ' are thinking');
+    }
+    return utils.t('game.lockedInWaitingCount', { count: waiting.length })
+        || ('Locked in · waiting for ' + waiting.length + ' more');
 }
 
 function renderSubmissionTracker(players) {
@@ -661,17 +710,11 @@ function renderSubmissionTracker(players) {
         }
     }
 
-    // Update the arcade submitted banner copy (count of remaining players).
+    // Update the arcade submitted banner copy.
     var submittedBanner = document.getElementById('submitted-banner');
     var bannerText = document.getElementById('submitted-banner-text');
     if (submittedBanner && bannerText && !submittedBanner.classList.contains('hidden')) {
-        var remaining = Math.max(0, totalCount - submittedCount);
-        if (remaining === 0) {
-            bannerText.textContent = utils.t('game.lockedInAllSubmitted') || 'Locked in · everyone submitted';
-        } else {
-            bannerText.textContent = utils.t('game.lockedInWaitingCount', { count: remaining })
-                || ('Locked in · waiting for ' + remaining + ' more');
-        }
+        bannerText.textContent = waitingLine(activeList);
     }
 
     container.innerHTML = playerList.map(function(player) {
@@ -2244,6 +2287,10 @@ export function renderHostDrawer(data) {
 
     drawer.classList.remove('hidden');
     _wireHostDrawerGrip();
+    // #2645: Pause is the first row on purpose. It is the one the host reaches
+    // for while carrying a pizza box, and the control bar above has no space
+    // left for it — six elements on 270 px is what created this drawer.
+    _renderPauseRow();
     _renderSuddenDeathRow(data);
     _renderPartyLightsRow(data);   // #2649
 }
@@ -2446,7 +2493,66 @@ function _wireHostDrawerGrip() {
 }
 
 /**
- * The drawer's first row: arm or disarm Sudden Death (#827's endpoint, #2723's
+ * The drawer's Pause row (#2645).
+ *
+ * The tap pauses immediately — it does not open a reason picker first. A host
+ * with a doorbell going has one thing to do, and making them choose a label
+ * before the music stops would be the second-worst version of a pause button.
+ * The reasons are offered afterwards, on the pause screen, as the announcement.
+ *
+ * The subtitle is the sentence that separates this from Stop, which is the
+ * button sitting three centimetres above it in the control bar.
+ */
+function _renderPauseRow() {
+    var body = document.getElementById('host-drawer-body');
+    if (!body) return;
+
+    var row = document.getElementById('host-drawer-pause');
+    if (!row) {
+        row = document.createElement('button');
+        row.id = 'host-drawer-pause';
+        row.type = 'button';
+        row.className = 'host-drawer__row';
+        row.addEventListener('click', function() {
+            sendHostPause(HOST_PAUSE_GENERIC);
+        });
+        body.appendChild(row);
+    }
+
+    row.innerHTML =
+        '<span class="host-drawer__row-icon">⏸️</span>' +
+        '<span class="host-drawer__row-text">' +
+            '<span class="host-drawer__row-title">' +
+                escapeHtml(utils.t('admin.pauseGame')) + '</span>' +
+            '<span class="host-drawer__row-sub">' +
+                escapeHtml(utils.t('admin.pauseGameSub')) + '</span>' +
+        '</span>';
+}
+
+/**
+ * Send the host's pause / re-label (#2645).
+ *
+ * The same action does both: the server pauses when the game is running and
+ * only re-writes the announcement when it is already paused, so the host can
+ * change "pizza" into "back in a minute" without leaving the pause.
+ *
+ * @param {string} reason - one of HOST_PAUSE_CODES
+ */
+function sendHostPause(reason) {
+    if (!debounceAdminAction()) return;
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        showToast(utils.t('errors.CONNECTION_LOST'));
+        return;
+    }
+    state.ws.send(JSON.stringify({
+        type: 'admin',
+        action: 'pause_game',
+        reason: reason
+    }));
+}
+
+/**
+ * The drawer's second row: arm or disarm Sudden Death (#827's endpoint, #2723's
  * reachable place for it).
  *
  * The subtitle says what the switch *does*, not what it is called. The host
@@ -2518,7 +2624,7 @@ function _renderSuddenDeathRow(data) {
 // ============================================
 
 /**
- * Show reaction bar during REVEAL phase
+ * Show the reaction bar.
  */
 export function showReactionBar() {
     var bar = document.getElementById('reaction-bar');
@@ -2528,7 +2634,7 @@ export function showReactionBar() {
 }
 
 /**
- * Hide reaction bar (non-REVEAL phases)
+ * Hide the reaction bar.
  */
 export function hideReactionBar() {
     var bar = document.getElementById('reaction-bar');
@@ -2538,19 +2644,151 @@ export function hideReactionBar() {
 }
 
 /**
+ * #2562: is this client allowed to react right now?
+ *
+ * The rule mirrors `handle_reaction` in server/ws_handlers/lifecycle.py: at the
+ * reveal everyone may, during the round only a player who is done with it —
+ * they submitted, they are eliminated (#827) or they are sitting out a finale
+ * playoff (#2578). Keeping the two in step is what stops the bar appearing for
+ * someone whose taps the server would drop.
+ *
+ * @param {string} phase - Current game phase.
+ * @param {Object|null} me - This player's entry in the state payload.
+ * @returns {boolean}
+ */
+export function mayReactNow(phase, me) {
+    if (phase === 'REVEAL') return true;
+    if (phase !== 'PLAYING') return false;
+    if (!me) return false;
+    return !!(me.submitted || me.eliminated || me.playoff_spectator);
+}
+
+/**
+ * #2562: show or hide the reaction bar for the PLAYING phase.
+ *
+ * Called from the (coalesced) game render, so it runs with the state payload in
+ * hand — the phase switch in player-core cannot see whether this player has
+ * submitted yet.
+ *
+ * @param {Object} data - PLAYING state payload.
+ */
+export function syncInRoundReactionBar(data) {
+    if (mayReactNow('PLAYING', findMe(data && data.players))) {
+        showReactionBar();
+    } else {
+        hideReactionBar();
+    }
+}
+
+// ---------------------------------------------------------------------------
+// #2562 cooldown
+//
+// The old brake was one reaction per reveal phase, tracked client-side as
+// `state.hasReactedThisPhase` and shown by disabling the whole bar until the
+// next round. That budget cannot carry a 45-second round, so the server now
+// throttles to one reaction per REACTION_THROTTLE_SECONDS and tells the sender
+// how long is left (`reaction_ack`). This is the client half: the bar goes dead
+// for exactly that long, with a line under it draining to zero, so the wait is
+// something the player can see rather than a button that stopped working.
+// ---------------------------------------------------------------------------
+
+/** Timer id for the handle that re-arms the bar when the cooldown expires. */
+var reactionCooldownTimeoutId = null;
+
+/**
+ * Drive the cooldown line: full width, then drain to zero over `seconds`.
+ * @param {number} seconds
+ */
+function paintReactionCooldown(seconds) {
+    var track = document.getElementById('reaction-cooldown');
+    var fill = document.getElementById('reaction-cooldown-fill');
+    if (!track || !fill) return;
+
+    track.classList.remove('hidden');
+    track.setAttribute('aria-valuemin', '0');
+    track.setAttribute('aria-valuemax', String(Math.round(seconds)));
+    track.setAttribute('aria-valuenow', String(Math.round(seconds)));
+
+    // Snap back to full with no transition, then animate down on the next
+    // frame — assigning both in one go collapses into no animation at all.
+    fill.style.transition = 'none';
+    fill.style.transform = 'scaleX(1)';
+    // Force a reflow so the browser takes the reset as its starting point.
+    void fill.offsetWidth;
+    fill.style.transition = 'transform ' + seconds + 's linear';
+    fill.style.transform = 'scaleX(0)';
+}
+
+/** Take the cooldown line off screen. */
+function clearReactionCooldownPaint() {
+    var track = document.getElementById('reaction-cooldown');
+    var fill = document.getElementById('reaction-cooldown-fill');
+    if (track) track.classList.add('hidden');
+    if (fill) {
+        fill.style.transition = 'none';
+        fill.style.transform = 'scaleX(1)';
+    }
+}
+
+/**
+ * Put the bar on cooldown for `seconds` and re-arm it afterwards.
+ * @param {number} seconds - Remaining cooldown, from the server where possible.
+ */
+export function startReactionCooldown(seconds) {
+    var wait = Number(seconds);
+    if (!isFinite(wait) || wait <= 0) {
+        endReactionCooldown();
+        return;
+    }
+
+    state.reactionCooldownUntil = Date.now() + wait * 1000;
+    setReactionButtonsDisabled(true);
+    paintReactionCooldown(wait);
+
+    if (reactionCooldownTimeoutId) clearTimeout(reactionCooldownTimeoutId);
+    reactionCooldownTimeoutId = setTimeout(endReactionCooldown, wait * 1000);
+}
+
+/** Re-arm the bar and clear the used-glow. */
+export function endReactionCooldown() {
+    if (reactionCooldownTimeoutId) {
+        clearTimeout(reactionCooldownTimeoutId);
+        reactionCooldownTimeoutId = null;
+    }
+    state.reactionCooldownUntil = 0;
+    clearReactionCooldownPaint();
+    resetReactionButtons();
+}
+
+/**
+ * #2562: the server's answer to a reaction — accepted (`retry_after` is the
+ * full interval) or throttled (`retry_after` is what is actually left).
+ *
+ * The client already started its own cooldown when it sent, off the mirrored
+ * constant; this re-anchors it on the server's number so the two cannot drift
+ * apart on a slow link and offer a tap that is going to be swallowed.
+ *
+ * @param {Object} data - `reaction_ack` payload.
+ */
+export function handleReactionAck(data) {
+    if (!data) return;
+    startReactionCooldown(data.retry_after);
+}
+
+/**
  * Send reaction via WebSocket.
  * @param {string} emoji - The emoji to send
  * @param {HTMLElement} [btn] - The tapped button, marked used on success
  */
 function sendReaction(emoji, btn) {
-    if (state.hasReactedThisPhase) {
+    if (state.reactionCooldownUntil > Date.now()) {
         return;
     }
 
-    // #1757: don't burn the one-per-phase budget if the socket is mid-
-    // reconnect — the reaction would be silently dropped and the player would
-    // get zero feedback and no retry. Leave the buttons active so they can
-    // react once the socket is back.
+    // #1757: don't burn the cooldown if the socket is mid-reconnect — the
+    // reaction would be silently dropped and the player would get zero feedback
+    // and no retry. Leave the buttons active so they can react once the socket
+    // is back.
     if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
         return;
     }
@@ -2560,21 +2798,22 @@ function sendReaction(emoji, btn) {
         emoji: emoji
     }));
 
-    // Only now is the reaction actually spent — reflect it in the UI.
-    state.hasReactedThisPhase = true;
+    // Start the cooldown optimistically off the mirrored constant, so the bar
+    // answers the tap instead of the round trip; handleReactionAck() corrects
+    // it the moment the server replies.
     markReactionUsed(btn);
+    startReactionCooldown(REACTION_THROTTLE_SECONDS);
 }
 
 /**
- * #1757: reflect the spent reaction — mark the tapped button used and disable
- * the whole bar so further taps aren't silent no-ops.
+ * #1757: reflect the spent reaction — light the tapped emoji. Disabling the bar
+ * is the cooldown's job (#2562).
  * @param {HTMLElement} [usedBtn]
  */
 function markReactionUsed(usedBtn) {
     var bar = document.getElementById('reaction-bar');
     if (!bar) return;
     bar.querySelectorAll('.reaction-btn').forEach(function(btn) {
-        btn.disabled = true;
         var isUsed = btn === usedBtn;
         btn.setAttribute('aria-pressed', isUsed ? 'true' : 'false');
         btn.classList.toggle('is-used', isUsed);
@@ -2582,8 +2821,19 @@ function markReactionUsed(usedBtn) {
 }
 
 /**
- * #1757: re-enable the reaction bar for a fresh reveal round (called when the
- * one-per-phase budget resets in player-core).
+ * Disable or re-enable every button in the bar.
+ * @param {boolean} disabled
+ */
+function setReactionButtonsDisabled(disabled) {
+    var bar = document.getElementById('reaction-bar');
+    if (!bar) return;
+    bar.querySelectorAll('.reaction-btn').forEach(function(btn) {
+        btn.disabled = disabled;
+    });
+}
+
+/**
+ * #1757: re-enable the reaction bar and drop the used-state glow.
  */
 export function resetReactionButtons() {
     var bar = document.getElementById('reaction-bar');
@@ -2643,17 +2893,119 @@ export function showFloatingReaction(senderName, emoji) {
  * resume, no end, and no link to the page that has both. `resume_game` and
  * `end_game` have accepted PAUSED server-side all along.
  */
-export function renderPausedAdminActions() {
+export function renderPausedAdminActions(data) {
     var box = document.getElementById('paused-admin-actions');
     if (!box) return;
     box.classList.toggle('hidden', !state.isAdmin);
-    if (!state.isAdmin || box.dataset.wired === '1') return;
-    box.dataset.wired = '1';
+    if (!state.isAdmin) return;
 
-    var resumeBtn = document.getElementById('paused-resume-btn');
-    if (resumeBtn) resumeBtn.addEventListener('click', handleResumeGame);
-    var endBtn = document.getElementById('paused-end-btn');
-    if (endBtn) endBtn.addEventListener('click', handleEndGame);
+    if (box.dataset.wired !== '1') {
+        box.dataset.wired = '1';
+        var resumeBtn = document.getElementById('paused-resume-btn');
+        if (resumeBtn) resumeBtn.addEventListener('click', handleResumeGame);
+        var endBtn = document.getElementById('paused-end-btn');
+        if (endBtn) endBtn.addEventListener('click', handleEndGame);
+    }
+
+    renderPauseReasonTiles(data || {});
+}
+
+/** The value the fourth tile carries — the old Stop, not a pause reason. */
+export var PAUSE_TILE_MUSIC_OFF = 'music_off';
+
+/**
+ * Which tiles the host's pause screen offers (#2645) — the decision, without
+ * the DOM, so it can be checked without a browser.
+ *
+ * Three announcements plus the old Stop. Standing them in one list, each with
+ * its consequence in a whole sentence, is the entire point of this variant:
+ * before it, Pause and Stop were two buttons in two places and the host had to
+ * already know which one they meant. Reading them side by side once is enough.
+ *
+ * The fourth tile is only offered when there is a round left to run on. Out of
+ * a pause taken during the reveal, "the clock keeps running" would be a
+ * promise about a clock that has already stopped.
+ *
+ * @param {Object} data - state payload (`pause_reason`, `paused_from`)
+ * @returns {Array<{code: string, emoji: string, titleKey: string, subKey: string,
+ *                  warn: boolean, active: boolean}>} empty for a server pause
+ */
+export function pauseReasonTileModel(data) {
+    if (!data || !isHostPause(data.pause_reason)) return [];
+
+    var tiles = HOST_PAUSE_TILES.map(function(tile) {
+        return {
+            code: tile.code,
+            emoji: tile.emoji,
+            titleKey: tile.titleKey,
+            subKey: 'game.pauseReasonSub',
+            warn: false,
+            active: data.pause_reason === tile.code,
+        };
+    });
+
+    if (data.paused_from === 'PLAYING') {
+        tiles.push({
+            code: PAUSE_TILE_MUSIC_OFF,
+            emoji: '🔇',
+            titleKey: 'game.pauseMusicOff',
+            subKey: 'game.pauseMusicOffSub',
+            warn: true,
+            active: false,
+        });
+    }
+    return tiles;
+}
+
+/**
+ * Paint the announcement list and wire it once (#2645).
+ *
+ * Delegated click: the list is rebuilt on every broadcast (the active tile
+ * moves), so per-button listeners would have to be re-attached each time.
+ */
+function renderPauseReasonTiles(data) {
+    var block = document.getElementById('paused-announce-block');
+    var list = document.getElementById('paused-reason-tiles');
+    if (!block || !list) return;
+
+    var tiles = pauseReasonTileModel(data);
+    block.classList.toggle('hidden', tiles.length === 0);
+    if (!tiles.length) {
+        list.innerHTML = '';
+        return;
+    }
+
+    list.innerHTML = tiles.map(function(tile) {
+        return '<button type="button" class="pause-reason' +
+            (tile.active ? ' is-on' : '') +
+            (tile.warn ? ' pause-reason--warn' : '') +
+            '" data-code="' + escapeHtml(tile.code) + '"' +
+            (tile.active ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' +
+            '<span class="pause-reason__emoji" aria-hidden="true">' + tile.emoji + '</span>' +
+            '<span class="pause-reason__text">' +
+                '<span class="pause-reason__title">' +
+                    escapeHtml(utils.t(tile.titleKey)) + '</span>' +
+                '<span class="pause-reason__sub">' +
+                    escapeHtml(utils.t(tile.subKey)) + '</span>' +
+            '</span>' +
+        '</button>';
+    }).join('');
+
+    if (list.dataset.wired === '1') return;
+    list.dataset.wired = '1';
+    list.addEventListener('click', function(ev) {
+        var btn = ev.target && ev.target.closest ? ev.target.closest('.pause-reason') : null;
+        if (!btn) return;
+        var code = btn.getAttribute('data-code');
+        if (code === PAUSE_TILE_MUSIC_OFF) {
+            // The host did not want a pause at all. `stop_song` lifts the host
+            // pause and silences the song server-side (#2645), so the round
+            // carries on — which is exactly what the tile's sentence promised.
+            handleStopSong({ fromPause: true });
+            return;
+        }
+        sendHostPause(code);
+    });
 }
 
 /**
@@ -2725,13 +3077,19 @@ export function updateControlBarState(phase) {
 
 /**
  * Handle Stop Song button (Story 16.6)
+ *
+ * @param {{fromPause?: boolean}} [opts] - #2645: sent from the "Just the music
+ *   off" tile on the pause screen rather than from the control bar. The bar is
+ *   hidden there, and the local `songStopped` latch must not swallow the
+ *   message — the server has a pause to lift before it silences anything.
  */
-function handleStopSong() {
-    if (songStopped) return;
+function handleStopSong(opts) {
+    var fromPause = !!(opts && opts.fromPause);
+    if (songStopped && !fromPause) return;
 
     if (!debounceAdminAction()) return;
 
-    var stopBtn = document.getElementById('stop-song-btn');
+    var stopBtn = fromPause ? null : document.getElementById('stop-song-btn');
     if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
         // #880: the WebSocket can briefly be CONNECTING right after an
         // admin->player handoff or a tab-return reconnect. The old code
@@ -2739,6 +3097,8 @@ function handleStopSong() {
         // looked dead. Flash visible feedback on the label so they know the
         // click registered and to retry once reconnected.
         console.warn('[Beatify] Cannot stop song: WebSocket not connected');
+        // #2645: from the pause screen there is no control-bar label to flash.
+        if (fromPause) showToast(utils.t('errors.CONNECTION_LOST'));
         if (stopBtn) {
             var warnLabel = stopBtn.querySelector('.control-label');
             if (warnLabel) {

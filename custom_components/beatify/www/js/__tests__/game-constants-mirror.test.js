@@ -19,6 +19,7 @@ import { dirname, join } from 'node:path';
 import {
     MAX_NAME_LENGTH,
     SUDDEN_DEATH_MIN_PLAYERS,
+    REACTION_THROTTLE_SECONDS,
     REVEAL_AUTO_ADVANCE_OPTIONS,
     POINTS_EXACT,
     POINTS_WRONG,
@@ -87,6 +88,7 @@ describe('the parser finds the Python constants at all', () => {
     it('finds every constant it is about to compare', () => {
         expect(pyInt('MAX_NAME_LENGTH')).toBeGreaterThan(0);
         expect(pyInt('SUDDEN_DEATH_MIN_PLAYERS')).toBeGreaterThan(0);
+        expect(pyInt('REACTION_THROTTLE_SECONDS')).toBeGreaterThan(0);
         expect(pyInt('POINTS_EXACT')).toBeGreaterThan(0);
         expect(pyIntSeq('REVEAL_AUTO_ADVANCE_OPTIONS').length).toBeGreaterThan(1);
         expect(Object.keys(pyDifficultyScoring())).toHaveLength(3);
@@ -100,6 +102,10 @@ describe('game-constants.js mirrors const.py', () => {
 
     it('mirrors SUDDEN_DEATH_MIN_PLAYERS (#2699)', () => {
         expect(SUDDEN_DEATH_MIN_PLAYERS).toBe(pyInt('SUDDEN_DEATH_MIN_PLAYERS'));
+    });
+
+    it('mirrors REACTION_THROTTLE_SECONDS (#2562)', () => {
+        expect(REACTION_THROTTLE_SECONDS).toBe(pyInt('REACTION_THROTTLE_SECONDS'));
     });
 
     it('mirrors REVEAL_AUTO_ADVANCE_OPTIONS (#2626)', () => {
