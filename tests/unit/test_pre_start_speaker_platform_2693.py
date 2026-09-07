@@ -61,9 +61,23 @@ def _registry() -> MagicMock:
     return reg
 
 
+def _closing_background_task(coro, *_args, **_kwargs):
+    """``async_create_background_task`` stub that closes the coro (no event loop).
+
+    Same stub as ``tests/unit/test_media_player_prewarm.py``, and it is here for
+    the same reason. ``create_game`` schedules the #1540 LOBBY pre-warm through
+    this method; a bare ``MagicMock`` would record the coroutine and never await
+    it, so the ``RuntimeWarning`` fires whenever the GC gets round to collecting
+    it — inside whichever test happens to be running by then.
+    """
+    coro.close()
+    return MagicMock()
+
+
 def _hass() -> MagicMock:
     hass = MagicMock()
     hass.states.get.return_value = MagicMock(state="playing")
+    hass.async_create_background_task = MagicMock(side_effect=_closing_background_task)
     return hass
 
 
