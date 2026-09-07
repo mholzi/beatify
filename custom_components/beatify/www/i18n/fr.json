@@ -127,6 +127,8 @@
     "noBonusThisRound": "Pas de bonus ce tour — trouve l'année",
     "lockedIn": "Verrouillé · en attente des autres",
     "lockedInWaitingCount": "Verrouillé · en attente de {count} joueur(s)",
+    "lockedInWaitingOne": "Verrouillé · {name} réfléchit encore",
+    "lockedInWaitingTwo": "Verrouillé · {first} et {second} réfléchissent encore",
     "lockedInAllSubmitted": "Verrouillé · tout le monde a envoyé",
     "waitingForOthers": "En attente des autres",
     "allSubmitted": "Tous prêts",
@@ -215,7 +217,8 @@
     "laugh": "Réaction rire",
     "shocked": "Réaction choc",
     "applause": "Réaction applaudissements",
-    "thinking": "Réaction réflexion"
+    "thinking": "Réaction réflexion",
+    "cooldown": "Attente avant la prochaine réaction"
   },
   "reveal": {
     "correct": "Correct !",

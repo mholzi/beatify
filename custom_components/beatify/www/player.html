@@ -1080,14 +1080,25 @@
             <div id="host-drawer-body" class="host-drawer__body" hidden></div>
         </div>
 
-        <!-- Reaction Bar (Story 18.9) - visible during REVEAL only -->
+        <!-- Reaction Bar (Story 18.9) — at the reveal for everyone, and during
+             the round for anyone already done with it (#2562: submitted,
+             eliminated, or sitting out a finale playoff). -->
         <div id="reaction-bar" class="reaction-bar hidden">
             <div class="reaction-bar-container">
-                <button class="reaction-btn" data-emoji="🔥" data-i18n-aria-label="reaction.fire" aria-label="Fire reaction">🔥</button>
-                <button class="reaction-btn" data-emoji="😂" data-i18n-aria-label="reaction.laugh" aria-label="Laugh reaction">😂</button>
-                <button class="reaction-btn" data-emoji="😱" data-i18n-aria-label="reaction.shocked" aria-label="Shocked reaction">😱</button>
-                <button class="reaction-btn" data-emoji="👏" data-i18n-aria-label="reaction.applause" aria-label="Applause reaction">👏</button>
-                <button class="reaction-btn" data-emoji="🤔" data-i18n-aria-label="reaction.thinking" aria-label="Thinking reaction">🤔</button>
+                <div class="reaction-bar-buttons">
+                    <button class="reaction-btn" data-emoji="🔥" data-i18n-aria-label="reaction.fire" aria-label="Fire reaction">🔥</button>
+                    <button class="reaction-btn" data-emoji="😂" data-i18n-aria-label="reaction.laugh" aria-label="Laugh reaction">😂</button>
+                    <button class="reaction-btn" data-emoji="😱" data-i18n-aria-label="reaction.shocked" aria-label="Shocked reaction">😱</button>
+                    <button class="reaction-btn" data-emoji="👏" data-i18n-aria-label="reaction.applause" aria-label="Applause reaction">👏</button>
+                    <button class="reaction-btn" data-emoji="🤔" data-i18n-aria-label="reaction.thinking" aria-label="Thinking reaction">🤔</button>
+                </div>
+                <!-- #2562: the cooldown the server is enforcing, drawn as a
+                     draining line. A tap swallowed in silence reads as a broken
+                     button; a visible wait reads as a rule. -->
+                <div id="reaction-cooldown" class="reaction-cooldown hidden" role="progressbar"
+                     data-i18n-aria-label="reaction.cooldown" aria-label="Reaction cooldown">
+                    <div id="reaction-cooldown-fill" class="reaction-cooldown-fill"></div>
+                </div>
             </div>
         </div>
 

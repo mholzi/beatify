@@ -32,9 +32,11 @@ are unchanged.
   does not depend on the per-round timer task surviving, and unlike the client
   watchdog it does not depend on a browser being open.
 * ``_transition_to_reveal`` — REVEAL phase 4 (#1272): fire the combined REVEAL
-  announcement BEFORE the visible state change (audio leads), clear per-phase
-  reactions, then flip the phase to REVEAL through the ``_set_phase``
-  chokepoint (which stamps ``reveal_started_at`` and notifies observers).
+  announcement BEFORE the visible state change (audio leads), then flip the
+  phase to REVEAL through the ``_set_phase`` chokepoint (which stamps
+  ``reveal_started_at`` and notifies observers). It no longer touches the
+  reaction state — #2562 replaced the per-phase reaction budget with a
+  time-based throttle that survives the phase change on purpose.
 * ``_apply_reveal_lights`` — REVEAL phase 6 (#1272): set the REVEAL party-light
   phase, then flash gold (exact) or green (within one year) on the event.
 * ``confirm_intro_splash`` — admin confirmation of the intro splash (#292/#403);
@@ -67,7 +69,6 @@ The mixin relies on attributes / methods the host class owns and that live on
 * ``self.artist_challenge`` / ``self.movie_challenge`` /
   ``self.title_artist_challenge`` and their ``*_enabled`` / ``title_artist_mode``
   flags — the per-mode guess gates.
-* ``self._player_registry`` — the per-phase reaction reset on REVEAL entry.
 * ``self._announce_reveal`` / ``self.announce_time_up`` / ``self.announce_winner``
   / ``self.announce_podium`` — the TTS hooks (live on ``TtsAnnouncerMixin``).
 * ``self._lights_set_phase`` / ``self._lights_flash`` / ``self._party_lights`` /
@@ -313,9 +314,16 @@ class RevealTransitionMixin:
             _LOGGER.error("REVEAL announcement failed: %s", err)
 
         # Transition to REVEAL
-        self._player_registry._reactions_this_phase = (
-            set()
-        )  # Story 18.9: Clear for new reveal phase
+        #
+        # #2562: the per-phase reaction reset that used to sit here is gone.
+        # It made sense while the budget was one reaction per REVEAL phase, but
+        # reactions now also run during PLAYING and the brake is a time-based
+        # throttle (REACTION_THROTTLE_SECONDS, game/player_registry.py). Wiping
+        # the throttle on REVEAL entry would lift the brake at the exact moment
+        # the whole room reacts at once — the burst it exists to smooth. The
+        # cost is that a player who reacted in the last seconds of PLAYING waits
+        # out the remainder of their cooldown into the reveal, which their phone
+        # shows as a running countdown rather than a dead button.
         # #1273: _set_phase stamps reveal_started_at on REVEAL entry (#1048 —
         # so the admin client can render the auto-advance countdown on the
         # sticky Next button) and notifies observers (#441).

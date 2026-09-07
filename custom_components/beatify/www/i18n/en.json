@@ -127,6 +127,8 @@
     "noBonusThisRound": "No bonus this round — nail the year",
     "lockedIn": "Locked in · waiting for others",
     "lockedInWaitingCount": "Locked in · waiting for {count} more",
+    "lockedInWaitingOne": "Locked in · {name} is still thinking",
+    "lockedInWaitingTwo": "Locked in · {first} and {second} are thinking",
     "lockedInAllSubmitted": "Locked in · everyone submitted",
     "waitingForOthers": "Waiting for others",
     "allSubmitted": "All in",
@@ -215,7 +217,8 @@
     "laugh": "Laugh reaction",
     "shocked": "Shocked reaction",
     "applause": "Applause reaction",
-    "thinking": "Thinking reaction"
+    "thinking": "Thinking reaction",
+    "cooldown": "Reaction cooldown"
   },
   "reveal": {
     "correct": "Correct!",

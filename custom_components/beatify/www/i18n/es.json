@@ -127,6 +127,8 @@
     "noBonusThisRound": "Sin bonus esta ronda — acierta el año",
     "lockedIn": "Bloqueado · esperando a los demás",
     "lockedInWaitingCount": "Bloqueado · esperando a {count} más",
+    "lockedInWaitingOne": "Bloqueado · {name} sigue pensando",
+    "lockedInWaitingTwo": "Bloqueado · {first} y {second} siguen pensando",
     "lockedInAllSubmitted": "Bloqueado · todos enviaron",
     "waitingForOthers": "Esperando a los demás",
     "allSubmitted": "Todos dentro",
@@ -215,7 +217,8 @@
     "laugh": "Reacción de risa",
     "shocked": "Reacción de sorpresa",
     "applause": "Reacción de aplauso",
-    "thinking": "Reacción pensativa"
+    "thinking": "Reacción pensativa",
+    "cooldown": "Espera hasta la próxima reacción"
   },
   "reveal": {
     "correct": "Correcto!",

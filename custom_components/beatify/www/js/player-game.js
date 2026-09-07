@@ -16,6 +16,11 @@ import {
     createModalFocusTrap
 } from './player-utils.js';
 
+// #2562: the reaction throttle, mirrored from const.py. The bar starts its
+// cooldown off this the instant a tap is sent; the server's ack then re-anchors
+// it on the authoritative remainder.
+import { REACTION_THROTTLE_SECONDS } from './game-constants.js';
+
 // #1760: focus traps for the steal + intro-splash dialogs (lazily created once
 // per dialog element). Trap Tab within the dialog and restore focus on close.
 var _stealTrap = null;
@@ -356,6 +361,10 @@ export function updateGameView(data) {
     // chip row / submission tracker so the locked state is consistent.
     applySuddenDeathState(data);
 
+    // #2562: the bar belongs to whoever is done with the round — must run
+    // after applySuddenDeathState so the eliminated view is already settled.
+    syncInRoundReactionBar(data);
+
     // Arcade chip row — hide the wrapper when every child chip is hidden
     syncArcChipRow();
 
@@ -598,10 +607,11 @@ function applySuddenDeathState(data) {
             if (skull) skull.classList.remove('hidden');
         }
 
-        // Issue #827: eliminated players are spectators — surface the existing
-        // reaction bar during PLAYING (it normally only shows in REVEAL) so they
-        // can still cheer the active players. Piggybacks the live-reaction system.
-        showReactionBar();
+        // Issue #827 gave eliminated players the reaction bar during PLAYING so
+        // they could still cheer — but the server gate was REVEAL-only, so every
+        // one of those taps was dropped without a word. #2562 opens the gate and
+        // moves the show/hide decision to syncInRoundReactionBar(), which
+        // applies the same rule to everyone who is done with the round.
     } else {
         // Restore the normal UI. Only un-hide the year-based play controls when
         // NOT in Title & Artist mode (renderTitleArtistInput owns that toggle);
@@ -626,6 +636,41 @@ function applySuddenDeathState(data) {
         var banner = document.getElementById('submitted-banner');
         if (banner && !hasSubmitted) banner.classList.add('hidden');
     }
+}
+
+/**
+ * #2562: the line a player who has already submitted reads while they wait.
+ *
+ * Until now it said "waiting for 2 more" — a number, when the thing the room
+ * actually wants to know is *who*. Nothing in the game named them. The rule is
+ * deliberately mechanical rather than a natural-language list: name one, name
+ * two, and past that fall back to the count. Three or more names is a longer
+ * line than the banner has room for, and it would need per-locale list grammar
+ * to read properly in six languages.
+ *
+ * @param {Array} activeList - Players still in the round (out-of-play excluded).
+ * @returns {string} The banner copy.
+ */
+export function waitingLine(activeList) {
+    var waiting = activeList.filter(function(p) {
+        return !p.submitted;
+    }).map(function(p) {
+        return p.name;
+    });
+
+    if (waiting.length === 0) {
+        return utils.t('game.lockedInAllSubmitted') || 'Locked in · everyone submitted';
+    }
+    if (waiting.length === 1) {
+        return utils.t('game.lockedInWaitingOne', { name: waiting[0] })
+            || ('Locked in · ' + waiting[0] + ' is still thinking');
+    }
+    if (waiting.length === 2) {
+        return utils.t('game.lockedInWaitingTwo', { first: waiting[0], second: waiting[1] })
+            || ('Locked in · ' + waiting[0] + ' and ' + waiting[1] + ' are thinking');
+    }
+    return utils.t('game.lockedInWaitingCount', { count: waiting.length })
+        || ('Locked in · waiting for ' + waiting.length + ' more');
 }
 
 function renderSubmissionTracker(players) {
@@ -661,17 +706,11 @@ function renderSubmissionTracker(players) {
         }
     }
 
-    // Update the arcade submitted banner copy (count of remaining players).
+    // Update the arcade submitted banner copy.
     var submittedBanner = document.getElementById('submitted-banner');
     var bannerText = document.getElementById('submitted-banner-text');
     if (submittedBanner && bannerText && !submittedBanner.classList.contains('hidden')) {
-        var remaining = Math.max(0, totalCount - submittedCount);
-        if (remaining === 0) {
-            bannerText.textContent = utils.t('game.lockedInAllSubmitted') || 'Locked in · everyone submitted';
-        } else {
-            bannerText.textContent = utils.t('game.lockedInWaitingCount', { count: remaining })
-                || ('Locked in · waiting for ' + remaining + ' more');
-        }
+        bannerText.textContent = waitingLine(activeList);
     }
 
     container.innerHTML = playerList.map(function(player) {
@@ -2518,7 +2557,7 @@ function _renderSuddenDeathRow(data) {
 // ============================================
 
 /**
- * Show reaction bar during REVEAL phase
+ * Show the reaction bar.
  */
 export function showReactionBar() {
     var bar = document.getElementById('reaction-bar');
@@ -2528,7 +2567,7 @@ export function showReactionBar() {
 }
 
 /**
- * Hide reaction bar (non-REVEAL phases)
+ * Hide the reaction bar.
  */
 export function hideReactionBar() {
     var bar = document.getElementById('reaction-bar');
@@ -2538,19 +2577,151 @@ export function hideReactionBar() {
 }
 
 /**
+ * #2562: is this client allowed to react right now?
+ *
+ * The rule mirrors `handle_reaction` in server/ws_handlers/lifecycle.py: at the
+ * reveal everyone may, during the round only a player who is done with it —
+ * they submitted, they are eliminated (#827) or they are sitting out a finale
+ * playoff (#2578). Keeping the two in step is what stops the bar appearing for
+ * someone whose taps the server would drop.
+ *
+ * @param {string} phase - Current game phase.
+ * @param {Object|null} me - This player's entry in the state payload.
+ * @returns {boolean}
+ */
+export function mayReactNow(phase, me) {
+    if (phase === 'REVEAL') return true;
+    if (phase !== 'PLAYING') return false;
+    if (!me) return false;
+    return !!(me.submitted || me.eliminated || me.playoff_spectator);
+}
+
+/**
+ * #2562: show or hide the reaction bar for the PLAYING phase.
+ *
+ * Called from the (coalesced) game render, so it runs with the state payload in
+ * hand — the phase switch in player-core cannot see whether this player has
+ * submitted yet.
+ *
+ * @param {Object} data - PLAYING state payload.
+ */
+export function syncInRoundReactionBar(data) {
+    if (mayReactNow('PLAYING', findMe(data && data.players))) {
+        showReactionBar();
+    } else {
+        hideReactionBar();
+    }
+}
+
+// ---------------------------------------------------------------------------
+// #2562 cooldown
+//
+// The old brake was one reaction per reveal phase, tracked client-side as
+// `state.hasReactedThisPhase` and shown by disabling the whole bar until the
+// next round. That budget cannot carry a 45-second round, so the server now
+// throttles to one reaction per REACTION_THROTTLE_SECONDS and tells the sender
+// how long is left (`reaction_ack`). This is the client half: the bar goes dead
+// for exactly that long, with a line under it draining to zero, so the wait is
+// something the player can see rather than a button that stopped working.
+// ---------------------------------------------------------------------------
+
+/** Timer id for the handle that re-arms the bar when the cooldown expires. */
+var reactionCooldownTimeoutId = null;
+
+/**
+ * Drive the cooldown line: full width, then drain to zero over `seconds`.
+ * @param {number} seconds
+ */
+function paintReactionCooldown(seconds) {
+    var track = document.getElementById('reaction-cooldown');
+    var fill = document.getElementById('reaction-cooldown-fill');
+    if (!track || !fill) return;
+
+    track.classList.remove('hidden');
+    track.setAttribute('aria-valuemin', '0');
+    track.setAttribute('aria-valuemax', String(Math.round(seconds)));
+    track.setAttribute('aria-valuenow', String(Math.round(seconds)));
+
+    // Snap back to full with no transition, then animate down on the next
+    // frame — assigning both in one go collapses into no animation at all.
+    fill.style.transition = 'none';
+    fill.style.transform = 'scaleX(1)';
+    // Force a reflow so the browser takes the reset as its starting point.
+    void fill.offsetWidth;
+    fill.style.transition = 'transform ' + seconds + 's linear';
+    fill.style.transform = 'scaleX(0)';
+}
+
+/** Take the cooldown line off screen. */
+function clearReactionCooldownPaint() {
+    var track = document.getElementById('reaction-cooldown');
+    var fill = document.getElementById('reaction-cooldown-fill');
+    if (track) track.classList.add('hidden');
+    if (fill) {
+        fill.style.transition = 'none';
+        fill.style.transform = 'scaleX(1)';
+    }
+}
+
+/**
+ * Put the bar on cooldown for `seconds` and re-arm it afterwards.
+ * @param {number} seconds - Remaining cooldown, from the server where possible.
+ */
+export function startReactionCooldown(seconds) {
+    var wait = Number(seconds);
+    if (!isFinite(wait) || wait <= 0) {
+        endReactionCooldown();
+        return;
+    }
+
+    state.reactionCooldownUntil = Date.now() + wait * 1000;
+    setReactionButtonsDisabled(true);
+    paintReactionCooldown(wait);
+
+    if (reactionCooldownTimeoutId) clearTimeout(reactionCooldownTimeoutId);
+    reactionCooldownTimeoutId = setTimeout(endReactionCooldown, wait * 1000);
+}
+
+/** Re-arm the bar and clear the used-glow. */
+export function endReactionCooldown() {
+    if (reactionCooldownTimeoutId) {
+        clearTimeout(reactionCooldownTimeoutId);
+        reactionCooldownTimeoutId = null;
+    }
+    state.reactionCooldownUntil = 0;
+    clearReactionCooldownPaint();
+    resetReactionButtons();
+}
+
+/**
+ * #2562: the server's answer to a reaction — accepted (`retry_after` is the
+ * full interval) or throttled (`retry_after` is what is actually left).
+ *
+ * The client already started its own cooldown when it sent, off the mirrored
+ * constant; this re-anchors it on the server's number so the two cannot drift
+ * apart on a slow link and offer a tap that is going to be swallowed.
+ *
+ * @param {Object} data - `reaction_ack` payload.
+ */
+export function handleReactionAck(data) {
+    if (!data) return;
+    startReactionCooldown(data.retry_after);
+}
+
+/**
  * Send reaction via WebSocket.
  * @param {string} emoji - The emoji to send
  * @param {HTMLElement} [btn] - The tapped button, marked used on success
  */
 function sendReaction(emoji, btn) {
-    if (state.hasReactedThisPhase) {
+    if (state.reactionCooldownUntil > Date.now()) {
         return;
     }
 
-    // #1757: don't burn the one-per-phase budget if the socket is mid-
-    // reconnect — the reaction would be silently dropped and the player would
-    // get zero feedback and no retry. Leave the buttons active so they can
-    // react once the socket is back.
+    // #1757: don't burn the cooldown if the socket is mid-reconnect — the
+    // reaction would be silently dropped and the player would get zero feedback
+    // and no retry. Leave the buttons active so they can react once the socket
+    // is back.
     if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
         return;
     }
@@ -2560,21 +2731,22 @@ function sendReaction(emoji, btn) {
         emoji: emoji
     }));
 
-    // Only now is the reaction actually spent — reflect it in the UI.
-    state.hasReactedThisPhase = true;
+    // Start the cooldown optimistically off the mirrored constant, so the bar
+    // answers the tap instead of the round trip; handleReactionAck() corrects
+    // it the moment the server replies.
     markReactionUsed(btn);
+    startReactionCooldown(REACTION_THROTTLE_SECONDS);
 }
 
 /**
- * #1757: reflect the spent reaction — mark the tapped button used and disable
- * the whole bar so further taps aren't silent no-ops.
+ * #1757: reflect the spent reaction — light the tapped emoji. Disabling the bar
+ * is the cooldown's job (#2562).
  * @param {HTMLElement} [usedBtn]
  */
 function markReactionUsed(usedBtn) {
     var bar = document.getElementById('reaction-bar');
     if (!bar) return;
     bar.querySelectorAll('.reaction-btn').forEach(function(btn) {
-        btn.disabled = true;
         var isUsed = btn === usedBtn;
         btn.setAttribute('aria-pressed', isUsed ? 'true' : 'false');
         btn.classList.toggle('is-used', isUsed);
@@ -2582,8 +2754,19 @@ function markReactionUsed(usedBtn) {
 }
 
 /**
- * #1757: re-enable the reaction bar for a fresh reveal round (called when the
- * one-per-phase budget resets in player-core).
+ * Disable or re-enable every button in the bar.
+ * @param {boolean} disabled
+ */
+function setReactionButtonsDisabled(disabled) {
+    var bar = document.getElementById('reaction-bar');
+    if (!bar) return;
+    bar.querySelectorAll('.reaction-btn').forEach(function(btn) {
+        btn.disabled = disabled;
+    });
+}
+
+/**
+ * #1757: re-enable the reaction bar and drop the used-state glow.
  */
 export function resetReactionButtons() {
     var bar = document.getElementById('reaction-bar');

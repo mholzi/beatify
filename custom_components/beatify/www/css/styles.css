@@ -7935,8 +7935,10 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-bar {
 }
 
 .reaction-bar-container {
+    /* #2562: column, because the cooldown line sits under the emoji row. */
     display: flex;
-    gap: var(--space-sm);
+    flex-direction: column;
+    gap: var(--space-xs);
     padding: var(--space-sm) var(--space-md);
     background: rgba(0, 0, 0, 0.6);
     border-radius: var(--radius-lg);
@@ -7944,6 +7946,42 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-bar {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     pointer-events: auto;  /* Restore clicks on container */
+}
+
+.reaction-bar-buttons {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+/* #2562: the cooldown the server is enforcing, drawn as a line that drains
+   left to right. It is deliberately quiet — the point is only that a swallowed
+   tap has a visible reason, not that the wait draws attention to itself. */
+.reaction-cooldown {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+.reaction-cooldown.hidden {
+    display: none;
+}
+
+.reaction-cooldown-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    background: var(--color-accent-primary);
+    transform-origin: left center;
+    /* The duration is set from JS — it is the server's remaining cooldown, not
+       a constant the stylesheet gets to guess at. */
+    transition: transform linear 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reaction-cooldown-fill {
+        transition: none;
+    }
 }
 
 .reaction-btn {

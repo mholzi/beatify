@@ -127,6 +127,8 @@
     "noBonusThisRound": "Kein Bonus diese Runde — hau das Jahr rein",
     "lockedIn": "Tipp abgegeben · warte auf andere",
     "lockedInWaitingCount": "Tipp abgegeben · warte auf {count} mehr",
+    "lockedInWaitingOne": "Tipp abgegeben · {name} überlegt noch",
+    "lockedInWaitingTwo": "Tipp abgegeben · {first} und {second} überlegen noch",
     "lockedInAllSubmitted": "Tipp abgegeben · alle fertig",
     "waitingForOthers": "Warte auf andere",
     "allSubmitted": "Alle fertig",
@@ -215,7 +217,8 @@
     "laugh": "Lach-Reaktion",
     "shocked": "Schock-Reaktion",
     "applause": "Applaus-Reaktion",
-    "thinking": "Nachdenk-Reaktion"
+    "thinking": "Nachdenk-Reaktion",
+    "cooldown": "Wartezeit bis zur nächsten Reaktion"
   },
   "reveal": {
     "correct": "Richtig!",

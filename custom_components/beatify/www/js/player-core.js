@@ -35,8 +35,8 @@ import {
     handleStealAck, handleStealTargets,
     handleSabotageAck, handleSabotageTargets, handleSabotaged,
     showAdminControlBar, hideAdminControlBar,
-    showReactionBar, hideReactionBar, setupReactionBar, resetReactionButtons,
-    showFloatingReaction,
+    showReactionBar, hideReactionBar, setupReactionBar,
+    showFloatingReaction, handleReactionAck,
     updateControlBarState, renderHostDrawer, renderPartyLightsLine, handleSongStopped, handleVolumeChanged,
     handleNextRound, resetNextRoundPending, setupAdminControlBar, setupRevealControls,
     resetSongStoppedState,
@@ -660,6 +660,12 @@ function handleServerMessage(data) {
             state.isAdmin = currentPlayer.is_admin === true;
         }
 
+        // #2562: `player_reaction` frames arrive outside the phase switch below,
+        // and what the phone does with one now depends on the phase — bubbles
+        // at the reveal, TV only during the round. Remember it here, where every
+        // state frame passes, rather than making each consumer guess.
+        state.currentPhase = data.phase;
+
         // Apply language from game state (Story 12.4, 16.3)
         if (data.language) {
             storeGameLanguage(data.language);
@@ -793,7 +799,10 @@ function handleServerMessage(data) {
             renderHostDrawer(data);     // #2723
             renderPartyLightsLine(data);  // #2649
             syncVolumeFromState(data);  // #2557
-            hideReactionBar();
+            // #2562: the reaction bar during PLAYING belongs to whoever is done
+            // with the round, which this switch cannot see. syncInRoundReactionBar()
+            // inside the coalesced game render owns it. Hiding it here as well
+            // would flip it off and on again on every state broadcast.
         } else if (data.phase === 'REVEAL') {
             stopCountdown();
             if (data.early_reveal) {
@@ -813,15 +822,12 @@ function handleServerMessage(data) {
             renderHostDrawer(data);     // #2723
             renderPartyLightsLine(data);  // #2649
             syncVolumeFromState(data);  // #2557
-            // #1757: reset the one-per-reveal reaction budget + button used-
-            // state only when a NEW reveal round begins, not on every REVEAL
-            // re-broadcast (vote tallies etc.), so the used-state feedback
-            // persists through the phase.
-            if (state._reactionRevealRound !== data.round) {
-                state._reactionRevealRound = data.round;
-                state.hasReactedThisPhase = false;
-                resetReactionButtons();
-            }
+            // #2562: nothing to reset on REVEAL entry any more. The
+            // one-per-reveal budget (#1757) is gone; the brake is a time
+            // throttle that deliberately keeps running across the phase
+            // boundary, and the bar re-arms itself when the cooldown expires.
+            // Re-enabling the buttons here would hand the player a tap the
+            // server is still going to swallow.
             showReactionBar();
         } else if (data.phase === 'PAUSED') {
             stopCountdown();
@@ -1023,7 +1029,17 @@ function handleServerMessage(data) {
     } else if (data.type === 'title_artist_guess_ack') {
         handleTitleArtistGuessAck(data);
     } else if (data.type === 'player_reaction') {
-        showFloatingReaction(data.player_name, data.emoji);
+        // #2562: during the round the bubbles fly on the TV only. The phone in
+        // a still-thinking player's hand is a working surface — they are
+        // dragging a slider on it — and a reaction floating across it is a poke
+        // at the one person who can least afford one. The shared screen is
+        // where the encouragement belongs. At the reveal nobody is working, so
+        // the phones keep showing them exactly as they always have.
+        if (state.currentPhase === 'REVEAL') {
+            showFloatingReaction(data.player_name, data.emoji);
+        }
+    } else if (data.type === 'reaction_ack') {
+        handleReactionAck(data);
     }
 }
 

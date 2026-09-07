@@ -127,6 +127,8 @@
     "noBonusThisRound": "Geen bonus deze ronde — raad het jaar",
     "lockedIn": "Vergrendeld · wachten op anderen",
     "lockedInWaitingCount": "Vergrendeld · wachten op {count} meer",
+    "lockedInWaitingOne": "Vergrendeld · {name} denkt nog na",
+    "lockedInWaitingTwo": "Vergrendeld · {first} en {second} denken nog na",
     "lockedInAllSubmitted": "Vergrendeld · iedereen klaar",
     "waitingForOthers": "Wachten op anderen",
     "allSubmitted": "Iedereen klaar",
@@ -215,7 +217,8 @@
     "laugh": "Lachreactie",
     "shocked": "Geschokte reactie",
     "applause": "Applausreactie",
-    "thinking": "Denkreactie"
+    "thinking": "Denkreactie",
+    "cooldown": "Wachttijd tot de volgende reactie"
   },
   "reveal": {
     "correct": "Correct!",
