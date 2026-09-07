@@ -9,22 +9,33 @@
  * who walked off held a slot against MAX_PLAYERS, and a survivor slot in
  * Sudden Death, with no way back short of ending the game.
  *
- * Three things are covered here, all of them the parts that can silently
- * regress again:
+ * The design gate (05.09.2026) chose **variant C** over the greyed-tile-with-
+ * a-× that was built first, so the assertions below moved with it:
  *
- * 1. `buildHomePlayerTiles` — which tiles show "away" and which of them are
- *    tappable. The server refuses a connected player and refuses the admin, so
- *    a button on either could only ever fail; the boundary between <div> and
- *    <button> is the contract with `admin_kick_player`.
- * 2. `confirmKickPlayer` — a tap opens the modal and sends NOTHING; only the
- *    confirm sends `kick_player`. This is the guard against a misplaced tap at
- *    a party dropping a player.
- * 3. `handleAdminWsMessage` — a rejected kick reaches the host as a message
- *    instead of dying in `console.warn`, which is where every non-start
- *    command error used to land.
+ * 1. `buildHomePlayerTiles` — the grid now answers ONE question, who is
+ *    playing. An away guest is not a dimmed tile any more; they are not in the
+ *    grid at all.
+ * 2. `buildHomeAwayList` — the rows underneath, each carrying **the duration**.
+ *    That is the point of the variant rather than trim: four minutes away is
+ *    the bathroom, twelve minutes away is gone, and every other shape handed
+ *    the host only "not currently connected". A row without its duration is
+ *    variant A with extra steps, so it is pinned here.
+ * 3. `formatAwayDuration` — reads a SERVER number (`away_seconds`). A
+ *    browser-side timer would restart at every host reload and report "just
+ *    now" for a guest who left before dinner.
+ * 4. `confirmKickPlayer` — a tap opens the modal and sends NOTHING; only the
+ *    confirm sends `kick_player`. The guard against a misplaced tap at a party
+ *    dropping a player. Unchanged by the gate.
+ * 5. `handleAdminWsMessage` — a rejected kick reaches the host as a message
+ *    instead of dying in `console.warn`. Unchanged by the gate.
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { buildHomePlayerTiles } from '../admin/sections/render-helpers.js';
+import {
+    buildHomePlayerTiles,
+    buildHomeAwayList,
+    buildHomePlayerCount,
+    formatAwayDuration,
+} from '../admin/sections/render-helpers.js';
 import { block, evaluate, readSource } from './helpers/js-source.js';
 import { el, doc } from './helpers/mini-dom.js';
 
@@ -34,108 +45,217 @@ function realEscape(s) {
     }[c]));
 }
 
-const AWAY = { name: 'Kirsten', connected: false, is_admin: false };
+const AWAY = { name: 'Kirsten', connected: false, is_admin: false, away_seconds: 240 };
 const PRESENT = { name: 'Jonas', connected: true, is_admin: false };
 const HOST = { name: 'Markus', connected: true, is_admin: true };
 
-// One tile's markup, sliced out of the concatenated grid by the guest's name.
-// Tiles never nest, so splitting before each opening tag is enough.
+const I18N = {
+    'lobby.away': 'away',
+    'lobby.awayHeading': 'Away',
+    'lobby.awayJustNow': 'just now',
+    'lobby.awayMinutes': '{count} min',
+    'lobby.awayHours': '{count} h',
+    'admin.home.guestCount': '{count} guests',
+    'admin.home.guestCountOne': '1 guest',
+    'admin.home.guestsHere': '{count} here',
+    'admin.kickPlayerAria': 'Remove {name} from the lobby',
+    'admin.kickPlayerRemove': 'Remove',
+};
+
+// One tile's markup, sliced out of the concatenated grid by the player's name.
 function tileFor(html, name) {
     return html
-        .split(/(?=<(?:div|button)[^>]*class="home-player-tile)/)
+        .split(/(?=<div[^>]*class="home-player-tile)/)
         .filter(Boolean)
         .find((t) => t.includes('>' + name + '<'));
 }
 
-describe('buildHomePlayerTiles — away state and the remove affordance', () => {
-    beforeEach(() => {
-        globalThis.window = globalThis;
-        globalThis.BeatifyUtils = { escapeHtml: realEscape };
-        globalThis.BeatifyI18n = {
-            t: (k, params) => {
-                const table = {
-                    'lobby.away': 'away',
-                    'admin.kickPlayerAria': 'Remove {name} from the lobby',
-                };
-                let v = table[k];
-                if (v === undefined) return k;
-                if (params) Object.keys(params).forEach((p) => { v = v.split('{' + p + '}').join(params[p]); });
-                return v;
-            },
-        };
-    });
-    afterEach(() => {
-        delete globalThis.BeatifyUtils;
-        delete globalThis.BeatifyI18n;
-        delete globalThis.window;
-    });
+// One away row, sliced out of the list the same way.
+function rowFor(html, name) {
+    return html
+        .split(/(?=<li class="home-away-row">)/)
+        .filter(Boolean)
+        .find((r) => r.includes('>' + name + '<'));
+}
 
-    it('marks a disconnected guest away — the state only the TV used to show', () => {
-        const html = buildHomePlayerTiles([AWAY]);
-        expect(html).toContain('home-player-tile--away');
-        expect(html).toContain('>away<');
-    });
+function installI18n() {
+    globalThis.window = globalThis;
+    globalThis.BeatifyUtils = { escapeHtml: realEscape };
+    globalThis.BeatifyI18n = {
+        t: (k, params) => {
+            let v = I18N[k];
+            if (v === undefined) return k;
+            if (params) Object.keys(params).forEach((pn) => { v = v.split('{' + pn + '}').join(params[pn]); });
+            return v;
+        },
+    };
+}
+function removeI18n() {
+    delete globalThis.BeatifyUtils;
+    delete globalThis.BeatifyI18n;
+    delete globalThis.window;
+}
 
-    it('leaves a connected guest plain: no away badge, no button', () => {
-        const html = buildHomePlayerTiles([PRESENT]);
-        expect(html).not.toContain('home-player-tile--away');
-        expect(html).not.toContain('<button');
-        expect(html).toContain('Jonas');
-    });
+describe('buildHomePlayerTiles — the grid is who is playing', () => {
+    beforeEach(installI18n);
+    afterEach(removeI18n);
 
-    it('renders the away guest as a button carrying their name, the present one as a div', () => {
+    it('leaves an away guest out of the grid entirely (variant C)', () => {
+        // Variant A dimmed the tile in place. C removes it, so nothing
+        // removable ever borders something untouchable.
         const html = buildHomePlayerTiles([PRESENT, AWAY]);
-        expect(tileFor(html, 'Kirsten').startsWith('<button')).toBe(true);
-        expect(tileFor(html, 'Kirsten')).toContain('data-player="Kirsten"');
-        expect(tileFor(html, 'Jonas').startsWith('<div')).toBe(true);
+        expect(html).toContain('Jonas');
+        expect(html).not.toContain('Kirsten');
+        expect(html).not.toContain('home-player-tile--away');
     });
 
-    it('never offers to remove the host, even when the host is away', () => {
-        const html = buildHomePlayerTiles([{ ...HOST, connected: false }]);
-        // The host still reads as away — the info is useful — but the tile is
-        // inert: admin_kick_player refuses the admin.
-        expect(html).toContain('home-player-tile--away');
+    it('renders no buttons at all — the grid is display only', () => {
+        const html = buildHomePlayerTiles([HOST, PRESENT, AWAY]);
         expect(html).not.toContain('<button');
         expect(html).not.toContain('home-player-tile--removable');
+        expect(html).not.toContain('home-player-tile-remove');
     });
 
-    it('a payload with no `connected` field paints nobody away', () => {
-        // REST polls and older servers omit it; `=== false` is the guard.
-        const html = buildHomePlayerTiles([{ name: 'Nina', is_admin: false }]);
-        expect(html).not.toContain('home-player-tile--away');
+    it('keeps an away HOST in the grid, marked away and not removable', () => {
+        // admin_kick_player refuses the admin, and the host's own phone must
+        // not vanish from its own lobby. So the state shows, the action does not.
+        const html = buildHomePlayerTiles([{ ...HOST, connected: false }]);
+        expect(html).toContain('Markus');
+        expect(html).toContain('home-player-tile--away');
+        expect(html).toContain('>away<');
         expect(html).not.toContain('<button');
     });
 
-    it('gives the remove button a translated, name-carrying accessible label', () => {
-        const html = buildHomePlayerTiles([AWAY]);
+    it('a payload with no `connected` field keeps everybody in the grid', () => {
+        // REST polls and older servers omit it; `=== false` is the guard, so a
+        // missing field must not empty the lobby.
+        const html = buildHomePlayerTiles([{ name: 'Nina', is_admin: false }]);
+        expect(html).toContain('Nina');
+        expect(html).not.toContain('home-player-tile--away');
+    });
+
+    it('gives the remaining guests contiguous colours, with no gap where an away guest sat', () => {
+        const html = buildHomePlayerTiles([HOST, PRESENT, AWAY, { name: 'Lena', connected: true }]);
+        expect(html).toContain('home-player-tile--host');
+        expect(html).toContain('👑');
+        expect(tileFor(html, 'Jonas')).toContain('home-player-tile--c1');
+        // Lena is the second RENDERED guest, so she takes c2 — the away guest
+        // between them does not burn a colour slot.
+        expect(tileFor(html, 'Lena')).toContain('home-player-tile--c2');
+    });
+
+    it('keeps the TOUR badge on a present guest still in the tour', () => {
+        const html = buildHomePlayerTiles([{ name: 'Lena', connected: true, onboarded: false }]);
+        expect(html).toContain('home-player-tile--learning');
+        expect(html).toContain('TOUR');
+    });
+});
+
+describe('buildHomeAwayList — the rows underneath, with the duration', () => {
+    beforeEach(installI18n);
+    afterEach(removeI18n);
+
+    it('is empty when nobody is away, so the lobby looks untouched', () => {
+        expect(buildHomeAwayList([HOST, PRESENT])).toBe('');
+    });
+
+    it('renders one row per away guest with initial, name and a quiet heading', () => {
+        const html = buildHomeAwayList([PRESENT, AWAY]);
+        expect(html).toContain('>Away<');
+        expect(html).toContain('class="home-away-initial" aria-hidden="true">K<');
+        expect(html).toContain('>Kirsten<');
+        expect(html).not.toContain('Jonas');
+    });
+
+    it('shows HOW LONG they have been away — the whole reason variant C won', () => {
+        // Without this the host is told only "not currently connected" and is
+        // asked for a decision that cannot be made from it. 4 min is the
+        // bathroom; 12 min is gone.
+        const html = buildHomeAwayList([
+            { name: 'Tim', connected: false, away_seconds: 240 },
+            { name: 'Kira', connected: false, away_seconds: 745 },
+        ]);
+        expect(rowFor(html, 'Tim')).toContain('>4 min<');
+        expect(rowFor(html, 'Kira')).toContain('>12 min<');
+    });
+
+    it('labels the button with a WORD, never a × glyph', () => {
+        const html = buildHomeAwayList([AWAY]);
+        expect(html).toContain('class="home-away-remove"');
+        expect(html).toContain('>Remove</button>');
+        expect(html).not.toContain('×');
+    });
+
+    it('carries the guest name on the button for the confirm card to name', () => {
+        const html = buildHomeAwayList([AWAY]);
+        expect(html).toContain('data-player="Kirsten"');
         expect(html).toContain('aria-label="Remove Kirsten from the lobby"');
     });
 
-    it('escapes the name in both the text and the data attribute', () => {
-        const html = buildHomePlayerTiles([{ name: '<img src=x>', connected: false }]);
+    it('never lists the host, even when the host is away', () => {
+        expect(buildHomeAwayList([{ ...HOST, connected: false, away_seconds: 600 }])).toBe('');
+    });
+
+    it('omits the duration cell rather than invent one when the server sent none', () => {
+        // An older server, or a record that predates the disconnect stamp. A
+        // wrong duration is worse than a missing one — the host acts on it.
+        const html = buildHomeAwayList([{ name: 'Tim', connected: false }]);
+        expect(html).toContain('>Tim<');
+        expect(html).not.toContain('home-away-since');
+        expect(html).toContain('>Remove</button>');
+    });
+
+    it('escapes the name in the text, the data attribute and the label', () => {
+        const html = buildHomeAwayList([{ name: '<img src=x>', connected: false, away_seconds: 90 }]);
         expect(html).not.toContain('<img src=x>');
         expect(html).toContain('&lt;img src=x&gt;');
         expect(html).toContain('data-player="&lt;img src=x&gt;"');
     });
+});
 
-    it('keeps the host crown, the guest colour cycle and the TOUR badge intact', () => {
-        const html = buildHomePlayerTiles([
-            HOST,
-            PRESENT,
-            { name: 'Lena', connected: true, onboarded: false },
-            { ...AWAY, onboarded: false },
-        ]);
-        expect(html).toContain('home-player-tile--host');
-        expect(html).toContain('👑');
-        expect(html).toContain('home-player-tile--c1');
-        expect(html).toContain('home-player-tile--c2');
-        expect(html).toContain('home-player-tile--learning');
-        expect(html).toContain('TOUR');
-        // Away + still-learning is one tile with both states and a remove button.
-        const kirsten = tileFor(html, 'Kirsten');
-        expect(kirsten).toContain('home-player-tile--away');
-        expect(kirsten).toContain('home-player-tile--learning');
-        expect(kirsten.startsWith('<button')).toBe(true);
+describe('formatAwayDuration — a server number, rounded down', () => {
+    beforeEach(installI18n);
+    afterEach(removeI18n);
+
+    it('says "just now" under a minute — there is no grace period, so this is the common first state', () => {
+        expect(formatAwayDuration(0)).toBe('just now');
+        expect(formatAwayDuration(59)).toBe('just now');
+    });
+
+    it('counts whole minutes, rounding down so "4 min" means at least four', () => {
+        expect(formatAwayDuration(60)).toBe('1 min');
+        expect(formatAwayDuration(299)).toBe('4 min');
+        expect(formatAwayDuration(3599)).toBe('59 min');
+    });
+
+    it('switches to hours past sixty minutes', () => {
+        expect(formatAwayDuration(3600)).toBe('1 h');
+        expect(formatAwayDuration(7300)).toBe('2 h');
+    });
+
+    it('returns nothing for a missing or nonsensical value', () => {
+        expect(formatAwayDuration(null)).toBe('');
+        expect(formatAwayDuration(undefined)).toBe('');
+        expect(formatAwayDuration(-5)).toBe('');
+        expect(formatAwayDuration('12')).toBe('');
+    });
+});
+
+describe('buildHomePlayerCount — total vs present', () => {
+    beforeEach(installI18n);
+    afterEach(removeI18n);
+
+    it('stays silent while everybody is present — the grid IS the count', () => {
+        expect(buildHomePlayerCount([HOST, PRESENT])).toBe('');
+    });
+
+    it('separates total from present once the grid stops showing everyone', () => {
+        const html = buildHomePlayerCount([HOST, PRESENT, AWAY, { name: 'Kira', connected: false }]);
+        expect(html).toContain('4 guests · 2 here');
+    });
+
+    it('uses the singular for a lobby of one', () => {
+        expect(buildHomePlayerCount([{ name: 'Tim', connected: false }])).toContain('1 guest · 0 here');
     });
 });
 

@@ -58,7 +58,10 @@ def _undo_admin_claim(
     if was_existing_player:
         player = game_state.get_player(name)
         if player is not None:
-            player.connected = False
+            # #2718: set_connected is a no-op on the stamp when the player was
+            # already away, so undoing a rejected claim does not reset their
+            # away clock back to zero.
+            player.set_connected(False)
             player.ws = None
     else:
         game_state.remove_player(name)
@@ -429,7 +432,8 @@ async def handle_reconnect(
         _LOGGER.info("Session takeover: %s (old tab disconnected)", player.name)
 
     player.ws = ws
-    player.connected = True
+    # #2718: clears disconnected_at — they are back, so there is no duration.
+    player.set_connected(True)
 
     if player.is_admin:
         if handler._admin_disconnect_task:

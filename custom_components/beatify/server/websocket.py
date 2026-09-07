@@ -578,7 +578,9 @@ class BeatifyWebSocketHandler:
         player = game_state.get_player_by_ws(ws)
         player_name = player.name if player else None
         if player is not None:
-            player.connected = False
+            # #2718: through set_connected so the away clock starts here — this is
+            # THE disconnect path, and the duration the host reads is its output.
+            player.set_connected(False)
 
         # Issue #477: Clear admin spectator WS if it disconnected
         if self.admin_ws is ws:

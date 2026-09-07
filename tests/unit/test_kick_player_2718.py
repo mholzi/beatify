@@ -3,8 +3,8 @@
 ``admin_kick_player`` has been registered since #659 (April), but PR #1613
 (26 June) deleted the only UI that ever sent it, along with the flat lobby the
 button lived in. Nothing has exercised the handler from a client since. #2718
-puts a tap target back on the host's lobby tiles, so these tests pin the four
-rules the new client assumes when it decides which tile is a button at all:
+puts a Remove button back on the host's lobby, so these tests pin the four
+rules the new client assumes when it decides who gets one at all:
 
 * lobby phase only,
 * the admin can never be removed,
@@ -12,9 +12,14 @@ rules the new client assumes when it decides which tile is a button at all:
 * an away player is removed for good — name index, session map and player
   record — and the room is told.
 
-The client mirrors the middle two by rendering only away, non-host guests as
-buttons (``buildHomePlayerTiles``). If a rule here changes, that rendering is
-wrong in the same commit.
+The client mirrors the middle two by listing only away, non-host guests
+(``buildHomeAwayList``). If a rule here changes, that rendering is wrong in the
+same commit.
+
+``TestTheAwayClock`` at the bottom covers the other half of the design gate's
+answer: the **duration** each row carries. It is a server fact on purpose — a
+timer the host's browser started would restart at every reload and report
+"just now" for a guest who left before dinner.
 """
 
 from __future__ import annotations
@@ -70,7 +75,7 @@ def _seat_guest(game_state: GameState, name: str, *, away: bool = False) -> Asyn
         # the state broadcast ships as ``connected`` and what the host's tile
         # grid paints as "away".
         player = game_state.get_player(name)
-        player.connected = False
+        player.set_connected(False)
         player.ws = None
     return ws
 
@@ -210,3 +215,137 @@ class TestKickIsRefused:
         err = _last_error(guest_ws)
         assert err is not None
         assert err["code"] != ERR_INVALID_ACTION  # NOT_ADMIN, refused earlier
+
+
+class TestTheAwayClock:
+    """#2718 — where the "4 min" / "12 min" on each away row comes from.
+
+    The design gate picked the list *because* of this number: without it the
+    host is told only "not currently connected" and asked for a decision that
+    cannot be made from that. So the stamp, its transitions and the fact that
+    it is server-owned are pinned here, not left to the renderer.
+    """
+
+    def _lobby_with_clock(self):
+        clock = {"t": 1_000.0}
+        game_state = make_game_state(time_fn=lambda: clock["t"])
+        game_state.create_game(
+            playlists=["test.json"],
+            songs=make_songs(5),
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+        )
+        return game_state, clock
+
+    def _row(self, game_state, name):
+        return next(p for p in game_state.get_players_state() if p["name"] == name)
+
+    def test_a_connected_player_has_no_stamp_and_no_duration(self):
+        game_state, _clock = self._lobby_with_clock()
+        game_state.add_player("Jonas", _ws())
+
+        assert game_state.get_player("Jonas").disconnected_at is None
+        assert self._row(game_state, "Jonas")["away_seconds"] is None
+
+    def test_going_away_stamps_the_clock_and_the_duration_grows_with_it(self):
+        game_state, clock = self._lobby_with_clock()
+        game_state.add_player("Kirsten", _ws())
+
+        game_state.get_player("Kirsten").set_connected(False, now=clock["t"])
+        assert self._row(game_state, "Kirsten")["away_seconds"] == 0
+
+        clock["t"] += 240
+        assert self._row(game_state, "Kirsten")["away_seconds"] == 240
+        clock["t"] += 505
+        assert self._row(game_state, "Kirsten")["away_seconds"] == 745
+
+    def test_the_duration_survives_a_host_reload(self):
+        # The host pressing F5 re-fetches /beatify/api/status, which serialises
+        # the same PlayerSession through the same registry. Nothing in the
+        # browser contributes to the number, so a second read of a twelve-
+        # minute absence still says twelve minutes — the failure mode a
+        # client-side timer would have had.
+        game_state, clock = self._lobby_with_clock()
+        game_state.add_player("Kira", _ws())
+        game_state.get_player("Kira").set_connected(False, now=clock["t"])
+        clock["t"] += 720
+
+        first = self._row(game_state, "Kira")["away_seconds"]
+        reloaded = self._row(game_state, "Kira")["away_seconds"]
+
+        assert first == 720
+        assert reloaded == 720
+
+    def test_coming_back_clears_the_stamp(self):
+        game_state, clock = self._lobby_with_clock()
+        game_state.add_player("Kirsten", _ws())
+        player = game_state.get_player("Kirsten")
+        player.set_connected(False, now=clock["t"])
+        clock["t"] += 300
+
+        player.set_connected(True, now=clock["t"])
+
+        assert player.disconnected_at is None
+        assert self._row(game_state, "Kirsten")["away_seconds"] is None
+
+    def test_a_repeated_going_away_does_not_restart_the_clock(self):
+        # ``_undo_admin_claim`` reverts a rejected reconnect by setting
+        # connected=False on somebody who was already away. Restarting their
+        # clock there would hand the host a fresh "just now" for a guest who
+        # has been gone twenty minutes — the exact lie this field exists to
+        # prevent.
+        game_state, clock = self._lobby_with_clock()
+        game_state.add_player("Tim", _ws())
+        player = game_state.get_player("Tim")
+        player.set_connected(False, now=clock["t"])
+        clock["t"] += 1_200
+
+        player.set_connected(False, now=clock["t"])
+
+        assert self._row(game_state, "Tim")["away_seconds"] == 1_200
+
+    def test_an_away_player_without_a_stamp_reports_no_duration(self):
+        # A record that predates the stamp. Reporting 0 would say "just now"
+        # about someone who may have left an hour ago; the row then shows no
+        # duration at all instead.
+        game_state, clock = self._lobby_with_clock()
+        game_state.add_player("Nina", _ws())
+        player = game_state.get_player("Nina")
+        player.connected = False
+        player.disconnected_at = None
+
+        assert self._row(game_state, "Nina")["away_seconds"] is None
+
+    async def test_a_disconnect_through_the_real_handler_starts_the_clock(self):
+        # The stamp is only worth anything if THE disconnect path sets it —
+        # everything above would still pass with a field nobody ever writes.
+        handler, game_state = _handler_and_game()
+        _seat_host(handler, game_state)
+        guest_ws = _ws()
+        game_state.add_player("Kirsten", guest_ws)
+
+        await handler._handle_disconnect(guest_ws)
+
+        player = game_state.get_player("Kirsten")
+        assert player.connected is False
+        assert player.disconnected_at is not None
+        # And it reaches the host's lobby as a number, not as a raw epoch.
+        row = next(p for p in game_state.get_players_state() if p["name"] == "Kirsten")
+        assert row["away_seconds"] is not None
+        assert row["away_seconds"] >= 0
+
+    async def test_the_guest_appears_immediately_with_no_grace_period(self):
+        # Deliberate (design gate, 05.09.2026): the duration IS the grace
+        # period, judged by a human standing in the room. A machine one on top
+        # would duplicate that judgement and delay exactly the case the feature
+        # exists for. So a guest is listable the moment they drop.
+        handler, game_state = _handler_and_game()
+        admin_ws = _seat_host(handler, game_state)
+        guest_ws = _ws()
+        game_state.add_player("Kirsten", guest_ws)
+
+        await handler._handle_disconnect(guest_ws)
+        await _kick(handler, admin_ws, "Kirsten")
+
+        assert game_state.get_player("Kirsten") is None
+        assert _last_error(admin_ws) is None

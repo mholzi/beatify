@@ -90,6 +90,8 @@ import {
     renderAdminResultCards,
     renderAdminChallengeOptions,
     buildHomePlayerTiles,
+    buildHomePlayerCount,
+    buildHomeAwayList,
     _providerDisplayName,
 } from './admin/sections/render-helpers.js';
 
@@ -654,19 +656,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             // variant with a 👑 crown badge; guests cycle through the brand
             // neon palette (cyan → green → orange → dim-cyan, then wrap)
             // so each player reads distinctly in a mixed lobby. The onboarding
-            // v2 gate (dashed outline + TOUR badge until `onboarded: true`) and,
-            // since #2718, the away state + remove affordance are built by
-            // buildHomePlayerTiles — pure, so the tile states are unit-tested.
-            el.innerHTML = buildHomePlayerTiles(players);
-            // #2718: an away guest's tile is a <button>. Tapping it opens the
-            // confirm modal; only the confirm sends `kick_player`, because a
-            // misplaced tap on a phone in a dark room must not silently drop a
-            // player. Listeners are attached to freshly written nodes, so no
-            // removal bookkeeping is needed — the innerHTML above dropped the
+            // v2 gate (dashed outline + TOUR badge until `onboarded: true`)
+            // rides along in buildHomePlayerTiles — pure, so every tile state
+            // is unit-tested.
+            //
+            // #2718 (variant C): the grid answers ONE question — who is
+            // playing. Away guests leave it and gather in the list below, each
+            // row carrying how long they have been gone, because that is the
+            // number the host actually decides on. The count line appears only
+            // while somebody is away, i.e. only while the grid alone would
+            // undercount the room.
+            el.innerHTML = buildHomePlayerCount(players)
+                + buildHomePlayerTiles(players)
+                + buildHomeAwayList(players);
+            // #2718: only the away rows carry a button, and it only opens the
+            // confirm card — a misplaced tap on a phone in a dark room must not
+            // silently drop a player. Listeners go on freshly written nodes, so
+            // no removal bookkeeping is needed: the innerHTML above dropped the
             // previous ones with their elements.
-            el.querySelectorAll('.home-player-tile--removable').forEach((tile) => {
-                tile.addEventListener('click', () => {
-                    confirmKickPlayer(tile.dataset.player);
+            el.querySelectorAll('.home-away-remove').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    confirmKickPlayer(btn.dataset.player);
                 });
             });
 

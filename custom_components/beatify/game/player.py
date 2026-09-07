@@ -23,6 +23,15 @@ class PlayerSession:
     score: int = 0
     streak: int = 0
     connected: bool = True
+    # #2718: wall-clock moment ``connected`` last went False, or None while the
+    # player is connected. The host's lobby needs a *duration*, not a flag:
+    # four minutes away is the bathroom, twelve minutes away is gone, and the
+    # remove decision is only makeable with the number. It has to be a server
+    # fact — a timer the host's browser starts would restart at every reload
+    # and report "just now" for a guest who left before dinner.
+    # Always write it through ``set_connected`` rather than assigning
+    # ``connected`` directly, so the stamp cannot drift from the flag.
+    disconnected_at: float | None = None
     is_admin: bool = False
     joined_late: bool = False
     # Player onboarding v2 — true once player has completed/skipped the tour
@@ -93,6 +102,30 @@ class PlayerSession:
     # Aufloesung, und ohne Riegel oeffnet jeder weitere Tipp ein weiteres
     # oeffentliches Issue.
     reported_round: int | None = None
+
+    def set_connected(self, value: bool, *, now: float | None = None) -> None:
+        """Flip ``connected`` and keep ``disconnected_at`` in step (#2718).
+
+        The single writer for the pair. A going-away transition stamps the
+        clock; a coming-back transition clears it. Re-setting the flag to the
+        value it already has is a no-op for the stamp, so a second
+        ``set_connected(False)`` — the reconnect-rejection path in
+        ``_undo_admin_claim`` reverting a player who was already away — does
+        not restart the clock and hand the host a fresh "just now" for someone
+        who has been gone twenty minutes.
+
+        Args:
+            value: the new ``connected`` state.
+            now: clock override. Defaults to ``time.time`` so it matches
+                ``PlayerRegistry._now``, which reads the stamp back.
+
+        """
+        if value == self.connected:
+            return
+        self.connected = value
+        self.disconnected_at = (
+            None if value else (now if now is not None else time.time())
+        )
 
     @property
     def out_of_play(self) -> bool:

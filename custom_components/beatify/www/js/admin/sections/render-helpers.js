@@ -207,40 +207,110 @@ export function _providerDisplayName(provider) {
 }
 
 /**
- * Build the host's lobby tile grid — the markup only, no DOM writes (#2718).
+ * #2718 — who is present, who is away, and how long they have been away.
  *
- * Two things beyond the guest's name:
+ * The lobby's answer to "someone scanned, typed a name and walked off". The
+ * server has been able to remove such a guest since #659; PR #1613 deleted the
+ * only UI that ever asked it to, and the tile grid that replaced the flat
+ * lobby showed names and nothing else.
  *
- * 1. **The away state.** `connected === false` has been on the TV since Story
- *    11.4 (`dashboard.js` paints "(away)") but never on the host's phone, and
- *    the host is the one who decides who stays. Without it "remove" is a coin
- *    flip between the guest who left for good and the guest who is in the
- *    bathroom with a locked screen.
- * 2. **A tap target on the guests who can actually be removed.** Only those:
- *    `admin_kick_player` (server/ws_handlers/admin.py) refuses a connected
- *    player and refuses the admin, so a button on either could only ever fail.
- *    Present guests and the host stay plain `<div>`s.
+ * Design gate (05.09.2026) picked **variant C** over the greyed-tile-with-a-×
+ * that was built first:
  *
- * Kept pure (players in, HTML out) so the tile states are unit-testable —
+ * - The grid keeps one meaning — *who is playing*. Away guests leave it, so a
+ *   removable element never sits next to an untouchable one, and the misplaced
+ *   tap at a party is designed out rather than caught by a modal.
+ * - Away guests gather in a list below it, one row each, with **the duration**.
+ *   That is the whole point of the variant, not decoration: four minutes away
+ *   is the bathroom, twelve minutes away is gone. Every other shape told the
+ *   host only "not currently connected" and then asked for a decision that
+ *   cannot be made from that.
+ * - The button carries the **word** "Remove", not a `×` glyph to interpret.
+ *
+ * There is deliberately **no grace period**: a guest appears in the list the
+ * moment `connected` goes false. The duration *is* the grace period, judged by
+ * a human standing in the room — a machine one on top would duplicate that
+ * judgement and delay exactly the case the feature exists for.
+ *
+ * Kept pure (players in, HTML out) so every state is unit-testable;
  * `BeatifyHome.renderPlayers` does the DOM write and the click wiring.
+ */
+
+// Name, display label and initial, resolved the same way for a tile and for an
+// away row so the two never disagree about who a player is.
+function _playerLabel(p) {
+    var raw = String(p.name == null ? (p.id == null ? '?' : p.id) : p.name).trim();
+    return {
+        label: raw || 'Guest',
+        initial: (raw.charAt(0) || '?').toUpperCase(),
+    };
+}
+
+// Explicit `=== false`: a payload without the field (an older server, a REST
+// poll mid-upgrade) must not paint every guest as gone.
+function _isAway(p) {
+    return p.connected === false;
+}
+
+// The guests the away list is about — and exactly the ones
+// `admin_kick_player` will act on. The server refuses a connected player and
+// refuses the admin, so offering a Remove button for either could only ever
+// fail. An away HOST keeps their tile in the grid instead: the information is
+// useful, the action is not available.
+function _removableAway(players) {
+    return (players || []).filter(function(p) { return _isAway(p) && !p.is_admin; });
+}
+
+/**
+ * Format an away duration for one row.
+ *
+ * `seconds` is server-computed (`away_seconds`, from `PlayerRegistry`), never
+ * derived from `Date.now()` here — a browser-side timer would restart at every
+ * host reload and report "just now" for a guest who left before dinner.
+ *
+ * Rounds down, so "4 min" means at least four minutes have passed. Null or
+ * missing yields '' — the row then shows no duration at all rather than a
+ * fabricated zero, because a wrong number is worse than a missing one when the
+ * number is the thing the host acts on.
+ *
+ * @param {number|null|undefined} seconds
+ * @returns {string}
+ */
+export function formatAwayDuration(seconds) {
+    if (typeof seconds !== 'number' || !isFinite(seconds) || seconds < 0) return '';
+    if (seconds < 60) return tr('lobby.awayJustNow', 'just now');
+    if (seconds < 3600) {
+        return tr('lobby.awayMinutes', '{count} min', { count: Math.floor(seconds / 60) });
+    }
+    return tr('lobby.awayHours', '{count} h', { count: Math.floor(seconds / 3600) });
+}
+
+/**
+ * The tile grid — **present players only** (#2718 variant C).
+ *
+ * An away guest is no longer a greyed tile here; they moved to
+ * `buildHomeAwayList` below. The host stays whatever their connection is
+ * doing, marked away when it drops, because their tile is not removable and
+ * dropping it would make the host's own phone look like it had left the party.
+ *
+ * Because away guests are filtered out before the colour cycle runs, the
+ * remaining guests take contiguous colours instead of leaving a gap where an
+ * absent guest used to sit.
  *
  * @param {Array<{name?:string, id?:string, is_admin?:boolean, connected?:boolean, onboarded?:boolean}>} players
- * @returns {string} HTML for `#home-players`
+ * @returns {string} HTML for the tiles inside `#home-players`
  */
 export function buildHomePlayerTiles(players) {
     var guestVariants = ['c1', 'c2', 'c3', 'c4'];
     var guestIdx = 0;
-    return (players || []).map(function(p) {
+    return (players || []).filter(function(p) {
+        return p.is_admin || !_isAway(p);
+    }).map(function(p) {
         var isHost = !!p.is_admin;
-        // Explicit `=== false`: a payload without the field (an older server,
-        // a REST poll) must not paint every guest as gone.
-        var isAway = p.connected === false;
+        var isAway = _isAway(p);
         var isLearning = !isHost && p.onboarded === false;
-        var canRemove = isAway && !isHost;
         var variant = isHost ? 'host' : guestVariants[guestIdx++ % guestVariants.length];
-        var raw = String(p.name == null ? (p.id == null ? '?' : p.id) : p.name).trim();
-        var label = raw || 'Guest';
-        var initial = (raw.charAt(0) || '?').toUpperCase();
+        var names = _playerLabel(p);
         var crown = isHost
             ? '<span class="home-player-tile-crown" aria-hidden="true">👑</span>'
             : '';
@@ -253,19 +323,77 @@ export function buildHomePlayerTiles(players) {
         var cls = ['home-player-tile', 'home-player-tile--' + variant];
         if (isLearning) cls.push('home-player-tile--learning');
         if (isAway) cls.push('home-player-tile--away');
-        var inner = '<span class="home-player-tile-initial">' + escapeHtml(initial) + '</span>'
-            + '<span class="home-player-tile-name">' + escapeHtml(label) + '</span>'
-            + crown + tour + away;
-        if (!canRemove) {
-            return '<div class="' + cls.join(' ') + '">' + inner + '</div>';
-        }
-        cls.push('home-player-tile--removable');
-        var aria = tr('admin.kickPlayerAria', 'Remove {name} from the lobby', { name: label });
-        return '<button type="button" class="' + cls.join(' ') + '"'
-            + ' data-player="' + escapeHtml(label) + '"'
-            + ' aria-label="' + escapeHtml(aria) + '">'
-            + inner
-            + '<span class="home-player-tile-remove" aria-hidden="true">×</span>'
-            + '</button>';
+        return '<div class="' + cls.join(' ') + '">'
+            + '<span class="home-player-tile-initial">' + escapeHtml(names.initial) + '</span>'
+            + '<span class="home-player-tile-name">' + escapeHtml(names.label) + '</span>'
+            + crown + tour + away
+            + '</div>';
     }).join('');
+}
+
+/**
+ * The count line above the grid (#2718 variant C).
+ *
+ * Rendered **only while somebody is away**, which is exactly when the grid
+ * stops telling the whole story — that is variant C's one real cost ("the
+ * guest count is no longer in one place"), and this is the line that pays it.
+ * With nobody away the grid IS the count, and the host's screen is short
+ * enough without a row that repeats it.
+ *
+ * @param {Array<Object>} players
+ * @returns {string} HTML, or '' when nobody is away
+ */
+export function buildHomePlayerCount(players) {
+    var list = players || [];
+    var away = _removableAway(list);
+    if (!away.length) return '';
+    var total = list.length;
+    var here = list.filter(function(p) { return !_isAway(p); }).length;
+    var totalText = total === 1
+        ? tr('admin.home.guestCountOne', '1 guest')
+        : tr('admin.home.guestCount', '{count} guests', { count: total });
+    var hereText = tr('admin.home.guestsHere', '{count} here', { count: here });
+    return '<p class="home-players-count">'
+        + escapeHtml(totalText) + ' · ' + escapeHtml(hereText)
+        + '</p>';
+}
+
+/**
+ * The away list below the grid (#2718 variant C).
+ *
+ * One row per away guest: initial chip, name, how long they have been gone,
+ * and a Remove button that carries the word rather than a glyph. Empty string
+ * when nobody is away, so the lobby looks exactly as it did before.
+ *
+ * The button only opens the confirm card — `BeatifyHome.renderPlayers` wires
+ * the click to `confirmKickPlayer`, and only the confirm sends `kick_player`.
+ *
+ * @param {Array<{name?:string, id?:string, is_admin?:boolean, connected?:boolean, away_seconds?:number}>} players
+ * @returns {string} HTML, or '' when nobody is away
+ */
+export function buildHomeAwayList(players) {
+    var away = _removableAway(players);
+    if (!away.length) return '';
+    var rows = away.map(function(p) {
+        var names = _playerLabel(p);
+        var since = formatAwayDuration(p.away_seconds);
+        var sinceCell = since
+            ? '<span class="home-away-since">' + escapeHtml(since) + '</span>'
+            : '';
+        var aria = tr('admin.kickPlayerAria', 'Remove {name} from the lobby', { name: names.label });
+        return '<li class="home-away-row">'
+            + '<span class="home-away-initial" aria-hidden="true">' + escapeHtml(names.initial) + '</span>'
+            + '<span class="home-away-name">' + escapeHtml(names.label) + '</span>'
+            + sinceCell
+            + '<button type="button" class="home-away-remove"'
+            + ' data-player="' + escapeHtml(names.label) + '"'
+            + ' aria-label="' + escapeHtml(aria) + '">'
+            + escapeHtml(tr('admin.kickPlayerRemove', 'Remove'))
+            + '</button>'
+            + '</li>';
+    }).join('');
+    return '<section class="home-away">'
+        + '<h3 class="home-away-heading">' + escapeHtml(tr('lobby.awayHeading', 'Away')) + '</h3>'
+        + '<ul class="home-away-rows">' + rows + '</ul>'
+        + '</section>';
 }

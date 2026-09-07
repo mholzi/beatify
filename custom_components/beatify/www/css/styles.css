@@ -11254,11 +11254,11 @@ body.is-ingame .player-header { display: none; }
 /* Admin home-view: away guests + the remove affordance (#2718).
    The TV has painted "(away)" for `connected === false` since Story 11.4; the
    host's phone never did, which made "remove" a coin flip between the guest
-   who left and the guest who is in the bathroom. An away tile is greyed out
-   and carries the same word the TV uses.
-   Badge slots: 👑 crown and TOUR both sit top-RIGHT, so the remove "×" takes
-   the top-LEFT corner — an away guest who never finished the tour would
-   otherwise stack two badges on the same pixel. */
+   who left and the guest who is in the bathroom.
+   Variant C (design gate 05.09.2026): away GUESTS leave the grid entirely for
+   the list further down, so these two rules now dress exactly one tile — the
+   away HOST, who cannot be removed and whose own phone must not vanish from
+   its own lobby. */
 .home-player-tile--away {
     opacity: 0.6;
     filter: grayscale(0.55);
@@ -11276,40 +11276,121 @@ body.is-ingame .player-header { display: none; }
     overflow: hidden;
     text-overflow: ellipsis;
 }
-/* A removable tile is a real <button>: reset the UA chrome the grid does not
-   want, keep the tile's own flex/gradient rules. */
-button.home-player-tile {
-    font: inherit;
-    color: inherit;
-    text-align: center;
+/* --------------------------------------------------------------------------
+   #2718 variant C — present in the grid, away in a list underneath.
+
+   Both of these are full-width children of the `.home-players` grid (same
+   `grid-column: 1 / -1` trick `.home-players-waiting` uses), so the tiles keep
+   their auto-fill columns and the list simply starts a new row below them.
+
+   Why a list and not a badge on the tile: nothing removable then borders
+   anything untouchable, so the misplaced tap in a half-dark room is designed
+   out instead of caught; the row has room for the DURATION, which is the
+   number the host actually decides on; and the button can carry the word
+   "Remove" rather than a glyph to interpret.
+   -------------------------------------------------------------------------- */
+
+/* Shown only while somebody is away — the one moment the grid alone would
+   undercount the room ("7 guests · 5 here"). */
+.home-players-count {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-neon-muted);
+}
+
+.home-away {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border-neon);
+}
+/* Quiet heading: this is a place to look when something is wrong, not a
+   second headline competing with the guest grid. */
+.home-away-heading {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-display);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+    opacity: 0.75;
+}
+.home-away-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.home-away-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 6px 0;
+}
+/* Same initial the tile shows, at chip size — the away guest stays
+   recognisable as the person who was in the grid a moment ago. */
+.home-away-initial {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--color-border-neon);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+}
+.home-away-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* The whole reason this variant won: four minutes is the bathroom, twelve
+   minutes is gone. Dimmer than the name, but never hidden — it is the
+   information the host acts on. */
+.home-away-since {
+    flex: none;
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+/* A labelled button, not a "×" — the word is the affordance. */
+.home-away-remove {
+    flex: none;
+    padding: 6px 12px;
+    min-height: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 45, 106, 0.5);
+    background: rgba(255, 45, 106, 0.14);
+    color: var(--color-accent-primary);
+    font-family: var(--font-display);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    line-height: 1;
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
 }
-.home-player-tile--removable { opacity: 0.75; }
-.home-player-tile--removable:active { transform: scale(0.96); }
-.home-player-tile--removable:focus-visible {
+.home-away-remove:active { transform: scale(0.96); }
+.home-away-remove:focus-visible {
     outline: 2px solid var(--color-accent-secondary);
-    outline-offset: 3px;
-}
-.home-player-tile-remove {
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-full);
-    background: var(--color-accent-primary);
-    color: var(--color-text-white);
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1;
-    box-shadow: 0 0 8px rgba(255, 45, 106, 0.55);
-    pointer-events: none;
+    outline-offset: 2px;
 }
 
 /* Secondary explainer line inside a confirmation modal (#2718). */

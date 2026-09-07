@@ -166,7 +166,7 @@ class PlayerRegistry:
                 return False, ERR_UNAUTHORIZED
             if not existing_player.connected:
                 existing_player.ws = ws
-                existing_player.connected = True
+                existing_player.set_connected(True, now=self._now())
                 _LOGGER.info(
                     "name-based reconnect fallback (deprecated) for %s",
                     existing_player.name,
@@ -181,7 +181,7 @@ class PlayerRegistry:
                     existing_player.name,
                 )
                 existing_player.ws = ws
-                existing_player.connected = True
+                existing_player.set_connected(True, now=self._now())
                 return True, None
             return False, ERR_NAME_TAKEN
 
@@ -300,6 +300,28 @@ class PlayerRegistry:
             return 0
         return max(0, math.ceil(player.sabotage_freeze_until - self._now()))
 
+    def away_seconds(self, player: PlayerSession) -> int | None:
+        """Whole seconds this player has been away, or None (#2718).
+
+        None means "no duration to show": either they are connected, or they
+        are away but carry no stamp (a record that predates ``set_connected``).
+        The host's lobby then renders the row without a number instead of
+        inventing a zero — a wrong duration is worse than a missing one,
+        because the whole point of the number is that the host acts on it.
+
+        Server-computed for the same reason ``sabotage_freeze_remaining``
+        above is: the client must not subtract a server epoch from its own
+        possibly-skewed ``Date.now()``. It also makes the value survive a host
+        reload — it is a function of server state alone, so re-fetching
+        ``/beatify/api/status`` after F5 returns the *grown* duration, not a
+        fresh zero.
+
+        Rounded DOWN: "4 min" should mean at least four minutes have passed.
+        """
+        if player.connected or player.disconnected_at is None:
+            return None
+        return max(0, int(self._now() - player.disconnected_at))
+
     def get_players_state(self) -> list[dict[str, Any]]:
         """Get player list for state broadcast."""
         return [
@@ -309,6 +331,9 @@ class PlayerRegistry:
                 "player_id": p.player_id,
                 "score": p.score,
                 "connected": p.connected,
+                # #2718: how long they have been gone, so the host's lobby can
+                # tell the bathroom from the front door. None while connected.
+                "away_seconds": self.away_seconds(p),
                 "streak": p.streak,
                 "is_admin": p.is_admin,
                 "submitted": p.submitted,
