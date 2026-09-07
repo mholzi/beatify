@@ -40,6 +40,7 @@ from .playback import (
     uri_match_tokens,
 )
 from .playback.base import PLAYBACK_TIMEOUT
+from .speaker_promises import SpeakerPromises
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -258,6 +259,13 @@ class MediaPlayerService:
         self._hass = hass
         self._entity_id = entity_id
         self._analytics: AnalyticsStorage | None = None
+
+        # #179: this speaker answered a ping, so later rounds can skip the
+        # blocking pre-flight. THIS SPEAKER'S lifetime, and therefore the
+        # service's: the service is thrown away and rebuilt when the entity or
+        # platform changes, and the new speaker has to prove itself again.
+        # Everything with the GAME's lifetime lives in `_promises` below
+        # instead of alongside this flag (#2678).
         self._preflight_verified: bool = False
 
         # #2636: everything platform-specific now lives behind one interface.
@@ -280,42 +288,13 @@ class MediaPlayerService:
         self._strategy = build_strategy(self._context)
         self._restorer = MaQueueRestorer(hass)
 
-        # #1516: the speaker's volume as it was BEFORE Beatify first changed it
-        # this game. Captured once (via save_volume) on the first in-game volume
-        # change so the host's original listening level can be handed back at
-        # game end. None = nothing to restore (Beatify never touched the volume).
-        self._saved_volume: float | None = None
-
-        # #2143: what the speaker was playing before Beatify claimed the queue.
-        # The MA strategy sends `enqueue: "replace"`, which wipes whatever the
-        # host had queued — in EVERY round, for every Music Assistant user,
-        # whether or not they use Crate Digger. Captured once per game (like
-        # `_saved_volume`) and handed back at game end.
-        #
-        # Three shapes, deliberately distinct:
-        #   None — not captured yet (or already restored)
-        #   {}   — captured, but the speaker was idle: nothing to hand back
-        #   {…}  — the track, its position, shuffle and repeat mode
-        #
-        # What CANNOT be captured: the queue behind the current track. MA's
-        # `get_queue` reports `items` as a COUNT, not a list, and exposes only
-        # `current_item` / `next_item` — measured against a live queue on
-        # 2026-08-13. Restoring "the first entry with replace, the rest with
-        # add" (the original plan in #2143) is therefore not implementable.
-        self._saved_queue: dict[str, Any] | None = None
-
-        # Speakers this game already touched and then switched away from —
-        # {entity_id: {"volume": …, "queue": …}}. Our OWN entity's snapshot is
-        # adopted into the fields above instead of living here, so a switch
-        # back to a speaker does not re-capture an already-Beatify-altered
-        # level as if it were the host's original.
-        self._inherited_states: dict[str, dict[str, Any]] = {
-            eid: dict(snap) for eid, snap in (inherited_states or {}).items()
-        }
-        own_snapshot = self._inherited_states.pop(entity_id, None)
-        if own_snapshot:
-            self._saved_volume = own_snapshot.get("volume")
-            self._saved_queue = own_snapshot.get("queue")
+        # #2678: the host's pre-game volume (#1516) and pre-game queue (#2143)
+        # belong to the GAME, not to this service. They outlive every speaker
+        # switch and every service rebuild, so they live in their own object —
+        # the one thing that is handed over when this service is replaced. See
+        # `speaker_promises.SpeakerPromises` for what each field means and why
+        # its hand-over has to be lossless.
+        self._promises = SpeakerPromises(entity_id, inherited_states)
 
     @property
     def _platform(self) -> str:
@@ -377,16 +356,11 @@ class MediaPlayerService:
         Mirrors ``PartyLightsService.snapshot_saved_states``: a mid-game
         speaker switch discards this service, and the caller hands the result
         of this method to the replacement so the promise survives the switch.
+
+        The promises themselves know how to serialise (#2678) — including the
+        empty queue capture, which a truthiness test used to drop.
         """
-        states = {eid: dict(snap) for eid, snap in self._inherited_states.items()}
-        own: dict[str, Any] = {}
-        if self._saved_volume is not None:
-            own["volume"] = self._saved_volume
-        if self._saved_queue:
-            own["queue"] = dict(self._saved_queue)
-        if own:
-            states[self._entity_id] = own
-        return states
+        return self._promises.snapshot()
 
     def save_volume(self) -> None:
         """Remember the speaker's current volume for later restore (#1516).
@@ -397,8 +371,8 @@ class MediaPlayerService:
         one. ``restore_volume`` clears the capture, so the next game re-captures
         fresh.
         """
-        if self._saved_volume is None:
-            self._saved_volume = self.get_volume()
+        if self._promises.volume is None:
+            self._promises.volume = self.get_volume()
 
     async def restore_volume(self) -> bool:
         """Restore the volume captured by :meth:`save_volume` (#1516).
@@ -412,19 +386,16 @@ class MediaPlayerService:
             nothing to restore (Beatify never changed any volume this game).
         """
         applied = False
-        for entity_id, snapshot in list(self._inherited_states.items()):
-            level = snapshot.pop("volume", None)
-            if level is None:
-                continue
+        # Every promise is cleared as it is taken, BEFORE the first await, so a
+        # re-entrant call can't double-restore and the next game starts from a
+        # clean (uncaptured) slate.
+        for entity_id, level in self._promises.take_owed_volumes():
             if await self._set_volume_on(entity_id, level):
                 applied = True
-        if self._saved_volume is None:
+        own_level = self._promises.take_volume()
+        if own_level is None:
             return applied
-        level = self._saved_volume
-        # Clear BEFORE the await so a re-entrant call can't double-restore, and
-        # so the next game starts from a clean (uncaptured) slate.
-        self._saved_volume = None
-        return await self._set_volume_on(self._entity_id, level) or applied
+        return await self._set_volume_on(self._entity_id, own_level) or applied
 
     async def save_queue(self) -> None:
         """Remember what the speaker was playing before Beatify took it (#2143).
@@ -438,14 +409,14 @@ class MediaPlayerService:
         :meth:`~.playback.base.PlaybackStrategy.capture_queue`. WHEN it is
         remembered is this shell's, which is why the guard below stayed here
         (#2636). A strategy that reports None (every platform but MA, and a
-        platform Beatify cannot play on at all) leaves ``_saved_queue`` unset,
+        platform Beatify cannot play on at all) leaves the promise unset,
         so ``restore_queue`` hands nothing back — exactly as before.
         """
-        if self._saved_queue is not None or self._strategy is None:
+        if self._promises.queue is not None or self._strategy is None:
             return
         snapshot = await self._strategy.capture_queue()
         if snapshot is not None:
-            self._saved_queue = snapshot
+            self._promises.queue = snapshot
 
     async def restore_queue(self) -> bool:
         """Hand the speaker back what it was playing before the game (#2143).
@@ -455,21 +426,20 @@ class MediaPlayerService:
         game, so starting their music unasked would be its own surprise.
 
         Only the track that was playing returns. What sat behind it in the
-        queue is gone — MA's ``get_queue`` never exposed it (see the
-        ``_saved_queue`` comment in ``__init__``).
+        queue is gone — MA's ``get_queue`` never exposed it (see
+        :class:`~.speaker_promises.SpeakerPromises`).
 
         Returns:
             True if at least one speaker got something back.
         """
         restored = False
-        for entity_id, snapshot in list(self._inherited_states.items()):
-            queue = snapshot.pop("queue", None)
+        # Cleared as taken, BEFORE the awaits, so a re-entrant call can't
+        # double-restore.
+        for entity_id, queue in self._promises.take_owed_queues():
             if await self._restorer.restore_on(entity_id, queue):
                 restored = True
-        queue = self._saved_queue
-        # Clear BEFORE the awaits so a re-entrant call can't double-restore.
-        self._saved_queue = None
-        return await self._restorer.restore_on(self._entity_id, queue) or restored
+        own_queue = self._promises.take_queue()
+        return await self._restorer.restore_on(self._entity_id, own_queue) or restored
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """

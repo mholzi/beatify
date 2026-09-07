@@ -106,7 +106,7 @@ class TestQueueSnapshot:
 
         await svc.save_queue()
 
-        assert svc._saved_queue == {
+        assert svc._promises.queue == {
             "uri": "apple_music://track/1686851478",
             "name": "Stuck In The Middle With You",
             "elapsed_time": 9.0,
@@ -135,7 +135,7 @@ class TestQueueSnapshot:
         }
         await svc.save_queue()
 
-        assert svc._saved_queue["uri"] == "apple_music://track/1686851478"
+        assert svc._promises.queue["uri"] == "apple_music://track/1686851478"
         assert len(_calls_to(hass, "music_assistant", "get_queue")) == 1
 
     @pytest.mark.asyncio
@@ -147,7 +147,7 @@ class TestQueueSnapshot:
         await svc.save_queue()
         await svc.save_queue()
 
-        assert svc._saved_queue == {}
+        assert svc._promises.queue == {}
         assert len(_calls_to(hass, "music_assistant", "get_queue")) == 1
         assert await svc.restore_queue() is False
 
@@ -159,7 +159,7 @@ class TestQueueSnapshot:
 
         await svc.save_queue()
 
-        assert svc._saved_queue is None
+        assert svc._promises.queue is None
         assert hass.services.async_call.await_count == 0
 
     @pytest.mark.asyncio
@@ -174,7 +174,7 @@ class TestQueueSnapshot:
 
         await svc.save_queue()
 
-        assert svc._saved_queue == {}
+        assert svc._promises.queue == {}
 
 
 class TestQueueRestore:
@@ -306,8 +306,8 @@ class TestSnapshotSurvivesASpeakerSwitch:
 
         svc.save_volume()  # would capture the current 0.5 if the adopt failed
 
-        assert svc._saved_volume == 0.2
-        assert svc._inherited_states == {}
+        assert svc._promises.volume == 0.2
+        assert svc._promises.others == {}
 
     @pytest.mark.asyncio
     async def test_the_old_speaker_gets_its_queue_back_too(self):

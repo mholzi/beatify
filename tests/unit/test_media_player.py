@@ -2349,7 +2349,7 @@ class TestVolumeSaveRestore:
 
         svc.save_volume()
 
-        assert svc._saved_volume == 0.4
+        assert svc._promises.volume == 0.4
 
     @pytest.mark.asyncio
     async def test_save_volume_is_idempotent(self):
@@ -2365,7 +2365,7 @@ class TestVolumeSaveRestore:
         state.attributes["volume_level"] = 0.1
         svc.save_volume()
 
-        assert svc._saved_volume == 0.4
+        assert svc._promises.volume == 0.4
 
     @pytest.mark.asyncio
     async def test_restore_volume_applies_and_clears(self):
@@ -2387,7 +2387,7 @@ class TestVolumeSaveRestore:
         assert len(vol_calls) == 1
         assert vol_calls[0].args[2]["volume_level"] == 0.4
         # Cleared so the next game re-captures fresh and a re-call is a no-op.
-        assert svc._saved_volume is None
+        assert svc._promises.volume is None
         assert await svc.restore_volume() is False
 
     @pytest.mark.asyncio
