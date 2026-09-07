@@ -10383,6 +10383,100 @@ body.home-mode .home-view {
 .home-cta-join.hidden { display: none; }
 
 /* Wizard Step 4 — game mode cards (Artist Challenge / Intro Mode / Closest Wins) */
+/* #2692: play styles — one big decision above the eleven switches.
+   Only the selected panel expands to say what it turns on; three open
+   expansions would turn the one decision back into a comparison table. */
+.wiz-style-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.wiz-style-panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: var(--space-md) 14px;
+    background: var(--color-dark-surface);
+    border: 1.5px solid var(--color-border-neon);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast), opacity var(--transition-fast);
+}
+
+.wiz-style-panel.dim { opacity: 0.55; }
+.wiz-style-panel.dim:hover { opacity: 0.85; }
+
+.wiz-style-glyph { font-size: 32px; line-height: 1; flex-shrink: 0; }
+
+.wiz-style-body { min-width: 0; }
+
+.wiz-style-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--font-size-lg);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-text-white);
+    line-height: 1;
+}
+
+.wiz-style-line {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+/* Only the chosen style lists its modes. */
+.wiz-style-what {
+    display: none;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-dim);
+    margin-top: 7px;
+    line-height: 1.5;
+}
+
+.wiz-style-panel.sel .wiz-style-what { display: block; }
+
+.wiz-style-panel[data-accent="cyan"].sel {
+    border-color: var(--color-accent-secondary);
+    background: rgba(0, 245, 255, 0.10);
+}
+
+.wiz-style-panel[data-accent="pink"].sel {
+    border-color: var(--color-accent-primary);
+    background: rgba(255, 45, 106, 0.10);
+}
+
+.wiz-style-panel[data-accent="orange"].sel {
+    border-color: var(--color-warning-alt);
+    background: rgba(255, 102, 0, 0.10);
+}
+
+/* The fold. Dashed on purpose — it is a way in, not a fourth style. */
+.wiz-manual-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: var(--space-xs);
+    padding: 11px 14px;
+    background: transparent;
+    border: 1px dashed var(--color-border-neon);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-neon-muted);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+}
+
+.wiz-manual-line:hover { background: var(--color-dark-surface); }
+
+.wiz-manual-count { color: var(--color-text-dim); font-weight: 500; }
+
 .wiz-mode-cards {
     display: flex;
     flex-direction: column;

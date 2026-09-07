@@ -1288,7 +1288,17 @@
       "modeTitleArtistHint": "Scrivi titolo e artista della canzone.",
       "taScoring": "Titolo 10 · Artista 5 · Parziale 5/3",
       "modePlaying": "In gioco",
-      "bonusModes": "Modalità bonus"
+      "bonusModes": "Modalità bonus",
+      "playStyle": "Stile di gioco",
+      "setIndividually": "Imposta una per una",
+      "switchCount": "{count} opzioni",
+      "styleClassic": "Classico",
+      "styleClassicLine": "Indovinare l'anno, nient'altro. Per i turni in cui si chiacchiera.",
+      "styleDramatic": "Drammatico",
+      "styleDramaticLine": "Cresce, e l'ultimo turno decide tutto.",
+      "styleChaos": "Caos",
+      "styleChaosLine": "Possono farsi dispetti a vicenda. Non per i suoceri.",
+      "styleCustom": "Personalizzato"
     },
     "done": {
       "badge": "PRONTI A GIOCARE",

@@ -1288,7 +1288,17 @@
       "modeTitleArtistHint": "Tippe Titel + Interpret.",
       "taScoring": "Titel 10 · Interpret 5 · Teiltreffer 5/3",
       "modePlaying": "Aktiv",
-      "bonusModes": "Zusatz-Modi"
+      "bonusModes": "Zusatz-Modi",
+      "playStyle": "Spielstil",
+      "setIndividually": "Einzeln einstellen",
+      "switchCount": "{count} Schalter",
+      "styleClassic": "Klassisch",
+      "styleClassicLine": "Jahr raten, sonst nichts. Für Runden, in denen geredet wird.",
+      "styleDramatic": "Dramatisch",
+      "styleDramaticLine": "Es steigert sich, und die letzte Runde entscheidet.",
+      "styleChaos": "Chaos",
+      "styleChaosLine": "Sie dürfen sich gegenseitig ärgern. Nicht für die Schwiegereltern.",
+      "styleCustom": "Eigene Auswahl"
     },
     "done": {
       "badge": "BEREIT ZUM SPIELEN",

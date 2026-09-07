@@ -1288,7 +1288,17 @@
       "modeTitleArtistHint": "Typ de titel en artiest.",
       "taScoring": "Titel 10 · Artiest 5 · Gedeeltelijk 5/3",
       "modePlaying": "Actief",
-      "bonusModes": "Bonusmodi"
+      "bonusModes": "Bonusmodi",
+      "playStyle": "Speelstijl",
+      "setIndividually": "Los instellen",
+      "switchCount": "{count} schakelaars",
+      "styleClassic": "Klassiek",
+      "styleClassicLine": "Het jaar raden, verder niets. Voor rondes waarin gepraat wordt.",
+      "styleDramatic": "Dramatisch",
+      "styleDramaticLine": "Het loopt op, en de laatste ronde beslist.",
+      "styleChaos": "Chaos",
+      "styleChaosLine": "Ze mogen elkaar dwarszitten. Niet voor de schoonfamilie.",
+      "styleCustom": "Eigen keuze"
     },
     "done": {
       "badge": "KLAAR OM TE SPELEN",

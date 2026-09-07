@@ -1288,7 +1288,17 @@
       "modeTitleArtistHint": "Escribe el título y el intérprete.",
       "taScoring": "Título 10 · Intérprete 5 · Parcial 5/3",
       "modePlaying": "Activo",
-      "bonusModes": "Modos extra"
+      "bonusModes": "Modos extra",
+      "playStyle": "Estilo de juego",
+      "setIndividually": "Ajustar uno a uno",
+      "switchCount": "{count} opciones",
+      "styleClassic": "Clásico",
+      "styleClassicLine": "Adivinar el año y nada más. Para rondas en las que se charla.",
+      "styleDramatic": "Dramático",
+      "styleDramaticLine": "Va subiendo, y la última ronda lo decide.",
+      "styleChaos": "Caos",
+      "styleChaosLine": "Pueden fastidiarse entre ellos. No para la familia política.",
+      "styleCustom": "Personalizado"
     },
     "done": {
       "badge": "LISTO PARA JUGAR",

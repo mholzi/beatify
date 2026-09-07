@@ -370,6 +370,14 @@ export function applyStoredGameSettings(adminState, s) {
     if (typeof s.finaleDouble === 'boolean') adminState.finaleDoubleEnabled = s.finaleDouble;
     if (typeof s.finaleTiebreaker === 'boolean') adminState.finaleTiebreakerEnabled = s.finaleTiebreaker;
     if (typeof s.comebackToken === 'boolean') adminState.comebackTokenEnabled = s.comebackToken;
+    // #2692: these two were missing. admin.js posts
+    // `difficulty_bet_scaling_enabled` and `sabotage_enabled` from adminState
+    // (admin.js:1412-1413), but nothing here ever read them back out of the
+    // saved settings — so even a host who found the hidden flat panel and
+    // ticked them lost both on the next page load. Four of the six modes were
+    // half-wired; these two were not wired at all.
+    if (typeof s.difficultyBetScaling === 'boolean') adminState.difficultyBetScalingEnabled = s.difficultyBetScaling;
+    if (typeof s.sabotage === 'boolean') adminState.sabotageEnabled = s.sabotage;
 }
 
 // --- admin-state dirty-check (#1584 / #1659) -------------------------------

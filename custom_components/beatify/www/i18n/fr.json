@@ -1288,7 +1288,17 @@
       "modeTitleArtistHint": "Tapez le titre et l'artiste.",
       "taScoring": "Titre 10 · Artiste 5 · Partiel 5/3",
       "modePlaying": "Actif",
-      "bonusModes": "Modes bonus"
+      "bonusModes": "Modes bonus",
+      "playStyle": "Style de jeu",
+      "setIndividually": "Régler un par un",
+      "switchCount": "{count} options",
+      "styleClassic": "Classique",
+      "styleClassicLine": "Deviner l'année, rien d'autre. Pour les tours où l'on discute.",
+      "styleDramatic": "Dramatique",
+      "styleDramaticLine": "Ça monte, et la dernière manche décide.",
+      "styleChaos": "Chaos",
+      "styleChaosLine": "Ils peuvent se chercher des noises. Pas pour la belle-famille.",
+      "styleCustom": "Personnalisé"
     },
     "done": {
       "badge": "PRÊT À JOUER",

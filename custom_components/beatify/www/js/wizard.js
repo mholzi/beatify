@@ -267,6 +267,20 @@ let chosenIntroMode = false;
 let chosenClosestWins = false;
 let chosenSuddenDeath = true; // Issue #827 — default ON (unlike the other bonuses); gated to >=3 players
 let chosenTitleArtistMode = false; // #1180
+// #2692: the six modes that shipped complete and unreachable — their only
+// switches lived in the flat admin panel that CSS hides (admin.html:581-656,
+// styles.css:10181). All six default OFF, which is what every game has been
+// running since the wizard rewrite; the play style below is what turns them on.
+let chosenRampupOrder = false;        // #1726
+let chosenFinaleDouble = false;       // #1725
+let chosenFinaleTiebreaker = false;   // #1725
+let chosenComebackToken = false;      // #1724
+let chosenBetScaling = false;         // #1727
+let chosenSabotage = false;           // #1665
+// #2692: which play style is selected, or null for a hand-picked combination.
+let chosenPlayStyle = 'classic';
+// #2692: whether the eleven individual switches are unfolded.
+let modesExpanded = false;
 const chosenLevelUps = { lights: false, tts: false };
 // Details the user sets when a level-up is toggled on
 let cachedLights = null; // HA lights from /api/lights
@@ -1009,7 +1023,164 @@ const GAME_MODES = [
         get: () => chosenSuddenDeath,
         set: (v) => { chosenSuddenDeath = v; },
     },
+    // #2692: the six that were finished and unreachable. Their strings already
+    // ship in all six locales (admin.* keys), so the cards need no new copy —
+    // only a place to be rendered.
+    {
+        key: 'rampupOrder',
+        icon: '📈',
+        titleKey: 'admin.rampupOrder',
+        titleFallback: 'Ramp-up Ordering',
+        hintKey: 'admin.rampupOrderHint',
+        hintFallback: 'Easy rounds first, the hardest known song saved for the finale.',
+        get: () => chosenRampupOrder,
+        set: (v) => { chosenRampupOrder = v; },
+    },
+    {
+        key: 'finaleDouble',
+        icon: '✨',
+        titleKey: 'admin.finaleDouble',
+        titleFallback: 'Finale ×2',
+        hintKey: 'admin.finaleDoubleHint',
+        hintFallback: "Double every player's score on the final round.",
+        get: () => chosenFinaleDouble,
+        set: (v) => { chosenFinaleDouble = v; },
+    },
+    {
+        key: 'finaleTiebreaker',
+        icon: '⚔️',
+        titleKey: 'admin.finaleTiebreaker',
+        titleFallback: 'Finale Tiebreaker',
+        hintKey: 'admin.finaleTiebreakerHint',
+        hintFallback: 'A tie for first plays one more song instead of sharing the win.',
+        get: () => chosenFinaleTiebreaker,
+        set: (v) => { chosenFinaleTiebreaker = v; },
+    },
+    {
+        key: 'comebackToken',
+        icon: '🎁',
+        titleKey: 'admin.comebackToken',
+        titleFallback: 'Comeback Token',
+        hintKey: 'admin.comebackTokenHint',
+        hintFallback: 'After halftime the trailing third is handed a steal.',
+        get: () => chosenComebackToken,
+        set: (v) => { chosenComebackToken = v; },
+    },
+    {
+        key: 'betScaling',
+        icon: '🎲',
+        titleKey: 'admin.difficultyBetScaling',
+        titleFallback: 'Difficulty Bet Scaling',
+        hintKey: 'admin.difficultyBetScalingHint',
+        hintFallback: "Scale a won bet's payout with difficulty.",
+        get: () => chosenBetScaling,
+        set: (v) => { chosenBetScaling = v; },
+    },
+    {
+        key: 'sabotage',
+        icon: '💣',
+        titleKey: 'admin.sabotage',
+        titleFallback: 'Sabotage',
+        hintKey: 'admin.sabotageHint',
+        hintFallback: 'Every player gets one sabotage token per game.',
+        get: () => chosenSabotage,
+        set: (v) => { chosenSabotage = v; },
+    },
 ];
+
+// #2692: the play styles.
+//
+// The six modes did not go missing because they were hard to reach — they went
+// missing because a host with eight guests watching makes ONE decision, not
+// six. A style is that one decision; the eleven switches stay reachable one tap
+// below it for anyone who wants a different combination.
+//
+// `modes` lists every key the style turns ON. Everything not named is turned
+// OFF, so picking a style is a complete statement rather than an addition to
+// whatever was set before — otherwise switching from Chaos to Classic would
+// silently leave Sabotage running.
+//
+// Sabotage appears in exactly one style, and that style is never the default:
+// it is the only mode that actively takes something away from a guest, and an
+// angry guest the host cannot explain is worse than an unused feature.
+export const PLAY_STYLES = [
+    {
+        key: 'classic',
+        glyph: '🎵',
+        accent: 'cyan',
+        nameKey: 'wizard.step4.styleClassic',
+        nameFallback: 'Classic',
+        lineKey: 'wizard.step4.styleClassicLine',
+        lineFallback: 'Guess the year, nothing else. For rounds where people talk.',
+        modes: ['artist'],
+    },
+    {
+        key: 'dramatic',
+        glyph: '🏆',
+        accent: 'pink',
+        nameKey: 'wizard.step4.styleDramatic',
+        nameFallback: 'Dramatic',
+        lineKey: 'wizard.step4.styleDramaticLine',
+        lineFallback: 'It builds, and the last round decides it.',
+        modes: ['artist', 'rampupOrder', 'finaleDouble', 'finaleTiebreaker', 'comebackToken'],
+    },
+    {
+        key: 'chaos',
+        glyph: '💣',
+        accent: 'orange',
+        nameKey: 'wizard.step4.styleChaos',
+        nameFallback: 'Chaos',
+        lineKey: 'wizard.step4.styleChaosLine',
+        lineFallback: 'They get to mess with each other. Not for the in-laws.',
+        modes: [
+            'artist', 'rampupOrder', 'finaleDouble', 'finaleTiebreaker',
+            'comebackToken', 'sabotage', 'betScaling', 'intro',
+        ],
+    },
+];
+
+/**
+ * Apply a play style: every mode it names ON, every other mode OFF.
+ *
+ * Pure over the GAME_MODES setters so it can be unit-tested through them, and
+ * exported for exactly that reason. The "everything else OFF" half is the part
+ * worth testing — a style that only adds would leave Sabotage running after a
+ * host switched from Chaos back to Classic, which is precisely the kind of
+ * silent state #2692 is about.
+ *
+ * `suddenDeath` is deliberately left alone: it defaults ON, is gated on the
+ * player count, and is not a flavour of the evening but a rule about it.
+ */
+export function applyPlayStyle(styleKey) {
+    const style = PLAY_STYLES.find((s) => s.key === styleKey);
+    if (!style) return false;
+    GAME_MODES.forEach((m) => {
+        if (m.key === 'suddenDeath') return;
+        m.set(style.modes.indexOf(m.key) !== -1);
+    });
+    chosenPlayStyle = style.key;
+    return true;
+}
+
+/**
+ * Which style the current switch positions correspond to, or null.
+ *
+ * Recomputed rather than trusted from `chosenPlayStyle`, because the host can
+ * flip a single switch after picking a style — and then the style label is a
+ * lie. Returning null is what makes the UI drop back to "Custom" honestly.
+ */
+export function detectPlayStyle() {
+    const onKeys = GAME_MODES
+        .filter((m) => m.key !== 'suddenDeath' && m.get())
+        .map((m) => m.key)
+        .sort();
+    const match = PLAY_STYLES.find((s) => {
+        const want = s.modes.slice().sort();
+        return want.length === onKeys.length
+            && want.every((k, i) => k === onKeys[i]);
+    });
+    return match ? match.key : null;
+}
 
 // Issue #827 — Sudden Death needs SUDDEN_DEATH_MIN_PLAYERS connected players to
 // be playable; the floor itself lives in const.py (#2699).
@@ -1079,13 +1250,89 @@ function _renderCoreMode() {
             _renderCoreMode();
             _renderDifficulty();
             _renderGameModes();
+            // #2692: Title & Artist hides two cards, which changes both the
+            // switch count and whether the current combination is still a style.
+            _renderPlayStyles();
         });
+    });
+}
+
+/**
+ * #2692: render the three play styles.
+ *
+ * Only the selected style shows what it switches on. Listing all three
+ * expansions at once turns the one decision back into a comparison table, and
+ * a comparison table is what the host has no time for.
+ */
+function _renderPlayStyles() {
+    const el = document.getElementById('wiz-play-styles');
+    if (!el) return;
+
+    // Recomputed from the switches, never trusted from the last click — a
+    // single manual toggle must drop the label back to "Custom".
+    const active = detectPlayStyle();
+
+    el.innerHTML = PLAY_STYLES.map((style) => {
+        const on = style.key === active;
+        const names = style.modes
+            .map((k) => {
+                const m = GAME_MODES.find((g) => g.key === k);
+                return m ? `${m.icon} ${_t(m.titleKey, m.titleFallback)}` : '';
+            })
+            .filter(Boolean)
+            .join(' · ');
+        return `<div class="wiz-style-panel ${on ? 'sel' : 'dim'}" data-style="${style.key}"
+                     data-accent="${style.accent}" role="button" tabindex="0" aria-pressed="${on}">
+            <div class="wiz-style-glyph" aria-hidden="true">${style.glyph}</div>
+            <div class="wiz-style-body">
+                <div class="wiz-style-name">${_t(style.nameKey, style.nameFallback)}</div>
+                <div class="wiz-style-line">${_t(style.lineKey, style.lineFallback)}</div>
+                <div class="wiz-style-what">${escapeAttr(names)}</div>
+            </div>
+        </div>`;
+    }).join('');
+
+    el.querySelectorAll('[data-style]').forEach((panel) => {
+        panel.addEventListener('click', () => {
+            applyPlayStyle(panel.dataset.style);
+            _renderPlayStyles();
+            _renderGameModes();
+        });
+    });
+
+    // The fold label carries the count so the switches never look absent.
+    const countEl = document.getElementById('wiz-modes-toggle-count');
+    if (countEl) {
+        const visible = GAME_MODES.filter((m) => !(
+            chosenTitleArtistMode && (m.key === 'artist' || m.key === 'closest')
+        )).length;
+        countEl.textContent = _t(
+            'wizard.step4.switchCount',
+            '{count} switches',
+            { count: visible },
+        );
+    }
+}
+
+/** #2692: fold/unfold the individual switch list. Wired once. */
+function _wireModesToggle() {
+    const btn = document.getElementById('wiz-modes-toggle');
+    const list = document.getElementById('wiz-modes');
+    if (!btn || !list || btn.dataset.wired === '1') return;
+    btn.dataset.wired = '1';
+    btn.addEventListener('click', () => {
+        modesExpanded = !modesExpanded;
+        list.hidden = !modesExpanded;
+        btn.setAttribute('aria-expanded', modesExpanded ? 'true' : 'false');
     });
 }
 
 function _renderGameModes() {
     const el = document.getElementById('wiz-modes');
     if (!el) return;
+    // #2692: the list starts folded; the style above answers the step.
+    el.hidden = !modesExpanded;
+    _wireModesToggle();
     // Issue #827 — Sudden Death is only playable at or above the const.py floor.
     // When below that, force the choice off so an undersized game never starts in
     // Sudden Death, and render the card disabled (dimmed, non-interactive).
@@ -1133,6 +1380,8 @@ function _renderGameModes() {
             if (mode.key === 'suddenDeath' && suddenDeathDisabled) return;
             mode.set(!mode.get());
             _renderGameModes();
+            // #2692: a hand-flipped switch can invalidate the style label.
+            _renderPlayStyles();
         });
     });
 }
@@ -1284,6 +1533,7 @@ function _renderGameMode() {
         _renderGameMode();
     });
     _renderGameModes();
+    _renderPlayStyles();   // #2692
 }
 
 function _lightsDetailHtml() {
@@ -1725,6 +1975,16 @@ function _persistGameSettings() {
             closestWinsMode: chosenClosestWins,
             suddenDeathMode: chosenSuddenDeath,  // Issue #827
             titleArtistMode: chosenTitleArtistMode,  // #1180
+            // #2692: the six that had no path out of the wizard at all. The key
+            // names match what admin/util.js `applySavedSettings` reads, which
+            // is the only reason they reach the server.
+            rampupOrder: chosenRampupOrder,               // #1726
+            finaleDouble: chosenFinaleDouble,             // #1725
+            finaleTiebreaker: chosenFinaleTiebreaker,     // #1725
+            comebackToken: chosenComebackToken,           // #1724
+            difficultyBetScaling: chosenBetScaling,       // #1727
+            sabotage: chosenSabotage,                     // #1665
+            playStyle: detectPlayStyle(),                 // null = hand-picked
         };
         if (chosenPlaylists.size > 0) {
             // admin.js stores selectedPlaylists as [{ path, songCount }]; include minimally.
@@ -1752,6 +2012,18 @@ export async function show(stepOverride) {
         chosenSpeaker = ls ? ls.getItem(LS_SELECTED_PLAYER) : null;
         const rawSettings = ls ? ls.getItem(LS_GAME_SETTINGS) : null;
         const savedSettings = rawSettings ? JSON.parse(rawSettings) : null;
+
+        // #2692: hydrate the six previously-unreachable modes, so reopening the
+        // wizard shows what the game is actually set to rather than resetting
+        // it to off the moment the host taps Continue.
+        if (savedSettings) {
+            if (typeof savedSettings.rampupOrder === 'boolean') chosenRampupOrder = savedSettings.rampupOrder;
+            if (typeof savedSettings.finaleDouble === 'boolean') chosenFinaleDouble = savedSettings.finaleDouble;
+            if (typeof savedSettings.finaleTiebreaker === 'boolean') chosenFinaleTiebreaker = savedSettings.finaleTiebreaker;
+            if (typeof savedSettings.comebackToken === 'boolean') chosenComebackToken = savedSettings.comebackToken;
+            if (typeof savedSettings.difficultyBetScaling === 'boolean') chosenBetScaling = savedSettings.difficultyBetScaling;
+            if (typeof savedSettings.sabotage === 'boolean') chosenSabotage = savedSettings.sabotage;
+        }
 
         // #1354 + #815 + #822: resolve the game-language default from the
         // BROWSER on EVERY wizard open, regardless of whether saved settings

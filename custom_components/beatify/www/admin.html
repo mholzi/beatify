@@ -161,9 +161,18 @@
                     <label class="wiz-field-label" data-i18n="wizard.step4.language">Announcement language</label>
                     <div id="wiz-language" class="wiz-chip-group"></div>
                 </div>
+                <!-- #2692: the play style comes first and answers the whole
+                     step in one tap. The eleven individual switches stay
+                     underneath for anyone who wants a combination the three
+                     styles do not offer — they are not hidden, only folded. -->
                 <div class="wiz-field">
-                    <label class="wiz-field-label" data-i18n="wizard.step4.bonusModes">Bonus modes</label>
-                    <div id="wiz-modes" class="wiz-mode-cards"></div>
+                    <label class="wiz-field-label" data-i18n="wizard.step4.playStyle">Play style</label>
+                    <div id="wiz-play-styles" class="wiz-style-stack"></div>
+                    <button type="button" id="wiz-modes-toggle" class="wiz-manual-line" aria-expanded="false" aria-controls="wiz-modes">
+                        <span data-i18n="wizard.step4.setIndividually">Set individually</span>
+                        <span id="wiz-modes-toggle-count" class="wiz-manual-count"></span>
+                    </button>
+                    <div id="wiz-modes" class="wiz-mode-cards" hidden></div>
                 </div>
             </div>
         </section>

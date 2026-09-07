@@ -1288,7 +1288,17 @@
       "modeTitleArtistHint": "Type the song title + artist.",
       "taScoring": "Title 10 · Artist 5 · Partial 5/3",
       "modePlaying": "Playing",
-      "bonusModes": "Bonus modes"
+      "bonusModes": "Bonus modes",
+      "playStyle": "Play style",
+      "setIndividually": "Set individually",
+      "switchCount": "{count} switches",
+      "styleClassic": "Classic",
+      "styleClassicLine": "Guess the year, nothing else. For rounds where people talk.",
+      "styleDramatic": "Dramatic",
+      "styleDramaticLine": "It builds, and the last round decides it.",
+      "styleChaos": "Chaos",
+      "styleChaosLine": "They get to mess with each other. Not for the in-laws.",
+      "styleCustom": "Custom"
     },
     "done": {
       "badge": "READY TO PLAY",
