@@ -16,7 +16,9 @@ on ``GameState``, so its public API and every caller / test are unchanged.
   which reference it via ``self``).
 * ``_song_finished`` — poll helper: ``True`` once the round's song is no longer
   playing (the media player drops out of "playing"/"buffering"), the song-end
-  signal both auto-advance tasks wait on.
+  signal both auto-advance tasks wait on. A non-playing speaker that stopped for
+  a reason other than the track ending — a TTS announcement, a network blip, the
+  host's "stop song" (#2690) — is not a song end and keeps the poll on False.
 * ``_auto_advance_broadcast`` — the single place the auto-advance pushes state
   to the clients (#2613). Every terminal branch of ``_reveal_auto_advance``
   (next round, pause, game end, finale playoff) ends here.
@@ -54,6 +56,10 @@ The mixin relies on attributes / methods the host class owns and that live on
   the scheduler), but the broadcast path depends on the host's player state.
 * ``self.reveal_auto_advance`` — the configured REVEAL dwell (seconds; 0 = off)
   passed into ``_reveal_auto_advance``.
+* ``self.song_stopped`` — the per-round "the host stopped playback on purpose"
+  flag (owned by ``RoundManager``, cleared on every ``commit_round``), read by
+  ``_song_finished`` so a deliberate stop is not mistaken for a song end
+  (#2690).
 * ``self.start_round`` — the next-round trigger the auto-advance fires.
 * ``self._on_round_end`` — the async WebSocket broadcast callback mirrored after
   the auto-advance ``start_round`` so the new PLAYING state reaches clients.
@@ -118,7 +124,28 @@ class RevealAutoAdvanceMixin:
         the idle-halt silence the speaker). Mirror the conservative
         exception branch below and stay on "still playing" for an unknown
         state — the hard cap still guarantees the game can never stall.
+
+        #2690: a deliberate stop is not a song end either. When the host taps
+        "stop song" the speaker goes ``idle`` mid-round and stays there, so by
+        the time REVEAL arms this poll the answer is already True — the very
+        first tick at 2s advanced to the next round and the reveal (answer,
+        scores, reaction buttons) was gone in two seconds. The speaker cannot
+        tell a deliberate stop from a track running out; only the game can, and
+        it already records it in the per-round ``song_stopped`` flag. The resume
+        watchdog asks the same question the same way (#2576,
+        ``state_lifecycle._watchdog_should_continue``) — this is the second
+        consumer of that signal, not a new mechanism. With the signal gone the
+        dwell falls through to whichever the host configured: the
+        ``reveal_auto_advance`` seconds, or the 360s stall-guard in "at song
+        end" mode, where a REVEAL that runs until the host taps Next is the
+        documented behaviour anyway (``reveal_auto_advance: 0 = manual only``).
         """
+        if getattr(self, "song_stopped", False):
+            _LOGGER.debug(
+                "song-finished poll: the host stopped the song — not a song "
+                "end, keeping the reveal up (#2690)"
+            )
+            return False
         if not self._media_player_service:
             return False
         try:
