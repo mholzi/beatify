@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect x="0" y="0" width="640" height="360" fill="#0C0E12"/>
+
+  <!-- caption -->
+  <text x="24" y="26" font-family="Helvetica,Arial" font-size="13" font-weight="bold" fill="#EDEAE4">Option A — chips on the final-round reveal</text>
+  <text x="24" y="42" font-family="Helvetica,Arial" font-size="10" fill="#868C97">Host phone, REVEAL of round 20. The game never reaches the end screen.</text>
+
+  <!-- phone frame -->
+  <rect x="176" y="56" width="288" height="286" rx="14" fill="#171A21" stroke="#282D38" stroke-width="1"/>
+
+  <!-- round counter row -->
+  <text x="196" y="82" font-family="Menlo,monospace" font-size="11" fill="#868C97">ROUND</text>
+  <text x="240" y="82" font-family="Menlo,monospace" font-size="11" fill="#EDEAE4">20 / 20</text>
+  <rect x="352" y="70" width="92" height="17" rx="8" fill="#0C0E12" stroke="#E9A13B" stroke-width="1"/>
+  <text x="360" y="82" font-family="Menlo,monospace" font-size="9" fill="#E9A13B">FINAL ROUND</text>
+
+  <line x1="196" y1="94" x2="444" y2="94" stroke="#282D38" stroke-width="1"/>
+
+  <!-- revealed song -->
+  <rect x="196" y="106" width="40" height="40" rx="4" fill="#282D38"/>
+  <text x="246" y="120" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#EDEAE4">Blue Monday</text>
+  <text x="246" y="134" font-family="Helvetica,Arial" font-size="10" fill="#868C97">New Order</text>
+  <text x="246" y="147" font-family="Menlo,monospace" font-size="13" fill="#5BC8C8">1983</text>
+
+  <!-- standings, untouched -->
+  <text x="196" y="172" font-family="Menlo,monospace" font-size="9" fill="#868C97">STANDINGS — UNCHANGED</text>
+  <rect x="196" y="180" width="248" height="20" rx="4" fill="#0C0E12"/>
+  <text x="204" y="194" font-family="Helvetica,Arial" font-size="10" fill="#EDEAE4">1  Nina</text>
+  <text x="404" y="194" font-family="Menlo,monospace" font-size="10" fill="#EDEAE4">2140</text>
+  <rect x="196" y="203" width="248" height="20" rx="4" fill="#0C0E12"/>
+  <text x="204" y="217" font-family="Helvetica,Arial" font-size="10" fill="#EDEAE4">2  Jonas</text>
+  <text x="404" y="217" font-family="Menlo,monospace" font-size="10" fill="#EDEAE4">1985</text>
+  <rect x="196" y="226" width="248" height="20" rx="4" fill="#0C0E12"/>
+  <text x="204" y="240" font-family="Helvetica,Arial" font-size="10" fill="#EDEAE4">3  Ella</text>
+  <text x="404" y="240" font-family="Menlo,monospace" font-size="10" fill="#EDEAE4">1730</text>
+
+  <!-- encore chips -->
+  <text x="196" y="270" font-family="Menlo,monospace" font-size="9" fill="#868C97">KEEP IT GOING?</text>
+  <rect x="196" y="278" width="86" height="28" rx="14" fill="#0C0E12" stroke="#E9A13B" stroke-width="1.5"/>
+  <text x="222" y="296" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#E9A13B">+5</text>
+  <rect x="290" y="278" width="86" height="28" rx="14" fill="#0C0E12" stroke="#E9A13B" stroke-width="1.5"/>
+  <text x="314" y="296" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#E9A13B">+10</text>
+  <text x="386" y="296" font-family="Helvetica,Arial" font-size="9" fill="#868C97">scores stay</text>
+
+  <!-- primary -->
+  <rect x="196" y="314" width="248" height="32" rx="6" fill="#5BC8C8"/>
+  <text x="292" y="334" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#0C0E12">Next Round</text>
+
+  <!-- after-tap annotation -->
+  <text x="24" y="120" font-family="Menlo,monospace" font-size="9" fill="#868C97">AFTER +5:</text>
+  <rect x="24" y="128" width="132" height="74" rx="6" fill="#171A21" stroke="#282D38" stroke-width="1"/>
+  <text x="34" y="146" font-family="Menlo,monospace" font-size="10" fill="#868C97">ROUND</text>
+  <text x="78" y="146" font-family="Menlo,monospace" font-size="10" fill="#5BC8C8">20 / 25</text>
+  <text x="34" y="162" font-family="Helvetica,Arial" font-size="9" fill="#868C97">FINAL ROUND badge</text>
+  <text x="34" y="175" font-family="Helvetica,Arial" font-size="9" fill="#868C97">clears. Nothing else</text>
+  <text x="34" y="188" font-family="Helvetica,Arial" font-size="9" fill="#868C97">moves.</text>
+
+  <text x="480" y="120" font-family="Menlo,monospace" font-size="9" fill="#868C97">COST</text>
+  <text x="480" y="138" font-family="Helvetica,Arial" font-size="9" fill="#868C97">The host decides in</text>
+  <text x="480" y="151" font-family="Helvetica,Arial" font-size="9" fill="#868C97">the loudest 30 s of</text>
+  <text x="480" y="164" font-family="Helvetica,Arial" font-size="9" fill="#868C97">the evening — and</text>
+  <text x="480" y="177" font-family="Helvetica,Arial" font-size="9" fill="#868C97">the chip reappears</text>
+  <text x="480" y="190" font-family="Helvetica,Arial" font-size="9" fill="#868C97">on every new last</text>
+  <text x="480" y="203" font-family="Helvetica,Arial" font-size="9" fill="#868C97">round.</text>
+</svg>

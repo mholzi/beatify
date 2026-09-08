@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect x="0" y="0" width="640" height="360" fill="#0C0E12"/>
+
+  <text x="24" y="26" font-family="Helvetica,Arial" font-size="13" font-weight="bold" fill="#EDEAE4">Option B — encore strip above the podium, on the end screen</text>
+  <text x="24" y="42" font-family="Helvetica,Arial" font-size="10" fill="#868C97">TV. Game Over has already been declared; the strip offers a way back.</text>
+
+  <!-- TV frame -->
+  <rect x="24" y="56" width="592" height="286" rx="10" fill="#171A21" stroke="#282D38" stroke-width="1"/>
+
+  <text x="320" y="88" text-anchor="middle" font-family="Helvetica,Arial" font-size="20" font-weight="bold" fill="#EDEAE4">Game Over</text>
+  <text x="320" y="106" text-anchor="middle" font-family="Menlo,monospace" font-size="10" fill="#868C97">20 ROUNDS   ·   7 PLAYERS</text>
+
+  <!-- the strip -->
+  <rect x="120" y="118" width="400" height="42" rx="8" fill="#0C0E12" stroke="#E9A13B" stroke-width="1.5"/>
+  <text x="140" y="138" font-family="Helvetica,Arial" font-size="13" font-weight="bold" fill="#E9A13B">Encore  ·  5 more rounds</text>
+  <text x="140" y="152" font-family="Helvetica,Arial" font-size="9" fill="#868C97">Every score, streak and badge carries over — nothing resets</text>
+  <rect x="428" y="128" width="76" height="22" rx="11" fill="#E9A13B"/>
+  <text x="466" y="143" text-anchor="middle" font-family="Helvetica,Arial" font-size="11" font-weight="bold" fill="#0C0E12">Play on</text>
+
+  <!-- podium -->
+  <rect x="196" y="236" width="72" height="58" fill="#282D38"/>
+  <text x="232" y="228" text-anchor="middle" font-family="Helvetica,Arial" font-size="11" fill="#EDEAE4">Jonas</text>
+  <text x="232" y="266" text-anchor="middle" font-family="Menlo,monospace" font-size="13" fill="#EDEAE4">1985</text>
+  <text x="232" y="288" text-anchor="middle" font-family="Helvetica,Arial" font-size="14" font-weight="bold" fill="#868C97">2</text>
+
+  <rect x="276" y="212" width="72" height="82" fill="#E9A13B"/>
+  <text x="312" y="204" text-anchor="middle" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#EDEAE4">Nina</text>
+  <text x="312" y="244" text-anchor="middle" font-family="Menlo,monospace" font-size="15" fill="#0C0E12">2140</text>
+  <text x="312" y="288" text-anchor="middle" font-family="Helvetica,Arial" font-size="16" font-weight="bold" fill="#0C0E12">1</text>
+
+  <rect x="356" y="252" width="72" height="42" fill="#282D38"/>
+  <text x="392" y="244" text-anchor="middle" font-family="Helvetica,Arial" font-size="11" fill="#EDEAE4">Ella</text>
+  <text x="392" y="276" text-anchor="middle" font-family="Menlo,monospace" font-size="13" fill="#EDEAE4">1730</text>
+  <text x="392" y="292" text-anchor="middle" font-family="Helvetica,Arial" font-size="14" font-weight="bold" fill="#868C97">3</text>
+
+  <!-- confetti hint -->
+  <rect x="470" y="196" width="6" height="6" fill="#5BC8C8"/>
+  <rect x="502" y="216" width="6" height="6" fill="#E9A13B"/>
+  <rect x="530" y="192" width="6" height="6" fill="#5BC8C8"/>
+  <rect x="556" y="228" width="6" height="6" fill="#E9A13B"/>
+  <rect x="146" y="206" width="6" height="6" fill="#5BC8C8"/>
+  <rect x="112" y="232" width="6" height="6" fill="#E9A13B"/>
+
+  <text x="470" y="258" font-family="Menlo,monospace" font-size="9" fill="#868C97">COST</text>
+  <text x="470" y="274" font-family="Helvetica,Arial" font-size="9" fill="#868C97">Confetti, superlatives</text>
+  <text x="470" y="286" font-family="Helvetica,Arial" font-size="9" fill="#868C97">and the share card have</text>
+  <text x="470" y="298" font-family="Helvetica,Arial" font-size="9" fill="#868C97">already fired. Walking</text>
+  <text x="470" y="310" font-family="Helvetica,Arial" font-size="9" fill="#868C97">END back into PLAYING</text>
+  <text x="470" y="322" font-family="Helvetica,Arial" font-size="9" fill="#868C97">is the expensive part.</text>
+
+  <text x="52" y="258" font-family="Menlo,monospace" font-size="9" fill="#868C97">WHAT MOVES</text>
+  <text x="52" y="274" font-family="Helvetica,Arial" font-size="9" fill="#868C97">The podium stays on</text>
+  <text x="52" y="286" font-family="Helvetica,Arial" font-size="9" fill="#868C97">screen and its numbers</text>
+  <text x="52" y="298" font-family="Helvetica,Arial" font-size="9" fill="#868C97">slide up into the live</text>
+  <text x="52" y="310" font-family="Helvetica,Arial" font-size="9" fill="#868C97">leaderboard, so the room</text>
+  <text x="52" y="322" font-family="Helvetica,Arial" font-size="9" fill="#868C97">sees them survive.</text>
+</svg>

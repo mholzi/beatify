@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect x="0" y="0" width="640" height="360" fill="#0C0E12"/>
+
+  <text x="24" y="26" font-family="Helvetica,Arial" font-size="13" font-weight="bold" fill="#EDEAE4">Option C — encore becomes the end screen's primary action</text>
+  <text x="24" y="42" font-family="Helvetica,Arial" font-size="10" fill="#868C97">Host phone, bottom of the end screen. Rematch keeps its place but not its rank.</text>
+
+  <!-- before -->
+  <text x="40" y="74" font-family="Menlo,monospace" font-size="9" fill="#868C97">TODAY</text>
+  <rect x="40" y="82" width="248" height="252" rx="12" fill="#171A21" stroke="#282D38" stroke-width="1"/>
+  <text x="58" y="104" font-family="Helvetica,Arial" font-size="11" font-weight="bold" fill="#EDEAE4">What's next?</text>
+  <rect x="58" y="114" width="98" height="46" rx="6" fill="#0C0E12" stroke="#282D38" stroke-width="1"/>
+  <text x="68" y="134" font-family="Helvetica,Arial" font-size="9" fill="#EDEAE4">80s Party</text>
+  <text x="68" y="147" font-family="Menlo,monospace" font-size="8" fill="#868C97">142 SONGS</text>
+  <rect x="166" y="114" width="98" height="46" rx="6" fill="#0C0E12" stroke="#282D38" stroke-width="1"/>
+  <text x="176" y="134" font-family="Helvetica,Arial" font-size="9" fill="#EDEAE4">Deutschrock</text>
+  <text x="176" y="147" font-family="Menlo,monospace" font-size="8" fill="#868C97">96 SONGS</text>
+
+  <rect x="58" y="176" width="206" height="34" rx="6" fill="#5BC8C8"/>
+  <text x="161" y="197" text-anchor="middle" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#0C0E12">Rematch</text>
+  <text x="161" y="224" text-anchor="middle" font-family="Helvetica,Arial" font-size="9" fill="#868C97">Everyone stays connected</text>
+  <text x="161" y="248" text-anchor="middle" font-family="Helvetica,Arial" font-size="9" fill="#5BC8C8">Open the admin page</text>
+  <rect x="58" y="266" width="206" height="1" fill="#282D38"/>
+  <text x="68" y="288" font-family="Helvetica,Arial" font-size="9" fill="#E9A13B">Nowhere on this screen does it</text>
+  <text x="68" y="301" font-family="Helvetica,Arial" font-size="9" fill="#E9A13B">say that Rematch sets every</text>
+  <text x="68" y="314" font-family="Helvetica,Arial" font-size="9" fill="#E9A13B">score back to zero.</text>
+
+  <!-- arrow -->
+  <path d="M 300 208 L 336 208" stroke="#868C97" stroke-width="1.5"/>
+  <path d="M 336 208 L 328 204 L 328 212 Z" fill="#868C97"/>
+
+  <!-- after -->
+  <text x="352" y="74" font-family="Menlo,monospace" font-size="9" fill="#868C97">PROPOSED</text>
+  <rect x="352" y="82" width="248" height="252" rx="12" fill="#171A21" stroke="#282D38" stroke-width="1"/>
+  <text x="370" y="104" font-family="Helvetica,Arial" font-size="11" font-weight="bold" fill="#EDEAE4">What's next?</text>
+  <rect x="370" y="114" width="98" height="46" rx="6" fill="#0C0E12" stroke="#282D38" stroke-width="1"/>
+  <text x="380" y="134" font-family="Helvetica,Arial" font-size="9" fill="#EDEAE4">80s Party</text>
+  <text x="380" y="147" font-family="Menlo,monospace" font-size="8" fill="#868C97">142 SONGS</text>
+  <rect x="478" y="114" width="98" height="46" rx="6" fill="#0C0E12" stroke="#282D38" stroke-width="1"/>
+  <text x="488" y="134" font-family="Helvetica,Arial" font-size="9" fill="#EDEAE4">Deutschrock</text>
+  <text x="488" y="147" font-family="Menlo,monospace" font-size="8" fill="#868C97">96 SONGS</text>
+
+  <rect x="370" y="176" width="206" height="38" rx="6" fill="#E9A13B"/>
+  <text x="473" y="193" text-anchor="middle" font-family="Helvetica,Arial" font-size="12" font-weight="bold" fill="#0C0E12">Encore — 5 more rounds</text>
+  <text x="473" y="206" text-anchor="middle" font-family="Helvetica,Arial" font-size="9" fill="#0C0E12">Nina keeps 2140, everyone keeps theirs</text>
+
+  <rect x="370" y="222" width="206" height="34" rx="6" fill="#0C0E12" stroke="#282D38" stroke-width="1"/>
+  <text x="473" y="238" text-anchor="middle" font-family="Helvetica,Arial" font-size="11" fill="#EDEAE4">Rematch</text>
+  <text x="473" y="250" text-anchor="middle" font-family="Helvetica,Arial" font-size="8" fill="#868C97">Same playlist, every score back to 0</text>
+
+  <text x="473" y="272" text-anchor="middle" font-family="Helvetica,Arial" font-size="9" fill="#868C97">Everyone stays connected</text>
+  <text x="473" y="292" text-anchor="middle" font-family="Helvetica,Arial" font-size="9" fill="#5BC8C8">Open the admin page</text>
+
+  <text x="370" y="316" font-family="Helvetica,Arial" font-size="9" fill="#868C97">Cost: on most evenings the game</text>
+  <text x="370" y="328" font-family="Helvetica,Arial" font-size="9" fill="#868C97">really is over — the loud button is wrong.</text>
+</svg>
