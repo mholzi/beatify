@@ -287,6 +287,10 @@ class GameStateSerializer:
             state["seconds_remaining"] = max(0, round(gs.deadline / 1000 - gs._now()))
         state["last_round"] = gs.last_round
         state["songs_remaining"] = gs.songs_remaining
+        # #2559 Ghost League: die zweite Tabelle. Leer, solange niemand als
+        # Geist geraten hat — dann zeigt der Fernseher den Block gar nicht, und
+        # ein normales Spiel ohne Sudden Death sieht aus wie vorher.
+        state["ghost_league"] = gs.ghost_league()
         # #2557: the host's volume buttons had no idea what the speaker was set
         # to — volume_changed only comes back in reply to their own tap, so the
         # first press was blind and the at-the-limit guard checked an assumed
@@ -367,6 +371,10 @@ class GameStateSerializer:
         # the host picked; it is shown to nobody but recorded (see void_round).
         state["round_voided"] = gs.round_voided
         state["void_reason"] = gs.void_reason
+        # #2559 Ghost League: die zweite Tabelle. Leer, solange niemand als
+        # Geist geraten hat — dann zeigt der Fernseher den Block gar nicht, und
+        # ein normales Spiel ohne Sudden Death sieht aus wie vorher.
+        state["ghost_league"] = gs.ghost_league()
         # #2503: the encore offer, open only on the reveal of the
         # second-to-last round. ADMIN-ONLY (see ADMIN_ONLY_KEYS in
         # server/serializers.py): a room that has been shown "five more

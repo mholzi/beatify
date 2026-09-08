@@ -92,6 +92,18 @@ class PlayerSession:
     # Sudden Death tracking (Issue #827) - CUMULATIVE, NOT reset in reset_round()
     eliminated: bool = False  # True once eliminated; stays out for the rest of the game
     eliminated_round: int | None = None  # Round number the player was eliminated in
+    # #2559 Ghost League: was ein Ausgeschiedener nach seinem Aus noch
+    # zusammenraet. **Bewusst ein eigenes Feld neben `score`** und nicht dessen
+    # Fortschreibung: der #1748-Riegel existiert, damit ein veralteter Client
+    # nicht weiterpunkten kann, und `score` haengt an 45 Stellen im Code. Ein
+    # Geisterpunkt, der dort ankommt, veraendert Rangliste, Sudden-Death-Auswahl
+    # und die gesprochene Ansage — deshalb beruehrt er `score`, `round_scores`,
+    # `streak` und `closest_players` an keiner Stelle.
+    ghost_score: int = 0
+    # Wie viele Runden dieser Geist mitgeraten hat. Nicht ableitbar aus
+    # `eliminated_round`: wer eine Runde aussetzt, spielt sie nicht mit, und die
+    # Best-Ghost-Wertung teilt durch genau diese Zahl.
+    ghost_rounds: int = 0
     # #2578: im Finale-Stechen sitzen alle Nicht-Fuehrenden eine Runde aus. Das
     # lief bisher ueber `eliminated`, weil der Scoring-Skip daran haengt — nur
     # sieht der Fernseher dann sechs Totenkoepfe, obwohl niemand rausgeflogen
@@ -370,6 +382,8 @@ class PlayerSession:
         # Reset Sudden Death state (Issue #827)
         self.eliminated = False
         self.eliminated_round = None
+        self.ghost_score = 0
+        self.ghost_rounds = 0
         self.playoff_spectator = False
         # #2746: ein neues Spiel holt jeden zurueck, den der Gastgeber im
         # vorigen herausgenommen hat. Ohne diese Zeile startet er als

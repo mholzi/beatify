@@ -401,6 +401,22 @@
                     <div id="dashboard-leaderboard" class="dashboard-leaderboard">
                         <!-- Leaderboard entries rendered by JS -->
                     </div>
+
+                    <!-- #2559 Ghost League: die zweite Tabelle, unter den
+                         Lebenden und optisch abgesetzt (gestrichelt, gedaempft).
+                         Die Beschriftung sagt ausdruecklich, dass diese Punkte
+                         das Spiel nicht beruehren — zwei Tabellen auf einem
+                         Fernseher sind die bekannte Schwaeche der gewaehlten
+                         Variante, und die Zeile ist die Antwort darauf.
+                         JS blendet den Block aus, solange niemand als Geist
+                         geraten hat. -->
+                    <div id="ghost-league-playing" class="ghost-league hidden">
+                        <div class="ghost-league-head">
+                            <span data-i18n="superlatives.ghostLeague">Ghost League</span>
+                            <span class="ghost-league-note" data-i18n="superlatives.ghostLeagueNote">own points, no effect on the game</span>
+                        </div>
+                        <div class="ghost-league-rows"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -494,6 +510,22 @@
                         <h2 class="leaderboard-title" data-i18n="leaderboard.standings">Standings</h2>
                         <div id="reveal-leaderboard" class="dashboard-leaderboard">
                             <!-- Leaderboard entries rendered by JS -->
+                        </div>
+
+                        <!-- #2559 Ghost League: die zweite Tabelle, unter den
+                             Lebenden und optisch abgesetzt (gestrichelt, gedaempft).
+                             Die Beschriftung sagt ausdruecklich, dass diese Punkte
+                             das Spiel nicht beruehren — zwei Tabellen auf einem
+                             Fernseher sind die bekannte Schwaeche der gewaehlten
+                             Variante, und die Zeile ist die Antwort darauf.
+                             JS blendet den Block aus, solange niemand als Geist
+                             geraten hat. -->
+                        <div id="ghost-league-reveal" class="ghost-league hidden">
+                            <div class="ghost-league-head">
+                                <span data-i18n="superlatives.ghostLeague">Ghost League</span>
+                                <span class="ghost-league-note" data-i18n="superlatives.ghostLeagueNote">own points, no effect on the game</span>
+                            </div>
+                            <div class="ghost-league-rows"></div>
                         </div>
                     </div>
 

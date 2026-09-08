@@ -389,6 +389,12 @@ class PlayerRegistry:
                 # spectator view and a skull badge on leaderboards.
                 "eliminated": p.eliminated,
                 "eliminated_round": p.eliminated_round,
+                # #2559: die eigene Geisterbilanz. Auf dem Handy des Geistes
+                # steht damit seine Zahl neben der des Fuehrenden der Liga;
+                # ohne sie waere die Liga eine Tabelle, in der man sich selbst
+                # nicht wiederfindet.
+                "ghost_score": p.ghost_score,
+                "ghost_rounds": p.ghost_rounds,
                 # #2746: vom Gastgeber herausgenommen. Bewusst NICHT
                 # `eliminated`: der Fernseher zeigt fuer diesen Fall keinen
                 # Totenkopf, sondern „sitzt aus" — niemand ist rausgeflogen,

@@ -1191,7 +1191,15 @@
     "artists": "artisti indovinati",
     "nearMisses": "mancati per un soffio",
     "film_buff": "🎬 Cinefilo",
-    "movie_bonus": "canzoni da film"
+    "movie_bonus": "canzoni da film",
+    "best_ghost": "Miglior fantasma",
+    "ghostAvg": "pf per round",
+    "ghostLeague": "Lega dei fantasmi",
+    "ghostLeagueNote": "punti propri, nessun effetto sulla partita",
+    "ghostOut": "fuori al R{round}",
+    "ghostRounds": "{n} round",
+    "ghostRound": "1 round",
+    "ghostBadge": "FANTASMA {rank} / {total}"
   },
   "stats": {
     "firstGame": "Prima partita! Si fissa il riferimento",

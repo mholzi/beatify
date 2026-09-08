@@ -1191,7 +1191,15 @@
     "artists": "artists named",
     "nearMisses": "near misses",
     "film_buff": "🎬 Film Buff",
-    "movie_bonus": "movie songs"
+    "movie_bonus": "movie songs",
+    "best_ghost": "Best Ghost",
+    "ghostAvg": "gp per round",
+    "ghostLeague": "Ghost League",
+    "ghostLeagueNote": "own points, no effect on the game",
+    "ghostOut": "out R{round}",
+    "ghostRounds": "{n} rounds",
+    "ghostRound": "1 round",
+    "ghostBadge": "GHOST {rank} / {total}"
   },
   "stats": {
     "firstGame": "First game! Setting the benchmark",

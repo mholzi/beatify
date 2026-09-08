@@ -38,9 +38,24 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-async def _reject_out_of_play(ws: web.WebSocketResponse, player) -> bool:
-    """Reject actions from eliminated players and playoff spectators (#2612)."""
+async def _reject_out_of_play(
+    ws: web.WebSocketResponse, player, *, ghosts_may_play: bool = False
+) -> bool:
+    """Reject actions from eliminated players and playoff spectators (#2612).
+
+    ``ghosts_may_play`` opens exactly one door, and only on the submit path
+    (#2559): in the Ghost League an eliminated player keeps guessing. Their
+    points land in ``ghost_score`` via ``score_ghost_round`` and reach no
+    ``player.score`` site, so the promise the #1748 gate makes — a stale client
+    cannot keep scoring — still holds for the living game.
+
+    A finale-playoff spectator stays out either way. They are back next round
+    and have no league of their own; letting them submit would put a guess on a
+    round they are explicitly sitting out.
+    """
     if not player.out_of_play:
+        return False
+    if ghosts_may_play and player.eliminated and not player.playoff_spectator:
         return False
 
     message = (
@@ -84,8 +99,11 @@ async def handle_submit(
         return
 
     # #1748 / #2612: neither an eliminated player nor a finale-playoff
-    # spectator may bank a server-side guess.
-    if await _reject_out_of_play(ws, player):
+    # spectator may bank a server-side guess — with one exception since #2559:
+    # a ghost guesses into their own bucket while Sudden Death is running.
+    if await _reject_out_of_play(
+        ws, player, ghosts_may_play=bool(game_state.sudden_death_mode)
+    ):
         return
 
     if game_state.phase != GamePhase.PLAYING:

@@ -496,6 +496,10 @@
                         <span data-i18n="game.introRound">INTRO ROUND</span>
                     </span>
                     <span id="last-round-banner" class="arc-chip arc-chip--final hidden" data-i18n="game.finalRound">Final Round!</span>
+                    <!-- #2559: „GEIST 1 / 3" — der Rang in der eigenen Liga,
+                         dort wo sonst der Rundenstand steht. Ein Geist soll auf
+                         einen Blick sehen, dass er noch um etwas spielt. -->
+                    <span id="ghost-badge" class="arc-chip arc-chip--ghost hidden"></span>
                     <!-- #2554: the host can stop the song mid-round. Until now
                          only the host's own button changed; to everyone else the
                          music just cut out while the timer kept running, which
@@ -606,6 +610,17 @@
                         Submit Guess
                     </button>
                 </div>
+
+                <!-- #2559 Ghost League — nur fuer einen Ausgeschiedenen, der
+                     weiterraet. Steht UNTER dem Absenden: erst spielen, dann
+                     nachsehen, wo man steht. Drei Zeilen reichen; die volle
+                     Tabelle laeuft auf dem Fernseher. -->
+                <section id="ghost-panel" class="ghost-panel hidden" aria-live="polite">
+                    <div class="ghost-panel-head">
+                        <span data-i18n="superlatives.ghostLeague">Ghost League</span>
+                    </div>
+                    <div id="ghost-panel-rows"></div>
+                </section>
 
                 <!-- Artist Challenge — arcade tiles (Story 20.5) -->
                 <section id="artist-challenge-container" class="arc-tiles artist-challenge hidden">

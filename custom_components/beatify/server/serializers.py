@@ -106,6 +106,11 @@ _PLAYER_VISIBLE_ROUND = frozenset(
         "total_rounds",
         "last_round",
         "songs_remaining",
+        # #2559: die Geister-Liga. Fuer JEDEN sichtbar, und das ist der Punkt
+        # der gewaehlten Variante: die Geister sollen etwas zu gewinnen haben,
+        # das der Raum sieht. Sie verraet nichts ueber den laufenden Song — es
+        # sind Punkte vergangener Runden — und beeinflusst das Spiel nicht.
+        "ghost_league",
         "deadline",
         "server_now_ms",
         "seconds_remaining",

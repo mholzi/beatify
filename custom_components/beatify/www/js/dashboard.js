@@ -1096,6 +1096,7 @@
 
         // Render leaderboard with submission indicators and bet badges
         renderLeaderboard(data.leaderboard || [], players, 'dashboard-leaderboard', true, true);
+        renderGhostLeague(data.ghost_league, 'ghost-league-playing');
 
         // Update round statistics (Story 16.4)
         renderRoundStats(data, players);
@@ -1225,6 +1226,45 @@
      * @param {boolean} showSubmitted - Whether to show submission indicators
      * @param {boolean} showBet - Whether to show bet badges next to names
      */
+    /**
+     * #2559 Ghost League — die zweite Tabelle unter den Lebenden.
+     *
+     * Bewusst NICHT in `renderLeaderboard` eingemischt: ein Geist zwischen
+     * Lebenden liest sich als Wertung, und genau das soll er nicht sein. Die
+     * gewaehlte Variante nimmt die zwei Tabellen auf einem Fernseher in Kauf
+     * und bezahlt sie mit der Zeile „eigene Punkte, kein Einfluss auf das
+     * Spiel" — deshalb steht die im Kopf und nicht als Fussnote.
+     *
+     * Blendet sich aus, solange niemand als Geist geraten hat. Ein Spiel ohne
+     * Sudden Death sieht damit aus wie vorher.
+     */
+    function renderGhostLeague(league, containerId) {
+        var box = document.getElementById(containerId);
+        if (!box) return;
+        var rows = league || [];
+        box.classList.toggle('hidden', rows.length === 0);
+        if (!rows.length) return;
+        var list = box.querySelector('.ghost-league-rows');
+        if (!list) return;
+        list.innerHTML = rows.map(function(g) {
+            // „raus in R2 · 5 Runden" — beides, weil die eine Zahl ohne die
+            // andere nichts sagt: fruehes Aus heisst viele Runden, und der
+            // Award rechnet genau dagegen.
+            var meta = [
+                utils.t('superlatives.ghostOut', { round: g.eliminated_round || '?' }),
+                g.ghost_rounds === 1
+                    ? utils.t('superlatives.ghostRound')
+                    : utils.t('superlatives.ghostRounds', { n: g.ghost_rounds })
+            ].join(' · ');
+            return '<div class="ghost-row">'
+                + '<span class="ghost-rank">' + g.rank + '</span>'
+                + '<span class="ghost-name">' + utils.escapeHtml(g.name) + '</span>'
+                + '<span class="ghost-meta">' + utils.escapeHtml(meta) + '</span>'
+                + '<span class="ghost-score">' + g.ghost_score + ' gp</span>'
+                + '</div>';
+        }).join('');
+    }
+
     function renderLeaderboard(leaderboard, players, containerId, showSubmitted, showBet) {
         var container = document.getElementById(containerId);
         if (!container) return;
@@ -1415,6 +1455,7 @@
 
         // Render leaderboard with position changes
         renderRevealLeaderboard(data.leaderboard || []);
+        renderGhostLeague(data.ghost_league, 'ghost-league-reveal');
 
         // Issue #827: Sudden-Death — full-bleed "OUT" takeover for this round's
         // eliminations + FINAL banner (2 players left).
@@ -2401,6 +2442,14 @@
                     break;
                 case 'close_guesses':
                     valueText = award.value + ' ' + utils.t('superlatives.closeGuesses');
+                    break;
+                case 'ghost_avg':
+                    // #2559: die Zahl der Best-Ghost-Karte ist ein Schnitt pro
+                    // gespielter Geisterrunde, keine Summe — die Beschriftung
+                    // muss das sagen, sonst liest sie sich als Gesamtpunkte
+                    // und wirkt gegen die lebenden Zahlen daneben laecherlich
+                    // klein.
+                    valueText = award.value + ' ' + utils.t('superlatives.ghostAvg');
                     break;
                 default:
                     valueText = award.value;

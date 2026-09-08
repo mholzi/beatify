@@ -1191,7 +1191,15 @@
     "artists": "Künstler erraten",
     "nearMisses": "knapp daneben",
     "film_buff": "🎬 Filmkenner",
-    "movie_bonus": "Film-Songs"
+    "movie_bonus": "Film-Songs",
+    "best_ghost": "Bester Geist",
+    "ghostAvg": "GP pro Runde",
+    "ghostLeague": "Geister-Liga",
+    "ghostLeagueNote": "eigene Punkte, kein Einfluss auf das Spiel",
+    "ghostOut": "raus in R{round}",
+    "ghostRounds": "{n} Runden",
+    "ghostRound": "1 Runde",
+    "ghostBadge": "GEIST {rank} / {total}"
   },
   "stats": {
     "firstGame": "Erstes Spiel! Maßstab gesetzt",

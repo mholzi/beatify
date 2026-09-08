@@ -1191,7 +1191,15 @@
     "artists": "artiesten geraden",
     "nearMisses": "net niet",
     "film_buff": "🎬 Filmliefhebber",
-    "movie_bonus": "filmnummers"
+    "movie_bonus": "filmnummers",
+    "best_ghost": "Beste geest",
+    "ghostAvg": "gp per ronde",
+    "ghostLeague": "Geestenliga",
+    "ghostLeagueNote": "eigen punten, geen invloed op het spel",
+    "ghostOut": "eruit in R{round}",
+    "ghostRounds": "{n} rondes",
+    "ghostRound": "1 ronde",
+    "ghostBadge": "GEEST {rank} / {total}"
   },
   "stats": {
     "firstGame": "Eerste spel! De lat is gezet",

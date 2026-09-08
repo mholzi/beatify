@@ -184,8 +184,45 @@ def _ws() -> AsyncMock:
 
 
 class TestEliminatedGatedServerSide:
-    async def test_eliminated_submit_rejected(self):
+    async def test_eliminated_submit_is_accepted_as_a_ghost_guess(self):
+        # Changed on 2026-09-08 by #2559 (Ghost League). Until then an
+        # eliminated player's submit was refused outright, and that was the
+        # whole of the #1748 guarantee.
+        #
+        # The guarantee has not gone away, it has moved: the promise was never
+        # "an eliminated player cannot press a button", it was "an eliminated
+        # player cannot keep scoring in the living game". A ghost guess is
+        # taken and banked in `ghost_score` — the tests below (not scored, not
+        # in closest-wins, not a steal target) are what still hold the line, and
+        # `test_ghost_guess_never_touches_the_living_score` in
+        # test_ghost_league_2559.py checks the same thing end to end.
         handler, gs = _make_year_handler_game()
+        ws = _ws()
+        gs.add_player("Alice", ws)
+        gs.get_player("Alice").connected = True
+        await gs.start_round()
+        alice = gs.get_player("Alice")
+        alice.eliminated = True
+        score_before = alice.score
+
+        await handler._handle_message(ws, {"type": "submit", "year": 1985})
+
+        codes = [
+            c.args[0].get("code")
+            for c in ws.send_json.await_args_list
+            if isinstance(c.args[0], dict)
+        ]
+        assert ERR_ELIMINATED not in codes
+        assert alice.submitted is True
+        # The point of the whole design: the guess exists, the living score
+        # does not move because of it.
+        assert alice.score == score_before
+
+    async def test_eliminated_submit_still_rejected_without_sudden_death(self):
+        # No Sudden Death, no ghosts. An eliminated player outside that mode
+        # (a state that should not arise, but the gate does not assume it)
+        # keeps the old refusal.
+        handler, gs = _make_year_handler_game(sudden_death=False)
         ws = _ws()
         gs.add_player("Alice", ws)
         gs.get_player("Alice").connected = True
@@ -194,14 +231,12 @@ class TestEliminatedGatedServerSide:
 
         await handler._handle_message(ws, {"type": "submit", "year": 1985})
 
-        ws.send_json.assert_awaited()
         codes = [
             c.args[0].get("code")
             for c in ws.send_json.await_args_list
             if isinstance(c.args[0], dict)
         ]
         assert ERR_ELIMINATED in codes
-        # The rejected guess must not have registered.
         assert gs.get_player("Alice").submitted is False
 
     async def test_eliminated_steal_rejected(self):

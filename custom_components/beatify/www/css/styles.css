@@ -18265,3 +18265,42 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
     font-size: 0.9rem;
 }
+
+/* #2559 Ghost League auf dem Spieler-Handy. Gedaempft und gestrichelt wie auf
+   dem Fernseher — dieselbe Aussage, dieselbe Optik: eigene Punkte, kein
+   Einfluss auf das Spiel. */
+.arc-chip--ghost {
+    border-color: var(--color-warning-alt, #ff6600);
+    color: var(--color-warning-alt, #ff6600);
+}
+
+.ghost-panel {
+    margin: var(--space-md, 16px) auto 0;
+    max-width: 420px;
+    padding: var(--space-sm, 10px) var(--space-md, 14px);
+    border: 1px dashed var(--color-border, rgba(255, 255, 255, 0.18));
+    border-radius: var(--radius-md, 12px);
+}
+
+.ghost-panel-head {
+    margin-bottom: 6px;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.6));
+    font-size: 0.7rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.ghost-panel-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 3px 0;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.ghost-panel-row.is-me {
+    color: var(--color-warning-alt, #ff6600);
+    font-weight: 700;
+}

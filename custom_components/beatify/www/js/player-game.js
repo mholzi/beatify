@@ -571,11 +571,24 @@ function applySuddenDeathState(data) {
     // back, because this is the only one a person decided rather than the
     // rules.
     var amSatOut = !!(me && me.sat_out_by_host);
-    var amOut = amEliminated || amPlayoffSpectator || amSatOut;
+    // #2559 Ghost League: ein Ausgeschiedener spielt weiter — in seiner eigenen
+    // Liga. Er ist der einzige der drei Faelle, der die Rate-Oberflaeche
+    // BEHAELT; der Server nimmt seinen Tipp entgegen und bucht ihn in einen
+    // eigenen Topf. Genau das ist der Zweck des Issues: achtzehn Runden
+    // Zusehen war das groesste Leerloch, das sich das Spiel selbst gebaut hat.
+    //
+    // Nur bei laufendem Sudden Death, denn ausserhalb davon gibt es keine
+    // Geister, und nur wenn er nicht zugleich vom Gastgeber herausgenommen
+    // wurde (#2746) — dann hat ihn ein Mensch aus dem Spiel genommen, nicht
+    // die Regel, und er soll auch nicht als Geist weiterraten.
+    var amGhost = amEliminated && !amSatOut && !amPlayoffSpectator
+        && !!(data && data.sudden_death_mode);
+    var amOut = (amEliminated && !amGhost) || amPlayoffSpectator || amSatOut;
 
-    meEliminated = amEliminated;
+    meEliminated = amEliminated && !amGhost;
     mePlayoffSpectator = amPlayoffSpectator;
     meSatOut = amSatOut;
+    renderGhostPanel(me, data, amGhost);
 
     // Elements that make up the normal active-play UI.
     var playEls = [
@@ -666,6 +679,44 @@ function applySuddenDeathState(data) {
         var banner = document.getElementById('submitted-banner');
         if (banner && !hasSubmitted) banner.classList.add('hidden');
     }
+}
+
+/**
+ * Das Geister-Panel auf dem Handy eines Ausgeschiedenen (#2559).
+ *
+ * Zwei Dinge, beide aus dem gewaehlten Entwurf: das Abzeichen „GEIST 1 / 3"
+ * neben der Rundenanzeige, und die kleine Liga-Tabelle unter dem Absenden. Die
+ * Tabelle zeigt hoechstens drei Zeilen — sie soll sagen, wo man steht, nicht
+ * die Rangliste des Fernsehers ein zweites Mal auf ein Handy quetschen.
+ *
+ * Der eigene Eintrag ist hervorgehoben. Eine Liga, in der man sich selbst
+ * suchen muss, beantwortet die einzige Frage nicht, die ein Geist an sie hat.
+ */
+function renderGhostPanel(me, data, amGhost) {
+    var panel = document.getElementById('ghost-panel');
+    var badge = document.getElementById('ghost-badge');
+    if (!panel || !badge) return;
+    panel.classList.toggle('hidden', !amGhost);
+    badge.classList.toggle('hidden', !amGhost);
+    if (!amGhost) return;
+
+    var league = (data && data.ghost_league) || [];
+    var meName = me && me.name;
+    var meRow = league.find(function(g) { return g.name === meName; });
+    badge.textContent = utils.t('superlatives.ghostBadge', {
+        rank: meRow ? meRow.rank : league.length + 1,
+        total: Math.max(league.length, 1)
+    });
+
+    var rows = document.getElementById('ghost-panel-rows');
+    if (!rows) return;
+    rows.innerHTML = league.slice(0, 3).map(function(g) {
+        var mine = g.name === meName;
+        return '<div class="ghost-panel-row' + (mine ? ' is-me' : '') + '">'
+            + '<span>' + g.rank + '. ' + escapeHtml(g.name) + '</span>'
+            + '<span>' + g.ghost_score + ' gp</span>'
+            + '</div>';
+    }).join('');
 }
 
 /**

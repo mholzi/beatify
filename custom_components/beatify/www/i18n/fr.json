@@ -1191,7 +1191,15 @@
     "artists": "artistes trouvés",
     "nearMisses": "presque",
     "film_buff": "🎬 Cinéphile",
-    "movie_bonus": "chansons de film"
+    "movie_bonus": "chansons de film",
+    "best_ghost": "Meilleur fantôme",
+    "ghostAvg": "pf par tour",
+    "ghostLeague": "Ligue des fantômes",
+    "ghostLeagueNote": "points à part, sans effet sur la partie",
+    "ghostOut": "sorti au T{round}",
+    "ghostRounds": "{n} tours",
+    "ghostRound": "1 tour",
+    "ghostBadge": "FANTÔME {rank} / {total}"
   },
   "stats": {
     "firstGame": "Première partie ! On établit la référence",

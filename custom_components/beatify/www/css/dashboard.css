@@ -2951,3 +2951,48 @@
 @media (max-width: 720px) {
     .join-corner { display: none; }
 }
+
+/* #2559 Ghost League — die zweite Tabelle auf dem Fernseher.
+   Gestrichelt und gedaempft, weil sie NICHT die Rangliste ist: die gewaehlte
+   Variante nimmt zwei Tabellen auf einem Bildschirm in Kauf, und die einzige
+   Verteidigung dagegen ist, dass man auf einen Blick sieht, welche die
+   richtige ist. Kein Totenkopf: hier wird gespielt, nicht getrauert. */
+.ghost-league {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.12));
+}
+
+.ghost-league-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.ghost-league-note {
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.5));
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+}
+
+.ghost-row {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    padding: 8px 12px;
+    border: 1px dashed var(--color-border, rgba(255, 255, 255, 0.18));
+    border-radius: var(--radius-md, 12px);
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
+}
+
+.ghost-rank { font-variant-numeric: tabular-nums; opacity: 0.7; }
+.ghost-name { font-weight: 600; }
+.ghost-meta { font-size: 0.72rem; opacity: 0.65; }
+.ghost-score { font-variant-numeric: tabular-nums; font-weight: 700; }

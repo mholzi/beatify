@@ -204,6 +204,46 @@ def calculate_round_score(
     return final_score, base_score, speed_multiplier
 
 
+def score_ghost_round(
+    player: Any,
+    correct_year: int | None,
+    round_start_time: float | None,
+    round_duration: float,
+    difficulty: str = DIFFICULTY_DEFAULT,
+) -> int:
+    """Bank a ghost's guess in their OWN bucket (#2559). Returns the points.
+
+    The Ghost League lets an eliminated player keep guessing. Their points must
+    provably reach none of the 45 ``player.score`` sites, so this is a separate
+    function rather than a branch inside ``score_player_round``: it touches
+    ``ghost_score`` and ``ghost_rounds`` and nothing else. No streak, no bet, no
+    ``round_scores``, no ``closest_players``, no bonuses — the TTS and the
+    leaderboard read those, and a ghost must not appear in either.
+
+    The accuracy and speed formula is the living game's, deliberately: a ghost
+    ranking computed on a different curve would not be comparable to what the
+    room just watched, and the ghosts are sitting in the same room.
+
+    A ghost who does not submit scores nothing and — this is the part the
+    Best-Ghost award depends on — does **not** count a round. Somebody who put
+    their phone away for five rounds should not be diluted against somebody who
+    played all five.
+    """
+    if correct_year is None or not player.submitted or player.current_guess is None:
+        return 0
+    elapsed = (
+        player.submission_time - round_start_time
+        if player.submission_time is not None and round_start_time is not None
+        else round_duration
+    )
+    points, _base, _mult = calculate_round_score(
+        player.current_guess, correct_year, elapsed, round_duration, difficulty
+    )
+    player.ghost_score += points
+    player.ghost_rounds += 1
+    return points
+
+
 def apply_bet_multiplier(
     round_score: int,
     bet: bool,  # noqa: FBT001
@@ -518,6 +558,38 @@ def _award(
         "value": value,
         "value_label": value_label,
     }
+
+
+#: #2559: unter so vielen Geisterrunden ist ein Schnitt kein Ergebnis, sondern
+#: ein Zufall. Wer in der vorletzten Runde ausschied und einmal richtig lag,
+#: haette sonst den perfekten Schnitt und den Award.
+MIN_GHOST_ROUNDS_FOR_AWARD = 2
+
+
+def _superlative_best_ghost(players: list[PlayerSession]) -> dict[str, Any] | None:
+    """Der beste Geist — gewertet PRO gespielter Geisterrunde (#2559).
+
+    Der gezeichnete Entwurf nennt die Ungerechtigkeit selbst: wer in Runde 2
+    ausscheidet, spielt fuenf Geisterrunden, wer in Runde 6 geht, eine. Eine
+    rohe Summe praemiert deshalb frueh sterben — und ein Award, den man durch
+    frueheres Ausscheiden gewinnt, ist genau der falsche Anreiz in einem Spiel,
+    dessen Sudden Death schon fuers Ueberleben belohnt.
+
+    Gewertet wird darum ``ghost_score / ghost_rounds``, mit einer Mindestzahl
+    gespielter Runden. Beide Zahlen sind mechanisch und pruefbar; keine wiegt
+    ab, wie gut jemand „eigentlich" war.
+    """
+    candidates = [
+        (p, p.ghost_score / p.ghost_rounds)
+        for p in players
+        if p.ghost_rounds >= MIN_GHOST_ROUNDS_FOR_AWARD and p.ghost_score > 0
+    ]
+    if not candidates:
+        return None
+    # Bei Gleichstand im Schnitt gewinnt die groessere Summe: gleicher Schnitt
+    # ueber mehr Runden ist die haerter erarbeitete Zahl.
+    best = max(candidates, key=lambda x: (x[1], x[0].ghost_score))
+    return _award("best_ghost", "👻", best[0].name, round(best[1], 1), "ghost_avg")
 
 
 def _superlative_speed_demon(players: list[PlayerSession]) -> dict[str, Any] | None:
@@ -835,6 +907,11 @@ class ScoringService:
                 if sudden_death_mode_enabled
                 else None
             ),
+            # #2559: direkt hinter „Last one standing" — beide gehoeren zum
+            # Sudden Death, und der Geist ist die Gegengeschichte zum
+            # Ueberlebenden. Ohne Sudden Death gibt es keine Geister, also
+            # entsteht die Karte gar nicht.
+            (_superlative_best_ghost(players) if sudden_death_mode_enabled else None),
             _superlative_speed_demon(players),
             _superlative_lucky_streak(players),
             _superlative_perfect_pair(players) if title_artist_mode_enabled else None,
@@ -925,6 +1002,20 @@ class ScoringService:
             speed_champion=speed_champion,
             decade_distribution=decade_dist,
             correct_decade=_get_decade_label(correct_year),
+        )
+
+    @staticmethod
+    def score_ghost_round(
+        player: Any,
+        correct_year: int | None,
+        round_start_time: float | None,
+        round_duration: float,
+        difficulty: str = DIFFICULTY_DEFAULT,
+    ) -> int:
+        """Delegiert an :func:`score_ghost_round` — gleiche Aufrufform wie
+        ``score_player_round``, damit der Rundenlauf nicht zwei Stile mischt."""
+        return score_ghost_round(
+            player, correct_year, round_start_time, round_duration, difficulty
         )
 
     @staticmethod
