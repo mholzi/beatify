@@ -2870,3 +2870,84 @@
         padding: 7px 22px;
     }
 }
+
+/* ==========================================================================
+   #2504 — the join corner
+   The server admits latecomers throughout PLAYING and REVEAL, but the code
+   used to leave the TV the moment round one started. This sits in the corner,
+   clear of the artwork/timer/chips zone, and is hidden by dashboard.js on a
+   deterministic rule (Sudden Death armed, or under three songs left).
+   ========================================================================== */
+.join-corner {
+    position: fixed;
+    right: clamp(16px, 2.2vw, 40px);
+    bottom: clamp(16px, 2.2vw, 40px);
+    z-index: 40;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "qr text" "hint hint";
+    gap: 10px 12px;
+    align-items: center;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(23, 26, 33, 0.92);
+    border: 1px solid rgba(91, 200, 200, 0.45);
+    backdrop-filter: blur(6px);
+    max-width: 260px;
+}
+
+.join-corner__qr {
+    grid-area: qr;
+    display: flex;
+    padding: 6px;
+    background: #ffffff;
+    border-radius: 6px;
+    line-height: 0;
+}
+
+.join-corner__qr img,
+.join-corner__qr canvas {
+    display: block;
+    width: 96px;
+    height: 96px;
+}
+
+.join-corner__text {
+    grid-area: text;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.join-corner__badge {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #5bc8c8;
+}
+
+.join-corner__url {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.6875rem;
+    color: #868c97;
+    /* A long path must not push the panel wider than its max-width. */
+    overflow-wrap: anywhere;
+}
+
+.join-corner__hint {
+    grid-area: hint;
+    margin: 0;
+    font-size: 0.75rem;
+    color: #b9bec7;
+}
+
+/* The TV is watched from the sofa; on a small screen the corner would cover
+   the round itself, so it steps aside rather than shrinking into illegibility. */
+@media (max-width: 720px) {
+    .join-corner { display: none; }
+}

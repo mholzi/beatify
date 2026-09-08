@@ -802,5 +802,19 @@
         mirror('dashboard-total-rounds', 'reveal-total-num');
     })();
     </script>
+    <!-- #2504: the way in stays visible while the game runs. The server admits
+         latecomers throughout LOBBY, PLAYING and REVEAL (server/serializers.py
+         can_join), but the code left the TV the moment round one started, so the
+         host had to hand their own phone around. Sits in the corner, outside the
+         zone that holds artwork, timer and player chips, and hides itself on a
+         deterministic rule rather than a judgement call — see renderJoinCorner. -->
+    <aside id="dashboard-join-corner" class="join-corner hidden" aria-hidden="true">
+        <div id="join-corner-qr" class="join-corner__qr"></div>
+        <div class="join-corner__text">
+            <p class="join-corner__badge" data-i18n="dashboard.stillOpen">Still open</p>
+            <p id="join-corner-url" class="join-corner__url"></p>
+        </div>
+        <p class="join-corner__hint" data-i18n="lobby.scanToJoin">Scan to join the game</p>
+    </aside>
 </body>
 </html>

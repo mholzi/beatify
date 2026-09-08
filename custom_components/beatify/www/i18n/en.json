@@ -1056,7 +1056,8 @@
     "wakeLockDismiss": "Dismiss",
     "reconnecting": "Reconnecting…",
     "qrUnavailable": "Scan unavailable — enter the web address below",
-    "joinAddressLabel": "Join address"
+    "joinAddressLabel": "Join address",
+    "stillOpen": "Still open"
   },
   "launcher": {
     "title": "Beatify",

@@ -48,7 +48,7 @@
     // State tracking
     var previousPlayers = [];
     var countdownInterval = null;
-    var lastQRCodeUrl = null;
+    var lastQRCodeUrl = {};
     // Issue #827: dedup key for the full-bleed "OUT" takeover so it only fires
     // once per elimination (re-renders / re-broadcasts of the same REVEAL must
     // not re-trigger it). Format: "<round>:<joined names>".
@@ -206,6 +206,13 @@
      */
     function showView(viewId) {
         utils.showView(allViews, viewId);
+        // #2504: one place decides that the join corner is gone, instead of a
+        // hide call in every view that does not want it. The two views that DO
+        // want it call renderJoinCorner afterwards and switch it back on — the
+        // lobby is deliberately not one of them, it carries its own large code.
+        if (viewId !== 'dashboard-playing' && viewId !== 'dashboard-reveal') {
+            hideJoinCorner();
+        }
     }
 
     /**
@@ -858,16 +865,69 @@
     }
 
     /**
+     * #2504: keep the way in on screen while the game runs.
+     *
+     * The corner is shown during PLAYING and REVEAL and hidden on a rule the
+     * host cannot argue with, because a judgement call here would be a setting
+     * nobody wants to make mid-party:
+     *
+     *   - Sudden Death is armed — whoever joins now is out in the next round.
+     *   - fewer than three songs remain — the average score a latecomer
+     *     inherits cannot carry a game across two rounds.
+     *
+     * Both values ride along in every state broadcast, so this needs no new
+     * server field.
+     *
+     * @param {Object} data - State data
+     */
+    function renderJoinCorner(data) {
+        var el = document.getElementById('dashboard-join-corner');
+        if (!el) return;
+
+        var remaining = data.songs_remaining;
+        var tooLate = (typeof remaining === 'number') && remaining < 3;
+        var show = !!data.join_url && !data.sudden_death_mode && !tooLate;
+
+        el.classList.toggle('hidden', !show);
+        el.setAttribute('aria-hidden', show ? 'false' : 'true');
+        if (!show) return;
+
+        renderQRCode(data.join_url, 'join-corner-qr', 96);
+
+        var urlEl = document.getElementById('join-corner-url');
+        if (urlEl) {
+            // The full address does not fit next to a 96 px code on a TV seen
+            // from the sofa. The path is what a guest types; the host is on the
+            // same network and knows the host part.
+            urlEl.textContent = String(data.join_url).replace(/^https?:\/\/[^/]*/, '\u2026');
+        }
+    }
+
+    /**
+     * #2504: hide the corner outside the two phases that show it.
+     */
+    function hideJoinCorner() {
+        var el = document.getElementById('dashboard-join-corner');
+        if (!el) return;
+        el.classList.add('hidden');
+        el.setAttribute('aria-hidden', 'true');
+    }
+
+    /**
      * Render QR code for joining game
      * @param {string} joinUrl - URL to encode
      */
-    function renderQRCode(joinUrl) {
-        var container = document.getElementById('dashboard-qr-code');
+    function renderQRCode(joinUrl, containerId, size) {
+        var id = containerId || 'dashboard-qr-code';
+        var container = document.getElementById(id);
         if (!container) return;
 
-        // Skip re-render if URL hasn't changed (prevents flicker)
-        if (joinUrl === lastQRCodeUrl) return;
-        lastQRCodeUrl = joinUrl;
+        // Skip re-render if URL hasn't changed (prevents flicker). #2504 added a
+        // second, smaller code in the corner during play, so the guard is kept
+        // per container — one shared variable made the corner render once and
+        // then never again after the lobby had drawn the same URL.
+        if (lastQRCodeUrl[id] === joinUrl) return;
+        lastQRCodeUrl[id] = joinUrl;
 
         // Clear previous
         container.innerHTML = '';
@@ -875,8 +935,8 @@
         if (typeof QRCode !== 'undefined') {
             new QRCode(container, {
                 text: joinUrl,
-                width: 200,
-                height: 200,
+                width: size || 200,
+                height: size || 200,
                 colorDark: '#000000',
                 colorLight: '#ffffff',
                 correctLevel: QRCode.CorrectLevel.M
@@ -950,6 +1010,8 @@
     function renderPlayingView(data) {
         var song = data.song || {};
         var players = data.players || [];
+
+        renderJoinCorner(data);
 
         // #2554: a stop belongs to the round it happened in.
         lastRenderedRound = data.round;
@@ -1294,6 +1356,8 @@
     function renderRevealView(data) {
         var song = data.song || {};
         var players = data.players || [];
+
+        renderJoinCorner(data);
 
         // Update album art (clear - no blur)
         // #1767: unchanged-src short-circuit (see renderPlayingView). renderRevealView

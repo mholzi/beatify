@@ -1056,7 +1056,8 @@
     "wakeLockDismiss": "Sluiten",
     "reconnecting": "Opnieuw verbinden…",
     "qrUnavailable": "Scannen niet beschikbaar – voer het webadres hieronder in",
-    "joinAddressLabel": "Deelnameadres"
+    "joinAddressLabel": "Deelnameadres",
+    "stillOpen": "Nog open"
   },
   "launcher": {
     "title": "Beatify",
