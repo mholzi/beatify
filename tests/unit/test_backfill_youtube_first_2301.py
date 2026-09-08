@@ -230,3 +230,84 @@ class TestSkipSongsWithoutAYouTubeGap:
     def test_the_condition_is_wired_into_the_song_loop(self):
         src = _SCRIPT.read_text()
         assert "if args.youtube_first and not yt_gap:" in src
+
+
+# ---------------------------------------------------------------------------
+# Der Cursor lief hinter das Ende und kam nie zurueck (#2301, 08.09.2026)
+#
+# Die Tests oben halten fest, WANN ein Song uebersprungen wird. Sie sagen
+# nichts darueber, was passiert, wenn der Cursor das Ende der Auswahl erreicht
+# hat — und genau dort stand der Job fuenf Tage lang: 13 Laeufe in Folge, 208
+# Scheiben, **null** ``search.list``-Aufrufe, Budget jedes Mal unberuehrt.
+#
+# 18 von 35 Playlists standen auf exakt ``cursor == Songzahl``. Fuer jeden Song
+# gilt dann ``idx < cursor``, die Schleife ueberspringt alles, und das Gate vor
+# der Suche (``idx >= cursor``) kann fuer keinen Song mehr feuern. Anders als
+# oben wird hier die **echte** Funktion geprueft, nicht ein nachgebildetes
+# Praedikat: sie ist rein, und ein Nachbau haette den Fehler mitgebaut.
+
+
+def _load_script_module():
+    """Laedt das Skript per Pfad. ``scripts/`` ist kein Package.
+
+    Der Eintrag in ``sys.modules`` VOR ``exec_module`` ist Pflicht und kein
+    Zierrat: ``PlaylistCoverage`` ist ein Dataclass mit ``from __future__
+    import annotations``, und ``dataclasses`` schlaegt beim Aufloesen der
+    String-Annotationen ueber ``sys.modules[cls.__module__]`` nach. Fehlt der
+    Eintrag, stirbt der Import mit ``AttributeError: 'NoneType' object has no
+    attribute '__dict__'`` — an einer Stelle, die mit diesem Test nichts zu tun
+    hat.
+    """
+    import importlib.util
+    import sys
+
+    spec = importlib.util.spec_from_file_location("_bpu_2301", _SCRIPT)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules["_bpu_2301"] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+class TestWrapCursor:
+    def test_a_cursor_at_the_end_wraps_to_zero(self):
+        # Der gemessene Fall: tomorrowland-top-1000, 825 von 825.
+        assert _load_script_module().wrap_cursor(825, 825) == (0, True)
+
+    def test_a_cursor_past_the_end_wraps_too(self):
+        # Eine Playlist kann zwischen zwei Laeufen schrumpfen (Dedup, Entfernen
+        # kaputter Eintraege). Dann steht der Cursor hinter dem Ende, ohne je
+        # genau darauf gestanden zu haben.
+        assert _load_script_module().wrap_cursor(900, 825) == (0, True)
+
+    def test_a_cursor_inside_the_selection_is_left_alone(self):
+        # Der Normalfall — hier darf nichts passieren, sonst faengt jeder Lauf
+        # wieder vorne an und die Wiederaufnahme ist ihren Namen nicht wert.
+        assert _load_script_module().wrap_cursor(46, 825) == (46, False)
+
+    def test_a_fresh_cursor_is_left_alone(self):
+        assert _load_script_module().wrap_cursor(0, 825) == (0, False)
+
+    def test_an_empty_selection_never_wraps(self):
+        # ``--playlist`` mit einem Namen, der nichts trifft, oder ein Lauf ohne
+        # Dateien: eine leere Auswahl ist kein Beleg dafuer, dass der Cursor
+        # veraltet ist. Ihn hier zu nullen wuerde einen intakten Stand
+        # wegwerfen, weil ein Aufrufer sich vertippt hat.
+        assert _load_script_module().wrap_cursor(5, 0) == (5, False)
+        assert _load_script_module().wrap_cursor(0, 0) == (0, False)
+
+
+class TestWrapIsWiredIntoTheRun:
+    def test_the_run_wraps_before_it_walks(self):
+        # Textprobe am echten Quelltext: der Aufruf muss VOR der Song-Schleife
+        # stehen. Stuende er dahinter, heilte sich der Lauf erst beim naechsten
+        # Mal — und genau eine verlorene Scheibe pro Fehlstand ist das, was
+        # dieser Fix verhindern soll.
+        source = _SCRIPT.read_text()
+        wrap_call = source.index("yt_state.cursor, _wrapped = wrap_cursor(")
+        song_loop = source.index("        for song in songs:")
+        assert wrap_call < song_loop
+
+    def test_the_wrap_is_reported_rather_than_silent(self):
+        # Ein stiller Reset waere schwer von „Playlist war einfach leer" zu
+        # unterscheiden. Der Lauf sagt, dass er den Cursor angefasst hat.
+        assert "auf 0 zurueckgesetzt (#2301)" in _SCRIPT.read_text()

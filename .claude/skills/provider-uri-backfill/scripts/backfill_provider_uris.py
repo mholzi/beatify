@@ -594,6 +594,34 @@ def load_state(path: Path, today: str, budget: int) -> YouTubeBudget:
     )
 
 
+def wrap_cursor(cursor: int, total_songs: int) -> tuple[int, bool]:
+    """Bring a resume cursor back into range, returning ``(cursor, wrapped)``.
+
+    The YouTube resume cursor is a **positional** index into the flattened song
+    list of one run's playlist selection. Nothing ever reset it at the end of a
+    file, so once it reached the song count the run was finished for good: the
+    fast-forward near the top of the song loop skipped every song, and the
+    ``this_global_idx >= yt_state.cursor`` gate in front of ``search.list``
+    could not fire for any of them. Every slice then reported zero searches
+    with its full budget untouched.
+
+    Measured on 2026-09-08 across 13 consecutive agent runs (208 slices, 0
+    searches, +0 URIs): **18 of 35 playlists sat at exactly cursor == song
+    count**, tomorrowland-top-1000 at 825/825, salsa-y-merengue at 531/531.
+    Those are not a random 18 either — the queue picks the playlist with the
+    most gaps, and a playlist that was walked end to end without filling its
+    gaps is precisely one with many gaps left.
+
+    A positional cursor over a list that only grows at the end will always end
+    in this state, so the wrap belongs to the cursor rather than to any one
+    caller. ``total_songs <= 0`` leaves the cursor alone: an empty selection
+    says nothing about whether the cursor is stale.
+    """
+    if total_songs <= 0 or cursor < total_songs:
+        return cursor, False
+    return 0, True
+
+
 def save_state(path: Path, yt: YouTubeBudget) -> None:
     data = {}
     if path.exists():
@@ -1136,6 +1164,25 @@ def run(args: argparse.Namespace) -> int:
         if not playlist_paths:
             print(f"No playlist matched '{args.playlist}'", file=sys.stderr)
             return 2
+
+    # ---- Resume-Cursor in den Bereich zurueckholen (#2301) ------------------
+    # Der Cursor zeigt in die flache Songliste GENAU DIESER Auswahl. Stand er
+    # auf oder hinter deren Ende, sucht der Lauf keinen einzigen Song — siehe
+    # ``wrap_cursor``. Die Zaehlung kostet ein zusaetzliches Parsen je Datei;
+    # das ist der Preis dafuer, den Fehlstand zu erkennen, BEVOR die Scheibe
+    # verbraucht ist, statt ihn hinterher im Log zu beklagen.
+    total_songs = 0
+    for _p in playlist_paths:
+        try:
+            total_songs += len(json.loads(_p.read_text()).get("songs", []))
+        except (OSError, json.JSONDecodeError):
+            continue
+    yt_state.cursor, _wrapped = wrap_cursor(yt_state.cursor, total_songs)
+    if _wrapped:
+        print(
+            f"YouTube-Cursor stand auf oder hinter dem Ende der Auswahl "
+            f"({total_songs} Songs) und ist auf 0 zurueckgesetzt (#2301)"
+        )
 
     coverages: list[PlaylistCoverage] = []
     # Global flat index for the YouTube resume cursor.
