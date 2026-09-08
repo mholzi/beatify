@@ -4,6 +4,56 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.5.0-rc1] - 2026-09-08
+
+Die Woche 2026-W37: fuenfzig Eintraege aus der Redaktionskonferenz, alle gebaut und gemergt. Zwoelf
+davon liefen durchs Design-Gate, jeder mit Entwurf und Markus' Auswahl. Der Kandidat traegt sie
+vollstaendig.
+
+### Added
+- **Der Host bekommt echte Knoepfe aufs Handy**, gebuendelt in einer Schublade: Pause mit Grund fuer
+  den Raum (#2645), Sudden Death scharfstellen (#2723), Partylicht zurueckholen (#2649),
+  Spielstand-Ansicht fuer den Gast (#2718 Folgearbeit, #2757).
+- **Eine Runde verwerfen, statt einen kaputten Song zu werten** — mit Folgenvorschau vor der
+  Rueckfrage und optionalem Grund (#2646).
+- **Rematch mit anderer Playlist, ohne dass zwanzig Leute neu scannen** — der Endbildschirm wird der
+  Startbildschirm (#2648).
+- **Reaktionen waehrend der Runde** fuer alle, die schon abgegeben haben (#2562).
+- **Sechs fertige Spielmodi bekommen einen Weg hinein**, gefuehrt ueber eine Spielart (#2692).
+- **Die Lobby sagt, welches Spiel gleich laeuft** — ein generierter Satz statt einer Liste (#2647).
+- **Jedes Gast-Handy spricht die Sprache des Gasts** (#2585).
+
+### Fixed
+- **Abwesende Gaeste verlassen das Lobby-Raster** und stehen in einer Liste mit Abwesenheitsdauer
+  (#2718). Offen geblieben und in den Montagstopf gelegt: Rauswerfen geht weiter nur in der Lobby
+  und nur bei getrennter Verbindung (#2746).
+- **Der Comeback-Token wird angekuendigt** statt still vergeben (#2721).
+- **Der Fernseher sagt, warum sich eine Zahl geaendert hat** (#2703, #2719, #2720, #2722).
+- **Die Luecke zwischen zwei Runden** traegt einen drehenden Ring und eine gestaffelte Aufloesung
+  statt einer stehenden Null (#2702).
+- **Die Aufloesung bleibt stehen**, wenn der Host einen Song stoppt (#2690).
+- **Das Wiedergabe-Budget folgt der Retry-Kurve von Music Assistant**, ein gedrosselter Start steht
+  im eigenen Log (#2682).
+- **`End` beendet das Spiel**, ein Rematch vom Handy behaelt seinen eigenen Socket (#2726); das
+  Podium ueberlebt den REST-Weg (#2724).
+- **14 kaputte Apple-Music-Regions-URIs** in `pure-pop-punk` (#2766), tote YT-Music- und
+  Tidal-URIs in `koelner-karneval` (#2686).
+
+### Changed
+- **Eine Provider-Registry statt fuenfzehn handgepflegter Kopien** — ein vergessener Ort scheiterte
+  vorher lautlos (#2713).
+- **Der TTS-Resume-Watchdog liegt hinter dem Media-Player-Port** statt in der Spiellogik (#2710).
+- **Das Albumcover wird einmal geholt und geteilt** statt zweiundzwanzigmal pro Runde (#2709).
+- **Die `window`-Globals um `admin.js` sind auf beiden Seiten festgenagelt** (#2712).
+- **Konfetti und die Dashboard-Stylesheets kommen von dieser Box**, nicht aus dem Internet (#2742).
+- **`MediaPlayerProtocol` deckt ab, was das Spiel wirklich aufruft** (#2711).
+
+### Removed
+- **Fuenf veraltete Sourcemaps und drei ungelesene `hass.data`-Schluessel** (#2715, #2716).
+- **`GameState.start_game()`**, die dritte Kopie des Start-Gates (#2717).
+- **Vier Player-Handler ohne Element und drei Elemente ohne Schreiber** (#2714).
+
+
 ## [4.4.3] - 2026-09-06
 
 Die Woche 2026-W38: zweiunddreissig Eintraege aus der Redaktionskonferenz, alle gebaut und gemergt —
