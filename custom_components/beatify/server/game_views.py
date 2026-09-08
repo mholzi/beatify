@@ -1213,7 +1213,33 @@ class UpdateLobbyView(BeatifyAdminView):
                     "configured" if applied else "disabled",
                 )
 
-        if updated:
+        # ---- Game options of a lobby that has not started (#2769) ----------
+        # The wizard rewrites ``saved_setup`` and walks the host back into a
+        # lobby whose game still carries the previous blob. Everything above
+        # patches the OUTPUT side (speaker, TTS, lights); the play style, the
+        # mode flags and the round count were not in the patch set at all, so
+        # re-deciding them did nothing while a lobby game was open — which is
+        # the normal state of the admin page.
+        #
+        # LOBBY only. This view also serves PLAYING and REVEAL so the host can
+        # move the music to another speaker mid-game; a round count or a mode
+        # flag that changed there would rewrite the rules under the players.
+        game_options = body.get("game_options")
+        if isinstance(game_options, dict) and game_state.phase == GamePhase.LOBBY:
+            patched, changed = GameOptions.patched(game_state, game_options)
+            if changed and game_state.apply_lobby_options(patched):
+                updated.extend(changed)
+                _LOGGER.info(
+                    "Lobby updated: game options -> %s (total_rounds now %s)",
+                    ", ".join(changed),
+                    game_state.total_rounds,
+                )
+
+        # Only the three output settings belong in the persisted blob; the
+        # game options live in ``saved_setup``, which the frontend writes
+        # through /beatify/api/setup. Without this guard a pure option patch
+        # would call the store with an empty dict.
+        if updated and ({"media_player", "tts", "party_lights"} & set(updated)):
             from custom_components.beatify.server.library_views import (
                 async_save_game_output_settings,
             )

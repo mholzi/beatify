@@ -16,7 +16,7 @@ is one field here instead of four parallel edits.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, fields
+from dataclasses import dataclass, field, fields, replace
 from typing import Any
 
 from custom_components.beatify.const import (
@@ -200,6 +200,55 @@ class GameOptions:
         newly added field is carried over without touching the rematch.
         """
         return cls(**{name: getattr(state, name) for name in cls.field_names()})
+
+    @classmethod
+    def patched(cls, state: Any, body: dict[str, Any]) -> tuple[GameOptions, list[str]]:
+        """Capture the options off ``state`` and overlay the ones named in ``body``.
+
+        Built for #2769, where the setup wizard could rewrite the host's picks
+        while a lobby game carried the previous ones. The alternative was to
+        repeat the create view's seventeen-field body parse in a second place —
+        which is precisely the duplication #2635 removed, and precisely how an
+        option goes missing without an error.
+
+        Driven by :meth:`field_names`, so a newly added option is patchable the
+        day it is declared. Only names actually present in ``body`` are touched:
+        an absent key means "leave it as it is", never "reset it to the
+        default".
+
+        Values whose JSON type does not match the field are **skipped rather
+        than coerced**. ``"true"`` is not a bool and ``1`` is not a round count
+        the host asked for; silently accepting either would let a typo in a
+        client change how a game is played. ``bool`` is checked before ``int``
+        because ``isinstance(True, int)`` is true in Python, and an
+        ``intro_mode_enabled`` that arrived as ``1`` would otherwise pass the
+        int test for an int field.
+
+        Returns the patched options and the sorted names that changed; an empty
+        list means the caller has nothing to apply.
+        """
+        current = cls.capture(state)
+        changes: dict[str, Any] = {}
+        for name in cls.field_names():
+            if name not in body:
+                continue
+            value = body[name]
+            expected = type(getattr(current, name))
+            if expected is bool:
+                if not isinstance(value, bool):
+                    continue
+            elif expected is int:
+                if isinstance(value, bool) or not isinstance(value, int):
+                    continue
+            elif expected is str:
+                if not isinstance(value, str):
+                    continue
+            if value == getattr(current, name):
+                continue
+            changes[name] = value
+        if not changes:
+            return current, []
+        return replace(current, **changes), sorted(changes)
 
     def apply_to(self, state: Any) -> None:
         """Write every option onto a ``GameState``.

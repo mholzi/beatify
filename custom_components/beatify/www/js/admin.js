@@ -1268,6 +1268,75 @@ function showLobbyView(gameData) {
 // ./admin/sections/qr-modal.js (#1589). openQRModal + setupQRModal are imported
 // above; closeQRModal is now internal to that module.
 
+/**
+ * The host's game options, by the names the server knows them under (#2769).
+ *
+ * One source for three callers: the start-game body, the update-lobby push
+ * right before the phase flip, and the push after the wizard finishes. Before
+ * #2769 the derivation below lived inline in the start-game body alone, which
+ * is why the wizard's exit path had no way to send the same values — and why a
+ * lobby game kept the settings the host had just replaced.
+ *
+ * Every key here is a field of the server's GameOptions dataclass (#2635).
+ * That is what lets `GameOptions.patched` overlay them by name instead of
+ * repeating a seventeen-field parse in a second view.
+ */
+function buildGameOptionsPayload() {
+    // #1180: Title & Artist mode replaces the year round, so the year-only
+    // bonuses are suppressed here at payload-build time (NOT by mutating the
+    // stored flags — that would corrupt the host's saved preferences on the
+    // next reload). The in-memory flags remain the host's untouched choices.
+    const rawBonusFlags = {
+        artist_challenge_enabled: adminState.artistChallengeEnabled,  // Story 20.7
+        movie_quiz_enabled: adminState.movieQuizEnabled,  // #947
+        intro_mode_enabled: adminState.introModeEnabled,  // Issue #23
+        closest_wins_mode: adminState.closestWinsModeEnabled  // Issue #442
+    };
+    const bonusFlags = (window.BeatifyTitleArtist && typeof window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence === 'function')
+        ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, adminState.titleArtistModeEnabled)
+        : { ...rawBonusFlags, ...(adminState.titleArtistModeEnabled ? { artist_challenge_enabled: false, closest_wins_mode: false } : {}) };  // #1180: must match YEAR_ROUND_BONUS_KEYS — movie quiz + intro stay ON in TA mode
+
+    // Issue #827 / #1475: Sudden Death and the round count are wizard choices
+    // persisted to beatify_game_settings; the admin submodules hydrate no
+    // adminState field for either, so both are read straight from localStorage.
+    // Defaults are the pre-issue behaviour: no sudden death, all songs.
+    var suddenDeathMode = false;
+    var maxRounds = 0;
+    try {
+        const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+        if (raw) {
+            const settings = JSON.parse(raw);
+            if (settings && typeof settings.suddenDeathMode === 'boolean') {
+                suddenDeathMode = settings.suddenDeathMode;
+            }
+            const mr = settings && settings.maxRounds;
+            if (typeof mr === 'number' && Number.isFinite(mr) && mr > 0) {
+                maxRounds = Math.floor(mr);
+            }
+        }
+    } catch (e) { /* private mode / malformed — keep the defaults */ }
+
+    return {
+        round_duration: adminState.selectedDuration,  // Story 13.1
+        max_rounds: maxRounds,  // Issue #1475
+        reveal_auto_advance: adminState.revealAutoAdvance,  // #1012
+        difficulty: adminState.selectedDifficulty,  // Story 14.1
+        provider: adminState.selectedProvider,  // Story 17.2
+        artist_challenge_enabled: bonusFlags.artist_challenge_enabled,  // Story 20.7 (#1180: suppressed in TA mode)
+        movie_quiz_enabled: bonusFlags.movie_quiz_enabled,  // #947 (#1180: suppressed in TA mode)
+        intro_mode_enabled: bonusFlags.intro_mode_enabled,  // Issue #23 (#1180: suppressed in TA mode)
+        closest_wins_mode: bonusFlags.closest_wins_mode,  // Issue #442 (#1180: suppressed in TA mode)
+        sudden_death_mode: suddenDeathMode,  // Issue #827
+        title_artist_mode: adminState.titleArtistModeEnabled,  // #1180
+        rampup_order_enabled: adminState.rampupOrderEnabled,  // Issue #1726
+        finale_double_enabled: adminState.finaleDoubleEnabled,  // Issue #1725
+        finale_tiebreaker_enabled: adminState.finaleTiebreakerEnabled,  // Issue #1725
+        comeback_token_enabled: adminState.comebackTokenEnabled,  // Issue #1724
+        difficulty_bet_scaling_enabled: adminState.difficultyBetScalingEnabled,  // Issue #1727
+        sabotage_enabled: adminState.sabotageEnabled,  // Issue #1665
+    };
+}
+
 // ==========================================
 // Game Control Functions (Story 2.3)
 // ==========================================
@@ -1302,6 +1371,20 @@ async function persistSetupToServer() {
         });
     } catch (e) {
         console.warn('[Beatify] setup persist failed (non-fatal):', e);
+    }
+    // #2769: saved_setup is now current, the open lobby game is not. Pushing
+    // here rather than only at start means /beatify/api/status stops
+    // contradicting itself the moment the wizard closes — the host must not be
+    // able to leave the wizard with a game that disagrees with it. LOBBY-only
+    // and no-op otherwise; the server decides that, not this call.
+    try {
+        await window.BeatifyAuth?.fetch('/beatify/api/game/update-lobby', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ game_options: buildGameOptionsPayload() }),
+        });
+    } catch (e) {
+        console.warn('[Beatify] lobby option push failed (non-fatal):', e);
     }
 }
 // Exposed so wizard.js can persist the host's picks the moment setup finishes,
@@ -1359,76 +1442,16 @@ async function startGame() {
     }
 
     try {
-        // #1180: Title & Artist mode replaces the year round, so the year-only
-        // bonuses are suppressed here at payload-build time (NOT by mutating the
-        // stored flags — that would corrupt the host's saved preferences on the
-        // next reload). The in-memory flags remain the host's untouched choices.
-        const rawBonusFlags = {
-            artist_challenge_enabled: adminState.artistChallengeEnabled,  // Story 20.7
-            movie_quiz_enabled: adminState.movieQuizEnabled,  // #947
-            intro_mode_enabled: adminState.introModeEnabled,  // Issue #23
-            closest_wins_mode: adminState.closestWinsModeEnabled  // Issue #442
-        };
-        const bonusFlags = (window.BeatifyTitleArtist && typeof window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence === 'function')
-            ? window.BeatifyTitleArtist.applyTitleArtistBonusPrecedence(rawBonusFlags, adminState.titleArtistModeEnabled)
-            : { ...rawBonusFlags, ...(adminState.titleArtistModeEnabled ? { artist_challenge_enabled: false, closest_wins_mode: false } : {}) };  // #1180: must match YEAR_ROUND_BONUS_KEYS — movie quiz + intro stay ON in TA mode
-
-        // Issue #827: Sudden Death is the host's wizard choice, persisted to
-        // beatify_game_settings.suddenDeathMode (mirrors how closestWinsMode is
-        // stored). The admin submodules don't hydrate a dedicated adminState
-        // field for it, so read it straight from localStorage here. Default false.
-        var suddenDeathMode = false;
-        try {
-            var _sdRaw = localStorage.getItem(STORAGE_GAME_SETTINGS);
-            if (_sdRaw) {
-                var _sdSettings = JSON.parse(_sdRaw);
-                if (_sdSettings && typeof _sdSettings.suddenDeathMode === 'boolean') {
-                    suddenDeathMode = _sdSettings.suddenDeathMode;
-                }
-            }
-        } catch (e) { /* private mode / malformed — keep default false */ }
-
-        // #1475: round count. Same situation as suddenDeathMode above — the
-        // wizard owns the setting and adminState has no field for it, so read
-        // it from localStorage. 0 means "all songs", which is the behaviour
-        // every game had before this issue, so it is also the fallback for a
-        // missing, malformed or nonsensical value.
-        var maxRounds = 0;
-        try {
-            var _mrRaw = localStorage.getItem(STORAGE_GAME_SETTINGS);
-            if (_mrRaw) {
-                var _mrSettings = JSON.parse(_mrRaw);
-                var _mr = _mrSettings && _mrSettings.maxRounds;
-                if (typeof _mr === 'number' && Number.isFinite(_mr) && _mr > 0) {
-                    maxRounds = Math.floor(_mr);
-                }
-            }
-        } catch (e) { /* private mode / malformed — keep default 0 (all songs) */ }
+        const gameOptions = buildGameOptionsPayload();
 
         const response = await BeatifyAuth.fetch('/beatify/api/start-game', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                ...gameOptions,
                 playlists: adminState.selectedPlaylists.map(p => p.path),
                 media_player: adminState.selectedMediaPlayer?.entityId,
                 language: adminState.selectedLanguage,
-                round_duration: adminState.selectedDuration,  // Story 13.1
-                max_rounds: maxRounds,  // Issue #1475
-                reveal_auto_advance: adminState.revealAutoAdvance,  // #1012
-                difficulty: adminState.selectedDifficulty,  // Story 14.1
-                provider: adminState.selectedProvider,  // Story 17.2
-                artist_challenge_enabled: bonusFlags.artist_challenge_enabled,  // Story 20.7 (#1180: suppressed in TA mode)
-                movie_quiz_enabled: bonusFlags.movie_quiz_enabled,  // #947 (#1180: suppressed in TA mode)
-                intro_mode_enabled: bonusFlags.intro_mode_enabled,  // Issue #23 (#1180: suppressed in TA mode)
-                closest_wins_mode: bonusFlags.closest_wins_mode,  // Issue #442 (#1180: suppressed in TA mode)
-                sudden_death_mode: suddenDeathMode,  // Issue #827
-                title_artist_mode: adminState.titleArtistModeEnabled,  // #1180
-                rampup_order_enabled: adminState.rampupOrderEnabled,  // Issue #1726
-                finale_double_enabled: adminState.finaleDoubleEnabled,  // Issue #1725
-                finale_tiebreaker_enabled: adminState.finaleTiebreakerEnabled,  // Issue #1725
-                comeback_token_enabled: adminState.comebackTokenEnabled,  // Issue #1724
-                difficulty_bet_scaling_enabled: adminState.difficultyBetScalingEnabled,  // Issue #1727
-                sabotage_enabled: adminState.sabotageEnabled,  // Issue #1665
                 party_lights: partyLightsConfig(),  // Issue #331
                 tts: ttsConfig(),
                 library: (typeof getLibraryConfig === 'function') ? getLibraryConfig() : null,  // Issue #447
@@ -1550,6 +1573,11 @@ async function startGameplay() {
                 media_player: (adminState.selectedMediaPlayer || {}).entityId || null,
                 tts: ttsConfig(),
                 party_lights: partyLightsConfig(),
+                // #2769: the play style, the mode flags and the round count
+                // were frozen at room creation too, and nothing pushed them.
+                // A wizard run between creation and start replaced them in
+                // saved_setup while the lobby kept the old ones.
+                game_options: buildGameOptionsPayload(),
             }),
         });
     } catch (e) { /* never block the start on a failed push */ }

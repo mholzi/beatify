@@ -624,6 +624,73 @@ class GameSetupMixin:
         self.total_rounds = manager.get_total_count()
         return True
 
+    def apply_lobby_options(self, options: GameOptions) -> bool:
+        """Re-apply admin options to a game that has not started yet (#2769).
+
+        A room freezes its options at creation. The setup wizard, however,
+        rewrites ``saved_setup`` and then returns the host to a lobby whose
+        game was created from the PREVIOUS blob — same ``game_id``, same flags,
+        same round count. Measured on the real installation on 2026-09-08: the
+        wizard switched the play style from Chaos to Classic and raised the
+        rounds from 10 to 20, and the game in the lobby kept Sabotage, the
+        comeback token, ramp-up ordering, intro mode and ten rounds. The host
+        then starts a game that runs the settings they just replaced, and the
+        home screen shows neither the style nor the round count, so nothing
+        contradicts them.
+
+        **Patched, not replaced.** Replacing the game would be cheap in state
+        terms — a lobby has no scores and no rounds played — but it mints a new
+        ``game_id`` and drops every guest who already joined by QR code. The
+        normal case is a host adjusting the setup while the room fills up, so
+        the cost of replacing lands on exactly the people who did nothing
+        wrong.
+
+        LOBBY only, and deliberately so: ``update-lobby`` also serves PLAYING
+        and REVEAL for the speaker, but a round count or a mode flag that
+        changes mid-game rewrites the rules under the players.
+
+        Returns True when the options were applied. False means the phase was
+        wrong or the rebuilt playlist would have been empty — in which case
+        nothing is touched, exactly as ``replace_songs`` behaves.
+        """
+        from .state import GamePhase
+
+        if self.phase != GamePhase.LOBBY or not self.game_id:
+            return False
+
+        # The manager carries ramp-up ordering (#1726) and the round cap
+        # (#1475), so those two only take effect through a rebuild. Built
+        # BEFORE anything is written, so an empty result leaves the game as it
+        # was rather than half-updated — the same order create_game uses for
+        # its #1378 validation.
+        manager = self._build_playlist_manager(
+            self.songs,
+            options.provider,
+            self.storefront,
+            options.rampup_order_enabled,
+            options.max_rounds,
+        )
+        if manager.get_total_count() <= 0:
+            _LOGGER.warning(
+                "apply_lobby_options: the new options yield no playable "
+                "tracks — keeping the current setup"
+            )
+            return False
+
+        options.apply_to(self)
+        # Same call create_game makes right after ``apply_to``: it is what
+        # enforces the Title & Artist exclusion and nulls the per-round
+        # challenge objects. Without it a lobby switched INTO Title & Artist
+        # would keep the artist challenge alongside it.
+        self._challenge_manager.configure(
+            artist_challenge_enabled=options.artist_challenge_enabled,
+            movie_quiz_enabled=options.movie_quiz_enabled,
+            title_artist_mode=options.title_artist_mode,
+        )
+        self._playlist_manager = manager
+        self.total_rounds = manager.get_total_count()
+        return True
+
     def _build_playlist_manager(
         self,
         songs: list[dict[str, Any]],
