@@ -4,6 +4,32 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.6.0-rc1] - 2026-09-08
+
+Die Woche 2026-W37b: sechs Eintraege aus der Redaktionskonferenz vom 08.09., alle gebaut und
+gemergt. Drei davon liefen durchs Design-Gate — #2503, #2746 und #2559, jeder mit vier
+gezeichneten Varianten und Markus' Auswahl.
+
+### Added
+- **Geister-Liga**: wer im Sudden Death ausscheidet, raet weiter — in einer eigenen Wertung, mit
+  eigenem Block auf dem Fernseher und einem Best-Ghost-Award am Ende (#2559, Variante B). Die
+  Wertung geht **pro gespielter Geisterrunde**, sonst gewaenne, wer am fruehesten rausfliegt.
+- **Encore**: auf dem Reveal vor der letzten Runde bietet das Spiel fuenf weitere Runden an, ohne
+  einen Punktestand zu ruehren. Nach dem Start der letzten Runde ist das Angebot weg, damit das
+  Finale ein Finale bleibt (#2503, Variante D).
+- **Einen Gast mitten im Spiel herausnehmen** — verbunden oder nicht. Die Runde wartet nicht mehr
+  auf ihn, Punkte und Rang bleiben stehen, und er kommt ueber sein eigenes Handy zur naechsten
+  Runde zurueck (#2746, Variante B).
+
+### Changed
+- Das Endbild sagt jetzt, dass **Rematch jeden Punktestand auf 0 setzt**. Vorher stand das nirgends.
+
+### Fixed
+- Der Einrichtungs-Assistent schreibt seine Aenderungen auf ein offenes Lobby-Spiel, statt es mit
+  den ersetzten Einstellungen weiterlaufen zu lassen (#2769).
+- Der YouTube-Backfill sucht wieder: sein Wiederaufnahme-Zeiger lief hinter das Ende der Playlist
+  und kam nie zurueck — 18 von 35 Playlists standen auf genau diesem Stand (#2301).
+
 ## [4.5.0] - 2026-09-08
 
 Die Woche 2026-W37: fuenfzig Eintraege aus der Redaktionskonferenz, alle gebaut und gemergt. Zwoelf
