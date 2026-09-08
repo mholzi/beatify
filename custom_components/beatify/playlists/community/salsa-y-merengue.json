@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.20",
+  "version": "1.21",
   "tags": [
     "salsa",
     "merengue",
@@ -92,7 +92,8 @@
       "fun_fact_nl": "\"El Dia De Suerte\" van Héctor Lavoe, voor het eerst uitgebracht in 2006 op het album \"Salsa Navideña\".",
       "uri_deezer": "deezer://track/1182194142",
       "uri_apple_music": "applemusic://track/1464272393",
-      "fun_fact_it": "«El Dia De Suerte» di Héctor Lavoe, pubblicata per la prima volta nel 2006 nell'album «Salsa Navideña»."
+      "fun_fact_it": "«El Dia De Suerte» di Héctor Lavoe, pubblicata per la prima volta nel 2006 nell'album «Salsa Navideña».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vNJsd7ZCAI0"
     },
     {
       "year": 1982,
@@ -139,7 +140,8 @@
       "fun_fact_nl": "\"Todo Tiene Su Final\" van Héctor Lavoe, voor het eerst uitgebracht in 1973 op het album \"Lo Mato\".",
       "uri_deezer": "deezer://track/686100982",
       "uri_apple_music": "applemusic://track/1464271788",
-      "fun_fact_it": "«Todo Tiene Su Final» di Héctor Lavoe, pubblicata per la prima volta nel 1973 nell'album «Lo Mato»."
+      "fun_fact_it": "«Todo Tiene Su Final» di Héctor Lavoe, pubblicata per la prima volta nel 1973 nell'album «Lo Mato».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OKfM-oWa_ew"
     },
     {
       "year": 1975,
@@ -154,7 +156,8 @@
       "fun_fact_nl": "\"El Todopoderoso\" van Héctor Lavoe, voor het eerst uitgebracht in 1975 op het album \"Masterworks: La Voz\".",
       "uri_deezer": "deezer://track/689030762",
       "uri_apple_music": "applemusic://track/1466318093",
-      "fun_fact_it": "«El Todopoderoso» di Héctor Lavoe, pubblicata per la prima volta nel 1975 nell'album «Masterworks: La Voz»."
+      "fun_fact_it": "«El Todopoderoso» di Héctor Lavoe, pubblicata per la prima volta nel 1975 nell'album «Masterworks: La Voz».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ML8B-m6uyi4"
     },
     {
       "year": 1969,
@@ -169,7 +172,8 @@
       "fun_fact_nl": "\"La Fama\" van Héctor Lavoe, voor het eerst uitgebracht in 1969 op het album \"Hector Lavoe Feria Del Hogar, Vol. 1 (En Vivo)\".",
       "uri_deezer": "deezer://track/3207114351",
       "uri_apple_music": "applemusic://track/1464288946",
-      "fun_fact_it": "«La Fama» di Héctor Lavoe, pubblicata per la prima volta nel 1969 nell'album «Hector Lavoe Feria Del Hogar, Vol. 1 (En Vivo)»."
+      "fun_fact_it": "«La Fama» di Héctor Lavoe, pubblicata per la prima volta nel 1969 nell'album «Hector Lavoe Feria Del Hogar, Vol. 1 (En Vivo)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9tmQqe7XsrA"
     },
     {
       "year": 1995,
@@ -184,7 +188,8 @@
       "fun_fact_nl": "\"Talento De Televisión\" van Willie Colón, voor het eerst uitgebracht in 1995 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6237257",
       "uri_apple_music": "applemusic://track/374542178",
-      "fun_fact_it": "«Talento De Televisión» di Willie Colón, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Talento De Televisión» di Willie Colón, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TyNe7VomtQk"
     },
     {
       "year": 1993,
@@ -199,7 +204,8 @@
       "fun_fact_nl": "\"Idilio\" van Willie Colón, voor het eerst uitgebracht in 1993 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6237251",
       "uri_apple_music": "applemusic://track/374542161",
-      "fun_fact_it": "«Idilio» di Willie Colón, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Idilio» di Willie Colón, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CIcDWHxR-ao"
     },
     {
       "year": 1986,
@@ -214,7 +220,8 @@
       "fun_fact_nl": "\"El Gran Varon\" van Willie Colón, voor het eerst uitgebracht in 1986.",
       "uri_deezer": "deezer://track/686077162",
       "uri_apple_music": "applemusic://track/1436559567",
-      "fun_fact_it": "«El Gran Varon» di Willie Colón, pubblicata per la prima volta nel 1986."
+      "fun_fact_it": "«El Gran Varon» di Willie Colón, pubblicata per la prima volta nel 1986.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hb2ePDDtjdc"
     },
     {
       "year": 1969,
@@ -229,7 +236,8 @@
       "fun_fact_nl": "\"Juanito Alimana\" van Willie Colón, Héctor Lavoe, voor het eerst uitgebracht in 1969 op het album \"Vigilante\".",
       "uri_deezer": "deezer://track/689030362",
       "uri_apple_music": "applemusic://track/1466317423",
-      "fun_fact_it": "«Juanito Alimana» di Willie Colón, Héctor Lavoe, pubblicata per la prima volta nel 1969 nell'album «Vigilante»."
+      "fun_fact_it": "«Juanito Alimana» di Willie Colón, Héctor Lavoe, pubblicata per la prima volta nel 1969 nell'album «Vigilante».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YiDv1-b0tH0"
     },
     {
       "year": 1979,
@@ -244,7 +252,8 @@
       "fun_fact_nl": "\"Sin Poderte Hablar\" van Willie Colón, voor het eerst uitgebracht in 1979 op het album \"Fania Records: The 70's, Vol. Six\".",
       "uri_deezer": "deezer://track/689130162",
       "uri_apple_music": "applemusic://track/1435556999",
-      "fun_fact_it": "«Sin Poderte Hablar» di Willie Colón, pubblicata per la prima volta nel 1979 nell'album «Fania Records: The 70's, Vol. Six»."
+      "fun_fact_it": "«Sin Poderte Hablar» di Willie Colón, pubblicata per la prima volta nel 1979 nell'album «Fania Records: The 70's, Vol. Six».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u5rEC9qlGks"
     },
     {
       "year": 1993,
@@ -259,7 +268,8 @@
       "fun_fact_nl": "\"Cueste Lo Que Cueste\" van Willie Colón, voor het eerst uitgebracht in 1993 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6237249",
       "uri_apple_music": "applemusic://track/1308743244",
-      "fun_fact_it": "«Cueste Lo Que Cueste» di Willie Colón, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Cueste Lo Que Cueste» di Willie Colón, pubblicata per la prima volta nel 1993 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e3JIWjgjBBU"
     },
     {
       "year": 2004,
@@ -273,7 +283,8 @@
       "fun_fact_fr": "« Oh Que Será » de Willie Colón, Rubén Blades, parue pour la première fois en 2004 sur l'album « Live in the Netherlands ».",
       "fun_fact_nl": "\"Oh Que Será\" van Willie Colón, Rubén Blades, voor het eerst uitgebracht in 2004 op het album \"Live in the Netherlands\".",
       "uri_deezer": "deezer://track/14190980",
-      "fun_fact_it": "«Oh Que Será» di Willie Colón, Rubén Blades, pubblicata per la prima volta nel 2004 nell'album «Live in the Netherlands»."
+      "fun_fact_it": "«Oh Que Será» di Willie Colón, Rubén Blades, pubblicata per la prima volta nel 2004 nell'album «Live in the Netherlands».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7F0Wmta6Jz0"
     },
     {
       "year": 1978,
@@ -304,7 +315,8 @@
       "fun_fact_nl": "\"Buscando Guayaba\" van Rubén Blades, voor het eerst uitgebracht in 1978 op het album \"Oliver And Company Original Soundtrack (English Version)\".",
       "uri_deezer": "deezer://track/3203474",
       "uri_apple_music": "applemusic://track/1781312254",
-      "fun_fact_it": "«Buscando Guayaba» di Rubén Blades, pubblicata per la prima volta nel 1978 nell'album «Oliver And Company Original Soundtrack (English Version)»."
+      "fun_fact_it": "«Buscando Guayaba» di Rubén Blades, pubblicata per la prima volta nel 1978 nell'album «Oliver And Company Original Soundtrack (English Version)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dL2v2hjYxc0"
     },
     {
       "year": 1974,
@@ -335,7 +347,8 @@
       "fun_fact_nl": "\"Que Bueno Baila Usted\" van Oscar D'León, voor het eerst uitgebracht in 1991 op het album \"Oscar D'León En New York\".",
       "uri_deezer": "deezer://track/861307112",
       "uri_apple_music": "applemusic://track/1615524871",
-      "fun_fact_it": "«Que Bueno Baila Usted» di Oscar D'León, pubblicata per la prima volta nel 1991 nell'album «Oscar D'León En New York»."
+      "fun_fact_it": "«Que Bueno Baila Usted» di Oscar D'León, pubblicata per la prima volta nel 1991 nell'album «Oscar D'León En New York».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4rwZP5f59fg"
     },
     {
       "year": 1990,
@@ -350,7 +363,8 @@
       "fun_fact_nl": "\"Detalles\" van Oscar D'León, voor het eerst uitgebracht in 1990 op het album \"Detalles\".",
       "uri_deezer": "deezer://track/861264892",
       "uri_apple_music": "applemusic://track/1495496931",
-      "fun_fact_it": "«Detalles» di Oscar D'León, pubblicata per la prima volta nel 1990 nell'album «Detalles»."
+      "fun_fact_it": "«Detalles» di Oscar D'León, pubblicata per la prima volta nel 1990 nell'album «Detalles».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IhLzZpLCJ-0"
     },
     {
       "year": 1990,
@@ -365,7 +379,8 @@
       "fun_fact_nl": "\"Ven Morena\" van Oscar D'León, voor het eerst uitgebracht in 1990.",
       "uri_deezer": "deezer://track/861420982",
       "uri_apple_music": "applemusic://track/6798819275",
-      "fun_fact_it": "«Ven Morena» di Oscar D'León, pubblicata per la prima volta nel 1990."
+      "fun_fact_it": "«Ven Morena» di Oscar D'León, pubblicata per la prima volta nel 1990.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-An52NqhI7c"
     },
     {
       "year": 1983,
@@ -380,7 +395,8 @@
       "fun_fact_nl": "\"Sigue Tu Camino\" van Oscar D'León, voor het eerst uitgebracht in 1983 op het album \"En La Feria del Hogar (En vivo)\".",
       "uri_deezer": "deezer://track/4184939582",
       "uri_apple_music": "applemusic://track/6795978007",
-      "fun_fact_it": "«Sigue Tu Camino» di Oscar D'León, pubblicata per la prima volta nel 1983 nell'album «En La Feria del Hogar (En vivo)»."
+      "fun_fact_it": "«Sigue Tu Camino» di Oscar D'León, pubblicata per la prima volta nel 1983 nell'album «En La Feria del Hogar (En vivo)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=D6lG94bV3JE"
     },
     {
       "year": 1974,
@@ -395,7 +411,8 @@
       "fun_fact_nl": "\"Me Voy Pa'Cali\" van Oscar D'León, voor het eerst uitgebracht in 1974 op het album \"Salsa\".",
       "uri_deezer": "deezer://track/1167152",
       "uri_apple_music": "applemusic://track/1443836245",
-      "fun_fact_it": "«Me Voy Pa'Cali» di Oscar D'León, pubblicata per la prima volta nel 1974 nell'album «Salsa»."
+      "fun_fact_it": "«Me Voy Pa'Cali» di Oscar D'León, pubblicata per la prima volta nel 1974 nell'album «Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CEx9KWm2wAE"
     },
     {
       "year": 1983,
@@ -410,7 +427,8 @@
       "fun_fact_nl": "\"Calculadora\" van Oscar D'León, voor het eerst uitgebracht in 1983.",
       "uri_deezer": "deezer://track/861269262",
       "uri_apple_music": "applemusic://track/1495421330",
-      "fun_fact_it": "«Calculadora» di Oscar D'León, pubblicata per la prima volta nel 1983."
+      "fun_fact_it": "«Calculadora» di Oscar D'León, pubblicata per la prima volta nel 1983.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3oASrMeXTk0"
     },
     {
       "year": 2007,
@@ -425,7 +443,8 @@
       "fun_fact_nl": "\"Conteo Regresivo - Salsa Version\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 2007 op het album \"Latin 101\".",
       "uri_deezer": "deezer://track/5404643",
       "uri_apple_music": "applemusic://track/267953290",
-      "fun_fact_it": "«Conteo Regresivo - Salsa Version» di Gilberto Santa Rosa, pubblicata per la prima volta nel 2007 nell'album «Latin 101»."
+      "fun_fact_it": "«Conteo Regresivo - Salsa Version» di Gilberto Santa Rosa, pubblicata per la prima volta nel 2007 nell'album «Latin 101».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zc13NAc7dvM"
     },
     {
       "year": 1991,
@@ -456,7 +475,8 @@
       "fun_fact_nl": "\"Que Alguien Me Diga\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 1999 op het album \"El Caballero De La Salsa - La Historia Tropical\".",
       "uri_deezer": "deezer://track/13204938",
       "uri_apple_music": "applemusic://track/171830031",
-      "fun_fact_it": "«Que Alguien Me Diga» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1999 nell'album «El Caballero De La Salsa - La Historia Tropical»."
+      "fun_fact_it": "«Que Alguien Me Diga» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1999 nell'album «El Caballero De La Salsa - La Historia Tropical».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0ZfwT6lHahk"
     },
     {
       "year": 1998,
@@ -487,7 +507,8 @@
       "fun_fact_nl": "\"La Agarro Bajando\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 2001 op het album \"El Caballero De La Salsa - La Historia Tropical\".",
       "uri_deezer": "deezer://track/13204939",
       "uri_apple_music": "applemusic://track/170544677",
-      "fun_fact_it": "«La Agarro Bajando» di Gilberto Santa Rosa, pubblicata per la prima volta nel 2001 nell'album «El Caballero De La Salsa - La Historia Tropical»."
+      "fun_fact_it": "«La Agarro Bajando» di Gilberto Santa Rosa, pubblicata per la prima volta nel 2001 nell'album «El Caballero De La Salsa - La Historia Tropical».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xWDsNex_VKA"
     },
     {
       "year": 1993,
@@ -502,7 +523,8 @@
       "fun_fact_nl": "\"Qué Manera de Quererte\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 1993 op het album \"40... y Contando (En Vivo Desde Puerto Rico)\".",
       "uri_deezer": "deezer://track/681403142",
       "uri_apple_music": "applemusic://track/303411269",
-      "fun_fact_it": "«Qué Manera de Quererte» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1993 nell'album «40... y Contando (En Vivo Desde Puerto Rico)»."
+      "fun_fact_it": "«Qué Manera de Quererte» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1993 nell'album «40... y Contando (En Vivo Desde Puerto Rico)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y2JJY1vm9go"
     },
     {
       "year": 1993,
@@ -517,7 +539,8 @@
       "fun_fact_nl": "\"Sin Voluntad\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 1993 op het album \"El Caballero De La Salsa - La Historia Tropical\".",
       "uri_deezer": "deezer://track/13204933",
       "uri_apple_music": "applemusic://track/303411268",
-      "fun_fact_it": "«Sin Voluntad» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1993 nell'album «El Caballero De La Salsa - La Historia Tropical»."
+      "fun_fact_it": "«Sin Voluntad» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1993 nell'album «El Caballero De La Salsa - La Historia Tropical».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VelD64XLvjI"
     },
     {
       "year": 1990,
@@ -532,7 +555,8 @@
       "fun_fact_nl": "\"Perdóname\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 1990 op het album \"En Vivo Desde El Carnegie Hall\".",
       "uri_deezer": "deezer://track/62351524",
       "uri_apple_music": "applemusic://track/170114432",
-      "fun_fact_it": "«Perdóname» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1990 nell'album «En Vivo Desde El Carnegie Hall»."
+      "fun_fact_it": "«Perdóname» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1990 nell'album «En Vivo Desde El Carnegie Hall».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=COSF2Vj7nXo"
     },
     {
       "year": 1990,
@@ -547,7 +571,8 @@
       "fun_fact_nl": "\"Vivir Sin Ella\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 1990 op het album \"El Caballero De La Salsa - La Historia Tropical\".",
       "uri_deezer": "deezer://track/13204930",
       "uri_apple_music": "applemusic://track/303411265",
-      "fun_fact_it": "«Vivir Sin Ella» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1990 nell'album «El Caballero De La Salsa - La Historia Tropical»."
+      "fun_fact_it": "«Vivir Sin Ella» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1990 nell'album «El Caballero De La Salsa - La Historia Tropical».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RwvKQtD6zGQ"
     },
     {
       "year": 1989,
@@ -562,7 +587,8 @@
       "fun_fact_nl": "\"Me Volvieron A Hablar De Ella\" van Gilberto Santa Rosa, voor het eerst uitgebracht in 1989 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6720634",
       "uri_apple_music": "applemusic://track/271435280",
-      "fun_fact_it": "«Me Volvieron A Hablar De Ella» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1989 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Me Volvieron A Hablar De Ella» di Gilberto Santa Rosa, pubblicata per la prima volta nel 1989 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6ke_WCdmigM"
     },
     {
       "year": 1994,
@@ -593,7 +619,8 @@
       "fun_fact_nl": "\"Tengo Ganas\" van Víctor Manuelle, voor het eerst uitgebracht in 2001 op het album \"Leyendas: Salsa Romántica\".",
       "uri_deezer": "deezer://track/88877241",
       "uri_apple_music": "applemusic://track/163349486",
-      "fun_fact_it": "«Tengo Ganas» di Víctor Manuelle, pubblicata per la prima volta nel 2001 nell'album «Leyendas: Salsa Romántica»."
+      "fun_fact_it": "«Tengo Ganas» di Víctor Manuelle, pubblicata per la prima volta nel 2001 nell'album «Leyendas: Salsa Romántica».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LvJcDhDYiXM"
     },
     {
       "year": 1993,
@@ -608,7 +635,8 @@
       "fun_fact_nl": "\"He Tratado\" van Víctor Manuelle, voor het eerst uitgebracht in 1993 op het album \"Oro Salsero\".",
       "uri_deezer": "deezer://track/13243134",
       "uri_apple_music": "applemusic://track/161699108",
-      "fun_fact_it": "«He Tratado» di Víctor Manuelle, pubblicata per la prima volta nel 1993 nell'album «Oro Salsero»."
+      "fun_fact_it": "«He Tratado» di Víctor Manuelle, pubblicata per la prima volta nel 1993 nell'album «Oro Salsero».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7wpVJvRIKYQ"
     },
     {
       "year": 1993,
@@ -623,7 +651,8 @@
       "fun_fact_nl": "\"Así Es la Mujer\" van Víctor Manuelle, voor het eerst uitgebracht in 1993 op het album \"Oro Salsero\".",
       "uri_deezer": "deezer://track/13243130",
       "uri_apple_music": "applemusic://track/161698791",
-      "fun_fact_it": "«Así Es la Mujer» di Víctor Manuelle, pubblicata per la prima volta nel 1993 nell'album «Oro Salsero»."
+      "fun_fact_it": "«Así Es la Mujer» di Víctor Manuelle, pubblicata per la prima volta nel 1993 nell'album «Oro Salsero».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H0glpypVpCw"
     },
     {
       "year": 1996,
@@ -638,7 +667,8 @@
       "fun_fact_nl": "\"Como una Estrella\" van Víctor Manuelle, voor het eerst uitgebracht in 1996 op het album \"Leyendas: Salsa Romántica\".",
       "uri_deezer": "deezer://track/88877229",
       "uri_apple_music": "applemusic://track/163292982",
-      "fun_fact_it": "«Como una Estrella» di Víctor Manuelle, pubblicata per la prima volta nel 1996 nell'album «Leyendas: Salsa Romántica»."
+      "fun_fact_it": "«Como una Estrella» di Víctor Manuelle, pubblicata per la prima volta nel 1996 nell'album «Leyendas: Salsa Romántica».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VVVz702mcsE"
     },
     {
       "year": 1996,
@@ -653,7 +683,8 @@
       "fun_fact_nl": "\"Por Ella\" van Víctor Manuelle, voor het eerst uitgebracht in 1996 op het album \"Sólo para Mujeres\".",
       "uri_deezer": "deezer://track/81827772",
       "uri_apple_music": "applemusic://track/378827887",
-      "fun_fact_it": "«Por Ella» di Víctor Manuelle, pubblicata per la prima volta nel 1996 nell'album «Sólo para Mujeres»."
+      "fun_fact_it": "«Por Ella» di Víctor Manuelle, pubblicata per la prima volta nel 1996 nell'album «Sólo para Mujeres».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=byPLdfRTuKw"
     },
     {
       "year": 1995,
@@ -668,7 +699,8 @@
       "fun_fact_nl": "\"Hay Que Poner el Alma\" van Víctor Manuelle, voor het eerst uitgebracht in 1995 op het album \"Mis Favoritas\".",
       "uri_deezer": "deezer://track/6237237",
       "uri_apple_music": "applemusic://track/163292265",
-      "fun_fact_it": "«Hay Que Poner el Alma» di Víctor Manuelle, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas»."
+      "fun_fact_it": "«Hay Que Poner el Alma» di Víctor Manuelle, pubblicata per la prima volta nel 1995 nell'album «Mis Favoritas».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u5GUw2N6t-E"
     },
     {
       "year": 1999,
@@ -683,7 +715,8 @@
       "fun_fact_nl": "\"Si la Ves - Salsa Version\" van Víctor Manuelle, voor het eerst uitgebracht in 1999.",
       "uri_apple_music": "applemusic://track/1140336688",
       "uri_deezer": "deezer://track/13230013",
-      "fun_fact_it": "«Si la Ves - Salsa Version» di Víctor Manuelle, pubblicata per la prima volta nel 1999."
+      "fun_fact_it": "«Si la Ves - Salsa Version» di Víctor Manuelle, pubblicata per la prima volta nel 1999.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o9EtYnA-kwY"
     },
     {
       "year": 1997,
@@ -698,7 +731,8 @@
       "fun_fact_nl": "\"Dile a Ella\" van Víctor Manuelle, voor het eerst uitgebracht in 1997 op het album \"A Pesar De Todo\".",
       "uri_deezer": "deezer://track/13243155",
       "uri_apple_music": "applemusic://track/161698940",
-      "fun_fact_it": "«Dile a Ella» di Víctor Manuelle, pubblicata per la prima volta nel 1997 nell'album «A Pesar De Todo»."
+      "fun_fact_it": "«Dile a Ella» di Víctor Manuelle, pubblicata per la prima volta nel 1997 nell'album «A Pesar De Todo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ijkao2n_UdM"
     },
     {
       "year": 1998,
@@ -713,7 +747,8 @@
       "fun_fact_nl": "\"Qué Habría Sido de Mí - Radio Version\" van Víctor Manuelle, voor het eerst uitgebracht in 1998.",
       "uri_apple_music": "applemusic://track/161699762",
       "uri_deezer": "deezer://track/130010946",
-      "fun_fact_it": "«Qué Habría Sido de Mí - Radio Version» di Víctor Manuelle, pubblicata per la prima volta nel 1998."
+      "fun_fact_it": "«Qué Habría Sido de Mí - Radio Version» di Víctor Manuelle, pubblicata per la prima volta nel 1998.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qcPxKEJvMwE"
     },
     {
       "year": 1998,
@@ -728,7 +763,8 @@
       "fun_fact_nl": "\"Se Me Rompe el Alma\" van Víctor Manuelle, voor het eerst uitgebracht in 1998 op het album \"Sólo para Mujeres\".",
       "uri_deezer": "deezer://track/81827792",
       "uri_apple_music": "applemusic://track/161699705",
-      "fun_fact_it": "«Se Me Rompe el Alma» di Víctor Manuelle, pubblicata per la prima volta nel 1998 nell'album «Sólo para Mujeres»."
+      "fun_fact_it": "«Se Me Rompe el Alma» di Víctor Manuelle, pubblicata per la prima volta nel 1998 nell'album «Sólo para Mujeres».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lm-R1vQSOuI"
     },
     {
       "year": 1996,
@@ -743,7 +779,8 @@
       "fun_fact_nl": "\"La Razón de Mi Vida\" van Víctor Manuelle, voor het eerst uitgebracht in 1996 op het album \"Dos Clásicos\".",
       "uri_deezer": "deezer://track/10066268",
       "uri_apple_music": "applemusic://track/163348126",
-      "fun_fact_it": "«La Razón de Mi Vida» di Víctor Manuelle, pubblicata per la prima volta nel 1996 nell'album «Dos Clásicos»."
+      "fun_fact_it": "«La Razón de Mi Vida» di Víctor Manuelle, pubblicata per la prima volta nel 1996 nell'album «Dos Clásicos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T7iD3qFxHKg"
     },
     {
       "year": 2000,
@@ -758,7 +795,8 @@
       "fun_fact_nl": "\"Lloré Lloré\" van Víctor Manuelle, voor het eerst uitgebracht in 2000 op het album \"Victor Manuelle Desde El Carnegie Hall\".",
       "uri_deezer": "deezer://track/13269840",
       "uri_apple_music": "applemusic://track/163349441",
-      "fun_fact_it": "«Lloré Lloré» di Víctor Manuelle, pubblicata per la prima volta nel 2000 nell'album «Victor Manuelle Desde El Carnegie Hall»."
+      "fun_fact_it": "«Lloré Lloré» di Víctor Manuelle, pubblicata per la prima volta nel 2000 nell'album «Victor Manuelle Desde El Carnegie Hall».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BxU6uBqn-K4"
     },
     {
       "year": 1998,
@@ -773,7 +811,8 @@
       "fun_fact_nl": "\"La Dueña de Mis Amores\" van Víctor Manuelle, voor het eerst uitgebracht in 1998 op het album \"Oro Salsero\".",
       "uri_deezer": "deezer://track/13243144",
       "uri_apple_music": "applemusic://track/903158334",
-      "fun_fact_it": "«La Dueña de Mis Amores» di Víctor Manuelle, pubblicata per la prima volta nel 1998 nell'album «Oro Salsero»."
+      "fun_fact_it": "«La Dueña de Mis Amores» di Víctor Manuelle, pubblicata per la prima volta nel 1998 nell'album «Oro Salsero».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3r2J9tZ8Lqc"
     },
     {
       "year": 1993,
@@ -788,7 +827,8 @@
       "fun_fact_nl": "\"No Hace Falta Nada\" van Víctor Manuelle, voor het eerst uitgebracht in 1993 op het album \"Sólo para Mujeres\".",
       "uri_deezer": "deezer://track/81827804",
       "uri_apple_music": "applemusic://track/163347834",
-      "fun_fact_it": "«No Hace Falta Nada» di Víctor Manuelle, pubblicata per la prima volta nel 1993 nell'album «Sólo para Mujeres»."
+      "fun_fact_it": "«No Hace Falta Nada» di Víctor Manuelle, pubblicata per la prima volta nel 1993 nell'album «Sólo para Mujeres».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NDIMnytk04w"
     },
     {
       "year": 2004,
@@ -803,7 +843,8 @@
       "fun_fact_nl": "\"Fabricando Fantasías\" van Tito Nieves, voor het eerst uitgebracht in 2004 op het album \"Noches Latinas 3\".",
       "uri_deezer": "deezer://track/1255471942",
       "uri_apple_music": "applemusic://track/1444166379",
-      "fun_fact_it": "«Fabricando Fantasías» di Tito Nieves, pubblicata per la prima volta nel 2004 nell'album «Noches Latinas 3»."
+      "fun_fact_it": "«Fabricando Fantasías» di Tito Nieves, pubblicata per la prima volta nel 2004 nell'album «Noches Latinas 3».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s3fcKFQukbY"
     },
     {
       "year": 2004,
@@ -818,7 +859,8 @@
       "fun_fact_nl": "\"Ya no Queda Nada\" van Tito Nieves, voor het eerst uitgebracht in 2004 op het album \"Imprescindibles de la Salsa\".",
       "uri_deezer": "deezer://track/1028496972",
       "uri_apple_music": "applemusic://track/1444166556",
-      "fun_fact_it": "«Ya no Queda Nada» di Tito Nieves, pubblicata per la prima volta nel 2004 nell'album «Imprescindibles de la Salsa»."
+      "fun_fact_it": "«Ya no Queda Nada» di Tito Nieves, pubblicata per la prima volta nel 2004 nell'album «Imprescindibles de la Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=r-hUwNYdByg"
     },
     {
       "year": 2002,
@@ -833,7 +875,8 @@
       "fun_fact_nl": "\"La Salsa Vive\" van Tito Nieves, voor het eerst uitgebracht in 2002 op het album \"Muy Agradecido\".",
       "uri_deezer": "deezer://track/3867322",
       "uri_apple_music": "applemusic://track/42234488",
-      "fun_fact_it": "«La Salsa Vive» di Tito Nieves, pubblicata per la prima volta nel 2002 nell'album «Muy Agradecido»."
+      "fun_fact_it": "«La Salsa Vive» di Tito Nieves, pubblicata per la prima volta nel 2002 nell'album «Muy Agradecido».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uKIkEeS79EM"
     },
     {
       "year": 2006,
@@ -848,7 +891,8 @@
       "fun_fact_nl": "\"Mas Que Tu Amigo\" van Tito Nieves, voor het eerst uitgebracht in 2006 op het album \"La Mejor Pareja\".",
       "uri_deezer": "deezer://track/127675263",
       "uri_apple_music": "applemusic://track/1443532721",
-      "fun_fact_it": "«Mas Que Tu Amigo» di Tito Nieves, pubblicata per la prima volta nel 2006 nell'album «La Mejor Pareja»."
+      "fun_fact_it": "«Mas Que Tu Amigo» di Tito Nieves, pubblicata per la prima volta nel 2006 nell'album «La Mejor Pareja».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hEBlpc3U1W0"
     },
     {
       "year": 1990,
@@ -863,7 +907,8 @@
       "fun_fact_nl": "\"De Mí Enamórate\" van Tito Nieves, voor het eerst uitgebracht in 1990 op het album \"Pura Salsa\".",
       "uri_deezer": "deezer://track/16670365",
       "uri_apple_music": "applemusic://track/1443898355",
-      "fun_fact_it": "«De Mí Enamórate» di Tito Nieves, pubblicata per la prima volta nel 1990 nell'album «Pura Salsa»."
+      "fun_fact_it": "«De Mí Enamórate» di Tito Nieves, pubblicata per la prima volta nel 1990 nell'album «Pura Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pQXol38PU00"
     },
     {
       "year": 1991,
@@ -878,7 +923,8 @@
       "fun_fact_nl": "\"Sonámbulo\" van Tito Nieves, voor het eerst uitgebracht in 1991 op het album \"Salsa\".",
       "uri_deezer": "deezer://track/1167157",
       "uri_apple_music": "applemusic://track/1825451969",
-      "fun_fact_it": "«Sonámbulo» di Tito Nieves, pubblicata per la prima volta nel 1991 nell'album «Salsa»."
+      "fun_fact_it": "«Sonámbulo» di Tito Nieves, pubblicata per la prima volta nel 1991 nell'album «Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eWWpL7OrLos"
     },
     {
       "year": 1984,
@@ -893,7 +939,8 @@
       "fun_fact_nl": "\"La Cura\" van Frankie Ruiz, voor het eerst uitgebracht in 1984 op het album \"Serie Platino: Frankie Ruíz\".",
       "uri_deezer": "deezer://track/528330321",
       "uri_apple_music": "applemusic://track/1445571965",
-      "fun_fact_it": "«La Cura» di Frankie Ruiz, pubblicata per la prima volta nel 1984 nell'album «Serie Platino: Frankie Ruíz»."
+      "fun_fact_it": "«La Cura» di Frankie Ruiz, pubblicata per la prima volta nel 1984 nell'album «Serie Platino: Frankie Ruíz».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FLZqzmwdPGQ"
     },
     {
       "year": 1984,
@@ -908,7 +955,8 @@
       "fun_fact_nl": "\"Desnúdate Mujer\" van Frankie Ruiz, voor het eerst uitgebracht in 1984 op het album \"Tú Me Vuelves Loco (Baile Total)\".",
       "uri_deezer": "deezer://track/429987872",
       "uri_apple_music": "applemusic://track/1443820787",
-      "fun_fact_it": "«Desnúdate Mujer» di Frankie Ruiz, pubblicata per la prima volta nel 1984 nell'album «Tú Me Vuelves Loco (Baile Total)»."
+      "fun_fact_it": "«Desnúdate Mujer» di Frankie Ruiz, pubblicata per la prima volta nel 1984 nell'album «Tú Me Vuelves Loco (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H5gxKL5pmI4"
     },
     {
       "year": 1979,
@@ -939,7 +987,8 @@
       "fun_fact_nl": "\"Tú Con Él\" van Frankie Ruiz, voor het eerst uitgebracht in 1985 op het album \"Tú Me Vuelves Loco (Baile Total)\".",
       "uri_deezer": "deezer://track/429987882",
       "uri_apple_music": "applemusic://track/1445571967",
-      "fun_fact_it": "«Tú Con Él» di Frankie Ruiz, pubblicata per la prima volta nel 1985 nell'album «Tú Me Vuelves Loco (Baile Total)»."
+      "fun_fact_it": "«Tú Con Él» di Frankie Ruiz, pubblicata per la prima volta nel 1985 nell'album «Tú Me Vuelves Loco (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-bSHeU_HRVk"
     },
     {
       "year": 1993,
@@ -954,7 +1003,8 @@
       "fun_fact_nl": "\"Tú Me Vuelves Loco\" van Frankie Ruiz, voor het eerst uitgebracht in 1993 op het album \"Salsa Legends (Los Románticos Vol.2)\".",
       "uri_deezer": "deezer://track/129635806",
       "uri_apple_music": "applemusic://track/1443820805",
-      "fun_fact_it": "«Tú Me Vuelves Loco» di Frankie Ruiz, pubblicata per la prima volta nel 1993 nell'album «Salsa Legends (Los Románticos Vol.2)»."
+      "fun_fact_it": "«Tú Me Vuelves Loco» di Frankie Ruiz, pubblicata per la prima volta nel 1993 nell'album «Salsa Legends (Los Románticos Vol.2)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sQF24b8EirY"
     },
     {
       "year": 1992,
@@ -969,7 +1019,8 @@
       "fun_fact_nl": "\"Bailando\" van Frankie Ruiz, voor het eerst uitgebracht in 1992 op het album \"El Papá De La Salsa\".",
       "uri_deezer": "deezer://track/750116052",
       "uri_apple_music": "applemusic://track/1478922477",
-      "fun_fact_it": "«Bailando» di Frankie Ruiz, pubblicata per la prima volta nel 1992 nell'album «El Papá De La Salsa»."
+      "fun_fact_it": "«Bailando» di Frankie Ruiz, pubblicata per la prima volta nel 1992 nell'album «El Papá De La Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oYMz7_S9Zas"
     },
     {
       "year": 1987,
@@ -984,7 +1035,8 @@
       "fun_fact_nl": "\"Quiero Llenarte\" van Frankie Ruiz, voor het eerst uitgebracht in 1987 op het album \"Show\".",
       "uri_deezer": "deezer://track/769774552",
       "uri_apple_music": "applemusic://track/1612351889",
-      "fun_fact_it": "«Quiero Llenarte» di Frankie Ruiz, pubblicata per la prima volta nel 1987 nell'album «Show»."
+      "fun_fact_it": "«Quiero Llenarte» di Frankie Ruiz, pubblicata per la prima volta nel 1987 nell'album «Show».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FQ85H89g9dM"
     },
     {
       "year": 1989,
@@ -999,7 +1051,8 @@
       "fun_fact_nl": "\"Deseándote\" van Frankie Ruiz, voor het eerst uitgebracht in 1989 op het album \"Show\".",
       "uri_deezer": "deezer://track/769774502",
       "uri_apple_music": "applemusic://track/1443758872",
-      "fun_fact_it": "«Deseándote» di Frankie Ruiz, pubblicata per la prima volta nel 1989 nell'album «Show»."
+      "fun_fact_it": "«Deseándote» di Frankie Ruiz, pubblicata per la prima volta nel 1989 nell'album «Show».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DkfIXSg4Jv8"
     },
     {
       "year": 1992,
@@ -1014,7 +1067,8 @@
       "fun_fact_nl": "\"Mi Libertad\" van Frankie Ruiz, voor het eerst uitgebracht in 1992 op het album \"Tú Me Vuelves Loco (Baile Total)\".",
       "uri_deezer": "deezer://track/429987912",
       "uri_apple_music": "applemusic://track/1443821176",
-      "fun_fact_it": "«Mi Libertad» di Frankie Ruiz, pubblicata per la prima volta nel 1992 nell'album «Tú Me Vuelves Loco (Baile Total)»."
+      "fun_fact_it": "«Mi Libertad» di Frankie Ruiz, pubblicata per la prima volta nel 1992 nell'album «Tú Me Vuelves Loco (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-VuPAychkn8"
     },
     {
       "year": 1996,
@@ -1029,7 +1083,8 @@
       "fun_fact_nl": "\"Ironía\" van Frankie Ruiz, voor het eerst uitgebracht in 1996 op het album \"Ironia\".",
       "uri_deezer": "deezer://track/1976240437",
       "uri_apple_music": "applemusic://track/1443867601",
-      "fun_fact_it": "«Ironía» di Frankie Ruiz, pubblicata per la prima volta nel 1996 nell'album «Ironia»."
+      "fun_fact_it": "«Ironía» di Frankie Ruiz, pubblicata per la prima volta nel 1996 nell'album «Ironia».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qJjios9fgdY"
     },
     {
       "year": 2005,
@@ -1044,7 +1099,8 @@
       "fun_fact_nl": "\"Devorame Otra Vez\" van Eddie Santiago, voor het eerst uitgebracht in 2005 op het album \"Salsa Hits, Vol.1\".",
       "uri_deezer": "deezer://track/481584672",
       "uri_apple_music": "applemusic://track/1445663988",
-      "fun_fact_it": "«Devorame Otra Vez» di Eddie Santiago, pubblicata per la prima volta nel 2005 nell'album «Salsa Hits, Vol.1»."
+      "fun_fact_it": "«Devorame Otra Vez» di Eddie Santiago, pubblicata per la prima volta nel 2005 nell'album «Salsa Hits, Vol.1».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s_tLBRheoxQ"
     },
     {
       "year": 1986,
@@ -1059,7 +1115,8 @@
       "fun_fact_nl": "\"Tu Me Quemas\" van Eddie Santiago, voor het eerst uitgebracht in 1986 op het album \"Lluvia (Baile Total)\".",
       "uri_deezer": "deezer://track/429989542",
       "uri_apple_music": "applemusic://track/1443749129",
-      "fun_fact_it": "«Tu Me Quemas» di Eddie Santiago, pubblicata per la prima volta nel 1986 nell'album «Lluvia (Baile Total)»."
+      "fun_fact_it": "«Tu Me Quemas» di Eddie Santiago, pubblicata per la prima volta nel 1986 nell'album «Lluvia (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ANDlaoIK2Dw"
     },
     {
       "year": 1993,
@@ -1074,7 +1131,8 @@
       "fun_fact_nl": "\"Jamás\" van Eddie Santiago, voor het eerst uitgebracht in 1993.",
       "uri_deezer": "deezer://track/4164346",
       "uri_apple_music": "applemusic://track/714791244",
-      "fun_fact_it": "«Jamás» di Eddie Santiago, pubblicata per la prima volta nel 1993."
+      "fun_fact_it": "«Jamás» di Eddie Santiago, pubblicata per la prima volta nel 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uQtNdRGj58Y"
     },
     {
       "year": 1987,
@@ -1089,7 +1147,8 @@
       "fun_fact_nl": "\"Lluvia\" van Eddie Santiago, voor het eerst uitgebracht in 1987 op het album \"Lluvia (Baile Total)\".",
       "uri_deezer": "deezer://track/429989512",
       "uri_apple_music": "applemusic://track/1622431614",
-      "fun_fact_it": "«Lluvia» di Eddie Santiago, pubblicata per la prima volta nel 1987 nell'album «Lluvia (Baile Total)»."
+      "fun_fact_it": "«Lluvia» di Eddie Santiago, pubblicata per la prima volta nel 1987 nell'album «Lluvia (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L-AushSSq2I"
     },
     {
       "year": 1999,
@@ -1104,7 +1163,8 @@
       "fun_fact_nl": "\"Te Va a Doler\" van Maelo Ruiz, voor het eerst uitgebracht in 1999 op het album \"En Tiempo De Amor\".",
       "uri_deezer": "deezer://track/11108508",
       "uri_apple_music": "applemusic://track/1714488734",
-      "fun_fact_it": "«Te Va a Doler» di Maelo Ruiz, pubblicata per la prima volta nel 1999 nell'album «En Tiempo De Amor»."
+      "fun_fact_it": "«Te Va a Doler» di Maelo Ruiz, pubblicata per la prima volta nel 1999 nell'album «En Tiempo De Amor».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AiedUZWxGtA"
     },
     {
       "year": 1990,
@@ -1822,7 +1882,8 @@
       "fun_fact_nl": "\"Cali de Rumba\" van Fruko Y Sus Tesos, voor het eerst uitgebracht in 2000 op het album \"Cali de Rumba Con Sabor a Salsa\".",
       "uri_deezer": "deezer://track/131108996",
       "uri_apple_music": "applemusic://track/278850902",
-      "fun_fact_it": "«Cali de Rumba» di Fruko Y Sus Tesos, pubblicata per la prima volta nel 2000 nell'album «Cali de Rumba Con Sabor a Salsa»."
+      "fun_fact_it": "«Cali de Rumba» di Fruko Y Sus Tesos, pubblicata per la prima volta nel 2000 nell'album «Cali de Rumba Con Sabor a Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xIbmFMQiKhY"
     },
     {
       "year": 1987,
@@ -1837,7 +1898,8 @@
       "fun_fact_nl": "\"Charanga Campesina\" van Fruko Y Sus Tesos, voor het eerst uitgebracht in 1987 op het album \"Música Tropical de Colombia, Vol. 9\".",
       "uri_deezer": "deezer://track/113029380",
       "uri_apple_music": "applemusic://track/1884031865",
-      "fun_fact_it": "«Charanga Campesina» di Fruko Y Sus Tesos, pubblicata per la prima volta nel 1987 nell'album «Música Tropical de Colombia, Vol. 9»."
+      "fun_fact_it": "«Charanga Campesina» di Fruko Y Sus Tesos, pubblicata per la prima volta nel 1987 nell'album «Música Tropical de Colombia, Vol. 9».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N4_jhVJ_MJo"
     },
     {
       "year": 1975,
@@ -1852,7 +1914,8 @@
       "fun_fact_nl": "\"Las Caleñas Son Como Las Flores\" van The Latin Brothers, voor het eerst uitgebracht in 1975 op het album \"Narcos, Vol. 2 (More Music from the Netflix Original Series)\".",
       "uri_deezer": "deezer://track/130871026",
       "uri_apple_music": "applemusic://track/203977513",
-      "fun_fact_it": "«Las Caleñas Son Como Las Flores» di The Latin Brothers, pubblicata per la prima volta nel 1975 nell'album «Narcos, Vol. 2 (More Music from the Netflix Original Series)»."
+      "fun_fact_it": "«Las Caleñas Son Como Las Flores» di The Latin Brothers, pubblicata per la prima volta nel 1975 nell'album «Narcos, Vol. 2 (More Music from the Netflix Original Series)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=og7AUouppxA"
     },
     {
       "year": 1978,
@@ -1867,7 +1930,8 @@
       "fun_fact_nl": "\"Sobre Las Olas\" van The Latin Brothers, voor het eerst uitgebracht in 1978 op het album \"The Latin Brothers (2025 Remasterizado)\".",
       "uri_deezer": "deezer://track/3262851311",
       "uri_apple_music": "applemusic://track/14948214",
-      "fun_fact_it": "«Sobre Las Olas» di The Latin Brothers, pubblicata per la prima volta nel 1978 nell'album «The Latin Brothers (2025 Remasterizado)»."
+      "fun_fact_it": "«Sobre Las Olas» di The Latin Brothers, pubblicata per la prima volta nel 1978 nell'album «The Latin Brothers (2025 Remasterizado)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dR7PRs1YUhM"
     },
     {
       "year": 1965,
@@ -1882,7 +1946,8 @@
       "fun_fact_nl": "\"Dime Que Paso\" van The Latin Brothers, voor het eerst uitgebracht in 1965 op het album \"La Salsa: Identidad de un Pueblo, Vol. 5 Expresión Rumbera\".",
       "uri_deezer": "deezer://track/132093100",
       "uri_apple_music": "applemusic://track/14948217",
-      "fun_fact_it": "«Dime Que Paso» di The Latin Brothers, pubblicata per la prima volta nel 1965 nell'album «La Salsa: Identidad de un Pueblo, Vol. 5 Expresión Rumbera»."
+      "fun_fact_it": "«Dime Que Paso» di The Latin Brothers, pubblicata per la prima volta nel 1965 nell'album «La Salsa: Identidad de un Pueblo, Vol. 5 Expresión Rumbera».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KuE9cBqnPa0"
     },
     {
       "year": 1972,
@@ -1929,7 +1994,8 @@
       "fun_fact_nl": "\"La Comay\" van Sonora Carruseles, voor het eerst uitgebracht in 1998 op het album \"Al Son de los Cueros\".",
       "uri_deezer": "deezer://track/113014916",
       "uri_apple_music": "applemusic://track/218874432",
-      "fun_fact_it": "«La Comay» di Sonora Carruseles, pubblicata per la prima volta nel 1998 nell'album «Al Son de los Cueros»."
+      "fun_fact_it": "«La Comay» di Sonora Carruseles, pubblicata per la prima volta nel 1998 nell'album «Al Son de los Cueros».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YIHF3UjtFt4"
     },
     {
       "year": 2006,
@@ -1944,7 +2010,8 @@
       "fun_fact_nl": "\"La Negra Baila Sabroso\" van Sonora Carruseles, voor het eerst uitgebracht in 2006 op het album \"Latino 55 - Salsa Bachata Merengue Reggaeton (Latin Hits)\".",
       "uri_deezer": "deezer://track/828361142",
       "uri_apple_music": "applemusic://track/1052291817",
-      "fun_fact_it": "«La Negra Baila Sabroso» di Sonora Carruseles, pubblicata per la prima volta nel 2006 nell'album «Latino 55 - Salsa Bachata Merengue Reggaeton (Latin Hits)»."
+      "fun_fact_it": "«La Negra Baila Sabroso» di Sonora Carruseles, pubblicata per la prima volta nel 2006 nell'album «Latino 55 - Salsa Bachata Merengue Reggaeton (Latin Hits)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ks2ruqEbBwg"
     },
     {
       "year": 2000,
@@ -2023,7 +2090,8 @@
       "fun_fact_nl": "\"Guantanamera\" van Celia Cruz, voor het eerst uitgebracht in 1965.",
       "uri_deezer": "deezer://track/98373878",
       "uri_apple_music": "applemusic://track/1467841714",
-      "fun_fact_it": "«Guantanamera» di Celia Cruz, pubblicata per la prima volta nel 1965."
+      "fun_fact_it": "«Guantanamera» di Celia Cruz, pubblicata per la prima volta nel 1965.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9jaoXKpi7N4"
     },
     {
       "year": 1972,
@@ -2038,7 +2106,8 @@
       "fun_fact_nl": "\"Salsa Y Sabor\" van Tito Puente, voor het eerst uitgebracht in 1972 op het album \"Para los Rumberos\".",
       "uri_deezer": "deezer://track/688275892",
       "uri_apple_music": "applemusic://track/1678886676",
-      "fun_fact_it": "«Salsa Y Sabor» di Tito Puente, pubblicata per la prima volta nel 1972 nell'album «Para los Rumberos»."
+      "fun_fact_it": "«Salsa Y Sabor» di Tito Puente, pubblicata per la prima volta nel 1972 nell'album «Para los Rumberos».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zZQh4IL7unM"
     },
     {
       "year": 1964,
@@ -2053,7 +2122,8 @@
       "fun_fact_nl": "\"Ran Kan Kan\" van Tito Puente, voor het eerst uitgebracht in 1964 op het album \"Mambo & Salsa Hits\".",
       "uri_deezer": "deezer://track/1456124472",
       "uri_apple_music": "applemusic://track/1464267065",
-      "fun_fact_it": "«Ran Kan Kan» di Tito Puente, pubblicata per la prima volta nel 1964 nell'album «Mambo & Salsa Hits»."
+      "fun_fact_it": "«Ran Kan Kan» di Tito Puente, pubblicata per la prima volta nel 1964 nell'album «Mambo & Salsa Hits».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9LDea8s4yZE"
     },
     {
       "year": 1957,
@@ -2068,7 +2138,8 @@
       "fun_fact_nl": "\"Mambo Gozon\" van Tito Puente, voor het eerst uitgebracht in 1957 op het album \"Dance Mania (Legacy Edition)\".",
       "uri_deezer": "deezer://track/3571275",
       "uri_apple_music": "applemusic://track/570825684",
-      "fun_fact_it": "«Mambo Gozon» di Tito Puente, pubblicata per la prima volta nel 1957 nell'album «Dance Mania (Legacy Edition)»."
+      "fun_fact_it": "«Mambo Gozon» di Tito Puente, pubblicata per la prima volta nel 1957 nell'album «Dance Mania (Legacy Edition)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=adQq8ZGLUjM"
     },
     {
       "year": 1971,
@@ -2099,7 +2170,8 @@
       "fun_fact_nl": "\"Amada Mia\" van Cheo Feliciano, voor het eerst uitgebracht in 1980 op het album \"Romántico\".",
       "uri_deezer": "deezer://track/686074322",
       "uri_apple_music": "applemusic://track/1464284237",
-      "fun_fact_it": "«Amada Mia» di Cheo Feliciano, pubblicata per la prima volta nel 1980 nell'album «Romántico»."
+      "fun_fact_it": "«Amada Mia» di Cheo Feliciano, pubblicata per la prima volta nel 1980 nell'album «Romántico».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T7jN9P5Euyk"
     },
     {
       "year": 1975,
@@ -2130,7 +2202,8 @@
       "fun_fact_nl": "\"Tu Cariñito\" van Luisito Ayala Y La Puerto Rican Power, voor het eerst uitgebracht in 2004 op het album \"Men in Salsa\".",
       "uri_deezer": "deezer://track/10963411",
       "uri_apple_music": "applemusic://track/1791778078",
-      "fun_fact_it": "«Tu Cariñito» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2004 nell'album «Men in Salsa»."
+      "fun_fact_it": "«Tu Cariñito» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2004 nell'album «Men in Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Me7ozJA7cwQ"
     },
     {
       "year": 2008,
@@ -2161,7 +2234,8 @@
       "fun_fact_nl": "\"A Donde Iras\" van Luisito Ayala Y La Puerto Rican Power, voor het eerst uitgebracht in 1998.",
       "uri_deezer": "deezer://track/61025739",
       "uri_apple_music": "applemusic://track/1791778073",
-      "fun_fact_it": "«A Donde Iras» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 1998."
+      "fun_fact_it": "«A Donde Iras» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 1998.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ouAkUrbyBB8"
     },
     {
       "year": 2004,
@@ -2176,7 +2250,8 @@
       "fun_fact_nl": "\"Me Tiene Loco\" van Luisito Ayala Y La Puerto Rican Power, voor het eerst uitgebracht in 2004.",
       "uri_deezer": "deezer://track/61025736",
       "uri_apple_music": "applemusic://track/22048041",
-      "fun_fact_it": "«Me Tiene Loco» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2004."
+      "fun_fact_it": "«Me Tiene Loco» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2004.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=otmFvEL3Xes"
     },
     {
       "year": 2008,
@@ -2191,7 +2266,8 @@
       "fun_fact_nl": "\"Pena De Amor\" van Luisito Ayala Y La Puerto Rican Power, voor het eerst uitgebracht in 2008.",
       "uri_deezer": "deezer://track/14219831",
       "uri_apple_music": "applemusic://track/22048038",
-      "fun_fact_it": "«Pena De Amor» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2008."
+      "fun_fact_it": "«Pena De Amor» di Luisito Ayala Y La Puerto Rican Power, pubblicata per la prima volta nel 2008.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=odmsfuWwa78"
     },
     {
       "year": 2006,
@@ -2238,7 +2314,8 @@
       "fun_fact_nl": "\"Nuestro Sueño\" van Tito Gomez, voor het eerst uitgebracht in 2007 op het album \"Un Legado Musical - Lo Nuevo y Lo Mejor\".",
       "uri_deezer": "deezer://track/11146570",
       "uri_apple_music": "applemusic://track/1711899359",
-      "fun_fact_it": "«Nuestro Sueño» di Tito Gomez, pubblicata per la prima volta nel 2007 nell'album «Un Legado Musical - Lo Nuevo y Lo Mejor»."
+      "fun_fact_it": "«Nuestro Sueño» di Tito Gomez, pubblicata per la prima volta nel 2007 nell'album «Un Legado Musical - Lo Nuevo y Lo Mejor».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G3IPdeIjfcg"
     },
     {
       "year": 1988,
@@ -2253,7 +2330,8 @@
       "fun_fact_nl": "\"Casi Te Envidio\" van Andy Montañez, voor het eerst uitgebracht in 1988 op het album \"Rumbo al Caribe, La Llegada de la Salsa Romántica\".",
       "uri_deezer": "deezer://track/123362694",
       "uri_apple_music": "applemusic://track/1444011481",
-      "fun_fact_it": "«Casi Te Envidio» di Andy Montañez, pubblicata per la prima volta nel 1988 nell'album «Rumbo al Caribe, La Llegada de la Salsa Romántica»."
+      "fun_fact_it": "«Casi Te Envidio» di Andy Montañez, pubblicata per la prima volta nel 1988 nell'album «Rumbo al Caribe, La Llegada de la Salsa Romántica».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mScG_BVjM0g"
     },
     {
       "year": 1985,
@@ -2268,7 +2346,8 @@
       "fun_fact_nl": "\"Payaso\" van Andy Montañez, voor het eerst uitgebracht in 1985 op het album \"Payaso (Baile Total)\".",
       "uri_deezer": "deezer://track/429985712",
       "uri_apple_music": "applemusic://track/1444011478",
-      "fun_fact_it": "«Payaso» di Andy Montañez, pubblicata per la prima volta nel 1985 nell'album «Payaso (Baile Total)»."
+      "fun_fact_it": "«Payaso» di Andy Montañez, pubblicata per la prima volta nel 1985 nell'album «Payaso (Baile Total)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5xc1iYoniXo"
     },
     {
       "year": 1997,
@@ -2315,7 +2394,8 @@
       "fun_fact_nl": "\"Invierno En Primavera\" van Guayacán Orquesta, voor het eerst uitgebracht in 1990 op het album \"30 Años de Gala\".",
       "uri_deezer": "deezer://track/2683393092",
       "uri_apple_music": "applemusic://track/1444164161",
-      "fun_fact_it": "«Invierno En Primavera» di Guayacán Orquesta, pubblicata per la prima volta nel 1990 nell'album «30 Años de Gala»."
+      "fun_fact_it": "«Invierno En Primavera» di Guayacán Orquesta, pubblicata per la prima volta nel 1990 nell'album «30 Años de Gala».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kvKlbIqqPHA"
     },
     {
       "year": 1990,
@@ -2346,7 +2426,8 @@
       "fun_fact_nl": "\"Maria Teresa y Danilo\" van Hansel Y Raul, voor het eerst uitgebracht in 1985.",
       "uri_deezer": "deezer://track/13244918",
       "uri_apple_music": "applemusic://track/321384223",
-      "fun_fact_it": "«Maria Teresa y Danilo» di Hansel Y Raul, pubblicata per la prima volta nel 1985."
+      "fun_fact_it": "«Maria Teresa y Danilo» di Hansel Y Raul, pubblicata per la prima volta nel 1985.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=d6HgXyQuNGo"
     },
     {
       "year": 1980,
@@ -2361,7 +2442,8 @@
       "fun_fact_nl": "\"Sobredosis\" van Los Titanes, voor het eerst uitgebracht in 1980 op het album \"Sobredosis de Amor - Salsa\".",
       "uri_deezer": "deezer://track/4022316331",
       "uri_apple_music": "applemusic://track/33912024",
-      "fun_fact_it": "«Sobredosis» di Los Titanes, pubblicata per la prima volta nel 1980 nell'album «Sobredosis de Amor - Salsa»."
+      "fun_fact_it": "«Sobredosis» di Los Titanes, pubblicata per la prima volta nel 1980 nell'album «Sobredosis de Amor - Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JLwmBfrbYR4"
     },
     {
       "year": 1988,
@@ -2376,7 +2458,8 @@
       "fun_fact_nl": "\"Zodiaco\" van Los Titanes, voor het eerst uitgebracht in 1988.",
       "uri_deezer": "deezer://track/112972816",
       "uri_apple_music": "applemusic://track/33911944",
-      "fun_fact_it": "«Zodiaco» di Los Titanes, pubblicata per la prima volta nel 1988."
+      "fun_fact_it": "«Zodiaco» di Los Titanes, pubblicata per la prima volta nel 1988.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xJC_aXKymSU"
     },
     {
       "year": 2013,
@@ -2391,7 +2474,8 @@
       "fun_fact_nl": "\"Vivir Mi Vida\" van Marc Anthony, voor het eerst uitgebracht in 2013 op het album \"3.0\".",
       "uri_deezer": "deezer://track/68771815",
       "uri_apple_music": "applemusic://track/668743167",
-      "fun_fact_it": "«Vivir Mi Vida» di Marc Anthony, pubblicata per la prima volta nel 2013 nell'album «3.0»."
+      "fun_fact_it": "«Vivir Mi Vida» di Marc Anthony, pubblicata per la prima volta nel 2013 nell'album «3.0».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YXnjy5YlDwk"
     },
     {
       "year": 2004,
@@ -2406,7 +2490,8 @@
       "fun_fact_nl": "\"Valió la Pena - Salsa Version\" van Marc Anthony, voor het eerst uitgebracht in 2004 op het album \"Valio La Pena\".",
       "uri_deezer": "deezer://track/15050441",
       "uri_apple_music": "applemusic://track/201265571",
-      "fun_fact_it": "«Valió la Pena - Salsa Version» di Marc Anthony, pubblicata per la prima volta nel 2004 nell'album «Valio La Pena»."
+      "fun_fact_it": "«Valió la Pena - Salsa Version» di Marc Anthony, pubblicata per la prima volta nel 2004 nell'album «Valio La Pena».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ns9YYSqLxyI"
     },
     {
       "year": 2004,
@@ -2421,7 +2506,8 @@
       "fun_fact_nl": "\"Ahora Quien - Salsa Version\" van Marc Anthony, voor het eerst uitgebracht in 2004 op het album \"Valio La Pena\".",
       "uri_deezer": "deezer://track/15050443",
       "uri_apple_music": "applemusic://track/1756636591",
-      "fun_fact_it": "«Ahora Quien - Salsa Version» di Marc Anthony, pubblicata per la prima volta nel 2004 nell'album «Valio La Pena»."
+      "fun_fact_it": "«Ahora Quien - Salsa Version» di Marc Anthony, pubblicata per la prima volta nel 2004 nell'album «Valio La Pena».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=toLrTToaN0M"
     },
     {
       "year": 2013,
@@ -2468,7 +2554,8 @@
       "fun_fact_nl": "\"Aguanile\" van Marc Anthony, voor het eerst uitgebracht in 1997 op het album \"Lo Mejor de la Salsa\".",
       "uri_deezer": "deezer://track/4036808551",
       "uri_apple_music": "applemusic://track/653548602",
-      "fun_fact_it": "«Aguanile» di Marc Anthony, pubblicata per la prima volta nel 1997 nell'album «Lo Mejor de la Salsa»."
+      "fun_fact_it": "«Aguanile» di Marc Anthony, pubblicata per la prima volta nel 1997 nell'album «Lo Mejor de la Salsa».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=i_r8xq9DFfs"
     },
     {
       "year": 1999,
@@ -2499,7 +2586,8 @@
       "fun_fact_nl": "\"Como Ella Me Quiere A Mí (She's Been Good to Me)\" van Marc Anthony, voor het eerst uitgebracht in 1999 op het album \"Marc Anthony\".",
       "uri_deezer": "deezer://track/623500",
       "uri_apple_music": "applemusic://track/191009814",
-      "fun_fact_it": "«Como Ella Me Quiere A Mí (She's Been Good to Me)» di Marc Anthony, pubblicata per la prima volta nel 1999 nell'album «Marc Anthony»."
+      "fun_fact_it": "«Como Ella Me Quiere A Mí (She's Been Good to Me)» di Marc Anthony, pubblicata per la prima volta nel 1999 nell'album «Marc Anthony».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pJ_L3kwQNAo"
     },
     {
       "year": 1999,
@@ -2514,7 +2602,8 @@
       "fun_fact_nl": "\"Da La Vuelta\" van Marc Anthony, voor het eerst uitgebracht in 1999 op het album \"Marc Anthony\".",
       "uri_deezer": "deezer://track/624593",
       "uri_apple_music": "applemusic://track/191009893",
-      "fun_fact_it": "«Da La Vuelta» di Marc Anthony, pubblicata per la prima volta nel 1999 nell'album «Marc Anthony»."
+      "fun_fact_it": "«Da La Vuelta» di Marc Anthony, pubblicata per la prima volta nel 1999 nell'album «Marc Anthony».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pj9tNfE1TLk"
     },
     {
       "year": 2001,
@@ -2529,7 +2618,8 @@
       "fun_fact_nl": "\"Celos\" van Marc Anthony, voor het eerst uitgebracht in 2001 op het album \"Sigo Siendo Yo\".",
       "uri_deezer": "deezer://track/547753",
       "uri_apple_music": "applemusic://track/192785611",
-      "fun_fact_it": "«Celos» di Marc Anthony, pubblicata per la prima volta nel 2001 nell'album «Sigo Siendo Yo»."
+      "fun_fact_it": "«Celos» di Marc Anthony, pubblicata per la prima volta nel 2001 nell'album «Sigo Siendo Yo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mg-_TN2nLxo"
     },
     {
       "year": 2001,
@@ -2560,7 +2650,8 @@
       "fun_fact_nl": "\"Tragedia\" van Marc Anthony, voor het eerst uitgebracht in 2001 op het album \"Sigo Siendo Yo\".",
       "uri_deezer": "deezer://track/547754",
       "uri_apple_music": "applemusic://track/163291210",
-      "fun_fact_it": "«Tragedia» di Marc Anthony, pubblicata per la prima volta nel 2001 nell'album «Sigo Siendo Yo»."
+      "fun_fact_it": "«Tragedia» di Marc Anthony, pubblicata per la prima volta nel 2001 nell'album «Sigo Siendo Yo».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h1nMu-rTwSY"
     },
     {
       "year": 2002,
@@ -2575,7 +2666,8 @@
       "fun_fact_nl": "\"Me Haces Falta\" van Marc Anthony, voor het eerst uitgebracht in 2002 op het album \"Mended\".",
       "uri_deezer": "deezer://track/627945",
       "uri_apple_music": "applemusic://track/217551342",
-      "fun_fact_it": "«Me Haces Falta» di Marc Anthony, pubblicata per la prima volta nel 2002 nell'album «Mended»."
+      "fun_fact_it": "«Me Haces Falta» di Marc Anthony, pubblicata per la prima volta nel 2002 nell'album «Mended».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lf4YgYeMcNc"
     },
     {
       "year": 2010,
@@ -2590,7 +2682,8 @@
       "fun_fact_nl": "\"Cuando Me Enamoro\" van Enrique Iglesias, Juan Luis Guerra 4.40, voor het eerst uitgebracht in 2010 op het album \"Euphoria (Intl 14 track version)\".",
       "uri_deezer": "deezer://track/6558033",
       "uri_apple_music": "applemusic://track/1440722442",
-      "fun_fact_it": "«Cuando Me Enamoro» di Enrique Iglesias, Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2010 nell'album «Euphoria (Intl 14 track version)»."
+      "fun_fact_it": "«Cuando Me Enamoro» di Enrique Iglesias, Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2010 nell'album «Euphoria (Intl 14 track version)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4DO8GsIYfhQ"
     },
     {
       "year": 1990,
@@ -2605,7 +2698,8 @@
       "fun_fact_nl": "\"La Bilirrubina - En Vivo Estadio Olímpico De República Dominicana/2012\" van Juan Luis Guerra 4.40, voor het eerst uitgebracht in 1990 op het album \"Asondeguerra Tour (En Vivo Estadio Olímpico De República Dominicana/2012)\".",
       "uri_deezer": "deezer://track/66674553",
       "uri_apple_music": "applemusic://track/1613803375",
-      "fun_fact_it": "«La Bilirrubina - En Vivo Estadio Olímpico De República Dominicana/2012» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 1990 nell'album «Asondeguerra Tour (En Vivo Estadio Olímpico De República Dominicana/2012)»."
+      "fun_fact_it": "«La Bilirrubina - En Vivo Estadio Olímpico De República Dominicana/2012» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 1990 nell'album «Asondeguerra Tour (En Vivo Estadio Olímpico De República Dominicana/2012)».",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=McV4pBRb-Sg"
     },
     {
       "year": 2004,
@@ -4233,7 +4327,8 @@
       "fun_fact_nl": "\"En El Cielo No Hay Hospital\" van Juan Luis Guerra 4.40, voor het eerst uitgebracht in 2012.",
       "uri_deezer": "deezer://track/705003542",
       "uri_apple_music": "applemusic://track/1470329795",
-      "fun_fact_it": "«En El Cielo No Hay Hospital» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2012."
+      "fun_fact_it": "«En El Cielo No Hay Hospital» di Juan Luis Guerra 4.40, pubblicata per la prima volta nel 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xE8gFafKTWU"
     },
     {
       "year": 1979,
