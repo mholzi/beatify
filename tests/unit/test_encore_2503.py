@@ -24,8 +24,6 @@ from __future__ import annotations
 
 from typing import Any
 
-import pytest
-
 from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.state import GamePhase, GameState
 
