@@ -937,7 +937,11 @@
     "voidReasonCover": "Cover version",
     "voidReasonSilence": "Silence",
     "voidReasonWrongYear": "Wrong year",
-    "voidReasonWrongTitle": "Wrong title"
+    "voidReasonWrongTitle": "Wrong title",
+    "encoreBadge": "LAST ROUND NEXT",
+    "encoreButton": "Make it {count} more",
+    "encoreHint": "Moves the finish line to {total}. Scores stay.",
+    "rematchHint": "Every score back to 0"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

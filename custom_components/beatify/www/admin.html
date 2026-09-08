@@ -1467,8 +1467,22 @@
                     </div>
                 </section>
 
-                <!-- Admin controls: Next Round -->
+                <!-- Admin controls: Encore (#2503) + Next Round -->
                 <div class="reveal-admin-controls">
+                    <!-- #2503: the offer sits on the reveal BEFORE the last
+                         round, never on the last reveal itself — a finale that
+                         can be revoked while it is being revealed was never a
+                         finale. Host-only: the room must not be shown "five
+                         more rounds?" while the host is still deciding. -->
+                    <div id="admin-encore" class="encore-offer hidden">
+                        <span class="encore-badge" data-i18n="admin.encoreBadge">LAST ROUND NEXT</span>
+                        <button id="admin-encore-btn" type="button" class="btn btn-outline btn-full-width">
+                            <span id="admin-encore-label">Make it 5 more</span>
+                        </button>
+                        <!-- The promise lives IN the control, not in a dialog
+                             after it (carried over from option B). -->
+                        <p id="admin-encore-hint" class="encore-hint"></p>
+                    </div>
                     <div class="reveal-admin-buttons">
                         <button id="admin-next-round" class="btn btn-primary btn-large btn-full-width" data-i18n="admin.nextRound">Next Round</button>
                     </div>
@@ -1516,6 +1530,11 @@
                 <!-- Admin controls -->
                 <div class="end-admin-controls">
                     <button id="admin-rematch" class="btn btn-primary btn-large btn-full-width" data-i18n="admin.rematch">Rematch</button>
+                    <!-- #2503: carried over from the option that lost the design
+                         gate. Nothing on this screen said that Rematch sets every
+                         score back to zero; the host had to know. One line, and it
+                         is true whether or not the encore ships. -->
+                    <p class="end-action-hint" data-i18n="admin.rematchHint">Every score back to 0</p>
                     <button id="admin-new-game" class="new-game-btn" data-i18n="admin.startNewGame">Start New Game</button>
                 </div>
             </div>

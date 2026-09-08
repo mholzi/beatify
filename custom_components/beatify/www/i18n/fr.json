@@ -937,7 +937,11 @@
     "voidReasonCover": "Reprise (cover)",
     "voidReasonSilence": "Silence",
     "voidReasonWrongYear": "Mauvaise année",
-    "voidReasonWrongTitle": "Mauvais titre"
+    "voidReasonWrongTitle": "Mauvais titre",
+    "encoreBadge": "PROCHAIN TOUR : LE DERNIER",
+    "encoreButton": "Ajouter {count} tours",
+    "encoreHint": "L'arrivée passe à {total}. Les scores restent.",
+    "rematchHint": "Tous les scores repartent de 0"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

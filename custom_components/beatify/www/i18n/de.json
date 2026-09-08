@@ -937,7 +937,11 @@
     "voidReasonCover": "Coverversion",
     "voidReasonSilence": "Stille",
     "voidReasonWrongYear": "Falsches Jahr",
-    "voidReasonWrongTitle": "Falscher Titel"
+    "voidReasonWrongTitle": "Falscher Titel",
+    "encoreBadge": "GLEICH DIE LETZTE RUNDE",
+    "encoreButton": "{count} Runden dranhängen",
+    "encoreHint": "Das Ziel rückt auf {total}. Der Punktestand bleibt.",
+    "rematchHint": "Jeder Punktestand zurück auf 0"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

@@ -937,7 +937,11 @@
     "voidReasonCover": "Coverversie",
     "voidReasonSilence": "Stilte",
     "voidReasonWrongYear": "Verkeerd jaar",
-    "voidReasonWrongTitle": "Verkeerde titel"
+    "voidReasonWrongTitle": "Verkeerde titel",
+    "encoreBadge": "VOLGENDE RONDE IS DE LAATSTE",
+    "encoreButton": "{count} rondes erbij",
+    "encoreHint": "De finish schuift naar {total}. De scores blijven staan.",
+    "rematchHint": "Elke score terug naar 0"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

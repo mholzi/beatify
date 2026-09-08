@@ -327,6 +327,20 @@ class RevealTransitionMixin:
         # #1273: _set_phase stamps reveal_started_at on REVEAL entry (#1048 —
         # so the admin client can render the auto-advance countdown on the
         # sticky Next button) and notifies observers (#441).
+        # #2503: decide the encore window HERE, once, on the way into the
+        # reveal — not on every read. The mockup annotates that tapping the
+        # control twice makes it thirty, and a live re-derivation could not do
+        # that: the first tap moves the finish line, so "one song left" stops
+        # being true and the offer would vanish under the host's finger. What
+        # the chosen option promises is that the offer belongs to THIS reveal
+        # and dies when the next round starts, which is exactly a flag with
+        # those two edges.
+        self._encore_window = (
+            self.total_rounds > 1
+            and not self.last_round
+            and self._playlist_manager is not None
+            and self._playlist_manager.get_remaining_count() == 1
+        )
         self._set_phase(GamePhase.REVEAL)
 
     async def _apply_reveal_lights(self, correct_year: int | None) -> None:

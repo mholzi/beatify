@@ -316,6 +316,11 @@ class RoundLifecycleMixin:
         self.last_round = (
             self.total_rounds > 1 and self._playlist_manager.get_remaining_count() <= 1
         )
+        # #2503: the encore offer belongs to the reveal that preceded this
+        # round and to no other moment. Closing it here is what makes the
+        # finale final — the whole reason this option was chosen over a chip on
+        # the last reveal, which could be tapped again on each new last round.
+        self._encore_window = False
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)
 
@@ -735,6 +740,91 @@ class RoundLifecycleMixin:
             except Exception as err:  # noqa: BLE001 — a stop error must not raise
                 _LOGGER.warning("start_round abort: stop playback failed: %s", err)
         return True
+
+    # ------------------------------------------------------------------
+    # Encore — five more rounds, asked one round early (#2503)
+    # ------------------------------------------------------------------
+
+    ENCORE_ROUNDS = 5
+
+    def encore_available(self) -> bool:
+        """True while the host may still add five rounds to THIS game (#2503).
+
+        The window is the reveal of the second-to-last round, and only that.
+        Four options were drawn for this; the one chosen moves the offer back
+        one round rather than putting it on the final reveal or on the end
+        screen. The reason is that a last round which can be revoked while it
+        is being revealed was never a last round — tap it again on the new
+        final round and the ending keeps receding. Asking one round early
+        leaves the actual finale undisturbed and still gives the host a whole
+        song to think during.
+
+        Three conditions, all of them:
+
+        * REVEAL — the standings are on screen and the room is between songs.
+        * ``_encore_window``, decided once on the way into this reveal and
+          cleared when the next round starts. It is a flag rather than a live
+          re-derivation because the first tap moves the finish line: "one song
+          left" stops being true the moment the host uses the offer, and a
+          re-derived condition would take the control away under their finger.
+          The drawn option annotates that a second tap makes it thirty, so the
+          offer has to survive its own use and die only when the round starts.
+          Set from the pool rather than from ``round >= total_rounds`` for the
+          same reason ``last_round`` is (#2421): a song dropped by a playback
+          failure is marked played without a round being committed, so the
+          counter falls behind reality while the pool does not.
+        * the reserve still holds songs. A game whose playlist ran out has
+          nothing to extend with, and offering five more rounds that cannot be
+          delivered is worse than offering nothing.
+        """
+        from .state import GamePhase
+
+        if self.phase is not GamePhase.REVEAL:
+            return False
+        if not getattr(self, "_encore_window", False):
+            return False
+        manager = getattr(self, "_playlist_manager", None)
+        return manager is not None and manager.reserve_count() > 0
+
+    def extend_rounds(self, count: int | None = None) -> int:
+        """Add up to ``count`` more rounds to the running game (#2503).
+
+        Returns the number of rounds actually added; 0 means the offer was not
+        open or the reserve could not cover a single round, and nothing was
+        touched.
+
+        The scores are not reset and are not recomputed — that is the whole
+        point of the feature, and it is why the control says so itself rather
+        than putting the promise in a confirmation dialog after the tap. The
+        issue assumed the cap threw the unplayed songs away; since #2547 it
+        does not, so an encore is a release from the reserve plus a raised cap,
+        not a new game.
+
+        Fewer than ``count`` songs in the reserve still counts as an encore:
+        three more rounds is a better answer to "play a bit longer" than a
+        refusal because the reserve was two short.
+        """
+        if not self.encore_available():
+            return 0
+        wanted = self.ENCORE_ROUNDS if count is None else count
+        if wanted <= 0:
+            return 0
+        released = self._playlist_manager.release_reserved_songs(
+            wanted, reason="Encore (#2503)"
+        )
+        if not released:
+            return 0
+        # The cap governs normal play, so it has to move with the pool —
+        # otherwise a later manager rebuild (a lobby option patch, a rematch)
+        # would sample the game straight back down to the old count.
+        self.max_rounds = self.max_rounds + released if self.max_rounds else 0
+        self.total_rounds = self._playlist_manager.get_total_count()
+        _LOGGER.info(
+            "Encore: +%d round(s) on the host's request, now %d total (#2503)",
+            released,
+            self.total_rounds,
+        )
+        return released
 
     def _ensure_media_player_service(self) -> None:
         """Create the media-player service lazily on first round.

@@ -357,18 +357,29 @@ class PlaylistManager:
         # subtraction can go negative. Clamp at 0.
         return max(0, len(self._songs) - len(self._played_uris))
 
-    def reserve_songs_for_playoff(self, count: int = 1) -> int:
+    def reserve_count(self) -> int:
+        """How many capped-out songs are still held back (#2503).
+
+        The encore offer is only truthful while this is non-zero: a game whose
+        playlist ran out has nothing to extend with, and a control that
+        promises five more rounds it cannot deliver is worse than no control.
+        """
+        return len(self._reserve_songs)
+
+    def release_reserved_songs(self, count: int = 1, reason: str = "playoff") -> int:
         """Move up to ``count`` capped-out songs back into the playable pool.
 
         Returns the number of songs actually released (0 when the round cap was
         never applied, or the reserve is spent).
 
-        The finale tiebreaker (#1725) arms only while unplayed songs remain.
-        With a round cap the pool is sampled down to exactly ``max_rounds``, so
-        after the last round nothing remains and the tiebreaker was unreachable
-        in the situation it exists for — a tie at the end of a normal game
-        (#2547). Rather than lifting the cap and letting normal play run long,
-        the dropped songs stay in reserve and a playoff draws from them.
+        The round cap samples the pool down to exactly ``max_rounds`` and keeps
+        the remainder here (#2547) instead of discarding it. Two callers draw
+        on that reserve and they want different things, which is why ``reason``
+        is a parameter rather than a fixed string in the log: the finale
+        tiebreaker (#1725) takes one song for a playoff, and the encore (#2503)
+        takes five because the host was asked for five more rounds. A log line
+        that said "finale tiebreaker" for a host-tapped encore would send the
+        next reader looking at the wrong feature.
         """
         if count <= 0 or not self._reserve_songs:
             return 0
@@ -380,10 +391,20 @@ class PlaylistManager:
             self._buckets.setdefault(source, []).append(song)
         self._multi_playlist = len(self._buckets) > 1
         _LOGGER.info(
-            "Finale tiebreaker: released %d reserved song(s) for a playoff round",
+            "%s: released %d reserved song(s) (%d still held back)",
+            reason,
             len(released),
+            len(self._reserve_songs),
         )
         return len(released)
+
+    def reserve_songs_for_playoff(self, count: int = 1) -> int:
+        """Release reserved songs for a finale playoff (#1725/#2547).
+
+        Kept as its own name because that is what the tiebreaker calls and what
+        its tests assert; the mechanics live in :meth:`release_reserved_songs`.
+        """
+        return self.release_reserved_songs(count, reason="Finale tiebreaker")
 
     def has_playable_songs(self) -> bool:
         """True if this manager has any songs for its provider (#709)."""

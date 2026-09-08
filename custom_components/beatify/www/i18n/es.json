@@ -937,7 +937,11 @@
     "voidReasonCover": "Versión (cover)",
     "voidReasonSilence": "Silencio",
     "voidReasonWrongYear": "Año incorrecto",
-    "voidReasonWrongTitle": "Título incorrecto"
+    "voidReasonWrongTitle": "Título incorrecto",
+    "encoreBadge": "LA SIGUIENTE ES LA ÚLTIMA",
+    "encoreButton": "Añadir {count} rondas",
+    "encoreHint": "La meta pasa a {total}. Las puntuaciones se mantienen.",
+    "rematchHint": "Todas las puntuaciones vuelven a 0"
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",

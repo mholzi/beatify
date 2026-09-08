@@ -367,6 +367,15 @@ class GameStateSerializer:
         # the host picked; it is shown to nobody but recorded (see void_round).
         state["round_voided"] = gs.round_voided
         state["void_reason"] = gs.void_reason
+        # #2503: the encore offer, open only on the reveal of the
+        # second-to-last round. ADMIN-ONLY (see ADMIN_ONLY_KEYS in
+        # server/serializers.py): a room that has been shown "five more
+        # rounds?" has effectively been asked, and a host who then declines is
+        # overruling twenty people instead of making a call. `encore_rounds`
+        # travels with it so the control names the number instead of hardcoding
+        # a five the reserve may not cover.
+        state["encore_available"] = gs.encore_available()
+        state["encore_rounds"] = gs.ENCORE_ROUNDS
         # Issue #1725: mirror the PLAYING-phase finale flags so the reveal card
         # can keep the "Finale ×2" / playoff badge visible.
         state["finale_double_active"] = gs.finale_double_enabled and gs.last_round

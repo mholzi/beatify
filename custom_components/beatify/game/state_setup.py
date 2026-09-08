@@ -279,6 +279,11 @@ class GameSetupMixin:
         self.deadline = None
         self.current_song = None
         self.last_round = False
+        # #2503: a new game has no encore offer open. Cleared on every round
+        # start as well, but a game created straight out of a REVEAL (the
+        # rematch path does not come through here, the admin page does) would
+        # otherwise inherit the previous game's open window.
+        self._encore_window = False
         self.pause_reason = None
         self._previous_phase = None
 

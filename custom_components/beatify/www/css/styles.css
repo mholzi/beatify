@@ -18174,3 +18174,46 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-purple-secondary);
     font-weight: 600;
 }
+
+/* #2503 — the encore offer on the reveal before the last round.
+   Cyan, not pink: the primary CTA on this screen is Next Round, and the
+   encore must read as the quieter of the two. Promoting it would push hosts
+   into an evening that never ends, which is the argument that lost option C
+   the gate. */
+.encore-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-xs, 6px);
+    margin: 0 auto var(--space-md, 16px);
+    max-width: 540px;
+    text-align: center;
+}
+
+.encore-badge {
+    align-self: center;
+    padding: 2px var(--space-sm, 8px);
+    border: 1px solid var(--color-accent-secondary, #00f5ff);
+    border-radius: var(--radius-sm, 8px);
+    color: var(--color-accent-secondary, #00f5ff);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.encore-hint {
+    margin: 0;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
+    font-size: 0.82rem;
+    line-height: 1.35;
+}
+
+/* #2503 — the one line under Rematch that says what it costs. Quiet: it is a
+   fact about the button above it, not a warning about a normal action. */
+.end-action-hint {
+    margin: calc(-1 * var(--space-xs, 6px)) 0 var(--space-sm, 8px);
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
+    font-size: 0.82rem;
+    text-align: center;
+}

@@ -937,7 +937,11 @@
     "voidReasonCover": "Cover",
     "voidReasonSilence": "Silenzio",
     "voidReasonWrongYear": "Anno sbagliato",
-    "voidReasonWrongTitle": "Titolo sbagliato"
+    "voidReasonWrongTitle": "Titolo sbagliato",
+    "encoreBadge": "PROSSIMO GIRO: L'ULTIMO",
+    "encoreButton": "Aggiungi {count} round",
+    "encoreHint": "Il traguardo passa a {total}. I punteggi restano.",
+    "rematchHint": "Tutti i punteggi tornano a 0"
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

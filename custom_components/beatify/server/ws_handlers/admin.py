@@ -104,6 +104,7 @@ async def handle_admin(
         "start_game": admin_start_game,
         "next_round": admin_next_round,
         "void_round": admin_void_round,  # #2646
+        "extend_rounds": admin_extend_rounds,  # #2503
         "stop_song": admin_stop_song,
         "set_volume": admin_set_volume,
         "seek_forward": admin_seek_forward,
@@ -206,6 +207,40 @@ async def admin_start_game(
         # lobby / "Starting..." view for the PAUSED recovery banner. Mirror
         # what admin_next_round already does on its paused branch.
         await handler.broadcast_state()
+
+
+async def admin_extend_rounds(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin extend_rounds action — five more rounds, no reset (#2503).
+
+    The offer is open on the reveal of the second-to-last round and nowhere
+    else; :meth:`GameState.encore_available` owns that rule and this handler
+    only reports its verdict. Rejecting here rather than silently doing nothing
+    matters because the control is a promise: a host who taps "Make it 5 more"
+    and sees the counter stay at 20 / 20 has no way to tell a closed window
+    from a broken button.
+
+    The scores are untouched, which is the point of the feature and is stated
+    in the control itself rather than in a dialog after the tap.
+    """
+    added = game_state.extend_rounds()
+    if not added:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Rounds can only be added on the reveal before the "
+                "last round, and only while songs are held in reserve",
+            }
+        )
+        return
+
+    _LOGGER.info("Encore: host added %d round(s) (#2503)", added)
+    await handler.broadcast_state()
 
 
 async def admin_void_round(

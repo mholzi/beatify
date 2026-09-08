@@ -925,6 +925,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('admin-confirm-intro')?.addEventListener('click', function() {
         sendAdminCommand({ type: 'admin', action: 'confirm_intro_splash' });
     });
+    // #2503: five more rounds, scores untouched. No confirmation dialog — the
+    // control already states what it does, and a second tap is the drawn
+    // behaviour for a host who wants ten. The button is hidden again by the
+    // state broadcast that follows, so the disable here only covers the round
+    // trip.
+    document.getElementById('admin-encore-btn')?.addEventListener('click', function(e) {
+        const btn = e.currentTarget;
+        if (btn) btn.disabled = true;
+        sendAdminCommand({ type: 'admin', action: 'extend_rounds' });
+        setTimeout(function() { if (btn) btn.disabled = false; }, 1500);
+    });
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
 
@@ -2901,6 +2912,42 @@ function showAdminPlayingView(data) {
 }
 
 /**
+ * The encore offer on the reveal before the last round (#2503).
+ *
+ * Four options were drawn; the chosen one asks a round EARLY rather than on
+ * the final reveal, so the last round stays the last one. The window belongs
+ * to this reveal and closes when the next round starts — the server owns that
+ * rule (`encore_available`), this only renders its verdict.
+ *
+ * The button names the number and the hint names the consequence, because the
+ * promise "scores stay" belongs inside the control rather than in a
+ * confirmation dialog after the tap.
+ */
+function renderEncoreOffer(data) {
+    const box = document.getElementById('admin-encore');
+    if (!box) return;
+    const available = !!(data && data.encore_available);
+    box.classList.toggle('hidden', !available);
+    if (!available) return;
+
+    const count = (data.encore_rounds || 5);
+    const label = document.getElementById('admin-encore-label');
+    const hint = document.getElementById('admin-encore-hint');
+    if (label) {
+        label.textContent = BeatifyI18n.t('admin.encoreButton', { count: count })
+            || ('Make it ' + count + ' more');
+    }
+    if (hint) {
+        // The finish line the host would move TO. Computed from the live
+        // total, so a game already extended once says 30 rather than
+        // repeating 25 — the drawn option annotates exactly that case.
+        const total = (data.total_rounds || 0) + count;
+        hint.textContent = BeatifyI18n.t('admin.encoreHint', { total: total })
+            || ('Moves the finish line to ' + total + '. Scores stay.');
+    }
+}
+
+/**
  * Render player-style submission dots (matches player-game.js renderSubmissionTracker).
  */
 // renderAdminSubmissionDots moved to ./admin/sections/render-helpers.js (#1279 step 4)
@@ -3039,6 +3086,11 @@ function showAdminRevealView(data) {
     var totalEl = document.getElementById('admin-reveal-total');
     if (roundEl) roundEl.textContent = data.round || '?';
     if (totalEl) totalEl.textContent = data.total_rounds || '?';
+
+    // Encore offer (#2503) — only on the reveal BEFORE the last round.
+    // encore_available is admin-only in the serializer, so a guest socket
+    // never carries it and this block simply stays hidden there.
+    renderEncoreOffer(data);
 
     // Song hero
     if (data.song) {

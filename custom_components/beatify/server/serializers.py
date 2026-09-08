@@ -205,6 +205,13 @@ ADMIN_ONLY_KEYS: frozenset[str] = frozenset(
         # nobody: the room does not need to be told the host called the song a
         # cover, and nothing has been promised about where the report goes.
         "void_reason",
+        # #2503: whether the encore offer is open, and how many rounds it
+        # would add. The host's decision, and it must not appear on the guests'
+        # phones while it is still being made — a room that has been shown
+        # "five more rounds?" has effectively been asked, and a host who then
+        # declines is overruling twenty people instead of making a call.
+        "encore_available",
+        "encore_rounds",
     }
 )
 
