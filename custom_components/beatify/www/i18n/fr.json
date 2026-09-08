@@ -33,7 +33,10 @@
     "speakerUnavailable": "L'enceinte ne répond pas — l'hôte s'en occupe.",
     "gamePaused": "Jeu en pause. Veuillez patienter...",
     "redirecting": "Redirection...",
-    "hostCannotLeave": "L'hôte ne peut pas quitter. Terminez le jeu d'abord."
+    "hostCannotLeave": "L'hôte ne peut pas quitter. Terminez le jeu d'abord.",
+    "imBack": "Je suis de retour",
+    "satOutOwn": "L'hôte vous a mis en pause. Vos points sont conservés.",
+    "rejoinPending": "De retour au prochain tour"
   },
   "lobby": {
     "gameLobby": "Salon de jeu",
@@ -187,7 +190,10 @@
     "pausedLabel": "Pause",
     "pausedClockStopped": "Le chrono est arrêté — rien n'est perdu",
     "pausedHintHost": "L'hôte reprend dans un instant",
-    "pausedGuessesSaved": "Vos réponses sont enregistrées"
+    "pausedGuessesSaved": "Vos réponses sont enregistrées",
+    "satOut": "en pause",
+    "satOutLine": "{name} est en pause — le tour continue",
+    "returnedLine": "{name} est de retour"
   },
   "steal": {
     "available": "Vol disponible !",
@@ -941,7 +947,12 @@
     "encoreBadge": "PROCHAIN TOUR : LE DERNIER",
     "encoreButton": "Ajouter {count} tours",
     "encoreHint": "L'arrivée passe à {total}. Les scores restent.",
-    "rematchHint": "Tous les scores repartent de 0"
+    "rematchHint": "Tous les scores repartent de 0",
+    "sitOutTitle": "Mettre cet invité en pause ?",
+    "sitOutConfirm": "Mettre en pause",
+    "sitOutBody": "{name} ne joue plus cette partie et libère sa place. Ses {score} points restent.",
+    "sitOutAria": "Mettre {name} en pause",
+    "bringBack": "Faire revenir"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

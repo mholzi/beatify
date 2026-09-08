@@ -33,7 +33,10 @@
     "speakerUnavailable": "The speaker isn't responding — the host is on it.",
     "gamePaused": "Game paused. Please wait...",
     "redirecting": "Redirecting...",
-    "hostCannotLeave": "Host cannot leave. End the game instead."
+    "hostCannotLeave": "Host cannot leave. End the game instead.",
+    "imBack": "I'm back",
+    "satOutOwn": "The host sat you out. Your points are safe.",
+    "rejoinPending": "Back in for the next round"
   },
   "lobby": {
     "gameLobby": "Game Lobby",
@@ -187,7 +190,10 @@
     "pausedLabel": "Pause",
     "pausedClockStopped": "The clock is stopped — nothing is lost",
     "pausedHintHost": "The host is picking it back up in a moment",
-    "pausedGuessesSaved": "Your guesses are saved"
+    "pausedGuessesSaved": "Your guesses are saved",
+    "satOut": "sat out",
+    "satOutLine": "{name} sat out — the round moves on",
+    "returnedLine": "{name} is back in"
   },
   "steal": {
     "available": "Steal Available!",
@@ -941,7 +947,12 @@
     "encoreBadge": "LAST ROUND NEXT",
     "encoreButton": "Make it {count} more",
     "encoreHint": "Moves the finish line to {total}. Scores stay.",
-    "rematchHint": "Every score back to 0"
+    "rematchHint": "Every score back to 0",
+    "sitOutTitle": "Sit this guest out?",
+    "sitOutConfirm": "Sit out",
+    "sitOutBody": "{name} stops playing this game and stops holding a survivor slot. Their {score} points stay.",
+    "sitOutAria": "Sit {name} out",
+    "bringBack": "Bring back"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

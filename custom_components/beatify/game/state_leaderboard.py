@@ -155,6 +155,13 @@ class LeaderboardMixin:
                 # Issue #827: Sudden Death
                 "eliminated": player.eliminated,
                 "eliminated_round": player.eliminated_round,
+                # #2746: vom Gastgeber herausgenommen. Rang und Punktestand
+                # bleiben genau, wo sie sind — das Feld faerbt die Zeile und
+                # setzt das Abzeichen „sitzt aus", es rechnet nichts um. Genau
+                # das macht den Griff des Gastgebers vertretbar: die Zeile
+                # bleibt stehen, statt dass der naechste durch eine Entfernung
+                # statt durch einen Tipp aufsteigt.
+                "sat_out_by_host": player.sat_out_by_host,
                 # Issue #2324: the collected row, carried into the END screen —
                 # the one artifact of a finished game worth photographing. A
                 # score vanishes when the game does; this list does not.

@@ -33,7 +33,10 @@
     "speakerUnavailable": "El altavoz no responde — el anfitrión se está ocupando.",
     "gamePaused": "Juego pausado. Por favor, espera...",
     "redirecting": "Redirigiendo...",
-    "hostCannotLeave": "El anfitrión no puede salir. Termina el juego primero."
+    "hostCannotLeave": "El anfitrión no puede salir. Termina el juego primero.",
+    "imBack": "He vuelto",
+    "satOutOwn": "El anfitrión te ha dejado fuera. Tus puntos se mantienen.",
+    "rejoinPending": "Vuelves en la próxima ronda"
   },
   "lobby": {
     "gameLobby": "Sala de espera",
@@ -187,7 +190,10 @@
     "pausedLabel": "Pausa",
     "pausedClockStopped": "El reloj está parado: no se pierde nada",
     "pausedHintHost": "El anfitrión continúa en un momento",
-    "pausedGuessesSaved": "Vuestras respuestas están guardadas"
+    "pausedGuessesSaved": "Vuestras respuestas están guardadas",
+    "satOut": "fuera",
+    "satOutLine": "{name} queda fuera — la ronda continúa",
+    "returnedLine": "{name} ha vuelto"
   },
   "steal": {
     "available": "Robo disponible!",
@@ -941,7 +947,12 @@
     "encoreBadge": "LA SIGUIENTE ES LA ÚLTIMA",
     "encoreButton": "Añadir {count} rondas",
     "encoreHint": "La meta pasa a {total}. Las puntuaciones se mantienen.",
-    "rematchHint": "Todas las puntuaciones vuelven a 0"
+    "rematchHint": "Todas las puntuaciones vuelven a 0",
+    "sitOutTitle": "¿Dejar fuera a este invitado?",
+    "sitOutConfirm": "Dejar fuera",
+    "sitOutBody": "{name} deja de jugar esta partida y libera su plaza. Sus {score} puntos se mantienen.",
+    "sitOutAria": "Dejar fuera a {name}",
+    "bringBack": "Traer de vuelta"
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",

@@ -97,6 +97,17 @@ class PlayerSession:
     # sieht der Fernseher dann sechs Totenkoepfe, obwohl niemand rausgeflogen
     # ist. Ein eigenes Feld trennt „zaehlt diese Runde nicht" von „ist raus".
     playoff_spectator: bool = False
+    # #2746: der Gastgeber hat diesen Gast aus dem laufenden Spiel genommen.
+    # Der dritte Fall neben „ist raus" und „sitzt das Stechen aus", und der
+    # einzige, den ein Mensch entschieden hat statt die Spielregeln. Eigenes
+    # Feld, weil der Fernseher die drei unterschiedlich zeigt: kein Totenkopf
+    # fuer jemanden, der gegangen ist, sondern „sitzt aus".
+    sat_out_by_host: bool = False
+    # #2746: dieser Gast hat auf seinem eigenen Handy „wieder rein" getippt,
+    # waehrend eine Runde laeuft. Wirksam wird das erst zur naechsten Runde —
+    # ein Tipp mitten in einer laufenden Runde wuerde gegen einen Song gewertet,
+    # den er nicht von Anfang an gehoert hat.
+    rejoin_requested: bool = False
     # #2579: die Runde, in der dieser Spieler zuletzt einen Datenfehler gemeldet
     # hat. Ein Report je Spieler und Runde reicht — der Knopf sitzt neben der
     # Aufloesung, und ohne Riegel oeffnet jeder weitere Tipp ein weiteres
@@ -136,8 +147,12 @@ class PlayerSession:
         ``playoff_spectator`` heisst „sitzt dieses Stechen aus" (#2578). Fuer
         die Punktevergabe sind beide gleich; fuer die Anzeige eben nicht, und
         genau daran ist die alte Loesung gescheitert.
+
+        Seit #2746 kommt ``sat_out_by_host`` dazu: vom Gastgeber aus dem
+        laufenden Spiel genommen. Fuer die Punktevergabe wieder derselbe Fall —
+        die Runde wartet nicht auf ihn —, fuer die Anzeige wieder ein eigener.
         """
-        return self.eliminated or self.playoff_spectator
+        return self.eliminated or self.playoff_spectator or self.sat_out_by_host
 
     # #1752: round number a late joiner entered the game in. None for LOBBY joins
     # (and after reset_for_new_game). Used to grant a mid-round joiner one grace
@@ -356,6 +371,11 @@ class PlayerSession:
         self.eliminated = False
         self.eliminated_round = None
         self.playoff_spectator = False
+        # #2746: ein neues Spiel holt jeden zurueck, den der Gastgeber im
+        # vorigen herausgenommen hat. Ohne diese Zeile startet er als
+        # Zuschauer in ein Spiel, das er nie gespielt hat.
+        self.sat_out_by_host = False
+        self.rejoin_requested = False
         self.reported_round = None
         # #1752: clear late-join grace tracking so a rematch/new game never
         # grants a carried-over player Sudden Death grace on a stale round number.

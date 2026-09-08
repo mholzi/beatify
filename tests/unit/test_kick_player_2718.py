@@ -137,18 +137,20 @@ class TestKickRemovesAnAwayGuest:
 
 
 class TestKickIsRefused:
-    async def test_a_connected_guest_is_refused(self):
-        # The reason the client only offers the button on away tiles.
+    async def test_a_connected_guest_is_removed_too(self):
+        # Changed on 2026-09-08 by the #2746 design gate (option B). The old
+        # refusal was the reason the button only appeared on away tiles, and it
+        # was also why the case that started #2746 — a guest who has to leave
+        # mid-party, phone in their pocket and connected — had no answer at
+        # all. In the lobby nothing has been played, so removal still deletes.
         handler, game_state = _handler_and_game()
         admin_ws = _seat_host(handler, game_state)
         _seat_guest(game_state, "Jonas")
 
         await _kick(handler, admin_ws, "Jonas")
 
-        assert game_state.get_player("Jonas") is not None
-        err = _last_error(admin_ws)
-        assert err is not None
-        assert err["code"] == ERR_INVALID_ACTION
+        assert game_state.get_player("Jonas") is None
+        assert _last_error(admin_ws) is None
 
     async def test_the_admin_is_refused_even_when_away(self):
         handler, game_state = _handler_and_game()
@@ -186,22 +188,29 @@ class TestKickIsRefused:
         assert game_state.get_player("Kirsten") is not None
         assert _last_error(admin_ws) is None
 
-    async def test_outside_the_lobby_it_is_refused(self):
-        # Sudden Death is where an away survivor hurts most, but the handler
-        # only ever operated in LOBBY — the tiles are a lobby surface, and the
-        # client must not grow a kick button on the in-game screens expecting
-        # this to work.
+    async def test_outside_the_lobby_the_guest_is_sat_out_not_deleted(self):
+        # Changed on 2026-09-08 by the #2746 design gate (option B). The phase
+        # refusal is gone, but what replaces it is NOT the lobby's behaviour:
+        # mid-game the session survives and only `sat_out_by_host` is set, so
+        # the score stays, the rank stays, and the guest can tap their way back
+        # in. That recoverability is the guard now — deleting here would make a
+        # mis-tap in a dark room unrecoverable, which is what lost option D the
+        # gate.
         handler, game_state = _handler_and_game()
         admin_ws = _seat_host(handler, game_state)
         _seat_guest(game_state, "Kirsten", away=True)
+        kirsten = game_state.get_player("Kirsten")
+        kirsten.score = 980
         game_state.phase = GamePhase.PLAYING
 
         await _kick(handler, admin_ws, "Kirsten")
 
-        assert game_state.get_player("Kirsten") is not None
-        err = _last_error(admin_ws)
-        assert err is not None
-        assert err["code"] == ERR_INVALID_ACTION
+        assert _last_error(admin_ws) is None
+        still_there = game_state.get_player("Kirsten")
+        assert still_there is not None
+        assert still_there.sat_out_by_host is True
+        assert still_there.out_of_play is True
+        assert still_there.score == 980
 
     async def test_a_guest_cannot_kick_another_guest(self):
         handler, game_state = _handler_and_game()

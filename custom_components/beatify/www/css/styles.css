@@ -18216,4 +18216,52 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
     font-size: 0.82rem;
     text-align: center;
+/* #2746 — a guest the host took out of the running game.
+   No skull and no red: nobody was eliminated, somebody left. The row keeps its
+   rank and its score, which is what makes the host's reach into the room
+   affordable — the next player is not promoted by a removal. */
+.leaderboard-entry.is-sat-out {
+    opacity: 0.55;
+}
+
+.sat-out-badge {
+    margin-left: var(--space-xs, 6px);
+    padding: 1px var(--space-xs, 6px);
+    border-radius: var(--radius-sm, 8px);
+    background: var(--bg-elevated, rgba(255, 255, 255, 0.08));
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+/* The per-row control on the host's leaderboard. Quiet by default — it sits on
+   every guest row, and a row full of loud buttons reads as a warning. */
+.entry-host-action {
+    margin-left: var(--space-xs, 6px);
+    padding: 0 var(--space-xs, 6px);
+    border: 0;
+    border-radius: var(--radius-sm, 8px);
+    background: transparent;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
+    font-size: 1rem;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.entry-host-action:hover,
+.entry-host-action:focus-visible {
+    background: var(--bg-elevated, rgba(255, 255, 255, 0.08));
+    color: var(--color-text-primary, #fff);
+}
+
+/* The way back, on the guest's own phone. */
+.rejoin-control {
+    margin-top: var(--space-md, 16px);
+    text-align: center;
+}
+
+.rejoin-pending {
+    margin: 0;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.66));
+    font-size: 0.9rem;
 }

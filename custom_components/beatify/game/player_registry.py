@@ -389,6 +389,13 @@ class PlayerRegistry:
                 # spectator view and a skull badge on leaderboards.
                 "eliminated": p.eliminated,
                 "eliminated_round": p.eliminated_round,
+                # #2746: vom Gastgeber herausgenommen. Bewusst NICHT
+                # `eliminated`: der Fernseher zeigt fuer diesen Fall keinen
+                # Totenkopf, sondern „sitzt aus" — niemand ist rausgeflogen,
+                # jemand ist gegangen. Punktestand und Rangplatz bleiben, was
+                # die Zeile ueberhaupt erst tragbar macht.
+                "sat_out_by_host": p.sat_out_by_host,
+                "rejoin_requested": p.rejoin_requested,
             }
             for p in self.players.values()
         ]

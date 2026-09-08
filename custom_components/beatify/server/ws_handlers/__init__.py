@@ -80,6 +80,7 @@ from custom_components.beatify.server.ws_handlers.lifecycle import (
     handle_get_state,
     handle_join,
     handle_leave,
+    handle_rejoin,
     handle_ping,
     handle_player_onboarded,
     handle_reaction,
@@ -324,6 +325,7 @@ __all__ = [
     "handle_reaction",
     "handle_reconnect",
     "handle_leave",
+    "handle_rejoin",
     # admin
     "handle_admin_connect",
     "handle_admin",

@@ -87,7 +87,7 @@ export function renderAdminSubmissionDots(players) {
  * @param {Array<{rank:number, name:string, score:number, connected?:boolean, streak?:number, rank_change?:number}>} leaderboard
  * @param {string} [containerId] - render into this id only; else both playing+reveal lists
  */
-export function renderAdminLeaderboard(leaderboard, containerId) {
+export function renderAdminLeaderboard(leaderboard, containerId, withHostControls) {
     var targets = containerId ? [containerId] : ['admin-playing-leaderboard-list', 'admin-reveal-leaderboard'];
     if (!leaderboard) return;
 
@@ -99,6 +99,13 @@ export function renderAdminLeaderboard(leaderboard, containerId) {
         var eliminatedClass = entry.eliminated ? 'is-eliminated' : '';
         var skullPrefix = entry.eliminated ? '💀 ' : '';
         var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+        // #2746: taken out by the host. No skull — nobody was eliminated,
+        // somebody left — and the rank and score stay exactly where they were.
+        var satOut = !!entry.sat_out_by_host;
+        var satOutClass = satOut ? 'is-sat-out' : '';
+        var satOutBadge = satOut
+            ? '<span class="sat-out-badge">' + escapeHtml(tr('game.satOut', 'sat out')) + '</span>'
+            : '';
         var streakIndicator = '';
         if (entry.streak >= 2) {
             var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
@@ -108,11 +115,27 @@ export function renderAdminLeaderboard(leaderboard, containerId) {
         if (entry.rank_change > 0) changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
         else if (entry.rank_change < 0) changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
 
-        html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
+        // #2746: the host's own rows carry the control that takes a guest out
+        // of the running game. Rendered only when this leaderboard is the
+        // host's (`withHostControls`), never on a guest phone or the TV —
+        // option B makes every guest row removable, not every screen.
+        var control = '';
+        if (withHostControls && !entry.is_admin) {
+            control = satOut
+                ? '<button type="button" class="entry-host-action" data-action="reinstate"'
+                    + ' data-player="' + escapeHtml(entry.name) + '">'
+                    + escapeHtml(tr('admin.bringBack', 'Bring back')) + '</button>'
+                : '<button type="button" class="entry-host-action" data-action="sit-out"'
+                    + ' data-player="' + escapeHtml(entry.name) + '"'
+                    + ' aria-label="' + escapeHtml(tr('admin.sitOutAria', 'Sit {name} out', { name: entry.name })) + '">⋮</button>';
+        }
+
+        html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + ' ' + eliminatedClass + ' ' + satOutClass + '">' +
             '<span class="entry-rank">#' + entry.rank + '</span>' +
-            '<span class="entry-name">' + skullPrefix + escapeHtml(entry.name) + awayBadge + '</span>' +
+            '<span class="entry-name">' + skullPrefix + escapeHtml(entry.name) + awayBadge + satOutBadge + '</span>' +
             '<span class="entry-meta">' + streakIndicator + changeIndicator + '</span>' +
             '<span class="entry-score">' + entry.score + '</span>' +
+            control +
         '</div>';
     });
 

@@ -105,6 +105,7 @@ async def handle_admin(
         "next_round": admin_next_round,
         "void_round": admin_void_round,  # #2646
         "extend_rounds": admin_extend_rounds,  # #2503
+        "reinstate_player": admin_reinstate_player,  # #2746
         "stop_song": admin_stop_song,
         "set_volume": admin_set_volume,
         "seek_forward": admin_seek_forward,
@@ -207,6 +208,35 @@ async def admin_start_game(
         # lobby / "Starting..." view for the PAUSED recovery banner. Mirror
         # what admin_next_round already does on its paused branch.
         await handler.broadcast_state()
+
+
+async def admin_reinstate_player(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Let a guest the host sat out back in (#2746).
+
+    The gate's answer is that the guest returns from **their own phone**, so
+    this is the host's second route, not the primary one — useful when the
+    guest handed their phone to someone else or closed the tab. It runs the
+    same :meth:`GameState.request_rejoin` and therefore inherits the same two
+    rules: never mid-round, and never once Sudden Death has started cutting.
+    """
+    target_name = data.get("player_name", "").strip()
+    if not target_name:
+        return
+    if not game_state.request_rejoin(target_name):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Cannot bring " + target_name + " back into this game",
+            }
+        )
+        return
+    await handler.broadcast_state()
 
 
 async def admin_extend_rounds(
@@ -872,17 +902,24 @@ async def admin_kick_player(
     data: dict,
     game_state: GameState,
 ) -> None:
-    """Handle admin kick_player action — remove a disconnected player from lobby (#659)."""
-    if game_state.phase != GamePhase.LOBBY:
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": ERR_INVALID_ACTION,
-                "message": "Players can only be removed during lobby phase",
-            }
-        )
-        return
+    """Handle admin kick_player action — take a guest out of the game (#659/#2746).
 
+    Two refusals were dropped here on 2026-09-08 after the design gate on
+    #2746 picked option B: the phase check (LOBBY only) and the
+    ``target.connected`` check. Between them they meant the case that started
+    the issue — a guest who has to leave in the middle of a party, phone still
+    in their pocket and connected — had no answer at all.
+
+    What replaces them is not a second precondition but **recoverability**. In
+    LOBBY the guest is still deleted outright, which is what #659 built and
+    what the lobby wants: nothing has happened yet, and a leftover row is just
+    clutter. From PLAYING onward the session survives and only
+    ``sat_out_by_host`` is set, so the worst outcome of a mis-tap in a dark
+    room is a guest who taps back in with their points intact.
+
+    The host remains the one refusal that stays: removing them would leave the
+    game with nobody who can run it.
+    """
     target_name = data.get("player_name", "").strip()
     if not target_name:
         return
@@ -908,16 +945,22 @@ async def admin_kick_player(
         )
         return
 
-    if target.connected:
+    if game_state.phase is GamePhase.LOBBY:
+        # Nothing has been played, so there is nothing to preserve. Deleting
+        # frees the MAX_PLAYERS slot too, which option D was right about and
+        # which costs nothing before a game starts.
+        game_state.remove_player(target.name)
+        _LOGGER.info("Host removed %s from the lobby", target.name)
+        await handler.broadcast_state()
+        return
+
+    if not game_state.sit_out_player(target.name):
         await ws.send_json(
             {
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
-                "message": "Cannot remove a connected player",
+                "message": "Could not remove " + target_name,
             }
         )
         return
-
-    game_state.remove_player(target.name)
-    _LOGGER.info("Admin kicked disconnected player: %s", target.name)
     await handler.broadcast_state()

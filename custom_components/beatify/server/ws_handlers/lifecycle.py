@@ -502,6 +502,39 @@ async def handle_reconnect(
     )
 
 
+async def handle_rejoin(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """A guest the host sat out taps their way back in (#2746).
+
+    A **player** message, not an admin action, and that is the decision this
+    handler exists to carry: the host removes, the guest returns on their own.
+    The alternative — the host re-admits — was the other half of the open
+    question the design gate left, and it loses because the session survives
+    the removal, so the phone already holds everything a return needs while the
+    host would have to notice and act.
+
+    The player is resolved from the socket rather than from a name in the
+    payload; a name would let any guest reinstate any other.
+    """
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        return
+    if not game_state.request_rejoin(player.name):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "You cannot rejoin this game",
+            }
+        )
+        return
+    await handler.broadcast_state()
+
+
 async def handle_leave(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,

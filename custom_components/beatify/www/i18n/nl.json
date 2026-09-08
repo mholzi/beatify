@@ -33,7 +33,10 @@
     "speakerUnavailable": "De speaker reageert niet — de host is ermee bezig.",
     "gamePaused": "Spel gepauzeerd. Even geduld...",
     "redirecting": "Doorsturen...",
-    "hostCannotLeave": "De host kan het spel niet verlaten. Beëindig het spel in plaats daarvan."
+    "hostCannotLeave": "De host kan het spel niet verlaten. Beëindig het spel in plaats daarvan.",
+    "imBack": "Ik ben terug",
+    "satOutOwn": "De host heeft je eruit gehaald. Je punten blijven staan.",
+    "rejoinPending": "Vanaf de volgende ronde weer mee"
   },
   "lobby": {
     "gameLobby": "Spellenlobby",
@@ -187,7 +190,10 @@
     "pausedLabel": "Pauze",
     "pausedClockStopped": "De klok staat stil — er gaat niets verloren",
     "pausedHintHost": "De host gaat zo verder",
-    "pausedGuessesSaved": "Jullie antwoorden zijn opgeslagen"
+    "pausedGuessesSaved": "Jullie antwoorden zijn opgeslagen",
+    "satOut": "zit erbuiten",
+    "satOutLine": "{name} doet niet mee — de ronde gaat door",
+    "returnedLine": "{name} is terug"
   },
   "steal": {
     "available": "Stelen beschikbaar!",
@@ -941,7 +947,12 @@
     "encoreBadge": "VOLGENDE RONDE IS DE LAATSTE",
     "encoreButton": "{count} rondes erbij",
     "encoreHint": "De finish schuift naar {total}. De scores blijven staan.",
-    "rematchHint": "Elke score terug naar 0"
+    "rematchHint": "Elke score terug naar 0",
+    "sitOutTitle": "Deze gast eruit halen?",
+    "sitOutConfirm": "Eruit halen",
+    "sitOutBody": "{name} speelt dit spel niet verder en houdt geen plek meer bezet. De {score} punten blijven.",
+    "sitOutAria": "{name} eruit halen",
+    "bringBack": "Terughalen"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

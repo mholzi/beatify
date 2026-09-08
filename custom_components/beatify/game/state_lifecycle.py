@@ -321,6 +321,12 @@ class RoundLifecycleMixin:
         # finale final — the whole reason this option was chosen over a chip on
         # the last reveal, which could be tapped again on each new last round.
         self._encore_window = False
+        # #2746: parked returns come in HERE, at the round boundary, and
+        # nowhere else. A guest let back mid-round would be scored on a song
+        # they did not hear from the start, and the leaderboard would move for
+        # a reason the room cannot see. Their name goes into the round's
+        # returning list so the reveal can say one line about it.
+        self._returned_this_round = self.apply_pending_rejoins()
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)
 

@@ -163,6 +163,11 @@ _PLAYER_VISIBLE_REVEAL = frozenset(
         # otherwise looking at what reads like a scoring bug. It reveals nothing
         # about the song: by REVEAL the round is over either way.
         "round_voided",
+        # #2746: who came back to this round. The room is the audience for this
+        # one — a name reappearing on the leaderboard without a word looks like
+        # a scoring bug, and the guest who returned deserves to see their own
+        # return acknowledged rather than only the host's screen knowing.
+        "returned_players",
         "reveal_auto_advance",
         "reveal_started_at",
     }

@@ -450,6 +450,15 @@
                     <div class="eliminated-title" id="eliminated-title" data-i18n="game.youreOut">You're out</div>
                     <div class="eliminated-sub" id="eliminated-sub"></div>
                     <div class="eliminated-hint" id="eliminated-hint" data-i18n="game.watchingSidelines">Watching from the sidelines</div>
+                    <!-- #2746: the way back, on the guest's own phone. The host
+                         removes, the guest returns — the session survives the
+                         removal, so this needs nothing the phone does not
+                         already hold. Hidden for eliminations and playoff
+                         spectators; renderRejoinControl owns that. -->
+                    <div id="rejoin-control" class="rejoin-control hidden">
+                        <button id="rejoin-btn" type="button" class="btn btn-primary" data-i18n="player.imBack">I'm back</button>
+                        <p id="rejoin-pending" class="rejoin-pending hidden"></p>
+                    </div>
                 </div>
 
                 <!-- #2649: what the party lights are doing. The host does not

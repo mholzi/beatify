@@ -507,9 +507,10 @@ function syncNoBonusFiller(data) {
 // submission guard.
 var meEliminated = false;
 var mePlayoffSpectator = false;
+var meSatOut = false;  // #2746
 
 function meOutOfPlay() {
-    return meEliminated || mePlayoffSpectator;
+    return meEliminated || mePlayoffSpectator || meSatOut;
 }
 
 /**
@@ -565,10 +566,16 @@ function applySuddenDeathState(data) {
     var me = findMe(data && data.players);
     var amEliminated = !!(me && me.eliminated);
     var amPlayoffSpectator = !!(me && me.playoff_spectator);
-    var amOut = amEliminated || amPlayoffSpectator;
+    // #2746: the host took me out of this game. Same loss of the play UI as
+    // the other two, a different message, and — unlike the other two — a way
+    // back, because this is the only one a person decided rather than the
+    // rules.
+    var amSatOut = !!(me && me.sat_out_by_host);
+    var amOut = amEliminated || amPlayoffSpectator || amSatOut;
 
     meEliminated = amEliminated;
     mePlayoffSpectator = amPlayoffSpectator;
+    meSatOut = amSatOut;
 
     // Elements that make up the normal active-play UI.
     var playEls = [
@@ -597,7 +604,15 @@ function applySuddenDeathState(data) {
         var titleEl = document.getElementById('eliminated-title');
         var subEl = document.getElementById('eliminated-sub');
         var skull = eliminatedView.querySelector('.eliminated-skull');
-        if (amPlayoffSpectator && !amEliminated) {
+        if (amSatOut && !amEliminated) {
+            // No skull: nobody was eliminated, the host took them out. The
+            // sub-line says the points are safe, because that is the fear the
+            // moment creates and the answer is yes.
+            if (titleEl) titleEl.textContent = utils.t('game.satOut') || 'sat out';
+            if (subEl) subEl.textContent = utils.t('player.satOutOwn')
+                || 'The host sat you out. Your points are safe.';
+            if (skull) skull.classList.add('hidden');
+        } else if (amPlayoffSpectator && !amEliminated) {
             if (titleEl) titleEl.textContent = utils.t('reveal.finalePlayoff') || 'Finale playoff';
             if (subEl) subEl.textContent = utils.t('game.watchingSidelines') || 'Watching from the sidelines';
             if (skull) skull.classList.add('hidden');
@@ -614,6 +629,13 @@ function applySuddenDeathState(data) {
             if (skull) skull.classList.remove('hidden');
         }
 
+        // #2746: the way back, and it belongs to the guest. The host removes;
+        // the guest returns on their own — the session survived the removal,
+        // so the phone already holds everything a return needs. Hidden once
+        // Sudden Death has started cutting: the survivor field is fixed by
+        // then, and the server refuses anyway (`rejoin_allowed`).
+        renderRejoinControl(me, data);
+
         // Issue #827 gave eliminated players the reaction bar during PLAYING so
         // they could still cheer — but the server gate was REVEAL-only, so every
         // one of those taps was dropped without a word. #2562 opens the gate and
@@ -629,6 +651,7 @@ function applySuddenDeathState(data) {
             if (el) el.classList.remove('hidden');
         });
         eliminatedView.classList.add('hidden');
+        renderRejoinControl(null, data);
         var restoreTitleEl = document.getElementById('eliminated-title');
         var restoreSubEl = document.getElementById('eliminated-sub');
         var restoreSkull = eliminatedView.querySelector('.eliminated-skull');
@@ -642,6 +665,37 @@ function applySuddenDeathState(data) {
         // since restoring it is the tracker/ack's job, not ours.
         var banner = document.getElementById('submitted-banner');
         if (banner && !hasSubmitted) banner.classList.add('hidden');
+    }
+}
+
+/**
+ * The "I'm back" control on the phone of a guest the host sat out (#2746).
+ *
+ * Only for `sat_out_by_host` — an eliminated player has no way back by design,
+ * and a playoff spectator is already coming back next round. Once tapped the
+ * button gives way to a line saying the return lands at the next round, which
+ * is when the server applies it: a guess arriving halfway through a round
+ * would be scored against a song this player did not hear from the start.
+ */
+function renderRejoinControl(me, data) {
+    var box = document.getElementById('rejoin-control');
+    if (!box) return;
+    var canReturn = !!(me && me.sat_out_by_host && !me.eliminated);
+    // Sudden Death that has actually started cutting closes the door; the
+    // server owns that rule, this mirrors it so the button is not offered and
+    // then refused.
+    var cutting = !!(data && data.sudden_death_mode
+        && (data.players || []).some(function(p) { return p.eliminated; }));
+    box.classList.toggle('hidden', !canReturn || cutting);
+    if (!canReturn || cutting) return;
+
+    var btn = document.getElementById('rejoin-btn');
+    var pending = document.getElementById('rejoin-pending');
+    var waiting = !!(me && me.rejoin_requested);
+    if (btn) btn.classList.toggle('hidden', waiting);
+    if (pending) {
+        pending.classList.toggle('hidden', !waiting);
+        pending.textContent = utils.t('player.rejoinPending') || 'Back in for the next round';
     }
 }
 
@@ -688,10 +742,12 @@ function renderSubmissionTracker(players) {
     if (!tracker || !container) return;
 
     var playerList = players || [];
-    // #827 / #2612: eliminated players and playoff spectators are out of the
-    // round and must not count toward the "submitted / waiting" totals.
+    // #827 / #2612 / #2746: eliminated players, playoff spectators and guests
+    // the host sat out are all out of the round and must not count toward the
+    // "submitted / waiting" totals. Leaving a sat-out guest in would show the
+    // room waiting on somebody who has left the party.
     var activeList = playerList.filter(function(p) {
-        return !p.eliminated && !p.playoff_spectator;
+        return !p.eliminated && !p.playoff_spectator && !p.sat_out_by_host;
     });
     var submittedCount = activeList.filter(function(p) {
         return p.submitted;
@@ -726,7 +782,8 @@ function renderSubmissionTracker(players) {
         var isDisconnected = player.connected === false;
         var isEliminated = !!player.eliminated;  // Issue #827
         var isPlayoffSpectator = !!player.playoff_spectator;  // Issue #2612
-        var isOutOfPlay = isEliminated || isPlayoffSpectator;
+        var isSatOut = !!player.sat_out_by_host;  // #2746
+        var isOutOfPlay = isEliminated || isPlayoffSpectator || isSatOut;
         var classes = [
             'player-indicator',
             // #827 / #2612: out-of-play chips never read as "submitted".
@@ -1102,6 +1159,18 @@ export function initYearSelector() {
             if (sabotageForcedBet) return;
             betActive = !betActive;
             betToggle.classList.toggle('is-active', betActive);
+        });
+    }
+
+    // #2746: the guest's own way back. A player message, not an admin action —
+    // the host removes, the guest returns. The button hides itself on the next
+    // state broadcast, which is also what turns it into the "back for the next
+    // round" line while a round is still running.
+    var rejoinBtn = document.getElementById('rejoin-btn');
+    if (rejoinBtn) {
+        rejoinBtn.addEventListener('click', function() {
+            if (!state.ws || state.ws.readyState !== WebSocket.OPEN) return;
+            state.ws.send(JSON.stringify({ type: 'rejoin' }));
         });
     }
 

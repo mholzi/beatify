@@ -945,6 +945,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     document.getElementById('admin-end-game-paused')?.addEventListener('click', endGame);
 
+    // #2746: per-row host controls on the in-game leaderboards.
+    setupSitOutControls();
+
     // End game modal setup (Story 9.10)
     setupEndGameModal();
 
@@ -2908,7 +2911,94 @@ function showAdminPlayingView(data) {
     if (introSplash) introSplash.classList.toggle('hidden', !data.intro_splash_pending);
 
     // Leaderboard (player-style entries)
-    renderAdminLeaderboard(data.leaderboard);
+    // #2746: true = render the host's per-row control. The END screen
+    // below deliberately passes nothing — a finished game has nobody to
+    // take out.
+    adminState.lastLeaderboard = data.leaderboard || [];
+    renderAdminLeaderboard(data.leaderboard, null, true);
+}
+
+/**
+ * The one line the reveal says about a guest who came back (#2746).
+ *
+ * Only the transition, never the state: someone who played the whole round is
+ * not announced. Without it the room watches a name reappear on the
+ * leaderboard and reads it as a scoring bug.
+ */
+function renderReturnedBanner(data) {
+    const box = document.getElementById('admin-reveal-returned');
+    if (!box) return;
+    const names = (data && data.returned_players) || [];
+    box.classList.toggle('hidden', names.length === 0);
+    if (!names.length) return;
+    const text = document.getElementById('admin-reveal-returned-text');
+    if (text) {
+        text.textContent = BeatifyI18n.t('game.returnedLine', { name: names.join(', ') })
+            || (names.join(', ') + ' is back in');
+    }
+}
+
+/**
+ * Take a guest out of the running game, or bring them back (#2746).
+ *
+ * The design gate picked option B: every guest row is removable, connected or
+ * not, in the lobby and in a running game. Both server-side refusals are gone,
+ * so the confirm card below is the only guard there is — which is why it names
+ * the consequence instead of asking a yes/no, and why it says the score stays.
+ * A misplaced tap in a dark room is then recoverable: the guest taps "I'm
+ * back" and keeps their points.
+ *
+ * Delegated from the leaderboard container rather than bound per row, because
+ * the rows are re-rendered on every state broadcast.
+ */
+var _sitOutTarget = null;
+
+function setupSitOutControls() {
+    ['admin-playing-leaderboard-list', 'admin-reveal-leaderboard'].forEach(function(id) {
+        const list = document.getElementById(id);
+        if (!list) return;
+        list.addEventListener('click', function(e) {
+            const btn = e.target.closest ? e.target.closest('.entry-host-action') : null;
+            if (!btn) return;
+            const name = btn.getAttribute('data-player');
+            if (!name) return;
+            if (btn.getAttribute('data-action') === 'reinstate') {
+                // No confirmation: letting someone back in is not the tap that
+                // needs a guard.
+                sendAdminCommand({ type: 'admin', action: 'reinstate_player', player_name: name });
+                return;
+            }
+            openSitOutModal(name);
+        });
+    });
+    document.getElementById('sit-out-cancel-btn')?.addEventListener('click', closeSitOutModal);
+    document.getElementById('sit-out-confirm-btn')?.addEventListener('click', function() {
+        if (_sitOutTarget) {
+            sendAdminCommand({ type: 'admin', action: 'kick_player', player_name: _sitOutTarget });
+        }
+        closeSitOutModal();
+    });
+}
+
+function openSitOutModal(name) {
+    _sitOutTarget = name;
+    const modal = document.getElementById('sit-out-modal');
+    const msg = document.getElementById('sit-out-message');
+    if (msg) {
+        // The score comes from the row the host is looking at, so the card
+        // states the actual number rather than a generic promise.
+        const entry = (adminState.lastLeaderboard || []).find(function(p) { return p.name === name; });
+        msg.textContent = BeatifyI18n.t('admin.sitOutBody', {
+            name: name,
+            score: entry ? entry.score : 0,
+        });
+    }
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeSitOutModal() {
+    _sitOutTarget = null;
+    document.getElementById('sit-out-modal')?.classList.add('hidden');
 }
 
 /**
@@ -3039,6 +3129,7 @@ function showAdminRevealView(data) {
 
     // #2646: the host dropped this round instead of scoring it.
     renderVoidedBanner(document, 'admin-reveal-voided', data);
+    renderReturnedBanner(data);
 
     // Show control bar during reveal too (admin can skip, end game)
     var controlBar = document.getElementById('admin-control-bar');
@@ -3189,7 +3280,11 @@ function showAdminRevealView(data) {
     renderAdminResultCards(data.players, data.closest_wins_mode, data.song ? data.song.year : null);
 
     // Leaderboard (player-style entries)
-    renderAdminLeaderboard(data.leaderboard);
+    // #2746: true = render the host's per-row control. The END screen
+    // below deliberately passes nothing — a finished game has nobody to
+    // take out.
+    adminState.lastLeaderboard = data.leaderboard || [];
+    renderAdminLeaderboard(data.leaderboard, null, true);
 }
 
 /**

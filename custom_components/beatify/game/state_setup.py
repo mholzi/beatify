@@ -284,6 +284,7 @@ class GameSetupMixin:
         # rematch path does not come through here, the admin page does) would
         # otherwise inherit the previous game's open window.
         self._encore_window = False
+        self._returned_this_round: list[str] = []
         self.pause_reason = None
         self._previous_phase = None
 

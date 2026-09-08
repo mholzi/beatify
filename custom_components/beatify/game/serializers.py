@@ -376,6 +376,12 @@ class GameStateSerializer:
         # a five the reserve may not cover.
         state["encore_available"] = gs.encore_available()
         state["encore_rounds"] = gs.ENCORE_ROUNDS
+        # #2746: wer zu dieser Runde zurueckgekommen ist. Eine Zeile auf dem
+        # Fernseher, damit der Raum versteht, warum sich die Rangliste bewegt
+        # hat — ohne sie sieht ein wieder auftauchender Name nach einem
+        # Wertungsfehler aus. Nur der Uebergang wird gemeldet, nicht der
+        # Zustand: wer die ganze Runde dabei war, steht hier nicht.
+        state["returned_players"] = list(getattr(gs, "_returned_this_round", []))
         # Issue #1725: mirror the PLAYING-phase finale flags so the reveal card
         # can keep the "Finale ×2" / playoff badge visible.
         state["finale_double_active"] = gs.finale_double_enabled and gs.last_round

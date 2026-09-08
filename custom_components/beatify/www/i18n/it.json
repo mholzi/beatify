@@ -33,7 +33,10 @@
     "speakerUnavailable": "L'altoparlante non risponde — l'host se ne sta occupando.",
     "gamePaused": "Partita in pausa. Attendi...",
     "redirecting": "Reindirizzamento...",
-    "hostCannotLeave": "L'host non può uscire. Termina invece la partita."
+    "hostCannotLeave": "L'host non può uscire. Termina invece la partita.",
+    "imBack": "Sono tornato",
+    "satOutOwn": "L'host ti ha fatto uscire. I tuoi punti restano.",
+    "rejoinPending": "Rientri dal prossimo round"
   },
   "lobby": {
     "gameLobby": "Sala d'attesa",
@@ -187,7 +190,10 @@
     "pausedLabel": "Pausa",
     "pausedClockStopped": "Il tempo è fermo — non si perde nulla",
     "pausedHintHost": "L'host riprende tra un istante",
-    "pausedGuessesSaved": "Le vostre risposte sono salvate"
+    "pausedGuessesSaved": "Le vostre risposte sono salvate",
+    "satOut": "fuori",
+    "satOutLine": "{name} esce — il round prosegue",
+    "returnedLine": "{name} è di nuovo in gioco"
   },
   "steal": {
     "available": "Furto disponibile!",
@@ -941,7 +947,12 @@
     "encoreBadge": "PROSSIMO GIRO: L'ULTIMO",
     "encoreButton": "Aggiungi {count} round",
     "encoreHint": "Il traguardo passa a {total}. I punteggi restano.",
-    "rematchHint": "Tutti i punteggi tornano a 0"
+    "rematchHint": "Tutti i punteggi tornano a 0",
+    "sitOutTitle": "Far uscire questo ospite?",
+    "sitOutConfirm": "Fai uscire",
+    "sitOutBody": "{name} non gioca più questa partita e libera il posto. I suoi {score} punti restano.",
+    "sitOutAria": "Fai uscire {name}",
+    "bringBack": "Fallo rientrare"
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

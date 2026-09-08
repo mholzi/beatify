@@ -1337,6 +1337,12 @@
                 <!-- #2646: the host dropped this round instead of scoring it.
                      Without this the screen shows a reveal and a leaderboard
                      that did not move, which reads as a scoring bug. -->
+                <!-- #2746: who came back to this round. A name reappearing on
+                     the leaderboard without a word looks like a scoring bug. -->
+                <div id="admin-reveal-returned" class="idle-halt-banner hidden" role="status">
+                    <span class="idle-halt-icon" aria-hidden="true">👋</span>
+                    <span id="admin-reveal-returned-text"></span>
+                </div>
                 <div id="admin-reveal-voided" class="idle-halt-banner hidden" role="status">
                     <span class="idle-halt-icon" aria-hidden="true">🚫</span>
                     <span data-i18n="reveal.roundVoidedBanner">This round does not count — no points, no broken streaks.</span>
@@ -1653,6 +1659,24 @@
     <!-- Remove-player confirmation (#2718) — opened by tapping an away guest's
          lobby tile. Cancel is focused first: the default action must never be
          the one that removes somebody. -->
+    <!-- #2746: the confirm card IS the guard. Option B drops both server-side
+         refusals — phase and connected — so nothing else stands between a
+         misplaced tap in a dark room and pulling the leader out of a party
+         game. It therefore names the consequence rather than asking a yes/no,
+         and it says the score stays, because that is what makes the mistake
+         recoverable. -->
+    <div id="sit-out-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="sit-out-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h2 id="sit-out-title" data-i18n="admin.sitOutTitle">Sit this guest out?</h2>
+            <p id="sit-out-message"></p>
+            <div class="modal-actions">
+                <button id="sit-out-confirm-btn" class="btn btn-primary" data-i18n="admin.sitOutConfirm">Sit out</button>
+                <button id="sit-out-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div id="kick-player-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="kick-player-title">
         <div class="modal-backdrop"></div>
         <div class="modal-content">

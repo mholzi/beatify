@@ -31,6 +31,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_get_steal_targets,
     handle_join,
     handle_leave,
+    handle_rejoin,
     handle_movie_guess,
     handle_ping,
     handle_player_onboarded,
@@ -111,6 +112,7 @@ class BeatifyWebSocketHandler:
             "admin_connect": handle_admin_connect,
             "reconnect": handle_reconnect,
             "leave": handle_leave,
+            "rejoin": handle_rejoin,  # #2746
             "get_state": handle_get_state,
             "get_steal_targets": handle_get_steal_targets,
             "steal": handle_steal,
