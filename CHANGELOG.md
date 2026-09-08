@@ -4,7 +4,7 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.5.0-rc1] - 2026-09-08
+## [4.5.0] - 2026-09-08
 
 Die Woche 2026-W37: fuenfzig Eintraege aus der Redaktionskonferenz, alle gebaut und gemergt. Zwoelf
 davon liefen durchs Design-Gate, jeder mit Entwurf und Markus' Auswahl. Der Kandidat traegt sie
