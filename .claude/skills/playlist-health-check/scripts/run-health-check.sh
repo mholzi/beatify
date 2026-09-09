@@ -46,10 +46,20 @@ entries = []
 region_maps = []
 for s in data["songs"]:
     artist, title = s["artist"], s["title"]
+    # Zwei Zusatzangaben je Eintrag (#2785, 09.09.2026): die ISRC beantwortet
+    # bei Deezer die Frage nach der Aufnahme genauer als der Anzeigename, und
+    # die beanspruchten Storefronts sagen Apple, wo ueberhaupt zu suchen ist.
+    # Ohne sie pruefte Apple eine polnische Playlist gegen US/DE/GB.
+    storefronts = sorted((s.get("uri_apple_music_by_region") or {}).keys())
     for field in ["uri", "uri_youtube_music", "uri_tidal", "uri_deezer", "uri_apple_music"]:
         uri = s.get(field)
         if uri:
-            entries.append({"uri": uri, "artist": artist, "title": title})
+            e = {"uri": uri, "artist": artist, "title": title}
+            if field == "uri_deezer" and s.get("isrc"):
+                e["isrc"] = s["isrc"]
+            if field == "uri_apple_music" and storefronts:
+                e["storefronts"] = storefronts
+            entries.append(e)
     # uri_apple_music_by_region is validated separately and in batch — it is
     # frequently a different id from uri_apple_music, so the per-track pass
     # above never sees it.

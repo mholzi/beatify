@@ -244,7 +244,23 @@ def check_youtube(tid, title, artist):
         return unverifiable_title(title, actual, data.get("author_name"))
     return {"status": "ok", "http_code": 200}
 
-def check_deezer(tid, title, artist):
+def check_deezer(tid, title, artist, isrc=None):
+    """Deezer-URI pruefen — per ISRC, wenn der Eintrag einen hat.
+
+    **Warum nicht am Titel (#2785, 09.09.2026).** Deezers Anzeigename traegt bei
+    Kompilationen ein Album-Praefix: `deezer://track/88413379` heisst dort
+    „Obywatel Republikanin - OPOLE 2001 - Republika - Biała flaga", die Playlist
+    nennt den Titel „Biała Flaga - Live". Der Titelvergleich las das als falschen
+    Track — es war derselbe. Drei von neun Befunden eines einzigen Laufs kamen so
+    zustande.
+
+    Die ISRC ist der Ausweis der **Aufnahme** und beantwortet genau die Frage,
+    die hier gestellt wird: zeigt die URI auf die Aufnahme, die im Eintrag steht?
+    Stimmen die Ids ueberein, ist der Fall erledigt, egal wie die Anzeige lautet.
+    Auf den Titelvergleich faellt die Pruefung nur zurueck, wenn keine ISRC
+    vorliegt — und genau dieser eine Fall war im selben Lauf ein echter Fehler
+    (Varius Manx, Live-Fassung von 2016 unter einer Antwort von 1995).
+    """
     url = f"https://api.deezer.com/track/{tid}"
     data, code, is_transient = http_json(url)
     if data is None:
@@ -252,6 +268,20 @@ def check_deezer(tid, title, artist):
         return {"status": "unreachable", "http_code": code, "detail": f"Deezer HTTP {code}"}
     if "error" in data:
         return {"status": "dead", "http_code": 200, "detail": data["error"].get("message", "?")}
+
+    if isrc:
+        ref, ref_code, ref_transient = http_json(
+            f"https://api.deezer.com/track/isrc:{isrc}")
+        # Ein Fehlschlag der ISRC-Abfrage ist kein Befund: der Katalog kann die
+        # ISRC nicht kennen, ohne dass die URI falsch waere. Dann greift unten
+        # der Titelvergleich weiter.
+        if ref and not ref.get("error") and ref.get("id") is not None:
+            if str(ref["id"]) == str(data.get("id", tid)):
+                return {"status": "ok", "http_code": 200,
+                        "detail": f"ISRC {isrc} loest auf dieselbe Track-Id auf"}
+            return wrong_track(title, artist, data.get("title", ""),
+                               data.get("artist", {}).get("name", ""))
+
     actual_title  = data.get("title", "")
     actual_artist = data.get("artist", {}).get("name", "")
     v = title_verdict(title, actual_title, artist)
@@ -304,11 +334,29 @@ def _check_tidal_embed(tid, title, artist):
         return {"status": "error", "http_code": e.code, "detail": f"Tidal unavailable ({e.code})"}
     except Exception as e: return {"status": "unreachable", "detail": str(e)}
 
-def check_apple_music(tid, title, artist):
-    # iTunes Lookup defaults to the US storefront — German-catalog tracks
-    # (Karneval, Schlager, etc.) return resultCount=0 there. Try US first,
-    # fall back to DE and GB before calling a track dead.
-    for country in ("us", "de", "gb"):
+def check_apple_music(tid, title, artist, storefronts=None):
+    """Apple-URI pruefen — zuerst in den Storefronts, die der Eintrag beansprucht.
+
+    **Warum nicht mehr nur us/de/gb (#2785, 09.09.2026).** Auf einer polnischen
+    Playlist ist das die falsche Stichprobe: `1542580817` (Andrzej Zaucha) und
+    `1206451409` (Varius Manx) liefern dort null Treffer und je einen korrekten
+    im `pl`-Katalog. Beide wurden als tot gemeldet und waren es nicht.
+
+    Die Reihenfolge ist deshalb: erst was in `uri_apple_music_by_region` steht —
+    das ist die Aussage der Playlist selbst darueber, wo der Track zu finden sein
+    soll —, danach us/de/gb als Auffangnetz fuer Eintraege ohne Regionskarte.
+    Die Absage nennt hinterher die tatsaechlich befragten Storefronts, damit
+    „nicht gefunden" nachpruefbar bleibt statt nur behauptet.
+    """
+    reihenfolge = []
+    for c in (storefronts or []):
+        c = str(c).lower()
+        if c and c not in reihenfolge:
+            reihenfolge.append(c)
+    for c in ("us", "de", "gb"):
+        if c not in reihenfolge:
+            reihenfolge.append(c)
+    for country in reihenfolge:
         url = f"https://itunes.apple.com/lookup?id={tid}&entity=song&country={country}"
         data, code, is_transient = http_json(url)
         if data is None:
@@ -329,7 +377,8 @@ def check_apple_music(tid, title, artist):
         if v == "unverifiable":
             return unverifiable_title(title, actual_title, actual_artist)
         return {"status": "ok", "http_code": 200}
-    return {"status": "dead", "http_code": 404, "detail": "Not found in US/DE/GB catalogs"}
+    return {"status": "dead", "http_code": 404,
+            "detail": "Not found in " + "/".join(c.upper() for c in reihenfolge) + " catalogs"}
 
 CHECKERS = {
     "spotify":       check_spotify,
@@ -496,7 +545,15 @@ def validate_uris(songs, delay=0.5):
             results.append(r)
             summary["dead"] += 1
         else:
-            r = CHECKERS[provider](tid, title, artist)
+            # Deezer bekommt die ISRC, Apple die beanspruchten Storefronts —
+            # beides steht im Eintrag und beantwortet die Frage genauer als ein
+            # Titelvergleich gegen einen Anzeigenamen (#2785).
+            extra = {}
+            if provider == "deezer" and song.get("isrc"):
+                extra["isrc"] = song["isrc"]
+            if provider == "apple_music" and song.get("storefronts"):
+                extra["storefronts"] = song["storefronts"]
+            r = CHECKERS[provider](tid, title, artist, **extra)
             r.update({"uri":uri,"artist":artist,"title":title,"provider":provider})
             results.append(r)
             summary[r["status"]] = summary.get(r["status"], 0) + 1
