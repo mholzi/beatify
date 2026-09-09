@@ -2,7 +2,7 @@
 # Install with: pip install -r requirements_test.txt
 pytest>=8.0
 pytest-asyncio>=1.4.0
-pytest-cov>=6.0
+pytest-cov>=7.1.0
 aiohttp>=3.14.3
 num2words>=0.5.14  # spoken-number rendering for TTS announcements
 jsonschema>=4.0   # playlist JSON-schema gate (#1284)
