@@ -1,0 +1,88 @@
+# Dependency updates — Schritt 4 aus #2580.
+#
+# Bis heute gab es hier nichts, und genau deshalb sammelten sich eine kritische
+# Advisory, drei veraltete Action-Majors und ein ruff/mypy-Rueckstand an, ohne
+# dass jemand es bemerkte. Die Konfiguration ist bewusst eng gefasst: ein Bot,
+# der rote oder stillschweigend schaedliche PRs oeffnet, bringt einem bei, seine
+# PRs zu ueberblaettern — und dann ist er schlimmer als keiner.
+#
+# `custom_components/beatify/manifest.json` steht hier bewusst NICHT: Dependabot
+# liest HA-Manifeste nicht, und das ist richtig so. `num2words==0.5.14` ist der
+# Pin von Home Assistant Core und wird nicht von hier aus bewegt.
+version: 2
+updates:
+  # --- Frontend-Werkzeugkette (nur devDependencies, nichts davon wird ausgeliefert)
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      # vitest und @vitest/coverage-v8 sind aneinander gebunden. Einzeln
+      # angehoben bricht die Peer-Beziehung, und der PR ist rot, bevor ihn
+      # jemand liest.
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "globals"
+    ignore:
+      # esbuild ist mit Absicht exakt gepinnt: `build:check` (#1263) vergleicht
+      # die gebaute `.min.js` byteweise, und jede esbuild-Version erzeugt eine
+      # andere Ausgabe. Ein Dependabot-PR waere hier **zuverlaessig rot**, weil
+      # ihm der Neubau fehlt, den ein Mensch mitliefern muss. Die Anhebung ist
+      # als Schritt 3 in #2580 beschrieben und gehoert in einen eigenen PR mit
+      # neu gebauter und eingecheckter Datei.
+      - dependency-name: esbuild
+
+  # --- GitHub Actions
+  # Alle Actions liegen auf Node-20-Majors, die der Runner ohnehin auf Node 24
+  # zwingt (#2580). Genau solche Majors sind es, die ohne Bot liegen bleiben.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(ci)"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  # --- Test-Abhaengigkeiten (requirements_test.txt)
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      # num2words steht hier nur, damit die Tests laufen — massgeblich ist der
+      # Pin in `manifest.json`, und der folgt Home Assistant Core. Wuerde
+      # Dependabot ihn hier anheben, liefen Test- und Laufzeit-Fassung
+      # auseinander, ohne dass irgendetwas rot wird.
+      - dependency-name: num2words
+      # mypy ist an ZWEI Stellen gepinnt: hier und hart in
+      # `.github/workflows/test.yml` („pip install mypy==1.18.2"). Dependabot
+      # sieht nur diese Datei. Ein Bump waere gruen und wuerde die beiden
+      # Staende trotzdem auseinanderlaufen lassen — die stille Sorte Schaden.
+      # Bis eine Pruefung die Gleichheit erzwingt, bleibt mypy von Hand.
+      # Siehe #2580, Abschnitt „Related".
+      - dependency-name: mypy

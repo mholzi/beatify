@@ -25,7 +25,10 @@ docs/
 # ---- Config & tooling ----
 # pyproject.toml is tracked — it hosts the [tool.mypy] config (#1275).
 package.json
-package-lock.json
+# package-lock.json wird eingecheckt (#2580, 09.09.2026). Ohne ihn loeste
+# jeder CI-Lauf eslint, vitest, vite und rollup innerhalb ihrer Caret-Spannen
+# neu auf — direkt unter dem build:check-Tor, das auf byte-gleicher Ausgabe
+# beruht. Und ohne ihn ist keine Abhaengigkeits-Anhebung ueberpruefbar.
 Makefile
 conftest.py
 pytest.ini

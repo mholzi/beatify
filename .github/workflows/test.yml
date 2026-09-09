@@ -113,9 +113,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          # Seit der Lockfile im Baum liegt (#2580), traegt setup-nodes eigener
+          # npm-Cache — er braucht genau diese Datei als Schluessel.
+          cache: npm
 
+      # `npm ci` statt `npm install`: es installiert exakt den Lockfile und
+      # bricht ab, wenn package.json und Lockfile auseinanderlaufen. Genau das
+      # ist der Sinn der Uebung — `npm install` haette die Abweichung still
+      # zurechtgebogen und den Lockfile nebenbei umgeschrieben.
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Lint JS (ESLint)
         run: npm run lint

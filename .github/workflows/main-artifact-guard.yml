@@ -58,19 +58,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          # Der Lockfile liegt seit #2580 im Baum, damit greift setup-nodes
+          # eigener npm-Cache. Der handgebaute Cache-Schritt darunter ist
+          # deshalb entfallen — er war der Ersatz fuer genau diesen Fall und
+          # war auf package.json geschluesselt, also auf eine Datei, die sich
+          # nicht aendert, wenn eine Abhaengigkeit neu aufgeloest wird.
+          cache: npm
 
-      # There is no package-lock.json in the tree, so `npm ci` and setup-node's
-      # built-in npm cache are both out. Caching the download directory keyed on
-      # package.json still takes the install from ~30s to a few seconds.
-      - name: Cache npm downloads
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('package.json') }}
-          restore-keys: ${{ runner.os }}-npm-
-
+      # `npm ci` ist hier wichtiger als anderswo: dieser Job baut jedes Bundle
+      # neu und vergleicht es byteweise mit dem, was auf main liegt. Wenn die
+      # Werkzeugkette bei jedem Lauf neu aufgeloest wird, prueft der Vergleich
+      # nicht mehr den Code, sondern den Zufall der Aufloesung.
       - name: Install build dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       # Rebuilds every minified bundle and every `.gz` sibling in memory and
       # compares against what this commit of main actually ships. Deliberately
