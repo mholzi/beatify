@@ -3152,8 +3152,10 @@ function showAdminRevealView(data) {
         if (guessers.length > 0) {
             avgOff = Math.round(guessers.reduce(function(s, p) { return s + (p.years_off || 0); }, 0) / guessers.length);
         }
-        var emotionText = '';
-        var emotionClass = 'reveal-emotion--wrong';
+        // Ohne Anfangswert: die Kette darunter hat ein `else`, jeder Zweig
+        // setzt beide. Ein Anfangswert waere tot und wird seit eslint 10 als
+        // `no-useless-assignment` gemeldet.
+        var emotionText, emotionClass;
         if (exactCount > 0) {
             emotionText = '🎯 ' + exactCount + 'x ' + (BeatifyI18n.t('reveal.exact') || 'Exact!');
             emotionClass = 'reveal-emotion--exact';
