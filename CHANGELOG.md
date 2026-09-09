@@ -4,6 +4,31 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.6.0-rc2] - 2026-09-09
+
+Ein Nachschlag zum rc1, ohne eine Zeile Spiellogik. Alles hier ist Katalogpflege und
+Werkzeugkette — was auf dem Fernseher passiert, ist unveraendert.
+
+### Fixed
+- **Vier kaputte Provider-URIs** in `polish-all-time-hits` (#2785 via #2786). Zwei davon
+  wurden **entfernt statt ersetzt**: eine fehlende URI laesst Beatify den Anbieter
+  ueberspringen, eine tote laesst die Wiedergabe vor Gaesten scheitern. Beim Varius-Manx-
+  Eintrag kam das Schwerere dazu — der Link zeigte auf eine Live-Aufnahme von 2016, waehrend
+  die richtige Antwort 1995 lautet.
+- **Der Playlist-Pruefer stellte die falschen Fragen** (#2785 via #2787). Fuenf von neun
+  Befunden eines Laufs waren Fehlalarme: Deezer wurde am Anzeigenamen gemessen statt an der
+  ISRC, und Apple wurde bei einer polnischen Playlist gegen US/DE/GB aufgeloest. Beides
+  behoben, gegen alle sechs bekannten Faelle geprueft — die zwei echten Fehler fallen
+  weiterhin auf.
+
+### Changed
+- **+97 YouTube-URIs** aus den Backfill-Laeufen (#2783, #2784).
+- **Die Werkzeugkette ist reproduzierbar** (#2580 via #2788, #2789, #2790): `package-lock.json`
+  wird eingecheckt, die CI installiert mit `npm ci`, und Dependabot ist eingerichtet. Dazu
+  `npm audit` von acht Meldungen auf **null** — vitest 2.1.9 auf 5.0.0, esbuild auf 0.28.2.
+  Der Neubau mit dem neuen esbuild liess jedes Artefakt bytegleich; ausgeliefert aendert sich
+  dadurch nichts.
+
 ## [4.6.0-rc1] - 2026-09-08
 
 Die Woche 2026-W37b: sechs Eintraege aus der Redaktionskonferenz vom 08.09., alle gebaut und
