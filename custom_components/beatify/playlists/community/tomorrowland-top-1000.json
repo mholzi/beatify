@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.69",
+  "version": "0.70",
   "tags": [
     "edm",
     "electronic",
@@ -18866,7 +18866,7 @@
       "year": 2025,
       "isrc": "QMBZ92552535",
       "uri": "spotify:track:31yljlcH1pEm4Dz85D1KGC",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3hlAVCBz6uc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3413000091",
       "fun_fact": "“Body Language” is the title track of Samm’s release of the same name.",
