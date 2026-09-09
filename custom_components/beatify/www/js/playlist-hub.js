@@ -798,7 +798,9 @@ function _renderSeasonalChip(host) {
     const all = (state.playlists || []).filter((p) => p.source !== 'community');
     const filtered = filterByGenre(all.filter((p) => matchesSearch(p, state.searchQuery)), state.genreFilter);
     const candidates = filtered.filter((p) => !state.selectedPaths.has(p.path || p.filename || p.name));
-    let chipHtml = '';
+    // Der `catch` kehrt zurueck, nach dem `try` ist also immer zugewiesen —
+    // der Anfangswert war tot (eslint 10, no-useless-assignment).
+    let chipHtml;
     try { chipHtml = api.seasonalSuggestionHtml(candidates) || ''; }
     catch (e) { console.warn('[PlaylistHub] seasonal chip render failed:', e); return; }
     if (!chipHtml) return;

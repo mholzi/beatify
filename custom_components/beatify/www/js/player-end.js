@@ -318,7 +318,8 @@ function renderSuperlatives(superlatives) {
 
     var html = '';
     superlatives.forEach(function(award, index) {
-        var valueText = '';
+        // Der switch darunter hat ein `default`, also weist jeder Weg zu.
+        var valueText;
         switch (award.value_label) {
             case 'avg_time':
                 valueText = award.value + 's ' + utils.t('superlatives.avgTime');

@@ -2370,8 +2370,10 @@
         var textEl = container.querySelector('.stats-comparison-text');
 
         // Build comparison text based on performance
-        var icon = '';
-        var text = '';
+        // `cssClass` behaelt seinen Anfangswert — die Zweige haengen nur an.
+        // `icon` und `text` werden in jedem Zweig gesetzt, die Kette endet auf
+        // `else`; ein Anfangswert waere tot (eslint 10, no-useless-assignment).
+        var icon, text;
         var cssClass = 'stats-comparison';
 
         var avg = performance.current_avg.toFixed(1);
@@ -2426,7 +2428,8 @@
 
         var html = '';
         superlatives.forEach(function(award, index) {
-            var valueText = '';
+            // Der switch darunter hat ein `default`, also weist jeder Weg zu.
+            var valueText;
             switch (award.value_label) {
                 case 'avg_time':
                     valueText = award.value + 's ' + utils.t('superlatives.avgTime');
