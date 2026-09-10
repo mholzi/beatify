@@ -1475,7 +1475,14 @@ class GameState(
             # start_round couldn't launch (e.g. it paused / exhausted under us).
             # Drop the active flag; the caller will finalize as usual.
             self._finale_playoff_active = False
-        return started
+            return False
+
+        # #2734: speak it, but only now. The announcement waited a whole issue
+        # for this line to be trustworthy — announcing a playoff that then does
+        # not start is worse than the silence it replaces, and this is the one
+        # branch where that could still happen.
+        await self.announce_finale_playoff(sorted(winner_names))
+        return True
 
     def _schedule_reveal_advance(self) -> None:
         """Schedule the REVEAL vote window or auto-advance task (#1272).
