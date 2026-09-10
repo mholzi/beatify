@@ -45,6 +45,74 @@ QUEUE = {
 ENTITY = "media_player.esszimmer"
 
 
+class _Clock:
+    """A clock that only moves when the code under test sleeps (#2747).
+
+    The scenarios here are written in seconds — a track that starts 1.0s late,
+    a speaker that relapses after 99s — and until now those seconds were read
+    off the event loop's wall time. Under a loaded machine the polling loop
+    drifts against them, and the speaker model lands in a different state than
+    the assertion expects: one failure in six full-suite runs, always on the
+    slowest one, never once in 25 runs of this file alone.
+
+    Simulated time removes the race instead of widening the margins. Widening
+    would only move the load at which it comes back.
+    """
+
+    #: Belt and braces: a production loop that ever stopped sleeping would spin
+    #: here forever instead of failing. A unit suite may fail; it may not hang.
+    MAX_STEPS = 100_000
+
+    def __init__(self) -> None:
+        self.now = 0.0
+        self.steps = 0
+
+    def reset(self) -> None:
+        self.now = 0.0
+        self.steps = 0
+
+    def time(self) -> float:
+        return self.now
+
+    def advance(self, seconds: float) -> None:
+        self.steps += 1
+        if self.steps > self.MAX_STEPS:
+            raise AssertionError(
+                "the guard slept 100k times without finishing — a loop under "
+                "test is not converging"
+            )
+        self.now += max(0.0, seconds)
+
+
+class _VirtualAsyncio:
+    """Stands in for the ``asyncio`` module inside ``queue_restore``.
+
+    Only the two things that touch time are replaced: ``get_event_loop`` hands
+    back the clock (the module only ever calls ``.time()`` on it), and
+    ``sleep`` advances that clock and yields once so the rest of the loop runs.
+    Everything else falls through to the real module, so a future call in
+    ``queue_restore`` keeps working instead of failing here.
+    """
+
+    def __init__(self, clock: _Clock) -> None:
+        self._clock = clock
+
+    def __getattr__(self, name):
+        return getattr(asyncio, name)
+
+    def get_event_loop(self) -> _Clock:
+        return self._clock
+
+    async def sleep(self, seconds, *args, **kwargs):
+        self._clock.advance(seconds)
+        await asyncio.sleep(0)
+
+
+#: One clock per test, reset by the fixture. Module-level so the Speaker fake
+#: can read it without every call site having to pass it in.
+CLOCK = _Clock()
+
+
 @pytest.fixture(autouse=True)
 def _fast_guard(monkeypatch, request):
     """Run the real guard on a compressed clock.
@@ -58,8 +126,12 @@ def _fast_guard(monkeypatch, request):
     arithmetic between the constants (#2707) is only worth asserting on the
     numbers that ship.
     """
+    CLOCK.reset()
     if getattr(request.cls, "real_clock", False):
         return
+    # #2747: simulated time, so none of the thresholds below is measured
+    # against a machine that happens to be busy.
+    monkeypatch.setattr(queue_restore, "asyncio", _VirtualAsyncio(CLOCK))
     monkeypatch.setattr(queue_restore, "MA_PAUSE_CONFIRM_WAIT", 0.20)
     monkeypatch.setattr(queue_restore, "MA_PAUSE_SETTLE_HOLD", 0.30)
     monkeypatch.setattr(queue_restore, "MA_PAUSE_GUARD_WINDOW", 2.0)
@@ -122,7 +194,7 @@ class Speaker:
 
     def _tick(self) -> None:
         """Let the clock start the track if its moment has come."""
-        now = asyncio.get_event_loop().time()
+        now = CLOCK.time()
         if self._born is None:
             self._born = now
         if self._playing or self.starts_after is None:
@@ -140,7 +212,7 @@ class Speaker:
             # would hide the very thing #2691 is about.
             return
         self.effective_pauses += 1
-        self.paused_at = asyncio.get_event_loop().time()
+        self.paused_at = CLOCK.time()
 
     @property
     def state(self) -> str:
@@ -154,7 +226,7 @@ class Speaker:
             # actually settles to — measured 05.09.2026, visible in the service
             # response as playing → idle.
             return "idle"
-        if asyncio.get_event_loop().time() - self.paused_at >= self.resume_after:
+        if CLOCK.time() - self.paused_at >= self.resume_after:
             return "playing"
         return "idle"
 
