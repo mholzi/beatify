@@ -5,7 +5,9 @@ from difflib import SequenceMatcher
 # User-maintained deny-list for URIs confirmed dead in real Music Assistant
 # playback, even though public provider APIs still report them as healthy.
 # See known_bad_uris.json for the rationale.
-_DENY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "known_bad_uris.json")
+_DENY_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "known_bad_uris.json"
+)
 try:
     with open(_DENY_PATH) as _f:
         _DENYLIST = json.load(_f).get("uris", {})
@@ -13,18 +15,23 @@ except (OSError, json.JSONDecodeError):
     _DENYLIST = {}
 
 PATTERNS = {
-    "spotify":       re.compile(r"^spotify:track:([a-zA-Z0-9]{22})$"),
-    "youtube_music": re.compile(r"^https://music\.youtube\.com/watch\?v=([a-zA-Z0-9_-]{11})$"),
-    "deezer":        re.compile(r"^deezer://track/(\d+)$"),
-    "tidal":         re.compile(r"^tidal://track/(\d+)$"),
-    "apple_music":   re.compile(r"^applemusic://track/(\d+)$"),
+    "spotify": re.compile(r"^spotify:track:([a-zA-Z0-9]{22})$"),
+    "youtube_music": re.compile(
+        r"^https://music\.youtube\.com/watch\?v=([a-zA-Z0-9_-]{11})$"
+    ),
+    "deezer": re.compile(r"^deezer://track/(\d+)$"),
+    "tidal": re.compile(r"^tidal://track/(\d+)$"),
+    "apple_music": re.compile(r"^applemusic://track/(\d+)$"),
 }
+
 
 def detect_provider(uri):
     for p, pat in PATTERNS.items():
         m = pat.match(uri)
-        if m: return p, m.group(1)
+        if m:
+            return p, m.group(1)
     return "unknown", None
+
 
 # Codes that mean "the provider is overloaded / throttling us", not "the track
 # is gone". Under a long run (1000+ sequential lookups) Spotify's oEmbed starts
@@ -37,7 +44,8 @@ TRANSIENT_CODES = {408, 425, 429, 500, 502, 503, 504}
 # genuinely restricted. Making it global would turn every restricted Spotify
 # track into a retried non-finding and add ~20s of backoff per one. The iTunes
 # reading is applied locally in check_apple_music instead.
-RETRY_BACKOFF = (1.0, 4.0, 15.0)   # sleep before attempt 2, 3, 4
+RETRY_BACKOFF = (1.0, 4.0, 15.0)  # sleep before attempt 2, 3, 4
+
 
 def http_json(url, headers=None, timeout=10, retry_404=False):
     """GET a JSON endpoint with retry + backoff.
@@ -64,80 +72,90 @@ def http_json(url, headers=None, timeout=10, retry_404=False):
             if code not in TRANSIENT_CODES and not (retry_404 and code == 404):
                 return None, code, False
         except Exception:
-            code = None   # timeout / DNS / reset — worth retrying
+            code = None  # timeout / DNS / reset — worth retrying
         if attempt < len(RETRY_BACKOFF):
             time.sleep(RETRY_BACKOFF[attempt])
     # Exhausted. A 404 that kept 404-ing across ~20s is a real miss; anything
     # else (429, 5xx, connection failures) is the provider, not the track.
     return None, code, code != 404
 
+
 _NOISE_RE = re.compile(
-    r'(?i)'
-    r'[\-–—]\s*(?:official\s+)?(?:video|audio|lyric|lyrics|clip|music)\s*(?:version|oficial|hd|hq)?'
-    r'|[\-–—]\s*(?:versión|version)\b.*'
-    r'|\b(?:official|oficiala?)\s+(?:video|audio|lyric|lyrics|clip|music)\b'
-    r'|\b(?:remaster(?:ed)?(?:\s+\d{4})?)\b'
-    r'|\b(?:video\s+(?:lyric|version|oficial))\b'
-    r'|\b(?:hd|hq|4k)\b'
-    r'|\b(?:actuación\s+tve)\b'
-    r'|#\w+'
-    r'|🎶|🎵|➤'
-    r'|\bmp[34]\b'
-    r'|\bshorts?\b'
+    r"(?i)"
+    r"[\-–—]\s*(?:official\s+)?(?:video|audio|lyric|lyrics|clip|music)\s*(?:version|oficial|hd|hq)?"
+    r"|[\-–—]\s*(?:versión|version)\b.*"
+    r"|\b(?:official|oficiala?)\s+(?:video|audio|lyric|lyrics|clip|music)\b"
+    r"|\b(?:remaster(?:ed)?(?:\s+\d{4})?)\b"
+    r"|\b(?:video\s+(?:lyric|version|oficial))\b"
+    r"|\b(?:hd|hq|4k)\b"
+    r"|\b(?:actuación\s+tve)\b"
+    r"|#\w+"
+    r"|🎶|🎵|➤"
+    r"|\bmp[34]\b"
+    r"|\bshorts?\b"
 )
+
 
 def normalize(s):
     # Fold compatibility forms first: Japanese catalogues mix fullwidth and
     # halfwidth latin, so "少女Ｓ" and "少女S" are the same title written two
     # ways. NFKC maps Ｓ→S, ﬁ→fi, ①→1 — none of which changes meaning.
-    s = unicodedata.normalize('NFKC', s).lower()
+    s = unicodedata.normalize("NFKC", s).lower()
     # Strip unicode accents (é→e, ü→u, etc.)
-    s = ''.join(c for c in unicodedata.normalize('NFD', s)
-                if unicodedata.category(c) != 'Mn')
-    s = re.sub(r'\(feat\..*?\)', '', s)
-    s = re.sub(r'\[.*?\]', '', s)
-    s = _NOISE_RE.sub('', s)
-    s = re.sub(r'\b\d{4}\b', '', s)  # strip standalone years
-    s = re.sub(r'[^\w\s]', '', s)
-    return re.sub(r'\s+', ' ', s).strip()
+    s = "".join(
+        c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn"
+    )
+    s = re.sub(r"\(feat\..*?\)", "", s)
+    s = re.sub(r"\[.*?\]", "", s)
+    s = _NOISE_RE.sub("", s)
+    s = re.sub(r"\b\d{4}\b", "", s)  # strip standalone years
+    s = re.sub(r"[^\w\s]", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
 
 # Version / edit labels a provider appends after a dash. Spotify's oEmbed title
 # is the TRACK TITLE ALONE, so "I Will Survive - Single Version" is one title,
 # not "artist - title". Stripping the tail gives the bare title to compare.
 _VERSION_SUFFIX_RE = re.compile(
-    r'(?i)\s*[\-–—]\s*(?:'
-    r'[^\-–—]*\b(?:version|edit|mix|remix|remaster(?:ed)?|re-?recorded|cut|take|mono|stereo)\b.*'
-    r'|from\s+["“].*'          # - From "Saturday Night Fever" Soundtrack
-    r'|pt\.?\s*\d+.*'               # - Pt. 1
-    r'|[ab]\s+side\b.*'             # - A Side
-    r')$'
+    r"(?i)\s*[\-–—]\s*(?:"
+    r"[^\-–—]*\b(?:version|edit|mix|remix|remaster(?:ed)?|re-?recorded|cut|take|mono|stereo)\b.*"
+    r'|from\s+["“].*'  # - From "Saturday Night Fever" Soundtrack
+    r"|pt\.?\s*\d+.*"  # - Pt. 1
+    r"|[ab]\s+side\b.*"  # - A Side
+    r")$"
 )
 
+
 def strip_version_suffix(s):
-    stripped = _VERSION_SUFFIX_RE.sub('', s).strip()
+    stripped = _VERSION_SUFFIX_RE.sub("", s).strip()
     return stripped or s
+
 
 # YouTube auto-generates an "<Artist> - Topic" channel per artist, and labels
 # publish under "<Artist>VEVO". Neither is part of the artist's name.
-_CHANNEL_SUFFIX_RE = re.compile(r'(?i)(?:\s*[\-–—]\s*topic|\s*vevo)\s*$')
+_CHANNEL_SUFFIX_RE = re.compile(r"(?i)(?:\s*[\-–—]\s*topic|\s*vevo)\s*$")
+
 
 def strip_channel_suffix(s):
-    stripped = _CHANNEL_SUFFIX_RE.sub('', s or '').strip()
+    stripped = _CHANNEL_SUFFIX_RE.sub("", s or "").strip()
     return stripped or s
+
 
 # Codepoint blocks that carry no Latin transliteration: a title written in one
 # of these cannot be string-compared against a romanised or translated title.
 _CJK_RE = re.compile(
-    r'[぀-ゟ'   # Hiragana
-    r'゠-ヿ'    # Katakana
-    r'㐀-䶿'    # CJK Ext A
-    r'一-鿿'    # CJK Unified
-    r'가-힯'    # Hangul
-    r'ｦ-ﾟ]'   # Halfwidth Katakana
+    r"[぀-ゟ"  # Hiragana
+    r"゠-ヿ"  # Katakana
+    r"㐀-䶿"  # CJK Ext A
+    r"一-鿿"  # CJK Unified
+    r"가-힯"  # Hangul
+    r"ｦ-ﾟ]"  # Halfwidth Katakana
 )
 
+
 def has_cjk(s):
-    return bool(_CJK_RE.search(s or ''))
+    return bool(_CJK_RE.search(s or ""))
+
 
 def scripts_differ(expected, actual):
     """True when exactly one side is written in a non-Latin script.
@@ -149,10 +167,13 @@ def scripts_differ(expected, actual):
     """
     return has_cjk(expected) != has_cjk(actual)
 
+
 def titles_match(expected, actual, artist=None):
     e, a = normalize(expected), normalize(actual)
-    if not e or not a: return True
-    if e == a or e in a or a in e: return True
+    if not e or not a:
+        return True
+    if e == a or e in a or a in e:
+        return True
     # Provider title may carry a version/edit label ("- Single Version").
     a_bare = normalize(strip_version_suffix(actual))
     if a_bare and (e == a_bare or e in a_bare or a_bare in e):
@@ -163,13 +184,15 @@ def titles_match(expected, actual, artist=None):
     if artist:
         na = normalize(artist)
         for cand in (a, a_bare):
-            if not cand: continue
-            c_stripped = re.sub(r'\b' + re.escape(na) + r'\b', '', cand).strip()
+            if not cand:
+                continue
+            c_stripped = re.sub(r"\b" + re.escape(na) + r"\b", "", cand).strip()
             if c_stripped and (e in c_stripped or c_stripped in e):
                 return True
             if c_stripped and SequenceMatcher(None, e, c_stripped).ratio() >= 0.75:
                 return True
     return SequenceMatcher(None, e, a).ratio() >= 0.75
+
 
 def title_verdict(expected, actual, artist=None):
     """'match' | 'unverifiable' | 'mismatch'.
@@ -185,26 +208,42 @@ def title_verdict(expected, actual, artist=None):
         return "unverifiable"
     return "mismatch"
 
+
 def unverifiable_title(expected_title, actual_title, actual_artist=None):
     actual_artist = strip_channel_suffix(actual_artist) if actual_artist else None
-    return {"status": "unverifiable", "http_code": 200,
-            "detail": f"Title written in a different script — expected "
-                      f"'{expected_title}', got '{actual_title}'. Not comparable "
-                      f"by string match; no verdict.",
-            "actual_title": actual_title, "actual_artist": actual_artist}
+    return {
+        "status": "unverifiable",
+        "http_code": 200,
+        "detail": f"Title written in a different script — expected "
+        f"'{expected_title}', got '{actual_title}'. Not comparable "
+        f"by string match; no verdict.",
+        "actual_title": actual_title,
+        "actual_artist": actual_artist,
+    }
+
 
 def wrong_track(expected_title, expected_artist, actual_title, actual_artist=None):
     actual_artist = strip_channel_suffix(actual_artist) if actual_artist else None
     exp = f"{expected_artist} - {expected_title}"
     act = f"{actual_artist} - {actual_title}" if actual_artist else actual_title
-    return {"status": "wrong_track", "http_code": 200,
-            "detail": f"Title mismatch: expected '{exp}', got '{act}'",
-            "actual_title": actual_title, "actual_artist": actual_artist}
+    return {
+        "status": "wrong_track",
+        "http_code": 200,
+        "detail": f"Title mismatch: expected '{exp}', got '{act}'",
+        "actual_title": actual_title,
+        "actual_artist": actual_artist,
+    }
+
 
 def transient(code, provider):
-    return {"status": "error", "http_code": code, "transient": True,
-            "detail": f"{provider} throttled/unavailable after {len(RETRY_BACKOFF) + 1} attempts "
-                      f"(last HTTP {code}) — not a verdict on the track"}
+    return {
+        "status": "error",
+        "http_code": code,
+        "transient": True,
+        "detail": f"{provider} throttled/unavailable after {len(RETRY_BACKOFF) + 1} attempts "
+        f"(last HTTP {code}) — not a verdict on the track",
+    }
+
 
 def check_spotify(tid, title, artist):
     # Spotify's oEmbed "title" is the track title alone — never "Artist - Title".
@@ -213,10 +252,17 @@ def check_spotify(tid, title, artist):
     url = f"https://open.spotify.com/oembed?url=spotify:track:{tid}"
     data, code, is_transient = http_json(url, retry_404=True)
     if data is None:
-        if is_transient: return transient(code, "Spotify")
-        if code == 404: return {"status": "dead", "http_code": 404, "detail": "Not found"}
-        if code == 403: return {"status": "dead", "http_code": 403, "detail": "Restricted"}
-        return {"status": "unreachable", "http_code": code, "detail": f"Spotify HTTP {code}"}
+        if is_transient:
+            return transient(code, "Spotify")
+        if code == 404:
+            return {"status": "dead", "http_code": 404, "detail": "Not found"}
+        if code == 403:
+            return {"status": "dead", "http_code": 403, "detail": "Restricted"}
+        return {
+            "status": "unreachable",
+            "http_code": code,
+            "detail": f"Spotify HTTP {code}",
+        }
     actual = data.get("title", "")
     v = title_verdict(title, actual, artist)
     if v == "mismatch":
@@ -225,6 +271,7 @@ def check_spotify(tid, title, artist):
         return unverifiable_title(title, actual)
     return {"status": "ok", "http_code": 200}
 
+
 def check_youtube(tid, title, artist):
     # YouTube titles carry the artist inline in either order ("Queen - Bohemian
     # Rhapsody", "In The End [Official HD Music Video] - Linkin Park"), so the
@@ -232,10 +279,19 @@ def check_youtube(tid, title, artist):
     url = f"https://www.youtube.com/oembed?url=https://music.youtube.com/watch?v={tid}&format=json"
     data, code, is_transient = http_json(url, retry_404=True)
     if data is None:
-        if is_transient: return transient(code, "YouTube")
+        if is_transient:
+            return transient(code, "YouTube")
         if code in (404, 401):
-            return {"status": "dead", "http_code": code, "detail": "Not found or private"}
-        return {"status": "unreachable", "http_code": code, "detail": f"YouTube HTTP {code}"}
+            return {
+                "status": "dead",
+                "http_code": code,
+                "detail": "Not found or private",
+            }
+        return {
+            "status": "unreachable",
+            "http_code": code,
+            "detail": f"YouTube HTTP {code}",
+        }
     actual = data.get("title", "")
     v = title_verdict(title, actual, artist)
     if v == "mismatch":
@@ -243,6 +299,7 @@ def check_youtube(tid, title, artist):
     if v == "unverifiable":
         return unverifiable_title(title, actual, data.get("author_name"))
     return {"status": "ok", "http_code": 200}
+
 
 def check_deezer(tid, title, artist, isrc=None):
     """Deezer-URI pruefen — per ISRC, wenn der Eintrag einen hat.
@@ -264,25 +321,47 @@ def check_deezer(tid, title, artist, isrc=None):
     url = f"https://api.deezer.com/track/{tid}"
     data, code, is_transient = http_json(url)
     if data is None:
-        if is_transient: return transient(code, "Deezer")
-        return {"status": "unreachable", "http_code": code, "detail": f"Deezer HTTP {code}"}
+        if is_transient:
+            return transient(code, "Deezer")
+        return {
+            "status": "unreachable",
+            "http_code": code,
+            "detail": f"Deezer HTTP {code}",
+        }
     if "error" in data:
-        return {"status": "dead", "http_code": 200, "detail": data["error"].get("message", "?")}
+        return {
+            "status": "dead",
+            "http_code": 200,
+            "detail": data["error"].get("message", "?"),
+        }
 
     if isrc:
-        ref, ref_code, ref_transient = http_json(
-            f"https://api.deezer.com/track/isrc:{isrc}")
-        # Ein Fehlschlag der ISRC-Abfrage ist kein Befund: der Katalog kann die
-        # ISRC nicht kennen, ohne dass die URI falsch waere. Dann greift unten
-        # der Titelvergleich weiter.
-        if ref and not ref.get("error") and ref.get("id") is not None:
-            if str(ref["id"]) == str(data.get("id", tid)):
-                return {"status": "ok", "http_code": 200,
-                        "detail": f"ISRC {isrc} loest auf dieselbe Track-Id auf"}
-            return wrong_track(title, artist, data.get("title", ""),
-                               data.get("artist", {}).get("name", ""))
+        # Die ISRC des **gespeicherten** Tracks beantwortet die Frage direkt:
+        # traegt er sie, ist er die Aufnahme, die der Eintrag meint. Fertig.
+        #
+        # **Warum nicht ueber `track/isrc:<x>` (#2809, 10.09.2026).** Genau das
+        # tat diese Stelle seit #2787 — sie verglich die Id, die Deezer fuer die
+        # ISRC zurueckgibt, mit der gespeicherten. Deezers Katalog fuehrt
+        # dieselbe Aufnahme aber vielfach: Album, Single, Kompilation, regionale
+        # Veroeffentlichung, jede mit **eigener Track-Id und derselben ISRC**.
+        # Welche davon der Endpunkt liefert, ist nicht unsere Wahl. Der erste
+        # Lauf danach meldete auf `polish-rock` **11 falsche Befunde von 11** —
+        # jede gespeicherte URI trug die richtige ISRC.
+        own = str(data.get("isrc") or "").strip().upper()
+        if own and own == str(isrc).strip().upper():
+            return {
+                "status": "ok",
+                "http_code": 200,
+                "detail": f"Track traegt die ISRC {isrc} des Eintrags",
+            }
 
-    actual_title  = data.get("title", "")
+        # **Eine abweichende ISRC ist kein Befund fuer sich.** Ein anderes
+        # Mastering desselben Songs traegt legitim eine andere ISRC, und die
+        # ISRC im Eintrag kann von einem ganz anderen Anbieter stammen. Die ISRC
+        # darf freisprechen, nicht verurteilen — der Titelvergleich unten
+        # entscheidet dann wie vor #2787.
+
+    actual_title = data.get("title", "")
     actual_artist = data.get("artist", {}).get("name", "")
     v = title_verdict(title, actual_title, artist)
     if v == "mismatch":
@@ -291,6 +370,7 @@ def check_deezer(tid, title, artist, isrc=None):
         return unverifiable_title(title, actual_title, actual_artist)
     return {"status": "ok", "http_code": 200}
 
+
 def check_tidal(tid, title, artist):
     # Use Tidal's oEmbed API — publicly accessible, no auth required.
     # Same title convention as Spotify: track title, optionally version-suffixed.
@@ -298,10 +378,17 @@ def check_tidal(tid, title, artist):
     hdrs = {"User-Agent": "Mozilla/5.0 (compatible; Beatify-HealthCheck/1.0)"}
     data, code, is_transient = http_json(url, headers=hdrs, retry_404=True)
     if data is None:
-        if is_transient: return transient(code, "Tidal")
-        if code == 404: return {"status": "dead", "http_code": 404, "detail": "Not found"}
-        if code == 403: return _check_tidal_embed(tid, title, artist)
-        return {"status": "unreachable", "http_code": code, "detail": f"Tidal HTTP {code}"}
+        if is_transient:
+            return transient(code, "Tidal")
+        if code == 404:
+            return {"status": "dead", "http_code": 404, "detail": "Not found"}
+        if code == 403:
+            return _check_tidal_embed(tid, title, artist)
+        return {
+            "status": "unreachable",
+            "http_code": code,
+            "detail": f"Tidal HTTP {code}",
+        }
     actual = data.get("title", "")
     if actual:
         v = title_verdict(title, actual, artist)
@@ -311,13 +398,15 @@ def check_tidal(tid, title, artist):
             return unverifiable_title(title, actual)
     return {"status": "ok", "http_code": 200}
 
+
 def _check_tidal_embed(tid, title, artist):
     """Fallback for Tidal when oEmbed returns 403 — check the embed page."""
     url = f"https://embed.tidal.com/tracks/{tid}"
     try:
-        req = urllib.request.Request(url, headers={
-            "User-Agent": "Mozilla/5.0 (compatible; Beatify-HealthCheck/1.0)"
-        })
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; Beatify-HealthCheck/1.0)"},
+        )
         with urllib.request.urlopen(req, timeout=10) as r:
             html = r.read().decode("utf-8", errors="ignore")
             og = re.search(r'<meta[^>]+property="og:title"[^>]+content="([^"]+)"', html)
@@ -330,9 +419,16 @@ def _check_tidal_embed(tid, title, artist):
                     return unverifiable_title(title, actual_title)
             return {"status": "ok", "http_code": 200}
     except urllib.error.HTTPError as e:
-        if e.code == 404: return {"status": "dead", "http_code": e.code, "detail": "Not found"}
-        return {"status": "error", "http_code": e.code, "detail": f"Tidal unavailable ({e.code})"}
-    except Exception as e: return {"status": "unreachable", "detail": str(e)}
+        if e.code == 404:
+            return {"status": "dead", "http_code": e.code, "detail": "Not found"}
+        return {
+            "status": "error",
+            "http_code": e.code,
+            "detail": f"Tidal unavailable ({e.code})",
+        }
+    except Exception as e:
+        return {"status": "unreachable", "detail": str(e)}
+
 
 def check_apple_music(tid, title, artist, storefronts=None):
     """Apple-URI pruefen — zuerst in den Storefronts, die der Eintrag beansprucht.
@@ -349,7 +445,7 @@ def check_apple_music(tid, title, artist, storefronts=None):
     „nicht gefunden" nachpruefbar bleibt statt nur behauptet.
     """
     reihenfolge = []
-    for c in (storefronts or []):
+    for c in storefronts or []:
         c = str(c).lower()
         if c and c not in reihenfolge:
             reihenfolge.append(c)
@@ -363,13 +459,19 @@ def check_apple_music(tid, title, artist, storefronts=None):
             # iTunes throttles hard (403/429) — never call a track dead on that.
             # 403 is not in TRANSIENT_CODES (it is a real defect at Spotify), so
             # it is recognised here, where it can only mean throttling.
-            if is_transient or code == 403: return transient(code, "Apple Music")
-            if code == 404: continue
-            return {"status": "unreachable", "http_code": code, "detail": f"iTunes HTTP {code}"}
+            if is_transient or code == 403:
+                return transient(code, "Apple Music")
+            if code == 404:
+                continue
+            return {
+                "status": "unreachable",
+                "http_code": code,
+                "detail": f"iTunes HTTP {code}",
+            }
         if data.get("resultCount", 0) == 0:
             continue
         track = data["results"][0]
-        actual_title  = track.get("trackName", "")
+        actual_title = track.get("trackName", "")
         actual_artist = track.get("artistName", "")
         v = title_verdict(title, actual_title, artist)
         if v == "mismatch":
@@ -377,15 +479,21 @@ def check_apple_music(tid, title, artist, storefronts=None):
         if v == "unverifiable":
             return unverifiable_title(title, actual_title, actual_artist)
         return {"status": "ok", "http_code": 200}
-    return {"status": "dead", "http_code": 404,
-            "detail": "Not found in " + "/".join(c.upper() for c in reihenfolge) + " catalogs"}
+    return {
+        "status": "dead",
+        "http_code": 404,
+        "detail": "Not found in "
+        + "/".join(c.upper() for c in reihenfolge)
+        + " catalogs",
+    }
+
 
 CHECKERS = {
-    "spotify":       check_spotify,
+    "spotify": check_spotify,
     "youtube_music": check_youtube,
-    "deezer":        check_deezer,
-    "tidal":         check_tidal,
-    "apple_music":   check_apple_music,
+    "deezer": check_deezer,
+    "tidal": check_tidal,
+    "apple_music": check_apple_music,
 }
 
 # ---------------------------------------------------------------------------
@@ -425,8 +533,11 @@ def _lookup_batch(ids, country):
     itself failed (throttled/unreachable) — the caller must then not treat
     any id in the batch as dead.
     """
-    url = ("https://itunes.apple.com/lookup?id=" + ",".join(ids)
-           + f"&entity=song&country={country}")
+    url = (
+        "https://itunes.apple.com/lookup?id="
+        + ",".join(ids)
+        + f"&entity=song&country={country}"
+    )
     data, code, is_transient = http_json(url, timeout=25)
     if data is None:
         return {}, True if (is_transient or code is None) else False
@@ -448,8 +559,16 @@ def validate_region_maps(entries):
     (track, region) pair that was actually claimed.
     """
     results = []
-    summary = {"total": 0, "ok": 0, "dead": 0, "wrong_track": 0,
-               "unverifiable": 0, "unfilled": 0, "transient": 0, "tracks_affected": 0}
+    summary = {
+        "total": 0,
+        "ok": 0,
+        "dead": 0,
+        "wrong_track": 0,
+        "unverifiable": 0,
+        "unfilled": 0,
+        "transient": 0,
+        "tracks_affected": 0,
+    }
 
     # Collect claimed (region -> [(id, entry)]) so each storefront is queried
     # in as few calls as possible.
@@ -462,10 +581,17 @@ def validate_region_maps(entries):
                 continue
             provider, tid = detect_provider(uri)
             if provider != "apple_music":
-                results.append({"artist": e.get("artist"), "title": e.get("title"),
-                                "region": country, "uri": uri, "provider": "apple_music",
-                                "status": "unknown",
-                                "detail": f"Not an Apple Music URI: {uri}"})
+                results.append(
+                    {
+                        "artist": e.get("artist"),
+                        "title": e.get("title"),
+                        "region": country,
+                        "uri": uri,
+                        "provider": "apple_music",
+                        "status": "unknown",
+                        "detail": f"Not an Apple Music URI: {uri}",
+                    }
+                )
                 summary["total"] += 1
                 summary["unknown"] = summary.get("unknown", 0) + 1
                 continue
@@ -476,30 +602,53 @@ def validate_region_maps(entries):
     for country in sorted(by_region):
         pairs = by_region[country]
         for i in range(0, len(pairs), REGION_BATCH):
-            chunk = pairs[i:i + REGION_BATCH]
+            chunk = pairs[i : i + REGION_BATCH]
             found, transient = _lookup_batch([tid for tid, _ in chunk], country)
             for tid, e in chunk:
-                base = {"artist": e.get("artist"), "title": e.get("title"),
-                        "region": country, "uri": f"applemusic://track/{tid}",
-                        "provider": "apple_music"}
+                base = {
+                    "artist": e.get("artist"),
+                    "title": e.get("title"),
+                    "region": country,
+                    "uri": f"applemusic://track/{tid}",
+                    "provider": "apple_music",
+                }
                 if transient:
-                    base.update({"status": "unreachable", "transient": True,
-                                 "detail": f"iTunes lookup for storefront {country} "
-                                           f"failed after retries — no verdict"})
+                    base.update(
+                        {
+                            "status": "unreachable",
+                            "transient": True,
+                            "detail": f"iTunes lookup for storefront {country} "
+                            f"failed after retries — no verdict",
+                        }
+                    )
                     summary["transient"] += 1
                     results.append(base)
                     continue
                 track = found.get(tid)
                 if track is None:
-                    base.update({"status": "dead", "http_code": 404,
-                                 "detail": f"Claimed for storefront {country}, "
-                                           f"but not in that catalog"})
+                    base.update(
+                        {
+                            "status": "dead",
+                            "http_code": 404,
+                            "detail": f"Claimed for storefront {country}, "
+                            f"but not in that catalog",
+                        }
+                    )
                     summary["dead"] += 1
                     affected.add((e.get("artist"), e.get("title")))
-                elif (v := title_verdict(e.get("title", ""), track.get("trackName", ""),
-                                         e.get("artist", ""))) == "mismatch":
-                    r = wrong_track(e.get("title", ""), e.get("artist", ""),
-                                    track.get("trackName", ""), track.get("artistName", ""))
+                elif (
+                    v := title_verdict(
+                        e.get("title", ""),
+                        track.get("trackName", ""),
+                        e.get("artist", ""),
+                    )
+                ) == "mismatch":
+                    r = wrong_track(
+                        e.get("title", ""),
+                        e.get("artist", ""),
+                        track.get("trackName", ""),
+                        track.get("artistName", ""),
+                    )
                     base.update(r)
                     base["detail"] = f"[{country}] " + base.get("detail", "")
                     summary["wrong_track"] += 1
@@ -508,9 +657,13 @@ def validate_region_maps(entries):
                     # Apple Music localises titles per storefront, so a German
                     # storefront returns "Inferno" where the catalogue says
                     # "インフェルノ". Not a defect and not an affected track.
-                    base.update(unverifiable_title(e.get("title", ""),
-                                                   track.get("trackName", ""),
-                                                   track.get("artistName", "")))
+                    base.update(
+                        unverifiable_title(
+                            e.get("title", ""),
+                            track.get("trackName", ""),
+                            track.get("artistName", ""),
+                        )
+                    )
                     base["detail"] = f"[{country}] " + base.get("detail", "")
                     summary["unverifiable"] = summary.get("unverifiable", 0) + 1
                 else:
@@ -522,26 +675,54 @@ def validate_region_maps(entries):
     summary["tracks_affected"] = len(affected)
     return {"results": results, "summary": summary}
 
-COOLDOWN = 5.0   # extra pause after a throttled lookup, to let the provider recover
+
+COOLDOWN = 5.0  # extra pause after a throttled lookup, to let the provider recover
+
 
 def validate_uris(songs, delay=0.5):
     results = []
-    summary = {"total":0,"ok":0,"dead":0,"wrong_track":0,"unverifiable":0,"error":0,
-               "unreachable":0,"unknown":0,"transient":0}
+    summary = {
+        "total": 0,
+        "ok": 0,
+        "dead": 0,
+        "wrong_track": 0,
+        "unverifiable": 0,
+        "error": 0,
+        "unreachable": 0,
+        "unknown": 0,
+        "transient": 0,
+    }
     for i, song in enumerate(songs):
-        uri, artist, title = song.get("uri",""), song.get("artist",""), song.get("title","")
+        uri, artist, title = (
+            song.get("uri", ""),
+            song.get("artist", ""),
+            song.get("title", ""),
+        )
         summary["total"] += 1
         cooldown = False
         provider, tid = detect_provider(uri)
         if provider == "unknown":
-            results.append({"uri":uri,"artist":artist,"title":title,"provider":"unknown",
-                            "status":"unknown","detail":f"Unrecognized: {uri}"})
+            results.append(
+                {
+                    "uri": uri,
+                    "artist": artist,
+                    "title": title,
+                    "provider": "unknown",
+                    "status": "unknown",
+                    "detail": f"Unrecognized: {uri}",
+                }
+            )
             summary["unknown"] += 1
         elif uri in _DENYLIST:
             entry = _DENYLIST[uri]
-            r = {"status": "dead", "http_code": 0,
-                 "detail": f"Deny-listed: {entry.get('reason','user-reported failure')} (see {entry.get('source','known_bad_uris.json')})"}
-            r.update({"uri":uri,"artist":artist,"title":title,"provider":provider})
+            r = {
+                "status": "dead",
+                "http_code": 0,
+                "detail": f"Deny-listed: {entry.get('reason', 'user-reported failure')} (see {entry.get('source', 'known_bad_uris.json')})",
+            }
+            r.update(
+                {"uri": uri, "artist": artist, "title": title, "provider": provider}
+            )
             results.append(r)
             summary["dead"] += 1
         else:
@@ -554,7 +735,9 @@ def validate_uris(songs, delay=0.5):
             if provider == "apple_music" and song.get("storefronts"):
                 extra["storefronts"] = song["storefronts"]
             r = CHECKERS[provider](tid, title, artist, **extra)
-            r.update({"uri":uri,"artist":artist,"title":title,"provider":provider})
+            r.update(
+                {"uri": uri, "artist": artist, "title": title, "provider": provider}
+            )
             results.append(r)
             summary[r["status"]] = summary.get(r["status"], 0) + 1
             if r.get("transient"):
@@ -563,13 +746,16 @@ def validate_uris(songs, delay=0.5):
         if i < len(songs) - 1:
             time.sleep(delay + (COOLDOWN if cooldown else 0.0))
         if (i + 1) % 20 == 0:
-            print(f"  Checked {i+1}/{len(songs)}...", file=sys.stderr)
+            print(f"  Checked {i + 1}/{len(songs)}...", file=sys.stderr)
     return {"results": results, "summary": summary}
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} <input.json> <output.json>", file=sys.stderr); sys.exit(1)
-    with open(sys.argv[1]) as f: payload = json.load(f)
+        print(f"Usage: {sys.argv[0]} <input.json> <output.json>", file=sys.stderr)
+        sys.exit(1)
+    with open(sys.argv[1]) as f:
+        payload = json.load(f)
 
     # Input is either the historical flat list of URI entries, or an object
     # that additionally carries region maps. Both are accepted so an older
@@ -583,38 +769,55 @@ if __name__ == "__main__":
     print(f"Validating {len(songs)} URIs (with title matching)...", file=sys.stderr)
     report = validate_uris(songs)
     s = report["summary"]
-    print(f"Done. {s['ok']} ok, {s['dead']} dead, {s['wrong_track']} wrong track, "
-          f"{s.get('unverifiable',0)} unverifiable (different script), "
-          f"{s.get('error',0)} error, {s.get('unreachable',0)} unreachable.", file=sys.stderr)
+    print(
+        f"Done. {s['ok']} ok, {s['dead']} dead, {s['wrong_track']} wrong track, "
+        f"{s.get('unverifiable', 0)} unverifiable (different script), "
+        f"{s.get('error', 0)} error, {s.get('unreachable', 0)} unreachable.",
+        file=sys.stderr,
+    )
     if s.get("transient"):
         # A degraded run must be visible as degraded, not as a wall of defects.
-        print(f"  WARNING: {s['transient']} lookup(s) were throttled/unavailable even after "
-              f"{len(RETRY_BACKOFF) + 1} attempts — those are provider failures, not track "
-              f"defects. Re-run to get a verdict on them.", file=sys.stderr)
+        print(
+            f"  WARNING: {s['transient']} lookup(s) were throttled/unavailable even after "
+            f"{len(RETRY_BACKOFF) + 1} attempts — those are provider failures, not track "
+            f"defects. Re-run to get a verdict on them.",
+            file=sys.stderr,
+        )
 
     rs = {}
     if region_entries:
-        claimed = sum(1 for e in region_entries
-                      for v in (e.get("regions") or {}).values() if v)
-        print(f"Validating {claimed} claimed region(s) across {len(region_entries)} "
-              f"track(s) (batched)...", file=sys.stderr)
+        claimed = sum(
+            1 for e in region_entries for v in (e.get("regions") or {}).values() if v
+        )
+        print(
+            f"Validating {claimed} claimed region(s) across {len(region_entries)} "
+            f"track(s) (batched)...",
+            file=sys.stderr,
+        )
         region_report = validate_region_maps(region_entries)
         report["region_results"] = region_report["results"]
         report["region_summary"] = rs = region_report["summary"]
-        print(f"Region maps: {rs['ok']} ok, {rs['dead']} dead, "
-              f"{rs['wrong_track']} wrong track, "
-              f"{rs.get('unverifiable',0)} unverifiable (different script), "
-              f"{rs['unfilled']} unfilled "
-              f"({rs['tracks_affected']} track(s) affected).", file=sys.stderr)
+        print(
+            f"Region maps: {rs['ok']} ok, {rs['dead']} dead, "
+            f"{rs['wrong_track']} wrong track, "
+            f"{rs.get('unverifiable', 0)} unverifiable (different script), "
+            f"{rs['unfilled']} unfilled "
+            f"({rs['tracks_affected']} track(s) affected).",
+            file=sys.stderr,
+        )
         if rs.get("transient"):
-            print(f"  WARNING: {rs['transient']} region lookup(s) had no verdict "
-                  f"(throttled/unreachable) — re-run before acting on them.",
-                  file=sys.stderr)
+            print(
+                f"  WARNING: {rs['transient']} region lookup(s) had no verdict "
+                f"(throttled/unreachable) — re-run before acting on them.",
+                file=sys.stderr,
+            )
 
-    with open(sys.argv[2], "w") as f: json.dump(report, f, indent=2)
+    with open(sys.argv[2], "w") as f:
+        json.dump(report, f, indent=2)
     # Region defects count toward the failure exit code as well — a dead id in
     # a region map breaks playback for users in that region just as surely as a
     # dead base URI does.
-    defects = (s["dead"] + s["wrong_track"]
-               + rs.get("dead", 0) + rs.get("wrong_track", 0))
+    defects = (
+        s["dead"] + s["wrong_track"] + rs.get("dead", 0) + rs.get("wrong_track", 0)
+    )
     sys.exit(1 if defects > 0 else 0)
