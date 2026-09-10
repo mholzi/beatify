@@ -1,4 +1,4 @@
-## 4.6.0 — Second Wind
+## 4.6.0-rc3 — Second Wind
 
 Nobody sits out any more, and no evening has to end just because the round counter ran out.
 
