@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.6.0-rc4] - 2026-09-10
+
+Zwei Eintraege aus dem Rueckstand, beide klein, einer davon hoerbar.
+
+### Added
+- **Das Stechen sagt sich jetzt an** (#2734 via #2803). „Kopf an Kopf! {names} — ein
+  Song entscheidet." in allen sechs Sprachen. Der Satz kommt erst, wenn die
+  Stechrunde wirklich gestartet ist — eine Ansage fuer ein Stechen, das dann doch
+  nicht stattfindet, waere schlimmer als das Schweigen, das sie ersetzt.
+
+### Fixed
+- **Der zeitempfindliche Queue-Restore-Test laeuft auf simulierter Zeit** (#2747 via
+  #2804). Er mass Sekunden gegen die Wanduhr, waehrend der Code darunter echt schlief,
+  und fiel unter Last um: einmal in sechs Suite-Laeufen, immer im langsamsten. Jetzt
+  15 identische Laeufe in je 0,04 s statt 7,2 s. Kein Produktionscode angefasst.
+
 ## [4.6.0-rc3] - 2026-09-10
 
 Ein Kandidat ohne sichtbare Aenderung. Er existiert, weil `main` nach dem rc2-Tag noch einen
