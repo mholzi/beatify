@@ -825,6 +825,15 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.6.0 — Second Wind 👻
+- **Ghost league** — get knocked out in Sudden Death and you keep guessing to the last song, in a league of your own: your score sits under the survivors on the TV, and there is a Best Ghost award at the finish. Counted per ghost round played, so going out early wins nothing (#2559)
+- **Encore** — on the reveal before the last round the host is offered five more rounds, with every score left exactly where it is. Once the last round starts the offer is gone (#2503)
+- **Take a guest out mid-game** — connected or not. The round stops waiting for them, their points and rank stay put, and they tap their own way back in at the next round (#2746)
+- **The finale playoff says so out loud** — when two players finish level, the room hears it in all six languages before the deciding song (#2734)
+- **The way in stays visible** while the game runs, so a latecomer still finds the join link (#2504)
+
+> Versions between v4.2.0 and v4.6.0 are not repeated here — v4.3.0, the v4.4.x line and v4.5.0 each shipped their own set. The [CHANGELOG](CHANGELOG.md) carries all of them, and every release has its own notes on the [Releases page](https://github.com/mholzi/beatify/releases).
+
 ### v4.2.0 — Mix & Match 🎛️
 - **Mix tab in the playlist picker** — assemble a de-duplicated set on the fly from any combination of decade, style, region and special tags, at 30, 50 or 100 songs, and save it as a community playlist in one tap (#1538)
 - **Suggestion of the season** in the setup screen, one tap to add the matching playlist (#1539)
