@@ -8,12 +8,12 @@ Get eliminated and you keep guessing to the last song — in your own league, wi
 
 ### 🎉 The evening ends when you say so
 
-One round before the end the host is offered five more, and every point already scored stays. Someone has to leave? Take them out and the game carries on without waiting. Someone shows up late? The join link is still on screen while you play.
+One round before the end the host is offered five more, and every point already scored stays. Someone has to leave? Take them out and the game carries on without waiting. Someone shows up late? The join link is still on screen while you play. And when two players finish level, the room hears it: one more song decides it.
 
 Also: two songs that used to fail mid-round are gone, and 97 more tracks now play for anyone on YouTube Music.
 
 ---
 
-**66 playlists · 6 music platforms · 6 languages**
+**66 playlists · 8,432 songs · 6 music platforms · 6 languages**
 
 [Report a Bug](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions) · [Full Changelog](https://github.com/mholzi/beatify/blob/main/CHANGELOG.md)

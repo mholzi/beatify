@@ -4,68 +4,12 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.6.0-rc4] - 2026-09-10
+## [4.6.0] - 2026-09-10
 
-Zwei Eintraege aus dem Rueckstand, beide klein, einer davon hoerbar.
-
-### Added
-- **Das Stechen sagt sich jetzt an** (#2734 via #2803). „Kopf an Kopf! {names} — ein
-  Song entscheidet." in allen sechs Sprachen. Der Satz kommt erst, wenn die
-  Stechrunde wirklich gestartet ist — eine Ansage fuer ein Stechen, das dann doch
-  nicht stattfindet, waere schlimmer als das Schweigen, das sie ersetzt.
-
-### Fixed
-- **Der zeitempfindliche Queue-Restore-Test laeuft auf simulierter Zeit** (#2747 via
-  #2804). Er mass Sekunden gegen die Wanduhr, waehrend der Code darunter echt schlief,
-  und fiel unter Last um: einmal in sechs Suite-Laeufen, immer im langsamsten. Jetzt
-  15 identische Laeufe in je 0,04 s statt 7,2 s. Kein Produktionscode angefasst.
-
-## [4.6.0-rc3] - 2026-09-10
-
-Ein Kandidat ohne sichtbare Aenderung. Er existiert, weil `main` nach dem rc2-Tag noch einen
-Commit bekommen hat — und ein Tag, der nicht auf den Stand zeigt, der veroeffentlicht wird,
-ist keine Pruefgrundlage.
-
-### Changed
-- **ruff steht jetzt dort, wo es installiert wird** (#2580 via #2801). Der Pin lag allein in
-  `.github/workflows/test.yml`; wer `pip install -r requirements_test.txt` fuhr, bekam gar
-  kein ruff und lintete mit dem, was zufaellig auf der Maschine lag — gegen ein Gate, das
-  0.15.7 faehrt. `requirements_test.txt` traegt den Pin jetzt mit.
-- **Eine Wache gegen auseinanderlaufende Pins**: `tests/unit/test_ci_tool_pins_2580.py`
-  verlangt fuer ruff und mypy dieselbe Version in beiden Dateien. Welche Version es ist,
-  interessiert den Test nicht — nur, dass beide Stellen dasselbe sagen. Gegen den echten
-  Fehlerfall geprueft.
-
-## [4.6.0-rc2] - 2026-09-09
-
-Ein Nachschlag zum rc1, ohne eine Zeile Spiellogik. Alles hier ist Katalogpflege und
-Werkzeugkette — was auf dem Fernseher passiert, ist unveraendert.
-
-### Fixed
-- **Vier kaputte Provider-URIs** in `polish-all-time-hits` (#2785 via #2786). Zwei davon
-  wurden **entfernt statt ersetzt**: eine fehlende URI laesst Beatify den Anbieter
-  ueberspringen, eine tote laesst die Wiedergabe vor Gaesten scheitern. Beim Varius-Manx-
-  Eintrag kam das Schwerere dazu — der Link zeigte auf eine Live-Aufnahme von 2016, waehrend
-  die richtige Antwort 1995 lautet.
-- **Der Playlist-Pruefer stellte die falschen Fragen** (#2785 via #2787). Fuenf von neun
-  Befunden eines Laufs waren Fehlalarme: Deezer wurde am Anzeigenamen gemessen statt an der
-  ISRC, und Apple wurde bei einer polnischen Playlist gegen US/DE/GB aufgeloest. Beides
-  behoben, gegen alle sechs bekannten Faelle geprueft — die zwei echten Fehler fallen
-  weiterhin auf.
-
-### Changed
-- **+97 YouTube-URIs** aus den Backfill-Laeufen (#2783, #2784).
-- **Die Werkzeugkette ist reproduzierbar** (#2580 via #2788, #2789, #2790): `package-lock.json`
-  wird eingecheckt, die CI installiert mit `npm ci`, und Dependabot ist eingerichtet. Dazu
-  `npm audit` von acht Meldungen auf **null** — vitest 2.1.9 auf 5.0.0, esbuild auf 0.28.2.
-  Der Neubau mit dem neuen esbuild liess jedes Artefakt bytegleich; ausgeliefert aendert sich
-  dadurch nichts.
-
-## [4.6.0-rc1] - 2026-09-08
-
-Die Woche 2026-W37b: sechs Eintraege aus der Redaktionskonferenz vom 08.09., alle gebaut und
-gemergt. Drei davon liefen durchs Design-Gate — #2503, #2746 und #2559, jeder mit vier
-gezeichneten Varianten und Markus' Auswahl.
+Die Woche 2026-W37b: sechs Eintraege aus der Redaktionskonferenz vom 08.09., drei davon durchs
+Design-Gate mit je vier gezeichneten Varianten. Dazu drei Rueckstands-Eintraege, die Markus am
+Donnerstagvormittag nachgezogen hat — jeder einzelne kostete einen neuen Release-Kandidaten, weil
+`main` danach vor dem Tag lag. Vier Kandidaten in zwei Tagen, dieselbe Auslieferung.
 
 ### Added
 - **Geister-Liga**: wer im Sudden Death ausscheidet, raet weiter — in einer eigenen Wertung, mit
@@ -77,15 +21,34 @@ gezeichneten Varianten und Markus' Auswahl.
 - **Einen Gast mitten im Spiel herausnehmen** — verbunden oder nicht. Die Runde wartet nicht mehr
   auf ihn, Punkte und Rang bleiben stehen, und er kommt ueber sein eigenes Handy zur naechsten
   Runde zurueck (#2746, Variante B).
+- **Das Stechen sagt sich an** (#2734). „Kopf an Kopf! {names} — ein Song entscheidet.", in allen
+  sechs Sprachen. Der Satz kommt erst, wenn die Stechrunde wirklich gestartet ist — eine Ansage
+  fuer ein Stechen, das dann doch nicht stattfindet, waere schlimmer als das Schweigen, das sie
+  ersetzt.
 
 ### Changed
 - Das Endbild sagt jetzt, dass **Rematch jeden Punktestand auf 0 setzt**. Vorher stand das nirgends.
+- **+97 YouTube-URIs** aus den Backfill-Laeufen (#2783, #2784).
+- **Die Werkzeugkette ist reproduzierbar** (#2580): `package-lock.json` ist eingecheckt, CI
+  installiert mit `npm ci`, `npm audit` steht auf null statt auf acht Meldungen, esbuild ist exakt
+  gepinnt, und Dependabot beobachtet npm, GitHub Actions und pip. ruff steht jetzt auch in
+  `requirements_test.txt`, mit einer Wache dagegen, dass die beiden Pins auseinanderlaufen.
 
 ### Fixed
 - Der Einrichtungs-Assistent schreibt seine Aenderungen auf ein offenes Lobby-Spiel, statt es mit
   den ersetzten Einstellungen weiterlaufen zu lassen (#2769).
 - Der YouTube-Backfill sucht wieder: sein Wiederaufnahme-Zeiger lief hinter das Ende der Playlist
   und kam nie zurueck — 18 von 35 Playlists standen auf genau diesem Stand (#2301).
+- **Vier kaputte Provider-URIs** in `polish-all-time-hits` (#2785). Zwei davon wurden **entfernt
+  statt ersetzt**: eine fehlende URI laesst Beatify den Anbieter ueberspringen, eine tote laesst
+  die Wiedergabe vor Gaesten scheitern. Ein Link zeigte auf eine Live-Aufnahme von 2016, waehrend
+  die richtige Antwort 1995 lautet.
+- **Der Playlist-Pruefer stellte die falschen Fragen** (#2785). Fuenf von neun Befunden eines Laufs
+  waren Fehlalarme: Deezer wurde am Anzeigenamen gemessen statt an der ISRC, Apple bei einer
+  polnischen Playlist gegen US/DE/GB aufgeloest.
+- **Der zeitempfindliche Queue-Restore-Test laeuft auf simulierter Zeit** (#2747). Er mass Sekunden
+  gegen die Wanduhr, waehrend der Code darunter echt schlief, und fiel unter Last um — einmal in
+  sechs Suite-Laeufen, immer im langsamsten. Kein Produktionscode angefasst.
 
 ## [4.5.0] - 2026-09-08
 
