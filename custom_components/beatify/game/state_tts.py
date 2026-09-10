@@ -97,6 +97,10 @@ class TtsAnnouncerMixin:
         self._tts_announce_intro_round: bool = True
         self._tts_announce_steal_unlocked: bool = True
         self._tts_announce_steal_used: bool = True
+        # #2734: an, weil das Stechen die einzige Lage ist, in der das Spiel
+        # weitergeht, obwohl der Raum es fuer beendet haelt. Wer sie abschaltet,
+        # hoert dann gar nichts — die Anzeige erklaert es weiterhin.
+        self._tts_announce_finale_playoff: bool = True
         # Steal-unlock is announced once per player per game.
         self._tts_steal_unlocked_announced: set[str] = set()
         # Issue #1211: seconds to add to the deadline so the timer only starts
@@ -134,6 +138,7 @@ class TtsAnnouncerMixin:
         announce_intro_round: bool = True,
         announce_steal_unlocked: bool = True,
         announce_steal_used: bool = True,
+        announce_finale_playoff: bool = True,
         # Issue #1211: seconds to add to the round deadline when pre-round TTS
         # fires, so the countdown only starts once music has actually resumed.
         tts_pre_round_delay: float = 0.0,
@@ -184,6 +189,7 @@ class TtsAnnouncerMixin:
         self._tts_announce_intro_round = announce_intro_round
         self._tts_announce_steal_unlocked = announce_steal_unlocked
         self._tts_announce_steal_used = announce_steal_used
+        self._tts_announce_finale_playoff = announce_finale_playoff
         # Issue #1211: deadline offset to compensate for pre-round TTS overhead.
         self._tts_pre_round_delay = max(0.0, float(tts_pre_round_delay))
         # Fresh game — no prior leader, no steal unlocks announced yet.
@@ -679,5 +685,28 @@ class TtsAnnouncerMixin:
         await self._tts_announce(
             tts_phrases.phrase(
                 self._lang(), "steal_used", stealer=stealer_name, target=target_name
+            )
+        )
+
+    async def announce_finale_playoff(self, names: list[str]) -> None:
+        """Announce a finale playoff round (#2734).
+
+        Called only once the playoff round has actually started. #2722 built the
+        screens for this and deliberately left the voice out, because the
+        trigger was still under repair: a wrong banner is read once, a wrong
+        voice interrupts the room and cannot be unheard. The caller therefore
+        waits for ``start_round()`` to confirm before speaking.
+
+        Kept to one sentence on purpose — it plays over a room that thinks the
+        game is over.
+        """
+        if not self._tts_service or not self._tts_announce_finale_playoff:
+            return
+        if not names:
+            return
+        lang = self._lang()
+        await self._tts_announce(
+            tts_phrases.phrase(
+                lang, "finale_playoff", names=tts_phrases.join_names(lang, names)
             )
         )
