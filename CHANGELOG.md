@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.6.0-rc3] - 2026-09-10
+
+Ein Kandidat ohne sichtbare Aenderung. Er existiert, weil `main` nach dem rc2-Tag noch einen
+Commit bekommen hat — und ein Tag, der nicht auf den Stand zeigt, der veroeffentlicht wird,
+ist keine Pruefgrundlage.
+
+### Changed
+- **ruff steht jetzt dort, wo es installiert wird** (#2580 via #2801). Der Pin lag allein in
+  `.github/workflows/test.yml`; wer `pip install -r requirements_test.txt` fuhr, bekam gar
+  kein ruff und lintete mit dem, was zufaellig auf der Maschine lag — gegen ein Gate, das
+  0.15.7 faehrt. `requirements_test.txt` traegt den Pin jetzt mit.
+- **Eine Wache gegen auseinanderlaufende Pins**: `tests/unit/test_ci_tool_pins_2580.py`
+  verlangt fuer ruff und mypy dieselbe Version in beiden Dateien. Welche Version es ist,
+  interessiert den Test nicht — nur, dass beide Stellen dasselbe sagen. Gegen den echten
+  Fehlerfall geprueft.
+
 ## [4.6.0-rc2] - 2026-09-09
 
 Ein Nachschlag zum rc1, ohne eine Zeile Spiellogik. Alles hier ist Katalogpflege und
