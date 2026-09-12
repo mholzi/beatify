@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.15",
+  "version": "0.16",
   "songs": [
     {
       "year": 1962,
@@ -304,7 +304,8 @@
       "fun_fact_it": "Massimo Ranieri - \"Vent'anni\" (1970), dal canone del pop italiano.",
       "isrc": "ITR007000051",
       "uri_apple_music": "applemusic://track/1542206913",
-      "uri_deezer": "deezer://track/783929"
+      "uri_deezer": "deezer://track/783929",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pIf7et701IU"
     },
     {
       "year": 1970,
@@ -322,7 +323,8 @@
       "fun_fact_it": "Massimo Ranieri - \"Rose rosse\" (1970), dal canone del pop italiano.",
       "isrc": "ITR006900021",
       "uri_apple_music": "applemusic://track/1532950592",
-      "uri_deezer": "deezer://track/751985"
+      "uri_deezer": "deezer://track/751985",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IwacsU0Ul8Q"
     },
     {
       "year": 1971,
@@ -359,7 +361,8 @@
       "fun_fact_it": "Lucio Dalla - \"4/3/1943\" (1971), dal canone del pop italiano.",
       "isrc": "ITB007001022",
       "uri_apple_music": "applemusic://track/254149169",
-      "uri_deezer": "deezer://track/972768"
+      "uri_deezer": "deezer://track/972768",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3C5fVNlWXrk"
     },
     {
       "year": 1971,
@@ -377,7 +380,8 @@
       "fun_fact_it": "Mia Martini - \"Piccolo uomo\" (1971), dal canone del pop italiano. Ha vinto il Festivalbar.",
       "isrc": "ITDV92500170",
       "uri_apple_music": "applemusic://track/1807966498",
-      "uri_deezer": "deezer://track/3731934942"
+      "uri_deezer": "deezer://track/3731934942",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VC2EhZ5sFFU"
     },
     {
       "year": 1971,
@@ -395,7 +399,8 @@
       "fun_fact_it": "Ricchi E Poveri - \"Che Sarà\" (1971), dal canone del pop italiano. Scritta da Jimmy Fontana. Presentata al Festival di Sanremo.",
       "isrc": "ITD009000010",
       "uri_apple_music": "applemusic://track/998281784",
-      "uri_deezer": "deezer://track/3293696"
+      "uri_deezer": "deezer://track/3293696",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uttf8JSOtKw"
     },
     {
       "year": 1972,
@@ -413,7 +418,8 @@
       "fun_fact_it": "Claudio Baglioni - \"Porta Portese\" (1972), dal canone del pop italiano.",
       "isrc": "ITB007200862",
       "uri_apple_music": "applemusic://track/254225856",
-      "uri_deezer": "deezer://track/424505992"
+      "uri_deezer": "deezer://track/424505992",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RXxLIs49SOA"
     },
     {
       "year": 1972,
@@ -431,7 +437,8 @@
       "fun_fact_it": "Claudio Baglioni - \"Mia Libertà\" (1972), dal canone del pop italiano.",
       "isrc": "ITB007200133",
       "uri_apple_music": "applemusic://track/200571073",
-      "uri_deezer": "deezer://track/1021893"
+      "uri_deezer": "deezer://track/1021893",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vrhkNYHKi58"
     },
     {
       "year": 1972,
@@ -449,7 +456,8 @@
       "fun_fact_it": "Claudio Baglioni - \"Questo piccolo grande amore\" (1972), dal canone del pop italiano.",
       "isrc": "ITB007200861",
       "uri_apple_music": "applemusic://track/200570600",
-      "uri_deezer": "deezer://track/576276"
+      "uri_deezer": "deezer://track/576276",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=taCUXg0xdcE"
     },
     {
       "year": 1972,
@@ -467,7 +475,8 @@
       "fun_fact_it": "Lucio Battisti - \"Il mio canto libero\" (1972), dal canone del pop italiano.",
       "isrc": "ITB001701090",
       "uri_apple_music": "applemusic://track/1480766133",
-      "uri_deezer": "deezer://track/764304922"
+      "uri_deezer": "deezer://track/764304922",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UtUHEsPfjjE"
     },
     {
       "year": 1973,
@@ -485,7 +494,8 @@
       "fun_fact_it": "Claudio Baglioni - \"Amore bello\" (1973), dal canone del pop italiano.",
       "isrc": "ITB007301064",
       "uri_apple_music": "applemusic://track/253992888",
-      "uri_deezer": "deezer://track/1020156"
+      "uri_deezer": "deezer://track/1020156",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nj9ZT84uf64"
     },
     {
       "year": 1973,
@@ -503,7 +513,8 @@
       "fun_fact_it": "Umberto Tozzi - \"Tu\" (1973), dal canone del pop italiano. Scritta da Umberto Tozzi and Giancarlo Bigazzi.",
       "isrc": "ITR007800321",
       "uri_apple_music": "applemusic://track/1564230420",
-      "uri_deezer": "deezer://track/1351336652"
+      "uri_deezer": "deezer://track/1351336652",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x39KPRT1BH8"
     },
     {
       "year": 1974,
@@ -521,7 +532,8 @@
       "fun_fact_it": "Riccardo Cocciante - \"Bella senz'anima\" (1974), dal canone del pop italiano.",
       "isrc": "ITB007401175",
       "uri_apple_music": "applemusic://track/255453955",
-      "uri_deezer": "deezer://track/985852"
+      "uri_deezer": "deezer://track/985852",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rpv32GUxvcg"
     },
     {
       "year": 1975,
@@ -539,7 +551,8 @@
       "fun_fact_it": "Francesco De Gregori - \"Rimmel\" (1975), dal canone del pop italiano.",
       "isrc": "ITB007401283",
       "uri_apple_music": "applemusic://track/259987956",
-      "uri_deezer": "deezer://track/546135"
+      "uri_deezer": "deezer://track/546135",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ydo-yfPze30"
     },
     {
       "year": 1975,
@@ -557,7 +570,8 @@
       "fun_fact_it": "Rino Gaetano - \"Ma il cielo è sempre più blu\" (1975), dal canone del pop italiano.",
       "isrc": "ITB008400575",
       "uri_apple_music": "applemusic://track/1571903770",
-      "uri_deezer": "deezer://track/1020925"
+      "uri_deezer": "deezer://track/1020925",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rfaihaFlcSg"
     },
     {
       "year": 1976,
@@ -575,7 +589,8 @@
       "fun_fact_it": "Loredana Bertè - \"Sei bellissima\" (1976), dal canone del pop italiano. Pubblicata da Sony Music.",
       "isrc": "ITR007500231",
       "uri_apple_music": "applemusic://track/1631382207",
-      "uri_deezer": "deezer://track/689319"
+      "uri_deezer": "deezer://track/689319",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=O96IzoPUiFg"
     },
     {
       "year": 1977,
@@ -593,7 +608,8 @@
       "fun_fact_it": "Alan Sorrenti - \"Figli Delle Stelle\" (1977), dal canone del pop italiano. Pubblicata da EMI italiana.",
       "isrc": "ITD000500050",
       "uri_apple_music": "applemusic://track/1442578568",
-      "uri_deezer": "deezer://track/3371535"
+      "uri_deezer": "deezer://track/3371535",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Kqbm4I8iOm8"
     },
     {
       "year": 1977,
@@ -611,7 +627,8 @@
       "fun_fact_it": "Donatella Rettore - \"Donatella\" (1977), dal canone del pop italiano.",
       "isrc": "ITDV92500071",
       "uri_apple_music": "applemusic://track/1614482579",
-      "uri_deezer": "deezer://track/3731929282"
+      "uri_deezer": "deezer://track/3731929282",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SSpMXTp9mQk"
     },
     {
       "year": 1977,
@@ -629,7 +646,8 @@
       "fun_fact_it": "Pooh - \"Dammi solo un minuto - 2014 Remaster\" (1977), dal canone del pop italiano.",
       "isrc": "ITR001400162",
       "uri_apple_music": "applemusic://track/1710443769",
-      "uri_deezer": "deezer://track/124637040"
+      "uri_deezer": "deezer://track/124637040",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3GJC1MApaqk"
     },
     {
       "year": 1977,
@@ -647,7 +665,8 @@
       "fun_fact_it": "Roberto Vecchioni - \"Samarcanda\" (1977), dal canone del pop italiano.",
       "isrc": "IT7009506670",
       "uri_apple_music": "applemusic://track/821631862",
-      "uri_deezer": "deezer://track/2297038065"
+      "uri_deezer": "deezer://track/2297038065",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Pk07iKa5wvk"
     },
     {
       "year": 1977,
@@ -665,7 +684,8 @@
       "fun_fact_it": "Umberto Tozzi - \"Ti Amo\" (1977), dal canone del pop italiano. Usata in seguito nel film Asterix & Obelix: Mission Cleopatra.",
       "isrc": "ITR007700021",
       "uri_apple_music": "applemusic://track/1565179218",
-      "uri_deezer": "deezer://track/1357589612"
+      "uri_deezer": "deezer://track/1357589612",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=M0zhHvs8kwA"
     },
     {
       "year": 1978,
@@ -683,7 +703,8 @@
       "fun_fact_it": "Anna Oxa - \"Un'emozione da poco\" (1978), dal canone del pop italiano. Arrivata al primo posto della classifica italiana. Contenuta nell'album Oxanna.",
       "isrc": "ITB007800565",
       "uri_apple_music": "applemusic://track/818784238",
-      "uri_deezer": "deezer://track/69008435"
+      "uri_deezer": "deezer://track/69008435",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=odqCkzNRvH8"
     },
     {
       "year": 1978,
@@ -701,7 +722,8 @@
       "fun_fact_it": "Antonello Venditti - \"Sara\" (1978), dal canone del pop italiano.",
       "isrc": "ITUM71800855",
       "uri_apple_music": "applemusic://track/252352184",
-      "uri_deezer": "deezer://track/555658072"
+      "uri_deezer": "deezer://track/555658072",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I7WZxdnnUkg"
     },
     {
       "year": 1978,
@@ -719,7 +741,8 @@
       "fun_fact_it": "Claudio Baglioni - \"E tu come stai?\" (1978), dal canone del pop italiano.",
       "isrc": "ITM000102558",
       "uri_apple_music": "applemusic://track/200324416",
-      "uri_deezer": "deezer://track/1073047"
+      "uri_deezer": "deezer://track/1073047",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7SnnJtreSCY"
     },
     {
       "year": 1978,
@@ -737,7 +760,8 @@
       "fun_fact_it": "Francesco De Gregori - \"Generale\" (1978), dal canone del pop italiano.",
       "isrc": "ITB007701007",
       "uri_apple_music": "applemusic://track/254263491",
-      "uri_deezer": "deezer://track/1082468"
+      "uri_deezer": "deezer://track/1082468",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C-G0QmbQNO4"
     },
     {
       "year": 1978,
@@ -755,7 +779,8 @@
       "fun_fact_it": "Loredana Bertè - \"Dedicato - 2016 Remastered\" (1978), dal canone del pop italiano.",
       "isrc": "ITR007800251",
       "uri_apple_music": "applemusic://track/1679436762",
-      "uri_deezer": "deezer://track/3920585"
+      "uri_deezer": "deezer://track/3920585",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vHotqTS7qKE"
     },
     {
       "year": 1978,
@@ -773,7 +798,8 @@
       "fun_fact_it": "Patty Pravo - \"Pensiero stupendo\" (1978), dal canone del pop italiano. Scritta da Ivano Fossati.",
       "isrc": "ITB007701035",
       "uri_apple_music": "applemusic://track/254264774",
-      "uri_deezer": "deezer://track/1020587"
+      "uri_deezer": "deezer://track/1020587",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=f9Q5ndX9rAY"
     },
     {
       "year": 1978,
@@ -791,7 +817,8 @@
       "fun_fact_it": "Renato Zero - \"Triangolo\" (1978), dal canone del pop italiano.",
       "isrc": "ITB007800748",
       "uri_apple_music": "applemusic://track/275439955",
-      "uri_deezer": "deezer://track/64975600"
+      "uri_deezer": "deezer://track/64975600",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ej9__NTLgAc"
     },
     {
       "year": 1978,
@@ -809,7 +836,8 @@
       "fun_fact_it": "Rino Gaetano - \"A mano a mano\" (1978), dal canone del pop italiano.",
       "isrc": "ITB000900104",
       "uri_apple_music": "applemusic://track/1536464463",
-      "uri_deezer": "deezer://track/101902307"
+      "uri_deezer": "deezer://track/101902307",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H6QIXhyLR3Y"
     },
     {
       "year": 1978,
@@ -827,7 +855,8 @@
       "fun_fact_it": "Rino Gaetano - \"Gianna\" (1978), dal canone del pop italiano.",
       "isrc": "ITB008400565",
       "uri_apple_music": "applemusic://track/1299685367",
-      "uri_deezer": "deezer://track/634108"
+      "uri_deezer": "deezer://track/634108",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=laIH5AQqeH0"
     },
     {
       "year": 1978,
@@ -845,7 +874,8 @@
       "fun_fact_it": "Vasco Rossi - \"E...\" (1978), dal canone del pop italiano.",
       "isrc": "ITD000400182",
       "uri_apple_music": "applemusic://track/1443213284",
-      "uri_deezer": "deezer://track/135876548"
+      "uri_deezer": "deezer://track/135876548",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wYMuL0z2uJk"
     },
     {
       "year": 1979,
@@ -1452,7 +1482,8 @@
       "fun_fact_it": "Riccardo Fogli - \"Storie di tutti i giorni\" (1982), dal canone del pop italiano.",
       "isrc": "ITR008200471",
       "uri_apple_music": "applemusic://track/1453582477",
-      "uri_deezer": "deezer://track/755986"
+      "uri_deezer": "deezer://track/755986",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bgLeOgspkEA"
     },
     {
       "year": 1982,
@@ -1489,7 +1520,8 @@
       "fun_fact_it": "Vasco Rossi - \"Ogni volta\" (1982), dal canone del pop italiano.",
       "isrc": "ITB260401560",
       "uri_apple_music": "applemusic://track/1327847262",
-      "uri_deezer": "deezer://track/104725328"
+      "uri_deezer": "deezer://track/104725328",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7YKuFIJtnyE"
     },
     {
       "year": 1983,
@@ -1507,7 +1539,8 @@
       "fun_fact_it": "Fiordaliso - \"Non voglio mica la luna\" (1983), dal canone del pop italiano. Pubblicata da Durium nel 1984.",
       "isrc": "ITB008670575",
       "uri_apple_music": "applemusic://track/255738823",
-      "uri_deezer": "deezer://track/1017423"
+      "uri_deezer": "deezer://track/1017423",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=so34owtJSXY"
     },
     {
       "year": 1983,
@@ -1525,7 +1558,8 @@
       "fun_fact_it": "Franco Battiato - \"La Stagione Dell'Amore - Remastered 2008\" (1983), dal canone del pop italiano.",
       "isrc": "ITD000800110",
       "uri_apple_music": "applemusic://track/1606898557",
-      "uri_deezer": "deezer://track/3464234"
+      "uri_deezer": "deezer://track/3464234",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J1IT9WqI7zA"
     },
     {
       "year": 1983,
@@ -1543,7 +1577,8 @@
       "fun_fact_it": "Loredana Bertè - \"Il mare d'inverno\" (1983), dal canone del pop italiano.",
       "isrc": "ITM009901369",
       "uri_apple_music": "applemusic://track/671755909",
-      "uri_deezer": "deezer://track/62912666"
+      "uri_deezer": "deezer://track/62912666",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wFuubVEdJ9Q"
     },
     {
       "year": 1983,
@@ -1561,7 +1596,8 @@
       "fun_fact_it": "Lu Colombo - \"Maracaibo\" (1983), dal canone del pop italiano.",
       "isrc": "ITD008400017",
       "uri_apple_music": "applemusic://track/405021856",
-      "uri_deezer": "deezer://track/3541677"
+      "uri_deezer": "deezer://track/3541677",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ParxYj8HtgA"
     },
     {
       "year": 1983,
@@ -1579,7 +1615,8 @@
       "fun_fact_it": "Nada - \"Amore Disperato - 2004 Remaster\" (1983), dal canone del pop italiano.",
       "isrc": "ITD000400067",
       "uri_apple_music": "applemusic://track/1647071573",
-      "uri_deezer": "deezer://track/3327907"
+      "uri_deezer": "deezer://track/3327907",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=syYgio-zR0g"
     },
     {
       "year": 1983,
@@ -1597,7 +1634,8 @@
       "fun_fact_it": "Toto Cutugno - \"Solo noi\" (1983), dal canone del pop italiano. Presentata al Festival di Sanremo.",
       "isrc": "ITB268000030",
       "uri_apple_music": "applemusic://track/1329256168",
-      "uri_deezer": "deezer://track/104724380"
+      "uri_deezer": "deezer://track/104724380",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TiCMc4CW0dc"
     },
     {
       "year": 1986,
@@ -1615,7 +1653,8 @@
       "fun_fact_it": "Eros Ramazzotti - \"Adesso tu\" (1984), dal canone del pop italiano. Presentata al Festival di Sanremo.",
       "isrc": "ITB008671030",
       "uri_apple_music": "applemusic://track/254548552",
-      "uri_deezer": "deezer://track/87677323"
+      "uri_deezer": "deezer://track/87677323",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Wx3R0vUDG68"
     },
     {
       "year": 1984,
@@ -1633,7 +1672,8 @@
       "fun_fact_it": "Gianni Togni - \"Giulia\" (1984), dal canone del pop italiano.",
       "isrc": "ITR008400501",
       "uri_apple_music": "applemusic://track/79354753",
-      "uri_deezer": "deezer://track/818877"
+      "uri_deezer": "deezer://track/818877",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VzuyrF0G2FQ"
     },
     {
       "year": 1985,
@@ -1651,7 +1691,8 @@
       "fun_fact_it": "Gianni Morandi - \"Uno su mille\" (1985), dal canone del pop italiano. Pubblicata da RCA Italiana.",
       "isrc": "ITB008500294",
       "uri_apple_music": "applemusic://track/796510429",
-      "uri_deezer": "deezer://track/74189254"
+      "uri_deezer": "deezer://track/74189254",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gKo9naVHg2Q"
     },
     {
       "year": 1985,
@@ -1669,7 +1710,8 @@
       "fun_fact_it": "Vasco Rossi - \"T'immagini\" (1985), dal canone del pop italiano. Contenuta nell'album del 1985 Cosa succede in città.",
       "isrc": "ITB260401670",
       "uri_apple_music": "applemusic://track/1327592526",
-      "uri_deezer": "deezer://track/104726588"
+      "uri_deezer": "deezer://track/104726588",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Yh-KTLQRQgA"
     },
     {
       "year": 1986,
@@ -1687,7 +1729,8 @@
       "fun_fact_it": "Lucio Dalla - \"Caruso\" (1986), dal canone del pop italiano.",
       "isrc": "ITB008600207",
       "uri_apple_music": "applemusic://track/200934554",
-      "uri_deezer": "deezer://track/972492"
+      "uri_deezer": "deezer://track/972492",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I84FCXqA1Vk"
     },
     {
       "year": 1986,
@@ -1705,7 +1748,8 @@
       "fun_fact_it": "Toto Cutugno - \"Serenata\" (1986), dal canone del pop italiano.",
       "isrc": "ITB268405760",
       "uri_apple_music": "applemusic://track/1329247255",
-      "uri_deezer": "deezer://track/104724382"
+      "uri_deezer": "deezer://track/104724382",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mlUFaSP3Bew"
     },
     {
       "year": 1987,
@@ -1723,7 +1767,8 @@
       "fun_fact_it": "Gianna Nannini - \"I maschi\" (1987), dal canone del pop italiano.",
       "isrc": "ITB000900945",
       "uri_apple_music": "applemusic://track/6768669894",
-      "uri_deezer": "deezer://track/88193681"
+      "uri_deezer": "deezer://track/88193681",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pOeSUjNagCU"
     },
     {
       "year": 1987,
@@ -1741,7 +1786,8 @@
       "fun_fact_it": "Mango - \"Bella d'estate\" (1987), dal canone del pop italiano.",
       "isrc": "ITD018700009",
       "uri_apple_music": "applemusic://track/486352644",
-      "uri_deezer": "deezer://track/69025912"
+      "uri_deezer": "deezer://track/69025912",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XOK0eC6U-gg"
     },
     {
       "year": 1988,
@@ -1759,7 +1805,8 @@
       "fun_fact_it": "Anna Oxa - \"Quando nasce un amore\" (1988), dal canone del pop italiano. Presentata al Festival di Sanremo. Contenuta nell'album della cantante Pensami per te.",
       "isrc": "ITM009700600",
       "uri_apple_music": "applemusic://track/819376891",
-      "uri_deezer": "deezer://track/69008453"
+      "uri_deezer": "deezer://track/69008453",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YSNLzVEQhjQ"
     },
     {
       "year": 1988,
@@ -1777,7 +1824,8 @@
       "fun_fact_it": "Antonello Venditti - \"Ricordati di me\" (1988), dal canone del pop italiano.",
       "isrc": "ITG028800001",
       "uri_apple_music": "applemusic://track/304341668",
-      "uri_deezer": "deezer://track/566798"
+      "uri_deezer": "deezer://track/566798",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QsTh_dKwx5I"
     },
     {
       "year": 1988,
@@ -1795,7 +1843,8 @@
       "fun_fact_it": "Massimo Ranieri - \"Perdere l'amore\" (1988), dal canone del pop italiano. Presentata al Festival di Sanremo.",
       "isrc": "ITQ008800011",
       "uri_apple_music": "applemusic://track/79281601",
-      "uri_deezer": "deezer://track/661313"
+      "uri_deezer": "deezer://track/661313",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Iw0cD44AhsA"
     },
     {
       "year": 1989,
@@ -1812,7 +1861,8 @@
       "fun_fact_nl": "Anna Oxa, Fausto Leali - \"Ti lascerò\" (1989), uit de Italiaanse popcanon.",
       "fun_fact_it": "Anna Oxa, Fausto Leali - \"Ti lascerò\" (1989), dal canone del pop italiano.",
       "isrc": "ITM009700604",
-      "uri_apple_music": "applemusic://track/335971114"
+      "uri_apple_music": "applemusic://track/335971114",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nYs4-gsPIkU"
     },
     {
       "year": 1989,
@@ -1830,7 +1880,8 @@
       "fun_fact_it": "Lorella Cuccarini - \"La notte vola\" (1989), dal canone del pop italiano.",
       "isrc": "ITZ038901253",
       "uri_apple_music": "applemusic://track/518297844",
-      "uri_deezer": "deezer://track/18226796"
+      "uri_deezer": "deezer://track/18226796",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Sykr0FZZW7s"
     },
     {
       "year": 1989,
@@ -1848,7 +1899,8 @@
       "fun_fact_it": "Mia Martini - \"Almeno tu nell'universo\" (1989), dal canone del pop italiano.",
       "isrc": "ITB551110730",
       "uri_apple_music": "applemusic://track/1616014496",
-      "uri_deezer": "deezer://track/1696872787"
+      "uri_deezer": "deezer://track/1696872787",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pSi0dbNAN9M"
     },
     {
       "year": 1992,
@@ -1866,7 +1918,8 @@
       "fun_fact_it": "Mia Martini - \"Gli Uomini Non Cambiano\" (1992), dal canone del pop italiano.",
       "isrc": "ITB551110740",
       "uri_apple_music": "applemusic://track/1616019807",
-      "uri_deezer": "deezer://track/1696905227"
+      "uri_deezer": "deezer://track/1696905227",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eUXdvJe3-3c"
     },
     {
       "year": 1993,
@@ -1884,7 +1937,8 @@
       "fun_fact_it": "883 - \"Come mai\" (1993), dal canone del pop italiano.",
       "isrc": "ITQ000000822",
       "uri_apple_music": "applemusic://track/63831617",
-      "uri_deezer": "deezer://track/766655"
+      "uri_deezer": "deezer://track/766655",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ThGCZN1HPbE"
     },
     {
       "year": 1994,
@@ -1902,7 +1956,8 @@
       "fun_fact_it": "Michele Zarrillo - \"Cinque giorni\" (1994), dal canone del pop italiano.",
       "isrc": "ITB219900158",
       "uri_apple_music": "applemusic://track/271725260",
-      "uri_deezer": "deezer://track/2455279"
+      "uri_deezer": "deezer://track/2455279",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mok-Mk0jXk8"
     },
     {
       "year": 1996,
@@ -1920,7 +1975,8 @@
       "fun_fact_it": "Franco Battiato - \"La Cura\" (1996), dal canone del pop italiano. Pubblicata da Mercury Records. Contenuta nell'album L'Imboscata.",
       "isrc": "IT7009609320",
       "uri_apple_music": "applemusic://track/1443744077",
-      "uri_deezer": "deezer://track/2432922"
+      "uri_deezer": "deezer://track/2432922",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cLJp-YJeuzc"
     },
     {
       "year": 1996,
@@ -1938,7 +1994,8 @@
       "fun_fact_it": "Ornella Vanoni - \"L'appuntamento\" (1996), dal canone del pop italiano.",
       "isrc": "ITB007071645",
       "uri_apple_music": "applemusic://track/254168669",
-      "uri_deezer": "deezer://track/564219"
+      "uri_deezer": "deezer://track/564219",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z4nhDtkzhRg"
     },
     {
       "year": 1996,
@@ -1956,7 +2013,8 @@
       "fun_fact_it": "Vasco Rossi - \"Sally\" (1996), dal canone del pop italiano. Scritta da Vasco Rossi. Contenuta nell'album Nessun pericolo.",
       "isrc": "ITUM71700273",
       "uri_apple_music": "applemusic://track/1443087171",
-      "uri_deezer": "deezer://track/358728991"
+      "uri_deezer": "deezer://track/358728991",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iVAZezs0H9s"
     },
     {
       "year": 1998,
@@ -1974,7 +2032,8 @@
       "fun_fact_it": "MINACELENTANO - \"Acqua e sale\" (1998), dal canone del pop italiano.",
       "isrc": "CH1439800020",
       "uri_apple_music": "applemusic://track/1719308553",
-      "uri_deezer": "deezer://track/2095901487"
+      "uri_deezer": "deezer://track/2095901487",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Krk7F7e28R0"
     },
     {
       "year": 1998,
@@ -1992,7 +2051,8 @@
       "fun_fact_it": "Vasco Rossi - \"Rewind - Radio Edit\" (1998), dal canone del pop italiano.",
       "isrc": "ITD009900052",
       "uri_apple_music": "applemusic://track/1443191612",
-      "uri_deezer": "deezer://track/3211478"
+      "uri_deezer": "deezer://track/3211478",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qG3fXjVXuS0"
     },
     {
       "year": 1999,
@@ -2010,7 +2070,8 @@
       "fun_fact_it": "Adriano Celentano - \"L'Emozione Non Ha voce (Io Non So Parlar D'Amore)\" (1999), dal canone del pop italiano. Scritta da Mogol.",
       "isrc": "ITR059900002",
       "uri_apple_music": "applemusic://track/1702255790",
-      "uri_deezer": "deezer://track/2407440395"
+      "uri_deezer": "deezer://track/2407440395",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HHGHdMCCR1E"
     },
     {
       "year": 2000,
@@ -2028,7 +2089,8 @@
       "fun_fact_it": "Loretta Goggi - \"L'aria del sabato sera\" (2000), dal canone del pop italiano.",
       "isrc": "ITQ007900231",
       "uri_apple_music": "applemusic://track/698668390",
-      "uri_deezer": "deezer://track/4090058"
+      "uri_deezer": "deezer://track/4090058",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4z_dU2OMrmY"
     },
     {
       "year": 2001,
@@ -2046,7 +2108,8 @@
       "fun_fact_it": "Gigi D'Alessio - \"Mon amour\" (2001), dal canone del pop italiano.",
       "isrc": "ITB000100006",
       "uri_apple_music": "applemusic://track/265973220",
-      "uri_deezer": "deezer://track/418533452"
+      "uri_deezer": "deezer://track/418533452",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DGg7aNplmts"
     },
     {
       "year": 2002,
@@ -2063,7 +2126,8 @@
       "fun_fact_nl": "Gigi D'Alessio, Anna Tatangelo - \"Un nuovo bacio\" (2002), uit de Italiaanse popcanon.",
       "fun_fact_it": "Gigi D'Alessio, Anna Tatangelo - \"Un nuovo bacio\" (2002), dal canone del pop italiano.",
       "isrc": "ITB000200156",
-      "uri_apple_music": "applemusic://track/1308882452"
+      "uri_apple_music": "applemusic://track/1308882452",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FwuIOnGppmY"
     },
     {
       "year": 2004,
@@ -2081,7 +2145,8 @@
       "fun_fact_it": "Vasco Rossi - \"Un Senso\" (2004), dal canone del pop italiano.",
       "isrc": "ITD000400186",
       "uri_apple_music": "applemusic://track/1443213440",
-      "uri_deezer": "deezer://track/135876550"
+      "uri_deezer": "deezer://track/135876550",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=StRtFh01XUo"
     },
     {
       "year": 2007,
@@ -2098,7 +2163,8 @@
       "fun_fact_nl": "Gianni Nazzaro - \"Quando L'Amore Diventa Poesía\" (2007), uit de Italiaanse popcanon.",
       "fun_fact_it": "Gianni Nazzaro - \"Quando L'Amore Diventa Poesía\" (2007), dal canone del pop italiano.",
       "isrc": null,
-      "uri_apple_music": "applemusic://track/1780787742"
+      "uri_apple_music": "applemusic://track/1780787742",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-HQ9NZ3IJ7w"
     },
     {
       "year": 1990,
@@ -2118,7 +2184,8 @@
       "fun_fact_es": "Ramazzotti la escribió para un concierto benéfico en Milán y la cantó ante cuarenta mil personas que le devolvían el estribillo.",
       "fun_fact_fr": "Ramazzotti l'a écrite pour un concert caritatif à Milan et l'a chantée devant quarante mille personnes qui lui renvoyaient le refrain.",
       "fun_fact_nl": "Ramazzotti schreef het voor een benefietconcert in Milaan en zong het voor veertigduizend mensen die het refrein terugzongen.",
-      "fun_fact_it": "Ramazzotti la scrisse per un concerto di beneficenza a Milano e la cantò davanti a quarantamila persone che gli rimandavano il ritornello."
+      "fun_fact_it": "Ramazzotti la scrisse per un concerto di beneficenza a Milano e la cantò davanti a quarantamila persone che gli rimandavano il ritornello.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C6dpQWnRII0"
     }
   ],
   "tags": [

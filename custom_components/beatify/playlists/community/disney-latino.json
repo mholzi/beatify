@@ -1,6 +1,6 @@
 {
   "name": "Disney Latino",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "disney",
     "movies",
@@ -28,7 +28,8 @@
         "Mateo Ramírez Velasco",
         "Tata Vega"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8WtkRSa6lvw"
     },
     {
       "year": 1994,
@@ -47,7 +48,8 @@
         "Ana Torroja",
         "Natalia Lafourcade"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nl6wIrZxnEU"
     },
     {
       "year": 2019,
@@ -83,7 +85,8 @@
         "Elenco de Soy Luna",
         "Héctor Ortiz"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 3» della Disney (2010)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 3» della Disney (2010).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eVRghsitMV0"
     },
     {
       "year": 2026,
@@ -140,7 +143,8 @@
         "Natalia Lafourcade",
         "Norma Herrera"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Encanto» della Disney (2021)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Encanto» della Disney (2021).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7JXVgNvIXcI"
     },
     {
       "year": 2019,
@@ -233,7 +237,8 @@
         "Mateo Ramírez Velasco",
         "TINI"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Encanto» della Disney (2021)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Encanto» della Disney (2021).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JWe_smmkgrw"
     },
     {
       "year": 2017,
@@ -339,7 +344,8 @@
         "Gipsy Kings",
         "Mateo Ramírez Velasco"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ns6RlF1bgh8"
     },
     {
       "year": 2013,
@@ -375,7 +381,8 @@
         "Ana Torroja",
         "Luis Fonsi"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K8X0Kdceb6w"
     },
     {
       "year": 1994,
@@ -411,7 +418,8 @@
         "Marco Antonio Solís",
         "Sofia Carson"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Moana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Moana» della Disney (2016).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ftNOCfqoIjQ"
     },
     {
       "year": 2010,
@@ -555,7 +563,8 @@
         "Luis Ángel Gómez Jaramillo",
         "Sugey Torres"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Sirenita» della Disney (1989)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Sirenita» della Disney (1989).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OXMmxlAqKNM"
     },
     {
       "year": 1994,
@@ -574,7 +583,8 @@
         "Kalimba Marichal",
         "Tata Vega"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gJX8_Htt6Vk"
     },
     {
       "year": 1991,
@@ -593,7 +603,8 @@
         "Gonzo",
         "Mendez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A7qXfg9c29c"
     },
     {
       "year": 2010,
@@ -612,7 +623,8 @@
         "Sugey Torres",
         "Tata Vega"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Enredados» della Disney (2010)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Enredados» della Disney (2010).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fZSZMp32XaA"
     },
     {
       "year": 2016,
@@ -630,7 +642,8 @@
         "Olga Lucía Vives"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Tini: El gran cambio de Violetta» della Disney (2016).",
-      "uri_deezer": "deezer://track/123791408"
+      "uri_deezer": "deezer://track/123791408",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=O6RimxEkDPM"
     },
     {
       "year": 2019,
@@ -647,7 +660,8 @@
         "Elenco de Soy Luna",
         "Sara Paula Gómez Arias"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (2019)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (2019).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eFEF2bckT1g"
     },
     {
       "year": 2013,
@@ -666,7 +680,8 @@
         "Analy",
         "Meli G"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YG2vqB408bk"
     },
     {
       "year": 2013,
@@ -685,7 +700,8 @@
         "Esteman",
         "Kalimba Marichal"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rVjI9YRc4pE"
     },
     {
       "year": 2016,
@@ -704,7 +720,8 @@
         "Romina Marroquín Payró",
         "Sebastian Yatra"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Moana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Moana» della Disney (2016).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HS2qe2nL2Co"
     },
     {
       "year": 1970,
@@ -723,7 +740,8 @@
         "Marco Antonio Solís",
         "ZAYN"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Los Aristogatos» della Disney (1970)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Los Aristogatos» della Disney (1970).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sgYSvpuGbcc"
     },
     {
       "year": 2017,
@@ -740,7 +758,8 @@
         "David Bisbal",
         "ZAYN"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (2017).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K8IhHiR6yqU"
     },
     {
       "year": 2013,
@@ -759,7 +778,8 @@
         "Carlos Vives",
         "Eduardo Tejedo"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ajVhh8tz_C8"
     },
     {
       "year": 1994,
@@ -776,7 +796,8 @@
         "Christina Aguilera",
         "TINI"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OAP8VltOxwc"
     },
     {
       "year": 2017,
@@ -795,7 +816,8 @@
         "Armando Gama",
         "Esteman"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9tIn78xQExM"
     },
     {
       "year": 2017,
@@ -814,7 +836,8 @@
         "Carlos Rivera",
         "Meli G"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jh36KGOqHEs"
     },
     {
       "year": 1997,
@@ -833,7 +856,8 @@
         "Carlos Rivera",
         "Tata Vega"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XDmJTJHWZv0"
     },
     {
       "year": 1999,
@@ -852,7 +876,8 @@
         "Gipsy Kings",
         "Rubén Albarrán"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 2» della Disney (1999)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 2» della Disney (1999).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7npcmylOmP8"
     },
     {
       "year": 2017,
@@ -871,7 +896,8 @@
         "Eros Ramazzotti",
         "Romina Marroquín Payró"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1KJrkpAcIeE"
     },
     {
       "year": 2013,
@@ -890,7 +916,8 @@
         "Eduardo Tejedo",
         "Mendez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5StQQ0LL1n8"
     },
     {
       "year": 1994,
@@ -927,7 +954,8 @@
         "Bronco",
         "Luis Ángel Gómez Jaramillo"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Moana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Moana» della Disney (2016).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1-Hu7xBSW0o"
     },
     {
       "year": 2019,
@@ -946,7 +974,8 @@
         "Analy",
         "Sara Paula Gómez Arias"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 4» della Disney (2019)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 4» della Disney (2019).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qM_DsJPDxak"
     },
     {
       "year": 1999,
@@ -965,7 +994,8 @@
         "Jessi Corti",
         "Renato Lopez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tarzán» della Disney (1999)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tarzán» della Disney (1999).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VccbUMdkDsU"
     },
     {
       "year": 2013,
@@ -984,7 +1014,8 @@
         "Luis Ángel Gómez Jaramillo",
         "Renato Lopez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Frozen» della Disney (2013).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V2J-zzifWzU"
     },
     {
       "year": 1994,
