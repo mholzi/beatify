@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
-> Generated: 2026-09-10
+> Generated: 2026-09-12
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.6.0
+> Catalogue state: v4.7.0
 
 ## Summary
 
@@ -10,15 +10,15 @@
 | Apple | 8123 | 8432 | 96.3% |
 | Tidal | 5959 | 8432 | 70.7% |
 | Deezer | 8340 | 8432 | 98.9% |
-| YouTube | 7523 | 8432 | 89.2% |
+| YouTube | 7649 | 8432 | 90.7% |
 
 ## Per-playlist coverage
 
 | Playlist | Songs | Apple | Tidal | Deezer | YouTube |
 |---|---:|---:|---:|---:|---:|
-| 2000s-pop-anthems.json | 224 | 221 | 181 | 224 | 181 |
+| 2000s-pop-anthems.json | 224 | 221 | 181 | 224 | 182 |
 | 40s-50s-classics.json | 154 | 154 | 151 | 154 | 152 |
-| 70s-hits.json | 211 | 207 | 169 | 211 | 170 |
+| 70s-hits.json | 211 | 207 | 169 | 211 | 171 |
 | 80er-hits.json | 267 | 266 | 232 | 266 | 233 |
 | 90er-hits.json | 158 | 154 | 108 | 158 | 108 |
 | community/100-greatest-rock-songs.json | 151 | 150 | 122 | 151 | 122 |
@@ -34,7 +34,7 @@
 | community/deutschrap-klassiker.json | 26 | 17 | 0 | 26 | 0 |
 | community/deutschrock-best-of.json | 100 | 85 | 100 | 100 | 98 |
 | community/disney-hits-deutschland.json | 97 | 82 | 95 | 96 | 97 |
-| community/disney-latino.json | 54 | 54 | 0 | 38 | 1 |
+| community/disney-latino.json | 54 | 54 | 0 | 38 | 32 |
 | community/divorced-dad-rock.json | 107 | 104 | 107 | 107 | 107 |
 | community/edm-anthems.json | 246 | 230 | 190 | 246 | 233 |
 | community/essential-alternative.json | 100 | 100 | 100 | 100 | 100 |
@@ -51,7 +51,7 @@
 | community/iconic-movie-songs.json | 72 | 72 | 71 | 72 | 72 |
 | community/koelner-karneval.json | 290 | 289 | 288 | 289 | 289 |
 | community/musica-colombiana-alegre.json | 32 | 32 | 0 | 32 | 0 |
-| community/musica-italiana.json | 115 | 115 | 0 | 112 | 48 |
+| community/musica-italiana.json | 115 | 115 | 0 | 112 | 115 |
 | community/ndw-neue-deutsche-welle.json | 50 | 46 | 50 | 49 | 50 |
 | community/polish-all-time-hits.json | 59 | 57 | 55 | 58 | 58 |
 | community/polish-hits-90s-00s.json | 92 | 87 | 90 | 91 | 92 |
@@ -74,9 +74,9 @@
 | disney-classics.json | 69 | 69 | 69 | 69 | 69 |
 | eurovision-winners.json | 72 | 67 | 68 | 72 | 72 |
 | greatest-hits-of-all-time.json | 236 | 235 | 234 | 236 | 232 |
-| hits-2010s-2020s.json | 124 | 122 | 71 | 123 | 73 |
+| hits-2010s-2020s.json | 124 | 122 | 71 | 123 | 74 |
 | motown-soul-classics.json | 100 | 100 | 100 | 100 | 100 |
-| movies-100-greatest-themes.json | 257 | 240 | 156 | 252 | 184 |
+| movies-100-greatest-themes.json | 257 | 240 | 156 | 252 | 209 |
 | one-hit-wonders.json | 98 | 96 | 98 | 98 | 98 |
 | summer-party-anthems.json | 112 | 112 | 112 | 112 | 112 |
 | top-100-power-ballads.json | 99 | 99 | 99 | 99 | 99 |

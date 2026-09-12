@@ -825,6 +825,10 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.7.0 — The Turn 📈
+- **The end screen shows the round it turned on** — three seconds before the podium, the TV goes back to the one round where the lead last changed hands: two lines climbing, a mark on the round, and the two names. A game somebody led from the first song has no such round, and the screen goes straight to the podium instead (#2563)
+- **+126 YouTube URIs** across six playlists, so more of the catalogue plays for anyone on YouTube Music (#2800)
+
 ### v4.6.0 — Second Wind 👻
 - **Ghost league** — get knocked out in Sudden Death and you keep guessing to the last song, in a league of your own: your score sits under the survivors on the TV, and there is a Best Ghost award at the finish. Counted per ghost round played, so going out early wins nothing (#2559)
 - **Encore** — on the reveal before the last round the host is offered five more rounds, with every score left exactly where it is. Once the last round starts the offer is gone (#2503)
