@@ -2996,3 +2996,112 @@
 .ghost-name { font-weight: 600; }
 .ghost-meta { font-size: 0.72rem; opacity: 0.65; }
 .ghost-score { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* ==========================================================================
+   #2563 — the closing moment
+   A prologue to the end screen, not a panel inside it: it covers the whole
+   view for three seconds and then fades, leaving the podium stage exactly as
+   it was built. Positioned against #dashboard-end so nothing in the stage
+   layout has to make room. Sized in viewport units because this is a TV at
+   whatever kiosk resolution the host's screen happens to run.
+   ========================================================================== */
+
+#dashboard-end {
+    position: relative;
+}
+
+.end-moment {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4vh;
+    padding: 6vh 6vw;
+    background: var(--color-bg, #0a0a0f);
+    opacity: 1;
+    transition: opacity 600ms ease;
+}
+
+.end-moment.hidden {
+    display: none;
+}
+
+.end-moment.is-leaving {
+    opacity: 0;
+}
+
+.end-moment__kicker {
+    margin: 0;
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 2.2vw, 40px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
+}
+
+.end-moment__chart {
+    width: min(76vw, 1400px);
+}
+
+.end-moment__chart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.end-moment__line {
+    margin: 0;
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 800;
+    font-size: clamp(24px, 3.2vw, 64px);
+    line-height: 1.1;
+    text-align: center;
+    color: var(--color-text, #fff);
+}
+
+.end-moment__line .is-winner { color: #39ff14; }
+.end-moment__line .is-loser { color: #ff6600; }
+
+/* The two lines draw themselves left to right; --len is the measured path
+   length, written by dashboard.js after the path is in the document. */
+.end-moment__path {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: var(--len);
+    stroke-dashoffset: var(--len);
+    animation: end-moment-draw 1700ms cubic-bezier(0.42, 0, 0.3, 1) forwards;
+}
+
+@keyframes end-moment-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+.end-moment__mark {
+    opacity: 0;
+    animation: end-moment-mark 400ms 1500ms forwards;
+}
+
+@keyframes end-moment-mark {
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .end-moment__path {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+    .end-moment__mark {
+        animation: none;
+        opacity: 1;
+    }
+    .end-moment {
+        transition: none;
+    }
+}

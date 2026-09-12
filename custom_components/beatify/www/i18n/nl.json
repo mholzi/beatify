@@ -430,6 +430,8 @@
     "roundsPlayed": "Gespeelde Rondes",
     "betsWon": "Gewonnen Inzetten",
     "fullRankings": "Volledige Ranglijst",
+    "momentKicker": "Het spel kantelde in ronde {round}",
+    "momentVerb": "passeert",
     "nextTitle": "Wat nu?",
     "nextJustPlayed": "net gespeeld",
     "nextSongCount": "{count} nummers",

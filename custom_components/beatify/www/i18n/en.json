@@ -430,6 +430,8 @@
     "roundsPlayed": "Rounds Played",
     "betsWon": "Bets Won",
     "fullRankings": "Full Rankings",
+    "momentKicker": "The game turned in round {round}",
+    "momentVerb": "overtakes",
     "nextTitle": "What's next?",
     "nextJustPlayed": "just played",
     "nextSongCount": "{count} songs",

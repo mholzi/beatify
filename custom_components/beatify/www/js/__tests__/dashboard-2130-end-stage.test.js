@@ -57,6 +57,9 @@ function renderEnd(leaderboard, { screen = endScreen(), ...extra } = {}) {
         document: screen.document,
         utils: { escapeHtml: (s) => String(s) },
         renderSuddenDeathLastStanding: noop,
+        // #2563: the closing moment is a prologue over this screen; these
+        // cases are about what the screen itself renders, so it stays off.
+        playClosingMoment: () => false,
         renderStatsComparison: noop,
         renderSuperlatives: noop,
         renderHighlights: noop,

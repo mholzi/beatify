@@ -14,7 +14,8 @@ The mixin relies on a single attribute the host class owns and that lives on
 
 * ``self.players`` — mapping of player name → ``PlayerSession``. Each session
   exposes ``score``, ``name``, ``streak``, ``is_admin``, ``connected``,
-  ``previous_rank``, ``best_streak``, ``rounds_played`` and ``bets_won``.
+  ``previous_rank``, ``best_streak``, ``rounds_played``, ``bets_won`` and
+  ``round_scores``.
 
 It carries no state of its own and imports nothing from ``state.py``, so the
 extraction introduces no cyclic imports.
@@ -166,6 +167,15 @@ class LeaderboardMixin:
                 # the one artifact of a finished game worth photographing. A
                 # score vanishes when the game does; this list does not.
                 "collection": [dict(entry) for entry in player.collection],
+                # Issue #2563: the per-round series. It has existed on the
+                # player since the beginning — clutch_player and comeback_king
+                # are computed from it — but it was never serialized, so the
+                # END screen could only ever show the final number and not how
+                # it was arrived at. Sent in full rather than pre-digested: the
+                # closing moment uses two of these rows, and a later full
+                # replay would need all of them without another backend change.
+                # These are per-round deltas, not a running total.
+                "round_scores": list(player.round_scores),
             }
             leaderboard.append(entry)
 

@@ -430,6 +430,8 @@
     "roundsPlayed": "Rondas jugadas",
     "betsWon": "Apuestas ganadas",
     "fullRankings": "Clasificación completa",
+    "momentKicker": "El juego se decidió en la ronda {round}",
+    "momentVerb": "adelanta a",
     "nextTitle": "¿Qué viene ahora?",
     "nextJustPlayed": "recién sonada",
     "nextSongCount": "{count} canciones",

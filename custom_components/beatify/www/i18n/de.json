@@ -430,6 +430,8 @@
     "roundsPlayed": "Gespielte Runden",
     "betsWon": "Gewonnene Wetten",
     "fullRankings": "Vollständige Rangliste",
+    "momentKicker": "Das Spiel entschied sich in Runde {round}",
+    "momentVerb": "überholt",
     "nextTitle": "Was als Nächstes?",
     "nextJustPlayed": "gerade gespielt",
     "nextSongCount": "{count} Titel",
