@@ -4,6 +4,41 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.0-rc1] - 2026-09-12
+
+Ein Eintrag, den Markus am Samstagabend aus dem Rueckstand gezogen hat, plus was seit v4.6.0 sonst
+auf `main` lag. #2563 lief vor dem Bauen durchs Design-Gate: vier gezeichnete Varianten, Markus hat
+C genommen — drei Sekunden statt zehn, weil das Endbild schon sieben Beats hat.
+
+### Added
+- **Das Endbild zeigt die Runde, in der das Spiel entschieden wurde** (#2563, Variante C). Drei
+  Sekunden vor dem Podest klettern zwei Linien, eine Marke sitzt auf der Runde, darunter steht
+  „Dana overtakes Ben"; dann blendet es weg und das Schlussbild steht wie zuvor. Es ist ein
+  **Vorspann, kein Kasten** — nichts im Schlussbild musste Platz machen.
+  - Die Rundenwahl ist mechanisch, kein Dramatik-Score: **der letzte Fuehrungswechsel zum spaeteren
+    Sieger**. Wer ab der ersten Runde fuehrt, hat keinen — dann faellt der Vorspann aus, statt einen
+    Moment zu erfinden.
+  - `round_scores` lag seit jeher auf dem Spieler (`clutch_player` und `comeback_king` rechnen
+    darauf), wurde aber **nie serialisiert**. Das Issue hielt die Arbeit deshalb fuer „pure
+    frontend"; das stimmte nicht. Das Feld geht jetzt **vollstaendig** mit auf die Schluss-Rangliste,
+    als Runden-Deltas — ein spaeterer voller Verlauf braucht dafuer keinen zweiten Backend-Schnitt.
+  - Das Konfetti wartet, bis der Vorspann weg ist, und der Vorspann laeuft **einmal je `game_id`**:
+    ein Schlussbild, das bei jedem Reconnect neu anfaengt, waere schlimmer als keines.
+
+### Changed
+- **+126 YouTube-URIs** ueber sechs Playlists (#2800). Der PR-Titel sagt „+9" — das war der erste
+  von drei gebuendelten Backfill-Laeufen (+9, +84, +33); die Abdeckung geht von 7.523 auf 7.649,
+  89,2 % -> 90,7 %. `musica-italiana` springt von 48 auf 115 von 115, `disney-latino` von 1 auf 32.
+  Alle sechs `version`-Felder gingen im selben Commit mit, sonst erreicht die Aenderung keine
+  bestehende Installation.
+
+### Fixed
+- **Der Playlist-Pruefer sprach Deezer frei, statt zu verurteilen** (#2809). Ein Treffer ohne ISRC
+  galt als Fehler; jetzt gilt er als ungeprueft.
+- **„Zieh die Doku mit" ist eine Pruefung statt eines Satzes** (#2580-Nachzug): `check_docs_current.py`
+  faellt auf, wenn Code und Dokumentation auseinanderlaufen.
+
+
 ## [4.6.0] - 2026-09-10
 
 Die Woche 2026-W37b: sechs Eintraege aus der Redaktionskonferenz vom 08.09., drei davon durchs
