@@ -2207,8 +2207,243 @@
      * Render end view with podium and final leaderboard
      * @param {Object} data - State data
      */
+    /* ----------------------------------------------------------------
+       #2563 — the closing moment
+
+       The end screen has always shown the result and never the route to it.
+       round_scores has existed on the player since the beginning (it is what
+       clutch_player and comeback_king are computed from) but was never
+       serialized; it now arrives on each final leaderboard entry as per-round
+       deltas. Three seconds of the TV are spent on the single round where the
+       lead last changed hands, and then the podium stage resolves as before.
+       ---------------------------------------------------------------- */
+
+    // The game_id the moment has already played for. State updates repeat on
+    // every reconnect, and a closing shot that replays on a dropped socket is
+    // worse than no closing shot.
+    var closingMomentPlayedFor = null;
+
+    /**
+     * Find the round in which the eventual winner took the lead for the last
+     * time.
+     *
+     * Deliberately mechanical: no "biggest swing" scoring, no drama heuristic.
+     * The moment is the last round at which the top of the board changed hands
+     * AND the new leader is the player who finished first. A winner who led
+     * from the first round has no such round, and then there is nothing
+     * honest to show — the caller skips the prologue rather than inventing
+     * one.
+     *
+     * @param {Array} leaderboard - final leaderboard entries; each may carry
+     *   round_scores, a list of per-round deltas (NOT a running total).
+     * @returns {Object|null} { round, winner, loser } where winner/loser each
+     *   hold { name, cum } with cum[0] = 0 and cum[i] = total after round i.
+     */
+    function findClosingMoment(leaderboard) {
+        if (!leaderboard || leaderboard.length < 2) return null;
+
+        var rows = leaderboard.filter(function(entry) {
+            return entry && Array.isArray(entry.round_scores) && entry.round_scores.length > 0;
+        });
+        if (rows.length < 2) return null;
+
+        var rounds = 0;
+        rows.forEach(function(entry) {
+            if (entry.round_scores.length > rounds) rounds = entry.round_scores.length;
+        });
+        if (rounds < 2) return null;
+
+        // Cumulative totals, index 0 = before the first round.
+        var series = rows.map(function(entry) {
+            var cum = [0];
+            var sum = 0;
+            for (var i = 0; i < rounds; i++) {
+                var delta = Number(entry.round_scores[i]);
+                sum += isFinite(delta) ? delta : 0;
+                cum.push(sum);
+            }
+            return { name: entry.name, rank: entry.rank, cum: cum };
+        });
+
+        var winner = null;
+        series.forEach(function(s) { if (s.rank === 1 && !winner) winner = s; });
+        if (!winner) return null;
+
+        // Leader at a point in time. Ties break by name so the same game
+        // always yields the same moment.
+        function leaderAt(i) {
+            var best = null;
+            series.forEach(function(s) {
+                if (!best) { best = s; return; }
+                if (s.cum[i] > best.cum[i]) { best = s; return; }
+                if (s.cum[i] === best.cum[i] && s.name < best.name) best = s;
+            });
+            return best;
+        }
+
+        var found = null;
+        for (var r = 1; r <= rounds; r++) {
+            var before = leaderAt(r - 1);
+            var after = leaderAt(r);
+            // Nobody had scored yet, so nobody was overtaken.
+            if (!before || before.cum[r - 1] <= 0) continue;
+            if (!after || after.name === before.name) continue;
+            if (after.name !== winner.name) continue;
+            found = { round: r, winner: after, loser: before };
+        }
+        return found;
+    }
+
+    /**
+     * Draw the two cumulative lines plus the marker on the round in question.
+     * Hand-built SVG: the dashboard carries no chart library and this needs
+     * two polylines, not a dependency.
+     *
+     * @param {Object} moment - as returned by findClosingMoment
+     */
+    function renderClosingMomentChart(moment) {
+        var host = document.getElementById('end-moment-chart');
+        if (!host) return;
+
+        var NS = 'http://www.w3.org/2000/svg';
+        var W = 1000, H = 380;
+        var LEFT = 70, RIGHT = 900, TOP = 40, BOTTOM = 300;
+        var rounds = moment.winner.cum.length - 1;
+
+        var peak = 0;
+        [moment.winner, moment.loser].forEach(function(s) {
+            s.cum.forEach(function(v) { if (v > peak) peak = v; });
+        });
+        if (peak <= 0) peak = 1;
+
+        function px(i) { return LEFT + (RIGHT - LEFT) * (i / rounds); }
+        function py(v) { return BOTTOM - (BOTTOM - TOP) * (v / peak); }
+
+        function el(tag, attrs) {
+            var node = document.createElementNS(NS, tag);
+            Object.keys(attrs).forEach(function(k) { node.setAttribute(k, attrs[k]); });
+            return node;
+        }
+
+        var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img' });
+
+        svg.appendChild(el('line', {
+            x1: LEFT, x2: RIGHT, y1: py(0), y2: py(0),
+            stroke: 'rgba(255,255,255,0.22)', 'stroke-width': 2
+        }));
+
+        // Round ticks: the decisive one always, plus the first and the last
+        // where they do not crowd it. In a game decided in the second-to-last
+        // round, "14" and "15" would otherwise be printed on top of each other.
+        var gap = Math.max(2, Math.round(rounds * 0.08));
+        var ticks = [moment.round];
+        [1, rounds].forEach(function(r) {
+            if (ticks.indexOf(r) === -1 && Math.abs(r - moment.round) >= gap) ticks.push(r);
+        });
+        ticks.forEach(function(r) {
+            var label = el('text', {
+                x: px(r), y: BOTTOM + 40, fill: 'rgba(255,255,255,0.55)',
+                'font-size': '26', 'text-anchor': 'middle',
+                'font-family': "var(--font-display, 'Outfit'), sans-serif"
+            });
+            label.textContent = String(r);
+            svg.appendChild(label);
+        });
+
+        var lines = [
+            { s: moment.loser, color: '#ff6600' },
+            { s: moment.winner, color: '#39ff14' }
+        ];
+        lines.forEach(function(item) {
+            var d = '';
+            for (var i = 0; i <= rounds; i++) {
+                d += (i ? ' L ' : 'M ') + px(i).toFixed(1) + ' ' + py(item.s.cum[i]).toFixed(1);
+            }
+            var path = el('path', { d: d, stroke: item.color, class: 'end-moment__path' });
+            svg.appendChild(path);
+            // getTotalLength only answers once the node is in a document.
+            item.path = path;
+        });
+
+        var mark = el('g', { class: 'end-moment__mark' });
+        mark.appendChild(el('line', {
+            x1: px(moment.round), x2: px(moment.round), y1: TOP, y2: BOTTOM,
+            stroke: 'rgba(255,255,255,0.55)', 'stroke-width': 2, 'stroke-dasharray': '8 8'
+        }));
+        lines.forEach(function(item) {
+            mark.appendChild(el('circle', {
+                cx: px(moment.round), cy: py(item.s.cum[moment.round]),
+                r: 13, fill: item.color
+            }));
+        });
+        lines.forEach(function(item) {
+            var name = el('text', {
+                x: RIGHT + 18, y: py(item.s.cum[rounds]) + 10, fill: item.color,
+                'font-size': '30', 'font-weight': '700', 'text-anchor': 'start',
+                stroke: 'var(--color-bg, #0a0a0f)', 'stroke-width': '6',
+                'paint-order': 'stroke',
+                'font-family': "var(--font-display, 'Outfit'), sans-serif"
+            });
+            name.textContent = item.s.name;
+            mark.appendChild(name);
+        });
+        svg.appendChild(mark);
+
+        host.innerHTML = '';
+        host.appendChild(svg);
+
+        lines.forEach(function(item) {
+            item.path.style.setProperty('--len', item.path.getTotalLength().toFixed(1));
+        });
+    }
+
+    /**
+     * Play the prologue, if this game has one. Returns true when the end
+     * screen is covered and the caller should hold back anything loud.
+     *
+     * @param {Object} data - END state data
+     * @returns {boolean} whether the moment is on screen
+     */
+    function playClosingMoment(data) {
+        var overlay = document.getElementById('end-moment');
+        if (!overlay) return false;
+
+        var gameId = data && data.game_id ? String(data.game_id) : 'unknown';
+        if (closingMomentPlayedFor === gameId) return false;
+        closingMomentPlayedFor = gameId;
+
+        var moment = findClosingMoment(data && data.leaderboard);
+        if (!moment) return false;
+
+        var kicker = document.getElementById('end-moment-kicker');
+        var line = document.getElementById('end-moment-line');
+        if (kicker) {
+            kicker.textContent = utils.t('leaderboard.momentKicker', { round: moment.round })
+                || ('Round ' + moment.round);
+        }
+        if (line) {
+            line.innerHTML = '<span class="is-winner">' + utils.escapeHtml(moment.winner.name) +
+                '</span> ' + utils.escapeHtml(utils.t('leaderboard.momentVerb') || 'goes past') +
+                ' <span class="is-loser">' + utils.escapeHtml(moment.loser.name) + '</span>';
+        }
+
+        renderClosingMomentChart(moment);
+
+        overlay.classList.remove('hidden', 'is-leaving');
+        setTimeout(function() { overlay.classList.add('is-leaving'); }, 3000);
+        setTimeout(function() {
+            overlay.classList.add('hidden');
+            overlay.classList.remove('is-leaving');
+        }, 3600);
+        return true;
+    }
+
     function renderEndView(data) {
         var leaderboard = data.leaderboard || [];
+
+        // #2563: the prologue covers the stage while the rest of this function
+        // builds it underneath. Nothing below waits for it except the confetti.
+        var momentOnScreen = playClosingMoment(data);
 
         // Issue #827: Sudden-Death "Last One Standing" hero above the podium.
         renderSuddenDeathLastStanding(data);
@@ -2262,7 +2497,13 @@
         // H2 fix: Only trigger if there's a valid winner with score > 0
         var winner = leaderboard.find(function(p) { return p.rank === 1; });
         if (winner && winner.score > 0) {
-            triggerConfetti('winner');
+            // #2563: fired behind the prologue it would be over before anyone
+            // saw it, so it waits for the stage to be uncovered.
+            if (momentOnScreen) {
+                setTimeout(function() { triggerConfetti('winner'); }, 3600);
+            } else {
+                triggerConfetti('winner');
+            }
         }
 
         // Full standings panel — the players BELOW the podium (rank 4+). The

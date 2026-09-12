@@ -262,3 +262,56 @@ class TestFinalLeaderboard:
 
     def test_empty_game_returns_empty_list(self):
         assert self.state.get_final_leaderboard() == []
+
+
+# ---------------------------------------------------------------------------
+# round_scores on the final board — issue #2563
+# ---------------------------------------------------------------------------
+
+
+class TestFinalLeaderboardRoundScores:
+    """The per-round series, which the end screen never used to receive.
+
+    ``round_scores`` has been maintained on the player since the beginning —
+    ``clutch_player`` and ``comeback_king`` are computed from it — but it was
+    never serialized, so the TV could print the final number and nothing about
+    how it was reached. #2563 puts it on the final board.
+    """
+
+    def setup_method(self):
+        self.state = make_game_state()
+        _create_fresh_game(self.state)
+
+    def test_carries_the_series_verbatim(self):
+        _add(self.state, "Alice", score=45, round_scores=[10, 0, 35])
+
+        (entry,) = self.state.get_final_leaderboard()
+
+        assert entry["round_scores"] == [10, 0, 35]
+
+    def test_sends_per_round_deltas_not_a_running_total(self):
+        # The chart the field exists for draws a climb; the frontend adds them
+        # up. Shipping a running total here would double-count.
+        _add(self.state, "Alice", score=45, round_scores=[10, 0, 35])
+
+        (entry,) = self.state.get_final_leaderboard()
+
+        assert sum(entry["round_scores"]) == entry["score"]
+
+    def test_is_a_copy_the_caller_cannot_write_back_through(self):
+        # Same reason #2324 copies the collection: the payload is handed to a
+        # serializer, and a mutation there must not reach the live game.
+        _add(self.state, "Alice", score=10, round_scores=[10])
+
+        (entry,) = self.state.get_final_leaderboard()
+        entry["round_scores"].append(999)
+
+        assert self.state.get_player("Alice").round_scores == [10]
+
+    def test_is_present_and_empty_before_any_round_is_scored(self):
+        # A game abandoned in the lobby still renders an end screen.
+        _add(self.state, "Alice", score=0)
+
+        (entry,) = self.state.get_final_leaderboard()
+
+        assert entry["round_scores"] == []

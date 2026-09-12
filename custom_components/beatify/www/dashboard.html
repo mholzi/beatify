@@ -568,6 +568,18 @@
 
         <!-- End view (AC 10.4.5) -->
         <div id="dashboard-end" class="dashboard-view hidden">
+            <!-- #2563: the closing moment. For three seconds before the end
+                 screen resolves, the TV shows the one round where the lead
+                 changed hands for the last time — two lines, a marker, two
+                 names. It is a prologue, not a panel: nothing below is moved
+                 or displaced by it. Drawn by dashboard.js from the round_scores
+                 series, and skipped entirely when the winner led from the
+                 first round, because then there is no moment to show. -->
+            <div id="end-moment" class="end-moment hidden" aria-hidden="true">
+                <p id="end-moment-kicker" class="end-moment__kicker"></p>
+                <div id="end-moment-chart" class="end-moment__chart"></div>
+                <p id="end-moment-line" class="end-moment__line"></p>
+            </div>
             <!-- "Podium Stage" game-over layout (design-shotgun A): header, a
                  3-column stage (full standings · winner podium · highlights
                  reel), and a superlatives award row. No Share Results card —

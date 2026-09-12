@@ -430,6 +430,8 @@
     "roundsPlayed": "Manches jouées",
     "betsWon": "Paris gagnés",
     "fullRankings": "Classement complet",
+    "momentKicker": "La partie s'est jouée à la manche {round}",
+    "momentVerb": "dépasse",
     "nextTitle": "Et maintenant ?",
     "nextJustPlayed": "qu'on vient de jouer",
     "nextSongCount": "{count} titres",

@@ -430,6 +430,8 @@
     "roundsPlayed": "Turni giocati",
     "betsWon": "Scommesse vinte",
     "fullRankings": "Classifica completa",
+    "momentKicker": "La partita si è decisa al turno {round}",
+    "momentVerb": "supera",
     "nextTitle": "E adesso?",
     "nextJustPlayed": "appena suonata",
     "nextSongCount": "{count} brani",
