@@ -899,6 +899,9 @@
 
         el.classList.toggle('hidden', !show);
         el.setAttribute('aria-hidden', show ? 'false' : 'true');
+        // #2833/#2834: the corner is fixed and paints over what lies beneath;
+        // the stylesheet keeps its footprint free while this class is on.
+        if (document.body) document.body.classList.toggle('join-corner-open', show);
         if (!show) return;
 
         renderQRCode(data.join_url, 'join-corner-qr', 96);
@@ -916,6 +919,7 @@
      * #2504: hide the corner outside the two phases that show it.
      */
     function hideJoinCorner() {
+        if (document.body) document.body.classList.remove('join-corner-open');
         var el = document.getElementById('dashboard-join-corner');
         if (!el) return;
         el.classList.add('hidden');
@@ -1466,7 +1470,6 @@
         var revealRoot = document.getElementById('dashboard-reveal');
         if (revealRoot) revealRoot.classList.toggle('reveal-axis-mode', axisMode);
         placeRevealFunFact(axisMode);
-        renderGuessAxis(data, axisMode);
 
         // Render top 3 guesses this round (AC 10.4.4) — hidden by CSS in axis mode
         renderTopGuesses(players);
@@ -1501,6 +1504,11 @@
 
         // Render motivational message (Story 14.4)
         renderMotivationalMessage(data.game_performance);
+
+        // #2502 / #2833: the axis sizes its rows from the band's height, so it
+        // is drawn after every banner that can push the band down. Still before
+        // the staging below, which picks up its dots as beat two.
+        renderGuessAxis(data, axisMode);
 
         // #1185: Auto-advance countdown ring (Phone reveal already shows one;
         // TV dashboard didn't until @Dtrieb asked for it).
@@ -2250,11 +2258,14 @@
         var YEAR_HALF = 190;     // half the width of the 150 px year
         var LABEL_CLEAR = 210;   // tick labels this close to the year would sit under it
         var NAME_ROW_LIMIT = MAX_ROWS;
+        var ROW0 = 284;          // --guess-axis-row0 in dashboard.css: centre of the first row
+        var BOTTOM_CLEAR = 8;    // the last row keeps this much band below it
+        var MIN_SIZE = 40;
 
         var list = (guesses || []).filter(function(g) {
             return g && typeof g.guess === 'number' && isFinite(g.guess);
         });
-        var size = list.length <= 10 ? 64 : 52;
+        var size = opts.size > 0 ? opts.size : (list.length <= 10 ? 64 : 52);
         var minDx = size + 4;
         var missed = opts.missed || [];
         var initials = guessAxisInitials(list.map(function(g) { return g.name; }).concat(missed));
@@ -2323,6 +2334,21 @@
                 }
             }
         });
+        // #2833: the rows were sized from the width alone. A 1080 p band is
+        // shorter than five 64 px rows once a banner sits above it, and the
+        // fifth row is where "+N" counts the hidden guesses. Shrink the dots
+        // until the last row fits the band. Smaller dots only ever stack into
+        // fewer rows, so one pass is enough.
+        var usedRows = Math.min(rows.length, MAX_ROWS);
+        if (!(opts.size > 0) && opts.height > 0 && usedRows > 1) {
+            var fit = Math.floor((opts.height - ROW0 - BOTTOM_CLEAR - 4 * (usedRows - 1)) / (usedRows - 0.5));
+            if (fit < size) {
+                var smaller = {};
+                Object.keys(opts).forEach(function(k) { smaller[k] = opts[k]; });
+                smaller.size = Math.max(MIN_SIZE, fit);
+                return layoutGuessAxis(guesses, correctYear, width, smaller);
+            }
+        }
         items.forEach(function(it) {
             if (it.row < MAX_ROWS) return;
             var host = null;
@@ -2394,7 +2420,8 @@
             brokenHigh: brokenHigh,
             breakGap: BREAK_GAP,
             size: size,
-            rows: Math.min(rows.length, MAX_ROWS),
+            pitch: size + 4,
+            rows: usedRows,
             correctX: correctX,
             yearX: yearX,
             ticks: ticks,
@@ -2442,11 +2469,16 @@
         var correct = parseInt((data.song || {}).year, 10);
         var L = layoutGuessAxis(guesses, correct, plot.clientWidth, {
             missed: missed,
-            spanLabelChars: spanLabel.length
+            spanLabelChars: spanLabel.length,
+            height: root.clientHeight
         });
         var pct = function(x) { return (x / L.width * 100).toFixed(3) + '%'; };
 
         root.classList.toggle('guess-axis--compact', L.size < 64);
+        if (root.style && root.style.setProperty) {
+            root.style.setProperty('--guess-axis-dot', L.size + 'px');
+            root.style.setProperty('--guess-axis-pitch', L.pitch + 'px');
+        }
         if (band && band.style && band.style.setProperty) {
             band.style.setProperty('--guess-axis-year', (L.yearX / L.width).toFixed(4));
         }
