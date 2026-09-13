@@ -161,8 +161,17 @@
             if (!el || prevSig[row.key] !== row.html) {
                 var tmp = document.createElement('div');
                 tmp.innerHTML = row.html;
-                el = tmp.firstElementChild;
-                if (el) el.setAttribute('data-row-key', row.key);
+                var fresh = tmp.firstElementChild;
+                if (fresh) fresh.setAttribute('data-row-key', row.key);
+                // #2820: swap the stale node out. Leaving it in place kept two
+                // children with the same key — the cleanup pass below only drops
+                // keys that are no longer desired — so every changed row showed
+                // up twice on the TV.
+                if (el) {
+                    if (fresh) container.replaceChild(fresh, el);
+                    else container.removeChild(el);
+                }
+                el = fresh;
             }
             if (el) { newSig[row.key] = row.html; desired.push(el); }
         });
@@ -2515,17 +2524,21 @@
      * #2502: the standings card is shorter in axis mode. Past eight rows it
      * shows seven and says how many more there are, instead of shrinking every
      * row below what a room can read.
+     * #2821: Title & Artist mode and a voided round get the same treatment
+     * with their taller card — past ten rows, nine and "+ N more". The CSS
+     * hides rows from the same index (`nth-child(n+8)` / `nth-child(n+10)`).
      * @param {number} count - leaderboard length
      * @param {boolean} axisMode
      */
     function renderStandingsMore(count, axisMode) {
         var root = document.getElementById('dashboard-reveal');
         var more = document.getElementById('reveal-leaderboard-more');
-        var capped = axisMode && count > 8;
+        var cap = axisMode ? 8 : 10;
+        var capped = count > cap;
         if (root) root.classList.toggle('reveal-standings-capped', capped);
         if (!more) return;
         if (capped) {
-            more.textContent = utils.t('dashboard.standingsMore', { count: count - 7 });
+            more.textContent = utils.t('dashboard.standingsMore', { count: count - (cap - 1) });
             more.classList.remove('hidden');
         } else {
             more.textContent = '';
