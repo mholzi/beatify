@@ -116,10 +116,13 @@ class LibraryPoolStatusView(HomeAssistantView):
         if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
 
-        from custom_components.beatify.library import async_load_pool, pool_stats
+        from custom_components.beatify.library import pool_stats
+        from custom_components.beatify.library.pool import async_load_pool_cached
 
         build = _build_state(self.hass)
-        pool = await async_load_pool(self.hass)
+        # Read-only: the admin panel polls this every 2 s during a scan, and
+        # the file only changes at checkpoints. Reuse the parse (#2818).
+        pool = await async_load_pool_cached(self.hass)
         payload: dict[str, Any] = {
             "provider_version": ENGINE_VERSION,
             "built": bool(pool and pool.get("songs")),
@@ -479,7 +482,8 @@ class LibraryRecentSongsView(HomeAssistantView):
 
         # Report the CURRENT pool state per song: a year already corrected
         # should show as corrected, not as whatever the game played with.
-        cached = await _pool.async_load_pool(self.hass)
+        # Read-only, so the shared cached parse is fine (#2818).
+        cached = await _pool.async_load_pool_cached(self.hass)
         by_uri = {
             s_.get("uri_ma_library"): s_
             for s_ in (cached or {}).get("songs", [])
@@ -544,7 +548,8 @@ class LibrarySongLookupView(HomeAssistantView):
             async_musicbrainz_candidates,
         )
 
-        cached = await _pool.async_load_pool(self.hass)
+        # Read-only: the entry is only read into the response (#2818).
+        cached = await _pool.async_load_pool_cached(self.hass)
         entry = _resolve_pool_entry(
             self.hass,
             (cached or {}).get("songs", []),
