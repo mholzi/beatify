@@ -262,6 +262,28 @@ describe('the three exits (#2646)', () => {
         expect(await answer).toEqual({ choice: 'keep', reason: null });
     });
 
+    it('stays open on another PLAYING broadcast for the same round', async () => {
+        const answer = open();
+        noteRoundState(playing({ seconds_remaining: 18 }), 1100);
+        expect(doc._el('round-end-modal').classList.contains('hidden')).toBe(false);
+        closeRoundEndChoice();
+        expect(await answer).toEqual({ choice: 'keep', reason: null });
+    });
+
+    it('closes as "keep" when the round leaves PLAYING', async () => {
+        const answer = open();
+        noteRoundState({ phase: 'REVEAL', round: 5 }, 1100);
+        expect(await answer).toEqual({ choice: 'keep', reason: null });
+        expect(doc._el('round-end-modal').classList.contains('hidden')).toBe(true);
+    });
+
+    it('closes as "keep" when the next round starts', async () => {
+        const answer = open();
+        noteRoundState(playing({ round: 6 }), 1100);
+        expect(await answer).toEqual({ choice: 'keep', reason: null });
+        expect(doc._el('round-end-modal').classList.contains('hidden')).toBe(true);
+    });
+
     it('hides the card and drops its listeners once answered', async () => {
         const answer = open();
         expect(doc._el('round-end-modal').classList.contains('hidden')).toBe(false);

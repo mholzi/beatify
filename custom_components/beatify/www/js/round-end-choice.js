@@ -63,6 +63,10 @@ export const VOID_REASON_LABELS = {
 // player-game/timer.js, so neither host surface has to keep a copy of the last
 // state around just to answer "is the round still running".
 var _round = null;
+// The open question belongs to one specific round. State broadcasts can outlive
+// the click that opened it, so keep that identity beside the close callback.
+var _closeOpenCard = null;
+var _openCardRound = 0;
 
 /**
  * Record the running round from a state broadcast. Call on every state update,
@@ -72,6 +76,13 @@ var _round = null;
  * @param {number} [nowMs] - injectable clock for tests
  */
 export function noteRoundState(data, nowMs) {
+    if (_closeOpenCard && (
+        !data
+        || data.phase !== 'PLAYING'
+        || (data.round || 0) !== _openCardRound
+    )) {
+        closeRoundEndChoice();
+    }
     var now = typeof nowMs === 'number' ? nowMs : Date.now();
     if (!data || data.phase !== 'PLAYING' || typeof data.seconds_remaining !== 'number') {
         _round = null;
@@ -217,8 +228,6 @@ export function scoreConsequence(preview, t) {
  *   'score', 'void' or 'keep'; 'keep' is also what a backdrop tap or Escape
  *   resolves to, because doing nothing is the safe answer here.
  */
-var _closeOpenCard = null;
-
 /**
  * Dismiss an open card as "let it keep playing", if one is open.
  *
@@ -235,6 +244,7 @@ export function openRoundEndChoice(opts) {
     var t = opts.t;
     var preview = opts.preview !== undefined ? opts.preview : currentPreview();
     var round = opts.round || currentRoundNumber();
+    var cardRound = round || (preview && preview.round) || 0;
     var secondsLeft = opts.secondsLeft !== undefined ? opts.secondsLeft : secondsLeftNow();
     var modal = doc.getElementById('round-end-modal');
     return new Promise(function (resolve) {
@@ -256,7 +266,7 @@ export function openRoundEndChoice(opts) {
 
         if (titleEl) {
             titleEl.textContent = t('admin.roundEndTitle', 'End round {n}', {
-                n: round || (preview && preview.round) || 0,
+                n: cardRound,
             });
         }
         if (subEl) subEl.textContent = subtitleFor(preview, secondsLeft, t);
@@ -272,6 +282,7 @@ export function openRoundEndChoice(opts) {
         });
 
         var trap = opts.focusTrap ? opts.focusTrap(modal) : null;
+        _openCardRound = cardRound;
         _closeOpenCard = function () { finish('keep'); };
         modal.classList.remove('hidden');
         if (trap) {
@@ -282,6 +293,7 @@ export function openRoundEndChoice(opts) {
 
         function finish(choice) {
             _closeOpenCard = null;
+            _openCardRound = 0;
             modal.classList.add('hidden');
             if (scoreBtn) scoreBtn.removeEventListener('click', onScore);
             if (voidBtn) voidBtn.removeEventListener('click', onVoid);
