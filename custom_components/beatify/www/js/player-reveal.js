@@ -637,6 +637,170 @@ export function updateRevealCountdown(data) {
 }
 
 /**
+ * #2823: two-letter initials, unique within the round.
+ *
+ * The same rule as the TV guess axis (#2502, `guessAxisInitials` in
+ * dashboard.js) so a guest reads the same initials on the phone and on the
+ * TV: first + last word initial for multi-word names, the first two letters
+ * otherwise; a collision is resolved in name order with a later letter, then a
+ * digit. The two copies are held together by a parity test
+ * (__tests__/player-dotaxis-layout-2823.test.js) — the TV code lives in a
+ * separate IIFE bundle and cannot be imported here.
+ * @param {Array<string>} names
+ * @returns {Object<string, string>} name → initials
+ */
+function playerAxisInitials(names) {
+    var LETTER = /[\p{L}\p{N}]/u;
+    var taken = {};
+    var result = {};
+    var order = (names || []).map(function(n) { return String(n == null ? '' : n); })
+        .sort(function(a, b) { return a < b ? -1 : (a > b ? 1 : 0); });
+    order.forEach(function(name) {
+        if (Object.prototype.hasOwnProperty.call(result, name)) return;
+        var letters = function(s) {
+            return Array.from(s).filter(function(ch) { return LETTER.test(ch); });
+        };
+        var chars = letters(name);
+        if (chars.length === 0) chars = ['?'];
+        var words = name.trim().split(/\s+/).map(letters)
+            .filter(function(w) { return w.length > 0; });
+        var primary = words.length >= 2
+            ? words[0][0] + words[words.length - 1][0]
+            : chars[0] + (chars[1] || '');
+        var candidates = [primary];
+        for (var k = 1; k < chars.length; k++) candidates.push(chars[0] + chars[k]);
+        var pick = null;
+        for (var c = 0; c < candidates.length && pick === null; c++) {
+            var up = candidates[c].toUpperCase();
+            if (!taken[up]) pick = up;
+        }
+        for (var d = 2; pick === null; d++) {
+            var withDigit = primary.toUpperCase() + d;
+            if (!taken[withDigit]) pick = withDigit;
+        }
+        taken[pick] = true;
+        result[name] = pick;
+    });
+    return result;
+}
+
+/**
+ * #2823: where each dot of the phone guess axis goes.
+ *
+ * Positions are percentages (the HTML is built before it is inserted, so
+ * there is no width to measure); collisions are judged against the narrowest
+ * plot the round-stats sheet has — about 240px on a 360px phone. Same rules as
+ * the TV axis (#2502):
+ *
+ * - each dot sits at its exact year; a dot that would touch a neighbour drops
+ *   a row, so identical years stack in one column;
+ * - at most five rows; whatever would need a sixth folds into the nearest
+ *   fifth-row dot, which becomes "+N" (itself plus the folded ones);
+ * - one phone-only rule: your own dot is placed first, so it always sits on
+ *   the line and is never folded away.
+ *
+ * Score bubbles share one lane above the line, your own first, then left to
+ * right. A bubble that would touch one already placed is left out; the score
+ * stays in the dot's aria-label and title.
+ *
+ * @param {Array<{name:string, guess:number, years_off:number, round_score:number}>} allGuesses
+ * @param {number} correctYear
+ * @param {string} currentPlayerName
+ * @returns {{axisMin:number, axisMax:number, rows:number, dots:Array}}
+ */
+function layoutPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
+    var PLOT_PX = 240;
+    var DOT_PX = 26;
+    var MAX_ROWS = 5;
+    var BUBBLE_PX = 34;        // "+10" bubble plus air
+    var minDx = (DOT_PX + 4) / PLOT_PX * 100;
+    var bubbleDx = BUBBLE_PX / PLOT_PX * 100;
+
+    var list = (allGuesses || []).filter(function(g) {
+        return g && typeof g.guess === 'number' && isFinite(g.guess);
+    });
+    var initials = playerAxisInitials(list.map(function(g) { return g.name; }));
+
+    var years = list.map(function(g) { return g.guess; });
+    var minBound = Math.min.apply(null, years.concat([correctYear]));
+    var maxBound = Math.max.apply(null, years.concat([correctYear]));
+    var pad = Math.max(2, Math.floor((maxBound - minBound) * 0.1));
+    var axisMin = minBound - pad;
+    var axisMax = maxBound + pad;
+    var axisRange = Math.max(1, axisMax - axisMin);
+    var pct = function(year) { return ((year - axisMin) / axisRange) * 100; };
+
+    var byName = function(a, b) { return a.name < b.name ? -1 : (a.name > b.name ? 1 : 0); };
+    var items = list.map(function(g) {
+        return {
+            g: g,
+            name: String(g.name == null ? '' : g.name),
+            initials: initials[String(g.name == null ? '' : g.name)],
+            x: pct(g.guess),
+            isMe: !!currentPlayerName && g.name === currentPlayerName,
+            row: 0,
+            folded: 0
+        };
+    }).sort(function(a, b) {
+        return (b.isMe - a.isMe) || (a.x - b.x) || byName(a, b);
+    });
+
+    var rows = [];
+    items.forEach(function(it) {
+        for (var r = 0; ; r++) {
+            if (!rows[r]) rows[r] = [];
+            // 1e-9: a neighbour exactly one dot away must not drop a row on a
+            // rounding error, which would leave a hole in the column.
+            var clear = rows[r].every(function(o) { return Math.abs(o.x - it.x) >= minDx - 1e-9; });
+            if (clear) {
+                rows[r].push(it);
+                it.row = r;
+                return;
+            }
+        }
+    });
+    items.forEach(function(it) {
+        if (it.row < MAX_ROWS) return;
+        var host = null;
+        rows[MAX_ROWS - 1].forEach(function(o) {
+            if (!host || Math.abs(o.x - it.x) < Math.abs(host.x - it.x)) host = o;
+        });
+        host.folded += 1;
+    });
+
+    var visible = items.filter(function(it) { return it.row < MAX_ROWS; });
+    // Bubbles: your own first, then left to right.
+    var lane = [];
+    visible.forEach(function(it) {
+        it.showScore = it.folded === 0 &&
+            lane.every(function(x) { return Math.abs(x - it.x) >= bubbleDx; });
+        if (it.showScore) lane.push(it.x);
+    });
+
+    var dots = visible.slice().sort(function(a, b) {
+        return (a.row - b.row) || (a.x - b.x) || byName(a, b);
+    }).map(function(it) {
+        return {
+            guess: it.g,
+            name: it.name,
+            initials: it.initials,
+            x: it.x,
+            row: it.row,
+            plus: it.folded > 0 ? it.folded + 1 : 0,
+            isMe: it.isMe,
+            showScore: it.showScore
+        };
+    });
+
+    return {
+        axisMin: axisMin,
+        axisMax: axisMax,
+        rows: Math.max(1, Math.min(rows.length, MAX_ROWS)),
+        dots: dots
+    };
+}
+
+/**
  * Render per-player dot-axis (#1178): each player's guess is a colored dot on
  * a horizontal year-axis, with the correct year marked by a vertical cyan
  * line. Replaces the aggregated histogram on the player phone — same backend
@@ -652,13 +816,10 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
         return '<div class="histogram-empty">' + utils.t('analytics.noGuesses') + '</div>';
     }
 
-    var guessYears = allGuesses.map(function(g) { return g.guess; });
-    var minBound = Math.min.apply(null, guessYears.concat([correctYear]));
-    var maxBound = Math.max.apply(null, guessYears.concat([correctYear]));
-    var pad = Math.max(2, Math.floor((maxBound - minBound) * 0.1));
-    var axisMin = minBound - pad;
-    var axisMax = maxBound + pad;
-    var axisRange = Math.max(1, axisMax - axisMin);
+    // #2823: stacking, initials and "+N" come from the pure layout.
+    var layout = layoutPlayerDotAxis(allGuesses, correctYear, currentPlayerName);
+    var axisMin = layout.axisMin;
+    var axisRange = Math.max(1, layout.axisMax - axisMin);
 
     function pct(year) { return ((year - axisMin) / axisRange) * 100; }
 
@@ -704,13 +865,14 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
     }
 
     var dotsHtml = '';
-    for (var k = 0; k < allGuesses.length; k++) {
-        var g = allGuesses[k];
-        var p = pct(g.guess);
-        var initial = (g.name || '?').charAt(0).toUpperCase();
+    for (var k = 0; k < layout.dots.length; k++) {
+        var dot = layout.dots[k];
+        var g = dot.guess;
+        var p = dot.x;
+        var initial = dot.plus ? '+' + dot.plus : escapeHtml(dot.initials);
         var cls = colorClass(g.name || '');
-        var isMe = currentPlayerName && g.name === currentPlayerName;
-        var meCls = isMe ? ' dotaxis-dot--me' : '';
+        var isMe = dot.isMe;
+        var meCls = (isMe ? ' dotaxis-dot--me' : '') + (dot.plus ? ' dotaxis-dot--more' : '');
         var glowCls = (g.years_off === 0) ? ' dotaxis-dot--correct' : '';
         var score = g.round_score || 0;
         var scoreCls = score > 0 ? 'dotaxis-score--pos' : 'dotaxis-score--zero';
@@ -724,12 +886,14 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
         dotsHtml +=
             '<div class="dotaxis-dot dotaxis-dot--' + cls + glowCls + meCls + '" ' +
                 'role="img" ' +
-                'style="left:' + p + '%" ' +
+                'style="left:' + p + '%;--row:' + dot.row + '" ' +
                 'aria-label="' + dotLabel + '" ' +
                 'title="' + dotLabel + '">' +
             initial +
             '</div>' +
-            '<div class="dotaxis-score ' + scoreCls + '" style="left:' + p + '%">' + scoreText + '</div>';
+            (dot.showScore
+                ? '<div class="dotaxis-score ' + scoreCls + '" style="left:' + p + '%">' + scoreText + '</div>'
+                : '');
     }
 
     // Compact legend: name with color-dot, "(DU)" marker for current player.
@@ -762,7 +926,7 @@ function renderPlayerDotAxis(allGuesses, correctYear, currentPlayerName) {
 
     return (
         '<div class="dotaxis-wrap">' +
-            '<div class="dotaxis-axis">' +
+            '<div class="dotaxis-axis" style="--dotaxis-extra-rows:' + (layout.rows - 1) + '">' +
                 ticksHtml +
                 '<div class="dotaxis-line"></div>' +
                 markerHtml +

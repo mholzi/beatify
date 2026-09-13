@@ -110,47 +110,39 @@ var lastLeaderboard = [];
  * never to the very edge, so positions are laid out inside that inset — a mark
  * at a true 100% would sit past the furthest year the slider can select.
  *
- * And the step widens on long spans. Eight labels on a phone track collide;
- * the rule below keeps at most eight, which is where a 10px label still has
- * clear air around it on a ~300px track.
+ * #2827: the track is far narrower than the note above once assumed. Between
+ * the four ±1/±5 buttons it measures about 78px on a 360px phone (the thumb
+ * alone is 32px), and the decade marks — up to eight of them — sat on top of
+ * each other. So the scale now carries exactly two labels: the lowest and the
+ * highest year the slider can select, as full four-digit years, pinned to the
+ * two ends. Two 28px labels need ~62px, which the narrowest phone has, for any
+ * span the game can produce (1900 to next year) — a fixed rule, not a
+ * measurement, so it cannot change with the viewport.
  */
-var YEAR_SCALE_THUMB_PX = 32;
-var YEAR_SCALE_MAX_MARKS = 8;
+
+/**
+ * #2827: which labels the year scale shows. Pure, so the rule is unit-tested.
+ * @param {number} lo - slider min
+ * @param {number} hi - slider max
+ * @returns {Array<{year:number, text:string, edge:string}>}
+ */
+export function yearScaleMarks(lo, hi) {
+    if (!isFinite(lo) || !isFinite(hi) || hi <= lo) return [];
+    return [
+        { year: lo, text: String(lo), edge: 'start' },
+        { year: hi, text: String(hi), edge: 'end' },
+    ];
+}
 
 export function renderYearScale(lo, hi) {
     var scale = document.getElementById('year-scale');
     if (!scale) return;
 
     scale.textContent = '';
-    if (!isFinite(lo) || !isFinite(hi) || hi <= lo) return;
-
-    // Widen from decades to 20- or 50-year steps rather than letting labels
-    // pile up on a narrow track.
-    var step = 10;
-    while ((hi - lo) / step > YEAR_SCALE_MAX_MARKS) {
-        step = step === 10 ? 20 : step * 2.5;
-    }
-
-    var half = YEAR_SCALE_THUMB_PX / 2;
-    var first = Math.ceil(lo / step) * step;
-
-    var years = [];
-    for (var y = first; y <= hi; y += step) years.push(y);
-
-    // Two digits with an apostrophe: language-neutral, so this needs no
-    // translation, and narrow enough that eight fit on a phone. But a span
-    // crossing a century renders '00 twice — 1900 and 2000 collide — so the
-    // short form is only used while it stays unambiguous.
-    var short = years.map(function (v) { return v % 100; });
-    var ambiguous = short.some(function (v, i) { return short.indexOf(v) !== i; });
-
-    years.forEach(function (year) {
-        var pct = (year - lo) / (hi - lo);
+    yearScaleMarks(lo, hi).forEach(function (m) {
         var mark = document.createElement('span');
-        mark.textContent = ambiguous
-            ? String(year)
-            : "'" + String(year % 100).padStart(2, '0');
-        mark.style.left = 'calc(' + half + 'px + ' + pct + ' * (100% - ' + YEAR_SCALE_THUMB_PX + 'px))';
+        mark.className = 'year-scale-mark year-scale-mark--' + m.edge;
+        mark.textContent = m.text;
         scale.appendChild(mark);
     });
 }

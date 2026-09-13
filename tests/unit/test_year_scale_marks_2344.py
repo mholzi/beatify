@@ -1,18 +1,20 @@
 """Der Jahres-Regler braucht Landmarken (#2344).
 
-Die Bahn trug **keine einzige Markierung** — 76 Jahre blankes Gleis. Die
-Schwierigkeit ist dabei nicht die Praezision: bei 1950–2026 auf 300 px sind es
-**0,25 Jahre pro Pixel**, eine Daumenbewegung von 8 px also rund **zwei Jahre**.
-(Die Ausgangsbeschreibung nannte vier Jahre pro Pixel — Faktor sechzehn daneben,
-im Issue korrigiert.)
-
-Das Problem ist die **Orientierung**: man sieht nicht, wo 1985 liegt, also
-zieht man, liest die Zahl, zieht nach — bei zwoelf Sekunden auf der Uhr.
+Die Bahn trug **keine einzige Markierung** — 76 Jahre blankes Gleis. Das
+Problem ist die **Orientierung**: man sieht nicht, wo die Spanne anfaengt und
+aufhoert, also zieht man, liest die Zahl, zieht nach.
 
 **Abgeleitet statt festgenagelt.** Seit #2337 setzt `applyYearRange()` die
-Grenzen aus der laufenden Playlist. Marken auf feste Prozentwerte zu legen
-waere in dem Moment falsch, in dem eine Playlist ueber den Standard
-hinausreicht — deshalb rechnet die Skala aus derselben Spanne.
+Grenzen aus der laufenden Playlist, deshalb rechnet die Skala aus derselben
+Spanne.
+
+#2827: the decade marks from #2344 overlapped on real phones. Between the four
+±1/±5 buttons the track is about 62px wide on a 360px screen, and up to eight
+labels sat on top of each other. The scale now shows exactly two labels — the
+lowest and the highest selectable year, as full years, pinned to the ends. The
+behaviour is unit-tested in
+`www/js/__tests__/player-dotaxis-layout-2823.test.js`; this file keeps the
+wiring guards.
 """
 
 from __future__ import annotations
@@ -20,21 +22,10 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-_JS = (
-    Path(__file__).resolve().parents[2]
-    / "custom_components"
-    / "beatify"
-    / "www"
-    / "js"
-    / "player-game.js"
-)
-_HTML = (
-    Path(__file__).resolve().parents[2]
-    / "custom_components"
-    / "beatify"
-    / "www"
-    / "player.html"
-)
+_WWW = Path(__file__).resolve().parents[2] / "custom_components" / "beatify" / "www"
+_JS = _WWW / "js" / "player-game.js"
+_CSS = _WWW / "css" / "styles.css"
+_HTML = _WWW / "player.html"
 
 
 def _src() -> str:
@@ -48,56 +39,28 @@ def _fn(name: str) -> str:
     return src[start : start + 10 + nxt.start()] if nxt else src[start:]
 
 
-def _step_for(lo: int, hi: int, max_marks: int = 8) -> float:
-    """Die Schrittweiten-Regel aus dem JS, unabhaengig nachgebildet."""
-    step: float = 10
-    while (hi - lo) / step > max_marks:
-        step = 20 if step == 10 else step * 2.5
-    return step
+class TestOnlyMinAndMax:
+    def test_the_scale_is_built_from_the_pure_rule(self):
+        assert "yearScaleMarks(lo, hi)" in _fn("renderYearScale")
 
+    def test_the_rule_returns_the_two_bounds(self):
+        body = _fn("yearScaleMarks")
+        assert "edge: 'start'" in body
+        assert "edge: 'end'" in body
+        # No decade loop any more: that loop is what overlapped (#2827).
+        assert "step" not in body
 
-def _marks(lo: int, hi: int) -> list[int]:
-    step = _step_for(lo, hi)
-    first = -(-lo // step) * step
-    out, y = [], first
-    while y <= hi:
-        out.append(int(y))
-        y += step
-    return out
+    def test_the_two_labels_are_pinned_to_the_ends(self):
+        css = _CSS.read_text()
+        assert re.search(r"\.year-scale-mark--start\s*\{[^}]*left:\s*0", css)
+        assert re.search(r"\.year-scale-mark--end\s*\{[^}]*right:\s*0", css)
 
-
-class TestTheMarksFollowTheSpan:
-    def test_the_default_span_gets_its_decades(self):
-        # 1950–2026 ist der Standardfall nach #2337. Acht Jahrzehnte, auf
-        # einer 300-px-Bahn rund 35 px auseinander.
-        assert _marks(1950, 2026) == [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020]
-
-    def test_a_narrow_playlist_gets_fewer_marks(self):
-        # Eine enge Playlist bekommt keine erfundenen Landmarken.
-        assert _marks(1980, 1995) == [1980, 1990]
-
-    def test_a_long_span_widens_the_step(self):
-        # Acht Marken sind die Grenze; darueber wird der Schritt groesser,
-        # statt die Beschriftungen aufeinanderzuschieben.
-        assert _step_for(1927, 2026) == 20
-        assert len(_marks(1927, 2026)) <= 8
-
-
-class TestTheTwoThingsEasyToGetWrong:
-    def test_positions_are_inset_by_half_the_thumb(self):
-        # Der Daumen-Mittelpunkt erreicht den Rand nie. Eine Marke bei echten
-        # 100 % saesse hinter dem hoechsten waehlbaren Jahr.
-        body = _fn("renderYearScale")
-        assert "YEAR_SCALE_THUMB_PX / 2" in body
-        assert "(100% - " in body
-
-    def test_a_century_crossing_falls_back_to_four_digits(self):
-        # 1900 und 2000 waeren beide "'00". Die Kurzform gilt nur, solange
-        # sie eindeutig bleibt.
-        body = _fn("renderYearScale")
-        assert "ambiguous" in body
-        short = [y % 100 for y in _marks(1900, 2026)]
-        assert len(short) != len(set(short)), "der Testfall selbst muss kollidieren"
+    def test_the_buttons_do_not_inherit_the_global_button_padding(self):
+        # The global `button` padding made the ±1/±5 buttons 52px ovals and
+        # starved the track (#2827).
+        css = _CSS.read_text()
+        block = re.search(r"\n\.slider-btn-year \{([^}]*)\}", css)
+        assert block and re.search(r"padding:\s*0", block.group(1))
 
 
 class TestItIsWiredToTheOneSourceOfTheSpan:
