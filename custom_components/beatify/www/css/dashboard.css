@@ -3022,6 +3022,31 @@ body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: n
     .join-corner { display: none; }
 }
 
+/* #2833 / #2834 — room for the corner. It is fixed, so whatever the layout puts
+   beneath it is painted over: the score and has-guessed dot of the last
+   leaderboard rows while PLAYING, the right end of the guess axis at REVEAL.
+   While dashboard.js marks the corner open, both keep its footprint free.
+   Footprint: the 260 px panel, its viewport inset, and a 16 px gap. The
+   leaderboard ends 56 px from the viewport edge. */
+body.join-corner-open .playing-right-section .dashboard-leaderboard {
+    padding-right: calc(clamp(16px, 2.2vw, 40px) + 220px);
+}
+/* Under 1600 px the column is too narrow to give up 260 px, and giving up
+   height instead shrank eleven rows to 6 px type at 1280×720. Leave it. */
+@media (max-width: 1599px) {
+    body.join-corner-open .playing-right-section .dashboard-leaderboard {
+        padding-right: 0;
+    }
+}
+/* The plot ends a half dot plus the gap short of the panel. */
+body.join-corner-open #dashboard-reveal {
+    --guess-axis-inset-right: calc(clamp(16px, 2.2vw, 40px) + 308px);
+}
+@media (max-width: 720px) {
+    body.join-corner-open .playing-right-section .dashboard-leaderboard { padding: 0; }
+    body.join-corner-open #dashboard-reveal { --guess-axis-inset-right: 110px; }
+}
+
 /* #2559 Ghost League — die zweite Tabelle auf dem Fernseher.
    Gestrichelt und gedaempft, weil sie NICHT die Rangliste ist: die gewaehlte
    Variante nimmt zwei Tabellen auf einem Bildschirm in Kauf, und die einzige
@@ -3305,7 +3330,7 @@ body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: n
 #dashboard-reveal.reveal-axis-mode .reveal-broadcast .reveal-year-row {
     position: absolute;
     top: 88px;
-    left: calc(110px + (100% - 220px) * var(--guess-axis-year, 0.5));
+    left: calc(110px + (100% - 110px - var(--guess-axis-inset-right, 110px)) * var(--guess-axis-year, 0.5));
     transform: translateX(-50%);
     z-index: 1;
     pointer-events: none;
@@ -3383,7 +3408,7 @@ body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: n
     top: 0;
     bottom: 0;
     left: 110px;
-    right: 110px;
+    right: var(--guess-axis-inset-right, 110px);
 }
 #dashboard-reveal .guess-axis-line {
     position: absolute;
