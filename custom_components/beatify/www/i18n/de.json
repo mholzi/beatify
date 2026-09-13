@@ -1074,7 +1074,12 @@
     "reconnecting": "Verbinde erneut…",
     "qrUnavailable": "Scannen nicht möglich – gib die Webadresse unten ein",
     "joinAddressLabel": "Beitrittsadresse",
-    "stillOpen": "Noch offen"
+    "stillOpen": "Noch offen",
+    "guessAxisTitle": "So hat der Raum getippt",
+    "guessAxisNoGuess": "Kein Tipp",
+    "guessAxisYearsOff": "{count} Jahre daneben",
+    "guessAxisYearsOffOne": "1 Jahr daneben",
+    "standingsMore": "+ {count} weitere"
   },
   "launcher": {
     "title": "Beatify",

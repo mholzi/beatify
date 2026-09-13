@@ -511,6 +511,8 @@
                         <div id="reveal-leaderboard" class="dashboard-leaderboard">
                             <!-- Leaderboard entries rendered by JS -->
                         </div>
+                        <!-- #2502: "+ N more" when the shorter axis-mode card caps the rows -->
+                        <div id="reveal-leaderboard-more" class="reveal-leaderboard-more hidden"></div>
 
                         <!-- #2559 Ghost League: die zweite Tabelle, unter den
                              Lebenden und optisch abgesetzt (gestrichelt, gedaempft).
@@ -546,6 +548,16 @@
                 <!-- Lower-third announce band. Year mode → the year hero.
                      Name the Tune → the title+artist answer + Crowd Court. -->
                 <div class="reveal-lowerthird">
+                    <!-- #2502 (design Variant A): in year mode the band is a year
+                         axis — the year stands over its own position, one dot
+                         per guess, a dashed span to the farthest guess. -->
+                    <div id="reveal-guess-axis" class="guess-axis hidden">
+                        <div class="guess-axis-head">
+                            <span class="guess-axis-title" data-i18n="dashboard.guessAxisTitle">How the room guessed</span>
+                            <div id="guess-axis-missed" class="guess-axis-missed"></div>
+                        </div>
+                        <div id="guess-axis-plot" class="guess-axis-plot"></div>
+                    </div>
                     <div id="reveal-year-row" class="reveal-year-row">
                         <span class="reveal-year-label" data-i18n="game.yearLabel">Year</span>
                         <div id="reveal-year" class="reveal-year">1984</div>
