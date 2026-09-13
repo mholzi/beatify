@@ -758,6 +758,43 @@ window.BeatifyUtils = (function() {
     }
 
     // ==========================================================================
+    // Podium (#2835)
+    // ==========================================================================
+
+    var PODIUM_MEDALS = { 1: '🥇', 2: '🥈', 3: '🥉' };
+
+    /**
+     * Split a final leaderboard into the three podium stands and everyone else.
+     *
+     * #2835: all three end screens filled their stands with
+     * `find(rank === place)`. The server ranks competition-style — 282, 282, 0
+     * come out as 1, 1, 3 — so a tie for first found nobody holding rank 2 and
+     * dropped the second winner, and a "rank > 3" list below lost everyone else
+     * tied inside the top three. Stands are filled by POSITION in the ranked
+     * board instead; each entry keeps its own `rank`, which is what the stand's
+     * label and medal show.
+     *
+     * @param {Array} leaderboard - Final leaderboard entries carrying `rank`
+     * @returns {{stands: Array, rest: Array}} `stands` always has three slots
+     *     (`undefined` where nobody stands); `rest` is everyone not on a stand
+     */
+    function podiumStands(leaderboard) {
+        var ranked = (leaderboard || []).slice().sort(function(a, b) {
+            return a.rank - b.rank;
+        });
+        return { stands: [ranked[0], ranked[1], ranked[2]], rest: ranked.slice(3) };
+    }
+
+    /**
+     * The medal for a rank, so a co-winner on stand 2 wears gold (#2835).
+     * @param {number} rank
+     * @returns {string}
+     */
+    function podiumMedal(rank) {
+        return PODIUM_MEDALS[rank] || '';
+    }
+
+    // ==========================================================================
     // Public API
     // ==========================================================================
 
@@ -767,6 +804,10 @@ window.BeatifyUtils = (function() {
 
         // Leaderboard (#1765)
         hydrateLeaderboard: hydrateLeaderboard,
+
+        // Podium (#2835)
+        podiumStands: podiumStands,
+        podiumMedal: podiumMedal,
 
         // i18n
         waitForI18n: waitForI18n,

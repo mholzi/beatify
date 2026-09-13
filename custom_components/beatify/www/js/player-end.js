@@ -166,10 +166,17 @@ export function updateEndView(data) {
 
     // Update podium (positions 1, 2, 3). Hide slots that have no player so
     // single- and two-player games don't show empty "---" placeholders.
+    // #2835: filled by position, not by rank value, so a tie for first puts
+    // both winners up; label and medal follow the rank of whoever stands there.
+    var podium = utils.podiumStands(leaderboard);
     [1, 2, 3].forEach(function(place) {
-        var player = leaderboard.find(function(p) { return p.rank === place; });
+        var player = podium.stands[place - 1];
         var slotEl = document.querySelector('.podium-place.podium-' + place);
         if (slotEl) slotEl.classList.toggle('hidden', !player);
+        var standEl = slotEl && slotEl.querySelector ? slotEl.querySelector('.podium-stand') : null;
+        if (standEl) standEl.textContent = player ? player.rank : place;
+        var medalEl = slotEl && slotEl.querySelector ? slotEl.querySelector('.podium-medal') : null;
+        if (medalEl) medalEl.textContent = utils.podiumMedal(player ? player.rank : place);
         var nameEl = document.getElementById('podium-' + place + '-name');
         var scoreEl = document.getElementById('podium-' + place + '-score');
         // #2555: textContent already neutralizes markup, so feeding it

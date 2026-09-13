@@ -86,12 +86,18 @@ const VIEWS = [
     { name: 'player', render: renderPlayer, marker: 'hidden' },
 ];
 
+// #2835: the stands are picked by BeatifyUtils.podiumStands in all three views.
+global.window = global.window || {};
+await import('../utils.js');
+const U = global.window.BeatifyUtils;
+
 /** Which of the three stands end up hidden for a given leaderboard. */
 function hiddenStands(view, leaderboard) {
     const out = [];
+    const { stands } = U.podiumStands(leaderboard);
     [1, 2, 3].forEach((place) => {
         const slot = makeSlot(place);
-        view.render(slot, leaderboard.find((p) => p.rank === place));
+        view.render(slot, stands[place - 1]);
         if (slot.placeEl.classList.contains(view.marker)) out.push(place);
     });
     return out;
@@ -117,14 +123,15 @@ describe.each(VIEWS)('#2534 — empty stands in the $name view', (view) => {
         ])).toEqual([]);
     });
 
-    it('hides both lower stands when two players tie for first', () => {
+    it('seats both winners of a tie for first and hides only the third stand', () => {
         // Ranks skip on a tie (see game/state_leaderboard.py): [80, 80] gives
-        // ranks [1, 1] and no rank 2 at all. This is the case the live test
-        // walked into — a full room and two empty plinths.
+        // ranks [1, 1] and no rank 2 at all. Until #2835 that hid stands 2 and
+        // 3 and dropped the second winner; the stands are filled by position
+        // now, so the only empty stand is the one nobody is left for.
         expect(hiddenStands(view, [
             { rank: 1, name: 'Sandra', score: 80 },
             { rank: 1, name: 'Aaron', score: 80 },
-        ])).toEqual([2, 3]);
+        ])).toEqual([3]);
     });
 
     it('still writes the placeholders it always wrote', () => {

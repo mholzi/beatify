@@ -3466,8 +3466,11 @@ function showAdminEndView(data) {
 
     // Podium (top 3 from leaderboard)
     if (data.leaderboard) {
+        // #2835: filled by position, not by rank value — a tie for first used
+        // to leave stand 2 empty and drop the second winner.
+        var podium = utils.podiumStands(data.leaderboard);
         for (var i = 1; i <= 3; i++) {
-            var entry = data.leaderboard.find(function(e) { return e.rank === i; });
+            var entry = podium.stands[i - 1];
             var nameEl = document.getElementById('admin-podium-' + i + '-name');
             var scoreEl = document.getElementById('admin-podium-' + i + '-score');
             if (nameEl) nameEl.textContent = entry ? entry.name : '---';
@@ -3487,6 +3490,11 @@ function showAdminEndView(data) {
             var placeEl = (nameEl || scoreEl);
             placeEl = placeEl && placeEl.closest ? placeEl.closest('.podium-place') : null;
             if (placeEl) placeEl.classList.toggle('hidden', !entry);
+            // #2835: label and medal follow the rank of whoever stands there.
+            var standEl = placeEl && placeEl.querySelector ? placeEl.querySelector('.podium-stand') : null;
+            if (standEl) standEl.textContent = entry ? entry.rank : i;
+            var medalEl = placeEl && placeEl.querySelector ? placeEl.querySelector('.podium-medal') : null;
+            if (medalEl) medalEl.textContent = utils.podiumMedal(entry ? entry.rank : i);
         }
     }
 

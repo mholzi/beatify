@@ -2397,6 +2397,11 @@
    niemand haelt. Bewusst eine eigene Klasse statt `hidden` — `.podium-place`
    steht auf `display: flex` und wuerde das UA-`[hidden]` ueberstimmen. */
 .end-stage-layout .podium-place--empty { display: none; }
+/* #2835: styles.css setzt die Neben-Podeste im dunklen Theme per
+   `body.theme-dark .podium-place.podium-2` (0,3,1) auf `display: grid` — das
+   schlug die Regel darueber (0,2,0), und ein leeres Podest stand mit "---" und
+   0 PTS auf dem Fernseher. Dieselbe Absicht, mit genug Spezifitaet (0,4,1). */
+body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: none; }
 .end-stage-layout .podium-info {
     display: flex; flex-direction: column; align-items: center; margin-bottom: 16px; position: relative;
     max-width: 100%; min-width: 0;

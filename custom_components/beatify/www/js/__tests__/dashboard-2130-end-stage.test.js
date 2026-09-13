@@ -29,6 +29,11 @@ import { doc, el } from './helpers/mini-dom.js';
 const DASHBOARD = readSource('dashboard.js');
 const CSS = readFileSync(join(WWW_DIR, 'css', 'dashboard.css'), 'utf8');
 
+// #2835: renderEndView picks its stands through BeatifyUtils.podiumStands.
+global.window = global.window || {};
+await import('../utils.js');
+const U = global.window.BeatifyUtils;
+
 /** The three podium slots plus the elements around them, as one document. */
 function endScreen() {
     const places = {};
@@ -55,7 +60,7 @@ function renderEnd(leaderboard, { screen = endScreen(), ...extra } = {}) {
     const noop = () => {};
     evaluate(declaration(DASHBOARD, 'renderEndView', 'dashboard.js'), 'renderEndView', {
         document: screen.document,
-        utils: { escapeHtml: (s) => String(s) },
+        utils: { ...U, escapeHtml: (s) => String(s) },
         renderSuddenDeathLastStanding: noop,
         // #2563: the closing moment is a prologue over this screen; these
         // cases are about what the screen itself renders, so it stays off.
