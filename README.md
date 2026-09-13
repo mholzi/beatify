@@ -456,7 +456,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,432 songs across 66 curated playlists:
+Beatify comes with 8,468 songs across 66 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 151 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -480,7 +480,7 @@ Beatify comes with 8,432 songs across 66 curated playlists:
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
 - 🎸 **Clásicos del Rock en Español** — 39 tracks of Spanish-language rock from 1984 to 1998, Madrid to Mendoza
 - 🇩🇪 **Deutschpop Klassiker** — 118 German pop classics, incl. the 90s / NDW canon
-- 🇩🇪 **Deutschrap Klassiker** — 26 German rap tracks from 1995 to 2024, Freundeskreis and Beginner through Sido and Haftbefehl to Pashanim and Ski Aggu
+- 🇩🇪 **Deutschrap Klassiker** — 62 German rap tracks from 1995 to 2024, Freundeskreis and Beginner through Sido and Haftbefehl to Pashanim and Ski Aggu
 - 🇩🇪 **Deutschrock - Best Of** — 100 modern German rock tracks, from Böhse Onkelz to Die Toten Hosen
 - 🕺 **Disco & Funk Classics** — 98 essential disco and funk tracks from the 70s and 80s
 - 🏰 **Disney Classics** — 69 soundtrack singalongs from the Disney canon
@@ -687,7 +687,7 @@ comparison — including where the card game wins.
 
 | | Card-based music party game | Beatify |
 |---|---|---|
-| **What you buy** | A box, and a new box or expansion for more music | Nothing. 66 playlists ship with it, 8,432 songs |
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 66 playlists ship with it, 8,468 songs |
 | **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
 | **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |
