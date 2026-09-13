@@ -5998,9 +5998,12 @@ body.theme-dark .movie-reveal-section {
     height: 10px;
     background: rgba(255, 255, 255, 0.18);
 }
+/* #2823: dots that would overlap drop a row (30px each, up to five rows);
+   the axis grows and the year labels move below the lowest row. */
+.dotaxis-axis { height: calc(88px + var(--dotaxis-extra-rows, 0) * 30px + min(var(--dotaxis-extra-rows, 0), 1) * 6px); }
 .dotaxis-tick-label {
     position: absolute;
-    top: 64px;
+    top: calc(64px + var(--dotaxis-extra-rows, 0) * 30px + min(var(--dotaxis-extra-rows, 0), 1) * 6px);
     font-size: 9px;
     color: rgba(255, 255, 255, 0.5);
     transform: translateX(-50%);
@@ -6032,7 +6035,7 @@ body.theme-dark .movie-reveal-section {
 }
 .dotaxis-dot {
     position: absolute;
-    top: 39px;
+    top: calc(39px + var(--row, 0) * 30px);
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -6052,6 +6055,8 @@ body.theme-dark .movie-reveal-section {
 .dotaxis-dot--c2 { background: linear-gradient(135deg, #6e3bff, #4a25c8); }
 .dotaxis-dot--c3 { background: linear-gradient(135deg, #ffd60a, #e6b800); color: #1a1a22; text-shadow: none; }
 .dotaxis-dot--c4 { background: linear-gradient(135deg, #00d4ff, #008abf); }
+/* #2823: the "+N" dot for guesses past the fifth row. */
+.dotaxis-dot.dotaxis-dot--more { background: rgba(255, 255, 255, 0.16); color: #fff; text-shadow: none; font-size: 11px; }
 .dotaxis-dot--correct {
     box-shadow: 0 0 0 3px var(--color-bg-primary, #0d0d12), 0 0 18px currentColor, 0 4px 10px rgba(0, 0, 0, 0.4);
 }
@@ -13377,6 +13382,10 @@ body.is-ingame .player-header { display: none; }
     font-weight: 700;
     font-size: 22px;
     line-height: 1;
+    /* #2827: the global button rule's padding (space-sm / space-lg) widened
+       every button here to 52px ovals, leaving the year track ~34px on a
+       360px phone. The width/height above are the intended size. */
+    padding: 0;
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
@@ -13437,6 +13446,9 @@ body.is-ingame .player-header { display: none; }
     white-space: nowrap;
     user-select: none;
 }
+/* #2827: two labels, pinned to the ends — min and max year. */
+.year-scale span.year-scale-mark--start { left: 0; transform: none; }
+.year-scale span.year-scale-mark--end { right: 0; transform: none; }
 .slider-arcade.slider-arcade--locked .year-scale { opacity: 0.5; }
 .year-slider-arcade {
     -webkit-appearance: none;
