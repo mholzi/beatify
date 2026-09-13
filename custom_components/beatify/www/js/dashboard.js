@@ -2855,8 +2855,11 @@
         renderSuddenDeathLastStanding(data);
 
         // Update podium (AC 10.4.5) — name, score, and a colour-keyed avatar.
+        // #2835: stands are filled by position, not by rank value — a tie for
+        // first used to leave stand 2 empty and drop the second winner.
+        var podium = utils.podiumStands(leaderboard);
         [1, 2, 3].forEach(function(place) {
-            var player = leaderboard.find(function(p) { return p.rank === place; });
+            var player = podium.stands[place - 1];
             var nameEl = document.getElementById('end-podium-' + place + '-name');
             var scoreEl = document.getElementById('end-podium-' + place + '-score');
             var avatarEl = document.getElementById('end-podium-' + place + '-avatar');
@@ -2876,6 +2879,12 @@
             var placeEl = (nameEl || scoreEl || avatarEl);
             placeEl = placeEl && placeEl.closest ? placeEl.closest('.podium-place') : null;
             if (placeEl) placeEl.classList.toggle('podium-place--empty', !player);
+            // #2835: a co-winner on stand 2 is still first — the stand's label
+            // and medal follow the rank of whoever stands on it.
+            var lblEl = placeEl && placeEl.querySelector ? placeEl.querySelector('.podium-place-lbl') : null;
+            if (lblEl) lblEl.textContent = player ? player.rank : place;
+            var medalEl = placeEl && placeEl.querySelector ? placeEl.querySelector('.podium-medal') : null;
+            if (medalEl) medalEl.textContent = utils.podiumMedal(player ? player.rank : place);
             if (avatarEl) {
                 var nm = player ? player.name : '';
                 avatarEl.textContent = nm ? nm.trim().charAt(0).toUpperCase() : '';
@@ -2912,13 +2921,14 @@
             }
         }
 
-        // Full standings panel — the players BELOW the podium (rank 4+). The
-        // podium already celebrates the top 3; this completes the ranking.
-        // Fallback to the whole board for small games (<=3 players) so the
-        // panel is never empty.
+        // Full standings panel — the players NOT on a stand. The podium already
+        // celebrates three; this completes the ranking. Fallback to the whole
+        // board for small games (<=3 players) so the panel is never empty.
+        // #2835: this used to be `rank > 3`, which lost everyone tied inside the
+        // top three who did not get a stand.
         var container = document.getElementById('end-leaderboard');
         if (container) {
-            var rest = leaderboard.filter(function(e) { return e.rank > 3; });
+            var rest = podium.rest;
             var rows = rest.length ? rest : leaderboard;
             var html = '';
             rows.forEach(function(entry) {
