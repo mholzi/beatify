@@ -1867,6 +1867,13 @@
     font-size: inherit;
     transition: transform 0.5s ease, background 0.3s ease;
 }
+/* #2828: the waiting/has-guessed dot is a fifth child in a four-column grid,
+   so auto-placement wrapped it onto a second row of its own. Pin it to an
+   implicit fifth column on the first row, right of the score. */
+.leaderboard-entry > .entry-submitted {
+    grid-column: 5;
+    grid-row: 1;
+}
 .leaderboard-entry.is-top-1 {
     padding: 22px 26px;
     border-color: rgba(255, 45, 106, 0.35);
@@ -2501,23 +2508,32 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     min-width: 0;
+    /* #2824: the shared styles.css caps `.superlative-card` at 160 px for the
+       phone. On the TV that left four 160 px cards in 450 px tracks — the
+       title column collapsed to nothing and the value wrapped letter by
+       letter. The card fills its track here, and the type is sized for a
+       room. */
+    max-width: none;
+    align-items: center;
 }
-.end-stage-layout .superlative-emoji { grid-area: emoji; font-size: 32px; align-self: center; }
+.end-stage-layout .superlative-emoji { grid-area: emoji; font-size: 44px; align-self: center; margin: 0; }
 .end-stage-layout .superlative-title {
     grid-area: title; align-self: end;
     font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 800;
-    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #8a8a9c;
+    font-size: 16px; letter-spacing: 1.5px; text-transform: uppercase; color: #8a8a9c;
+    text-align: left; margin: 0;
     min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .end-stage-layout .superlative-player {
-    grid-area: player; align-self: start; font-size: 22px; font-weight: 700; color: #fff; line-height: 1.1;
+    grid-area: player; align-self: start; font-size: 30px; font-weight: 700; color: #fff; line-height: 1.15;
+    text-align: left; margin: 0;
     min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 /* Der Wert ist die einzige Angabe, die von Spiel zu Spiel beliebig lang wird
    ("17 Pkt in letzten 3"). Er darf umbrechen statt zu kuerzen — gekuerzt
    waere er wertlos, umgebrochen bleibt er lesbar. */
 .end-stage-layout .superlative-value {
-    grid-area: value; font-size: 15px; color: #b3b3c2; font-weight: 600; font-variant-numeric: tabular-nums;
+    grid-area: value; font-size: 20px; color: #b3b3c2; font-weight: 600; font-variant-numeric: tabular-nums;
     text-align: right; overflow-wrap: anywhere;
 }
 
@@ -2677,29 +2693,68 @@
    Nicht geloest und bewusst getrennt: der horizontale Druck durch Streak-Badge
    und Rangwechsel-Pfeil, die im Spielverlauf wachsen und die Namensspalte
    zusammenschieben (bestaetigter Teilbefund aus #2130). */
-#dashboard-reveal .reveal-standings-card #reveal-leaderboard .leaderboard-entry {
-    flex: 1 1 0;
-    min-height: 0;
-    max-height: 64px;
-    container-type: size;
+/* #2821: the cqh rows above shrank with the player count — at 20 players
+   the text was a few pixels tall and the 52 px rank circles, still sized by
+   the generic `.leaderboard-entry` block, were cut off by the row. Title &
+   Artist mode now uses the plain-row pattern #2502 gave year mode: fixed
+   rows, fixed type, no circles, and past ten rows nine plus "+ N more"
+   (renderStandingsMore). The year-mode block further down tightens this to
+   34 px rows and a cap of eight. */
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard {
+    flex: 0 1 auto;   /* "+ N more" follows the last row instead of the card's floor */
+    gap: 0;
+    overflow: hidden;
 }
-/* Groessen in cqh loesen gegen die eigene (geflexte) Zeilenhoehe auf. */
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .leaderboard-entry {
+    flex: 0 0 44px;
+    min-height: 0;
+    max-height: 44px;
+    container-type: normal;
+    grid-template-columns: 52px 1fr auto auto;
+    gap: 14px;
+    padding: 0 4px;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
 #dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-rank {
-    min-width: 48cqh;
-    font-size: 26cqh;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    font-size: 28px;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    color: var(--color-text-neon-muted, #b3b3c2);
+    justify-content: flex-start;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .is-top-1 .entry-rank {
+    color: var(--color-accent-primary, #ff2d6a);
 }
 #dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-name {
-    font-size: 34cqh;
+    font-size: 28px;
+    font-weight: 600;
 }
 #dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-score {
-    min-width: 72cqh;
-    font-size: 34cqh;
+    min-width: 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: none;
+    font-variant-numeric: tabular-nums;
 }
 #dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-meta,
 #dashboard-reveal .reveal-standings-card #reveal-leaderboard .streak-indicator,
-#dashboard-reveal .reveal-standings-card #reveal-leaderboard .rank-up,
-#dashboard-reveal .reveal-standings-card #reveal-leaderboard .rank-down {
-    font-size: 24cqh;
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-change {
+    font-size: 20px;
+    line-height: 1.2;
+}
+#dashboard-reveal .reveal-standings-card #reveal-leaderboard .entry-change {
+    padding: 1px 10px;
+}
+#dashboard-reveal.reveal-standings-capped:not(.reveal-axis-mode) #reveal-leaderboard .leaderboard-entry:nth-child(n+10) {
+    display: none;
 }
 
 /* --- This-round results strip --- */
@@ -2728,8 +2783,18 @@
 #dashboard-reveal .reveal-results .top-guess-name { font-weight: 700; color: #fff; }
 #dashboard-reveal .reveal-results .top-guess-year { color: var(--color-text-neon-muted, #b3b3c2); font-weight: 500; margin-left: 6px; font-variant-numeric: tabular-nums; }
 #dashboard-reveal .reveal-results .top-guess-points { color: var(--color-success-neon, #39ff14); font-weight: 800; font-variant-numeric: tabular-nums; }
-#dashboard-reveal .reveal-results .dashboard-fun-fact { margin-top: 14px; font-size: 18px; color: var(--color-text-neon-muted, #b3b3c2); display: flex; gap: 8px; }
+#dashboard-reveal .reveal-results .dashboard-fun-fact { margin-top: 14px; font-size: 18px; color: var(--color-text-neon-muted, #b3b3c2); display: flex; gap: 8px; max-width: none; min-height: 0; }
 #dashboard-reveal .reveal-results .dashboard-fun-fact.hidden { display: none; }
+/* #2822: a long fun fact grew the results card past its grid row and ran into
+   the band below. The card clips, and the text itself stops after three lines
+   — clamped on the text, not on the padded box, so no half line leaks out. */
+#dashboard-reveal .reveal-results { overflow: hidden; }
+#dashboard-reveal .dashboard-fun-fact .fun-fact-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 /* --- Lower-third announce band ---
    #2130: die Bande ist `flex-shrink: 0` und hatte KEINEN Höhendeckel. In
@@ -3143,14 +3208,19 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+/* #2822: `.reveal-song-info` orders the title 1 and the artist 2, so a fact
+   appended with the default order 0 landed ABOVE the title and ran into it.
+   Order 3 puts it under the artist. The clamp sits on the text: on the padded
+   box a third line showed through the padding. */
 #dashboard-reveal.reveal-axis-mode .reveal-song-info .dashboard-fun-fact {
+    order: 3;
     margin-top: 12px;
     font-size: 18px;
     max-width: none;
-    display: -webkit-box;
+    align-items: flex-start;
+}
+#dashboard-reveal.reveal-axis-mode .reveal-song-info .dashboard-fun-fact .fun-fact-text {
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 #dashboard-reveal.reveal-axis-mode .reveal-song-info .dashboard-fun-fact.hidden { display: none; }
 
