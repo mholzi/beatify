@@ -828,6 +828,10 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 ### v4.7.0 — The Turn 📈
 - **The end screen shows the round it turned on** — three seconds before the podium, the TV goes back to the one round where the lead last changed hands: two lines climbing, a mark on the round, and the two names. A game somebody led from the first song has no such round, and the screen goes straight to the podium instead (#2563)
 - **+126 YouTube URIs** across six playlists, so more of the catalogue plays for anyone on YouTube Music (#2800)
+- **Every guess on a year axis** — the TV reveal no longer stops at a top three: each player's guess sits on a line of years with initials, stacked where people picked the same year. Phones get the same axis (#2502, #2823)
+- **Ties share the podium** — when two players finish level, both stand on it with the same place, on the TV, the host page and every phone (#2835)
+- **A cleaner TV** — no duplicate leaderboard rows, a readable ranking on the reveal, fun facts that stay in their box, full-size award cards, and a join corner that covers nothing (#2820, #2821, #2822, #2824, #2828, #2833, #2834)
+- **`deutschrap-klassiker` grows from 26 to 62 songs** (#2816)
 
 ### v4.6.0 — Second Wind 👻
 - **Ghost league** — get knocked out in Sudden Death and you keep guessing to the last song, in a league of your own: your score sits under the survivors on the TV, and there is a Best Ghost award at the finish. Counted per ghost round played, so going out early wins nothing (#2559)

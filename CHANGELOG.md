@@ -4,29 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.7.0-rc3] - 2026-09-13
+## [4.7.0] - 2026-09-13
 
-rc2 bestand den Live-Test ueber API, Handys und Lautsprecher, aber der erste Lauf hatte das
-TV-Dashboard nie geoeffnet. Der nachgeholte TV-Check fand einen Blocker aus v4.6.0 und zwei
-Layout-Reste an der Unterkante.
-
-### Fixed
-- **Gleichstand auf dem Podest** (#2835, Blocker). Die Endbildschirme auf TV, Host-Seite und Handy
-  suchten den Podest-Spieler mit `find(rank === place)`, der Server vergibt aber Wettkampf-Raenge
-  (1, 1, 3). Bei Gleichstand fehlte der Mitsieger, und eine leere Stufe blieb stehen. Jetzt werden
-  die Podeste der Reihe nach aus der Rangliste besetzt, geteilte Plaetze tragen dieselbe Zahl und
-  Medaille, und jeder Spieler erscheint genau einmal.
-- **Die Jahresachse passt auf einen 1080p-Fernseher** (#2833). Die Punktgroesse richtet sich auch
-  nach der Bandhoehe, die fuenfte Stapelreihe samt „+N" endet im Bild.
-- **Die Beitritts-Ecke verdeckt nichts mehr** (#2834, #2833). Solange sie offen ist, halten
-  Rangliste und Achse ihre Flaeche frei. Bei 1280×720 bleibt ein bekannter Rest.
-
-## [4.7.0-rc2] - 2026-09-13
-
-Blattplan 2026-W38 „Wunschkonzert", auf Markus' Anweisung am Sonntag gecuttet. rc1 ist durch die
-Merges ueberholt; die Notes decken wie immer die Spanne seit v4.6.0 ab.
+Die Woche 2026-W38 „Wunschkonzert", an einem Sonntag gecuttet. Drei Kandidaten: rc1 war durch die
+Merges ueberholt, rc2 bestand den Live-Test ueber API, Handys und Lautsprecher, aber der
+nachgeholte TV-Check fand einen Blocker aus v4.6.0 (#2835). rc3 bestand den vollen Lauf inklusive
+TV-Dashboard bei 1920×1080 mit elf Gaesten und Gleichstands-Regression.
 
 ### Added
+- **Das Endbild zeigt die Runde, in der das Spiel entschieden wurde** (#2563, Variante C). Drei
+  Sekunden vor dem Podest klettern zwei Linien, eine Marke sitzt auf der Runde, darunter steht
+  „Dana overtakes Ben". Die Rundenwahl ist mechanisch: der letzte Fuehrungswechsel zum spaeteren
+  Sieger. Wer ab der ersten Runde fuehrt, hat keinen — dann faellt der Vorspann aus.
+  `round_scores` geht dafuer als Runden-Deltas mit auf die Schluss-Rangliste; das Konfetti wartet,
+  und der Vorspann laeuft einmal je `game_id`.
 - **Die Rate-Streuung des Raums als Jahresachse auf dem TV-Reveal** (#2502, Variante A). Initialen
   auf einer Jahreslinie, gleiche Jahre gestapelt bis fuenf Reihen, danach „+N", gestrichelte Strecke
   zum Weitesten. Der Top-3-Streifen entfaellt, der Fun Fact wandert unter den Titel.
@@ -35,50 +26,26 @@ Merges ueberholt; die Notes decken wie immer die Spanne seit v4.6.0 ab.
 
 ### Changed
 - **`deutschrap-klassiker` 26 → 62 Songs** (#2816).
+- **+126 YouTube-URIs** ueber sechs Playlists (#2800), Abdeckung 89,2 % → 90,7 %.
 - **Crate Digger**: die lesenden Pool-Views nutzen den gecachten Loader, statt bei jedem 2-s-Poll
   die ganze Bibliothek neu zu parsen (#2818).
 
 ### Fixed
+- **Gleichstand auf dem Podest** (#2835). Die Endbildschirme auf TV, Host-Seite und Handy suchten den
+  Podest-Spieler mit `find(rank === place)`, der Server vergibt aber Wettkampf-Raenge (1, 1, 3). Bei
+  Gleichstand fehlte der Mitsieger. Jetzt werden die Podeste der Reihe nach aus der Rangliste
+  besetzt, geteilte Plaetze tragen dieselbe Zahl und Medaille.
 - **TV-Dashboard** (#2829, gemeldet von @slangreck): doppelte Zeilen in der Rangliste (#2820),
   lesbare Rangliste im Titel-&-Interpret-Reveal (#2821), Fun Fact laeuft nicht mehr in die
   Jahres-Box (#2822), Award-Karten auf Game Over in voller Groesse (#2824), Status-Punkt in eigener
   Spalte statt eigener Zeile (#2828).
+- **Die Jahresachse passt auf einen 1080p-Fernseher** (#2833), und **die Beitritts-Ecke verdeckt
+  nichts mehr** (#2834). Bei 1280×720 bleibt ein bekannter Rest.
 - **Jahres-Regler auf dem Handy** (#2827): runde ±-Knoepfe, nur noch Min/Max-Jahr als Beschriftung.
-
-## [4.7.0-rc1] - 2026-09-12
-
-Ein Eintrag, den Markus am Samstagabend aus dem Rueckstand gezogen hat, plus was seit v4.6.0 sonst
-auf `main` lag. #2563 lief vor dem Bauen durchs Design-Gate: vier gezeichnete Varianten, Markus hat
-C genommen — drei Sekunden statt zehn, weil das Endbild schon sieben Beats hat.
-
-### Added
-- **Das Endbild zeigt die Runde, in der das Spiel entschieden wurde** (#2563, Variante C). Drei
-  Sekunden vor dem Podest klettern zwei Linien, eine Marke sitzt auf der Runde, darunter steht
-  „Dana overtakes Ben"; dann blendet es weg und das Schlussbild steht wie zuvor. Es ist ein
-  **Vorspann, kein Kasten** — nichts im Schlussbild musste Platz machen.
-  - Die Rundenwahl ist mechanisch, kein Dramatik-Score: **der letzte Fuehrungswechsel zum spaeteren
-    Sieger**. Wer ab der ersten Runde fuehrt, hat keinen — dann faellt der Vorspann aus, statt einen
-    Moment zu erfinden.
-  - `round_scores` lag seit jeher auf dem Spieler (`clutch_player` und `comeback_king` rechnen
-    darauf), wurde aber **nie serialisiert**. Das Issue hielt die Arbeit deshalb fuer „pure
-    frontend"; das stimmte nicht. Das Feld geht jetzt **vollstaendig** mit auf die Schluss-Rangliste,
-    als Runden-Deltas — ein spaeterer voller Verlauf braucht dafuer keinen zweiten Backend-Schnitt.
-  - Das Konfetti wartet, bis der Vorspann weg ist, und der Vorspann laeuft **einmal je `game_id`**:
-    ein Schlussbild, das bei jedem Reconnect neu anfaengt, waere schlimmer als keines.
-
-### Changed
-- **+126 YouTube-URIs** ueber sechs Playlists (#2800). Der PR-Titel sagt „+9" — das war der erste
-  von drei gebuendelten Backfill-Laeufen (+9, +84, +33); die Abdeckung geht von 7.523 auf 7.649,
-  89,2 % -> 90,7 %. `musica-italiana` springt von 48 auf 115 von 115, `disney-latino` von 1 auf 32.
-  Alle sechs `version`-Felder gingen im selben Commit mit, sonst erreicht die Aenderung keine
-  bestehende Installation.
-
-### Fixed
 - **Der Playlist-Pruefer sprach Deezer frei, statt zu verurteilen** (#2809). Ein Treffer ohne ISRC
   galt als Fehler; jetzt gilt er als ungeprueft.
-- **„Zieh die Doku mit" ist eine Pruefung statt eines Satzes** (#2580-Nachzug): `check_docs_current.py`
-  faellt auf, wenn Code und Dokumentation auseinanderlaufen.
-
+- **„Zieh die Doku mit" ist eine Pruefung statt eines Satzes** (#2580-Nachzug):
+  `check_docs_current.py` faellt auf, wenn Code und Dokumentation auseinanderlaufen.
 
 ## [4.6.0] - 2026-09-10
 
