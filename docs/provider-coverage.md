@@ -1,5 +1,5 @@
 # Beatify Provider-URI Coverage
-> Generated: 2026-09-12
+> Generated: 2026-09-13
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
 > Catalogue state: v4.7.0
 
@@ -7,10 +7,10 @@
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
-| Apple | 8123 | 8432 | 96.3% |
-| Tidal | 5959 | 8432 | 70.7% |
-| Deezer | 8340 | 8432 | 98.9% |
-| YouTube | 7649 | 8432 | 90.7% |
+| Apple | 8147 | 8468 | 96.2% |
+| Tidal | 5959 | 8468 | 70.4% |
+| Deezer | 8376 | 8468 | 98.9% |
+| YouTube | 7649 | 8468 | 90.3% |
 
 ## Per-playlist coverage
 
@@ -31,7 +31,7 @@
 | community/clasicos-disney-castellano.json | 64 | 47 | 0 | 37 | 16 |
 | community/clasicos-rock-en-espanol.json | 39 | 33 | 0 | 39 | 0 |
 | community/deutschpop-klassiker.json | 118 | 118 | 107 | 118 | 107 |
-| community/deutschrap-klassiker.json | 26 | 17 | 0 | 26 | 0 |
+| community/deutschrap-klassiker.json | 62 | 41 | 0 | 62 | 0 |
 | community/deutschrock-best-of.json | 100 | 85 | 100 | 100 | 98 |
 | community/disney-hits-deutschland.json | 97 | 82 | 95 | 96 | 97 |
 | community/disney-latino.json | 54 | 54 | 0 | 38 | 32 |
