@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.0-rc3] - 2026-09-13
+
+rc2 bestand den Live-Test ueber API, Handys und Lautsprecher, aber der erste Lauf hatte das
+TV-Dashboard nie geoeffnet. Der nachgeholte TV-Check fand einen Blocker aus v4.6.0 und zwei
+Layout-Reste an der Unterkante.
+
+### Fixed
+- **Gleichstand auf dem Podest** (#2835, Blocker). Die Endbildschirme auf TV, Host-Seite und Handy
+  suchten den Podest-Spieler mit `find(rank === place)`, der Server vergibt aber Wettkampf-Raenge
+  (1, 1, 3). Bei Gleichstand fehlte der Mitsieger, und eine leere Stufe blieb stehen. Jetzt werden
+  die Podeste der Reihe nach aus der Rangliste besetzt, geteilte Plaetze tragen dieselbe Zahl und
+  Medaille, und jeder Spieler erscheint genau einmal.
+- **Die Jahresachse passt auf einen 1080p-Fernseher** (#2833). Die Punktgroesse richtet sich auch
+  nach der Bandhoehe, die fuenfte Stapelreihe samt „+N" endet im Bild.
+- **Die Beitritts-Ecke verdeckt nichts mehr** (#2834, #2833). Solange sie offen ist, halten
+  Rangliste und Achse ihre Flaeche frei. Bei 1280×720 bleibt ein bekannter Rest.
+
 ## [4.7.0-rc2] - 2026-09-13
 
 Blattplan 2026-W38 „Wunschkonzert", auf Markus' Anweisung am Sonntag gecuttet. rc1 ist durch die
