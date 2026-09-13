@@ -1450,11 +1450,21 @@
         // Render fun fact (Story 16.4)
         renderFunFact(song);
 
-        // Render top 3 guesses this round (AC 10.4.4)
+        // #2502: in year mode the lower band becomes the guess axis and the
+        // top-three strip goes. Title & Artist mode and a voided round keep the
+        // layout they had — neither has a year to put guesses against.
+        var axisMode = !taMode && !data.round_voided && parseInt(song.year, 10) > 0;
+        var revealRoot = document.getElementById('dashboard-reveal');
+        if (revealRoot) revealRoot.classList.toggle('reveal-axis-mode', axisMode);
+        placeRevealFunFact(axisMode);
+        renderGuessAxis(data, axisMode);
+
+        // Render top 3 guesses this round (AC 10.4.4) — hidden by CSS in axis mode
         renderTopGuesses(players);
 
         // Render leaderboard with position changes
         renderRevealLeaderboard(data.leaderboard || []);
+        renderStandingsMore((data.leaderboard || []).length, axisMode);
         renderGhostLeague(data.ghost_league, 'ghost-league-reveal');
 
         // Issue #827: Sudden-Death — full-bleed "OUT" takeover for this round's
@@ -2138,6 +2148,389 @@
         });
 
         container.innerHTML = html;
+    }
+
+    // ============================================
+    // #2502: the room's guess spread on the TV
+    // ============================================
+    //
+    // Design Variant A ("the axis as the stage"): in year mode the lower band
+    // becomes a full-width year axis, the big year sits above its own position,
+    // and every guest is a dot labelled with two-letter initials. It replaces
+    // the top-three strip, which showed three guests and hid the one who was
+    // twenty years out — the moment the room actually wants to see.
+    //
+    // The geometry is split into two pure functions (no DOM, no globals) so the
+    // decisions — initials, stacking, "+N", range clamping, the farthest span —
+    // are unit-tested on the bytes that ship (__tests__/dashboard-guess-axis-2502).
+
+    /**
+     * Two-letter initials for every name, unique within the list.
+     *
+     * First + last word initial for multi-word names ("Anna Berg" → AB), the
+     * first two letters otherwise ("Lena" → LE). A collision is resolved in
+     * name order, so the result does not depend on payload order: the first
+     * name keeps its initials, the next tries its first letter with each later
+     * letter ("Michael" after "Mia" → MC), and only then a digit ("MI2").
+     * @param {Array<string>} names
+     * @returns {Object<string, string>} name → initials
+     */
+    function guessAxisInitials(names) {
+        var LETTER = /[\p{L}\p{N}]/u;
+        var taken = {};
+        var result = {};
+        var order = (names || []).map(function(n) { return String(n == null ? '' : n); })
+            .sort(function(a, b) { return a < b ? -1 : (a > b ? 1 : 0); });
+        order.forEach(function(name) {
+            if (Object.prototype.hasOwnProperty.call(result, name)) return;
+            var letters = function(s) {
+                return Array.from(s).filter(function(ch) { return LETTER.test(ch); });
+            };
+            var chars = letters(name);
+            if (chars.length === 0) chars = ['?'];
+            var words = name.trim().split(/\s+/).map(letters)
+                .filter(function(w) { return w.length > 0; });
+            var primary = words.length >= 2
+                ? words[0][0] + words[words.length - 1][0]
+                : chars[0] + (chars[1] || '');
+            var candidates = [primary];
+            for (var k = 1; k < chars.length; k++) candidates.push(chars[0] + chars[k]);
+            var pick = null;
+            for (var c = 0; c < candidates.length && pick === null; c++) {
+                var up = candidates[c].toUpperCase();
+                if (!taken[up]) pick = up;
+            }
+            for (var d = 2; pick === null; d++) {
+                var withDigit = primary.toUpperCase() + d;
+                if (!taken[withDigit]) pick = withDigit;
+            }
+            taken[pick] = true;
+            result[name] = pick;
+        });
+        return result;
+    }
+
+    /**
+     * Lay out the guess axis in pixels.
+     *
+     * - Range: the correct year and every guess within ±30 years, padded by a
+     *   year and snapped outwards to five-year steps, never narrower than 20
+     *   years. A guess further out than 30 years does not stretch the scale —
+     *   it sits at a broken edge of the axis instead.
+     * - Dots: 64 px up to ten guesses, 52 px above. Each dot sits at its exact
+     *   year; where it would touch a neighbour it drops a row (identical years
+     *   therefore stack). At most five rows; whatever would need a sixth folds
+     *   into the fifth-row dot below it, which becomes "+N".
+     * - Span: a dashed line from the correct year to the farthest guess, shown
+     *   when it is long enough to carry its label; the full name joins it when
+     *   the guess is ten or more years off.
+     *
+     * @param {Array<{name:string, guess:number, years_off:number, round_score:number}>} guesses
+     * @param {number} correctYear
+     * @param {number} width - plot width in px
+     * @param {{missed?: Array<string>, spanLabelChars?: number}} [opts]
+     * @returns {Object} layout
+     */
+    function layoutGuessAxis(guesses, correctYear, width, opts) {
+        opts = opts || {};
+        var W = width > 0 ? width : 1620;
+        var OUTLIER_YEARS = 30;
+        var MIN_SPAN = 20;
+        var MAX_ROWS = 5;
+        var BREAK_GAP = 90;      // room at a broken edge for the break mark
+        var YEAR_HALF = 190;     // half the width of the 150 px year
+        var LABEL_CLEAR = 210;   // tick labels this close to the year would sit under it
+        var NAME_ROW_LIMIT = MAX_ROWS;
+
+        var list = (guesses || []).filter(function(g) {
+            return g && typeof g.guess === 'number' && isFinite(g.guess);
+        });
+        var size = list.length <= 10 ? 64 : 52;
+        var minDx = size + 4;
+        var missed = opts.missed || [];
+        var initials = guessAxisInitials(list.map(function(g) { return g.name; }).concat(missed));
+
+        var lo = correctYear;
+        var hi = correctYear;
+        var brokenLow = false;
+        var brokenHigh = false;
+        list.forEach(function(g) {
+            var delta = g.guess - correctYear;
+            if (delta < -OUTLIER_YEARS) brokenLow = true;
+            else if (delta > OUTLIER_YEARS) brokenHigh = true;
+            else {
+                lo = Math.min(lo, g.guess);
+                hi = Math.max(hi, g.guess);
+            }
+        });
+        var min = Math.floor((lo - 1) / 5) * 5;
+        var max = Math.ceil((hi + 1) / 5) * 5;
+        while (max - min < MIN_SPAN) {
+            if (correctYear - min <= max - correctYear) min -= 5;
+            else max += 5;
+        }
+        var x0 = brokenLow ? BREAK_GAP : 0;
+        var x1 = brokenHigh ? W - BREAK_GAP : W;
+        var xOf = function(year) {
+            if (year - correctYear < -OUTLIER_YEARS) return 0;
+            if (year - correctYear > OUTLIER_YEARS) return W;
+            return x0 + (year - min) / (max - min) * (x1 - x0);
+        };
+
+        var correctX = xOf(correctYear);
+        var yearX = Math.min(Math.max(correctX, YEAR_HALF - 70), W + 70 - YEAR_HALF);
+
+        var step = (max - min) > 40 ? 10 : 5;
+        var ticks = [];
+        for (var ty = Math.ceil(min / step) * step; ty <= max; ty += step) {
+            var tx = xOf(ty);
+            ticks.push({ year: ty, x: tx, label: Math.abs(tx - yearX) >= LABEL_CLEAR });
+        }
+
+        var byName = function(a, b) { return a.name < b.name ? -1 : (a.name > b.name ? 1 : 0); };
+        var items = list.map(function(g) {
+            var off = typeof g.years_off === 'number' ? g.years_off : Math.abs(g.guess - correctYear);
+            return {
+                name: g.name,
+                initials: initials[String(g.name == null ? '' : g.name)],
+                guess: g.guess,
+                yearsOff: off,
+                x: xOf(g.guess),
+                kind: off === 0 ? 'exact' : ((g.round_score || 0) > 0 ? 'near' : 'off'),
+                row: 0,
+                folded: 0
+            };
+        }).sort(function(a, b) { return (a.x - b.x) || byName(a, b); });
+
+        var rows = [];
+        items.forEach(function(it) {
+            for (var r = 0; ; r++) {
+                if (!rows[r]) rows[r] = [];
+                var clear = rows[r].every(function(o) { return Math.abs(o.x - it.x) >= minDx; });
+                if (clear) {
+                    rows[r].push(it);
+                    it.row = r;
+                    return;
+                }
+            }
+        });
+        items.forEach(function(it) {
+            if (it.row < MAX_ROWS) return;
+            var host = null;
+            rows[MAX_ROWS - 1].forEach(function(o) {
+                if (!host || Math.abs(o.x - it.x) < Math.abs(host.x - it.x)) host = o;
+            });
+            host.folded += 1;
+        });
+        var visible = items.filter(function(it) { return it.row < MAX_ROWS; });
+        var dots = visible.map(function(it) {
+            return {
+                name: it.name,
+                initials: it.initials,
+                guess: it.guess,
+                yearsOff: it.yearsOff,
+                kind: it.kind,
+                x: it.x,
+                row: it.row,
+                plus: it.folded > 0 ? it.folded + 1 : 0
+            };
+        });
+
+        var span = null;
+        var far = null;
+        items.forEach(function(it) { if (!far || it.yearsOff > far.yearsOff) far = it; });
+        if (far && far.yearsOff > 0) {
+            var dir = far.guess > correctYear ? 1 : -1;
+            var nearest = null;
+            visible.forEach(function(it) {
+                if (it === far || it.row !== 0) return;
+                if ((far.x - it.x) * dir < minDx) return;          // at or past the far dot
+                if ((it.x - correctX) * dir < -size / 2) return;   // on the other side of the answer
+                if (!nearest || (it.x - nearest.x) * dir > 0) nearest = it;
+            });
+            var start = nearest ? nearest.x + dir * (size / 2 + 24) : correctX + dir * 16;
+            var end = far.x - dir * (size / 2 + 16);
+            var chars = opts.spanLabelChars > 0 ? opts.spanLabelChars : 16;
+            if ((end - start) * dir >= chars * 17 + 40) {
+                span = {
+                    from: Math.min(start, end),
+                    to: Math.max(start, end),
+                    labelX: (start + end) / 2,
+                    years: far.yearsOff,
+                    name: null,
+                    nameX: null,
+                    nameRow: null
+                };
+                if (far.yearsOff >= 10 && far.row < MAX_ROWS) {
+                    var column = 0;
+                    visible.forEach(function(it) {
+                        if (Math.abs(it.x - far.x) < minDx) column = Math.max(column, it.row);
+                    });
+                    if (column + 1 < NAME_ROW_LIMIT) {
+                        var half = String(far.name).length * 7 + 10;
+                        span.name = far.name;
+                        span.nameRow = column + 1;
+                        span.nameX = Math.min(Math.max(far.x, half - 90), W + 90 - half);
+                    }
+                }
+            }
+        }
+
+        return {
+            width: W,
+            min: min,
+            max: max,
+            step: step,
+            brokenLow: brokenLow,
+            brokenHigh: brokenHigh,
+            breakGap: BREAK_GAP,
+            size: size,
+            rows: Math.min(rows.length, MAX_ROWS),
+            correctX: correctX,
+            yearX: yearX,
+            ticks: ticks,
+            dots: dots,
+            span: span,
+            missed: missed.map(function(name) {
+                return { name: name, initials: initials[String(name == null ? '' : name)] };
+            })
+        };
+    }
+
+    /**
+     * Draw the guess axis into the lower band, or hide it.
+     * @param {Object} data - REVEAL state
+     * @param {boolean} axisMode - year mode with a year to show
+     */
+    function renderGuessAxis(data, axisMode) {
+        var root = document.getElementById('reveal-guess-axis');
+        if (!root) return;
+        if (!axisMode) {
+            root.classList.add('hidden');
+            return;
+        }
+        var plot = document.getElementById('guess-axis-plot');
+        var missedEl = document.getElementById('guess-axis-missed');
+        var band = root.parentNode;
+        if (!plot) return;
+
+        var guesses = ((data.round_analytics || {}).all_guesses || []).filter(function(g) {
+            return g && typeof g.guess === 'number';
+        });
+        var guessed = {};
+        guesses.forEach(function(g) { guessed[g.name] = true; });
+        var missed = (data.players || []).filter(function(p) {
+            return p && p.missed_round && !p.eliminated && !guessed[p.name];
+        }).map(function(p) { return p.name; });
+
+        var farthest = 0;
+        guesses.forEach(function(g) { farthest = Math.max(farthest, g.years_off || 0); });
+        var spanLabel = farthest === 1
+            ? utils.t('dashboard.guessAxisYearsOffOne')
+            : utils.t('dashboard.guessAxisYearsOff', { count: farthest });
+
+        root.classList.remove('hidden');
+        var correct = parseInt((data.song || {}).year, 10);
+        var L = layoutGuessAxis(guesses, correct, plot.clientWidth, {
+            missed: missed,
+            spanLabelChars: spanLabel.length
+        });
+        var pct = function(x) { return (x / L.width * 100).toFixed(3) + '%'; };
+
+        root.classList.toggle('guess-axis--compact', L.size < 64);
+        if (band && band.style && band.style.setProperty) {
+            band.style.setProperty('--guess-axis-year', (L.yearX / L.width).toFixed(4));
+        }
+
+        var html = '<div class="guess-axis-line"></div>';
+        L.ticks.forEach(function(tk) {
+            html += '<div class="guess-axis-tick" style="left:' + pct(tk.x) + '">' +
+                (tk.label
+                    ? '<span class="guess-axis-tick-label">’' + String(((tk.year % 100) + 100) % 100).padStart(2, '0') + '</span>'
+                    : '') +
+                '</div>';
+        });
+        if (L.brokenLow) html += '<div class="guess-axis-break" style="left:' + pct(L.breakGap / 2) + '"></div>';
+        if (L.brokenHigh) html += '<div class="guess-axis-break" style="left:' + pct(L.width - L.breakGap / 2) + '"></div>';
+        html += '<div class="guess-axis-marker" style="left:' + pct(L.correctX) + '"></div>';
+
+        // #2702 beat two: the dots land together with the rest of the round result.
+        html += '<div class="guess-axis-dots" data-stage="2">';
+        if (L.span) {
+            html += '<div class="guess-axis-span" style="left:' + pct(L.span.from) + ';width:' + pct(L.span.to - L.span.from) + '"></div>' +
+                '<div class="guess-axis-span-label" style="left:' + pct(L.span.labelX) + '">' + utils.escapeHtml(spanLabel) + '</div>';
+            if (L.span.name !== null) {
+                html += '<div class="guess-axis-span-name" style="left:' + pct(L.span.nameX) + ';--row:' + L.span.nameRow + '">' +
+                    utils.escapeHtml(L.span.name) + '</div>';
+            }
+        }
+        L.dots.forEach(function(dot) {
+            var label = utils.escapeHtml(dot.name) + ' — ' + dot.guess;
+            html += '<div class="guess-axis-dot guess-axis-dot--' + (dot.plus ? 'more' : dot.kind) + '" ' +
+                'style="left:' + pct(dot.x) + ';--row:' + dot.row + '" title="' + label + '" aria-label="' + label + '">' +
+                (dot.plus ? '+' + dot.plus : utils.escapeHtml(dot.initials)) +
+                '</div>';
+        });
+        html += '</div>';
+        if (plot._beatifyAxisHtml !== html) {
+            plot._beatifyAxisHtml = html;
+            plot.innerHTML = html;
+        }
+
+        if (missedEl) {
+            var MAX_MISSED = 4;
+            var missedHtml = '';
+            if (L.missed.length > 0) {
+                missedHtml = '<span class="guess-axis-missed-label">' + utils.escapeHtml(utils.t('dashboard.guessAxisNoGuess')) + '</span>';
+                L.missed.slice(0, MAX_MISSED).forEach(function(m) {
+                    missedHtml += '<span class="guess-axis-missed-item">' +
+                        '<span class="guess-axis-missed-dot">' + utils.escapeHtml(m.initials) + '</span>' +
+                        '<span class="guess-axis-missed-name">' + utils.escapeHtml(m.name) + '</span>' +
+                        '</span>';
+                });
+                if (L.missed.length > MAX_MISSED) {
+                    missedHtml += '<span class="guess-axis-missed-name">+' + (L.missed.length - MAX_MISSED) + '</span>';
+                }
+            }
+            missedEl.innerHTML = missedHtml;
+        }
+    }
+
+    /**
+     * #2502: the fun fact lived in the results strip, which the axis replaces.
+     * In axis mode it moves under the song in the now-revealing card, and back
+     * when the round is Title & Artist or voided.
+     * @param {boolean} axisMode
+     */
+    function placeRevealFunFact(axisMode) {
+        var fact = document.getElementById('dashboard-fun-fact');
+        if (!fact || !document.querySelector) return;
+        var home = document.querySelector(axisMode
+            ? '#dashboard-reveal .reveal-song-info'
+            : '#dashboard-reveal .reveal-results');
+        if (home && fact.parentNode !== home) home.appendChild(fact);
+    }
+
+    /**
+     * #2502: the standings card is shorter in axis mode. Past eight rows it
+     * shows seven and says how many more there are, instead of shrinking every
+     * row below what a room can read.
+     * @param {number} count - leaderboard length
+     * @param {boolean} axisMode
+     */
+    function renderStandingsMore(count, axisMode) {
+        var root = document.getElementById('dashboard-reveal');
+        var more = document.getElementById('reveal-leaderboard-more');
+        var capped = axisMode && count > 8;
+        if (root) root.classList.toggle('reveal-standings-capped', capped);
+        if (!more) return;
+        if (capped) {
+            more.textContent = utils.t('dashboard.standingsMore', { count: count - 7 });
+            more.classList.remove('hidden');
+        } else {
+            more.textContent = '';
+            more.classList.add('hidden');
+        }
     }
 
     /**
