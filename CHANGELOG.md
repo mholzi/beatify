@@ -4,6 +4,30 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.0-rc2] - 2026-09-13
+
+Blattplan 2026-W38 „Wunschkonzert", auf Markus' Anweisung am Sonntag gecuttet. rc1 ist durch die
+Merges ueberholt; die Notes decken wie immer die Spanne seit v4.6.0 ab.
+
+### Added
+- **Die Rate-Streuung des Raums als Jahresachse auf dem TV-Reveal** (#2502, Variante A). Initialen
+  auf einer Jahreslinie, gleiche Jahre gestapelt bis fuenf Reihen, danach „+N", gestrichelte Strecke
+  zum Weitesten. Der Top-3-Streifen entfaellt, der Fun Fact wandert unter den Titel.
+- **Dieselbe Achse auf dem Handy** (#2823): gleiche Jahre uebereinander, zweistellige Initialen,
+  der eigene Punkt wird nie weggefaltet.
+
+### Changed
+- **`deutschrap-klassiker` 26 → 62 Songs** (#2816).
+- **Crate Digger**: die lesenden Pool-Views nutzen den gecachten Loader, statt bei jedem 2-s-Poll
+  die ganze Bibliothek neu zu parsen (#2818).
+
+### Fixed
+- **TV-Dashboard** (#2829, gemeldet von @slangreck): doppelte Zeilen in der Rangliste (#2820),
+  lesbare Rangliste im Titel-&-Interpret-Reveal (#2821), Fun Fact laeuft nicht mehr in die
+  Jahres-Box (#2822), Award-Karten auf Game Over in voller Groesse (#2824), Status-Punkt in eigener
+  Spalte statt eigener Zeile (#2828).
+- **Jahres-Regler auf dem Handy** (#2827): runde ±-Knoepfe, nur noch Min/Max-Jahr als Beschriftung.
+
 ## [4.7.0-rc1] - 2026-09-12
 
 Ein Eintrag, den Markus am Samstagabend aus dem Rueckstand gezogen hat, plus was seit v4.6.0 sonst
