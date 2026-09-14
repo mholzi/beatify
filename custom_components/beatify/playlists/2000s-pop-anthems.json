@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.29",
+  "version": "1.30",
   "tags": [
     "2000s",
     "pop",
@@ -1130,7 +1130,7 @@
       }
     },
     {
-      "year": 2000,
+      "year": 1999,
       "uri": "spotify:track:48UPSzbZjgc449aqz8bxox",
       "artist": "Red Hot Chili Peppers",
       "alt_artists": [
