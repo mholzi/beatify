@@ -6,4 +6,8 @@
 # that genuinely need a broad catch suppress the rule explicitly with
 # `# noqa: BLE001` and must log with context.
 [lint]
+# ruff 0.16 widened its default rule selection (60 -> 413 rules on this repo).
+# Pin the selection that 0.15 used by default, so a ruff upgrade never changes
+# the rules CI enforces; widening the set is a separate, deliberate decision.
+select = ["E4", "E7", "E9", "F"]
 extend-select = ["BLE001"]

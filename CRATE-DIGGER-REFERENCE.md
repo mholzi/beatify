@@ -256,10 +256,11 @@ The heart of the fairness guarantee. A song's year is only as good as its source
 ```python
 class YearConfidence(IntEnum):
     NONE = 0
-    TAG_COMPILATION = 1   # tag year from a comp/live/soundtrack → pressing year
-    TAG_STUDIO = 2        # tag year from a studio album/single by the real artist
-    EXTERNAL_SECONDARY = 3 # a second external source (e.g. Deezer release year)
-    EXTERNAL_PRIMARY = 4   # MusicBrainz, match-quality-verified → authoritative
+    TAG_COMPILATION = 1  # tag year from a comp/live/soundtrack → pressing year
+    TAG_STUDIO = 2  # tag year from a studio album/single by the real artist
+    EXTERNAL_SECONDARY = 3  # a second external source (e.g. Deezer release year)
+    EXTERNAL_PRIMARY = 4  # MusicBrainz, match-quality-verified → authoritative
+
 
 DEFAULT_MIN_CONFIDENCE = int(YearConfidence.EXTERNAL_PRIMARY)
 ```
@@ -566,8 +567,8 @@ if hook is not None and self.phase == GamePhase.LOBBY and _retry_count == 0:
     try:
         await hook(self)
     except Exception:
-        pass                      # a hook failure must never block the game
-    self.pre_start_hook = None    # fire once per game
+        pass  # a hook failure must never block the game
+    self.pre_start_hook = None  # fire once per game
 ```
 
 Three properties matter: it fires **once**, only on the `LOBBY → first round` transition, and only for games that carry a hook (saved-playlist and other-provider games are untouched). A hook exception is swallowed deliberately — the worst case must be "the game plays its creation-time songs", never "the game won't start".
