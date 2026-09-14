@@ -1,6 +1,6 @@
 {
   "name": "Vallenato Clásico",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "vallenato",
     "latin",
@@ -270,7 +270,8 @@
       "fun_fact_nl": "De groep wisselde zo vaak van zangers dat fans nog steeds ruziën over welke bezetting de echte is.",
       "isrc": "COC019723063",
       "uri_deezer": "deezer://track/695600752",
-      "uri_apple_music": "applemusic://track/1713636579"
+      "uri_apple_music": "applemusic://track/1713636579",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JoFk4xc8fQ8"
     },
     {
       "year": 1997,
