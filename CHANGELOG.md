@@ -4,6 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Fixed
+- **Die "End round N"-Karte verschwindet, sobald die Runde vorbei ist oder die naechste beginnt**
+  (#2832). Ein automatischer Reveal oder Game Over laesst damit keine eingefrorene Restzeit mehr
+  ueber dem aktuellen Bildschirm stehen.
+
 ## [4.7.0] - 2026-09-13
 
 Die Woche 2026-W38 „Wunschkonzert", an einem Sonntag gecuttet. Drei Kandidaten: rc1 war durch die
