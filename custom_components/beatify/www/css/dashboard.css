@@ -2436,6 +2436,15 @@ body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: n
     box-shadow: 0 0 0 5px rgba(255, 211, 77, 0.28), 0 0 60px 12px rgba(255, 211, 77, 0.45);
 }
 .end-stage-layout .podium-1 .podium-name { font-size: 38px; color: #ffd34d; }
+/* #2845: styles.css gibt dem Siegernamen im dunklen Theme per
+   `body.theme-dark .podium-place.podium-1 .podium-name` (0,4,1) `white-space: normal`,
+   `word-break: break-word` und bis zu 64px. Das schlug die TV-Regeln oben (0,3,0): auf
+   dem Fernseher lief der Name in 64px und brach mitten im Wort um ("Andr" / "eas").
+   Dieselbe Absicht wie oben, mit genug Spezifitaet (0,5,1). Der Farbverlauf bleibt. */
+body.theme-dark .end-stage-layout .podium-place.podium-1 .podium-name {
+    font-size: 38px; line-height: 1.15;
+    white-space: nowrap; word-break: normal; overflow: hidden; text-overflow: ellipsis;
+}
 .end-stage-layout .podium-1 .podium-score { font-size: 54px; color: #ffd34d; }
 .end-stage-layout .podium-1 .podium-stand {
     height: 240px;
