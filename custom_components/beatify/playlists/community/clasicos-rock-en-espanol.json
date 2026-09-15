@@ -1,6 +1,6 @@
 {
   "name": "Clásicos del Rock en Español",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "rock",
     "spanish",
@@ -288,7 +288,8 @@
       "fun_fact_nl": "Het won in 1994 een MTV Video Award en gaat over de moord op de Argentijnse schrijver en activist Rodolfo Walsh.",
       "isrc": "ARFSB0800334",
       "uri_deezer": "deezer://track/6686670",
-      "uri_apple_music": "applemusic://track/1555328828"
+      "uri_apple_music": "applemusic://track/1555328828",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pjPA7CXutDw"
     },
     {
       "year": 1993,
@@ -328,7 +329,8 @@
       "fun_fact_nl": "Rey Azúcar werd geproduceerd door Tina Weymouth en Chris Frantz van Talking Heads — vandaar de strakkere groove.",
       "isrc": "ARFSB0800352",
       "uri_deezer": "deezer://track/6686599",
-      "uri_apple_music": "applemusic://track/298978638"
+      "uri_apple_music": "applemusic://track/298978638",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9xua8KKPZME"
     },
     {
       "year": 1992,
