@@ -1,6 +1,6 @@
 {
   "name": "Rock Rioplatense",
-  "version": "1.1",
+  "version": "1.2",
   "tags": [
     "rock",
     "spanish",
@@ -32,7 +32,8 @@
       "fun_fact_nl": "De band uit Montevideo was twintig jaar een grappenband voordat dit album hen tot de meest geciteerde tekstschrijvers van de regio maakte.",
       "isrc": "UYB141602506",
       "uri_deezer": "deezer://track/3257569121",
-      "uri_apple_music": "applemusic://track/1573663046"
+      "uri_apple_music": "applemusic://track/1573663046",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y9LlnLTH87U"
     },
     {
       "year": 2006,
@@ -52,7 +53,8 @@
       "fun_fact_nl": "Vier minuten waarin een man zichzelf onderweg naar een vriend een besluit in- en uitpraat, en nooit aankomt.",
       "isrc": "UYB141602504",
       "uri_deezer": "deezer://track/3257569101",
-      "uri_apple_music": "applemusic://track/1573663034"
+      "uri_apple_music": "applemusic://track/1573663034",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K7XcO81TckU"
     },
     {
       "year": 2009,
@@ -71,7 +73,8 @@
       "fun_fact_fr": "Une seule phrase, chantée à toute vitesse pendant quatre minutes, énumérant de qui un homme est le fils, le frère et le voisin.",
       "fun_fact_nl": "Eén enkele zin, vier minuten lang op snelheid gezongen, die opsomt wiens zoon, broer en buurman één man allemaal is.",
       "isrc": "ARF110900970",
-      "uri_deezer": "deezer://track/7393403"
+      "uri_deezer": "deezer://track/7393403",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XMW3giznx-U"
     },
     {
       "year": 2012,
@@ -91,7 +94,8 @@
       "fun_fact_nl": "Ook van het album uit 2012 — de titel is slechts een tijdstip, en het nummer gaat over wat er dan níét gebeurt.",
       "isrc": "UYH121900007",
       "uri_deezer": "deezer://track/661625492",
-      "uri_apple_music": "applemusic://track/1442408689"
+      "uri_apple_music": "applemusic://track/1442408689",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j7uxvgJcWqc"
     },
     {
       "year": 2012,
@@ -111,7 +115,8 @@
       "fun_fact_nl": "Van El Calor del Pleno Invierno, gemaakt nadat de band zijn saxofonist verloor en de blazerssectie toch behield.",
       "isrc": "UYH121200025",
       "uri_deezer": "deezer://track/588479072",
-      "uri_apple_music": "applemusic://track/1442408692"
+      "uri_apple_music": "applemusic://track/1442408692",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NvB0sFK1sjY"
     },
     {
       "year": 2004,
@@ -131,7 +136,8 @@
       "fun_fact_nl": "Het titelnummer van het album waarmee de band toerde toen de brand in Cromañón bij een van hun concerten 194 mensen doodde.",
       "isrc": "ARF841700043",
       "uri_deezer": "deezer://track/395890422",
-      "uri_apple_music": "applemusic://track/1043375433"
+      "uri_apple_music": "applemusic://track/1043375433",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MWwaih5U710"
     },
     {
       "year": 2004,
@@ -151,7 +157,8 @@
       "fun_fact_nl": "Van hetzelfde album uit 2004 — de band speelde daarna nog jaren onder een andere naam en voor een verdeeld publiek.",
       "isrc": "ARF840400142",
       "uri_deezer": "deezer://track/109383418",
-      "uri_apple_music": "applemusic://track/1043375136"
+      "uri_apple_music": "applemusic://track/1043375136",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JwjvT-9Zz58"
     },
     {
       "year": 2006,
@@ -170,7 +177,8 @@
       "fun_fact_fr": "Extrait de Señales, le premier album après l'incendie, enregistré alors que le procès était encore en cours.",
       "fun_fact_nl": "Van Señales, het eerste album na de brand — opgenomen terwijl het proces nog liep.",
       "isrc": "ARF840400283",
-      "uri_deezer": "deezer://track/109383730"
+      "uri_deezer": "deezer://track/109383730",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=niEkeAcW4CI"
     },
     {
       "year": 2004,
@@ -190,7 +198,8 @@
       "fun_fact_nl": "Zafar is Río-de-la-Plata-slang voor ergens onderuit komen — het woord laat zich niet netjes vertalen, en dat hoort erbij.",
       "isrc": "ARF140400100",
       "uri_deezer": "deezer://track/1566896",
-      "uri_apple_music": "applemusic://track/1444074881"
+      "uri_apple_music": "applemusic://track/1444074881",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OtPz-UQVK-k"
     },
     {
       "year": 2004,
@@ -210,7 +219,8 @@
       "fun_fact_nl": "Van A Contraluz, de plaat die de band van Montevideo over de rivier naar de Argentijnse festivals bracht.",
       "isrc": "ARF140400097",
       "uri_deezer": "deezer://track/1566891",
-      "uri_apple_music": "applemusic://track/1444074692"
+      "uri_apple_music": "applemusic://track/1444074692",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H5CJpZGlmFU"
     },
     {
       "year": 2001,
@@ -230,7 +240,8 @@
       "fun_fact_nl": "Van De Bichos y Flores — de band uit Montevideo speelt rock met blazers, en juist dat maakt hun klank Uruguayaans in plaats van Argentijns.",
       "isrc": "ARF140100186",
       "uri_deezer": "deezer://track/7337794",
-      "uri_apple_music": "applemusic://track/1444106633"
+      "uri_apple_music": "applemusic://track/1444106633",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zt6nCSMAIZg"
     },
     {
       "year": 2000,
@@ -250,7 +261,8 @@
       "fun_fact_nl": "Van La Esquina del Infinito — de band brengt alles op zijn eigen label uit en wijst al dertig jaar majordeals af.",
       "isrc": "ARF140100136",
       "uri_deezer": "deezer://track/812044772",
-      "uri_apple_music": "applemusic://track/1443620090"
+      "uri_apple_music": "applemusic://track/1443620090",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XsIsqOmeMHc"
     },
     {
       "year": 2003,
@@ -270,7 +282,8 @@
       "fun_fact_nl": "Van Detonador de Sueños, opgenomen toen de band stadions vulde zonder ooit een radiosingle te hebben gehad.",
       "isrc": "ARA140300104",
       "uri_deezer": "deezer://track/3874514201",
-      "uri_apple_music": "applemusic://track/1881332777"
+      "uri_apple_music": "applemusic://track/1881332777",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZjwCEVLn8V0"
     },
     {
       "year": 2004,
@@ -290,7 +303,8 @@
       "fun_fact_nl": "Van El Número Imperfecto, het laatste album voor het auto-ongeluk waardoor de bassist, de broer van de zanger, niet meer kon optreden.",
       "isrc": "ARF040400453",
       "uri_deezer": "deezer://track/3411903",
-      "uri_apple_music": "applemusic://track/722225923"
+      "uri_apple_music": "applemusic://track/722225923",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UFIMtSQ225o"
     },
     {
       "year": 2000,
@@ -310,7 +324,8 @@
       "fun_fact_nl": "Van Cuentos decapitados, het album dat de band uit het clubcircuit van Buenos Aires haalde.",
       "isrc": "ARF040704995",
       "uri_deezer": "deezer://track/3412182",
-      "uri_apple_music": "applemusic://track/724574280"
+      "uri_apple_music": "applemusic://track/724574280",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UoUOJtDzJ1g"
     },
     {
       "year": 2006,
@@ -330,7 +345,8 @@
       "fun_fact_nl": "Metal gezongen in de Argentijnse payada-traditie — de band legde de cadans van een gauchodichter over vervormde gitaren.",
       "isrc": "ARF850600142",
       "uri_deezer": "deezer://track/1490492922",
-      "uri_apple_music": "applemusic://track/1585328489"
+      "uri_apple_music": "applemusic://track/1585328489",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TD1e3EdW6Lk"
     },
     {
       "year": 1998,
@@ -350,7 +366,8 @@
       "fun_fact_nl": "Almafuerte zette de lijn van Hermética voort, en de titel gebruikt vos — het Argentijnse jij dat geen enkele cursus Spaans leert.",
       "isrc": "ARF099800056",
       "uri_deezer": "deezer://track/4154478",
-      "uri_apple_music": "applemusic://track/1443372137"
+      "uri_apple_music": "applemusic://track/1443372137",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_0DQZLsUc8c"
     },
     {
       "year": 2006,
@@ -370,7 +387,8 @@
       "fun_fact_nl": "Van Ahí Vamos, vijftien jaar na Soda Stereo gemaakt — de gitaarklank is bewust die welke hij had achtergelaten.",
       "isrc": "ARF030600057",
       "uri_deezer": "deezer://track/13255149",
-      "uri_apple_music": "applemusic://track/157364342"
+      "uri_apple_music": "applemusic://track/157364342",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uLIs0j2WnlM"
     },
     {
       "year": 2009,
@@ -390,7 +408,8 @@
       "fun_fact_nl": "Het titelnummer van zijn laatste album — een beroerte tijdens de tournee die volgde bracht hem in een coma waaruit hij nooit ontwaakte.",
       "isrc": "ARF100900383",
       "uri_deezer": "deezer://track/472033662",
-      "uri_apple_music": "applemusic://track/1358493168"
+      "uri_apple_music": "applemusic://track/1358493168",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-ACG_gupkDw"
     },
     {
       "year": 2007,
@@ -410,7 +429,8 @@
       "fun_fact_nl": "Van El Mamut — de band begon in de jaren tachtig als hardcoregroep en kwam hier uit bij iets wat op pop lijkt.",
       "isrc": "ARF470700340",
       "uri_deezer": "deezer://track/7727689",
-      "uri_apple_music": "applemusic://track/405156235"
+      "uri_apple_music": "applemusic://track/405156235",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wGOWrMAQN-k"
     },
     {
       "year": 2007,
@@ -430,7 +450,8 @@
       "fun_fact_nl": "Ook van El Mamut, en het nummer dat de band na twintig jaar samen zijn eerste radioairplay opleverde.",
       "isrc": "ARF470700345",
       "uri_deezer": "deezer://track/7727694",
-      "uri_apple_music": "applemusic://track/405156358"
+      "uri_apple_music": "applemusic://track/405156358",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ytaCTtAyHh4"
     },
     {
       "year": 1983,
@@ -449,7 +470,8 @@
       "fun_fact_fr": "Écrite sous la dictature et publiée l'année de sa chute : les dinosaures du titre sont ceux qui vont disparaître.",
       "fun_fact_nl": "Geschreven onder de dictatuur en uitgebracht in het jaar dat die viel — de dinosauriërs uit de titel zijn degenen die zullen verdwijnen.",
       "isrc": "ARF098300014",
-      "uri_deezer": "deezer://track/2674969"
+      "uri_deezer": "deezer://track/2674969",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BAuqozi64WQ"
     },
     {
       "year": 1988,
@@ -469,7 +491,8 @@
       "fun_fact_nl": "De band speelde nooit op televisie en gaf geen interviews — daarom bestaat er van zo'n bekend nummer nauwelijks beeld.",
       "isrc": "AR5CC8800008",
       "uri_deezer": "deezer://track/2593826682",
-      "uri_apple_music": "applemusic://track/1722336139"
+      "uri_apple_music": "applemusic://track/1722336139",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XhYiBaYux4Y"
     },
     {
       "year": 1991,
@@ -489,7 +512,8 @@
       "fun_fact_nl": "Van La Mosca y la Sopa — de werfjongen uit de titel schetst de industriële voorsteden waar de band vandaan kwam.",
       "isrc": "AR5CC9100007",
       "uri_deezer": "deezer://track/2593932742",
-      "uri_apple_music": "applemusic://track/1722348402"
+      "uri_apple_music": "applemusic://track/1722348402",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DRf5Nzgq3Lk"
     },
     {
       "year": 1993,
@@ -509,7 +533,8 @@
       "fun_fact_nl": "Van Lobo Suelto, de ene helft van een dubbelalbum dat op dezelfde dag als twee losse platen verscheen.",
       "isrc": "AR5CC9300011",
       "uri_deezer": "deezer://track/2594136922",
-      "uri_apple_music": "applemusic://track/1722371231"
+      "uri_apple_music": "applemusic://track/1722371231",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XacNmPqBork"
     },
     {
       "year": 2004,
@@ -529,7 +554,8 @@
       "fun_fact_nl": "De Indio was de zanger van Patricio Rey; dit komt van het soloalbum dat hij maakte na het definitieve einde van die band.",
       "isrc": "ARG601101170",
       "uri_deezer": "deezer://track/2593678462",
-      "uri_apple_music": "applemusic://track/1722315375"
+      "uri_apple_music": "applemusic://track/1722315375",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OK_WAw7hOEE"
     },
     {
       "year": 2013,
@@ -549,7 +575,8 @@
       "fun_fact_nl": "Ten tijde van deze plaat kondigde de Indio concerten aan voor meer dan honderdduizend mensen in provinciestadjes zonder stadion.",
       "isrc": "ARG601300550",
       "uri_deezer": "deezer://track/2756585911",
-      "uri_apple_music": "applemusic://track/1722315298"
+      "uri_apple_music": "applemusic://track/1722315298",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WlBwsQ2NWB8"
     },
     {
       "year": 2013,
@@ -569,7 +596,8 @@
       "fun_fact_nl": "De titel komt uit een kort verhaal van Julio Cortázar, hetzelfde dat Antonioni verfilmde als Blow-Up.",
       "isrc": "ARG601300556",
       "uri_deezer": "deezer://track/2756585971",
-      "uri_apple_music": "applemusic://track/1722315304"
+      "uri_apple_music": "applemusic://track/1722315304",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ajfLkBoXYQQ"
     },
     {
       "year": 2011,
@@ -589,7 +617,8 @@
       "fun_fact_nl": "Van La Luna Hueca — drie decennia later speelt Skay nog steeds dezelfde Gibson door dezelfde kleine versterker.",
       "isrc": "ARW251100631",
       "uri_deezer": "deezer://track/3246179981",
-      "uri_apple_music": "applemusic://track/1462846132"
+      "uri_apple_music": "applemusic://track/1462846132",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UJrfYfNG0rg"
     },
     {
       "year": 2002,
@@ -609,7 +638,8 @@
       "fun_fact_nl": "Skay was de gitarist van Patricio Rey; dit komt van zijn eerste soloplaat na het einde van die band.",
       "isrc": "QM7281627110",
       "uri_deezer": "deezer://track/3271796591",
-      "uri_apple_music": "applemusic://track/1462847892"
+      "uri_apple_music": "applemusic://track/1462847892",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VLl8n-ivOuY"
     },
     {
       "year": 2007,
