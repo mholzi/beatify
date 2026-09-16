@@ -1,6 +1,6 @@
 {
   "name": "Disney Latino",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "disney",
     "movies",
@@ -68,7 +68,8 @@
         "Marco Antonio Solís",
         "Sofia Carson"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Frozen II» della Disney (2019)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Frozen II» della Disney (2019).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XxSbXcfN_X4"
     },
     {
       "year": 2010,
@@ -105,7 +106,8 @@
         "David Bisbal",
         "Mijares"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Soy Luna: Volver a rodar» della Disney (2026)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Soy Luna: Volver a rodar» della Disney (2026).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yFchuO_Vovc"
     },
     {
       "year": 1991,
@@ -124,7 +126,8 @@
         "Esteman",
         "Héctor Ortiz"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-STWc_-Zh6g"
     },
     {
       "year": 2021,
@@ -161,7 +164,8 @@
         "Frozen",
         "ZAYN"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (2019)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (2019).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fJg7OxyWfVA"
     },
     {
       "year": 2021,
@@ -180,7 +184,8 @@
         "Beto Castillo",
         "Christina Aguilera"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Encanto» della Disney (2021)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Encanto» della Disney (2021).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JOL2KS5BgM0"
     },
     {
       "year": 2017,
@@ -199,7 +204,8 @@
         "Mendez",
         "Sebastian Yatra"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nTU9mMixmJc"
     },
     {
       "year": 2020,
@@ -544,7 +550,8 @@
         "Analy",
         "Chayanne"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Los Muppets» della Disney (2011)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Los Muppets» della Disney (2011).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=k2eWJeCAQpc"
     },
     {
       "year": 1989,
@@ -1034,7 +1041,8 @@
         "Armando Gama",
         "TINI"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Bal6opFRpCc"
     }
   ]
 }

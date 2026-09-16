@@ -1,6 +1,6 @@
 {
   "name": "Música Colombiana Alegre",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "latin",
     "spanish",
@@ -32,7 +32,8 @@
       "fun_fact_nl": "Otto Serge en accordeonist Rafael Ricardo stonden voor de gladde, radiovriendelijke kant van de jaren-tachtigvallenato.",
       "isrc": "COC018315793",
       "uri_deezer": "deezer://track/1700971297",
-      "uri_apple_music": "applemusic://track/1712902085"
+      "uri_apple_music": "applemusic://track/1712902085",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0xJ5FrNbbCs"
     },
     {
       "year": 1991,
@@ -52,7 +53,8 @@
       "fun_fact_nl": "Een van de laatste platen die Binomio de Oro met Rafael Orozco maakte; hij werd het jaar daarop vermoord.",
       "isrc": "COC019121031",
       "uri_deezer": "deezer://track/37800681",
-      "uri_apple_music": "applemusic://track/1711865709"
+      "uri_apple_music": "applemusic://track/1711865709",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_ptHsR0cGPM"
     },
     {
       "year": 1993,
@@ -72,7 +74,8 @@
       "fun_fact_nl": "Van Clásicos de la Provincia, het album waarop Carlos Vives een rockband achter vallenatostandards zette.",
       "isrc": "COSO11300340",
       "uri_deezer": "deezer://track/1170737072",
-      "uri_apple_music": "applemusic://track/1543992400"
+      "uri_apple_music": "applemusic://track/1543992400",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bjP8CQFG5uM"
     },
     {
       "year": 1993,
@@ -92,7 +95,8 @@
       "fun_fact_nl": "Juancho Polo Valencia schreef Alicia Adorada nadat zijn vrouw stierf terwijl hij ver van huis speelde.",
       "isrc": "COSO11300338",
       "uri_deezer": "deezer://track/1170737052",
-      "uri_apple_music": "applemusic://track/1543992223"
+      "uri_apple_music": "applemusic://track/1543992223",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9j3oCUtylw4"
     },
     {
       "year": 1994,
@@ -133,7 +137,8 @@
       "fun_fact_nl": "Het titelnummer van het album dat accordeonmuziek de Colombiaanse rock in trok en er als pop weer uit.",
       "isrc": "QMDA62527660",
       "uri_deezer": "deezer://track/3484258841",
-      "uri_apple_music": "applemusic://track/1543817535"
+      "uri_apple_music": "applemusic://track/1543817535",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-QkmEVNA-fo"
     },
     {
       "year": 1995,
@@ -153,7 +158,8 @@
       "fun_fact_nl": "Dertig jaar later is dit nog steeds het nummer dat opstaat als een Colombiaans feest opnieuw moet aanslaan.",
       "isrc": "COSO11300351",
       "uri_deezer": "deezer://track/1169356972",
-      "uri_apple_music": "applemusic://track/1543817006"
+      "uri_apple_music": "applemusic://track/1543817006",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=feaB_q4s2GM"
     },
     {
       "year": 1995,
@@ -173,7 +179,8 @@
       "fun_fact_nl": "Donato en Estéfano waren een Colombiaans duo dat later hits schreef voor de halve latinpop.",
       "isrc": "NLB639550001",
       "uri_deezer": "deezer://track/15213957",
-      "uri_apple_music": "applemusic://track/404413505"
+      "uri_apple_music": "applemusic://track/404413505",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e5-pnDc5GlI"
     },
     {
       "year": 1996,
@@ -193,7 +200,8 @@
       "fun_fact_nl": "Na de moord op Orozco voegde de groep 'de América' toe en ging verder met een nieuwe zanger.",
       "isrc": "COC019622909",
       "uri_deezer": "deezer://track/1963806",
-      "uri_apple_music": "applemusic://track/1711870034"
+      "uri_apple_music": "applemusic://track/1711870034",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ANd_kuRC7jU"
     },
     {
       "year": 1997,
@@ -213,7 +221,8 @@
       "fun_fact_nl": "Los Diablitos waren in de jaren negentig de groep waaraan elke andere vallenatoband werd afgemeten.",
       "isrc": "COC019723289",
       "uri_deezer": "deezer://track/1401641",
-      "uri_apple_music": "applemusic://track/1714010379"
+      "uri_apple_music": "applemusic://track/1714010379",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OuQ7Att6ZTg"
     },
     {
       "year": 1998,
@@ -233,7 +242,8 @@
       "fun_fact_nl": "Een wiegelied vermomd als liefdeslied, en een van de meest gevraagde nummers van de groep op bruiloften.",
       "isrc": "COC019823618",
       "uri_deezer": "deezer://track/1963860",
-      "uri_apple_music": "applemusic://track/1711885404"
+      "uri_apple_music": "applemusic://track/1711885404",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SloTFWbshwE"
     },
     {
       "year": 2000,
@@ -253,7 +263,8 @@
       "fun_fact_nl": "Bacilos waren een Colombiaanse zanger en twee Brazilianen die elkaar in Miami troffen en toch in het Spaans zongen.",
       "isrc": "USWL10000454",
       "uri_deezer": "deezer://track/3588703",
-      "uri_apple_music": "applemusic://track/73297348"
+      "uri_apple_music": "applemusic://track/73297348",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6JqnbsQpljU"
     },
     {
       "year": 2001,
@@ -273,7 +284,8 @@
       "fun_fact_nl": "Celedón en accordeonist Jimmy Zambrano vormden een vast duo, wat in de vallenato als huwelijk telt.",
       "isrc": "COS010100093",
       "uri_deezer": "deezer://track/13256477",
-      "uri_apple_music": "applemusic://track/487291493"
+      "uri_apple_music": "applemusic://track/487291493",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K6PjcujwfEo"
     },
     {
       "year": 2002,
@@ -293,7 +305,8 @@
       "fun_fact_nl": "Het titelnummer van het album waarmee Bacilos het jaar daarop een Latin Grammy won.",
       "isrc": "USWL10200073",
       "uri_deezer": "deezer://track/3588702",
-      "uri_apple_music": "applemusic://track/280875718"
+      "uri_apple_music": "applemusic://track/280875718",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5geImJw0Dvc"
     },
     {
       "year": 2004,
@@ -313,7 +326,8 @@
       "fun_fact_nl": "Twee jaar voordat het duo een Latin Grammy won en het genre voor het eerst naar de ceremonie bracht.",
       "isrc": "COS010400083",
       "uri_deezer": "deezer://track/13256481",
-      "uri_apple_music": "applemusic://track/478753995"
+      "uri_apple_music": "applemusic://track/478753995",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=56IhUKvPYX0"
     },
     {
       "year": 2004,
@@ -333,7 +347,8 @@
       "fun_fact_nl": "Lucas Arnau kwam uit de popscene van Medellín, die toen met de kust om de hitlijsten streed.",
       "isrc": "COS010400073",
       "uri_deezer": "deezer://track/1279459542",
-      "uri_apple_music": "applemusic://track/1559025955"
+      "uri_apple_music": "applemusic://track/1559025955",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8HnxjPmZlSw"
     },
     {
       "year": 2005,
@@ -353,7 +368,8 @@
       "fun_fact_nl": "Fanny Lu studeerde techniek en werkte bij de televisie voordat dit haar fulltime zangeres maakte.",
       "isrc": "COUM70500081",
       "uri_deezer": "deezer://track/1677541027",
-      "uri_apple_music": "applemusic://track/1613183593"
+      "uri_apple_music": "applemusic://track/1613183593",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3f6HWYs2FJQ"
     },
     {
       "year": 2005,
@@ -394,7 +410,8 @@
       "fun_fact_nl": "Que bonita es esta vida won de Latin Grammy voor beste vallenato-album en werd het visitekaartje van het genre.",
       "isrc": "COSO10600390",
       "uri_deezer": "deezer://track/13322048",
-      "uri_apple_music": "applemusic://track/270219850"
+      "uri_apple_music": "applemusic://track/270219850",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BudVsICXxF8"
     },
     {
       "year": 2007,
@@ -414,7 +431,8 @@
       "fun_fact_nl": "Israel Romero speelt accordeon in deze groep sinds hij haar in 1976 oprichtte.",
       "isrc": "USALH0702002",
       "uri_deezer": "deezer://track/63269551",
-      "uri_apple_music": "applemusic://track/317304235"
+      "uri_apple_music": "applemusic://track/317304235",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HvM1j669_cw"
     },
     {
       "year": 2008,
@@ -434,7 +452,8 @@
       "fun_fact_nl": "Cabas bouwde zijn geluid op cumbia in plaats van vallenato, aan de kust twee heel verschillende families.",
       "isrc": "ES5080700484",
       "uri_deezer": "deezer://track/3407308",
-      "uri_apple_music": "applemusic://track/693078190"
+      "uri_apple_music": "applemusic://track/693078190",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t20F-0C7oIA"
     },
     {
       "year": 2008,
@@ -454,7 +473,8 @@
       "fun_fact_nl": "Emiliano Zuleta is hier te gast; die achternaam hoort bij een van de stichtende families van de vallenato.",
       "isrc": "COC010827434",
       "uri_deezer": "deezer://track/16341871",
-      "uri_apple_music": "applemusic://track/1884065840"
+      "uri_apple_music": "applemusic://track/1884065840",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZqQCEYKW2f8"
     },
     {
       "year": 2009,
@@ -474,7 +494,8 @@
       "fun_fact_nl": "Los Inquietos hervormden zich meer dan eens; elke bezetting houdt vol dé bezetting te zijn.",
       "isrc": "ES7511027507",
       "uri_deezer": "deezer://track/1255474312",
-      "uri_apple_music": "applemusic://track/1770525074"
+      "uri_apple_music": "applemusic://track/1770525074",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kQiBJcz2udA"
     },
     {
       "year": 2009,
@@ -494,7 +515,8 @@
       "fun_fact_nl": "Manjarrés wordt aangekondigd als de Caballero del Vallenato, een titel die de kust spaarzaam uitdeelt.",
       "isrc": "COC010927769",
       "uri_deezer": "deezer://track/4839674",
-      "uri_apple_music": "applemusic://track/1713205438"
+      "uri_apple_music": "applemusic://track/1713205438",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q0FX4czufkI"
     },
     {
       "year": 2012,
@@ -514,7 +536,8 @@
       "fun_fact_nl": "Maía zong jarenlang achtergrondvocalen op andermans platen voordat dit nummer haar eigen naam droeg.",
       "isrc": "COS010200637",
       "uri_deezer": "deezer://track/19778021",
-      "uri_apple_music": "applemusic://track/520237042"
+      "uri_apple_music": "applemusic://track/520237042",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KDWHLmPaTWE"
     },
     {
       "year": 2013,
@@ -534,7 +557,8 @@
       "fun_fact_nl": "Vives keerde terug na jaren zonder muziek, en deze plaat zei dat hardop.",
       "isrc": "USSD11300003",
       "uri_deezer": "deezer://track/64029983",
-      "uri_apple_music": "applemusic://track/596889801"
+      "uri_apple_music": "applemusic://track/596889801",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CJ_zRSv3Hr8"
     },
     {
       "year": 2014,
@@ -554,7 +578,8 @@
       "fun_fact_nl": "ChocQuibTown komt van de Pacifische kust, een heel ander Colombia dan dat van het accordeon.",
       "isrc": "USSD11400026",
       "uri_deezer": "deezer://track/78068431",
-      "uri_apple_music": "applemusic://track/867644927"
+      "uri_apple_music": "applemusic://track/867644927",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=21C8iLpfEAI"
     },
     {
       "year": 2014,
@@ -574,7 +599,8 @@
       "fun_fact_nl": "Een Colombiaan en een New Yorker van Puerto Ricaanse afkomst, zingend over een accordeonfiguur.",
       "isrc": "USSD11400075",
       "uri_deezer": "deezer://track/78068432",
-      "uri_apple_music": "applemusic://track/903284901"
+      "uri_apple_music": "applemusic://track/903284901",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Geqmpq0tjNU"
     },
     {
       "year": 2015,
@@ -594,7 +620,8 @@
       "fun_fact_nl": "Cocha Molina is accordeonist uit een dynastie van accordeonisten; zo reist het instrument aan de kust.",
       "isrc": "QM9F81500022",
       "uri_deezer": "deezer://track/107970536",
-      "uri_apple_music": "applemusic://track/1042386379"
+      "uri_apple_music": "applemusic://track/1042386379",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=51jFCZx9IW4"
     },
     {
       "year": 2016,
@@ -614,7 +641,8 @@
       "fun_fact_nl": "Twee mensen van dezelfde Caribische kust, veertig kilometer uit elkaar, die eerst beroemd moesten worden.",
       "isrc": "USSD11600112",
       "uri_deezer": "deezer://track/420364332",
-      "uri_apple_music": "applemusic://track/1299332776"
+      "uri_apple_music": "applemusic://track/1299332776",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-UV0QGLmYys"
     },
     {
       "year": 2016,
@@ -634,7 +662,8 @@
       "fun_fact_nl": "Piso 21 komt uit Medellín en noemde zich naar het appartement waar ze begonnen te repeteren.",
       "isrc": "MXF151600405",
       "uri_deezer": "deezer://track/137209148",
-      "uri_apple_music": "applemusic://track/1373680440"
+      "uri_apple_music": "applemusic://track/1373680440",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=F3uzNaw-uhE"
     },
     {
       "year": 2018,
@@ -654,7 +683,8 @@
       "fun_fact_nl": "Vallenato botst frontaal op reggaeton: het accordeon blijft, de beat komt ergens heel anders vandaan.",
       "isrc": "USSD11700403",
       "uri_deezer": "deezer://track/406447452",
-      "uri_apple_music": "applemusic://track/1282633918"
+      "uri_apple_music": "applemusic://track/1282633918",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cpN78ZjnCZY"
     }
   ]
 }
