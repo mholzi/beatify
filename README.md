@@ -825,6 +825,11 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.7.1 — Clean Endings 🏁
+- **The End round card closes with the round** — if the timer ends the round while the host has the card open, it no longer stays on screen through the reveal or Game Over (#2849, thanks to @Rayan-and-beyond)
+- **The winner's name stays whole on the TV podium** — a seven-letter name no longer breaks mid-word (#2850)
+- **+306 YouTube URIs** across nine playlists, so more of the catalogue plays for anyone on YouTube Music (#2848, #2855, #2858)
+
 ### v4.7.0 — The Turn 📈
 - **The end screen shows the round it turned on** — three seconds before the podium, the TV goes back to the one round where the lead last changed hands: two lines climbing, a mark on the round, and the two names. A game somebody led from the first song has no such round, and the screen goes straight to the podium instead (#2563)
 - **+126 YouTube URIs** across six playlists, so more of the catalogue plays for anyone on YouTube Music (#2800)

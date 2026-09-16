@@ -4,10 +4,29 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.1-rc1] - 2026-09-16
+
+Die Woche 2026-W38b: ein Blattplan-Eintrag (#2855) und was seit v4.7.0 sonst auf `main` lag — zwei
+Befunde aus dem Live-Test von v4.7.0, ein externer Fix und Katalogpflege.
+
 ### Fixed
 - **Die "End round N"-Karte verschwindet, sobald die Runde vorbei ist oder die naechste beginnt**
-  (#2832). Ein automatischer Reveal oder Game Over laesst damit keine eingefrorene Restzeit mehr
-  ueber dem aktuellen Bildschirm stehen.
+  (#2832, #2849 von **@Rayan-and-beyond**). Ein automatischer Reveal oder Game Over laesst damit
+  keine eingefrorene Restzeit mehr ueber dem aktuellen Bildschirm stehen.
+- **Der Siegername auf dem TV-Podest bricht nicht mehr mitten im Wort** (#2845, #2850). Die
+  Dark-Theme-Regel des Handys ueberstimmte die TV-Endbuehne; „Andreas" stand als „Andr / eas" da.
+- **Californication steht in `2000s-pop-anthems` auf 1999** (#2840, #2844), gemeldet von vier
+  Spielern in derselben Runde.
+- **Tote Apple-Music-Regionskarten** in `top-100-power-ballads` (#2856, #2857) und
+  `hitster-100-en-espanol` (#2860, #2861): jeweils eine ID fuer alle sieben Storefronts, die in
+  keinem Katalog mehr existierte.
+
+### Changed
+- **+306 YouTube-URIs** ueber neun Playlists (#2848, #2855, #2858). Die PR-Titel summieren sich auf
+  232 — gebuendelte Laeufe; gezaehlt gegen die Playlist-JSON sind es 7.649 -> 7.955, 90,3 % ->
+  93,9 %. `deutschrap-klassiker` und `clasicos-rock-en-espanol` sind jetzt vollstaendig.
+  Alle elf seit v4.7.0 geaenderten Playlist-Dateien haben ihr `version`-Feld mitgezogen.
+- ruff 0.16.7 mit fester Regelauswahl (#2854), `jsonschema>=4.26.0` (#2851).
 
 ## [4.7.0] - 2026-09-13
 
