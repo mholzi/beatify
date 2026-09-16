@@ -1,6 +1,6 @@
 {
   "name": "Música Colombiana Alegre",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "latin",
     "spanish",
@@ -112,7 +112,8 @@
       "fun_fact_nl": "Morales was een van de twee stemmen die Los Inquietos voortbracht voordat beide zangers hun eigen weg gingen.",
       "isrc": "COC019422073",
       "uri_deezer": "deezer://track/12479030",
-      "uri_apple_music": "applemusic://track/1713457398"
+      "uri_apple_music": "applemusic://track/1713457398",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gu9dZJnWEnM"
     },
     {
       "year": 1995,
@@ -372,7 +373,8 @@
       "fun_fact_nl": "Fonseca's doorbraak, en de plaat die bewees dat vallenatoritmes een rechttoe rechtaan popballade kunnen dragen.",
       "isrc": "COH010500153",
       "uri_deezer": "deezer://track/3462875",
-      "uri_apple_music": "applemusic://track/714689838"
+      "uri_apple_music": "applemusic://track/714689838",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9oLBY9QqTAQ"
     },
     {
       "year": 2006,
