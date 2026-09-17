@@ -1300,7 +1300,7 @@
     "highlight_speed_record": "{player} was lightning fast — answered in {time}s!",
     "highlight_comeback": "{player} climbed {positions} spots — what a comeback!",
     "highlight_photo_finish": "Photo finish in round {round}! {players} tied!",
-    "highlightsTab": "🎬 Highlights",
+    "highlightsTab": "Highlights",
     "roundLabel": "Round {round}"
   },
   "share": {

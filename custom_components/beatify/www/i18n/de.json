@@ -1300,7 +1300,7 @@
     "highlight_speed_record": "{player} war blitzschnell — in {time}s geantwortet!",
     "highlight_comeback": "{player} hat {positions} Plätze gutgemacht — was für ein Comeback!",
     "highlight_photo_finish": "Fotofinish in Runde {round}! {players} gleichauf!",
-    "highlightsTab": "🎬 Highlights",
+    "highlightsTab": "Highlights",
     "roundLabel": "Runde {round}"
   },
   "share": {

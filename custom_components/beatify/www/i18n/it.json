@@ -1300,7 +1300,7 @@
     "highlight_speed_record": "{player} è stato fulmineo — risposta in {time}s!",
     "highlight_comeback": "{player} ha guadagnato {positions} posizioni — che rimonta!",
     "highlight_photo_finish": "Volata al fotofinish al turno {round}! {players} a pari merito!",
-    "highlightsTab": "🎬 Momenti clou",
+    "highlightsTab": "Momenti clou",
     "roundLabel": "Turno {round}"
   },
   "share": {
