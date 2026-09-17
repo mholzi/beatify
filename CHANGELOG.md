@@ -4,49 +4,29 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.7.1-rc3] - 2026-09-17
+## [4.7.1] - 2026-09-17
 
-Zwei Jahres-Meldungen aus laufenden Spielen, auf Markus' Zuruf noch in diese Woche gezogen; rc2 wurde
-nicht getestet.
-
-### Fixed
-- **„Better Off Alone" von Alice Deejay steht auf 1998** (#2862, #2868) in `90er-hits` und
-  `eurodance-90s`, wie schon in `trance-classics`. Veroeffentlicht im Dezember 1998 in den
-  Niederlanden, ISRC-Jahrescode 98. Beide `version`-Felder gehoben.
-- „Centerfold" (#2865) geprueft: 1981 ist richtig, keine Aenderung.
-
-## [4.7.1-rc2] - 2026-09-17
-
-Ein Befund aus dem Live-Test von rc1, auf Markus' Zuruf noch in diese Woche gezogen.
-
-### Fixed
-- **„Highlights" zeigt das 🎬 nur noch einmal** (#2864, #2866). Das Icon stand auf dem TV-Game-Over
-  doppelt, weil `highlights.highlightsTab` es in allen sechs Sprachen zusaetzlich zum Icon-Span trug.
-  Der Text ist jetzt ohne Emoji, der Endbildschirm am Handy rendert das Icon im eigenen Span und
-  sieht aus wie vorher.
-
-## [4.7.1-rc1] - 2026-09-16
-
-Die Woche 2026-W38b: ein Blattplan-Eintrag (#2855) und was seit v4.7.0 sonst auf `main` lag — zwei
-Befunde aus dem Live-Test von v4.7.0, ein externer Fix und Katalogpflege.
+Die Woche 2026-W38b „Clean Endings", an einem Donnerstag auf Markus' Zuruf veroeffentlicht. Drei
+Kandidaten: rc1 bestand den Live-Test (zwei ganze Spiele bis zum Podium, TV bei 1920×1080) und
+brachte einen kosmetischen Befund (#2864); rc2 und rc3 zogen diesen Fix und eine Jahres-Korrektur
+nach. **rc3 lief nicht durch einen eigenen Live-Test** — Markus hat ihn fuer die zwei Aenderungen
+seit rc1 (Icon-Text, eine Jahreszahl) ausdruecklich ausgesetzt.
 
 ### Fixed
 - **Die "End round N"-Karte verschwindet, sobald die Runde vorbei ist oder die naechste beginnt**
   (#2832, #2849 von **@Rayan-and-beyond**). Ein automatischer Reveal oder Game Over laesst damit
   keine eingefrorene Restzeit mehr ueber dem aktuellen Bildschirm stehen.
-- **Der Siegername auf dem TV-Podest bricht nicht mehr mitten im Wort** (#2845, #2850). Die
-  Dark-Theme-Regel des Handys ueberstimmte die TV-Endbuehne; „Andreas" stand als „Andr / eas" da.
-- **Californication steht in `2000s-pop-anthems` auf 1999** (#2840, #2844), gemeldet von vier
-  Spielern in derselben Runde.
+- **Der Siegername auf dem TV-Podest bricht nicht mehr mitten im Wort** (#2845, #2850).
+- **„Highlights" zeigt das 🎬 nur noch einmal** (#2864, #2866), auf dem TV-Game-Over und am Handy.
+- **Californication steht in `2000s-pop-anthems` auf 1999** (#2840, #2844).
+- **„Better Off Alone" von Alice Deejay steht auf 1998** (#2862, #2868) in `90er-hits` und
+  `eurodance-90s`.
 - **Tote Apple-Music-Regionskarten** in `top-100-power-ballads` (#2856, #2857) und
-  `hitster-100-en-espanol` (#2860, #2861): jeweils eine ID fuer alle sieben Storefronts, die in
-  keinem Katalog mehr existierte.
+  `hitster-100-en-espanol` (#2860, #2861).
 
 ### Changed
-- **+306 YouTube-URIs** ueber neun Playlists (#2848, #2855, #2858). Die PR-Titel summieren sich auf
-  232 — gebuendelte Laeufe; gezaehlt gegen die Playlist-JSON sind es 7.649 -> 7.955, 90,3 % ->
-  93,9 %. `deutschrap-klassiker` und `clasicos-rock-en-espanol` sind jetzt vollstaendig.
-  Alle elf seit v4.7.0 geaenderten Playlist-Dateien haben ihr `version`-Feld mitgezogen.
+- **+306 YouTube-URIs** ueber neun Playlists (#2848, #2855, #2858), 7.649 -> 7.955, 90,3 % -> 93,9 %.
+  `deutschrap-klassiker` und `clasicos-rock-en-espanol` sind jetzt vollstaendig.
 - ruff 0.16.7 mit fester Regelauswahl (#2854), `jsonschema>=4.26.0` (#2851).
 
 ## [4.7.0] - 2026-09-13
