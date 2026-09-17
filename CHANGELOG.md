@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.1-rc2] - 2026-09-17
+
+Ein Befund aus dem Live-Test von rc1, auf Markus' Zuruf noch in diese Woche gezogen.
+
+### Fixed
+- **„Highlights" zeigt das 🎬 nur noch einmal** (#2864, #2866). Das Icon stand auf dem TV-Game-Over
+  doppelt, weil `highlights.highlightsTab` es in allen sechs Sprachen zusaetzlich zum Icon-Span trug.
+  Der Text ist jetzt ohne Emoji, der Endbildschirm am Handy rendert das Icon im eigenen Span und
+  sieht aus wie vorher.
+
 ## [4.7.1-rc1] - 2026-09-16
 
 Die Woche 2026-W38b: ein Blattplan-Eintrag (#2855) und was seit v4.7.0 sonst auf `main` lag — zwei
