@@ -1300,7 +1300,7 @@
     "highlight_speed_record": "{player} was razendsnel — antwoordde in {time}s!",
     "highlight_comeback": "{player} steeg {positions} plekken — wat een comeback!",
     "highlight_photo_finish": "Fotofinish in ronde {round}! {players} staan gelijk!",
-    "highlightsTab": "🎬 Highlights",
+    "highlightsTab": "Highlights",
     "roundLabel": "Ronde {round}"
   },
   "share": {
