@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.1-rc3] - 2026-09-17
+
+Zwei Jahres-Meldungen aus laufenden Spielen, auf Markus' Zuruf noch in diese Woche gezogen; rc2 wurde
+nicht getestet.
+
+### Fixed
+- **„Better Off Alone" von Alice Deejay steht auf 1998** (#2862, #2868) in `90er-hits` und
+  `eurodance-90s`, wie schon in `trance-classics`. Veroeffentlicht im Dezember 1998 in den
+  Niederlanden, ISRC-Jahrescode 98. Beide `version`-Felder gehoben.
+- „Centerfold" (#2865) geprueft: 1981 ist richtig, keine Aenderung.
+
 ## [4.7.1-rc2] - 2026-09-17
 
 Ein Befund aus dem Live-Test von rc1, auf Markus' Zuruf noch in diese Woche gezogen.
