@@ -1113,8 +1113,8 @@ class UpdateLobbyView(BeatifyAdminView):
     Rooms freeze their parameters at creation; any control still changeable
     while a lobby exists therefore lagged one game (confirmed on hardware for
     the media player: switching output devices only took effect on the NEXT
-    game). Songs are covered by the pre_start_hook; this endpoint covers the
-    device (extensible for further lobby-mutable settings). No-ops with
+    game). This endpoint covers the device, TTS, party lights, and — in LOBBY
+    only — the game options (#2769) and the playlist selection (#2888). No-ops with
     {"updated": false} when there is no lobby-phase game, so the frontend can
     fire-and-forget on every change without tracking game state.
     """
@@ -1227,15 +1227,70 @@ class UpdateLobbyView(BeatifyAdminView):
         # LOBBY only. This view also serves PLAYING and REVEAL so the host can
         # move the music to another speaker mid-game; a round count or a mode
         # flag that changed there would rewrite the rules under the players.
+        #
+        # #2888: the playlist selection is part of the same wizard run and was
+        # missing from the patch set too. The home card renders the new
+        # selection from local settings, so the screen showed the new playlists
+        # while the game played the old pool. A changed selection is loaded
+        # here and handed to the same rebuild as the options, so the provider
+        # filter and the round cap apply to the new pool in one step.
+        swap_paths: list[str] | None = None
+        swap_songs: list[dict[str, Any]] | None = None
+        raw_playlists = body.get("playlists")
+        if (
+            game_state.phase == GamePhase.LOBBY
+            and isinstance(raw_playlists, list)
+            and raw_playlists
+            and all(isinstance(p, str) and p for p in raw_playlists)
+            and set(raw_playlists) != set(game_state.playlists or [])
+        ):
+            loaded, load_warnings = await async_load_songs_from_paths(
+                self.hass, raw_playlists
+            )
+            if loaded:
+                swap_paths = list(raw_playlists)
+                swap_songs = loaded
+            else:
+                # Fire-and-forget endpoint: a selection with nothing usable
+                # must not take the lobby's working playlist away.
+                _LOGGER.warning(
+                    "Lobby playlists not changed: no valid songs in %s (%s)",
+                    raw_playlists,
+                    "; ".join(load_warnings) or "no warnings",
+                )
+
         game_options = body.get("game_options")
-        if isinstance(game_options, dict) and game_state.phase == GamePhase.LOBBY:
-            patched, changed = GameOptions.patched(game_state, game_options)
-            if changed and game_state.apply_lobby_options(patched):
-                updated.extend(changed)
-                _LOGGER.info(
-                    "Lobby updated: game options -> %s (total_rounds now %s)",
-                    ", ".join(changed),
-                    game_state.total_rounds,
+        if game_state.phase == GamePhase.LOBBY and (
+            isinstance(game_options, dict) or swap_paths
+        ):
+            patched, changed = GameOptions.patched(
+                game_state, game_options if isinstance(game_options, dict) else {}
+            )
+            if (changed or swap_paths) and game_state.apply_lobby_options(
+                patched, songs=swap_songs, playlists=swap_paths
+            ):
+                if changed:
+                    updated.extend(changed)
+                    _LOGGER.info(
+                        "Lobby updated: game options -> %s (total_rounds now %s)",
+                        ", ".join(changed),
+                        game_state.total_rounds,
+                    )
+                if swap_paths:
+                    updated.append("playlists")
+                    _LOGGER.info(
+                        "Lobby updated: playlists -> %s (%d songs, "
+                        "total_rounds now %s)",
+                        ", ".join(swap_paths),
+                        len(swap_songs or []),
+                        game_state.total_rounds,
+                    )
+            elif swap_paths:
+                _LOGGER.warning(
+                    "Lobby playlists not changed: %s yield no playable songs "
+                    "for provider %s",
+                    ", ".join(swap_paths),
+                    patched.provider,
                 )
 
         # Only the three output settings belong in the persisted blob; the

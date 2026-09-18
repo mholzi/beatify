@@ -634,7 +634,12 @@ class GameSetupMixin:
         self.total_rounds = manager.get_total_count()
         return True
 
-    def apply_lobby_options(self, options: GameOptions) -> bool:
+    def apply_lobby_options(
+        self,
+        options: GameOptions,
+        songs: list[dict[str, Any]] | None = None,
+        playlists: list[str] | None = None,
+    ) -> bool:
         """Re-apply admin options to a game that has not started yet (#2769).
 
         A room freezes its options at creation. The setup wizard, however,
@@ -659,6 +664,14 @@ class GameSetupMixin:
         and REVEAL for the speaker, but a round count or a mode flag that
         changes mid-game rewrites the rules under the players.
 
+        **Playlists too (#2888).** ``songs`` and ``playlists`` carry a changed
+        playlist selection from the same wizard run. They go through the same
+        single rebuild as the options, so the new pool is filtered for the
+        (possibly also new) provider and capped at the (possibly also new)
+        round count in one step — applying them one after the other would
+        judge the new playlists by the old provider, or the old playlists by
+        the new one. Omitted, the game keeps the songs it has.
+
         Returns True when the options were applied. False means the phase was
         wrong or the rebuilt playlist would have been empty — in which case
         nothing is touched, exactly as ``replace_songs`` behaves.
@@ -673,8 +686,9 @@ class GameSetupMixin:
         # BEFORE anything is written, so an empty result leaves the game as it
         # was rather than half-updated — the same order create_game uses for
         # its #1378 validation.
+        new_songs = songs if songs is not None else self.songs
         manager = self._build_playlist_manager(
-            self.songs,
+            new_songs,
             options.provider,
             self.storefront,
             options.rampup_order_enabled,
@@ -686,6 +700,16 @@ class GameSetupMixin:
                 "tracks — keeping the current setup"
             )
             return False
+
+        if songs is not None:
+            self.songs = songs
+            if playlists is not None:
+                self.playlists = playlists
+            # A Crate Digger game created without playlists regenerates its
+            # songs from the library at gameplay start. Once the host has
+            # picked playlists, that hook would throw them away again — and a
+            # game created with playlists never installs it in the first place.
+            self.pre_start_hook = None
 
         options.apply_to(self)
         # Same call create_game makes right after ``apply_to``: it is what
