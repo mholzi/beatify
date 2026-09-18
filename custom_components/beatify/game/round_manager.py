@@ -112,6 +112,11 @@ class RoundManager:
         # really begun. start_timer_at_playback() re-stamps it the moment
         # playback is confirmed.
         self._deadline_deferred: bool = False
+        # #2875: True while confirm_intro_splash is awaiting the deferred
+        # song's playback. The splash flag is already cleared (so a double
+        # tap cannot start the song twice, #493), but the deadline is still
+        # the placeholder from initialize_round until the await returns.
+        self._intro_playback_pending: bool = False
         self._intro_splash_shown: bool = False
         self._intro_splash_deferred_song: dict[str, Any] | None = None
         self._rounds_since_intro: int = 0
@@ -154,6 +159,7 @@ class RoundManager:
         # disables force_end_round_if_overdue, the client round watchdogs and
         # the late-guess guard in handle_submit.
         self._deadline_deferred = False
+        self._intro_playback_pending = False
         self._intro_splash_shown = False
         self._intro_splash_deferred_song = None
         self._rounds_since_intro = 0
@@ -253,6 +259,10 @@ class RoundManager:
         # left unconfirmed past round_duration would let a client nudge end_round
         # on a round whose song never even played.
         if self._intro_splash_pending or self._deadline_deferred:
+            return False
+        # #2875: the same holds while confirm_intro_splash waits for the
+        # deferred song to start — the deadline is re-stamped only after that.
+        if self._intro_playback_pending:
             return False
         if self.deadline is None:
             return False
@@ -435,6 +445,10 @@ class RoundManager:
         if challenge_manager:
             challenge_manager.init_round(song)
 
+        # #2875: never leave an earlier round's timer running — a stale task
+        # would fire end_round() into this round.
+        self.cancel_timer()
+
         # Handle deferred intro splash vs normal timer start
         if will_defer_for_splash:
             # Playback deferred — timer starts on confirm_intro_splash
@@ -473,11 +487,16 @@ class RoundManager:
         play_deferred_song: Callable[[dict[str, Any]], Awaitable[bool]],
         on_round_end: Callable[[], Awaitable[None]] | None,
         timer_countdown: Callable[[float], Awaitable[None]] | None = None,
+        is_playing: Callable[[], bool] | None = None,
     ) -> None:
         """Handle admin confirmation of intro splash (Issue #292, #403).
 
         Plays the deferred song, starts the round timer and the intro
         auto-stop timer.
+
+        #2875: ``is_playing`` reports whether the round is still in PLAYING
+        once the song has started. If it is not (the round was ended or the
+        game paused/stopped during the await), no new timer is armed.
         """
         if not self._intro_splash_pending:
             _LOGGER.warning("confirm_intro_splash called but no splash pending")
@@ -493,7 +512,23 @@ class RoundManager:
 
         song = self._intro_splash_deferred_song
         if song:
-            await play_deferred_song(song)
+            # #2875: Music Assistant can take 4-25 s to confirm playback.
+            # Until the deadline is re-stamped below, the placeholder from
+            # initialize_round (t0 + round_duration) is long past if the host
+            # sat on the splash, so hold is_deadline_passed() at False.
+            self._intro_playback_pending = True
+            try:
+                await play_deferred_song(song)
+            finally:
+                self._intro_playback_pending = False
+
+        if is_playing is not None and not is_playing():
+            _LOGGER.debug(
+                "Round %d left PLAYING while the intro song started; "
+                "not arming a round timer",
+                self.round,
+            )
+            return
 
         # Cancel any existing timers to prevent leaks on double-tap (#493)
         self.cancel_timer()

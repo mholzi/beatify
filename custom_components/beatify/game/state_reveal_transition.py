@@ -377,8 +377,13 @@ class RevealTransitionMixin:
 
         Delegates to RoundManager.
         """
+        from .state import GamePhase  # noqa: PLC0415 — avoid circular import
+
         await self._round_manager.confirm_intro_splash(
-            self.play_deferred_song, self._on_round_end, self._timer_countdown
+            self.play_deferred_song,
+            self._on_round_end,
+            self._timer_countdown,
+            is_playing=lambda: self.phase == GamePhase.PLAYING,
         )
 
     def is_deadline_passed(self) -> bool:
