@@ -826,7 +826,7 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 ## What's New
 
 ### v4.7.2 — Hold That Thought ⏸️
-- **A pause stays a pause** — reconnecting or reloading the admin phone no longer lifts a pause the host set on purpose (#2876)
+- **A pause stays a pause** — reconnecting or reloading the admin phone no longer lifts a pause the host set on purpose (#2876), and the round clock stops while the game is paused (#2883)
 - **A late tap on the intro card no longer ends the round** before the song has played (#2875)
 - **Safer setup summary** — speaker and playlist names are shown strictly as text (#2874)
 

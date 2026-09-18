@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-09-18
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.7.2-rc1
+> Catalogue state: v4.7.2-rc2
 
 ## Summary
 

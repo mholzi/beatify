@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.2-rc2] - 2026-09-18
+
+One finding from the rc1 live test, pulled into this week at Markus' request.
+
+### Fixed
+- **A pause freezes the round clock** (#2883, #2884). Pausing mid-round saves the time that is
+  left, and resuming continues from there. A pause longer than the remaining time used to end the
+  round on resume and score everyone as missed. Guesses made before the pause keep their speed
+  bonus, and a pause while the intro song is starting now resumes with a full round.
+
 ## [4.7.2-rc1] - 2026-09-18
 
 Week 2026-W38c: three fixes found by the code review (security and bugs categories), built and
