@@ -4,22 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.7.2-rc2] - 2026-09-18
+## [4.7.2] - 2026-09-18
 
-One finding from the rc1 live test, pulled into this week at Markus' request.
+Week 2026-W38c "Hold That Thought": three fixes from the code review (security and bugs
+categories) and one finding from the rc1 live test, pulled into the week at Markus' request.
+rc2 passed the live test (14 rounds to the podium, browser run green).
 
 ### Fixed
 - **A pause freezes the round clock** (#2883, #2884). Pausing mid-round saves the time that is
   left, and resuming continues from there. A pause longer than the remaining time used to end the
   round on resume and score everyone as missed. Guesses made before the pause keep their speed
   bonus, and a pause while the intro song is starting now resumes with a full round.
-
-## [4.7.2-rc1] - 2026-09-18
-
-Week 2026-W38c: three fixes found by the code review (security and bugs categories), built and
-merged on Friday at Markus' request, plus catalogue upkeep since v4.7.1.
-
-### Fixed
 - **A host pause stays paused when the admin phone reconnects** (#2876, #2880). Locking the phone
   or reloading the admin page no longer lifts a pause the host set on purpose. Only a pause caused
   by the admin dropping out resumes on its own.
