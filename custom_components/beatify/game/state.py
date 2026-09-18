@@ -331,6 +331,13 @@ class GameState(
         # These capture the window state at pause so resume can re-arm it.
         self._paused_vote_open: bool = False
         self._paused_vote_deadline: float | None = None
+        # #2883: pause snapshot of the round clock. A pause out of PLAYING
+        # freezes the time left in the round; resume re-stamps the deadline
+        # from it instead of letting the pause eat the round. None when the
+        # pause did not interrupt a running round clock.
+        self._paused_round_remaining_ms: int | None = None
+        self._paused_at: float | None = None
+        self._paused_clock_unstarted: bool = False
         # #1048: ms timestamp REVEAL was entered — clients compute remaining
         # countdown vs Date.now(). None outside REVEAL.
         self.reveal_started_at: int | None = None

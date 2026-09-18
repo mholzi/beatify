@@ -319,6 +319,10 @@ class GameSetupMixin:
         # #1371: clear the pause snapshot of the vote window too.
         self._paused_vote_open = False
         self._paused_vote_deadline = None
+        # #2883: and the frozen round clock.
+        self._paused_round_remaining_ms = None
+        self._paused_at = None
+        self._paused_clock_unstarted = False
 
         # Reset round analytics (Story 13.3)
         self.round_analytics = None
