@@ -392,6 +392,17 @@ export async function checkGameStatus() {
 // Admin Status (Story 3.5)
 // ============================================
 
+/**
+ * True when ``name`` is the name this tab's host joined under (#2887).
+ * admin.js writes beatify_admin_name when the host joins as a player; a plain
+ * guest never has it.
+ */
+function isStoredHostName(name) {
+    var adminName = null;
+    try { adminName = sessionStorage.getItem('beatify_admin_name'); } catch (e) { /* private mode */ }
+    return !!adminName && !!name && adminName.toLowerCase() === name.toLowerCase();
+}
+
 function checkAdminStatus() {
     var storedAdmin = sessionStorage.getItem('beatify_is_admin');
     var storedName = sessionStorage.getItem('beatify_admin_name');
@@ -1327,6 +1338,23 @@ export async function resolveInitialConnection() {
 
     var storedName = getStoredPlayerName();
     if (storedName && state.gameId) {
+        // #2887: the session cookie is the authoritative identity, so a live
+        // one wins over the name. checkGameStatus normally takes this path
+        // itself, but it stands down for a host who joined as a player
+        // (beatify_admin_name is still set on reload). A name-only join is
+        // then refused for the host session (#2501), leaving the host on
+        // "Connecting…" with a paused game nobody can resume.
+        if (getSessionCookie()) {
+            debug('[Beatify] Auto-reconnecting by session as:', storedName);
+            connectWithSession();
+            return;
+        }
+        // No cookie left: a host rejoining by name has to prove the HA login,
+        // exactly like the admin handoff above (connectWebSocket sends
+        // is_admin + ha_token when state.isAdmin is set).
+        if (isStoredHostName(storedName)) {
+            state.isAdmin = true;
+        }
         debug('[Beatify] Auto-reconnecting as:', storedName);
         connectWebSocket(storedName);
         return;
