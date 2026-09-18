@@ -1,6 +1,6 @@
 {
   "name": "Deutschrock - Best Of",
-  "version": "0.40",
+  "version": "0.41",
   "tags": [
     "deutschrock",
     "german rock",
@@ -627,7 +627,7 @@
         "nl": "applemusic://track/1500266192",
         "it": "applemusic://track/1500266192"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7LORRKXTvnA",
       "uri_tidal": "tidal://track/133886894",
       "uri_deezer": "deezer://track/899950322",
       "alt_artists": [],
