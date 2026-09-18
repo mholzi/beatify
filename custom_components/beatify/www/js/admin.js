@@ -76,6 +76,7 @@ import {
     bannerAnchorFor,
     tr,
     buildHomeMeta,
+    lobbyPlaylistPaths,
     adminJoinNameValid,
 } from './admin/util.js';
 
@@ -1351,6 +1352,24 @@ function buildGameOptionsPayload() {
     };
 }
 
+/**
+ * The host's playlist selection as the paths the server loads (#2888).
+ *
+ * Read from the stored settings blob, not adminState: the wizard writes its
+ * picks there, and hydrateFromStorage only fills adminState.selectedPlaylists
+ * while it is empty — so after a wizard run the in-memory list can still hold
+ * the previous selection. Returns null when nothing is stored (Crate Digger
+ * without saved playlists), which update-lobby treats as "leave the songs".
+ */
+function buildLobbyPlaylistsPayload() {
+    try {
+        const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
+        return lobbyPlaylistPaths(raw ? JSON.parse(raw) : null);
+    } catch (e) {
+        return null;  // private mode / malformed — keep the lobby's songs
+    }
+}
+
 // ==========================================
 // Game Control Functions (Story 2.3)
 // ==========================================
@@ -1386,6 +1405,23 @@ async function persistSetupToServer() {
     } catch (e) {
         console.warn('[Beatify] setup persist failed (non-fatal):', e);
     }
+    // #2888: the wizard writes its playlist picks to the stored blob only, and
+    // hydrateFromStorage fills adminState.selectedPlaylists just once — so
+    // after a wizard run the next start-game body still carried the previous
+    // selection. Bring the in-memory list in step with the blob the home card
+    // renders from.
+    const lobbyPlaylists = buildLobbyPlaylistsPayload();
+    if (lobbyPlaylists) {
+        const current = adminState.selectedPlaylists.map((p) => p.path);
+        const same = current.length === lobbyPlaylists.length
+            && lobbyPlaylists.every((path) => current.includes(path));
+        if (!same) {
+            adminState.selectedPlaylists = lobbyPlaylists.map((path) => {
+                const meta = (adminState.playlistData || []).find((d) => d.path === path);
+                return { path, songCount: (meta && (meta.song_count || meta.songCount)) || 0 };
+            });
+        }
+    }
     // #2769: saved_setup is now current, the open lobby game is not. Pushing
     // here rather than only at start means /beatify/api/status stops
     // contradicting itself the moment the wizard closes — the host must not be
@@ -1395,7 +1431,13 @@ async function persistSetupToServer() {
         await window.BeatifyAuth?.fetch('/beatify/api/game/update-lobby', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ game_options: buildGameOptionsPayload() }),
+            body: JSON.stringify({
+                game_options: buildGameOptionsPayload(),
+                // #2888: the playlists are part of the same wizard run. Without
+                // them the lobby kept the old pool while the home card showed
+                // the new selection.
+                playlists: lobbyPlaylists,
+            }),
         });
     } catch (e) {
         console.warn('[Beatify] lobby option push failed (non-fatal):', e);
@@ -1592,6 +1634,7 @@ async function startGameplay() {
                 // A wizard run between creation and start replaced them in
                 // saved_setup while the lobby kept the old ones.
                 game_options: buildGameOptionsPayload(),
+                playlists: buildLobbyPlaylistsPayload(),  // #2888
             }),
         });
     } catch (e) { /* never block the start on a failed push */ }

@@ -566,6 +566,26 @@ export function playlistDisplayName(entry) {
 }
 
 /**
+ * The playlist paths an update-lobby push carries (#2888).
+ *
+ * Takes the parsed `beatify_game_settings` blob, whose `selectedPlaylists`
+ * entries are either `{ path, songCount }` objects or bare paths. Returns null
+ * when there is nothing to send — Crate Digger without saved playlists, or no
+ * blob at all — which the server treats as "leave the lobby's songs alone"
+ * rather than "empty the pool".
+ *
+ * @param {Object|null} settings
+ * @returns {string[]|null}
+ */
+export function lobbyPlaylistPaths(settings) {
+    const list = settings && Array.isArray(settings.selectedPlaylists) ? settings.selectedPlaylists : [];
+    const paths = list
+        .map((entry) => (typeof entry === 'string' ? entry : entry && entry.path))
+        .filter((p) => typeof p === 'string' && p.length > 0);
+    return paths.length ? paths : null;
+}
+
+/**
  * The one-line setup summary under the home Start button (#2620).
  *
  * Pure, and every fragment goes through `t` — this is the line a host reads
