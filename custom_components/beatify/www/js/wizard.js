@@ -1932,12 +1932,22 @@ function _renderDoneSummary() {
         ? `${coreModeLabel} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`
         : `${coreModeLabel} · ${chosenDifficulty} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`;
 
-    el.innerHTML = `
-        <div class="wiz-done-line"><span>${_t('wizard.summary.speaker', 'Speaker')}</span><strong>${speaker}</strong></div>
-        <div class="wiz-done-line"><span>${_t('wizard.summary.service', 'Service')}</span><strong>${provider}</strong></div>
-        <div class="wiz-done-line"><span>${_t('wizard.summary.playlist', 'Playlist')}</span><strong>${playlistLabel}</strong></div>
-        <div class="wiz-done-line"><span>${_t('wizard.summary.mode', 'Mode')}</span><strong>${modeSummary}</strong></div>
-        <div class="wiz-done-line"><span>${_t('wizard.summary.atmosphere', 'Atmosphere')}</span><strong>${atmosphere}</strong></div>
+    el.innerHTML = doneSummaryHtml({ speaker, provider, playlistLabel, modeSummary, atmosphere }, _t);
+}
+
+// Issue #2874 — the "you're ready" summary on the last wizard step. `speaker` is
+// the device's friendly_name and `playlistLabel` a playlist name, so every value
+// goes through escapeText before it reaches innerHTML (same rule as #1370). The
+// labels are our own translations and stay as they are.
+export function doneSummaryHtml({ speaker, provider, playlistLabel, modeSummary, atmosphere }, t) {
+    const line = (key, fallback, value) =>
+        `<div class="wiz-done-line"><span>${t(key, fallback)}</span><strong>${escapeText(value)}</strong></div>`;
+    return `
+        ${line('wizard.summary.speaker', 'Speaker', speaker)}
+        ${line('wizard.summary.service', 'Service', provider)}
+        ${line('wizard.summary.playlist', 'Playlist', playlistLabel)}
+        ${line('wizard.summary.mode', 'Mode', modeSummary)}
+        ${line('wizard.summary.atmosphere', 'Atmosphere', atmosphere)}
     `;
 }
 

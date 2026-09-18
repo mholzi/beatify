@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload, modeHintHtml } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload, modeHintHtml, doneSummaryHtml } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -560,6 +560,54 @@ describe('modeHintHtml', () => {
         const out = modeHintHtml(true, '<img src=x onerror=alert(1)>', 'hint');
         expect(out).not.toContain('<img');
         expect(out).toContain('&lt;img');
+    });
+});
+
+// ---------------------------------------------------------------------------
+// doneSummaryHtml — LAN-supplied names are escaped in the final summary (#2874,
+// same rule as the speaker list in #1370)
+describe('doneSummaryHtml (#2874)', () => {
+    const t = (_key, fallback) => fallback;
+    const base = {
+        speaker: 'Esszimmer',
+        provider: 'Spotify',
+        playlistLabel: '80s Hits',
+        modeSummary: 'Year mode · normal · 30s · EN',
+        atmosphere: 'lights + voice',
+    };
+
+    it('renders normal names unchanged', () => {
+        const out = doneSummaryHtml(base, t);
+        expect(out).toContain('<span>Speaker</span><strong>Esszimmer</strong>');
+        expect(out).toContain('<strong>80s Hits</strong>');
+        expect(out).toContain('<strong>Year mode · normal · 30s · EN</strong>');
+        expect(out).toContain('<strong>lights + voice</strong>');
+    });
+
+    it('escapes a crafted friendly_name and playlist name instead of rendering elements', () => {
+        const out = doneSummaryHtml({
+            ...base,
+            speaker: '<img src=x onerror=alert(1)>',
+            playlistLabel: '<b>Party</b> & more',
+        }, t);
+        expect(out).not.toContain('<img');
+        expect(out).not.toContain('<b>');
+        expect(out).toContain('<strong>&lt;img src=x onerror=alert(1)&gt;</strong>');
+        expect(out).toContain('<strong>&lt;b&gt;Party&lt;/b&gt; &amp; more</strong>');
+        // Only the summary's own markup is left as tags.
+        const tags = out.match(/<\/?([a-z]+)/g).map((m) => m.replace(/[</]/g, ''));
+        expect(new Set(tags)).toEqual(new Set(['div', 'span', 'strong']));
+    });
+
+    it('escapes provider, mode and atmosphere too', () => {
+        const out = doneSummaryHtml({
+            ...base,
+            provider: '<svg onload=1>',
+            modeSummary: '<i>x</i>',
+            atmosphere: '<script>1</script>',
+        }, t);
+        expect(out).not.toMatch(/<(svg|i|script)\b/);
+        expect(out).toContain('&lt;svg onload=1&gt;');
     });
 });
 
