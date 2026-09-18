@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING
 from aiohttp import web
 
 from custom_components.beatify.const import (
+    ADMIN_DISCONNECT_PAUSE_REASON,
     ERR_ADMIN_CANNOT_LEAVE,
     ERR_ADMIN_EXISTS,
     ERR_GAME_ENDED,
@@ -36,6 +37,20 @@ if TYPE_CHECKING:
     from custom_components.beatify.server.websocket import BeatifyWebSocketHandler
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def _paused_for_admin_disconnect(game_state: GameState) -> bool:
+    """Return True if an admin coming back should lift the current pause.
+
+    #2876: only the pause the server took because the admin socket went away
+    is lifted by the admin returning. A host pause (#2645) or a server-side
+    pause (media_player_error, no_songs_available) stays until the explicit
+    ``resume_game`` admin action — phones drop the socket on every screen lock.
+    """
+    return (
+        game_state.phase == GamePhase.PAUSED
+        and game_state.pause_reason == ADMIN_DISCONNECT_PAUSE_REASON
+    )
 
 
 def _undo_admin_claim(
@@ -155,7 +170,7 @@ async def handle_join(
                     handler._admin_disconnect_task.cancel()
                     handler._admin_disconnect_task = None
                     _LOGGER.info("Admin reconnected (own reclaim): %s", name)
-                if game_state.phase == GamePhase.PAUSED:
+                if _paused_for_admin_disconnect(game_state):
                     if await game_state.resume_game():
                         _LOGGER.info("Game resumed by admin reclaim during PAUSED")
             elif game_state.disconnected_admin_name:
@@ -166,7 +181,7 @@ async def handle_join(
                         _LOGGER.info(
                             "Admin reconnected, cancelled pause task: %s", name
                         )
-                    if game_state.phase == GamePhase.PAUSED:
+                    if _paused_for_admin_disconnect(game_state):
                         if await game_state.resume_game():
                             _LOGGER.info("Game resumed by admin reconnection")
                 else:
@@ -479,7 +494,7 @@ async def handle_reconnect(
             handler._admin_disconnect_task = None
             _LOGGER.info("Admin reconnected via session, cancelled pause task")
 
-        if game_state.phase == GamePhase.PAUSED:
+        if _paused_for_admin_disconnect(game_state):
             if await game_state.resume_game():
                 _LOGGER.info("Game resumed by admin session reconnection")
 

@@ -238,6 +238,8 @@ class TestJoin:
         # Simulate admin disconnect and game pause
         game_state.get_player("Host").connected = False
         game_state.phase = GamePhase.PAUSED
+        # #2876: only an admin-disconnect pause is lifted by the host returning.
+        game_state.pause_reason = "admin_disconnected"
         game_state.disconnected_admin_name = "Host"
         game_state._previous_phase = GamePhase.PLAYING
         game_state.deadline = int(game_state._now() * 1000) + 60_000
