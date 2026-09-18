@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 from aiohttp import WSCloseCode, WSMsgType, web
 
 from custom_components.beatify.const import (
+    ADMIN_DISCONNECT_PAUSE_REASON,
     ERR_GAME_NOT_STARTED,
     ERR_INTERNAL,
     LOBBY_DISCONNECT_GRACE_PERIOD,
@@ -634,7 +635,7 @@ class BeatifyWebSocketHandler:
                 admin = game_state.get_player_by_session_id(player.player_id)
                 if admin is not None and not admin.connected:
                     # pause_game() is async and handles media stop internally
-                    if await game_state.pause_game("admin_disconnected"):
+                    if await game_state.pause_game(ADMIN_DISCONNECT_PAUSE_REASON):
                         await self.broadcast_state()
                         _LOGGER.info("Game paused due to admin disconnect")
 

@@ -209,6 +209,11 @@ DIFFICULTY_SCORING: dict[str, dict[str, int]] = {
 # sends — a host who opened the door without picking a tile has still paused,
 # and the TV then simply says "Pause".
 HOST_PAUSE_REASON = "host_pause"
+
+#: The pause the server takes when the admin socket stays gone past the grace
+#: period. It is the only pause an admin reconnect lifts on its own (#2876):
+#: a host pause or a server-side pause waits for an explicit ``resume_game``.
+ADMIN_DISCONNECT_PAUSE_REASON = "admin_disconnected"
 HOST_PAUSE_REASON_FOOD = "host_pause_food"
 HOST_PAUSE_REASON_DOOR = "host_pause_door"
 HOST_PAUSE_REASON_AWAY = "host_pause_away"
