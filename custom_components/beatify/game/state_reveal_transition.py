@@ -385,6 +385,18 @@ class RevealTransitionMixin:
             self._timer_countdown,
             is_playing=lambda: self.phase == GamePhase.PLAYING,
         )
+        # #2886: a pause that arrived while the song was starting left the
+        # media alone (pause_game), because a stop sent into that window races
+        # Music Assistant's start. Now the start has settled, so silence it:
+        # the song must not play to the room during the pause. resume_game
+        # restarts it from the beginning.
+        if (
+            self.phase == GamePhase.PAUSED
+            and self._paused_clock_unstarted
+            and self._media_player_service
+        ):
+            await self._media_player_service.stop()
+            _LOGGER.info("Intro song stopped: the game was paused while it started")
 
     def is_deadline_passed(self) -> bool:
         """Check if the round deadline has passed. Delegates to RoundManager."""

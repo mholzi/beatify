@@ -158,7 +158,13 @@ class PauseResumeMixin:
             # Issue #23: Cancel intro timer if running
             self._round_manager._cancel_intro_timer()
             # Stop media playback
-            if self._media_player_service:
+            # #2886: not while confirm_intro_splash is still waiting for the
+            # intro song to start. A media_stop that reaches Music Assistant
+            # before the stream is up either gets ignored (the intro then
+            # plays through the pause) or kills the start (the round after
+            # resume runs in silence). confirm_intro_splash stops the song
+            # itself once the start has settled, and resume_game restarts it.
+            if self._media_player_service and not self._paused_clock_unstarted:
                 await self._media_player_service.stop()
 
         _LOGGER.info("Game paused: %s", reason)
@@ -211,6 +217,39 @@ class PauseResumeMixin:
                 "and playback deferred to confirm_intro_splash",
                 previous.value,
             )
+            return True
+
+        # #2886: the pause fell into the window where confirm_intro_splash was
+        # still waiting for the intro song to start. That round has not had
+        # its song yet: confirm_intro_splash stopped it right after the start
+        # (or the start failed), so a bare play() would either do nothing (MA
+        # ignores it while the song is still playing) or resume nothing.
+        if clock_unstarted and previous == GamePhase.PLAYING:
+            self._restamp_round_clock(
+                self._now(),
+                paused_at,
+                int(self._round_manager.round_duration * 1000),
+                True,
+            )
+            self._set_phase(previous, restore=True)
+            self.pause_reason = None
+            self.disconnected_admin_name = None
+            self._previous_phase = None
+            if self._round_manager._intro_playback_pending:
+                # Resumed before the start settled: the pending
+                # confirm_intro_splash sees PLAYING again and arms the round
+                # itself, so there is nothing to start here.
+                _LOGGER.info(
+                    "Game resumed while the intro song is still starting; "
+                    "confirm_intro_splash will start the round"
+                )
+                return True
+            # Hand the round back to confirm_intro_splash, which plays the
+            # deferred song from the start and arms the round clock and the
+            # intro auto-stop once it is audible, same as the first time.
+            _LOGGER.info("Game resumed; restarting the intro song from the start")
+            self._round_manager._intro_splash_pending = True
+            await self.confirm_intro_splash()
             return True
 
         # Restart timer if resuming to PLAYING and the round has time left.
