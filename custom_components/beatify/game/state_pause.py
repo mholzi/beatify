@@ -18,13 +18,14 @@ and every caller / test are unchanged.
   ``_previous_phase`` for the resume, records the ``pause_reason`` and (for any
   reason, #790) the disconnected admin's name so a later admin-WS drop stays
   recoverable, supersedes the unattended REVEAL auto-advance (#1012), and — only
-  when pausing out of PLAYING — cancels the round + intro timers (#23) and stops
-  media playback before flipping to ``PAUSED`` through the single ``_set_phase``
-  chokepoint (#1273).
-* ``resume_game`` — the PAUSED→(previous phase) restore. Restarts the round
-  timer against the *remaining* deadline (and the #416/#496 intro-stop timer
+  when pausing out of PLAYING — snapshots the time left in the round (#2883),
+  cancels the round + intro timers (#23) and stops media playback before
+  flipping to ``PAUSED`` through the single ``_set_phase`` chokepoint (#1273).
+* ``resume_game`` — the PAUSED→(previous phase) restore. Re-stamps the deadline
+  as ``now + time left at pause`` (#2883: the pause does not count against the
+  round), restarts the round timer from it (and the #416/#496 intro-stop timer
   against actual playing time) and resumes media playback when resuming to
-  PLAYING; if the deadline already elapsed during the pause it restores the
+  PLAYING; if the round had no time left when it was paused it restores the
   phase and ends the round immediately. The phase write always routes through
   ``_set_phase(restore=True)`` so a resume-to-REVEAL does **not** re-stamp
   ``reveal_started_at`` (the auto-advance countdown must not restart, #1273).
@@ -126,6 +127,15 @@ class PauseResumeMixin:
 
         was_playing = self.phase == GamePhase.PLAYING
 
+        # #2883: freeze the round clock. Cancelling the timer task alone left
+        # ``deadline`` running, so a pause longer than the time left ended the
+        # round on resume and scored everyone who had not guessed as missed.
+        self._paused_round_remaining_ms = None
+        self._paused_at = None
+        self._paused_clock_unstarted = False
+        if was_playing:
+            self._snapshot_round_clock()
+
         # #1402 B2: flip to PAUSED BEFORE the media stop() await below.
         # The stop() await is the only suspension point inside pause_game; if
         # the phase were still PLAYING across it, a concurrent early-reveal
@@ -173,6 +183,14 @@ class PauseResumeMixin:
 
         previous = self._previous_phase
 
+        # #2883: consume the round-clock snapshot on every resume path.
+        remaining_snapshot = self._paused_round_remaining_ms
+        paused_at = self._paused_at
+        clock_unstarted = self._paused_clock_unstarted
+        self._paused_round_remaining_ms = None
+        self._paused_at = None
+        self._paused_clock_unstarted = False
+
         # #1699: a round paused while its intro splash was still pending has NOT
         # started its round timer or begun playback — initialize_round flips to
         # PLAYING and stamps a placeholder deadline but defers BOTH the timer and
@@ -195,10 +213,24 @@ class PauseResumeMixin:
             )
             return True
 
-        # Restart timer if resuming to PLAYING and deadline still valid
-        if previous == GamePhase.PLAYING and self.deadline:
-            now_ms = int(self._now() * 1000)
-            remaining_ms = self.deadline - now_ms
+        # Restart timer if resuming to PLAYING and the round has time left.
+        # #2883: the time left is the snapshot taken at pause, not
+        # ``deadline - now`` — the pause does not count against the round.
+        if previous == GamePhase.PLAYING and (
+            remaining_snapshot is not None or self.deadline
+        ):
+            now = self._now()
+            now_ms = int(now * 1000)
+            if remaining_snapshot is not None:
+                remaining_ms = remaining_snapshot
+                if remaining_ms > 0:
+                    self._restamp_round_clock(
+                        now, paused_at, remaining_ms, clock_unstarted
+                    )
+            else:
+                # No snapshot (the phase was set to PAUSED without going
+                # through pause_game): fall back to the wall-clock deadline.
+                remaining_ms = (self.deadline or 0) - now_ms
 
             if remaining_ms > 0:
                 remaining_seconds = remaining_ms / 1000.0
@@ -242,7 +274,9 @@ class PauseResumeMixin:
                     await self._media_player_service.play()
                     _LOGGER.info("Media playback resumed")
             else:
-                # Timer expired during pause — end the round immediately.
+                # No time left: the round's clock had already run out when
+                # the pause arrived (#2883: a long pause alone no longer gets
+                # here) — end the round immediately.
                 # #1273: resume *restores* a saved phase rather than making a
                 # forward transition, so it routes through _set_phase with
                 # restore=True — that writes the phase + notifies but leaves
@@ -275,6 +309,68 @@ class PauseResumeMixin:
         _LOGGER.info("Game resumed to phase: %s", previous.value)
 
         return True
+
+    def _snapshot_round_clock(self) -> None:
+        """Record how much of the round is left at the moment of a pause (#2883).
+
+        Skipped while an intro splash is still pending: that round has not
+        started its clock at all and ``resume_game`` hands it back to
+        ``confirm_intro_splash`` untouched (#1699).
+
+        While ``confirm_intro_splash`` is awaiting the deferred song
+        (``_intro_playback_pending``, #2875) the deadline is still the
+        placeholder from ``initialize_round``; the round clock starts only once
+        the song plays. A pause in that window therefore freezes a full round.
+        """
+        rm = self._round_manager
+        if rm._intro_splash_pending:
+            return
+        now = self._now()
+        if rm._intro_playback_pending:
+            self._paused_round_remaining_ms = int(rm.round_duration * 1000)
+            self._paused_clock_unstarted = True
+        elif self.deadline is not None:
+            self._paused_round_remaining_ms = max(0, self.deadline - int(now * 1000))
+        else:
+            return
+        self._paused_at = now
+
+    def _restamp_round_clock(
+        self,
+        now: float,
+        paused_at: float | None,
+        remaining_ms: int,
+        clock_unstarted: bool,  # noqa: FBT001
+    ) -> None:
+        """Move the round's clock past the pause on resume (#2883).
+
+        ``deadline`` becomes ``now + remaining``, which the state broadcast after
+        the resume carries to the clients' countdown and the ``round_timeout``
+        watchdog. The round's start stamps move by the length of the pause, and
+        so do the submission times of guesses banked before it, so the speed
+        bonus and the intro cutoff measure playing time, not wall time.
+        """
+        rm = self._round_manager
+        self.deadline = int(now * 1000) + remaining_ms
+        if clock_unstarted:
+            # The pause fell into the intro-playback window (#2875): the round
+            # clock never started, so it starts now.
+            rm.round_start_time = now
+            if self.is_intro_round:
+                rm._intro_round_start_time = now
+            return
+        if paused_at is None:
+            return
+        shift = now - paused_at
+        if shift <= 0:
+            return
+        if rm.round_start_time is not None:
+            rm.round_start_time += shift
+        if rm._intro_round_start_time is not None:
+            rm._intro_round_start_time += shift
+        for player in self.players.values():
+            if player.submitted and player.submission_time is not None:
+                player.submission_time += shift
 
     async def _rearm_reveal_after_resume(self) -> None:
         """Re-arm the REVEAL task cancelled by the pause (#1371).
