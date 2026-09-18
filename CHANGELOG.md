@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.2-rc1] - 2026-09-18
+
+Week 2026-W38c: three fixes found by the code review (security and bugs categories), built and
+merged on Friday at Markus' request, plus catalogue upkeep since v4.7.1.
+
+### Fixed
+- **A host pause stays paused when the admin phone reconnects** (#2876, #2880). Locking the phone
+  or reloading the admin page no longer lifts a pause the host set on purpose. Only a pause caused
+  by the admin dropping out resumes on its own.
+- **Confirming the intro splash late no longer ends the round before the song plays** (#2875,
+  #2881). A confirm after the round time had passed used to score everyone as missed, and a stale
+  timer could end the following round.
+- **The setup summary escapes speaker and playlist names** (#2874, #2879). Device names come from
+  the network and are now shown as text, never as markup.
+- **Dead links replaced** in `yacht-rock` (#2877, #2878) and `top100-allertijden-nederlandstalig`
+  (#2872, #2873). Both playlist files moved their `version` field with the data.
+
 ## [4.7.1] - 2026-09-17
 
 Die Woche 2026-W38b „Clean Endings", an einem Donnerstag auf Markus' Zuruf veroeffentlicht. Drei
