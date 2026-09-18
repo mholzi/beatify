@@ -7,10 +7,10 @@
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
-| Apple | 8147 | 8468 | 96.2% |
-| Tidal | 5959 | 8468 | 70.4% |
-| Deezer | 8376 | 8468 | 98.9% |
-| YouTube | 7955 | 8468 | 93.9% |
+| Apple | 8224 | 8557 | 96.1% |
+| Tidal | 5959 | 8557 | 69.6% |
+| Deezer | 8465 | 8557 | 98.9% |
+| YouTube | 7955 | 8557 | 93.0% |
 
 ## Per-playlist coverage
 
@@ -64,6 +64,7 @@
 | community/schlager-klassiker.json | 193 | 186 | 96 | 190 | 193 |
 | community/schweizer-hits.json | 97 | 93 | 96 | 97 | 97 |
 | community/sommerklassiker.json | 60 | 60 | 60 | 60 | 60 |
+| community/south-africa-by-q.json | 89 | 77 | 0 | 89 | 0 |
 | community/tomorrowland-top-1000.json | 825 | 741 | 0 | 824 | 825 |
 | community/top100-allertijden-nederlandstalig.json | 104 | 100 | 96 | 101 | 104 |
 | community/trance-classics.json | 120 | 113 | 109 | 118 | 120 |
