@@ -825,6 +825,11 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.7.2 — Hold That Thought ⏸️
+- **A pause stays a pause** — reconnecting or reloading the admin phone no longer lifts a pause the host set on purpose (#2876)
+- **A late tap on the intro card no longer ends the round** before the song has played (#2875)
+- **Safer setup summary** — speaker and playlist names are shown strictly as text (#2874)
+
 ### v4.7.1 — Clean Endings 🏁
 - **The End round card closes with the round** — if the timer ends the round while the host has the card open, it no longer stays on screen through the reveal or Game Over (#2849, thanks to @Rayan-and-beyond)
 - **The winner's name stays whole on the TV podium** — a seven-letter name no longer breaks mid-word (#2850)
