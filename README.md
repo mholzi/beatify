@@ -826,6 +826,12 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.7.3 — Back in the Room 🚪
+- **The host gets back in after a reload** — reloading the player view no longer locks the host out of a paused game (#2887)
+- **A pause during the intro song start holds** — the intro no longer plays through the pause or leaves the next round silent (#2886)
+- **The lobby follows a changed playlist selection** — the songs that play match what the setup shows (#2888)
+- **New playlist: South Africa by Q** — 89 Amapiano, Afro House and Afrobeats tracks (#2890)
+
 ### v4.7.2 — Hold That Thought ⏸️
 - **A pause stays a pause** — reconnecting or reloading the admin phone no longer lifts a pause the host set on purpose (#2876), and the round clock stops while the game is paused (#2883)
 - **A late tap on the intro card no longer ends the round** before the song has played (#2875)

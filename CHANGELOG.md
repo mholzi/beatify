@@ -4,6 +4,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.3-rc1] - 2026-09-19
+
+The three findings from the v4.7.2-rc2 live test, fixed on Friday night at Markus' request, plus
+one new community playlist.
+
+### Fixed
+- **A host who reloads the player view gets back in** (#2887, #2892). The page now reconnects
+  with the session cookie, and without one the host rejoins with their Home Assistant login. It
+  no longer falls back to a name-only join that the server refuses (#2501), which left the host on
+  "Connecting…" with a dead Resume button.
+- **A pause during the intro song start controls the music** (#2886, #2894). The pause no longer
+  sends a stop into a start that Music Assistant has not confirmed yet. The song is stopped once
+  it has started, and on resume the intro plays again from the top with the full round time. The
+  25-second hang and the misleading provider errors are gone.
+- **The lobby picks up a changed playlist selection** (#2888, #2895). Changing playlists in the
+  setup wizard and going back to the lobby now changes the songs that play, and players who have
+  already joined stay in. The next game in the same admin session uses the new selection too.
+
+### Added
+- **South Africa by Q** (#2890, #2893), a community playlist of 89 Amapiano, Afro House, Afrobeats
+  and Highlife tracks.
+
 ## [4.7.2] - 2026-09-18
 
 Week 2026-W38c "Hold That Thought": three fixes from the code review (security and bugs
