@@ -1045,18 +1045,8 @@
     "clickToLaunch": "Inicia el juego en pantalla completa — sin distracciones."
   },
   "analytics": {
-    "title": "Estadísticas de la ronda",
-    "averageGuess": "Respuesta promedio",
-    "yearsEarly": "{years} años muy temprano",
-    "yearsLate": "{years} años muy tarde",
     "onTarget": "Justo en el blanco!",
-    "accuracy": "{percent}% anotaron puntos",
-    "exactMatches": "Respuestas exactas",
-    "speedChampion": "Campeón de velocidad",
-    "furthestGuess": "Más alejado",
-    "noSubmissions": "Sin respuestas en esta ronda",
     "noGuesses": "Sin respuestas",
-    "histogram": "Distribución de respuestas",
     "guessAxis": "Dónde apostaron todos",
     "youMarker": "(TU)"
   },

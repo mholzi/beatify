@@ -1045,18 +1045,8 @@
     "clickToLaunch": "Spiel im Vollbildmodus starten — keine Ablenkungen."
   },
   "analytics": {
-    "title": "Runden-Statistik",
-    "averageGuess": "Durchschnittliche Antwort",
-    "yearsEarly": "{years} Jahre zu frueh",
-    "yearsLate": "{years} Jahre zu spaet",
     "onTarget": "Genau richtig!",
-    "accuracy": "{percent}% haben gepunktet",
-    "exactMatches": "Volltreffer",
-    "speedChampion": "Schnellster Spieler",
-    "furthestGuess": "Am weitesten daneben",
-    "noSubmissions": "Keine Antworten in dieser Runde",
     "noGuesses": "Keine Tipps",
-    "histogram": "Antwort-Verteilung",
     "guessAxis": "Wo alle getippt haben",
     "youMarker": "(DU)"
   },

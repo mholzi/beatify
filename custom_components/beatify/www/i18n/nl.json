@@ -1045,18 +1045,8 @@
     "clickToLaunch": "Start het spel op volledig scherm — geen afleiding."
   },
   "analytics": {
-    "title": "Rondestatistieken",
-    "averageGuess": "Gemiddelde gok",
-    "yearsEarly": "{years} jaar te vroeg",
-    "yearsLate": "{years} jaar te laat",
     "onTarget": "Precies goed!",
-    "accuracy": "{percent}% scoorde punten",
-    "exactMatches": "Exacte treffers",
-    "speedChampion": "Snelheidskampioen",
-    "furthestGuess": "Meest ernaast",
-    "noSubmissions": "Geen inzendingen deze ronde",
     "noGuesses": "Geen gokken",
-    "histogram": "Verdeling van gokken",
     "guessAxis": "Waar iedereen gokte",
     "youMarker": "(JIJ)"
   },

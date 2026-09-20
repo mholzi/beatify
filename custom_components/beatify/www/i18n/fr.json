@@ -1045,18 +1045,8 @@
     "clickToLaunch": "Lancez le jeu en plein écran — aucune distraction."
   },
   "analytics": {
-    "title": "Statistiques de la manche",
-    "averageGuess": "Réponse moyenne",
-    "yearsEarly": "{years} ans trop tôt",
-    "yearsLate": "{years} ans trop tard",
     "onTarget": "En plein dans le mille !",
-    "accuracy": "{percent}% ont marqué des points",
-    "exactMatches": "Réponses exactes",
-    "speedChampion": "Champion de vitesse",
-    "furthestGuess": "Le plus éloigné",
-    "noSubmissions": "Pas de réponses cette manche",
     "noGuesses": "Pas de réponses",
-    "histogram": "Distribution des réponses",
     "guessAxis": "Où chacun a parié",
     "youMarker": "(TOI)"
   },
