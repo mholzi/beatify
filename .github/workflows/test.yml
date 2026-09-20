@@ -64,6 +64,14 @@ jobs:
       - name: Run ruff formatter check
         run: ruff format --check .
 
+      # Fails when a translation key is referenced nowhere, when the six
+      # locales drift apart, or when a .json.gz no longer matches its .json.
+      # The last one matters because Home Assistant's /local handler serves
+      # the gzip when it exists, so a pruned .json alone never reaches the
+      # browser (#2907).
+      - name: Check i18n keys
+        run: python3 scripts/check_i18n_keys.py
+
   # ==========================================================================
   # STAGE 1a: TYPE CHECK (mypy)
   # ==========================================================================
