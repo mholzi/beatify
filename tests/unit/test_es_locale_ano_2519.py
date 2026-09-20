@@ -126,8 +126,12 @@ class TestSpanishCarriesItsAccents:
     def test_placeholders_were_not_swept_up(self):
         """{version}, {min} and friends are tokens, not Spanish — a careless
         accent pass would rename them and break the interpolation."""
+        # admin.updateAvailable stood here until #2907's cleanup removed it with
+        # the flat "My Requested Playlists" section. A sample that names a key is
+        # only as durable as the key; admin.kickPlayerConfirm carries the same
+        # {name} shape from a screen that is live.
         for key, expected in (
-            ("admin.updateAvailable", "{version}"),
+            ("admin.kickPlayerConfirm", "{name}"),
             ("analyticsDashboard.pagination", "{current}"),
             ("wizard.step4.roundsHint", "{min}"),
         ):
