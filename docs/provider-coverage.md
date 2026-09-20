@@ -7,10 +7,10 @@
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
-| Apple | 8223 | 8556 | 96.1% |
-| Tidal | 5956 | 8556 | 69.6% |
-| Deezer | 8463 | 8556 | 98.9% |
-| YouTube | 7954 | 8556 | 93.0% |
+| Apple | 8222 | 8555 | 96.1% |
+| Tidal | 5955 | 8555 | 69.6% |
+| Deezer | 8462 | 8555 | 98.9% |
+| YouTube | 7953 | 8555 | 93.0% |
 
 ## Per-playlist coverage
 
@@ -23,7 +23,7 @@
 | 90er-hits.json | 158 | 154 | 108 | 158 | 142 |
 | community/100-greatest-rock-songs.json | 151 | 150 | 122 | 151 | 122 |
 | community/90s-2000s-hiphop-bangers.json | 40 | 40 | 40 | 40 | 40 |
-| community/anime-openings.json | 139 | 139 | 98 | 137 | 139 |
+| community/anime-openings.json | 138 | 138 | 97 | 136 | 138 |
 | community/ballermann-party-hits.json | 189 | 188 | 189 | 188 | 189 |
 | community/best-canadian-hits.json | 100 | 98 | 99 | 99 | 100 |
 | community/best-of-giraffenaffen.json | 26 | 26 | 26 | 26 | 26 |
