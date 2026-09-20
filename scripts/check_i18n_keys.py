@@ -23,6 +23,13 @@ That admits some genuinely dead keys; a stricter rule was tried and reported
 452 keys, of which whole namespaces were demonstrably in use. A gate that cries
 wolf gets switched off.
 
+**Keys assembled at runtime** (#2911) have neither form: ``utils.t('errors.' +
+code)`` never writes ``errors.NAME_TAKEN`` down, and ``errors`` alone is one
+segment. Such prefixes are collected from the corpus and everything under them
+counts as referenced — see ``dynamic_prefixes``. Getting this wrong is the
+expensive direction: the allowlist reads as a to-do list, and deleting a live
+error message breaks nothing until the backend sends that code mid-game.
+
 **The allowlist** (``scripts/i18n_allowlist.txt``) holds keys that are known
 orphans not yet cleaned up, each with a reason. It cannot rot: an entry that
 has become referenced again is an error too, so the file shrinks as the screens
@@ -39,6 +46,7 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -89,16 +97,62 @@ def load_corpus():
 # nothing at all.
 MIN_ANCESTOR_SEGMENTS = 2
 
+# Not every key is written out, and not every key has a referenced ancestor
+# either: several lookups build the key at runtime from a value the backend
+# sends.
+#
+#     utils.t('errors.' + code)                    errors.NAME_TAKEN, …
+#     utils.t('superlatives.' + award.title)       superlatives.best_ghost, …
+#     utils.t('highlights.' + h.description)       highlights.highlight_streak, …
+#     utils.t('difficulty.' + difficulty.label)    difficulty.extreme, …
+#     utils.t('game.difficulty' + capitalised)     game.difficultyEasy, …
+#
+# The literal in front of the `+` is a prefix and everything under it is live.
+# Without this rule the gate reports those keys as orphans, and they are the
+# worst possible false positive: deleting one breaks a message at runtime that
+# no test renders, because the code that asks for it only runs when the backend
+# sends that particular value.
+#
+# The prefixes are read out of the corpus instead of being listed here, so a new
+# dynamic lookup does not need this file changed. Two shapes are recognised, both
+# anchored on a `t(` call: a quoted literal being concatenated, and a template
+# literal interrupted by a placeholder — t(`errors.${code}`).
+#
+# Two guards keep the rule from swallowing the gate. The `+` is mandatory in the
+# concatenated shape: match a bare `t('admin.title')` too and every complete key
+# becomes a prefix that clears the namespace under it — tried it, 319 "prefixes",
+# and the gate went blind. And a literal must look like a key path with at least
+# one dot, so `t('Join ' + name)` stays what it is, a sentence being assembled.
+DYNAMIC_PREFIX_RES = (
+    re.compile(r"""\bt\(\s*'([^'\n]*)'\s*\+"""),
+    re.compile(r"""\bt\(\s*"([^"\n]*)"\s*\+"""),
+    re.compile(r"""\bt\(\s*`([^`\n$]*)\$\{"""),
+)
+KEY_PATH_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z0-9_]+)*\.?$")
 
-def is_referenced(key, corpus):
-    """True when the key, or an ancestor path of >=2 segments, is in the corpus."""
+
+def dynamic_prefixes(corpus):
+    """Key prefixes that the corpus assembles at runtime."""
+    found = set()
+    for pattern in DYNAMIC_PREFIX_RES:
+        for match in pattern.finditer(corpus):
+            literal = match.group(1)
+            if "." not in literal or not KEY_PATH_RE.match(literal):
+                continue
+            found.add(literal)
+    return found
+
+
+def is_referenced(key, corpus, prefixes=()):
+    """True when the key is named, has a named ancestor, or sits under a
+    prefix the corpus builds keys from at runtime."""
     parts = key.split(".")
     for cut in range(len(parts), MIN_ANCESTOR_SEGMENTS - 1, -1):
         if cut < MIN_ANCESTOR_SEGMENTS:
             break
         if ".".join(parts[:cut]) in corpus:
             return True
-    return False
+    return any(key.startswith(prefix) for prefix in prefixes)
 
 
 def read_allowlist():
@@ -171,7 +225,8 @@ def main():
     reference_path = I18N_DIR / f"{REFERENCE_LOCALE}.json"
     keys = list(flatten(json.loads(reference_path.read_text(encoding="utf-8"))))
     corpus = load_corpus()
-    unreferenced = [k for k in keys if not is_referenced(k, corpus)]
+    prefixes = dynamic_prefixes(corpus)
+    unreferenced = [k for k in keys if not is_referenced(k, corpus, prefixes)]
 
     if args.list:
         print("\n".join(unreferenced))
@@ -213,7 +268,8 @@ def main():
     total = len(keys)
     print(
         f"i18n: {total} keys in {REFERENCE_LOCALE}.json, "
-        f"{len(unreferenced)} unreferenced, {len(allowed)} allowlisted."
+        f"{len(unreferenced)} unreferenced, {len(allowed)} allowlisted, "
+        f"{len(prefixes)} runtime prefix(es) honoured."
     )
     if errors:
         print(f"\n{len(errors)} problem(s):\n", file=sys.stderr)
