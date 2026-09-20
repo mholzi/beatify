@@ -4,12 +4,24 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.7.3-rc2] - 2026-09-20
+## [4.7.3] - 2026-09-20
 
-Everything from rc1, plus a data audit of the anime playlist, a repaired playlist checker and a
-much better YouTube Music reach.
+Three fixes for a host who steps away and comes back, a data audit of the anime playlist, a
+repaired playlist checker and a much wider YouTube Music reach. Released from v4.7.3-rc2 after a
+full live test against the real installation — backend and frontend, no findings.
 
 ### Fixed
+- **A host who reloads the player view gets back in** (#2887, #2892). The page now reconnects
+  with the session cookie, and without one the host rejoins with their Home Assistant login. It
+  no longer falls back to a name-only join that the server refuses (#2501), which left the host on
+  "Connecting…" with a dead Resume button.
+- **A pause during the intro song start controls the music** (#2886, #2894). The pause no longer
+  sends a stop into a start that Music Assistant has not confirmed yet. The song is stopped once
+  it has started, and on resume the intro plays again from the top with the full round time. The
+  25-second hang and the misleading provider errors are gone.
+- **The lobby picks up a changed playlist selection** (#2888, #2895). Changing playlists in the
+  setup wizard and going back to the lobby now changes the songs that play, and players who have
+  already joined stay in. The next game in the same admin session uses the new selection too.
 - **Seven anime openings pointed at the wrong recording** (#2901, #2903). Three were artist name
   collisions — SCANDAL against the song "Scandal", SID against Sido, and a generic "My Hero
   Academia" cue against a track from the 2025 *Vigilantes* spin-off. The others were an
@@ -24,6 +36,8 @@ much better YouTube Music reach.
   empty title. Both now compare the artist and read the browse page.
 
 ### Added
+- **South Africa by Q** (#2890, #2893), a community playlist of 89 Amapiano, Afro House, Afrobeats
+  and Highlife tracks.
 - **243 more YouTube Music links** (#2859), across 17 playlists. YouTube coverage is 95.8 %, up
   from 93.0 %.
 - **A CI gate for unused translation keys** (#2907, #2908, #2911). Six locale files carried 1,502
@@ -31,28 +45,6 @@ much better YouTube Music reach.
   to 1,403. The gate also learned that several keys are assembled at runtime from a value the
   backend sends — 73 of the ones it first reported as dead were live error messages and award
   titles.
-
-## [4.7.3-rc1] - 2026-09-19
-
-The three findings from the v4.7.2-rc2 live test, fixed on Friday night at Markus' request, plus
-one new community playlist.
-
-### Fixed
-- **A host who reloads the player view gets back in** (#2887, #2892). The page now reconnects
-  with the session cookie, and without one the host rejoins with their Home Assistant login. It
-  no longer falls back to a name-only join that the server refuses (#2501), which left the host on
-  "Connecting…" with a dead Resume button.
-- **A pause during the intro song start controls the music** (#2886, #2894). The pause no longer
-  sends a stop into a start that Music Assistant has not confirmed yet. The song is stopped once
-  it has started, and on resume the intro plays again from the top with the full round time. The
-  25-second hang and the misleading provider errors are gone.
-- **The lobby picks up a changed playlist selection** (#2888, #2895). Changing playlists in the
-  setup wizard and going back to the lobby now changes the songs that play, and players who have
-  already joined stay in. The next game in the same admin session uses the new selection too.
-
-### Added
-- **South Africa by Q** (#2890, #2893), a community playlist of 89 Amapiano, Afro House, Afrobeats
-  and Highlife tracks.
 
 ## [4.7.2] - 2026-09-18
 
