@@ -57,14 +57,6 @@ leaderboard.winner
 admin.skipRound
 admin.selectLanguage
 admin.createGame
-admin.importPlaylist
-admin.importPlaylistHint
-admin.importButton
-admin.spotifyCredsGuide
-admin.setupSpotify
-admin.saveCredentials
-admin.changeCredentials
-admin.importNote
 admin.reloadPage
 admin.endGameConfirmFull
 admin.endCurrentGame
