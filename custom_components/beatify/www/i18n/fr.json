@@ -1036,12 +1036,7 @@
   "launcher": {
     "title": "Beatify",
     "openBeatify": "Ouvrir Beatify",
-    "openingInNewTab": "Ouverture de Beatify dans un nouvel onglet...",
     "openedInNewTab": "Beatify ouvert dans un nouvel onglet !",
-    "clickToOpenAnother": "Clique sur le bouton pour ouvrir une autre fenêtre, ou navigue ailleurs dans Home Assistant.",
-    "popupBlocked": "Pop-up bloqué ! Clique sur le bouton ci-dessous.",
-    "allowPopups": "Ton navigateur a bloqué le pop-up. Autorise les pop-ups pour ce site.",
-    "description": "Jeu musical de soirée",
     "clickToLaunch": "Lancez le jeu en plein écran — aucune distraction."
   },
   "analytics": {

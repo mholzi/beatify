@@ -1036,12 +1036,7 @@
   "launcher": {
     "title": "Beatify",
     "openBeatify": "Open Beatify",
-    "openingInNewTab": "Opening Beatify in a new tab...",
     "openedInNewTab": "Beatify opened in a new tab!",
-    "clickToOpenAnother": "Click the button to open another window, or navigate elsewhere in Home Assistant.",
-    "popupBlocked": "Pop-up blocked! Click the button below.",
-    "allowPopups": "Your browser blocked the pop-up. Please allow pop-ups for this site.",
-    "description": "Music guessing party game",
     "clickToLaunch": "Launch the game in fullscreen — no distractions."
   },
   "analytics": {

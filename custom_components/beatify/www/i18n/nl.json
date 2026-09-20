@@ -1036,12 +1036,7 @@
   "launcher": {
     "title": "Beatify",
     "openBeatify": "Beatify openen",
-    "openingInNewTab": "Beatify wordt in een nieuw tabblad geopend...",
     "openedInNewTab": "Beatify geopend in een nieuw tabblad!",
-    "clickToOpenAnother": "Klik op de knop om nog een venster te openen, of ga ergens anders heen in Home Assistant.",
-    "popupBlocked": "Pop-up geblokkeerd! Klik op de knop hieronder.",
-    "allowPopups": "Je browser heeft de pop-up geblokkeerd. Sta pop-ups toe voor deze site.",
-    "description": "Partyspel om muziek te raden",
     "clickToLaunch": "Start het spel op volledig scherm — geen afleiding."
   },
   "analytics": {

@@ -1036,12 +1036,7 @@
   "launcher": {
     "title": "Beatify",
     "openBeatify": "Beatify öffnen",
-    "openingInNewTab": "Beatify wird in neuem Tab geöffnet...",
     "openedInNewTab": "Beatify in neuem Tab geöffnet!",
-    "clickToOpenAnother": "Klicke den Button um ein weiteres Fenster zu öffnen.",
-    "popupBlocked": "Pop-up blockiert! Klicke den Button unten.",
-    "allowPopups": "Dein Browser hat das Pop-up blockiert. Bitte erlaube Pop-ups für diese Seite.",
-    "description": "Musik-Rate-Partyspiel",
     "clickToLaunch": "Spiel im Vollbildmodus starten — keine Ablenkungen."
   },
   "analytics": {
