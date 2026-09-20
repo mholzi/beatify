@@ -1,6 +1,6 @@
 {
   "name": "Anime Openings",
-  "version": "1.28",
+  "version": "1.29",
   "tags": [
     "anime",
     "japanese",
@@ -1133,31 +1133,6 @@
       "fun_fact_es": "Opening de 'The Promised Neverland' (2019), de UVERworld.",
       "fun_fact_fr": "Générique de 'The Promised Neverland' (2019) par UVERworld.",
       "fun_fact_nl": "Opening van 'The Promised Neverland' (2019) van UVERworld."
-    },
-    {
-      "artist": "FLOW",
-      "title": "Sign",
-      "year": 2013,
-      "isrc": "FXR592401590",
-      "uri": "spotify:track:1hi0P1Y2he1p09xnUccuAN",
-      "uri_apple_music": "applemusic://track/1536382006",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1770552813",
-        "de": "applemusic://track/1770552813",
-        "gb": "applemusic://track/1770552813",
-        "fr": "applemusic://track/1770552813",
-        "es": "applemusic://track/1770552813",
-        "nl": "applemusic://track/1770552813",
-        "it": "applemusic://track/1770552813"
-      },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=csVeFCLhmAM",
-      "uri_tidal": "tidal://track/145213302",
-      "uri_deezer": "deezer://track/3000818931",
-      "fun_fact": "Opening 6 of 'Naruto Shippuden' (2008) by FLOW.",
-      "fun_fact_de": "Opening 6 von 'Naruto Shippuden' (2008) von FLOW.",
-      "fun_fact_es": "Opening 6 de 'Naruto Shippuden' (2008), de FLOW.",
-      "fun_fact_fr": "Générique 6 de 'Naruto Shippuden' (2008) par FLOW.",
-      "fun_fact_nl": "Opening 6 van 'Naruto Shippuden' (2008) van FLOW."
     },
     {
       "artist": "Linked Horizon",
