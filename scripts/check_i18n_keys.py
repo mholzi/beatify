@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fail the build when a translation key is referenced nowhere.
 
-Six locale files carry 1502 keys each. Every key one screen stops using is a
+Six locale files carry the same key set (1502 of them when this gate went in). Every key one screen stops using is a
 string six translators keep in sync for a screen that no longer exists, and
 nothing noticed: the leave-flow keys from #2583 sat there for months. The point
 of this gate is not the cleanup — it is that the next orphan gets caught on the
