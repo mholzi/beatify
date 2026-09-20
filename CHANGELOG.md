@@ -4,6 +4,34 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.3-rc2] - 2026-09-20
+
+Everything from rc1, plus a data audit of the anime playlist, a repaired playlist checker and a
+much better YouTube Music reach.
+
+### Fixed
+- **Seven anime openings pointed at the wrong recording** (#2901, #2903). Three were artist name
+  collisions — SCANDAL against the song "Scandal", SID against Sido, and a generic "My Hero
+  Academia" cue against a track from the 2025 *Vigilantes* spin-off. The others were an
+  instrumental Season 3 version dated 2019 instead of 2013, and a main theme carrying the identity
+  of its own piano version. The wrong ISRC was the root cause each time, which pulled Apple,
+  Deezer and Tidal along with it, so four providers agreed and were wrong together.
+- **A duplicate FLOW "Sign"** (#2905, #2906) and three dead Tidal links removed from the same
+  playlist. The catalogue is 8,555 songs.
+- **The playlist checker stopped passing broken entries** (#2902, #2904). Its Deezer check
+  confirmed itself whenever the stored ISRC and URI came from the same bad backfill, and its Tidal
+  check had been inspecting nothing at all since Tidal's oEmbed started answering HTTP 200 with an
+  empty title. Both now compare the artist and read the browse page.
+
+### Added
+- **243 more YouTube Music links** (#2859), across 17 playlists. YouTube coverage is 95.8 %, up
+  from 93.0 %.
+- **A CI gate for unused translation keys** (#2907, #2908, #2911). Six locale files carried 1,502
+  keys each, 99 of them for screens that no longer exist; seven cleanup charges took the catalogue
+  to 1,403. The gate also learned that several keys are assembled at runtime from a value the
+  backend sends — 73 of the ones it first reported as dead were live error messages and award
+  titles.
+
 ## [4.7.3-rc1] - 2026-09-19
 
 The three findings from the v4.7.2-rc2 live test, fixed on Friday night at Markus' request, plus
