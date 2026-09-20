@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, os, re, sys, time, unicodedata, urllib.request, urllib.error
+import html, json, os, re, sys, time, unicodedata, urllib.request, urllib.error
 from difflib import SequenceMatcher
 
 # User-maintained deny-list for URIs confirmed dead in real Music Assistant
@@ -39,6 +39,13 @@ def detect_provider(uri):
 # backoff before it is allowed to count as a defect. A 404 that survives all
 # retries is treated as genuinely dead.
 TRANSIENT_CODES = {408, 425, 429, 500, 502, 503, 504}
+
+# Tidal's browse page serves the bare app shell to anything that does not look
+# like a browser, and the shell carries no og:title.
+BROWSER_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+)
 # 403 is deliberately NOT in here. It means opposite things per provider:
 # iTunes answers 403 when it throttles, Spotify answers 403 for a track that is
 # genuinely restricted. Making it global would turn every restricted Spotify
@@ -194,6 +201,41 @@ def titles_match(expected, actual, artist=None):
     return SequenceMatcher(None, e, a).ratio() >= 0.75
 
 
+def artists_match(expected, actual):
+    """True when two artist strings plausibly name the same act.
+
+    Deliberately forgiving. Catalogues write the same act as "Blue Encount"
+    and "BLUE ENCOUNT", credit a feature ("RADWIMPS" vs "RADWIMPS, Toaka"),
+    reverse Japanese name order ("Kumi Koda" vs "Koda Kumi") or spell the
+    connective differently ("Judy & Mary" vs "JUDY AND MARY"). None of those
+    is a defect, and a strict comparison would report every one of them.
+    """
+    e, a = normalize(expected), normalize(actual)
+    if not e or not a:
+        return True
+    if e == a or e in a or a in e:
+        return True
+    # Same words, different order: "Kumi Koda" / "Koda Kumi".
+    et, at = set(e.split()), set(a.split())
+    if et and at and (et <= at or at <= et):
+        return True
+    return SequenceMatcher(None, e, a).ratio() >= 0.75
+
+
+def artist_verdict(expected, actual):
+    """'match' | 'unverifiable' | 'mismatch', same three-way shape as titles.
+
+    'unverifiable' again means one side is written in a non-Latin script —
+    "Yasuharu Takanashi" against "高梨康治" is the same person, and no string
+    comparison can say so.
+    """
+    if artists_match(expected, actual):
+        return "match"
+    if scripts_differ(expected, actual):
+        return "unverifiable"
+    return "mismatch"
+
+
 def title_verdict(expected, actual, artist=None):
     """'match' | 'unverifiable' | 'mismatch'.
 
@@ -230,6 +272,27 @@ def wrong_track(expected_title, expected_artist, actual_title, actual_artist=Non
         "status": "wrong_track",
         "http_code": 200,
         "detail": f"Title mismatch: expected '{exp}', got '{act}'",
+        "actual_title": actual_title,
+        "actual_artist": actual_artist,
+    }
+
+
+def wrong_isrc(expected_title, expected_artist, actual_title, actual_artist, isrc):
+    """The URI carries the entry's ISRC, but names a different act.
+
+    That combination does not accuse the URI — it accuses the **ISRC**. The
+    URI was resolved from it, so the two agree by construction; what nothing
+    checks is whether the ISRC belongs to the song in the entry at all.
+    """
+    actual_artist = strip_channel_suffix(actual_artist) if actual_artist else None
+    exp = f"{expected_artist} - {expected_title}"
+    act = f"{actual_artist} - {actual_title}" if actual_artist else actual_title
+    return {
+        "status": "wrong_isrc",
+        "http_code": 200,
+        "detail": f"Track carries the entry's ISRC {isrc}, but names a different "
+        f"artist: expected '{exp}', got '{act}'. The ISRC is the suspect, "
+        f"not the URI — the URI was resolved from it.",
         "actual_title": actual_title,
         "actual_artist": actual_artist,
     }
@@ -347,8 +410,27 @@ def check_deezer(tid, title, artist, isrc=None):
         # Welche davon der Endpunkt liefert, ist nicht unsere Wahl. Der erste
         # Lauf danach meldete auf `polish-rock` **11 falsche Befunde von 11** —
         # jede gespeicherte URI trug die richtige ISRC.
+        #
+        # **Der Treffer spricht die URI frei, nicht den Eintrag (#2902,
+        # 20.09.2026).** ISRC und Deezer-URI stammen aus demselben Backfill:
+        # die ISRC ist das Saatgut, die URI das Ergebnis. Ist die ISRC falsch,
+        # traegt der falsche Track sie folgerichtig — beide stimmen ueberein
+        # und die Pruefung bestaetigt sich selbst. Auf `anime-openings` kamen
+        # so drei Eintraege als `ok` durch, die auf Ailee, SOULHEAD und einen
+        # Track aus „My Hero Academia: Vigilantes" zeigten.
+        #
+        # Der Interpret bricht den Kreis, weil er die einzige Angabe im
+        # Eintrag ist, die **nicht** aus der ISRC stammt. Der Vergleich ist
+        # bewusst nachsichtig (siehe `artists_match`) und meldet `wrong_isrc`
+        # statt `wrong_track`: die URI ist in Ordnung, der Verdacht faellt auf
+        # die ISRC.
         own = str(data.get("isrc") or "").strip().upper()
         if own and own == str(isrc).strip().upper():
+            own_artist = (data.get("artist") or {}).get("name", "")
+            if artist and own_artist and artist_verdict(artist, own_artist) == "mismatch":
+                return wrong_isrc(
+                    title, artist, data.get("title", ""), own_artist, isrc
+                )
             return {
                 "status": "ok",
                 "http_code": 200,
@@ -372,52 +454,115 @@ def check_deezer(tid, title, artist, isrc=None):
 
 
 def check_tidal(tid, title, artist):
-    # Use Tidal's oEmbed API — publicly accessible, no auth required.
-    # Same title convention as Spotify: track title, optionally version-suffixed.
-    url = f"https://oembed.tidal.com/?url=https://tidal.com/browse/track/{tid}"
-    hdrs = {"User-Agent": "Mozilla/5.0 (compatible; Beatify-HealthCheck/1.0)"}
-    data, code, is_transient = http_json(url, headers=hdrs, retry_404=True)
-    if data is None:
-        if is_transient:
-            return transient(code, "Tidal")
-        if code == 404:
+    """Tidal-URI pruefen — ueber das `og:title` der Browse-Seite.
+
+    **Warum nicht mehr oEmbed (#2902, 20.09.2026).** `oembed.tidal.com`
+    antwortet inzwischen mit **HTTP 200 und `title: null`**; die Nutzlast ist
+    nur noch das iframe-HTML. Die alte Fassung las `data["title"]`, bekam
+    einen leeren Wert und fiel fuer **jede erreichbare URI** auf `ok` durch.
+    Ein Lauf meldete „Tidal 101/101 ok" und hatte nichts geprueft ausser
+    Erreichbarkeit — drei der 101 waren tot.
+
+    Das kostet in beide Richtungen: tote URIs bleiben verdeckt, und eine
+    bloss verdaechtigte URI laesst sich nicht entlasten. Genau das passierte
+    in [#2903] mit `487464883`, die erst genullt und dann wieder eingesetzt
+    wurde.
+
+    Die Browse-Seite traegt `<meta property="og:title" content="Artist -
+    Titel">` und liefert fuer einen fehlenden Track eine echte **404** statt
+    einer 200 mit leerer Nutzlast. Sie braucht einen Browser-User-Agent.
+    """
+    url = f"https://tidal.com/browse/track/{tid}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": BROWSER_UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            html_text = r.read().decode("utf-8", errors="ignore")
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
             return {"status": "dead", "http_code": 404, "detail": "Not found"}
-        if code == 403:
+        if e.code in TRANSIENT_CODES:
+            return transient(e.code, "Tidal")
+        if e.code == 403:
             return _check_tidal_embed(tid, title, artist)
         return {
             "status": "unreachable",
-            "http_code": code,
-            "detail": f"Tidal HTTP {code}",
+            "http_code": e.code,
+            "detail": f"Tidal HTTP {e.code}",
         }
-    actual = data.get("title", "")
-    if actual:
-        v = title_verdict(title, actual, artist)
-        if v == "mismatch":
-            return wrong_track(title, artist, actual)
-        if v == "unverifiable":
-            return unverifiable_title(title, actual)
+    except Exception as e:
+        return {"status": "unreachable", "detail": str(e)}
+
+    raw_og = _og_title(html_text)
+    if raw_og is None:
+        # The page loaded but carries no og:title — a layout change, not a
+        # verdict on the track. Say so instead of passing it as healthy.
+        return {
+            "status": "unverifiable",
+            "http_code": 200,
+            "detail": "Tidal browse page carries no og:title — cannot verify",
+        }
+    # Tidal also answers 200 with its own not-found page for some ids.
+    if raw_og.strip().lower() in ("not found - tidal", "tidal"):
+        return {"status": "dead", "http_code": 200, "detail": "Not found"}
+
+    actual_artist, actual_title = _split_og_title(raw_og)
+    v = title_verdict(title, actual_title, artist)
+    if v == "mismatch":
+        return wrong_track(title, artist, actual_title, actual_artist)
+    if v == "unverifiable":
+        return unverifiable_title(title, actual_title, actual_artist)
     return {"status": "ok", "http_code": 200}
 
 
+_OG_TITLE_RE = re.compile(
+    r'<meta[^>]+property="og:title"[^>]+content="([^"]*)"', re.I
+)
+
+
+def _og_title(html_text):
+    """The unescaped og:title of a page, or None when it has none."""
+    m = _OG_TITLE_RE.search(html_text or "")
+    if not m:
+        return None
+    return html.unescape(m.group(1)).strip() or None
+
+
+def _split_og_title(raw):
+    """('<artist>', '<title>') from an og:title string.
+
+    Tidal writes `Artist - Title`, so the split goes on the FIRST dash —
+    a title may well contain one ("革命道中 - On The Way"), an artist rarely
+    does. Returns (None, raw) when there is no dash at all.
+    """
+    parts = re.split(r"\s+[\-–—]\s+", raw, maxsplit=1)
+    if len(parts) == 2:
+        return parts[0].strip(), parts[1].strip()
+    return None, raw
+
+
 def _check_tidal_embed(tid, title, artist):
-    """Fallback for Tidal when oEmbed returns 403 — check the embed page."""
+    """Fallback for Tidal when the browse page answers 403 — the embed page."""
     url = f"https://embed.tidal.com/tracks/{tid}"
     try:
-        req = urllib.request.Request(
-            url,
-            headers={"User-Agent": "Mozilla/5.0 (compatible; Beatify-HealthCheck/1.0)"},
-        )
+        req = urllib.request.Request(url, headers={"User-Agent": BROWSER_UA})
         with urllib.request.urlopen(req, timeout=10) as r:
-            html = r.read().decode("utf-8", errors="ignore")
-            og = re.search(r'<meta[^>]+property="og:title"[^>]+content="([^"]+)"', html)
-            if og:
-                actual_title = og.group(1).strip()
+            html_text = r.read().decode("utf-8", errors="ignore")
+            raw_og = _og_title(html_text)
+            # The embed page titles itself "TIDAL Embed Player" when it has no
+            # track to show — that is not a verdict either way.
+            if raw_og and raw_og.lower() not in ("tidal embed player", "tidal"):
+                actual_artist, actual_title = _split_og_title(raw_og)
                 v = title_verdict(title, actual_title, artist)
                 if v == "mismatch":
-                    return wrong_track(title, artist, actual_title)
+                    return wrong_track(title, artist, actual_title, actual_artist)
                 if v == "unverifiable":
-                    return unverifiable_title(title, actual_title)
-            return {"status": "ok", "http_code": 200}
+                    return unverifiable_title(title, actual_title, actual_artist)
+                return {"status": "ok", "http_code": 200}
+            return {
+                "status": "unverifiable",
+                "http_code": 200,
+                "detail": "Tidal embed page carries no track title — cannot verify",
+            }
     except urllib.error.HTTPError as e:
         if e.code == 404:
             return {"status": "dead", "http_code": e.code, "detail": "Not found"}
@@ -686,6 +831,7 @@ def validate_uris(songs, delay=0.5):
         "ok": 0,
         "dead": 0,
         "wrong_track": 0,
+        "wrong_isrc": 0,
         "unverifiable": 0,
         "error": 0,
         "unreachable": 0,
@@ -771,6 +917,7 @@ if __name__ == "__main__":
     s = report["summary"]
     print(
         f"Done. {s['ok']} ok, {s['dead']} dead, {s['wrong_track']} wrong track, "
+        f"{s.get('wrong_isrc', 0)} wrong isrc, "
         f"{s.get('unverifiable', 0)} unverifiable (different script), "
         f"{s.get('error', 0)} error, {s.get('unreachable', 0)} unreachable.",
         file=sys.stderr,
@@ -818,6 +965,10 @@ if __name__ == "__main__":
     # a region map breaks playback for users in that region just as surely as a
     # dead base URI does.
     defects = (
-        s["dead"] + s["wrong_track"] + rs.get("dead", 0) + rs.get("wrong_track", 0)
+        s["dead"]
+        + s["wrong_track"]
+        + s.get("wrong_isrc", 0)
+        + rs.get("dead", 0)
+        + rs.get("wrong_track", 0)
     )
     sys.exit(1 if defects > 0 else 0)
