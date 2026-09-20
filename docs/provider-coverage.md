@@ -1,5 +1,5 @@
 # Beatify Provider-URI Coverage
-> Generated: 2026-09-19
+> Generated: 2026-09-20
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
 > Catalogue state: v4.7.3-rc1
 
@@ -7,10 +7,10 @@
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
-| Apple | 8224 | 8557 | 96.1% |
-| Tidal | 5959 | 8557 | 69.6% |
-| Deezer | 8465 | 8557 | 98.9% |
-| YouTube | 7955 | 8557 | 93.0% |
+| Apple | 8223 | 8556 | 96.1% |
+| Tidal | 5958 | 8556 | 69.6% |
+| Deezer | 8463 | 8556 | 98.9% |
+| YouTube | 7954 | 8556 | 93.0% |
 
 ## Per-playlist coverage
 
@@ -23,7 +23,7 @@
 | 90er-hits.json | 158 | 154 | 108 | 158 | 142 |
 | community/100-greatest-rock-songs.json | 151 | 150 | 122 | 151 | 122 |
 | community/90s-2000s-hiphop-bangers.json | 40 | 40 | 40 | 40 | 40 |
-| community/anime-openings.json | 140 | 140 | 101 | 139 | 140 |
+| community/anime-openings.json | 139 | 139 | 100 | 137 | 139 |
 | community/ballermann-party-hits.json | 189 | 188 | 189 | 188 | 189 |
 | community/best-canadian-hits.json | 100 | 98 | 99 | 99 | 100 |
 | community/best-of-giraffenaffen.json | 26 | 26 | 26 | 26 | 26 |
