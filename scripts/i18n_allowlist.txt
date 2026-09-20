@@ -128,16 +128,6 @@ launcher.clickToOpenAnother
 launcher.popupBlocked
 launcher.allowPopups
 launcher.description
-analytics.title
-analytics.averageGuess
-analytics.yearsEarly
-analytics.yearsLate
-analytics.accuracy
-analytics.exactMatches
-analytics.speedChampion
-analytics.furthestGuess
-analytics.noSubmissions
-analytics.histogram
 artistChallenge.artistBonus
 artistChallenge.loading
 stats.ptsPerRound

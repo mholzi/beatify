@@ -1045,18 +1045,8 @@
     "clickToLaunch": "Avvia il gioco a schermo intero, senza distrazioni."
   },
   "analytics": {
-    "title": "Statistiche del turno",
-    "averageGuess": "Ipotesi media",
-    "yearsEarly": "{years} anni troppo presto",
-    "yearsLate": "{years} anni troppo tardi",
     "onTarget": "In pieno centro!",
-    "accuracy": "{percent}% ha fatto punti",
-    "exactMatches": "Risposte esatte",
-    "speedChampion": "Campione di velocità",
-    "furthestGuess": "Più lontano di tutti",
-    "noSubmissions": "Nessuna risposta in questo turno",
     "noGuesses": "Nessuna ipotesi",
-    "histogram": "Distribuzione delle ipotesi",
     "guessAxis": "Dove hanno tirato a indovinare tutti",
     "youMarker": "(TU)"
   },

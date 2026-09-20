@@ -1045,18 +1045,8 @@
     "clickToLaunch": "Launch the game in fullscreen — no distractions."
   },
   "analytics": {
-    "title": "Round Stats",
-    "averageGuess": "Average guess",
-    "yearsEarly": "{years} years too early",
-    "yearsLate": "{years} years too late",
     "onTarget": "Right on target!",
-    "accuracy": "{percent}% scored points",
-    "exactMatches": "Exact matches",
-    "speedChampion": "Speed champion",
-    "furthestGuess": "Most off",
-    "noSubmissions": "No submissions this round",
     "noGuesses": "No guesses",
-    "histogram": "Guess distribution",
     "guessAxis": "Where everyone guessed",
     "youMarker": "(YOU)"
   },
