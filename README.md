@@ -831,6 +831,8 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 - **A pause during the intro song start holds** — the intro no longer plays through the pause or leaves the next round silent (#2886)
 - **The lobby follows a changed playlist selection** — the songs that play match what the setup shows (#2888)
 - **New playlist: South Africa by Q** — 89 Amapiano, Afro House and Afrobeats tracks (#2890)
+- **Seven anime openings played the wrong recording** — wrong ISRCs had pulled Apple, Deezer and Tidal along with them (#2901)
+- **243 more YouTube Music links** across 17 playlists, taking YouTube reach to 95.8 % (#2859)
 
 ### v4.7.2 — Hold That Thought ⏸️
 - **A pause stays a pause** — reconnecting or reloading the admin phone no longer lifts a pause the host set on purpose (#2876), and the round clock stops while the game is paused (#2883)
