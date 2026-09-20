@@ -1,6 +1,6 @@
 {
   "name": "Polskie przeboje wszech czasów",
-  "version": "0.16",
+  "version": "0.17",
   "tags": [
     "polish",
     "pop",
@@ -1455,7 +1455,7 @@
         "it": "applemusic://track/915322223",
         "pl": "applemusic://track/915322223"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZeE3wjUbiaA",
       "uri_tidal": "tidal://track/58381216",
       "uri_deezer": "deezer://track/120994986",
       "fun_fact": "Lombard belongs to the Polish popular-music canon; \"Przeżyj To Sam\" (2016) features on this Polskie przeboje wszech czasów selection.",

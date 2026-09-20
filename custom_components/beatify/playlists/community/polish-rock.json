@@ -1,6 +1,6 @@
 {
   "name": "Polski Rock",
-  "version": "0.25",
+  "version": "0.26",
   "tags": [
     "polish",
     "rock"
@@ -2419,7 +2419,7 @@
         "nl": "applemusic://track/1447151512",
         "it": "applemusic://track/1447151562"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EOGJcq8bab4",
       "uri_tidal": "tidal://track/101293696",
       "uri_deezer": "deezer://track/606654752",
       "alt_artists": [],
@@ -2445,7 +2445,7 @@
         "nl": "applemusic://track/1484081273",
         "it": "applemusic://track/1484081273"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SPnEpzUy2V4",
       "uri_tidal": "tidal://track/120480753",
       "uri_deezer": "deezer://track/779745992",
       "alt_artists": [],
@@ -2523,7 +2523,7 @@
         "nl": "applemusic://track/1845118312",
         "it": "applemusic://track/1845118312"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rb8j3INrJ70",
       "uri_tidal": "tidal://track/465676763",
       "uri_deezer": "deezer://track/3592565352",
       "alt_artists": [],
@@ -2549,7 +2549,7 @@
         "nl": "applemusic://track/1484539951",
         "it": "applemusic://track/1828449821"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PLFSQLsBlLI",
       "uri_tidal": "tidal://track/120747819",
       "uri_deezer": "deezer://track/782048382",
       "alt_artists": [],
