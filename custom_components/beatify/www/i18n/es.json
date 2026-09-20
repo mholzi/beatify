@@ -1036,12 +1036,7 @@
   "launcher": {
     "title": "Beatify",
     "openBeatify": "Abrir Beatify",
-    "openingInNewTab": "Abriendo Beatify en una nueva pestaña...",
     "openedInNewTab": "Beatify abierto en una nueva pestaña!",
-    "clickToOpenAnother": "Haz clic en el botón para abrir otra ventana, o navega a otro lugar en Home Assistant.",
-    "popupBlocked": "Ventana emergente bloqueada! Haz clic en el botón de abajo.",
-    "allowPopups": "Tu navegador bloqueó la ventana emergente. Por favor permite las ventanas emergentes para este sitio.",
-    "description": "Juego musical de fiesta",
     "clickToLaunch": "Inicia el juego en pantalla completa — sin distracciones."
   },
   "analytics": {

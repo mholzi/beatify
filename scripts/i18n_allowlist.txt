@@ -123,11 +123,6 @@ analyticsDashboard.bettingHint
 dashboard.waitingForGame
 dashboard.spectatorHint
 dashboard.timeRemaining
-launcher.openingInNewTab
-launcher.clickToOpenAnother
-launcher.popupBlocked
-launcher.allowPopups
-launcher.description
 artistChallenge.artistBonus
 artistChallenge.loading
 stats.ptsPerRound

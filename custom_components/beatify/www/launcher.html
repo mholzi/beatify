@@ -87,20 +87,6 @@
             font-size: 22px;
         }
 
-        .hint {
-            margin-top: 24px;
-            font-size: 14px;
-            color: var(--color-text-muted);
-            min-height: 20px;
-        }
-
-        .status {
-            margin-top: 12px;
-            font-size: 13px;
-            color: var(--color-text-muted);
-            opacity: 0.6;
-        }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -120,9 +106,6 @@
         <span class="btn-icon">🎵</span>
         <span data-i18n="launcher.openBeatify">Open Beatify</span>
     </a>
-    <p class="hint" id="hint"></p>
-    <p class="status" id="status"></p>
-
     <script src="/beatify/static/js/i18n.js?v={{ASSET_VER}}"></script>
     <script>
         // rc17 (#1096): the launcher is an `<a target="_blank">` link
