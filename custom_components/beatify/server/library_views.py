@@ -32,6 +32,16 @@ from custom_components.beatify.const import DOMAIN
 from custom_components.beatify.library.version import __version__ as ENGINE_VERSION
 from custom_components.beatify.server.base import RateLimitMixin, _json_error
 from custom_components.beatify.server.companion_auth import is_authorized_http
+from custom_components.beatify.library.config import (
+    YEAR_GATES,
+    parse_library_config,
+)
+from custom_components.beatify.server.setup_state import (
+    GAME_OUTPUT_KEY,
+    SETTINGS_STORE_KEY,
+    SETTINGS_STORE_VERSION,
+    async_load_library_settings,
+)
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -42,10 +52,7 @@ _LOGGER = logging.getLogger(__name__)
 _BUILD_KEY = "library_build"
 
 
-_SETTINGS_STORE_KEY = "beatify.library_settings"
-_SETTINGS_STORE_VERSION = 1
 _LIBRARY_YEAR_GATE_NAMES = ("strict", "balanced", "tags_ok")
-_LIBRARY_YEAR_GATES = {"strict": 4, "balanced": 3, "tags_ok": 2}
 
 
 def sanitize_library_settings(body: Any) -> dict[str, Any]:
@@ -232,57 +239,17 @@ class LibraryPoolBuildView(HomeAssistantView):
         return self.json({"started": True})
 
 
-_GAME_OUTPUT_KEY = "beatify.game_output_settings"
-
 # Public aliases for the removal hook (#2263). The integration has to clear
 # these Stores when it is deleted, and a second copy of the key strings in
-# __init__.py would drift the first time one of them is renamed here.
-LIBRARY_SETTINGS_STORE_KEY = _SETTINGS_STORE_KEY
-LIBRARY_GAME_OUTPUT_STORE_KEY = _GAME_OUTPUT_KEY
-LIBRARY_STORE_VERSION = _SETTINGS_STORE_VERSION
-
-
-async def async_save_game_output_settings(
-    hass: HomeAssistant, patch: dict[str, Any]
-) -> None:
-    """Persist device/TTS/lights so the pre-start hook can re-apply them
-    server-side — the client chain (localStorage wipe on force-reset,
-    token resets, page-load races) proved unreliable for the reset path."""
-    from homeassistant.helpers.storage import Store
-
-    store = Store(hass, _SETTINGS_STORE_VERSION, _GAME_OUTPUT_KEY)
-    current = await store.async_load() or {}
-    current.update(patch)
-    await store.async_save(current)
-
-
-async def async_clear_game_output_settings(hass: HomeAssistant) -> None:
-    """Drop the persisted device/TTS/lights settings (force-reset path).
-
-    Keeps our Store consistent with upstream's "reset means reset" semantics
-    (4.2.0 #2036): a reset wipes the client AND the server-side setup blob, so
-    our re-apply source must go with it. Any later push repopulates it.
-    """
-    from homeassistant.helpers.storage import Store
-
-    store = Store(hass, _SETTINGS_STORE_VERSION, _GAME_OUTPUT_KEY)
-    await store.async_save({})
-
-
-async def async_load_game_output_settings(hass: HomeAssistant) -> dict[str, Any]:
-    """Load the persisted device/TTS/lights settings ({} when unset)."""
-    from homeassistant.helpers.storage import Store
-
-    store = Store(hass, _SETTINGS_STORE_VERSION, _GAME_OUTPUT_KEY)
-    return await store.async_load() or {}
-
-
-async def async_load_library_settings(hass: HomeAssistant) -> dict[str, Any]:
-    """Load the shared, server-side library settings ({} when unset)."""
-    from homeassistant.helpers.storage import Store
-
-    store = Store(hass, _SETTINGS_STORE_VERSION, _SETTINGS_STORE_KEY)
-    return await store.async_load() or {}
+# __init__.py would drift the first time one of them is renamed.
+# #2930: the Stores themselves moved to setup_state.py — they hold what the
+# *host* configured (speaker, TTS, lights), not what the song pool contains,
+# and keeping them here forced game_views.py to import this module from inside
+# functions. Re-exported so __init__.py and server/views.py keep their one
+# import site.
+LIBRARY_SETTINGS_STORE_KEY = SETTINGS_STORE_KEY
+LIBRARY_GAME_OUTPUT_STORE_KEY = GAME_OUTPUT_KEY
+LIBRARY_STORE_VERSION = SETTINGS_STORE_VERSION
 
 
 class LibraryPoolPreviewView(HomeAssistantView):
@@ -311,7 +278,7 @@ class LibraryPoolPreviewView(HomeAssistantView):
         genres_raw = (request.query.get("genres") or "").strip()
         genres = {g.strip() for g in genres_raw.split(",") if g.strip()} or None
         gate = request.query.get("gate", "strict")
-        min_conf = _LIBRARY_YEAR_GATES.get(gate, _LIBRARY_YEAR_GATES["strict"])
+        min_conf = YEAR_GATES.get(gate, YEAR_GATES["strict"])
         n = count_eligible(
             songs,
             popularity_min_percentile=(1.0 - pop / 100.0) if pop else None,
@@ -338,7 +305,7 @@ class LibrarySettingsView(HomeAssistantView):
     def _store(self) -> Any:
         from homeassistant.helpers.storage import Store
 
-        return Store(self.hass, _SETTINGS_STORE_VERSION, _SETTINGS_STORE_KEY)
+        return Store(self.hass, SETTINGS_STORE_VERSION, SETTINGS_STORE_KEY)
 
     async def get(self, request: web.Request) -> web.Response:
         if not is_authorized_http(request, self.hass):
@@ -838,7 +805,7 @@ class LibraryPoolRestoreView(HomeAssistantView):
             with contextlib.suppress(Exception):
                 from homeassistant.helpers.storage import Store
 
-                store = Store(self.hass, _SETTINGS_STORE_VERSION, _SETTINGS_STORE_KEY)
+                store = Store(self.hass, SETTINGS_STORE_VERSION, SETTINGS_STORE_KEY)
                 await store.async_save(sanitize_library_settings(bundle["settings"]))
                 settings_restored = True
 
@@ -1026,19 +993,16 @@ class LibraryPlaylistGenerateView(RateLimitMixin, HomeAssistantView):
         from custom_components.beatify.library import (
             async_generate_library_playlist,
         )
-        from custom_components.beatify.server.game_views import (
-            _parse_library_config,
-        )
         from custom_components.beatify.server.playlist_views import (
             write_user_playlist,
         )
 
-        # #2935: _parse_library_config returns five values. This unpacked three
+        # #2935: parse_library_config returns five values. This unpacked three
         # and raised ValueError before the endpoint did anything — and the two
         # it never bound are exactly the filters the panel sends, so widening
         # the unpack without passing them on would have turned a visible crash
         # into a silently ignored setting. Mirrors game_views._generate_library_songs.
-        size, slider, min_confidence, pop_percent, genres = _parse_library_config(body)
+        size, slider, min_confidence, pop_percent, genres = parse_library_config(body)
         playlist = await async_generate_library_playlist(
             self.hass,
             size=size,

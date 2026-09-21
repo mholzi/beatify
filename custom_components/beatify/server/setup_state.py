@@ -12,6 +12,16 @@ server never has to track the client-side settings shape.
 
 All disk I/O here is blocking and MUST be offloaded to the executor by callers
 (see ``async_add_executor_job``) so it never runs on the HA event loop.
+
+**Two mechanisms, one subject (#2930).** Besides the setup blob on disk, this
+module also owns the HA ``Store``-backed settings the host picks: the game
+output settings (speaker, TTS, lights) and the library settings. They lived in
+``library_views.py``, where ``game_views.py`` had to reach for them with imports
+inside functions — one half of an import cycle that no contributor could tidy
+without breaking integration startup. They are not library state: the song pool
+knows nothing about which speaker plays. The persistence differs (``Store`` vs a
+JSON file) and the subject does not, so they live together and the cycle is
+gone.
 """
 
 from __future__ import annotations
@@ -77,3 +87,55 @@ def clear_setup(hass: HomeAssistant) -> bool:
     except FileNotFoundError:
         return False
     return True
+
+
+# ---------------------------------------------------------------------------
+# Store-backed host settings (moved here from library_views.py, #2930)
+# ---------------------------------------------------------------------------
+
+SETTINGS_STORE_KEY = "beatify.library_settings"
+SETTINGS_STORE_VERSION = 1
+GAME_OUTPUT_KEY = "beatify.game_output_settings"
+
+
+async def async_save_game_output_settings(
+    hass: HomeAssistant, patch: dict[str, Any]
+) -> None:
+    """Persist device/TTS/lights so the pre-start hook can re-apply them
+    server-side — the client chain (localStorage wipe on force-reset,
+    token resets, page-load races) proved unreliable for the reset path."""
+    from homeassistant.helpers.storage import Store
+
+    store = Store(hass, SETTINGS_STORE_VERSION, GAME_OUTPUT_KEY)
+    current = await store.async_load() or {}
+    current.update(patch)
+    await store.async_save(current)
+
+
+async def async_clear_game_output_settings(hass: HomeAssistant) -> None:
+    """Drop the persisted device/TTS/lights settings (force-reset path).
+
+    Keeps our Store consistent with upstream's "reset means reset" semantics
+    (4.2.0 #2036): a reset wipes the client AND the server-side setup blob, so
+    our re-apply source must go with it. Any later push repopulates it.
+    """
+    from homeassistant.helpers.storage import Store
+
+    store = Store(hass, SETTINGS_STORE_VERSION, GAME_OUTPUT_KEY)
+    await store.async_save({})
+
+
+async def async_load_game_output_settings(hass: HomeAssistant) -> dict[str, Any]:
+    """Load the persisted device/TTS/lights settings ({} when unset)."""
+    from homeassistant.helpers.storage import Store
+
+    store = Store(hass, SETTINGS_STORE_VERSION, GAME_OUTPUT_KEY)
+    return await store.async_load() or {}
+
+
+async def async_load_library_settings(hass: HomeAssistant) -> dict[str, Any]:
+    """Load the shared, server-side library settings ({} when unset)."""
+    from homeassistant.helpers.storage import Store
+
+    store = Store(hass, SETTINGS_STORE_VERSION, SETTINGS_STORE_KEY)
+    return await store.async_load() or {}

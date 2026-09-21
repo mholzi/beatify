@@ -225,7 +225,10 @@ class TestPreStartHookMovesBoth:
                 new=AsyncMock(return_value={}),
             ),
             patch(
-                "custom_components.beatify.server.library_views."
+                # #2930: the Store moved to setup_state.py, but a patch has to
+                # name where the function is *looked up* — game_views imported
+                # it into its own namespace, so that is the target.
+                "custom_components.beatify.server.game_views."
                 "async_load_game_output_settings",
                 new=AsyncMock(return_value=stored),
             ),
