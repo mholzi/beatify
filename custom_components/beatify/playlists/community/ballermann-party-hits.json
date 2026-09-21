@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.29",
+  "version": "1.30",
   "tags": [
     "schlager",
     "party",
@@ -21,13 +21,13 @@
       "uri": "spotify:track:4wYzLS2bkm71lpx9I06yTX",
       "uri_apple_music": "applemusic://track/1383694789",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1664954218",
-        "de": "applemusic://track/1664954218",
-        "gb": "applemusic://track/1664954218",
-        "fr": "applemusic://track/1664954218",
-        "es": "applemusic://track/1664954218",
-        "nl": "applemusic://track/1664954218",
-        "it": "applemusic://track/1664954218"
+        "us": "applemusic://track/1383694789",
+        "de": "applemusic://track/1383694789",
+        "gb": "applemusic://track/1383694789",
+        "fr": "applemusic://track/1383694789",
+        "es": "applemusic://track/1383694789",
+        "nl": "applemusic://track/1383694789",
+        "it": "applemusic://track/1383694789"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=RfZ8fIY2RmY",
       "uri_tidal": "tidal://track/88460352",
@@ -2400,15 +2400,15 @@
       "year": 2021,
       "isrc": "DEUM72118144",
       "uri": "spotify:track:0I6uuGiWV9n9g3z0jRVzqn",
-      "uri_apple_music": "applemusic://track/1709026570",
+      "uri_apple_music": "applemusic://track/1589781599",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1709026570",
-        "de": "applemusic://track/1606440895",
-        "gb": "applemusic://track/1709026570",
-        "fr": "applemusic://track/1709026570",
-        "es": "applemusic://track/1709026570",
-        "nl": "applemusic://track/1709026570",
-        "it": "applemusic://track/1709026570"
+        "us": "applemusic://track/1589781599",
+        "de": "applemusic://track/1589781599",
+        "gb": "applemusic://track/1589781599",
+        "fr": "applemusic://track/1589781599",
+        "es": "applemusic://track/1589781599",
+        "nl": "applemusic://track/1589781599",
+        "it": "applemusic://track/1589781599"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=M9CDtiJhzuM",
       "uri_tidal": "tidal://track/201309809",
@@ -3359,15 +3359,15 @@
       "year": 1999,
       "isrc": "DEUM72001472",
       "uri": "spotify:track:65kQJwtUMVeurCmXTOGfeI",
-      "uri_apple_music": "applemusic://track/1535124794",
+      "uri_apple_music": "applemusic://track/1658577077",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1535124794",
-        "de": "applemusic://track/1535124794",
-        "gb": "applemusic://track/1535124794",
-        "fr": "applemusic://track/1535124794",
-        "es": "applemusic://track/1535124794",
-        "nl": "applemusic://track/1535124794",
-        "it": "applemusic://track/1535124794"
+        "us": "applemusic://track/1658577077",
+        "de": "applemusic://track/1658577077",
+        "gb": "applemusic://track/1658577077",
+        "fr": "applemusic://track/1658577077",
+        "es": "applemusic://track/1658577077",
+        "nl": "applemusic://track/1658577077",
+        "it": "applemusic://track/1658577077"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=jSuT0dg_R-Y",
       "uri_tidal": "tidal://track/79927856",
@@ -4124,7 +4124,6 @@
         "it": "applemusic://track/1442233430"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nqraNWUjasA",
-      "uri_tidal": "tidal://track/20663890",
       "uri_deezer": "deezer://track/3136075381",
       "fun_fact": "Mickie Krause is one of Germany's best-known Ballermann entertainers, famous for his sing-along party hits.",
       "fun_fact_de": "Mickie Krause zählt zu den bekanntesten Ballermann-Entertainern Deutschlands, berühmt für seine Mitsing-Partyhits.",
@@ -4524,13 +4523,13 @@
       "isrc": "DEUM72006668",
       "uri": "spotify:track:6utaoKGSLouzClxNttqPa4",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/294519561",
-        "de": "applemusic://track/294519561",
-        "gb": "applemusic://track/294519561",
-        "fr": "applemusic://track/294519561",
-        "es": "applemusic://track/294519561",
-        "nl": "applemusic://track/294519561",
-        "it": "applemusic://track/382430811"
+        "us": "applemusic://track/844155578",
+        "de": "applemusic://track/844155578",
+        "gb": "applemusic://track/844155578",
+        "fr": "applemusic://track/844155578",
+        "es": "applemusic://track/844155578",
+        "nl": "applemusic://track/844155578",
+        "it": "applemusic://track/844155578"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HV-1R3-HzDI",
       "uri_tidal": "tidal://track/82006150",
@@ -4668,18 +4667,7 @@
       "year": 2016,
       "isrc": "DEUM71603458",
       "uri": "spotify:track:1MxeyuLwAP2Jj30Q2Zh8wr",
-      "uri_apple_music": "applemusic://track/1706431616",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/1706431616",
-        "de": "applemusic://track/1822592538",
-        "gb": "applemusic://track/1706431616",
-        "fr": "applemusic://track/1706431616",
-        "es": "applemusic://track/1706431616",
-        "nl": "applemusic://track/1706431616",
-        "it": "applemusic://track/1706431616"
-      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Xy7PmR7Bcd8",
-      "uri_tidal": "tidal://track/66005006",
       "uri_deezer": "deezer://track/134521826",
       "alt_artists": [
         "Klaus & Klaus"
