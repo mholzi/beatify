@@ -129,12 +129,29 @@ class TestSuddenDeathFloorIsTheConstant:
 
 
 class TestSuddenDeathFloorHasOneHome:
-    """No surface may restate the floor as a literal."""
+    """No surface may restate the floor as a literal.
 
-    def test_game_views_uses_the_constant(self):
-        src = (BEATIFY / "server" / "game_views.py").read_text(encoding="utf-8")
-        assert "connected_count < SUDDEN_DEATH_MIN_PLAYERS" in src
-        assert not re.search(r"connected_count < \d", src)
+    #2929 gave the floor its one home for real: it used to sit in
+    ``game_views.py`` and nowhere else, which meant the websocket start path
+    simply did not apply it. It now lives in ``game/start_gameplay.py`` and both
+    surfaces go through that. The assertion follows the code; what it guards is
+    unchanged — the comparison reads the constant, and no surface writes a digit.
+    """
+
+    def test_the_floor_reads_the_constant(self):
+        src = (BEATIFY / "game" / "start_gameplay.py").read_text(encoding="utf-8")
+        assert "connected >= SUDDEN_DEATH_MIN_PLAYERS" in src
+        assert not re.search(r"connected >= \d", src)
+
+    def test_no_surface_restates_the_floor(self):
+        """Neither start path may grow its own copy back."""
+        for rel in (
+            ("server", "game_views.py"),
+            ("server", "ws_handlers", "admin.py"),
+        ):
+            src = BEATIFY.joinpath(*rel).read_text(encoding="utf-8")
+            assert not re.search(r"connected\w* [<>]=? \d", src), rel
+            assert "SUDDEN_DEATH_MIN_PLAYERS" not in src, rel
 
     def test_locales_carry_a_placeholder_not_a_digit(self):
         """All six locales phrase the floor as ``{min}``.

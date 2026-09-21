@@ -12,6 +12,11 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers import entity_registry as er
 
+from custom_components.beatify.game.start_gameplay import (
+    REFUSE_ALREADY_STARTED,
+    begin_gameplay,
+    refusal_to_start,
+)
 from custom_components.beatify.const import (
     DIFFICULTY_DEFAULT,
     DIFFICULTY_EASY,
@@ -29,7 +34,6 @@ from custom_components.beatify.const import (
     REVEAL_AUTO_ADVANCE_OPTIONS,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
-    SUDDEN_DEATH_MIN_PLAYERS,
 )
 from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
@@ -1329,7 +1333,6 @@ class StartGameplayView(BeatifyAdminView):
         """Start gameplay from lobby."""
         if not is_authorized_http(request, self.hass):
             return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
-        from custom_components.beatify.game.state import GamePhase
 
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
@@ -1337,44 +1340,26 @@ class StartGameplayView(BeatifyAdminView):
         if not game_state or not game_state.game_id:
             return _json_error("No active game", 404, code="GAME_NOT_STARTED")
 
-        if game_state.phase != GamePhase.LOBBY:
-            return _json_error("Game already started", 409, code="INVALID_PHASE")
-
-        # #2497: the minimum-player floor. It used to live in a
-        # GameState.start_game() that no production path called, so a game
-        # could be started alone. Enforced at the two places a *user* starts a
-        # game — here and in the websocket admin handler — rather than inside
-        # start_round(), which runs for every round of every game.
-        # #2717 deleted start_game() and its third, unreachable copy of this
-        # gate, which returned error codes no client ever saw.
-        if len(game_state.players) < MIN_PLAYERS:
+        # #2929: the phase check, the minimum-player floor and the sudden-death
+        # floor are decisions about *starting a game*, not about this surface,
+        # so they live in game/start_gameplay.py and the websocket handler asks
+        # the same questions. Only the wording of a refusal stays here.
+        refusal = refusal_to_start(game_state)
+        if refusal is not None:
+            if refusal == REFUSE_ALREADY_STARTED:
+                return _json_error("Game already started", 409, code="INVALID_PHASE")
             return _json_error(
                 f"Need at least {MIN_PLAYERS} players to start",
                 409,
                 code="NOT_ENOUGH_PLAYERS",
             )
 
-        # Issue #827: Sudden Death needs SUDDEN_DEATH_MIN_PLAYERS connected
-        # players. Players join the LOBBY *after* create_game (which clears
-        # sessions), so the floor can only be enforced here, at the
-        # LOBBY->PLAYING transition. The wizard also disables the toggle
-        # client-side; this is the server-side backstop for direct API callers.
-        # Auto-disable rather than block the start so the host isn't stuck —
-        # surface a warning instead.
-        # #2699: both the comparison and the warning read the constant, so
-        # raising the floor in const.py cannot leave this message promising the
-        # old number.
-        sudden_death_warning = None
-        if game_state.sudden_death_mode:
-            connected_count = sum(1 for p in game_state.players.values() if p.connected)
-            if connected_count < SUDDEN_DEATH_MIN_PLAYERS:
-                game_state.set_sudden_death(False)
-                sudden_death_warning = (
-                    f"Sudden Death needs at least {SUDDEN_DEATH_MIN_PLAYERS} "
-                    "players — starting without it."
-                )
-
-        # Set round end callback for broadcasting
+        # Set round end callback for broadcasting.
+        # These three are already wired in __init__.py:186-196 against the same
+        # GameState and the same handler, so this block is a re-wire rather than
+        # the only wiring — the websocket start path omits it and is none the
+        # worse for it (#2929). Left in place because removing it is a separate
+        # question from making the two start paths agree.
         ws_handler = data.get("ws_handler")
         if ws_handler:
             game_state.set_round_end_callback(ws_handler.broadcast_state)
@@ -1389,8 +1374,10 @@ class StartGameplayView(BeatifyAdminView):
                 ws_handler.broadcast_metadata_update
             )
 
-        # Start the first round
-        success = await game_state.start_round()
+        # Start the first round. Lowers the sudden-death floor if needed and
+        # announces `game_starting` to the room — both shared with the
+        # websocket path since #2929.
+        success, sudden_death_warning = await begin_gameplay(game_state, ws_handler)
         if not success:
             return _json_error("Failed to start - no songs", 500, code="START_FAILED")
 

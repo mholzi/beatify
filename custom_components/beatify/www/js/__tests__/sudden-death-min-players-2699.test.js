@@ -32,7 +32,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const BEATIFY = join(__dirname, '..', '..', '..');
 const CONST_PY = readFileSync(join(BEATIFY, 'const.py'), 'utf8');
 const WIZARD_SRC = readFileSync(join(BEATIFY, 'www', 'js', 'wizard.js'), 'utf8');
-const GAME_VIEWS_SRC = readFileSync(join(BEATIFY, 'server', 'game_views.py'), 'utf8');
+// #2929 moved the floor out of game_views.py: both start paths (REST and
+// the admin websocket) now go through game/start_gameplay.py, so the
+// comparison has one home instead of living in one surface and missing
+// from the other.
+const START_GAMEPLAY_SRC = readFileSync(
+    join(BEATIFY, 'game', 'start_gameplay.py'),
+    'utf8',
+);
 const I18N_SRC = readFileSync(join(BEATIFY, 'www', 'js', 'i18n.js'), 'utf8');
 
 const LOCALES = ['en', 'de', 'es', 'fr', 'it', 'nl'];
@@ -93,9 +100,9 @@ describe('const.py owns the Sudden Death floor (#2699)', () => {
         expect(/^const SUDDEN_DEATH_MIN_PLAYERS\s*=/m.test(WIZARD_SRC)).toBe(false);
     });
 
-    it('game_views.py compares against the constant, not a literal', () => {
-        expect(GAME_VIEWS_SRC).toContain('connected_count < SUDDEN_DEATH_MIN_PLAYERS');
-        expect(/connected_count < \d/.test(GAME_VIEWS_SRC)).toBe(false);
+    it('start_gameplay.py compares against the constant, not a literal', () => {
+        expect(START_GAMEPLAY_SRC).toContain('connected >= SUDDEN_DEATH_MIN_PLAYERS');
+        expect(/connected >= \d/.test(START_GAMEPLAY_SRC)).toBe(false);
     });
 });
 

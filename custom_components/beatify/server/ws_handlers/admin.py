@@ -28,6 +28,11 @@ from custom_components.beatify.const import (
     VOID_ROUND_REASONS,
 )
 from custom_components.beatify.game.playlist import async_load_songs_from_paths
+from custom_components.beatify.game.start_gameplay import (
+    REFUSE_ALREADY_STARTED,
+    begin_gameplay,
+    refusal_to_start,
+)
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
 from custom_components.beatify.server.serializers import build_state_message
@@ -135,42 +140,24 @@ async def admin_start_game(
     game_state: GameState,
 ) -> None:
     """Handle admin start_game action."""
-    if game_state.phase != GamePhase.LOBBY:
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": ERR_INVALID_ACTION,
-                "message": "Game already started",
-            }
-        )
+    # #2929: the phase check, the minimum-player floor and the sudden-death
+    # floor are decisions about *starting a game*, not about this surface, so
+    # they live in game/start_gameplay.py and the REST endpoint asks the same
+    # questions. Only the wording of a refusal stays here — a socket answers
+    # differently than an HTTP response.
+    refusal = refusal_to_start(game_state)
+    if refusal is not None:
+        if refusal == REFUSE_ALREADY_STARTED:
+            code, message = ERR_INVALID_ACTION, "Game already started"
+        else:
+            code, message = (
+                ERR_GAME_NOT_STARTED,
+                f"Need at least {MIN_PLAYERS} players to start",
+            )
+        await ws.send_json({"type": "error", "code": code, "message": message})
         return
 
-    # #2497: the minimum-player check used to live in a GameState.start_game()
-    # that no production path called — so a game could be started with a single
-    # player. It belongs here rather than inside start_round(): start_round runs
-    # for every round of every game, while this is a property of *starting* one,
-    # and only here is there a socket to tell the host why nothing happened.
-    # #2717 deleted start_game(), so this and StartGameplayView are now the only
-    # two copies of the floor, one per surface a host can start a game from.
-    if len(game_state.players) < MIN_PLAYERS:
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": ERR_GAME_NOT_STARTED,
-                "message": f"Need at least {MIN_PLAYERS} players to start",
-            }
-        )
-        return
-
-    # #1287: cold-start bridge. start_round() blocks for ~10-15s while Music
-    # Assistant connects the speaker and round 1 is prepared, and only then is
-    # the PLAYING state broadcast. Without an interim signal every client stays
-    # on the lobby/"Starting…" view the whole time. Fire a lightweight transient
-    # message FIRST so player phones + the TV/dashboard switch to the animated
-    # vinyl-disc loader immediately; the PLAYING broadcast below replaces it.
-    await handler.broadcast({"type": "game_starting"})
-
-    success = await game_state.start_round()
+    success, _warning = await begin_gameplay(game_state, handler)
     if success:
         await handler.broadcast_state()
     else:
