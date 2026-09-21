@@ -1,6 +1,6 @@
 {
   "name": "South Africa by Q 🇿🇦",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "amapiano",
     "afro-house",
@@ -43,7 +43,7 @@
       },
       "uri_deezer": "deezer://track/1356471352",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jHUQg5rvBEg"
     },
     {
       "year": 1992,
@@ -68,7 +68,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/3427288",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s63esx4c-Dw"
     },
     {
       "year": 1995,
@@ -96,7 +96,7 @@
       },
       "uri_deezer": "deezer://track/63395190",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4rDnPnD46Xs"
     },
     {
       "year": 1998,
@@ -124,7 +124,7 @@
       },
       "uri_deezer": "deezer://track/63394006",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MpZjEfD3Zcc"
     },
     {
       "year": 2006,
@@ -152,7 +152,7 @@
       },
       "uri_deezer": "deezer://track/2688289802",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=s41vD1pS0Rc"
     },
     {
       "year": 2007,
@@ -180,7 +180,7 @@
       },
       "uri_deezer": "deezer://track/2645259062",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jv0iThSVUNE"
     },
     {
       "year": 2008,
@@ -208,7 +208,7 @@
       },
       "uri_deezer": "deezer://track/414592682",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kPwQhsEVPJ4"
     },
     {
       "year": 2010,
@@ -236,7 +236,7 @@
       },
       "uri_deezer": "deezer://track/17956922",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZkHzk07vb_w"
     },
     {
       "year": 2015,
@@ -264,7 +264,7 @@
       },
       "uri_deezer": "deezer://track/95192868",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a-B4Q5_I_mI"
     },
     {
       "year": 2016,
@@ -289,7 +289,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/132679052",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SPmHj7OI9XQ"
     },
     {
       "year": 2016,
@@ -317,7 +317,7 @@
       },
       "uri_deezer": "deezer://track/144957942",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oaWHIV8G_7g"
     },
     {
       "year": 2017,
@@ -345,7 +345,7 @@
       },
       "uri_deezer": "deezer://track/144957950",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_B9xJy53tZQ"
     },
     {
       "year": 2017,
@@ -373,7 +373,7 @@
       },
       "uri_deezer": "deezer://track/351880081",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qlmOSPnlmww"
     },
     {
       "year": 2017,
@@ -401,7 +401,7 @@
       },
       "uri_deezer": "deezer://track/441146322",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VgxJxV956wA"
     },
     {
       "year": 2018,
@@ -429,7 +429,7 @@
       },
       "uri_deezer": "deezer://track/466801522",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-D4wfnTuPGM"
     },
     {
       "year": 2019,
@@ -454,7 +454,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/651806612",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5-TAJied48c"
     },
     {
       "year": 2020,
@@ -482,7 +482,7 @@
       },
       "uri_deezer": "deezer://track/978173922",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l-rvDCFMVvE"
     },
     {
       "year": 2020,
@@ -510,7 +510,7 @@
       },
       "uri_deezer": "deezer://track/1077612272",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=POzxFe4B9E0"
     },
     {
       "year": 2020,
@@ -538,7 +538,7 @@
       },
       "uri_deezer": "deezer://track/855590722",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2CSZKpQ0J5s"
     },
     {
       "year": 2020,
@@ -566,7 +566,7 @@
       },
       "uri_deezer": "deezer://track/927824132",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cXIoBUXvjZs"
     },
     {
       "year": 2021,
@@ -594,7 +594,7 @@
       },
       "uri_deezer": "deezer://track/2852386422",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=d6tljIFaIYI"
     },
     {
       "year": 2021,
@@ -622,7 +622,7 @@
       },
       "uri_deezer": "deezer://track/1379538392",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bUSNw1X6LSg"
     },
     {
       "year": 2021,
@@ -650,7 +650,7 @@
       },
       "uri_deezer": "deezer://track/1304376652",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NjrQleRCX34"
     },
     {
       "year": 2022,
@@ -678,7 +678,7 @@
       },
       "uri_deezer": "deezer://track/1832320917",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8J-a_nECq6Q"
     },
     {
       "year": 2022,
@@ -705,7 +705,7 @@
       },
       "uri_deezer": "deezer://track/2043467797",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pQFmuJA9mLE"
     },
     {
       "year": 2022,
@@ -733,7 +733,7 @@
       },
       "uri_deezer": "deezer://track/2628283792",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9INdsK4A__8"
     },
     {
       "year": 2022,
@@ -761,7 +761,7 @@
       },
       "uri_deezer": "deezer://track/1593254261",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lylLKCBJB_Y"
     },
     {
       "year": 2022,
@@ -789,7 +789,7 @@
       },
       "uri_deezer": "deezer://track/1936228117",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rkz9xBFD-ls"
     },
     {
       "year": 2022,
@@ -817,7 +817,7 @@
       },
       "uri_deezer": "deezer://track/1920650617",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L9FoQnMyHVA"
     },
     {
       "year": 2022,
@@ -845,7 +845,7 @@
       },
       "uri_deezer": "deezer://track/2582793742",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xGfO2Bm3zSY"
     },
     {
       "year": 2022,
@@ -873,7 +873,7 @@
       },
       "uri_deezer": "deezer://track/3590305201",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dmGkl6Zv0G4"
     },
     {
       "year": 2022,
@@ -901,7 +901,7 @@
       },
       "uri_deezer": "deezer://track/1841735057",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=M4hb6frrk3E"
     },
     {
       "year": 2022,
@@ -926,7 +926,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/4127326321",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Nr_Km2sqsCY"
     },
     {
       "year": 2022,
@@ -951,7 +951,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/2413865125",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MqqBH9Fa4NQ"
     },
     {
       "year": 2022,
@@ -979,7 +979,7 @@
       },
       "uri_deezer": "deezer://track/1728182387",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BTRSnbBDCW4"
     },
     {
       "year": 2022,
@@ -1006,7 +1006,7 @@
       },
       "uri_deezer": "deezer://track/1586209382",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0_hvnXHsJ-I"
     },
     {
       "year": 2023,
@@ -1034,7 +1034,7 @@
       },
       "uri_deezer": "deezer://track/2566937722",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qzOv8xvKfHM"
     },
     {
       "year": 2023,
@@ -1062,7 +1062,7 @@
       },
       "uri_deezer": "deezer://track/2542769391",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iqNdJUx5CHg"
     },
     {
       "year": 2023,
@@ -1090,7 +1090,7 @@
       },
       "uri_deezer": "deezer://track/2301973365",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vHv19XdIEEA"
     },
     {
       "year": 2023,
@@ -1118,7 +1118,7 @@
       },
       "uri_deezer": "deezer://track/2538024721",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nNODZeu2__w"
     },
     {
       "year": 2023,
@@ -1146,7 +1146,7 @@
       },
       "uri_deezer": "deezer://track/2343066935",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u1FgHZi82KQ"
     },
     {
       "year": 2023,
@@ -1174,7 +1174,7 @@
       },
       "uri_deezer": "deezer://track/3992106311",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6JPaSZmfAWc"
     },
     {
       "year": 2023,
@@ -1202,7 +1202,7 @@
       },
       "uri_deezer": "deezer://track/2486813731",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q_Uax2Yw48U"
     },
     {
       "year": 2023,
@@ -1230,7 +1230,7 @@
       },
       "uri_deezer": "deezer://track/2403408085",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S7Tu3MK5HN0"
     },
     {
       "year": 2023,
@@ -1258,7 +1258,7 @@
       },
       "uri_deezer": "deezer://track/2889044002",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S8shAxquXF0"
     },
     {
       "year": 2023,
@@ -1286,7 +1286,7 @@
       },
       "uri_deezer": "deezer://track/2635351352",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Xv37OqEoBTY"
     },
     {
       "year": 2023,
@@ -1314,7 +1314,7 @@
       },
       "uri_deezer": "deezer://track/2630898092",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fh030cZr4pE"
     },
     {
       "year": 2023,
@@ -1342,7 +1342,7 @@
       },
       "uri_deezer": "deezer://track/2889309762",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XhNVNr4LkfY"
     },
     {
       "year": 2023,
@@ -1370,7 +1370,7 @@
       },
       "uri_deezer": "deezer://track/2551462532",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tfdwcqfuxwA"
     },
     {
       "year": 2023,
@@ -1398,7 +1398,7 @@
       },
       "uri_deezer": "deezer://track/2324457305",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bbVZo4Yw7pI"
     },
     {
       "year": 2023,
@@ -1426,7 +1426,7 @@
       },
       "uri_deezer": "deezer://track/2781182841",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vmytMK1ZjcY"
     },
     {
       "year": 2023,
@@ -1451,7 +1451,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/2292141245",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=l_-v1fNdSHs"
     },
     {
       "year": 2024,
@@ -1479,7 +1479,7 @@
       },
       "uri_deezer": "deezer://track/3106843901",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FEH2lU23QYI"
     },
     {
       "year": 2024,
@@ -1507,7 +1507,7 @@
       },
       "uri_deezer": "deezer://track/3080476821",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zPE55JWfvmI"
     },
     {
       "year": 2024,
@@ -1535,7 +1535,7 @@
       },
       "uri_deezer": "deezer://track/3080476851",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tKtW2nT1hOU"
     },
     {
       "year": 2024,
@@ -1563,7 +1563,7 @@
       },
       "uri_deezer": "deezer://track/3115502601",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Re7Ytxk15Hw"
     },
     {
       "year": 2024,
@@ -1588,7 +1588,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/2968794241",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GHJu1oZBKLU"
     },
     {
       "year": 2024,
@@ -1616,7 +1616,7 @@
       },
       "uri_deezer": "deezer://track/3145460321",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MLLm8Okhllg"
     },
     {
       "year": 2024,
@@ -1643,7 +1643,7 @@
       },
       "uri_deezer": "deezer://track/2976808701",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Y6Wy41wAy3g"
     },
     {
       "year": 2024,
@@ -1671,7 +1671,7 @@
       },
       "uri_deezer": "deezer://track/2705551872",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jj3bPdz45hc"
     },
     {
       "year": 2024,
@@ -1699,7 +1699,7 @@
       },
       "uri_deezer": "deezer://track/3107146771",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jKyj7-EA3vM"
     },
     {
       "year": 2024,
@@ -1727,7 +1727,7 @@
       },
       "uri_deezer": "deezer://track/2979347891",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=trvVY8AEVzs"
     },
     {
       "year": 2024,
@@ -1755,7 +1755,7 @@
       },
       "uri_deezer": "deezer://track/2802966992",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HjL6M5mQQNA"
     },
     {
       "year": 2024,
@@ -1808,7 +1808,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/2991692741",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jebg8VDOzrU"
     },
     {
       "year": 2024,
@@ -1836,7 +1836,7 @@
       },
       "uri_deezer": "deezer://track/2763369421",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DEGeG7_7lvc"
     },
     {
       "year": 2024,
@@ -1864,7 +1864,7 @@
       },
       "uri_deezer": "deezer://track/3047872191",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q7Bb1zSu_ow"
     },
     {
       "year": 2024,
@@ -1889,7 +1889,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/2815435432",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HIYAACjA7dM"
     },
     {
       "year": 2024,
@@ -1917,7 +1917,7 @@
       },
       "uri_deezer": "deezer://track/3077886051",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GiKDPyAADeM"
     },
     {
       "year": 2024,
@@ -1945,7 +1945,7 @@
       },
       "uri_deezer": "deezer://track/2931011351",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iiOHqmmjdGk"
     },
     {
       "year": 2024,
@@ -1973,7 +1973,7 @@
       },
       "uri_deezer": "deezer://track/2971544681",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sApAlTTNJ5M"
     },
     {
       "year": 2025,
@@ -2001,7 +2001,7 @@
       },
       "uri_deezer": "deezer://track/3240149711",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qR8-uQ5LixE"
     },
     {
       "year": 2025,
@@ -2028,7 +2028,7 @@
       },
       "uri_deezer": "deezer://track/3489333241",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ozlLNUp7USM"
     },
     {
       "year": 2025,
@@ -2056,7 +2056,7 @@
       },
       "uri_deezer": "deezer://track/3147152601",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ruKnGjwNG5k"
     },
     {
       "year": 2025,
@@ -2081,7 +2081,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/3638412382",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cs3B9WXuXb8"
     },
     {
       "year": 2025,
@@ -2109,7 +2109,7 @@
       },
       "uri_deezer": "deezer://track/3210661231",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MsZhYgo9MoA"
     },
     {
       "year": 2025,
@@ -2134,7 +2134,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/3560361351",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z2c1cYjd1vA"
     },
     {
       "year": 2025,
@@ -2159,7 +2159,7 @@
       "uri_apple_music": null,
       "uri_deezer": "deezer://track/3338313601",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uNW7zPzZNtE"
     },
     {
       "year": 2025,
@@ -2187,7 +2187,7 @@
       },
       "uri_deezer": "deezer://track/3299987281",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sel1mCYFJ8U"
     },
     {
       "year": 2025,
@@ -2215,7 +2215,7 @@
       },
       "uri_deezer": "deezer://track/3398839821",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zfqamavwY7o"
     },
     {
       "year": 2025,
@@ -2243,7 +2243,7 @@
       },
       "uri_deezer": "deezer://track/3130380951",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FGR3fj5yCcA"
     },
     {
       "year": 2025,
@@ -2271,7 +2271,7 @@
       },
       "uri_deezer": "deezer://track/3952198231",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S8oTe_GswxI"
     },
     {
       "year": 2025,
@@ -2299,7 +2299,7 @@
       },
       "uri_deezer": "deezer://track/3543898971",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5SZUj_Q4fMo"
     },
     {
       "year": 2026,
@@ -2326,7 +2326,7 @@
       },
       "uri_deezer": "deezer://track/4190942462",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ni64SSxPpxM"
     },
     {
       "year": 2026,
@@ -2354,7 +2354,7 @@
       },
       "uri_deezer": "deezer://track/4112686931",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=plNCtexnFkw"
     },
     {
       "year": 2026,
@@ -2382,7 +2382,7 @@
       },
       "uri_deezer": "deezer://track/4222566972",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WsPj0U9K4uk"
     },
     {
       "year": 2026,
@@ -2410,7 +2410,7 @@
       },
       "uri_deezer": "deezer://track/4178948812",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9bK4dzwq0Jk"
     },
     {
       "year": 2026,
@@ -2438,7 +2438,7 @@
       },
       "uri_deezer": "deezer://track/4027885391",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=otmj7WaRN-A"
     },
     {
       "year": 2026,
@@ -2466,7 +2466,7 @@
       },
       "uri_deezer": "deezer://track/4167428892",
       "uri_tidal": null,
-      "uri_youtube_music": null
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ym2yb5DZ_Mg"
     }
   ]
 }
