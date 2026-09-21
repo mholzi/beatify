@@ -1033,11 +1033,18 @@ class LibraryPlaylistGenerateView(RateLimitMixin, HomeAssistantView):
             write_user_playlist,
         )
 
-        size, slider, min_confidence = _parse_library_config(body)
+        # #2935: _parse_library_config returns five values. This unpacked three
+        # and raised ValueError before the endpoint did anything — and the two
+        # it never bound are exactly the filters the panel sends, so widening
+        # the unpack without passing them on would have turned a visible crash
+        # into a silently ignored setting. Mirrors game_views._generate_library_songs.
+        size, slider, min_confidence, pop_percent, genres = _parse_library_config(body)
         playlist = await async_generate_library_playlist(
             self.hass,
             size=size,
             difficulty_slider=slider,
+            popularity_percent=pop_percent,
+            genres=genres or None,
             min_confidence=min_confidence,
         )
         if playlist is None:
