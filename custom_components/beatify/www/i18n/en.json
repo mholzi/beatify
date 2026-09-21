@@ -1,12 +1,9 @@
 {
   "common": {
     "loading": "Loading...",
-    "error": "Error",
     "close": "Close",
     "cancel": "Cancel",
     "confirm": "Confirm",
-    "ok": "OK",
-    "back": "Back",
     "retry": "Try Again",
     "connecting": "Connecting...",
     "previous": "Previous",
@@ -90,7 +87,6 @@
     "finalRound": "Final Round!",
     "finaleDouble": "✨ Finale ×2 — Double Points!",
     "finalePlayoffChip": "⚔️ Playoff — you're tied for first",
-    "selectYear": "Select year",
     "submit": "Submit",
     "submitGuess": "Submit Guess",
     "submitted": "Submitted!",
@@ -896,10 +892,8 @@
     "connecting": "Connecting to game...",
     "noActiveGame": "No active game",
     "startFromAdmin": "Start a game from the admin page",
-    "waitingForGame": "Waiting for game to start",
     "pleaseRotate": "Please Rotate",
     "landscapeHint": "This dashboard works best in landscape mode",
-    "spectatorHint": "Spectator View",
     "round": "Round {current}/{total}",
     "rounds": "rounds",
     "players": "Players",
@@ -907,7 +901,6 @@
     "playersJoinedOne": "{n} player joined",
     "topGuesses": "Top Guesses This Round",
     "submissions": "Submissions",
-    "timeRemaining": "Time",
     "castToTv": "Cast to TV:",
     "wakeLockTitle": "Keep screen awake?",
     "wakeLockBody": "Prevents the TV display from turning off during the game.",
@@ -940,11 +933,9 @@
     "youGotIt": "You got it! +{points} points",
     "someoneBeatYou": "{winner} got it first!",
     "wrongGuess": "Not quite...",
-    "artistBonus": "Artist Bonus",
     "noWinner": "No one guessed the artist",
     "theArtistWas": "The artist was",
-    "winnerWas": "{winner} got it first!",
-    "loading": "Checking..."
+    "winnerWas": "{winner} got it first!"
   },
   "movieChallenge": {
     "whichMovie": "Which movie features this song?",
@@ -1044,9 +1035,7 @@
     "firstGameRecorded": "First game recorded! Avg: {avg} pts/round",
     "newRecordEnd": "NEW RECORD! {avg} pts/round (prev: {prev})",
     "aboveAverageEnd": "{avg} pts/round (+{diff} vs all-time avg)",
-    "belowAverageEnd": "{avg} pts/round ({diff} vs all-time avg)",
-    "ptsPerRound": "pts/round",
-    "vsAllTimeAvg": "vs all-time avg"
+    "belowAverageEnd": "{avg} pts/round ({diff} vs all-time avg)"
   },
   "errors": {
     "ADMIN_CANNOT_LEAVE": "Host cannot leave the game",
@@ -1132,17 +1121,14 @@
   },
   "share": {
     "share_tab": "📤 Share",
-    "share_copy": "📋 Copy Text",
     "share_save": "📤 Share",
-    "share_copied": "Copied!",
-    "share_title": "My Beatify Results"
+    "share_copied": "Copied!"
   },
   "wizard": {
     "skip": "Skip setup",
     "back": "Back",
     "continue": "Continue",
     "finish": "Finish",
-    "startGame": "Start first game",
     "finishPill": "Finish setup",
     "step1": {
       "eyebrow": "Step 1 · Speakers",

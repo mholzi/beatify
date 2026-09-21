@@ -1,12 +1,9 @@
 {
   "common": {
     "loading": "Chargement...",
-    "error": "Erreur",
     "close": "Fermer",
     "cancel": "Annuler",
     "confirm": "Confirmer",
-    "ok": "OK",
-    "back": "Retour",
     "retry": "Réessayer",
     "connecting": "Connexion...",
     "previous": "Précédent",
@@ -90,7 +87,6 @@
     "finalRound": "Dernière manche !",
     "finaleDouble": "✨ Finale ×2 — Points doublés !",
     "finalePlayoffChip": "⚔️ Barrage — tu es à égalité en tête",
-    "selectYear": "Sélectionne l'année",
     "submit": "Envoyer",
     "submitGuess": "Envoyer la réponse",
     "submitted": "Envoyé !",
@@ -896,10 +892,8 @@
     "connecting": "Connexion à la partie...",
     "noActiveGame": "Pas de partie en cours",
     "startFromAdmin": "Lance une partie depuis la page admin",
-    "waitingForGame": "En attente du lancement de la partie",
     "pleaseRotate": "Tourne l'appareil",
     "landscapeHint": "Ce tableau de bord fonctionne mieux en mode paysage",
-    "spectatorHint": "Vue spectateur",
     "round": "Manche {current}/{total}",
     "rounds": "manches",
     "players": "Joueurs",
@@ -907,7 +901,6 @@
     "playersJoinedOne": "{n} joueur a rejoint",
     "topGuesses": "Meilleures réponses de cette manche",
     "submissions": "Réponses",
-    "timeRemaining": "Temps",
     "castToTv": "Diffuser sur TV :",
     "wakeLockTitle": "Garder l'écran allumé ?",
     "wakeLockBody": "Empêche l'écran TV de s'éteindre pendant la partie.",
@@ -940,11 +933,9 @@
     "youGotIt": "Bien deviné ! +{points} points",
     "someoneBeatYou": "{winner} a deviné en premier !",
     "wrongGuess": "Presque...",
-    "artistBonus": "Bonus Artiste",
     "noWinner": "Personne n'a deviné l'artiste",
     "theArtistWas": "L'artiste était",
-    "winnerWas": "{winner} a deviné en premier !",
-    "loading": "Vérification..."
+    "winnerWas": "{winner} a deviné en premier !"
   },
   "movieChallenge": {
     "whichMovie": "Dans quel film apparaît cette chanson ?",
@@ -1044,9 +1035,7 @@
     "firstGameRecorded": "Première partie enregistrée ! Moyenne : {avg} pts/manche",
     "newRecordEnd": "NOUVEAU RECORD ! {avg} pts/manche (précédent : {prev})",
     "aboveAverageEnd": "{avg} pts/manche (+{diff} vs moyenne historique)",
-    "belowAverageEnd": "{avg} pts/manche ({diff} vs moyenne historique)",
-    "ptsPerRound": "pts/manche",
-    "vsAllTimeAvg": "vs moyenne historique"
+    "belowAverageEnd": "{avg} pts/manche ({diff} vs moyenne historique)"
   },
   "errors": {
     "ADMIN_CANNOT_LEAVE": "L'hôte ne peut pas quitter la partie",
@@ -1132,17 +1121,14 @@
   },
   "share": {
     "share_tab": "📤 Partager",
-    "share_copy": "📋 Copier le texte",
     "share_save": "📤 Partager",
-    "share_copied": "Copié !",
-    "share_title": "Mes résultats Beatify"
+    "share_copied": "Copié !"
   },
   "wizard": {
     "skip": "Passer la configuration",
     "back": "Retour",
     "continue": "Continuer",
     "finish": "Terminer",
-    "startGame": "Lancer la première partie",
     "finishPill": "Terminer la configuration",
     "step1": {
       "eyebrow": "Étape 1 · Enceintes",

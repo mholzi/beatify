@@ -1,12 +1,9 @@
 {
   "common": {
     "loading": "Laden...",
-    "error": "Fout",
     "close": "Sluiten",
     "cancel": "Annuleren",
     "confirm": "Bevestigen",
-    "ok": "OK",
-    "back": "Terug",
     "retry": "Opnieuw proberen",
     "connecting": "Verbinden...",
     "previous": "Vorige",
@@ -90,7 +87,6 @@
     "finalRound": "Finaleronde!",
     "finaleDouble": "✨ Finale ×2 — Dubbele punten!",
     "finalePlayoffChip": "⚔️ Beslissingsronde — je staat gelijk aan kop",
-    "selectYear": "Kies jaar",
     "submit": "Versturen",
     "submitGuess": "Gok versturen",
     "submitted": "Verstuurd!",
@@ -896,10 +892,8 @@
     "connecting": "Verbinden met spel...",
     "noActiveGame": "Geen actief spel",
     "startFromAdmin": "Start een spel vanaf de beheerpagina",
-    "waitingForGame": "Wachten tot het spel start",
     "pleaseRotate": "Draai je scherm",
     "landscapeHint": "Dit dashboard werkt het best in liggende modus",
-    "spectatorHint": "Toeschouwersweergave",
     "round": "Ronde {current}/{total}",
     "rounds": "rondes",
     "players": "Spelers",
@@ -907,7 +901,6 @@
     "playersJoinedOne": "{n} speler toegevoegd",
     "topGuesses": "Beste gokken deze ronde",
     "submissions": "Inzendingen",
-    "timeRemaining": "Tijd",
     "castToTv": "Cast naar tv:",
     "wakeLockTitle": "Scherm wakker houden?",
     "wakeLockBody": "Voorkomt dat het tv-scherm tijdens het spel uitschakelt.",
@@ -940,11 +933,9 @@
     "youGotIt": "Je hebt het! +{points} punten",
     "someoneBeatYou": "{winner} had het als eerste!",
     "wrongGuess": "Bijna...",
-    "artistBonus": "Artiestenbonus",
     "noWinner": "Niemand heeft de artiest geraden",
     "theArtistWas": "De artiest was",
-    "winnerWas": "{winner} had het als eerste!",
-    "loading": "Controleren..."
+    "winnerWas": "{winner} had het als eerste!"
   },
   "movieChallenge": {
     "whichMovie": "In welke film komt dit nummer voor?",
@@ -1044,9 +1035,7 @@
     "firstGameRecorded": "Eerste spel vastgelegd! Gem.: {avg} pt/ronde",
     "newRecordEnd": "NIEUW RECORD! {avg} pt/ronde (vorige: {prev})",
     "aboveAverageEnd": "{avg} pt/ronde (+{diff} t.o.v. all-time gemiddelde)",
-    "belowAverageEnd": "{avg} pt/ronde ({diff} t.o.v. all-time gemiddelde)",
-    "ptsPerRound": "pt/ronde",
-    "vsAllTimeAvg": "t.o.v. all-time gem."
+    "belowAverageEnd": "{avg} pt/ronde ({diff} t.o.v. all-time gemiddelde)"
   },
   "errors": {
     "ADMIN_CANNOT_LEAVE": "De host kan het spel niet verlaten",
@@ -1132,17 +1121,14 @@
   },
   "share": {
     "share_tab": "📤 Delen",
-    "share_copy": "📋 Tekst kopiëren",
     "share_save": "📤 Delen",
-    "share_copied": "Gekopieerd!",
-    "share_title": "Mijn Beatify-resultaten"
+    "share_copied": "Gekopieerd!"
   },
   "wizard": {
     "skip": "Setup overslaan",
     "back": "Terug",
     "continue": "Doorgaan",
     "finish": "Voltooien",
-    "startGame": "Eerste game starten",
     "finishPill": "Setup afronden",
     "step1": {
       "eyebrow": "Stap 1 · Luidsprekers",

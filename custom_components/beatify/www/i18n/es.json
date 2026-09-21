@@ -1,12 +1,9 @@
 {
   "common": {
     "loading": "Cargando...",
-    "error": "Error",
     "close": "Cerrar",
     "cancel": "Cancelar",
     "confirm": "Confirmar",
-    "ok": "OK",
-    "back": "Volver",
     "retry": "Reintentar",
     "connecting": "Conectando...",
     "previous": "Anterior",
@@ -90,7 +87,6 @@
     "finalRound": "Ronda final!",
     "finaleDouble": "✨ Final ×2 — ¡Puntos dobles!",
     "finalePlayoffChip": "⚔️ Desempate — empatas en el primer puesto",
-    "selectYear": "Selecciona el año",
     "submit": "Enviar",
     "submitGuess": "Enviar respuesta",
     "submitted": "Enviado!",
@@ -896,10 +892,8 @@
     "connecting": "Conectando al juego...",
     "noActiveGame": "Sin juego activo",
     "startFromAdmin": "Inicia un juego desde la página de administrador",
-    "waitingForGame": "Esperando que comience el juego",
     "pleaseRotate": "Por favor gira el dispositivo",
     "landscapeHint": "Este panel funciona mejor en modo horizontal",
-    "spectatorHint": "Vista de espectador",
     "round": "Ronda {current}/{total}",
     "rounds": "rondas",
     "players": "Jugadores",
@@ -907,7 +901,6 @@
     "playersJoinedOne": "{n} jugador se unió",
     "topGuesses": "Mejores respuestas de esta ronda",
     "submissions": "Respuestas",
-    "timeRemaining": "Tiempo",
     "castToTv": "Transmitir a TV:",
     "wakeLockTitle": "¿Mantener la pantalla encendida?",
     "wakeLockBody": "Evita que la pantalla del TV se apague durante la partida.",
@@ -940,11 +933,9 @@
     "youGotIt": "¡Lo adivinaste! +{points} puntos",
     "someoneBeatYou": "¡{winner} lo adivinó primero!",
     "wrongGuess": "Casi...",
-    "artistBonus": "Bonus de Artista",
     "noWinner": "Nadie adivinó al artista",
     "theArtistWas": "El artista era",
-    "winnerWas": "¡{winner} lo adivinó primero!",
-    "loading": "Verificando..."
+    "winnerWas": "¡{winner} lo adivinó primero!"
   },
   "movieChallenge": {
     "whichMovie": "¿En qué película aparece esta canción?",
@@ -1044,9 +1035,7 @@
     "firstGameRecorded": "Primer juego registrado! Promedio: {avg} pts/ronda",
     "newRecordEnd": "NUEVO RÉCORD! {avg} pts/ronda (anterior: {prev})",
     "aboveAverageEnd": "{avg} pts/ronda (+{diff} vs promedio histórico)",
-    "belowAverageEnd": "{avg} pts/ronda ({diff} vs promedio histórico)",
-    "ptsPerRound": "pts/ronda",
-    "vsAllTimeAvg": "vs promedio histórico"
+    "belowAverageEnd": "{avg} pts/ronda ({diff} vs promedio histórico)"
   },
   "errors": {
     "ADMIN_CANNOT_LEAVE": "El anfitrión no puede abandonar el juego",
@@ -1132,17 +1121,14 @@
   },
   "share": {
     "share_tab": "📤 Compartir",
-    "share_copy": "📋 Copiar texto",
     "share_save": "📤 Compartir",
-    "share_copied": "¡Copiado!",
-    "share_title": "Mis resultados de Beatify"
+    "share_copied": "¡Copiado!"
   },
   "wizard": {
     "skip": "Saltar configuración",
     "back": "Atrás",
     "continue": "Continuar",
     "finish": "Finalizar",
-    "startGame": "Comenzar primera partida",
     "finishPill": "Completar configuración",
     "step1": {
       "eyebrow": "Paso 1 · Altavoces",
