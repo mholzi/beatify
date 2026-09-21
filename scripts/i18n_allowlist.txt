@@ -10,16 +10,6 @@ common.error
 common.ok
 common.back
 game.selectYear
-analyticsDashboard.songsPlayed
-analyticsDashboard.avgAccuracy
-analyticsDashboard.noSongsPlayed
-analyticsDashboard.playToTrack
-analyticsDashboard.notEnoughData
-analyticsDashboard.noStreakData
-analyticsDashboard.streakHint
-analyticsDashboard.bettingStats
-analyticsDashboard.noBettingData
-analyticsDashboard.bettingHint
 dashboard.waitingForGame
 dashboard.spectatorHint
 dashboard.timeRemaining
