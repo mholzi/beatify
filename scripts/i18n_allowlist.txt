@@ -5,18 +5,3 @@
 # An entry here is a debt, not a permission. Removing a key from a
 # locale file means removing it from all six AND regenerating the
 # .gz sibling — Home Assistant serves the gzip.
-
-common.error
-common.ok
-common.back
-game.selectYear
-dashboard.waitingForGame
-dashboard.spectatorHint
-dashboard.timeRemaining
-artistChallenge.artistBonus
-artistChallenge.loading
-stats.ptsPerRound
-stats.vsAllTimeAvg
-share.share_copy
-share.share_title
-wizard.startGame

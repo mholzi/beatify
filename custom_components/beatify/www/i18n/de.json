@@ -1,12 +1,9 @@
 {
   "common": {
     "loading": "Laden...",
-    "error": "Fehler",
     "close": "Schließen",
     "cancel": "Abbrechen",
     "confirm": "Bestätigen",
-    "ok": "OK",
-    "back": "Zurück",
     "retry": "Erneut versuchen",
     "connecting": "Verbinde...",
     "previous": "Zurück",
@@ -90,7 +87,6 @@
     "finalRound": "Letzte Runde!",
     "finaleDouble": "✨ Finale ×2 — Doppelte Punkte!",
     "finalePlayoffChip": "⚔️ Stechen — du liegst gleichauf vorn",
-    "selectYear": "Jahr wählen",
     "submit": "Absenden",
     "submitGuess": "Tipp abgeben",
     "submitted": "Abgesendet!",
@@ -896,10 +892,8 @@
     "connecting": "Verbinde zum Spiel...",
     "noActiveGame": "Kein aktives Spiel",
     "startFromAdmin": "Starte ein Spiel über die Admin-Seite",
-    "waitingForGame": "Warte auf Spielstart",
     "pleaseRotate": "Bitte drehen",
     "landscapeHint": "Dieses Dashboard funktioniert am besten im Querformat",
-    "spectatorHint": "Zuschaueransicht",
     "round": "Runde {current}/{total}",
     "rounds": "Runden",
     "players": "Spieler",
@@ -907,7 +901,6 @@
     "playersJoinedOne": "{n} Spieler beigetreten",
     "topGuesses": "Beste Tipps dieser Runde",
     "submissions": "Abgaben",
-    "timeRemaining": "Zeit",
     "castToTv": "Auf TV zeigen:",
     "wakeLockTitle": "Bildschirm wachhalten?",
     "wakeLockBody": "Verhindert, dass sich das TV-Display während des Spiels abschaltet.",
@@ -940,11 +933,9 @@
     "youGotIt": "Richtig! +{points} Punkte",
     "someoneBeatYou": "{winner} war schneller!",
     "wrongGuess": "Leider falsch...",
-    "artistBonus": "Künstler-Bonus",
     "noWinner": "Niemand hat den Künstler erraten",
     "theArtistWas": "Der Künstler war",
-    "winnerWas": "{winner} war schneller!",
-    "loading": "Prüfe..."
+    "winnerWas": "{winner} war schneller!"
   },
   "movieChallenge": {
     "whichMovie": "In welchem Film kommt dieser Song vor?",
@@ -1044,9 +1035,7 @@
     "firstGameRecorded": "Erstes Spiel erfasst! Durchschnitt: {avg} Pkt/Runde",
     "newRecordEnd": "NEUER REKORD! {avg} Pkt/Runde (vorher: {prev})",
     "aboveAverageEnd": "{avg} Pkt/Runde (+{diff} vs Gesamtdurchschnitt)",
-    "belowAverageEnd": "{avg} Pkt/Runde ({diff} vs Gesamtdurchschnitt)",
-    "ptsPerRound": "Pkt/Runde",
-    "vsAllTimeAvg": "vs Gesamtdurchschnitt"
+    "belowAverageEnd": "{avg} Pkt/Runde ({diff} vs Gesamtdurchschnitt)"
   },
   "errors": {
     "ADMIN_CANNOT_LEAVE": "Gastgeber kann das Spiel nicht verlassen",
@@ -1132,17 +1121,14 @@
   },
   "share": {
     "share_tab": "📤 Teilen",
-    "share_copy": "📋 Text kopieren",
     "share_save": "📤 Teilen",
-    "share_copied": "Kopiert!",
-    "share_title": "Meine Beatify Ergebnisse"
+    "share_copied": "Kopiert!"
   },
   "wizard": {
     "skip": "Einrichtung überspringen",
     "back": "Zurück",
     "continue": "Weiter",
     "finish": "Fertig",
-    "startGame": "Erstes Spiel starten",
     "finishPill": "Einrichtung abschließen",
     "step1": {
       "eyebrow": "Schritt 1 · Lautsprecher",

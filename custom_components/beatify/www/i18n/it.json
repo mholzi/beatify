@@ -1,12 +1,9 @@
 {
   "common": {
     "loading": "Caricamento...",
-    "error": "Errore",
     "close": "Chiudi",
     "cancel": "Annulla",
     "confirm": "Conferma",
-    "ok": "OK",
-    "back": "Indietro",
     "retry": "Riprova",
     "connecting": "Connessione...",
     "previous": "Precedente",
@@ -90,7 +87,6 @@
     "finalRound": "Turno finale!",
     "finaleDouble": "✨ Finale ×2 — punti doppi!",
     "finalePlayoffChip": "⚔️ Spareggio — sei in parità al primo posto",
-    "selectYear": "Scegli l'anno",
     "submit": "Invia",
     "submitGuess": "Invia l'ipotesi",
     "submitted": "Inviata!",
@@ -896,10 +892,8 @@
     "connecting": "Connessione alla partita...",
     "noActiveGame": "Nessuna partita in corso",
     "startFromAdmin": "Avvia una partita dalla pagina di amministrazione",
-    "waitingForGame": "In attesa dell'inizio della partita",
     "pleaseRotate": "Ruota lo schermo",
     "landscapeHint": "Questa dashboard rende al meglio in orizzontale",
-    "spectatorHint": "Vista spettatore",
     "round": "Turno {current}/{total}",
     "rounds": "turni",
     "players": "Giocatori",
@@ -907,7 +901,6 @@
     "playersJoinedOne": "{n} giocatore collegato",
     "topGuesses": "Migliori ipotesi del turno",
     "submissions": "Risposte",
-    "timeRemaining": "Tempo",
     "castToTv": "Trasmetti alla TV:",
     "wakeLockTitle": "Tenere acceso lo schermo?",
     "wakeLockBody": "Impedisce alla TV di spegnersi durante la partita.",
@@ -940,11 +933,9 @@
     "youGotIt": "Indovinato! +{points} punti",
     "someoneBeatYou": "{winner} è arrivato primo!",
     "wrongGuess": "Non ci siamo...",
-    "artistBonus": "Bonus artista",
     "noWinner": "Nessuno ha indovinato l'artista",
     "theArtistWas": "L'artista era",
-    "winnerWas": "{winner} è arrivato primo!",
-    "loading": "Verifica in corso..."
+    "winnerWas": "{winner} è arrivato primo!"
   },
   "movieChallenge": {
     "whichMovie": "In quale film si sente questa canzone?",
@@ -1044,9 +1035,7 @@
     "firstGameRecorded": "Prima partita registrata! Media: {avg} punti/turno",
     "newRecordEnd": "NUOVO RECORD! {avg} punti/turno (prima: {prev})",
     "aboveAverageEnd": "{avg} punti/turno (+{diff} rispetto alla media storica)",
-    "belowAverageEnd": "{avg} punti/turno ({diff} rispetto alla media storica)",
-    "ptsPerRound": "punti/turno",
-    "vsAllTimeAvg": "rispetto alla media storica"
+    "belowAverageEnd": "{avg} punti/turno ({diff} rispetto alla media storica)"
   },
   "errors": {
     "ADMIN_CANNOT_LEAVE": "L'host non può lasciare la partita",
@@ -1132,17 +1121,14 @@
   },
   "share": {
     "share_tab": "📤 Condividi",
-    "share_copy": "📋 Copia il testo",
     "share_save": "📤 Condividi",
-    "share_copied": "Copiato!",
-    "share_title": "I miei risultati su Beatify"
+    "share_copied": "Copiato!"
   },
   "wizard": {
     "skip": "Salta la configurazione",
     "back": "Indietro",
     "continue": "Continua",
     "finish": "Fine",
-    "startGame": "Avvia la prima partita",
     "finishPill": "Completa la configurazione",
     "step1": {
       "eyebrow": "Passo 1 · Altoparlanti",
