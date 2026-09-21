@@ -101,7 +101,10 @@ class TestSpanishYearIsSpelledWithTheTilde:
 
     def test_the_year_strings_actually_carry_the_tilde(self):
         """Guard the guard — deleting the word entirely would also pass above."""
-        for key in ("reveal.correctYear", "reveal.theYearWas", "game.selectYear"):
+        # reveal.correctYear stood here until #2907's cleanup removed it with the
+        # personal-result block #2603 took out. A sample that names a key is only
+        # as durable as the key; game.yearLabel is the same word on a live screen.
+        for key in ("game.yearLabel", "reveal.theYearWas", "game.selectYear"):
             node = ES
             for part in key.split("."):
                 node = node[part]
