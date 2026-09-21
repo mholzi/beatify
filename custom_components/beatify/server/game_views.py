@@ -12,6 +12,13 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers import entity_registry as er
 
+from custom_components.beatify.library.config import parse_library_config
+from custom_components.beatify.server.setup_state import (
+    async_clear_game_output_settings,
+    async_load_game_output_settings,
+    async_load_library_settings,
+    async_save_game_output_settings,
+)
 from custom_components.beatify.game.start_gameplay import (
     REFUSE_ALREADY_STARTED,
     begin_gameplay,
@@ -477,9 +484,6 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 # (localStorage wipe + reload + token reset races); the Store
                 # holds the last-known values and this hook runs on every
                 # start path, so whatever was last saved always wins.
-                from custom_components.beatify.server.library_views import (
-                    async_load_game_output_settings,
-                )
 
                 out = await async_load_game_output_settings(self.hass)
                 if out:
@@ -791,10 +795,6 @@ class ForceResetView(RateLimitMixin, HomeAssistantView):
         # faithfully re-apply the PRE-reset device/TTS/lights to the next
         # game — silently contradicting the reset the user just performed.
         with contextlib.suppress(Exception):
-            from custom_components.beatify.server.library_views import (
-                async_clear_game_output_settings,
-            )
-
             await async_clear_game_output_settings(self.hass)
             _LOGGER.info("Force reset: cleared persisted output settings")
 
@@ -893,17 +893,6 @@ class RematchGameView(HomeAssistantView):
         )
 
 
-_LIBRARY_YEAR_GATES = {
-    # UI value -> minimum YearConfidence tier (see library.year_resolver).
-    "strict": 4,  # EXTERNAL_PRIMARY: verified MusicBrainz years only (default)
-    "balanced": 3,  # + EXTERNAL_SECONDARY: Deezer release years
-    "tags_ok": 2,  # + TAG_STUDIO: studio-album tag years (least strict)
-}
-_LIBRARY_SIZE_MIN = 5
-_LIBRARY_SIZE_MAX = 100
-_LIBRARY_SIZE_DEFAULT = 30
-
-
 _RECENT_KEY = "library_recent_uris"
 _RECENT_SONGS_KEY = "library_recent_songs"
 _RECENT_SONGS_CAP = 60
@@ -951,46 +940,6 @@ def _remember_played_uris(hass: HomeAssistant, uris: list[str | None]) -> None:
     store[_RECENT_KEY] = combined
 
 
-def _parse_library_config(
-    library_config: dict[str, Any],
-) -> tuple[int, int, int, int | None, list[str]]:
-    """Sanitize the library settings from the request body. Pure.
-
-    Returns (size, difficulty_slider, min_confidence, popularity_percent, genres).
-    popularity_percent is 1..100 ("draw from the most-popular P%") or None.
-    """
-    library_config = library_config or {}
-    try:
-        size = int(library_config.get("size", _LIBRARY_SIZE_DEFAULT))
-    except (TypeError, ValueError):
-        size = _LIBRARY_SIZE_DEFAULT
-    size = max(_LIBRARY_SIZE_MIN, min(_LIBRARY_SIZE_MAX, size))
-
-    try:
-        slider = int(library_config.get("difficulty", 50))
-    except (TypeError, ValueError):
-        slider = 50
-    slider = max(0, min(100, slider))
-
-    gate = _LIBRARY_YEAR_GATES.get(
-        str(library_config.get("year_gate", "strict")), _LIBRARY_YEAR_GATES["strict"]
-    )
-
-    pop_percent: int | None = None
-    if library_config.get("popularity_percent") is not None:
-        try:
-            pop_percent = max(1, min(100, int(library_config["popularity_percent"])))
-        except (TypeError, ValueError):
-            pop_percent = None
-
-    genres_raw = library_config.get("genres")
-    genres: list[str] = []
-    if isinstance(genres_raw, list):
-        genres = [str(g).strip() for g in genres_raw if str(g).strip()][:20]
-
-    return size, slider, gate, pop_percent, genres
-
-
 async def _generate_library_songs(
     hass: HomeAssistant, library_config: dict[str, Any]
 ) -> tuple[list[dict[str, Any]], web.Response | None]:
@@ -1003,14 +952,11 @@ async def _generate_library_songs(
     # unhydrated lobby page, or cached JS can no longer start a game with
     # silent defaults (observed: a "Rock"-filtered setup generating with
     # genres=None because the lobby page never mounts the settings panel).
-    from custom_components.beatify.server.library_views import (
-        async_load_library_settings,
-    )
 
     stored = await async_load_library_settings(hass)
     effective = dict(library_config or {})
     effective.update(stored)  # stored wins over client payload
-    size, slider, min_confidence, pop_percent, genres = _parse_library_config(effective)
+    size, slider, min_confidence, pop_percent, genres = parse_library_config(effective)
     recent = _recent_played_uris(hass)
     try:
         playlist = await async_generate_library_playlist(
@@ -1302,10 +1248,6 @@ class UpdateLobbyView(BeatifyAdminView):
         # through /beatify/api/setup. Without this guard a pure option patch
         # would call the store with an empty dict.
         if updated and ({"media_player", "tts", "party_lights"} & set(updated)):
-            from custom_components.beatify.server.library_views import (
-                async_save_game_output_settings,
-            )
-
             patch: dict[str, Any] = {}
             if "media_player" in updated:
                 patch["media_player"] = body.get("media_player")

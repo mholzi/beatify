@@ -46,7 +46,13 @@ class TestSettingsReachTheGameTheyWereSetFor:
         assert "pre_start_hook = _regen_library_songs" in src("server/game_views.py")
 
     def test_output_settings_are_persisted_and_re_applied(self):
-        assert "async_save_game_output_settings" in src("server/library_views.py")
+        # #2930 moved the Store itself to setup_state.py — it holds what the
+        # host configured, not what the pool contains, and keeping it in
+        # library_views forced game_views to import that module from inside
+        # functions. What this test guards is unchanged: something writes the
+        # settings, and the start path reads them back.
+        assert "async_save_game_output_settings" in src("server/setup_state.py")
+        assert "async_save_game_output_settings" in src("server/game_views.py")
         assert "async_load_game_output_settings" in src("server/game_views.py")
 
     def test_reset_clears_the_persisted_output_settings(self):
