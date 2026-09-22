@@ -826,6 +826,12 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.7.4 — Unisono 🎚️
+- **Sudden Death applies whichever button started the game** — the rule used to hold on one start path and not the other, and the admin page uses the one without it (#2929)
+- **A game started over the API announces itself** — the TV and the phones no longer sit on the lobby view while the speaker connects (#2929)
+- **Saving a library mix as a playlist works again** — the button raised a server error on every press, and quietly ignored the popularity and genre filters (#2935)
+- **193 unreferenced translation keys removed** across all six languages (#2907)
+
 ### v4.7.3 — Back in the Room 🚪
 - **The host gets back in after a reload** — reloading the player view no longer locks the host out of a paused game (#2887)
 - **A pause during the intro song start holds** — the intro no longer plays through the pause or leaves the next round silent (#2886)

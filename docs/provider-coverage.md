@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-09-20
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.7.3-rc2
+> Catalogue state: v4.7.4-rc1 (catalogue unchanged since v4.7.3-rc2 — the only playlist edits in between were URI repairs in ballermann-party-hits and one YouTube link in south-africa-by-q, neither changes a song count)
 
 ## Summary
 
