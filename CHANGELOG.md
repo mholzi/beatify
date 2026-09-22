@@ -4,6 +4,33 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.7.4-rc1] - 2026-09-22
+
+Two fixes where Beatify did the same thing twice and did it differently, plus the cleanup that
+uncovered one of them.
+
+### Fixed
+- **Sudden Death applies whichever surface started the game** (#2929, #2934). The phase check, the
+  minimum-player floor and the Sudden Death floor now live in `game/start_gameplay.py`, and both
+  start paths go through it. Before, only the REST endpoint lowered Sudden Death below its
+  minimum — and the admin page presses the websocket button, so the gap sat on the path hosts
+  actually use. The same change closes the reverse gap: a REST start now announces `game_starting`,
+  so the TV and the player phones leave the lobby view instead of waiting out the ten to fifteen
+  seconds the speaker needs.
+- **Saving a library mix as a playlist works again** (#2935, #2936). The generate endpoint unpacked
+  three of the five values its parser returns and raised `ValueError` on every call, so the button
+  in the Library panel was unusable. The two values it never bound were the popularity and genre
+  filters; both now reach the generator.
+
+### Changed
+- **`game_views` and `library_views` no longer import each other** (#2930, #2937). The cycle was
+  held open by imports placed inside functions, so lifting any of them to the top of its file broke
+  integration startup — and it hid the crash above. The host's stored settings moved to
+  `server/setup_state.py` and the config parser to `library/config.py`; the year gates, which
+  existed once in each module, now exist once.
+- **193 unreferenced translation keys removed** (#2907, #2931 and six earlier PRs). All six locales
+  are down from 1502 to 1309 keys and the allowlist is empty.
+
 ## [4.7.3] - 2026-09-20
 
 Three fixes for a host who steps away and comes back, a data audit of the anime playlist, a
