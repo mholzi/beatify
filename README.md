@@ -831,6 +831,7 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 - **A game started over the API announces itself** — the TV and the phones no longer sit on the lobby view while the speaker connects (#2929)
 - **Saving a library mix as a playlist works again** — the button raised a server error on every press, and quietly ignored the popularity and genre filters (#2935)
 - **193 unreferenced translation keys removed** across all six languages (#2907)
+- **Eight Harder Styles tracks fixed** — wrong recordings and dead links now play the right song (#2941)
 
 ### v4.7.3 — Back in the Room 🚪
 - **The host gets back in after a reload** — reloading the player view no longer locks the host out of a paused game (#2887)
