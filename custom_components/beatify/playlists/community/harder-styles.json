@@ -1,6 +1,6 @@
 {
   "name": "Harder Styles",
-  "version": "1.26",
+  "version": "1.27",
   "tags": [
     "hardstyle",
     "hardcore",
@@ -105,12 +105,12 @@
       "uri_apple_music": "applemusic://track/922008008",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/339320490",
-        "de": "applemusic://track/922001024",
+        "de": "applemusic://track/922008008",
         "gb": "applemusic://track/339320490",
-        "fr": "applemusic://track/922001024",
-        "es": "applemusic://track/922001024",
-        "nl": "applemusic://track/922001024",
-        "it": "applemusic://track/922001024"
+        "fr": "applemusic://track/922008008",
+        "es": "applemusic://track/922008008",
+        "nl": "applemusic://track/922008008",
+        "it": "applemusic://track/922008008"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=x9V3fWmOXkk",
       "uri_tidal": "tidal://track/94393365",
@@ -401,7 +401,7 @@
         "it": "applemusic://track/1278515031"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=AproN5JLHnM",
-      "uri_tidal": "tidal://track/29988231",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/399475412",
       "fun_fact": "A hardstyle / hardcore track (2014).",
       "fun_fact_de": "Ein Hardstyle-/Hardcore-Track (2014).",
@@ -426,7 +426,7 @@
         "it": "applemusic://track/923426095"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3M6hB2zo134",
-      "uri_tidal": "tidal://track/463403243",
+      "uri_tidal": "tidal://track/40505880",
       "uri_deezer": "deezer://track/86869601",
       "alt_artists": [
         "DV8 Rocks!"
@@ -1339,7 +1339,7 @@
         "it": "applemusic://track/1275514904"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lVI6j9YhIZ0",
-      "uri_tidal": "tidal://track/168687311",
+      "uri_tidal": "tidal://track/352177821",
       "uri_deezer": "deezer://track/404416022",
       "fun_fact": "Noisecontrollers is a Dutch hardstyle act renowned for big-room anthems and festival-defining tracks.",
       "fun_fact_de": "Noisecontrollers ist ein niederländischer Hardstyle-Act, bekannt für Big-Room-Hymnen und festivalprägende Tracks.",
@@ -1381,7 +1381,7 @@
       "year": 2018,
       "isrc": "NLH2L1700151",
       "uri": "spotify:track:05yYceDA8edH0L98bYCQOs",
-      "uri_apple_music": "applemusic://track/1348764977",
+      "uri_apple_music": "applemusic://track/1842561727",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1842561727",
         "de": "applemusic://track/1842561727",
@@ -1462,7 +1462,7 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {},
       "uri_youtube_music": "https://music.youtube.com/watch?v=Fp-3jRcqelM",
-      "uri_tidal": "tidal://track/168687273",
+      "uri_tidal": "tidal://track/352177824",
       "uri_deezer": "deezer://track/965494682",
       "alt_artists": [
         "D-Fence"
@@ -2447,22 +2447,22 @@
     {
       "artist": "Sound Rush",
       "title": "One",
-      "year": 2020,
-      "isrc": "NLE802000156",
+      "year": 2018,
+      "isrc": "NLH2L1800122",
       "uri": "spotify:track:2moLWGaq0bT4RZWJwvCYjh",
-      "uri_apple_music": "applemusic://track/1505331972",
+      "uri_apple_music": "applemusic://track/1421765615",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1505331972",
-        "de": "applemusic://track/1505331972",
-        "gb": "applemusic://track/1505331972",
-        "fr": "applemusic://track/1505331972",
-        "es": "applemusic://track/1505331972",
-        "nl": "applemusic://track/1505331972",
-        "it": "applemusic://track/1505331972"
+        "us": "applemusic://track/1421765615",
+        "de": "applemusic://track/1421765615",
+        "gb": "applemusic://track/1421765615",
+        "fr": "applemusic://track/1421765615",
+        "es": "applemusic://track/1421765615",
+        "nl": "applemusic://track/1421765615",
+        "it": "applemusic://track/1421765615"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=S_qnGdCc-ig",
       "uri_tidal": "tidal://track/94393299",
-      "uri_deezer": "deezer://track/917060922",
+      "uri_deezer": "deezer://track/965487612",
       "alt_artists": [
         "Villain"
       ],
@@ -3420,7 +3420,7 @@
       "artist": "Zatox",
       "title": "Hard Bass - Ran-D Remix",
       "year": 2014,
-      "isrc": "NLS241401025",
+      "isrc": "NLH2L1800276",
       "uri": "spotify:track:2QFR0InGwGPZY1wPCrpb6a",
       "uri_apple_music": "applemusic://track/1459524332",
       "uri_apple_music_by_region": {
@@ -3434,7 +3434,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=aoTKVVtCO9w",
       "uri_tidal": "tidal://track/352180916",
-      "uri_deezer": "deezer://track/3576017641",
+      "uri_deezer": "deezer://track/632014452",
       "alt_artists": [
         "Tatanka",
         "Ran-D"
