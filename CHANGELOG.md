@@ -4,10 +4,11 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.7.4-rc1] - 2026-09-22
+## [4.7.4] - 2026-09-23
 
 Two fixes where Beatify did the same thing twice and did it differently, plus the cleanup that
-uncovered one of them.
+uncovered one of them. Released from main after the live test of v4.7.4-rc1 (backend and browser,
+no findings); the only change on top of the tested rc is the Harder Styles data repair below.
 
 ### Fixed
 - **Sudden Death applies whichever surface started the game** (#2929, #2934). The phase check, the
@@ -21,6 +22,9 @@ uncovered one of them.
   three of the five values its parser returns and raised `ValueError` on every call, so the button
   in the Library panel was unusable. The two values it never bound were the popularity and genre
   filters; both now reach the generator.
+- **Twelve broken links across eight Harder Styles tracks** (#2941, #2942).
+  Three dead Tidal IDs, two Apple Music IDs on a remix or edit instead of the original, and two
+  tracks whose ISRC and Deezer link belonged to a different song. Playlist version 1.26 -> 1.27.
 
 ### Changed
 - **`game_views` and `library_views` no longer import each other** (#2930, #2937). The cycle was
