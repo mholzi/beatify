@@ -221,6 +221,7 @@ class GameSetupMixin:
         # await from a prior game/session.
         self._game_epoch += 1
         self.game_id = secrets.token_urlsafe(8)
+        self.rematched_from_game_id = None  # #2947: a new game has no predecessor
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
         self._set_phase(GamePhase.LOBBY)
         self.playlists = playlists
@@ -472,6 +473,7 @@ class GameSetupMixin:
             await self.disable_tts()
             self._reset_game_internals()
             self.game_id = None
+            self.rematched_from_game_id = None  # #2947
             self._set_phase(GamePhase.LOBBY, notify=False)
             self.players = {}
             self.clear_all_sessions()
@@ -582,6 +584,9 @@ class GameSetupMixin:
         for player in self.players.values():
             player.reset_for_new_game()
         # Generate new game ID and admin token for the rematch
+        # #2947: remember the finished game's id so a guest still holding it
+        # (QR scanned during the podium) can be led into this lobby.
+        self.rematched_from_game_id = self.game_id
         self.game_id = secrets.token_urlsafe(8)
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386
 

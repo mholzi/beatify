@@ -436,7 +436,20 @@ def build_game_status_response(
     """Build the ``/api/game-status`` JSON payload.
 
     Returns a dict with ``exists``, ``phase``, and ``can_join`` keys.
+
+    #2947: a request for the game the current one replaced through a rematch
+    answers for the current game and adds its ``game_id``, so a guest who
+    arrived during the podium can follow the host into the rematch lobby. The
+    id is not a secret — the QR code on the TV shows it to the whole room.
     """
+    redirected = (
+        bool(game_id)
+        and game_state is not None
+        and bool(game_state.game_id)
+        and getattr(game_state, "rematched_from_game_id", None) == game_id
+    )
+    if redirected:
+        game_id = game_state.game_id
     if not game_id or not game_state or game_state.game_id != game_id:
         return {
             "exists": False,
@@ -453,8 +466,11 @@ def build_game_status_response(
     # let them straight in.
     can_join = phase in ("LOBBY", "PLAYING", "REVEAL", "PAUSED")
 
-    return {
+    payload: dict[str, Any] = {
         "exists": True,
         "phase": phase,
         "can_join": can_join,
     }
+    if redirected:
+        payload["game_id"] = game_state.game_id
+    return payload

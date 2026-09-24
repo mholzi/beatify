@@ -163,3 +163,126 @@ describe('checkGameStatus retry on transient errors (#1664 item 2)', () => {
         expect(showView).toHaveBeenCalledWith('in-progress-view');
     });
 });
+
+// ---------------------------------------------------------------------------
+// #2947 — a reload on the podium (END phase)
+// ---------------------------------------------------------------------------
+
+const { ENDED_VIEW_POLL_MS } = await import('../player-core.js');
+
+describe('checkGameStatus in the END phase (#2947)', () => {
+    const realWebSocket = global.WebSocket;
+    let sockets;
+
+    class FakeWebSocket {
+        constructor(url) {
+            this.url = url;
+            this.readyState = 0;
+            this.sent = [];
+            sockets.push(this);
+        }
+        send(msg) { this.sent.push(JSON.parse(msg)); }
+        close() {}
+    }
+    FakeWebSocket.CONNECTING = 0;
+    FakeWebSocket.OPEN = 1;
+    FakeWebSocket.CLOSING = 2;
+    FakeWebSocket.CLOSED = 3;
+
+    let endedView;
+
+    beforeEach(() => {
+        sockets = [];
+        global.WebSocket = FakeWebSocket;
+        global.window.location = { protocol: 'http:', host: 'ha.local:8123', href: 'http://ha.local:8123/beatify/play?game=' + VALID_GAME_ID };
+        state.ws = null;
+        state.playerName = null;
+        // ended-view is visible until showView() moves away from it.
+        const classes = new Set();
+        endedView = { classList: {
+            contains: (c) => classes.has(c),
+            add: (c) => classes.add(c),
+            remove: (c) => classes.delete(c),
+        } };
+        global.document.getElementById = (id) => (id === 'ended-view' ? endedView : null);
+        showView.mockImplementation((id) => {
+            if (id === 'ended-view') endedView.classList.remove('hidden');
+            else endedView.classList.add('hidden');
+        });
+    });
+
+    afterEach(() => {
+        global.WebSocket = realWebSocket;
+        delete global.window.location;
+        global.document.getElementById = () => null;
+        showView.mockReset();
+    });
+
+    it('reconnects with the session cookie instead of dead-ending on ended-view', async () => {
+        global.document.cookie = 'beatify_session=sess-123';
+        global.fetch = vi.fn().mockResolvedValue(okJson({ exists: true, phase: 'END', can_join: false }));
+
+        await checkGameStatus();
+
+        expect(showView).not.toHaveBeenCalledWith('ended-view');
+        expect(sockets).toHaveLength(1);
+        expect(sockets[0].url).toBe('ws://ha.local:8123/beatify/ws');
+
+        sockets[0].readyState = 1;
+        sockets[0].onopen();
+        expect(sockets[0].sent).toContainEqual({ type: 'reconnect', session_id: 'sess-123' });
+
+        // No status polling on the session path — the socket carries the rematch.
+        await vi.advanceTimersByTimeAsync(ENDED_VIEW_POLL_MS * 3);
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('without a cookie shows ended-view, polls, and opens the join form once the rematch lobby is up', async () => {
+        global.fetch = vi.fn()
+            .mockResolvedValueOnce(okJson({ exists: true, phase: 'END', can_join: false }))
+            .mockResolvedValueOnce(okJson({ exists: true, phase: 'END', can_join: false }))
+            // The rematch minted a new game id; the server names it.
+            .mockResolvedValueOnce(okJson({ exists: true, phase: 'LOBBY', can_join: true, game_id: 'newgame9' }));
+
+        await checkGameStatus();
+
+        expect(showView).toHaveBeenLastCalledWith('ended-view');
+        expect(sockets).toHaveLength(0);
+
+        await vi.advanceTimersByTimeAsync(ENDED_VIEW_POLL_MS);
+        expect(global.fetch).toHaveBeenCalledTimes(2);
+        expect(showView).toHaveBeenLastCalledWith('ended-view');
+
+        await vi.advanceTimersByTimeAsync(ENDED_VIEW_POLL_MS);
+        expect(global.fetch).toHaveBeenCalledTimes(3);
+        expect(global.fetch.mock.calls[2][0]).toContain('game=' + VALID_GAME_ID);
+        expect(showView).toHaveBeenLastCalledWith('join-view');
+        expect(state.gameId).toBe('newgame9');
+
+        // Left the view → the poll stops.
+        await vi.advanceTimersByTimeAsync(ENDED_VIEW_POLL_MS * 3);
+        expect(global.fetch).toHaveBeenCalledTimes(3);
+    });
+
+    it('stops polling as soon as the guest is no longer on ended-view', async () => {
+        global.fetch = vi.fn().mockResolvedValue(okJson({ exists: true, phase: 'END', can_join: false }));
+
+        await checkGameStatus();
+        expect(showView).toHaveBeenLastCalledWith('ended-view');
+
+        showView('some-other-view');
+        await vi.advanceTimersByTimeAsync(ENDED_VIEW_POLL_MS * 3);
+
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('a stale link that the server redirects to the rematch lands on the join form', async () => {
+        global.fetch = vi.fn().mockResolvedValue(
+            okJson({ exists: true, phase: 'LOBBY', can_join: true, game_id: 'newgame9' }));
+
+        await checkGameStatus();
+
+        expect(state.gameId).toBe('newgame9');
+        expect(showView).toHaveBeenLastCalledWith('join-view');
+    });
+});

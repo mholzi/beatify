@@ -459,15 +459,11 @@ async def handle_reconnect(
         )
         return
 
-    if game_state.phase == GamePhase.END:
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": ERR_GAME_ENDED,
-                "message": "Game has ended",
-            }
-        )
-        return
+    # #2947: END is the podium, not the end of the session — rematch_game()
+    # keeps every player and session. A guest whose tab reloaded there used to
+    # be refused here, never got a socket back, and so never heard
+    # ``rematch_started``. They reconnect like in any other phase and receive
+    # the END state with the final standings.
 
     # Handle dual-tab scenario
     if player.connected and player.ws and not player.ws.closed and player.ws is not ws:

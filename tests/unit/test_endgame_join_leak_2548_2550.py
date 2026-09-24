@@ -118,6 +118,73 @@ class TestJoinWhilePaused:
 
 
 # ---------------------------------------------------------------------------
+# #2947 — a guest holding the finished game's id finds the rematch lobby
+# ---------------------------------------------------------------------------
+
+
+class TestStatusAfterRematch:
+    def test_predecessor_id_answers_for_the_rematch(self):
+        gs = _make_game(["Alice"])
+        old_id = gs.game_id
+        gs.phase = GamePhase.END
+        gs.rematch_game()
+
+        payload = build_game_status_response(gs, old_id)
+
+        assert payload["exists"] is True
+        assert payload["phase"] == "LOBBY"
+        assert payload["can_join"] is True
+        assert payload["game_id"] == gs.game_id
+        assert payload["game_id"] != old_id
+
+    def test_current_id_carries_no_redirect(self):
+        gs = _make_game(["Alice"])
+        gs.phase = GamePhase.END
+        gs.rematch_game()
+
+        payload = build_game_status_response(gs, gs.game_id)
+
+        assert payload["exists"] is True
+        assert "game_id" not in payload
+
+    def test_only_one_generation_back(self):
+        gs = _make_game(["Alice"])
+        first_id = gs.game_id
+        gs.phase = GamePhase.END
+        gs.rematch_game()
+        gs.phase = GamePhase.END
+        gs.rematch_game()
+
+        assert build_game_status_response(gs, first_id)["exists"] is False
+
+    def test_new_game_forgets_the_predecessor(self):
+        gs = _make_game(["Alice"])
+        gs.phase = GamePhase.END
+        gs.rematch_game()
+        assert gs.rematched_from_game_id is not None
+
+        gs.create_game(
+            playlists=["t.json"],
+            songs=make_songs(5),
+            media_player="media_player.x",
+            base_url="http://h",
+        )
+
+        assert gs.rematched_from_game_id is None
+
+    async def test_end_game_forgets_the_predecessor(self):
+        gs = _make_game(["Alice"])
+        old_id = gs.game_id
+        gs.phase = GamePhase.END
+        gs.rematch_game()
+
+        await gs.end_game()
+
+        assert gs.rematched_from_game_id is None
+        assert build_game_status_response(gs, old_id)["exists"] is False
+
+
+# ---------------------------------------------------------------------------
 # #2550 — the artist challenge answer must not reach players
 # ---------------------------------------------------------------------------
 
