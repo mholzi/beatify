@@ -767,7 +767,30 @@
       "recentFailed": "Zuletzt gespielte Songs konnten nicht geladen werden.",
       "recentFix": "korrigieren",
       "recentFixed": "korrigiert",
-      "recentFlagged": "von Spielern markiert"
+      "recentFlagged": "von Spielern markiert",
+      "sourceLabel": "Songs kommen aus",
+      "sourceLibrary": "Ganze Bibliothek",
+      "sourcePlaylist": "Meine Playlist",
+      "playlistPick": "Playlist wählen…",
+      "playlistLoading": "Deine Music-Assistant-Playlists werden geladen…",
+      "playlistLoadFailed": "Playlists aus Music Assistant konnten nicht geladen werden.",
+      "playlistNone": "Keine Playlists in Music Assistant gefunden.",
+      "playlistChecking": "Playlist wird geprüft…",
+      "playlistCheckFailed": "Diese Playlist konnte nicht aus Music Assistant gelesen werden.",
+      "playlistUsable": "{usable} von {total} Songs nutzbar",
+      "playlistAllUsable": "Alle {total} Songs nutzbar",
+      "playlistMissing": "{n} fehlen · warum?",
+      "playlistMore": "+ {n} weitere",
+      "playlistFiltersHint": "Bekanntheit und Genres gelten nur für „Ganze Bibliothek“ — deine Playlist ist schon die Auswahl.",
+      "reasonNoYear": "kein sicheres Jahr",
+      "reasonNotScanned": "noch nicht gescannt",
+      "reasonNotInLibrary": "nicht in deiner Bibliothek",
+      "reasonDuplicate": "doppelt",
+      "hintNoYear": "Gescannt, aber das Jahr ist für die eingestellte Jahres-Genauigkeit nicht verlässlich genug.",
+      "hintNotScanned": "In deiner Bibliothek, aber der Scan ist noch nicht dort angekommen. Jeder Scan ergänzt weitere.",
+      "hintNotInLibrary": "Füge sie deiner Music-Assistant-Bibliothek hinzu und scanne dann erneut.",
+      "hintDuplicate": "Zwei Fassungen desselben Songs zählen als einer.",
+      "wayRelaxGate": "Jahres-Genauigkeit lockern → {n} nutzbar"
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Timer-Verzögerung (s)",
@@ -1106,7 +1129,9 @@
     "INVALID_REQUEST": "Diese Anfrage war ungültig. Prüfe deine Einrichtung und versuche es erneut.",
     "NO_PLAYLISTS_SELECTED": "Wähle mindestens eine Playlist aus, bevor du ein Spiel startest.",
     "NO_PLAYABLE_SONGS": "Keiner der Songs in den gewählten Playlists lässt sich mit diesem Musikdienst abspielen. Versuche eine andere Playlist oder einen anderen Dienst.",
-    "networkRetry": "Netzwerkfehler. Bitte erneut versuchen."
+    "networkRetry": "Netzwerkfehler. Bitte erneut versuchen.",
+    "LIBRARY_PLAYLIST_UNAVAILABLE": "Die Playlist „{playlist}“ konnte nicht aus Music Assistant gelesen werden.",
+    "LIBRARY_PLAYLIST_EMPTY": "Keiner der {total} Songs in „{playlist}“ ist bisher spielbar."
   },
   "highlights": {
     "highlight_exact_match": "{player} hat '{song}' genagelt — {year}!",
@@ -1275,7 +1300,8 @@
       "sub": "Der Scan läuft im Hintergrund — du kannst das Setup währenddessen abschließen."
     },
     "providerLibrarySub": "Deine persönliche Music-Assistant-Bibliothek",
-    "providerYtmusicFreeSub": "Braucht den ytmusic_free-Provider in Music Assistant"
+    "providerYtmusicFreeSub": "Braucht den ytmusic_free-Provider in Music Assistant",
+    "continueWithSongs": "Weiter mit {n} Songs"
   },
   "onboarding": {
     "stepLabel": "Schritt",

@@ -767,7 +767,30 @@
       "recentFailed": "Impossible de charger les morceaux récents.",
       "recentFix": "corriger",
       "recentFixed": "corrigé",
-      "recentFlagged": "signalé par des joueurs"
+      "recentFlagged": "signalé par des joueurs",
+      "sourceLabel": "Les chansons viennent de",
+      "sourceLibrary": "Toute la bibliothèque",
+      "sourcePlaylist": "Ma playlist",
+      "playlistPick": "Choisis une playlist…",
+      "playlistLoading": "Chargement de tes playlists Music Assistant…",
+      "playlistLoadFailed": "Impossible de charger les playlists depuis Music Assistant.",
+      "playlistNone": "Aucune playlist trouvée dans Music Assistant.",
+      "playlistChecking": "Vérification de la playlist…",
+      "playlistCheckFailed": "Impossible de lire cette playlist depuis Music Assistant.",
+      "playlistUsable": "{usable} chansons sur {total} utilisables",
+      "playlistAllUsable": "Les {total} chansons sont utilisables",
+      "playlistMissing": "{n} manquantes · pourquoi ?",
+      "playlistMore": "+ {n} de plus",
+      "playlistFiltersHint": "La popularité et les genres ne s’appliquent qu’à « Toute la bibliothèque » : ta playlist est déjà la sélection.",
+      "reasonNoYear": "pas d’année fiable",
+      "reasonNotScanned": "pas encore analysées",
+      "reasonNotInLibrary": "absentes de ta bibliothèque",
+      "reasonDuplicate": "en double",
+      "hintNoYear": "Analysées, mais l’année n’est pas assez fiable pour la précision d’année choisie.",
+      "hintNotScanned": "Dans ta bibliothèque, mais l’analyse ne les a pas encore atteintes. Chaque analyse en ajoute d’autres.",
+      "hintNotInLibrary": "Ajoute-les à ta bibliothèque Music Assistant, puis relance une analyse.",
+      "hintDuplicate": "Deux versions de la même chanson comptent pour une.",
+      "wayRelaxGate": "Assouplir la précision d’année → {n} utilisables"
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Délai du minuteur (s)",
@@ -1106,7 +1129,9 @@
     "INVALID_REQUEST": "Requête invalide. Vérifiez votre configuration et réessayez.",
     "NO_PLAYLISTS_SELECTED": "Choisissez au moins une playlist avant de lancer une partie.",
     "NO_PLAYABLE_SONGS": "Aucun des titres des playlists sélectionnées ne peut être lu avec ce service musical. Essayez une autre playlist ou un autre service.",
-    "networkRetry": "Erreur réseau. Veuillez réessayer."
+    "networkRetry": "Erreur réseau. Veuillez réessayer.",
+    "LIBRARY_PLAYLIST_UNAVAILABLE": "Impossible de lire la playlist « {playlist} » depuis Music Assistant.",
+    "LIBRARY_PLAYLIST_EMPTY": "Aucune des {total} chansons de « {playlist} » n’est encore jouable."
   },
   "highlights": {
     "highlight_exact_match": "{player} a trouvé '{song}' pile — {year} !",
@@ -1275,7 +1300,8 @@
       "sub": "L'analyse continue en arrière-plan — vous pouvez poursuivre et terminer la configuration pendant ce temps."
     },
     "providerLibrarySub": "Votre bibliothèque Music Assistant personnelle",
-    "providerYtmusicFreeSub": "Nécessite le fournisseur ytmusic_free dans Music Assistant"
+    "providerYtmusicFreeSub": "Nécessite le fournisseur ytmusic_free dans Music Assistant",
+    "continueWithSongs": "Continuer avec {n} chansons"
   },
   "onboarding": {
     "stepLabel": "Étape",

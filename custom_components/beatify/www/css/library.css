@@ -432,3 +432,53 @@ p.library-match-count--low {
 .admin-song-fix { margin-top: 6px; }
 .library-recent-item--flagged { border-color: #d9a441; }
 .library-recent-item--flagged .library-recent-action { color: #d9a441; opacity: 0.95; }
+
+/* ---- #2939: a Music Assistant playlist as the song source ---- */
+.library-playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+.library-playlist .library-match-count { margin: 0; font-weight: 600; }
+.lib-link {
+    align-self: flex-start;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--accent-color, #e94560);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.lib-link:hover { text-decoration: underline; }
+.library-playlist-dropped {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+}
+.library-dropped-group { display: flex; flex-direction: column; gap: 6px; }
+.library-dropped-group .lib-btn { align-self: flex-start; }
+.library-dropped-group .hint-text { margin: 0; }
+.library-dropped-group__title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+.library-dropped-group[data-reason="no_year"] .library-dropped-group__title { color: var(--color-warning-alt, #ff6600); }
+.library-dropped-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.82rem;
+}
+.library-dropped-list li { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.library-dropped-list li span { opacity: 0.6; }
+.library-dropped-more { opacity: 0.6; }

@@ -71,3 +71,37 @@ def parse_library_config(
         genres = [str(g).strip() for g in genres_raw if str(g).strip()][:20]
 
     return size, slider, gate, pop_percent, genres
+
+
+#: Where a Crate Digger game draws its songs from (#2939).
+SOURCE_LIBRARY = "library"
+SOURCE_PLAYLIST = "playlist"
+SOURCES = (SOURCE_LIBRARY, SOURCE_PLAYLIST)
+
+
+def sanitize_ma_playlist(raw: Any) -> dict[str, str] | None:
+    """Whitelist a stored/sent MA playlist reference. Pure; None if unusable."""
+    if not isinstance(raw, dict):
+        return None
+    item_id = str(raw.get("item_id") or "").strip()[:100]
+    provider = str(raw.get("provider") or "").strip()[:100]
+    if not item_id or not provider:
+        return None
+    name = str(raw.get("name") or "").strip()[:200]
+    return {"item_id": item_id, "provider": provider, "name": name}
+
+
+def parse_library_source(
+    library_config: dict[str, Any],
+) -> tuple[str, dict[str, str] | None]:
+    """Return ``(source, ma_playlist)`` from the library settings. Pure.
+
+    Playlist mode needs a playlist; without one the game falls back to the
+    whole library rather than refusing to start.
+    """
+    library_config = library_config or {}
+    source = str(library_config.get("source") or SOURCE_LIBRARY)
+    playlist = sanitize_ma_playlist(library_config.get("ma_playlist"))
+    if source != SOURCE_PLAYLIST or playlist is None:
+        return SOURCE_LIBRARY, None
+    return SOURCE_PLAYLIST, playlist

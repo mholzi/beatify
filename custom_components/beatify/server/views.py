@@ -69,6 +69,8 @@ from .library_views import (  # noqa: F401 — re-exported for __init__
     LibraryPoolPreviewView,
     LibraryPlaylistResolveView,
     LibraryPlaylistGenerateView,
+    LibraryMaPlaylistsView,
+    LibraryMaPlaylistCheckView,
 )
 
 # Re-export playlist views
