@@ -365,8 +365,28 @@ export async function checkGameStatus() {
         return;
     }
 
+    // #2947: the game this link points at was replaced by a rematch — the
+    // server answers for the new game and names it. Follow it, so the join
+    // and the stored name belong to the game that is actually running.
+    if (data.game_id && data.game_id !== state.gameId) {
+        adoptGameId(data.game_id);
+    }
+
     if (data.phase === 'END') {
+        // #2947: a reload on the podium. The session survives END (the
+        // server keeps every player for the rematch), so reconnect with it:
+        // the guest gets the real end view with the standings, and the
+        // rematch_started broadcast reaches this phone like every other.
+        if (getSessionCookie()) {
+            reconnectingOnPodium = true;
+            connectWithSession();
+            return;
+        }
+        // No session — a guest who scanned the QR code during the podium.
+        // Nothing to reconnect; wait on the status until the rematch lobby
+        // opens, then hand them the join form.
         showView('ended-view');
+        startEndedViewPoll();
         return;
     }
 
@@ -385,6 +405,84 @@ export async function checkGameStatus() {
         showView('join-view');
     } else {
         showView('in-progress-view');
+    }
+}
+
+// ============================================
+// Ended-view status poll (#2947)
+// ============================================
+
+// How often a guest who arrived during the podium asks whether the rematch
+// lobby is open. One light GET per phone; the podium lasts a minute or two.
+export var ENDED_VIEW_POLL_MS = 4000;
+var endedViewPollTimer = null;
+var endedViewPollInFlight = false;
+// Set while a podium reload is reconnecting by session, so a session the
+// server no longer knows falls back to the ended view instead of a join form
+// the END phase would refuse.
+var reconnectingOnPodium = false;
+
+function isEndedViewShowing() {
+    var el = document.getElementById('ended-view');
+    // Without the element (unit tests) there is nothing to leave.
+    return !el || !el.classList || !el.classList.contains('hidden');
+}
+
+/**
+ * Point this tab at the game that replaced the one in its URL (#2947).
+ * The URL is rewritten in place so a later reload lands on the same game.
+ */
+function adoptGameId(gameId) {
+    state.gameId = gameId;
+    try {
+        var url = new URL(window.location.href);
+        url.searchParams.set('game', gameId);
+        window.history.replaceState(window.history.state, '', url.toString());
+    } catch (e) {
+        // No location/history (tests, very old browsers): state alone is enough.
+    }
+}
+
+function stopEndedViewPoll() {
+    if (endedViewPollTimer !== null) {
+        clearInterval(endedViewPollTimer);
+        endedViewPollTimer = null;
+    }
+}
+
+function startEndedViewPoll() {
+    stopEndedViewPoll();
+    endedViewPollTimer = setInterval(pollEndedView, ENDED_VIEW_POLL_MS);
+}
+
+async function pollEndedView() {
+    if (!isEndedViewShowing()) {
+        stopEndedViewPoll();
+        return;
+    }
+    if (endedViewPollInFlight) return;
+    if (document.visibilityState === 'hidden') return;
+    endedViewPollInFlight = true;
+    try {
+        // One attempt per tick: the next tick is the retry.
+        var data = await fetchGameStatusWithRetry(state.gameId, { maxAttempts: 1 });
+        // The view may have changed (or the poll stopped) while we waited.
+        if (!data || endedViewPollTimer === null || !isEndedViewShowing()) return;
+        if (!data.exists) {
+            // The host closed the game instead of starting a rematch.
+            stopEndedViewPoll();
+            showView('not-found-view');
+            return;
+        }
+        if (data.game_id && data.game_id !== state.gameId) {
+            adoptGameId(data.game_id);
+        }
+        if (data.can_join) {
+            stopEndedViewPoll();
+            showView('join-view');
+        }
+    } finally {
+        endedViewPollInFlight = false;
     }
 }
 
@@ -901,6 +999,7 @@ function handleServerMessage(data) {
         }
     } else if (data.type === 'reconnect_ack') {
         state.joinPending = false;  // #2499
+        reconnectingOnPodium = false;  // #2947
         if (data.success && data.name) {
             state.playerName = data.name;
             storePlayerName(data.name);
@@ -961,6 +1060,14 @@ function handleServerMessage(data) {
             state.intentionalLeave = true;
             if (state.ws) {
                 state.ws.close();
+            }
+            // #2947: a podium reload whose session is gone cannot join an
+            // ended game — wait for the rematch lobby like a fresh arrival.
+            if (reconnectingOnPodium) {
+                reconnectingOnPodium = false;
+                showView('ended-view');
+                startEndedViewPoll();
+                return;
             }
             showView('join-view');
             return;

@@ -304,6 +304,11 @@ class GameState(
         self._hass: HomeAssistant | None = None
         self.game_id: str | None = None
         self.admin_token: str | None = None  # Issue #386: REST admin auth
+        # #2947: the game_id this game replaced through a rematch. A guest who
+        # scanned the QR code during the podium still holds that id; the
+        # game-status endpoint uses it to point them at the rematch lobby
+        # instead of answering "does not exist". One generation only.
+        self.rematched_from_game_id: str | None = None
         # #1358: monotonic game-identity epoch. Bumped by create_game /
         # end_game / rematch_game so a long-running start_round can detect that
         # the game it was launched for has been torn down or replaced while it

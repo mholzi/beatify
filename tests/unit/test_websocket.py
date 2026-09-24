@@ -483,9 +483,17 @@ class TestReconnect:
         assert msg["code"] == ERR_SESSION_NOT_FOUND
 
     async def test_reconnect_ended_game(self):
+        """#2947: a session reconnects on the podium and gets the END state.
+
+        It used to be refused with GAME_ENDED, which left a guest whose tab
+        reloaded during the podium without a socket, so the rematch never
+        reached their phone.
+        """
         handler, game_state, ws = _make_handler_and_game()
         game_state.add_player("Alice", ws)
-        session_id = game_state.get_player("Alice").session_id
+        alice = game_state.get_player("Alice")
+        session_id = alice.session_id
+        alice.connected = False
         game_state.phase = GamePhase.END
 
         new_ws = _make_ws()
@@ -493,9 +501,14 @@ class TestReconnect:
             new_ws, {"type": "reconnect", "session_id": session_id}
         )
 
-        msg = new_ws.send_json.call_args[0][0]
-        assert msg["type"] == "error"
-        assert msg["code"] == ERR_GAME_ENDED
+        sent = [c[0][0] for c in new_ws.send_json.call_args_list]
+        assert sent[0]["type"] == "reconnect_ack"
+        assert sent[0]["name"] == "Alice"
+        states = [m for m in sent if m["type"] == "state"]
+        assert states and states[0]["phase"] == "END"
+        assert not any(m.get("code") == ERR_GAME_ENDED for m in sent)
+        assert alice.connected is True
+        assert alice.ws is new_ws
 
 
 # ---------------------------------------------------------------------------
