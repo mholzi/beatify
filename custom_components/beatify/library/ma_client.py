@@ -415,3 +415,150 @@ async def async_sample_new_tracks(
         if progress_cb:
             progress_cb("enumerate", len(collected), 0)
     return collected[:needed], total
+
+
+# --------------------------------------------------------------------------- #
+# Playlists as a song source (#2939).
+#
+# Verified against client 1.3.6 (music.py) and on a live MA 2.8 box:
+#   * get_library_playlists(limit, offset, order_by) -> list[Playlist]
+#   * get_playlist_tracks(item_id, provider_instance_id_or_domain) -> list[Track]
+#     (the server pages internally and returns the whole playlist)
+#   * get_library_item_by_prov_id(media_type, item_id, provider) -> library item
+#
+# The catch that shapes the matcher: tracks of a playlist that lives at a
+# streaming/media-server provider come back with that PROVIDER's URI
+# (``apple_music://track/1440867473``), not the ``library://track/131`` the
+# pool stores — even when the very same track is in the library. Only MA's
+# built-in playlists hand out library URIs. So every non-library track is
+# looked up once more to find its library twin; the pure matcher then falls
+# back to artist + title for anything that lookup could not place.
+# --------------------------------------------------------------------------- #
+
+
+async def async_list_library_playlists(
+    hass: HomeAssistant,
+    config_entry_id: str,
+    *,
+    page_size: int = 500,
+    max_items: int = 2000,
+) -> list[dict[str, Any]]:
+    """Return the MA library playlists as ``{item_id, provider, name, uri}``."""
+    mass = _get_client(hass, config_entry_id)
+    out: list[dict[str, Any]] = []
+    offset = 0
+    while len(out) < max_items:
+        page = await mass.music.get_library_playlists(
+            limit=page_size, offset=offset, order_by="sort_name"
+        )
+        if not page:
+            break
+        for pl in page:
+            name = _name_of(pl)
+            item_id = getattr(pl, "item_id", None)
+            if not name or item_id in (None, ""):
+                continue
+            out.append(
+                {
+                    "item_id": str(item_id),
+                    "provider": str(getattr(pl, "provider", "") or "library"),
+                    "name": name,
+                    "uri": str(getattr(pl, "uri", "") or ""),
+                }
+            )
+        if len(page) < page_size:
+            break
+        offset += page_size
+    return out
+
+
+def normalize_playlist_track(track: Any) -> dict[str, Any] | None:
+    """Slim, matcher-oriented view of a playlist track. Pure.
+
+    Unlike :func:`_normalize_track` this keeps EVERY artist name: compilation
+    playlists often credit "Various Artists" first, and the matcher tries each
+    name in turn.
+    """
+    title = _name_of(track)
+    uri = getattr(track, "uri", None)
+    if not title and not uri:
+        return None
+    artists_raw = getattr(track, "artists", None) or []
+    artists = [n for n in (_name_of(a) for a in artists_raw) if n]
+    return {
+        "title": title or "",
+        "artists": artists,
+        "artist": artists[0] if artists else "",
+        "uri": str(uri or ""),
+        "item_id": str(getattr(track, "item_id", "") or ""),
+        "provider": str(getattr(track, "provider", "") or ""),
+    }
+
+
+def is_library_uri(uri: str | None) -> bool:
+    """True for MA's own library URIs (``library://track/N``). Pure."""
+    return bool(uri) and str(uri).startswith("library://")
+
+
+async def async_fetch_playlist_tracks(
+    hass: HomeAssistant,
+    config_entry_id: str,
+    item_id: str,
+    provider: str,
+    *,
+    concurrency: int = 8,
+) -> list[dict[str, Any]]:
+    """Read a playlist and resolve each track to its library twin.
+
+    Returns normalized dicts (see :func:`normalize_playlist_track`) plus:
+      ``library_uri`` -- the ``library://track/N`` URI when known, else None;
+      ``in_library``  -- True / False from MA, None when MA could not say.
+
+    Raises when the playlist itself cannot be read (deleted, provider down):
+    that is an error the host must see, not an empty playlist.
+    """
+    mass = _get_client(hass, config_entry_id)
+    raw = await mass.music.get_playlist_tracks(item_id, provider)
+    tracks = [t for t in (normalize_playlist_track(r) for r in raw or []) if t]
+
+    sem = asyncio.Semaphore(concurrency)
+
+    async def _resolve(t: dict[str, Any]) -> None:
+        if is_library_uri(t["uri"]):
+            t["library_uri"] = t["uri"]
+            t["in_library"] = True
+            return
+        t["library_uri"] = None
+        t["in_library"] = None
+        if not (t["item_id"] and t["provider"]):
+            return
+        async with sem:
+            try:
+                lib = await mass.music.get_library_item_by_prov_id(
+                    "track", t["item_id"], t["provider"]
+                )
+            except Exception:  # noqa: BLE001 — older servers lack the command
+                _LOGGER.debug(
+                    "Library lookup failed for %s/%s",
+                    t["provider"],
+                    t["item_id"],
+                    exc_info=True,
+                )
+                return
+        if lib is None:
+            t["in_library"] = False
+            return
+        t["in_library"] = True
+        lib_uri = getattr(lib, "uri", None)
+        if is_library_uri(lib_uri):
+            t["library_uri"] = str(lib_uri)
+
+    await asyncio.gather(*(_resolve(t) for t in tracks))
+    _LOGGER.info(
+        "MA playlist %s/%s: %d tracks, %d resolved to library URIs",
+        provider,
+        item_id,
+        len(tracks),
+        sum(1 for t in tracks if t.get("library_uri")),
+    )
+    return tracks

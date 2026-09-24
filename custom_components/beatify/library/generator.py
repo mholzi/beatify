@@ -213,8 +213,16 @@ def generate_playlist(
     name: str | None = None,
     rng: random.Random | None = None,
     exclude_uris: set[str] | None = None,
+    only_uris: set[str] | None = None,
 ) -> dict[str, Any]:
     """Sample a Beatify-schema playlist dict from an enriched pool.
+
+    ``only_uris`` (#2939) restricts the draw to a host-picked set — the songs
+    of a Music Assistant playlist, already resolved to ``uri_ma_library``. It
+    is the mirror image of ``exclude_uris``: the trust gate and the dedupe
+    still apply, but the popularity window, the familiarity bands, the genre
+    filter and the recently-played exclusion do not. The host has already made
+    the selection; filtering it further would silently shrink it.
 
     Args:
         pool: enriched song dicts (see module docstring).
@@ -256,6 +264,26 @@ def generate_playlist(
         ):
             by_key[key] = s
     deduped = list(by_key.values())
+
+    # 2-bis) Host-picked set (#2939): the playlist IS the selection.
+    if only_uris is not None:
+        picked = [s for s in deduped if s.get("uri_ma_library") in only_uris]
+        rng.shuffle(picked)
+        chosen = (
+            _select_decade_balanced(picked, size, rng)
+            if balance_decades
+            else picked[:size]
+        )
+        songs = [_to_song_entry(s) for s in chosen]
+        return {
+            "name": name or f"Your Library: Playlist ({len(songs)} songs)",
+            "version": "1.0",
+            "_generated": True,
+            "_source": "ma_playlist",
+            "_eligible_count": len(picked),
+            "tags": ["library", "generated", "ma_playlist"],
+            "songs": songs,
+        }
 
     # 2a) Genre filter (any-match, case-insensitive). Applied before windows
     #     and bands so every selection mode respects it. A pre-filter snapshot

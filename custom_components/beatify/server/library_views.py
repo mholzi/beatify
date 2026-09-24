@@ -33,8 +33,10 @@ from custom_components.beatify.library.version import __version__ as ENGINE_VERS
 from custom_components.beatify.server.base import RateLimitMixin, _json_error
 from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.library.config import (
+    SOURCES as _LIBRARY_SOURCES,
     YEAR_GATES,
     parse_library_config,
+    sanitize_ma_playlist,
 )
 from custom_components.beatify.server.setup_state import (
     GAME_OUTPUT_KEY,
@@ -89,6 +91,15 @@ def sanitize_library_settings(body: Any) -> dict[str, Any]:
     genres = body.get("genres")
     if isinstance(genres, list):
         out["genres"] = [str(g).strip() for g in genres if str(g).strip()][:20]
+    # #2939: whole library vs. a Music Assistant playlist.
+    source = body.get("source")
+    if isinstance(source, str) and source in _LIBRARY_SOURCES:
+        out["source"] = source
+    if "ma_playlist" in body:
+        # None clears the choice; anything malformed is dropped, not stored.
+        playlist = sanitize_ma_playlist(body.get("ma_playlist"))
+        if playlist is not None or body.get("ma_playlist") is None:
+            out["ma_playlist"] = playlist
     return out
 
 
@@ -1040,3 +1051,126 @@ class LibraryPlaylistGenerateView(RateLimitMixin, HomeAssistantView):
                 "songs": len(playlist["songs"]),
             }
         )
+
+
+class LibraryMaPlaylistsView(HomeAssistantView):
+    """List the Music Assistant library playlists (#2939).
+
+    Backs the "My playlist" picker in the Crate Digger panel. Only the names
+    and ids — the tracks are read for the one playlist the host picks.
+    """
+
+    url = "/beatify/api/library-playlists/ma"
+    name = "beatify:api:library-playlists:ma"
+    requires_auth = False  # auth handled in-handler
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+        from custom_components.beatify.library.ma_client import (
+            async_list_library_playlists,
+            find_ma_config_entry_ids,
+        )
+
+        ids = find_ma_config_entry_ids(self.hass)
+        if not ids:
+            return _json_error(
+                "Music Assistant is not available", 503, code="MA_UNAVAILABLE"
+            )
+        try:
+            playlists = await async_list_library_playlists(self.hass, ids[0])
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.warning("Listing Music Assistant playlists failed: %s", err)
+            return _json_error(
+                "Could not read playlists from Music Assistant",
+                502,
+                code="MA_PLAYLISTS_FAILED",
+            )
+        return self.json({"playlists": playlists})
+
+
+#: Rows per drop reason sent to the panel. A 500-track playlist with half of
+#: it unscanned would otherwise ship a list nobody scrolls; the count stays
+#: exact either way.
+_CHECK_ROWS_PER_REASON = 200
+
+
+def playlist_check_payload(result: dict[str, Any]) -> dict[str, Any]:
+    """Trim a classification for the wire. Pure.
+
+    ``usable_uris`` stays server-side (the game resolves the playlist again
+    at start); the per-reason lists are capped but their counts are not.
+    """
+    dropped = result.get("dropped") or {}
+    return {
+        "total": result.get("total", 0),
+        "usable": result.get("usable", 0),
+        "usable_by_gate": result.get("usable_by_gate") or {},
+        "dropped": {
+            reason: {
+                "count": len(rows),
+                "songs": rows[:_CHECK_ROWS_PER_REASON],
+            }
+            for reason, rows in dropped.items()
+        },
+    }
+
+
+class LibraryMaPlaylistCheckView(RateLimitMixin, HomeAssistantView):
+    """Count the usable songs of one MA playlist, with reasons (#2939)."""
+
+    url = "/beatify/api/library-playlists/ma/check"
+    name = "beatify:api:library-playlists:ma:check"
+    requires_auth = False  # auth handled in-handler
+
+    RATE_LIMIT_REQUESTS = 30
+    RATE_LIMIT_WINDOW = 60
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        self.hass = hass
+        self._init_rate_limits()
+
+    async def get(self, request: web.Request) -> web.Response:
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+        if not self._check_rate_limit(request.remote or "unknown"):
+            return _json_error("Too many requests", 429, code="RATE_LIMITED")
+        playlist = sanitize_ma_playlist(
+            {
+                "item_id": request.query.get("item_id"),
+                "provider": request.query.get("provider"),
+            }
+        )
+        if playlist is None:
+            return _json_error(
+                "Missing item_id or provider", 400, code="INVALID_REQUEST"
+            )
+        gate = request.query.get("gate", "strict")
+        min_conf = YEAR_GATES.get(gate, YEAR_GATES["strict"])
+
+        from custom_components.beatify.library.playlist_source import (
+            async_check_ma_playlist,
+        )
+
+        try:
+            result = await async_check_ma_playlist(
+                self.hass,
+                item_id=playlist["item_id"],
+                provider=playlist["provider"],
+                min_confidence=min_conf,
+            )
+        except Exception as err:  # noqa: BLE001
+            _LOGGER.warning("Reading Music Assistant playlist failed: %s", err)
+            return _json_error(
+                "Could not read this playlist from Music Assistant",
+                502,
+                code="MA_PLAYLIST_UNAVAILABLE",
+            )
+        if result is None:
+            return _json_error(
+                "Library not scanned yet", 400, code="LIBRARY_POOL_MISSING"
+            )
+        return self.json(playlist_check_payload(result))

@@ -767,7 +767,30 @@
       "recentFailed": "Kon recente nummers niet laden.",
       "recentFix": "corrigeren",
       "recentFixed": "gecorrigeerd",
-      "recentFlagged": "door spelers gemeld"
+      "recentFlagged": "door spelers gemeld",
+      "sourceLabel": "Nummers komen uit",
+      "sourceLibrary": "Hele bibliotheek",
+      "sourcePlaylist": "Mijn playlist",
+      "playlistPick": "Kies een playlist…",
+      "playlistLoading": "Je Music Assistant-playlists worden geladen…",
+      "playlistLoadFailed": "Playlists uit Music Assistant konden niet worden geladen.",
+      "playlistNone": "Geen playlists gevonden in Music Assistant.",
+      "playlistChecking": "Playlist wordt gecontroleerd…",
+      "playlistCheckFailed": "Deze playlist kon niet uit Music Assistant worden gelezen.",
+      "playlistUsable": "{usable} van {total} nummers bruikbaar",
+      "playlistAllUsable": "Alle {total} nummers bruikbaar",
+      "playlistMissing": "{n} ontbreken · waarom?",
+      "playlistMore": "+ {n} meer",
+      "playlistFiltersHint": "Bekendheid en genres gelden alleen voor ‘Hele bibliotheek’ — je playlist is al de selectie.",
+      "reasonNoYear": "geen betrouwbaar jaar",
+      "reasonNotScanned": "nog niet gescand",
+      "reasonNotInLibrary": "niet in je bibliotheek",
+      "reasonDuplicate": "dubbel",
+      "hintNoYear": "Gescand, maar het jaar is niet betrouwbaar genoeg voor de ingestelde jaarnauwkeurigheid.",
+      "hintNotScanned": "In je bibliotheek, maar de scan is er nog niet aan toegekomen. Elke scan voegt er meer toe.",
+      "hintNotInLibrary": "Voeg ze toe aan je Music Assistant-bibliotheek en scan daarna opnieuw.",
+      "hintDuplicate": "Twee versies van hetzelfde nummer tellen als één.",
+      "wayRelaxGate": "Jaarnauwkeurigheid versoepelen → {n} bruikbaar"
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Timervertraging (s)",
@@ -1106,7 +1129,9 @@
     "INVALID_REQUEST": "Dit verzoek was ongeldig. Controleer je instellingen en probeer het opnieuw.",
     "NO_PLAYLISTS_SELECTED": "Kies minstens één afspeellijst voordat je een spel start.",
     "NO_PLAYABLE_SONGS": "Geen van de nummers in de gekozen afspeellijsten kan met deze muziekdienst worden afgespeeld. Probeer een andere lijst of een andere dienst.",
-    "networkRetry": "Netwerkfout. Probeer het opnieuw."
+    "networkRetry": "Netwerkfout. Probeer het opnieuw.",
+    "LIBRARY_PLAYLIST_UNAVAILABLE": "De playlist ‘{playlist}’ kon niet uit Music Assistant worden gelezen.",
+    "LIBRARY_PLAYLIST_EMPTY": "Geen van de {total} nummers in ‘{playlist}’ is al speelbaar."
   },
   "highlights": {
     "highlight_exact_match": "{player} had '{song}' perfect — {year}!",
@@ -1275,7 +1300,8 @@
       "sub": "De scan loopt op de achtergrond — je kunt doorgaan en de installatie afronden terwijl hij bezig is."
     },
     "providerLibrarySub": "Je persoonlijke Music Assistant-bibliotheek",
-    "providerYtmusicFreeSub": "Vereist de ytmusic_free-provider in Music Assistant"
+    "providerYtmusicFreeSub": "Vereist de ytmusic_free-provider in Music Assistant",
+    "continueWithSongs": "Verder met {n} nummers"
   },
   "onboarding": {
     "stepLabel": "Stap",

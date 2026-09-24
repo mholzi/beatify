@@ -12,7 +12,11 @@ from aiohttp import web
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers import entity_registry as er
 
-from custom_components.beatify.library.config import parse_library_config
+from custom_components.beatify.library.config import (
+    SOURCE_PLAYLIST,
+    parse_library_config,
+    parse_library_source,
+)
 from custom_components.beatify.server.setup_state import (
     async_clear_game_output_settings,
     async_load_game_output_settings,
@@ -940,6 +944,56 @@ def _remember_played_uris(hass: HomeAssistant, uris: list[str | None]) -> None:
     store[_RECENT_KEY] = combined
 
 
+async def _resolve_ma_playlist_uris(
+    hass: HomeAssistant, ma_playlist: dict[str, str], min_confidence: int
+) -> tuple[set[str] | None, web.Response | None]:
+    """Resolve the host's MA playlist to pool URIs. Returns (uris, error)."""
+    from custom_components.beatify.library.playlist_source import (
+        async_check_ma_playlist,
+    )
+
+    name = ma_playlist.get("name") or ma_playlist["item_id"]
+    try:
+        result = await async_check_ma_playlist(
+            hass,
+            item_id=ma_playlist["item_id"],
+            provider=ma_playlist["provider"],
+            min_confidence=min_confidence,
+        )
+    except Exception:
+        _LOGGER.exception("Reading Music Assistant playlist %s failed", name)
+        return None, _json_error(
+            f"Could not read the playlist '{name}' from Music Assistant. "
+            "Pick it again in the Crate Digger settings, or switch back to "
+            "the whole library.",
+            400,
+            code="LIBRARY_PLAYLIST_UNAVAILABLE",
+            details={"playlist": name},
+        )
+    if result is None:
+        return None, _json_error(
+            "Your library hasn't been scanned yet. Open Settings and run "
+            "'Scan library' first (this takes a while on the first run).",
+            400,
+            code="LIBRARY_POOL_MISSING",
+        )
+    if not result["usable"]:
+        return None, _json_error(
+            f"None of the {result['total']} songs in '{name}' can be played "
+            "yet: they are not scanned or have no reliable year.",
+            400,
+            code="LIBRARY_PLAYLIST_EMPTY",
+            details={"playlist": name, "total": result["total"]},
+        )
+    _LOGGER.info(
+        "Library game from MA playlist %s: %d of %d songs usable",
+        name,
+        result["usable"],
+        result["total"],
+    )
+    return set(result["usable_uris"]), None
+
+
 async def _generate_library_songs(
     hass: HomeAssistant, library_config: dict[str, Any]
 ) -> tuple[list[dict[str, Any]], web.Response | None]:
@@ -957,7 +1011,23 @@ async def _generate_library_songs(
     effective = dict(library_config or {})
     effective.update(stored)  # stored wins over client payload
     size, slider, min_confidence, pop_percent, genres = parse_library_config(effective)
-    recent = _recent_played_uris(hass)
+    source, ma_playlist = parse_library_source(effective)
+
+    # #2939: a Music Assistant playlist as the source. The playlist is read
+    # again at every start, so edits the host makes in MA are picked up.
+    only_uris: set[str] | None = None
+    recent: set[str] | None = _recent_played_uris(hass)
+    if source == SOURCE_PLAYLIST and ma_playlist is not None:
+        only_uris, error = await _resolve_ma_playlist_uris(
+            hass, ma_playlist, min_confidence
+        )
+        if error is not None:
+            return [], error
+        # The recently-played exclusion is deliberately OFF here: on a
+        # hand-picked 37-song set it would silently drop the songs the last
+        # game played — the very shrinkage the "37 of 45" line exists to
+        # rule out.
+        recent = None
     try:
         playlist = await async_generate_library_playlist(
             hass,
@@ -967,6 +1037,7 @@ async def _generate_library_songs(
             genres=genres or None,
             min_confidence=min_confidence,
             exclude_uris=recent,
+            only_uris=only_uris,
         )
     except Exception as err:
         _LOGGER.exception("Library playlist generation failed")

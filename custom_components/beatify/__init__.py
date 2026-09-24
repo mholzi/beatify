@@ -85,6 +85,8 @@ from .server.library_views import (
     LibraryPoolPreviewView,
     LibraryPlaylistResolveView,
     LibraryPlaylistGenerateView,
+    LibraryMaPlaylistsView,
+    LibraryMaPlaylistCheckView,
 )
 from .server.setup_state import clear_setup
 from .server.websocket import BeatifyWebSocketHandler
@@ -292,6 +294,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.http.register_view(LibraryPoolPreviewView(hass))
         hass.http.register_view(LibraryPlaylistResolveView(hass))
         hass.http.register_view(LibraryPlaylistGenerateView(hass))
+        hass.http.register_view(LibraryMaPlaylistsView(hass))  # #2939
+        hass.http.register_view(LibraryMaPlaylistCheckView(hass))  # #2939
         hass.http.register_view(SetSuddenDeathView(hass))  # Issue #827
         hass.http.register_view(EndGameView(hass))
         hass.http.register_view(

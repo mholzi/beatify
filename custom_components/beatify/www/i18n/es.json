@@ -767,7 +767,30 @@
       "recentFailed": "No se pudieron cargar las canciones recientes.",
       "recentFix": "corregir",
       "recentFixed": "corregido",
-      "recentFlagged": "marcada por jugadores"
+      "recentFlagged": "marcada por jugadores",
+      "sourceLabel": "Las canciones vienen de",
+      "sourceLibrary": "Toda la biblioteca",
+      "sourcePlaylist": "Mi playlist",
+      "playlistPick": "Elige una playlist…",
+      "playlistLoading": "Cargando tus playlists de Music Assistant…",
+      "playlistLoadFailed": "No se pudieron cargar las playlists de Music Assistant.",
+      "playlistNone": "No se encontraron playlists en Music Assistant.",
+      "playlistChecking": "Comprobando la playlist…",
+      "playlistCheckFailed": "No se pudo leer esta playlist de Music Assistant.",
+      "playlistUsable": "{usable} de {total} canciones utilizables",
+      "playlistAllUsable": "Las {total} canciones son utilizables",
+      "playlistMissing": "Faltan {n} · ¿por qué?",
+      "playlistMore": "+ {n} más",
+      "playlistFiltersHint": "La popularidad y los géneros solo se aplican a «Toda la biblioteca»: tu playlist ya es la selección.",
+      "reasonNoYear": "sin año fiable",
+      "reasonNotScanned": "aún sin escanear",
+      "reasonNotInLibrary": "no están en tu biblioteca",
+      "reasonDuplicate": "duplicadas",
+      "hintNoYear": "Escaneadas, pero el año no es lo bastante fiable para la precisión de año actual.",
+      "hintNotScanned": "Están en tu biblioteca, pero el escaneo aún no ha llegado a ellas. Cada escaneo añade más.",
+      "hintNotInLibrary": "Añádelas a tu biblioteca de Music Assistant y vuelve a escanear.",
+      "hintDuplicate": "Dos versiones de la misma canción cuentan como una.",
+      "wayRelaxGate": "Relajar la precisión de año → {n} utilizables"
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Retraso del temporizador (s)",
@@ -1106,7 +1129,9 @@
     "INVALID_REQUEST": "La solicitud no era válida. Revisa tu configuración e inténtalo de nuevo.",
     "NO_PLAYLISTS_SELECTED": "Elige al menos una lista de reproducción antes de empezar una partida.",
     "NO_PLAYABLE_SONGS": "Ninguna de las canciones de las listas seleccionadas se puede reproducir con este servicio de música. Prueba otra lista u otro servicio.",
-    "networkRetry": "Error de red. Inténtalo de nuevo."
+    "networkRetry": "Error de red. Inténtalo de nuevo.",
+    "LIBRARY_PLAYLIST_UNAVAILABLE": "No se pudo leer la playlist «{playlist}» de Music Assistant.",
+    "LIBRARY_PLAYLIST_EMPTY": "Ninguna de las {total} canciones de «{playlist}» se puede reproducir todavía."
   },
   "highlights": {
     "highlight_exact_match": "¡{player} clavó '{song}' — {year}!",
@@ -1275,7 +1300,8 @@
       "sub": "El escaneo sigue en segundo plano — puedes continuar y terminar la configuración mientras trabaja."
     },
     "providerLibrarySub": "Tu biblioteca personal de Music Assistant",
-    "providerYtmusicFreeSub": "Necesita el proveedor ytmusic_free en Music Assistant"
+    "providerYtmusicFreeSub": "Necesita el proveedor ytmusic_free en Music Assistant",
+    "continueWithSongs": "Continuar con {n} canciones"
   },
   "onboarding": {
     "stepLabel": "Paso",

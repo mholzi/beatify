@@ -55,7 +55,25 @@ export function getLibraryConfig() {
         size: adminState.librarySize,
         year_gate: adminState.libraryYearGate,
         genres: adminState.libraryGenres || [],
+        source: adminState.librarySource || 'library',
+        ma_playlist: adminState.libraryMaPlaylist || null,
     };
+}
+
+/**
+ * #2939: what the wizard's Continue button should say in Crate Digger step 3.
+ * `playlist` false → the whole library (nothing to count). In playlist mode
+ * `ready` is false until a playlist is picked and has at least one usable
+ * song; `songs` is how many the game will actually play.
+ */
+export function getLibrarySourceStatus() {
+    if (adminState.librarySource !== 'playlist') return { playlist: false, ready: true, songs: null };
+    const check = adminState.libraryPlaylistCheck;
+    if (!adminState.libraryMaPlaylist || !check || !check.usable) {
+        return { playlist: true, ready: false, songs: null };
+    }
+    const size = adminState.librarySize || 30;
+    return { playlist: true, ready: true, songs: Math.min(size, check.usable) };
 }
 
 /* ------------------------------------------------------------------ *
@@ -82,6 +100,20 @@ function _panelHtml(mode) {
     <div class="library-card">
         <div class="library-card__title" data-i18n="admin.library.cardGame">Game settings</div>
         <div class="library-settings__row">
+            <span class="library-label" data-i18n="admin.library.sourceLabel">Songs come from</span>
+            <div class="genre-chips lib-source" role="radiogroup" data-lib="source">
+                <button type="button" class="genre-chip" role="radio" data-source="library" data-i18n="admin.library.sourceLibrary">Whole library</button>
+                <button type="button" class="genre-chip" role="radio" data-source="playlist" data-i18n="admin.library.sourcePlaylist">My playlist</button>
+            </div>
+            <div class="library-playlist hidden" data-lib="playlist-row">
+                <select class="lib-input" data-lib="playlist-select" aria-label="Music Assistant playlist" data-i18n-aria-label="admin.library.playlistPick"></select>
+                <p class="hint-text library-match-count" data-lib="playlist-count" aria-live="polite"></p>
+                <button type="button" class="lib-link hidden" data-lib="playlist-why" aria-expanded="false"></button>
+                <div class="library-playlist-dropped hidden" data-lib="playlist-dropped"></div>
+                <p class="hint-text" data-i18n="admin.library.playlistFiltersHint">Popularity and genres only apply to “Whole library” — your playlist already is the selection.</p>
+            </div>
+        </div>
+        <div class="library-settings__row" data-lib="pop-row">
             <label class="library-label">
                 <span data-i18n="admin.library.popularity">Song popularity</span>
                 <span class="library-value" data-lib="pop-value">Top 50%</span>
@@ -106,7 +138,7 @@ function _panelHtml(mode) {
             </select>
         </div>
 
-        <div class="library-settings__row">
+        <div class="library-settings__row" data-lib="genre-row">
             <label class="library-label" data-i18n="admin.library.genres">Music genres</label>
             <div class="genre-chips" data-lib="genres">
                 <span class="hint-text" data-i18n="admin.library.genresLoading">Genres appear here after a scan.</span>
@@ -247,6 +279,7 @@ export function mountLibraryPanel(rootEl, opts = {}) {
         if (gate) gate.value = adminState.libraryYearGate;
         if (scanSize) scanSize.value = String(adminState.libraryScanSize);
         _renderGenreSelection(inst);
+        _renderSource(inst);
     }
 
     popRange?.addEventListener('input', function () {
@@ -277,6 +310,47 @@ export function mountLibraryPanel(rootEl, opts = {}) {
     gate?.addEventListener('change', function () {
         adminState.libraryYearGate = this.value;
         _syncSiblings(inst); if (onChanged) onChanged();
+        _checkPlaylist();
+    });
+
+    // #2939: whole library vs. a Music Assistant playlist.
+    $('source')?.addEventListener('click', (e) => {
+        const opt = e.target.closest('[data-source]');
+        if (!opt) return;
+        const next = opt.getAttribute('data-source') === 'playlist' ? 'playlist' : 'library';
+        if (next === adminState.librarySource) return;
+        adminState.librarySource = next;
+        _syncSiblings(inst); if (onChanged) onChanged();
+        if (next === 'playlist') {
+            _loadMaPlaylists();
+            _checkPlaylist();
+        }
+        _notifySource();
+    });
+    $('playlist-select')?.addEventListener('change', function () {
+        const pick = _maPlaylists.find((p) => _playlistValue(p) === this.value) || null;
+        adminState.libraryMaPlaylist = pick
+            ? { item_id: pick.item_id, provider: pick.provider, name: pick.name }
+            : null;
+        adminState.libraryPlaylistCheck = null;
+        _syncSiblings(inst); if (onChanged) onChanged();
+        _checkPlaylist();
+    });
+    $('playlist-why')?.addEventListener('click', () => {
+        _droppedOpen = !_droppedOpen;
+        _instances.forEach(_renderPlaylistCheck);
+    });
+    $('playlist-dropped')?.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-way]');
+        if (!btn) return;
+        const way = btn.getAttribute('data-way');
+        if (way === 'gate') {
+            adminState.libraryYearGate = btn.getAttribute('data-gate') || adminState.libraryYearGate;
+            _syncSiblings(null); if (onChanged) onChanged();
+            _checkPlaylist();
+        } else if (way === 'scan') {
+            $('scan-btn')?.click();
+        }
     });
     scanSize?.addEventListener('change', function () {
         adminState.libraryScanSize = parseInt(this.value, 10);
@@ -366,6 +440,7 @@ export function mountLibraryPanel(rootEl, opts = {}) {
 
     inst.refresh = () => refreshStatus(inst);
     inst.syncControls = syncControls;
+    inst.onSourceChanged = typeof opts.onSourceChanged === 'function' ? opts.onSourceChanged : null;
     inst.destroy = () => {
         _stopPolling(inst);
         const i = _instances.indexOf(inst);
@@ -573,6 +648,8 @@ function _saveServerSettings() {
                     year_gate: adminState.libraryYearGate,
                     scan_size: adminState.libraryScanSize,
                     genres: adminState.libraryGenres || [],
+                    source: adminState.librarySource || 'library',
+                    ma_playlist: adminState.libraryMaPlaylist || null,
                 }),
             });
         } catch (e) { /* transient — next change retries */ }
@@ -593,8 +670,17 @@ async function _loadServerSettings(inst) {
         if (typeof s.year_gate === 'string' && s.year_gate) adminState.libraryYearGate = s.year_gate;
         if (Number.isFinite(s.scan_size)) adminState.libraryScanSize = s.scan_size;
         if (Array.isArray(s.genres)) adminState.libraryGenres = s.genres;
+        if (s.source === 'playlist' || s.source === 'library') adminState.librarySource = s.source;
+        if (s.ma_playlist === null || (s.ma_playlist && typeof s.ma_playlist === 'object')) {
+            adminState.libraryMaPlaylist = s.ma_playlist;
+        }
         _instances.forEach((i) => { try { i.syncControls(); } catch (e) {} });
         _refreshMatchCount();
+        if (adminState.librarySource === 'playlist') {
+            _loadMaPlaylists();
+            _checkPlaylist();
+        }
+        _notifySource();
     } catch (e) { /* server settings optional; local values remain */ }
 }
 
@@ -603,6 +689,218 @@ function _syncSiblings(changed) {
     for (const inst of _instances) {
         if (inst !== changed && inst.syncControls) inst.syncControls();
     }
+}
+
+/* ------------------------------------------------------------------ *
+ *  #2939: a Music Assistant playlist as the song source
+ * ------------------------------------------------------------------ */
+
+let _maPlaylists = [];
+let _maPlaylistsState = 'idle'; // idle | loading | ready | failed
+let _checkState = 'idle';       // idle | checking | ready | failed
+let _checkSeq = 0;
+let _droppedOpen = false;
+
+/** How many rows of each drop reason the collapsed group shows. */
+const DROPPED_PREVIEW = 3;
+
+const _REASONS = [
+    // [reason, label key, fallback, hint key, hint fallback]
+    ['no_year', 'admin.library.reasonNoYear', 'no reliable year',
+        'admin.library.hintNoYear', 'Scanned, but the year is not reliable enough for the current year accuracy.'],
+    ['not_scanned', 'admin.library.reasonNotScanned', 'not scanned yet',
+        'admin.library.hintNotScanned', 'In your library, but the scan has not reached these yet. Every scan adds more.'],
+    ['not_in_library', 'admin.library.reasonNotInLibrary', 'not in your library',
+        'admin.library.hintNotInLibrary', 'Add these to your Music Assistant library, then scan again.'],
+    ['duplicate', 'admin.library.reasonDuplicate', 'duplicate',
+        'admin.library.hintDuplicate', 'Two versions of the same song count as one.'],
+];
+
+const _GATE_ORDER = ['strict', 'balanced', 'tags_ok'];
+
+function _playlistValue(p) {
+    return p ? `${p.provider}::${p.item_id}` : '';
+}
+
+function _notifySource() {
+    _instances.forEach((i) => {
+        if (i.onSourceChanged) { try { i.onSourceChanged(); } catch { /* host UI */ } }
+    });
+}
+
+async function _loadMaPlaylists() {
+    if (_maPlaylistsState === 'loading' || _maPlaylistsState === 'ready') return;
+    _maPlaylistsState = 'loading';
+    _instances.forEach(_renderSource);
+    try {
+        const resp = await _fetch('/beatify/api/library-playlists/ma');
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) throw new Error(data.message || 'failed');
+        _maPlaylists = Array.isArray(data.playlists) ? data.playlists : [];
+        _maPlaylistsState = 'ready';
+    } catch {
+        _maPlaylistsState = 'failed';
+    }
+    _instances.forEach(_renderSource);
+}
+
+async function _checkPlaylist() {
+    const pick = adminState.libraryMaPlaylist;
+    if (adminState.librarySource !== 'playlist' || !pick) {
+        _checkState = 'idle';
+        adminState.libraryPlaylistCheck = null;
+        _instances.forEach(_renderPlaylistCheck);
+        _notifySource();
+        return;
+    }
+    const seq = ++_checkSeq;
+    _checkState = 'checking';
+    _instances.forEach(_renderPlaylistCheck);
+    _notifySource();
+    try {
+        const q = new URLSearchParams({
+            item_id: pick.item_id,
+            provider: pick.provider,
+            gate: adminState.libraryYearGate || 'strict',
+        });
+        const resp = await _fetch('/beatify/api/library-playlists/ma/check?' + q.toString());
+        const data = await resp.json().catch(() => ({}));
+        if (seq !== _checkSeq) return; // a newer pick overtook this one
+        if (!resp.ok) throw new Error(data.message || 'failed');
+        adminState.libraryPlaylistCheck = data;
+        _checkState = 'ready';
+    } catch {
+        if (seq !== _checkSeq) return;
+        adminState.libraryPlaylistCheck = null;
+        _checkState = 'failed';
+    }
+    _instances.forEach(_renderPlaylistCheck);
+    _notifySource();
+}
+
+function _renderSource(inst) {
+    const root = inst.root;
+    const isPlaylist = adminState.librarySource === 'playlist';
+    root.querySelectorAll('[data-source]').forEach((opt) => {
+        const on = (opt.getAttribute('data-source') === 'playlist') === isPlaylist;
+        opt.classList.toggle('genre-chip--on', on);
+        opt.setAttribute('aria-checked', on ? 'true' : 'false');
+    });
+    root.querySelector('[data-lib="playlist-row"]')?.classList.toggle('hidden', !isPlaylist);
+    root.querySelector('[data-lib="pop-row"]')?.classList.toggle('hidden', isPlaylist);
+    root.querySelector('[data-lib="genre-row"]')?.classList.toggle('hidden', isPlaylist);
+
+    const select = root.querySelector('[data-lib="playlist-select"]');
+    if (select) {
+        const pick = adminState.libraryMaPlaylist;
+        let placeholder;
+        if (_maPlaylistsState === 'loading' || _maPlaylistsState === 'idle') {
+            placeholder = _t('admin.library.playlistLoading', 'Loading your Music Assistant playlists…');
+        } else if (_maPlaylistsState === 'failed') {
+            placeholder = _t('admin.library.playlistLoadFailed', 'Could not load playlists from Music Assistant.');
+        } else if (!_maPlaylists.length) {
+            placeholder = _t('admin.library.playlistNone', 'No playlists found in Music Assistant.');
+        } else {
+            placeholder = _t('admin.library.playlistPick', 'Choose a playlist…');
+        }
+        const opts = [`<option value="">${_escapeHtml(placeholder)}</option>`];
+        const list = _maPlaylists.slice();
+        // A stored pick that MA no longer lists stays visible, so the host
+        // sees what is selected instead of a silently empty menu.
+        if (pick && !list.some((p) => _playlistValue(p) === _playlistValue(pick))) list.unshift(pick);
+        for (const p of list) {
+            opts.push(`<option value="${_escapeAttr(_playlistValue(p))}">${_escapeHtml(p.name || p.item_id)}</option>`);
+        }
+        select.innerHTML = opts.join('');
+        select.value = _playlistValue(pick);
+    }
+    _renderPlaylistCheck(inst);
+}
+
+function _renderPlaylistCheck(inst) {
+    const root = inst.root;
+    const count = root.querySelector('[data-lib="playlist-count"]');
+    const why = root.querySelector('[data-lib="playlist-why"]');
+    const box = root.querySelector('[data-lib="playlist-dropped"]');
+    if (!count || !why || !box) return;
+    const check = adminState.libraryPlaylistCheck;
+    const hide = () => { why.classList.add('hidden'); box.classList.add('hidden'); box.innerHTML = ''; };
+
+    count.classList.remove('library-match-count--low');
+    if (!adminState.libraryMaPlaylist) { count.textContent = ''; hide(); return; }
+    if (_checkState === 'checking') {
+        count.textContent = _t('admin.library.playlistChecking', 'Checking the playlist…');
+        hide();
+        return;
+    }
+    if (_checkState === 'failed' || !check) {
+        count.textContent = _checkState === 'failed'
+            ? _t('admin.library.playlistCheckFailed', 'Could not read this playlist from Music Assistant.')
+            : '';
+        count.classList.toggle('library-match-count--low', _checkState === 'failed');
+        hide();
+        return;
+    }
+    const total = Number(check.total || 0);
+    const usable = Number(check.usable || 0);
+    const missing = Math.max(0, total - usable);
+    count.textContent = missing
+        ? _t('admin.library.playlistUsable', '{usable} of {total} songs usable')
+            .replace('{usable}', usable.toLocaleString()).replace('{total}', total.toLocaleString())
+        : _t('admin.library.playlistAllUsable', 'All {total} songs usable')
+            .replace('{total}', total.toLocaleString());
+    count.classList.toggle('library-match-count--low', usable === 0);
+    if (!missing) { hide(); return; }
+
+    why.classList.remove('hidden');
+    why.setAttribute('aria-expanded', _droppedOpen ? 'true' : 'false');
+    why.textContent = _t('admin.library.playlistMissing', '{n} missing · why?')
+        .replace('{n}', missing.toLocaleString()) + (_droppedOpen ? ' ▾' : ' ▸');
+    box.classList.toggle('hidden', !_droppedOpen);
+    if (!_droppedOpen) { box.innerHTML = ''; return; }
+
+    const dropped = check.dropped || {};
+    let html = '';
+    for (const [reason, key, fb, hintKey, hintFb] of _REASONS) {
+        const group = dropped[reason];
+        if (!group || !group.count) continue;
+        const songs = (group.songs || []).slice(0, DROPPED_PREVIEW);
+        const more = group.count - songs.length;
+        html += `<div class="library-dropped-group" data-reason="${reason}">`;
+        html += `<div class="library-dropped-group__title">${group.count.toLocaleString()} · ${_escapeHtml(_t(key, fb))}</div>`;
+        html += '<ul class="library-dropped-list">';
+        for (const s_ of songs) {
+            html += `<li><strong>${_escapeHtml(s_.title || '')}</strong> <span>${_escapeHtml(s_.artist || '')}</span></li>`;
+        }
+        if (more > 0) {
+            html += `<li class="library-dropped-more">${_escapeHtml(_t('admin.library.playlistMore', '+ {n} more').replace('{n}', more.toLocaleString()))}</li>`;
+        }
+        html += '</ul>';
+        html += `<p class="hint-text">${_escapeHtml(_t(hintKey, hintFb))}</p>`;
+        html += _wayOut(reason, check);
+        html += '</div>';
+    }
+    box.innerHTML = html;
+}
+
+/** The one action each drop reason offers, or '' when there is none. */
+function _wayOut(reason, check) {
+    if (reason === 'no_year') {
+        const byGate = check.usable_by_gate || {};
+        const cur = _GATE_ORDER.indexOf(adminState.libraryYearGate || 'strict');
+        for (const g of _GATE_ORDER.slice(cur + 1)) {
+            const n = Number(byGate[g] || 0);
+            if (n > Number(check.usable || 0)) {
+                return `<button type="button" class="lib-btn lib-btn--ghost" data-way="gate" data-gate="${g}">${_escapeHtml(
+                    _t('admin.library.wayRelaxGate', 'Relax year accuracy → {n} usable').replace('{n}', n.toLocaleString()))}</button>`;
+            }
+        }
+        return '';
+    }
+    if (reason === 'not_scanned') {
+        return `<button type="button" class="lib-btn lib-btn--ghost" data-way="scan">${_escapeHtml(_t('admin.library.scanBtn', 'Scan library'))}</button>`;
+    }
+    return '';
 }
 
 /* ------------------------------------------------------------------ *

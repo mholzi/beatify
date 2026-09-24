@@ -10,7 +10,7 @@
  * Pure helpers are also imported by custom_components/beatify/www/js/__tests__/wizard.test.js.
  */
 
-import { mountLibraryPanel } from './admin/sections/library.js';
+import { getLibrarySourceStatus, mountLibraryPanel } from './admin/sections/library.js';
 import {
     mount as plhMount,
     setSelection as plhSetSelection,
@@ -441,7 +441,12 @@ function _syncStep3Mode() {
     if (isLib) {
         const root = document.getElementById('wiz-library-root');
         if (root && !_wizLibraryInst) {
-            _wizLibraryInst = mountLibraryPanel(root, { mode: 'wizard', onChanged: _persistGameSettings });
+            _wizLibraryInst = mountLibraryPanel(root, {
+                mode: 'wizard',
+                onChanged: _persistGameSettings,
+                // #2939: the playlist check re-labels Continue ("Continue with 37 songs").
+                onSourceChanged: () => { if (currentStep === 3) _updateCta(); },
+            });
         } else if (_wizLibraryInst) {
             _wizLibraryInst.refresh();
         }
@@ -496,9 +501,17 @@ function _updateCta() {
         nextBtn.disabled = !chosenProvider || !_providerSupported(chosenProvider);
     } else if (currentStep === 3 && _isLibraryProvider()) {
         // Crate Digger generates its own playlist — nothing to select, so
-        // Continue is always available.
-        nextBtn.textContent = _t('wizard.continue', 'Continue');
-        nextBtn.disabled = false;
+        // Continue is always available. #2939: with a Music Assistant playlist
+        // as the source it needs a checked playlist with usable songs, and
+        // the button carries the number, so the collapsed "37 of 45" line is
+        // not the only place the host reads it.
+        const src = getLibrarySourceStatus();
+        if (src.playlist && src.ready) {
+            nextBtn.textContent = _t('wizard.continueWithSongs', 'Continue with {n} songs', { n: String(src.songs) });
+        } else {
+            nextBtn.textContent = _t('wizard.continue', 'Continue');
+        }
+        nextBtn.disabled = src.playlist && !src.ready;
     } else if (currentStep === 3) {
         // Not shown — hub's Continue takes over. Keep the disabled/text
         // logic so if CSS ever un-hides it the behavior is correct.

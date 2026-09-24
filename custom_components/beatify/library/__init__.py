@@ -82,8 +82,13 @@ async def async_generate_library_playlist(
     min_confidence: int = int(YearConfidence.EXTERNAL_PRIMARY),
     balance_decades: bool = True,
     exclude_uris: set[str] | None = None,
+    only_uris: set[str] | None = None,
 ) -> dict[str, Any] | None:
     """Load the cached pool and sample a fresh game playlist.
+
+    ``only_uris`` (#2939) limits the draw to a host-picked set (a Music
+    Assistant playlist resolved against the pool); popularity, genres and
+    ``exclude_uris`` are then ignored by the generator.
 
     Returns a Beatify-schema playlist dict, or None if no pool has been built
     yet (caller should prompt the user to run the pool build first).
@@ -140,6 +145,7 @@ async def async_generate_library_playlist(
             min_confidence=min_confidence,
             balance_decades=balance_decades,
             exclude_uris=exclude_uris,
+            only_uris=only_uris,
         )
     )
     # Observability: one INFO line per generation so setting/effect mismatches
@@ -160,6 +166,7 @@ async def async_generate_library_playlist(
         "chosen": len(playlist.get("songs") or []),
         "widened": bool(playlist.get("_window_widened")),
         "genres_expanded": playlist.get("_genres_expanded") or [],
+        "source": "ma_playlist" if only_uris is not None else "library",
     }
 
     _LOGGER.info(

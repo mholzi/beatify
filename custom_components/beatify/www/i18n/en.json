@@ -767,7 +767,30 @@
       "recentFailed": "Could not load recent songs.",
       "recentFix": "fix",
       "recentFixed": "fixed",
-      "recentFlagged": "players flagged this"
+      "recentFlagged": "players flagged this",
+      "sourceLabel": "Songs come from",
+      "sourceLibrary": "Whole library",
+      "sourcePlaylist": "My playlist",
+      "playlistPick": "Choose a playlist…",
+      "playlistLoading": "Loading your Music Assistant playlists…",
+      "playlistLoadFailed": "Could not load playlists from Music Assistant.",
+      "playlistNone": "No playlists found in Music Assistant.",
+      "playlistChecking": "Checking the playlist…",
+      "playlistCheckFailed": "Could not read this playlist from Music Assistant.",
+      "playlistUsable": "{usable} of {total} songs usable",
+      "playlistAllUsable": "All {total} songs usable",
+      "playlistMissing": "{n} missing · why?",
+      "playlistMore": "+ {n} more",
+      "playlistFiltersHint": "Popularity and genres only apply to “Whole library” — your playlist already is the selection.",
+      "reasonNoYear": "no reliable year",
+      "reasonNotScanned": "not scanned yet",
+      "reasonNotInLibrary": "not in your library",
+      "reasonDuplicate": "duplicate",
+      "hintNoYear": "Scanned, but the year is not reliable enough for the current year accuracy.",
+      "hintNotScanned": "In your library, but the scan has not reached these yet. Every scan adds more.",
+      "hintNotInLibrary": "Add these to your Music Assistant library, then scan again.",
+      "hintDuplicate": "Two versions of the same song count as one.",
+      "wayRelaxGate": "Relax year accuracy → {n} usable"
     },
     "providerMyLibrary": "Crate Digger",
     "ttsPreRoundDelay": "Timer delay (s)",
@@ -1106,7 +1129,9 @@
     "INVALID_REQUEST": "That request wasn't valid. Check your setup and try again.",
     "NO_PLAYLISTS_SELECTED": "Pick at least one playlist before starting a game.",
     "NO_PLAYABLE_SONGS": "None of the songs in the selected playlists can be played with this music service. Try another playlist or another service.",
-    "networkRetry": "Network error. Please try again."
+    "networkRetry": "Network error. Please try again.",
+    "LIBRARY_PLAYLIST_UNAVAILABLE": "Could not read the playlist “{playlist}” from Music Assistant.",
+    "LIBRARY_PLAYLIST_EMPTY": "None of the {total} songs in “{playlist}” can be played yet."
   },
   "highlights": {
     "highlight_exact_match": "{player} nailed '{song}' — {year}!",
@@ -1275,7 +1300,8 @@
       "sub": "Scan runs in the background — you can keep going and finish setup while it works."
     },
     "providerLibrarySub": "Your personal Music Assistant library",
-    "providerYtmusicFreeSub": "Needs the ytmusic_free provider in Music Assistant"
+    "providerYtmusicFreeSub": "Needs the ytmusic_free provider in Music Assistant",
+    "continueWithSongs": "Continue with {n} songs"
   },
   "onboarding": {
     "stepLabel": "Step",
