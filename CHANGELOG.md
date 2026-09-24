@@ -4,6 +4,35 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.0-rc1] - 2026-09-24
+
+The host can hand Crate Digger a playlist instead of the whole library, and a phone that reloads on
+the podium makes it into the rematch.
+
+### Added
+- **A Music Assistant playlist as the Crate Digger song source** (#2939, #2948). Setup step 3 and
+  the admin Crate Digger panel get a **Whole library | My playlist** switch. In playlist mode the
+  panel lists the Music Assistant library playlists, hides popularity and genres, and says how many
+  songs are usable ("37 of 45 songs usable"). The dropped songs expand grouped by reason, each with
+  its way out: no reliable year (with "Relax year accuracy" when a looser gate adds songs), not
+  scanned yet ("Scan library"), not in your library, duplicate. The wizard's Continue button carries
+  the number and stays disabled until the playlist has a usable song. Tracks are matched on the
+  library URI, directly or through the library twin of a provider track, then on normalized artist
+  and title across every credited artist. The playlist is read again at every game start, so edits
+  made in Music Assistant are picked up; recently played songs are not excluded in playlist mode,
+  since on a hand-picked set that would quietly shrink it. New endpoints
+  `GET /beatify/api/library-playlists/ma` and `GET /beatify/api/library-playlists/ma/check`, new
+  error codes `LIBRARY_PLAYLIST_UNAVAILABLE` / `LIBRARY_PLAYLIST_EMPTY` in all six locales.
+
+### Fixed
+- **A guest whose page reloads on the podium gets the rematch** (#2947, #2949). `handle_reconnect`
+  refused sessions in END with `GAME_ENDED`; it now reconnects as in any other phase, so the phone
+  shows the final standings and follows the host into the rematch lobby. A guest who scans the QR
+  during the podium sees "Game Has Ended", but the page checks the game status every 4 s and opens
+  the join form once the rematch lobby accepts joins. `GameState.rematched_from_game_id` remembers
+  the finished game's id for one generation, so an old QR link follows to the new game.
+- **Two dead Tidal links in Divorced Dad Rock** (#2945, #2946). Playlist version 1.13 -> 1.14.
+
 ## [4.7.4] - 2026-09-23
 
 Two fixes where Beatify did the same thing twice and did it differently, plus the cleanup that

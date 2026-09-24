@@ -826,6 +826,11 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.0 — 4.5 🎛️
+- **Crate Digger can play from your own playlist** — pick a Music Assistant playlist instead of the whole library; the setup says how many songs are usable and why the others were left out (#2939)
+- **A phone that reloads on the podium gets the rematch** — it reconnects with the final standings and follows the host into the new lobby; a guest who scans the QR during the podium lands on the join form once the rematch opens (#2947)
+- **Two dead Tidal links in Divorced Dad Rock fixed** (#2945)
+
 ### v4.7.4 — Unisono 🎚️
 - **Sudden Death applies whichever button started the game** — the rule used to hold on one start path and not the other, and the admin page uses the one without it (#2929)
 - **A game started over the API announces itself** — the TV and the phones no longer sit on the lobby view while the speaker connects (#2929)
