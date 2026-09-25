@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.0-rc2] - 2026-09-25
+
+Everything from rc1, with the mode renamed.
+
+### Changed
+- **"Crate Digger" is now "My Music"** (#2951). The old name did not say what the mode does; the
+  new one reads naturally next to Spotify and Apple Music in the provider picker (de: Meine Musik,
+  es: Mi música, fr: Ma musique, it: La mia musica, nl: Mijn muziek). User-visible strings only:
+  i18n values, the admin fallback, the provider label, server messages, the default saved-selection
+  name and the panel version line. The internal id stays `ma_library`, so saved settings carry over.
+
 ## [4.8.0-rc1] - 2026-09-24
 
 The host can hand Crate Digger a playlist instead of the whole library, and a phone that reloads on
