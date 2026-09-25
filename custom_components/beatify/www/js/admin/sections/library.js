@@ -1176,7 +1176,7 @@ function _renderProviderVersion(inst, version) {
     // updates matter.
     if (!version) return;
     const el = inst.root.querySelector('[data-lib="provider-version"]');
-    if (el) el.textContent = 'Crate Digger engine v' + version + ' \u00b7 by DMW';
+    if (el) el.textContent = 'My Music engine v' + version + ' \u00b7 by DMW';
 }
 
 /* ------------------------------------------------------------------ *

@@ -939,7 +939,7 @@ class LibraryPlaylistResolveView(RateLimitMixin, HomeAssistantView):
             )
         name = body.get("name")
         if not isinstance(name, str) or not name.strip():
-            name = "Crate Digger Selection"
+            name = "My Music Selection"
 
         from custom_components.beatify.library import async_load_pool
         from custom_components.beatify.library.matcher import (

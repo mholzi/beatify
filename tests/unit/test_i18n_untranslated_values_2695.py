@@ -42,7 +42,6 @@ ALLOWED_IDENTICAL = {
     "beatify analytics",
     "beatify team",
     "billboard hot 100",
-    "crate digger",  # the library feature's product name
     "smart playlist mixer",  # the mix feature's product name
     "spotify playlist url",
     "sudden death",  # kept in English in every locale, like "Highlights"

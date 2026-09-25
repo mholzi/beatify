@@ -792,7 +792,7 @@
       "hintDuplicate": "Two versions of the same song count as one.",
       "wayRelaxGate": "Relax year accuracy → {n} usable"
     },
-    "providerMyLibrary": "Crate Digger",
+    "providerMyLibrary": "My Music",
     "ttsPreRoundDelay": "Timer delay (s)",
     "ttsPreRoundDelayHelp": "Seconds added to the round timer to compensate for announcement overhead.",
     "sessionExpired": "Admin session expired. Please reload the page.",
