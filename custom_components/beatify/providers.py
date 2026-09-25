@@ -275,7 +275,7 @@ PROVIDERS: tuple[Provider, ...] = (
     ),
     Provider(
         id="ma_library",
-        label="Crate Digger",
+        label="My Music",
         short_label="Library",
         platforms=frozenset({PLATFORM_MUSIC_ASSISTANT}),
         catalogue_uris=(

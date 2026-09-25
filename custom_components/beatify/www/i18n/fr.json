@@ -792,7 +792,7 @@
       "hintDuplicate": "Deux versions de la même chanson comptent pour une.",
       "wayRelaxGate": "Assouplir la précision d’année → {n} utilisables"
     },
-    "providerMyLibrary": "Crate Digger",
+    "providerMyLibrary": "Ma musique",
     "ttsPreRoundDelay": "Délai du minuteur (s)",
     "ttsPreRoundDelayHelp": "Secondes ajoutées au minuteur de la manche pour compenser la durée des annonces.",
     "sessionExpired": "Session admin expirée. Veuillez recharger la page.",

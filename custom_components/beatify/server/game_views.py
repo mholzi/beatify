@@ -964,7 +964,7 @@ async def _resolve_ma_playlist_uris(
         _LOGGER.exception("Reading Music Assistant playlist %s failed", name)
         return None, _json_error(
             f"Could not read the playlist '{name}' from Music Assistant. "
-            "Pick it again in the Crate Digger settings, or switch back to "
+            "Pick it again in the My Music settings, or switch back to "
             "the whole library.",
             400,
             code="LIBRARY_PLAYLIST_UNAVAILABLE",

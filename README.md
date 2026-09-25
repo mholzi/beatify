@@ -827,7 +827,7 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 ## What's New
 
 ### v4.8.0 — 4.5 🎛️
-- **Crate Digger can play from your own playlist** — pick a Music Assistant playlist instead of the whole library; the setup says how many songs are usable and why the others were left out (#2939)
+- **My Music can play from your own playlist** — pick a Music Assistant playlist instead of the whole library; the setup says how many songs are usable and why the others were left out (#2939)
 - **A phone that reloads on the podium gets the rematch** — it reconnects with the final standings and follows the host into the new lobby; a guest who scans the QR during the podium lands on the join form once the rematch opens (#2947)
 - **Two dead Tidal links in Divorced Dad Rock fixed** (#2945)
 

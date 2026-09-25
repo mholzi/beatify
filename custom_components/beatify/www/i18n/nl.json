@@ -792,7 +792,7 @@
       "hintDuplicate": "Twee versies van hetzelfde nummer tellen als één.",
       "wayRelaxGate": "Jaarnauwkeurigheid versoepelen → {n} bruikbaar"
     },
-    "providerMyLibrary": "Crate Digger",
+    "providerMyLibrary": "Mijn muziek",
     "ttsPreRoundDelay": "Timervertraging (s)",
     "ttsPreRoundDelayHelp": "Seconden die aan de rondetimer worden toegevoegd om de duur van de aankondigingen te compenseren.",
     "sessionExpired": "Adminsessie verlopen. Laad de pagina opnieuw.",

@@ -1137,7 +1137,7 @@ CHANGELOG
 
 __version__ = "0.9.3"
 __author__ = "DMW"
-__mode_name__ = "Crate Digger"
+__mode_name__ = "My Music"
 
 # Schema version of the cached pool JSON on disk. Bump only when the pool file
 # format changes in a way that requires a rebuild.

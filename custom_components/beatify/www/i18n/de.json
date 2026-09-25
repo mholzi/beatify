@@ -792,7 +792,7 @@
       "hintDuplicate": "Zwei Fassungen desselben Songs zählen als einer.",
       "wayRelaxGate": "Jahres-Genauigkeit lockern → {n} nutzbar"
     },
-    "providerMyLibrary": "Crate Digger",
+    "providerMyLibrary": "Meine Musik",
     "ttsPreRoundDelay": "Timer-Verzögerung (s)",
     "ttsPreRoundDelayHelp": "Sekunden, die dem Rundentimer hinzugefügt werden, um die Dauer der Ansagen auszugleichen.",
     "sessionExpired": "Admin-Sitzung abgelaufen. Bitte die Seite neu laden.",

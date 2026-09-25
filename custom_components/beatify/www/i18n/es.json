@@ -792,7 +792,7 @@
       "hintDuplicate": "Dos versiones de la misma canción cuentan como una.",
       "wayRelaxGate": "Relajar la precisión de año → {n} utilizables"
     },
-    "providerMyLibrary": "Crate Digger",
+    "providerMyLibrary": "Mi música",
     "ttsPreRoundDelay": "Retraso del temporizador (s)",
     "ttsPreRoundDelayHelp": "Segundos añadidos al temporizador de la ronda para compensar la duración de los anuncios.",
     "sessionExpired": "La sesión de administrador ha caducado. Vuelve a cargar la página.",

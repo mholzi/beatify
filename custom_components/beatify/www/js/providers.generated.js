@@ -114,7 +114,7 @@ export const PROVIDERS = [
     },
     {
         "id": "ma_library",
-        "label": "Crate Digger",
+        "label": "My Music",
         "shortLabel": "Library",
         "platforms": [
             "music_assistant"
