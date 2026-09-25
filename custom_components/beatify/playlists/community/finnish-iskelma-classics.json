@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.44",
+  "version": "1.45",
   "tags": [
     "finnish",
     "iskelma",
@@ -9069,7 +9069,7 @@
       }
     },
     {
-      "year": 2017,
+      "year": 1974,
       "artist": "Rauli Badding Somerjoki",
       "title": "Paratiisi",
       "uri": "spotify:track:5QFDqIgiyNkCiUVLM40CkD",
@@ -9085,14 +9085,14 @@
       "fun_fact_nl": "'Paratiisi' ('Paradijs') toont de zachtere kant van Rauli Badding Somerjoki. Zijn zielvolle vertolking maakte het tot een iskelmä-klassieker.",
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1299104106",
+      "uri_apple_music": "applemusic://track/1443420648",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FJG76l345E4",
       "uri_tidal": "tidal://track/3692667",
       "uri_deezer": "deezer://track/62903820",
       "awards_nl": [],
       "isrc": "FISBA7400076",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1299104106",
+        "us": null,
         "de": "applemusic://track/1442543014",
         "gb": "applemusic://track/1443420648",
         "fr": "applemusic://track/1443420648",
