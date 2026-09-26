@@ -1581,11 +1581,33 @@
      * Render reveal view with song info and leaderboard
      * @param {Object} data - State data
      */
+    /**
+     * Fill the reveal view's round chip from the state being rendered (#3002).
+     *
+     * The chip used to be copied from the PLAYING chip by an observer in
+     * dashboard.html, so a TV that reached REVEAL without living through the
+     * PLAYING phase (reload, reconnect, switched on mid-game) kept the HTML
+     * placeholder "Round 1 of 10". Same values and defaults as the PLAYING
+     * chip in renderPlayingView; hiding the total for an uncapped game (#2958)
+     * stays with applyRoundTotal in the dispatcher.
+     */
+    function renderRevealRoundChip(data) {
+        var round = data.round || 1;
+        var total = data.total_rounds || 10;
+        document.querySelectorAll('.reveal-round-num').forEach(function(el) {
+            el.textContent = round;
+        });
+        document.querySelectorAll('.reveal-total-num').forEach(function(el) {
+            el.textContent = total;
+        });
+    }
+
     function renderRevealView(data) {
         var song = data.song || {};
         var players = data.players || [];
 
         renderJoinCorner(data);
+        renderRevealRoundChip(data);
 
         // Update album art (clear - no blur)
         // #1767: unchanged-src short-circuit (see renderPlayingView). renderRevealView
