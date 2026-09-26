@@ -18303,6 +18303,39 @@ body.theme-dark .your-result-stats .stat-value {
     white-space: nowrap;
 }
 
+/* #2993 — at phone width the host's "Bring back" button clipped the badge
+   after "sat". Only the sat-out row wraps: name, meta and score stay on line 1
+   (rank and points remain visible, see #2746 above), the badge and the button
+   move to line 2 — badge on the left under the name, button on the right.
+   Every other row stays single-line at 48 px. The ::after is the line break. */
+.leaderboard-entry--wrap {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 48px;
+    /* The button keeps its 44 px touch target, which already centres line 2's
+       text with room to spare — no extra gap or bottom padding on top of it. */
+    row-gap: 0;
+    padding-bottom: 0;
+}
+
+.leaderboard-entry--wrap::after {
+    content: "";
+    flex-basis: 100%;
+    height: 0;
+    order: 1;
+}
+
+.leaderboard-entry--wrap .sat-out-badge {
+    order: 2;
+    /* past the rank column (min-width 28px + the row gap) */
+    margin-left: calc(28px + var(--space-sm, 8px));
+}
+
+.leaderboard-entry--wrap .entry-host-action {
+    order: 2;
+    margin-left: auto;
+}
+
 /* The per-row control on the host's leaderboard. Quiet by default — it sits on
    every guest row, and a row full of loud buttons reads as a warning. */
 .entry-host-action {
