@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-09-20
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.0-rc2 (catalogue unchanged since v4.7.3-rc2 — the playlist edits since then were URI repairs in ballermann-party-hits, harder-styles and divorced-dad-rock and one YouTube link in south-africa-by-q, none of which changes a song count)
+> Catalogue state: v4.8.0-rc3 (catalogue unchanged since v4.7.3-rc2 — the playlist edits since then were URI repairs in ballermann-party-hits, harder-styles, divorced-dad-rock, edm-anthems and finnish-iskelma-classics and one YouTube link in south-africa-by-q, none of which changes a song count)
 
 ## Summary
 

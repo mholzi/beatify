@@ -4,6 +4,40 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.0-rc3] - 2026-09-26
+
+Everything from rc2, with a TV that fills the room and about seventy player-screen styles back in force.
+
+### Changed
+- **TV lobby name wall** (#2966, #2968). The player list is a grid of large name tiles with avatar
+  initials (3 columns up to 6 players, 4 from 7, 5 from 13), the newest joiner glows, and the join
+  URL keeps the game ID on one line. A joining player's tile is added in place instead of rebuilding
+  the wall, so the lobby no longer flickers.
+- **TV game-over podium is the main element** (#2967). Real steps with a crown, places 4+ as chips
+  under the podium, the "Full Rankings" box is gone from the TV; short screens zoom in steps.
+- **"Round 7" without a total when the game has no round cap** (#2963, #2984). TV, phone and admin
+  drop the song-pool size from the round header, the lobby sentence and the settings chip; the spoken
+  game-start announcement leaves the round count out too. Capped games are unchanged.
+- **Setup wizard** shows the "Step 3 · Playlist" eyebrow (#2991) and the round count on the Ready
+  summary's mode line, wrapping between segments (#2992, #2997).
+- **Playlist hub search lists the best title match first** (#2990).
+
+### Fixed
+- **Hidden player-screen styles restored** (#2989). Two unclosed blocks in `styles.css` nested about
+  70 rules inside reduced-motion; halftime and Sudden Death "OUT" overlays, the eliminated and sat-out
+  views, the end-round picker, comeback/encore offers, ghost league, finale banners and Last One
+  Standing are styled again. A brace-balance test guards the file.
+- **TV at 1280x720 and 1366x768**: the reveal year fits (#2962) and the join card stays off the
+  leaderboard (#2969).
+- **Playlist hub**: rows keep their position after "+ Add" (#2975), the request button shows its
+  envelope again (#2976), the card badge stacks under the "+ Add" pill (#2977).
+- **Player reveal** stacks the collection card's year, title and artist again (#2979).
+- **Wizard library step** falls back to the default popularity when settings are empty (#2978).
+- **"(away)" marker translated** on the TV lobby (#2985) and the admin leaderboard (#2996); the
+  sat-out row wraps so "Bring back" no longer clips the badge (#2998).
+- **Playlist data**: 8 wrong Apple Music URIs in finnish-iskelma-classics (#2954, version 1.45) and
+  16 broken URIs in edm-anthems (#2957, version 1.45).
+
 ## [4.8.0-rc2] - 2026-09-25
 
 Everything from rc1, with the mode renamed.
