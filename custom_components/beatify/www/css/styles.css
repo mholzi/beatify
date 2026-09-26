@@ -14521,10 +14521,17 @@ body.theme-dark .your-result-stats .stat-value {
     max-width: 100%;
 }
 
+/* #2972: the badge used to sit top-right, level with the "+ Add" pill
+   top-left. The pill is 44 px tall (the touch-target minimum from the
+   generic button rule) and the card only 160 px wide, so "+ ADD" and
+   "COMMUNITY" (62 + 88 px plus insets) could not both fit on one line and
+   the pill covered the badge's first letter — worse in locales with a
+   longer "Add". The badge now stacks under the pill in the same corner:
+   8 px inset + 44 px pill + 6 px gap. */
 .plh-cover-badge {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 58px;
+    left: 8px;
     padding: 3px 8px;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(6px);
