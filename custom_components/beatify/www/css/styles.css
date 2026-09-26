@@ -15417,6 +15417,11 @@ body.theme-dark .your-result-stats .stat-value {
 .plh-cta-fab {
     width: 44px;
     height: 44px;
+    /* #2971: the generic button rule pads every button 8px 24px. With
+       border-box sizing that left 44 - 48 = no content box at all, the
+       20 px envelope was shrunk to 0 px wide, and the FAB showed as an empty
+       cyan square. The FAB centres its icon itself. */
+    padding: 0;
     border-radius: 12px;
     background: linear-gradient(135deg, var(--color-accent-secondary) 0%, #0ea5c4 100%);
     border: none;
@@ -15440,6 +15445,8 @@ body.theme-dark .your-result-stats .stat-value {
 .plh-cta-fab svg {
     stroke: #ffffff;
     fill: none;
+    /* #2971: never let the flex row squeeze the icon away. */
+    flex-shrink: 0;
 }
 
 .plh-cta-back {
