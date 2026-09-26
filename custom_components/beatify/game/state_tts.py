@@ -400,12 +400,19 @@ class TtsAnnouncerMixin:
         if not self._tts_service or not self._tts_announce_game_start:
             return
         lang = self._lang()
-        message = tts_phrases.phrase(
-            lang,
-            "game_start",
-            rounds=tts_phrases.spoken_number(lang, self.total_rounds),
-            difficulty=tts_phrases.difficulty_label(lang, self.difficulty),
-        )
+        difficulty = tts_phrases.difficulty_label(lang, self.difficulty)
+        # #2981: with no round cap (``max_rounds == 0``, "all songs") the pool
+        # size is not a round count anyone chose — the lobby stopped showing it
+        # in #2958, so the speaker leaves it out too.
+        if not getattr(self, "max_rounds", 0):
+            message = tts_phrases.phrase(lang, "game_start_open", difficulty=difficulty)
+        else:
+            message = tts_phrases.phrase(
+                lang,
+                "game_start",
+                rounds=tts_phrases.spoken_number(lang, self.total_rounds),
+                difficulty=difficulty,
+            )
         await self._tts_announce(message)
 
     async def announce_winner(self) -> None:

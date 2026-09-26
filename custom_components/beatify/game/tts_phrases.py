@@ -60,6 +60,7 @@ _PLACE: dict[str, dict[int, str]] = {
 _PHRASES: dict[str, dict[str, str]] = {
     "en": {
         "game_start": "Let's play Beatify! {rounds} rounds, {difficulty} difficulty.",
+        "game_start_open": "Let's play Beatify — {difficulty} difficulty.",
         "winner_single": "And the winner is... {name} with {points} points!",
         "winner_tie": "It's a tie between {names} with {points} points!",
         "finale_playoff": "It's a dead heat! {names} — one more song decides it.",
@@ -87,6 +88,7 @@ _PHRASES: dict[str, dict[str, str]] = {
     },
     "de": {
         "game_start": "Auf geht's mit Beatify! {rounds} Runden, Schwierigkeit {difficulty}.",
+        "game_start_open": "Auf geht's mit Beatify! Schwierigkeit {difficulty}.",
         "winner_single": "Und der Sieger ist... {name} mit {points} Punkten!",
         "winner_tie": "Gleichstand zwischen {names} mit je {points} Punkten!",
         "finale_playoff": "Kopf an Kopf! {names} — ein Song entscheidet.",
@@ -114,6 +116,7 @@ _PHRASES: dict[str, dict[str, str]] = {
     },
     "es": {
         "game_start": "¡A jugar a Beatify! {rounds} rondas, dificultad {difficulty}.",
+        "game_start_open": "¡A jugar a Beatify! Dificultad {difficulty}.",
         "winner_single": "Y el ganador es... ¡{name} con {points} puntos!",
         "winner_tie": "¡Empate entre {names} con {points} puntos!",
         "finale_playoff": "¡Cabeza a cabeza! {names} — una canción lo decide.",
@@ -141,6 +144,7 @@ _PHRASES: dict[str, dict[str, str]] = {
     },
     "fr": {
         "game_start": "On joue à Beatify ! {rounds} manches, difficulté {difficulty}.",
+        "game_start_open": "On joue à Beatify ! Difficulté {difficulty}.",
         "winner_single": "Et le gagnant est... {name} avec {points} points !",
         "winner_tie": "Égalité entre {names} avec {points} points !",
         "finale_playoff": "Au coude à coude ! {names} — une chanson décide.",
@@ -168,6 +172,7 @@ _PHRASES: dict[str, dict[str, str]] = {
     },
     "nl": {
         "game_start": "We spelen Beatify! {rounds} rondes, moeilijkheid {difficulty}.",
+        "game_start_open": "We spelen Beatify! Moeilijkheid {difficulty}.",
         "winner_single": "En de winnaar is... {name} met {points} punten!",
         "winner_tie": "Gelijkspel tussen {names} met {points} punten!",
         "finale_playoff": "Nek aan nek! {names} — één nummer beslist.",
@@ -195,6 +200,7 @@ _PHRASES: dict[str, dict[str, str]] = {
     },
     "it": {
         "game_start": "Si gioca a Beatify! {rounds} round, difficoltà {difficulty}.",
+        "game_start_open": "Si gioca a Beatify! Difficoltà {difficulty}.",
         "winner_single": "E il vincitore è... {name} con {points} punti!",
         "winner_tie": "Pareggio tra {names} con {points} punti!",
         "finale_playoff": "Testa a testa! {names} — una canzone decide.",
