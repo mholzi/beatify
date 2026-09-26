@@ -580,7 +580,7 @@ describe('doneSummaryHtml (#2874)', () => {
         const out = doneSummaryHtml(base, t);
         expect(out).toContain('<span>Speaker</span><strong>Esszimmer</strong>');
         expect(out).toContain('<strong>80s Hits</strong>');
-        expect(out).toContain('<strong>Year mode · normal · 30s · EN</strong>');
+        expect(out.match(/<strong>((?:<span class="wiz-done-seg">[^<]*<\/span> ?)+)<\/strong>/)[1].replace(/<[^>]+>/g, '')).toBe('Year mode · normal · 30s · EN');
         expect(out).toContain('<strong>lights + voice</strong>');
     });
 
@@ -609,6 +609,38 @@ describe('doneSummaryHtml (#2874)', () => {
         expect(out).not.toMatch(/<(svg|i|script)\b/);
         expect(out).toContain('&lt;svg onload=1&gt;');
     });
+});
+
+describe('doneSummaryHtml mode line wraps between segments (#2995)', () => {
+    const t = (_key, fallback) => fallback;
+    const out = doneSummaryHtml({
+        speaker: 'Esszimmer',
+        provider: 'Spotify',
+        playlistLabel: '80s Hits · Party',
+        modeSummary: 'Jahres-Modus · normal · 45s · Alle Songs · DE',
+        atmosphere: 'none',
+    }, t);
+
+    it('renders each mode segment as its own no-wrap span, dot kept on the left', () => {
+        const segs = [...out.matchAll(/<span class="wiz-done-seg">([^<]*)<\/span>/g)].map((m) => m[1]);
+        expect(segs).toEqual(['Jahres-Modus ·', 'normal ·', '45s ·', 'Alle Songs ·', 'DE']);
+    });
+
+    it('keeps the visible text exactly as before', () => {
+        const mode = out.match(/<span>Mode<\/span><strong>(.*?)<\/strong>/)[1].replace(/<[^>]+>/g, '');
+        expect(mode).toBe('Jahres-Modus · normal · 45s · Alle Songs · DE');
+    });
+
+    it('leaves the other lines as plain text (the playlist name is not split)', () => {
+        expect(out).toContain('<strong>80s Hits · Party</strong>');
+    });
+
+    it('escapes each segment', () => {
+        const x = doneSummaryHtml({ speaker: '', provider: '', playlistLabel: '', modeSummary: '<b>a</b> · b', atmosphere: '' }, t);
+        expect(x).toContain('<span class="wiz-done-seg">&lt;b&gt;a&lt;/b&gt; ·</span>');
+        expect(x).not.toContain('<b>');
+    });
+
 });
 
 describe('#1940 — hiding the wizard refreshes the home view', () => {

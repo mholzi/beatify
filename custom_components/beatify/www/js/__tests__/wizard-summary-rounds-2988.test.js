@@ -62,7 +62,8 @@ describe('the summary mode line carries the round count (#2988)', () => {
             roundsSummaryPart,
             doneSummaryHtml,
         })();
-        return html;
+        // #2995 splits the mode line into no-wrap segments; the text is unchanged.
+        return html.replace(/<span class="wiz-done-seg">|<\/span>(?=[ <])/g, '');
     }
 
     it('shows "All songs" for the default', () => {
