@@ -1300,7 +1300,9 @@
       "playlist": "Playlist",
       "mode": "Modus",
       "atmosphere": "Atmosphäre",
-      "rounds": "Runden"
+      "rounds": "Runden",
+      "playlistsPicked": "{n} gewählt · {first} + weitere",
+      "atmosphereNone": "keine"
     },
     "step3lib": {
       "eyebrow": "Schritt 3 · Deine Bibliothek",

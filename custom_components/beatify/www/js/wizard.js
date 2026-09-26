@@ -1918,10 +1918,13 @@ function _renderDoneSummary() {
     const speaker = _speakerLabel(chosenSpeaker);
     const providerMatch = chosenProvider ? PROVIDERS.find((p) => p.id === chosenProvider) : null;
     const provider = providerMatch ? providerMatch.label : (chosenProvider ? chosenProvider.replace(/_/g, ' ') : '—');
+    // #3004: every value on the card goes through _t. The level-ups are named
+    // the way step 5 names them; "none" has its own key because it has to
+    // agree with the "Atmosphere" label in the gendered languages.
     const extras = [];
-    if (chosenLevelUps.lights) extras.push('lights');
-    if (chosenLevelUps.tts) extras.push('voice');
-    const atmosphere = extras.length ? extras.join(' + ') : 'none';
+    if (chosenLevelUps.lights) extras.push(_t('wizard.step5.lights.title', 'Party lights'));
+    if (chosenLevelUps.tts) extras.push(_t('wizard.step5.tts.title', 'Voice announcements'));
+    const atmosphere = extras.length ? extras.join(' + ') : _t('wizard.summary.atmosphereNone', 'none');
 
     // Playlists: compact single name when one picked, count + preview when many
     let playlistLabel = '—';
@@ -1929,7 +1932,10 @@ function _renderDoneSummary() {
         playlistLabel = _playlistName(Array.from(chosenPlaylists)[0]);
     } else if (chosenPlaylists.size > 1) {
         const first = _playlistName(Array.from(chosenPlaylists)[0]);
-        playlistLabel = `${chosenPlaylists.size} picked · ${first} + more`;
+        playlistLabel = _t('wizard.summary.playlistsPicked', '{n} picked · {first} + more', {
+            n: String(chosenPlaylists.size),
+            first,
+        });
     }
 
     // #1180: lead the mode line with the core game mode so the host can confirm
@@ -1939,9 +1945,11 @@ function _renderDoneSummary() {
         ? _t('wizard.step4.modeTitleArtist', 'Title & Artist')
         : _t('wizard.step4.modeYear', 'Year mode');
     const roundsPart = ` · ${roundsSummaryPart(chosenMaxRounds, _t)}`;
+    // #3004: the same label as the difficulty chip on step 4, not the raw id.
+    const difficultyLabel = _t(`wizard.step4.${chosenDifficulty}`, chosenDifficulty);
     const modeSummary = chosenTitleArtistMode
         ? `${coreModeLabel} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`
-        : `${coreModeLabel} · ${chosenDifficulty} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`;
+        : `${coreModeLabel} · ${difficultyLabel} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`;
 
     el.innerHTML = doneSummaryHtml({ speaker, provider, playlistLabel, modeSummary, atmosphere }, _t);
 }
