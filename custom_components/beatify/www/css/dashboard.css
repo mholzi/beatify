@@ -3534,3 +3534,33 @@ body.join-corner-open #dashboard-reveal {
     color: var(--color-text-white, #fff);
     white-space: nowrap;
 }
+
+/* #2961 — the axis reveal is laid out in 1080p pixels: a 350 px stage, the
+   150 px year 88 px into the band, the axis line at 236 px and the first dot
+   row at 284 px (the last two are also constants in dashboard.js, which
+   places the dots). Under the header that needs ~975 px of height. At
+   1280×720 the band got 243 px: the year sat on the bottom edge and every dot
+   fell below the screen. Scaling single sizes would break the geometry the
+   script shares, so short screens zoom the whole broadcast block instead —
+   720p shows the 1080p picture, smaller. The steps keep (height − 105 px
+   header) / zoom ≥ 975 px; 1080p and taller match no query and stay as they
+   are. The join-corner inset is divided back out, because the QR panel is
+   fixed and outside the zoom. */
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 1000px) {
+    #dashboard-reveal.reveal-axis-mode .reveal-broadcast { zoom: 0.82; }
+    body.join-corner-open #dashboard-reveal.reveal-axis-mode {
+        --guess-axis-inset-right: calc((clamp(16px, 2.2vw, 40px) + 308px) / 0.82);
+    }
+}
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 904px) {
+    #dashboard-reveal.reveal-axis-mode .reveal-broadcast { zoom: 0.7; }
+    body.join-corner-open #dashboard-reveal.reveal-axis-mode {
+        --guess-axis-inset-right: calc((clamp(16px, 2.2vw, 40px) + 308px) / 0.7);
+    }
+}
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 786px) {
+    #dashboard-reveal.reveal-axis-mode .reveal-broadcast { zoom: 0.62; }
+    body.join-corner-open #dashboard-reveal.reveal-axis-mode {
+        --guess-axis-inset-right: calc((clamp(16px, 2.2vw, 40px) + 308px) / 0.62);
+    }
+}
