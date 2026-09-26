@@ -1968,15 +1968,25 @@ export function roundsSummaryPart(maxRounds, t) {
 // the device's friendly_name and `playlistLabel` a playlist name, so every value
 // goes through escapeText before it reaches innerHTML (same rule as #1370). The
 // labels are our own translations and stay as they are.
+//
+// #2995: the mode line runs to five segments ("Jahres-Modus · normal · 45s ·
+// Alle Songs · DE") and wraps on a phone in most languages. Each segment is its
+// own no-wrap span, so the line only breaks between segments — never inside
+// "Alle Songs" or "10 Runden", and never leaving a lone "DE" behind. The "·"
+// stays at the end of the line it closes. Same text as before, only split.
 export function doneSummaryHtml({ speaker, provider, playlistLabel, modeSummary, atmosphere }, t) {
-    const line = (key, fallback, value) =>
-        `<div class="wiz-done-line"><span>${t(key, fallback)}</span><strong>${escapeText(value)}</strong></div>`;
+    const line = (key, fallback, valueHtml) =>
+        `<div class="wiz-done-line"><span>${t(key, fallback)}</span><strong>${valueHtml}</strong></div>`;
+    const segments = String(modeSummary).split(' · ');
+    const modeHtml = segments
+        .map((seg, i) => `<span class="wiz-done-seg">${escapeText(seg)}${i < segments.length - 1 ? ' ·' : ''}</span>`)
+        .join(' ');
     return `
-        ${line('wizard.summary.speaker', 'Speaker', speaker)}
-        ${line('wizard.summary.service', 'Service', provider)}
-        ${line('wizard.summary.playlist', 'Playlist', playlistLabel)}
-        ${line('wizard.summary.mode', 'Mode', modeSummary)}
-        ${line('wizard.summary.atmosphere', 'Atmosphere', atmosphere)}
+        ${line('wizard.summary.speaker', 'Speaker', escapeText(speaker))}
+        ${line('wizard.summary.service', 'Service', escapeText(provider))}
+        ${line('wizard.summary.playlist', 'Playlist', escapeText(playlistLabel))}
+        ${line('wizard.summary.mode', 'Mode', modeHtml)}
+        ${line('wizard.summary.atmosphere', 'Atmosphere', escapeText(atmosphere))}
     `;
 }
 

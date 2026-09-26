@@ -10567,6 +10567,14 @@ body.wizard-active > .pwa-ios-hint {
     text-align: right;
     word-break: break-word;
 }
+/* #2995: the mode line wraps between its segments, not inside one. `balance`
+   evens the two lines out instead of leaving one segment alone on the second. */
+.wiz-done-line strong:has(.wiz-done-seg) {
+    text-wrap: balance;
+}
+.wiz-done-seg {
+    white-space: nowrap;
+}
 .wiz-done-demo {
     width: 100%;
     max-width: 400px;
