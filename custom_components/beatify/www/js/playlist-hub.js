@@ -765,12 +765,53 @@ function _renderTabBody() {
             </div>`;
         return;
     }
-    switch (state.currentTab) {
-        case 'community': _renderCommunity(host); break;
-        case 'mine': _renderMine(host); break;
-        default: _renderBundled(host);
-    }
-    _renderSeasonalChip(host);
+    // #2970: the body is rebuilt from HTML on every change, including "+ Add"
+    // — which put every horizontal row back at its first card, so the card
+    // just added scrolled out of view. The rebuild stays (the Selected sheet,
+    // the local shelf and the counts all follow the selection), but each
+    // row's scroll position and the body's own are carried across it.
+    _withRowScroll(host, () => {
+        switch (state.currentTab) {
+            case 'community': _renderCommunity(host); break;
+            case 'mine': _renderMine(host); break;
+            default: _renderBundled(host);
+        }
+        _renderSeasonalChip(host);
+    });
+}
+
+/**
+ * The key a shelf's scroll position is remembered under (#2970): its title,
+ * plus a counter for repeated titles. Rows are matched by what they show, not
+ * by position, so a shelf appearing above (the local shelf after a first
+ * pick, the seasonal chip) cannot hand its offset to the wrong row.
+ */
+function _rowKeys(host) {
+    const seen = {};
+    return Array.from(host.querySelectorAll('.plh-shelf')).map((shelf) => {
+        const titleEl = shelf.querySelector('.plh-shelf-title');
+        const title = titleEl ? String(titleEl.textContent || '').trim() : '';
+        seen[title] = (seen[title] || 0) + 1;
+        return { key: title + '#' + seen[title], row: shelf.querySelector('.plh-cards') };
+    });
+}
+
+/**
+ * Run `render` (which replaces `host`'s content) and keep every horizontal
+ * row, and the host itself, scrolled where it was (#2970). Exported for
+ * tests.
+ */
+export function _withRowScroll(host, render) {
+    const saved = {};
+    _rowKeys(host).forEach(({ key, row }) => {
+        if (row && row.scrollLeft) saved[key] = row.scrollLeft;
+    });
+    const top = host.scrollTop || 0;
+    render();
+    _rowKeys(host).forEach(({ key, row }) => {
+        if (row && saved[key]) row.scrollLeft = saved[key];
+    });
+    if (top) host.scrollTop = top;
 }
 
 /**
