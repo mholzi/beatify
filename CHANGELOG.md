@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.0-rc4] - 2026-09-26
+
+Everything from rc3, with the sit-out loop closed for host and guest.
+
+### Fixed
+- **Admin leaderboard shows sat-out guests in a live game** (#3000, #3005). `sat_out_by_host` is
+  carried through `hydrateLeaderboard`, so the host sees the guest and can tap "Bring back".
+- **A sat-out guest sees the no-guess verdict on the reveal** (#3001, #3006) instead of
+  "Nailed it! · Exact!"; the guest is flagged as missed for that round.
+- **TV reveal round chip** is filled from state on every reveal render, so a dashboard loaded
+  mid-reveal no longer shows "Round 1 of 10" (#3002, #3007).
+- **Admin header fits 360 and 390 px** without sideways scroll or a clipped reset button (#3003, #3009).
+- **Setup wizard Ready summary fully translated** (#3004, #3012): the playlist line, atmosphere and
+  difficulty come from the locale files and reuse the labels of steps 4 and 5.
+- **Playlist data**: broken and nulled URIs in trance-classics (#3008; #3010 version 1.15, #3011
+  version 1.16).
+
 ## [4.8.0-rc3] - 2026-09-26
 
 Everything from rc2, with a TV that fills the room and about seventy player-screen styles back in force.
