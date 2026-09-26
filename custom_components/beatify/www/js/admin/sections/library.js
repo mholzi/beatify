@@ -264,7 +264,9 @@ export function mountLibraryPanel(rootEl, opts = {}) {
     const scanSize = $('scan-size');
 
     function _popLabel(p) {
-        return _t('admin.library.topPercent', 'Top {p}%').replace('{p}', String(p));
+        // #2973: never print "Top undefined%", whatever reached the state.
+        const pct = Number.isFinite(p) ? p : 50;
+        return _t('admin.library.topPercent', 'Top {p}%').replace('{p}', String(pct));
     }
 
     // The slider is INVERTED for intuitiveness (user request): right = "only
