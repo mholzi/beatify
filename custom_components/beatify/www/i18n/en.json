@@ -59,6 +59,13 @@
       "threePlus": "{rounds}, {a}, {b}, plus {more} — and {last}.",
       "more": "{n} more twists",
       "moreOne": "one more twist",
+      "open": {
+        "standard": "Standard rules.",
+        "one": "{last}.",
+        "two": "{a} — and {last}.",
+        "three": "{a}, {b} — and {last}.",
+        "threePlus": "{a}, {b}, plus {more} — and {last}."
+      },
       "dev": {
         "suddenDeath": "a single wrong answer knocks you out",
         "titleArtist": "you are guessing title and artist instead of the year",
@@ -919,6 +926,7 @@
     "landscapeHint": "This dashboard works best in landscape mode",
     "round": "Round {current}/{total}",
     "rounds": "rounds",
+    "allSongs": "All songs",
     "players": "Players",
     "playersJoined": "{n} players joined",
     "playersJoinedOne": "{n} player joined",

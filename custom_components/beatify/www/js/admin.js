@@ -2869,6 +2869,10 @@ function showAdminPlayingView(data) {
     var totalEl = document.getElementById('admin-total-rounds');
     if (roundEl) roundEl.textContent = data.round || '?';
     if (totalEl) totalEl.textContent = data.total_rounds || '?';
+    // #2958: no round cap → "Round 7" without the song-pool size.
+    if (roundEl && window.BeatifyUtils && window.BeatifyUtils.applyRoundTotal) {
+        window.BeatifyUtils.applyRoundTotal(roundEl.parentElement, data);
+    }
 
     // Difficulty badge
     var diffBadge = document.getElementById('admin-game-difficulty-badge');
@@ -3222,6 +3226,9 @@ function showAdminRevealView(data) {
     var totalEl = document.getElementById('admin-reveal-total');
     if (roundEl) roundEl.textContent = data.round || '?';
     if (totalEl) totalEl.textContent = data.total_rounds || '?';
+    if (roundEl && window.BeatifyUtils && window.BeatifyUtils.applyRoundTotal) {
+        window.BeatifyUtils.applyRoundTotal(roundEl.parentElement, data);
+    }
 
     // Encore offer (#2503) — only on the reveal BEFORE the last round.
     // encore_available is admin-only in the serializer, so a guest socket

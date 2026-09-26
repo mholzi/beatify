@@ -59,6 +59,13 @@
       "threePlus": "{rounds}, {a}, {b}, plus {more} — en {last}.",
       "more": "{n} extra speciale regels",
       "moreOne": "nog een speciale regel",
+      "open": {
+        "standard": "Gewone regels.",
+        "one": "{last}.",
+        "two": "{a} — en {last}.",
+        "three": "{a}, {b} — en {last}.",
+        "threePlus": "{a}, {b}, plus {more} — en {last}."
+      },
       "dev": {
         "suddenDeath": "wie één keer misgokt, ligt eruit",
         "titleArtist": "jullie raden titel en artiest in plaats van het jaar",
@@ -919,6 +926,7 @@
     "landscapeHint": "Dit dashboard werkt het best in liggende modus",
     "round": "Ronde {current}/{total}",
     "rounds": "rondes",
+    "allSongs": "Alle nummers",
     "players": "Spelers",
     "playersJoined": "{n} spelers toegevoegd",
     "playersJoinedOne": "{n} speler toegevoegd",

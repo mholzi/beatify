@@ -181,6 +181,10 @@ export function updateRevealView(data) {
     var totalEl = document.getElementById('reveal-total');
     if (roundEl) roundEl.textContent = data.round || 1;
     if (totalEl) totalEl.textContent = data.total_rounds || 10;
+    // #2958: "Round 7", not "Round 7 of 266", when the game has no cap.
+    if (utils.applyRoundTotal && roundEl) {
+        utils.applyRoundTotal(roundEl.closest('.round-count'), data);
+    }
 
     // #1012 follow-up: idle-halt notice — the round ended with zero guesses,
     // playback has stopped, and the game is holding here until "Next round".

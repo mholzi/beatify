@@ -59,6 +59,13 @@
       "threePlus": "{rounds}, {a}, {b}, più {more} — e {last}.",
       "more": "{n} regole speciali aggiuntive",
       "moreOne": "una regola speciale aggiuntiva",
+      "open": {
+        "standard": "Regole normali.",
+        "one": "{last}.",
+        "two": "{a} — e {last}.",
+        "three": "{a}, {b} — e {last}.",
+        "threePlus": "{a}, {b}, più {more} — e {last}."
+      },
       "dev": {
         "suddenDeath": "chi sbaglia una volta è fuori",
         "titleArtist": "indovinate titolo e artista invece dell'anno",
@@ -919,6 +926,7 @@
     "landscapeHint": "Questa dashboard rende al meglio in orizzontale",
     "round": "Turno {current}/{total}",
     "rounds": "turni",
+    "allSongs": "Tutti i brani",
     "players": "Giocatori",
     "playersJoined": "{n} giocatori collegati",
     "playersJoinedOne": "{n} giocatore collegato",

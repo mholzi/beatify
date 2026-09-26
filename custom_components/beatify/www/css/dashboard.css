@@ -1520,6 +1520,11 @@
     color: var(--color-accent-secondary);
     font-weight: 900;
 }
+/* #2958: "Round 7" without a total — the pill shrinks to its content
+   instead of stretching across its grid column. */
+.chip-round.round-open {
+    justify-self: start;
+}
 
 .chip-meter {
     justify-self: end;

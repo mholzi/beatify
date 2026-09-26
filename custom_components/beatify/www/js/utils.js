@@ -693,12 +693,21 @@ window.BeatifyUtils = (function() {
             found.push({ key: 'lobby.brief.dev.' + rule.clause, params: null });
         });
 
-        var roundsPhrase = tr(rounds === 1 ? 'lobby.brief.roundsOne' : 'lobby.brief.rounds', { n: rounds });
-        var slots = { rounds: roundsPhrase };
+        // #2958: with no round cap the "rounds" count is only the size of the
+        // song pool — "266 rounds" is a number nobody chose and nobody plays
+        // through. Such a game says nothing about rounds at all: each locale
+        // owns a second set of sentence shapes (`lobby.brief.open.*`) with the
+        // rounds slot left out.
+        var openEnded = isOpenEnded(data);
+        var prefix = openEnded ? 'lobby.brief.open.' : 'lobby.brief.';
+        var slots = {};
+        if (!openEnded) {
+            slots.rounds = tr(rounds === 1 ? 'lobby.brief.roundsOne' : 'lobby.brief.rounds', { n: rounds });
+        }
         var shape;
 
         if (found.length === 0) {
-            shape = 'lobby.brief.standard';
+            shape = prefix + 'standard';
         } else {
             // Rank 1 closes the sentence; ranks 2..3 run in front of it.
             var named = found.slice(0, LOBBY_BRIEF_MAX_NAMED);
@@ -710,9 +719,9 @@ window.BeatifyUtils = (function() {
                 slots.more = hidden === 1
                     ? tr('lobby.brief.moreOne', { n: hidden })
                     : tr('lobby.brief.more', { n: hidden });
-                shape = 'lobby.brief.threePlus';
+                shape = prefix + 'threePlus';
             } else {
-                shape = ['lobby.brief.one', 'lobby.brief.two', 'lobby.brief.three'][named.length - 1];
+                shape = prefix + ['one', 'two', 'three'][named.length - 1];
             }
         }
 
@@ -720,7 +729,18 @@ window.BeatifyUtils = (function() {
         // t() hands back the key itself when a locale is missing it. Printing
         // "lobby.brief.three" across the TV would be worse than printing
         // nothing, so treat an un-substituted template as no sentence at all.
-        if (!template || template === shape || template.indexOf('{rounds}') === -1) return null;
+        if (!template || template === shape) return null;
+        if (!openEnded && template.indexOf('{rounds}') === -1) return null;
+
+        // #2958: without the rounds phrase in front, a clause can open the
+        // sentence — "every song runs just 30 seconds" is written lowercase
+        // because it normally follows a comma. Capitalise whichever slot the
+        // locale's template starts with; the template decides the order.
+        var lead = /^\{(\w+)\}/.exec(template);
+        if (lead && typeof slots[lead[1]] === 'string' && slots[lead[1]]) {
+            var first = slots[lead[1]];
+            slots[lead[1]] = first.charAt(0).toUpperCase() + first.slice(1);
+        }
 
         var htmlSlots = {};
         var textSlots = {};
@@ -755,6 +775,42 @@ window.BeatifyUtils = (function() {
         el.innerHTML = brief.html;
         el.classList.remove('hidden');
         return brief;
+    }
+
+    /**
+     * #2958: is this a game without a round cap?
+     *
+     * `max_rounds` is the host's choice from the setup wizard (#1475): a
+     * positive number caps the game, 0 means "play every song". In the second
+     * case `total_rounds` is merely the size of the playable pool, so every
+     * screen shows "Round 7" instead of "Round 7 of 266". A server that does
+     * not send `max_rounds` yet counts as capped — the old display stays.
+     *
+     * @param {Object} data - a state payload
+     * @returns {boolean}
+     */
+    function isOpenEnded(data) {
+        return !!data && data.max_rounds === 0;
+    }
+
+    /**
+     * Toggle the "no total" look on round indicators (#2958).
+     *
+     * Every "Round X of Y" in the markup keeps its separator and total in
+     * elements marked `.round-total-part`; `.round-open` on a container hides
+     * them (styles.css). One rule for TV, phone and admin, so they cannot
+     * disagree about whether the game has an end.
+     *
+     * @param {Element|NodeList|Array|null} targets - containers to toggle
+     * @param {Object} data - a state payload
+     */
+    function applyRoundTotal(targets, data) {
+        if (!targets) return;
+        var list = (typeof targets.length === 'number') ? targets : [targets];
+        var open = isOpenEnded(data);
+        for (var i = 0; i < list.length; i++) {
+            if (list[i] && list[i].classList) list[i].classList.toggle('round-open', open);
+        }
     }
 
     // ==========================================================================
@@ -816,6 +872,10 @@ window.BeatifyUtils = (function() {
         // Lobby brief (#2647)
         buildLobbyBrief: buildLobbyBrief,
         renderLobbyBrief: renderLobbyBrief,
+
+        // Open-ended games (#2958)
+        isOpenEnded: isOpenEnded,
+        applyRoundTotal: applyRoundTotal,
 
         // Title & Artist helpers
         taVerdictLabel: taVerdictLabel,

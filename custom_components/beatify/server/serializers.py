@@ -80,6 +80,9 @@ _PLAYER_VISIBLE_BASE = frozenset(
         "language",
         "difficulty",
         "round_duration",
+        # #2958: the round cap the host chose; 0 = every song. A setting, not
+        # an answer — it says nothing about the song being played.
+        "max_rounds",
         "intro_mode_enabled",
         "closest_wins_mode",
         "rampup_order_enabled",

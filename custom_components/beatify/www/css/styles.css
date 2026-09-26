@@ -1028,6 +1028,15 @@ footer {
     display: none !important;
 }
 
+/* #2958: a game without a round cap (max_rounds 0 = every song) has no total
+   worth showing — "Round 7 of 266" only printed the size of the song pool.
+   utils.applyRoundTotal() puts .round-open on the round indicator; the parts
+   that carry the separator and the total step aside. */
+.round-open .round-total-part {
+    display: none;
+}
+
+
 /* ==========================================
    Neon Party Mode Theme (Story 9.2)
    ========================================== */
