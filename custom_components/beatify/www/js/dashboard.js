@@ -660,6 +660,12 @@
         // ends them, which is what lets a fast next round cut the staging.
         if (phase !== 'REVEAL') stopRevealStaging();
 
+        // #2958: "Round 7", not "Round 7 of 266", when the game has no cap.
+        // Both round chips (PLAYING and REVEAL) follow the same rule.
+        if (utils.applyRoundTotal) {
+            utils.applyRoundTotal(document.querySelectorAll('.chip-round'), data);
+        }
+
         switch (phase) {
             case 'LOBBY':
                 stopCountdown();
@@ -870,7 +876,12 @@
         // Translate difficulty label
         var difficultyLabel = t('admin.difficulty' + difficulty.charAt(0).toUpperCase() + difficulty.slice(1), difficulty);
 
-        el.textContent = rounds + ' ' + utils.t('dashboard.rounds', 'rounds') + ' • ' + difficultyLabel;
+        // #2958: an uncapped game has no round count worth printing — the
+        // number would only be the size of the song pool.
+        var roundsLabel = utils.isOpenEnded && utils.isOpenEnded(data)
+            ? utils.t('dashboard.allSongs', 'All songs')
+            : rounds + ' ' + utils.t('dashboard.rounds', 'rounds');
+        el.textContent = roundsLabel + ' • ' + difficultyLabel;
     }
 
     /**

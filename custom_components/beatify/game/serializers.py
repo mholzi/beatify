@@ -171,6 +171,12 @@ class GameStateSerializer:
             # hardcoded "10 rounds" in dashboard.js. A number nobody had chosen
             # and that was wrong for most playlists.
             "total_rounds": gs.total_rounds,
+            # #2958: the host's round cap (#1475) — 0 means "play every song".
+            # In that case total_rounds is only the size of the song pool, so
+            # the screens show "Round 7" instead of "Round 7 of 266" and the
+            # lobby says nothing about rounds. Clients need the choice itself,
+            # not a guess from total_rounds.
+            "max_rounds": gs.max_rounds,
             # Issue #23: Intro mode (available in all phases)
             "intro_mode_enabled": gs.intro_mode_enabled,
             # Issue #442: Closest Wins mode

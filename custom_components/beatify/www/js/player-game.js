@@ -216,6 +216,10 @@ export function updateGameView(data) {
 
     if (currentRound) currentRound.textContent = data.round || 1;
     if (totalRounds) totalRounds.textContent = data.total_rounds || 10;
+    // #2958: no round cap → the header shows only the round number.
+    if (utils.applyRoundTotal && currentRound) {
+        utils.applyRoundTotal(currentRound.closest('.arc-round-center'), data);
+    }
 
     // #2722: the two finalists in a tiebreak playoff were the only people in
     // the room told nothing. Everyone sitting the round out gets the

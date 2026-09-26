@@ -59,6 +59,13 @@
       "threePlus": "{rounds}, {a}, {b}, plus {more} — et {last}.",
       "more": "{n} règles spéciales supplémentaires",
       "moreOne": "une règle spéciale supplémentaire",
+      "open": {
+        "standard": "Règles normales.",
+        "one": "{last}.",
+        "two": "{a} — et {last}.",
+        "three": "{a}, {b} — et {last}.",
+        "threePlus": "{a}, {b}, plus {more} — et {last}."
+      },
       "dev": {
         "suddenDeath": "une seule erreur vous élimine",
         "titleArtist": "vous devinez le titre et l'artiste au lieu de l'année",
@@ -919,6 +926,7 @@
     "landscapeHint": "Ce tableau de bord fonctionne mieux en mode paysage",
     "round": "Manche {current}/{total}",
     "rounds": "manches",
+    "allSongs": "Tous les morceaux",
     "players": "Joueurs",
     "playersJoined": "{n} joueurs ont rejoint",
     "playersJoinedOne": "{n} joueur a rejoint",

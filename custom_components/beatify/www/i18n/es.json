@@ -59,6 +59,13 @@
       "threePlus": "{rounds}, {a}, {b}, más {more} — y {last}.",
       "more": "{n} reglas especiales adicionales",
       "moreOne": "una regla especial adicional",
+      "open": {
+        "standard": "Reglas normales.",
+        "one": "{last}.",
+        "two": "{a} — y {last}.",
+        "three": "{a}, {b} — y {last}.",
+        "threePlus": "{a}, {b}, más {more} — y {last}."
+      },
       "dev": {
         "suddenDeath": "quien falle una vez queda eliminado",
         "titleArtist": "adivináis título y artista en vez del año",
@@ -919,6 +926,7 @@
     "landscapeHint": "Este panel funciona mejor en modo horizontal",
     "round": "Ronda {current}/{total}",
     "rounds": "rondas",
+    "allSongs": "Todas las canciones",
     "players": "Jugadores",
     "playersJoined": "{n} jugadores se unieron",
     "playersJoinedOne": "{n} jugador se unió",
