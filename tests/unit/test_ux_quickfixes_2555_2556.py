@@ -63,5 +63,7 @@ class TestTvLobbyAsksGuestsToScan:
         css = (WWW / "css" / "dashboard.css").read_text(encoding="utf-8")
         assert ".dashboard-scan-hint" in css
         # The #1717 TV breakpoint upscales the lobby text; the hint follows it.
-        breakpoint_block = css.split(".dashboard-player-count {", 2)[-1]
+        # (#2959 removed the player-count line it used to be anchored on; the
+        # TV-size QR rule opens the same block.)
+        breakpoint_block = css.split("width: 300px !important;", 1)[1]
         assert ".dashboard-scan-hint" in breakpoint_block

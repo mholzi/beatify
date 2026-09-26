@@ -318,13 +318,17 @@
                          dashboard.js (renderLobbyView); hidden until a join_url
                          arrives. -->
                     <p id="dashboard-join-url" class="dashboard-join-url hidden" aria-label="Join address"></p>
-                    <p id="dashboard-player-count" class="dashboard-player-count">0 players joined</p>
                 </div>
-                <!-- Player List Section (right) -->
+                <!-- #2959: the name wall. The right half used to hold four small
+                     chips under a "Players" heading with the rest of the half
+                     empty; seeing your own name appear is the moment a guest
+                     knows they are in, so the names get the space. The heading
+                     carries the count ("4 players in"), which replaces the
+                     "N players joined" line that sat under the QR. -->
                 <div class="lobby-players-section">
-                    <h2 class="players-title" data-i18n="dashboard.players">Players</h2>
-                    <div id="dashboard-player-list" class="dashboard-player-list">
-                        <!-- Player cards rendered by JS -->
+                    <h2 id="dashboard-players-in" class="players-in"></h2>
+                    <div id="dashboard-player-list" class="dashboard-player-list" data-cols="3">
+                        <!-- Name tiles rendered by JS (renderPlayerList) -->
                     </div>
                 </div>
             </div>

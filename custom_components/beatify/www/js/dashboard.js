@@ -827,7 +827,7 @@
             // #1756: localize the aria-label (was a hardcoded English "Join address").
             joinUrlEl.setAttribute('aria-label', utils.t('dashboard.joinAddressLabel', 'Join address'));
             if (data.join_url) {
-                joinUrlEl.textContent = data.join_url;
+                renderJoinUrl(joinUrlEl, data.join_url);
                 joinUrlEl.classList.remove('hidden');
             } else {
                 joinUrlEl.textContent = '';
@@ -845,20 +845,12 @@
         // words; utils owns the wording so they cannot drift.
         utils.renderLobbyBrief(document.getElementById('dashboard-lobby-brief'), data);
 
-        // Update player count
-        // #1402-B8: was hardcoded English ("N players joined") on an otherwise
-        // localized TV dashboard. Use an i18n key with {n} interpolation plus a
-        // singular variant; utils.t() falls back to the English literal if the
-        // key is missing from a locale.
-        var countEl = document.getElementById('dashboard-player-count');
-        if (countEl) {
-            var count = players.length;
-            var joinedKey = count === 1 ? 'dashboard.playersJoinedOne' : 'dashboard.playersJoined';
-            var joinedFallback = count + ' player' + (count !== 1 ? 's' : '') + ' joined';
-            countEl.textContent = utils.t(joinedKey, joinedFallback).replace(/\{n\}/g, count);
-        }
+        // #2959: the count heads the name wall ("4 players in"). It replaces
+        // both the "Players" heading and the "N players joined" line under the
+        // QR (#1402-B8), so the number is said once, next to the names.
+        renderPlayersIn(document.getElementById('dashboard-players-in'), players.length);
 
-        // Render player list with slide-in animation
+        // Render the name wall
         renderPlayerList(players);
     }
 
@@ -976,8 +968,118 @@
     }
 
     /**
-     * Render player list in lobby
-     * @param {Array} players - Array of player objects
+     * #2959: how many columns the name wall gets for a player count.
+     *
+     * A fixed rule instead of a fit-to-width calculation, so the wall looks the
+     * same on every TV: three columns hold up to six names in two rows, four
+     * columns from seven, five from thirteen. The tiles shrink with each step
+     * so the right half stays filled without scrolling for a normal party.
+     *
+     * @param {number} count - players in the lobby
+     * @returns {number} 3, 4 or 5
+     */
+    function lobbyWallColumns(count) {
+        if (count >= 13) return 5;
+        if (count >= 7) return 4;
+        return 3;
+    }
+
+    /**
+     * #2959: split a join URL into the two lines the TV shows.
+     *
+     * The protocol goes (nobody types "http://" off a TV), and the break sits
+     * in front of `game=` — never inside the game ID, which used to wrap
+     * wherever the box ran out ("…pjdG4N36 / 2V0") and could not be typed.
+     * A URL without `game=` stays one line.
+     *
+     * @param {string} url - the join URL from the state payload
+     * @returns {{head: string, id: string}} `id` is '' when there is no `game=`
+     */
+    function splitJoinUrl(url) {
+        var text = String(url == null ? '' : url).replace(/^[a-z][a-z0-9+.-]*:\/\//i, '');
+        var at = text.indexOf('game=');
+        if (at <= 0) return { head: text, id: '' };
+        return { head: text.slice(0, at), id: text.slice(at) };
+    }
+
+    /**
+     * Write the two-line join address (#2959). Built from text nodes, never
+     * innerHTML: the URL comes off the wire.
+     */
+    function renderJoinUrl(el, url) {
+        var parts = splitJoinUrl(url);
+        while (el.firstChild) el.removeChild(el.firstChild);
+        var head = document.createElement('span');
+        head.className = 'join-url-head';
+        head.textContent = parts.head;
+        el.appendChild(head);
+        if (parts.id) {
+            var id = document.createElement('span');
+            id.className = 'join-url-id';
+            id.textContent = parts.id;
+            el.appendChild(id);
+        }
+    }
+
+    /**
+     * The name wall's heading: "{n} players in", with the number in the
+     * accent colour (#2959).
+     */
+    function renderPlayersIn(el, count) {
+        if (!el) return;
+        var key = count === 1 ? 'lobby.playersInOne' : 'lobby.playersIn';
+        var fallback = count === 1 ? '{n} player in' : '{n} players in';
+        var template = utils.t(key, fallback);
+        var at = template.indexOf('{n}');
+        while (el.firstChild) el.removeChild(el.firstChild);
+        if (at === -1) {
+            el.textContent = template;
+            return;
+        }
+        el.appendChild(document.createTextNode(template.slice(0, at)));
+        var num = document.createElement('span');
+        num.className = 'players-in-count';
+        num.textContent = String(count);
+        el.appendChild(num);
+        el.appendChild(document.createTextNode(template.slice(at + 3)));
+    }
+
+    /**
+     * One name tile: avatar initial + name (#2959).
+     */
+    function buildPlayerTile(player, isNew) {
+        var name = String(player.name == null ? '' : player.name);
+        var tile = document.createElement('div');
+        tile.className = 'dashboard-player-card';
+        if (isNew) tile.classList.add('is-new');
+        if (player.connected === false) tile.classList.add('dashboard-player-card--disconnected');
+
+        var avatar = document.createElement('span');
+        avatar.className = 'dashboard-player-avatar';
+        avatar.setAttribute('aria-hidden', 'true');
+        avatar.textContent = name.trim().charAt(0).toUpperCase();
+        avatar.style.background = endAvatarGradient(name);
+        tile.appendChild(avatar);
+
+        var label = document.createElement('span');
+        label.className = 'dashboard-player-name';
+        label.textContent = name;
+        tile.appendChild(label);
+
+        if (player.connected === false) {
+            var away = document.createElement('span');
+            away.className = 'away-badge';
+            away.textContent = '(away)';
+            tile.appendChild(away);
+        }
+        return tile;
+    }
+
+    /**
+     * Render the lobby name wall (#2959): a grid of large name tiles, the
+     * newest joiner glowing cyan for a moment, and a dashed "waiting for
+     * more…" tile at the end.
+     * @param {Array} players
      */
     function renderPlayerList(players) {
         var listEl = document.getElementById('dashboard-player-list');
@@ -997,20 +1099,16 @@
             .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
             .map(function(p) { return p.name; });
 
-        // Render player cards
-        listEl.innerHTML = sortedPlayers.map(function(player) {
-            var isNew = newNames.indexOf(player.name) !== -1;
-            var isDisconnected = player.connected === false;
-            var classes = ['dashboard-player-card'];
-            if (isNew) classes.push('is-new');
-            if (isDisconnected) classes.push('dashboard-player-card--disconnected');
+        listEl.setAttribute('data-cols', String(lobbyWallColumns(sortedPlayers.length)));
+        while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
+        sortedPlayers.forEach(function(player) {
+            listEl.appendChild(buildPlayerTile(player, newNames.indexOf(player.name) !== -1));
+        });
 
-            var awayBadge = isDisconnected ? '<span class="away-badge">(away)</span>' : '';
-
-            return '<div class="' + classes.join(' ') + '">' +
-                utils.escapeHtml(player.name) + awayBadge +
-            '</div>';
-        }).join('');
+        var waiting = document.createElement('div');
+        waiting.className = 'dashboard-player-card dashboard-player-card--waiting';
+        waiting.textContent = utils.t('lobby.waitingForMore', 'waiting for more…');
+        listEl.appendChild(waiting);
 
         // Remove is-new class after animation
         setTimeout(function() {

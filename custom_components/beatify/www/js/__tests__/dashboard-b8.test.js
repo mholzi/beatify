@@ -5,7 +5,8 @@
  * runs in a `node` (DOM-free) environment, so we test the load-bearing LOGIC of
  * each fix rather than the DOM glue:
  *
- * Finding 6 (lobby player count i18n): assert the singular/plural KEY selection
+ * Finding 6 (lobby player count i18n, since #2959 the name wall's heading):
+ *   assert the singular/plural KEY selection
  *   + {n} interpolation against the REAL locale JSON and the real BeatifyUtils.t
  *   fallback resolver — the exact expression dashboard.js now runs. Guards
  *   against a missing locale key and a wrong-plural string.
@@ -57,40 +58,42 @@ function installI18n(locale) {
     };
 }
 
-// The exact rendering expression dashboard.renderLobbyView now uses.
-function renderPlayerCount(count) {
-    const joinedKey = count === 1 ? 'dashboard.playersJoinedOne' : 'dashboard.playersJoined';
-    const joinedFallback = count + ' player' + (count !== 1 ? 's' : '') + ' joined';
-    return utils.t(joinedKey, joinedFallback).replace(/\{n\}/g, count);
+// #2959: the lobby count moved from "N players joined" under the QR to the
+// name wall's heading ("{n} players in"), with the same singular/plural split.
+// The template is filled around the number (renderPlayersIn), so every
+// locale has to carry {n}.
+function renderPlayersIn(count) {
+    const key = count === 1 ? 'lobby.playersInOne' : 'lobby.playersIn';
+    const fallback = count === 1 ? '{n} player in' : '{n} players in';
+    return utils.t(key, fallback).replace(/\{n\}/g, count);
 }
 
 describe('dashboard #1402-B8 finding 6: localized lobby player count', () => {
-    it('every shipped locale defines playersJoined + playersJoinedOne with {n}', () => {
+    it('every shipped locale defines playersIn + playersInOne with {n}', () => {
         for (const l of LOCALES) {
-            const d = i18n[l].dashboard;
-            expect(d.playersJoined, `${l}.playersJoined`).toBeTypeOf('string');
-            expect(d.playersJoinedOne, `${l}.playersJoinedOne`).toBeTypeOf('string');
-            expect(d.playersJoined).toContain('{n}');
-            expect(d.playersJoinedOne).toContain('{n}');
+            const d = i18n[l].lobby;
+            expect(d.playersIn, `${l}.playersIn`).toBeTypeOf('string');
+            expect(d.playersInOne, `${l}.playersInOne`).toBeTypeOf('string');
+            expect(d.playersIn).toContain('{n}');
+            expect(d.playersInOne).toContain('{n}');
         }
     });
 
     it('renders the plural German string with the interpolated count', () => {
         installI18n('de');
-        expect(renderPlayerCount(3)).toBe('3 Spieler beigetreten');
+        expect(renderPlayersIn(3)).toBe('3 Spieler dabei');
     });
 
     it('renders the singular variant for exactly one player', () => {
         installI18n('es');
-        expect(renderPlayerCount(1)).toBe('1 jugador se unió');
-        expect(renderPlayerCount(2)).toBe('2 jugadores se unieron');
+        expect(renderPlayersIn(1)).toBe('1 jugador en la partida');
+        expect(renderPlayersIn(2)).toBe('2 jugadores en la partida');
     });
 
     it('falls back to the English literal when the key is missing', () => {
-        // i18n present but key absent → utils.t returns the explicit fallback.
         globalThis.BeatifyI18n = { t: (key) => key };
-        expect(renderPlayerCount(5)).toBe('5 players joined');
-        expect(renderPlayerCount(1)).toBe('1 player joined');
+        expect(renderPlayersIn(5)).toBe('5 players in');
+        expect(renderPlayersIn(1)).toBe('1 player in');
     });
 });
 
