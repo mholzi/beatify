@@ -248,11 +248,13 @@
 
 .dashboard-lobby-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
+    /* #2959: the QR keeps a bit more than a third, the name wall takes the
+       rest — it was a 1fr/1fr split with the right half 95% empty. */
+    grid-template-columns: minmax(0, 4fr) minmax(0, 5.4fr);
+    gap: 3vw;
     flex: 1;
     align-items: center;
-    padding: var(--space-lg);
+    padding: var(--space-lg) 5vw var(--space-lg) 3vw;
 }
 
 .lobby-qr-section {
@@ -260,6 +262,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-width: 0;
 }
 
 .dashboard-qr-code {
@@ -278,16 +281,8 @@
     height: 200px !important;
 }
 
-.dashboard-player-count {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    margin-top: var(--space-lg);
-    color: var(--color-accent-secondary);
-}
-
-/* #2556: the call to action above the QR code. Same weight as the player
-   count so it reads from across the room, but in the plain text colour — the
-   accent belongs to the count, which is the number people watch. */
+/* #2556: the call to action above the QR code. Same weight as the name
+   wall's heading so it reads from across the room. */
 .dashboard-scan-hint {
     margin: 0 0 var(--space-md);
     font-size: var(--font-size-2xl);
@@ -296,48 +291,126 @@
     text-align: center;
 }
 
+/* #2959: the name wall. Sized in vw like the rest of the TV-only lobby, so a
+   1280x720 screen shows the same picture as 1920x1080, just smaller. */
 .lobby-players-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    max-height: 60vh;
+    align-items: stretch;
+    min-width: 0;
+    max-height: 62vh;
 }
 
-.players-title {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--space-md);
+.players-in {
+    margin: 0 0 1.6vw;
+    font-family: var(--font-display);
+    font-size: 2.1vw;
+    font-weight: 900;
     color: var(--color-text-white);
 }
 
+.players-in .players-in-count {
+    color: var(--color-accent-secondary);
+}
+
 .dashboard-player-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-sm);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1vw;
     overflow-y: auto;
-    padding-right: var(--space-sm);
+    /* Room for the new-joiner glow, which overflow would otherwise clip; the
+       negative margin keeps the tiles flush with the heading. */
+    padding: 1.6vw;
+    margin: -1.6vw;
+    /* Tile sizes per column step; see lobbyWallColumns() in dashboard.js. */
+    --tile-avatar: 3.6vw;
+    --tile-name: 2vw;
+    --tile-pad-y: 0.9vw;
+    --tile-pad-x: 1.2vw;
+}
+.dashboard-player-list[data-cols="4"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    --tile-avatar: 2.9vw;
+    --tile-name: 1.6vw;
+    --tile-pad-y: 0.75vw;
+    --tile-pad-x: 1vw;
+}
+.dashboard-player-list[data-cols="5"] {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.8vw;
+    --tile-avatar: 2.3vw;
+    --tile-name: 1.25vw;
+    --tile-pad-y: 0.6vw;
+    --tile-pad-x: 0.7vw;
 }
 
 .dashboard-player-card {
-    background: var(--color-dark-surface);
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-lg);
+    display: flex;
+    align-items: center;
+    gap: calc(var(--tile-avatar) * 0.3);
+    min-width: 0;
+    padding: var(--tile-pad-y) var(--tile-pad-x);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.9vw;
+    transition: border-color 600ms ease, box-shadow 600ms ease;
     animation: slide-in 0.3s ease;
 }
 
+.dashboard-player-avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: var(--tile-avatar);
+    height: var(--tile-avatar);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: calc(var(--tile-avatar) * 0.47);
+    color: #111;
+}
+
+.dashboard-player-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--tile-name);
+    line-height: 1.2;
+    color: var(--color-text-white);
+}
+
+.dashboard-player-card .away-badge {
+    flex: none;
+    font-size: calc(var(--tile-name) * 0.55);
+    color: var(--color-text-secondary, #b3b3c2);
+}
+
+/* The newest joiner glows cyan for a moment (is-new is cleared after 2s). */
 .dashboard-player-card.is-new {
     animation: slide-in 0.5s ease;
-    background: var(--color-accent-primary);
+    border-color: var(--color-accent-secondary);
+    box-shadow: 0 0 1.5vw rgba(0, 245, 255, 0.35);
 }
 
 /* Story 11.4: Disconnected player styling */
 .dashboard-player-card--disconnected {
     opacity: 0.5;
     filter: grayscale(0.3);
+}
+
+.dashboard-player-card--waiting {
+    justify-content: center;
+    min-height: calc(var(--tile-avatar) + 2 * var(--tile-pad-y));
+    background: transparent;
+    border-style: dashed;
+    font-size: calc(var(--tile-name) * 0.55);
+    color: var(--color-text-muted, #8a8a9a);
+    text-align: center;
+    animation: none;
 }
 
 @keyframes slide-in {
@@ -352,16 +425,12 @@
 }
 
 /* #1663 item 3 (A11y — Reduced-Motion gate): honour prefers-reduced-motion for
-   the player-join cue. The animated slide-in / is-new pop is dropped; the
-   static accent-background on .is-new stays as a non-motion "new player"
-   indicator (a short fade in place of the pop). */
+   the player-join cue. The slide-in is dropped; the cyan border on .is-new
+   stays as a non-motion "new player" indicator. */
 @media (prefers-reduced-motion: reduce) {
     .dashboard-player-card,
     .dashboard-player-card.is-new {
         animation: none;
-    }
-    .dashboard-player-card.is-new {
-        transition: background-color var(--transition-normal, 300ms) ease;
     }
 }
 
@@ -916,10 +985,6 @@
     .dashboard-qr-code canvas {
         width: 300px !important;
         height: 300px !important;
-    }
-
-    .dashboard-player-count {
-        font-size: var(--font-size-3xl);
     }
 
     .dashboard-scan-hint {
@@ -2909,15 +2974,27 @@ body.theme-dark .end-stage-layout .podium-place.podium-1 .podium-name {
    fails to load. */
 .dashboard-join-url {
     margin-top: var(--space-md);
-    max-width: min(90vw, 640px);
+    max-width: 100%;
     font-family: 'Inter', sans-serif;
-    font-size: var(--font-size-lg);
+    font-size: 1.15vw;
     font-weight: var(--font-weight-bold);
-    line-height: 1.3;
+    line-height: 1.35;
     letter-spacing: 0.01em;
     color: var(--color-text-white);
     text-align: center;
-    word-break: break-all;
+}
+/* #2959: two fixed lines — host and path, then the game ID. The ID line never
+   wraps, so the break can only ever fall in front of "game=". */
+.dashboard-join-url .join-url-head,
+.dashboard-join-url .join-url-id {
+    display: block;
+}
+.dashboard-join-url .join-url-head {
+    overflow-wrap: anywhere;
+}
+.dashboard-join-url .join-url-id {
+    white-space: nowrap;
+    color: var(--color-accent-secondary);
 }
 .dashboard-join-url.hidden { display: none; }
 
@@ -2944,10 +3021,6 @@ body.theme-dark .end-stage-layout .podium-place.podium-1 .podium-name {
     }
     .dashboard-hint {
         font-size: 28px;
-    }
-    .dashboard-join-url {
-        font-size: var(--font-size-2xl);
-        max-width: min(80vw, 760px);
     }
     .chip-meter .chip-meter-label {
         font-size: 22px;
