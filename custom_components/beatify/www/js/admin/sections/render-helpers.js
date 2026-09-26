@@ -105,7 +105,11 @@ export function renderAdminLeaderboard(leaderboard, containerId, withHostControl
         // #2746: taken out by the host. No skull — nobody was eliminated,
         // somebody left — and the rank and score stay exactly where they were.
         var satOut = !!entry.sat_out_by_host;
-        var satOutClass = satOut ? 'is-sat-out' : '';
+        // #2993: a sat-out row wraps — name, meta and score on line 1, the
+        // badge and the host's "Bring back" on line 2 — so the button no longer
+        // clips the badge at phone width. The badge is therefore a sibling of
+        // `.entry-name`, not a child, and only this row gets the wrap class.
+        var satOutClass = satOut ? 'is-sat-out leaderboard-entry--wrap' : '';
         var satOutBadge = satOut
             ? '<span class="sat-out-badge">' + escapeHtml(tr('game.satOut', 'sat out')) + '</span>'
             : '';
@@ -135,9 +139,10 @@ export function renderAdminLeaderboard(leaderboard, containerId, withHostControl
 
         html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + ' ' + eliminatedClass + ' ' + satOutClass + '">' +
             '<span class="entry-rank">#' + entry.rank + '</span>' +
-            '<span class="entry-name">' + skullPrefix + escapeHtml(entry.name) + awayBadge + satOutBadge + '</span>' +
+            '<span class="entry-name">' + skullPrefix + escapeHtml(entry.name) + awayBadge + '</span>' +
             '<span class="entry-meta">' + streakIndicator + changeIndicator + '</span>' +
             '<span class="entry-score">' + entry.score + '</span>' +
+            satOutBadge +
             control +
         '</div>';
     });
