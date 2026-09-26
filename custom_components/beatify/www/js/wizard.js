@@ -1938,16 +1938,30 @@ function _renderDoneSummary() {
     const coreModeLabel = chosenTitleArtistMode
         ? _t('wizard.step4.modeTitleArtist', 'Title & Artist')
         : _t('wizard.step4.modeYear', 'Year mode');
-    // #1475: show the cap only when there is one. "All songs" is the default,
-    // and spelling out a default in the summary just makes the line longer.
-    const roundsPart = chosenMaxRounds > 0
-        ? ` · ${chosenMaxRounds} ${_t('wizard.summary.rounds', 'rounds')}`
-        : '';
+    const roundsPart = ` · ${roundsSummaryPart(chosenMaxRounds, _t)}`;
     const modeSummary = chosenTitleArtistMode
         ? `${coreModeLabel} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`
         : `${coreModeLabel} · ${chosenDifficulty} · ${chosenDuration}s${roundsPart} · ${chosenLanguage.toUpperCase()}`;
 
     el.innerHTML = doneSummaryHtml({ speaker, provider, playlistLabel, modeSummary, atmosphere }, _t);
+}
+
+/**
+ * The round count on the summary's mode line (#2988).
+ *
+ * #1475 left it out for "All songs" because that is the default — but the
+ * round count is the setting that decides how long the game runs, and with it
+ * missing the host could not see it at all. A cap reads "10 rounds"; no cap
+ * reads "All songs", the words the TV lobby uses for the same setting since
+ * #2958, rather than a pool size nobody chose.
+ *
+ * @param {number} maxRounds - the chosen cap, 0 for all songs
+ * @param {function(string, string): string} t - key, fallback
+ */
+export function roundsSummaryPart(maxRounds, t) {
+    return maxRounds > 0
+        ? `${maxRounds} ${t('wizard.summary.rounds', 'rounds')}`
+        : t('dashboard.allSongs', 'All songs');
 }
 
 // Issue #2874 — the "you're ready" summary on the last wizard step. `speaker` is
