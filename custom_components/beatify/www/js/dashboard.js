@@ -1068,7 +1068,7 @@
         if (player.connected === false) {
             var away = document.createElement('span');
             away.className = 'away-badge';
-            away.textContent = '(away)';
+            away.textContent = '(' + utils.t('lobby.away', 'away') + ')';
             tile.appendChild(away);
         }
         return tile;
@@ -1085,7 +1085,7 @@
         if (away && !badge) {
             badge = document.createElement('span');
             badge.className = 'away-badge';
-            badge.textContent = '(away)';
+            badge.textContent = '(' + utils.t('lobby.away', 'away') + ')';
             tile.appendChild(badge);
         } else if (!away && badge) {
             tile.removeChild(badge);
@@ -1482,7 +1482,7 @@
 
             // Story 11.4: Disconnected player styling
             var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+            var awayBadge = entry.connected === false ? '<span class="away-badge">(' + utils.escapeHtml(utils.t('lobby.away', 'away')) + ')</span>' : '';
 
             // Issue #827: Sudden-Death — eliminated players render dimmed with a
             // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
@@ -2775,7 +2775,7 @@
 
             // Story 11.4: Disconnected player styling
             var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-            var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+            var awayBadge = entry.connected === false ? '<span class="away-badge">(' + utils.escapeHtml(utils.t('lobby.away', 'away')) + ')</span>' : '';
 
             // Issue #827: Sudden-Death — eliminated players render dimmed with a
             // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
@@ -3142,7 +3142,7 @@
             rest.forEach(function(entry) {
                 var classes = ['end-rest-chip'];
                 if (entry.connected === false || entry.eliminated) classes.push('end-rest-chip--dim');
-                var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+                var awayBadge = entry.connected === false ? '<span class="away-badge">(' + utils.escapeHtml(utils.t('lobby.away', 'away')) + ')</span>' : '';
 
                 // Issue #827: Sudden-Death — eliminated players render dimmed
                 // with a 💀 prefix.
