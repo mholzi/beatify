@@ -15645,11 +15645,19 @@ body.theme-dark .your-result-stats .stat-value {
     font-size: 14px;
 }
 
+/* #2987: the wizard's "STEP 3 · PLAYLIST" eyebrow, rendered by the hub above
+   its tab strip. Same type as `.wiz-eyebrow` on the other steps; the padding
+   lines it up with the hub's own content. */
+.plh-eyebrow {
+    padding: 14px 14px 4px;
+}
+
 /* Wider viewport: widen cards a touch, keep layout stable */
 
 @media (min-width: 720px) {
     .plh-cards { padding: 0 24px 4px; }
     .plh-header { padding: 16px 24px 12px; }
+    .plh-eyebrow { padding: 18px 24px 4px; }
     .plh-shelf-head { padding: 0 24px 10px; }
     .plh-banner, .plh-new-request { margin-left: 24px; margin-right: 24px; }
     .plh-req-list { padding: 0 24px; }

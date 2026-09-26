@@ -292,6 +292,7 @@ export function mount(rootEl, options = {}) {
         initialPlaylists: null,           // if provided, skip the /api/status fetch
         showBack: false,                  // render a Back button in the CTA bar
         backLabel: null,                  // override label (otherwise falls back to i18n)
+        eyebrow: null,                    // #2987: step label above the hub (wizard only)
         locale: null,
     }, options);
     state.mounted = true;
@@ -592,7 +593,12 @@ function _renderAll() {
     // "advance" step). The Mix tab must then offer the same "Weiter →" CTA — and
     // hide its standalone "Start mix" button, which launches the game directly.
     const inWizard = !!(state.options && state.options.onContinue);
+    // #2987: the wizard's other steps open with a "STEP n · …" eyebrow; the
+    // hub fills step 3 edge to edge, so it carries the label itself. Only the
+    // wizard passes one — the admin page's hub has no steps.
+    const eyebrow = state.options && state.options.eyebrow;
     state.root.innerHTML = `
+        ${eyebrow ? `<div class="wiz-eyebrow plh-eyebrow">${_escape(eyebrow)}</div>` : ''}
         ${_topTabsHtml(state.topTab)}
         <div class="playlist-panel plh-list-view ${state.topTab === 'mix' ? 'hidden' : ''}" data-plh-list-view role="tabpanel">
             <div class="plh-header" data-plh-header></div>

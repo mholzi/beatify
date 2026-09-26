@@ -856,6 +856,8 @@ function _renderPlaylists() {
         // wizard's own chrome.
         showBack: true,
         backLabel: _t('wizard.back', 'Back'),
+        // #2987: "STEP 3 · PLAYLIST", like the eyebrow on every other step.
+        eyebrow: _t('wizard.step3.eyebrow', 'Step 3 · Playlist'),
         onSelectionChange(paths) {
             chosenPlaylists.clear();
             for (const p of paths) chosenPlaylists.add(p);
