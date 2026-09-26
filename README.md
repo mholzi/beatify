@@ -829,7 +829,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 ### v4.8.0 — 4.5 🎛️
 - **My Music can play from your own playlist** — pick a Music Assistant playlist instead of the whole library; the setup says how many songs are usable and why the others were left out (#2939)
 - **A phone that reloads on the podium gets the rematch** — it reconnects with the final standings and follows the host into the new lobby; a guest who scans the QR during the podium lands on the join form once the rematch opens (#2947)
-- **Two dead Tidal links in Divorced Dad Rock fixed** (#2945)
+- **"Crate Digger" is now "My Music"** — the new name says what the mode does; saved settings carry over (#2951)
+- **A lobby name wall on the TV** — every guest gets a big name tile, and the newest joiner glows (#2966)
+- **The podium takes centre stage at game over** — real steps with a crown, places 4 and up as chips underneath (#2967)
+- **"Round 7" when a game plays all songs** — no song-pool total on the TV, phones or admin, even after the TV reloads (#2963, #3002)
+- **A guest you sit out stays visible** — the host keeps them on the leaderboard with "Bring back", and their phone shows "no guess" instead of "Exact!" (#3000, #3001)
+- **About seventy player-screen styles back** — the Sudden Death and encore screens and more look right on phones again (#2989)
+- **The setup summary speaks your language** and the host page fits small phones (#3004, #3003)
+- **Broken links fixed** in Divorced Dad Rock, Finnish Schlager Classics, EDM Anthems and Trance Classics (#2945, #2954, #2957, #3008)
 
 ### v4.7.4 — Unisono 🎚️
 - **Sudden Death applies whichever button started the game** — the rule used to hold on one start path and not the other, and the admin page uses the one without it (#2929)
