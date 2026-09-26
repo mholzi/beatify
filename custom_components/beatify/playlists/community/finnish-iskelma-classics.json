@@ -1,6 +1,6 @@
 {
   "name": "Finnish Schlager Classics 🇫🇮",
-  "version": "1.43",
+  "version": "1.45",
   "tags": [
     "finnish",
     "iskelma",
@@ -3506,7 +3506,7 @@
         "us": null,
         "de": "applemusic://track/714055460",
         "gb": "applemusic://track/724547133",
-        "fr": "applemusic://track/713624917",
+        "fr": "applemusic://track/714055460",
         "es": "applemusic://track/714055460",
         "nl": "applemusic://track/724547133",
         "it": "applemusic://track/724547133"
@@ -5307,9 +5307,9 @@
       "uri_deezer": "deezer://track/62903830",
       "isrc": "FIAAJ8300307",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/961337523",
+        "us": null,
         "de": "applemusic://track/1442543256",
-        "gb": "applemusic://track/1443421037",
+        "gb": "applemusic://track/1443405223",
         "fr": "applemusic://track/1443405223",
         "es": "applemusic://track/1442543256",
         "nl": "applemusic://track/1443405223",
@@ -7532,10 +7532,10 @@
         "us": "applemusic://track/1719317210",
         "de": "applemusic://track/1719317210",
         "gb": "applemusic://track/1719317210",
-        "fr": "applemusic://track/1719317405",
+        "fr": "applemusic://track/1719317210",
         "es": "applemusic://track/1719317210",
         "nl": "applemusic://track/1719317210",
-        "it": "applemusic://track/1719317016"
+        "it": "applemusic://track/1719317210"
       },
       "uri_deezer": "deezer://track/2566802322",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fjRRU4BrAZg",
@@ -8777,9 +8777,9 @@
       "year": 2017,
       "isrc": "FIBAR1600509",
       "uri": "spotify:track:06EGCoGpHgvIPCA334n2hY",
-      "uri_apple_music": "applemusic://track/1194609001",
+      "uri_apple_music": "applemusic://track/1194609007",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1194609001",
+        "us": "applemusic://track/1194609007",
         "de": "applemusic://track/1194609007",
         "gb": "applemusic://track/1194609007",
         "fr": "applemusic://track/1194609007",
@@ -9059,7 +9059,7 @@
       "awards_nl": [],
       "isrc": "FIAAB8500413",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1299104106",
+        "us": null,
         "de": "applemusic://track/1443411820",
         "gb": "applemusic://track/1443411820",
         "fr": "applemusic://track/1443411820",
@@ -9069,7 +9069,7 @@
       }
     },
     {
-      "year": 2017,
+      "year": 1974,
       "artist": "Rauli Badding Somerjoki",
       "title": "Paratiisi",
       "uri": "spotify:track:5QFDqIgiyNkCiUVLM40CkD",
@@ -9085,14 +9085,14 @@
       "fun_fact_nl": "'Paratiisi' ('Paradijs') toont de zachtere kant van Rauli Badding Somerjoki. Zijn zielvolle vertolking maakte het tot een iskelmä-klassieker.",
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1299104106",
+      "uri_apple_music": "applemusic://track/1443420648",
       "uri_youtube_music": "https://music.youtube.com/watch?v=FJG76l345E4",
       "uri_tidal": "tidal://track/3692667",
       "uri_deezer": "deezer://track/62903820",
       "awards_nl": [],
       "isrc": "FISBA7400076",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1299104106",
+        "us": null,
         "de": "applemusic://track/1442543014",
         "gb": "applemusic://track/1443420648",
         "fr": "applemusic://track/1443420648",
