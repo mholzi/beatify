@@ -157,10 +157,15 @@ describe('#2130 — the stylesheet rules the fix depends on', () => {
 
     it('keeps the podium from shrinking below its stand (stylesheet guard)', () => {
         // The name broke mid-word because the place could shrink under the
-        // stand's fixed 200px, not because the font was too large.
+        // stand's fixed 200px, not because the font was too large. Since #2960
+        // the stands are grid cells whose stand fills the cell, so the cell
+        // may shrink in order (minmax(0, …)) and the name ends in an ellipsis.
+        const podium = CSS.match(/\.end-stage-layout \.dashboard-podium \{[^}]*\}/)[0];
+        expect(podium).toContain('grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr)');
         const place = CSS.match(/\.end-stage-layout \.podium-place \{[^}]*\}/)[0];
-        expect(place).toContain('flex: 0 1 200px');
         expect(place).toContain('min-width: 0');
+        const stand = CSS.match(/\.end-stage-layout \.podium-stand \{[^}]*\}/)[0];
+        expect(stand).toContain('width: 100%');
         const name = CSS.match(/\.end-stage-layout \.podium-name \{[^}]*\}/)[0];
         expect(name).toContain('text-overflow: ellipsis');
         expect(name).toContain('white-space: nowrap');

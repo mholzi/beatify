@@ -3062,34 +3062,36 @@
             }
         }
 
-        // Full standings panel — the players NOT on a stand. The podium already
-        // celebrates three; this completes the ranking. Fallback to the whole
-        // board for small games (<=3 players) so the panel is never empty.
-        // #2835: this used to be `rank > 3`, which lost everyone tied inside the
-        // top three who did not get a stand.
+        // #2960: places 4+ as small chips right under the podium. The "Full
+        // Rankings" box they used to sit in is gone: with four players it
+        // spent a third of the screen on one line. The podium already names
+        // the top three, so a game of three or fewer shows no chips at all
+        // (the old box fell back to repeating the whole board).
+        // #2835: `rest` is everyone not on a stand, ties inside the top three
+        // included — `rank > 3` used to lose them.
         var container = document.getElementById('end-leaderboard');
         if (container) {
             var rest = podium.rest;
-            var rows = rest.length ? rest : leaderboard;
             var html = '';
-            rows.forEach(function(entry) {
-                var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
-                var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+            rest.forEach(function(entry) {
+                var classes = ['end-rest-chip'];
+                if (entry.connected === false || entry.eliminated) classes.push('end-rest-chip--dim');
                 var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
 
-                // Issue #827: Sudden-Death — eliminated players render dimmed with
-                // a 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
-                var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
+                // Issue #827: Sudden-Death — eliminated players render dimmed
+                // with a 💀 prefix.
                 var skullPrefix = entry.eliminated ? '💀 ' : '';
 
-                html += '<div class="leaderboard-entry ' + rankClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
-                    '<span class="entry-rank">#' + entry.rank + '</span>' +
-                    '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
-                    '<span class="entry-score">' + entry.score + '</span>' +
+                html += '<div class="' + classes.join(' ') + '">' +
+                    '<span class="end-rest-rank">#' + entry.rank + '</span>' +
+                    '<span class="end-rest-name">' + skullPrefix + utils.escapeHtml(entry.name) + '</span>' + awayBadge +
+                    '<span class="end-rest-score">' + entry.score + '</span>' +
                 '</div>';
             });
 
             container.innerHTML = html;
+            container.classList.toggle('hidden', rest.length === 0);
+            container.classList.toggle('end-rest--dense', rest.length > 10);
         }
     }
 

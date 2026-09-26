@@ -2379,13 +2379,22 @@
     font-variant-numeric: tabular-nums;
 }
 .end-stage-layout .end-meta-dot { width: 5px; height: 5px; border-radius: 50%; background: #ff2d6a; display: inline-block; }
+/* #2960: the average pts/round is the third item of the meta line, not a
+   pill of its own — that line of height goes to the podium. The dot in front
+   is drawn here so it disappears with the item. */
 .end-stage-layout .stats-comparison {
     display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 12px; padding: 6px 16px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    font-size: 15px; font-weight: 600; color: #b3b3c2;
+    margin: 0; padding: 0;
+    background: none; border: none;
+    font-size: inherit; font-weight: 500; color: #b3b3c2;
+}
+.end-stage-layout .stats-comparison .stats-comparison-icon,
+.end-stage-layout .stats-comparison .stats-comparison-text {
+    font-size: inherit; font-weight: inherit;
+}
+.end-stage-layout .stats-comparison::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: #ff2d6a;
+    display: inline-block; margin-right: 6px;
 }
 .end-stage-layout .stats-comparison.hidden { display: none; }
 .end-stage-layout .stats-comparison--record { color: #ffd34d; border-color: rgba(255, 211, 77, 0.4); }
@@ -2396,7 +2405,8 @@
 .end-stage-layout .end-stage {
     flex: 1; min-height: 0;
     display: grid;
-    grid-template-columns: 1fr 1.25fr 1fr;
+    /* #2960: podium two thirds, highlights one third. */
+    grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr);
     gap: 28px;
     align-items: stretch;
 }
@@ -2417,35 +2427,21 @@
 }
 .end-stage-layout .end-panel-ic { font-size: 22px; }
 
-/* Standings list inside the left panel (override the in-game leaderboard box) */
-.end-stage-layout #end-leaderboard {
-    display: flex; flex-direction: column; gap: 10px;
-    flex: 1; min-height: 0; max-height: none; overflow-y: auto;
+/* Podium (left two thirds, #2960)
+   Sized in --u, one percent of a 1080p screen's width, so the numbers read
+   like the approved mockup. Short screens zoom the whole end screen (see the
+   #2960 block at the end of this file) rather than resizing single parts. */
+.end-stage-layout .end-podium-wrap {
+    --u: 19.2px;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    min-height: 0; min-width: 0;
+    padding: 0 calc(3 * var(--u));
 }
-.end-stage-layout .leaderboard-entry {
-    display: flex; align-items: center; gap: 14px;
-    height: auto; padding: 12px 16px;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    contain: none;
-}
-.end-stage-layout .leaderboard-entry .entry-rank {
-    font-family: var(--font-display, 'Outfit'), sans-serif;
-    font-weight: 900; font-size: 24px; color: #6c6c80; min-width: 46px;
-}
-.end-stage-layout .leaderboard-entry .entry-name { flex: 1; font-size: 26px; font-weight: 700; color: #fff; }
-.end-stage-layout .leaderboard-entry .entry-score {
-    font-family: var(--font-display, 'Outfit'), sans-serif;
-    font-weight: 900; font-size: 32px; color: #fff;
-    font-variant-numeric: tabular-nums;
-}
-
-/* Podium (center) */
-.end-stage-layout .end-podium-wrap { display: flex; align-items: flex-end; justify-content: center; min-height: 0; }
 .end-stage-layout .dashboard-podium {
-    display: flex; align-items: flex-end; justify-content: center;
-    gap: 22px; width: 100%; height: 100%; margin: 0;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: end;
+    gap: calc(1.4 * var(--u)); width: 100%; max-width: calc(62 * var(--u));
+    flex: 0 0 auto; margin: 0;
 }
 /* #2130 (zweite Runde): der Gewinnername brach mitten im Wort und lief aus
    dem Podest heraus. Ursache war NICHT die Schriftgroesse, sondern dass
@@ -2461,7 +2457,7 @@
    schlechtere Antwort als ein sauber gekuerzter Name. */
 .end-stage-layout .podium-place {
     display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-    flex: 0 1 200px; min-width: 0;
+    min-width: 0;
 }
 /* Kein Podest ohne Spieler: renderEndView() setzt diese Klasse, wenn den Rang
    niemand haelt. Bewusst eine eigene Klasse statt `hidden` — `.podium-place`
@@ -2473,7 +2469,7 @@
    0 PTS auf dem Fernseher. Dieselbe Absicht, mit genug Spezifitaet (0,4,1). */
 body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: none; }
 .end-stage-layout .podium-info {
-    display: flex; flex-direction: column; align-items: center; margin-bottom: 16px; position: relative;
+    display: flex; flex-direction: column; align-items: center; margin-bottom: calc(0.6 * var(--u)); position: relative;
     max-width: 100%; min-width: 0;
 }
 .end-stage-layout .podium-avatar {
@@ -2481,75 +2477,164 @@ body.theme-dark .end-stage-layout .podium-place.podium-place--empty { display: n
     font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; color: #0a0a12;
 }
 .end-stage-layout .podium-name {
-    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 800;
-    margin-top: 12px; letter-spacing: 0.3px;
+    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900;
+    margin-top: calc(0.5 * var(--u)); letter-spacing: 0.3px; line-height: 1.15;
     max-width: 100%; min-width: 0;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .end-stage-layout .podium-score { font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
-.end-stage-layout .podium-pts { font-family: var(--font-body, 'Inter'), sans-serif; font-weight: 600; font-size: 14px; color: #b3b3c2; letter-spacing: 1px; margin-left: 6px; }
+.end-stage-layout .podium-score { color: var(--color-accent-secondary, #00f5ff); }
+.end-stage-layout .podium-pts { font-family: var(--font-body, 'Inter'), sans-serif; font-weight: 500; font-size: calc(1 * var(--u)); color: #b3b3c2; letter-spacing: 1px; margin-left: 6px; }
+/* Real steps: the place number on the riser, no medal (#2960). */
 .end-stage-layout .podium-stand {
-    width: 200px; border-radius: 18px 18px 0 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-    padding-top: 16px; gap: 6px;
+    width: 100%; border-radius: calc(0.6 * var(--u)) calc(0.6 * var(--u)) 0 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.1); border-bottom: none;
 }
-.end-stage-layout .podium-medal { font-size: 40px; }
+.end-stage-layout .podium-medal { display: none; }
 .end-stage-layout .podium-place-lbl {
     font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900;
-    font-size: 13px; letter-spacing: 3px; color: rgba(255, 255, 255, 0.5);
+    font-size: calc(3.4 * var(--u)); line-height: 1; letter-spacing: 0; color: rgba(255, 255, 255, 0.35);
 }
+.end-stage-layout .podium-1 .podium-place-lbl { font-size: calc(4.2 * var(--u)); }
+.end-stage-layout .podium-3 .podium-place-lbl { font-size: calc(2.8 * var(--u)); }
 /* 1st */
 .end-stage-layout .podium-1 .podium-avatar {
-    width: 118px; height: 118px; font-size: 46px;
+    width: calc(8.5 * var(--u)); height: calc(8.5 * var(--u)); font-size: calc(3.6 * var(--u));
     background: linear-gradient(140deg, #ffe07a, #ffd34d, #ff9d2e);
-    box-shadow: 0 0 0 5px rgba(255, 211, 77, 0.28), 0 0 60px 12px rgba(255, 211, 77, 0.45);
+    border: calc(0.3 * var(--u)) solid #d4a93a;
+    box-shadow: 0 0 calc(2.5 * var(--u)) rgba(255, 210, 63, 0.5);
 }
-.end-stage-layout .podium-1 .podium-name { font-size: 38px; color: #ffd34d; }
+.end-stage-layout .podium-1 .podium-name {
+    font-size: calc(3 * var(--u));
+    background: linear-gradient(90deg, #ff2d6a, #00f5ff);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+}
 /* #2845: styles.css gibt dem Siegernamen im dunklen Theme per
    `body.theme-dark .podium-place.podium-1 .podium-name` (0,4,1) `white-space: normal`,
    `word-break: break-word` und bis zu 64px. Das schlug die TV-Regeln oben (0,3,0): auf
    dem Fernseher lief der Name in 64px und brach mitten im Wort um ("Andr" / "eas").
    Dieselbe Absicht wie oben, mit genug Spezifitaet (0,5,1). Der Farbverlauf bleibt. */
 body.theme-dark .end-stage-layout .podium-place.podium-1 .podium-name {
-    font-size: 38px; line-height: 1.15;
+    font-size: calc(3 * var(--u)); line-height: 1.15;
     white-space: nowrap; word-break: normal; overflow: hidden; text-overflow: ellipsis;
 }
-.end-stage-layout .podium-1 .podium-score { font-size: 54px; color: #ffd34d; }
+.end-stage-layout .podium-1 .podium-score { font-size: calc(2.2 * var(--u)); }
 .end-stage-layout .podium-1 .podium-stand {
-    height: 240px;
+    height: calc(11 * var(--u));
     background: linear-gradient(180deg, rgba(255, 211, 77, 0.3), rgba(255, 211, 77, 0.06));
     border-color: rgba(255, 211, 77, 0.5); box-shadow: 0 0 50px rgba(255, 211, 77, 0.2);
 }
+/* The crown sits in the flow above the winner's avatar, so the stage
+   reserves its height instead of letting it poke into the header. */
 .end-stage-layout .podium-crown {
-    position: absolute; top: -46px; left: 50%; transform: translateX(-50%);
-    font-size: 46px; filter: drop-shadow(0 0 14px rgba(255, 211, 77, 0.8));
+    position: static; transform: none;
+    font-size: calc(2.6 * var(--u)); line-height: 1.1;
+    filter: drop-shadow(0 0 14px rgba(255, 211, 77, 0.8));
 }
 /* 2nd */
 .end-stage-layout .podium-2 .podium-avatar {
-    width: 92px; height: 92px; font-size: 34px;
+    width: calc(6.6 * var(--u)); height: calc(6.6 * var(--u)); font-size: calc(2.8 * var(--u));
     background: linear-gradient(140deg, #e8ecf5, #b9c2d6, #8b94ad);
     box-shadow: 0 0 0 4px rgba(200, 210, 230, 0.22);
 }
-.end-stage-layout .podium-2 .podium-name { font-size: 30px; color: #dfe5f2; }
-.end-stage-layout .podium-2 .podium-score { font-size: 42px; color: #dfe5f2; }
+.end-stage-layout .podium-2 .podium-name { font-size: calc(2 * var(--u)); color: #fff; }
+.end-stage-layout .podium-2 .podium-score { font-size: calc(1.7 * var(--u)); }
 .end-stage-layout .podium-2 .podium-stand {
-    height: 170px;
+    height: calc(7.5 * var(--u));
     background: linear-gradient(180deg, rgba(200, 210, 230, 0.18), rgba(200, 210, 230, 0.04));
     border-color: rgba(200, 210, 230, 0.34);
 }
 /* 3rd */
 .end-stage-layout .podium-3 .podium-avatar {
-    width: 92px; height: 92px; font-size: 34px;
+    width: calc(6.6 * var(--u)); height: calc(6.6 * var(--u)); font-size: calc(2.8 * var(--u));
     background: linear-gradient(140deg, #f0a878, #d6824e, #b5662f);
     box-shadow: 0 0 0 4px rgba(214, 130, 78, 0.22);
 }
-.end-stage-layout .podium-3 .podium-name { font-size: 30px; color: #f0b48c; }
-.end-stage-layout .podium-3 .podium-score { font-size: 42px; color: #f0b48c; }
+.end-stage-layout .podium-3 .podium-name { font-size: calc(2 * var(--u)); color: #fff; }
+.end-stage-layout .podium-3 .podium-score { font-size: calc(1.7 * var(--u)); }
 .end-stage-layout .podium-3 .podium-stand {
-    height: 130px;
+    height: calc(5 * var(--u));
     background: linear-gradient(180deg, rgba(214, 130, 78, 0.18), rgba(214, 130, 78, 0.04));
     border-color: rgba(214, 130, 78, 0.32);
+}
+
+/* #2960: dashboard.html runs under body.theme-dark, whose End-of-Game
+   Podium v2 (styles.css, built for the phone) turns #1 into a poster card and
+   #2/#3 into chips, at (0,3,1)-(0,4,1). On the TV that squeezed the three
+   stands on top of each other once they became grid cells. The id scopes this
+   reset above all of it; the TV rules above then apply unchanged. */
+#dashboard-end .end-stage-layout .podium-place.podium-1,
+#dashboard-end .end-stage-layout .podium-place.podium-2,
+#dashboard-end .end-stage-layout .podium-place.podium-3 {
+    grid-area: auto;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    width: auto; min-width: 0; height: auto;
+    padding: 0; gap: 0;
+    background: none; border: none; border-radius: 0; box-shadow: none;
+    text-align: center;
+}
+#dashboard-end .end-stage-layout .podium-place.podium-place--empty { display: none; }
+#dashboard-end .end-stage-layout .podium-place .podium-stand { display: flex; }
+#dashboard-end .end-stage-layout .podium-place .podium-medal { display: none; }
+#dashboard-end .end-stage-layout .podium-place .podium-name {
+    margin: calc(0.5 * var(--u)) 0 0; letter-spacing: 0.3px; line-height: 1.15;
+    white-space: nowrap; word-break: normal; overflow: hidden; text-overflow: ellipsis;
+    filter: none;
+}
+#dashboard-end .end-stage-layout .podium-place.podium-1 .podium-name { font-size: calc(3 * var(--u)); }
+#dashboard-end .end-stage-layout .podium-place.podium-2 .podium-name,
+#dashboard-end .end-stage-layout .podium-place.podium-3 .podium-name { font-size: calc(2 * var(--u)); color: #fff; }
+#dashboard-end .end-stage-layout .podium-place .podium-score {
+    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900; line-height: 1.1;
+    color: var(--color-accent-secondary, #00f5ff); text-shadow: none; margin: 0;
+}
+#dashboard-end .end-stage-layout .podium-place.podium-1 .podium-score { font-size: calc(2.2 * var(--u)); }
+#dashboard-end .end-stage-layout .podium-place.podium-2 .podium-score,
+#dashboard-end .end-stage-layout .podium-place.podium-3 .podium-score { font-size: calc(1.7 * var(--u)); }
+/* Only the winner says "pts" — on the side steps the number is enough. */
+#dashboard-end .end-stage-layout .podium-place.podium-2 .podium-pts,
+#dashboard-end .end-stage-layout .podium-place.podium-3 .podium-pts { display: none; }
+
+/* Places 4+ as chips directly under the podium (#2960). They wrap into a
+   second row past ~10 players; the podium above gives way (min-height: 0). */
+.end-stage-layout .end-rest {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: calc(0.8 * var(--u)) calc(1 * var(--u));
+    width: 100%; margin-top: calc(1.2 * var(--u)); flex-shrink: 0;
+}
+.end-stage-layout .end-rest.hidden { display: none; }
+.end-stage-layout .end-rest-chip {
+    display: flex; align-items: center; gap: calc(0.7 * var(--u));
+    padding: calc(0.3 * var(--u)) calc(1 * var(--u)) calc(0.3 * var(--u)) calc(0.35 * var(--u));
+    border-radius: 999px;
+    background: #1d1d27; border: 1px solid #2c2c38;
+    font-size: calc(1.2 * var(--u)); font-weight: 700; color: #fff;
+    max-width: 100%; min-width: 0;
+}
+.end-stage-layout .end-rest-chip--dim { opacity: 0.5; }
+/* Past ten chips the row gets denser so a big party still fits in ~3 rows. */
+.end-stage-layout .end-rest--dense .end-rest-chip { font-size: calc(1 * var(--u)); }
+/* ...and the steps get lower, so three rows of chips fit under the podium
+   without pushing the crown into the header. */
+.end-stage-layout .end-podium-wrap:has(.end-rest--dense) .podium-1 .podium-stand { height: calc(8 * var(--u)); }
+.end-stage-layout .end-podium-wrap:has(.end-rest--dense) .podium-2 .podium-stand { height: calc(5.5 * var(--u)); }
+.end-stage-layout .end-podium-wrap:has(.end-rest--dense) .podium-3 .podium-stand { height: calc(3.8 * var(--u)); }
+.end-stage-layout .end-rest--dense .end-rest-rank { width: calc(1.6 * var(--u)); height: calc(1.6 * var(--u)); font-size: calc(0.75 * var(--u)); }
+.end-stage-layout .end-rest-rank {
+    display: grid; place-items: center; flex: none;
+    width: calc(1.9 * var(--u)); height: calc(1.9 * var(--u)); border-radius: 50%;
+    background: #2a2a36; color: #8a8a9a;
+    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 800; font-size: calc(0.9 * var(--u));
+}
+.end-stage-layout .end-rest-name { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.end-stage-layout .end-rest-chip .away-badge { font-size: calc(0.8 * var(--u)); color: #8a8a9a; }
+.end-stage-layout .end-rest-score {
+    font-family: var(--font-display, 'Outfit'), sans-serif; font-weight: 900;
+    color: var(--color-accent-secondary, #00f5ff); font-variant-numeric: tabular-nums;
+    margin-left: calc(0.4 * var(--u));
 }
 
 /* Highlights reel (right) */
@@ -3641,4 +3726,23 @@ body.join-corner-open #dashboard-reveal {
     body.join-corner-open #dashboard-reveal.reveal-axis-mode {
         --guess-axis-inset-right: calc((clamp(16px, 2.2vw, 40px) + 308px) / 0.62);
     }
+}
+
+/* #2960 — the end screen is laid out in 1080p pixels (header, podium in
+   --u = 19.2px, award row). At 1280x720 that overflowed and the stands ran
+   into the award row. Same answer as #2961 for the reveal: short landscape
+   screens zoom the whole end screen, so 720p shows the 1080p picture, smaller.
+   Each step keeps height / zoom >= ~1080 px and width / zoom >= 1920 px at
+   16:9; 1080p and taller match no query and are unchanged. */
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 1000px) {
+    #dashboard-end .dashboard-end-content.end-stage-layout { zoom: 0.9; }
+}
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 904px) {
+    #dashboard-end .dashboard-end-content.end-stage-layout { zoom: 0.8; }
+}
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 786px) {
+    #dashboard-end .dashboard-end-content.end-stage-layout { zoom: 0.7; }
+}
+@media (orientation: landscape) and (min-width: 721px) and (max-height: 740px) {
+    #dashboard-end .dashboard-end-content.end-stage-layout { zoom: 0.64; }
 }
