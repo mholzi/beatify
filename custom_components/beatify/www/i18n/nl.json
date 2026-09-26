@@ -1300,7 +1300,9 @@
       "playlist": "Playlist",
       "mode": "Modus",
       "atmosphere": "Sfeer",
-      "rounds": "rondes"
+      "rounds": "rondes",
+      "playlistsPicked": "{n} gekozen · {first} + meer",
+      "atmosphereNone": "geen"
     },
     "step3lib": {
       "eyebrow": "Stap 3 · Jouw bibliotheek",

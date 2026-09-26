@@ -67,11 +67,11 @@ describe('the summary mode line carries the round count (#2988)', () => {
     }
 
     it('shows "All songs" for the default', () => {
-        expect(render(0)).toContain('Year mode · normal · 45s · All songs · EN');
+        expect(render(0)).toContain('Year mode · Normal · 45s · All songs · EN');
     });
 
     it('shows the cap', () => {
-        expect(render(10)).toContain('Year mode · normal · 45s · 10 rounds · EN');
+        expect(render(10)).toContain('Year mode · Normal · 45s · 10 rounds · EN');
     });
 
     it('also in Title & Artist mode', () => {

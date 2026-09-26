@@ -1300,7 +1300,9 @@
       "playlist": "Playlist",
       "mode": "Mode",
       "atmosphere": "Ambiance",
-      "rounds": "manches"
+      "rounds": "manches",
+      "playlistsPicked": "{n} choisies · {first} + d'autres",
+      "atmosphereNone": "aucune"
     },
     "step3lib": {
       "eyebrow": "Étape 3 · Votre bibliothèque",
