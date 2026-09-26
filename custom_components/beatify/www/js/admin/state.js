@@ -73,6 +73,18 @@ export const adminState = {
     difficultyBetScalingEnabled: false, // Issue #1727
     sabotageEnabled: false,             // Issue #1665
 
+    // --- Crate Digger / library ---
+    // #2973: these had no starting value. With no saved settings (server
+    // `{}`, empty localStorage) the library step printed "Top undefined%"
+    // and left the size and scan selects blank. The values are the ones the
+    // panel's markup shows and the backend falls back to
+    // (library/config.py SIZE_DEFAULT, YEAR_GATES["strict"]); saved settings
+    // still override them in loadSavedSettings / _loadServerSettings.
+    libraryPopPercent: 50,              // "Top 50%", slider at 101 - 50
+    librarySize: 30,                    // songs per game
+    libraryYearGate: 'strict',          // verified years only
+    libraryScanSize: 2500,              // the scan select's preselected option
+
     // --- lobby / admin-as-player (#477) ---
     previousLobbyPlayers: [],           // Story 16.8
     adminPlayerName: null,              // set when admin joins as player
