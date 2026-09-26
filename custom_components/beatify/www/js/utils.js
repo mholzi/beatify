@@ -498,7 +498,7 @@ window.BeatifyUtils = (function() {
      *
      * #1765: the server now sends the PLAYING/REVEAL leaderboard as
      * ``{rank, name, rank_change}`` only — score, streak, is_admin, connected,
-     * eliminated and eliminated_round are already carried in the same frame's
+     * eliminated, eliminated_round and sat_out_by_host are already carried in the same frame's
      * ``players`` array, so they no longer ride along in every leaderboard
      * entry. This joins them back by name on receipt so all downstream render
      * code (standings, TV rows, admin cards, steal modal) is unchanged.
@@ -534,7 +534,10 @@ window.BeatifyUtils = (function() {
                 sabotaged_by: p.sabotaged_by,
                 sabotage_effect: p.sabotage_effect,
                 // #2578: sitzt dieses Stechen aus — nicht dasselbe wie eliminated.
-                playoff_spectator: p.playoff_spectator
+                playoff_spectator: p.playoff_spectator,
+                // #3000: taken out by the host (#2746). Without it the host's
+                // leaderboard never showed the badge or "Bring back".
+                sat_out_by_host: p.sat_out_by_host
             }, entry);
         });
     }
