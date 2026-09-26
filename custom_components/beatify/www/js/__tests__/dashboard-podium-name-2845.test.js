@@ -82,6 +82,8 @@ describe('#2845 the winner name stays on one line on the TV', () => {
     });
 
     it('uses the TV size, not the phone clamp that reaches 64px', () => {
-        expect(rule(DASHBOARD, TV_SELECTOR)['font-size']).toBe('38px');
+        // #2960: the podium grew; 3 --u is 57.6px on the 1080p grid the end
+        // screen is laid out on (short screens zoom the whole screen).
+        expect(rule(DASHBOARD, TV_SELECTOR)['font-size']).toBe('calc(3 * var(--u))');
     });
 });

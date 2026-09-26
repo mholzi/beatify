@@ -159,6 +159,7 @@ function renderDashboard(leaderboard) {
             (node) => node.classList.contains('podium-place--empty'),
         ),
         rankings: elements['end-leaderboard'].innerHTML,
+        restHidden: elements['end-leaderboard'].classList.contains('hidden'),
     };
 }
 
@@ -280,8 +281,17 @@ describe('#2835 — nobody tied inside the top three disappears from the TV', ()
         }
     });
 
-    it('still lists the whole board below a podium of three', () => {
-        const { rankings } = renderDashboard(TIE_FOR_FIRST);
-        for (const name of ['Tie-A', 'Tie-B', 'Low']) expect(rankings).toContain(`>${name}<`);
+    it('shows no chips under a podium that already holds everyone (#2960)', () => {
+        // The old "Full Rankings" box fell back to repeating the whole board
+        // so it was never empty. The chips under the podium only list places
+        // beyond it, and hide when there are none.
+        const { rankings, restHidden } = renderDashboard(TIE_FOR_FIRST);
+        expect(rankings).toBe('');
+        expect(restHidden).toBe(true);
+    });
+
+    it('shows the chips row when someone is off the podium (#2960)', () => {
+        const { restHidden } = renderDashboard(ELEVEN);
+        expect(restHidden).toBe(false);
     });
 });
