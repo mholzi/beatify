@@ -159,7 +159,9 @@ describe('#2833 / #2834 the join corner keeps its footprint free', () => {
     it('moves the leaderboard off the corner while PLAYING', () => {
         expect(CSS).toMatch(/body\.join-corner-open \.playing-right-section \.dashboard-leaderboard\s*\{[^}]*padding-right:/);
         // A narrow column keeps its width; the rows must not be squeezed either.
-        expect(CSS).toMatch(/@media \(max-width: 1599px\)\s*\{\s*body\.join-corner-open \.playing-right-section \.dashboard-leaderboard\s*\{\s*padding-right:\s*0;\s*\}/);
+        // #2965 moved that floor from 1600 px down to 1200 px: in between, the
+        // artwork column gives up the width instead (see its own test).
+        expect(CSS).toMatch(/@media \(max-width: 1199px\)\s*\{\s*body\.join-corner-open \.playing-right-section \.dashboard-leaderboard\s*\{\s*padding-right:\s*0;\s*\}/);
     });
 
     it('ends the axis plot short of the corner at REVEAL, and the year follows', () => {

@@ -3205,11 +3205,27 @@ body.theme-dark .end-stage-layout .podium-place.podium-1 .podium-name {
 body.join-corner-open .playing-right-section .dashboard-leaderboard {
     padding-right: calc(clamp(16px, 2.2vw, 40px) + 220px);
 }
-/* Under 1600 px the column is too narrow to give up 260 px, and giving up
-   height instead shrank eleven rows to 6 px type at 1280×720. Leave it. */
-@media (max-width: 1599px) {
+/* Under 1600 px the column was too narrow to give up 260 px, and giving up
+   height instead shrank eleven rows to 6 px type at 1280×720. Below 1200 px
+   that still holds: leave it. */
+@media (max-width: 1199px) {
     body.join-corner-open .playing-right-section .dashboard-leaderboard {
         padding-right: 0;
+    }
+}
+/* #2965 — between 1200 and 1599 px the corner sat on the lowest rows (at
+   1280×720 with five players the last two names were hidden). The width the
+   leaderboard needs comes out of the artwork column instead: it is a fixed
+   640 px, but the art inside it is only min(480px, 45vh) wide, and 324 px at
+   720p. The column follows the art (50vh leaves room for the glow), the gap
+   narrows, and the leaderboard keeps the corner's footprint free the same
+   way it does from 1600 px up. Row heights are untouched — the rows keep
+   the full column height, only their right end moves. 1600 px and wider
+   match no query and are unchanged. */
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .dashboard-playing-content {
+        grid-template-columns: min(640px, 50vh) minmax(0, 1fr);
+        gap: 40px;
     }
 }
 /* The plot ends a half dot plus the gap short of the panel. */
