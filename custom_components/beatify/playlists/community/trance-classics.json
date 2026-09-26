@@ -1,6 +1,6 @@
 {
   "name": "Trance Classics",
-  "version": "1.14",
+  "version": "1.15",
   "tags": [
     "trance",
     "hands-up",
@@ -424,7 +424,7 @@
         "us": "applemusic://track/1657393728",
         "de": "applemusic://track/1673414656",
         "gb": "applemusic://track/1673414656",
-        "fr": "applemusic://track/430891171",
+        "fr": null,
         "es": "applemusic://track/1673414656",
         "nl": "applemusic://track/1673414656",
         "it": "applemusic://track/1673414656"
@@ -805,7 +805,7 @@
         "it": "applemusic://track/1583233643"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=C9MT5NowzCk",
-      "uri_tidal": "tidal://track/86133790",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/1541481792",
       "fun_fact": "A trance and dance-floor classic (1998).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1998).",
@@ -1080,7 +1080,7 @@
         "it": "applemusic://track/1490201645"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qNwamr09M84",
-      "uri_tidal": "tidal://track/297450131",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3786234122",
       "fun_fact": "A trance and dance-floor classic (1999).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (1999).",
@@ -1893,7 +1893,7 @@
       "artist": "Tiga",
       "title": "Sunglasses at Night",
       "year": 2001,
-      "isrc": "NLF712503080",
+      "isrc": "DEG932001576",
       "uri": "spotify:track:5rITB9SHFWx7XtKSn9y4TY",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
@@ -1907,7 +1907,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=l7tNo5S6xEE",
       "uri_tidal": "tidal://track/369417366",
-      "uri_deezer": "deezer://track/3363395621",
+      "uri_deezer": "deezer://track/2914943901",
       "fun_fact": "A trance and dance-floor classic (2001).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2001).",
       "fun_fact_es": "Un clásico del trance y la pista de baile (2001).",
@@ -1995,7 +1995,7 @@
       "year": 2002,
       "isrc": "DEF910200049",
       "uri": "spotify:track:2bd1FeFKgVACAUhcuyf9cC",
-      "uri_apple_music": "applemusic://track/147801325",
+      "uri_apple_music": "applemusic://track/454161919",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/454161919",
         "de": "applemusic://track/454161919",
@@ -2093,7 +2093,7 @@
       "artist": "Kate Ryan",
       "title": "Désenchantée",
       "year": 2002,
-      "isrc": "NLZ542600145",
+      "isrc": "BEC010100040",
       "uri": "spotify:track:4yOU9FaCmFFo2qfy1FHIe3",
       "uri_apple_music": "applemusic://track/693612028",
       "uri_apple_music_by_region": {
@@ -2107,7 +2107,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2Az_Ux2uNmk",
       "uri_tidal": "tidal://track/1453841",
-      "uri_deezer": "deezer://track/3925239971",
+      "uri_deezer": "deezer://track/3092650",
       "fun_fact": "A trance and dance-floor classic (2002).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2002).",
       "fun_fact_es": "Un clásico del trance y la pista de baile (2002).",
@@ -2406,7 +2406,7 @@
         "it": "applemusic://track/1809974901"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Xu2B3TgNwVo",
-      "uri_tidal": "tidal://track/64328325",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3334867981",
       "fun_fact": "A trance and dance-floor classic (2004).",
       "fun_fact_de": "Ein Trance- und Dancefloor-Klassiker (2004).",
