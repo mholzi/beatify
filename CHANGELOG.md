@@ -4,28 +4,35 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.8.0-rc4] - 2026-09-26
+## [4.8.0] - 2026-09-26
 
-Everything from rc3, with the sit-out loop closed for host and guest.
+The week 2026-W39b "4.5", four candidates in three days. My Music (formerly Crate Digger) can play
+from a Music Assistant playlist, a phone that reloads on the podium makes it into the rematch, and
+the TV gets a lobby name wall and a real podium. rc3 passed the live test; rc4 added the sit-out,
+round-chip, admin-header and setup-summary fixes below and was released without a live test of its
+own on Markus' decision.
 
-### Fixed
-- **Admin leaderboard shows sat-out guests in a live game** (#3000, #3005). `sat_out_by_host` is
-  carried through `hydrateLeaderboard`, so the host sees the guest and can tap "Bring back".
-- **A sat-out guest sees the no-guess verdict on the reveal** (#3001, #3006) instead of
-  "Nailed it! · Exact!"; the guest is flagged as missed for that round.
-- **TV reveal round chip** is filled from state on every reveal render, so a dashboard loaded
-  mid-reveal no longer shows "Round 1 of 10" (#3002, #3007).
-- **Admin header fits 360 and 390 px** without sideways scroll or a clipped reset button (#3003, #3009).
-- **Setup wizard Ready summary fully translated** (#3004, #3012): the playlist line, atmosphere and
-  difficulty come from the locale files and reuse the labels of steps 4 and 5.
-- **Playlist data**: broken and nulled URIs in trance-classics (#3008; #3010 version 1.15, #3011
-  version 1.16).
-
-## [4.8.0-rc3] - 2026-09-26
-
-Everything from rc2, with a TV that fills the room and about seventy player-screen styles back in force.
+### Added
+- **A Music Assistant playlist as the My Music song source** (#2939, #2948). Setup step 3 and
+  the admin My Music panel get a **Whole library | My playlist** switch. In playlist mode the
+  panel lists the Music Assistant library playlists, hides popularity and genres, and says how many
+  songs are usable ("37 of 45 songs usable"). The dropped songs expand grouped by reason, each with
+  its way out: no reliable year (with "Relax year accuracy" when a looser gate adds songs), not
+  scanned yet ("Scan library"), not in your library, duplicate. The wizard's Continue button carries
+  the number and stays disabled until the playlist has a usable song. Tracks are matched on the
+  library URI, directly or through the library twin of a provider track, then on normalized artist
+  and title across every credited artist. The playlist is read again at every game start, so edits
+  made in Music Assistant are picked up; recently played songs are not excluded in playlist mode,
+  since on a hand-picked set that would quietly shrink it. New endpoints
+  `GET /beatify/api/library-playlists/ma` and `GET /beatify/api/library-playlists/ma/check`, new
+  error codes `LIBRARY_PLAYLIST_UNAVAILABLE` / `LIBRARY_PLAYLIST_EMPTY` in all six locales.
 
 ### Changed
+- **"Crate Digger" is now "My Music"** (#2951). The old name did not say what the mode does; the
+  new one reads naturally next to Spotify and Apple Music in the provider picker (de: Meine Musik,
+  es: Mi música, fr: Ma musique, it: La mia musica, nl: Mijn muziek). User-visible strings only:
+  i18n values, the admin fallback, the provider label, server messages, the default saved-selection
+  name and the panel version line. The internal id stays `ma_library`, so saved settings carry over.
 - **TV lobby name wall** (#2966, #2968). The player list is a grid of large name tiles with avatar
   initials (3 columns up to 6 players, 4 from 7, 5 from 13), the newest joiner glows, and the join
   URL keeps the game ID on one line. A joining player's tile is added in place instead of rebuilding
@@ -40,60 +47,37 @@ Everything from rc2, with a TV that fills the room and about seventy player-scre
 - **Playlist hub search lists the best title match first** (#2990).
 
 ### Fixed
-- **Hidden player-screen styles restored** (#2989). Two unclosed blocks in `styles.css` nested about
-  70 rules inside reduced-motion; halftime and Sudden Death "OUT" overlays, the eliminated and sat-out
-  views, the end-round picker, comeback/encore offers, ghost league, finale banners and Last One
-  Standing are styled again. A brace-balance test guards the file.
-- **TV at 1280x720 and 1366x768**: the reveal year fits (#2962) and the join card stays off the
-  leaderboard (#2969).
-- **Playlist hub**: rows keep their position after "+ Add" (#2975), the request button shows its
-  envelope again (#2976), the card badge stacks under the "+ Add" pill (#2977).
-- **Player reveal** stacks the collection card's year, title and artist again (#2979).
-- **Wizard library step** falls back to the default popularity when settings are empty (#2978).
-- **"(away)" marker translated** on the TV lobby (#2985) and the admin leaderboard (#2996); the
-  sat-out row wraps so "Bring back" no longer clips the badge (#2998).
-- **Playlist data**: 8 wrong Apple Music URIs in finnish-iskelma-classics (#2954, version 1.45) and
-  16 broken URIs in edm-anthems (#2957, version 1.45).
-
-## [4.8.0-rc2] - 2026-09-25
-
-Everything from rc1, with the mode renamed.
-
-### Changed
-- **"Crate Digger" is now "My Music"** (#2951). The old name did not say what the mode does; the
-  new one reads naturally next to Spotify and Apple Music in the provider picker (de: Meine Musik,
-  es: Mi música, fr: Ma musique, it: La mia musica, nl: Mijn muziek). User-visible strings only:
-  i18n values, the admin fallback, the provider label, server messages, the default saved-selection
-  name and the panel version line. The internal id stays `ma_library`, so saved settings carry over.
-
-## [4.8.0-rc1] - 2026-09-24
-
-The host can hand Crate Digger a playlist instead of the whole library, and a phone that reloads on
-the podium makes it into the rematch.
-
-### Added
-- **A Music Assistant playlist as the Crate Digger song source** (#2939, #2948). Setup step 3 and
-  the admin Crate Digger panel get a **Whole library | My playlist** switch. In playlist mode the
-  panel lists the Music Assistant library playlists, hides popularity and genres, and says how many
-  songs are usable ("37 of 45 songs usable"). The dropped songs expand grouped by reason, each with
-  its way out: no reliable year (with "Relax year accuracy" when a looser gate adds songs), not
-  scanned yet ("Scan library"), not in your library, duplicate. The wizard's Continue button carries
-  the number and stays disabled until the playlist has a usable song. Tracks are matched on the
-  library URI, directly or through the library twin of a provider track, then on normalized artist
-  and title across every credited artist. The playlist is read again at every game start, so edits
-  made in Music Assistant are picked up; recently played songs are not excluded in playlist mode,
-  since on a hand-picked set that would quietly shrink it. New endpoints
-  `GET /beatify/api/library-playlists/ma` and `GET /beatify/api/library-playlists/ma/check`, new
-  error codes `LIBRARY_PLAYLIST_UNAVAILABLE` / `LIBRARY_PLAYLIST_EMPTY` in all six locales.
-
-### Fixed
 - **A guest whose page reloads on the podium gets the rematch** (#2947, #2949). `handle_reconnect`
   refused sessions in END with `GAME_ENDED`; it now reconnects as in any other phase, so the phone
   shows the final standings and follows the host into the rematch lobby. A guest who scans the QR
   during the podium sees "Game Has Ended", but the page checks the game status every 4 s and opens
   the join form once the rematch lobby accepts joins. `GameState.rematched_from_game_id` remembers
   the finished game's id for one generation, so an old QR link follows to the new game.
-- **Two dead Tidal links in Divorced Dad Rock** (#2945, #2946). Playlist version 1.13 -> 1.14.
+- **Hidden player-screen styles restored** (#2989). Two unclosed blocks in `styles.css` nested about
+  70 rules inside reduced-motion; halftime and Sudden Death "OUT" overlays, the eliminated and sat-out
+  views, the end-round picker, comeback/encore offers, ghost league, finale banners and Last One
+  Standing are styled again. A brace-balance test guards the file.
+- **Admin leaderboard shows sat-out guests in a live game** (#3000, #3005). `sat_out_by_host` is
+  carried through `hydrateLeaderboard`, so the host sees the guest and can tap "Bring back".
+- **A sat-out guest sees the no-guess verdict on the reveal** (#3001, #3006) instead of
+  "Nailed it! · Exact!"; the guest is flagged as missed for that round.
+- **TV reveal round chip** is filled from state on every reveal render, so a dashboard loaded
+  mid-reveal no longer shows "Round 1 of 10" (#3002, #3007).
+- **TV at 1280x720 and 1366x768**: the reveal year fits (#2962) and the join card stays off the
+  leaderboard (#2969).
+- **Admin header fits 360 and 390 px** without sideways scroll or a clipped reset button (#3003, #3009).
+- **Setup wizard Ready summary fully translated** (#3004, #3012): the playlist line, atmosphere and
+  difficulty come from the locale files and reuse the labels of steps 4 and 5.
+- **Playlist hub**: rows keep their position after "+ Add" (#2975), the request button shows its
+  envelope again (#2976), the card badge stacks under the "+ Add" pill (#2977).
+- **Player reveal** stacks the collection card's year, title and artist again (#2979).
+- **Wizard library step** falls back to the default popularity when settings are empty (#2978).
+- **"(away)" marker translated** on the TV lobby (#2985) and the admin leaderboard (#2996); the
+  sat-out row wraps so "Bring back" no longer clips the badge (#2998).
+- **Playlist data**: two dead Tidal links in divorced-dad-rock (#2945, #2946, version 1.14), 8 wrong Apple
+  Music URIs in finnish-iskelma-classics (#2954, version 1.45), 16 broken URIs in edm-anthems
+  (#2957, version 1.45), and broken and nulled URIs in trance-classics (#3008; #3010 version 1.15,
+  #3011 version 1.16).
 
 ## [4.7.4] - 2026-09-23
 
