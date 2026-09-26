@@ -98,7 +98,10 @@ export function renderAdminLeaderboard(leaderboard, containerId, withHostControl
         // Issue #827: dim eliminated players + skull-prefix their name.
         var eliminatedClass = entry.eliminated ? 'is-eliminated' : '';
         var skullPrefix = entry.eliminated ? '💀 ' : '';
-        var awayBadge = entry.connected === false ? '<span class="away-badge">(away)</span>' : '';
+        // #2994: the same `lobby.away` word the TV (#2982) and the phones show.
+        var awayBadge = entry.connected === false
+            ? '<span class="away-badge">(' + escapeHtml(tr('lobby.away', 'away')) + ')</span>'
+            : '';
         // #2746: taken out by the host. No skull — nobody was eliminated,
         // somebody left — and the rank and score stay exactly where they were.
         var satOut = !!entry.sat_out_by_host;
