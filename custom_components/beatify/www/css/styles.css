@@ -398,6 +398,24 @@ header h1 {
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md, 16px);
+    /* #3003: if the actions still do not fit next to the wordmark (e.g. the
+       "Finish setup" pill is showing), they drop to a second line, right-
+       aligned, instead of running off the screen. */
+    flex-wrap: wrap;
+    row-gap: var(--space-xs, 8px);
+}
+
+/* #3003: at phone width the 72px wordmark (245px) plus three 44px actions did
+   not fit: the reset button was clipped and the page scrolled 19px sideways
+   at 390px. Below 420px the wordmark scales with the viewport and the gap
+   tightens, so wordmark and actions share one line at 360 and 390px. */
+@media (max-width: 420px) {
+    .admin-header {
+        gap: var(--space-xs, 8px);
+    }
+    .admin-header .wordmark {
+        font-size: clamp(2.5rem, 14vw, var(--font-size-hero));
+    }
 }
 
 .admin-header h1 {
@@ -453,6 +471,8 @@ body.theme-dark .analytics-icon-link:focus {
     display: flex;
     align-items: center;
     gap: var(--space-xs, 8px);
+    /* #3003: stays right-aligned when the header wraps. */
+    margin-left: auto;
 }
 
 /* PWA Install Button (#226) */
