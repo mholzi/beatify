@@ -843,23 +843,8 @@
             applyTimer();
         }
 
-        // Reveal round number mirror — copy #dashboard-current-round / #dashboard-total-rounds
-        // into the reveal view's .reveal-round-num / .reveal-total-num so the round chip
-        // stays in sync without touching dashboard.js.
-        var mirror = function(srcId, cls){
-            var src = document.getElementById(srcId);
-            if (!src) return;
-            var targets = document.querySelectorAll('.' + cls);
-            if (!targets.length) return;
-            var apply = function(){
-                var t = src.textContent;
-                targets.forEach(function(el){ el.textContent = t; });
-            };
-            new MutationObserver(apply).observe(src, { childList: true, characterData: true, subtree: true });
-            apply();
-        };
-        mirror('dashboard-current-round', 'reveal-round-num');
-        mirror('dashboard-total-rounds', 'reveal-total-num');
+        // #3002: the reveal round chip is filled by renderRevealView from the
+        // state itself, no longer mirrored from the PLAYING chip.
     })();
     </script>
     <!-- #2504: the way in stays visible while the game runs. The server admits
