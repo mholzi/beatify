@@ -46,7 +46,6 @@
     var MAX_RECONNECT_DELAY_MS = 30000;
 
     // State tracking
-    var previousPlayers = [];
     var countdownInterval = null;
     var lastQRCodeUrl = {};
     // Issue #827: dedup key for the full-bleed "OUT" takeover so it only fires
@@ -1076,9 +1075,36 @@
     }
 
     /**
+     * Bring an existing tile in line with the player's current state (#2964).
+     * Only the away state can change on a tile; the name is its key.
+     */
+    function syncPlayerTile(tile, player) {
+        var away = player.connected === false;
+        tile.classList.toggle('dashboard-player-card--disconnected', away);
+        var badge = tile.querySelector('.away-badge');
+        if (away && !badge) {
+            badge = document.createElement('span');
+            badge.className = 'away-badge';
+            badge.textContent = '(away)';
+            tile.appendChild(badge);
+        } else if (!away && badge) {
+            tile.removeChild(badge);
+        }
+    }
+
+    /**
      * Render the lobby name wall (#2959): a grid of large name tiles, the
      * newest joiner glowing cyan for a moment, and a dashed "waiting for
      * more…" tile at the end.
+     *
+     * #2964: the wall is updated in place, keyed by name. It used to be
+     * cleared and rebuilt on every render, and a join renders twice (the join
+     * broadcast, then the guest's phone finishing or skipping the onboarding
+     * tour flips `onboarded`), so every name on the TV vanished and slid back
+     * in twice per guest. Now a tile is created once, when its player first
+     * appears — only that tile animates — and a render that changes nothing
+     * the wall shows (same names, same order, same away state) touches no DOM.
+     *
      * @param {Array} players
      */
     function renderPlayerList(players) {
@@ -1093,32 +1119,72 @@
             return 0;
         });
 
-        // Find new players
-        var previousNames = previousPlayers.map(function(p) { return p.name; });
-        var newNames = sortedPlayers
-            .filter(function(p) { return previousNames.indexOf(p.name) === -1; })
-            .map(function(p) { return p.name; });
+        // The waiting tile's words follow the TV language, which can change
+        // without the players changing.
+        var waitingText = utils.t('lobby.waitingForMore', 'waiting for more…');
+        var waitingTile = listEl.querySelector('.dashboard-player-card--waiting');
+        if (waitingTile && waitingTile.textContent !== waitingText) waitingTile.textContent = waitingText;
 
+        // #2964: one join, one update. Everything else in the payload (scores,
+        // onboarding …) is invisible here.
+        var signature = sortedPlayers.map(function(p) {
+            return String(p.name) + (p.connected === false ? '\u0000away' : '');
+        }).join('\u0001');
+        if (listEl.getAttribute('data-wall') === signature) return;
+        listEl.setAttribute('data-wall', signature);
         listEl.setAttribute('data-cols', String(lobbyWallColumns(sortedPlayers.length)));
-        while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
-        sortedPlayers.forEach(function(player) {
-            listEl.appendChild(buildPlayerTile(player, newNames.indexOf(player.name) !== -1));
+
+        // Index the tiles already on screen by player name.
+        var existing = {};
+        var waiting = null;
+        var child = listEl.firstElementChild;
+        while (child) {
+            var key = child.getAttribute('data-player');
+            if (key !== null) existing[key] = child;
+            else if (child.classList.contains('dashboard-player-card--waiting')) waiting = child;
+            child = child.nextElementSibling;
+        }
+
+        var desired = sortedPlayers.map(function(player) {
+            var name = String(player.name == null ? '' : player.name);
+            var tile = existing[name];
+            if (tile) {
+                delete existing[name];
+                syncPlayerTile(tile, player);
+            } else {
+                // First appearance: the only tile that animates.
+                tile = buildPlayerTile(player, true);
+                tile.setAttribute('data-player', name);
+                scheduleNewTileFade(tile);
+            }
+            return tile;
         });
 
-        var waiting = document.createElement('div');
-        waiting.className = 'dashboard-player-card dashboard-player-card--waiting';
-        waiting.textContent = utils.t('lobby.waitingForMore', 'waiting for more…');
-        listEl.appendChild(waiting);
+        // Players who left.
+        Object.keys(existing).forEach(function(name) {
+            listEl.removeChild(existing[name]);
+        });
 
-        // Remove is-new class after animation
-        setTimeout(function() {
-            var newCards = listEl.querySelectorAll('.is-new');
-            for (var i = 0; i < newCards.length; i++) {
-                newCards[i].classList.remove('is-new');
+        if (!waiting) {
+            waiting = document.createElement('div');
+            waiting.className = 'dashboard-player-card dashboard-player-card--waiting';
+            waiting.textContent = waitingText;
+        }
+        desired.push(waiting);
+
+        // Sync the order; nodes already in place are not moved.
+        for (var i = 0; i < desired.length; i++) {
+            if (listEl.children[i] !== desired[i]) {
+                listEl.insertBefore(desired[i], listEl.children[i] || null);
             }
-        }, 2000);
+        }
+    }
 
-        previousPlayers = players.slice();
+    /** Drop the cyan "just joined" glow after two seconds (#2959). */
+    function scheduleNewTileFade(tile) {
+        setTimeout(function() {
+            tile.classList.remove('is-new');
+        }, 2000);
     }
 
     // ============================================

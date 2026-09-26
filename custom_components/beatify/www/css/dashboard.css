@@ -355,7 +355,6 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.9vw;
     transition: border-color 600ms ease, box-shadow 600ms ease;
-    animation: slide-in 0.3s ease;
 }
 
 .dashboard-player-avatar {
@@ -389,7 +388,10 @@
     color: var(--color-text-secondary, #b3b3c2);
 }
 
-/* The newest joiner glows cyan for a moment (is-new is cleared after 2s). */
+/* The newest joiner glows cyan for a moment (is-new is cleared after 2s).
+   #2964: only a new tile animates. Tiles already on the wall are never
+   re-created, and the slide-in is not on the base class, so reordering one
+   (a guest going away) does not replay it either. */
 .dashboard-player-card.is-new {
     animation: slide-in 0.5s ease;
     border-color: var(--color-accent-secondary);
