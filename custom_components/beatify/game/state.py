@@ -742,6 +742,12 @@ class GameState(
                         round_duration=self.round_duration,
                         difficulty=self.difficulty,
                     )
+                # #3001: a guest the host sat out (#2746) did not guess. Say so
+                # with the flag every reveal already reads, or the phone turns
+                # the unset years_off into 0 and headlines "Exact!". Only the
+                # flag — score, streak and round_scores stay frozen as above.
+                elif player.sat_out_by_host:
+                    player.missed_round = True
                 continue
             try:
                 ScoringService.score_player_round(
