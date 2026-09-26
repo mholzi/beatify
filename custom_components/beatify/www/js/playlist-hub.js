@@ -171,6 +171,47 @@ export function matchesSearch(playlist, query) {
     return hay.includes(q);
 }
 
+/**
+ * How well a playlist matches a search, lower is better (#2986).
+ *
+ * `matchesSearch` only answers yes or no, so results used to come out in
+ * catalogue order: "80s" listed "70s Hits" (whose description mentions the
+ * 80s) before "80s Hits". The tiers are deliberately mechanical — the title is
+ * what the host typed at, so any hit in the title beats a hit anywhere else,
+ * and within the title an exact or leading match beats one mid-word.
+ *
+ *   0  title equals the query
+ *   1  title starts with the query
+ *   2  a word in the title starts with the query
+ *   3  the title contains the query
+ *   4  only tags, description, language or author match
+ *   Infinity  no match
+ */
+export function searchRank(playlist, query) {
+    const q = (query || '').toLowerCase().trim();
+    if (!q) return 0;
+    if (!matchesSearch(playlist, q)) return Infinity;
+    const name = (playlist.name || '').toLowerCase().trim();
+    if (name === q) return 0;
+    if (name.startsWith(q)) return 1;
+    if (name.split(/[\s\-–—·/(),:&+]+/).some((w) => w.startsWith(q))) return 2;
+    if (name.includes(q)) return 3;
+    return 4;
+}
+
+/**
+ * The matching playlists, best match first (#2986). Ties keep their incoming
+ * order (Array.prototype.sort is stable), so the catalogue order still decides
+ * between two equally good matches.
+ */
+export function rankSearchResults(playlists, query) {
+    return (playlists || [])
+        .map((p) => ({ p, rank: searchRank(p, query) }))
+        .filter((x) => x.rank !== Infinity)
+        .sort((a, b) => a.rank - b.rank)
+        .map((x) => x.p);
+}
+
 export function filterByGenre(playlists, genreId) {
     if (!genreId || genreId === 'all') return playlists;
     const g = GENRE_TAXONOMY.find((x) => x.id === genreId);
@@ -863,7 +904,7 @@ function _renderSeasonalChip(host) {
 
 function _renderBundled(host) {
     const all = (state.playlists || []).filter((p) => p.source !== 'community');
-    const filtered = filterByGenre(all.filter((p) => matchesSearch(p, state.searchQuery)), state.genreFilter);
+    const filtered = filterByGenre(rankSearchResults(all, state.searchQuery), state.genreFilter);
 
     if (state.searchQuery) {
         if (filtered.length === 0) {
@@ -946,7 +987,7 @@ function _renderBundled(host) {
 
 function _renderCommunity(host) {
     const all = (state.playlists || []).filter((p) => p.source === 'community');
-    const filtered = filterByGenre(all.filter((p) => matchesSearch(p, state.searchQuery)), state.genreFilter);
+    const filtered = filterByGenre(rankSearchResults(all, state.searchQuery), state.genreFilter);
 
     if (all.length === 0) {
         host.innerHTML = `
