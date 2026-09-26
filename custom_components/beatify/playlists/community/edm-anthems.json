@@ -1,6 +1,6 @@
 {
   "name": "EDM Anthems",
-  "version": "1.44",
+  "version": "1.45",
   "tags": [
     "edm",
     "electronic",
@@ -769,15 +769,15 @@
       "year": 2012,
       "isrc": "GBAAA1200728",
       "uri": "spotify:track:2V65y3PX4DkRhy1djlxd9p",
-      "uri_apple_music": "applemusic://track/1021729332",
+      "uri_apple_music": "applemusic://track/6798736832",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1444020877",
-        "de": "applemusic://track/6798736832",
-        "gb": "applemusic://track/716018389",
-        "fr": "applemusic://track/6798736832",
-        "es": "applemusic://track/6798736832",
-        "nl": "applemusic://track/6798736832",
-        "it": "applemusic://track/6798736832"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=3mWbRB3Y4R8",
       "uri_tidal": "tidal://track/17271290",
@@ -1129,15 +1129,15 @@
       "year": 2017,
       "isrc": "GBUM71701735",
       "uri": "spotify:track:71bBFbfn2OBK5QwUJSLS44",
-      "uri_apple_music": "applemusic://track/1440881859",
+      "uri_apple_music": "applemusic://track/6798406167",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440881859",
-        "de": "applemusic://track/1440881859",
-        "gb": "applemusic://track/1440881859",
-        "fr": "applemusic://track/1440881859",
-        "es": "applemusic://track/1440881859",
-        "nl": "applemusic://track/1440881859",
-        "it": "applemusic://track/1440881859"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Rs1HqzgM-q8",
       "uri_tidal": "tidal://track/74069065",
@@ -1311,7 +1311,7 @@
       "uri": "spotify:track:3eR23VReFzcdmS7TYCrhCe",
       "uri_apple_music": "applemusic://track/1444631771",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1469575615",
+        "us": null,
         "de": "applemusic://track/1287617941",
         "gb": "applemusic://track/1287617941",
         "fr": "applemusic://track/1287617941",
@@ -1343,7 +1343,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1870734281",
         "de": "applemusic://track/1870734281",
-        "gb": "applemusic://track/1443204282",
+        "gb": null,
         "fr": "applemusic://track/1870734281",
         "es": "applemusic://track/1870734281",
         "nl": "applemusic://track/1870734281",
@@ -3259,15 +3259,15 @@
       "year": 2018,
       "isrc": "USUM71813046",
       "uri": "spotify:track:6jreFSOTUAViWjKyzOC4Kg",
-      "uri_apple_music": "applemusic://track/1692250931",
+      "uri_apple_music": "applemusic://track/1434136240",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1692250931",
-        "de": "applemusic://track/1692250931",
-        "gb": "applemusic://track/1692250931",
-        "fr": "applemusic://track/1692250931",
-        "es": "applemusic://track/1692250931",
-        "nl": "applemusic://track/1692250931",
-        "it": "applemusic://track/1692250931"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Fe9clLVyJEE",
       "uri_tidal": "tidal://track/94090608",
@@ -3891,13 +3891,13 @@
       "uri": "spotify:track:5Sey3HgGa6KB46mlOyCClZ",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/6798410322",
-        "de": "applemusic://track/6798410322",
-        "gb": "applemusic://track/6798410322",
-        "fr": "applemusic://track/6798410322",
-        "es": "applemusic://track/6798410322",
-        "nl": "applemusic://track/6798410322",
-        "it": "applemusic://track/6798410322"
+        "us": "applemusic://track/1444322954",
+        "de": "applemusic://track/1444322954",
+        "gb": "applemusic://track/1444322954",
+        "fr": "applemusic://track/1444322954",
+        "es": "applemusic://track/1444322954",
+        "nl": "applemusic://track/1444322954",
+        "it": "applemusic://track/1444322954"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9G1I16gJBvU",
       "uri_tidal": "tidal://track/13869649",
@@ -4050,7 +4050,7 @@
         "it": "applemusic://track/1628083606"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uXXsxlE00TE",
-      "uri_tidal": "tidal://track/115209470",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/730461432",
       "fun_fact": "“In My Mind (feat. Georgi Kay) - Axwell Radio Edit” appears on Ivan Gough’s release “In My Mind (feat. Georgi Kay)”.",
       "fun_fact_de": "„In My Mind (feat. Georgi Kay) - Axwell Radio Edit“ erschien auf der Veröffentlichung „In My Mind (feat. Georgi Kay)“ von Ivan Gough.",
@@ -4071,13 +4071,13 @@
       "uri": "spotify:track:5PX4uS1LqlWEPL69phPVQQ",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443484271",
+        "us": null,
         "de": "applemusic://track/1708126502",
-        "gb": "applemusic://track/1444401093",
-        "fr": "applemusic://track/1443522119",
-        "es": "applemusic://track/1443522119",
-        "nl": "applemusic://track/1443522119",
-        "it": "applemusic://track/1443522119"
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=6HhzIn8I4ak",
       "uri_tidal": "tidal://track/14658643",
@@ -4129,15 +4129,15 @@
       "year": 2011,
       "isrc": "GBAAA1100047",
       "uri": "spotify:track:65hRZOQkVjmBdusz1N7aOv",
-      "uri_apple_music": "applemusic://track/1021729335",
+      "uri_apple_music": "applemusic://track/6798741949",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1021729335",
-        "de": "applemusic://track/6798736837",
-        "gb": "applemusic://track/6798742263",
-        "fr": "applemusic://track/6798742257",
-        "es": "applemusic://track/6798736837",
-        "nl": "applemusic://track/6798736837",
-        "it": "applemusic://track/6798736837"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=9TJGY8_22Kk",
       "uri_tidal": "tidal://track/6649657",
@@ -4191,7 +4191,7 @@
       "uri": "spotify:track:5jyUBKpmaH670zrXrE0wmO",
       "uri_apple_music": "applemusic://track/1613873748",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1819097682",
+        "us": null,
         "de": "applemusic://track/1445010466",
         "gb": "applemusic://track/1445010466",
         "fr": "applemusic://track/1445010466",
@@ -4372,12 +4372,12 @@
       "uri_apple_music": "applemusic://track/716761538",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/716761538",
-        "de": "applemusic://track/715705282",
-        "gb": "applemusic://track/715986971",
-        "fr": "applemusic://track/715705282",
-        "es": "applemusic://track/715705105",
-        "nl": "applemusic://track/6798410349",
-        "it": "applemusic://track/715705282"
+        "de": "applemusic://track/6798740071",
+        "gb": "applemusic://track/6798740071",
+        "fr": "applemusic://track/6798740071",
+        "es": "applemusic://track/6798740071",
+        "nl": "applemusic://track/6798740071",
+        "it": "applemusic://track/6798740071"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=GKZgTk1dSJg",
       "uri_tidal": "tidal://track/4169625",
@@ -4402,12 +4402,12 @@
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
         "us": "applemusic://track/775187389",
-        "de": "applemusic://track/423762624",
-        "gb": "applemusic://track/423762624",
-        "fr": "applemusic://track/423762627",
-        "es": "applemusic://track/423762627",
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
         "nl": "applemusic://track/775187389",
-        "it": "applemusic://track/423762627"
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ll5ykbAumD4",
       "uri_tidal": "tidal://track/80031865",
@@ -4552,12 +4552,12 @@
       "uri_apple_music": "applemusic://track/502107644",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1645561145",
-        "de": "applemusic://track/1681050792",
+        "de": null,
         "gb": "applemusic://track/1681050404",
         "fr": "applemusic://track/1645561145",
         "es": "applemusic://track/1681050791",
-        "nl": "applemusic://track/572456421",
-        "it": "applemusic://track/1681050792"
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lETmskoqh30",
       "uri_tidal": "tidal://track/237114050",
@@ -4971,16 +4971,16 @@
       "uri": "spotify:track:0NFBBnJO8D7oA6suYD2WKD",
       "uri_apple_music": "applemusic://track/1693974480",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1712046826",
-        "de": "applemusic://track/1589068122",
+        "us": null,
+        "de": null,
         "gb": "applemusic://track/253265993",
         "fr": "applemusic://track/1693974480",
-        "es": "applemusic://track/1589068122",
-        "nl": "applemusic://track/1589068122",
-        "it": "applemusic://track/1589068122"
+        "es": null,
+        "nl": null,
+        "it": null
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=jzy2dgEUOhY",
-      "uri_tidal": "tidal://track/34645181",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PgnLW40Lwqs",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/858737222",
       "fun_fact": "“Infinity - Magic Mitch Club Mix” appears on Guru Josh Project’s release “Infinity”.",
       "fun_fact_de": "„Infinity - Magic Mitch Club Mix“ erschien auf der Veröffentlichung „Infinity“ von Guru Josh Project.",
@@ -5569,18 +5569,18 @@
       "year": 2016,
       "isrc": "QMUY41600040",
       "uri": "spotify:track:2ewEh7LuvToYyGHq7yT8N1",
-      "uri_apple_music": "applemusic://track/1701889813",
+      "uri_apple_music": "applemusic://track/6800831452",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1701889813",
-        "de": "applemusic://track/1701889813",
-        "gb": "applemusic://track/1701889813",
-        "fr": "applemusic://track/1701889813",
-        "es": "applemusic://track/1701889813",
-        "nl": "applemusic://track/1701889813",
-        "it": "applemusic://track/1701889813"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=HQnC1UHBvWA",
-      "uri_tidal": "tidal://track/310051385",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/2404408865",
       "fun_fact": "“Shelter” is the title track of Porter Robinson’s release of the same name.",
       "fun_fact_de": "„Shelter“ ist der Titelsong der gleichnamigen Veröffentlichung von Porter Robinson.",
@@ -6079,9 +6079,9 @@
       "year": 2015,
       "isrc": "USYBL1500021",
       "uri": "spotify:track:34XFgPp7wnmLSE4w8UNC7I",
-      "uri_apple_music": "applemusic://track/968887508",
+      "uri_apple_music": "applemusic://track/1790537478",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/968887508"
+        "us": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=P6GmT-WJR_k",
       "uri_tidal": null,
@@ -6271,11 +6271,11 @@
       "year": 2012,
       "isrc": "GBAAA1200389",
       "uri": "spotify:track:0VffaI2jwQknRrxpECYHsF",
-      "uri_apple_music": "applemusic://track/1021729324",
+      "uri_apple_music": "applemusic://track/6798410316",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1021729324"
+        "us": null
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PDboaDrHGbA",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JZ_TDayvsI0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61427200",
       "fun_fact": "“Greyhound” appears on Swedish House Mafia’s release “Until Now”.",
