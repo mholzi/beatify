@@ -105,6 +105,10 @@
         }
         push.flush = flush;
         push.cancel = function() { pending = false; hasLatest = false; latest = undefined; };
+        // #3026: drop the queued payload AND forget what was painted. Used when
+        // the screen is switched outside the coalescer ("No active game"), so the
+        // next state — even one equal to the last painted frame — is rendered.
+        push.reset = function() { push.cancel(); lastRendered = undefined; hasRendered = false; };
         return push;
     }
 
@@ -516,6 +520,16 @@
     });
 
     /**
+     * Switch to the server-confirmed "No active game" screen (#3026).
+     * A later `state` broadcast (new game's LOBBY) switches the TV back.
+     */
+    function showNoGameView() {
+        _scheduleRender.reset();
+        stopCountdown();
+        showView('dashboard-no-game');
+    }
+
+    /**
      * Handle messages from server
      * @param {Object} data - Parsed message data
      */
@@ -526,9 +540,19 @@
                 debug('[Dashboard] game_performance:', data.game_performance);
             }
             handleStateUpdate(data);
+        } else if (data.type === 'game_ended') {
+            // #3026: the host dismissed the game ("Start New Game") or it was
+            // ended over REST. No `state` follows once the game is torn down,
+            // so without this the TV stayed on the old game's podium.
+            showNoGameView();
         } else if (data.type === 'error') {
             debug('[Dashboard] Server error:', data.message);
-            // Dashboard ignores most errors since it's read-only
+            // #3026: the answer to our `get_state` when no game is running.
+            // Ignoring it left a freshly opened TV on the loading spinner.
+            if (data.code === 'GAME_NOT_STARTED') {
+                showNoGameView();
+            }
+            // Dashboard ignores other errors since it's read-only
         } else if (data.type === 'player_reaction') {
             // Live reactions from players (Story 18.9)
             showFloatingReaction(data.player_name, data.emoji);
