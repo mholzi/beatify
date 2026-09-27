@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.1-rc3] - 2026-09-27
+
+Third candidate for 4.8.1: rc2 plus the two findings from its live test. No new features.
+
+### Fixed
+- **The TV leaves the podium right away when the game ends** (#3041, #3043, #3044). Ending a game
+  waited ~8 s for the speaker's volume and queue restore before `game_ended` went out, so the TV
+  stayed on the podium. The restore now runs as a tracked background task after the broadcast, for
+  the REST end-game and for Dismiss; a new game started meanwhile waits for it (max 30 s) before
+  it touches the speaker.
+- **Singular on the host's "End round" card** (#3040, #3042). "1 players count as wrong" now reads
+  "1 player counts as wrong", and the streak line gets its singular too, in all six languages.
+
 ## [4.8.1-rc2] - 2026-09-27
 
 Second candidate for 4.8.1: everything from rc1 plus five game fixes from the 27.09 code review,
