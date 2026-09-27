@@ -19,6 +19,9 @@
  * and a fake clock — no jsdom.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import {
     noteRoundState, resetRoundState, secondsLeftNow, shouldAskBeforeEnding,
     subtitleFor, scoreConsequence, openRoundEndChoice, closeRoundEndChoice,
@@ -175,6 +178,36 @@ describe('what the card says (#2646)', () => {
         expect(scoreConsequence(preview, t)).toBe(
             '5 players count as wrong · 4 streaks break',
         );
+    });
+
+    it('uses the singular for one wrong player and one broken streak (#3040)', () => {
+        const preview = Object.assign({}, PREVIEW, {
+            counting_wrong: 1, streaks_breaking: 1, elimination_possible: false,
+            eliminated: null,
+        });
+        expect(scoreConsequence(preview, t)).toBe(
+            '1 player counts as wrong · 1 streak breaks',
+        );
+    });
+
+    it('keeps the plural above one (#3040)', () => {
+        const preview = Object.assign({}, PREVIEW, {
+            counting_wrong: 2, streaks_breaking: 2, elimination_possible: false,
+            eliminated: null,
+        });
+        expect(scoreConsequence(preview, t)).toBe(
+            '2 players count as wrong · 2 streaks break',
+        );
+    });
+
+    it('asks for the singular keys at n=1 (#3040)', () => {
+        const keys = [];
+        const spy = (key, fallback, params) => { keys.push(key); return t(key, fallback, params); };
+        scoreConsequence(Object.assign({}, PREVIEW, {
+            counting_wrong: 1, streaks_breaking: 1, eliminated: null,
+            elimination_possible: false,
+        }), spy);
+        expect(keys).toEqual(['admin.roundEndCountWrongOne', 'admin.roundEndStreaksBreakOne']);
     });
 
     it('says nothing rather than something wrong with no preview', () => {
@@ -343,5 +376,29 @@ describe('the reveal banner (#2646)', () => {
     it('is a no-op when the element is absent', () => {
         const doc = { getElementById: () => null };
         expect(() => renderVoidedBanner(doc, 'nope', { round_voided: true })).not.toThrow();
+    });
+});
+
+describe('singular round-end lines in every locale (#3040)', () => {
+    const here = dirname(fileURLToPath(import.meta.url));
+    const EXPECTED = {
+        en: ['1 player counts as wrong', '1 streak breaks'],
+        de: ['1 Spieler zählt als daneben', '1 Serie reißt'],
+        es: ['1 jugador cuenta como fallo', '1 racha se rompe'],
+        fr: ['1 joueur compte comme faux', '1 série est perdue'],
+        nl: ['1 speler telt als fout', '1 reeks gaat eraan'],
+        it: ['1 giocatore conta come sbagliato', '1 serie si interrompe'],
+    };
+    Object.keys(EXPECTED).forEach((locale) => {
+        it(`${locale} has a singular for both lines`, () => {
+            const admin = JSON.parse(readFileSync(
+                join(here, '..', '..', 'i18n', `${locale}.json`), 'utf8',
+            )).admin;
+            const render = (tpl) => tpl.split('{n}').join('1');
+            expect(render(admin.roundEndCountWrongOne)).toBe(EXPECTED[locale][0]);
+            expect(render(admin.roundEndStreaksBreakOne)).toBe(EXPECTED[locale][1]);
+            expect(admin.roundEndCountWrongOne).not.toBe(admin.roundEndCountWrong);
+            expect(admin.roundEndStreaksBreakOne).not.toBe(admin.roundEndStreaksBreak);
+        });
     });
 });

@@ -184,12 +184,22 @@ export function subtitleFor(preview, secondsLeft, t) {
 export function scoreConsequence(preview, t) {
     var p = preview || {};
     var parts = [];
-    if (p.counting_wrong > 0) {
+    // #3040: one wrong answer reads "1 player counts as wrong", not
+    // "1 players count" — pick the singular key, as #940 does for the lobby.
+    if (p.counting_wrong === 1) {
+        parts.push(t('admin.roundEndCountWrongOne', '{n} player counts as wrong', {
+            n: 1,
+        }));
+    } else if (p.counting_wrong > 0) {
         parts.push(t('admin.roundEndCountWrong', '{n} players count as wrong', {
             n: p.counting_wrong,
         }));
     }
-    if (p.streaks_breaking > 0) {
+    if (p.streaks_breaking === 1) {
+        parts.push(t('admin.roundEndStreaksBreakOne', '{n} streak breaks', {
+            n: 1,
+        }));
+    } else if (p.streaks_breaking > 0) {
         parts.push(t('admin.roundEndStreaksBreak', '{n} streaks break', {
             n: p.streaks_breaking,
         }));
