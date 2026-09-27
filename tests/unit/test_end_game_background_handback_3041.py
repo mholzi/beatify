@@ -182,3 +182,34 @@ class TestNextGameWaitsForTheHandback:
         resp = await asyncio.wait_for(start, timeout=2.0)
         assert resp.status == 200
         assert state.game_id is not None
+
+
+class TestDismissDefersTheHandback:
+    """The podium's Dismiss (WS) takes the same deferred path as REST end-game."""
+
+    async def test_dismiss_broadcasts_before_the_restore_finishes(
+        self, game_with_speaker
+    ):
+        from custom_components.beatify.game.state import GamePhase
+        from custom_components.beatify.server.ws_handlers.admin import (
+            admin_dismiss_game,
+        )
+
+        state, speaker = game_with_speaker
+        state.phase = GamePhase.END
+        handler = MagicMock()
+        handler.broadcast = AsyncMock()
+        handler.broadcast_state = AsyncMock()
+        handler.cleanup_game_tasks = AsyncMock()
+
+        await asyncio.wait_for(
+            admin_dismiss_game(handler, AsyncMock(), {}, state), timeout=1.0
+        )
+
+        handler.broadcast.assert_awaited_with({"type": "game_ended"})
+        assert not speaker.queue_restored
+        task = state._speaker_handback_task
+        assert task is not None
+        speaker.release.set()
+        await asyncio.wait_for(task, timeout=1.0)
+        assert speaker.queue_restored
