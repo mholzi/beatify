@@ -4,6 +4,32 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.1-rc2] - 2026-09-27
+
+Second candidate for 4.8.1: everything from rc1 plus five game fixes from the 27.09 code review,
+two playlist link repairs and one type-checking refactor. No new features.
+
+### Fixed
+- **Party-lights buttons in the phone host drawer work** (#3025, #3031). Off / Subtle / Party sent
+  a message type the server does not know, so the lights never changed.
+- **The TV leaves the podium when the game ends** (#3026, #3033). After "Start New Game", and when
+  the TV is opened with no game running, it now shows the existing "No active game" screen instead
+  of the old podium or a spinner.
+- **The TV holds its timer during the intro-round splash** (#3027, #3035). While phones wait for
+  the host to confirm an intro round, the TV no longer counts a placeholder deadline down to zero.
+- **Sudden Death ghosts stay out of the round analytics** (#3028, #3032). Eliminated players who
+  keep guessing no longer show up as "Closest · Exact!", count toward accuracy and song difficulty,
+  or collect streak and speed highlights.
+- **Encore and finale playoff work in ramp-up games** (#3029, #3034). Songs released from the
+  round-cap reserve are now served in easy-to-hard order instead of ending the game.
+- **40s & 50s Classics** (#3023, #3024): nine Deezer links pointed to medleys or other artists and
+  two Apple Music region maps held IDs that no storefront has; playlist v1.21.
+- **70s Hits** (#3038, #3039): 17 dead or wrong provider links replaced; playlist v1.26.
+
+### Changed
+- **GameState mixins have a type contract and are in the mypy gate** (#3030, #3036).
+  Behaviour-neutral; an attribute rename in one mixin is now a type error instead of a runtime bug.
+
 ## [4.8.1-rc1] - 2026-09-27
 
 Patch on top of 4.8.0: three fixes, no new features.
