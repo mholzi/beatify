@@ -198,6 +198,19 @@ def count_eligible(
     )
 
 
+def _dedupe_by_key(songs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """One entry per ``entry_key``; the higher-confidence copy wins."""
+    by_key: dict[str, dict[str, Any]] = {}
+    for s in songs:
+        key = entry_key(s)
+        prev = by_key.get(key)
+        if prev is None or int(s.get("year_confidence", 0)) > int(
+            prev.get("year_confidence", 0)
+        ):
+            by_key[key] = s
+    return list(by_key.values())
+
+
 def generate_playlist(
     pool: list[dict[str, Any]],
     *,
@@ -255,19 +268,20 @@ def generate_playlist(
     ]
 
     # 2) Dedupe by normalized (artist, title); keep the higher-confidence copy.
-    by_key: dict[str, dict[str, Any]] = {}
-    for s in trusted:
-        key = entry_key(s)
-        prev = by_key.get(key)
-        if prev is None or int(s.get("year_confidence", 0)) > int(
-            prev.get("year_confidence", 0)
-        ):
-            by_key[key] = s
-    deduped = list(by_key.values())
+    deduped = _dedupe_by_key(trusted)
 
     # 2-bis) Host-picked set (#2939): the playlist IS the selection.
     if only_uris is not None:
-        picked = [s for s in deduped if s.get("uri_ma_library") in only_uris]
+        # Filter by URI BEFORE deduping (#3018). The pool can hold one song
+        # twice ("Song" / "Song (Remastered)" share a key); if the playlist
+        # points at the lower-confidence copy, deduping the whole pool first
+        # kept the other copy and the URI filter then dropped the song, so
+        # the game came out shorter than the playlist check promised. Deduping
+        # only the picked entries plays exactly what the check counted: one
+        # song per key, and the copy the host put in the playlist.
+        picked = _dedupe_by_key(
+            [s for s in trusted if s.get("uri_ma_library") in only_uris]
+        )
         rng.shuffle(picked)
         chosen = (
             _select_decade_balanced(picked, size, rng)

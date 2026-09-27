@@ -428,3 +428,82 @@ class TestGameStartUsesThePlaylist:
         assert body["code"] == "LIBRARY_PLAYLIST_EMPTY"
         assert body["total"] == 12
         generate.assert_not_awaited()
+
+
+class TestCheckAndDrawAgree:
+    """#3018 — the check's "N of M usable" is what the game plays.
+
+    The pool can hold one song twice (``Song`` and ``Song (Remastered)`` share a
+    dedupe key). When the playlist points at the lower-confidence copy, the
+    check counted it but the generator's dedupe kept only the other copy and
+    then filtered it out by URI — the song vanished silently.
+    """
+
+    def _pool(self):
+        return [
+            pool_song(
+                1, title="Song", artist="Band", conf=YearConfidence.USER_VERIFIED
+            ),
+            pool_song(
+                2,
+                title="Song (Remastered)",
+                artist="Band",
+                conf=YearConfidence.EXTERNAL_PRIMARY,
+            ),
+            pool_song(3, title="Other", artist="Band"),
+        ]
+
+    def test_lower_confidence_twin_still_plays(self):
+        pool = self._pool()
+        tracks = [
+            pl_track(
+                "Song (Remastered)",
+                "Band",
+                "library://track/2",
+                library_uri="library://track/2",
+            ),
+            pl_track("Other", "Band", "library://track/3"),
+        ]
+        check = classify_playlist_tracks(tracks, pool, min_confidence=STRICT)
+        assert check["usable"] == 2
+        out = gen.generate_playlist(
+            pool,
+            size=30,
+            min_confidence=STRICT,
+            only_uris=set(check["usable_uris"]),
+            rng=random.Random(1),
+        )
+        assert out["_eligible_count"] == check["usable"]
+        assert len(out["songs"]) == check["usable"]
+        # The host picked the remaster, so the remaster is what plays.
+        assert {s["uri_ma_library"] for s in out["songs"]} == {
+            "library://track/2",
+            "library://track/3",
+        }
+
+    def test_every_pick_the_weaker_twin_does_not_empty_the_game(self):
+        pool = self._pool()
+        check = classify_playlist_tracks(
+            [pl_track("x", "Band", "library://track/2")], pool, min_confidence=STRICT
+        )
+        assert check["usable"] == 1
+        out = gen.generate_playlist(
+            pool,
+            size=30,
+            min_confidence=STRICT,
+            only_uris=set(check["usable_uris"]),
+            rng=random.Random(1),
+        )
+        assert [s["uri_ma_library"] for s in out["songs"]] == ["library://track/2"]
+
+    def test_both_twins_in_the_playlist_play_once(self):
+        pool = self._pool()
+        out = gen.generate_playlist(
+            pool,
+            size=30,
+            min_confidence=STRICT,
+            only_uris={"library://track/1", "library://track/2"},
+            rng=random.Random(1),
+        )
+        assert len(out["songs"]) == 1
+        assert out["_eligible_count"] == 1
