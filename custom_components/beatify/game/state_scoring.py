@@ -265,6 +265,9 @@ class RoundScoringMixin:
                             "years_off": p.years_off if p.years_off is not None else 0,
                         }
                         for p in self.players.values()
+                        # #3028: a ghost's years_off is None, not 0 — it must
+                        # not count as an exact answer for the song's difficulty.
+                        if not p.out_of_play
                     ]
                     # Story 19.7: Pass song metadata and playlist info
                     song_metadata = {
@@ -301,7 +304,9 @@ class RoundScoringMixin:
         submitted_players = [
             p
             for p in self.players.values()
-            if p.submitted and p.current_guess is not None
+            # #3028: ghosts keep a frozen streak and may answer fastest — neither
+            # belongs in the highlights of a round they do not play.
+            if p.submitted and p.current_guess is not None and not p.out_of_play
         ]
 
         sorted_players = sorted(self.players.values(), key=lambda p: (-p.score, p.name))
