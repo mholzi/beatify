@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.1-rc1] - 2026-09-27
+
+Patch on top of 4.8.0: three fixes, no new features.
+
+### Fixed
+- **A steal by the last player ends the round again** (#3016, #3017, reported by @triluch). When
+  the player being stolen from had tapped a wrong artist or movie bonus tile, the early-reveal gate
+  also waited for the stealer's bonus guess, and the round sat on PLAYING until the timer ran out.
+  Players who stole this round are no longer waited on for the bonus; they can still tap a tile
+  until the reveal.
+- **My Music playlist mode plays every song the check counts as usable** (#3018, #3020). The
+  generator filters by the playlist's URIs first and dedupes only the picked entries, so a song
+  held twice in the pool no longer drops out and the game matches the "N of M usable" number.
+- **TV reveal leaderboard keeps the sabotage and finalist badges** (#3019, #3021). Both TV
+  leaderboards now build their rows with one shared `buildLeaderboardRowHtml`.
+
 ## [4.8.0] - 2026-09-26
 
 The week 2026-W39b "4.5", four candidates in three days. My Music (formerly Crate Digger) can play
