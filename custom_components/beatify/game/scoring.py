@@ -942,7 +942,14 @@ class ScoringService:
         if correct_year is None:
             return RoundAnalytics()
 
-        submitted = [p for p in players if p.submitted and p.current_guess is not None]
+        # #3028: a Sudden Death ghost (#2559) keeps guessing with years_off None;
+        # the `or 0` below would make it "Closest · Exact!". Same guard as
+        # apply_closest_wins — out_of_play players are not part of the round.
+        submitted = [
+            p
+            for p in players
+            if p.submitted and p.current_guess is not None and not p.out_of_play
+        ]
         if not submitted:
             return RoundAnalytics(correct_decade=_get_decade_label(correct_year))
 
