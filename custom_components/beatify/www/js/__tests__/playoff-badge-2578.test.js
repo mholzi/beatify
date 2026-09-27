@@ -31,7 +31,11 @@ function renderRows(leaderboard, { lang = 'en', players = null } = {}) {
     const container = el('leaderboard');
     let captured = null;
     evaluate(
-        declaration(DASHBOARD, 'renderLeaderboard', 'dashboard.js'),
+        // #3019: the row itself is built by the shared buildLeaderboardRowHtml.
+        [
+            declaration(DASHBOARD, 'buildLeaderboardRowHtml', 'dashboard.js'),
+            declaration(DASHBOARD, 'renderLeaderboard', 'dashboard.js'),
+        ],
         'renderLeaderboard',
         {
             document: doc({ leaderboard: container }),

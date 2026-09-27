@@ -1453,6 +1453,119 @@
         }).join('');
     }
 
+    /**
+     * #3019: one TV leaderboard row, shared by the round leaderboard
+     * (renderLeaderboard) and the reveal leaderboard (renderRevealLeaderboard).
+     *
+     * The two used to be hand-copied row builders that drifted: every row
+     * feature (#827, #2578, #2584, #2746, #2994) had to be added twice, and the
+     * reveal copy never got the finalist and sabotage badges — so both vanished
+     * the moment the round flipped to the reveal, when the whole room is
+     * looking at the TV.
+     *
+     * @param {Object} entry - hydrated leaderboard entry
+     * @param {Array} leaderboard - the whole board (the finalist badge needs
+     *   to know whether a playoff is running at all)
+     * @param {Object} [opts]
+     * @param {boolean} [opts.revealArrows] - reveal's .entry-change arrows
+     * @param {string} [opts.betBadge] - HTML appended after the away badge
+     * @param {string} [opts.submittedIndicator] - HTML appended after the score
+     * @returns {string} the row's HTML
+     */
+    function buildLeaderboardRowHtml(entry, leaderboard, opts) {
+        opts = opts || {};
+        var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
+
+        // Rank change animation class
+        var animationClass = '';
+        if (entry.rank_change > 0) {
+            animationClass = 'leaderboard-entry--climbing';
+        } else if (entry.rank_change < 0) {
+            animationClass = 'leaderboard-entry--falling';
+        }
+
+        // Story 11.4: Disconnected player styling
+        var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
+        var awayBadge = entry.connected === false ? '<span class="away-badge">(' + utils.escapeHtml(utils.t('lobby.away', 'away')) + ')</span>' : '';
+
+        // Issue #827: Sudden-Death — eliminated players render dimmed with a
+        // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
+        var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
+        var skullPrefix = entry.eliminated ? '💀 ' : '';
+
+        // Rank change indicator (AC 10.4.4 - with arrows)
+        // The reveal has always used its own arrow markup (.entry-change);
+        // kept as is so neither screen changes its look.
+        var changeIndicator = '';
+        if (entry.rank_change > 0) {
+            changeIndicator = opts.revealArrows
+                ? '<span class="entry-change is-positive">▲' + entry.rank_change + '</span>'
+                : '<span class="rank-up">▲' + entry.rank_change + '</span>';
+        } else if (entry.rank_change < 0) {
+            changeIndicator = opts.revealArrows
+                ? '<span class="entry-change is-negative">▼' + Math.abs(entry.rank_change) + '</span>'
+                : '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
+        }
+
+        // Streak indicator (AC 10.4.3 - with fire emoji)
+        var streakIndicator = '';
+        if (entry.streak >= 2) {
+            var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
+            streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
+        }
+
+        // #2578: Variante B aus dem Design-Entwurf — im Finale-Stechen
+        // bekommen die ZWEI Finalisten ein Abzeichen, alle anderen bleiben
+        // normal. Vorher trugen die Nicht-Fuehrenden `eliminated` und der
+        // Fernseher zeigte bei acht Spielern sechs Totenkoepfe, obwohl
+        // niemand rausgeflogen war.
+        //
+        // Der Bildschirm sagt jetzt, was wahr ist („zwei sind im Stechen"),
+        // statt etwas Falsches zu behaupten — und das sind zwei Abzeichen
+        // statt sechs Entwertungen.
+        var playoffLaeuft = leaderboard.some(function (x) { return x.playoff_spectator; });
+        var finalistBadge = (playoffLaeuft && !entry.playoff_spectator)
+            ? '<span class="finalist-badge">⚔️ ' + utils.escapeHtml(
+                utils.t('reveal.finalePlayoff') || 'Finale') + '</span>'
+            : '';
+
+        // #2584: Sabotage sichtbar machen — Variante B aus dem Design-Entwurf
+        // vom 05.09.2026. Bis dahin sahen den Treffer nur Taeter und Opfer
+        // auf ihren Handys; der halbe Raum schaut aber auf den Fernseher,
+        // und genau dort passierte das lauteste soziale Element des Spiels
+        // unsichtbar.
+        //
+        // Das Abzeichen steht in der Zeile des GETROFFENEN, nicht als
+        // Einblendung ueber dem Jahr: es beantwortet die Frage, die im Raum
+        // gestellt wird („wen hat's erwischt?"), es bleibt den ganzen Reveal
+        // lesbar, und zwei Treffer in einer Runde stapeln sich nicht.
+        // Der Taeter wird genannt — Sabotage ist ein soziales Element, ohne
+        // Namen fehlt ihr die Pointe.
+        var sabotageBadge = '';
+        if (entry.sabotaged_by) {
+            var effektName = utils.t('sabotage.effect.' + (entry.sabotage_effect || ''), '');
+            var effektKurz = effektName && effektName.indexOf('sabotage.effect.') !== 0
+                ? effektName
+                : '';
+            sabotageBadge = '<span class="sabotage-badge" title="'
+                + utils.escapeHtml(entry.sabotaged_by) + (effektKurz ? ' · ' + utils.escapeHtml(effektKurz) : '')
+                + '">❄️ ' + utils.escapeHtml(entry.sabotaged_by)
+                + (effektKurz ? ' <small>' + utils.escapeHtml(effektKurz) + '</small>' : '')
+                + '</span>';
+        }
+
+        return '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
+            '<span class="entry-rank">#' + entry.rank + '</span>' +
+            '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + (opts.betBadge || '') + finalistBadge + sabotageBadge + '</span>' +
+            '<span class="entry-meta">' +
+                streakIndicator +
+                changeIndicator +
+            '</span>' +
+            '<span class="entry-score">' + entry.score + '</span>' +
+            (opts.submittedIndicator || '') +
+        '</div>';
+    }
+
     function renderLeaderboard(leaderboard, players, containerId, showSubmitted, showBet) {
         var container = document.getElementById(containerId);
         if (!container) return;
@@ -1470,80 +1583,6 @@
         // #1705: build keyed rows and diff them into the DOM instead of blowing
         // away the whole N-row list with innerHTML on every broadcast.
         var rows = leaderboard.map(function(entry) {
-            var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
-
-            // Rank change animation class
-            var animationClass = '';
-            if (entry.rank_change > 0) {
-                animationClass = 'leaderboard-entry--climbing';
-            } else if (entry.rank_change < 0) {
-                animationClass = 'leaderboard-entry--falling';
-            }
-
-            // Story 11.4: Disconnected player styling
-            var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-            var awayBadge = entry.connected === false ? '<span class="away-badge">(' + utils.escapeHtml(utils.t('lobby.away', 'away')) + ')</span>' : '';
-
-            // Issue #827: Sudden-Death — eliminated players render dimmed with a
-            // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
-            var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
-            var skullPrefix = entry.eliminated ? '💀 ' : '';
-
-            // Rank change indicator (AC 10.4.4 - with arrows)
-            var changeIndicator = '';
-            if (entry.rank_change > 0) {
-                changeIndicator = '<span class="rank-up">▲' + entry.rank_change + '</span>';
-            } else if (entry.rank_change < 0) {
-                changeIndicator = '<span class="rank-down">▼' + Math.abs(entry.rank_change) + '</span>';
-            }
-
-            // Streak indicator (AC 10.4.3 - with fire emoji)
-            var streakIndicator = '';
-            if (entry.streak >= 2) {
-                var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
-                streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
-            }
-
-            // #2578: Variante B aus dem Design-Entwurf — im Finale-Stechen
-            // bekommen die ZWEI Finalisten ein Abzeichen, alle anderen bleiben
-            // normal. Vorher trugen die Nicht-Fuehrenden `eliminated` und der
-            // Fernseher zeigte bei acht Spielern sechs Totenkoepfe, obwohl
-            // niemand rausgeflogen war.
-            //
-            // Der Bildschirm sagt jetzt, was wahr ist („zwei sind im Stechen"),
-            // statt etwas Falsches zu behaupten — und das sind zwei Abzeichen
-            // statt sechs Entwertungen.
-            var playoffLaeuft = leaderboard.some(function (x) { return x.playoff_spectator; });
-            var finalistBadge = (playoffLaeuft && !entry.playoff_spectator)
-                ? '<span class="finalist-badge">⚔️ ' + utils.escapeHtml(
-                    utils.t('reveal.finalePlayoff') || 'Finale') + '</span>'
-                : '';
-
-            // #2584: Sabotage sichtbar machen — Variante B aus dem Design-Entwurf
-            // vom 05.09.2026. Bis dahin sahen den Treffer nur Taeter und Opfer
-            // auf ihren Handys; der halbe Raum schaut aber auf den Fernseher,
-            // und genau dort passierte das lauteste soziale Element des Spiels
-            // unsichtbar.
-            //
-            // Das Abzeichen steht in der Zeile des GETROFFENEN, nicht als
-            // Einblendung ueber dem Jahr: es beantwortet die Frage, die im Raum
-            // gestellt wird („wen hat's erwischt?"), es bleibt den ganzen Reveal
-            // lesbar, und zwei Treffer in einer Runde stapeln sich nicht.
-            // Der Taeter wird genannt — Sabotage ist ein soziales Element, ohne
-            // Namen fehlt ihr die Pointe.
-            var sabotageBadge = '';
-            if (entry.sabotaged_by) {
-                var effektName = utils.t('sabotage.effect.' + (entry.sabotage_effect || ''), '');
-                var effektKurz = effektName && effektName.indexOf('sabotage.effect.') !== 0
-                    ? effektName
-                    : '';
-                sabotageBadge = '<span class="sabotage-badge" title="'
-                    + utils.escapeHtml(entry.sabotaged_by) + (effektKurz ? ' · ' + utils.escapeHtml(effektKurz) : '')
-                    + '">❄️ ' + utils.escapeHtml(entry.sabotaged_by)
-                    + (effektKurz ? ' <small>' + utils.escapeHtml(effektKurz) + '</small>' : '')
-                    + '</span>';
-            }
-
             // Bet badge next to name during playing phase
             var betBadge = '';
             if (showBet && betMap[entry.name]) {
@@ -1557,17 +1596,13 @@
                 submittedIndicator = '<div class="entry-submitted ' + (isSubmitted ? 'is-submitted' : '') + '"></div>';
             }
 
-            var html = '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
-                '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + betBadge + finalistBadge + sabotageBadge + '</span>' +
-                '<span class="entry-meta">' +
-                    streakIndicator +
-                    changeIndicator +
-                '</span>' +
-                '<span class="entry-score">' + entry.score + '</span>' +
-                submittedIndicator +
-            '</div>';
-            return { key: String(entry.name), html: html };
+            return {
+                key: String(entry.name),
+                html: buildLeaderboardRowHtml(entry, leaderboard, {
+                    betBadge: betBadge,
+                    submittedIndicator: submittedIndicator
+                })
+            };
         });
 
         _reconcileRows(container, rows);
@@ -2784,51 +2819,13 @@
         if (!container) return;
 
         // #1705: keyed row diff (reveal can re-broadcast during live TA voting).
+        // #3019: same row builder as the round leaderboard, so the finalist and
+        // sabotage badges stay on screen through the reveal.
         var rows = leaderboard.map(function(entry) {
-            var rankClass = entry.rank <= 3 ? 'is-top-' + entry.rank : '';
-
-            // Rank change animation
-            var animationClass = '';
-            if (entry.rank_change > 0) {
-                animationClass = 'leaderboard-entry--climbing';
-            } else if (entry.rank_change < 0) {
-                animationClass = 'leaderboard-entry--falling';
-            }
-
-            // Story 11.4: Disconnected player styling
-            var disconnectedClass = entry.connected === false ? 'leaderboard-entry--disconnected' : '';
-            var awayBadge = entry.connected === false ? '<span class="away-badge">(' + utils.escapeHtml(utils.t('lobby.away', 'away')) + ')</span>' : '';
-
-            // Issue #827: Sudden-Death — eliminated players render dimmed with a
-            // 💀 prefix. Reuses .leaderboard-entry--disconnected for the dim.
-            var eliminatedClass = entry.eliminated ? 'leaderboard-entry--disconnected' : '';
-            var skullPrefix = entry.eliminated ? '💀 ' : '';
-
-            // Position change indicator (AC 10.4.4 - with arrows)
-            var changeHtml = '';
-            if (entry.rank_change > 0) {
-                changeHtml = '<span class="entry-change is-positive">▲' + entry.rank_change + '</span>';
-            } else if (entry.rank_change < 0) {
-                changeHtml = '<span class="entry-change is-negative">▼' + Math.abs(entry.rank_change) + '</span>';
-            }
-
-            // Streak indicator (AC 10.4.3 - with fire emoji)
-            var streakIndicator = '';
-            if (entry.streak >= 2) {
-                var hotClass = entry.streak >= 5 ? 'streak-indicator--hot' : '';
-                streakIndicator = '<span class="streak-indicator ' + hotClass + '">🔥' + entry.streak + '</span>';
-            }
-
-            var html = '<div class="leaderboard-entry ' + rankClass + ' ' + animationClass + ' ' + disconnectedClass + ' ' + eliminatedClass + '">' +
-                '<span class="entry-rank">#' + entry.rank + '</span>' +
-                '<span class="entry-name">' + skullPrefix + utils.escapeHtml(entry.name) + awayBadge + '</span>' +
-                '<span class="entry-meta">' +
-                    streakIndicator +
-                    changeHtml +
-                '</span>' +
-                '<span class="entry-score">' + entry.score + '</span>' +
-            '</div>';
-            return { key: String(entry.name), html: html };
+            return {
+                key: String(entry.name),
+                html: buildLeaderboardRowHtml(entry, leaderboard, { revealArrows: true })
+            };
         });
 
         _reconcileRows(container, rows);
