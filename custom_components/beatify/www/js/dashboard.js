@@ -1295,11 +1295,19 @@
             }
         }
 
-        // Start countdown — #1705: (re)start ONLY when the round's deadline
-        // actually changes. On a plain re-render (a submission/score update that
-        // reuses the same deadline) the running 1Hz timer must keep ticking
-        // instead of being torn down + recreated on every broadcast.
-        if (data.deadline && data.deadline !== lastCountdownDeadline) {
+        // #3027: while the intro splash waits for the host, the deadline in
+        // the frame is only a placeholder (round_manager re-stamps it on
+        // confirm). Hold the timer full instead of counting it down to a
+        // critical-red 0 while no music plays. stopCountdown() also forgets
+        // the tracked deadline, so the frame that clears the flag restarts it.
+        if (data.intro_splash_pending) {
+            stopCountdown();
+            showRestingTimer(data.round_duration);
+        } else if (data.deadline && data.deadline !== lastCountdownDeadline) {
+            // Start countdown — #1705: (re)start ONLY when the round's deadline
+            // actually changes. On a plain re-render (a submission/score update
+            // that reuses the same deadline) the running 1Hz timer must keep
+            // ticking instead of being torn down + recreated on every broadcast.
             lastCountdownDeadline = data.deadline;
             // #1662: pass the server's relative seconds_remaining so the
             // countdown anchors to the client's own clock (skew-immune).
@@ -1350,7 +1358,8 @@
 
         // Time remaining is already shown in the main timer, but we update the stat too
         var timeEl = document.getElementById('dashboard-time-remaining');
-        if (timeEl && data.deadline) {
+        // #3027: a pending intro splash holds the timer (renderPlayingView).
+        if (timeEl && data.deadline && !data.intro_splash_pending) {
             // #1662: prefer the server's relative seconds_remaining (skew-immune)
             // over subtracting the server wall-clock deadline from a possibly
             // wrong client clock. Fall back to the absolute deadline if absent.
@@ -1415,6 +1424,22 @@
 
         updateCountdown();
         countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    /**
+     * #3027: show the timer at rest — full round length, no warning colour —
+     * without a running countdown.
+     * @param {number} [roundDuration] - Round length in seconds
+     */
+    function showRestingTimer(roundDuration) {
+        var timerElement = document.getElementById('dashboard-timer');
+        if (!timerElement) return;
+        timerElement.classList.remove('timer--warning', 'timer--critical');
+        if (typeof roundDuration === 'number' && roundDuration > 0) {
+            timerElement.textContent = roundDuration;
+            var timeStatEl = document.getElementById('dashboard-time-remaining');
+            if (timeStatEl) timeStatEl.textContent = roundDuration + 's';
+        }
     }
 
     /**
