@@ -9,12 +9,15 @@ treated as medium / graceful fallback to uniform random) plus the
 from __future__ import annotations
 
 import random
+from unittest.mock import AsyncMock, MagicMock
 
+from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
     SONG_ORDER_RAMPUP,
     SONG_ORDER_RANDOM,
     PlaylistManager,
 )
+from custom_components.beatify.game.state import GamePhase
 from tests.conftest import make_game_state
 
 # Unknown difficulty maps to medium == 2 on the 1..4 star scale (#1726).
@@ -281,3 +284,93 @@ class TestCreateGamePlumbing:
         assert state.rampup_order_enabled is True
         # No difficulty data reachable → arc degrades to uniform random.
         assert state._playlist_manager._rampup_order is None
+
+
+# ---------------------------------------------------------------------------
+# #3029 — songs released from the reserve must be playable in a ramp-up game
+# ---------------------------------------------------------------------------
+
+
+def _stub_media_service():
+    svc = MagicMock()
+    svc.is_available.return_value = True
+    svc.play_song = AsyncMock(return_value=True)
+    svc.verify_responsive = AsyncMock(return_value=(True, None))
+    svc.restore_volume = AsyncMock(return_value=True)
+    svc.restore_queue = AsyncMock(return_value=True)
+    svc.stop = AsyncMock(return_value=True)
+    return svc
+
+
+class TestRampUpWithReserve:
+    """Encore (#2503) and finale playoff (#2547) release capped-out songs.
+
+    ``get_next_song`` reads only the arc in ramp-up mode, so a release that
+    reached the pool but not the arc ended the game instead of playing on.
+    """
+
+    def _capped_rampup_game(self, pool: int = 30, cap: int = 10):
+        random.seed(3029)
+        songs = [_song(i, f"spotify:track:rampup{i:016d}") for i in range(pool)]
+        difficulties: dict[str, int | None] = {
+            s["uri"]: (i % 4) + 1 for i, s in enumerate(songs)
+        }
+        state = make_game_state()
+        state.set_stats_service(_FakeStats(difficulties))
+        state.create_game(
+            playlists=["test.json"],
+            songs=songs,
+            media_player="media_player.test",
+            base_url="http://localhost:8123",
+            options=GameOptions(max_rounds=cap),
+            rampup_order_enabled=True,
+        )
+        manager = state._playlist_manager
+        assert manager._rampup_order is not None
+        assert manager.reserve_count() == pool - cap
+        return state, difficulties
+
+    def test_encore_songs_are_served_after_the_arc(self):
+        state, difficulties = self._capped_rampup_game()
+        manager = state._playlist_manager
+        # Play the arc down to its last song, then open the encore window
+        # exactly as the reveal of the second-to-last round does.
+        for _ in range(state.total_rounds - 1):
+            song = manager.get_next_song()
+            assert song is not None
+            manager.mark_played(song["_resolved_uri"])
+        state.round = state.total_rounds - 1
+        state._encore_window = True
+        state._set_phase(GamePhase.REVEAL)
+
+        assert state.extend_rounds() == 5
+        assert manager.get_remaining_count() == 6
+
+        rest = _drain(manager)
+        # Before the fix: only the one remaining arc song, then None.
+        assert len(rest) == 6
+        encore_levels = [_effective(s["_resolved_uri"], difficulties) for s in rest[1:]]
+        assert encore_levels == sorted(encore_levels)
+        assert manager.get_remaining_count() == 0
+
+    async def test_finale_playoff_plays_in_a_rampup_game(self):
+        state, _ = self._capped_rampup_game()
+        state._media_player_service = _stub_media_service()
+        state.platform = "music_assistant"
+        for name in ("Alice", "Bob"):
+            state.add_player(name, None)
+            state.get_player(name).connected = True
+        state.finale_tiebreaker_enabled = True
+        await state.start_round()
+        manager = state._playlist_manager
+        for song in list(manager._songs):
+            manager.mark_played(song["_precomputed_uri"])
+        state.phase = GamePhase.REVEAL
+        state.get_player("Alice").score = 10
+        state.get_player("Bob").score = 10
+        assert state.songs_remaining == 0
+
+        # Before the fix: the song was released into the pool, start_round
+        # found the arc exhausted and set END, so the playoff never ran.
+        assert await state.maybe_start_finale_playoff() is True
+        assert state.phase == GamePhase.PLAYING

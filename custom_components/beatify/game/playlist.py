@@ -271,6 +271,25 @@ class PlaylistManager:
         order.append(finale)
         return order
 
+    def _arrange_by_difficulty(
+        self, songs: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
+        """Order ``songs`` easy -> hard, shuffled within equal difficulty (#3029).
+
+        Unknown difficulty counts as medium, as in the main arc.
+        """
+        assert self._difficulty_lookup is not None  # noqa: S101 — guarded by caller
+        lookup = self._difficulty_lookup
+
+        def _level(song: dict[str, Any]) -> int:
+            stars = lookup(song["_precomputed_uri"])
+            return stars if stars is not None else _UNKNOWN_DIFFICULTY
+
+        arranged = list(songs)
+        random.shuffle(arranged)  # noqa: S311 — cosmetic within equal difficulty
+        arranged.sort(key=_level)  # stable: keeps the shuffle within a level
+        return arranged
+
     def get_next_song(self) -> dict[str, Any] | None:
         """Get next unplayed song for the active ordering mode.
 
@@ -390,6 +409,15 @@ class PlaylistManager:
             source = song.get("_playlist_source", "__default__")
             self._buckets.setdefault(source, []).append(song)
         self._multi_playlist = len(self._buckets) > 1
+        # #3029: in a ramp-up game get_next_song() reads only the arc, so a
+        # release that skipped it put the songs into the pool and nowhere they
+        # could be served from — encore and playoff ended the game instead.
+        # They are appended as their own small easy -> hard arc rather than
+        # merged into the existing one: both callers release at the end of the
+        # game, after the finale song has played, so an extra stretch after it
+        # is the only placement that leaves the arc already played untouched.
+        if self._rampup_order is not None:
+            self._rampup_order.extend(self._arrange_by_difficulty(released))
         _LOGGER.info(
             "%s: released %d reserved song(s) (%d still held back)",
             reason,
