@@ -2511,13 +2511,13 @@ function _setPartyLightStep(step, lights) {
 export function partyLightPayload(step, lights) {
     if (step === 'off') {
         return {
-            type: 'admin_action',
+            type: 'admin',
             action: 'set_party_lights',
             enabled: false
         };
     }
     return {
-        type: 'admin_action',
+        type: 'admin',
         action: 'set_party_lights',
         enabled: true,
         entity_ids: (lights && lights.entity_ids) || [],
