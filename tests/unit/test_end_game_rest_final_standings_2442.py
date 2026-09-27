@@ -32,7 +32,7 @@ def _hass(phase: GamePhase, *, with_ws: bool = True):
         side_effect=lambda: calls.append("resolve_title_artist")
     )
     game.advance_to_end = AsyncMock(side_effect=lambda: calls.append("advance_to_end"))
-    game.end_game = AsyncMock(side_effect=lambda: calls.append("end_game"))
+    game.end_game = AsyncMock(side_effect=lambda **_kw: calls.append("end_game"))
 
     ws = None
     if with_ws:

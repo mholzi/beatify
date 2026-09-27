@@ -85,6 +85,7 @@ if TYPE_CHECKING:
         # --- Tasks, locks and callbacks
         _auto_advance_task: asyncio.Task | None
         _prewarm_task: asyncio.Task | None
+        _speaker_handback_task: asyncio.Task | None
         _bg_tasks: set[asyncio.Task]
         _score_lock: asyncio.Lock
         _on_round_end: Callable[[], Awaitable[None]] | None

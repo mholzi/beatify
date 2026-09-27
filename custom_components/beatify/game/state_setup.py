@@ -84,6 +84,7 @@ back into ``state.py``.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import secrets
 from dataclasses import replace
@@ -419,8 +420,16 @@ class GameSetupMixin(GameStateBase):
         # Issue #75: Reset highlights tracker
         self.highlights_tracker.reset()
 
-    async def end_game(self) -> None:
-        """End the current game and reset state."""
+    async def end_game(self, *, defer_speaker_handback: bool = False) -> None:
+        """End the current game and reset state.
+
+        #3041: with ``defer_speaker_handback`` the speaker's volume and queue
+        are handed back in a tracked background task instead of inline. The
+        Music Assistant queue restore alone takes ~8 s (it waits for the track
+        to load and then holds the #2605 pause), and the REST end-game used to
+        sit on it before telling anyone the game was over. The game state is
+        torn down exactly as before; only the speaker work moves.
+        """
         from .state import GamePhase
 
         _LOGGER.info("Game ended: %s", self.game_id)
@@ -465,11 +474,15 @@ class GameSetupMixin(GameStateBase):
             # #1516: restore the speaker volume to its pre-game level (the host
             # had to manually reset it after every game otherwise). No-op if
             # Beatify never changed the volume this game.
-            await self.restore_player_volume()
+            #
             # #2143: hand back the track the speaker was playing before the
             # game — paused, at its old position. No-op outside Music
             # Assistant, or when the speaker was idle at game start.
-            await self.restore_player_queue()
+            if defer_speaker_handback:
+                self._schedule_speaker_handback()
+            else:
+                await self.restore_player_volume()
+                await self.restore_player_queue()
             # Issue #447: Disable TTS
             await self.disable_tts()
             self._reset_game_internals()
@@ -479,6 +492,82 @@ class GameSetupMixin(GameStateBase):
             self.players = {}
             self.clear_all_sessions()
             self._notify_state_callbacks()
+
+    #: Upper bound on how long a new game waits for the previous game's
+    #: speaker hand-back (#3041). The restore bounds its own waits (track load,
+    #: #2605 pause hold); this only keeps a wedged speaker from holding the
+    #: next game's start request open for good.
+    _SPEAKER_HANDBACK_WAIT_S = 30.0
+
+    def _schedule_speaker_handback(self) -> None:
+        """Restore the speaker's volume and queue in the background (#3041).
+
+        Runs on the service object captured here, not on
+        ``self._media_player_service`` — ``create_game`` replaces that
+        reference, and the hand-back belongs to the game that just ended.
+        Both restores take their promises before their first await, so the
+        service is left owing nothing even while the calls are still running.
+        """
+        service = self._media_player_service
+        if service is None:
+            return
+        previous = self._speaker_handback_task
+
+        async def _runner() -> None:
+            # Two ends in quick succession must not interleave their calls to
+            # the same speaker.
+            if previous is not None and not previous.done():
+                await asyncio.wait({previous})
+            try:
+                await service.restore_volume()
+            except Exception:
+                _LOGGER.exception("Restoring the speaker volume after the game failed")
+            try:
+                await service.restore_queue()
+            except Exception:
+                _LOGGER.exception("Restoring the speaker queue after the game failed")
+
+        # Same tracked-task pattern as the #1540 pre-warm: HA's helper ties the
+        # task to the integration's lifecycle; the bare task is the fallback for
+        # the hass-less GameState in unit tests. Either way the handle is kept.
+        creator = getattr(self._hass, "async_create_background_task", None)
+        if callable(creator):
+            task = creator(_runner(), name="beatify_speaker_handback")
+        else:
+            task = asyncio.create_task(_runner())
+        self._speaker_handback_task = task
+
+        def _forget(done: asyncio.Task) -> None:
+            if self._speaker_handback_task is done:
+                self._speaker_handback_task = None
+
+        task.add_done_callback(_forget)
+
+    async def wait_for_speaker_handback(self, timeout: float | None = None) -> bool:
+        """Wait until the previous game has handed the speaker back (#3041).
+
+        A new game must not touch the speaker while the old queue is still
+        being restored onto it: its first ``save_volume``/``save_queue`` would
+        capture Beatify's own leftovers as the host's "pre-game" state, and the
+        restore's ``play_media``/pause would land on top of round one.
+
+        Returns:
+            True when nothing was pending or the hand-back finished, False when
+            ``timeout`` ran out first (the game then starts anyway).
+        """
+        task = self._speaker_handback_task
+        if task is None or task.done():
+            return True
+        limit = self._SPEAKER_HANDBACK_WAIT_S if timeout is None else timeout
+        _, pending = await asyncio.wait({task}, timeout=limit)
+        if pending:
+            _LOGGER.warning(
+                "Speaker hand-back from the previous game still running after "
+                "%.1fs — starting the new game anyway (#3041)",
+                limit,
+            )
+            return False
+        return True
 
     def rematch_game(
         self,
