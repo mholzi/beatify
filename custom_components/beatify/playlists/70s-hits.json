@@ -1,6 +1,6 @@
 {
   "name": "70s Hits",
-  "version": "1.25",
+  "version": "1.26",
   "tags": [
     "1970s",
     "classic-rock",
@@ -430,7 +430,6 @@
         "it": "applemusic://track/6781079518"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CczcMarUoVk",
-      "uri_tidal": "tidal://track/6851486",
       "uri_deezer": "deezer://track/12209331",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -1294,9 +1293,9 @@
       "year": 1977,
       "isrc": "GBUM71029618",
       "uri": "spotify:track:4pbJqGIASGPr0ZpGpnWkDn",
-      "uri_apple_music": "applemusic://track/1440651216",
+      "uri_apple_music": "applemusic://track/6781074741",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1889970941",
+        "us": "applemusic://track/6781074741",
         "de": "applemusic://track/6781081101",
         "gb": "applemusic://track/6781081101",
         "fr": "applemusic://track/6781081101",
@@ -1305,7 +1304,6 @@
         "it": "applemusic://track/6781080737"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tsTH9TpxU_Y",
-      "uri_tidal": "tidal://track/6836313",
       "uri_deezer": "deezer://track/12206933",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -1444,9 +1442,9 @@
       "year": 1979,
       "isrc": "GBUM71029612",
       "uri": "spotify:track:6xdLJrVj4vIXwhuG8TMopk",
-      "uri_apple_music": "applemusic://track/1440650739",
+      "uri_apple_music": "applemusic://track/6781075005",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/6762962944",
+        "us": "applemusic://track/6781075005",
         "de": "applemusic://track/6781076401",
         "gb": "applemusic://track/6781080943",
         "fr": "applemusic://track/6781076401",
@@ -1455,7 +1453,6 @@
         "it": "applemusic://track/6781076401"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=BOCe62_vdzY",
-      "uri_tidal": "tidal://track/21844148",
       "uri_deezer": "deezer://track/67503800",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -1594,9 +1591,9 @@
       "year": 1975,
       "isrc": "GBUM71029604",
       "uri": "spotify:track:7tFiyTwD0nx5a1eklYtX2J",
-      "uri_apple_music": "applemusic://track/1440650711",
+      "uri_apple_music": "applemusic://track/6781023657",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1774784848",
+        "us": "applemusic://track/6781023657",
         "de": "applemusic://track/6781080302",
         "gb": "applemusic://track/6781027645",
         "fr": "applemusic://track/6781027645",
@@ -1605,7 +1602,6 @@
         "it": "applemusic://track/6781080302"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=bSnlKl_PoQU",
-      "uri_tidal": "tidal://track/21844140",
       "uri_deezer": "deezer://track/9997018",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -1919,9 +1915,9 @@
       "year": 1976,
       "isrc": "GBUM71029613",
       "uri": "spotify:track:4rDbp1vnvEhieiccprPMdI",
-      "uri_apple_music": "applemusic://track/1440651012",
+      "uri_apple_music": "applemusic://track/6781024333",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1746161615",
+        "us": "applemusic://track/6781024333",
         "de": "applemusic://track/6781080944",
         "gb": "applemusic://track/6781027364",
         "fr": "applemusic://track/6781027364",
@@ -1930,7 +1926,6 @@
         "it": "applemusic://track/6781027364"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=x8hUwP_5Qc4",
-      "uri_tidal": "tidal://track/21844149",
       "uri_deezer": "deezer://track/67503801",
       "fun_fact": "Queen were a British rock band fronted by the inimitable Freddie Mercury.",
       "fun_fact_de": "Queen waren eine britische Rockband mit dem unnachahmlichen Freddie Mercury am Mikrofon.",
@@ -3602,7 +3597,7 @@
         "fr": "applemusic://track/1195108771",
         "es": "applemusic://track/1195108771",
         "nl": "applemusic://track/1195108771",
-        "it": "applemusic://track/695543087"
+        "it": "applemusic://track/1195108771"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DJxCsVcZL2I",
       "uri_tidal": "tidal://track/69761304",
@@ -3755,7 +3750,6 @@
         "it": "applemusic://track/1872718907"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=kij7VFkE1eI",
-      "uri_tidal": "tidal://track/25702162",
       "uri_deezer": "deezer://track/3809085962",
       "fun_fact": "A 70s classic (1979).",
       "fun_fact_de": "Ein 70er-Klassiker (1979).",
@@ -4969,7 +4963,7 @@
       "fun_fact_fr": "La version que tout le monde connaît est la seconde ; la première était jugée trop explicite pour la radio et a été réenregistrée discrètement.",
       "fun_fact_nl": "De versie die iedereen kent is de tweede; de eerste gold als te expliciet voor de radio en werd stilletjes opnieuw opgenomen.",
       "fun_fact_it": "La versione che tutti conoscono è la seconda; la prima era ritenuta troppo esplicita per la radio e fu reincisa in sordina.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=O0_H3F84Yjk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yupPvZF6oBw"
     },
     {
       "year": 1976,
@@ -5011,7 +5005,7 @@
       "fun_fact_fr": "Cinq frères du Rhode Island qui ont pris le nom de famille comme nom de groupe et sont restés dix ans dans les classements américains.",
       "fun_fact_nl": "Vijf broers uit Rhode Island die de familienaam als bandnaam namen en een decennium in de Amerikaanse lijsten stonden.",
       "fun_fact_it": "Cinque fratelli del Rhode Island che presero il cognome di famiglia come nome della band e restarono un decennio nelle classifiche americane.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=dzurWOf4SFM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=J123lM0RvzM"
     },
     {
       "year": 1976,
