@@ -450,6 +450,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # code at all, which defeats the whole point of #2294 (every create-game
         # rejection gets its own code so the client can say WHICH one fired) and
         # sends the i18n lookup in errors.<CODE> looking for nothing.
+        # #3041: a REST end-game hands the speaker back in the background. The
+        # new game's first volume/queue capture and its first song must not run
+        # while that restore is still replaying the host's old track.
+        await game_state.wait_for_speaker_handback()
+
         try:
             result = game_state.create_game(
                 playlists=playlist_paths,
@@ -711,7 +716,12 @@ class EndGameView(BeatifyAdminView):
                         "Waiting for the end-game announcements failed: %s", err
                     )
 
-        await game_state.end_game()
+        # #3041: the speaker hand-back (volume + Music Assistant queue) runs in
+        # the background. Inline it held `game_ended` and this response for
+        # ~8 s while the game itself was over in 0.3 s — the TV sat on the
+        # podium and "Start New Game" hung. StartGameView waits for the
+        # hand-back before a new game can touch the same speaker.
+        await game_state.end_game(defer_speaker_handback=True)
 
         # Broadcast game_ended to WebSocket clients so players clean up properly
         if ws_handler:

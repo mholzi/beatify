@@ -323,6 +323,11 @@ class GameState(
         # game reset/recreate can cancel a still-running warm-up (analogous to
         # _auto_advance_task) instead of orphaning it.
         self._prewarm_task: asyncio.Task | None = None
+        # #3041: the REST end-game hands the speaker back (volume + queue) in
+        # the background so `game_ended` is not held up by the ~8 s Music
+        # Assistant restore. The handle lets the next game wait for it before
+        # it touches the same speaker.
+        self._speaker_handback_task: asyncio.Task | None = None
         # #1180 Phase 4: title/artist near-miss vote window is open in REVEAL.
         self._title_artist_voting_open: bool = False
         # #1180: server-owned wall-clock deadline (in self._now units) for the
