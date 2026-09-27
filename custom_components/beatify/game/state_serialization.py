@@ -64,6 +64,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
+from .state_contract import GameStateBase
+
 _LOGGER = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
@@ -71,7 +73,7 @@ if TYPE_CHECKING:
     from custom_components.beatify.services.stats import StatsService
 
 
-class StateSerializationMixin:
+class StateSerializationMixin(GameStateBase):
     """State-serialization & game-summary behavior for :class:`GameState`.
 
     Carries the frontend/StatsService serialization entry points plus the
@@ -91,7 +93,8 @@ class StateSerializationMixin:
         """
         from .serializers import GameStateSerializer  # noqa: PLC0415
 
-        return GameStateSerializer.serialize(self)
+        # self is always a GameState at runtime; the serializer is typed for it.
+        return GameStateSerializer.serialize(self)  # type: ignore[arg-type]
 
     def get_reveal_players_state(self) -> list[dict[str, Any]]:
         """Get player state with reveal info for REVEAL phase.
@@ -106,7 +109,7 @@ class StateSerializationMixin:
         """
         from .serializers import GameStateSerializer  # noqa: PLC0415
 
-        return GameStateSerializer.get_reveal_players_state(self)
+        return GameStateSerializer.get_reveal_players_state(self)  # type: ignore[arg-type]
 
     def set_stats_service(self, stats_service: StatsService) -> None:
         """

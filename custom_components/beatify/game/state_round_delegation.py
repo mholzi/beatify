@@ -51,11 +51,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from .state_contract import GameStateBase
+
 if TYPE_CHECKING:
     from .types import RoundAnalytics
 
 
-class RoundManagerDelegationMixin:
+class RoundManagerDelegationMixin(GameStateBase):
     """RoundManager / PlaylistManager delegation properties for :class:`GameState`.
 
     Carries the read-only / setter ``@property`` facade that keeps the

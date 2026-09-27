@@ -38,13 +38,15 @@ from typing import TYPE_CHECKING
 
 from custom_components.beatify.const import VOLUME_STEP
 
+from .state_contract import GameStateBase
+
 if TYPE_CHECKING:
     from .state import GamePhase
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class MediaControlMixin:
+class MediaControlMixin(GameStateBase):
     """Media-player & party-lights output behavior for :class:`GameState`.
 
     See module docstring for the host-class attributes this mixin reads.

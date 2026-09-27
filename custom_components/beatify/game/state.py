@@ -752,7 +752,7 @@ class GameState(
             try:
                 ScoringService.score_player_round(
                     player,
-                    correct_year=correct_year,
+                    correct_year=correct_year,  # type: ignore[arg-type]
                     round_start_time=self.round_start_time,
                     round_duration=self.round_duration,
                     difficulty=self.difficulty,
@@ -1062,7 +1062,9 @@ class GameState(
         # round-stats recording or the reveal announcement: there is no result
         # to announce, and _announce_reveal would read the scores we just
         # cleared. Story 18.9 reaction reset mirrors _transition_to_reveal.
-        self._player_registry._reactions_this_phase = set()
+        # Dead write since #2562 replaced the set with _last_reaction_at; kept
+        # as-is here because #3030 is annotation-only.
+        self._player_registry._reactions_this_phase = set()  # type: ignore[attr-defined]
         self._set_phase(GamePhase.REVEAL)
         await self._lights_set_phase(GamePhase.REVEAL)
 

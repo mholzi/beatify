@@ -96,6 +96,7 @@ from custom_components.beatify.const import (
 
 from .config import REMATCH_CARRYOVER_ATTRS, GameOptions
 from .playlist import PlaylistManager
+from .state_contract import GameStateBase
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -115,7 +116,7 @@ class NoPlayableSongsError(ValueError):
     """
 
 
-class GameSetupMixin:
+class GameSetupMixin(GameStateBase):
     """Game-setup (create / reset / end / rematch) behavior for :class:`GameState`.
 
     Carries the new-session builder plus the teardown / rematch rebuild and

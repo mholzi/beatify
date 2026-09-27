@@ -87,6 +87,8 @@ import asyncio
 import logging
 import time
 
+from .state_contract import GameStateBase
+
 _LOGGER = logging.getLogger(__name__)
 
 # How long after an announcement's estimated end a non-playing state is still
@@ -95,7 +97,7 @@ _LOGGER = logging.getLogger(__name__)
 _ANNOUNCE_RESUME_GRACE = 6.0
 
 
-class RevealAutoAdvanceMixin:
+class RevealAutoAdvanceMixin(GameStateBase):
     """REVEAL auto-advance behavior for :class:`GameState`.
 
     Carries the #1012 unattended REVEAL→next-round machinery: the auto-advance

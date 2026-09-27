@@ -56,6 +56,23 @@ pretty = true
 files = [
     "custom_components/beatify/providers.py",
     "custom_components/beatify/game/types.py",
+    # #3030: GameState and its mixins, typed through game/state_contract.py.
+    "custom_components/beatify/game/state.py",
+    "custom_components/beatify/game/state_contract.py",
+    "custom_components/beatify/game/state_auto_advance.py",
+    "custom_components/beatify/game/state_challenge.py",
+    "custom_components/beatify/game/state_leaderboard.py",
+    "custom_components/beatify/game/state_lifecycle.py",
+    "custom_components/beatify/game/state_media.py",
+    "custom_components/beatify/game/state_pause.py",
+    "custom_components/beatify/game/state_player.py",
+    "custom_components/beatify/game/state_reveal_transition.py",
+    "custom_components/beatify/game/state_round_delegation.py",
+    "custom_components/beatify/game/state_scoring.py",
+    "custom_components/beatify/game/state_serialization.py",
+    "custom_components/beatify/game/state_setup.py",
+    "custom_components/beatify/game/state_tts.py",
+    "custom_components/beatify/game/state_vote_window.py",
     "custom_components/beatify/game/tts_phrases.py",
     "custom_components/beatify/game/text_match.py",
     "custom_components/beatify/game/share.py",
@@ -76,8 +93,6 @@ files = [
 # Ramp-up plan (#1275) — modules NOT yet in the gate, with their open issues.
 # Add each back to `files` above once its real type errors are fixed:
 #
-#   game/state.py           (~14 errors: None-arithmetic, attr-defined,
-#                            Optional args passed where non-Optional expected)
 #   game/scoring.py         (~13 errors: Optional year math, sort/key Optionals)
 #   game/serializers.py     (~3 errors: GameState.language attr, sort key)
 #   game/round_manager.py   (~2 errors: Awaitable vs Coroutine in create_task)
@@ -85,6 +100,8 @@ files = [
 #
 # Fixed & promoted into the gate:
 #   game/player_registry.py (#1587 — bare `callable` annotation → Callable[[], int])
+#   game/state.py + the 14 state_*.py mixins (#3030 — explicit attribute /
+#                            cross-mixin contract in game/state_contract.py)
 #
 # Next strictness steps once the above are clean:
 #   1. Replace `files` with whole-package check of game/ + services/.

@@ -70,10 +70,12 @@ from custom_components.beatify.const import (
     TITLE_ARTIST_VOTE_WINDOW_SECONDS,
 )
 
+from .state_contract import GameStateBase
+
 _LOGGER = logging.getLogger(__name__)
 
 
-class VoteWindowMixin:
+class VoteWindowMixin(GameStateBase):
     """Title & Artist REVEAL vote-window behavior for :class:`GameState`.
 
     See module docstring for the host-class attributes this mixin reads/writes.
@@ -158,7 +160,7 @@ class VoteWindowMixin:
                 return False
         return True
 
-    async def _title_artist_vote_window(self, window_seconds: int) -> None:
+    async def _title_artist_vote_window(self, window_seconds: float) -> None:
         """Hold REVEAL open for community voting, then resolve (#1180 P4).
 
         Sleeps in short polls so a manual host-advance / pause / end can

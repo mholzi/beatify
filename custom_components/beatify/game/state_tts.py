@@ -37,6 +37,7 @@ import time
 from typing import TYPE_CHECKING
 
 from . import tts_phrases
+from .state_contract import GameStateBase
 
 if TYPE_CHECKING:
     from .protocols import TtsProtocol
@@ -44,7 +45,7 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-class TtsAnnouncerMixin:
+class TtsAnnouncerMixin(GameStateBase):
     """Spoken-announcement behavior for :class:`GameState`.
 
     See module docstring for the host-class attributes this mixin reads.
@@ -378,7 +379,9 @@ class TtsAnnouncerMixin:
                         self._announce_busy_until = start_at
                     return
                 try:
-                    await self._tts_service.speak(message, language=self._lang())
+                    # Checked on entry; a disable during the wait lands in the
+                    # except below, as it always has.
+                    await self._tts_service.speak(message, language=self._lang())  # type: ignore[union-attr]
                 except Exception:  # noqa: BLE001
                     _LOGGER.warning("TTS announcement failed")
                     if abs(self._announce_busy_until - (start_at + est)) < 0.01:
@@ -509,7 +512,8 @@ class TtsAnnouncerMixin:
         elif self.closest_wins_mode and not exact and self._tts_announce_closest_guess:
             submitted = [p for p in players if p.submitted and p.years_off is not None]
             if submitted:
-                winner = min(submitted, key=lambda p: p.years_off)
+                # `submitted` is filtered to years_off is not None above.
+                winner = min(submitted, key=lambda p: p.years_off)  # type: ignore[arg-type, return-value]
                 if winner.round_score > 0:
                     frags.append(tts_phrases.phrase(lang, "closest", name=winner.name))
         elif had_submitters and not exact and self._tts_announce_nobody_correct:

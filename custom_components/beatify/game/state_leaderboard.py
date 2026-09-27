@@ -25,8 +25,10 @@ from __future__ import annotations
 
 from typing import Any
 
+from .state_contract import GameStateBase
 
-class LeaderboardMixin:
+
+class LeaderboardMixin(GameStateBase):
     """Leaderboard / ranking behavior for :class:`GameState`.
 
     See module docstring for the host-class attributes this mixin reads.
