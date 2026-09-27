@@ -83,6 +83,15 @@ describe('#2649 the light steps', () => {
         expect(partyLightPayload('bright', LIGHTS).intensity).toBe('party');
     });
 
+    it.each(['off', 'subtle', 'party'])(
+        '%s is an admin message the server dispatches (#3025)',
+        (step) => {
+            // The server's handler table knows `admin`, not `admin_action`;
+            // anything else is logged as unknown and the lights never move.
+            expect(partyLightPayload(step, LIGHTS).type).toBe('admin');
+        }
+    );
+
     it('survives a state block with no entity list', () => {
         expect(partyLightPayload('subtle', {}).entity_ids).toEqual([]);
         expect(partyLightPayload('subtle', null).entity_ids).toEqual([]);
