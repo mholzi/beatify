@@ -44,11 +44,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
+from .state_contract import GameStateBase
+
 if TYPE_CHECKING:
     from .challenges import ArtistChallenge, MovieChallenge
 
 
-class ChallengeMixin:
+class ChallengeMixin(GameStateBase):
     """Challenge-delegation behavior for :class:`GameState`.
 
     See module docstring for the host-class attributes this mixin reads.

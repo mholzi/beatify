@@ -69,10 +69,12 @@ import logging
 
 from custom_components.beatify.const import INTRO_DURATION_SECONDS
 
+from .state_contract import GameStateBase
+
 _LOGGER = logging.getLogger(__name__)
 
 
-class PauseResumeMixin:
+class PauseResumeMixin(GameStateBase):
     """Pause / resume behavior for :class:`GameState`.
 
     Carries the PLAYING/REVEAL→PAUSED pause gate plus the PAUSED→(previous

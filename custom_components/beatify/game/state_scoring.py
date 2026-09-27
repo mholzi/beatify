@@ -75,6 +75,7 @@ from custom_components.beatify.const import (
 
 from .playlist import get_playback_uri
 from .scoring import ScoringService
+from .state_contract import GameStateBase
 
 if TYPE_CHECKING:
     from .player import PlayerSession
@@ -82,7 +83,7 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-class RoundScoringMixin:
+class RoundScoringMixin(GameStateBase):
     """Round-scoring & round-stats behavior for :class:`GameState`.
 
     Carries the round-end scoring pass plus highlights / analytics / song-result

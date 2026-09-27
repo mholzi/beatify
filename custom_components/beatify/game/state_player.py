@@ -42,6 +42,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
+from .state_contract import GameStateBase
+
 if TYPE_CHECKING:
     from aiohttp import web
 
@@ -51,7 +53,7 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-class PlayerLifecycleMixin:
+class PlayerLifecycleMixin(GameStateBase):
     """Player-lifecycle delegation behavior for :class:`GameState`.
 
     See module docstring for the host-class attributes this mixin reads.

@@ -92,11 +92,12 @@ import asyncio
 import logging
 
 from ..const import ROUND_OVERDUE_GRACE_SECONDS
+from .state_contract import GameStateBase
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class RevealTransitionMixin:
+class RevealTransitionMixin(GameStateBase):
     """Round-timer & REVEAL/terminal-transition behavior for :class:`GameState`.
 
     Carries the early-reveal gate, the round-timer task, the REVEAL transition

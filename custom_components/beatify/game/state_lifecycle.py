@@ -113,11 +113,12 @@ import logging
 from custom_components.beatify.const import MAX_CONSECUTIVE_PLAYBACK_FAILURES
 
 from .playlist import get_playback_uri, get_song_uri
+from .state_contract import GameStateBase
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class RoundLifecycleMixin:
+class RoundLifecycleMixin(GameStateBase):
     """Round-start / round-setup behavior for :class:`GameState`.
 
     Carries the full ``start_round`` orchestration and its round-setup
@@ -287,7 +288,7 @@ class RoundLifecycleMixin:
                 "Skipping song (year %s) - no URI for provider", song.get("year", "?")
             )
             self._playlist_manager.mark_played(
-                get_song_uri(song, self.provider, self.storefront) or song.get("uri")
+                get_song_uri(song, self.provider, self.storefront) or song.get("uri")  # type: ignore[arg-type]
             )
             if _retry_count >= MAX_SONG_RETRIES:
                 _LOGGER.error(
@@ -406,7 +407,7 @@ class RoundLifecycleMixin:
                 # does not — by classifying its failures as "error" and
                 # quietly disabling the skip logic below.
                 failure_reason = self._media_player_service.last_failure_reason
-                self._playlist_manager.mark_played(get_playback_uri(song))
+                self._playlist_manager.mark_played(get_playback_uri(song))  # type: ignore[arg-type]
 
                 if failure_reason == "unavailable":
                     _LOGGER.info(
@@ -563,13 +564,14 @@ class RoundLifecycleMixin:
             extra_deadline_ms=extra_ms,
         )
 
-        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0
+        # _initialize_round just set the deadline and the current song.
+        delay_seconds = (self.deadline - int(self._now() * 1000)) / 1000.0  # type: ignore[operator]
         await self._lights_set_phase(GamePhase.PLAYING)
         _LOGGER.info(
             "Round %d started: %s - %s (%.1fs timer)",
             self.round,
-            self.current_song.get("artist"),
-            self.current_song.get("title"),
+            self.current_song.get("artist"),  # type: ignore[union-attr]
+            self.current_song.get("title"),  # type: ignore[union-attr]
             delay_seconds,
         )
 
@@ -627,7 +629,7 @@ class RoundLifecycleMixin:
                     # manual #1211 allowance for device overhead we cannot see.
                     _extra = 0.0
                     with contextlib.suppress(Exception):
-                        busy = getattr(self, "announcement_busy_seconds", None)
+                        busy = getattr(self, "announcement_busy_seconds", None)  # type: ignore[assignment]
                         if callable(busy):
                             _extra += max(0.0, float(busy()))
                     _extra += max(0.0, float(self._tts_pre_round_delay or 0.0))
@@ -815,7 +817,8 @@ class RoundLifecycleMixin:
         wanted = self.ENCORE_ROUNDS if count is None else count
         if wanted <= 0:
             return 0
-        released = self._playlist_manager.release_reserved_songs(
+        # encore_available() above returned False without a playlist manager.
+        released = self._playlist_manager.release_reserved_songs(  # type: ignore[union-attr]
             wanted, reason="Encore (#2503)"
         )
         if not released:
@@ -824,7 +827,7 @@ class RoundLifecycleMixin:
         # otherwise a later manager rebuild (a lobby option patch, a rematch)
         # would sample the game straight back down to the old count.
         self.max_rounds = self.max_rounds + released if self.max_rounds else 0
-        self.total_rounds = self._playlist_manager.get_total_count()
+        self.total_rounds = self._playlist_manager.get_total_count()  # type: ignore[union-attr]
         _LOGGER.info(
             "Encore: +%d round(s) on the host's request, now %d total (#2503)",
             released,
