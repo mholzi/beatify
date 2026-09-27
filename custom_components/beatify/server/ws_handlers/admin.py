@@ -648,7 +648,9 @@ async def admin_dismiss_game(
         )
         return
 
-    await game_state.end_game()
+    # #3041: hand the speaker back in the background so the podium does not
+    # sit ~8 s waiting for the queue restore before ``game_ended`` goes out.
+    await game_state.end_game(defer_speaker_handback=True)
     _LOGGER.info("Game dismissed - all players cleared")
     await handler.broadcast({"type": "game_ended"})
     await handler.broadcast_state()
