@@ -128,7 +128,7 @@ class RevealTransitionMixin:
             has_winner = getattr(self.artist_challenge, "winner", None) is not None
             anyone_guessed = any(p.has_artist_guess for p in self._active_guessers())
             if not has_winner and anyone_guessed:
-                for player in self._active_guessers():
+                for player in self._bonus_guessers():
                     if not player.has_artist_guess:
                         return False
 
@@ -138,7 +138,7 @@ class RevealTransitionMixin:
             has_correct = len(self.movie_challenge.correct_guesses) > 0
             anyone_guessed = any(p.has_movie_guess for p in self._active_guessers())
             if not has_correct and anyone_guessed:
-                for player in self._active_guessers():
+                for player in self._bonus_guessers():
                     if not player.has_movie_guess:
                         return False
 
@@ -162,6 +162,22 @@ class RevealTransitionMixin:
         missing challenge guess could hold the room until the timer expired.
         """
         return [p for p in self.players.values() if p.is_active and not p.out_of_play]
+
+    def _bonus_guessers(self) -> list:
+        """Players the artist / movie bonus wait still holds the round for (#3016).
+
+        A player who stole an answer has handed in their round: the steal
+        copies someone else's year and marks them submitted. They see the
+        same "done" state as everyone else, so nothing tells them a bonus
+        tile is still owed. When the player they stole from had tapped a
+        wrong artist or movie, the wait below then held the round open for a
+        guess the stealer did not know was expected, and the reveal never
+        came until the timer ran out or the host stepped in.
+
+        The stealer can still tap a bonus tile until the reveal; the round
+        just no longer waits for them to do so.
+        """
+        return [p for p in self._active_guessers() if not p.stole_from]
 
     async def _trigger_early_reveal(self) -> None:
         """
