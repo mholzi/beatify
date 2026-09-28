@@ -4,30 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.8.1-rc3] - 2026-09-27
+## [4.8.1] - 2026-09-28
 
-Third candidate for 4.8.1: rc2 plus the two findings from its live test. No new features.
+Patch on top of 4.8.0: game fixes for the TV and the host phone, two playlist link repairs and a
+type-checking refactor. No new features. rc2 passed the live test on 27.09 (findings #3040 and
+#3041, both fixed in rc3); rc3 and the Dependabot eslint bump were released without a live test
+of their own on Markus' decision.
 
 ### Fixed
-- **The TV leaves the podium right away when the game ends** (#3041, #3043, #3044). Ending a game
-  waited ~8 s for the speaker's volume and queue restore before `game_ended` went out, so the TV
-  stayed on the podium. The restore now runs as a tracked background task after the broadcast, for
-  the REST end-game and for Dismiss; a new game started meanwhile waits for it (max 30 s) before
-  it touches the speaker.
 - **Singular on the host's "End round" card** (#3040, #3042). "1 players count as wrong" now reads
   "1 player counts as wrong", and the streak line gets its singular too, in all six languages.
-
-## [4.8.1-rc2] - 2026-09-27
-
-Second candidate for 4.8.1: everything from rc1 plus five game fixes from the 27.09 code review,
-two playlist link repairs and one type-checking refactor. No new features.
-
-### Fixed
 - **Party-lights buttons in the phone host drawer work** (#3025, #3031). Off / Subtle / Party sent
   a message type the server does not know, so the lights never changed.
-- **The TV leaves the podium when the game ends** (#3026, #3033). After "Start New Game", and when
-  the TV is opened with no game running, it now shows the existing "No active game" screen instead
-  of the old podium or a spinner.
+- **The TV leaves the podium when the game ends** (#3026, #3033, #3041, #3043, #3044). After
+  "Start New Game", after Dismiss, and when the TV is opened with no game running, it shows the
+  existing "No active game" screen instead of the old podium or a spinner. Ending a game no longer
+  waits ~8 s for the speaker's volume and queue restore before `game_ended` goes out: the restore
+  runs as a tracked background task, and a new game started meanwhile waits for it (max 30 s).
 - **The TV holds its timer during the intro-round splash** (#3027, #3035). While phones wait for
   the host to confirm an intro round, the TV no longer counts a placeholder deadline down to zero.
 - **Sudden Death ghosts stay out of the round analytics** (#3028, #3032). Eliminated players who
@@ -38,16 +31,6 @@ two playlist link repairs and one type-checking refactor. No new features.
 - **40s & 50s Classics** (#3023, #3024): nine Deezer links pointed to medleys or other artists and
   two Apple Music region maps held IDs that no storefront has; playlist v1.21.
 - **70s Hits** (#3038, #3039): 17 dead or wrong provider links replaced; playlist v1.26.
-
-### Changed
-- **GameState mixins have a type contract and are in the mypy gate** (#3030, #3036).
-  Behaviour-neutral; an attribute rename in one mixin is now a type error instead of a runtime bug.
-
-## [4.8.1-rc1] - 2026-09-27
-
-Patch on top of 4.8.0: three fixes, no new features.
-
-### Fixed
 - **A steal by the last player ends the round again** (#3016, #3017, reported by @triluch). When
   the player being stolen from had tapped a wrong artist or movie bonus tile, the early-reveal gate
   also waited for the stealer's bonus guess, and the round sat on PLAYING until the timer ran out.
@@ -58,6 +41,10 @@ Patch on top of 4.8.0: three fixes, no new features.
   held twice in the pool no longer drops out and the game matches the "N of M usable" number.
 - **TV reveal leaderboard keeps the sabotage and finalist badges** (#3019, #3021). Both TV
   leaderboards now build their rows with one shared `buildLeaderboardRowHtml`.
+
+### Changed
+- **GameState mixins have a type contract and are in the mypy gate** (#3030, #3036).
+  Behaviour-neutral; an attribute rename in one mixin is now a type error instead of a runtime bug.
 
 ## [4.8.0] - 2026-09-26
 
