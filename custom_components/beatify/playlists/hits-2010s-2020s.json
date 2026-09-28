@@ -1,6 +1,6 @@
 {
   "name": "2010s & 2020s Hits",
-  "version": "1.23",
+  "version": "1.24",
   "tags": [
     "pop",
     "charts",
@@ -668,7 +668,6 @@
       "artist": "J Balvin",
       "title": "Mi Gente - Original Mix",
       "year": 2017,
-      "isrc": "FR22F1701790",
       "uri": "spotify:track:7lHZVqUWCH19fUw0ZI2euy",
       "uri_apple_music": "applemusic://track/1598666433",
       "uri_apple_music_by_region": {
@@ -682,7 +681,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=_Za1vy3yDUc",
       "uri_tidal": "tidal://track/75613542",
-      "uri_deezer": "deezer://track/377718131",
+      "uri_deezer": "deezer://track/373362011",
       "alt_artists": [
         "Willy William"
       ],
@@ -1734,15 +1733,14 @@
       "year": 2015,
       "isrc": "USUG11500070",
       "uri": "spotify:track:4b2tcjrG1qUkSdsqEFP2dB",
-      "uri_apple_music": "applemusic://track/1440907562",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440907562",
-        "de": "applemusic://track/1440907562",
-        "gb": "applemusic://track/1440907562",
-        "fr": "applemusic://track/1440907562",
-        "es": "applemusic://track/1440907562",
-        "nl": "applemusic://track/1443050882",
-        "it": "applemusic://track/1440907562"
+        "us": null,
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7e-A7y9WesI",
       "uri_tidal": "tidal://track/82109755",
@@ -2944,7 +2942,7 @@
       "fun_fact_fr": "L'album dont il est tiré a été ignoré aux Grammy, et l'artiste a répondu en refusant de rien soumettre l'année suivante.",
       "fun_fact_nl": "Het album waar het van komt werd bij de Grammy's genegeerd, en de artiest reageerde door het jaar daarop niets in te dienen.",
       "fun_fact_it": "L'album da cui proviene fu ignorato ai Grammy, e l'artista rispose rifiutandosi di presentare qualcosa l'anno seguente.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=2aum08jjT1I"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XXYlFuWEuKI"
     },
     {
       "year": 2021,
