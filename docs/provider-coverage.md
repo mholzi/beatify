@@ -1,16 +1,16 @@
 # Beatify Provider-URI Coverage
-> Generated: 2026-09-20
+> Generated: 2026-09-28
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.1 (catalogue unchanged since v4.7.3-rc2 — the playlist edits since then were URI repairs in ballermann-party-hits, harder-styles, divorced-dad-rock, edm-anthems, finnish-iskelma-classics, trance-classics, 40s-50s-classics and 70s-hits and one YouTube link in south-africa-by-q, none of which changes a song count)
+> Catalogue state: v4.8.1 + community/bollywood-party-hits.json (79 songs, new — Diwali 2026 seasonal playlist)
 
 ## Summary
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
-| Apple | 8222 | 8555 | 96.1% |
-| Tidal | 5955 | 8555 | 69.6% |
-| Deezer | 8462 | 8555 | 98.9% |
-| YouTube | 8196 | 8555 | 95.8% |
+| Apple | 8300 | 8634 | 96.1% |
+| Tidal | 5955 | 8634 | 69.0% |
+| Deezer | 8541 | 8634 | 98.9% |
+| YouTube | 8274 | 8634 | 95.8% |
 
 ## Per-playlist coverage
 
@@ -27,6 +27,7 @@
 | community/ballermann-party-hits.json | 189 | 188 | 189 | 188 | 189 |
 | community/best-canadian-hits.json | 100 | 98 | 99 | 99 | 100 |
 | community/best-of-giraffenaffen.json | 26 | 26 | 26 | 26 | 26 |
+| community/bollywood-party-hits.json | 79 | 78 | 0 | 79 | 78 |
 | community/british-invasion-britpop.json | 100 | 96 | 100 | 100 | 100 |
 | community/clasicos-disney-castellano.json | 64 | 47 | 0 | 37 | 16 |
 | community/clasicos-rock-en-espanol.json | 39 | 33 | 0 | 39 | 39 |

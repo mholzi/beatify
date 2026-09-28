@@ -456,7 +456,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,555 songs across 67 curated playlists:
+Beatify comes with 8,634 songs across 68 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 151 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -475,6 +475,7 @@ Beatify comes with 8,555 songs across 67 curated playlists:
 - 🍺 **Ballermann Party Hits** — 189 Mallorca and Schlager party tracks
 - 🇨🇦 **Best Canadian Hits: Top 100** — 100 Canadian hits across six decades, from The Guess Who and Rush to The Weeknd
 - 🦒 **Best of Giraffenaffen** — 26 German children's songs
+- 🪔 **Bollywood Party Hits** — 79 Hindi film and party songs from 1995 to 2025, from Bole Chudiyan and Desi Girl to Stree 2
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
 - 🏰 **Clásicos Disney (Castellano)** — 64 Disney songs in the Spanish of Spain
 - 🎭 **Cologne Carnival** — 290 German carnival favorites
@@ -688,7 +689,7 @@ comparison — including where the card game wins.
 
 | | Card-based music party game | Beatify |
 |---|---|---|
-| **What you buy** | A box, and a new box or expansion for more music | Nothing. 67 playlists ship with it, 8,555 songs |
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 68 playlists ship with it, 8,634 songs |
 | **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
 | **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |
