@@ -1,6 +1,6 @@
 {
   "name": "Bollywood Party Hits",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "bollywood",
     "hindi",
@@ -437,7 +437,8 @@
       "fun_fact_de": "Aus dem Film Khiladi 786, komponiert von Himesh Reshammiya, gesungen von Himesh Reshammiya, Vineet Singh und Aaman Trikha.",
       "fun_fact_es": "De la película Khiladi 786, compuesta por Himesh Reshammiya y cantada por Himesh Reshammiya, Vineet Singh y Aaman Trikha.",
       "fun_fact_fr": "Extrait du film Khiladi 786, composé par Himesh Reshammiya et chanté par Himesh Reshammiya, Vineet Singh et Aaman Trikha.",
-      "fun_fact_nl": "Uit de film Khiladi 786, gecomponeerd door Himesh Reshammiya en gezongen door Himesh Reshammiya, Vineet Singh en Aaman Trikha."
+      "fun_fact_nl": "Uit de film Khiladi 786, gecomponeerd door Himesh Reshammiya en gezongen door Himesh Reshammiya, Vineet Singh en Aaman Trikha.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b4b1cMVZOUU"
     },
     {
       "artist": "Shaarib Toshi, Badshah, Indeep Bakshi",
