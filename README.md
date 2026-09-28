@@ -826,6 +826,16 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.1 — Round Ends on Time 🎯
+- **A steal by the last player ends the round right away** — thanks to @triluch for the report (#3016)
+- **The TV leaves the podium when the game ends** — straight to "No active game", without the old ~8 s wait (#3026, #3041)
+- **The TV timer waits during an intro round** until the host confirms (#3027)
+- **Encore and the finale tiebreaker work in easy-to-hard games** (#3029)
+- **Sudden Death knock-outs no longer show up as "Closest"** on the reveal (#3028)
+- **The light buttons in the host drawer work again** (#3025), and the "End round" card says "1 player" (#3040)
+- **My Music plays every song the playlist check counted** (#3018), and the TV keeps sabotage and finalist badges at the reveal (#3019)
+- **Broken links fixed** in 40s & 50s Classics and 70s Hits (#3024, #3039)
+
 ### v4.8.0 — 4.5 🎛️
 - **My Music can play from your own playlist** — pick a Music Assistant playlist instead of the whole library; the setup says how many songs are usable and why the others were left out (#2939)
 - **A phone that reloads on the podium gets the rematch** — it reconnects with the final standings and follows the host into the new lobby; a guest who scans the QR during the podium lands on the join form once the rematch opens (#2947)
