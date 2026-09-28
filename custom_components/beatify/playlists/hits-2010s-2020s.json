@@ -668,6 +668,7 @@
       "artist": "J Balvin",
       "title": "Mi Gente - Original Mix",
       "year": 2017,
+      "isrc": "FR22F1701790",
       "uri": "spotify:track:7lHZVqUWCH19fUw0ZI2euy",
       "uri_apple_music": "applemusic://track/1598666433",
       "uri_apple_music_by_region": {
@@ -1733,14 +1734,15 @@
       "year": 2015,
       "isrc": "USUG11500070",
       "uri": "spotify:track:4b2tcjrG1qUkSdsqEFP2dB",
+      "uri_apple_music": "applemusic://track/6798409416",
       "uri_apple_music_by_region": {
-        "us": null,
-        "de": null,
-        "gb": null,
-        "fr": null,
-        "es": null,
-        "nl": null,
-        "it": null
+        "us": "applemusic://track/6798409416",
+        "de": "applemusic://track/6798409416",
+        "gb": "applemusic://track/6798409416",
+        "fr": "applemusic://track/6798409416",
+        "es": "applemusic://track/6798409416",
+        "nl": "applemusic://track/6798409416",
+        "it": "applemusic://track/6798409416"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7e-A7y9WesI",
       "uri_tidal": "tidal://track/82109755",
