@@ -291,6 +291,11 @@ class GameStateSerializer:
         # back-compat and the client-side smooth-correct ease (#1273).
         if gs.deadline is not None:
             state["seconds_remaining"] = max(0, round(gs.deadline / 1000 - gs._now()))
+        # #3053: the host's "Stop song" is a per-round fact. It used to travel
+        # only as a one-off `song_stopped` event, so every PLAYING frame (one
+        # per guest submission) made the phones forget it. Carry it in the
+        # state so a frame, a reload or a late joiner can rebuild the chip.
+        state["song_stopped"] = bool(gs.song_stopped)
         state["last_round"] = gs.last_round
         state["songs_remaining"] = gs.songs_remaining
         # #2559 Ghost League: die zweite Tabelle. Leer, solange niemand als

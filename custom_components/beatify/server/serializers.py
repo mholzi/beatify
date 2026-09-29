@@ -109,6 +109,10 @@ _PLAYER_VISIBLE_ROUND = frozenset(
         "total_rounds",
         "last_round",
         "songs_remaining",
+        # #3053: the host's "Stop song" chip is shown to the whole room, and a
+        # phone that reloads mid-round has to be able to rebuild it. A boolean
+        # about playback, not about the answer.
+        "song_stopped",
         # #2559: die Geister-Liga. Fuer JEDEN sichtbar, und das ist der Punkt
         # der gewaehlten Variante: die Geister sollen etwas zu gewinnen haben,
         # das der Raum sieht. Sie verraet nichts ueber den laufenden Song — es

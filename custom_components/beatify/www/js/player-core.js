@@ -810,7 +810,7 @@ function handleServerMessage(data) {
                     // Re-apply control bar labels after language load (#300)
                     // updateControlBarState() uses utils.t() which needs i18n ready
                     if (data.phase === 'PLAYING' || data.phase === 'REVEAL') {
-                        updateControlBarState(data.phase);
+                        updateControlBarState(data.phase, data);
                         // #2723: the drawer's subtitle is a sentence, not a
                         // label — it has to be rebuilt when the locale lands,
                         // same reason as the lobby brief above.
@@ -922,7 +922,7 @@ function handleServerMessage(data) {
             initYearSelector();
             setupLeaderboardToggle();
             showAdminControlBar();
-            updateControlBarState('PLAYING');
+            updateControlBarState('PLAYING', data);
             renderHostDrawer(data);     // #2723
             renderPartyLightsLine(data);  // #2649
             syncVolumeFromState(data);  // #2557
