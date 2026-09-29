@@ -28,7 +28,7 @@
  * import in admin.js, and adds the two pure WS helpers below.
  */
 
-import { _adminHeaders, _setAdminToken } from './util.js';
+import { _adminHeaders, _setAdminToken, errorHeadlineAndDetail } from './util.js';
 
 // Re-export the REST header helper so admin.js can import the whole hub surface
 // (REST + WS) from one module. The implementation stays in util.js (step 2).
@@ -59,6 +59,18 @@ export function reconnectDelay(attempt) {
 // --- injected admin dependencies -------------------------------------------
 // admin.js registers these once via initAdminApi(). Defaults are inert so the
 // module is import-safe before init (no TDZ, no throw at module eval).
+
+/**
+ * #3057: the text for a `type:'error'` frame. The server's `message` is hard
+ * English ("Need at least 2 players to start"); `errors.<CODE>` exists in all
+ * six locales, so look the code up first and keep the server sentence only as
+ * the fallback for a code without a translation.
+ */
+export function localizedErrorMessage(data) {
+    var i18n = (typeof window !== 'undefined' && window.BeatifyI18n) || null;
+    var translate = i18n && typeof i18n.t === 'function' ? i18n.t.bind(i18n) : null;
+    return errorHeadlineAndDetail(data, translate, data && data.message).message;
+}
 
 let deps = {
     debug: () => {},
@@ -449,7 +461,7 @@ export function handleAdminWsMessage(data) {
                 // can retry cleanly. The modal may already be closed (the join is
                 // sent optimistically), in which case openAdminJoinModal() also
                 // resets on reopen; this handles the case where it is still open.
-                deps.showError(data.message);
+                deps.showError(localizedErrorMessage(data));
                 deps.setIsPlaying(false);
                 deps.setAdminPlayerName(null);
                 var joinBtn = document.getElementById('admin-join-btn');
@@ -481,9 +493,9 @@ export function handleAdminWsMessage(data) {
                     // the speaker list collapsed out of sight below it. This
                     // one stays above the Start button and carries a button
                     // that opens the list.
-                    deps.showSpeakerSetupError(data.message);
+                    deps.showSpeakerSetupError(localizedErrorMessage(data));
                 } else {
-                    deps.showError(data.message);
+                    deps.showError(localizedErrorMessage(data));
                 }
             } else {
                 // #1402 B7: an error for some other mid-game command

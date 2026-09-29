@@ -42,8 +42,57 @@
 </head>
 <body>
     <div class="offline-emoji" aria-hidden="true">🎵📴</div>
-    <h1>You're offline</h1>
-    <p>Beatify can't reach the server right now. Check your Wi-Fi or connection and try again.</p>
-    <button type="button" onclick="location.reload()">Retry</button>
+    <h1 id="offline-title">You're offline</h1>
+    <p id="offline-text">Beatify can't reach the server right now. Check your Wi-Fi or connection and try again.</p>
+    <button type="button" id="offline-retry" onclick="location.reload()">Retry</button>
+    <!-- #3057: the same three lines in the six game languages. Inline for the
+         same reason the styles are: nothing else is guaranteed to be cached.
+         English stays in the markup above as the no-JS / unknown-language
+         fallback. Language: the guest's own pick, then the language of the
+         last game on this device, then the browser's. -->
+    <script>
+    (function () {
+        var T = {
+            en: ["You're offline",
+                 "Beatify can't reach the server right now. Check your Wi-Fi or connection and try again.",
+                 "Retry"],
+            de: ["Du bist offline",
+                 "Beatify erreicht den Server gerade nicht. Prüfe dein WLAN bzw. deine Verbindung und versuche es erneut.",
+                 "Erneut versuchen"],
+            es: ["Estás sin conexión",
+                 "Beatify no puede conectar con el servidor ahora mismo. Comprueba tu Wi-Fi o tu conexión e inténtalo de nuevo.",
+                 "Reintentar"],
+            fr: ["Tu es hors ligne",
+                 "Beatify ne parvient pas à joindre le serveur pour le moment. Vérifie ton Wi-Fi ou ta connexion et réessaie.",
+                 "Réessayer"],
+            nl: ["Je bent offline",
+                 "Beatify kan de server nu niet bereiken. Controleer je wifi of verbinding en probeer het opnieuw.",
+                 "Opnieuw proberen"],
+            it: ["Sei offline",
+                 "Beatify non riesce a raggiungere il server in questo momento. Controlla il Wi-Fi o la connessione e riprova.",
+                 "Riprova"]
+        };
+        function pick() {
+            var stored = [];
+            try {
+                stored.push(localStorage.getItem('beatify_guest_language'));
+                stored.push(localStorage.getItem('beatify_language'));
+            } catch (e) { /* storage blocked: fall through to the browser */ }
+            var browser = (typeof navigator !== 'undefined' && navigator.languages) || [];
+            var candidates = stored.concat(Array.prototype.slice.call(browser),
+                typeof navigator !== 'undefined' ? [navigator.language] : []);
+            for (var i = 0; i < candidates.length; i++) {
+                var code = String(candidates[i] || '').slice(0, 2).toLowerCase();
+                if (T[code]) return code;
+            }
+            return 'en';
+        }
+        var lang = pick();
+        document.documentElement.lang = lang;
+        document.getElementById('offline-title').textContent = T[lang][0];
+        document.getElementById('offline-text').textContent = T[lang][1];
+        document.getElementById('offline-retry').textContent = T[lang][2];
+    })();
+    </script>
 </body>
 </html>
