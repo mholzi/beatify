@@ -335,10 +335,11 @@ describe('updateControlBarState', () => {
         expect(next.classList.contains('is-disabled')).toBe(true);
     });
 
-    it('PLAYING resets a previously stopped song back to active', () => {
+    it('PLAYING of a NEW round resets a previously stopped song back to active', () => {
+        // #3053: only a round change resets — a same-round frame must not.
         handleSongStopped();
         expect(els['stop-song-btn'].disabled).toBe(true);
-        updateControlBarState('PLAYING');
+        updateControlBarState('PLAYING', { round: 9001, song_stopped: false });
         expect(els['stop-song-btn'].disabled).toBe(false);
         expect(els['stop-song-btn'].classList.contains('is-stopped')).toBe(false);
     });

@@ -2321,6 +2321,8 @@ var lastAdminActionAt = 0;
 var ADMIN_ACTION_DEBOUNCE_MS = 500;
 
 var songStopped = false;
+// #3053: round the control bar last reset the stopped state for.
+var controlBarRound = null;
 
 var currentVolume = 0.5;
 
@@ -3150,8 +3152,10 @@ function handleResumeGame() {
 /**
  * Update control bar button states based on phase
  * @param {string} phase - Current game phase
+ * @param {Object} [data] - State payload (#3053): its `round` decides when the
+ *   stopped state resets, its `song_stopped` restores it after a frame/reload
  */
-export function updateControlBarState(phase) {
+export function updateControlBarState(phase, data) {
     var stopBtn = document.getElementById('stop-song-btn');
     var nextBtn = document.getElementById('next-round-admin-btn');
     var endBtn = document.getElementById('end-game-btn');
@@ -3167,7 +3171,16 @@ export function updateControlBarState(phase) {
     }
 
     if (phase === 'PLAYING') {
-        resetSongStoppedState();
+        // #3053: PLAYING is re-sent on every guest submission, so resetting
+        // here unconditionally undid the host's Stop on the next answer.
+        // Reset only when a new round starts; the server flag restores it.
+        if (data && data.round !== controlBarRound) {
+            resetSongStoppedState();
+            controlBarRound = data.round;
+        }
+        if (data && data.song_stopped && !songStopped) {
+            handleSongStopped();
+        }
         if (stopBtn && !songStopped) {
             stopBtn.classList.remove('is-disabled');
             stopBtn.disabled = false;
