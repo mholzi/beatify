@@ -4,27 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.8.2-rc2] - 2026-09-29
+## [4.8.2] - 2026-09-29
 
-Second candidate for 4.8.2: one fix from the rc1 live test and one playlist repair.
-
-### Fixed
-- **A second admin page no longer evicts the first** (#3081, #3082, found in the rc1 live test).
-  The server kept a single admin-socket slot, so a second admin client that connected and left
-  again left the still-open admin page answering every action with NOT_ADMIN. Admin sockets are
-  now tracked as a set; who counts as admin is unchanged.
-
-### Playlists
-- top-songs-der-60er: four dead Tidal links replaced and "Think" moved back to Aretha Franklin's
-  1968 original (ISRC, Deezer, Apple Music), version 1.22 (#3079, #3080).
-
-## [4.8.2-rc1] - 2026-09-29
-
-The week 2026-W40 "Hält, was er sagt": eleven fixes for the host phone, the guests and the TV, plus
-one new playlist. No new features.
+Patch on top of 4.8.1: the week 2026-W40 "Hält, was er sagt" — twelve fixes for the host phone,
+the guests and the TV, one new playlist and two playlist link repairs. No new features. rc2 passed
+the live test on 29.09 (both runs, no findings); rc1's live test found #3081, fixed in rc2.
 
 ### Fixed
-- **"Next Round" takes taps again with the host drawer open** (#3063, #3065, reported by @nirvdrum).
+- **"Next Round" takes taps again with the host drawer** (#3063, #3065, reported by @nirvdrum).
+  The drawer collapses so the big button on the host phone is reachable.
 - **Title & Artist mode announces title and artist** (#3062, #3064, reported by @nirvdrum).
 - **The host's Stop Song survives the next guest submission** (#3053, #3072).
 - **The resume watchdog no longer restarts a song the host stopped during an announcement** (#3054, #3067).
@@ -35,10 +23,15 @@ one new playlist. No new features.
 - **The TV answer counter skips eliminated, spectator and sat-out players** (#3055, #3074).
 - **Host-phone server errors and the offline page are localized**, with the specific server
   message kept as its own key (#3057, #3075, #3076, #3077).
+- **A second admin page no longer evicts the first** (#3081, #3082, found in the rc1 live test).
+  Admin sockets are tracked as a set, so a second admin client that connects and leaves no longer
+  leaves the open admin page answering every action with NOT_ADMIN. Who counts as admin is unchanged.
 
 ### Playlists
 - **New: Bollywood Party Hits** (79 songs, community, Diwali 2026) (#3050).
 - hits-2010s-2020s: three broken URIs repaired, version 1.24 (#3060, #3061).
+- top-songs-der-60er: four dead Tidal links replaced and "Think" moved back to Aretha Franklin's
+  1968 original (ISRC, Deezer, Apple Music), version 1.22 (#3079, #3080).
 
 ## [4.8.1] - 2026-09-28
 
