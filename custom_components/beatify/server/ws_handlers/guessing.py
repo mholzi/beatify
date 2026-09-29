@@ -954,7 +954,7 @@ async def handle_title_artist_override(
         )
         return
 
-    is_admin_ws = handler.admin_ws is not None and handler.admin_ws is ws
+    is_admin_ws = handler.is_admin_socket(ws)
     sender = game_state.get_player_by_ws(ws)
     if not (is_admin_ws or (sender and sender.is_admin)):
         await ws.send_json(
