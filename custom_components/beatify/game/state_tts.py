@@ -34,9 +34,11 @@ import asyncio
 import contextlib
 import logging
 import time
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from . import tts_phrases
+from .challenges import STATUS_NEAR_MISS_ACCEPTED
+from .text_match import STATUS_EXACT, STATUS_FUZZY, STATUS_NEAR_MISS
 from .state_contract import GameStateBase
 
 if TYPE_CHECKING:
@@ -497,6 +499,16 @@ class TtsAnnouncerMixin(GameStateBase):
         players = list(self.players.values())
         frags: list[str] = []
 
+        # #3062: in Title & Artist mode the year is not what anyone guessed —
+        # the answer is the song's title and artist, and "who got it" comes
+        # from the per-field title/artist statuses, not from years_off (which
+        # is always None there, so every round used to end in "nobody got it").
+        challenge = self.title_artist_challenge if self.title_artist_mode else None
+        if challenge is not None:
+            self._reveal_title_artist_frags(lang, players, challenge, frags)
+            await self._reveal_tail_frags(lang, players, frags)
+            return
+
         # Correct answer.
         if self._tts_announce_correct_answer and correct_year is not None:
             year = tts_phrases.spoken_number(lang, correct_year, "year")
@@ -519,6 +531,59 @@ class TtsAnnouncerMixin(GameStateBase):
         elif had_submitters and not exact and self._tts_announce_nobody_correct:
             frags.append(tts_phrases.phrase(lang, "nobody"))
 
+        await self._reveal_tail_frags(lang, players, frags)
+
+    def _reveal_title_artist_frags(
+        self, lang: str, players: list, challenge: Any, frags: list[str]
+    ) -> None:
+        """Answer + accuracy fragments for a Title & Artist round (#3062).
+
+        Answer: "The answer was {title} by {artist}." Accuracy: players who got
+        BOTH fields (exact or fuzzy) are named with the "exact" line; the
+        "nobody got it" line fires only when no submitter got either field
+        right AND no near-miss is still open for the community vote (a pending
+        near-miss may yet be accepted, so "nobody" would be premature).
+        """
+        title = (challenge.correct_title or "").strip()
+        artist = (challenge.correct_artist or "").strip()
+        if self._tts_announce_correct_answer and title and artist:
+            frags.append(
+                tts_phrases.phrase(
+                    lang, "answer_title_artist", title=title, artist=artist
+                )
+            )
+
+        right = (STATUS_EXACT, STATUS_FUZZY, STATUS_NEAR_MISS_ACCEPTED)
+        guesses = challenge.guesses
+        submitters = [p for p in players if p.submitted]
+        both: list[str] = []
+        any_right = False
+        pending = False
+        for p in submitters:
+            guess = guesses.get(p.name) or {}
+            title_status = guess.get("title_status")
+            artist_status = guess.get("artist_status")
+            if title_status in right and artist_status in right:
+                both.append(p.name)
+            if title_status in right or artist_status in right:
+                any_right = True
+            if STATUS_NEAR_MISS in (title_status, artist_status):
+                pending = True
+        if both and self._tts_announce_exact_guess:
+            names = tts_phrases.join_names(lang, both)
+            frags.append(tts_phrases.phrase(lang, "exact", names=names))
+        elif (
+            submitters
+            and not any_right
+            and not pending
+            and self._tts_announce_nobody_correct
+        ):
+            frags.append(tts_phrases.phrase(lang, "nobody"))
+
+    async def _reveal_tail_frags(
+        self, lang: str, players: list, frags: list[str]
+    ) -> None:
+        """Streak / bet / steal / standings fragments, then speak (#3062 split)."""
         # Streak milestones — streak_bonus is non-zero only on the exact
         # round a milestone (3/5/10/15/20/25) is reached.
         if self._tts_announce_streak_milestone:
