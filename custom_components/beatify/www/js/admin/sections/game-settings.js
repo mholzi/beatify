@@ -153,7 +153,8 @@ export function setupGameSettings(opts = {}) {
             renderDifficultyHint();
             refreshPartyLightsLabels();
             updateGameSettingsSummary();
-            saveGameSettings();
+            // #3056: the server-side lobby (TV, TTS) has to follow the chip too.
+            saveGameSettings({ language: lang });
         });
     });
 
@@ -447,7 +448,7 @@ export async function loadSavedSettings() {
 /**
  * Save game settings to localStorage
  */
-export function saveGameSettings() {
+export function saveGameSettings(lobbyPatch = {}) {
     // Apply lobby-mutable settings to an EXISTING game too (server no-ops
     // when none is active): device, TTS, party lights — otherwise changes
     // made after room creation only took effect one game later.
@@ -459,6 +460,7 @@ export function saveGameSettings() {
                 media_player: (adminState.selectedMediaPlayer || {}).entityId || null,
                 tts: ttsConfig(),
                 party_lights: partyLightsConfig(),
+                ...lobbyPatch,  // #3056: e.g. { language } from the chip
             }),
         });
     } catch (e) { /* fire-and-forget */ }
