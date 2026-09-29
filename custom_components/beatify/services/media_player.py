@@ -828,6 +828,11 @@ class MediaPlayerService:
 
         if lead_seconds > 0:
             await asyncio.sleep(lead_seconds + 0.4)
+            # #3054: the lead window is up to 15 s — long enough for the host
+            # to stop the song or pause the game. Ask before the anticipatory
+            # kick, exactly like the loop below does.
+            if not should_continue():
+                return
             st0 = self._hass.states.get(self._entity_id)
             if st0 is not None and st0.state in ("idle", "paused"):
                 kicks += 1
