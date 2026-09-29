@@ -80,6 +80,7 @@ import {
     buildHomeMeta,
     lobbyPlaylistPaths,
     adminJoinNameValid,
+    isLibrarySong,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -2915,7 +2916,7 @@ function showAdminPlayingView(data) {
         // the host can correct the year from the spectator view too.
         if (data.song.is_library) {
             _renderLibraryFixButton(
-                { uri_ma_library: null, year: data.song.year },
+                { uri_ma_library: null, is_library: true, year: data.song.year },
                 document.getElementById('admin-song-year')
             );
         }
@@ -3104,8 +3105,10 @@ function renderEncoreOffer(data) {
 function _renderLibraryFixButton(adminSong, yearEl) {
     var existing = document.getElementById('admin-song-fix');
     var uri = adminSong && adminSong.uri_ma_library;
-    var haveName = !!(data_song_cache && data_song_cache.title);
-    if ((!uri && !haveName) || !yearEl || !yearEl.parentNode) {
+    // #3058: gate on the library flag/URI, not on having a title — every
+    // provider's PLAYING frame carries a title, so that offered a fix dialog
+    // (and a 404 "Lookup failed") in Spotify/Apple Music/Alexa games.
+    if (!isLibrarySong(adminSong) || !yearEl || !yearEl.parentNode) {
         if (existing) existing.remove();
         return;
     }

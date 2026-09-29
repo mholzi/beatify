@@ -652,3 +652,13 @@ export function adminJoinNameValid(name) {
     const trimmed = String(name || '').trim();
     return trimmed.length > 0 && trimmed.length <= MAX_NAME_LENGTH;
 }
+
+/**
+ * #3058: is this the host's own My Music (library) song? Only those have a
+ * pool entry the "Wrong year? Fix it" dialog can look up. `uri_ma_library`
+ * rides in the PLAYING `admin_song`; the REVEAL payload carries `is_library`.
+ * The presence of a title says nothing — every provider sends one.
+ */
+export function isLibrarySong(song) {
+    return !!(song && (song.uri_ma_library || song.is_library));
+}
