@@ -38,6 +38,8 @@ SAMPLE = {
     "previous": 4,
     "stealer": "Marco",
     "target": "Anna",
+    "title": "Take On Me",
+    "artist": "a-ha",
 }
 
 
