@@ -3,6 +3,9 @@
  * AnimationQueue, easing functions, score popups, confetti helpers, DOM utilities
  */
 
+// #3076: re-exported so the player modules keep importing from one place.
+import { specificErrorText } from './admin/util.js';
+export { specificErrorText };
 // #2627: the name cap comes from the shared mirror of const.py, not from a
 // local literal. It used to be declared here AND written out as
 // `name.length > 20` twice in admin.js AND as `maxlength="20"` in two forms.
@@ -408,8 +411,11 @@ export function isJoinRejection(code, joinPending) {
  * @param {function} t - translation helper (utils.t)
  * @returns {string} localized text, the server's message, or a last resort
  */
-export function joinRejectionMessage(code, serverMessage, t) {
+export function joinRejectionMessage(code, serverMessage, t, data) {
     var fallback = serverMessage || 'Could not join';
+    // #3076: the specific message first, the generic errors.<CODE> only after.
+    var specific = specificErrorText(data, t);
+    if (specific) return specific;
     if (typeof t !== 'function' || !code) return fallback;
     return t('errors.' + code, fallback);
 }

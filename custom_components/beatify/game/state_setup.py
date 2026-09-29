@@ -114,7 +114,14 @@ class NoPlayableSongsError(ValueError):
     It subclasses ``ValueError`` deliberately: every existing caller and test
     that expects a ``ValueError`` from ``create_game`` keeps working, so this
     adds a distinction without changing the contract.
+
+    #3076: ``provider`` travels with the error so the host phone can render the
+    sentence in its own language instead of the English ``str(err)``.
     """
+
+    def __init__(self, message: str, provider: str | None = None) -> None:
+        super().__init__(message)
+        self.provider = provider
 
 
 class GameSetupMixin(GameStateBase):
@@ -212,7 +219,8 @@ class GameSetupMixin(GameStateBase):
         if not playlist_manager.has_playable_songs():
             raise NoPlayableSongsError(
                 f"No playable songs for provider '{opts.provider}' in the selected "
-                f"playlist(s). Pick a different playlist or provider."
+                f"playlist(s). Pick a different playlist or provider.",
+                provider=opts.provider,
             )
 
         # Validation passed — now it is safe to mutate game state.
@@ -608,7 +616,8 @@ class GameSetupMixin(GameStateBase):
             if not probe.has_playable_songs():
                 raise NoPlayableSongsError(
                     f"No playable songs for provider '{self.provider}' in the "
-                    f"selected playlist(s). Pick a different playlist."
+                    f"selected playlist(s). Pick a different playlist.",
+                    provider=self.provider,
                 )
 
         self.cancel_timer()

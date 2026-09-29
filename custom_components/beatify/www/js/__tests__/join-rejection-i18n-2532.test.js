@@ -103,7 +103,7 @@ describe('#2532 — the fallback chain actually falls back', () => {
 describe('#2532 — the shipped call site uses the lookup', () => {
     it('player-core.js hands the code to joinRejectionMessage', () => {
         expect(PLAYER_CORE).toContain(
-            'failJoin(joinRejectionMessage(data.code, data.message, utils.t))',
+            'failJoin(joinRejectionMessage(data.code, data.message, utils.t, data))',
         );
     });
 

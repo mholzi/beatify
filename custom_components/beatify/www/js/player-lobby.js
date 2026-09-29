@@ -6,7 +6,7 @@
 import {
     state, escapeHtml, virtualPlayerList,
     initVirtualPlayerList, setVirtualPlayerListItems,
-    createModalFocusTrap
+    createModalFocusTrap, specificErrorText
 } from './player-utils.js';
 import { showToast } from './notify.js';
 
@@ -509,7 +509,10 @@ export function handleStartFailure(data) {
     startBtn.appendChild(label);
 
     var code = data && data.code;
-    var message = code ? utils.t('errors.' + code) : null;
+    // #3076: the specific message ("Need at least 2 players to start") before
+    // the generic errors.<CODE> ("Game has not started").
+    var message = specificErrorText(data, utils.t)
+        || (code ? utils.t('errors.' + code) : null);
     if (!message || message === 'errors.' + code) {
         message = (data && data.message) || utils.t('errors.startNotPossible');
     }

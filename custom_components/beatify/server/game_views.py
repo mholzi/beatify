@@ -171,6 +171,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "Beatify is not set up — reload the integration",
                 500,
                 code=ERR_INTERNAL,
+                message_key="NOT_SET_UP",
             )
 
         # Check for existing game
@@ -267,10 +268,18 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                         f"Round duration must be between {ROUND_DURATION_MIN} and {ROUND_DURATION_MAX} seconds",
                         400,
                         code="INVALID_REQUEST",
+                        message_key="ROUND_DURATION_RANGE",
+                        details={
+                            "min": ROUND_DURATION_MIN,
+                            "max": ROUND_DURATION_MAX,
+                        },
                     )
             except (ValueError, TypeError):
                 return _json_error(
-                    "Invalid round duration value", 400, code="INVALID_REQUEST"
+                    "Invalid round duration value",
+                    400,
+                    code="INVALID_REQUEST",
+                    message_key="ROUND_DURATION_INVALID",
                 )
 
         # Crate Digger GENERATES its playlist from the host's own library at
@@ -286,7 +295,12 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             )
 
         if not media_player:
-            return _json_error("No media player selected", 400, code="INVALID_REQUEST")
+            return _json_error(
+                "No media player selected",
+                400,
+                code="INVALID_REQUEST",
+                message_key="NO_MEDIA_PLAYER",
+            )
 
         # #1627 follow-up: heal a stale selection that points at the native twin
         # of a Music Assistant speaker. #1628 hides such twins from the picker,
@@ -309,7 +323,12 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # Validate media player entity exists
         media_player_state = self.hass.states.get(media_player)
         if not media_player_state:
-            return _json_error("Media player not found", 400, code="INVALID_REQUEST")
+            return _json_error(
+                "Media player not found",
+                400,
+                code="INVALID_REQUEST",
+                message_key="MEDIA_PLAYER_NOT_FOUND",
+            )
         if media_player_state.state == "unavailable":
             return _json_error(
                 "Media player is unavailable",
@@ -357,6 +376,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 "No valid songs found in selected playlists",
                 400,
                 code=ERR_NO_PLAYABLE_SONGS,  # #2294
+                message_key="NO_VALID_SONGS",
             )
 
         # Get base URL for join URL construction (from request URL)
@@ -464,7 +484,13 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 options=create_options,
             )
         except NoPlayableSongsError as err:
-            return _json_error(str(err), 400, code=ERR_NO_PLAYABLE_SONGS)
+            return _json_error(
+                str(err),
+                400,
+                code=ERR_NO_PLAYABLE_SONGS,
+                message_key="NO_PLAYABLE_FOR_PROVIDER",
+                details={"provider": err.provider},
+            )
         except ValueError as err:
             # The only other raise in create_game is the round-duration range
             # check, which the block above already rejects with its own code —
@@ -663,7 +689,12 @@ class EndGameView(BeatifyAdminView):
         game_state = data.get("game")
 
         if not game_state or not game_state.game_id:
-            return _json_error("No active game", 404, code="GAME_NOT_STARTED")
+            return _json_error(
+                "No active game",
+                404,
+                code="GAME_NOT_STARTED",
+                message_key="NO_ACTIVE_GAME",
+            )
 
         ws_handler = data.get("ws_handler")
 
@@ -842,14 +873,22 @@ class RematchGameView(HomeAssistantView):
         game_state = data.get("game")
 
         if not game_state or not game_state.game_id:
-            return _json_error("No active game", 404, code="GAME_NOT_FOUND")
+            return _json_error(
+                "No active game",
+                404,
+                code="GAME_NOT_FOUND",
+                message_key="NO_ACTIVE_GAME",
+            )
 
         # Rematch is safe without token -- game is already in END phase,
         # and the action just resets for a new game with the same players.
         # Token auth was blocking rematch from the player page (#535).
         if game_state.phase != GamePhase.END:
             return _json_error(
-                "Can only rematch from END phase", 400, code="INVALID_PHASE"
+                "Can only rematch from END phase",
+                400,
+                code="INVALID_PHASE",
+                message_key="REMATCH_END_ONLY",
             )
 
         # #2648: the same optional playlist swap the WebSocket path takes. This
@@ -868,7 +907,10 @@ class RematchGameView(HomeAssistantView):
                 isinstance(p, str) for p in raw_playlists
             ):
                 return _json_error(
-                    "playlists must be a list of paths", 400, code="INVALID_REQUEST"
+                    "playlists must be a list of paths",
+                    400,
+                    code="INVALID_REQUEST",
+                    message_key="PLAYLISTS_REQUIRED",
                 )
             swap_paths = raw_playlists[:MAX_REMATCH_PLAYLISTS]
             if not swap_paths:
@@ -883,6 +925,7 @@ class RematchGameView(HomeAssistantView):
                     "No valid songs found in selected playlists",
                     400,
                     code=ERR_NO_PLAYABLE_SONGS,
+                    message_key="NO_VALID_SONGS",
                 )
 
         player_count = len(game_state.players)
@@ -890,7 +933,13 @@ class RematchGameView(HomeAssistantView):
             game_state.rematch_game(songs=swap_songs, playlists=swap_paths)
         except NoPlayableSongsError as err:
             # Validated before anything was mutated — the finished game stands.
-            return _json_error(str(err), 400, code=ERR_NO_PLAYABLE_SONGS)
+            return _json_error(
+                str(err),
+                400,
+                code=ERR_NO_PLAYABLE_SONGS,
+                message_key="NO_PLAYABLE_FOR_PROVIDER",
+                details={"provider": err.provider},
+            )
 
         # Broadcast to WebSocket clients
         ws_handler = data.get("ws_handler")
@@ -986,6 +1035,7 @@ async def _resolve_ma_playlist_uris(
             "'Scan library' first (this takes a while on the first run).",
             400,
             code="LIBRARY_POOL_MISSING",
+            message_key="LIBRARY_POOL_MISSING",
         )
     if not result["usable"]:
         return None, _json_error(
@@ -1055,6 +1105,8 @@ async def _generate_library_songs(
             f"Library playlist generation failed: {err}",
             500,
             code="LIBRARY_GENERATION_FAILED",
+            message_key="LIBRARY_GENERATION_FAILED",
+            details={"detail": str(err)},
         )
 
     if playlist is None:
@@ -1063,6 +1115,7 @@ async def _generate_library_songs(
             "'Scan library' first (this takes a while on the first run).",
             400,
             code="LIBRARY_POOL_MISSING",
+            message_key="LIBRARY_POOL_MISSING",
         )
     songs = playlist.get("songs", [])
     if not songs:
@@ -1072,6 +1125,7 @@ async def _generate_library_songs(
             "year-accuracy setting.",
             400,
             code="LIBRARY_POOL_EMPTY",
+            message_key="LIBRARY_POOL_EMPTY",
         )
     for song in songs:
         song["_playlist_source"] = "library"
@@ -1179,7 +1233,10 @@ class UpdateLobbyView(BeatifyAdminView):
         if isinstance(media_player, str) and media_player:
             if not self.hass.states.get(media_player):
                 return _json_error(
-                    "Media player not found", 400, code="INVALID_REQUEST"
+                    "Media player not found",
+                    400,
+                    code="INVALID_REQUEST",
+                    message_key="MEDIA_PLAYER_NOT_FOUND",
                 )
             ent_reg = er.async_get(self.hass)
             entity_entry = ent_reg.async_get(media_player)
@@ -1190,6 +1247,7 @@ class UpdateLobbyView(BeatifyAdminView):
                     "Media player platform not supported",
                     400,
                     code="INVALID_REQUEST",
+                    message_key="PLATFORM_NOT_SUPPORTED",
                 )
             game_state.media_player = media_player
             game_state.platform = platform
@@ -1380,7 +1438,12 @@ class StartGameplayView(BeatifyAdminView):
         game_state = data.get("game")
 
         if not game_state or not game_state.game_id:
-            return _json_error("No active game", 404, code="GAME_NOT_STARTED")
+            return _json_error(
+                "No active game",
+                404,
+                code="GAME_NOT_STARTED",
+                message_key="NO_ACTIVE_GAME",
+            )
 
         # #2929: the phase check, the minimum-player floor and the sudden-death
         # floor are decisions about *starting a game*, not about this surface,
@@ -1389,11 +1452,18 @@ class StartGameplayView(BeatifyAdminView):
         refusal = refusal_to_start(game_state)
         if refusal is not None:
             if refusal == REFUSE_ALREADY_STARTED:
-                return _json_error("Game already started", 409, code="INVALID_PHASE")
+                return _json_error(
+                    "Game already started",
+                    409,
+                    code="INVALID_PHASE",
+                    message_key="ALREADY_STARTED",
+                )
             return _json_error(
                 f"Need at least {MIN_PLAYERS} players to start",
                 409,
                 code="NOT_ENOUGH_PLAYERS",
+                message_key="NEED_PLAYERS",
+                details={"min_players": MIN_PLAYERS},
             )
 
         # Set round end callback for broadcasting.
@@ -1421,7 +1491,12 @@ class StartGameplayView(BeatifyAdminView):
         # websocket path since #2929.
         success, sudden_death_warning = await begin_gameplay(game_state, ws_handler)
         if not success:
-            return _json_error("Failed to start - no songs", 500, code="START_FAILED")
+            return _json_error(
+                "Failed to start - no songs",
+                500,
+                code="START_FAILED",
+                message_key="START_FAILED_NO_SONGS",
+            )
 
         # Broadcast state to all connected players
         if ws_handler:
@@ -1463,7 +1538,12 @@ class SetSuddenDeathView(BeatifyAdminView):
         data = self.hass.data.get(DOMAIN, {})
         game_state = data.get("game")
         if not game_state or not game_state.game_id:
-            return _json_error("No active game", 404, code="GAME_NOT_FOUND")
+            return _json_error(
+                "No active game",
+                404,
+                code="GAME_NOT_FOUND",
+                message_key="NO_ACTIVE_GAME",
+            )
 
         new_state = game_state.set_sudden_death(enabled)
 

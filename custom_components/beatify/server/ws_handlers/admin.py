@@ -9,7 +9,7 @@ intro-splash/party-lights/kick). Extracted verbatim from the former monolithic
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from aiohttp import web
 
@@ -65,6 +65,7 @@ async def handle_admin_connect(
                 "type": "error",
                 "code": ERR_UNAUTHORIZED,
                 "message": "Home Assistant login required",
+                "message_key": "HA_LOGIN_REQUIRED",
             }
         )
         return
@@ -101,6 +102,7 @@ async def handle_admin(
                 "type": "error",
                 "code": ERR_NOT_ADMIN,
                 "message": "Only admin can perform this action",
+                "message_key": "ONLY_ADMIN",
             }
         )
         return
@@ -147,14 +149,21 @@ async def admin_start_game(
     # differently than an HTTP response.
     refusal = refusal_to_start(game_state)
     if refusal is not None:
+        frame: dict[str, Any] = {"type": "error"}
         if refusal == REFUSE_ALREADY_STARTED:
-            code, message = ERR_INVALID_ACTION, "Game already started"
-        else:
-            code, message = (
-                ERR_GAME_NOT_STARTED,
-                f"Need at least {MIN_PLAYERS} players to start",
+            frame.update(
+                code=ERR_INVALID_ACTION,
+                message="Game already started",
+                message_key="ALREADY_STARTED",
             )
-        await ws.send_json({"type": "error", "code": code, "message": message})
+        else:
+            frame.update(
+                code=ERR_GAME_NOT_STARTED,
+                message=f"Need at least {MIN_PLAYERS} players to start",
+                message_key="NEED_PLAYERS",
+                min_players=MIN_PLAYERS,
+            )
+        await ws.send_json(frame)
         return
 
     success, _warning = await begin_gameplay(game_state, handler)
@@ -163,6 +172,8 @@ async def admin_start_game(
     else:
         error_code = ERR_GAME_NOT_STARTED
         error_message = "Failed to start game"
+        error_key = "START_FAILED"
+        error_params: dict[str, Any] = {}
 
         if game_state.phase == GamePhase.PAUSED:
             pause_reason = game_state.pause_reason
@@ -171,23 +182,32 @@ async def admin_start_game(
                 error_code = ERR_MEDIA_PLAYER_UNAVAILABLE
                 if error_detail:
                     error_message = f"Media player error: {error_detail}"
+                    error_key = "MEDIA_PLAYER_ERROR"
+                    error_params = {"detail": error_detail}
                 else:
                     error_message = (
                         "Media player not responding - check speaker connection"
                     )
+                    error_key = "MEDIA_PLAYER_NOT_RESPONDING"
             elif pause_reason == "no_songs_available":
                 error_message = "No playable songs for selected provider"
+                error_key = "NO_SONGS_FOR_PROVIDER"
             else:
                 error_message = f"Game paused: {pause_reason}"
+                error_key = "GAME_PAUSED"
+                error_params = {"reason": pause_reason}
         elif game_state.phase == GamePhase.END:
             error_code = ERR_NO_SONGS_REMAINING
             error_message = "No songs available in playlist"
+            error_key = "NO_SONGS_IN_PLAYLIST"
 
         await ws.send_json(
             {
                 "type": "error",
                 "code": error_code,
                 "message": error_message,
+                "message_key": error_key,
+                **error_params,
             }
         )
         # #949: start_round failing pauses the game (media_player_error etc.),
@@ -220,6 +240,8 @@ async def admin_reinstate_player(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Cannot bring " + target_name + " back into this game",
+                "message_key": "CANNOT_REINSTATE",
+                "player": target_name,
             }
         )
         return
@@ -252,6 +274,7 @@ async def admin_extend_rounds(
                 "code": ERR_INVALID_ACTION,
                 "message": "Rounds can only be added on the reveal before the "
                 "last round, and only while songs are held in reserve",
+                "message_key": "ENCORE_UNAVAILABLE",
             }
         )
         return
@@ -283,6 +306,7 @@ async def admin_void_round(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Can only drop a round while it is playing",
+                "message_key": "DROP_ROUND_PLAYING_ONLY",
             }
         )
         return
@@ -351,6 +375,7 @@ async def admin_next_round(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Cannot advance round in current phase",
+                "message_key": "CANNOT_ADVANCE",
             }
         )
 
@@ -381,6 +406,7 @@ async def admin_stop_song(
                     "type": "error",
                     "code": ERR_INVALID_ACTION,
                     "message": "No song playing",
+                    "message_key": "NO_SONG_PLAYING",
                 }
             )
             return
@@ -390,6 +416,7 @@ async def admin_stop_song(
                     "type": "error",
                     "code": ERR_INVALID_ACTION,
                     "message": "Resume failed — no previous phase to restore",
+                    "message_key": "RESUME_FAILED",
                 }
             )
             return
@@ -407,6 +434,7 @@ async def admin_stop_song(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "No song playing",
+                "message_key": "NO_SONG_PLAYING",
             }
         )
         return
@@ -434,6 +462,7 @@ async def admin_set_volume(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Invalid volume direction",
+                "message_key": "INVALID_VOLUME_DIRECTION",
             }
         )
         return
@@ -484,6 +513,7 @@ async def admin_end_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Cannot end game in current phase",
+                "message_key": "CANNOT_END_NOW",
             }
         )
         return
@@ -543,6 +573,8 @@ async def admin_pause_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": f"Unknown pause reason: {reason}",
+                "message_key": "UNKNOWN_PAUSE_REASON",
+                "reason": reason,
             }
         )
         return
@@ -558,6 +590,7 @@ async def admin_pause_game(
                     "type": "error",
                     "code": ERR_INVALID_ACTION,
                     "message": "This pause was not set by the host",
+                    "message_key": "PAUSE_NOT_HOST",
                 }
             )
             return
@@ -574,6 +607,7 @@ async def admin_pause_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "No round to pause",
+                "message_key": "NO_ROUND_TO_PAUSE",
             }
         )
         return
@@ -584,6 +618,7 @@ async def admin_pause_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Could not pause the game",
+                "message_key": "PAUSE_FAILED",
             }
         )
         return
@@ -612,6 +647,7 @@ async def admin_resume_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Game is not paused",
+                "message_key": "NOT_PAUSED",
             }
         )
         return
@@ -623,6 +659,7 @@ async def admin_resume_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Resume failed — no previous phase to restore",
+                "message_key": "RESUME_FAILED",
             }
         )
         return
@@ -644,6 +681,7 @@ async def admin_dismiss_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Can only dismiss from END phase",
+                "message_key": "DISMISS_END_ONLY",
             }
         )
         return
@@ -678,6 +716,7 @@ async def _resolve_rematch_playlists(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "playlists must be a non-empty list of paths",
+                "message_key": "PLAYLISTS_REQUIRED",
             }
         )
         return None, []
@@ -692,6 +731,7 @@ async def _resolve_rematch_playlists(
                 "type": "error",
                 "code": ERR_NO_PLAYABLE_SONGS,
                 "message": "No valid songs found in the selected playlist(s)",
+                "message_key": "NO_VALID_SONGS",
             }
         )
         return None, paths
@@ -711,6 +751,7 @@ async def admin_rematch_game(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Can only rematch from END phase",
+                "message_key": "REMATCH_END_ONLY",
             }
         )
         return
@@ -740,6 +781,8 @@ async def admin_rematch_game(
                 "type": "error",
                 "code": ERR_NO_PLAYABLE_SONGS,
                 "message": str(err),
+                "message_key": "NO_PLAYABLE_FOR_PROVIDER",
+                "provider": err.provider,
             }
         )
         return
@@ -799,6 +842,7 @@ async def admin_set_language(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Can only change language in lobby",
+                "message_key": "LANGUAGE_LOBBY_ONLY",
             }
         )
         return
@@ -869,6 +913,7 @@ async def admin_toggle_party_lights(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Party Lights not configured — set up in game settings first",
+                "message_key": "PARTY_LIGHTS_NOT_CONFIGURED",
             }
         )
 
@@ -920,6 +965,8 @@ async def admin_kick_player(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Player not found: " + target_name,
+                "message_key": "PLAYER_NOT_FOUND",
+                "player": target_name,
             }
         )
         return
@@ -930,6 +977,7 @@ async def admin_kick_player(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Cannot remove admin",
+                "message_key": "CANNOT_REMOVE_ADMIN",
             }
         )
         return
@@ -949,6 +997,8 @@ async def admin_kick_player(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "Could not remove " + target_name,
+                "message_key": "CANNOT_REMOVE_PLAYER",
+                "player": target_name,
             }
         )
         return

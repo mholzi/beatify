@@ -159,6 +159,37 @@ export function buildRequestRowHtml(request) {
  */
 // --- error text (#2294) ----------------------------------------------------
 /**
+ * #3076: the translation of ONE specific server message.
+ *
+ * ``errors.<CODE>`` is generic by design — INVALID_ACTION alone covers twenty
+ * unrelated refusals, and GAME_NOT_STARTED turned "Need at least 2 players to
+ * start" into "Game has not started". The server therefore tags each message
+ * with a stable ``message_key`` (and puts its parameters next to it in the same
+ * frame); this looks that key up under ``errors.host.<message_key>``.
+ *
+ * Returns null when there is nothing specific to say — no key, no i18n, a key
+ * the locale lacks, or a text whose ``{placeholder}`` the frame did not fill —
+ * so the caller falls through to ``errors.<CODE>`` and then the server text.
+ *
+ * @param {Object} data - the error frame / REST body
+ * @param {function} t - translation helper (BeatifyI18n.t / utils.t)
+ * @returns {string|null}
+ */
+export function specificErrorText(data, t) {
+    if (!data || !data.message_key || typeof t !== 'function') return null;
+    var key = 'errors.host.' + data.message_key;
+    var text;
+    try {
+        text = t(key, data);
+    } catch (err) {
+        return null;
+    }
+    if (typeof text !== 'string' || !text || text === key) return null;
+    if (/\{[a-z_]+\}/i.test(text)) return null;
+    return text;
+}
+
+/**
  * Split a server error body into a translated headline and a detail line.
  *
  * The REST layer answers with `{code, message}` and the client prefers the
@@ -190,7 +221,18 @@ export function errorHeadlineAndDetail(data, translate, fallback) {
     var body = data || {};
     var serverMsg = typeof body.message === 'string' ? body.message : '';
     var result = { message: serverMsg || fallback || 'Failed to start game', detail: '' };
-    if (!body.code || typeof translate !== 'function') return result;
+    if (typeof translate !== 'function') return result;
+
+    // #3076: the specific message first. `errors.<CODE>` is generic on purpose
+    // (INVALID_ACTION covers twenty refusals; GAME_NOT_STARTED turned "Need at
+    // least 2 players to start" into "Game has not started"), so the server
+    // tags every message with a stable `message_key`. The frame's own fields
+    // fill the {placeholders}. Same meaning as the server text, so no detail.
+    if (body.message_key) {
+        var specific = specificErrorText(body, translate);
+        if (specific) return { message: specific, detail: '' };
+    }
+    if (!body.code) return result;
 
     var key = 'errors.' + String(body.code).toUpperCase();
     var translated;
