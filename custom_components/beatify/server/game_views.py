@@ -1324,6 +1324,20 @@ class UpdateLobbyView(BeatifyAdminView):
                     patched.provider,
                 )
 
+        # #3056: the host switched the language chip in an open lobby. Only the
+        # admin page followed — TTS announcements and the TV kept the language
+        # the lobby was created with. LOBBY only, like ``admin_set_language``;
+        # the state broadcast below makes TV and phones re-translate.
+        language = body.get("language")
+        if (
+            game_state.phase == GamePhase.LOBBY
+            and language in ("en", "de", "es", "fr", "nl", "it")
+            and language != game_state.language
+        ):
+            game_state.language = language
+            updated.append("language")
+            _LOGGER.info("Lobby updated: language -> %s", language)
+
         # Only the three output settings belong in the persisted blob; the
         # game options live in ``saved_setup``, which the frontend writes
         # through /beatify/api/setup. Without this guard a pure option patch
@@ -1338,6 +1352,11 @@ class UpdateLobbyView(BeatifyAdminView):
                 patch["party_lights"] = body.get("party_lights")
             with contextlib.suppress(Exception):
                 await async_save_game_output_settings(self.hass, patch)
+
+        if "language" in updated:
+            ws_handler = data.get("ws_handler")
+            if ws_handler:
+                await ws_handler.broadcast_state()
 
         return web.json_response({"updated": bool(updated), "fields": updated})
 
