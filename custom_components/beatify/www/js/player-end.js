@@ -4,7 +4,7 @@
  */
 
 import {
-    state, escapeHtml, showConfirmModal,
+    state, escapeHtml, showConfirmModal, joinRejectionMessage,
     AnimationQueue, triggerConfetti, stopConfetti, showView
 } from './player-utils.js';
 // #1663 item 1: non-blocking toast replaces the blocking alert() (rematch failed).
@@ -269,7 +269,10 @@ export function updateEndView(data) {
                     body: JSON.stringify(playlists ? { playlists: playlists } : {})
                 })
                     .then(function(resp) {
-                        if (!resp.ok) return resp.json().then(function(e) { throw new Error(e.message || 'Rematch failed'); });
+                        if (!resp.ok) return resp.json().then(function(e) {
+                            // #3057: errors.<CODE> first; the server's English is the fallback.
+                            throw new Error(joinRejectionMessage(e.code, e.message || 'Rematch failed', utils.t));
+                        });
                         // Server will broadcast rematch_started to all clients (including admin).
                         // The rematch_started handler in player-core.js reconnects everyone via
                         // the existing WS — calling connectWithSession() here would race and

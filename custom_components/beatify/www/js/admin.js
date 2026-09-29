@@ -1665,7 +1665,12 @@ async function startGameplay() {
 
         if (!response.ok) {
             // #1663 item 1: gameplay-start rejection is a setup/validation error.
-            showSetupError(data.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startGameplayFailed')) || 'Failed to start gameplay');
+            // #3057: code-first — the server's `message` is English.
+            showSetupError(errorHeadlineAndDetail(
+                data,
+                window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null,
+                tr('admin.startGameplayFailed', 'Failed to start gameplay')
+            ).message);
             return;
         }
 
