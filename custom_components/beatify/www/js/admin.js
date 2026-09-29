@@ -1936,7 +1936,12 @@ async function confirmEndGame() {
             showSetupView();
         } else {
             const data = await response.json();
-            showError(data.message || 'Failed to end game');
+            // #3076: specific message first, errors.<CODE> next, server English last.
+            showError(errorHeadlineAndDetail(
+                data,
+                window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null,
+                'Failed to end game'
+            ).message);
         }
     } catch (err) {
         console.error('End game error:', err);
@@ -2027,7 +2032,12 @@ async function confirmRematch() {
         } else {
             var errData = await response.json();
             // #1663 item 1: transient failure → toast (was blocking alert()).
-            showToast(errData.message || (window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch');
+            // #3076: specific message first, errors.<CODE> next, server English last.
+            showToast(errorHeadlineAndDetail(
+                errData,
+                window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null,
+                (window.BeatifyI18n && BeatifyI18n.t('admin.startRematchFailed')) || 'Failed to start rematch'
+            ).message);
         }
     } catch (error) {
         console.error('Rematch failed:', error);

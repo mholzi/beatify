@@ -26,6 +26,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { block, declaration, evaluate, locale, readSource, WWW_DIR } from './helpers/js-source.js';
 import { translator } from './helpers/mini-dom.js';
+import { specificErrorText } from '../admin/util.js';
 
 const LOCALES = ['en', 'de', 'es', 'fr', 'it', 'nl'];
 const i18n = Object.fromEntries(LOCALES.map((l) => [l, locale(l)]));
@@ -154,7 +155,7 @@ describe('#2582 ADMIN_CANNOT_LEAVE looks up the code before the server text', ()
         evaluate(
             [`function run(data) {\n${branch}\n}`],
             'run',
-            { state, utils: lang ? translator(i18n[lang]) : {}, showToast: (m) => toasts.push(m) },
+            { state, utils: lang ? translator(i18n[lang]) : {}, showToast: (m) => toasts.push(m), specificErrorText },
         )(data);
         return { toasts, state };
     }

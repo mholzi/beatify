@@ -283,6 +283,7 @@ def _json_error(
     *,
     code: str = "ERROR",
     details: dict[str, Any] | None = None,
+    message_key: str | None = None,
 ) -> web.Response:
     """Return a consistent JSON error response.
 
@@ -301,6 +302,9 @@ def _json_error(
     The ``error`` key is kept too so anything still reading it from
     older builds doesn't break — drop after a few releases.
 
+    ``message_key`` (optional, #3076) names the specific message; the frontend
+    resolves it to ``errors.host.<message_key>`` (params come from ``details``).
+
     ``details`` (optional) carries extra machine-readable context that the
     admin UI can render — e.g. the structured per-song rejections from a
     failed playlist import (#1576). Merged into the body under their own keys
@@ -310,6 +314,12 @@ def _json_error(
     (#2294), so a rejected request is findable in ``system_log`` afterwards.
     """
     body: dict[str, Any] = {"code": code, "error": code, "message": message}
+    if message_key:
+        # #3076: several distinct messages share one code (INVALID_REQUEST,
+        # INVALID_PHASE, GAME_NOT_STARTED ...). ``message_key`` is the stable id
+        # of THIS message, so the host phone can show its own translation and
+        # keep ``errors.<CODE>`` as the fallback only.
+        body["message_key"] = message_key
     if details:
         body.update(details)
     # #2294: every error response leaves a trace. Until now none of them did —

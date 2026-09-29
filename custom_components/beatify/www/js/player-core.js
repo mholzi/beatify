@@ -15,7 +15,7 @@ import {
     setEnergyLevel, triggerConfetti, stopConfetti,
     setupLobbyCollapsible,
     requestWakeLock, releaseWakeLock,
-    isJoinRejection, joinRejectionMessage, validateName
+    isJoinRejection, joinRejectionMessage, specificErrorText, validateName
 } from './player-utils.js';
 
 import {
@@ -1025,7 +1025,7 @@ function handleServerMessage(data) {
         // means different things in each.
         if (isJoinRejection(data.code, state.joinPending)) {
             // #2532: look the code up instead of echoing the server's English.
-            failJoin(joinRejectionMessage(data.code, data.message, utils.t));
+            failJoin(joinRejectionMessage(data.code, data.message, utils.t, data));
             return;
         }
         if (data.code === 'GAME_ENDED') {
@@ -1080,8 +1080,10 @@ function handleServerMessage(data) {
             // Reihenfolge gebracht; dieser Zweig blieb auf `data.message ||`
             // stehen und las `errors.ADMIN_CANNOT_LEAVE` deshalb nie — obwohl
             // der Schluessel in allen sechs Sprachen existiert.
-            var admLeave = typeof utils.t === 'function'
-                ? utils.t('errors.ADMIN_CANNOT_LEAVE') : '';
+            // #3076: der spezifische Satz zuerst, das generische errors.<CODE> danach.
+            var admLeave = specificErrorText(data, utils.t)
+                || (typeof utils.t === 'function'
+                    ? utils.t('errors.ADMIN_CANNOT_LEAVE') : '');
             if (!admLeave || String(admLeave).indexOf('errors.') === 0) {
                 admLeave = data.message || 'Host cannot leave. End the game instead.';
             }

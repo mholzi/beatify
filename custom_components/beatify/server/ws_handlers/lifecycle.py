@@ -146,6 +146,7 @@ async def handle_join(
                         "type": "error",
                         "code": ERR_UNAUTHORIZED,
                         "message": "Home Assistant login required to host",
+                        "message_key": "HOST_LOGIN_REQUIRED",
                     }
                 )
                 return
@@ -191,6 +192,7 @@ async def handle_join(
                             "type": "error",
                             "code": ERR_ADMIN_EXISTS,
                             "message": "Only the original host can reconnect",
+                            "message_key": "HOST_RECONNECT_ORIGINAL_ONLY",
                         }
                     )
                     return
@@ -207,6 +209,7 @@ async def handle_join(
                             "type": "error",
                             "code": ERR_ADMIN_EXISTS,
                             "message": "Game already has an admin",
+                            "message_key": "HOST_EXISTS",
                         }
                     )
                     return
@@ -223,6 +226,7 @@ async def handle_join(
                             "type": "error",
                             "code": ERR_INVALID_ACTION,
                             "message": "Admin claim only allowed during lobby phase",
+                            "message_key": "HOST_CLAIM_LOBBY_ONLY",
                         }
                     )
                     return
@@ -271,17 +275,24 @@ async def handle_join(
         await handler.debounced_broadcast_state()
     else:
         error_messages = {
-            ERR_NAME_TAKEN: "Name taken, choose another",
-            ERR_NAME_INVALID: "Please enter a name",
-            ERR_GAME_FULL: "Game is full",
-            ERR_GAME_ENDED: "This game has ended",
-            ERR_UNAUTHORIZED: "Home Assistant login required to rejoin as host",
+            ERR_NAME_TAKEN: ("Name taken, choose another", "JOIN_NAME_TAKEN"),
+            ERR_NAME_INVALID: ("Please enter a name", "JOIN_NAME_EMPTY"),
+            ERR_GAME_FULL: ("Game is full", "JOIN_GAME_FULL"),
+            ERR_GAME_ENDED: ("This game has ended", "JOIN_GAME_ENDED"),
+            ERR_UNAUTHORIZED: (
+                "Home Assistant login required to rejoin as host",
+                "JOIN_HOST_LOGIN_REQUIRED",
+            ),
         }
+        join_message, join_key = error_messages.get(
+            error_code, ("Join failed", "JOIN_FAILED")
+        )
         await ws.send_json(
             {
                 "type": "error",
                 "code": error_code,
-                "message": error_messages.get(error_code, "Join failed"),
+                "message": join_message,
+                "message_key": join_key,
             }
         )
 
@@ -444,6 +455,7 @@ async def handle_reconnect(
                 "type": "error",
                 "code": ERR_SESSION_NOT_FOUND,
                 "message": "Session ID required",
+                "message_key": "SESSION_ID_REQUIRED",
             }
         )
         return
@@ -455,6 +467,7 @@ async def handle_reconnect(
                 "type": "error",
                 "code": ERR_SESSION_NOT_FOUND,
                 "message": "Session not found or game was reset",
+                "message_key": "SESSION_NOT_FOUND",
             }
         )
         return
@@ -473,6 +486,7 @@ async def handle_reconnect(
                     "type": "error",
                     "code": ERR_SESSION_TAKEOVER,
                     "message": "Session taken over by another tab",
+                    "message_key": "SESSION_TAKEN_OVER",
                 }
             )
             await player.ws.close()
@@ -540,6 +554,7 @@ async def handle_rejoin(
                 "type": "error",
                 "code": ERR_INVALID_ACTION,
                 "message": "You cannot rejoin this game",
+                "message_key": "CANNOT_REJOIN",
             }
         )
         return
@@ -565,6 +580,7 @@ async def handle_leave(
                 "type": "error",
                 "code": ERR_ADMIN_CANNOT_LEAVE,
                 "message": "Host cannot leave. End the game instead.",
+                "message_key": "HOST_CANNOT_LEAVE",
             }
         )
         return
