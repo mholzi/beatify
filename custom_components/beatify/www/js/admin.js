@@ -38,6 +38,8 @@ import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
 // #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
+// #3059: the pending "join once the socket opens" wait, cancellable by the modal.
+import { startJoinWait, cancelJoinWait } from './admin/join-wait.js';
 // #2646: the "End round N" card Next opens while a round is still running, the
 // ask/no-ask rule behind it, and the reveal's "does not count" banner. Shared
 // with the phone (player-game.js / player-reveal.js) so the wording and the
@@ -2172,6 +2174,8 @@ function resetAdminJoinModalState() {
  * Close admin join modal
  */
 function closeAdminJoinModal() {
+    // #3059: a join still waiting for the socket must not fire after Cancel.
+    cancelJoinWait();
     const modal = document.getElementById('admin-join-modal');
     if (modal) {
         modal.classList.add('hidden');
@@ -2233,6 +2237,7 @@ function handleAdminJoin() {
 
     if (!name) return;
 
+    cancelJoinWait(); // #3059: never leave an earlier pending wait armed
     joinBtn.disabled = true;
     joinBtn.textContent = BeatifyI18n.t('game.joining');
 
@@ -2294,13 +2299,16 @@ function handleAdminJoin() {
                 errorEl.classList.add('hidden');
                 errorEl.textContent = '';
             }
-            const startedAt = Date.now();
-            const poll = setInterval(() => {
-                if (isAdminWsOpen()) {
-                    clearInterval(poll);
-                    sendJoin();
-                } else if (Date.now() - startedAt > 20000) {
-                    clearInterval(poll);
+            // #3059: the wait is owned by join-wait.js so closeAdminJoinModal()
+            // can cancel it; it also stops on its own once the modal is hidden.
+            startJoinWait({
+                isOpen: isAdminWsOpen,
+                isModalVisible: () => {
+                    const m = document.getElementById('admin-join-modal');
+                    return !!m && !m.classList.contains('hidden');
+                },
+                onReady: sendJoin,
+                onTimeout: () => {
                     joinBtn.disabled = false;
                     joinBtn.textContent = BeatifyI18n.t('admin.join') || 'Join';
                     if (errorEl) {
@@ -2313,7 +2321,7 @@ function handleAdminJoin() {
                             'Reconnecting to game server — please try again.');
                     }
                 }
-            }, 100);
+            });
         }
         return;
     }
