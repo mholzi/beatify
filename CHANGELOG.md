@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.2-rc2] - 2026-09-29
+
+Second candidate for 4.8.2: one fix from the rc1 live test and one playlist repair.
+
+### Fixed
+- **A second admin page no longer evicts the first** (#3081, #3082, found in the rc1 live test).
+  The server kept a single admin-socket slot, so a second admin client that connected and left
+  again left the still-open admin page answering every action with NOT_ADMIN. Admin sockets are
+  now tracked as a set; who counts as admin is unchanged.
+
+### Playlists
+- top-songs-der-60er: four dead Tidal links replaced and "Think" moved back to Aretha Franklin's
+  1968 original (ISRC, Deezer, Apple Music), version 1.22 (#3079, #3080).
+
 ## [4.8.2-rc1] - 2026-09-29
 
 The week 2026-W40 "Hält, was er sagt": eleven fixes for the host phone, the guests and the TV, plus
