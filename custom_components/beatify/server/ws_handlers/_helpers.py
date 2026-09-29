@@ -31,8 +31,8 @@ async def _send_state_to(
     """Send a ``state`` message to a single recipient, redacted for players.
 
     #1366: ``state`` frames carry the round's answers (admin_song year;
-    song.artist/title in title_artist_mode). Only the spectator admin WS
-    (``handler.admin_ws``) may receive them unfiltered; every other connection —
+    song.artist/title in title_artist_mode). Only the spectator admin sockets
+    (``handler.is_admin_socket``, #3081) may receive them unfiltered; every other connection —
     including an admin who joined as a *participant* — gets a redacted copy,
     matching the per-recipient filtering in
     ``BeatifyWebSocketHandler.broadcast``.
@@ -41,7 +41,7 @@ async def _send_state_to(
     instead of off ``GameState``.
     """
     payload = state_msg
-    if ws is not handler.admin_ws:
+    if not handler.is_admin_socket(ws):
         payload = redact_state_for_player(state_msg)
     await ws.send_json(payload)
 

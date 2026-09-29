@@ -92,7 +92,12 @@ class BeatifyWebSocketHandler:
         # drops it on disconnect, so it lives here rather than on GameState —
         # an aiohttp socket is not game logic. GameState calls back into
         # clear_admin_socket on teardown (see register_reset_callback).
-        self.admin_ws: web.WebSocketResponse | None = None
+        # #3081: every authenticated spectator socket is tracked, not just the
+        # latest one. A second admin page (another tab or device) used to
+        # overwrite a single slot, and when it closed the slot went to None —
+        # leaving the still-open first admin page answered with NOT_ADMIN on
+        # every action. Insertion-ordered (dict keys), newest last.
+        self._admin_sockets: dict[web.WebSocketResponse, None] = {}
         self._admin_disconnect_task: asyncio.Task | None = None
         self._analytics: AnalyticsStorage | None = None
         # #1702: game_ids whose terminal end sequence (finalize_game +
@@ -139,7 +144,50 @@ class BeatifyWebSocketHandler:
         null ``GameState._admin_ws``. The connection itself stays open — this
         is a de-reference, not a close.
         """
-        self.admin_ws = None
+        self._admin_sockets.clear()
+
+    def add_admin_socket(self, ws: web.WebSocketResponse) -> None:
+        """Register an authenticated admin spectator socket (#3081).
+
+        Re-adding a socket moves it to the newest position.
+        """
+        self._admin_sockets.pop(ws, None)
+        self._admin_sockets[ws] = None
+
+    def remove_admin_socket(self, ws: web.WebSocketResponse) -> bool:
+        """Forget one admin spectator socket; return whether it was tracked."""
+        if ws in self._admin_sockets:
+            del self._admin_sockets[ws]
+            return True
+        return False
+
+    def is_admin_socket(self, ws: web.WebSocketResponse | None) -> bool:
+        """Return whether ``ws`` is a registered admin spectator socket."""
+        return ws is not None and ws in self._admin_sockets
+
+    @property
+    def admin_sockets(self) -> list[web.WebSocketResponse]:
+        """All registered admin spectator sockets, oldest first (#3081)."""
+        return list(self._admin_sockets)
+
+    @property
+    def admin_ws(self) -> web.WebSocketResponse | None:
+        """The most recently registered admin spectator socket, or None.
+
+        Kept for callers that need one spectator socket; authorization and
+        redaction must use :meth:`is_admin_socket`, which accepts all of them.
+        """
+        if not self._admin_sockets:
+            return None
+        return next(reversed(self._admin_sockets))
+
+    @admin_ws.setter
+    def admin_ws(self, ws: web.WebSocketResponse | None) -> None:
+        """Assigning a socket registers it; assigning None forgets them all."""
+        if ws is None:
+            self._admin_sockets.clear()
+        else:
+            self.add_admin_socket(ws)
 
     def set_analytics(self, analytics: AnalyticsStorage) -> None:
         """
@@ -406,9 +454,9 @@ class BeatifyWebSocketHandler:
 
         # Issue #550: Ensure admin spectator WS is included
         game_state = get_game_state(self.hass)
-        admin_ws = self.admin_ws if game_state else None
-        if admin_ws is not None:
-            targets.add(admin_ws)
+        # #3081: every admin spectator socket, not just the newest one.
+        admin_sockets = set(self._admin_sockets) if game_state else set()
+        targets.update(admin_sockets)
 
         if not targets:
             return
@@ -433,7 +481,7 @@ class BeatifyWebSocketHandler:
         tasks = []
         for ws in list(targets):
             if not ws.closed:
-                payload = admin_json if ws is admin_ws else player_json
+                payload = admin_json if ws in admin_sockets else player_json
                 tasks.append(self._safe_send(ws, payload))
 
         # Execute all sends in parallel
@@ -572,6 +620,12 @@ class BeatifyWebSocketHandler:
             ws: Disconnected WebSocket
 
         """
+        # Issue #477 / #3081: forget only the admin spectator socket that
+        # disconnected — any other open admin page keeps its admin rights.
+        # Before the game check, so a socket never outlives its connection.
+        if self.remove_admin_socket(ws):
+            _LOGGER.info("Admin spectator WebSocket disconnected")
+
         game_state = get_game_state(self.hass)
         if not game_state:
             return
@@ -584,11 +638,6 @@ class BeatifyWebSocketHandler:
             # #2718: through set_connected so the away clock starts here — this is
             # THE disconnect path, and the duration the host reads is its output.
             player.set_connected(False)
-
-        # Issue #477: Clear admin spectator WS if it disconnected
-        if self.admin_ws is ws:
-            self.admin_ws = None
-            _LOGGER.info("Admin spectator WebSocket disconnected")
 
         if not player_name or not player:
             return
@@ -705,6 +754,6 @@ class BeatifyWebSocketHandler:
         # #2638: the admin spectator socket is one of the connections just
         # closed above, so drop the handler's own reference too — the owner
         # closes it AND forgets it.
-        self.admin_ws = None
+        self._admin_sockets.clear()
 
         _LOGGER.debug("Closed all WebSocket connections on unload")

@@ -70,7 +70,8 @@ async def handle_admin_connect(
         )
         return
 
-    handler.admin_ws = ws
+    # #3081: register alongside any admin page already open — never evict it.
+    handler.add_admin_socket(ws)
     _LOGGER.info("Admin spectator connected via WebSocket")
 
     await ws.send_json({"type": "admin_connect_ack", "game_id": game_state.game_id})
@@ -88,7 +89,7 @@ async def handle_admin(
     """Handle admin action messages — dispatches to admin sub-handlers."""
     action = data.get("action")
 
-    is_admin_ws = handler.admin_ws is not None and handler.admin_ws is ws
+    is_admin_ws = handler.is_admin_socket(ws)
 
     sender = None
     for player in list(game_state.players.values()):
@@ -766,8 +767,9 @@ async def admin_rematch_game(
 
     player_count = len(game_state.players)
     # #2706: remember the spectator socket before rematch_game() runs — its
-    # reset callback (clear_admin_socket) nulls handler.admin_ws.
-    previous_admin_ws = handler.admin_ws
+    # reset callback (clear_admin_socket) forgets every spectator socket.
+    # #3081: all of them, not just the newest one.
+    previous_admin_sockets = handler.admin_sockets
     # #2706: decide on the socket identity BEFORE the rebuild, while the player
     # records are guaranteed intact.
     sender_is_participant = game_state.get_player_by_ws(ws) is not None
@@ -810,12 +812,16 @@ async def admin_rematch_game(
     # left with the redacted copy and blank reveal fields. Only a genuine
     # spectator socket may claim the slot; a phone-initiated rematch restores
     # the spectator socket rematch_game() just cleared, if it is still open.
+    # #3081: every spectator socket that was registered and is still open gets
+    # its admin rights back — the rematch must not silently demote a second
+    # open admin page.
+    for admin_socket in previous_admin_sockets:
+        if not admin_socket.closed:
+            handler.add_admin_socket(admin_socket)
     if not sender_is_participant:
-        handler.admin_ws = ws
-    elif previous_admin_ws is not None and not previous_admin_ws.closed:
-        handler.admin_ws = previous_admin_ws
+        handler.add_admin_socket(ws)
 
-    # The new admin_token belongs to whoever holds the admin slot; the
+    # The new admin_token belongs to the admin spectator sockets; the
     # requesting socket gets it too, since it asked for the rematch.
     token_msg = {
         "type": "admin_token_update",
@@ -823,8 +829,9 @@ async def admin_rematch_game(
         "game_id": game_state.game_id,
     }
     await ws.send_json(token_msg)
-    if handler.admin_ws is not None and handler.admin_ws is not ws:
-        await handler.admin_ws.send_json(token_msg)
+    for admin_socket in handler.admin_sockets:
+        if admin_socket is not ws:
+            await admin_socket.send_json(token_msg)
     await handler.broadcast({"type": "rematch_started"})
     await handler.broadcast_state()
 
