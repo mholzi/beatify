@@ -226,6 +226,22 @@ class TestTheLoopItself:
 
         assert len(_service_calls(hass, "media_play")) == 1
 
+    async def test_a_stop_during_the_lead_window_prevents_the_anticipatory_kick(
+        self,
+    ):
+        """#3054: the host taps Stop Song while the announcements still run;
+        the lead sleep ends with the player idle, and the watchdog must not
+        press play over that stop."""
+        hass = _hass([_state("playing"), _state("idle")])
+        svc = MediaPlayerService(hass, "media_player.esszimmer")
+
+        with patch("asyncio.sleep", new=AsyncMock()):
+            await svc.resume_after_announcement(
+                lead_seconds=10.0, should_continue=lambda: False
+            )
+
+        assert _service_calls(hass, "media_play") == []
+
     async def test_a_vanished_entity_ends_the_watch(self):
         hass = _hass([_state("playing"), None])
         svc = MediaPlayerService(hass, "media_player.esszimmer")
