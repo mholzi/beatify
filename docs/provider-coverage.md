@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-09-28
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.1 + community/bollywood-party-hits.json (79 songs, new — Diwali 2026 seasonal playlist)
+> Catalogue state: v4.8.2-rc1 (v4.8.1 + community/bollywood-party-hits.json, 79 songs, new — Diwali 2026 seasonal playlist)
 
 ## Summary
 
