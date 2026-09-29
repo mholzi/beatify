@@ -4,6 +4,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.2-rc1] - 2026-09-29
+
+The week 2026-W40 "Hält, was er sagt": eleven fixes for the host phone, the guests and the TV, plus
+one new playlist. No new features.
+
+### Fixed
+- **"Next Round" takes taps again with the host drawer open** (#3063, #3065, reported by @nirvdrum).
+- **Title & Artist mode announces title and artist** (#3062, #3064, reported by @nirvdrum).
+- **The host's Stop Song survives the next guest submission** (#3053, #3072).
+- **The resume watchdog no longer restarts a song the host stopped during an announcement** (#3054, #3067).
+- **A steal locks the player UI like a normal submit** (#3052, #3068).
+- **Cancelling the admin join modal cancels the pending join** (#3059, #3069).
+- **"Wrong year? Fix it" only shows for My Music songs** (#3058, #3071).
+- **The language chip in an open lobby reaches the server**, so TV and TTS switch too (#3056, #3073).
+- **The TV answer counter skips eliminated, spectator and sat-out players** (#3055, #3074).
+- **Host-phone server errors and the offline page are localized**, with the specific server
+  message kept as its own key (#3057, #3075, #3076, #3077).
+
+### Playlists
+- **New: Bollywood Party Hits** (79 songs, community, Diwali 2026) (#3050).
+- hits-2010s-2020s: three broken URIs repaired, version 1.24 (#3060, #3061).
+
 ## [4.8.1] - 2026-09-28
 
 Patch on top of 4.8.0: game fixes for the TV and the host phone, two playlist link repairs and a
