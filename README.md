@@ -827,6 +827,16 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.2 — Does What It Says 🎯
+- **"Next Round" on the host phone takes taps again** — thanks to @nirvdrum for the report (#3063)
+- **Stop Song stays stopped**, even when a guest answers right after or an announcement is playing (#3053, #3054)
+- **A steal locks the guest's screen like a normal answer** (#3052), and cancelling a join really cancels it (#3059)
+- **The TV answer counter skips eliminated players and spectators** (#3055)
+- **Title & Artist mode announces both title and artist** — also reported by @nirvdrum (#3062)
+- **A second admin page no longer breaks the first** (#3081)
+- **The lobby language reaches the TV and the announcements** (#3056), and host-phone errors and the offline page speak all six languages (#3057, #3076)
+- **New playlist: Bollywood Party Hits** (79 songs), and broken links fixed in 2010s & 2020s Hits and 60s Classics (#3050, #3061, #3080)
+
 ### v4.8.1 — Round Ends on Time 🎯
 - **A steal by the last player ends the round right away** — thanks to @triluch for the report (#3016)
 - **The TV leaves the podium when the game ends** — straight to "No active game", without the old ~8 s wait (#3026, #3041)

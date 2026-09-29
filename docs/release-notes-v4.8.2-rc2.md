@@ -4,7 +4,7 @@ A round of fixes for host and guests: when you tap something, it now does what i
 
 ### 🎯 Rounds that listen
 
-- "Next Round" takes taps again while the host drawer is open. Thanks to **@nirvdrum** for reporting it.
+- "Next Round" on the host phone takes taps again, the drawer now gets out of the way. Thanks to **@nirvdrum** for reporting it.
 - Stop Song stays stopped, even when a guest answers right after or an announcement is still playing.
 - A steal locks the guest's screen like a normal answer.
 - The TV answer counter no longer waits for eliminated players or spectators.
