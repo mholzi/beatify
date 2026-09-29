@@ -1340,9 +1340,16 @@
         debug('[Dashboard] data.players:', data.players);
 
         // Calculate submission count
+        // #3055: count only players still in the round — the same predicate as
+        // the phone (player-game.js) and the server (player_registry.py).
+        // Eliminated players, playoff spectators and guests the host sat out
+        // never submit, so counting them left the TV at e.g. "5/8" forever.
         var submitted = 0;
-        var total = players.length;
-        players.forEach(function(p) {
+        var activePlayers = players.filter(function(p) {
+            return !p.eliminated && !p.playoff_spectator && !p.sat_out_by_host;
+        });
+        var total = activePlayers.length;
+        activePlayers.forEach(function(p) {
             if (p.submitted) submitted++;
         });
 
