@@ -7931,6 +7931,15 @@ body.theme-dark .card-score {
     background: rgba(255, 255, 255, 0.34);
 }
 
+/* #3063: the body is collapsed with the `hidden` attribute, and the UA's
+   `[hidden] { display: none }` loses to the `display: flex` below. Without this
+   rule the "collapsed" drawer stayed open over the bottom of the page, and on
+   the reveal it sat on top of the host's "Next Round" button — the button
+   looked tappable and every tap landed on the drawer instead. */
+.host-drawer__body[hidden] {
+    display: none;
+}
+
 .host-drawer__body {
     display: flex;
     flex-direction: column;
