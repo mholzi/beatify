@@ -1472,6 +1472,12 @@ export function resetSubmissionState() {
     var slider = document.getElementById('year-slider');
     var betToggle = document.getElementById('bet-toggle');
     var submittedBanner = document.getElementById('submitted-banner');
+    var legacyConfirmation = document.getElementById('submitted-confirmation');
+
+    // #3052: the legacy stamp must not outlive the round it was shown in.
+    if (legacyConfirmation) {
+        legacyConfirmation.classList.add('hidden');
+    }
 
     if (yearSelector) {
         yearSelector.classList.remove('is-submitted', 'slider-arcade--locked');
@@ -1893,13 +1899,12 @@ export function handleStealAck(data) {
 
         hideStealUI();
 
-        var yearSelector = document.getElementById('year-selector');
-        var submitBtn = document.getElementById('submit-btn');
-        var confirmation = document.getElementById('submitted-confirmation');
-
-        if (yearSelector) yearSelector.classList.add('is-submitted');
-        if (submitBtn) submitBtn.classList.add('hidden');
-        if (confirmation) confirmation.classList.remove('hidden');
+        // #3052: a steal is a submission — lock the UI exactly like a normal
+        // ack (slider, bet toggle, "Waiting for others" button). The old code
+        // hid #submit-btn and un-hid the legacy #submitted-confirmation stamp,
+        // which resetSubmissionState() never re-hid, and applySuddenDeathState
+        // un-hid the dead button again on the next broadcast.
+        handleSubmitAck();
 
         showStealConfirmation(data.target, data.year);
 
