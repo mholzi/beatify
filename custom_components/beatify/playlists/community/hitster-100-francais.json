@@ -1,6 +1,6 @@
 {
   "name": "100% Français 🇫🇷",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "french",
     "francais",
@@ -148,7 +148,7 @@
       "title": "La Rua Madureira",
       "uri": "spotify:track:6Q2emXXZy652fNKkSSfNht",
       "year": 2025,
-      "isrc": "FRZ051900174",
+      "isrc": "FRZ016900520",
       "uri_apple_music": "applemusic://track/1440763275",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440763275",
@@ -161,7 +161,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2_r8KMzeA4o",
       "uri_tidal": "tidal://track/4853681",
-      "uri_deezer": "deezer://track/823182022",
+      "uri_deezer": "deezer://track/1108106",
       "alt_artists": [],
       "fun_fact": "Nino Ferrer wrote 'La Rua Madureira' inspired by his childhood years in Brazil.",
       "fun_fact_de": "Nino Ferrer schrieb 'La Rua Madureira' inspiriert von seinen Kindheitsjahren in Brasilien.",
@@ -307,13 +307,13 @@
       "isrc": "FR6V89800242",
       "uri_apple_music": "applemusic://track/205580615",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/205581357",
-        "de": "applemusic://track/205581357",
-        "gb": "applemusic://track/205581357",
+        "us": "applemusic://track/205580615",
+        "de": "applemusic://track/205580615",
+        "gb": "applemusic://track/205580615",
         "fr": "applemusic://track/509229466",
-        "es": "applemusic://track/205581357",
-        "nl": "applemusic://track/205581357",
-        "it": "applemusic://track/205581357"
+        "es": "applemusic://track/205580615",
+        "nl": "applemusic://track/205580615",
+        "it": "applemusic://track/205580615"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=mchwX2Z3_Ss",
       "uri_tidal": null,
@@ -2362,12 +2362,12 @@
       "uri_apple_music": "applemusic://track/1368494458",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1368494458",
-        "de": "applemusic://track/1589978383",
+        "de": "applemusic://track/1368494458",
         "gb": "applemusic://track/1368494458",
         "fr": "applemusic://track/1368494458",
         "es": "applemusic://track/1368494458",
         "nl": "applemusic://track/1368494458",
-        "it": "applemusic://track/1589978383"
+        "it": "applemusic://track/1368494458"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=yJuz9zfygIg",
       "uri_tidal": "tidal://track/87035840",
@@ -2436,7 +2436,7 @@
       "title": "Viens boire un p'tit coup à la maison",
       "uri": "spotify:track:5In3pvQJM6E1ckhsZS4vzM",
       "year": 2012,
-      "isrc": "FR0W61213255",
+      "isrc": "FRG918700020",
       "uri_apple_music_by_region": {
         "us": null,
         "de": null,
@@ -2448,7 +2448,7 @@
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=n-OaEJ4oNAQ",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/56114631",
+      "uri_deezer": "deezer://track/4007696271",
       "alt_artists": [],
       "fun_fact": "Licence IV's 'Viens boire un p'tit coup' is a perennial French drinking-song singalong.",
       "fun_fact_de": "Licence IVs 'Viens boire un p'tit coup' ist ein ewiges französisches Trinklied zum Mitsingen.",
