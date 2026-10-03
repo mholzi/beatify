@@ -180,6 +180,17 @@ class RoundManager:
             self._intro_stop_task.cancel()
             self._intro_stop_task = None
 
+    def clear_intro_splash(self) -> None:
+        """Drop a still-pending intro splash when its round ends (#3093).
+
+        The splash only exists while the round is PLAYING. If the host skips
+        the round before confirming it, the flag (and the deferred song, which
+        is only ever consumed by ``confirm_intro_splash`` behind that flag)
+        must not leak into REVEAL frames.
+        """
+        self._intro_splash_pending = False
+        self._intro_splash_deferred_song = None
+
     def _cancel_metadata_task(self) -> None:
         """Cancel the background metadata task if running."""
         if self._metadata_task is not None:

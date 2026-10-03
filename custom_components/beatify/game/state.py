@@ -892,6 +892,8 @@ class GameState(
 
         # Issue #23: Cancel intro timer if running
         self._round_manager._cancel_intro_timer()
+        # #3093: a splash the host never confirmed must not outlive PLAYING
+        self._round_manager.clear_intro_splash()
 
         # Store current ranks before scoring for rank change detection (5.5)
         self._store_previous_ranks()

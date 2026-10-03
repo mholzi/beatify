@@ -932,6 +932,7 @@ function handleServerMessage(data) {
             // would flip it off and on again on every state broadcast.
         } else if (data.phase === 'REVEAL') {
             stopCountdown();
+            hideIntroSplashModal();  // #3093: the splash can only live in PLAYING
             if (data.early_reveal) {
                 showEarlyRevealToast();
             }
@@ -958,6 +959,9 @@ function handleServerMessage(data) {
             showReactionBar();
         } else if (data.phase === 'PAUSED') {
             stopCountdown();
+            // #3093: a pause during a pending splash keeps the flag on the server,
+            // and the PLAYING frame after resume re-opens the modal above.
+            hideIntroSplashModal();
             stopRevealCountdown();
             pushGameRender.cancel();
             pushRevealRender.cancel();
@@ -973,6 +977,7 @@ function handleServerMessage(data) {
         } else if (data.phase === 'END') {
             stopCountdown();
             stopRevealCountdown();
+            hideIntroSplashModal();  // #3093
             pushGameRender.cancel();
             pushRevealRender.cancel();
             hideAdminControlBar();
