@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.38",
+  "version": "1.39",
   "tags": [
     "movies",
     "soundtrack",
@@ -9308,7 +9308,7 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=cjgXws5xcgM"
     },
     {
-      "year": 1975,
+      "year": 1976,
       "uri": "spotify:track:6TgUmUgpfE2b6g9HcgHulQ",
       "artist": "Tom Scott",
       "alt_artists": [
