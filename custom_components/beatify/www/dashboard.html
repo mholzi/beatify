@@ -422,6 +422,31 @@
                         <div class="ghost-league-rows"></div>
                     </div>
                 </div>
+
+                <!-- #3095: the intro round waits for the host. The phones have
+                     said so in a dialog since the splash exists; the TV showed
+                     a normal playing view with a resting timer, which a silent
+                     room reads as a hang. Nobody can press anything on a TV, so
+                     this is a status message, not a dialog. It sits inside the
+                     playing content, below the chip strip, so the scrim leaves
+                     the intro badge, the round and the submissions readable.
+                     dashboard.js toggles .is-visible and aria-hidden from
+                     intro_splash_pending. The three strings are the phones'. -->
+                <div id="dashboard-intro-wait" class="intro-wait" role="status" aria-live="polite" aria-hidden="true">
+                    <div class="intro-wait__card">
+                        <p class="intro-wait__title">
+                            <!-- Drawn, not the ⚡ character: TVs render that as a
+                                 yellow colour emoji and ignore the accent colour. -->
+                            <svg class="intro-wait__bolt" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 1.5 4 13.5h6.2L8.9 22.5 20 9.8h-6.6z"/></svg>
+                            <span data-i18n="game.introSplashTitle">Intro Round!</span>
+                        </p>
+                        <p class="intro-wait__desc" data-i18n="game.introSplashDesc">Stop the song the moment you recognise it!</p>
+                        <p class="intro-wait__waiting">
+                            <span class="intro-wait__dot" aria-hidden="true"></span>
+                            <span data-i18n="game.introSplashWaiting">Waiting for host...</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 

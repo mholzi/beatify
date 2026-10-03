@@ -225,6 +225,22 @@
         if (viewId !== 'dashboard-playing' && viewId !== 'dashboard-reveal') {
             hideJoinCorner();
         }
+        // #3095: the intro wait card belongs to the playing view alone. Its
+        // parent is hidden with the view anyway; clearing the class here keeps
+        // it from flashing when the next round brings the view back.
+        if (viewId !== 'dashboard-playing') {
+            hideIntroWaitCard();
+        }
+    }
+
+    /**
+     * #3095: take the "intro round — waiting for host" card off the TV.
+     */
+    function hideIntroWaitCard() {
+        var el = document.getElementById('dashboard-intro-wait');
+        if (!el) return;
+        el.classList.remove('is-visible');
+        el.setAttribute('aria-hidden', 'true');
     }
 
     /**
@@ -1293,6 +1309,16 @@
                 };
                 albumArt.src = newArtSrc;
             }
+        }
+
+        // #3095: say on the TV what the phones say — the intro round is
+        // waiting for the host. Follows the flag on every playing frame, so
+        // the frame that clears it takes the card away again.
+        var introWait = document.getElementById('dashboard-intro-wait');
+        if (introWait) {
+            var introWaiting = !!data.intro_splash_pending;
+            introWait.classList.toggle('is-visible', introWaiting);
+            introWait.setAttribute('aria-hidden', introWaiting ? 'false' : 'true');
         }
 
         // #3027: while the intro splash waits for the host, the deadline in

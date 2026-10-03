@@ -3764,3 +3764,125 @@ body.join-corner-open #dashboard-reveal {
 @media (orientation: landscape) and (min-width: 721px) and (max-height: 740px) {
     #dashboard-end .dashboard-end-content.end-stage-layout { zoom: 0.64; }
 }
+
+/* ==========================================================================
+   #3095 — intro round, waiting for the host
+   The phones show a dialog while an intro round waits to be started; the TV
+   showed a normal playing view with a resting timer and "Now Playing", which
+   a silent room reads as a hang. This is a card over the stage: the playing
+   content stays where it is and is dimmed by a scrim that starts below the
+   chip strip, so the intro badge, the round and the submissions stay lit.
+
+   Sizes are in viewport units, one unit = 1% of the TV width (the same
+   approach as .end-moment), each capped by the equivalent share of the height
+   so an ultra-wide or a short window cannot push the card off the stage. At
+   16:9 both arms of every min() are equal; 1080p and 720p show the same
+   picture at different sizes.
+
+   The scrim sits one above the join corner (z-index 40) so the QR dims with
+   the rest, and below the reactions and the reconnect badge.
+   ========================================================================== */
+.dashboard-playing-content {
+    position: relative;
+}
+
+.intro-wait {
+    position: absolute;
+    inset: 0;
+    z-index: 41;
+    display: grid;
+    place-items: center;
+    background: rgba(10, 10, 18, 0.82);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 240ms ease, visibility 0s linear 240ms;
+}
+
+.intro-wait.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 240ms ease;
+}
+
+.intro-wait__card {
+    box-sizing: border-box;
+    width: 62%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: min(1.2vw, 2.13vh);
+    padding: min(3.2vw, 5.7vh) min(3vw, 5.3vh);
+    border-radius: min(2vw, 3.6vh);
+    border: 1px solid rgba(255, 45, 106, 0.7);
+    background: rgba(22, 14, 26, 0.96);
+    box-shadow: 0 0 5vw rgba(255, 45, 106, 0.35);
+    text-align: center;
+}
+
+.intro-wait__title {
+    margin: 0;
+    font-family: var(--font-display, 'Outfit'), sans-serif;
+    font-weight: 900;
+    font-size: min(6.4vw, 11.4vh);
+    line-height: 1;
+    color: var(--color-text-white, #fff);
+    overflow-wrap: anywhere;
+}
+
+.intro-wait__bolt {
+    width: 0.78em;
+    height: 0.78em;
+    margin-right: 0.12em;
+    vertical-align: -0.06em;
+    fill: var(--color-accent-primary, #ff2d6a);
+    filter: drop-shadow(0 0 0.12em var(--color-accent-primary, #ff2d6a));
+}
+
+.intro-wait__desc {
+    margin: 0;
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-weight: var(--font-weight-medium, 500);
+    font-size: min(2.2vw, 3.9vh);
+    line-height: 1.3;
+    color: #e9e9f2;
+}
+
+.intro-wait__waiting {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-weight: var(--font-weight-bold, 700);
+    font-size: min(1.7vw, 3vh);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary, #00f5ff);
+}
+
+.intro-wait__dot {
+    flex: none;
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    background: var(--color-accent-secondary, #00f5ff);
+    box-shadow: 0 0 0.7em var(--color-accent-secondary, #00f5ff);
+    animation: intro-wait-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes intro-wait-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-wait,
+    .intro-wait.is-visible {
+        transition: none;
+    }
+    .intro-wait__dot {
+        animation: none;
+    }
+}
