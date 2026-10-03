@@ -4,6 +4,28 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.3-rc1] - 2026-10-03
+
+First candidate for 4.8.3: intro rounds explain themselves on the TV, one fix for skipped intro
+rounds, and three playlist repairs. Follow-up to #3027 after a report by @aenkieh on 4.8.2.
+
+### Added
+- **The TV shows an "Intro Round!" card while the round waits for the host** (#3095, #3096).
+  Until now the TV kept the normal playing view with "Now Playing" over silence. The card reuses
+  the three strings the phones already show; no new translations.
+
+### Fixed
+- **A skipped intro round no longer leaves its splash behind** (#3093, #3094). When the host
+  advanced before starting the round, `intro_splash_pending` stayed set through REVEAL and the
+  phones never closed the "Waiting for host…" dialog. The flag is cleared when the round ends, and
+  the phones close the dialog whenever they leave PLAYING.
+
+### Playlists
+- movies-100-greatest-themes: "Gotcha (Theme from Starsky & Hutch)" moved from 1975 to 1976, the
+  season the theme was first used, version 1.39 (#3091, #3092, reported in-game).
+- hitster-brasil: three broken URIs repaired, version 0.7 (#3088, #3089).
+- hitster-100-francais: four broken URIs repaired, version 0.16 (#3086, #3087).
+
 ## [4.8.2] - 2026-09-29
 
 Patch on top of 4.8.1: the week 2026-W40 "Hält, was er sagt" — twelve fixes for the host phone,
