@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.3-rc2] - 2026-10-03
+
+Second candidate for 4.8.3: rc1 plus one playlist repair found in the rc1 live test.
+
+### Playlists
+- 90er-hits: Apple Music links for "More Than Words" (was a compilation track, now the album
+  track) and "Shine" (main link was missing from the German catalogue) replaced, version 1.35
+  (#3098, #3099, found in the rc1 live test). "Omen III" stays as it is: the link is the right
+  recording and listed as streamable, Music Assistant still reports "No license found".
+- top-100-power-ballads: the same "More Than Words" repair, version 1.16 (#3099).
+
 ## [4.8.3-rc1] - 2026-10-03
 
 First candidate for 4.8.3: intro rounds explain themselves on the TV, one fix for skipped intro
