@@ -9,7 +9,7 @@ Intro rounds now tell the whole room what is going on.
 
 ### 🎵 Playlist repairs
 
-"Gotcha", the Starsky & Hutch theme, now sits in 1976, the year it was first heard on the show, after a guest flagged it mid-game. "More Than Words" and "Shine" play on Apple Music again in the 90s playlist. Seven more broken links are repaired in Hitster 100 Français and Hitster Brasil.
+"Gotcha", the Starsky & Hutch theme, now sits in 1976, the year it was first heard on the show, after a guest flagged it mid-game. "More Than Words" and "Shine" have fresh Apple Music links in the 90s playlist. Seven more broken links are repaired in Hitster 100 Français and Hitster Brasil.
 
 ---
 
