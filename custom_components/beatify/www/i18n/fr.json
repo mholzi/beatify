@@ -1200,7 +1200,7 @@
       "NO_ACTIVE_GAME": "Aucune partie en cours",
       "LIBRARY_GENERATION_FAILED": "La génération de la playlist depuis la bibliothèque a échoué : {detail}",
       "LIBRARY_POOL_MISSING": "Votre bibliothèque n'a pas encore été analysée. Ouvrez les paramètres et lancez d'abord « Analyser la bibliothèque » (cela prend un moment la première fois).",
-      "LIBRARY_POOL_EMPTY": "Aucun titre de votre bibliothèque n'a encore d'année de sortie vérifiée à ce niveau d'exigence. Relancez l'analyse avec MusicBrainz activé ou assouplissez le réglage de précision de l'année.",
+      "LIBRARY_POOL_EMPTY": "Aucun titre de votre bibliothèque n'a encore d'année de sortie vérifiée à ce niveau d'exigence. Relancez l'analyse pour vérifier davantage de titres ou assouplissez le réglage « Précision de l'année ».",
       "PLATFORM_NOT_SUPPORTED": "Plateforme de lecteur multimédia non prise en charge"
     }
   },

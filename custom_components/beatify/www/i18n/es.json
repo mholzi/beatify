@@ -1200,7 +1200,7 @@
       "NO_ACTIVE_GAME": "No hay ninguna partida activa",
       "LIBRARY_GENERATION_FAILED": "No se pudo generar la lista de la biblioteca: {detail}",
       "LIBRARY_POOL_MISSING": "Tu biblioteca todavía no se ha escaneado. Abre los ajustes y ejecuta primero «Escanear biblioteca» (la primera vez tarda un rato).",
-      "LIBRARY_POOL_EMPTY": "Ninguna canción de tu biblioteca tiene todavía un año de lanzamiento verificado con este nivel de exigencia. Vuelve a escanear con MusicBrainz activado o relaja el ajuste de precisión del año.",
+      "LIBRARY_POOL_EMPTY": "Ninguna canción de tu biblioteca tiene todavía un año de lanzamiento verificado con este nivel de exigencia. Vuelve a escanear para verificar más canciones o relaja el ajuste «Precisión del año».",
       "PLATFORM_NOT_SUPPORTED": "Plataforma de reproductor multimedia no compatible"
     }
   },

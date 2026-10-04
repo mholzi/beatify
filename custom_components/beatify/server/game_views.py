@@ -1121,8 +1121,8 @@ async def _generate_library_songs(
     if not songs:
         return [], _json_error(
             "No songs in your library have a verified release year yet at this "
-            "strictness. Re-scan with MusicBrainz enabled, or relax the "
-            "year-accuracy setting.",
+            "strictness. Scan again to verify more songs, or relax the "
+            '"Year accuracy" setting.',
             400,
             code="LIBRARY_POOL_EMPTY",
             message_key="LIBRARY_POOL_EMPTY",
