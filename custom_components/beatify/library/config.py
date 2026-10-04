@@ -24,6 +24,10 @@ YEAR_GATES = {
     "tags_ok": 2,  # + TAG_STUDIO: studio-album tag years (least strict)
 }
 
+#: Title & Artist mode never asks for the year (#3103): any song whose scan
+#: found a year (``YearConfidence.TAG_COMPILATION`` and up) can be played.
+TA_MIN_YEAR_CONFIDENCE = 1
+
 SIZE_MIN = 5
 SIZE_MAX = 100
 SIZE_DEFAULT = 30

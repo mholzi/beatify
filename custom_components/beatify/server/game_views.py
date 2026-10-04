@@ -14,6 +14,7 @@ from homeassistant.helpers import entity_registry as er
 
 from custom_components.beatify.library.config import (
     SOURCE_PLAYLIST,
+    TA_MIN_YEAR_CONFIDENCE,
     parse_library_config,
     parse_library_source,
 )
@@ -347,7 +348,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             _LOGGER.info(
                 "Library game: no playlists selected -> generating fresh songs"
             )
-            songs, err_resp = await _generate_library_songs(self.hass, library_config)
+            songs, err_resp = await _generate_library_songs(
+                self.hass, library_config, title_artist_mode=bool(title_artist_mode)
+            )
             if err_resp is not None:
                 return err_resp
         if provider == PROVIDER_MA_LIBRARY and playlist_paths:
@@ -507,7 +510,9 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         if provider == PROVIDER_MA_LIBRARY and not playlist_paths:
 
             async def _regen_library_songs(gs: Any) -> None:
-                fresh_songs, regen_err = await _generate_library_songs(self.hass, {})
+                fresh_songs, regen_err = await _generate_library_songs(
+                    self.hass, {}, title_artist_mode=bool(title_artist_mode)
+                )
                 if regen_err is None and fresh_songs and gs.replace_songs(fresh_songs):
                     _LOGGER.info(
                         "Library game: songs regenerated at gameplay start "
@@ -1055,9 +1060,17 @@ async def _resolve_ma_playlist_uris(
 
 
 async def _generate_library_songs(
-    hass: HomeAssistant, library_config: dict[str, Any]
+    hass: HomeAssistant,
+    library_config: dict[str, Any],
+    title_artist_mode: bool = False,
 ) -> tuple[list[dict[str, Any]], web.Response | None]:
-    """Sample a game's songs from the library pool. Returns (songs, error)."""
+    """Sample a game's songs from the library pool. Returns (songs, error).
+
+    ``title_artist_mode`` (#3103): Title & Artist asks for the title and the
+    artist, never the year, so the year-accuracy gate has nothing to protect
+    and is lowered to "any year the scan found". Songs with no year at all
+    stay out: the playlist schema requires an integer year.
+    """
     from custom_components.beatify.library import async_generate_library_playlist
 
     # SERVER-AUTHORITATIVE settings: the panel persists every change to the
@@ -1072,6 +1085,8 @@ async def _generate_library_songs(
     effective.update(stored)  # stored wins over client payload
     size, slider, min_confidence, pop_percent, genres = parse_library_config(effective)
     source, ma_playlist = parse_library_source(effective)
+    if title_artist_mode:
+        min_confidence = min(min_confidence, TA_MIN_YEAR_CONFIDENCE)
 
     # #2939: a Music Assistant playlist as the source. The playlist is read
     # again at every start, so edits the host makes in MA are picked up.
