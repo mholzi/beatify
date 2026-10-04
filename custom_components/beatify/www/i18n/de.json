@@ -1200,7 +1200,7 @@
       "NO_ACTIVE_GAME": "Kein aktives Spiel",
       "LIBRARY_GENERATION_FAILED": "Die Playlist aus deiner Bibliothek konnte nicht erstellt werden: {detail}",
       "LIBRARY_POOL_MISSING": "Deine Bibliothek wurde noch nicht gescannt. Öffne die Einstellungen und starte zuerst „Bibliothek scannen“ (beim ersten Mal dauert das eine Weile).",
-      "LIBRARY_POOL_EMPTY": "In deiner Bibliothek hat bei dieser Strenge noch kein Song ein geprüftes Erscheinungsjahr. Scanne mit aktiviertem MusicBrainz neu oder lockere die Jahresgenauigkeit.",
+      "LIBRARY_POOL_EMPTY": "In deiner Bibliothek hat bei dieser Strenge noch kein Song ein geprüftes Erscheinungsjahr. Scanne erneut, um weitere Songs zu prüfen, oder lockere die „Jahres-Genauigkeit“.",
       "PLATFORM_NOT_SUPPORTED": "Diese Mediaplayer-Plattform wird nicht unterstützt"
     }
   },
