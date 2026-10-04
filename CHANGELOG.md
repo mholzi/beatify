@@ -4,6 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.3-rc3] - 2026-10-04
+
+Third candidate for 4.8.3: rc2 plus two fixes for games played from your own library, both from a
+report by @nirvdrum.
+
+### Fixed
+- **Title & Artist games on "My Music" start without verified release years** (#3103, #3105).
+  The year-accuracy gate ran for every game mode, so a library with no MusicBrainz-verified years
+  was refused with `LIBRARY_POOL_EMPTY` even though the mode never asks for a year. In Title &
+  Artist the gate now accepts any year the scan found. Year mode is unchanged. Songs with no year
+  at all stay excluded.
+- **The "no verified years" message no longer points at a MusicBrainz switch** (#3107, #3108,
+  discussion #3104). There is no such option; the scan always uses MusicBrainz. The message now
+  says to scan again or relax "Year accuracy", in all six languages.
+
 ## [4.8.3-rc2] - 2026-10-03
 
 Second candidate for 4.8.3: rc1 plus one playlist repair found in the rc1 live test.
