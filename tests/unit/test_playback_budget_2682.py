@@ -226,7 +226,7 @@ class TestIdleTimeoutIsClassified:
 
         assert svc.last_failure_reason == "error"
         assert "Rate Limiter" not in caplog.text
-        assert "answering promptly" in caplog.text
+        assert "cannot see whether Music Assistant is throttling" in caplog.text
 
     @pytest.mark.asyncio
     async def test_rate_limited_behaves_exactly_as_error_did(self):

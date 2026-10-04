@@ -67,6 +67,8 @@ _LOGGER = logging.getLogger(__name__)
 # longer deadline costs nothing when playback is fast, and the failure it slows
 # down is the one the log now names (see MA_SLOW_START_SECONDS below).
 MA_PLAYBACK_TIMEOUT = 25.0
+# #3101: bound on each cancel call issued after a start is abandoned.
+MA_CANCEL_TIMEOUT = 3.0
 
 # #1936: the FIRST play of a game gets a third more time (25.0s → 33.3s). A
 # speaker idle for a while was measured at 10.1s to first audio (Sonos via MA,
@@ -664,6 +666,47 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # try_play attempt (set by that method); start_round reads it.
         return False
 
+    async def _cancel_pending_start(self) -> bool:
+        """Cancel the request Beatify just gave up on (#3101).
+
+        Music Assistant retries a throttled start on its own schedule (up to
+        ~65 s with Apple Music), which can outlast our playback budget; without
+        this the abandoned song starts later, into a round that has moved on or
+        after the game ended. Stops the player and clears its queue so there is
+        nothing left to start.
+
+        Bounded and best-effort: a failed cancel is logged and the game goes on.
+        Returns True when the stop call went through.
+        """
+        stopped = False
+        for service, label in (
+            ("media_stop", "stop"),
+            ("clear_playlist", "queue clear"),
+        ):
+            try:
+                async with asyncio.timeout(MA_CANCEL_TIMEOUT):
+                    await self._hass.services.async_call(
+                        "media_player",
+                        service,
+                        {"entity_id": self._entity_id},
+                        blocking=False,
+                    )
+                stopped = stopped or service == "media_stop"
+            except (
+                HomeAssistantError,
+                ServiceNotFound,
+                ConnectionError,
+                OSError,
+                asyncio.TimeoutError,
+            ) as err:
+                _LOGGER.debug(
+                    "MA %s after abandoned start failed for %s: %s",
+                    label,
+                    self._entity_id,
+                    err,
+                )
+        return stopped
+
     async def try_play(
         self,
         uri: str,
@@ -927,6 +970,11 @@ class MusicAssistantStrategy(PlaybackStrategy):
 
         # Hard failure: speaker is idle/unavailable/off — song won't play
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
+            # #3101: we are giving up on this song, but Music Assistant may be
+            # sleeping in its own retry backoff (longer than our budget) and
+            # would start it later, into a round that has moved on. Cancel the
+            # pending request before moving on.
+            await self._cancel_pending_start()
             # #1363: if the speaker is 'idle' only because WE stopped it after a
             # prior same-song stale-title detect, this is a storefront-gap
             # cascade (e.g. apple_music's `_resolved_uri` and a differing
@@ -984,9 +1032,10 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 "Either the speaker is offline, MA's provider is unauthenticated, "
                 "or the track is not available in your provider's catalog. If this "
                 "happens for many tracks, re-authenticate your music provider in MA. "
-                "No start in the last %.0fs ran long, so the provider was "
-                "answering promptly for the other songs — this is about this "
-                "track or this speaker, not about rate limiting. (#2682)",
+                "No start in the last %.0fs ran long, but Beatify cannot see "
+                "whether Music Assistant is throttling: if the Music Assistant "
+                "add-on log shows retries or backoff for this request, this "
+                "was throttling rather than the track. (#2682)",
                 timeout,
                 uri,
                 speaker_state,
@@ -1097,22 +1146,11 @@ class MusicAssistantStrategy(PlaybackStrategy):
             # candidates correctly but nobody was telling the speaker to
             # actually stop. Best-effort: failure here doesn't change the
             # outcome (we're already returning False).
-            try:
-                await self._hass.services.async_call(
-                    "media_player",
-                    "media_stop",
-                    {"entity_id": self._entity_id},
-                    blocking=False,
-                )
+            if await self._cancel_pending_start():
                 # #1363: record that the next cascade candidate will see an
                 # 'idle' speaker WE caused, so its idle-failure isn't
                 # misclassified as a systemic 'error'.
                 self._stopped_for_cascade = True
-            except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError):
-                _LOGGER.debug(
-                    "media_stop call after stale-title detect failed for %s",
-                    self._entity_id,
-                )
             # #808 follow-up: classify as "unavailable" so start_round skips
             # silently without counting against MAX_SONG_RETRIES. Storefront
             # gaps shouldn't pause the game — the user can't fix individual
