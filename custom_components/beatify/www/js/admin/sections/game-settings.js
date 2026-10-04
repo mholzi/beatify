@@ -40,6 +40,7 @@ import { renderPlaylists } from './playlists.js';
 import { ttsConfig } from '../../tts-settings.js';
 import { partyLightsConfig, refreshPartyLightsLabels } from '../../party-lights.js';
 import {
+    refreshLibraryMatchCount,
     setupLibrarySettings,
     syncLibraryControls,
     updateLibraryPanelVisibility,
@@ -581,4 +582,6 @@ export function syncTitleArtistModeUI() {
     if (diffHint) diffHint.classList.toggle('hidden', adminState.titleArtistModeEnabled);
     var taSummary = document.getElementById('admin-difficulty-ta-summary');
     if (taSummary) taSummary.classList.toggle('hidden', !adminState.titleArtistModeEnabled);
+    // #3106: the My Music song count depends on the mode.
+    refreshLibraryMatchCount();
 }
