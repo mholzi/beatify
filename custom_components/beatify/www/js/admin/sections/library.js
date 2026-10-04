@@ -614,6 +614,9 @@ function _refreshMatchCount() {
                 genres: (adminState.libraryGenres || []).join(','),
                 gate: adminState.libraryYearGate,
             });
+            // #3106: Title & Artist draws with a lowered year gate (#3103);
+            // tell the counter so the number matches what the game will use.
+            if (adminState.titleArtistModeEnabled) q.set('ta', '1');
             const resp = await _fetch('/beatify/api/library-pool/preview?' + q.toString());
             if (!resp.ok) return;
             const data = await resp.json();
@@ -1200,6 +1203,11 @@ export function setupLibrarySettings(onChanged, reloadPlaylists) {
         _adminInstance = mountLibraryPanel(root, { mode: 'admin', onChanged, reloadPlaylists });
     }
     updateLibraryPanelVisibility();
+}
+
+/** Re-count after a change outside this panel, e.g. the game mode (#3106). */
+export function refreshLibraryMatchCount() {
+    if (_instances.length) _refreshMatchCount();
 }
 
 export function syncLibraryControls() {

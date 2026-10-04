@@ -34,6 +34,7 @@ from custom_components.beatify.server.base import RateLimitMixin, _json_error
 from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.library.config import (
     SOURCES as _LIBRARY_SOURCES,
+    TA_MIN_YEAR_CONFIDENCE,
     YEAR_GATES,
     parse_library_config,
     sanitize_ma_playlist,
@@ -290,6 +291,11 @@ class LibraryPoolPreviewView(HomeAssistantView):
         genres = {g.strip() for g in genres_raw.split(",") if g.strip()} or None
         gate = request.query.get("gate", "strict")
         min_conf = YEAR_GATES.get(gate, YEAR_GATES["strict"])
+        # #3106: Title & Artist never asks for the year, so the game draws
+        # with the lowered gate (#3103). Count with the same gate, or the
+        # panel shows fewer songs than the game will actually use.
+        if request.query.get("ta") == "1":
+            min_conf = min(min_conf, TA_MIN_YEAR_CONFIDENCE)
         n = count_eligible(
             songs,
             popularity_min_percentile=(1.0 - pop / 100.0) if pop else None,
