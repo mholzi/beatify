@@ -1200,7 +1200,7 @@
       "NO_ACTIVE_GAME": "Geen actief spel",
       "LIBRARY_GENERATION_FAILED": "Het genereren van de afspeellijst uit de bibliotheek is mislukt: {detail}",
       "LIBRARY_POOL_MISSING": "Je bibliotheek is nog niet gescand. Open de instellingen en voer eerst ‘Bibliotheek scannen’ uit (de eerste keer duurt dat even).",
-      "LIBRARY_POOL_EMPTY": "Geen enkel nummer in je bibliotheek heeft bij deze striktheid al een geverifieerd uitgavejaar. Scan opnieuw met MusicBrainz ingeschakeld of versoepel de instelling voor jaarnauwkeurigheid.",
+      "LIBRARY_POOL_EMPTY": "Geen enkel nummer in je bibliotheek heeft bij deze striktheid al een geverifieerd uitgavejaar. Scan opnieuw om meer nummers te verifiëren of versoepel de instelling ‘Nauwkeurigheid van het jaar’.",
       "PLATFORM_NOT_SUPPORTED": "Mediaspelerplatform wordt niet ondersteund"
     }
   },

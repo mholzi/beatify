@@ -1200,7 +1200,7 @@
       "NO_ACTIVE_GAME": "No active game",
       "LIBRARY_GENERATION_FAILED": "Library playlist generation failed: {detail}",
       "LIBRARY_POOL_MISSING": "Your library hasn't been scanned yet. Open Settings and run 'Scan library' first (this takes a while on the first run).",
-      "LIBRARY_POOL_EMPTY": "No songs in your library have a verified release year yet at this strictness. Re-scan with MusicBrainz enabled, or relax the year-accuracy setting.",
+      "LIBRARY_POOL_EMPTY": "No songs in your library have a verified release year yet at this strictness. Scan again to verify more songs, or relax the \"Year accuracy\" setting.",
       "PLATFORM_NOT_SUPPORTED": "Media player platform not supported"
     }
   },

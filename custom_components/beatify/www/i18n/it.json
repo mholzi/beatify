@@ -1200,7 +1200,7 @@
       "NO_ACTIVE_GAME": "Nessuna partita attiva",
       "LIBRARY_GENERATION_FAILED": "Generazione della playlist dalla libreria non riuscita: {detail}",
       "LIBRARY_POOL_MISSING": "La tua libreria non è ancora stata analizzata. Apri le impostazioni ed esegui prima «Analizza libreria» (la prima volta ci vuole un po').",
-      "LIBRARY_POOL_EMPTY": "Nessuna canzone della tua libreria ha ancora un anno di uscita verificato con questo livello di rigore. Ripeti la scansione con MusicBrainz attivo o allenta l'impostazione della precisione dell'anno.",
+      "LIBRARY_POOL_EMPTY": "Nessuna canzone della tua libreria ha ancora un anno di uscita verificato con questo livello di rigore. Ripeti la scansione per verificare altre canzoni o allenta l'impostazione «Precisione dell'anno».",
       "PLATFORM_NOT_SUPPORTED": "Piattaforma del lettore multimediale non supportata"
     }
   },
