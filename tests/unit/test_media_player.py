@@ -349,6 +349,71 @@ class TestMANonBlockingPlayback:
         )
 
     @pytest.mark.asyncio
+    async def test_ma_cancels_pending_start_when_budget_runs_out(self, caplog):
+        """#3101: when Beatify gives up on a song, MA must not start it later.
+        The idle-after-timeout path stops the player and clears its queue, and
+        the ERROR text no longer claims the failure is not rate limiting.
+        """
+        hass = _make_hass("idle", media_title="Old Song")
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        with patch(
+            "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
+            0.1,
+        ):
+            with caplog.at_level("ERROR"):
+                result = await svc.play_song(_make_song(title="New Song"))
+
+        assert result is False
+        services = [
+            c[0][1]
+            for c in hass.services.async_call.call_args_list
+            if c[0][0] == "media_player"
+        ]
+        assert services == ["media_stop", "clear_playlist"]
+        # The cancel comes after the play_media request it cancels.
+        names = [c[0][1] for c in hass.services.async_call.call_args_list]
+        assert names.index("play_media") < names.index("media_stop")
+        assert "not about rate limiting" not in caplog.text
+        assert "cannot see whether Music Assistant is throttling" in caplog.text
+
+    @pytest.mark.asyncio
+    async def test_ma_cancel_failure_does_not_break_the_round(self):
+        """#3101: a failing or hanging cancel is logged and swallowed; the
+        failed start still reports False so the game moves on.
+        """
+        # Take the class from the module under test: other test files stub
+        # homeassistant.exceptions, so a fresh import can be a different class.
+        from custom_components.beatify.services.playback.music_assistant import (
+            HomeAssistantError,
+        )
+
+        hass = _make_hass("idle", media_title="Old Song")
+
+        async def call(domain, service, *args, **kwargs):
+            if domain == "media_player" and service == "media_stop":
+                raise HomeAssistantError("boom")
+            if domain == "media_player" and service == "clear_playlist":
+                await asyncio.sleep(60)
+
+        hass.services.async_call = AsyncMock(side_effect=call)
+        svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
+
+        with (
+            patch(
+                "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
+                0.1,
+            ),
+            patch(
+                "custom_components.beatify.services.playback.music_assistant.MA_CANCEL_TIMEOUT",
+                0.1,
+            ),
+        ):
+            result = await svc.play_song(_make_song(title="New Song"))
+
+        assert result is False
+
+    @pytest.mark.asyncio
     async def test_ma_tolerates_slow_buffer_when_title_advanced(self):
         """#345 tolerance: the speaker title changed to SOMETHING during the
         wait — maybe not exactly matching expected, but MA is clearly
