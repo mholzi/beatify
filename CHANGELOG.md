@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.3-rc4] - 2026-10-04
+
+Fourth candidate for 4.8.3: rc3 plus two fixes.
+
+### Fixed
+- **A song Beatify gave up on no longer starts later** (#3101, #3111). When Apple Music throttles
+  Music Assistant, its retry backoff can outlast Beatify's playback budget; the abandoned song then
+  started into a later round or after the game. Beatify now stops the player and clears its queue
+  when it gives up (3 s limit per call, failures never break the round). The error text no longer
+  claims the failure "is not about rate limiting". Not yet confirmed live under throttling.
+- **The My Music song count follows Title & Artist mode** (#3106, #3110). The counter in the
+  settings used the year-accuracy gate of a year game and could read 0 for a library that plays
+  fine in Title & Artist. It now counts with the same gate the game uses.
+
 ## [4.8.3-rc3] - 2026-10-04
 
 Third candidate for 4.8.3: rc2 plus two fixes for games played from your own library, both from a
