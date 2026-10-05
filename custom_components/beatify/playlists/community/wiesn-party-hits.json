@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.24",
+  "version": "0.25",
   "tags": [
     "party",
     "schlager",
@@ -1202,7 +1202,7 @@
       },
       "uri_deezer": "deezer://track/61838244",
       "uri_youtube_music": "https://music.youtube.com/watch?v=q8NRgJRmNA0",
-      "uri_tidal": "tidal://track/16744593"
+      "uri_tidal": "tidal://track/564905501"
     },
     {
       "year": 2008,
