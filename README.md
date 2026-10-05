@@ -827,6 +827,13 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.3 — Wait for It ⚡
+- **The TV shows an "Intro Round!" card while the round waits for the host** — thanks to @aenkieh for pointing at it (#3095)
+- **A skipped intro round closes the "Waiting for host…" window on the guests' phones** (#3093)
+- **Title & Artist games from "My Music" start without verified release years**, and the song count shows what the game will really draw from — thanks to @nirvdrum for the report (#3103, #3106)
+- **A song Beatify skipped no longer starts by itself a round later** when Apple Music is slow (#3101)
+- **Playlist repairs**: "Gotcha" moved to 1976, fresh Apple Music links for "More Than Words" and "Shine", seven broken links fixed in Hitster 100 Français and Hitster Brasil (#3092, #3099, #3087, #3089)
+
 ### v4.8.2 — Does What It Says 🎯
 - **"Next Round" on the host phone takes taps again** — thanks to @nirvdrum for the report (#3063)
 - **Stop Song stays stopped**, even when a guest answers right after or an announcement is playing (#3053, #3054)
