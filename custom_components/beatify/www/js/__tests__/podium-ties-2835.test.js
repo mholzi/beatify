@@ -140,7 +140,7 @@ function renderDashboard(leaderboard) {
     });
     for (const id of ['end-meta-rounds', 'end-meta-players', 'end-leaderboard']) elements[id] = el(id);
 
-    evaluate(declaration(readSource('dashboard.js'), 'renderEndView', 'dashboard.js'), 'renderEndView', {
+    evaluate(['var endConfettiPlayedFor = null;', declaration(readSource('dashboard.js'), 'renderEndView', 'dashboard.js')], 'renderEndView', {
         document: doc(elements),
         utils: { ...U, escapeHtml: (s) => String(s) },
         renderSuddenDeathLastStanding: noop,
@@ -204,7 +204,7 @@ function renderPlayer(leaderboard) {
     });
     elements['final-leaderboard-list'] = el('final-leaderboard-list');
 
-    evaluate(declaration(readSource('player-end.js'), 'updateEndView', 'player-end.js'), 'updateEndView', {
+    evaluate(['var endEffectsPlayedFor = null;', declaration(readSource('player-end.js'), 'endGameKey', 'player-end.js'), declaration(readSource('player-end.js'), 'updateEndView', 'player-end.js')], 'updateEndView', {
         window: { scrollTo: noop },
         document: doc(elements),
         state: { playerName: 'Watching from the sofa' },

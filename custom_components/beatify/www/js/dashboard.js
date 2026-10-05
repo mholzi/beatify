@@ -2936,6 +2936,9 @@
     // every reconnect, and a closing shot that replays on a dropped socket is
     // worse than no closing shot.
     var closingMomentPlayedFor = null;
+    // #3117: renderEndView runs on every END frame; the winner confetti is a
+    // one-time effect of reaching the podium, so it keys on the game too.
+    var endConfettiPlayedFor = null;
 
     /**
      * Find the round in which the eventual winner took the lead for the last
@@ -3219,7 +3222,9 @@
         // Story 14.5 (AC3, AC7): Trigger winner confetti on dashboard
         // H2 fix: Only trigger if there's a valid winner with score > 0
         var winner = leaderboard.find(function(p) { return p.rank === 1; });
-        if (winner && winner.score > 0) {
+        var endGameId = data.game_id ? String(data.game_id) : 'unknown';
+        if (winner && winner.score > 0 && endConfettiPlayedFor !== endGameId) {
+            endConfettiPlayedFor = endGameId;
             // #2563: fired behind the prologue it would be over before anyone
             // saw it, so it waits for the stage to be uncovered.
             if (momentOnScreen) {

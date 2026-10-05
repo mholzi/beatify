@@ -48,7 +48,9 @@ import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleAr
 
 import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
 // #2648: the end screen's playlist picker owns the primary button's label.
-import { invalidateNextPlaylists, resetGoButton } from './player-next-playlist.js';
+import {
+    invalidateNextPlaylists, releaseGoButtonOnError, resetGoButton
+} from './player-next-playlist.js';
 
 // #2585: the guest's phone speaks the guest's language. `guestLanguage()` is
 // the stored chip tap, else the browser's own preference; null means "no
@@ -1020,6 +1022,7 @@ function handleServerMessage(data) {
     } else if (data.type === 'metadata_update') {
         handleMetadataUpdate(data.song);
     } else if (data.type === 'error') {
+        releaseGoButtonOnError();  // #3117: a rejected rematch must not strand the spinner
         if (data.code === 'ROUND_EXPIRED' || data.code === 'ALREADY_SUBMITTED') {
             handleSubmitError(data);
             return;
