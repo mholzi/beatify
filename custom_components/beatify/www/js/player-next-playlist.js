@@ -40,6 +40,9 @@ var picker = {
     selected: [],
     searchOpen: false,
     loaded: false,
+    // #3117: a rematch request is in flight. `refreshPicker` runs on every END
+    // frame and must not hand the button back while that is true.
+    busy: false,
 };
 
 /** i18n lookup with a real fallback: `t()` returns the KEY on a miss (#1402-B8). */
@@ -285,7 +288,7 @@ export function refreshPicker() {
         );
     }
 
-    if (goBtn) {
+    if (goBtn && !picker.busy) {
         goBtn.textContent = goLabel(selectedTile());
         goBtn.disabled = !picker.selected.length;
     }
@@ -320,7 +323,7 @@ export async function loadNextPlaylists(fetchJson) {
         picker.selected = [];
         picker.loaded = false;
         if (grid) grid.innerHTML = '';
-        if (goBtn) {
+        if (goBtn && !picker.busy) {
             goBtn.textContent = tx('admin.rematch', 'Rematch');
             goBtn.disabled = false;
         }
@@ -352,10 +355,17 @@ export function bindSearchInput() {
 export function invalidateNextPlaylists() {
     picker.loaded = false;
     picker.searchOpen = false;
+    picker.busy = false;
+}
+
+/** #3117: a rematch request just left; keep the button spent until `resetGoButton`. */
+export function markGoButtonBusy() {
+    picker.busy = true;
 }
 
 /** Put the primary button back after a rematch attempt (spinner → label). */
 export function resetGoButton() {
+    picker.busy = false;
     var goBtn = document.getElementById('player-rematch-btn');
     if (!goBtn) return;
     goBtn.disabled = false;

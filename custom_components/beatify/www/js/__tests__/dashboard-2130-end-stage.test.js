@@ -58,7 +58,7 @@ function endScreen() {
 /** Run the shipped `renderEndView` and report what the podium ended up as. */
 function renderEnd(leaderboard, { screen = endScreen(), ...extra } = {}) {
     const noop = () => {};
-    evaluate(declaration(DASHBOARD, 'renderEndView', 'dashboard.js'), 'renderEndView', {
+    evaluate(['var endConfettiPlayedFor = null;', declaration(DASHBOARD, 'renderEndView', 'dashboard.js')], 'renderEndView', {
         document: screen.document,
         utils: { ...U, escapeHtml: (s) => String(s) },
         renderSuddenDeathLastStanding: noop,

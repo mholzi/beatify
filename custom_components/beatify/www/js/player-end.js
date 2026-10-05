@@ -11,7 +11,7 @@ import {
 import { showToast } from './notify.js';
 // #2648: the end screen's playlist picker (variant B of the design gate).
 import {
-    bindSearchInput, loadNextPlaylists, resetGoButton, selectedPlaylists
+    bindSearchInput, loadNextPlaylists, markGoButtonBusy, resetGoButton, selectedPlaylists
 } from './player-next-playlist.js';
 // #2645: the paused screen's announcement.
 import { hostPauseAnnouncement } from './host-pause.js';
@@ -152,12 +152,25 @@ function _endText(key, paramsOrFallback, fallback) {
     return String(s);
 }
 
+/** #3117: the game whose end screen already played its one-time effects. */
+var endEffectsPlayedFor = null;
+
+function endGameKey(data) {
+    return data && data.game_id ? String(data.game_id) : 'unknown';
+}
+
 /**
  * Update end view with final standings and stats
  * @param {Object} data - State data with leaderboard and game_stats
  */
 export function updateEndView(data) {
-    window.scrollTo(0, 0);
+    // #3117: this runs on EVERY END frame (a guest's phone locking is enough to
+    // cause one). The scroll and the confetti are one-time effects of reaching
+    // the podium, so they key on the game, like the TV's closingMomentPlayedFor.
+    // A rematch is a new game_id and gets them again.
+    var firstFrameOfThisEnd = endEffectsPlayedFor !== endGameKey(data);
+    endEffectsPlayedFor = endGameKey(data);
+    if (firstFrameOfThisEnd) window.scrollTo(0, 0);
     var leaderboard = data.leaderboard || [];
 
     leaderboard.forEach(function(entry) {
@@ -248,6 +261,7 @@ export function updateEndView(data) {
             rematchBtn.onclick = function() {
                 rematchBtn.disabled = true;
                 rematchBtn.textContent = '⏳';
+                markGoButtonBusy();  // #3117: survive the next END frame's refreshPicker
 
                 // #2648: null means "the playlist that just played", which is
                 // exactly the request the server has always understood. Only a
@@ -301,7 +315,9 @@ export function updateEndView(data) {
         var bestStreak = currentPlayer.best_streak || 0;
         var isPerfectGame = bestStreak === totalRounds && totalRounds > 0;
 
-        if (isPerfectGame) {
+        if (!firstFrameOfThisEnd) {
+            // #3117: later frames only refresh the data above.
+        } else if (isPerfectGame) {
             triggerConfetti('perfect');
         } else if (currentPlayer.rank === 1) {
             triggerConfetti('winner');
