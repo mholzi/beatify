@@ -9967,6 +9967,18 @@ body.device-tier-low .reveal-skip-hint {
     border: 1px solid var(--color-primary, #1db954);
 }
 
+/* #3122: the box borrows the phone flash's icon and title, which are sized for
+   a full-screen overlay. Inside the admin card they overflow a phone-width page. */
+.admin-intro-splash .intro-splash-icon {
+    margin-right: 0;
+    font-size: 48px;
+}
+
+.admin-intro-splash .intro-splash-text {
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
 .intro-splash-info {
     font-size: 1.1rem;
     font-weight: 600;
