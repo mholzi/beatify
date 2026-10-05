@@ -137,6 +137,29 @@ describe('phone end view (#3117)', () => {
         picker.resetGoButton();           // rematch failed / settled
         expect(btn.disabled).toBe(false);
     });
+
+    it('hands the button back when the server rejects the rematch', async () => {
+        await picker.loadNextPlaylists(async () => ({
+            tiles: [{ id: 't1', name: 'T', paths: ['a.json'] }],
+            all: [], current: ['a.json'], selected: ['a.json'],
+        }));
+        const btn = els['player-rematch-btn'];
+        updateEndView(endFrame('g-f'));
+
+        picker.releaseGoButtonOnError();  // an unrelated error, nothing in flight
+        expect(btn.textContent).not.toBe('⏳');
+
+        btn.onclick();
+        expect(btn.disabled).toBe(true);
+
+        picker.releaseGoButtonOnError();  // the server's answer to the rematch
+        expect(btn.disabled).toBe(false);
+        expect(btn.textContent).not.toBe('⏳');
+
+        updateEndView(endFrame('g-f'));   // later frames own the label again
+        picker.refreshPicker();
+        expect(btn.textContent).not.toBe('⏳');
+    });
 });
 
 // ---- TV half ----------------------------------------------------------------

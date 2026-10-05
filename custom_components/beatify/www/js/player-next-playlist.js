@@ -363,6 +363,15 @@ export function markGoButtonBusy() {
     picker.busy = true;
 }
 
+/**
+ * #3117: the server answered with an error. If a rematch was waiting on it
+ * (a rejected playlist, nothing playable), hand the button back. Until the
+ * busy flag existed the next END frame did that by accident.
+ */
+export function releaseGoButtonOnError() {
+    if (picker.busy) resetGoButton();
+}
+
 /** Put the primary button back after a rematch attempt (spinner → label). */
 export function resetGoButton() {
     picker.busy = false;
