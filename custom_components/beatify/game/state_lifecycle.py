@@ -299,35 +299,6 @@ class RoundLifecycleMixin(GameStateBase):
                 return False
             return await self._start_round_locked(_retry_count + 1)
 
-        # #2421: one rule decides whether this is the last round, and it lives
-        # here. The flag counts what is left in the pool; the TTS announcement
-        # used to re-derive the same question from `round >= total_rounds`, and
-        # the two disagree as soon as a song is dropped mid-game — the
-        # playback-failure path below marks a song played without a round being
-        # committed, so `round` falls behind while the remaining count keeps
-        # pace with reality. Measured on a five-song game with one song
-        # dropped: round 4 really is the last, the flag said so, and the spoken
-        # cue never came.
-        #
-        # The `total_rounds > 1` guard moved here from the announcement. It is
-        # the reason a one-song game no longer raises the flag at all: opening
-        # a game with "final round!" is noise, and that judgement now applies
-        # to the banner and the announcement alike instead of only to the one
-        # that happened to carry the guard.
-        self.last_round = (
-            self.total_rounds > 1 and self._playlist_manager.get_remaining_count() <= 1
-        )
-        # #2503: the encore offer belongs to the reveal that preceded this
-        # round and to no other moment. Closing it here is what makes the
-        # finale final — the whole reason this option was chosen over a chip on
-        # the last reveal, which could be tapped again on each new last round.
-        self._encore_window = False
-        # #2746: parked returns come in HERE, at the round boundary, and
-        # nowhere else. A guest let back mid-round would be scored on a song
-        # they did not hear from the start, and the leaderboard would move for
-        # a reason the room cannot see. Their name goes into the round's
-        # returning list so the reveal can say one line about it.
-        self._returned_this_round = self.apply_pending_rejoins()
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)
 
@@ -556,6 +527,46 @@ class RoundLifecycleMixin(GameStateBase):
                         getattr(self, "round", "?"),
                         announce_s,
                     )
+        # #3116: the three assignments below describe the round that is about
+        # to be committed, so they happen here and not before the speaker is
+        # asked to play. Starting a song takes 4–25 s on Music Assistant, and
+        # for all of that time the phase is still the previous round's REVEAL.
+        # Set early, `last_round` told the two REVEAL consumers (the host's
+        # Next and the reveal auto-advance) that the round on screen was the
+        # final one, and a tap, a pause or an unreachable speaker during the
+        # start ended the game with its last song unplayed. Every way out of
+        # this method above returns or retries without reaching this point, so
+        # an aborted start now leaves the flags exactly as the reveal had them.
+        #
+        # #2421: one rule decides whether this is the last round, and it lives
+        # here. The flag counts what is left in the pool; the TTS announcement
+        # used to re-derive the same question from `round >= total_rounds`, and
+        # the two disagree as soon as a song is dropped mid-game — the
+        # playback-failure path below marks a song played without a round being
+        # committed, so `round` falls behind while the remaining count keeps
+        # pace with reality. Measured on a five-song game with one song
+        # dropped: round 4 really is the last, the flag said so, and the spoken
+        # cue never came.
+        #
+        # The `total_rounds > 1` guard moved here from the announcement. It is
+        # the reason a one-song game no longer raises the flag at all: opening
+        # a game with "final round!" is noise, and that judgement now applies
+        # to the banner and the announcement alike instead of only to the one
+        # that happened to carry the guard.
+        self.last_round = (
+            self.total_rounds > 1 and self._playlist_manager.get_remaining_count() <= 1
+        )
+        # #2503: the encore offer belongs to the reveal that preceded this
+        # round and to no other moment. Closing it here is what makes the
+        # finale final — the whole reason this option was chosen over a chip on
+        # the last reveal, which could be tapped again on each new last round.
+        self._encore_window = False
+        # #2746: parked returns come in HERE, at the round boundary, and
+        # nowhere else. A guest let back mid-round would be scored on a song
+        # they did not hear from the start, and the leaderboard would move for
+        # a reason the room cannot see. Their name goes into the round's
+        # returning list so the reveal can say one line about it.
+        self._returned_this_round = self.apply_pending_rejoins()
         self._initialize_round(
             song,
             metadata,
