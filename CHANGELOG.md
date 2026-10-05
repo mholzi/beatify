@@ -4,65 +4,49 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.8.3-rc4] - 2026-10-04
+## [4.8.3] - 2026-10-05
 
-Fourth candidate for 4.8.3: rc3 plus two fixes.
-
-### Fixed
-- **A song Beatify gave up on no longer starts later** (#3101, #3111). When Apple Music throttles
-  Music Assistant, its retry backoff can outlast Beatify's playback budget; the abandoned song then
-  started into a later round or after the game. Beatify now stops the player and clears its queue
-  when it gives up (3 s limit per call, failures never break the round). The error text no longer
-  claims the failure "is not about rate limiting". Not yet confirmed live under throttling.
-- **The My Music song count follows Title & Artist mode** (#3106, #3110). The counter in the
-  settings used the year-accuracy gate of a year game and could read 0 for a library that plays
-  fine in Title & Artist. It now counts with the same gate the game uses.
-
-## [4.8.3-rc3] - 2026-10-04
-
-Third candidate for 4.8.3: rc2 plus two fixes for games played from your own library, both from a
-report by @nirvdrum.
-
-### Fixed
-- **Title & Artist games on "My Music" start without verified release years** (#3103, #3105).
-  The year-accuracy gate ran for every game mode, so a library with no MusicBrainz-verified years
-  was refused with `LIBRARY_POOL_EMPTY` even though the mode never asks for a year. In Title &
-  Artist the gate now accepts any year the scan found. Year mode is unchanged. Songs with no year
-  at all stay excluded.
-- **The "no verified years" message no longer points at a MusicBrainz switch** (#3107, #3108,
-  discussion #3104). There is no such option; the scan always uses MusicBrainz. The message now
-  says to scan again or relax "Year accuracy", in all six languages.
-
-## [4.8.3-rc2] - 2026-10-03
-
-Second candidate for 4.8.3: rc1 plus one playlist repair found in the rc1 live test.
-
-### Playlists
-- 90er-hits: Apple Music links for "More Than Words" (was a compilation track, now the album
-  track) and "Shine" (main link was missing from the German catalogue) replaced, version 1.35
-  (#3098, #3099, found in the rc1 live test). "Omen III" stays as it is: the link is the right
-  recording and listed as streamable, Music Assistant still reports "No license found".
-- top-100-power-ballads: the same "More Than Words" repair, version 1.16 (#3099).
-
-## [4.8.3-rc1] - 2026-10-03
-
-First candidate for 4.8.3: intro rounds explain themselves on the TV, one fix for skipped intro
-rounds, and three playlist repairs. Follow-up to #3027 after a report by @aenkieh on 4.8.2.
+Patch on top of 4.8.2, "Wait for It": intro rounds explain themselves on the TV, games from your
+own library start in Title & Artist mode, a song Beatify gave up on stays silent, and playlist
+repairs. rc1 and rc2 went through the live test (rc1's found #3098, repaired in rc2); rc3, rc4 and
+three Dependabot tool bumps (ruff, vitest, globals) were released without a live test of their own
+on Markus' decision.
 
 ### Added
-- **The TV shows an "Intro Round!" card while the round waits for the host** (#3095, #3096).
-  Until now the TV kept the normal playing view with "Now Playing" over silence. The card reuses
-  the three strings the phones already show; no new translations.
+- **The TV shows an "Intro Round!" card while the round waits for the host** (#3095, #3096,
+  follow-up to #3027 after a report by @aenkieh). Until now the TV kept the normal playing view
+  with "Now Playing" over silence. The card reuses the three strings the phones already show; no
+  new translations.
 
 ### Fixed
 - **A skipped intro round no longer leaves its splash behind** (#3093, #3094). When the host
   advanced before starting the round, `intro_splash_pending` stayed set through REVEAL and the
   phones never closed the "Waiting for host…" dialog. The flag is cleared when the round ends, and
   the phones close the dialog whenever they leave PLAYING.
+- **Title & Artist games on "My Music" start without verified release years** (#3103, #3105,
+  reported by @nirvdrum). The year-accuracy gate ran for every game mode, so a library with no
+  MusicBrainz-verified years was refused with `LIBRARY_POOL_EMPTY` even though the mode never asks
+  for a year. In Title & Artist the gate now accepts any year the scan found. Year mode is
+  unchanged. Songs with no year at all stay excluded.
+- **The My Music song count follows Title & Artist mode** (#3106, #3110). The counter in the
+  settings used the year-accuracy gate of a year game and could read 0 for a library that plays
+  fine in Title & Artist. It now counts with the same gate the game uses.
+- **The "no verified years" message no longer points at a MusicBrainz switch** (#3107, #3108,
+  discussion #3104). There is no such option; the scan always uses MusicBrainz. The message now
+  says to scan again or relax "Year accuracy", in all six languages.
+- **A song Beatify gave up on no longer starts later** (#3101, #3111). When Apple Music throttles
+  Music Assistant, its retry backoff can outlast Beatify's playback budget; the abandoned song then
+  started into a later round or after the game. Beatify now stops the player and clears its queue
+  when it gives up (3 s limit per call, failures never break the round). The error text no longer
+  claims the failure "is not about rate limiting". Not yet confirmed live under throttling.
 
 ### Playlists
 - movies-100-greatest-themes: "Gotcha (Theme from Starsky & Hutch)" moved from 1975 to 1976, the
   season the theme was first used, version 1.39 (#3091, #3092, reported in-game).
+- 90er-hits: Apple Music links for "More Than Words" (was a compilation track, now the album
+  track) and "Shine" (main link was missing from the German catalogue) replaced, version 1.35
+  (#3098, #3099, found in the rc1 live test).
+- top-100-power-ballads: the same "More Than Words" repair, version 1.16 (#3099).
 - hitster-brasil: three broken URIs repaired, version 0.7 (#3088, #3089).
 - hitster-100-francais: four broken URIs repaired, version 0.16 (#3086, #3087).
 
