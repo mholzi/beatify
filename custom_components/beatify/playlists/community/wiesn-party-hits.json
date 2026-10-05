@@ -1,6 +1,6 @@
 {
   "name": "Wiesn Party Hits 🍻",
-  "version": "0.23",
+  "version": "0.24",
   "tags": [
     "party",
     "schlager",
@@ -1190,15 +1190,15 @@
         "german_peak": 38
       },
       "isrc": "DEN060801163",
-      "uri_apple_music": "applemusic://track/294519561",
+      "uri_apple_music": "applemusic://track/6814570348",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/294519561",
-        "de": "applemusic://track/294519561",
-        "gb": "applemusic://track/294519561",
-        "fr": "applemusic://track/294519561",
-        "es": "applemusic://track/294519561",
-        "nl": "applemusic://track/294519561",
-        "it": "applemusic://track/294519561"
+        "us": "applemusic://track/6814570348",
+        "de": "applemusic://track/6814570348",
+        "gb": "applemusic://track/6814570348",
+        "fr": "applemusic://track/6814570348",
+        "es": "applemusic://track/6814570348",
+        "nl": "applemusic://track/6814570348",
+        "it": "applemusic://track/6814570348"
       },
       "uri_deezer": "deezer://track/61838244",
       "uri_youtube_music": "https://music.youtube.com/watch?v=q8NRgJRmNA0",
@@ -3346,7 +3346,7 @@
         "gb": "applemusic://track/1891323779",
         "fr": "applemusic://track/1891323779",
         "es": "applemusic://track/1891323779",
-        "nl": "applemusic://track/1893366859",
+        "nl": "applemusic://track/1891323779",
         "it": "applemusic://track/1891323779"
       },
       "uri_deezer": "deezer://track/3946488621",
