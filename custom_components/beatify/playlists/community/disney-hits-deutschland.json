@@ -1,6 +1,6 @@
 {
   "name": "Disney Hits Deutschland",
-  "version": "0.13",
+  "version": "0.14",
   "tags": [
     "disney",
     "movies",
@@ -1334,7 +1334,7 @@
       },
       "uri_deezer": "deezer://track/3101085861",
       "uri_youtube_music": "https://music.youtube.com/watch?v=j1y8TrK0cUE",
-      "uri_tidal": "tidal://track/399145152",
+      "uri_tidal": "tidal://track/400673589",
       "fun_fact": "\"Ich wag den Schritt\" is a German song from Moana 2 (Vaiana 2).",
       "fun_fact_de": "\"Ich wag den Schritt\" ist ein deutscher Song aus Vaiana 2.",
       "fun_fact_es": "\"Ich wag den Schritt\" es una canción alemana de Vaiana 2 (Moana 2).",
