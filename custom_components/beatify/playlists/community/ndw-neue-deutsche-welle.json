@@ -1,6 +1,6 @@
 {
   "name": "NDW – Neue Deutsche Welle",
-  "version": "0.15",
+  "version": "0.16",
   "tags": [
     "ndw",
     "neue deutsche welle",
@@ -823,16 +823,15 @@
       "fun_fact_nl": "'Der blaue Planet' van Karat is een ecologisch lied uit 1982 uit Oost-Duitsland met een unieke milieuboodschap.",
       "uri_apple_music": "applemusic://track/1442504247",
       "uri_youtube_music": "https://www.youtube.com/watch?v=FJp2JaskW7E",
-      "uri_tidal": "tidal://track/673970",
       "uri_deezer": "deezer://track/987946",
       "isrc": "DEC730000071",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1442504247",
-        "de": "applemusic://track/253718847",
+        "de": null,
         "gb": "applemusic://track/1442504247",
-        "fr": "applemusic://track/253718847",
-        "es": "applemusic://track/209462547",
-        "nl": "applemusic://track/209462547",
+        "fr": null,
+        "es": null,
+        "nl": null,
         "it": "applemusic://track/281770852"
       },
       "awards_nl": []
