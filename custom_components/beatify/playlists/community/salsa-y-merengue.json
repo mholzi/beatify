@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.22",
+  "version": "1.23",
   "tags": [
     "salsa",
     "merengue",
@@ -6697,7 +6697,8 @@
       "fun_fact_fr": "« Una Noche Más » de Gabino Pampini, parue pour la première fois en 2008.",
       "fun_fact_nl": "\"Una Noche Más\" van Gabino Pampini, voor het eerst uitgebracht in 2008.",
       "uri_apple_music": "applemusic://track/1483871962",
-      "fun_fact_it": "«Una Noche Más» di Gabino Pampini, pubblicata per la prima volta nel 2008."
+      "fun_fact_it": "«Una Noche Más» di Gabino Pampini, pubblicata per la prima volta nel 2008.",
+      "uri_deezer": "deezer://track/4325799002"
     },
     {
       "year": 1965,
