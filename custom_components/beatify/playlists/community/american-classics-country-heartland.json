@@ -1,0 +1,1739 @@
+{
+  "name": "American Classics · Country & Heartland 🦃",
+  "description": "What plays at an American family dinner: country, heartland rock, folk and Americana from Johnny Cash and Dolly Parton to Springsteen, Tom Petty, Shania Twain and Chris Stapleton. Years are original release years. Built for Thanksgiving.",
+  "version": "0.1",
+  "tags": [
+    "country",
+    "americana",
+    "heartland-rock",
+    "folk",
+    "thanksgiving",
+    "usa",
+    "1950s",
+    "1960s",
+    "1970s",
+    "1980s",
+    "1990s",
+    "2000s",
+    "2010s",
+    "2020s"
+  ],
+  "language": "en",
+  "source": "https://open.spotify.com/playlist/27iJ7YElwDNiF2GDTPhrzf + https://open.spotify.com/playlist/5f5j26ZS61Sm4GNvWFZWHj (curated across ~20 public playlists)",
+  "songs": [
+    {
+      "year": 2022,
+      "uri": "spotify:track:3WMj8moIAXJhHsyLaqIIHI",
+      "artist": "Zach Bryan",
+      "alt_artists": [
+        "Tyler Childers",
+        "Noah Kahan",
+        "Luke Combs"
+      ],
+      "title": "Something in the Orange",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It comes from his sprawling 34-track album American Heartbreak.",
+      "fun_fact_de": "Es stammt von seinem ausufernden 34-Titel-Album American Heartbreak.",
+      "fun_fact_es": "Procede de su extenso álbum de 34 canciones American Heartbreak.",
+      "fun_fact_fr": "Il est tiré de son album fleuve de 34 titres, American Heartbreak.",
+      "fun_fact_nl": "Het komt van zijn uitgebreide album American Heartbreak met 34 nummers.",
+      "isrc": "USWB12201213",
+      "uri_apple_music": "applemusic://track/1620419734",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1620419734"
+      },
+      "uri_deezer": "deezer://track/1714552247",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2015,
+      "uri": "spotify:track:3fqwjXwUGN6vbzIwvyFMhx",
+      "artist": "Chris Stapleton",
+      "alt_artists": [
+        "Zach Bryan",
+        "Eric Church",
+        "Sturgill Simpson"
+      ],
+      "title": "Tennessee Whiskey",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "David Allan Coe recorded it first in 1981; Stapleton's soulful version took off after a 2015 CMA Awards duet with Justin Timberlake.",
+      "fun_fact_de": "David Allan Coe nahm es 1981 zuerst auf; Stapletons souliger Version gelang der Durchbruch nach einem Duett mit Justin Timberlake bei den CMA Awards 2015.",
+      "fun_fact_es": "David Allan Coe la grabó primero en 1981; la versión soul de Stapleton despegó tras un dúo con Justin Timberlake en los CMA de 2015.",
+      "fun_fact_fr": "David Allan Coe l'a enregistrée en premier en 1981 ; la version soul de Stapleton a décollé après un duo avec Justin Timberlake aux CMA 2015.",
+      "fun_fact_nl": "David Allan Coe nam het in 1981 als eerste op; Stapletons souleske versie brak door na een duet met Justin Timberlake bij de CMA Awards 2015.",
+      "isrc": "USUM71418088",
+      "uri_apple_music": "applemusic://track/1440827492",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440827492"
+      },
+      "uri_deezer": "deezer://track/98975170",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:3xdjjKMcMOFgo1eQrfbogM",
+      "artist": "Darius Rucker",
+      "alt_artists": [
+        "Old Crow Medicine Show",
+        "Hootie & the Blowfish",
+        "Zac Brown Band"
+      ],
+      "title": "Wagon Wheel",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Old Crow Medicine Show built the song from a Bob Dylan outtake; Rucker's cover made it a No. 1 country hit in 2013.",
+      "fun_fact_de": "Old Crow Medicine Show baute den Song aus einem Bob-Dylan-Outtake; Ruckers Cover wurde 2013 Country-Nummer-1.",
+      "fun_fact_es": "Old Crow Medicine Show construyó la canción a partir de un descarte de Bob Dylan; la versión de Rucker fue número 1 country en 2013.",
+      "fun_fact_fr": "Old Crow Medicine Show a bâti le titre à partir d'une chute de studio de Bob Dylan ; la reprise de Rucker a été numéro 1 country en 2013.",
+      "fun_fact_nl": "Old Crow Medicine Show bouwde het nummer uit een Bob Dylan-outtake; Ruckers cover werd in 2013 country-nummer 1.",
+      "isrc": "USCN11200248",
+      "uri_apple_music": "applemusic://track/1469412117",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1469412117"
+      },
+      "uri_deezer": "deezer://track/67351232",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2013,
+      "uri": "spotify:track:4CLPNURPcKztF9RRdcWLGP",
+      "artist": "Kacey Musgraves",
+      "alt_artists": [
+        "Miranda Lambert",
+        "Maren Morris",
+        "Brandi Carlile"
+      ],
+      "title": "Follow Your Arrow",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It won the CMA Song of the Year award in 2014.",
+      "fun_fact_de": "Es gewann 2014 den CMA Award als Song des Jahres.",
+      "fun_fact_es": "Ganó el premio CMA a Canción del Año en 2014.",
+      "fun_fact_fr": "Elle a remporté le CMA de la chanson de l'année en 2014.",
+      "fun_fact_nl": "Het won in 2014 de CMA Award voor Song of the Year.",
+      "isrc": "USUM71300707",
+      "uri_apple_music": "applemusic://track/1440858612",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440858612"
+      },
+      "uri_deezer": "deezer://track/65280368",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:0ZUo4YjG4saFnEJhdWp9Bt",
+      "artist": "Carrie Underwood",
+      "alt_artists": [
+        "Miranda Lambert",
+        "Taylor Swift",
+        "Kelly Clarkson"
+      ],
+      "title": "Before He Cheats",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Chris Tompkins and Josh Kear wrote it, and it won Underwood a Grammy.",
+      "fun_fact_de": "Chris Tompkins und Josh Kear schrieben es, und es brachte Underwood einen Grammy ein.",
+      "fun_fact_es": "Chris Tompkins y Josh Kear la escribieron y le dio un Grammy a Underwood.",
+      "fun_fact_fr": "Chris Tompkins et Josh Kear l'ont écrite, et elle a valu un Grammy à Underwood.",
+      "fun_fact_nl": "Chris Tompkins en Josh Kear schreven het, en het leverde Underwood een Grammy op.",
+      "isrc": "GBCTA1400025",
+      "uri_apple_music": "applemusic://track/214696369",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/214696369"
+      },
+      "uri_deezer": "deezer://track/90944585",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2004,
+      "uri": "spotify:track:7B1QliUMZv7gSTUGAfMRRD",
+      "artist": "Tim McGraw",
+      "alt_artists": [
+        "Kenny Chesney",
+        "Keith Urban",
+        "Brad Paisley"
+      ],
+      "title": "Live Like You Were Dying",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The title song of his 2004 album won the CMA Song of the Year in 2004.",
+      "fun_fact_de": "Der Titelsong seines Albums von 2004 gewann 2004 den CMA Award als Song des Jahres.",
+      "fun_fact_es": "La canción que da título a su álbum de 2004 ganó el CMA a Canción del Año en 2004.",
+      "fun_fact_fr": "Le morceau-titre de son album de 2004 a remporté le CMA de la chanson de l'année en 2004.",
+      "fun_fact_nl": "De titelsong van zijn album uit 2004 won in 2004 de CMA Award voor Song of the Year.",
+      "isrc": "USCRB0406175",
+      "uri_apple_music": "applemusic://track/68891680",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/68891680"
+      },
+      "uri_deezer": "deezer://track/75766544",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:3y4LxiYMgDl4RethdzpmNe",
+      "artist": "Faith Hill",
+      "alt_artists": [
+        "Shania Twain",
+        "Martina McBride",
+        "LeAnn Rimes"
+      ],
+      "title": "Breathe",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It was Billboard's No. 1 song of the year 2000.",
+      "fun_fact_de": "Es war Billboards Song Nummer 1 des Jahres 2000.",
+      "fun_fact_es": "Fue la canción número 1 del año 2000 según Billboard.",
+      "fun_fact_fr": "C'était la chanson numéro 1 de l'année 2000 selon Billboard.",
+      "fun_fact_nl": "Het was volgens Billboard het nummer 1 van het jaar 2000.",
+      "isrc": "USWB19902554",
+      "uri_apple_music": "applemusic://track/321981540",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/321981540"
+      },
+      "uri_deezer": "deezer://track/6641040",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:6qc34bnVOyqGDPni8H5W0U",
+      "artist": "Lonestar",
+      "alt_artists": [
+        "Rascal Flatts",
+        "Tim McGraw",
+        "Faith Hill"
+      ],
+      "title": "Amazed",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Marv Green, Chris Lindsey and Aimee Mayo wrote it, and it became a staple of country weddings.",
+      "fun_fact_de": "Marv Green, Chris Lindsey und Aimee Mayo schrieben es, und es wurde ein Dauerbrenner auf Country-Hochzeiten.",
+      "fun_fact_es": "Marv Green, Chris Lindsey y Aimee Mayo la escribieron y se volvió habitual en las bodas country.",
+      "fun_fact_fr": "Marv Green, Chris Lindsey et Aimee Mayo l'ont écrite, et elle est devenue un incontournable des mariages country.",
+      "fun_fact_nl": "Marv Green, Chris Lindsey en Aimee Mayo schreven het, en het werd een vaste waarde op countrybruiloften.",
+      "isrc": "USBN19800111",
+      "uri_apple_music": "applemusic://track/265407747",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/265407747"
+      },
+      "uri_deezer": "deezer://track/7410971",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:3rXCZRMiMZp0feGcYXpwYX",
+      "artist": "The Chicks",
+      "alt_artists": [
+        "Faith Hill",
+        "Shania Twain",
+        "LeAnn Rimes"
+      ],
+      "title": "Cowboy Take Me Away",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Fiddler Martie Maguire wrote it, and it became a wedding favourite.",
+      "fun_fact_de": "Geigerin Martie Maguire schrieb es, und es wurde zum Hochzeitsliebling.",
+      "fun_fact_es": "La violinista Martie Maguire la escribió y se hizo favorita en las bodas.",
+      "fun_fact_fr": "La violoniste Martie Maguire l'a écrite, et elle est devenue un classique des mariages.",
+      "fun_fact_nl": "Violiste Martie Maguire schreef het, en het werd een bruiloftsfavoriet.",
+      "isrc": "USSM19901550",
+      "uri_apple_music": "applemusic://track/309893741",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/309893741"
+      },
+      "uri_deezer": "deezer://track/3019241",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:2z126BfZ30UmHzl1cGfsRf",
+      "artist": "Shania Twain",
+      "alt_artists": [
+        "Faith Hill",
+        "LeAnn Rimes",
+        "Martina McBride"
+      ],
+      "title": "Man! I Feel Like a Woman!",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The video was inspired by Robert Palmer's 'Addicted to Love' clip.",
+      "fun_fact_de": "Das Video wurde von Robert Palmers Clip zu 'Addicted to Love' inspiriert.",
+      "fun_fact_es": "El videoclip se inspiró en el de 'Addicted to Love' de Robert Palmer.",
+      "fun_fact_fr": "Le clip s'inspire de celui d'« Addicted to Love » de Robert Palmer.",
+      "fun_fact_nl": "De clip was geïnspireerd op de video van 'Addicted to Love' van Robert Palmer.",
+      "isrc": "USMR19887508",
+      "uri_apple_music": "applemusic://track/1445668856",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445668856"
+      },
+      "uri_deezer": "deezer://track/537991732",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:0pdfN7nOHMYmKykzu1cyfm",
+      "artist": "Shania Twain",
+      "alt_artists": [
+        "Faith Hill",
+        "Reba McEntire",
+        "Martina McBride"
+      ],
+      "title": "Any Man of Mine",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From 'The Woman in Me', it gave Shania her first No. 1 on the US country chart.",
+      "fun_fact_de": "Von 'The Woman in Me' stammend, brachte es Shania ihren ersten Nummer-1-Hit in den US-Country-Charts.",
+      "fun_fact_es": "Del álbum 'The Woman in Me', le dio a Shania su primer número 1 en la lista country de EE. UU.",
+      "fun_fact_fr": "Tirée de « The Woman in Me », elle a donné à Shania son premier numéro 1 au classement country américain.",
+      "fun_fact_nl": "Van 'The Woman in Me', en het gaf Shania haar eerste nummer 1 in de Amerikaanse countryhitlijst.",
+      "isrc": "USPR39402722",
+      "uri_apple_music": "applemusic://track/1440867120",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440867120"
+      },
+      "uri_deezer": "deezer://track/2522928",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1993,
+      "uri": "spotify:track:69ku805AjIcFQh0IfkGohf",
+      "artist": "Toby Keith",
+      "alt_artists": [
+        "Alan Jackson",
+        "Clint Black",
+        "Tim McGraw"
+      ],
+      "title": "Should've Been a Cowboy",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It was Keith's debut single and went straight to No. 1 on the country chart.",
+      "fun_fact_de": "Es war Keiths Debütsingle und stieg direkt auf Platz 1 der Country-Charts.",
+      "fun_fact_es": "Fue el sencillo debut de Keith y llegó directo al número 1 de la lista country.",
+      "fun_fact_fr": "C'était le premier single de Keith, et il est monté directement à la première place du classement country.",
+      "fun_fact_nl": "Het was Keiths debuutsingle en ging direct naar nummer 1 in de countryhitlijst.",
+      "isrc": "USPR39402268",
+      "uri_apple_music": "applemusic://track/1452801268",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1452801268"
+      },
+      "uri_deezer": "deezer://track/881363",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:59kHPbwyyCApYA8RQQEuXm",
+      "artist": "Alan Jackson",
+      "alt_artists": [
+        "George Strait",
+        "Clint Black",
+        "Tim McGraw"
+      ],
+      "title": "Chattahoochee",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The song is named after the river in Jackson's home state of Georgia.",
+      "fun_fact_de": "Der Song ist nach dem Fluss in Jacksons Heimatstaat Georgia benannt.",
+      "fun_fact_es": "La canción lleva el nombre del río de Georgia, el estado natal de Jackson.",
+      "fun_fact_fr": "La chanson porte le nom de la rivière de Géorgie, l'État natal de Jackson.",
+      "fun_fact_nl": "Het nummer is genoemd naar de rivier in Jacksons thuisstaat Georgia.",
+      "isrc": "USAN29200006",
+      "uri_apple_music": "applemusic://track/260758659",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/260758659"
+      },
+      "uri_deezer": "deezer://track/1076379",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1991,
+      "uri": "spotify:track:6iKWr2XH1DyT7TQzDZlvzd",
+      "artist": "Brooks & Dunn",
+      "alt_artists": [
+        "Alan Jackson",
+        "Kenny Chesney",
+        "Tim McGraw"
+      ],
+      "title": "Boot Scootin' Boogie",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A dance-floor hit that helped drive the line-dancing craze of the 1990s.",
+      "fun_fact_de": "Ein Tanzflächenhit, der den Line-Dance-Boom der 1990er mit antrieb.",
+      "fun_fact_es": "Un éxito de pista de baile que ayudó a impulsar la fiebre del line dance de los noventa.",
+      "fun_fact_fr": "Un tube de piste de danse qui a nourri la vogue de la danse country dans les années 1990.",
+      "fun_fact_nl": "Een dansvloerhit die in de jaren negentig de linedance-rage mee aanjoeg.",
+      "isrc": "USAN29600014",
+      "uri_apple_music": "applemusic://track/258642521",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/258642521"
+      },
+      "uri_deezer": "deezer://track/1043830",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1990,
+      "uri": "spotify:track:0FtV0YbnnjD7PXpLHFHPhn",
+      "artist": "Reba McEntire",
+      "alt_artists": [
+        "Bobbie Gentry",
+        "Dolly Parton",
+        "Tanya Tucker"
+      ],
+      "title": "Fancy",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bobbie Gentry wrote and first recorded it in 1969; Reba's 1990 version made it a country classic again.",
+      "fun_fact_de": "Bobbie Gentry schrieb und nahm es 1969 zuerst auf; Rebas Version von 1990 machte es erneut zum Country-Klassiker.",
+      "fun_fact_es": "Bobbie Gentry la escribió y grabó primero en 1969; la versión de Reba de 1990 la volvió un clásico country.",
+      "fun_fact_fr": "Bobbie Gentry l'a écrite et enregistrée en 1969 ; la version de Reba en 1990 en a refait un classique country.",
+      "fun_fact_nl": "Bobbie Gentry schreef en nam het in 1969 als eerste op; Reba's versie uit 1990 maakte er opnieuw een countryklassieker van.",
+      "isrc": "USMC19032543",
+      "uri_apple_music": "applemusic://track/1440760892",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440760892"
+      },
+      "uri_deezer": "deezer://track/1234174792",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:5tVA6TkbaAH9QMITTQRrNv",
+      "artist": "Tom Petty",
+      "alt_artists": [
+        "Roy Orbison",
+        "Bob Seger",
+        "John Mellencamp"
+      ],
+      "title": "Free Fallin'",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Petty wrote it with Jeff Lynne, and it name-checks Ventura Boulevard and Reseda.",
+      "fun_fact_de": "Petty schrieb es mit Jeff Lynne, und der Song nennt den Ventura Boulevard und Reseda.",
+      "fun_fact_es": "Petty la escribió con Jeff Lynne y menciona Ventura Boulevard y Reseda.",
+      "fun_fact_fr": "Petty l'a écrite avec Jeff Lynne, et elle cite Ventura Boulevard et Reseda.",
+      "fun_fact_nl": "Petty schreef het met Jeff Lynne, en het noemt Ventura Boulevard en Reseda.",
+      "isrc": "USMC18925673",
+      "uri_apple_music": "applemusic://track/1469579716",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1469579716"
+      },
+      "uri_deezer": "deezer://track/2303727",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1989,
+      "uri": "spotify:track:7gSQv1OHpkIoAdUiRLdmI6",
+      "artist": "Tom Petty",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Bob Dylan",
+        "Johnny Cash"
+      ],
+      "title": "I Won't Back Down",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Petty wrote it with Jeff Lynne, and Johnny Cash later covered it with Petty's band.",
+      "fun_fact_de": "Petty schrieb es mit Jeff Lynne, und Johnny Cash coverte es später mit Pettys Band.",
+      "fun_fact_es": "Petty la escribió con Jeff Lynne y Johnny Cash la versionó más tarde con la banda de Petty.",
+      "fun_fact_fr": "Petty l'a écrite avec Jeff Lynne, et Johnny Cash l'a reprise plus tard avec le groupe de Petty.",
+      "fun_fact_nl": "Petty schreef het met Jeff Lynne, en Johnny Cash coverde het later met Petty's band.",
+      "isrc": "USMC18925675",
+      "uri_apple_music": "applemusic://track/1440825623",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440825623"
+      },
+      "uri_deezer": "deezer://track/2303728",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:1r2L8Z4IyRbDeYiA7YNAKx",
+      "artist": "Alabama",
+      "alt_artists": [
+        "Lynyrd Skynyrd",
+        "Restless Heart",
+        "Diamond Rio"
+      ],
+      "title": "Song of the South",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bob McDill wrote it, and Tanya Tucker recorded it first in 1980.",
+      "fun_fact_de": "Bob McDill schrieb es, und Tanya Tucker nahm es 1980 als Erste auf.",
+      "fun_fact_es": "Bob McDill la escribió y Tanya Tucker la grabó primero, en 1980.",
+      "fun_fact_fr": "Bob McDill l'a écrite, et Tanya Tucker l'a enregistrée la première en 1980.",
+      "fun_fact_nl": "Bob McDill schreef het, en Tanya Tucker nam het in 1980 als eerste op.",
+      "isrc": "USRN18800032",
+      "uri_apple_music": "applemusic://track/254950092",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/254950092"
+      },
+      "uri_deezer": "deezer://track/15601557",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1988,
+      "uri": "spotify:track:2M9ro2krNb7nr7HSprkEgo",
+      "artist": "Tracy Chapman",
+      "alt_artists": [
+        "Joan Armatrading",
+        "Suzanne Vega",
+        "Tracy Bonham"
+      ],
+      "title": "Fast Car",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It returned to the top 10 in 2023 after Luke Combs covered it.",
+      "fun_fact_de": "2023 kehrte es in die Top 10 zurück, nachdem Luke Combs es gecovert hatte.",
+      "fun_fact_es": "Volvió al top 10 en 2023 después de que Luke Combs la versionara.",
+      "fun_fact_fr": "Elle est revenue dans le top 10 en 2023 après la reprise de Luke Combs.",
+      "fun_fact_nl": "In 2023 keerde het terug in de top 10 nadat Luke Combs het coverde.",
+      "isrc": "USEE10180719",
+      "uri_apple_music": "applemusic://track/1051106565",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1051106565"
+      },
+      "uri_deezer": "deezer://track/2271563",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1986,
+      "uri": "spotify:track:6V50MyHPGhEmwYu0Wdyf0t",
+      "artist": "Bruce Hornsby & The Range",
+      "alt_artists": [
+        "Billy Joel",
+        "Huey Lewis and the News",
+        "Elton John"
+      ],
+      "title": "The Way It Is",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Tupac Shakur sampled its piano for his hit 'Changes'.",
+      "fun_fact_de": "Tupac Shakur sampelte das Klavier für seinen Hit 'Changes'.",
+      "fun_fact_es": "Tupac Shakur sampleó su piano en su éxito 'Changes'.",
+      "fun_fact_fr": "Tupac Shakur a samplé son piano pour son tube « Changes ».",
+      "fun_fact_nl": "Tupac Shakur gebruikte de piano als sample voor zijn hit 'Changes'.",
+      "isrc": "USRC10301338",
+      "uri_apple_music": "applemusic://track/258517392",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/258517392"
+      },
+      "uri_deezer": "deezer://track/628518",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:5f7KV4oOHZylrpa5XKFu6G",
+      "artist": "John Fogerty",
+      "alt_artists": [
+        "Creedence Clearwater Revival",
+        "Bruce Springsteen",
+        "Bob Seger"
+      ],
+      "title": "Centerfield",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Fogerty's comeback single became a baseball anthem played in stadiums across the US.",
+      "fun_fact_de": "Fogertys Comeback-Single wurde zur Baseball-Hymne, die in US-Stadien gespielt wird.",
+      "fun_fact_es": "El sencillo de regreso de Fogerty se volvió himno del béisbol en estadios de todo EE. UU.",
+      "fun_fact_fr": "Le single du retour de Fogerty est devenu un hymne du baseball, joué dans les stades américains.",
+      "fun_fact_nl": "Fogertys comebacksingle werd een honkbalhymne die in stadions door heel de VS klinkt.",
+      "isrc": "USDW10110142",
+      "uri_apple_music": "applemusic://track/1830553343",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1830553343"
+      },
+      "uri_deezer": "deezer://track/3488367551",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:1KjJLUjKH5ItRcypxBUdep",
+      "artist": "John Mellencamp",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Bob Seger",
+        "John Fogerty"
+      ],
+      "title": "Small Town",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "From the album Scarecrow, it is a song about choosing to stay in his small Indiana hometown.",
+      "fun_fact_de": "Vom Album Scarecrow; es handelt davon, in seiner kleinen Heimatstadt in Indiana zu bleiben.",
+      "fun_fact_es": "Del álbum Scarecrow, trata de elegir quedarse en su pequeña ciudad natal de Indiana.",
+      "fun_fact_fr": "Tirée de l'album Scarecrow, elle parle du choix de rester dans sa petite ville natale de l'Indiana.",
+      "fun_fact_nl": "Van het album Scarecrow; het gaat over de keuze om in zijn kleine geboortestad in Indiana te blijven.",
+      "isrc": "USJM18500005",
+      "uri_apple_music": "applemusic://track/1440760016",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440760016"
+      },
+      "uri_deezer": "deezer://track/80000918",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:7jWbXvrgdbkajU8L28ahn5",
+      "artist": "The Highwaymen",
+      "alt_artists": [
+        "Willie Nelson",
+        "Merle Haggard",
+        "Kris Kristofferson"
+      ],
+      "title": "Highwayman",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jimmy Webb wrote it, and Cash, Nelson, Jennings and Kristofferson named their supergroup after it.",
+      "fun_fact_de": "Jimmy Webb schrieb es, und Cash, Nelson, Jennings und Kristofferson benannten ihre Supergroup danach.",
+      "fun_fact_es": "Jimmy Webb la escribió y Cash, Nelson, Jennings y Kristofferson bautizaron con ella a su supergrupo.",
+      "fun_fact_fr": "Jimmy Webb l'a écrite, et Cash, Nelson, Jennings et Kristofferson ont baptisé leur supergroupe d'après elle.",
+      "fun_fact_nl": "Jimmy Webb schreef het, en Cash, Nelson, Jennings en Kristofferson noemden hun supergroep ernaar.",
+      "isrc": "USSM18400030",
+      "uri_apple_music": "applemusic://track/1459403940",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1459403940"
+      },
+      "uri_deezer": "deezer://track/858731",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:0dOg1ySSI7NkpAe89Zo0b9",
+      "artist": "Bruce Springsteen",
+      "alt_artists": [
+        "John Mellencamp",
+        "Bob Seger",
+        "Tom Petty"
+      ],
+      "title": "Born in the U.S.A.",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Often mistaken for a flag-waver, it is really about the neglect of Vietnam veterans.",
+      "fun_fact_de": "Oft für ein Fahnenschwenker-Lied gehalten, geht es in Wahrheit um die Vernachlässigung der Vietnam-Veteranen.",
+      "fun_fact_es": "A menudo se toma por una canción patriotera, pero trata del abandono de los veteranos de Vietnam.",
+      "fun_fact_fr": "Souvent prise pour un chant patriotique, elle parle en réalité de l'abandon des vétérans du Vietnam.",
+      "fun_fact_nl": "Vaak aangezien voor een vlaggenzwaaier, gaat het in werkelijkheid over de verwaarlozing van Vietnamveteranen.",
+      "isrc": "USSM18400406",
+      "uri_apple_music": "applemusic://track/203708455",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/203708455"
+      },
+      "uri_deezer": "deezer://track/15586213",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:7FwBtcecmlpc1sLySPXeGE",
+      "artist": "Bruce Springsteen",
+      "alt_artists": [
+        "Billy Joel",
+        "John Mellencamp",
+        "Bryan Adams"
+      ],
+      "title": "Dancing in the Dark",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "He wrote it after his manager asked for a hit single, and Courteney Cox danced in the video.",
+      "fun_fact_de": "Er schrieb es, nachdem sein Manager um eine Hitsingle gebeten hatte, und Courteney Cox tanzte im Video.",
+      "fun_fact_es": "La escribió después de que su mánager pidiera un sencillo de éxito, y Courteney Cox bailó en el videoclip.",
+      "fun_fact_fr": "Il l'a écrite après que son manager a réclamé un tube, et Courteney Cox danse dans le clip.",
+      "fun_fact_nl": "Hij schreef het nadat zijn manager om een hitsingle vroeg, en Courteney Cox danste in de clip.",
+      "isrc": "USSM18400416",
+      "uri_apple_music": "applemusic://track/203709340",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/203709340"
+      },
+      "uri_deezer": "deezer://track/15586246",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:5JKQMoGmXwDHCodn5pFVHB",
+      "artist": "John Mellencamp",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Bob Seger",
+        "Tom Petty"
+      ],
+      "title": "Pink Houses",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Its chorus sounds like a flag-waver, but the verses are a wry look at ordinary American lives.",
+      "fun_fact_de": "Der Refrain klingt nach Fahnenschwenken, doch die Strophen blicken augenzwinkernd auf ganz normale amerikanische Leben.",
+      "fun_fact_es": "El estribillo suena patriótico, pero las estrofas miran con ironía las vidas corrientes de Estados Unidos.",
+      "fun_fact_fr": "Son refrain sonne patriotique, mais les couplets posent un regard ironique sur des vies américaines ordinaires.",
+      "fun_fact_nl": "Het refrein klinkt als vlaggenzwaaien, maar de coupletten kijken ironisch naar gewone Amerikaanse levens.",
+      "isrc": "USJM18300001",
+      "uri_apple_music": "applemusic://track/1418215986",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1418215986"
+      },
+      "uri_deezer": "deezer://track/2512465",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:6dnco8haegnJYtylV26cBq",
+      "artist": "Kenny Rogers & Dolly Parton",
+      "alt_artists": [
+        "Willie Nelson & Julio Iglesias",
+        "Conway Twitty & Loretta Lynn",
+        "Barbra Streisand & Barry Gibb"
+      ],
+      "title": "Islands in the Stream",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Bee Gees' Barry, Robin and Maurice Gibb wrote it, and it topped the Hot 100 in 1983.",
+      "fun_fact_de": "Barry, Robin und Maurice Gibb von den Bee Gees schrieben es, und 1983 stand es an der Spitze der Hot 100.",
+      "fun_fact_es": "Barry, Robin y Maurice Gibb de los Bee Gees la escribieron y en 1983 fue número 1 del Hot 100.",
+      "fun_fact_fr": "Barry, Robin et Maurice Gibb des Bee Gees l'ont écrite, et elle a dominé le Hot 100 en 1983.",
+      "fun_fact_nl": "Barry, Robin en Maurice Gibb van de Bee Gees schreven het, en in 1983 stond het bovenaan de Hot 100.",
+      "isrc": "USRN19400390",
+      "uri_apple_music": "applemusic://track/282883594",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/282883594"
+      },
+      "uri_deezer": "deezer://track/989305",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:2ncWUbOnlMTBBNR2k5EwQQ",
+      "artist": "Alabama",
+      "alt_artists": [
+        "Lynyrd Skynyrd",
+        "The Oak Ridge Boys",
+        "Exile"
+      ],
+      "title": "Mountain Music",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Randy Owen wrote the title track of Alabama's 1982 album.",
+      "fun_fact_de": "Randy Owen schrieb den Titelsong von Alabamas Album von 1982.",
+      "fun_fact_es": "Randy Owen escribió la canción que da título al álbum de Alabama de 1982.",
+      "fun_fact_fr": "Randy Owen a écrit le morceau-titre de l'album d'Alabama de 1982.",
+      "fun_fact_nl": "Randy Owen schreef de titeltrack van Alabama's album uit 1982.",
+      "isrc": "USRN18100015",
+      "uri_apple_music": "applemusic://track/253356146",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/253356146"
+      },
+      "uri_deezer": "deezer://track/1042884",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:4TnUKixNWMfajncgdSwFoi",
+      "artist": "George Strait",
+      "alt_artists": [
+        "Merle Haggard",
+        "Alan Jackson",
+        "Willie Nelson"
+      ],
+      "title": "Amarillo by Morning",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Terry Stafford and Paul Fraser wrote it, and it became one of Strait's signature songs.",
+      "fun_fact_de": "Terry Stafford und Paul Fraser schrieben es, und es wurde eines von Straits Markenzeichen.",
+      "fun_fact_es": "Terry Stafford y Paul Fraser la escribieron y se convirtió en una de las canciones insignia de Strait.",
+      "fun_fact_fr": "Terry Stafford et Paul Fraser l'ont écrite, et elle est devenue l'un des titres phares de Strait.",
+      "fun_fact_nl": "Terry Stafford en Paul Fraser schreven het, en het werd een van Straits handtekeningnummers.",
+      "isrc": "USMC18212997",
+      "uri_apple_music": "applemusic://track/1440849334",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440849334"
+      },
+      "uri_deezer": "deezer://track/7379463",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:43btz2xjMKpcmjkuRsvxyg",
+      "artist": "John Mellencamp",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Bob Seger",
+        "Tom Petty"
+      ],
+      "title": "Jack & Diane",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Producer Mick Ronson suggested the stop-time handclaps, and it was Mellencamp's only No. 1 on the Hot 100.",
+      "fun_fact_de": "Produzent Mick Ronson regte die Pausen mit Handclaps an, und es war Mellencamps einziger Nummer-1-Hit der Hot 100.",
+      "fun_fact_es": "El productor Mick Ronson sugirió las palmas con pausa y fue el único número 1 de Mellencamp en el Hot 100.",
+      "fun_fact_fr": "Le producteur Mick Ronson a suggéré les claquements de mains en stop-time, et ce fut le seul numéro 1 de Mellencamp au Hot 100.",
+      "fun_fact_nl": "Producer Mick Ronson stelde de handklappen met stops voor, en het was Mellencamps enige nummer 1 in de Hot 100.",
+      "isrc": "USJM18200001",
+      "uri_apple_music": "applemusic://track/1440728268",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440728268"
+      },
+      "uri_deezer": "deezer://track/79980128",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:1SWmFiFSIBoDbQJjNKC7SR",
+      "artist": "Bob Seger",
+      "alt_artists": [
+        "John Mellencamp",
+        "Bruce Springsteen",
+        "Eagles"
+      ],
+      "title": "Against the Wind",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The album of the same name hit No. 1 on the US album chart in 1980.",
+      "fun_fact_de": "Das gleichnamige Album erreichte 1980 Platz 1 der US-Albumcharts.",
+      "fun_fact_es": "El álbum del mismo nombre llegó al número 1 de la lista de álbumes de EE. UU. en 1980.",
+      "fun_fact_fr": "L'album du même nom a atteint la première place du classement américain en 1980.",
+      "fun_fact_nl": "Het gelijknamige album bereikte in 1980 nummer 1 in de Amerikaanse albumlijst.",
+      "isrc": "USCA20300155",
+      "uri_apple_music": "applemusic://track/1440830799",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440830799"
+      },
+      "uri_deezer": "deezer://track/4127681521",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:4w3tQBXhn5345eUXDGBWZG",
+      "artist": "Dolly Parton",
+      "alt_artists": [
+        "Barbara Mandrell",
+        "Reba McEntire",
+        "Crystal Gayle"
+      ],
+      "title": "9 to 5",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dolly said she got the rhythm by clicking her acrylic fingernails together while writing it for the film.",
+      "fun_fact_de": "Dolly sagte, den Rhythmus habe sie beim Schreiben durch das Klackern ihrer Acrylnägel gefunden.",
+      "fun_fact_es": "Dolly contó que el ritmo salió de golpear sus uñas acrílicas mientras escribía la canción para la película.",
+      "fun_fact_fr": "Dolly a raconté que le rythme venait du cliquetis de ses faux ongles pendant l'écriture pour le film.",
+      "fun_fact_nl": "Dolly vertelde dat het ritme kwam van het tikken met haar nepnagels tijdens het schrijven voor de film.",
+      "isrc": "USRN19400384",
+      "uri_apple_music": "applemusic://track/451644069",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/451644069"
+      },
+      "uri_deezer": "deezer://track/992937",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:2GyH5rvdnfkjzsTFaWrrov",
+      "artist": "Willie Nelson",
+      "alt_artists": [
+        "Waylon Jennings",
+        "Merle Haggard",
+        "Kris Kristofferson"
+      ],
+      "title": "On the Road Again",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Willie wrote it for the film Honeysuckle Rose, and it became his signature song.",
+      "fun_fact_de": "Willie schrieb es für den Film Honeysuckle Rose, und es wurde sein Markenzeichen.",
+      "fun_fact_es": "Willie la escribió para la película Honeysuckle Rose y se convirtió en su canción insignia.",
+      "fun_fact_fr": "Willie l'a écrite pour le film Honeysuckle Rose, et elle est devenue sa chanson fétiche.",
+      "fun_fact_nl": "Willie schreef het voor de film Honeysuckle Rose, en het werd zijn handtekeningnummer.",
+      "isrc": "USSM17900054",
+      "uri_apple_music": "applemusic://track/158498945",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158498945"
+      },
+      "uri_deezer": "deezer://track/72789516",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:383Xl5QTigwj3QiA3Qc6S7",
+      "artist": "The Charlie Daniels Band",
+      "alt_artists": [
+        "Lynyrd Skynyrd",
+        "The Marshall Tucker Band",
+        "Alabama"
+      ],
+      "title": "The Devil Went Down to Georgia",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A fiddle duel with the devil for a golden fiddle, which won the band a Grammy.",
+      "fun_fact_de": "Ein Fiedelduell mit dem Teufel um eine goldene Fiedel, das der Band einen Grammy einbrachte.",
+      "fun_fact_es": "Un duelo de violín con el diablo por un violín de oro, que le valió un Grammy a la banda.",
+      "fun_fact_fr": "Un duel de violon avec le diable pour un violon d'or, qui a valu un Grammy au groupe.",
+      "fun_fact_nl": "Een vioolduel met de duivel om een gouden viool, dat de band een Grammy opleverde.",
+      "isrc": "USSM17900810",
+      "uri_apple_music": "applemusic://track/158628587",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158628587"
+      },
+      "uri_deezer": "deezer://track/851466",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:5KqldkCunQ2rWxruMEtGh0",
+      "artist": "Kenny Rogers",
+      "alt_artists": [
+        "Willie Nelson",
+        "Glen Campbell",
+        "Don Williams"
+      ],
+      "title": "The Gambler",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Don Schlitz wrote it, and it won Rogers a Grammy and inspired five TV movies.",
+      "fun_fact_de": "Don Schlitz schrieb es; es brachte Rogers einen Grammy ein und inspirierte fünf Fernsehfilme.",
+      "fun_fact_es": "Don Schlitz la escribió; le dio un Grammy a Rogers e inspiró cinco películas para televisión.",
+      "fun_fact_fr": "Écrite par Don Schlitz, elle a valu un Grammy à Rogers et inspiré cinq téléfilms.",
+      "fun_fact_nl": "Don Schlitz schreef het; het leverde Rogers een Grammy op en inspireerde vijf tv-films.",
+      "isrc": "USCN17800055",
+      "uri_apple_music": "applemusic://track/1440840853",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440840853"
+      },
+      "uri_deezer": "deezer://track/3108438",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1978,
+      "uri": "spotify:track:7nVQ8mo77KaUvhUQzh4vMy",
+      "artist": "Waylon Jennings & Willie Nelson",
+      "alt_artists": [
+        "Kenny Rogers",
+        "Merle Haggard",
+        "Johnny Cash"
+      ],
+      "title": "Mamas Don't Let Your Babies Grow Up to Be Cowboys",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Ed and Patsy Bruce wrote it, but the Waylon and Willie version won the 1979 Grammy for best country duo.",
+      "fun_fact_de": "Ed und Patsy Bruce schrieben es, doch die Version von Waylon und Willie gewann 1979 den Grammy als bestes Country-Duo.",
+      "fun_fact_es": "Ed y Patsy Bruce la escribieron, pero la versión de Waylon y Willie ganó el Grammy al mejor dúo country de 1979.",
+      "fun_fact_fr": "Ed et Patsy Bruce l'ont écrite, mais la version de Waylon et Willie a remporté le Grammy du meilleur duo country en 1979.",
+      "fun_fact_nl": "Ed en Patsy Bruce schreven het, maar de versie van Waylon en Willie won in 1979 de Grammy voor beste countryduo.",
+      "isrc": "USRN10000382",
+      "uri_apple_music": "applemusic://track/385558989",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/385558989"
+      },
+      "uri_deezer": "deezer://track/13163039",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:3zxklD2EGecZre9MjEEvIU",
+      "artist": "Linda Ronstadt",
+      "alt_artists": [
+        "Emmylou Harris",
+        "Roy Orbison",
+        "Dolly Parton"
+      ],
+      "title": "Blue Bayou",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Roy Orbison and Joe Melson wrote it in 1963; Ronstadt's 1977 version reached the US top 5.",
+      "fun_fact_de": "Roy Orbison und Joe Melson schrieben es 1963; Ronstadts Version von 1977 kam in den US-Top-5.",
+      "fun_fact_es": "Roy Orbison y Joe Melson la escribieron en 1963; la versión de Ronstadt de 1977 llegó al top 5 de EE. UU.",
+      "fun_fact_fr": "Roy Orbison et Joe Melson l'ont écrite en 1963 ; la version de Ronstadt en 1977 a atteint le top 5 américain.",
+      "fun_fact_nl": "Roy Orbison en Joe Melson schreven het in 1963; Ronstadts versie uit 1977 haalde de Amerikaanse top 5.",
+      "isrc": "USEA20100040",
+      "uri_apple_music": "applemusic://track/70259578",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/70259578"
+      },
+      "uri_deezer": "deezer://track/3919443",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:6UBjSnyP1O5W5ndJoO9vUk",
+      "artist": "Bob Seger",
+      "alt_artists": [
+        "John Mellencamp",
+        "Bruce Springsteen",
+        "Eagles"
+      ],
+      "title": "Night Moves",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A nostalgic story of teenage summer nights that turned Seger into a national star.",
+      "fun_fact_de": "Eine nostalgische Geschichte von Teenager-Sommernächten, die Seger zum landesweiten Star machte.",
+      "fun_fact_es": "Una historia nostálgica de noches de verano adolescentes que convirtió a Seger en una estrella nacional.",
+      "fun_fact_fr": "Un récit nostalgique de nuits d'été d'adolescence qui a fait de Seger une star nationale.",
+      "fun_fact_nl": "Een nostalgisch verhaal over zomernachten uit de tienertijd dat Seger tot landelijke ster maakte.",
+      "isrc": "USCA28500274",
+      "uri_apple_music": "applemusic://track/1440879569",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440879569"
+      },
+      "uri_deezer": "deezer://track/1445506692",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1976,
+      "uri": "spotify:track:53LwBS4bovyljsMlLqGfd6",
+      "artist": "Tom Petty and the Heartbreakers",
+      "alt_artists": [
+        "The Byrds",
+        "Bob Seger",
+        "Bruce Springsteen"
+      ],
+      "title": "American Girl",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Its jangling 12-string guitar led many listeners to mistake it for a Byrds song.",
+      "fun_fact_de": "Die klirrende Zwölfsaiter-Gitarre ließ viele Hörer es für einen Song der Byrds halten.",
+      "fun_fact_es": "Su guitarra de doce cuerdas hizo que muchos oyentes la confundieran con una canción de los Byrds.",
+      "fun_fact_fr": "Sa guitare à douze cordes cristalline l'a fait prendre par beaucoup pour un titre des Byrds.",
+      "fun_fact_nl": "De tinkelende twaalfsnarige gitaar deed veel luisteraars denken aan de Byrds.",
+      "isrc": "USUG10400001",
+      "uri_apple_music": "applemusic://track/1469579559",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1469579559"
+      },
+      "uri_deezer": "deezer://track/588236252",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:56lhDZNQ5J47aog6mGKeGk",
+      "artist": "Bruce Springsteen",
+      "alt_artists": [
+        "Tom Petty",
+        "Bob Seger",
+        "Billy Joel"
+      ],
+      "title": "Thunder Road",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It opens the album Born to Run with a harmonica and the line 'The screen door slams'.",
+      "fun_fact_de": "Es eröffnet das Album Born to Run mit einer Mundharmonika und der Zeile 'The screen door slams'.",
+      "fun_fact_es": "Abre el álbum Born to Run con una armónica y el verso 'The screen door slams'.",
+      "fun_fact_fr": "Elle ouvre l'album Born to Run avec un harmonica et le vers « The screen door slams ».",
+      "fun_fact_nl": "Het opent het album Born to Run met een mondharmonica en de regel 'The screen door slams'.",
+      "isrc": "USSM19904335",
+      "uri_apple_music": "applemusic://track/310730206",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/310730206"
+      },
+      "uri_deezer": "deezer://track/552942242",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:6hTcuIQa0sxrrByu9wTD7s",
+      "artist": "Bruce Springsteen",
+      "alt_artists": [
+        "Meat Loaf",
+        "Bob Seger",
+        "Billy Joel"
+      ],
+      "title": "Born to Run",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Springsteen reportedly spent around six months on the title track alone.",
+      "fun_fact_de": "Springsteen soll allein am Titelsong rund sechs Monate gearbeitet haben.",
+      "fun_fact_es": "Según se cuenta, Springsteen pasó unos seis meses solo con el tema principal.",
+      "fun_fact_fr": "Springsteen aurait passé environ six mois sur le seul morceau-titre.",
+      "fun_fact_nl": "Springsteen zou alleen al aan de titeltrack ongeveer zes maanden hebben gewerkt.",
+      "isrc": "USSM17500423",
+      "uri_apple_music": "applemusic://track/1045058681",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1045058681"
+      },
+      "uri_deezer": "deezer://track/132635408",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:5lQKRR3MdJLtAwNBiT8Cq0",
+      "artist": "Eagles",
+      "alt_artists": [
+        "Poco",
+        "Linda Ronstadt",
+        "Fleetwood Mac"
+      ],
+      "title": "Lyin' Eyes",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Don Henley and Glenn Frey wrote it, and it won a Grammy in 1976.",
+      "fun_fact_de": "Don Henley und Glenn Frey schrieben es, und es gewann 1976 einen Grammy.",
+      "fun_fact_es": "Don Henley y Glenn Frey la escribieron y ganó un Grammy en 1976.",
+      "fun_fact_fr": "Don Henley et Glenn Frey l'ont écrite, et elle a remporté un Grammy en 1976.",
+      "fun_fact_nl": "Don Henley en Glenn Frey schreven het, en het won in 1976 een Grammy.",
+      "isrc": "USRH12503270",
+      "uri_apple_music": "applemusic://track/1883167245",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1883167245"
+      },
+      "uri_deezer": "deezer://track/3886422941",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:0VwTeYNjcl30DyQlt3GPe0",
+      "artist": "Glen Campbell",
+      "alt_artists": [
+        "Kenny Rogers",
+        "John Denver",
+        "Charlie Rich"
+      ],
+      "title": "Rhinestone Cowboy",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It reached No. 1 on both the pop and country charts in 1975.",
+      "fun_fact_de": "1975 erreichte es Platz 1 sowohl der Pop- als auch der Country-Charts.",
+      "fun_fact_es": "En 1975 llegó al número 1 tanto en la lista pop como en la country.",
+      "fun_fact_fr": "En 1975, elle a atteint la première place des classements pop et country.",
+      "fun_fact_nl": "In 1975 bereikte het nummer 1 in zowel de pop- als de countryhitlijst.",
+      "isrc": "USCN18600038",
+      "uri_apple_music": "applemusic://track/1442453158",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442453158"
+      },
+      "uri_deezer": "deezer://track/3476217",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:77bNe6jYY8yHdP7orXrz5I",
+      "artist": "Dolly Parton",
+      "alt_artists": [
+        "Whitney Houston",
+        "Linda Ronstadt",
+        "Emmylou Harris"
+      ],
+      "title": "I Will Always Love You",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dolly wrote it on the same day as Jolene, and Whitney Houston's 1992 cover made it a global hit.",
+      "fun_fact_de": "Dolly schrieb es am selben Tag wie Jolene, und Whitney Houstons Cover von 1992 machte es weltberühmt.",
+      "fun_fact_es": "Dolly la escribió el mismo día que Jolene, y la versión de Whitney Houston de 1992 la hizo mundial.",
+      "fun_fact_fr": "Dolly l'a écrite le même jour que Jolene, et la reprise de Whitney Houston en 1992 l'a rendue mondiale.",
+      "fun_fact_nl": "Dolly schreef het op dezelfde dag als Jolene, en Whitney Houstons cover uit 1992 maakte het wereldberoemd.",
+      "isrc": "USRN17300007",
+      "uri_apple_music": "applemusic://track/411940495",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/411940495"
+      },
+      "uri_deezer": "deezer://track/567771",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:0SjnBEHZVXgCKvOrpvzL2k",
+      "artist": "Gordon Lightfoot",
+      "alt_artists": [
+        "Jim Croce",
+        "John Denver",
+        "Neil Young"
+      ],
+      "title": "Sundown",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It was Lightfoot's only No. 1 on the US Hot 100, in 1974.",
+      "fun_fact_de": "Es war Lightfoots einziger Nummer-1-Hit der US-Hot-100, 1974.",
+      "fun_fact_es": "Fue el único número 1 de Lightfoot en el Hot 100 de EE. UU., en 1974.",
+      "fun_fact_fr": "Ce fut le seul numéro 1 de Lightfoot au Hot 100 américain, en 1974.",
+      "fun_fact_nl": "Het was Lightfoots enige nummer 1 in de Amerikaanse Hot 100, in 1974.",
+      "isrc": "USRE10901178",
+      "uri_apple_music": "applemusic://track/362089058",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/362089058"
+      },
+      "uri_deezer": "deezer://track/3822208",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:4J0DbyODwZJcmIAiTSJfMF",
+      "artist": "John Denver",
+      "alt_artists": [
+        "Gordon Lightfoot",
+        "Jim Croce",
+        "Harry Chapin"
+      ],
+      "title": "Annie's Song",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Denver wrote it for his wife Annie in about ten minutes on a ski lift in Aspen.",
+      "fun_fact_de": "Denver schrieb es für seine Frau Annie in etwa zehn Minuten auf einem Skilift in Aspen.",
+      "fun_fact_es": "Denver la escribió para su esposa Annie en unos diez minutos en un telesilla de Aspen.",
+      "fun_fact_fr": "Denver l'a écrite pour sa femme Annie en une dizaine de minutes sur un télésiège à Aspen.",
+      "fun_fact_nl": "Denver schreef het voor zijn vrouw Annie in ongeveer tien minuten op een skilift in Aspen.",
+      "isrc": "USRC17403082",
+      "uri_apple_music": "applemusic://track/1482520020",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1482520020"
+      },
+      "uri_deezer": "deezer://track/659836372",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:4CJVkjo5WpmUAKp3R44LNb",
+      "artist": "Lynyrd Skynyrd",
+      "alt_artists": [
+        "The Allman Brothers Band",
+        "ZZ Top",
+        "38 Special"
+      ],
+      "title": "Sweet Home Alabama",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It answered Neil Young's songs 'Southern Man' and 'Alabama', yet Young later said he was a fan.",
+      "fun_fact_de": "Es antwortete auf Neil Youngs Songs 'Southern Man' und 'Alabama', doch Young sagte später, er sei Fan.",
+      "fun_fact_es": "Respondía a 'Southern Man' y 'Alabama' de Neil Young, aunque Young dijo después que era fan.",
+      "fun_fact_fr": "Elle répondait à « Southern Man » et « Alabama » de Neil Young, qui a pourtant dit plus tard en être fan.",
+      "fun_fact_nl": "Het was een antwoord op Neil Youngs 'Southern Man' en 'Alabama', al zei Young later fan te zijn.",
+      "isrc": "USMC17446153",
+      "uri_apple_music": "applemusic://track/1413948381",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1413948381"
+      },
+      "uri_deezer": "deezer://track/24949681",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:6HSXNV0b4M4cLJ7ljgVVeh",
+      "artist": "Bob Dylan",
+      "alt_artists": [
+        "Neil Young",
+        "The Band",
+        "Tom Petty"
+      ],
+      "title": "Knockin' on Heaven's Door",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dylan wrote it for Sam Peckinpah's western Pat Garrett and Billy the Kid.",
+      "fun_fact_de": "Dylan schrieb es für Sam Peckinpahs Western Pat Garrett jagt Billy the Kid.",
+      "fun_fact_es": "Dylan la escribió para el western de Sam Peckinpah Pat Garrett y Billy el Niño.",
+      "fun_fact_fr": "Dylan l'a écrite pour le western de Sam Peckinpah, Pat Garrett et Billy le Kid.",
+      "fun_fact_nl": "Dylan schreef het voor Sam Peckinpahs western Pat Garrett and Billy the Kid.",
+      "isrc": "USSM11304547",
+      "uri_apple_music": "applemusic://track/157451710",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/157451710"
+      },
+      "uri_deezer": "deezer://track/75768727",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:2SpEHTbUuebeLkgs9QB7Ue",
+      "artist": "Dolly Parton",
+      "alt_artists": [
+        "Loretta Lynn",
+        "Tammy Wynette",
+        "Emmylou Harris"
+      ],
+      "title": "Jolene",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Dolly has said the name came from a young fan she met on stage, while the red hair belonged to a bank teller.",
+      "fun_fact_de": "Dolly erzählt, der Name stamme von einem jungen Fan auf der Bühne, die roten Haare von einer Bankangestellten.",
+      "fun_fact_es": "Dolly cuenta que el nombre venía de una joven fan en un concierto y el pelo rojo de una cajera de banco.",
+      "fun_fact_fr": "Dolly raconte que le prénom venait d'une jeune fan et les cheveux roux d'une employée de banque.",
+      "fun_fact_nl": "Dolly vertelde dat de naam van een jonge fan kwam en het rode haar van een bankbediende.",
+      "isrc": "USRN19600096",
+      "uri_apple_music": "applemusic://track/411940289",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/411940289"
+      },
+      "uri_deezer": "deezer://track/114422238",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:4yugZvBYaoREkJKtbG08Qr",
+      "artist": "Eagles",
+      "alt_artists": [
+        "Jackson Browne",
+        "Linda Ronstadt",
+        "Poco"
+      ],
+      "title": "Take It Easy",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jackson Browne and Glenn Frey wrote it, and it was the Eagles' debut single.",
+      "fun_fact_de": "Jackson Browne und Glenn Frey schrieben es, und es war die Debütsingle der Eagles.",
+      "fun_fact_es": "Jackson Browne y Glenn Frey la escribieron y fue el sencillo debut de los Eagles.",
+      "fun_fact_fr": "Jackson Browne et Glenn Frey l'ont écrite, et ce fut le premier single des Eagles.",
+      "fun_fact_nl": "Jackson Browne en Glenn Frey schreven het, en het was de debuutsingle van de Eagles.",
+      "isrc": "GBHFE0611366",
+      "uri_apple_music": "applemusic://track/635791802",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/635791802"
+      },
+      "uri_deezer": "deezer://track/11858173",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1972,
+      "uri": "spotify:track:40h65HAR8COEoqkMwUUQHu",
+      "artist": "Eagles",
+      "alt_artists": [
+        "Poco",
+        "Linda Ronstadt",
+        "America"
+      ],
+      "title": "Peaceful Easy Feeling",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jack Tempchin wrote it, and Glenn Frey sang lead.",
+      "fun_fact_de": "Jack Tempchin schrieb es, und Glenn Frey sang die Hauptstimme.",
+      "fun_fact_es": "Jack Tempchin la escribió y Glenn Frey cantó la voz principal.",
+      "fun_fact_fr": "Jack Tempchin l'a écrite, et Glenn Frey chante en lead.",
+      "fun_fact_nl": "Jack Tempchin schreef het, en Glenn Frey zong de leadvocalen.",
+      "isrc": "USEE11300322",
+      "uri_apple_music": "applemusic://track/635791911",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/635791911"
+      },
+      "uri_deezer": "deezer://track/68116149",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:1fDsrQ23eTAVFElUMaf38X",
+      "artist": "Don McLean",
+      "alt_artists": [
+        "Harry Chapin",
+        "Gordon Lightfoot",
+        "Jim Croce"
+      ],
+      "title": "American Pie",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The eight-minute epic's 'day the music died' refers to the 1959 plane crash that killed Buddy Holly.",
+      "fun_fact_de": "Mit dem 'Tag, an dem die Musik starb' meint das achtminütige Epos den Flugzeugabsturz von 1959, bei dem Buddy Holly starb.",
+      "fun_fact_es": "El 'día en que murió la música' de esta épica de ocho minutos alude al accidente aéreo de 1959 que mató a Buddy Holly.",
+      "fun_fact_fr": "Le « jour où la musique est morte » de cette épopée de huit minutes renvoie à l'accident d'avion de 1959 qui a tué Buddy Holly.",
+      "fun_fact_nl": "De 'dag dat de muziek stierf' in dit achtminutenepos verwijst naar de vliegtuigcrash van 1959 waarbij Buddy Holly omkwam.",
+      "uri_apple_music": "applemusic://track/724850320",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724850320"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:1YYhDizHx7PnDhAhko6cDS",
+      "artist": "John Denver",
+      "alt_artists": [
+        "Glen Campbell",
+        "Jim Croce",
+        "Gordon Lightfoot"
+      ],
+      "title": "Take Me Home, Country Roads",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "West Virginia made it an official state song in 2014, though the writers barely knew the state.",
+      "fun_fact_de": "West Virginia erklärte es 2014 zum offiziellen Staatslied, obwohl die Autoren den Bundesstaat kaum kannten.",
+      "fun_fact_es": "Virginia Occidental lo declaró canción oficial del estado en 2014, aunque los autores apenas conocían el estado.",
+      "fun_fact_fr": "La Virginie-Occidentale en a fait un chant officiel en 2014, bien que ses auteurs connaissaient à peine l'État.",
+      "fun_fact_nl": "West Virginia maakte het in 2014 een officieel staatslied, hoewel de schrijvers de staat nauwelijks kenden.",
+      "isrc": "USA370529726",
+      "uri_apple_music": "applemusic://track/404640445",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/404640445"
+      },
+      "uri_deezer": "deezer://track/769749602",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:2LawezPeJhN4AWuSB0GtAU",
+      "artist": "Creedence Clearwater Revival",
+      "alt_artists": [
+        "The Eagles",
+        "Lynyrd Skynyrd",
+        "Bob Seger"
+      ],
+      "title": "Have You Ever Seen the Rain?",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Often read as a song about the band's rift, with rain falling on a sunny day.",
+      "fun_fact_de": "Wird oft als Song über den Bruch in der Band gelesen, mit Regen an einem sonnigen Tag.",
+      "fun_fact_es": "Suele leerse como una canción sobre la ruptura de la banda, con lluvia en un día soleado.",
+      "fun_fact_fr": "On y lit souvent la rupture du groupe, avec de la pluie un jour de soleil.",
+      "fun_fact_nl": "Wordt vaak gelezen als een lied over de breuk in de band, met regen op een zonnige dag.",
+      "isrc": "USFI87000066",
+      "uri_apple_music": "applemusic://track/1440956341",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440956341"
+      },
+      "uri_deezer": "deezer://track/883644",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:5GDiNqMe76rDS5ZgPaI03R",
+      "artist": "Kris Kristofferson",
+      "alt_artists": [
+        "Janis Joplin",
+        "Willie Nelson",
+        "Johnny Cash"
+      ],
+      "title": "Me and Bobby McGee",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Janis Joplin's version, recorded days before her death, became a posthumous No. 1 in 1971.",
+      "fun_fact_de": "Janis Joplins Version, wenige Tage vor ihrem Tod aufgenommen, wurde 1971 posthum Nummer 1.",
+      "fun_fact_es": "La versión de Janis Joplin, grabada días antes de su muerte, fue número 1 a título póstumo en 1971.",
+      "fun_fact_fr": "La version de Janis Joplin, enregistrée quelques jours avant sa mort, est devenue numéro 1 à titre posthume en 1971.",
+      "fun_fact_nl": "De versie van Janis Joplin, enkele dagen voor haar dood opgenomen, werd in 1971 postuum nummer 1.",
+      "isrc": "USSM10303239",
+      "uri_apple_music": "applemusic://track/1011273588",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1011273588"
+      },
+      "uri_deezer": "deezer://track/531935",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1970,
+      "uri": "spotify:track:3mM14WXoPaLRjjkmxHe99L",
+      "artist": "Loretta Lynn",
+      "alt_artists": [
+        "Dolly Parton",
+        "Tammy Wynette",
+        "Patsy Cline"
+      ],
+      "title": "Coal Miner's Daughter",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Loretta sang about her childhood in Butcher Hollow, Kentucky, and the title later became her autobiography and a film.",
+      "fun_fact_de": "Loretta besang ihre Kindheit in Butcher Hollow, Kentucky; der Titel wurde später ihre Autobiografie und ein Film.",
+      "fun_fact_es": "Loretta cantó su infancia en Butcher Hollow, Kentucky; el título fue luego su autobiografía y una película.",
+      "fun_fact_fr": "Loretta y chantait son enfance à Butcher Hollow, Kentucky ; le titre est devenu son autobiographie, puis un film.",
+      "fun_fact_nl": "Loretta zong over haar jeugd in Butcher Hollow, Kentucky; de titel werd later haar autobiografie en een film.",
+      "isrc": "USMC16946205",
+      "uri_apple_music": "applemusic://track/607122092",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/607122092"
+      },
+      "uri_deezer": "deezer://track/2153341",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:6NxsCnLeLd8Ai1TrgGxzIx",
+      "artist": "Creedence Clearwater Revival",
+      "alt_artists": [
+        "The Doors",
+        "The Band",
+        "Steve Miller Band"
+      ],
+      "title": "Bad Moon Rising",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "John Fogerty has said a hurricane scene in the film The Devil and Daniel Webster inspired it.",
+      "fun_fact_de": "John Fogerty sagte, eine Hurrikan-Szene im Film The Devil and Daniel Webster habe ihn inspiriert.",
+      "fun_fact_es": "John Fogerty ha dicho que lo inspiró una escena de huracán de la película The Devil and Daniel Webster.",
+      "fun_fact_fr": "John Fogerty a dit s'être inspiré d'une scène d'ouragan du film The Devil and Daniel Webster.",
+      "fun_fact_nl": "John Fogerty zei dat een orkaanscène in de film The Devil and Daniel Webster hem inspireerde.",
+      "isrc": "USFI86900055",
+      "uri_apple_music": "applemusic://track/1440952840",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440952840"
+      },
+      "uri_deezer": "deezer://track/883640",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:5e6x5YRnMJIKvYpZxLqdpH",
+      "artist": "Creedence Clearwater Revival",
+      "alt_artists": [
+        "Bob Dylan",
+        "Neil Young",
+        "Lynyrd Skynyrd"
+      ],
+      "title": "Fortunate Son",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "John Fogerty wrote it as a protest against the privileged being spared the Vietnam draft.",
+      "fun_fact_de": "John Fogerty schrieb es als Protest dagegen, dass Privilegierte vom Vietnam-Einzug verschont blieben.",
+      "fun_fact_es": "John Fogerty la escribió como protesta porque los privilegiados se libraban del reclutamiento para Vietnam.",
+      "fun_fact_fr": "John Fogerty l'a écrite pour protester contre les privilégiés épargnés par la conscription pour le Vietnam.",
+      "fun_fact_nl": "John Fogerty schreef het als protest tegen de bevoorrechten die de Vietnam-dienstplicht ontliepen.",
+      "isrc": "USFI86900065",
+      "uri_apple_music": "applemusic://track/1440950725",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440950725"
+      },
+      "uri_deezer": "deezer://track/883648",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:3clB1MI7aKn0N9X1KuWK8n",
+      "artist": "Merle Haggard",
+      "alt_artists": [
+        "Buck Owens",
+        "Johnny Cash",
+        "Waylon Jennings"
+      ],
+      "title": "Okie from Muskogee",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "His 1969 No. 1 was embraced as an anthem of small-town America and also gave a live album its name.",
+      "fun_fact_de": "Sein Nummer-1-Hit von 1969 wurde zur Hymne des Kleinstadt-Amerikas und gab auch einem Livealbum den Namen.",
+      "fun_fact_es": "Su número 1 de 1969 se convirtió en himno de la América de los pueblos y dio nombre a un álbum en directo.",
+      "fun_fact_fr": "Son numéro 1 de 1969 est devenu l'hymne de l'Amérique des petites villes et a donné son nom à un album live.",
+      "fun_fact_nl": "Zijn nummer 1 uit 1969 werd een volkslied van het kleinstedelijke Amerika en gaf een livealbum zijn naam.",
+      "isrc": "USJGN0700173",
+      "uri_apple_music": "applemusic://track/724314984",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724314984"
+      },
+      "uri_deezer": "deezer://track/2590770",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:6V9VCm1zOY2lGR80RehJ9i",
+      "artist": "Glen Campbell",
+      "alt_artists": [
+        "Jimmy Webb",
+        "Roy Orbison",
+        "Kenny Rogers"
+      ],
+      "title": "Wichita Lineman",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Jimmy Webb wrote it after seeing a lone lineman on a telephone pole in Oklahoma.",
+      "fun_fact_de": "Jimmy Webb schrieb es, nachdem er in Oklahoma einen einsamen Leitungsmonteur auf einem Telefonmast gesehen hatte.",
+      "fun_fact_es": "Jimmy Webb la escribió tras ver a un linier solitario en un poste telefónico en Oklahoma.",
+      "fun_fact_fr": "Jimmy Webb l'a écrite après avoir vu un monteur de lignes seul sur un poteau téléphonique en Oklahoma.",
+      "fun_fact_nl": "Jimmy Webb schreef het nadat hij in Oklahoma een eenzame lijnwerker op een telefoonpaal zag.",
+      "isrc": "USCN10100759",
+      "uri_apple_music": "applemusic://track/1443109565",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443109565"
+      },
+      "uri_deezer": "deezer://track/3167218",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:0P7DoyGrr4Wp9w5TotEtUC",
+      "artist": "The Band",
+      "alt_artists": [
+        "Bob Dylan",
+        "Creedence Clearwater Revival",
+        "The Grateful Dead"
+      ],
+      "title": "The Weight",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Robbie Robertson wrote it, and it opens with a trip to Nazareth.",
+      "fun_fact_de": "Robbie Robertson schrieb es, und es beginnt mit einer Reise nach Nazareth.",
+      "fun_fact_es": "Robbie Robertson la escribió y empieza con un viaje a Nazaret.",
+      "fun_fact_fr": "Robbie Robertson l'a écrite, et elle s'ouvre sur un voyage à Nazareth.",
+      "fun_fact_nl": "Robbie Robertson schreef het, en het opent met een reis naar Nazareth.",
+      "isrc": "USCA28500167",
+      "uri_apple_music": "applemusic://track/1440841469",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440841469"
+      },
+      "uri_deezer": "deezer://track/3360965",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:5rrlIneG3ecFAqYnB8tz9o",
+      "artist": "Johnny Cash & June Carter Cash",
+      "alt_artists": [
+        "George Jones & Tammy Wynette",
+        "Conway Twitty & Loretta Lynn",
+        "Kris Kristofferson"
+      ],
+      "title": "Jackson",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The playful duet with June Carter won a Grammy in 1968.",
+      "fun_fact_de": "Das verspielte Duett mit June Carter gewann 1968 einen Grammy.",
+      "fun_fact_es": "El jugueton dúo con June Carter ganó un Grammy en 1968.",
+      "fun_fact_fr": "Ce duo espiègle avec June Carter a remporté un Grammy en 1968.",
+      "fun_fact_nl": "Het speelse duet met June Carter won in 1968 een Grammy.",
+      "isrc": "USSM16701409",
+      "uri_apple_music": "applemusic://track/251002611",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/251002611"
+      },
+      "uri_deezer": "deezer://track/858192",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:6YffUZJ2R06kyxyK6onezL",
+      "artist": "Johnny Cash",
+      "alt_artists": [
+        "Merle Haggard",
+        "Waylon Jennings",
+        "Willie Nelson"
+      ],
+      "title": "Ring of Fire",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "June Carter co-wrote it about falling for Cash, and the mariachi-style trumpets were his idea.",
+      "fun_fact_de": "June Carter schrieb es mit über ihre Liebe zu Cash, und die Mariachi-Trompeten waren seine Idee.",
+      "fun_fact_es": "June Carter lo coescribió sobre su amor por Cash, y las trompetas de estilo mariachi fueron idea suya.",
+      "fun_fact_fr": "June Carter l'a coécrite en tombant amoureuse de Cash, et les trompettes façon mariachi étaient son idée.",
+      "fun_fact_nl": "June Carter schreef het mee over haar verliefdheid op Cash, en de mariachi-trompetten waren zijn idee.",
+      "isrc": "USSM19917137",
+      "uri_apple_music": "applemusic://track/169963249",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/169963249"
+      },
+      "uri_deezer": "deezer://track/856630",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1961,
+      "uri": "spotify:track:3zpj9dvJABiyMrmLCPw6i8",
+      "artist": "Patsy Cline",
+      "alt_artists": [
+        "Brenda Lee",
+        "Loretta Lynn",
+        "Connie Francis"
+      ],
+      "title": "Crazy",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Willie Nelson wrote it, and Cline reportedly disliked it at first.",
+      "fun_fact_de": "Willie Nelson schrieb es, und Cline mochte es anfangs angeblich nicht.",
+      "fun_fact_es": "Willie Nelson la escribió y, según se cuenta, a Cline al principio no le gustaba.",
+      "fun_fact_fr": "Willie Nelson l'a écrite, et Cline ne l'aimait pas au début, dit-on.",
+      "fun_fact_nl": "Willie Nelson schreef het, en Cline vond het aanvankelijk naar verluidt niets.",
+      "isrc": "UKU6H1973950",
+      "uri_apple_music": "applemusic://track/1434915161",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1434915161"
+      },
+      "uri_deezer": "deezer://track/910546232",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1956,
+      "uri": "spotify:track:1TKPfF2fvn6gVLVfp3iG4j",
+      "artist": "Johnny Cash",
+      "alt_artists": [
+        "Carl Perkins",
+        "Elvis Presley",
+        "Jerry Lee Lewis"
+      ],
+      "title": "I Walk the Line",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Recorded at Sun Records in Memphis, it was Cash's first No. 1 on the country chart.",
+      "fun_fact_de": "Bei Sun Records in Memphis aufgenommen, war es Cashs erster Nummer-1-Hit in den Country-Charts.",
+      "fun_fact_es": "Grabada en Sun Records, en Memphis, fue el primer número 1 de Cash en la lista country.",
+      "fun_fact_fr": "Enregistrée chez Sun Records à Memphis, c'est le premier numéro 1 de Cash au classement country.",
+      "fun_fact_nl": "Opgenomen bij Sun Records in Memphis, was het Cash' eerste nummer 1 in de countryhitlijst.",
+      "isrc": "USSM11201762",
+      "uri_apple_music": "applemusic://track/1440781898",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440781898"
+      },
+      "uri_deezer": "deezer://track/75388917",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1951,
+      "uri": "spotify:track:0deAIqyKFFw55JDMGWTcdA",
+      "artist": "Hank Williams",
+      "alt_artists": [
+        "Hank Snow",
+        "Lefty Frizzell",
+        "Ernest Tubb"
+      ],
+      "title": "Hey, Good Lookin'",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Hank Williams wrote and recorded it in 1951, and it hit No. 1 on the country chart.",
+      "fun_fact_de": "Hank Williams schrieb und nahm es 1951 auf, und es erreichte Platz 1 der Country-Charts.",
+      "fun_fact_es": "Hank Williams la escribió y grabó en 1951 y llegó al número 1 de la lista country.",
+      "fun_fact_fr": "Hank Williams l'a écrite et enregistrée en 1951, et elle a atteint la première place du classement country.",
+      "fun_fact_nl": "Hank Williams schreef en nam het in 1951 op, en het bereikte nummer 1 in de countryhitlijst.",
+      "isrc": "USESK1295331",
+      "uri_apple_music": "applemusic://track/1705468456",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1705468456"
+      },
+      "uri_deezer": "deezer://track/60692037",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    }
+  ]
+}
