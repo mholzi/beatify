@@ -1,6 +1,6 @@
 {
   "name": "Disco & Funk Classics",
-  "version": "1.23",
+  "version": "1.24",
   "tags": [
     "1970s",
     "1980s",
@@ -1192,7 +1192,6 @@
       "fun_fact_fr": "Écrite par Jacques Morali et Victor Willis après que Morali ait aperçu l'enseigne YMCA en se promenant dans New York. Les fameux gestes des bras ont été inventés par Dick Clark lors d'une apparition dans l'émission American Bandstand. C'est l'un des morceaux les plus reconnaissables jamais enregistrés.",
       "uri_apple_music": "applemusic://track/1440825374",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gj2LOqSugfw",
-      "uri_tidal": "tidal://track/25702905",
       "uri_deezer": "deezer://track/11133258",
       "fun_fact_nl": "Geschreven door Jacques Morali en Victor Willis nadat Morali het YMCA-bord zag terwijl hij door New York liep. De beroemde armbewegingen werden uitgevonden door publiekslid Dick Clark tijdens een optreden bij American Bandstand. Het is een van de meest herkenbare nummers ooit opgenomen.",
       "awards_nl": []
@@ -1660,7 +1659,7 @@
       ],
       "isrc": "USPR37907202",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1704761711",
+        "us": "applemusic://track/6793735690",
         "de": "applemusic://track/1704761711",
         "gb": "applemusic://track/1704761711",
         "fr": "applemusic://track/1704761711",
@@ -1723,7 +1722,7 @@
       ],
       "isrc": "USPR39402394",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1415204156",
+        "us": null,
         "de": "applemusic://track/1415204156",
         "gb": "applemusic://track/1415204156",
         "fr": "applemusic://track/1415204156",
@@ -2669,7 +2668,6 @@
       "fun_fact_fr": "Écrite par Marti Sharron, Gary Skardina et Stephen Mitchell. Le titre a remporté le Grammy de la meilleure performance pop par un duo ou un groupe. La chanson a connu un regain de popularité en figurant dans le film « Love Actually » (2003) et dans la célèbre scène de danse de Hugh Grant.",
       "uri_apple_music": "applemusic://track/1223786412",
       "uri_youtube_music": "https://music.youtube.com/watch?v=uyTVyCp7xrw",
-      "uri_tidal": "tidal://track/310031159",
       "uri_deezer": "deezer://track/599025",
       "fun_fact_nl": "Geschreven door Marti Sharron, Gary Skardina en Stephen Mitchell. Het won de Grammy voor Best Pop Performance by a Duo or Group. Het nummer kreeg hernieuwde populariteit toen het te zien was in de film 'Love Actually' (2003) en in Hugh Grants beroemde dansscène.",
       "awards_nl": [
@@ -3159,7 +3157,6 @@
       "fun_fact_fr": "Issue à l'origine de la comédie musicale de Broadway « La Cage aux Folles ». La puissante version disco de Gloria Gaynor est devenue un hymne LGBTQ par excellence, encore plus que « I Will Survive ». Elle est interprétée chaque année lors des événements de la Fierté à travers le monde et reste un manifeste d'acceptation de soi.",
       "uri_apple_music": "applemusic://track/1810790226",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zreTvtpTeoU",
-      "uri_tidal": "tidal://track/22722310",
       "uri_deezer": "deezer://track/76485944",
       "fun_fact_nl": "Oorspronkelijk van de Broadway-musical 'La Cage aux Folles'. Gloria Gaynors krachtige discoversie werd een bepalende LGBTQ-hymne, zelfs meer dan 'I Will Survive'. Het wordt elk jaar gespeeld bij Pride-evenementen wereldwijd en blijft een verklaring van zelfacceptatie.",
       "awards_nl": [],
@@ -3331,7 +3328,7 @@
       "fun_fact_nl": "Stond in 1979 vijf weken op nummer 1 in de Billboard Hot 100; geïnspireerd op een echt incident waarbij Summers secretaresse door de politie werd aangezien voor een sekswerker.",
       "uri_apple_music": "applemusic://track/1425179375",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1425179375",
+        "us": "applemusic://track/6793735691",
         "de": "applemusic://track/1358795821",
         "gb": "applemusic://track/1425179375",
         "fr": "applemusic://track/1425179375",
@@ -3434,12 +3431,12 @@
       "uri_apple_music": "applemusic://track/1884281664",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1884281664",
-        "de": "applemusic://track/926844014",
+        "de": "applemusic://track/1884281664",
         "gb": "applemusic://track/1884281664",
-        "fr": "applemusic://track/926844014",
-        "es": "applemusic://track/926844014",
-        "nl": "applemusic://track/926844014",
-        "it": "applemusic://track/926844014"
+        "fr": "applemusic://track/1884281664",
+        "es": "applemusic://track/1884281664",
+        "nl": "applemusic://track/1884281664",
+        "it": "applemusic://track/1884281664"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hvNdWwsAMzI",
       "uri_tidal": "tidal://track/506143303",
