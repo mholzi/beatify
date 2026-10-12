@@ -4,6 +4,31 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.4-rc1] - 2026-10-12
+
+First candidate for 4.8.4, "One More Song": three game fixes and playlist repairs on top of 4.8.3.
+
+### Fixed
+- **The final round is no longer skipped** (#3116, #3125, found by the weekly code review).
+  `last_round` was set for the upcoming round before that round was committed. While Music
+  Assistant was still starting the song (4-25 s), the previous round's REVEAL already read the flag
+  and could end the game, with stats recording N-1 rounds. The flag is now set when the round is
+  committed.
+- **The end screen runs its one-time effects once per game** (#3117, #3124, found by the weekly
+  code review). Every END frame scrolled the phones to the top, replayed the confetti, threw the
+  host out of the next-playlist picker and re-enabled the rematch button while a request was in
+  flight.
+- **The intro-round "Start Round" button works on the admin page** (#3122, #3123, reported by
+  @aenkieh in #3027). The box faded out after about two seconds and never accepted a click, so a
+  host without a phone could not start an intro round.
+
+### Changed
+- **Playlist repairs**: dead or wrong links replaced in `wiesn-party-hits` (#3121, #3120, #3126),
+  `disney-hits-deutschland` (#3131, #3132), `iconic-movie-songs` (#3138, #3139) and
+  `ndw-neue-deutsche-welle` (#3140, #3141); "Long Cool Woman" by The Hollies corrected from 1972 to
+  1971 in `greatest-hits-of-all-time` (#3135, #3136); one Deezer link added in `salsa-y-merengue`
+  (#3137). Each playlist's `version` went up with its change.
+
 ## [4.8.3] - 2026-10-05
 
 Patch on top of 4.8.2, "Wait for It": intro rounds explain themselves on the TV, games from your
