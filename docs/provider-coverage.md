@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-09-28
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.3 (v4.8.2 + URI repairs in community/hitster-100-francais.json, community/hitster-brasil.json, 90er-hits.json and top-100-power-ballads.json; no songs added or removed)
+> Catalogue state: v4.8.4-rc1 (v4.8.3 + URI repairs in community/wiesn-party-hits.json, community/disney-hits-deutschland.json, community/iconic-movie-songs.json and community/ndw-neue-deutsche-welle.json, one Deezer URI added in community/salsa-y-merengue.json; the counts below are from 2026-09-28; no songs added or removed)
 
 ## Summary
 
