@@ -854,6 +854,59 @@ window.BeatifyUtils = (function() {
     }
 
     // ==========================================================================
+    // End-screen awards (#3158)
+    // ==========================================================================
+
+    /**
+     * The unit behind every award value the server emits (#3158).
+     *
+     * One row per `value_label` in `game/scoring.py`. TV and phone each used
+     * to carry their own switch over a different subset, so the same award read
+     * "3 exact titles" on one screen and a bare "3" on the other.
+     * `tests/unit/test_award_value_labels_3158.py` reads this table and fails
+     * when scoring.py emits a label that has no row here.
+     *
+     *   key  - the unit's translation key
+     *   one  - the key to use when the value is exactly 1
+     *   lead - a language-neutral unit that sits between number and text
+     *   plus - a positive value carries a leading plus sign
+     */
+    var AWARD_VALUE_UNITS = {
+        avg_time: { key: 'superlatives.avgTime', lead: 's' },
+        streak: { key: 'superlatives.streak' },
+        bets: { key: 'superlatives.bets' },
+        points: { key: 'superlatives.points' },
+        close_guesses: { key: 'superlatives.closeGuesses' },
+        ghost_avg: { key: 'superlatives.ghostAvg' },
+        eliminated: { key: 'superlatives.eliminated', one: 'superlatives.eliminatedOne' },
+        movie_bonus: { key: 'superlatives.movie_bonus' },
+        intro_bonuses: { key: 'superlatives.intro_bonuses' },
+        improvement: { key: 'superlatives.improvement', plus: true },
+        perfect_rounds: { key: 'superlatives.perfectRounds' },
+        exact_titles: { key: 'superlatives.exactTitles' },
+        artists: { key: 'superlatives.artists' },
+        near_misses: { key: 'superlatives.nearMisses' }
+    };
+
+    /**
+     * The value line of an award card: number plus unit (#3158).
+     * @param {{value: number, value_label: string}} award
+     * @param {Function} [translate] - defaults to `t`; tests pass their own
+     * @returns {string} e.g. "3.2 s avg", "+4.5 pts per round", "1 knocked out"
+     */
+    function awardValueText(award, translate) {
+        if (!award) return '';
+        var value = award.value;
+        var unit = AWARD_VALUE_UNITS[award.value_label];
+        // An unknown label still shows its number rather than nothing.
+        if (!unit) return String(value);
+        var tr = translate || t;
+        var key = unit.one && value === 1 ? unit.one : unit.key;
+        var sign = unit.plus && value > 0 ? '+' : '';
+        return sign + value + ' ' + (unit.lead ? unit.lead + ' ' : '') + tr(key);
+    }
+
+    // ==========================================================================
     // Public API
     // ==========================================================================
 
@@ -879,6 +932,9 @@ window.BeatifyUtils = (function() {
         // Open-ended games (#2958)
         isOpenEnded: isOpenEnded,
         applyRoundTotal: applyRoundTotal,
+
+        // End-screen awards (#3158)
+        awardValueText: awardValueText,
 
         // Title & Artist helpers
         taVerdictLabel: taVerdictLabel,

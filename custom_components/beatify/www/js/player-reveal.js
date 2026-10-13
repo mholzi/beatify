@@ -220,6 +220,8 @@ export function updateRevealView(data) {
     // Issue #23: Show/hide intro round badge during REVEAL
     var introBadge = document.getElementById('intro-badge');
     if (introBadge) {
+        // #3152: the neutral "song over" look belongs to PLAYING only.
+        introBadge.classList.remove('arc-chip--sample-stopped');
         if (data.is_intro_round) {
             introBadge.classList.remove('hidden');
             introBadge.classList.add('intro-badge--stopped');
@@ -400,6 +402,7 @@ export function updateRevealView(data) {
         difficulty: data.song_difficulty || null,
         closestWinsMode: !!data.closest_wins_mode,
         revealStartedAt: data.reveal_started_at || Date.now(),
+        betWinMultiplier: data.bet_win_multiplier,
     };
 
     renderArtistReveal(data.artist_challenge || null, state.playerName);
@@ -1846,12 +1849,11 @@ function renderPointsBreakdown() {
     var base = player.base_score || 0;
     var roundScore = player.round_score || 0;
     var speedMultiplier = player.speed_multiplier || 1.0;
-    // Backend computes round_score = int(base × speed) × bet_multiplier. The
-    // pre-bet speed addon is what we want to display on the Speed bonus row —
-    // otherwise the +addon line silently absorbs the ×2 bet multiplier and the
-    // breakdown stops summing to total (e.g. base=5, speed=1.54, bet won → JS
-    // showed Speed +9 + ×2 but total=14, not 18). Match Python int() with floor.
-    var speedAddon = Math.floor(base * speedMultiplier) - base;
+    var betMult = ctx && typeof ctx.betWinMultiplier === 'number' && ctx.betWinMultiplier > 0 ? ctx.betWinMultiplier : 3;
+    // #3157: the server sends the pre-bet speed bonus it actually awarded
+    // (round(base x speed), #1722). speed_multiplier arrives rounded to two
+    // decimals, so recomputing it here drifts from the server by a point.
+    var speedAddon = player.speed_bonus || 0;
 
     rows.push({
         emoji: '🎯',
@@ -1911,7 +1913,7 @@ function renderPointsBreakdown() {
         rows.push({
             emoji: '🎲',
             label: utils.t('reveal.breakdown.betMultiplier') || 'Double or Nothing',
-            value: '×2',
+            value: '×' + betMult,
             kind: 'multiplier'
         });
     } else if (player.bet_outcome === 'lost') {

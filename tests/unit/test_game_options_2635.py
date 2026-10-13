@@ -58,6 +58,7 @@ _NON_BOOL_SENTINELS: dict[str, Any] = {
     "provider": PROVIDER_APPLE_MUSIC,
     "platform": "music_assistant",
     "max_rounds": 12,
+    "sample_duration": 15,  # #3152: an offered step, shorter than the 30s round
     "reveal_auto_advance": 60,
 }
 

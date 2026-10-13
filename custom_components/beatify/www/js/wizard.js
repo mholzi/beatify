@@ -30,10 +30,12 @@ import {
 // hints under a "keep in sync" comment that was the only safeguard.
 import {
     REVEAL_AUTO_ADVANCE_OPTIONS,
+    SAMPLE_DURATION_OPTIONS,
     SUDDEN_DEATH_MIN_PLAYERS,
     autoAdvanceChipLabel,
     difficultyHint,
     normalizeRevealAutoAdvance,
+    normalizeSampleDuration,
 } from './game-constants.js';
 
 const LS_WIZARD_STATE = 'beatify_wizard_state';   // 'step1'|'step2'|'step3'|'step4'|'done'|'dismissed'
@@ -253,6 +255,9 @@ const chosenPlaylists = new Set(); // paths — multi-select
 // Step 4 (game mode) — default to what admin.js uses when beatify_game_settings is empty
 let chosenDifficulty = 'normal';
 let chosenDuration = 45;
+// #3152: seconds the song plays in a round. 0 = the whole round, which is what
+// every game did before the setting existed.
+let chosenSampleDuration = 0;
 let chosenRevealAutoAdvance = 0; // #1028: REVEAL auto-advance seconds (0 = off, default)
 // #1475: rounds per game. 0 = every song, which is what every game did before
 // this setting existed. `customRoundsOpen` only tracks whether the number field
@@ -959,6 +964,74 @@ function _renderChipGroup(elId, items, active, onPick) {
     });
 }
 
+/**
+ * The "Song plays for" chips on step 4 (#3152).
+ *
+ * "Whole round" first, then one chip per SAMPLE_DURATION_OPTIONS entry, in the
+ * same markup as the timer chips. A step that is not shorter than the answer
+ * time stays visible but is disabled: the host sees that it exists and why it
+ * is out of reach, and the server would reject it anyway.
+ *
+ * @param {number} chosen - selected sample length, 0 = whole round
+ * @param {number} roundDuration - selected answer time in seconds
+ * @param {Function} t - translate(key, fallback)
+ * @returns {string} button HTML
+ */
+export function sampleChipsHtml(chosen, roundDuration, t) {
+    const active = normalizeSampleDuration(chosen, roundDuration);
+    const chips = [{ id: 0, label: t('wizard.step4.sampleWholeRound', 'Whole round'), disabled: false }]
+        .concat(SAMPLE_DURATION_OPTIONS.map((seconds) => ({
+            id: seconds,
+            label: `${seconds}s`,
+            disabled: !(seconds < roundDuration),
+        })));
+    return chips
+        .map((chip) => {
+            const off = chip.disabled ? ' disabled aria-disabled="true"' : '';
+            return `<button type="button" class="wiz-chip ${chip.id === active ? 'active' : ''}" data-value="${chip.id}"${off}>${chip.label}</button>`;
+        })
+        .join('');
+}
+
+/**
+ * The line under the "Song plays for" chips (#3152). Empty for "Whole round" —
+ * there is nothing to explain when the song simply runs with the timer.
+ *
+ * @param {number} chosen - selected sample length, 0 = whole round
+ * @param {number} roundDuration - selected answer time in seconds
+ * @param {Function} t - translate(key, fallback)
+ * @returns {string} hint text, or ''
+ */
+export function sampleHintText(chosen, roundDuration, t) {
+    const sample = normalizeSampleDuration(chosen, roundDuration);
+    if (!sample) return '';
+    return t('wizard.step4.sampleHint', 'Music stops after {song}s. Players keep {round}s to answer.')
+        .replace('{song}', String(sample))
+        .replace('{round}', String(roundDuration));
+}
+
+function _renderSampleDuration() {
+    // A shorter answer time can leave the chosen sample no longer shorter than
+    // the round. That falls back to "Whole round" here, on every render.
+    chosenSampleDuration = normalizeSampleDuration(chosenSampleDuration, chosenDuration);
+    const el = document.getElementById('wiz-sample');
+    if (el) {
+        el.innerHTML = sampleChipsHtml(chosenSampleDuration, chosenDuration, _t);
+        el.querySelectorAll('.wiz-chip:not([disabled])').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                chosenSampleDuration = normalizeSampleDuration(parseInt(btn.dataset.value, 10), chosenDuration);
+                _renderGameMode();
+            });
+        });
+    }
+    const hint = document.getElementById('wiz-sample-hint');
+    if (hint) {
+        const text = sampleHintText(chosenSampleDuration, chosenDuration, _t);
+        hint.textContent = text;
+        hint.classList.toggle('hidden', !text);
+    }
+}
+
 // Apply a Step-4 toggle through the pure precedence helper and write the
 // result back into the module's chosen* state. Centralizes the mutual-
 // exclusion so the four year-round setters and the TA setter share one
@@ -1527,6 +1600,7 @@ function _renderGameMode() {
         chosenDuration = val;
         _renderGameMode();
     });
+    _renderSampleDuration();  // #3152
     _renderRounds();
     _renderChipGroup('wiz-autoadvance', AUTO_ADVANCE_OPTIONS, chosenRevealAutoAdvance, (val) => {
         chosenRevealAutoAdvance = normalizeRevealAutoAdvance(val);
@@ -1868,25 +1942,40 @@ export function buildTtsPayload(prevTts, { enabled, entityId, preset, presets })
     return ttsPayload;
 }
 
+/**
+ * Build the `beatify_party_lights` entry the wizard persists (#3159).
+ *
+ * #1011: `enabled` must be written so party-lights.js hydrates the toggle
+ * (it reads `saved.enabled || false`); without it the start-game request sent
+ * `enabled: false` and lights never reacted. #3159: it must also be written
+ * when false, otherwise switching lights off in the wizard never persists.
+ */
+export function buildLightsPayload({ enabled, entityIds, intensity, mode, wledPresets }) {
+    const payload = {
+        enabled: !!enabled,
+        lights: Array.from(entityIds),
+        intensity,
+        light_mode: mode,
+    };
+    if (mode === 'wled' && Object.keys(wledPresets).length > 0) {
+        payload.wled_presets = wledPresets;
+    }
+    return payload;
+}
+
 function _persistLevelUpDetails() {
     try {
-        if (chosenLevelUps.lights) {
-            // #1011: include `enabled: true` so party-lights.js hydrates the
-            // toggle state (it reads `saved.enabled || false`). Without this,
-            // the wizard saved lights + entities but the admin start-game
-            // request sent `enabled: false`, and the server skipped
-            // configure_party_lights — lights never reacted during the game.
-            const payload = {
-                enabled: true,
-                lights: Array.from(chosenLightEntityIds),
-                intensity: chosenLightIntensity,
-                light_mode: chosenLightMode,
-            };
-            if (chosenLightMode === 'wled' && Object.keys(chosenWledPresets).length > 0) {
-                payload.wled_presets = chosenWledPresets;
-            }
-            localStorage.setItem('beatify_party_lights', JSON.stringify(payload));
-        }
+        // #3159: always write the lights entry. Persisting only when the card was
+        // on meant switching lights off in the wizard never reached storage, so
+        // every later game still started with the old `enabled: true`. The
+        // entities stay stored, like the TTS block below.
+        localStorage.setItem('beatify_party_lights', JSON.stringify(buildLightsPayload({
+            enabled: chosenLevelUps.lights,
+            entityIds: chosenLightEntityIds,
+            intensity: chosenLightIntensity,
+            mode: chosenLightMode,
+            wledPresets: chosenWledPresets,
+        })));
         // Write a complete config: enabled + entity + preset + all 23
         // announce_* booleans, so the admin TTS panel and game engine read a
         // consistent state. BeatifyTtsPresets is exposed by tts-settings.js.
@@ -2023,6 +2112,7 @@ function _persistGameSettings() {
             provider: chosenProvider || existing.provider,
             difficulty: chosenDifficulty,
             duration: chosenDuration,
+            sampleDuration: normalizeSampleDuration(chosenSampleDuration, chosenDuration),  // #3152
             revealAutoAdvance: chosenRevealAutoAdvance,
             maxRounds: chosenMaxRounds,  // #1475
             language: chosenLanguage,
@@ -2117,6 +2207,10 @@ export async function show(stepOverride) {
             if (s.provider) chosenProvider = s.provider;
             if (s.difficulty) chosenDifficulty = s.difficulty;
             if (s.duration) chosenDuration = s.duration;
+            // #3152: a blob written before this setting has no key and stays
+            // on "whole round"; a stored step the round no longer allows does
+            // too.
+            chosenSampleDuration = normalizeSampleDuration(s.sampleDuration, chosenDuration);
             // #1475: only a positive number is a cap; anything else stays 0
             // ("all songs"), so a settings blob written before this release
             // keeps behaving exactly as it did.

@@ -24,6 +24,11 @@ SUDDEN_DEATH_MIN_PLAYERS = 3
 DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
+# #3152: how long the song plays in a round, separately from how long the
+# players have to answer. 0 means "the whole round" (the behaviour before the
+# setting existed); otherwise one of these, and strictly shorter than the
+# round. www/js/game-constants.js mirrors the tuple for the wizard chips.
+SAMPLE_DURATION_OPTIONS: tuple[int, ...] = (10, 15, 20, 30)  # seconds
 
 # #2562: the one place the reaction brake is defined. Reactions used to be
 # capped at one per player per REVEAL phase, which is a sane budget for a

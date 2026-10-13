@@ -22,6 +22,7 @@ import {
     SUDDEN_DEATH_MIN_PLAYERS,
     REACTION_THROTTLE_SECONDS,
     REVEAL_AUTO_ADVANCE_OPTIONS,
+    SAMPLE_DURATION_OPTIONS,
     POINTS_EXACT,
     POINTS_WRONG,
     DIFFICULTY_DEFAULT,
@@ -119,6 +120,10 @@ describe('game-constants.js mirrors const.py', () => {
 
     it('mirrors REVEAL_AUTO_ADVANCE_OPTIONS (#2626)', () => {
         expect(REVEAL_AUTO_ADVANCE_OPTIONS).toEqual(pyIntSeq('REVEAL_AUTO_ADVANCE_OPTIONS'));
+    });
+
+    it('mirrors SAMPLE_DURATION_OPTIONS (#3152)', () => {
+        expect(SAMPLE_DURATION_OPTIONS).toEqual(pyIntSeq('SAMPLE_DURATION_OPTIONS'));
     });
 
     it('mirrors VOID_ROUND_REASONS (#2646)', () => {

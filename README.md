@@ -198,7 +198,7 @@ breaks that loop.
 1. **Speakers** — Only [supported speakers](#supported-speakers) appear
 2. **Music service** — Spotify, Apple Music, YouTube Music, Tidal, Deezer, or Amazon Music (filtered by speaker; Amazon Music is offered only on Alexa)
 3. **Playlist** — Pick one or more curated packs
-4. **Game mode** — Difficulty, round timer, announcement language, Artist Challenge / Intro Mode / Closest Wins toggles
+4. **Game mode** — Difficulty, round timer, how long the song plays, announcement language, Artist Challenge / Intro Mode / Closest Wins toggles
 5. **Lights & Voice** (optional) — Party Lights mode + WLED presets, TTS announcements (only shown if Home Assistant has the entities)
 
 After finishing, you land on the **"Ready to host"** screen: big Beatify wordmark, glowing QR hero card, and a Start game CTA. Share the QR code with guests — they appear as colored tiles as they scan. Hit **Start game** when everyone's in.
@@ -337,7 +337,7 @@ Gold confetti bursts for exact guesses. Chart positions and fun facts appear. Yo
 Skip tracks. Adjust volume. Pause the game. End early if needed. All from your phone.
 
 **Customize the Challenge**
-Set round timers (15s/30s/45s) and difficulty levels (Easy/Normal/Hard) to match your group.
+Set round timers (15s/30s/45s) and difficulty levels (Easy/Normal/Hard) to match your group. The song can also play for less than the round — 10, 15, 20 or 30 seconds of music, then silence while the answer time keeps running.
 
 **Print the QR**
 Physical QR code printout for the coffee table. Guests join themselves.
@@ -456,7 +456,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 8,700 songs across 69 curated playlists:
+Beatify comes with 8,724 songs across 70 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 151 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -501,6 +501,7 @@ Beatify comes with 8,700 songs across 69 curated playlists:
 - 🤘 **Greatest Metal Songs of All Time** — 61 legendary tracks across all major metal subgenres
 - 🔊 **Harder Styles** — 190 hardstyle, hardcore and raw tracks
 - 🎬 **ICONIC movie songs** — 72 songs from the movies, with a dedicated movie-quiz mode
+- 🍸 **James Bond Theme Songs** — 24 title songs from Dr. No to Spectre, spanning 1962–2015
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
 - 🎬 **Movie & TV Soundtracks** — 257 iconic film soundtracks
 - 🇮🇹 **Musica Italiana** — 115 Italian hits from the 1960s to the 2000s
@@ -690,7 +691,7 @@ comparison — including where the card game wins.
 
 | | Card-based music party game | Beatify |
 |---|---|---|
-| **What you buy** | A box, and a new box or expansion for more music | Nothing. 69 playlists ship with it, 8,700 songs |
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 70 playlists ship with it, 8,724 songs |
 | **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
 | **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |

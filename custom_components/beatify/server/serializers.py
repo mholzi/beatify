@@ -97,6 +97,10 @@ _PLAYER_VISIBLE_BASE = frozenset(
         "is_intro_round",
         "intro_stopped",
         "intro_splash_pending",
+        # #3152: a setting and a "the music has stopped" flag — every guest in
+        # the room can hear both.
+        "sample_duration",
+        "sample_stopped",
         "year_range",
     }
 )

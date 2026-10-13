@@ -704,3 +704,18 @@ export function adminJoinNameValid(name) {
 export function isLibrarySong(song) {
     return !!(song && (song.uri_ma_library || song.is_library));
 }
+
+/**
+ * Leave the home view and open wizard step 1, where the speaker is picked
+ * (#3160). "Edit setup" and the start-failed banner's "Select Speaker" button
+ * share it. `win` is injected so a test can pass fakes.
+ * @param {{BeatifyHome?: {exit?: Function}, BeatifyWizard?: {show?: Function}}} win
+ */
+export function openSetupStepOne(win) {
+    if (win.BeatifyHome && typeof win.BeatifyHome.exit === 'function') {
+        win.BeatifyHome.exit();
+    }
+    if (win.BeatifyWizard && typeof win.BeatifyWizard.show === 'function') {
+        win.BeatifyWizard.show(1);
+    }
+}
