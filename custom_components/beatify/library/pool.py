@@ -82,6 +82,10 @@ POOL_RELATIVE_PATH = "beatify/library_pool.json"
 _POOL_CACHE_KEY = "library_pool_cache"
 _POOL_CACHE_TTL = 900.0  # seconds
 
+# Serialises every read-modify-write of the pool file (#3156). Held only
+# around load + mutate + write, never across a network call of a scan.
+_POOL_LOCK_KEY = "library_pool_lock"
+
 # Concurrency for popularity lookups (Deezer tolerates a few in flight).
 # MusicBrainz is serialized separately by its 1 req/s throttle.
 _RESOLVER_V = 3  # v3: dash-right-side query candidates (Main Title - Scarface class)
@@ -566,6 +570,24 @@ async def async_build_pool(
             target_size=target_size,
         )
 
+    # #3156: `merged` is a snapshot from the initial load. A checkpoint merges
+    # this scan's own changes into the pool ON DISK (see
+    # _async_merge_into_pool) instead of rewriting the whole snapshot, so a
+    # correction, restore or refresh saved mid-scan survives.
+    added: set[str] = set()
+    touched: set[str] = {
+        t["uri"] for t in selected if t.get("uri") in cache
+    } | backfill_keys
+
+    async def _checkpoint() -> dict[str, Any]:
+        return await _async_merge_into_pool(
+            hass,
+            merged,
+            add=added,
+            touched=touched,
+            make_pool=lambda entries, _disk: _finalize(entries),
+        )
+
     done = 0
     for i in range(0, total, _CHECKPOINT_BATCH):
         batch = raw_tracks[i : i + _CHECKPOINT_BATCH]
@@ -575,12 +597,12 @@ async def async_build_pool(
         for entry in results:
             if entry.get("uri_ma_library"):
                 merged[entry["uri_ma_library"]] = entry
+                added.add(entry["uri_ma_library"])
         done += len(batch)
-        await _write_pool(hass, _finalize(merged))  # checkpoint
+        await _checkpoint()
         _LOGGER.debug("Library pool checkpoint: %d/%d", done, total)
 
-    pool = _finalize(merged)
-    await _write_pool(hass, pool)
+    pool = await _checkpoint()
     _LOGGER.info(
         "Library pool built: %d prepared (%d usable, verified year), %.0fs",
         pool["_track_count"],
@@ -590,6 +612,95 @@ async def async_build_pool(
     if progress_cb:
         progress_cb("done", total, total)
     return pool
+
+
+def _pool_lock(hass: HomeAssistant) -> asyncio.Lock:
+    store = _cache_store(hass)
+    lock = store.get(_POOL_LOCK_KEY)
+    if lock is None:
+        lock = store[_POOL_LOCK_KEY] = asyncio.Lock()
+    return lock
+
+
+async def async_update_pool(
+    hass: HomeAssistant,
+    mutate_fn: Callable[[dict[str, Any] | None], dict[str, Any] | None],
+) -> bool:
+    """Atomic read-modify-write of the pool (#3156).
+
+    Under the pool lock: re-read the pool from disk, hand it to ``mutate_fn``
+    and write what that returns. ``mutate_fn`` is synchronous and must not
+    await; returning None means "nothing to write". Every writer (scan
+    checkpoint, refresh, correction, restore) goes through here, so none of
+    them can overwrite a change another one made after it loaded the pool.
+    Returns True when a pool was written.
+    """
+    async with _pool_lock(hass):
+        new_pool = mutate_fn(await async_load_pool(hass))
+        if new_pool is None:
+            return False
+        await _write_pool(hass, new_pool)
+        return True
+
+
+async def _async_merge_into_pool(
+    hass: HomeAssistant,
+    mine: dict[str, dict[str, Any]],
+    *,
+    add: set[str],
+    touched: set[str],
+    make_pool: Callable[
+        [dict[str, dict[str, Any]], dict[str, Any] | None], dict[str, Any]
+    ],
+) -> dict[str, Any]:
+    """Merge a long-running job's entries into the pool on disk (#3156).
+
+    The job (scan or refresh) holds ``mine`` from its one initial load, so
+    writing it back wholesale would undo whatever a correction, restore or
+    other job saved since. Instead the pool on disk is the base and only what
+    this job changed is applied:
+
+    * ``add``: newly enriched entries; inserted (or replaced) unless the entry
+      on disk carries a host correction.
+    * ``touched``: entries this job modified in place; replace the on-disk
+      entry only if it exists (a restore may have removed it - stays removed)
+      and is not host-corrected.
+    * everything else on disk is kept exactly as it is.
+
+    Host-corrected entries (``corrections.is_locked``) therefore always win.
+    """
+
+    def _merge(disk: dict[str, Any] | None) -> dict[str, Any]:
+        if disk and isinstance(disk.get("songs"), list):
+            entries = {
+                e["uri_ma_library"]: e for e in disk["songs"] if e.get("uri_ma_library")
+            }
+            for uri in add:
+                on_disk = entries.get(uri)
+                if mine.get(uri) is not None and not (
+                    on_disk is not None and corrections.is_locked(on_disk)
+                ):
+                    entries[uri] = mine[uri]
+            for uri in touched:
+                on_disk = entries.get(uri)
+                if (
+                    on_disk is not None
+                    and uri in mine
+                    and not corrections.is_locked(on_disk)
+                ):
+                    entries[uri] = mine[uri]
+        else:
+            entries = dict(mine)
+        return make_pool(entries, disk)
+
+    result: dict[str, Any] = {}
+
+    def _mutate(disk: dict[str, Any] | None) -> dict[str, Any]:
+        result.update(_merge(disk))
+        return result
+
+    await async_update_pool(hass, _mutate)
+    return result
 
 
 async def _write_pool(hass: HomeAssistant, pool: dict[str, Any]) -> None:
@@ -713,9 +824,10 @@ async def async_refresh_pool(
 ) -> dict[str, Any]:
     """Re-resolve years + re-verify popularity for stale pool entries.
 
-    Independent of async_build_pool; safe to run alongside a scan (both
-    load-modify-write the same pool with atomic writes and last-write-wins;
-    the refresh only touches entries a scan wouldn't add). Returns a summary.
+    Independent of async_build_pool; safe to run alongside a scan or a
+    correction: every checkpoint merges only the entries this refresh has
+    processed into the pool on disk, under the pool lock, and a host-corrected
+    entry on disk is never replaced (#3156). Returns a summary.
     """
     existing = await async_load_pool(hass)
     if not existing or not isinstance(existing.get("songs"), list):
@@ -767,6 +879,17 @@ async def async_refresh_pool(
         e["global_score"] = to_global_score(raw, SOURCE_DEEZER_RANK)
         e["popularity_verified"] = True
 
+    processed: set[str] = set()
+
+    async def _checkpoint() -> None:
+        await _async_merge_into_pool(
+            hass,
+            merged,
+            add=set(),
+            touched=set(processed),
+            make_pool=lambda entries, disk: _refreshed_pool(disk or existing, entries),
+        )
+
     done = 0
     for e in year_q:
         y, mb_genres = await async_musicbrainz_year_genres(
@@ -780,17 +903,19 @@ async def async_refresh_pool(
             e["year_source"] = "musicbrainz"
         e["_resolver_v"] = _RESOLVER_V
         await _repop(e)
+        processed.add(e["uri_ma_library"])
         done += 1
         if progress_cb and done % 10 == 0:
             progress_cb("refresh", done, total)
         if done % _CHECKPOINT_BATCH == 0:
-            await _write_pool(hass, _refreshed_pool(existing, merged))
+            await _checkpoint()
     if pop_q:
         await asyncio.gather(*(_repop(e) for e in pop_q))
+        processed.update(e["uri_ma_library"] for e in pop_q)
         done += len(pop_q)
     if progress_cb:
         progress_cb("refresh", done, total)
 
-    await _write_pool(hass, _refreshed_pool(existing, merged))
+    await _checkpoint()
     _LOGGER.info("Library refresh complete: %d entries", done)
     return {"refreshed": done, "years": len(year_q), "popularity": len(pop_q)}

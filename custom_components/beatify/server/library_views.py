@@ -608,36 +608,50 @@ class LibrarySongCorrectView(HomeAssistantView):
         if year is None and not title and not artist:
             return _json_error("Nothing to correct", 400, code="INVALID_REQUEST")
 
-        cached = await _pool.async_load_pool(self.hass)
-        if not cached:
-            return _json_error("No library pool", 404, code="LIBRARY_POOL_MISSING")
+        # Re-read + apply + write under the pool lock (#3156), so a scan
+        # checkpoint cannot interleave and overwrite the correction.
+        outcome: dict[str, Any] = {}
 
-        songs = cached.get("songs") or []
-        target = _resolve_pool_entry(
-            self.hass,
-            songs,
-            uri=uri,
-            title=str(body.get("song_title") or ""),
-            artist=str(body.get("song_artist") or ""),
-        )
-        index = (
-            next((i for i, s_ in enumerate(songs) if s_ is target), None)
-            if target is not None
-            else None
-        )
-        if index is None:
-            return _json_error("Song not in the library pool", 404, code="NOT_FOUND")
+        def _apply(cached: dict[str, Any] | None) -> dict[str, Any] | None:
+            if not cached:
+                outcome["error"] = _json_error(
+                    "No library pool", 404, code="LIBRARY_POOL_MISSING"
+                )
+                return None
+            songs = cached.get("songs") or []
+            target = _resolve_pool_entry(
+                self.hass,
+                songs,
+                uri=uri,
+                title=str(body.get("song_title") or ""),
+                artist=str(body.get("song_artist") or ""),
+            )
+            index = (
+                next((i for i, s_ in enumerate(songs) if s_ is target), None)
+                if target is not None
+                else None
+            )
+            if index is None:
+                outcome["error"] = _json_error(
+                    "Song not in the library pool", 404, code="NOT_FOUND"
+                )
+                return None
+            updated = corrections.apply_correction(
+                songs[index],
+                year=year,
+                title=title,
+                artist=artist,
+                note=body.get("note"),
+            )
+            songs[index] = updated
+            cached["songs"] = songs
+            outcome["updated"] = updated
+            return cached
 
-        updated = corrections.apply_correction(
-            songs[index],
-            year=year,
-            title=title,
-            artist=artist,
-            note=body.get("note"),
-        )
-        songs[index] = updated
-        cached["songs"] = songs
-        await _pool._write_pool(self.hass, cached)
+        await _pool.async_update_pool(self.hass, _apply)
+        if "error" in outcome:
+            return outcome["error"]
+        updated = outcome["updated"]
 
         _LOGGER.info(
             "Library correction: %s - %s -> year=%s%s",
@@ -797,23 +811,32 @@ class LibraryPoolRestoreView(HomeAssistantView):
             with contextlib.suppress(OSError):
                 restore_backup_name = await self.hass.async_add_executor_job(_stash)
 
-        current = await _pool.async_load_pool(self.hass) if mode == "merge" else None
-        entries, stats = merge_pool_entries(current, incoming_pool)
+        # Re-read, merge and write under the pool lock (#3156): a scan
+        # checkpoint between load and write would otherwise be lost, or
+        # overwrite the restore.
+        stats_out: dict[str, Any] = {}
 
-        # Percentiles/bands are pool-relative: re-finalize instead of trusting
-        # the values that travelled in the file.
-        merged = _pool.finalize_pool(
-            entries,
-            built_at=int(incoming_pool.get("_built_at") or time.time()),
-            config_entry_id=(
-                (current or {}).get("_config_entry_id")
-                or incoming_pool.get("_config_entry_id")
-            ),
-            library_total=incoming_pool.get("_library_total")
-            or (current or {}).get("_library_total"),
-            target_size=incoming_pool.get("_target_size"),
-        )
-        await _pool._write_pool(self.hass, merged)
+        def _restore(disk: dict[str, Any] | None) -> dict[str, Any]:
+            current = disk if mode == "merge" else None
+            entries, stats = merge_pool_entries(current, incoming_pool)
+            stats_out["stats"] = stats
+
+            # Percentiles/bands are pool-relative: re-finalize instead of
+            # trusting the values that travelled in the file.
+            return _pool.finalize_pool(
+                entries,
+                built_at=int(incoming_pool.get("_built_at") or time.time()),
+                config_entry_id=(
+                    (current or {}).get("_config_entry_id")
+                    or incoming_pool.get("_config_entry_id")
+                ),
+                library_total=incoming_pool.get("_library_total")
+                or (current or {}).get("_library_total"),
+                target_size=incoming_pool.get("_target_size"),
+            )
+
+        await _pool.async_update_pool(self.hass, _restore)
+        stats = stats_out["stats"]
 
         # Settings ride along on a replace-restore (a fresh install should come
         # back configured), but never clobber live settings on a merge.
