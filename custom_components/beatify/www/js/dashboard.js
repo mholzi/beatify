@@ -3400,35 +3400,8 @@
 
         var html = '';
         superlatives.forEach(function(award, index) {
-            // Der switch darunter hat ein `default`, also weist jeder Weg zu.
-            var valueText;
-            switch (award.value_label) {
-                case 'avg_time':
-                    valueText = award.value + 's ' + utils.t('superlatives.avgTime');
-                    break;
-                case 'streak':
-                    valueText = award.value + ' ' + utils.t('superlatives.streak');
-                    break;
-                case 'bets':
-                    valueText = award.value + ' ' + utils.t('superlatives.bets');
-                    break;
-                case 'points':
-                    valueText = award.value + ' ' + utils.t('superlatives.points');
-                    break;
-                case 'close_guesses':
-                    valueText = award.value + ' ' + utils.t('superlatives.closeGuesses');
-                    break;
-                case 'ghost_avg':
-                    // #2559: die Zahl der Best-Ghost-Karte ist ein Schnitt pro
-                    // gespielter Geisterrunde, keine Summe — die Beschriftung
-                    // muss das sagen, sonst liest sie sich als Gesamtpunkte
-                    // und wirkt gegen die lebenden Zahlen daneben laecherlich
-                    // klein.
-                    valueText = award.value + ' ' + utils.t('superlatives.ghostAvg');
-                    break;
-                default:
-                    valueText = award.value;
-            }
+            // #3158: one table in utils.js for TV and phone.
+            var valueText = utils.awardValueText(award);
 
             html += '<div class="superlative-card superlative-card--' + award.id + '" style="animation-delay: ' + (index * 0.2) + 's">' +
                 '<div class="superlative-emoji">' + award.emoji + '</div>' +
