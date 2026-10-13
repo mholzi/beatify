@@ -57,6 +57,44 @@ class MediaControlMixin(GameStateBase):
         if self._media_player_service:
             await self._media_player_service.stop()
 
+    def _arm_sample_stop(self) -> None:
+        """(Re)arm the song-sample stop for the running round (#3152).
+
+        Called wherever the round clock is stamped: round start, the re-stamp
+        once announcements are over, the intro splash confirmation and a
+        resume. No-op for a game without a sample length.
+        """
+        self._round_manager.arm_sample_stop(
+            self._stop_sample_playback, self._on_round_end
+        )
+
+    async def _stop_sample_playback(self) -> None:
+        """Silence the speaker when the sample is over; the round goes on."""
+        from .state import GamePhase  # noqa: PLC0415 — avoid circular import
+
+        # PAUSED covers the moment of a resume: the stop is re-armed just
+        # before the phase is restored, and every other way into PAUSED has
+        # cancelled the task.
+        if self.phase not in (GamePhase.PLAYING, GamePhase.PAUSED):
+            return
+        await self.stop_media()
+
+    async def _resume_sample_playback(self) -> None:
+        """Bring the song back for the reveal after a sample stop (#3152).
+
+        The reveal plays the song as it always did. A song the HOST stopped
+        (``song_stopped``) stays stopped — that was a decision, not a timer.
+        """
+        if not self._round_manager.sample_stopped or self.song_stopped:
+            return
+        if not self._media_player_service:
+            return
+        try:
+            await self._media_player_service.play()
+            _LOGGER.info("Song resumed for the reveal after the sample stop")
+        except Exception as err:  # noqa: BLE001 — must not block the reveal
+            _LOGGER.warning("Resume after sample stop failed: %s (#3152)", err)
+
     async def set_volume_on_player(self, level: float) -> bool:
         """Apply volume level to the media player (#321).
 

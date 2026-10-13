@@ -645,6 +645,8 @@ class RoundLifecycleMixin(GameStateBase):
                             _extra += max(0.0, float(busy()))
                     _extra += max(0.0, float(self._tts_pre_round_delay or 0.0))
                     start_now(self._timer_countdown, _extra)
+                    # #3152: the deadline moved, and the sample with it.
+                    self._arm_sample_stop()
                     _LOGGER.info(
                         "Round %s: clock started at playback (%.0fs of music)",
                         getattr(self, "round", "?"),
@@ -678,8 +680,11 @@ class RoundLifecycleMixin(GameStateBase):
                 """
                 from .state import GamePhase  # noqa: PLC0415 — Zirkelbezug
 
-                if self.phase != GamePhase.PLAYING or getattr(
-                    self, "song_stopped", False
+                # #3152: a sample that ran out is a stop on purpose as well.
+                if (
+                    self.phase != GamePhase.PLAYING
+                    or getattr(self, "song_stopped", False)
+                    or getattr(self, "sample_stopped", False)
                 ):
                     _LOGGER.info(
                         "Resume watchdog: phase=%s song_stopped=%s — exit "
@@ -1003,5 +1008,10 @@ class RoundLifecycleMixin(GameStateBase):
             extra_deadline_ms=extra_deadline_ms,
         )
         self.round_analytics = None
+        # #3152: the song is already playing, so the sample counts from the
+        # same stamp as the round. A splash round is armed by
+        # confirm_intro_splash, once its deferred song has started.
+        if not will_defer_for_splash:
+            self._arm_sample_stop()
         # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
         self._set_phase(GamePhase.PLAYING)

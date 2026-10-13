@@ -299,8 +299,20 @@ export function updateGameView(data) {
                 }
             }
         } else {
-            introBadge.classList.add('hidden');
-            introBadge.classList.remove('intro-badge--stopped');
+            if (data.sample_stopped) {
+                // #3152: the song length the host set has run out while the
+                // answer time is still running. Same chip, stopped state.
+                introBadge.classList.remove('hidden');
+                introBadge.classList.add('intro-badge--stopped');
+                var sampleText = introBadge.querySelector('[data-i18n]');
+                if (sampleText) {
+                    sampleText.setAttribute('data-i18n', 'game.sampleStopped');
+                    sampleText.textContent = utils.t('game.sampleStopped') || 'Song over · keep guessing';
+                }
+            } else {
+                introBadge.classList.add('hidden');
+                introBadge.classList.remove('intro-badge--stopped');
+            }
             if (introSplash) {
                 introSplash.classList.add('hidden');
                 introSplash._shown = false;

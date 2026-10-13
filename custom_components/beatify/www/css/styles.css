@@ -10750,6 +10750,14 @@ body.wizard-active > .pwa-ios-hint {
     color: var(--color-bg-primary);
     box-shadow: var(--glow-primary);
 }
+/* #3152 — a "Song plays for" step that is not shorter than the answer time:
+   visible, greyed, not selectable. Same dimming as the unsupported provider
+   chip above. */
+.wiz-chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.wiz-chip:disabled:hover { background: var(--color-dark-surface); }
 
 /* Step 3 — "Request new playlist" CTA below the playlist list */
 .wiz-request-playlist {

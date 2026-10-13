@@ -167,6 +167,9 @@ class GameOptions:
     # --- Round flow (owned by RoundManager) ----------------------------
     #: Issue #23: intro mode (~20% random rounds).
     intro_mode_enabled: bool = False
+    #: #3152: seconds the song plays before it is stopped while the round timer
+    #: keeps running. 0 = the whole round.
+    sample_duration: int = 0
 
     # --- Mode flags (owned by GameState) -------------------------------
     #: Issue #442: only the closest guess(es) earn points.

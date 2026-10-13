@@ -402,6 +402,10 @@ class RevealTransitionMixin(GameStateBase):
             self._timer_countdown,
             is_playing=lambda: self.phase == GamePhase.PLAYING,
         )
+        # #3152: the round clock was stamped just now, so the sample counts
+        # from here too. Skipped when the round left PLAYING during the start.
+        if self.phase == GamePhase.PLAYING and not self.intro_splash_pending:
+            self._arm_sample_stop()
         # #2886: a pause that arrived while the song was starting left the
         # media alone (pause_game), because a stop sent into that window races
         # Music Assistant's start. Now the start has settled, so silence it:
@@ -430,6 +434,7 @@ class RevealTransitionMixin(GameStateBase):
 
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
+        self._round_manager._cancel_sample_timer()  # #3152
         self._cancel_auto_advance()  # #1012
         # #1273: transition clears reveal_started_at (#1048) + notifies (#441).
         self._set_phase(GamePhase.END)
