@@ -559,6 +559,10 @@ class GameStateSerializer:
                 # Speed bonus data (Story 5.1)
                 "base_score": p.base_score,
                 "speed_multiplier": round(p.speed_multiplier, 2),
+                # #3157: the pre-bet speed bonus exactly as the scorer awarded
+                # it (round(), #1722). The client only sees the multiplier
+                # rounded to two decimals and cannot recompute this.
+                "speed_bonus": round(p.base_score * p.speed_multiplier) - p.base_score,
                 # Streak bonus data (Story 5.2)
                 "streak_bonus": p.streak_bonus,
                 # Bet data (Story 5.3)
