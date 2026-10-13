@@ -4,6 +4,41 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.4-rc2] - 2026-10-13
+
+Second candidate for 4.8.4, "One More Song": the host can set how long the song plays, eight fixes
+found by the weekly code review, and two new playlists on top of rc1.
+
+### Added
+- **The host can set how long the song plays, separately from the answer time** (#3152, #3179,
+  raised by @nirvdrum in discussion #3130). New setting `sample_duration` (10, 15, 20 or 30 s;
+  absent means the whole round), a second chip row in wizard step 4, and a grey "Song over · keep
+  guessing" badge on the TV and the phones. The song plays again at the reveal. Intro rounds did
+  not actually stop the speaker before; they now do.
+- **Two playlists**: `james-bond-theme-songs` (24 songs, #3149, #3151, YouTube links in #3177) and
+  `american-classics-country-heartland` (66 songs, #3164).
+
+### Fixed
+- **End-screen awards name their unit, and "last one standing" has a title** (#3158, #3178). One
+  helper builds the value text for all 14 awards on the TV and the phone, in six languages.
+- **The phone's points breakdown follows the server** (#3157, #3172): the speed bonus per player
+  and the bet multiplier now come from the reveal payload.
+- **`flash()` no longer overwrites a WLED preset** (#3154, #3173).
+- **"Select Speaker" in the start-failure banner opens the wizard, and the wizard can switch party
+  lights off again** (#3160, #3159, #3174).
+- **Saved library playlists load again**: `uri_ma_library` counts as a playable link (#3155, #3171).
+- **Library pool writes are serialised** (#3156, #3175), so a correction saved during a scan is no
+  longer overwritten by the scan's checkpoint.
+- **Switching the speaker of an existing lobby runs the same checks as starting a game** (#3153,
+  #3176).
+
+### Changed
+- **Playlist repairs**: three dead Tidal links removed and four Apple Music region entries
+  corrected in `disco-funk-classics` (#3166, #3167); "Guten Tag (Neuaufnahme 2018)" by Böhse Onkelz
+  corrected to 1988 in `deutschrock-best-of` (#3169, #3170). Each playlist's `version` went up with
+  its change.
+- Tooling: aiohttp test requirement, eslint and acorn bumped by Dependabot (#3161, #3162, #3163).
+
 ## [4.8.4-rc1] - 2026-10-12
 
 First candidate for 4.8.4, "One More Song": three game fixes and playlist repairs on top of 4.8.3.

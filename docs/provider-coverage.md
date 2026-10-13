@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-09-28
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.4-rc1 (v4.8.3 + URI repairs in community/wiesn-party-hits.json, community/disney-hits-deutschland.json, community/iconic-movie-songs.json and community/ndw-neue-deutsche-welle.json, one Deezer URI added in community/salsa-y-merengue.json; the counts below are from 2026-09-28; no songs added or removed)
+> Catalogue state: v4.8.4-rc2 (v4.8.3 + URI repairs in community/wiesn-party-hits.json, community/disney-hits-deutschland.json, community/iconic-movie-songs.json and community/ndw-neue-deutsche-welle.json, one Deezer URI added in community/salsa-y-merengue.json, URI repairs in disco-funk-classics.json; two playlists added after the count, community/james-bond-theme-songs.json (24 songs) and community/american-classics-country-heartland.json (66 songs); the counts below are from 2026-09-28 and do not include them)
 
 ## Summary
 
