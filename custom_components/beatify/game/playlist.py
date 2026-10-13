@@ -1344,6 +1344,8 @@ async def async_discover_playlists(hass: HomeAssistant) -> list[dict]:
 # always checked it. Kept as a literal list rather than derived from the
 # provider registry: this is the historic gate for "is this song usable at
 # all", and widening it here would quietly change which songs a game gets.
+# ``uri_ma_library`` is the one deliberate addition (#3155): saved Crate Digger
+# playlists carry only that field, and ``validate_playlist`` already accepts it.
 _SONG_URI_FIELDS = (
     "uri",
     "uri_spotify",
@@ -1351,6 +1353,7 @@ _SONG_URI_FIELDS = (
     "uri_tidal",
     "uri_deezer",
     "uri_apple_music",
+    "uri_ma_library",
 )
 
 
