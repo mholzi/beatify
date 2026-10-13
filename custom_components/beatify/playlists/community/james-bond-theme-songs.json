@@ -1,0 +1,646 @@
+{
+  "name": "James Bond Theme Songs 🎬",
+  "description": "Every shaken-not-stirred title song, from the 1962 James Bond Theme and Shirley Bassey's Goldfinger to Adele's Skyfall and Sam Smith. Years follow the film releases. Requested in #3149.",
+  "version": "0.1",
+  "tags": [
+    "james-bond",
+    "007",
+    "movies",
+    "soundtracks",
+    "film",
+    "1960s",
+    "1970s",
+    "1980s",
+    "1990s",
+    "2000s",
+    "2010s"
+  ],
+  "language": "en",
+  "source": "https://open.spotify.com/playlist/5uUdMCu0ZQQslIW8dgu1Qc",
+  "songs": [
+    {
+      "year": 2015,
+      "uri": "spotify:track:1PWnAEQcbwQwK759otUbta",
+      "artist": "Sam Smith",
+      "alt_artists": [
+        "Adele",
+        "Sia",
+        "Lewis Capaldi"
+      ],
+      "title": "Writing's On The Wall",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Spectre theme was the first Bond song ever to reach No. 1 in the UK, and it won the Oscar for Best Original Song.",
+      "fun_fact_de": "Das Spectre-Thema war der erste Bond-Song überhaupt auf Platz 1 der UK-Charts und gewann den Oscar für den besten Filmsong.",
+      "fun_fact_es": "El tema de Spectre fue la primera canción de Bond en llegar al número 1 en el Reino Unido y ganó el Óscar a la mejor canción original.",
+      "fun_fact_fr": "Le thème de Spectre est la première chanson de Bond à atteindre la première place au Royaume-Uni et il a remporté l'Oscar de la meilleure chanson originale.",
+      "fun_fact_nl": "Het Spectre-nummer was de eerste Bondsong ooit op nummer 1 in de Britse hitlijst en won de Oscar voor beste originele nummer.",
+      "isrc": "GBUM71505354",
+      "uri_apple_music": "applemusic://track/1445028072",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445028072"
+      },
+      "uri_deezer": "deezer://track/107900036",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2012,
+      "uri": "spotify:track:1gL3uxdq2NRLNLHtvai0kQ",
+      "artist": "Adele",
+      "alt_artists": [
+        "Sam Smith",
+        "Florence + The Machine",
+        "Amy Winehouse"
+      ],
+      "title": "Skyfall",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Adele's Skyfall won the Oscar for Best Original Song, the first Bond theme to take that prize.",
+      "fun_fact_de": "Adeles Skyfall gewann den Oscar für den besten Filmsong, als erstes Bond-Thema überhaupt.",
+      "fun_fact_es": "Skyfall de Adele ganó el Óscar a la mejor canción original, el primer tema de Bond en lograrlo.",
+      "fun_fact_fr": "Skyfall d'Adele a remporté l'Oscar de la meilleure chanson originale, une première pour un thème de Bond.",
+      "fun_fact_nl": "Adeles Skyfall won de Oscar voor beste originele nummer, als eerste Bondthema ooit.",
+      "isrc": "GBBKS1200164",
+      "uri_apple_music": "applemusic://track/566322365",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/566322365"
+      },
+      "uri_deezer": "deezer://track/82715364",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1973,
+      "uri": "spotify:track:2TEW9YkQDKRHUxCHbEn0Gk",
+      "artist": "Paul McCartney & Wings",
+      "alt_artists": [
+        "Elton John",
+        "Queen",
+        "Elvis Costello"
+      ],
+      "title": "Live And Let Die",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Produced by George Martin, it was the first Bond theme to be nominated for the Oscar for Best Original Song.",
+      "fun_fact_de": "Von George Martin produziert, war es das erste Bond-Thema mit einer Oscar-Nominierung als bester Filmsong.",
+      "fun_fact_es": "Producida por George Martin, fue el primer tema de Bond nominado al Óscar a la mejor canción original.",
+      "fun_fact_fr": "Produit par George Martin, ce fut le premier thème de Bond nommé à l'Oscar de la meilleure chanson originale.",
+      "fun_fact_nl": "Geproduceerd door George Martin was dit het eerste Bondthema met een Oscarnominatie voor beste originele nummer.",
+      "isrc": "GBCCS1500158",
+      "uri_apple_music": "applemusic://track/1507830245",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1507830245"
+      },
+      "uri_deezer": "deezer://track/126368823",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:0nyVD16l62PwecjiiQcfpB",
+      "artist": "Chris Cornell",
+      "alt_artists": [
+        "Audioslave",
+        "Soundgarden",
+        "Temple of the Dog"
+      ],
+      "title": "You Know My Name",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Cornell co-wrote it with David Arnold, and it plays over the opening titles of Daniel Craig's first Bond film.",
+      "fun_fact_de": "Cornell schrieb den Song mit David Arnold, er läuft im Vorspann von Daniel Craigs erstem Bond-Film.",
+      "fun_fact_es": "Cornell lo coescribió con David Arnold y suena en los créditos iniciales del primer Bond de Daniel Craig.",
+      "fun_fact_fr": "Cornell l'a coécrit avec David Arnold, et il accompagne le générique du premier Bond de Daniel Craig.",
+      "fun_fact_nl": "Cornell schreef het samen met David Arnold en het klinkt tijdens de titelsequentie van Daniel Craigs eerste Bondfilm.",
+      "isrc": "USUM70613448",
+      "uri_apple_music": "applemusic://track/1436558554",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1436558554"
+      },
+      "uri_deezer": "deezer://track/584262412",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:2FbkxLsDnOOJUsp61T8MiA",
+      "artist": "Duran Duran",
+      "alt_artists": [
+        "Spandau Ballet",
+        "Culture Club",
+        "Depeche Mode"
+      ],
+      "title": "A View To A Kill",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It is still the only Bond theme to hit No. 1 on the US Billboard Hot 100.",
+      "fun_fact_de": "Bis heute ist es das einzige Bond-Thema auf Platz 1 der US-Billboard-Hot-100.",
+      "fun_fact_es": "Sigue siendo el único tema de Bond que ha llegado al número 1 del Billboard Hot 100 de EE. UU.",
+      "fun_fact_fr": "C'est toujours le seul thème de Bond à avoir atteint la première place du Billboard Hot 100 américain.",
+      "fun_fact_nl": "Het is nog altijd het enige Bondthema dat nummer 1 haalde in de Amerikaanse Billboard Hot 100.",
+      "isrc": "USMG28500001",
+      "uri_apple_music": "applemusic://track/697012276",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/697012276"
+      },
+      "uri_deezer": "deezer://track/3130429",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:5UnqU47OSB8LBahj0jtjrR",
+      "artist": "Jack White & Alicia Keys",
+      "alt_artists": [
+        "The White Stripes",
+        "Alicia Keys",
+        "The Raconteurs"
+      ],
+      "title": "Another Way to Die",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The first duet in the history of Bond themes, recorded for Quantum of Solace.",
+      "fun_fact_de": "Das erste Duett in der Geschichte der Bond-Themen, aufgenommen für Ein Quantum Trost.",
+      "fun_fact_es": "El primer dueto en la historia de los temas de Bond, grabado para Quantum of Solace.",
+      "fun_fact_fr": "Le premier duo de l'histoire des thèmes de Bond, enregistré pour Quantum of Solace.",
+      "fun_fact_nl": "Het eerste duet in de geschiedenis van Bondthema's, opgenomen voor Quantum of Solace.",
+      "isrc": "USJAY0800153",
+      "uri_apple_music": "applemusic://track/293230345",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/293230345"
+      },
+      "uri_deezer": "deezer://track/2466273",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 2002,
+      "uri": "spotify:track:2Dfe2FIfmB0y0M99aZyexu",
+      "artist": "Madonna",
+      "alt_artists": [
+        "Kylie Minogue",
+        "Britney Spears",
+        "Moby"
+      ],
+      "title": "Die Another Day",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Madonna also plays a cameo in the film, as a fencing instructor named Verity.",
+      "fun_fact_de": "Madonna hat im Film auch einen Kurzauftritt als Fechtlehrerin Verity.",
+      "fun_fact_es": "Madonna también aparece brevemente en la película como una instructora de esgrima llamada Verity.",
+      "fun_fact_fr": "Madonna fait aussi une brève apparition dans le film, en professeure d'escrime nommée Verity.",
+      "fun_fact_nl": "Madonna heeft in de film ook een cameo als schermlerares Verity.",
+      "isrc": "USWB10202888",
+      "uri_apple_music": "applemusic://track/372008322",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/372008322"
+      },
+      "uri_deezer": "deezer://track/783963",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1962,
+      "uri": "spotify:track:589AelScFm0FYQ4VG1biJi",
+      "artist": "John Barry",
+      "alt_artists": [
+        "Monty Norman",
+        "David Arnold",
+        "Hans Zimmer"
+      ],
+      "title": "The James Bond Theme",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Monty Norman is credited as composer, John Barry arranged it, and Norman won a libel case over the authorship in 2001.",
+      "fun_fact_de": "Monty Norman steht als Komponist im Abspann, John Barry arrangierte es, und Norman gewann 2001 einen Verleumdungsprozess um die Urheberschaft.",
+      "fun_fact_es": "Monty Norman figura como compositor, John Barry lo arregló y Norman ganó un juicio por difamación sobre la autoría en 2001.",
+      "fun_fact_fr": "Monty Norman est crédité comme compositeur, John Barry l'a arrangé, et Norman a gagné en 2001 un procès en diffamation sur la paternité.",
+      "fun_fact_nl": "Monty Norman staat als componist vermeld, John Barry arrangeerde het en Norman won in 2001 een smaadzaak over het auteurschap.",
+      "isrc": "GBBBN6600001",
+      "uri_apple_music": "applemusic://track/198517119",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/198517119"
+      },
+      "uri_deezer": "deezer://track/1037326",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1964,
+      "uri": "spotify:track:7r0EUONfPUZ8SD1vu4ro27",
+      "artist": "Shirley Bassey",
+      "alt_artists": [
+        "Tom Jones",
+        "Dusty Springfield",
+        "Petula Clark"
+      ],
+      "title": "Goldfinger",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bassey's Goldfinger made the US top ten and started her run of three Bond themes.",
+      "fun_fact_de": "Basseys Goldfinger kam in die US-Top-Ten und eröffnete ihre Serie von drei Bond-Themen.",
+      "fun_fact_es": "Goldfinger de Bassey entró en el top diez de EE. UU. y abrió su serie de tres temas de Bond.",
+      "fun_fact_fr": "Goldfinger de Bassey est entré dans le top 10 américain et a lancé sa série de trois thèmes de Bond.",
+      "fun_fact_nl": "Goldfinger van Bassey haalde de Amerikaanse top tien en opende haar reeks van drie Bondthema's.",
+      "isrc": "GBAYE6400302",
+      "uri_apple_music": "applemusic://track/696888851",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/696888851"
+      },
+      "uri_deezer": "deezer://track/3093484",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:1CfmUSOJBrZwq5iOlTX548",
+      "artist": "Carly Simon",
+      "alt_artists": [
+        "Barbra Streisand",
+        "Carole King",
+        "Bette Midler"
+      ],
+      "title": "Nobody Does It Better",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Marvin Hamlisch and Carole Bayer Sager wrote it, and it never mentions the film's title, The Spy Who Loved Me.",
+      "fun_fact_de": "Marvin Hamlisch und Carole Bayer Sager schrieben ihn, und der Filmtitel Der Spion, der mich liebte kommt im Text nie vor.",
+      "fun_fact_es": "Lo escribieron Marvin Hamlisch y Carole Bayer Sager, y la letra nunca menciona el título de la película, La espía que me amó.",
+      "fun_fact_fr": "Marvin Hamlisch et Carole Bayer Sager l'ont écrit, et les paroles ne citent jamais le titre du film, L'Espion qui m'aimait.",
+      "fun_fact_nl": "Marvin Hamlisch en Carole Bayer Sager schreven het, en de titel van de film, The Spy Who Loved Me, komt in de tekst nooit voor.",
+      "isrc": "USMG27700012",
+      "uri_apple_music": "applemusic://track/715595121",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/715595121"
+      },
+      "uri_deezer": "deezer://track/3169698",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1963,
+      "uri": "spotify:track:5BAHAfFiz8NbgTHf9MgleH",
+      "artist": "Matt Monro",
+      "alt_artists": [
+        "Tony Bennett",
+        "Frank Sinatra",
+        "Andy Williams"
+      ],
+      "title": "From Russia With Love",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The song was written by Lionel Bart, the man behind the musical Oliver!",
+      "fun_fact_de": "Der Song stammt von Lionel Bart, dem Mann hinter dem Musical Oliver!",
+      "fun_fact_es": "La canción fue escrita por Lionel Bart, el autor del musical Oliver!",
+      "fun_fact_fr": "La chanson a été écrite par Lionel Bart, l'homme derrière la comédie musicale Oliver!",
+      "fun_fact_nl": "Het nummer is geschreven door Lionel Bart, de man achter de musical Oliver!",
+      "isrc": "UK7771417009",
+      "uri_apple_music": "applemusic://track/1452599279",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1452599279"
+      },
+      "uri_deezer": "deezer://track/116226426",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1965,
+      "uri": "spotify:track:61ae7alkl4KTin3QOMD8pQ",
+      "artist": "Tom Jones",
+      "alt_artists": [
+        "Engelbert Humperdinck",
+        "Shirley Bassey",
+        "Matt Monro"
+      ],
+      "title": "Thunderball",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Tom Jones is said to have held the final note so long that he fainted in the recording booth.",
+      "fun_fact_de": "Tom Jones soll den Schlusston so lange gehalten haben, dass er im Aufnahmeraum ohnmächtig wurde.",
+      "fun_fact_es": "Se dice que Tom Jones sostuvo la nota final tanto tiempo que se desmayó en la cabina de grabación.",
+      "fun_fact_fr": "On raconte que Tom Jones a tenu la note finale si longtemps qu'il s'est évanoui dans la cabine d'enregistrement.",
+      "fun_fact_nl": "Tom Jones hield de slotnoot naar verluidt zo lang vol dat hij in de opnamecabine flauwviel.",
+      "isrc": "GBF076520920",
+      "uri_apple_music": "applemusic://track/1434895941",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1434895941"
+      },
+      "uri_deezer": "deezer://track/525869952",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:68qxZGCBmN5HY4gmK0iURW",
+      "artist": "Nancy Sinatra",
+      "alt_artists": [
+        "Lee Hazlewood",
+        "Dusty Springfield",
+        "Julie London"
+      ],
+      "title": "You Only Live Twice",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Robbie Williams borrowed its strings for his 1998 hit Millennium.",
+      "fun_fact_de": "Robbie Williams borgte sich die Streicher für seinen Hit Millennium von 1998.",
+      "fun_fact_es": "Robbie Williams tomó prestadas sus cuerdas para su éxito Millennium de 1998.",
+      "fun_fact_fr": "Robbie Williams en a emprunté les cordes pour son tube Millennium en 1998.",
+      "fun_fact_nl": "Robbie Williams leende de strijkers voor zijn hit Millennium uit 1998.",
+      "isrc": "USASE0510255",
+      "uri_apple_music": "applemusic://track/1443233400",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443233400"
+      },
+      "uri_deezer": "deezer://track/3092187421",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:5WCXReutL1R72aovjrFhjt",
+      "artist": "Herb Alpert & The Tijuana Brass",
+      "alt_artists": [
+        "Burt Bacharach",
+        "Sérgio Mendes",
+        "Henry Mancini"
+      ],
+      "title": "Casino Royale",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Burt Bacharach composed it for the 1967 spoof Casino Royale, which also gave us The Look of Love.",
+      "fun_fact_de": "Burt Bacharach komponierte es für die Parodie Casino Royale von 1967, aus der auch The Look of Love stammt.",
+      "fun_fact_es": "Burt Bacharach lo compuso para la parodia Casino Royale de 1967, que también nos dio The Look of Love.",
+      "fun_fact_fr": "Burt Bacharach l'a composé pour la parodie Casino Royale de 1967, qui a aussi donné The Look of Love.",
+      "fun_fact_nl": "Burt Bacharach componeerde het voor de parodie Casino Royale uit 1967, waaruit ook The Look of Love komt.",
+      "isrc": "QM4222000028",
+      "uri_apple_music": "applemusic://track/1530113036",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1530113036"
+      },
+      "uri_deezer": "deezer://track/1035133782",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:0IVHwJqgXfwVMYBZk49uyK",
+      "artist": "Louis Armstrong",
+      "alt_artists": [
+        "Frank Sinatra",
+        "Nat King Cole",
+        "Ella Fitzgerald"
+      ],
+      "title": "We Have All the Time In the World",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It reached the UK top three in 1994 after a Guinness advert revived it.",
+      "fun_fact_de": "1994 erreichte es die britischen Top 3, nachdem eine Guinness-Werbung es wiederbelebt hatte.",
+      "fun_fact_es": "Llegó al top tres del Reino Unido en 1994 después de que un anuncio de Guinness lo recuperara.",
+      "fun_fact_fr": "Il a atteint le top 3 britannique en 1994, relancé par une publicité Guinness.",
+      "fun_fact_nl": "In 1994 haalde het de Britse top drie nadat een Guinness-reclame het nieuw leven inblies.",
+      "isrc": "USMG20200041",
+      "uri_apple_music": "applemusic://track/716556262",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/716556262"
+      },
+      "uri_deezer": "deezer://track/3169677",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1971,
+      "uri": "spotify:track:3Tp3nTswQmMzmQRqZu4iM2",
+      "artist": "Shirley Bassey",
+      "alt_artists": [
+        "Tom Jones",
+        "Dionne Warwick",
+        "Petula Clark"
+      ],
+      "title": "Diamonds Are Forever",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Kanye West sampled it for Diamonds from Sierra Leone in 2005.",
+      "fun_fact_de": "Kanye West sampelte ihn 2005 für Diamonds from Sierra Leone.",
+      "fun_fact_es": "Kanye West lo sampleó en 2005 para Diamonds from Sierra Leone.",
+      "fun_fact_fr": "Kanye West l'a samplé en 2005 pour Diamonds from Sierra Leone.",
+      "fun_fact_nl": "Kanye West sampelde het in 2005 voor Diamonds from Sierra Leone.",
+      "isrc": "USMG27100001",
+      "uri_apple_music": "applemusic://track/696886310",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/696886310"
+      },
+      "uri_deezer": "deezer://track/3093485",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:2wBWVKsv9VIbvlPdJtQbz7",
+      "artist": "Lulu",
+      "alt_artists": [
+        "Cilla Black",
+        "Sandie Shaw",
+        "Dusty Springfield"
+      ],
+      "title": "The Man With The Golden Gun",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Alice Cooper wrote a song for the film too, but it was turned down in favour of Lulu's.",
+      "fun_fact_de": "Auch Alice Cooper schrieb einen Song für den Film, doch er wurde zugunsten von Lulus Version abgelehnt.",
+      "fun_fact_es": "Alice Cooper también escribió una canción para la película, pero se rechazó en favor de la de Lulu.",
+      "fun_fact_fr": "Alice Cooper a aussi écrit une chanson pour le film, mais elle a été refusée au profit de celle de Lulu.",
+      "fun_fact_nl": "Alice Cooper schreef ook een nummer voor de film, maar dat werd afgewezen ten gunste van dat van Lulu.",
+      "isrc": "USMG27400001",
+      "uri_apple_music": "applemusic://track/1584918702",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1584918702"
+      },
+      "uri_deezer": "deezer://track/355914641",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:0XCszZIzEncBpgAMkKoDB2",
+      "artist": "Shirley Bassey",
+      "alt_artists": [
+        "Dionne Warwick",
+        "Gladys Knight",
+        "Dusty Springfield"
+      ],
+      "title": "Moonraker",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "It was Bassey's third and last Bond theme, the record for any singer.",
+      "fun_fact_de": "Es war Basseys dritter und letzter Bond-Titelsong, ein Rekord unter allen Sängerinnen und Sängern.",
+      "fun_fact_es": "Fue el tercer y último tema de Bond de Bassey, un récord entre todos los cantantes.",
+      "fun_fact_fr": "C'était le troisième et dernier thème de Bond de Bassey, un record pour une chanteuse ou un chanteur.",
+      "fun_fact_nl": "Het was Basseys derde en laatste Bondthema, een record voor elke zanger of zangeres.",
+      "isrc": "USMG27900001",
+      "uri_apple_music": "applemusic://track/696886687",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/696886687"
+      },
+      "uri_deezer": "deezer://track/5533432",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:1cFWJRuAufyHeyfPliPHPD",
+      "artist": "Rita Coolidge",
+      "alt_artists": [
+        "Kim Carnes",
+        "Juice Newton",
+        "Olivia Newton-John"
+      ],
+      "title": "All Time High",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "John Barry and Tim Rice wrote it, and the film's title, Octopussy, never appears in the lyrics.",
+      "fun_fact_de": "John Barry und Tim Rice schrieben ihn, und der Filmtitel Octopussy taucht im Text nie auf.",
+      "fun_fact_es": "John Barry y Tim Rice lo escribieron, y el título de la película, Octopussy, nunca aparece en la letra.",
+      "fun_fact_fr": "John Barry et Tim Rice l'ont écrit, et le titre du film, Octopussy, n'apparaît jamais dans les paroles.",
+      "fun_fact_nl": "John Barry en Tim Rice schreven het, en de filmtitel Octopussy komt in de tekst nooit voor.",
+      "isrc": "USMG28300011",
+      "uri_apple_music": "applemusic://track/1799831677",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1799831677"
+      },
+      "uri_deezer": "deezer://track/38988191",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1983,
+      "uri": "spotify:track:7vOKGJvlcUOva2crdnuYZ9",
+      "artist": "Lani Hall",
+      "alt_artists": [
+        "Sérgio Mendes",
+        "Astrud Gilberto",
+        "Bonnie Bianco"
+      ],
+      "title": "Never Say Never Again",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Never Say Never Again was an unofficial Bond film made outside the Eon series, with Sean Connery returning.",
+      "fun_fact_de": "Sag niemals nie war ein inoffizieller Bond-Film außerhalb der Eon-Reihe, in dem Sean Connery zurückkehrte.",
+      "fun_fact_es": "Nunca digas nunca jamás fue una película no oficial de Bond, ajena a la serie de Eon, con el regreso de Sean Connery.",
+      "fun_fact_fr": "Jamais plus jamais était un film de Bond non officiel, hors de la série Eon, avec le retour de Sean Connery.",
+      "fun_fact_nl": "Never Say Never Again was een onofficiële Bondfilm buiten de Eon-reeks, met Sean Connery terug in de rol.",
+      "isrc": "USAM18300359",
+      "uri_apple_music": "applemusic://track/1628587833",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1628587833"
+      },
+      "uri_deezer": "deezer://track/1783813257",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:75R2Yxuar6gM590OCbYJHn",
+      "artist": "a-ha",
+      "alt_artists": [
+        "Duran Duran",
+        "Tears for Fears",
+        "Depeche Mode"
+      ],
+      "title": "The Living Daylights",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "a-ha later released their own version on the album Stay on These Roads, after clashing with John Barry over the film arrangement.",
+      "fun_fact_de": "a-ha veröffentlichten später eine eigene Version auf dem Album Stay on These Roads, nachdem sie sich mit John Barry über das Filmarrangement gestritten hatten.",
+      "fun_fact_es": "a-ha publicaron después su propia versión en el álbum Stay on These Roads, tras chocar con John Barry por el arreglo de la película.",
+      "fun_fact_fr": "a-ha a ensuite sorti sa propre version sur l'album Stay on These Roads, après un différend avec John Barry sur l'arrangement du film.",
+      "fun_fact_nl": "a-ha bracht later een eigen versie uit op het album Stay on These Roads, na een conflict met John Barry over het filmarrangement.",
+      "isrc": "USWB10003330",
+      "uri_apple_music": "applemusic://track/747796767",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/747796767"
+      },
+      "uri_deezer": "deezer://track/4094807",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:528QhCT2v3HgD71RmrSUNW",
+      "artist": "Tina Turner",
+      "alt_artists": [
+        "Shirley Bassey",
+        "Cher",
+        "Annie Lennox"
+      ],
+      "title": "Goldeneye",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bono and The Edge of U2 wrote it for her.",
+      "fun_fact_de": "Bono und The Edge von U2 schrieben ihn für sie.",
+      "fun_fact_es": "Bono y The Edge, de U2, lo escribieron para ella.",
+      "fun_fact_fr": "Bono et The Edge, de U2, l'ont écrit pour elle.",
+      "fun_fact_nl": "Bono en The Edge van U2 schreven het voor haar.",
+      "isrc": "GBAYE9500713",
+      "uri_apple_music": "applemusic://track/712850997",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/712850997"
+      },
+      "uri_deezer": "deezer://track/3147390",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1997,
+      "uri": "spotify:track:3peBSjcjaouspgb68WK2sk",
+      "artist": "Sheryl Crow",
+      "alt_artists": [
+        "Alanis Morissette",
+        "Natalie Merchant",
+        "Melissa Etheridge"
+      ],
+      "title": "Tomorrow Never Dies",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "k.d. lang's Surrender was written for the same film and plays over its end credits.",
+      "fun_fact_de": "k.d. langs Surrender entstand für denselben Film und läuft im Abspann.",
+      "fun_fact_es": "Surrender, de k.d. lang, se escribió para la misma película y suena en sus créditos finales.",
+      "fun_fact_fr": "Surrender de k.d. lang a été écrite pour le même film et passe sur son générique de fin.",
+      "fun_fact_nl": "Surrender van k.d. lang is voor dezelfde film geschreven en klinkt tijdens de aftiteling.",
+      "isrc": "USAM19774851",
+      "uri_apple_music": "applemusic://track/1443099573",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443099573"
+      },
+      "uri_deezer": "deezer://track/13659976",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    },
+    {
+      "year": 1999,
+      "uri": "spotify:track:0wnIPcs7V0XMwtcg0yjKpg",
+      "artist": "Garbage",
+      "alt_artists": [
+        "Shirley Manson",
+        "Blondie",
+        "The Cardigans"
+      ],
+      "title": "The World Is Not Enough",
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "David Arnold, who also scored the film, wrote it with lyricist Don Black.",
+      "fun_fact_de": "David Arnold, der auch den Filmscore schrieb, verfasste ihn mit dem Texter Don Black.",
+      "fun_fact_es": "David Arnold, que también compuso la banda sonora, lo escribió con el letrista Don Black.",
+      "fun_fact_fr": "David Arnold, qui a aussi composé la musique du film, l'a écrit avec le parolier Don Black.",
+      "fun_fact_nl": "David Arnold, die ook de filmmuziek maakte, schreef het met tekstschrijver Don Black.",
+      "isrc": "USMC19959616",
+      "uri_apple_music": "applemusic://track/1442846669",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442846669"
+      },
+      "uri_deezer": "deezer://track/1761526417",
+      "uri_youtube_music": null,
+      "uri_tidal": null
+    }
+  ]
+}
