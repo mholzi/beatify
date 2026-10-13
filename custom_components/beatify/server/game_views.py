@@ -398,34 +398,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         # display name.
         speaker_name = media_player_state.name if media_player_state else media_player
 
-        # Validate platform is supported
-        capabilities = get_platform_capabilities(platform)
-        if not capabilities.get("supported"):
-            return _json_error(
-                capabilities.get("reason", "This player type is not supported"),
-                400,
-                code="UNSUPPORTED_PLAYER",
-                details={"speaker": speaker_name},
-            )
-
-        # Validate the provider is one this speaker can actually serve.
-        #
-        # #2713: one check against the registry, where there were five
-        # copy-pasted blocks. They covered apple_music, youtube_music, tidal,
-        # deezer and amazon_music — so Crate Digger or ytmusic_free on a Sonos
-        # or an Echo passed this gate and started a game that could never play
-        # a note, even though the wizard had already greyed the chip out. The
-        # message and the `provider` detail are built from the same fields the
-        # blocks spelled out, so the five wordings they produced are unchanged.
-        provider_spec = get_provider(provider)
-        if provider_spec is not None and not provider_spec.plays_on(platform):
-            return _json_error(
-                f"{provider_spec.label} is not supported on this speaker. "
-                f"{provider_spec.unsupported_hint}",
-                400,
-                code="PROVIDER_NOT_SUPPORTED",
-                details={"speaker": speaker_name, "provider": provider_spec.label},
-            )
+        platform_err = _check_speaker_platform(
+            platform, provider, speaker_name=speaker_name
+        )
+        if platform_err is not None:
+            return platform_err
 
         # #2635: the admin's options as ONE object, not a kwargs dict that had
         # to be kept in step with create_game's parameter list by hand. An
@@ -529,6 +506,17 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 if out:
                     mp = out.get("media_player")
                     if isinstance(mp, str) and mp and self.hass.states.get(mp):
+                        # #3153: a stored speaker that cannot play this game's
+                        # provider is skipped, not applied.
+                        mp, _mp_platform, mp_err = await _validate_media_player(
+                            self.hass, mp, gs.provider
+                        )
+                        if mp_err is not None:
+                            _LOGGER.warning(
+                                "Pre-start: stored media_player %s rejected", mp
+                            )
+                            mp = None
+                    if isinstance(mp, str) and mp:
                         if gs.media_player != mp:
                             gs.media_player = mp
                             # #2693: the speaker and its platform are one fact.
@@ -1155,6 +1143,76 @@ _RECENT_KEY = "library_recent_uris"
 _RECENT_CAP = 400
 
 
+def _check_speaker_platform(
+    platform: str, provider: str, *, speaker_name: str
+) -> web.Response | None:
+    """Reject a speaker whose platform is unsupported or cannot play ``provider``.
+
+    The last two steps of speaker validation, shared by ``StartGameView`` and
+    the lobby speaker switch (#3153). Returns the error response, or ``None``.
+    """
+    # Validate platform is supported
+    capabilities = get_platform_capabilities(platform)
+    if not capabilities.get("supported"):
+        return _json_error(
+            capabilities.get("reason", "This player type is not supported"),
+            400,
+            code="UNSUPPORTED_PLAYER",
+            details={"speaker": speaker_name},
+        )
+
+    # Validate the provider is one this speaker can actually serve.
+    #
+    # #2713: one check against the registry, where there were five
+    # copy-pasted blocks. They covered apple_music, youtube_music, tidal,
+    # deezer and amazon_music — so Crate Digger or ytmusic_free on a Sonos
+    # or an Echo passed this gate and started a game that could never play
+    # a note, even though the wizard had already greyed the chip out. The
+    # message and the `provider` detail are built from the same fields the
+    # blocks spelled out, so the five wordings they produced are unchanged.
+    provider_spec = get_provider(provider)
+    if provider_spec is not None and not provider_spec.plays_on(platform):
+        return _json_error(
+            f"{provider_spec.label} is not supported on this speaker. "
+            f"{provider_spec.unsupported_hint}",
+            400,
+            code="PROVIDER_NOT_SUPPORTED",
+            details={"speaker": speaker_name, "provider": provider_spec.label},
+        )
+    return None
+
+
+async def _validate_media_player(
+    hass: HomeAssistant, entity_id: str, provider: str
+) -> tuple[str, str, web.Response | None]:
+    """Validate a speaker chosen after the game was created (#3153).
+
+    Applies the checks ``StartGameView`` runs on its speaker: the native-twin
+    remap (#1627), existence, the platform and ``provider_spec.plays_on``
+    (#2713). Returns ``(entity_id, platform, error_response)``; the entity_id
+    is the remapped one. ``StartGameView`` keeps its own inline sequence so its
+    order against the song-loading errors stays as it was.
+    """
+    twin_remap = await async_get_native_twin_remap(hass)
+    entity_id = twin_remap.get(entity_id, entity_id)
+    state = hass.states.get(entity_id)
+    if not state:
+        return (
+            entity_id,
+            "unknown",
+            _json_error(
+                "Media player not found",
+                400,
+                code="INVALID_REQUEST",
+                message_key="MEDIA_PLAYER_NOT_FOUND",
+            ),
+        )
+    entity_entry = er.async_get(hass).async_get(entity_id)
+    platform = entity_entry.platform if entity_entry else "unknown"
+    err = _check_speaker_platform(platform, provider, speaker_name=state.name)
+    return entity_id, platform, err
+
+
 async def _apply_tts_config(game_state: Any, tts_config: Any) -> bool:
     """Apply a frontend TTS config dict correctly, or disable on falsy.
 
@@ -1246,24 +1304,12 @@ class UpdateLobbyView(BeatifyAdminView):
         updated: list[str] = []
         media_player = body.get("media_player")
         if isinstance(media_player, str) and media_player:
-            if not self.hass.states.get(media_player):
-                return _json_error(
-                    "Media player not found",
-                    400,
-                    code="INVALID_REQUEST",
-                    message_key="MEDIA_PLAYER_NOT_FOUND",
-                )
-            ent_reg = er.async_get(self.hass)
-            entity_entry = ent_reg.async_get(media_player)
-            platform = entity_entry.platform if entity_entry else "unknown"
-            capabilities = get_platform_capabilities(platform)
-            if not capabilities.get("supported"):
-                return _json_error(
-                    "Media player platform not supported",
-                    400,
-                    code="INVALID_REQUEST",
-                    message_key="PLATFORM_NOT_SUPPORTED",
-                )
+            # #3153: the same speaker checks as starting a game.
+            media_player, platform, err = await _validate_media_player(
+                self.hass, media_player, game_state.provider
+            )
+            if err is not None:
+                return err
             game_state.media_player = media_player
             game_state.platform = platform
             # The lazily-built MediaPlayerService captures entity/platform at

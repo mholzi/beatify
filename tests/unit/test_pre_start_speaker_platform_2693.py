@@ -232,6 +232,13 @@ class TestPreStartHookMovesBoth:
                 "async_load_game_output_settings",
                 new=AsyncMock(return_value=stored),
             ),
+            patch(
+                # #3153: the hook now applies the provider check, and a library
+                # game cannot play on Sonos. This test pins the platform
+                # plumbing only, so the check is switched off here.
+                "custom_components.beatify.server.game_views._check_speaker_platform",
+                return_value=None,
+            ),
         ):
             await self._start(view, request)
             hook = game_state.pre_start_hook
