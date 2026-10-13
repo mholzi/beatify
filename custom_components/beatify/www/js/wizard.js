@@ -1868,25 +1868,40 @@ export function buildTtsPayload(prevTts, { enabled, entityId, preset, presets })
     return ttsPayload;
 }
 
+/**
+ * Build the `beatify_party_lights` entry the wizard persists (#3159).
+ *
+ * #1011: `enabled` must be written so party-lights.js hydrates the toggle
+ * (it reads `saved.enabled || false`); without it the start-game request sent
+ * `enabled: false` and lights never reacted. #3159: it must also be written
+ * when false, otherwise switching lights off in the wizard never persists.
+ */
+export function buildLightsPayload({ enabled, entityIds, intensity, mode, wledPresets }) {
+    const payload = {
+        enabled: !!enabled,
+        lights: Array.from(entityIds),
+        intensity,
+        light_mode: mode,
+    };
+    if (mode === 'wled' && Object.keys(wledPresets).length > 0) {
+        payload.wled_presets = wledPresets;
+    }
+    return payload;
+}
+
 function _persistLevelUpDetails() {
     try {
-        if (chosenLevelUps.lights) {
-            // #1011: include `enabled: true` so party-lights.js hydrates the
-            // toggle state (it reads `saved.enabled || false`). Without this,
-            // the wizard saved lights + entities but the admin start-game
-            // request sent `enabled: false`, and the server skipped
-            // configure_party_lights — lights never reacted during the game.
-            const payload = {
-                enabled: true,
-                lights: Array.from(chosenLightEntityIds),
-                intensity: chosenLightIntensity,
-                light_mode: chosenLightMode,
-            };
-            if (chosenLightMode === 'wled' && Object.keys(chosenWledPresets).length > 0) {
-                payload.wled_presets = chosenWledPresets;
-            }
-            localStorage.setItem('beatify_party_lights', JSON.stringify(payload));
-        }
+        // #3159: always write the lights entry. Persisting only when the card was
+        // on meant switching lights off in the wizard never reached storage, so
+        // every later game still started with the old `enabled: true`. The
+        // entities stay stored, like the TTS block below.
+        localStorage.setItem('beatify_party_lights', JSON.stringify(buildLightsPayload({
+            enabled: chosenLevelUps.lights,
+            entityIds: chosenLightEntityIds,
+            intensity: chosenLightIntensity,
+            mode: chosenLightMode,
+            wledPresets: chosenWledPresets,
+        })));
         // Write a complete config: enabled + entity + preset + all 23
         // announce_* booleans, so the admin TTS panel and game engine read a
         // consistent state. BeatifyTtsPresets is exposed by tts-settings.js.

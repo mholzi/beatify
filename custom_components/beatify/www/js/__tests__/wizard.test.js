@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload, modeHintHtml, doneSummaryHtml } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload, modeHintHtml, doneSummaryHtml, buildLightsPayload } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -682,5 +682,37 @@ describe('#1940 — hiding the wizard refreshes the home view', () => {
         globalThis.localStorage = { getItem: () => null, setItem: () => {}, removeItem: () => {} };
 
         expect(() => hide({})).not.toThrow();
+    });
+});
+
+// ------------------------------------------------------------------
+// buildLightsPayload — what the wizard persists for party lights (#3159)
+// ------------------------------------------------------------------
+describe('buildLightsPayload', () => {
+    const base = {
+        entityIds: new Set(['light.a', 'light.b']),
+        intensity: 'medium',
+        mode: 'standard',
+        wledPresets: {},
+    };
+
+    it('writes enabled:true and the entities when lights are on', () => {
+        const p = buildLightsPayload({ ...base, enabled: true });
+        expect(p.enabled).toBe(true);
+        expect(p.lights).toEqual(['light.a', 'light.b']);
+    });
+
+    it('writes an explicit enabled:false but keeps the entities when lights are off (#3159)', () => {
+        const p = buildLightsPayload({ ...base, enabled: false });
+        expect(p.enabled).toBe(false);
+        expect(p.lights).toEqual(['light.a', 'light.b']);
+        expect(p.intensity).toBe('medium');
+    });
+
+    it('adds wled_presets only in wled mode with presets', () => {
+        const presets = { start: 1 };
+        expect(buildLightsPayload({ ...base, enabled: true, mode: 'wled', wledPresets: presets }).wled_presets).toEqual(presets);
+        expect(buildLightsPayload({ ...base, enabled: true, mode: 'wled', wledPresets: {} })).not.toHaveProperty('wled_presets');
+        expect(buildLightsPayload({ ...base, enabled: true, wledPresets: presets })).not.toHaveProperty('wled_presets');
     });
 });
