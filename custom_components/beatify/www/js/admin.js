@@ -31,7 +31,7 @@ import { adminState } from './admin/state.js';
 import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js';
 // #2626/#2627: the values that must match the server. One mirror of const.py
 // for the whole frontend — see js/game-constants.js.
-import { MAX_NAME_LENGTH } from './game-constants.js';
+import { MAX_NAME_LENGTH, normalizeSampleDuration } from './game-constants.js';
 // #1927: reconcile the server-side setup blob with this browser's localStorage
 // so a stale local speaker can no longer outlive a newer pick from another device.
 import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
@@ -1317,6 +1317,7 @@ function buildGameOptionsPayload() {
     // Defaults are the pre-issue behaviour: no sudden death, all songs.
     var suddenDeathMode = false;
     var maxRounds = 0;
+    var sampleDuration = 0;  // #3152: 0 = the song plays for the whole round
     try {
         const raw = localStorage.getItem(STORAGE_GAME_SETTINGS);
         if (raw) {
@@ -1328,11 +1329,17 @@ function buildGameOptionsPayload() {
             if (typeof mr === 'number' && Number.isFinite(mr) && mr > 0) {
                 maxRounds = Math.floor(mr);
             }
+            sampleDuration = settings ? settings.sampleDuration : 0;
         }
     } catch (e) { /* private mode / malformed — keep the defaults */ }
 
     return {
         round_duration: adminState.selectedDuration,  // Story 13.1
+        // #3152: checked against the duration actually being sent. The timer
+        // chips in the game-settings section can shorten the round after the
+        // wizard stored a sample, and the server rejects a sample that is not
+        // shorter than the round.
+        sample_duration: normalizeSampleDuration(sampleDuration, adminState.selectedDuration),
         max_rounds: maxRounds,  // Issue #1475
         reveal_auto_advance: adminState.revealAutoAdvance,  // #1012
         difficulty: adminState.selectedDifficulty,  // Story 14.1

@@ -30,6 +30,7 @@ from custom_components.beatify.game.start_gameplay import (
     refusal_to_start,
 )
 from custom_components.beatify.const import (
+    DEFAULT_ROUND_DURATION,
     DIFFICULTY_DEFAULT,
     DIFFICULTY_EASY,
     DIFFICULTY_HARD,
@@ -46,6 +47,7 @@ from custom_components.beatify.const import (
     REVEAL_AUTO_ADVANCE_OPTIONS,
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
+    SAMPLE_DURATION_OPTIONS,
 )
 from custom_components.beatify.game.config import GameOptions
 from custom_components.beatify.game.playlist import (
@@ -128,6 +130,48 @@ def _validate_provider(provider: str) -> str:
     #: omissions this docstring records (apple_music in #808, ma_library, then
     #: ytmusic_free in #2426) were a provider missing from a hand-kept copy.
     return provider if provider in PROVIDERS_BY_ID else PROVIDER_DEFAULT
+
+
+def _validate_sample_duration(
+    raw: Any, round_duration: float
+) -> tuple[int, web.Response | None]:
+    """Check a ``sample_duration`` against the allowed steps and the round (#3152).
+
+    Returns ``(seconds, None)`` with 0 for "the whole round", or
+    ``(0, error response)``. A sample has to be one of
+    ``SAMPLE_DURATION_OPTIONS`` and strictly shorter than the answer time: a
+    song that plays as long as the round is the whole round, and the wizard
+    never offers it.
+    """
+    if raw is None or raw == 0:
+        return 0, None
+    if isinstance(raw, bool) or not isinstance(raw, int | float | str):
+        seconds = None
+    elif isinstance(raw, float) and not raw.is_integer():
+        seconds = None
+    else:
+        try:
+            seconds = int(raw)
+        except (ValueError, TypeError):
+            seconds = None
+    if seconds is None or seconds not in SAMPLE_DURATION_OPTIONS:
+        return 0, _json_error(
+            "Song sample length must be one of "
+            f"{', '.join(str(s) for s in SAMPLE_DURATION_OPTIONS)} seconds",
+            400,
+            code="INVALID_REQUEST",
+            message_key="SAMPLE_DURATION_INVALID",
+            details={"options": ", ".join(str(s) for s in SAMPLE_DURATION_OPTIONS)},
+        )
+    if seconds >= round_duration:
+        return 0, _json_error(
+            "Song sample length must be shorter than the round duration",
+            400,
+            code="INVALID_REQUEST",
+            message_key="SAMPLE_DURATION_TOO_LONG",
+            details={"sample": seconds, "round": int(round_duration)},
+        )
+    return seconds, None
 
 
 class StartGameView(RateLimitMixin, HomeAssistantView):
@@ -283,6 +327,15 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                     message_key="ROUND_DURATION_INVALID",
                 )
 
+        # #3152: how long the song plays, separately from the answer time.
+        # Missing, null and 0 all mean "the whole round".
+        sample_duration, sample_err = _validate_sample_duration(
+            body.get("sample_duration"),
+            round_duration if round_duration is not None else DEFAULT_ROUND_DURATION,
+        )
+        if sample_err is not None:
+            return sample_err
+
         # Crate Digger GENERATES its playlist from the host's own library at
         # create time (see the library branch below), so it legitimately
         # arrives with no playlist paths. Every other provider must select at
@@ -428,6 +481,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             sabotage_enabled=sabotage_enabled,  # Issue #1665
             reveal_auto_advance=reveal_auto_advance,  # #1012
             max_rounds=max_rounds,  # #1475
+            sample_duration=sample_duration,  # #3152
         )
         if round_duration is not None:
             create_options = replace(create_options, round_duration=round_duration)
@@ -1413,9 +1467,24 @@ class UpdateLobbyView(BeatifyAdminView):
         if game_state.phase == GamePhase.LOBBY and (
             isinstance(game_options, dict) or swap_paths
         ):
+            # #3152: null means "the whole round" here as it does at create.
+            # GameOptions.patched skips a value of the wrong type, which would
+            # read a null as "leave the sample as it is".
+            if (
+                isinstance(game_options, dict)
+                and "sample_duration" in game_options
+                and game_options["sample_duration"] is None
+            ):
+                game_options = {**game_options, "sample_duration": 0}
             patched, changed = GameOptions.patched(
                 game_state, game_options if isinstance(game_options, dict) else {}
             )
+            if "sample_duration" in changed or "round_duration" in changed:
+                _, sample_err = _validate_sample_duration(
+                    patched.sample_duration, patched.round_duration
+                )
+                if sample_err is not None:
+                    return sample_err
             if (changed or swap_paths) and game_state.apply_lobby_options(
                 patched, songs=swap_songs, playlists=swap_paths
             ):

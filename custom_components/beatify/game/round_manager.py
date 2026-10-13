@@ -82,6 +82,13 @@ class RoundManager:
         self.song_stopped: bool = False
         self.round_analytics: RoundAnalytics | None = None
 
+        # #3152: the host's "song plays for" setting (0 = the whole round) and
+        # the per-round flag that the sample has run out and the speaker was
+        # stopped. Distinct from `song_stopped`, which records that the HOST
+        # stopped the song on purpose and keeps the reveal silent.
+        self.sample_duration: int = 0
+        self.sample_stopped: bool = False
+
         # #2646: the host dropped this round instead of scoring it. Per-round,
         # so `initialize_round` clears it; `voided_rounds` is game-level and is
         # only cleared by `reset()`.
@@ -98,6 +105,7 @@ class RoundManager:
         # Timer tasks
         self._timer_task: asyncio.Task | None = None
         self._intro_stop_task: asyncio.Task | None = None
+        self._sample_stop_task: asyncio.Task | None = None  # #3152
         self._metadata_task: asyncio.Task | None = None
 
         # Intro mode
@@ -129,6 +137,7 @@ class RoundManager:
         """Reset all round state for a new game / end-game."""
         self.cancel_timer()
         self._cancel_intro_timer()
+        self._cancel_sample_timer()
         self._cancel_metadata_task()
 
         self.round = 0
@@ -139,6 +148,8 @@ class RoundManager:
         self.round_start_time = None
         self.round_duration = DEFAULT_ROUND_DURATION
         self.song_stopped = False
+        self.sample_duration = 0  # #3152
+        self.sample_stopped = False  # #3152
         self.round_analytics = None
         self.round_voided = False  # #2646
         self.void_reason = None  # #2646
@@ -179,6 +190,12 @@ class RoundManager:
         if self._intro_stop_task is not None:
             self._intro_stop_task.cancel()
             self._intro_stop_task = None
+
+    def _cancel_sample_timer(self) -> None:
+        """Cancel the sample auto-stop task if running (#3152)."""
+        if self._sample_stop_task is not None:
+            self._sample_stop_task.cancel()
+            self._sample_stop_task = None
 
     def clear_intro_splash(self) -> None:
         """Drop a still-pending intro splash when its round ends (#3093).
@@ -310,6 +327,84 @@ class RoundManager:
             raise
 
     # ------------------------------------------------------------------
+    # Song sample (#3152)
+    # ------------------------------------------------------------------
+
+    def sample_playback_seconds(self) -> float | None:
+        """How long the song plays this round, or None for the whole round.
+
+        The host's ``sample_duration`` applies to every round. An intro round
+        keeps its own ``INTRO_DURATION_SECONDS``; when both apply, the shorter
+        one decides how long the song is audible. A sample that is not shorter
+        than the round is no sample at all.
+        """
+        if not self.sample_duration or self.sample_duration >= self.round_duration:
+            return None
+        limit = float(self.sample_duration)
+        if self.is_intro_round:
+            limit = min(limit, float(INTRO_DURATION_SECONDS))
+        return limit
+
+    def sample_remaining_seconds(self) -> float | None:
+        """Seconds of the sample still to play, measured on the round clock.
+
+        The sample ends when the round has ``round_duration - sample`` left, so
+        it follows every re-stamp of ``deadline`` (announcements, the intro
+        splash, a pause) without a clock of its own. None when the round has no
+        sample or no deadline yet.
+        """
+        limit = self.sample_playback_seconds()
+        if limit is None or self.deadline is None:
+            return None
+        round_remaining = (self.deadline - int(self._now() * 1000)) / 1000.0
+        return round_remaining - (self.round_duration - limit)
+
+    def arm_sample_stop(
+        self,
+        stop_playback: Callable[[], Awaitable[None]],
+        on_round_end: Callable[[], Awaitable[None]] | None,
+    ) -> None:
+        """(Re)arm the sample auto-stop from the current deadline.
+
+        Idempotent: an earlier task is cancelled first, and a round without a
+        sample, or one whose sample already ran out, arms nothing.
+        """
+        self._cancel_sample_timer()
+        if self.sample_stopped:
+            return
+        remaining = self.sample_remaining_seconds()
+        if remaining is None:
+            return
+        self._sample_stop_task = asyncio.create_task(
+            self._sample_auto_stop(max(0.0, remaining), stop_playback, on_round_end)
+        )
+
+    async def _sample_auto_stop(
+        self,
+        remaining_seconds: float,
+        stop_playback: Callable[[], Awaitable[None]],
+        on_round_end: Callable[[], Awaitable[None]] | None,
+    ) -> None:
+        """Stop the song after *remaining_seconds*; the round keeps running.
+
+        The sibling of ``_intro_auto_stop``: same sleep, same flag-then-
+        broadcast shape. The difference is that this one silences the speaker.
+        """
+        try:
+            await asyncio.sleep(remaining_seconds)
+            self.sample_stopped = True
+            _LOGGER.info("Song sample ended after %.1fs", remaining_seconds)
+            try:
+                await stop_playback()
+            except Exception as err:  # noqa: BLE001 — a failed stop must not kill the broadcast
+                _LOGGER.warning("Sample stop failed: %s (#3152)", err)
+            if on_round_end:
+                await on_round_end()
+        except asyncio.CancelledError:
+            _LOGGER.debug("Sample auto-stop cancelled")
+            raise
+
+    # ------------------------------------------------------------------
     # Intro round preparation
     # ------------------------------------------------------------------
 
@@ -429,6 +524,9 @@ class RoundManager:
         self.round += 1
         self.current_song = dict(song)
         self.song_stopped = False
+        # #3152: a new round starts with its song audible.
+        self._cancel_sample_timer()
+        self.sample_stopped = False
         # #2646: a new round is never born voided. The flag drives the "this
         # round does not count" card, and a stale True would put it on the
         # reveal of a perfectly good round.

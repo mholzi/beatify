@@ -159,6 +159,8 @@ class PauseResumeMixin(GameStateBase):
             self.cancel_timer()
             # Issue #23: Cancel intro timer if running
             self._round_manager._cancel_intro_timer()
+            # #3152: and the sample stop; resume_game re-arms what is left.
+            self._round_manager._cancel_sample_timer()
             # Stop media playback
             # #2886: not while confirm_intro_splash is still waiting for the
             # intro song to start. A media_stop that reaches Music Assistant
@@ -310,8 +312,20 @@ class PauseResumeMixin(GameStateBase):
                             remaining_intro,
                         )
 
+                # #3152: a round with a song sample resumes only what is left
+                # of it. Once the sample has run out the round goes on in
+                # silence, exactly as it did before the pause.
+                sample_left = self._round_manager.sample_remaining_seconds()
+                if sample_left is not None and sample_left <= 0:
+                    self._round_manager.sample_stopped = True
+                sample_over = self._round_manager.sample_stopped
+                if not sample_over:
+                    self._arm_sample_stop()
+
                 # Resume media playback if it was stopped
-                if self._media_player_service and self.current_song:
+                if sample_over:
+                    _LOGGER.info("Song sample already over; resuming in silence")
+                elif self._media_player_service and self.current_song:
                     await self._media_player_service.play()
                     _LOGGER.info("Media playback resumed")
             else:

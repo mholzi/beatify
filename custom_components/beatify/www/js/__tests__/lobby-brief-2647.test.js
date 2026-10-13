@@ -106,6 +106,7 @@ const NOT_IN_SENTENCE = {
     provider: 'where the music comes from — not a rule of the game',
     platform: 'playback routing, invisible to players',
     max_rounds: 'a cap on the pool; the sentence says the resulting round count',
+    sample_duration: '#3152: no lobby clause was designed for it; the wizard hint and the in-game chip say it',
     reveal_auto_advance: 'host pacing, nothing a player can act on',
     artist_challenge_enabled: 'defaults ON and is not in the state payload — see the PR',
     movie_quiz_enabled: 'defaults ON and is not in the state payload — see the PR',

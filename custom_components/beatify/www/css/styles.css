@@ -10750,6 +10750,14 @@ body.wizard-active > .pwa-ios-hint {
     color: var(--color-bg-primary);
     box-shadow: var(--glow-primary);
 }
+/* #3152 — a "Song plays for" step that is not shorter than the answer time:
+   visible, greyed, not selectable. Same dimming as the unsupported provider
+   chip above. */
+.wiz-chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.wiz-chip:disabled:hover { background: var(--color-dark-surface); }
 
 /* Step 3 — "Request new playlist" CTA below the playlist list */
 .wiz-request-playlist {
@@ -13366,6 +13374,16 @@ body.is-ingame .player-header { display: none; }
     color: rgba(255, 255, 255, 0.78);
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.22);
+}
+/* #3152: the song length the host set has run out. Reuses the intro chip
+   element; neutral like the host-stopped chip above, and listed after
+   .arc-chip--intro so it wins. */
+.arc-chip--sample-stopped {
+    color: var(--color-text-neon-muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    animation: none;
 }
 
 /* Year XXL */

@@ -522,6 +522,7 @@ class GameState(
         # RoundManager (their cancel helpers are defensive no-ops when idle).
         self._round_manager.cancel_timer()
         self._round_manager._cancel_intro_timer()
+        self._round_manager._cancel_sample_timer()  # #3152
         self._round_manager._cancel_metadata_task()
         # REVEAL auto-advance task (#1012).
         self._cancel_auto_advance()
@@ -892,6 +893,10 @@ class GameState(
 
         # Issue #23: Cancel intro timer if running
         self._round_manager._cancel_intro_timer()
+        # #3152: the sample stop belongs to PLAYING; the reveal gets its song
+        # back unless the host stopped it on purpose.
+        self._round_manager._cancel_sample_timer()
+        await self._resume_sample_playback()
         # #3093: a splash the host never confirmed must not outlive PLAYING
         self._round_manager.clear_intro_splash()
 
@@ -1033,6 +1038,7 @@ class GameState(
 
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
+        self._round_manager._cancel_sample_timer()  # #3152
 
         song = self.current_song or {}
         self.round_voided = True

@@ -61,6 +61,33 @@ export const REACTION_THROTTLE_SECONDS = 8;
 export const REVEAL_AUTO_ADVANCE_OPTIONS = [0, 30, 60, 90];
 
 /**
+ * Mirror of `SAMPLE_DURATION_OPTIONS` in const.py: how long the song can play
+ * in a round when the host does not want it to run for the whole answer time
+ * (#3152), in seconds. `0` is not in the list — it is "the whole round", the
+ * default, and the wizard renders it as its own first chip.
+ */
+export const SAMPLE_DURATION_OPTIONS = [10, 15, 20, 30];
+
+/**
+ * The sample length a game with this answer time can actually run (#3152).
+ *
+ * A sample has to be one of the offered steps and strictly shorter than the
+ * round; server/game_views.py rejects anything else. Everything that does not
+ * qualify — an old blob, a step the host has since made impossible by
+ * shortening the round — becomes 0, "the whole round".
+ *
+ * @param {*} sample - stored or picked sample length in seconds
+ * @param {number} roundDuration - the answer time in seconds
+ * @returns {number} a valid sample length, or 0
+ */
+export function normalizeSampleDuration(sample, roundDuration) {
+    const seconds = Number(sample);
+    if (!SAMPLE_DURATION_OPTIONS.includes(seconds)) return 0;
+    if (!(seconds < Number(roundDuration))) return 0;
+    return seconds;
+}
+
+/**
  * Mirror of `VOID_ROUND_REASONS` in const.py: the optional reason chips under
  * "Do not score it" on the host's end-round card (#2646). Order is display
  * order. The server drops a reason it does not recognise, so a chip written out

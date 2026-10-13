@@ -220,6 +220,8 @@ export function updateRevealView(data) {
     // Issue #23: Show/hide intro round badge during REVEAL
     var introBadge = document.getElementById('intro-badge');
     if (introBadge) {
+        // #3152: the neutral "song over" look belongs to PLAYING only.
+        introBadge.classList.remove('arc-chip--sample-stopped');
         if (data.is_intro_round) {
             introBadge.classList.remove('hidden');
             introBadge.classList.add('intro-badge--stopped');

@@ -93,6 +93,7 @@ from typing import Any
 from custom_components.beatify.const import (
     ROUND_DURATION_MAX,
     ROUND_DURATION_MIN,
+    SAMPLE_DURATION_OPTIONS,
 )
 
 from .config import REMATCH_CARRYOVER_ATTRS, GameOptions
@@ -183,6 +184,18 @@ class GameSetupMixin(GameStateBase):
             raise ValueError(
                 f"Round duration must be between {ROUND_DURATION_MIN} "
                 f"and {ROUND_DURATION_MAX} seconds"
+            )
+
+        # #3152: the song sample is one of the offered steps and shorter than
+        # the round. The HTTP layer answers this with its own error; this is
+        # the backstop for every other caller.
+        if opts.sample_duration and (
+            opts.sample_duration not in SAMPLE_DURATION_OPTIONS
+            or opts.sample_duration >= opts.round_duration
+        ):
+            raise ValueError(
+                "Song sample length must be one of "
+                f"{SAMPLE_DURATION_OPTIONS} and shorter than the round duration"
             )
 
         # #1378: validate BEFORE mutating any state. Building the
@@ -359,6 +372,8 @@ class GameSetupMixin(GameStateBase):
         self._round_manager._intro_round_start_time = None
         self._round_manager._rounds_since_intro = 0
         self._round_manager._cancel_intro_timer()
+        self._round_manager._cancel_sample_timer()  # #3152
+        self.sample_stopped = False
 
         # Reset timer task for new game
         self.cancel_timer()

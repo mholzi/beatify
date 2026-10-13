@@ -1259,6 +1259,7 @@
         if (introBadge) {
             if (data.is_intro_round) {
                 introBadge.classList.remove('hidden');
+                introBadge.classList.remove('chip-badge--sample-stopped');
                 var badgeText = introBadge.querySelector('[data-i18n]');
                 if (data.intro_stopped) {
                     introBadge.classList.add('intro-badge--stopped');
@@ -1273,9 +1274,22 @@
                         badgeText.textContent = utils.t('game.introRound') || 'INTRO ROUND';
                     }
                 }
+            } else if (data.sample_stopped) {
+                // #3152: the host set a song length shorter than the answer
+                // time and it has run out. The speaker is silent on purpose;
+                // the same chip, in its stopped state, says so.
+                introBadge.classList.remove('hidden');
+                introBadge.classList.add('intro-badge--stopped');
+                introBadge.classList.add('chip-badge--sample-stopped');
+                var sampleText = introBadge.querySelector('[data-i18n]');
+                if (sampleText) {
+                    sampleText.setAttribute('data-i18n', 'game.sampleStopped');
+                    sampleText.textContent = utils.t('game.sampleStopped') || 'Song over · keep guessing';
+                }
             } else {
                 introBadge.classList.add('hidden');
                 introBadge.classList.remove('intro-badge--stopped');
+                introBadge.classList.remove('chip-badge--sample-stopped');
             }
         }
 

@@ -212,6 +212,12 @@ class GameStateSerializer:
             "is_intro_round": gs.is_intro_round,
             "intro_stopped": gs.intro_stopped,
             "intro_splash_pending": gs.intro_splash_pending,
+            # #3152: how long the song plays per round (0 = the whole round),
+            # and whether this round's sample has run out — the speaker is
+            # silent while the answer time is still running, which the TV and
+            # the phones say in one line.
+            "sample_duration": gs.sample_duration,
+            "sample_stopped": gs.sample_stopped,
             # #2337: the bounds the player's year slider must offer. The
             # markup shipped with max="2025" while 46 songs in the catalogue
             # carried year 2026 — those rounds could not be answered

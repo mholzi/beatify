@@ -172,6 +172,24 @@ class RoundManagerDelegationMixin(GameStateBase):
         self._round_manager.round_analytics = value
 
     @property
+    def sample_duration(self) -> int:
+        """Seconds the song plays per round, 0 = whole round (#3152)."""
+        return self._round_manager.sample_duration
+
+    @sample_duration.setter
+    def sample_duration(self, value: int) -> None:
+        self._round_manager.sample_duration = value
+
+    @property
+    def sample_stopped(self) -> bool:
+        """The round's sample ran out and the song was stopped (#3152)."""
+        return self._round_manager.sample_stopped
+
+    @sample_stopped.setter
+    def sample_stopped(self, value: bool) -> None:
+        self._round_manager.sample_stopped = value
+
+    @property
     def intro_mode_enabled(self) -> bool:
         """Intro mode enabled — delegated to RoundManager."""
         return self._round_manager.intro_mode_enabled
