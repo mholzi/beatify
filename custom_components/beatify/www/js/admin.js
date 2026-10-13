@@ -81,6 +81,7 @@ import {
     lobbyPlaylistPaths,
     adminJoinNameValid,
     isLibrarySong,
+    openSetupStepOne,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -151,7 +152,6 @@ import {
     initMediaPlayers,
     renderMediaPlayers,
     handleMediaPlayerSelect,
-    expandMediaPlayersSection,
 } from './admin/sections/media-players.js';
 
 // game-settings.js: chip/toggle wiring (language, timer, difficulty, bonus
@@ -803,10 +803,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // "Edit setup" re-opens the wizard at Step 1 (not the legacy admin sections).
         // The wizard re-hydrates all picks from localStorage, so the user sees
         // their current choices pre-selected and can change anything.
-        window.BeatifyHome.exit();
-        if (window.BeatifyWizard && typeof window.BeatifyWizard.show === 'function') {
-            window.BeatifyWizard.show(1);
-        }
+        openSetupStepOne(window);
     });
     document.getElementById('home-start-game')?.addEventListener('click', async () => {
         // #1122: Acquire the wake lock SYNCHRONOUSLY here, inside the click's
@@ -2108,16 +2105,15 @@ function showSetupError(message, action, detail) {
  * Start failed because the speaker is gone (#2269 / #2263).
  *
  * This used to be a transient toast: it named the problem, offered nothing, and
- * disappeared. The speaker list is not on the home card — it sits below the hero
- * behind a collapsed section header — so the host was left with a message that
- * had already vanished. Dock it above the Start button that failed and put the
- * speaker list one tap away.
+ * disappeared. Dock it above the Start button that failed and put the speaker
+ * list one tap away: wizard step 1 (#3160 — the legacy #media-players section
+ * is hidden in the home view, so it cannot be the target).
  * @param {string} message
  */
 function showSpeakerSetupError(message) {
     showSetupError(message, {
         label: (window.BeatifyI18n && BeatifyI18n.t('admin.selectMediaPlayer')) || 'Select Speaker',
-        onClick: expandMediaPlayersSection,
+        onClick: () => openSetupStepOne(window),
     });
 }
 
