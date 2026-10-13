@@ -1259,6 +1259,7 @@
         if (introBadge) {
             if (data.is_intro_round) {
                 introBadge.classList.remove('hidden');
+                introBadge.classList.remove('chip-badge--sample-stopped');
                 var badgeText = introBadge.querySelector('[data-i18n]');
                 if (data.intro_stopped) {
                     introBadge.classList.add('intro-badge--stopped');
@@ -1279,6 +1280,7 @@
                 // the same chip, in its stopped state, says so.
                 introBadge.classList.remove('hidden');
                 introBadge.classList.add('intro-badge--stopped');
+                introBadge.classList.add('chip-badge--sample-stopped');
                 var sampleText = introBadge.querySelector('[data-i18n]');
                 if (sampleText) {
                     sampleText.setAttribute('data-i18n', 'game.sampleStopped');
@@ -1287,6 +1289,7 @@
             } else {
                 introBadge.classList.add('hidden');
                 introBadge.classList.remove('intro-badge--stopped');
+                introBadge.classList.remove('chip-badge--sample-stopped');
             }
         }
 

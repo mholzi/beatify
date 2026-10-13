@@ -53,6 +53,7 @@ function read(chip) {
     return {
         shown: !chip.classList.contains('hidden'),
         stopped: chip.classList.contains('intro-badge--stopped'),
+        grey: chip.classList.contains('chip-badge--sample-stopped') || chip.classList.contains('arc-chip--sample-stopped'),
         text: chip.label.textContent,
         key: chip.label._attrs['data-i18n'],
     };
@@ -193,6 +194,7 @@ describe.each(SCREENS)('#3152 the song-over chip on the $name', ({ show }) => {
         expect(read(chip)).toEqual({
             shown: true,
             stopped: true,
+            grey: true,
             text: 'Song over · keep guessing',
             key: 'game.sampleStopped',
         });
@@ -216,23 +218,47 @@ describe.each(SCREENS)('#3152 the song-over chip on the $name', ({ show }) => {
     it('hides the chip again on the next round', () => {
         show(frame({ sample_stopped: true }));
         const chip = show(frame({ round: 5, sample_stopped: false }));
-        expect(read(chip)).toMatchObject({ shown: false, stopped: false });
+        expect(read(chip)).toMatchObject({ shown: false, stopped: false, grey: false });
+    });
+
+    it('uses the modifier of its own chip family, and only that one', () => {
+        const chip = show(frame({ sample_stopped: true }));
+        const tv = chip.classList.contains('chip-badge--sample-stopped');
+        const phone = chip.classList.contains('arc-chip--sample-stopped');
+        expect(tv !== phone).toBe(true);
+    });
+
+    it('drops the grey look when an intro round follows a song-over round', () => {
+        show(frame({ sample_stopped: true }));
+        const chip = show(frame({ round: 5, is_intro_round: true, intro_stopped: true, sample_stopped: false }));
+        expect(read(chip)).toMatchObject({ shown: true, stopped: true, grey: false, text: 'Intro complete!' });
     });
 
     it('leaves an intro round as it was: INTRO ROUND while the intro runs', () => {
         // The sample (10s) ended before the intro's own 15s.
         const chip = show(frame({ is_intro_round: true, intro_stopped: false, sample_stopped: true }));
-        expect(read(chip)).toEqual({ shown: true, stopped: false, text: 'INTRO ROUND', key: 'game.introRound' });
+        expect(read(chip)).toEqual({ shown: true, stopped: false, grey: false, text: 'INTRO ROUND', key: 'game.introRound' });
     });
 
     it('leaves an intro round as it was: "Intro complete!" afterwards', () => {
         const chip = show(frame({ is_intro_round: true, intro_stopped: true, sample_stopped: true }));
-        expect(read(chip)).toEqual({ shown: true, stopped: true, text: 'Intro complete!', key: 'game.introStopped' });
+        expect(read(chip)).toEqual({ shown: true, stopped: true, grey: false, text: 'Intro complete!', key: 'game.introStopped' });
     });
 });
 
 describe('#3152 the song-over line exists in every locale', () => {
     it.each(LOCALES)('%s', (code) => {
         expect(i18n[code].game.sampleStopped).toBe(EXPECTED[code]);
+    });
+});
+
+describe('#3152 the grey modifier wins over the intro tint', () => {
+    it.each([
+        ['dashboard.css', '.chip-badge.chip-badge--intro {', '.chip-badge.chip-badge--sample-stopped {'],
+        ['styles.css', '.arc-chip--intro {', '.arc-chip--sample-stopped {'],
+    ])('%s lists it after the intro rule', (file, intro, sample) => {
+        const css = readSource(`../css/${file}`);
+        expect(css.indexOf(intro)).toBeGreaterThan(-1);
+        expect(css.indexOf(sample)).toBeGreaterThan(css.indexOf(intro));
     });
 });

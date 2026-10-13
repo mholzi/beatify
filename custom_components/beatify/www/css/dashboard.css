@@ -1548,6 +1548,20 @@
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.28);
 }
+/* #3152: the song length the host set has run out. The intro chip element is
+   reused for the line; this turns it neutral, with the same values as the
+   host-stopped chip above. Listed after the intro rules so it wins. */
+.chip-badge.chip-badge--sample-stopped {
+    color: var(--color-text-neon-muted);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: none;
+    animation: none;
+}
+.chip-badge.chip-badge--sample-stopped .chip-badge-icon {
+    color: var(--color-text-neon-muted);
+    filter: none;
+}
 .chip-badge.chip-badge--closest {
     background: rgba(0, 245, 255, 0.15);
     border: 1px solid rgba(0, 245, 255, 0.5);

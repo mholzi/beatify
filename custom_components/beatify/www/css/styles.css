@@ -13375,6 +13375,16 @@ body.is-ingame .player-header { display: none; }
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.22);
 }
+/* #3152: the song length the host set has run out. Reuses the intro chip
+   element; neutral like the host-stopped chip above, and listed after
+   .arc-chip--intro so it wins. */
+.arc-chip--sample-stopped {
+    color: var(--color-text-neon-muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    animation: none;
+}
 
 /* Year XXL */
 .year-xxl {
