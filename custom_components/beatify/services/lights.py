@@ -248,6 +248,14 @@ class PartyLightsService:
                 )
         return service_data
 
+    def _non_wled_entities(self) -> list[str]:
+        """Entities that may receive raw colour commands.
+
+        Raw rgb_color destroys a WLED preset (#1390), so WLED strips are left
+        out; their configured presets are applied by set_phase() only.
+        """
+        return [e for e in self._entity_ids if e not in self._wled_entities]
+
     async def set_phase(self, phase: Any) -> None:
         """Apply phase-appropriate colors/brightness."""
         if not self._active or not self._entity_ids:
@@ -279,11 +287,11 @@ class PartyLightsService:
                 for entity_id in self._wled_entities:
                     await self._apply_wled(entity_id, preset_id)
             # Apply normal colors to non-WLED entities
-            non_wled = [e for e in self._entity_ids if e not in self._wled_entities]
+            non_wled = self._non_wled_entities()
             if non_wled:
-                phase_data = PHASE_COLORS.get(phase_name)
-                if phase_data:
-                    await self._apply(non_wled, dict(phase_data), transition=1.0)
+                service_data = self._phase_service_data(phase_name)
+                if service_data is not None:
+                    await self._apply(non_wled, service_data, transition=1.0)
         else:
             service_data = self._phase_service_data(phase_name)
             if service_data is None:
@@ -304,12 +312,21 @@ class PartyLightsService:
         if not rgb:
             return
 
+        # In WLED mode the strips keep their preset: a raw flash (and the raw
+        # restore afterwards) would replace it until the next phase change.
+        if self._light_mode == "wled":
+            entities = self._non_wled_entities()
+            if not entities:
+                return
+        else:
+            entities = self._entity_ids
+
         preset = INTENSITY_PRESETS.get(self._intensity, INTENSITY_PRESETS["medium"])
         flash_dur = preset["flash_duration"]
 
         # Flash on
         await self._apply(
-            self._entity_ids,
+            entities,
             {"rgb_color": rgb, "brightness": 255},
             transition=0.1,
         )
@@ -320,7 +337,7 @@ class PartyLightsService:
         # subtle mode this restores the gentle pre-game level, not full brightness.
         restore_data = self._phase_service_data(self._current_phase or "")
         if restore_data is not None:
-            await self._apply(self._entity_ids, restore_data, transition=0.3)
+            await self._apply(entities, restore_data, transition=0.3)
 
     async def start_beat_loop(self, bpm: int = 120) -> None:
         """Start a background beat-flash loop during PLAYING phase (#517)."""
@@ -343,8 +360,7 @@ class PartyLightsService:
         """
         beat = 60.0 / max(bpm, 1)
         # Only non-WLED entities pulse; WLED runs its own presets.
-        entities = [e for e in self._entity_ids if e not in self._wled_entities]
-        entities = entities[:BEAT_MAX_LIGHTS]
+        entities = self._non_wled_entities()[:BEAT_MAX_LIGHTS]
         beats_per_pulse = BEAT_MIN_BEATS_PER_PULSE
         if entities:
             needed = len(entities) / (BEAT_COMMANDS_PER_SECOND * beat)
@@ -381,7 +397,7 @@ class PartyLightsService:
         # cycle only drives raw rgb, so skip WLED entities to preserve their
         # configured END preset (#1390).
         if self._light_mode == "wled":
-            entities = [e for e in self._entity_ids if e not in self._wled_entities]
+            entities = self._non_wled_entities()
         else:
             entities = list(self._entity_ids)
         if not entities:

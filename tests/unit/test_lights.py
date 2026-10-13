@@ -582,6 +582,60 @@ class TestFlash:
         assert restore_call[0][2]["brightness"] == 153
 
     @pytest.mark.asyncio
+    async def test_flash_skips_wled_entities_in_wled_mode(self):
+        """Flash and restore must not send raw colour to a WLED strip (#3154)."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.wled_strip", "light.living_room"])
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        svc._current_phase = "PLAYING"
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.flash("gold")
+
+        calls = hass.services.async_call.call_args_list
+        assert len(calls) == 2  # flash + restore, both for the lamp only
+        for call in calls:
+            assert call[0][2]["entity_id"] == ["light.living_room"]
+
+    @pytest.mark.asyncio
+    async def test_flash_wled_only_setup_is_noop(self):
+        """With only WLED entities, flash sends nothing at all (#3154)."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.wled_strip"])
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        svc._current_phase = "PLAYING"
+        hass.services.async_call.reset_mock()
+
+        with patch("asyncio.sleep", new_callable=AsyncMock):
+            await svc.flash("gold")
+
+        hass.services.async_call.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_set_phase_wled_mode_non_wled_lamps_use_intensity(self):
+        """Non-WLED lamps in WLED mode honour the intensity setting (#3154)."""
+        hass = _make_hass()
+        svc = PartyLightsService(hass)
+        await svc.start(["light.wled_strip", "light.living_room"], intensity="subtle")
+        svc._light_mode = "wled"
+        svc._wled_entities = {"light.wled_strip"}
+        hass.services.async_call.reset_mock()
+
+        with patch.object(svc, "_apply_wled", new_callable=AsyncMock):
+            await svc.set_phase("PLAYING")
+
+        call = hass.services.async_call.call_args_list[-1]
+        assert call[0][2]["entity_id"] == ["light.living_room"]
+        assert (
+            call[0][2]["brightness"] == svc._phase_service_data("PLAYING")["brightness"]
+        )
+
+    @pytest.mark.asyncio
     async def test_flash_without_phase_does_not_restore(self):
         """Flash with no current phase should flash but skip restore."""
         hass = _make_hass()
