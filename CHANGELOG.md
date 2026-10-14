@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.4-rc3] - 2026-10-14
+
+Third candidate for 4.8.4, "One More Song": playlist data only on top of rc2, no code changes.
+
+### Changed
+- **YouTube links for `american-classics-country-heartland`**: all 66 songs now carry a
+  `uri_youtube_music` (#3181).
+- **One more Apple Music link in `salsa-y-merengue`** (#3182); the Deezer backfill found nothing new
+  there (520 of 531). Both playlists raised their `version`.
+
 ## [4.8.4-rc2] - 2026-10-13
 
 Second candidate for 4.8.4, "One More Song": the host can set how long the song plays, eight fixes
