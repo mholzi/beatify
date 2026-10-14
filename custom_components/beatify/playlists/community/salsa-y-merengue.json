@@ -1,6 +1,6 @@
 {
   "name": "Salsa y Merengue",
-  "version": "1.23",
+  "version": "1.24",
   "tags": [
     "salsa",
     "merengue",
@@ -4056,7 +4056,8 @@
       "fun_fact_nl": "\"Tu Pun Pun\" van El General, voor het eerst uitgebracht in 1991 op het album \"Estas Buena\".",
       "uri_deezer": "deezer://track/11897729",
       "fun_fact_it": "«Tu Pun Pun» di El General, pubblicata per la prima volta nel 1991 nell'album «Estas Buena».",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=fmytao8GUIA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fmytao8GUIA",
+      "uri_apple_music": "applemusic://track/210395308"
     },
     {
       "year": 1991,
