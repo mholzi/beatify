@@ -1,16 +1,16 @@
 # Beatify Provider-URI Coverage
-> Generated: 2026-09-28
+> Generated: 2026-10-15
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.4-rc3 (v4.8.3 + URI repairs in community/wiesn-party-hits.json, community/disney-hits-deutschland.json, community/iconic-movie-songs.json and community/ndw-neue-deutsche-welle.json, one Deezer URI added in community/salsa-y-merengue.json, URI repairs in disco-funk-classics.json; two playlists added after the count, community/james-bond-theme-songs.json (24 songs) and community/american-classics-country-heartland.json (66 songs, YouTube links added in rc3), one Apple Music URI added in community/salsa-y-merengue.json in rc3; the counts below are from 2026-09-28 and do not include them)
+> Catalogue state: v4.8.4 (70 playlists, 8,724 songs; recounted at release, including james-bond-theme-songs and american-classics-country-heartland)
 
 ## Summary
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
-| Apple | 8300 | 8634 | 96.1% |
-| Tidal | 5955 | 8634 | 69.0% |
-| Deezer | 8541 | 8634 | 98.9% |
-| YouTube | 8274 | 8634 | 95.8% |
+| Apple | 8391 | 8724 | 96.2% |
+| Tidal | 5939 | 8724 | 68.1% |
+| Deezer | 8631 | 8724 | 98.9% |
+| YouTube | 8453 | 8724 | 96.9% |
 
 ## Per-playlist coverage
 
@@ -18,16 +18,17 @@
 |---|---:|---:|---:|---:|---:|
 | 2000s-pop-anthems.json | 224 | 221 | 181 | 224 | 224 |
 | 40s-50s-classics.json | 154 | 154 | 151 | 154 | 154 |
-| 70s-hits.json | 211 | 207 | 169 | 211 | 205 |
+| 70s-hits.json | 211 | 207 | 163 | 211 | 205 |
 | 80er-hits.json | 267 | 266 | 232 | 266 | 265 |
 | 90er-hits.json | 158 | 154 | 108 | 158 | 142 |
 | community/100-greatest-rock-songs.json | 151 | 150 | 122 | 151 | 150 |
 | community/90s-2000s-hiphop-bangers.json | 40 | 40 | 40 | 40 | 40 |
+| community/american-classics-country-heartland.json | 66 | 66 | 0 | 65 | 66 |
 | community/anime-openings.json | 138 | 138 | 97 | 136 | 138 |
-| community/ballermann-party-hits.json | 189 | 188 | 189 | 188 | 189 |
+| community/ballermann-party-hits.json | 189 | 187 | 187 | 188 | 189 |
 | community/best-canadian-hits.json | 100 | 98 | 99 | 99 | 100 |
 | community/best-of-giraffenaffen.json | 26 | 26 | 26 | 26 | 26 |
-| community/bollywood-party-hits.json | 79 | 78 | 0 | 79 | 78 |
+| community/bollywood-party-hits.json | 79 | 78 | 0 | 79 | 79 |
 | community/british-invasion-britpop.json | 100 | 96 | 100 | 100 | 100 |
 | community/clasicos-disney-castellano.json | 64 | 47 | 0 | 37 | 16 |
 | community/clasicos-rock-en-espanol.json | 39 | 33 | 0 | 39 | 39 |
@@ -37,7 +38,7 @@
 | community/disney-hits-deutschland.json | 97 | 82 | 95 | 96 | 97 |
 | community/disney-latino.json | 54 | 54 | 0 | 38 | 40 |
 | community/divorced-dad-rock.json | 107 | 104 | 107 | 107 | 107 |
-| community/edm-anthems.json | 246 | 230 | 190 | 246 | 246 |
+| community/edm-anthems.json | 246 | 230 | 187 | 246 | 246 |
 | community/essential-alternative.json | 100 | 100 | 100 | 100 | 100 |
 | community/eurodance-90s.json | 100 | 97 | 98 | 98 | 100 |
 | community/fiesta-latina-90s.json | 50 | 50 | 50 | 50 | 50 |
@@ -45,34 +46,35 @@
 | community/funk-carioca.json | 20 | 19 | 20 | 20 | 20 |
 | community/gen-z-anthems.json | 30 | 30 | 30 | 30 | 30 |
 | community/greatest-metal-songs.json | 61 | 61 | 61 | 61 | 61 |
-| community/harder-styles.json | 190 | 182 | 181 | 190 | 190 |
+| community/harder-styles.json | 190 | 182 | 180 | 190 | 190 |
 | community/hitster-100-en-espanol.json | 127 | 127 | 127 | 127 | 127 |
 | community/hitster-100-francais.json | 100 | 92 | 96 | 98 | 100 |
 | community/hitster-brasil.json | 66 | 66 | 66 | 66 | 66 |
 | community/iconic-movie-songs.json | 72 | 72 | 71 | 72 | 72 |
+| community/james-bond-theme-songs.json | 24 | 24 | 0 | 24 | 24 |
 | community/koelner-karneval.json | 290 | 289 | 288 | 289 | 290 |
 | community/musica-colombiana-alegre.json | 32 | 32 | 0 | 32 | 32 |
 | community/musica-italiana.json | 115 | 115 | 0 | 112 | 115 |
-| community/ndw-neue-deutsche-welle.json | 50 | 46 | 50 | 49 | 50 |
+| community/ndw-neue-deutsche-welle.json | 50 | 46 | 49 | 49 | 50 |
 | community/polish-all-time-hits.json | 59 | 57 | 55 | 58 | 59 |
 | community/polish-hits-90s-00s.json | 92 | 87 | 90 | 91 | 92 |
 | community/polish-rock.json | 100 | 96 | 99 | 99 | 99 |
 | community/pure-pop-punk.json | 100 | 98 | 100 | 100 | 100 |
 | community/quebecois-1990-2020.json | 126 | 124 | 125 | 126 | 126 |
 | community/rock-rioplatense.json | 36 | 33 | 0 | 36 | 36 |
-| community/salsa-y-merengue.json | 531 | 515 | 0 | 519 | 369 |
+| community/salsa-y-merengue.json | 531 | 516 | 0 | 520 | 369 |
 | community/sanremo-vincitori.json | 68 | 64 | 0 | 68 | 68 |
 | community/schlager-klassiker.json | 193 | 186 | 96 | 190 | 193 |
 | community/schweizer-hits.json | 97 | 93 | 96 | 97 | 97 |
 | community/sommerklassiker.json | 60 | 60 | 60 | 60 | 60 |
-| community/south-africa-by-q.json | 89 | 77 | 0 | 89 | 0 |
+| community/south-africa-by-q.json | 89 | 77 | 0 | 89 | 88 |
 | community/tomorrowland-top-1000.json | 825 | 741 | 0 | 824 | 825 |
 | community/top100-allertijden-nederlandstalig.json | 104 | 100 | 96 | 101 | 104 |
-| community/trance-classics.json | 120 | 113 | 109 | 118 | 120 |
+| community/trance-classics.json | 120 | 114 | 109 | 118 | 120 |
 | community/vallenato-clasico.json | 41 | 38 | 0 | 41 | 22 |
 | community/wiesn-party-hits.json | 100 | 100 | 99 | 100 | 100 |
 | community/yacht-rock.json | 100 | 100 | 100 | 100 | 100 |
-| disco-funk-classics.json | 98 | 97 | 93 | 97 | 98 |
+| disco-funk-classics.json | 98 | 97 | 90 | 97 | 98 |
 | disney-classics.json | 69 | 69 | 69 | 69 | 69 |
 | eurovision-winners.json | 72 | 67 | 68 | 72 | 72 |
 | greatest-hits-of-all-time.json | 236 | 235 | 234 | 236 | 236 |
