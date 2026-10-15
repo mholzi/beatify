@@ -1,6 +1,6 @@
 {
   "name": "Sommerklassiker ☀️",
-  "version": "0.16",
+  "version": "0.17",
   "tags": [
     "summer",
     "pop",
@@ -1223,8 +1223,8 @@
         "gb": "applemusic://track/1447401620",
         "fr": "applemusic://track/1447401620",
         "es": "applemusic://track/1447401620",
-        "nl": "applemusic://track/1445025224",
-        "it": "applemusic://track/1445025224"
+        "nl": "applemusic://track/1447401626",
+        "it": "applemusic://track/1447401626"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=72UO0v5ESUo",
       "uri_tidal": "tidal://track/85666489",
@@ -1596,7 +1596,7 @@
       "uri_apple_music": "applemusic://track/1465751570",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/907493609",
-        "de": "applemusic://track/1465751571",
+        "de": "applemusic://track/1465751570",
         "gb": "applemusic://track/1465751570",
         "fr": "applemusic://track/886261660",
         "es": "applemusic://track/868190323",
