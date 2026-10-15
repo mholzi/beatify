@@ -829,6 +829,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.4 — One More Song 🎵
+- **The last song of the night gets played**: a game no longer ends one round early, most often on Music Assistant (#3116)
+- **The host decides how long each song plays** (10, 15, 20 or 30 s) while the round keeps running — thanks to @nirvdrum for the idea (#3152)
+- **The end screen settles down**: confetti and scrolling happen once, every award names its unit, and the last player standing gets a title (#3117, #3158)
+- **The points breakdown on the phone matches the score**, speed bonus and bets included (#3157)
+- **The intro-round "Start Round" button works on the admin page** — thanks to @aenkieh for the report (#3122)
+- **Two new playlists**: James Bond Theme Songs and American Classics · Country & Heartland (#3151, #3164)
+
 ### v4.8.3 — Wait for It ⚡
 - **The TV shows an "Intro Round!" card while the round waits for the host** — thanks to @aenkieh for pointing at it (#3095)
 - **A skipped intro round closes the "Waiting for host…" window on the guests' phones** (#3093)

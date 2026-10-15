@@ -4,20 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.8.4-rc3] - 2026-10-14
+## [4.8.4] - 2026-10-15
 
-Third candidate for 4.8.4, "One More Song": playlist data only on top of rc2, no code changes.
-
-### Changed
-- **YouTube links for `american-classics-country-heartland`**: all 66 songs now carry a
-  `uri_youtube_music` (#3181).
-- **One more Apple Music link in `salsa-y-merengue`** (#3182); the Deezer backfill found nothing new
-  there (520 of 531). Both playlists raised their `version`.
-
-## [4.8.4-rc2] - 2026-10-13
-
-Second candidate for 4.8.4, "One More Song": the host can set how long the song plays, eight fixes
-found by the weekly code review, and two new playlists on top of rc1.
+Patch on top of 4.8.3, "One More Song": the final round is played again, the host can set how long
+the song plays, eight fixes from the weekly code review, two new playlists and playlist repairs.
+rc3 passed the live test on 2026-10-15 (four games to the podium, no blocker; the one finding,
+#3185, is fixed below). #3186 was merged after rc3 and goes out without a live test of its own, on
+Markus' decision.
 
 ### Added
 - **The host can set how long the song plays, separately from the answer time** (#3152, #3179,
@@ -26,32 +19,7 @@ found by the weekly code review, and two new playlists on top of rc1.
   guessing" badge on the TV and the phones. The song plays again at the reveal. Intro rounds did
   not actually stop the speaker before; they now do.
 - **Two playlists**: `james-bond-theme-songs` (24 songs, #3149, #3151, YouTube links in #3177) and
-  `american-classics-country-heartland` (66 songs, #3164).
-
-### Fixed
-- **End-screen awards name their unit, and "last one standing" has a title** (#3158, #3178). One
-  helper builds the value text for all 14 awards on the TV and the phone, in six languages.
-- **The phone's points breakdown follows the server** (#3157, #3172): the speed bonus per player
-  and the bet multiplier now come from the reveal payload.
-- **`flash()` no longer overwrites a WLED preset** (#3154, #3173).
-- **"Select Speaker" in the start-failure banner opens the wizard, and the wizard can switch party
-  lights off again** (#3160, #3159, #3174).
-- **Saved library playlists load again**: `uri_ma_library` counts as a playable link (#3155, #3171).
-- **Library pool writes are serialised** (#3156, #3175), so a correction saved during a scan is no
-  longer overwritten by the scan's checkpoint.
-- **Switching the speaker of an existing lobby runs the same checks as starting a game** (#3153,
-  #3176).
-
-### Changed
-- **Playlist repairs**: three dead Tidal links removed and four Apple Music region entries
-  corrected in `disco-funk-classics` (#3166, #3167); "Guten Tag (Neuaufnahme 2018)" by Böhse Onkelz
-  corrected to 1988 in `deutschrock-best-of` (#3169, #3170). Each playlist's `version` went up with
-  its change.
-- Tooling: aiohttp test requirement, eslint and acorn bumped by Dependabot (#3161, #3162, #3163).
-
-## [4.8.4-rc1] - 2026-10-12
-
-First candidate for 4.8.4, "One More Song": three game fixes and playlist repairs on top of 4.8.3.
+  `american-classics-country-heartland` (66 songs, #3164, YouTube links in #3181).
 
 ### Fixed
 - **The final round is no longer skipped** (#3116, #3125, found by the weekly code review).
@@ -66,13 +34,32 @@ First candidate for 4.8.4, "One More Song": three game fixes and playlist repair
 - **The intro-round "Start Round" button works on the admin page** (#3122, #3123, reported by
   @aenkieh in #3027). The box faded out after about two seconds and never accepted a click, so a
   host without a phone could not start an intro round.
+- **End-screen awards name their unit, and "last one standing" has a title** (#3158, #3178). One
+  helper builds the value text for all 14 awards on the TV and the phone, in six languages.
+- **The phone's points breakdown follows the server** (#3157, #3172): the speed bonus per player
+  and the bet multiplier now come from the reveal payload.
+- **`flash()` no longer overwrites a WLED preset** (#3154, #3173).
+- **"Select Speaker" in the start-failure banner opens the wizard, and the wizard can switch party
+  lights off again** (#3160, #3159, #3174).
+- **Saved library playlists load again**: `uri_ma_library` counts as a playable link (#3155, #3171).
+- **Library pool writes are serialised** (#3156, #3175), so a correction saved during a scan is no
+  longer overwritten by the scan's checkpoint.
+- **Switching the speaker of an existing lobby runs the same checks as starting a game** (#3153,
+  #3176).
+- **Six country songs play outside the US** (#3185, #3186): `american-classics-country-heartland`
+  had US-only Apple Music IDs for six songs, which Music Assistant skipped silently on a German
+  account. They now carry IDs for de, gb, fr, es, nl, ca, au and (where available) it.
 
 ### Changed
 - **Playlist repairs**: dead or wrong links replaced in `wiesn-party-hits` (#3121, #3120, #3126),
-  `disney-hits-deutschland` (#3131, #3132), `iconic-movie-songs` (#3138, #3139) and
-  `ndw-neue-deutsche-welle` (#3140, #3141); "Long Cool Woman" by The Hollies corrected from 1972 to
-  1971 in `greatest-hits-of-all-time` (#3135, #3136); one Deezer link added in `salsa-y-merengue`
-  (#3137). Each playlist's `version` went up with its change.
+  `disney-hits-deutschland` (#3131, #3132), `iconic-movie-songs` (#3138, #3139),
+  `ndw-neue-deutsche-welle` (#3140, #3141) and `disco-funk-classics` (three dead Tidal links
+  removed, four Apple Music region entries corrected, #3166, #3167); "Long Cool Woman" by The
+  Hollies corrected from 1972 to 1971 in `greatest-hits-of-all-time` (#3135, #3136); "Guten Tag
+  (Neuaufnahme 2018)" by Böhse Onkelz corrected to 1988 in `deutschrock-best-of` (#3169, #3170);
+  one Deezer and one Apple Music link added in `salsa-y-merengue` (#3137, #3182). Each playlist's
+  `version` went up with its change.
+- Tooling: aiohttp test requirement, eslint and acorn bumped by Dependabot (#3161, #3162, #3163).
 
 ## [4.8.3] - 2026-10-05
 
