@@ -1,7 +1,7 @@
 {
   "name": "American Classics · Country & Heartland 🦃",
   "description": "What plays at an American family dinner: country, heartland rock, folk and Americana from Johnny Cash and Dolly Parton to Springsteen, Tom Petty, Shania Twain and Chris Stapleton. Years are original release years. Built for Thanksgiving.",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "country",
     "americana",
@@ -753,7 +753,7 @@
         "us": "applemusic://track/253356146"
       },
       "uri_deezer": "deezer://track/1042884",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=AneYVYWd7N8",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9GGQ2zId8JA",
       "uri_tidal": null
     },
     {
