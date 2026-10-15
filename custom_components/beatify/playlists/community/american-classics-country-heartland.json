@@ -1,7 +1,7 @@
 {
   "name": "American Classics · Country & Heartland 🦃",
   "description": "What plays at an American family dinner: country, heartland rock, folk and Americana from Johnny Cash and Dolly Parton to Springsteen, Tom Petty, Shania Twain and Chris Stapleton. Years are original release years. Built for Thanksgiving.",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "country",
     "americana",
@@ -223,7 +223,14 @@
       "isrc": "USBN19800111",
       "uri_apple_music": "applemusic://track/265407747",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/265407747"
+        "us": "applemusic://track/265407747",
+        "de": "applemusic://track/258611339",
+        "gb": "applemusic://track/258611339",
+        "fr": "applemusic://track/258611339",
+        "es": "applemusic://track/258611339",
+        "nl": "applemusic://track/258611339",
+        "ca": "applemusic://track/258611339",
+        "au": "applemusic://track/258611339"
       },
       "uri_deezer": "deezer://track/7410971",
       "uri_youtube_music": "https://music.youtube.com/watch?v=x-skFgrV59A",
@@ -847,7 +854,15 @@
       "isrc": "USRN19400384",
       "uri_apple_music": "applemusic://track/451644069",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/451644069"
+        "us": "applemusic://track/451644069",
+        "de": "applemusic://track/273166378",
+        "gb": "applemusic://track/273166378",
+        "fr": "applemusic://track/273166378",
+        "es": "applemusic://track/273166378",
+        "nl": "applemusic://track/273166378",
+        "it": "applemusic://track/273166378",
+        "ca": "applemusic://track/273166378",
+        "au": "applemusic://track/273166378"
       },
       "uri_deezer": "deezer://track/992937",
       "uri_youtube_music": "https://music.youtube.com/watch?v=UbxUSsFXYo4",
@@ -977,7 +992,15 @@
       "isrc": "USEA20100040",
       "uri_apple_music": "applemusic://track/70259578",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/70259578"
+        "us": "applemusic://track/70259578",
+        "de": "applemusic://track/872638018",
+        "gb": "applemusic://track/872638018",
+        "fr": "applemusic://track/872638018",
+        "es": "applemusic://track/872638018",
+        "nl": "applemusic://track/872638018",
+        "it": "applemusic://track/872638018",
+        "ca": "applemusic://track/872638018",
+        "au": "applemusic://track/872638018"
       },
       "uri_deezer": "deezer://track/3919443",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Kp9G0zkorio",
@@ -1469,7 +1492,15 @@
       "isrc": "USMC16946205",
       "uri_apple_music": "applemusic://track/607122092",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/607122092"
+        "us": "applemusic://track/607122092",
+        "de": "applemusic://track/1442878762",
+        "gb": "applemusic://track/1442878762",
+        "fr": "applemusic://track/1442878762",
+        "es": "applemusic://track/1442878762",
+        "nl": "applemusic://track/1442878762",
+        "it": "applemusic://track/1442878762",
+        "ca": "applemusic://track/1442878762",
+        "au": "applemusic://track/1442878762"
       },
       "uri_deezer": "deezer://track/2153341",
       "uri_youtube_music": "https://music.youtube.com/watch?v=f9eHp7JJgq8",
@@ -1651,7 +1682,15 @@
       "isrc": "USSM19917137",
       "uri_apple_music": "applemusic://track/169963249",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/169963249"
+        "us": "applemusic://track/169963249",
+        "de": "applemusic://track/251002253",
+        "gb": "applemusic://track/251002253",
+        "fr": "applemusic://track/251002253",
+        "es": "applemusic://track/251002253",
+        "nl": "applemusic://track/251002253",
+        "it": "applemusic://track/251002253",
+        "ca": "applemusic://track/251002253",
+        "au": "applemusic://track/251002253"
       },
       "uri_deezer": "deezer://track/856630",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1Osyw6Svv8U",
@@ -1677,7 +1716,15 @@
       "isrc": "UKU6H1973950",
       "uri_apple_music": "applemusic://track/1434915161",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1434915161"
+        "us": "applemusic://track/1434915161",
+        "de": "applemusic://track/1485036818",
+        "gb": "applemusic://track/1485036818",
+        "fr": "applemusic://track/1485036818",
+        "es": "applemusic://track/1485036818",
+        "nl": "applemusic://track/1485036818",
+        "it": "applemusic://track/1485036818",
+        "ca": "applemusic://track/1485036818",
+        "au": "applemusic://track/1485036818"
       },
       "uri_deezer": "deezer://track/910546232",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MbnrdCS57d0",
