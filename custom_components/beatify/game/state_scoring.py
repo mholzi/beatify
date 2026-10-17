@@ -236,8 +236,8 @@ class RoundScoringMixin(GameStateBase):
         except (KeyError, AttributeError, TypeError, ValueError) as err:
             _LOGGER.error("Failed to record round highlights: %s", err)
 
-        # Issue #23: Music continues playing through reveal for intro rounds.
-        # No resume needed — _intro_auto_stop no longer pauses playback.
+        # Issue #23 / #3199: an intro round's song is stopped after the intro
+        # by the sample stop; end_round resumes it for the reveal.
 
         # Calculate round analytics after scoring (Story 13.3)
         try:

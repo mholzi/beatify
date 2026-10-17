@@ -2967,7 +2967,13 @@ function showAdminPlayingView(data) {
     }
 
     // Countdown timer (big centered, player style)
-    startAdminCountdown(data.deadline, data.server_now_ms);
+    // #3199: a pending intro splash holds it, as on the TV (#3027) — the
+    // deadline in the frame is only a placeholder until the host confirms.
+    if (data.intro_splash_pending) {
+        holdAdminCountdown(data.round_duration);
+    } else {
+        startAdminCountdown(data.deadline, data.server_now_ms);
+    }
 
     // Submission tracker (player dot format)
     renderAdminSubmissionDots(data.players);
@@ -3155,6 +3161,21 @@ function _renderLibraryFixButton(adminSong, yearEl) {
 
 // Last revealed song title/artist, so the fix dialog opens pre-filled.
 var data_song_cache = null;
+
+// #3199: show the admin timer at rest (full round length, no warning colour)
+// without a running countdown. Mirrors the TV's showRestingTimer (#3027).
+function holdAdminCountdown(roundDuration) {
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+    var timerEl = document.getElementById('admin-timer');
+    if (!timerEl) return;
+    timerEl.classList.remove('timer--warning', 'timer--critical');
+    if (typeof roundDuration === 'number' && roundDuration > 0) {
+        timerEl.textContent = roundDuration;
+    }
+}
 
 function startAdminCountdown(deadline, serverNowMs) {
     // Correct for client clock skew: without this, a device clock ~20s off

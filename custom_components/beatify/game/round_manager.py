@@ -313,8 +313,9 @@ class RoundManager:
         """Auto-stop the intro after *remaining_seconds*.
 
         Sets ``intro_stopped = True`` so the frontend switches to the
-        guessing UI.  Does **not** stop media playback — music continues
-        through the reveal phase for intro rounds.
+        guessing UI.  Does **not** stop media playback itself: the speaker
+        is silenced by the sample stop (``sample_playback_seconds`` covers
+        intro rounds since #3199) and the reveal brings the song back.
         """
         try:
             await asyncio.sleep(remaining_seconds)
@@ -334,15 +335,20 @@ class RoundManager:
         """How long the song plays this round, or None for the whole round.
 
         The host's ``sample_duration`` applies to every round. An intro round
-        keeps its own ``INTRO_DURATION_SECONDS``; when both apply, the shorter
-        one decides how long the song is audible. A sample that is not shorter
-        than the round is no sample at all.
+        plays only its ``INTRO_DURATION_SECONDS`` (#3199) even without a sample;
+        when both apply, the shorter one decides how long the song is audible.
+        A limit that is not shorter than the round is no limit at all.
         """
-        if not self.sample_duration or self.sample_duration >= self.round_duration:
-            return None
-        limit = float(self.sample_duration)
+        limits: list[float] = []
+        if self.sample_duration:
+            limits.append(float(self.sample_duration))
         if self.is_intro_round:
-            limit = min(limit, float(INTRO_DURATION_SECONDS))
+            limits.append(float(INTRO_DURATION_SECONDS))
+        if not limits:
+            return None
+        limit = min(limits)
+        if limit >= self.round_duration:
+            return None
         return limit
 
     def sample_remaining_seconds(self) -> float | None:

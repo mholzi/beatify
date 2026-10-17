@@ -325,6 +325,14 @@ class TestSampleLength:
     def test_a_sample_as_long_as_the_round_is_no_sample(self):
         assert self._rm(round_duration=30, sample=30).sample_playback_seconds() is None
 
+    def test_an_intro_round_without_a_sample_plays_the_intro_length(self):
+        rm = self._rm(round_duration=45, sample=0, intro=True)
+        assert rm.sample_playback_seconds() == INTRO_DURATION_SECONDS
+
+    def test_an_intro_round_not_longer_than_the_intro_plays_whole(self):
+        rm = self._rm(round_duration=INTRO_DURATION_SECONDS, sample=0, intro=True)
+        assert rm.sample_playback_seconds() is None
+
     @pytest.mark.parametrize(
         ("sample", "expected"),
         [
@@ -542,22 +550,24 @@ class TestReveal:
 
 
 class TestIntroRounds:
-    async def test_without_a_sample_the_intro_round_is_what_it_was(self):
-        """Flag and broadcast after 15 s, and the speaker is left alone."""
+    async def test_without_a_sample_the_intro_song_is_cut_after_the_intro(self):
+        """#3199: flag and broadcast after 15 s, and the song stops with them."""
         clock = _Clock()
         state = _playing_round(clock, sample=0, round_duration=45)
         state.is_intro_round = True
         rm = state._round_manager
 
         state._arm_sample_stop()
-        assert rm._sample_stop_task is None
+        assert rm.sample_remaining_seconds() == pytest.approx(
+            float(INTRO_DURATION_SECONDS)
+        )
+        assert rm._sample_stop_task is not None
+        await _let_the_sample_run_out(state, clock)
+        state._media_player_service.stop.assert_awaited_once_with()
+        assert state.sample_stopped is True
 
         await rm._intro_auto_stop(0, state._on_round_end)
-
         assert state.intro_stopped is True
-        assert state.sample_stopped is False
-        state._media_player_service.stop.assert_not_awaited()
-        state._on_round_end.assert_awaited_once()
         await _cleanup(state)
 
     @pytest.mark.parametrize(

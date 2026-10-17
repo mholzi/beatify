@@ -302,6 +302,14 @@ class RoundLifecycleMixin(GameStateBase):
         self._ensure_media_player_service()
         will_defer_for_splash = self._prepare_intro_round(song)
 
+        # #3199: the previous round's song must not keep playing under the
+        # intro splash while the new one waits for the host.
+        if will_defer_for_splash and self._media_player_service:
+            try:
+                await self._media_player_service.stop()
+            except Exception as err:  # noqa: BLE001 — must not block the round start
+                _LOGGER.warning("Stop for intro splash failed: %s (#3199)", err)
+
         # Play song via media player (skip if deferred for intro splash)
         if self._media_player_service and not will_defer_for_splash:
             if not self._media_player_service.is_available():
