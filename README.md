@@ -16,7 +16,7 @@ Runs on your own Home Assistant.
 [![Version](https://img.shields.io/github/v/release/mholzi/beatify?style=for-the-badge&color=ff00ff&label=Version)](https://github.com/mholzi/beatify/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
+[**Website**](https://beatify-prod.web.app) • [**Get Started**](#setup-in-home-assistant) • [**Supported Speakers**](#supported-speakers) • [**See It In Action**](#the-experience)
 
 ---
 
