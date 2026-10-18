@@ -29,7 +29,8 @@ fixes and playlist repairs on top of 4.8.4.
   a sender for every admin WebSocket action.
 - **Playlist repairs**: wrong or broken links replaced in `american-classics-country-heartland`
   (#3189, #3190), `sommerklassiker` (#3191, #3192), `eurovision-winners` (#3193, #3194) and
-  `funk-carioca` (#3197, #3198). `hitster-100-francais` and `hitster-brasil` no longer carry the
+  `funk-carioca` (#3197, #3198), plus 45 dead links in `greatest-hits-of-all-time` (#3207, #3212).
+  `hitster-100-francais` and `hitster-brasil` no longer carry the
   Hitster name in tags, descriptions or fun facts; file names are unchanged so saved selections keep
   working (#3201). Each playlist's `version` went up with its change.
 - README links the new Beatify website (#3196).

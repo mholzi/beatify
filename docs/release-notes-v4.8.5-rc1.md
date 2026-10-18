@@ -16,7 +16,7 @@ If you turned on the Android Companion login bypass and reach Home Assistant thr
 
 ### 🎵 Playlist repairs
 
-Broken links are fixed in Eurovision Winners, Sommerklassiker, Funk Carioca and American Classics.
+Broken links are fixed in Eurovision Winners, Sommerklassiker, Funk Carioca, American Classics and Greatest Hits of All Time.
 
 ---
 

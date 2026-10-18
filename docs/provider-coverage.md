@@ -1,14 +1,14 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-10-15
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.5-rc1 (v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json and eurovision-winners.json; 70 playlists, 8,724 songs; no songs added or removed)
+> Catalogue state: v4.8.5-rc1 (v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json, eurovision-winners.json and greatest-hits-of-all-time.json; 70 playlists, 8,724 songs; no songs added or removed)
 
 ## Summary
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
 | Apple | 8391 | 8724 | 96.2% |
-| Tidal | 5939 | 8724 | 68.1% |
+| Tidal | 5924 | 8724 | 67.9% |
 | Deezer | 8631 | 8724 | 98.9% |
 | YouTube | 8453 | 8724 | 96.9% |
 
@@ -77,7 +77,7 @@
 | disco-funk-classics.json | 98 | 97 | 90 | 97 | 98 |
 | disney-classics.json | 69 | 69 | 69 | 69 | 69 |
 | eurovision-winners.json | 72 | 67 | 68 | 72 | 72 |
-| greatest-hits-of-all-time.json | 236 | 235 | 234 | 236 | 236 |
+| greatest-hits-of-all-time.json | 236 | 235 | 219 | 236 | 236 |
 | hits-2010s-2020s.json | 124 | 122 | 71 | 123 | 124 |
 | motown-soul-classics.json | 100 | 100 | 100 | 100 | 100 |
 | movies-100-greatest-themes.json | 257 | 240 | 156 | 252 | 257 |
