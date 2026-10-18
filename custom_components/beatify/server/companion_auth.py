@@ -26,6 +26,20 @@ close the "internet-reachable bypass" hole:
     HA's ``is_cloud_connection(hass)`` helper and refuse the bypass for
     cloud-tunnelled requests (defense-in-depth).
 
+#3202 hardening — reverse proxies. A reverse proxy on a private address
+(nginx add-on, Traefik, Caddy on the LAN) makes every forwarded internet
+request look like it came from the LAN. The bypass is therefore refused when
+
+  * the request carries a forwarding header (``X-Forwarded-For``,
+    ``Forwarded``, ``X-Real-IP``, ``X-Forwarded-Host``), or
+  * ``request.remote`` is one of HA's configured ``http.trusted_proxies``, or
+  * the request is a Home Assistant Cloud connection.
+
+This "via a proxy or tunnel" verdict is taken once, while the aiohttp request
+(and HA's request contextvar) still exists: per request on the HTTP path, and
+at the WebSocket upgrade for the WS path, where it is stored in the
+connection's request meta. Both paths share :func:`is_proxied_request`.
+
 Threat model: with the bypass enabled, the only added attack surface is
 "anyone on the local network who can spoof an HA-Android-Companion
 User-Agent gains the admin endpoints that #998 protects (lights inventory,
@@ -102,6 +116,92 @@ def is_companion_ua(user_agent: str | None) -> bool:
     return bool(_ANDROID_RE.search(user_agent)) and bool(_HA_APP_RE.search(user_agent))
 
 
+# #3202: headers a reverse proxy adds when it forwards a request. A real
+# Companion WebView talking straight to HA never sends any of them.
+_FORWARDING_HEADERS = (
+    "X-Forwarded-For",
+    "Forwarded",
+    "X-Real-IP",
+    "X-Forwarded-Host",
+)
+
+
+def _has_forwarding_headers(request: web.Request) -> bool:
+    """Return True if ``request`` carries any reverse-proxy forwarding header."""
+    headers = request.headers
+    return any(name in headers for name in _FORWARDING_HEADERS)
+
+
+def _trusted_proxy_networks(
+    hass: HomeAssistant,
+) -> list[ipaddress.IPv4Network | ipaddress.IPv6Network]:
+    """Return HA's configured ``http.trusted_proxies`` as networks.
+
+    The http integration keeps the parsed list on ``hass.http.trusted_proxies``.
+    A missing integration, attribute or unparsable entry is skipped — an
+    install without ``trusted_proxies`` simply has none.
+    """
+    http = getattr(hass, "http", None)
+    raw = getattr(http, "trusted_proxies", None)
+    if not isinstance(raw, (list, tuple, set, frozenset)):
+        return []
+    networks: list[ipaddress.IPv4Network | ipaddress.IPv6Network] = []
+    for entry in raw:
+        if isinstance(entry, (ipaddress.IPv4Network, ipaddress.IPv6Network)):
+            networks.append(entry)
+            continue
+        try:
+            networks.append(ipaddress.ip_network(str(entry), strict=False))
+        except ValueError:
+            continue
+    return networks
+
+
+def _is_trusted_proxy(remote: str | None, hass: HomeAssistant) -> bool:
+    """Return True if ``remote`` falls inside HA's ``trusted_proxies``."""
+    if not isinstance(remote, str) or not remote:
+        return False
+    try:
+        ip = ipaddress.ip_address(remote)
+    except ValueError:
+        return False
+    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped is not None:
+        ip = ip.ipv4_mapped
+    return any(
+        ip.version == net.version and ip in net for net in _trusted_proxy_networks(hass)
+    )
+
+
+def _is_cloud_connection(hass: HomeAssistant) -> bool:
+    """Return True if the current request is a Home Assistant Cloud connection.
+
+    ``is_cloud_connection`` reads HA's request contextvar, so this is only
+    meaningful while the aiohttp request is being handled. Lazily imported
+    because the cloud component may be absent.
+    """
+    try:
+        from homeassistant.components.cloud import is_cloud_connection
+
+        return bool(is_cloud_connection(hass))
+    except Exception:  # noqa: BLE001 — cloud component unavailable / not a cloud context
+        return False
+
+
+def is_proxied_request(request: web.Request, hass: HomeAssistant) -> bool:
+    """Return True if ``request`` reached HA through a proxy or tunnel (#3202).
+
+    True when any forwarding header is present, when ``request.remote`` is one
+    of HA's ``trusted_proxies``, or when the request is a Home Assistant Cloud
+    connection. Any of these means ``request.remote`` does not tell us where
+    the client really is, so the Companion bypass must not apply.
+    """
+    return (
+        _has_forwarding_headers(request)
+        or _is_trusted_proxy(request.remote, hass)
+        or _is_cloud_connection(hass)
+    )
+
+
 def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> bool:
     """Return True if an HTTP request comes from a trusted HA Android Companion.
 
@@ -109,11 +209,10 @@ def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> b
       0. The ``enable_companion_auth_bypass`` option is ON (default OFF). If the
          bypass is disabled, this returns False immediately — no UA/IP is ever
          trusted.
-      1. The request is NOT a Home Assistant Cloud (Nabu Casa) tunnelled
-         request. snitun terminates locally and would otherwise reach us from
-         127.0.0.1; loopback removal (see ``_PRIVATE_NETS``) is the primary
-         structural defense, this ``is_cloud_connection`` check is
-         defense-in-depth for the HTTP path.
+      1. The request did NOT come through a proxy or tunnel (#3202, see
+         :func:`is_proxied_request`): no forwarding headers, ``remote`` is not
+         one of HA's ``trusted_proxies``, and it is not a Home Assistant Cloud
+         (Nabu Casa) connection.
       2. User-Agent matches the HA Android Companion regex.
       3. Source IP is private (RFC1918 / ULA; loopback excluded — request did
          not cross the public internet and did not arrive via a local tunnel).
@@ -124,18 +223,16 @@ def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> b
     if not hass.data.get(DOMAIN, {}).get("companion_auth_bypass_enabled", False):
         return False
 
-    # #1357 defense-in-depth: refuse the bypass for Nabu Casa cloud-tunnelled
-    # requests. snitun terminates the tunnel locally, so request.remote would
-    # be 127.0.0.1 — loopback removal already blocks that, but the cloud helper
-    # also catches reverse-proxy/forwarded cases where remote was rewritten to
-    # a private IP. Lazily imported because the cloud component may be absent.
-    try:
-        from homeassistant.components.cloud import is_cloud_connection
-
-        if is_cloud_connection(hass):
-            return False
-    except Exception:  # noqa: BLE001 — cloud component unavailable / not a cloud context
-        pass
+    # #1357 / #3202: refuse the bypass for anything that came through a proxy
+    # or tunnel (forwarding headers, HA trusted_proxies, Nabu Casa). Behind a
+    # reverse proxy on a private IP, request.remote is the proxy's LAN address
+    # and says nothing about the real client.
+    if is_proxied_request(request, hass):
+        _WIRE_LOGGER.debug(
+            "[Companion-Debug] HTTP path=%s proxied=True (bypass refused)",
+            request.path,
+        )
+        return False
 
     ua = request.headers.get("User-Agent")
     remote = request.remote
@@ -163,12 +260,13 @@ def is_companion_trusted_meta(meta: dict | None, hass: HomeAssistant) -> bool:
     same trust decision.
 
     #1357: same opt-in gate first — if the bypass is disabled, never trust.
-    Unlike the HTTP path, we do NOT call ``is_cloud_connection`` here: that
-    helper reads a request-scoped contextvar that is unreliable from a WS
-    message handler (the message arrives long after the HTTP upgrade, off the
-    original request context). We therefore rely on the enabled-gate plus the
-    loopback removal in ``_PRIVATE_NETS`` (snitun/proxy requests arrive from
-    127.0.0.1, which is no longer trusted) as the defense for the WS path.
+
+    #3202: the proxy/cloud verdict cannot be taken here — HA's request
+    contextvar is gone by the time WS messages arrive. It is taken once at the
+    HTTP upgrade by :func:`extract_request_meta` (the same
+    :func:`is_proxied_request` as the HTTP path) and carried as
+    ``meta["proxied"]``. Meta without that key counts as proxied, so the WS
+    path fails closed.
     """
     # #1357 gate: the whole bypass is opt-in and OFF by default.
     if not hass.data.get(DOMAIN, {}).get("companion_auth_bypass_enabled", False):
@@ -176,6 +274,11 @@ def is_companion_trusted_meta(meta: dict | None, hass: HomeAssistant) -> bool:
 
     if not isinstance(meta, dict):
         _WIRE_LOGGER.debug("[Companion-Debug] WS meta=None (no signature collected)")
+        return False
+    if meta.get("proxied", True) is not False:
+        _WIRE_LOGGER.debug(
+            "[Companion-Debug] WS proxied=%r (bypass refused)", meta.get("proxied")
+        )
         return False
     ua = meta.get("ua")
     remote = meta.get("remote")
@@ -230,9 +333,17 @@ def is_authorized_http(request: web.Request, hass: HomeAssistant) -> bool:
     return is_companion_trusted_request(request, hass)
 
 
-def extract_request_meta(request: web.Request) -> dict:
-    """Pull the bits of an HTTP request the WS handler needs to re-evaluate trust."""
+def extract_request_meta(request: web.Request, hass: HomeAssistant) -> dict:
+    """Pull the bits of an HTTP request the WS handler needs to re-evaluate trust.
+
+    Called at the WebSocket upgrade, while the aiohttp request and HA's request
+    contextvar still exist. ``proxied`` carries the #3202 proxy/cloud verdict
+    so :func:`is_companion_trusted_meta` uses the same decision as the HTTP
+    path. The opt-in gate is still checked per message, so toggling the
+    option takes effect without a reconnect.
+    """
     return {
         "ua": request.headers.get("User-Agent"),
         "remote": request.remote,
+        "proxied": is_proxied_request(request, hass),
     }

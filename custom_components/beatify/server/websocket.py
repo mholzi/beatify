@@ -17,6 +17,7 @@ from custom_components.beatify.const import (
     LOBBY_DISCONNECT_GRACE_PERIOD,
     MAX_GUESS_LEN,
 )
+from custom_components.beatify.server.companion_auth import extract_request_meta
 from custom_components.beatify.server.serializers import (
     REDACTED_PLACEHOLDER,
     build_state_message,
@@ -290,12 +291,11 @@ class BeatifyWebSocketHandler:
         ws = web.WebSocketResponse(heartbeat=self.HEARTBEAT_INTERVAL)
         # Stash the request's UA + remote so ws_handlers._is_ha_authenticated
         # can re-evaluate the HA Android Companion trust signature on the
-        # admin_connect message. Scoped per-connection (#1131).
-        ua_at_upgrade = request.headers.get("User-Agent")
-        ws.beatify_request_meta = {
-            "ua": ua_at_upgrade,
-            "remote": request.remote,
-        }
+        # admin_connect message. Scoped per-connection (#1131). #3202: the
+        # proxy/cloud verdict is taken here, while the request still exists,
+        # and travels in the meta so the WS path shares the HTTP decision.
+        ws.beatify_request_meta = extract_request_meta(request, self.hass)
+        ua_at_upgrade = ws.beatify_request_meta["ua"]
         await ws.prepare(request)
 
         self.connections.add(ws)
