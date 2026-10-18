@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.26",
+  "version": "2.27",
   "tags": [
     "classics",
     "top-hits",
@@ -43,9 +43,8 @@
       "awards_fr": [
         "Grammy Hall of Fame (2004)"
       ],
-      "uri_apple_music": "applemusic://track/1440650711",
+      "uri_apple_music": "applemusic://track/6781027645",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fJ9rUzIMcZQ",
-      "uri_tidal": "tidal://track/21844140",
       "uri_deezer": "deezer://track/9997018",
       "fun_fact_nl": "Bohemian Rhapsody werd aanvankelijk afgewezen door platenmaatschappijen die dachten dat een opera-rocknummer van 6 minuten nooit op de radio zou komen. Freddie Mercury spendeerde drie weken aan het opnemen van de complexe vocale harmonieën, met 180 afzonderlijke overdubs. Het werd het kenmerkende nummer van Queen.",
       "awards_nl": [
@@ -56,13 +55,13 @@
       ],
       "isrc": "GBUM71029604",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1842449358",
         "de": "applemusic://track/6781080302",
         "gb": "applemusic://track/6781027645",
         "fr": "applemusic://track/6781027645",
         "es": "applemusic://track/6781027645",
         "nl": "applemusic://track/6781027645",
-        "it": "applemusic://track/6781080302"
+        "it": "applemusic://track/6781080302",
+        "us": null
       }
     },
     {
@@ -612,9 +611,8 @@
       "awards_fr": [
         "American Music Award (1981)"
       ],
-      "uri_apple_music": "applemusic://track/1440650719",
+      "uri_apple_music": "applemusic://track/6781027662",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rY0WxgSXdEE",
-      "uri_tidal": "tidal://track/21844141",
       "uri_deezer": "deezer://track/12206946",
       "fun_fact_nl": "Another One Bites the Dust werd aanvankelijk tegengewerkt door het management van Queen die het te disco vond. Michael Jackson moedigde de band persoonlijk aan om het als single uit te brengen. John Deacons baslijn was geïnspireerd op Chic's 'Good Times' en werd een wereldwijd fenomeen.",
       "awards_nl": [
@@ -625,13 +623,13 @@
       ],
       "isrc": "GBUM71029605",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440650719",
         "de": "applemusic://track/6781080305",
         "gb": "applemusic://track/6781027662",
         "fr": "applemusic://track/6781080305",
         "es": "applemusic://track/6781027662",
         "nl": "applemusic://track/6781075748",
-        "it": "applemusic://track/6781076397"
+        "it": "applemusic://track/6781076397",
+        "us": null
       }
     },
     {
@@ -1018,9 +1016,8 @@
       "awards_fr": [
         "Grammy Hall of Fame (2009)"
       ],
-      "uri_apple_music": "applemusic://track/1440651281",
+      "uri_apple_music": "applemusic://track/6781081102",
       "uri_youtube_music": "https://music.youtube.com/watch?v=04854XqcfCY",
-      "uri_tidal": "tidal://track/21844156",
       "uri_deezer": "deezer://track/67503808",
       "fun_fact_nl": "Het is wetenschappelijk bewezen dat We Are the Champions het aanstekelijkste liedje is dat ooit is geschreven, volgens een onderzoek van Goldsmiths University. Freddie Mercury schreef het als een volkslied voor publieksparticipatie. Het wordt al tientallen jaren door sportteams wereldwijd gebruikt als overwinningslied.",
       "awards_nl": [
@@ -1031,13 +1028,13 @@
       ],
       "isrc": "GBUM71029619",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440646546",
         "de": "applemusic://track/6781080744",
         "gb": "applemusic://track/6781081102",
         "fr": "applemusic://track/6781080744",
         "es": "applemusic://track/6781081102",
         "nl": "applemusic://track/6781080744",
-        "it": "applemusic://track/6781027708"
+        "it": "applemusic://track/6781027708",
+        "us": null
       }
     },
     {
@@ -1355,9 +1352,8 @@
       "awards_fr": [
         "Grammy Hall of Fame (2009)"
       ],
-      "uri_apple_music": "applemusic://track/1440651216",
+      "uri_apple_music": "applemusic://track/6781081101",
       "uri_youtube_music": "https://music.youtube.com/watch?v=-tJYN-eG1zk",
-      "uri_tidal": "tidal://track/6836313",
       "uri_deezer": "deezer://track/12206933",
       "fun_fact_nl": "De iconische stomp-stomp-clap beat van We Will Rock You werd ontworpen door Brian May om te worden uitgevoerd door stadionpubliek. May wilde iets creëren dat 'zelfs een stadion vol mensen kon doen'. Het nummer wordt tot op de dag van vandaag bij vrijwel elk sportevenement wereldwijd gespeeld.",
       "awards_nl": [
@@ -1368,13 +1364,13 @@
       ],
       "isrc": "GBUM71029618",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1834502336",
         "de": "applemusic://track/6781081101",
         "gb": "applemusic://track/6781081101",
         "fr": "applemusic://track/6781081101",
         "es": "applemusic://track/6781027660",
         "nl": "applemusic://track/6781081101",
-        "it": "applemusic://track/6781080737"
+        "it": "applemusic://track/6781080737",
+        "us": null
       }
     },
     {
@@ -2101,7 +2097,7 @@
       "fun_fact_fr": "YMCA a été écrite par Jacques Morali après sa visite d'un YMCA à New York, qu'il trouvait formidable pour les jeunes. La chanson des Village People est devenue un hymne gay et un classique du disco. Les célèbres mouvements de bras avec les lettres ont été inventés par le public, et non chorégraphiés.",
       "uri_apple_music": "applemusic://track/1443926626",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CS9OO0S5w2k",
-      "uri_tidal": "tidal://track/31895290",
+      "uri_tidal": "tidal://track/35286168",
       "uri_deezer": "deezer://track/11133258",
       "fun_fact_nl": "YMCA werd geschreven door Jacques Morali nadat hij een YMCA in New York had bezocht en het een geweldige plek vond voor jonge mensen om rond te hangen. Het nummer van de Village People werd een homo-hymne en discoklassieker. De beroemde armbewegingen werden door het publiek bedacht, niet gechoreografeerd.",
       "awards_nl": [],
@@ -2329,7 +2325,6 @@
       "fun_fact_es": "I Love Rock 'n' Roll fue grabada originalmente por Arrows en 1975. Joan Jett los vio interpretarla en la televisión británica y quedó obsesionada con la canción. Su versión se convirtió en uno de los mayores éxitos de principios de los 80 y definió su carrera como la reina de la actitud del rock and roll.",
       "fun_fact_fr": "I Love Rock 'n' Roll a été enregistrée à l'origine par Arrows en 1975. Joan Jett les a vus la jouer à la télévision britannique et en est tombée obsédée. Sa version est devenue l'un des plus grands succès du début des années 80 et a défini sa carrière de reine de l'attitude rock'n'roll.",
       "uri_apple_music": "applemusic://track/1871187077",
-      "uri_tidal": "tidal://track/94089523",
       "uri_deezer": "deezer://track/545992732",
       "fun_fact_nl": "I Love Rock 'n' Roll werd oorspronkelijk opgenomen door Arrows in 1975. Joan Jett zag het optreden op de Britse tv en raakte geobsedeerd door het nummer. Haar versie werd een van de grootste hits van de vroege jaren 80 en definieerde haar carrière als de koningin van de rock-'n-roll attitude.",
       "awards_nl": [],
@@ -2559,21 +2554,20 @@
       "fun_fact_de": "Somebody to Love war Queens Hommage an Gospel-Musik mit über 100 Gesangs-Overdubs. Freddie Mercury wurde von Aretha Franklins Gospel-beeinflussten Auftritten inspiriert. Der Song zeigt Queens unglaubliche Harmonien und Mercurys Vier-Oktaven-Stimmumfang in absoluter Perfektion.",
       "fun_fact_es": "Somebody to Love fue el tributo de Queen a la música gospel, con más de 100 sobregrabaciones vocales. Freddie Mercury se inspiró en las interpretaciones influenciadas por el gospel de Aretha Franklin. La canción muestra las increíbles armonías de Queen y el rango vocal de cuatro octavas de Mercury en su máxima expresión.",
       "fun_fact_fr": "Somebody to Love est l'hommage de Queen à la musique gospel, avec plus de 100 overdubs vocaux. Freddie Mercury s'est inspiré des performances gospel d'Aretha Franklin. Le morceau met en lumière les harmonies extraordinaires de Queen et la tessiture de quatre octaves de Mercury à son sommet absolu.",
-      "uri_apple_music": "applemusic://track/1440651012",
+      "uri_apple_music": "applemusic://track/6781027364",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kijpcUv-b8M",
-      "uri_tidal": "tidal://track/21844149",
       "uri_deezer": "deezer://track/568120932",
       "fun_fact_nl": "Somebody to Love was Queen's eerbetoon aan gospelmuziek, met meer dan 100 vocale overdubs. Freddie Mercury werd geïnspireerd door de gospelachtige optredens van Aretha Franklin. Het nummer laat de ongelooflijke harmonieën van Queen horen en Mercury's vocale bereik van vier octaven op zijn best.",
       "awards_nl": [],
       "isrc": "GBUM71029613",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440743586",
         "de": "applemusic://track/6781080944",
         "gb": "applemusic://track/6781027364",
         "fr": "applemusic://track/6781027364",
         "es": "applemusic://track/6781027364",
         "nl": "applemusic://track/6781080944",
-        "it": "applemusic://track/6781027364"
+        "it": "applemusic://track/6781027364",
+        "us": null
       }
     },
     {
@@ -2773,21 +2767,20 @@
       "fun_fact_de": "Don't Stop Me Now wurde von Freddie Mercury während einer besonders hedonistischen Phase seines Lebens geschrieben. Andere Bandmitglieder mochten es zunächst nicht, weil es Exzess förderte. 2020 nannte eine wissenschaftliche Studie es aufgrund von Tempo, Text und Tonart den 'glücklichsten Song aller Zeiten'. Mercurys Lieblings-Queen-Song.",
       "fun_fact_es": "Don't Stop Me Now fue escrita por Freddie Mercury durante un período particularmente hedonista de su vida. Otros miembros de la banda inicialmente no les gustó porque promovía el exceso. En 2020, un estudio científico la nombró la 'canción más feliz de todos los tiempos' basándose en tempo, letra y tonalidad. La canción favorita de Queen de Mercury.",
       "fun_fact_fr": "Don't Stop Me Now a été écrite par Freddie Mercury durant une période particulièrement hédoniste de sa vie. Les autres membres du groupe ne l'aimaient pas au départ car elle glorifiait l'excès. En 2020, une étude scientifique l'a désignée « chanson la plus joyeuse jamais écrite » d'après son tempo, ses paroles et sa tonalité. C'était la chanson préférée de Mercury parmi celles de Queen.",
-      "uri_apple_music": "applemusic://track/1440650733",
+      "uri_apple_music": "applemusic://track/6781080941",
       "uri_youtube_music": "https://music.youtube.com/watch?v=HgzGwKwLmgM",
-      "uri_tidal": "tidal://track/6851486",
       "uri_deezer": "deezer://track/12209331",
       "fun_fact_nl": "Don't Stop Me Now werd geschreven door Freddie Mercury tijdens een bijzonder hedonistische periode van zijn leven. Andere bandleden hadden er aanvankelijk een hekel aan omdat het overdaad zou bevorderen. In 2020 werd het in een wetenschappelijke studie het 'gelukkigste nummer ooit' genoemd op basis van tempo, tekst en toonsoort. Het favoriete Queen-nummer van Mercury.",
       "awards_nl": [],
       "isrc": "GBUM71029610",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1494536053",
         "de": "applemusic://track/6781079522",
         "gb": "applemusic://track/6781080941",
         "fr": "applemusic://track/6781080941",
         "es": "applemusic://track/6781079522",
         "nl": "applemusic://track/6781079522",
-        "it": "applemusic://track/6781079518"
+        "it": "applemusic://track/6781079518",
+        "us": null
       }
     },
     {
@@ -3590,7 +3583,6 @@
       "fun_fact_fr": "Narcotic a propulsé le groupe allemand Liquido sur la scène internationale. Le riff de guitare accrocheur et les paroles directes sur l'addiction en ont fait un classique du rock alternatif de la fin des années 90. Le titre a dominé les charts à travers toute l'Europe et reste un favori nostalgique pour les amateurs de rock des années 90.",
       "uri_apple_music": "applemusic://track/1857765665",
       "uri_youtube_music": "https://music.youtube.com/watch?v=0W6J01rBU6I",
-      "uri_tidal": "tidal://track/489946237",
       "uri_deezer": "deezer://track/3776251662",
       "fun_fact_nl": "Narcotic maakte de Duitse band Liquido internationaal bekend. Het aanstekelijke gitaarrifje en de duidelijke tekst over verslaving maakten van het nummer een alternatief rocknummer aan het eind van de jaren 90. Het nummer stond bovenaan de hitlijsten in heel Europa en blijft een nostalgische favoriet voor fans van rockmuziek uit de jaren 90.",
       "awards_nl": [],
@@ -3744,21 +3736,20 @@
       "fun_fact_de": "The Show Must Go On wurde aufgenommen, als Freddie Mercury schwer an AIDS erkrankt war. Mercury trank Berichten zufolge Wodka, um seine Schmerzen während der Aufnahme zu betäuben, und lieferte dann eine der kraftvollsten Gesangsdarbietungen des Rock ab. Brian May sagte, er wisse nicht, wie Mercury es physisch schaffte, zu singen.",
       "fun_fact_es": "The Show Must Go On fue grabada mientras Freddie Mercury estaba gravemente enfermo de SIDA. Según los informes, Mercury bebió vodka para adormecer su dolor durante la grabación, luego entregó una de las interpretaciones vocales más poderosas del rock. Brian May dijo que no sabía cómo Mercury físicamente logró cantarla.",
       "fun_fact_fr": "The Show Must Go On a été enregistrée alors que Freddie Mercury était gravement malade du sida. Mercury buvait de la vodka pour supporter la douleur pendant l'enregistrement, avant de livrer l'une des performances vocales les plus puissantes du rock. Brian May a confié ne pas comprendre comment Mercury avait physiquement réussi à chanter.",
-      "uri_apple_music": "applemusic://track/1440630994",
+      "uri_apple_music": "applemusic://track/6781081188",
       "uri_youtube_music": "https://music.youtube.com/watch?v=t99KH0TR-J4",
-      "uri_tidal": "tidal://track/96583647",
       "uri_deezer": "deezer://track/568121132",
       "fun_fact_nl": "The Show Must Go On werd opgenomen terwijl Freddie Mercury ernstig ziek was door AIDS. Naar verluidt dronk Mercury wodka om zijn pijn te verdoven tijdens de opnames, waarna hij een van de krachtigste zangprestaties van de rock bracht. Brian May zei dat hij niet wist hoe Mercury het fysiek voor elkaar kreeg om het te zingen.",
       "awards_nl": [],
       "isrc": "GBUM71106221",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1699722786",
         "de": "applemusic://track/6781081188",
         "gb": "applemusic://track/6781081188",
         "fr": "applemusic://track/6781081191",
         "es": "applemusic://track/6781027712",
         "nl": "applemusic://track/6781027712",
-        "it": "applemusic://track/6781078887"
+        "it": "applemusic://track/6781078887",
+        "us": null
       }
     },
     {
@@ -3837,21 +3828,20 @@
       "fun_fact_de": "Under Pressure entstand während einer spontanen Jam-Session zwischen Queen und David Bowie. Die berühmte Basslinie wurde von John Deacon gespielt. Bowie und Mercury gerieten Berichten zufolge über die kreative Kontrolle aneinander und nahmen ihre Gesangsstimmen getrennt auf. Der Song wurde zu einer wegweisenden Zusammenarbeit der Rockgeschichte.",
       "fun_fact_es": "Under Pressure fue creada durante una sesión de jam improvisada entre Queen y David Bowie. La famosa línea de bajo fue tocada por John Deacon. Bowie y Mercury supuestamente chocaron por el control creativo, grabando cada uno sus voces por separado. La canción se convirtió en una colaboración histórica en la historia del rock.",
       "fun_fact_fr": "Under Pressure est née d'une jam session improvisée entre Queen et David Bowie. La célèbre ligne de basse a été jouée par John Deacon. Bowie et Mercury se seraient affrontés sur le contrôle créatif, chacun enregistrant ses voix séparément. Le titre est devenu une collaboration historique dans les annales du rock.",
-      "uri_apple_music": "applemusic://track/1440810475",
+      "uri_apple_music": "applemusic://track/1255089803",
       "uri_youtube_music": "https://music.youtube.com/watch?v=a01QQZyl-_I",
-      "uri_tidal": "tidal://track/6923045",
       "uri_deezer": "deezer://track/12274786",
       "fun_fact_nl": "Under Pressure ontstond tijdens een geïmproviseerde jamsessie tussen Queen en David Bowie. De beroemde baslijn werd gespeeld door John Deacon. Bowie en Mercury hadden naar verluidt ruzie over de creatieve controle en namen elk apart de vocalen op. Het nummer werd een mijlpaal in de rockgeschiedenis.",
       "awards_nl": [],
       "isrc": "GBUM71404523",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440651291",
         "de": "applemusic://track/1255089803",
         "gb": "applemusic://track/1255089803",
         "fr": "applemusic://track/1255089803",
-        "es": "applemusic://track/695543531",
         "nl": "applemusic://track/1255089803",
-        "it": "applemusic://track/1255089803"
+        "it": "applemusic://track/1255089803",
+        "es": null,
+        "us": null
       }
     },
     {
@@ -4824,7 +4814,7 @@
       "fun_fact_fr": "Paranoid a été écrite en seulement 20 minutes comme bouche-trou de dernière minute car l'album était trop court. Tony Iommi a inventé le riff sur le vif et Geezer Butler a griffonné en vitesse des paroles sur la dépression. Malgré son statut d'arrière-pensée, le titre est devenu le plus grand single de Black Sabbath et la chanson qui a défini le heavy metal.",
       "uri_apple_music": "applemusic://track/785232521",
       "uri_youtube_music": "https://music.youtube.com/watch?v=q9-2NCZLUv0",
-      "uri_tidal": "tidal://track/155212754",
+      "uri_tidal": "tidal://track/69642548",
       "uri_deezer": "deezer://track/3788156052",
       "fun_fact_nl": "Paranoid werd in slechts 20 minuten geschreven als een last-minute filler track toen het album bijna op was. Tony Iommi bedacht de riff ter plekke en Geezer Butler krabbelde snel een tekst over depressie. Ondanks dat het een bijzaak was, werd het Black Sabbaths grootste hitsingle en het nummer dat heavy metal definieerde.",
       "awards_nl": [
@@ -5246,7 +5236,6 @@
       "fun_fact_fr": "Nikki Sixx a écrit Kickstart My Heart après une overdose d'héroïne quasi fatale en 1987. Il a été cliniquement mort pendant deux minutes avant que les secouristes ne le raniment avec deux injections d'adrénaline en plein cœur. La montée d'adrénaline qui l'a ramené à la vie a inspiré l'énergie débordante du morceau.",
       "uri_apple_music": "applemusic://track/1764396024",
       "uri_youtube_music": "https://music.youtube.com/watch?v=CmXWkMlKFkI",
-      "uri_tidal": "tidal://track/213783917",
       "uri_deezer": "deezer://track/1632505782",
       "fun_fact_nl": "Nikki Sixx schreef Kickstart My Heart na een bijna fatale overdosis heroïne in 1987. Hij was klinisch dood gedurende twee minuten voordat paramedici hem weer tot leven wekten met twee injecties met adrenaline recht in het hart. De adrenalinestoot die hem weer tot leven bracht, inspireerde de stuwende energie van het nummer. De basintro is opgenomen op 200+ BPM.",
       "awards_nl": [
@@ -5645,7 +5634,6 @@
       "fun_fact_fr": "Long Cool Woman a été écrite par Allan Clarke et Roger Cook en hommage au style swamp rock de Creedence Clearwater Revival. Le morceau était si différent du pop harmonique habituel des Hollies que Graham Nash n'a pas cru que c'était eux en l'entendant à la radio. Le récit sur un agent du FBI était inspiré de la littérature policière américaine.",
       "uri_apple_music": "applemusic://track/1750160810",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YbJ6vY1v084",
-      "uri_tidal": "tidal://track/1493491",
       "uri_deezer": "deezer://track/3161471",
       "fun_fact_nl": "Long Cool Woman werd geschreven door Allan Clarke en Roger Cook als een eerbetoon aan de swamp rock stijl van Creedence Clearwater Revival. Het was zo anders dan de typische harmonie-gedreven pop van The Hollies dat Graham Nash (die al vertrokken was naar CSN) niet geloofde dat zij het waren toen hij het voor het eerst op de radio hoorde. Het verhaal van het nummer over een FBI-agent was geïnspireerd op Amerikaanse misdaadfictie.",
       "awards_nl": [],
@@ -5771,7 +5759,6 @@
       "fun_fact_fr": "La Grange parle du Chicken Ranch, un légendaire bordel près de La Grange, au Texas, en activité depuis les années 1840. L'établissement a été fermé en 1973 — la même année que la sortie de la chanson — après un reportage télévisé d'investigation. Le riff boogie s'inspire du style de guitare de John Lee Hooker. Le son de guitare de Billy Gibbons sur ce titre a été infiniment étudié et imité par les guitaristes.",
       "uri_apple_music": "applemusic://track/1728071989",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bSt4myecN_c",
-      "uri_tidal": "tidal://track/297952",
       "uri_deezer": "deezer://track/3667326",
       "fun_fact_nl": "La Grange gaat over de Chicken Ranch, een legendarisch bordeel in de buurt van La Grange, Texas, dat al sinds de jaren 1840 in bedrijf was. Het etablissement werd in 1973 gesloten - hetzelfde jaar dat het nummer werd uitgebracht - na een tv-onderzoek. De boogie riff was geïnspireerd op de gitaarstijl van John Lee Hooker. Billy Gibbons' gitaartoon op het nummer is eindeloos bestudeerd en nagemaakt door gitaristen.",
       "awards_nl": [],
@@ -6411,7 +6398,7 @@
       "fun_fact_fr": "Le riff d'ouverture iconique a été composé par le guitariste Rudolf Schenker sur une Gibson Flying V. Les paroles ont été écrites par le batteur Herman Rarebell, ce qui était inhabituel pour les Scorpions. Le titre a failli ne pas figurer sur l'album « Love at First Sting », mais le producteur Dieter Dierks a insisté pour l'inclure. Il est devenu la chanson emblématique des Scorpions à l'international.",
       "uri_apple_music": "applemusic://track/1425261763",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6yP1tcy9a10",
-      "uri_tidal": "tidal://track/111052685",
+      "uri_tidal": "tidal://track/93436718",
       "uri_deezer": "deezer://track/3807039752",
       "fun_fact_nl": "De iconische openingsriff werd geschreven door gitarist Rudolf Schenker met behulp van een Gibson Flying V. De tekst werd eigenlijk geschreven door een externe songwriter, Herman Rarebell, de drummer van de band, wat ongebruikelijk was voor de Scorpions. Het nummer haalde bijna het album 'Love at First Sting' niet, maar producer Dieter Dierks stond erop om het op te nemen. Het werd internationaal het signatuurnummer van de Scorpions.",
       "awards_nl": [],
@@ -6771,7 +6758,6 @@
       "fun_fact_fr": "Sharp Dressed Man faisait partie de l'album Eliminator de ZZ Top qui les a transformés de groupe de blues-rock en superstars MTV. Le clip avec l'iconique Ford Coupé rouge de 1933 (la voiture « Eliminator ») et des femmes mystérieuses est devenu un incontournable de MTV. Malgré les légendaires longues barbes de Billy Gibbons et Dusty Hill, le batteur Frank Beard est ironiquement le seul membre sans barbe.",
       "uri_apple_music": "applemusic://track/1728071582",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7wRHBLwpASw",
-      "uri_tidal": "tidal://track/3268420",
       "uri_deezer": "deezer://track/5094404",
       "fun_fact_nl": "Sharp Dressed Man maakte deel uit van het enorme Eliminator album van ZZ Top dat hen transformeerde van een bluesrock band in MTV supersterren. De videoclip met de iconische rode 1933 Ford Coupe (de 'Eliminator' auto) en mysterieuze vrouwen werd een vast onderdeel van MTV. Ondanks de legendarische lange baarden van Billy Gibbons en Dusty Hill, is drummer Frank Beard ironisch genoeg het enige lid zonder baard.",
       "awards_nl": [],
@@ -7529,7 +7515,7 @@
       "fun_fact_fr": "La chanson n'a rien à voir avec le personnage Marvel. Tony Iommi a trouvé le riff principal et Ozzy Osbourne a trouvé que ça sonnait comme « un grand bonhomme de fer qui se balade ». Le slide de guitare lourd de Bill Ward crée l'intro qui évoque une voix. C'est le seul titre de Black Sabbath à être entré au Billboard Hot 100, et il a acquis une nouvelle renommée grâce aux films Iron Man de Marvel.",
       "uri_apple_music": "applemusic://track/787845531",
       "uri_youtube_music": "https://music.youtube.com/watch?v=b3-QqGVt-tM",
-      "uri_tidal": "tidal://track/155212756",
+      "uri_tidal": "tidal://track/69642550",
       "uri_deezer": "deezer://track/625170",
       "fun_fact_nl": "Het nummer heeft niets te maken met het Marvel-karakter. Tony Iommi bedacht de hoofdriff en Ozzy Osbourne vond het klinken als 'een grote ijzeren kerel die rondloopt'. De zware gitaarslides van Bill Ward zorgen voor de stemachtige intro. Het was Black Sabbaths enige Amerikaanse Billboard Hot 100-hit en kreeg later nieuwe bekendheid door de Marvel Iron Man-films.",
       "awards_nl": [],
@@ -7744,7 +7730,7 @@
       "fun_fact_fr": "Souvent comparée à leur précédent hit « You Really Got Me », le riff agressif en power chords est considéré comme un précurseur du punk rock et du heavy metal. Ray Davies l'a écrite comme une suite. « Hello, I Love You » des Doors a plus tard été accusée d'être trop similaire, sans qu'aucune poursuite n'ait été engagée.",
       "uri_apple_music": "applemusic://track/1436281765",
       "uri_youtube_music": "https://music.youtube.com/watch?v=fOGMRnKl5co",
-      "uri_tidal": "tidal://track/69041281",
+      "uri_tidal": "tidal://track/493118753",
       "uri_deezer": "deezer://track/3786363902",
       "fun_fact_nl": "Vaak vergeleken met hun eerdere hit 'You Really Got Me,' wordt de agressieve power chord riff van het nummer beschouwd als een voorloper van punk rock en heavy metal. Ray Davies schreef het als een vervolg. The Doors' 'Hello, I Love You' werd later beschuldigd van een te grote gelijkenis, hoewel er geen rechtszaak werd aangespannen.",
       "awards_nl": [],
@@ -8025,16 +8011,16 @@
       "uri": "spotify:track:54OR1VDpfkBuOY5zZjhZAY",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1644716686",
         "de": "applemusic://track/1872720856",
         "gb": "applemusic://track/1872720856",
         "fr": "applemusic://track/6795719648",
         "es": "applemusic://track/6795719648",
         "nl": "applemusic://track/6795719648",
-        "it": "applemusic://track/6795719648"
+        "it": "applemusic://track/6795719648",
+        "us": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7-F8wkjKWg8",
-      "uri_tidal": "tidal://track/25702905",
+      "uri_tidal": "tidal://track/35286168",
       "uri_deezer": "deezer://track/3809086042",
       "fun_fact": "A chart hit by Village People (1978).",
       "fun_fact_de": "Ein Chart-Hit von Village People (1978).",
@@ -8716,20 +8702,20 @@
       "fun_fact_de": "David Bowie war einer der grossen Wandlungskünstler des Pop, der über fünf Jahrzehnte Stil und Rolle ständig neu erfand.",
       "fun_fact_es": "David Bowie fue uno de los grandes camaleones del pop, reinventando estilo y personaje durante cinco décadas.",
       "fun_fact_fr": "David Bowie fut l'un des grands caméléons de la pop, réinventant style et personnage sur cinq décennies.",
-      "uri_apple_music": "applemusic://track/1675151420",
+      "uri_apple_music": "applemusic://track/926949962",
       "uri_youtube_music": "https://music.youtube.com/watch?v=iCJLOXqnT2I",
       "uri_tidal": "tidal://track/620625",
       "fun_fact_nl": "David Bowie was een van de grote vernieuwers van de pop, die vijf decennia lang stijl en persona bleef veranderen.",
       "awards_nl": [],
       "isrc": "USJT10500038",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1675151420",
-        "de": "applemusic://track/695543535",
         "gb": "applemusic://track/926949962",
-        "fr": "applemusic://track/695543535",
-        "es": "applemusic://track/695543535",
         "nl": "applemusic://track/926949962",
-        "it": "applemusic://track/695543535"
+        "de": null,
+        "es": null,
+        "fr": null,
+        "it": null,
+        "us": null
       },
       "uri_deezer": "deezer://track/3108557"
     },
@@ -9472,7 +9458,6 @@
       "fun_fact_fr": "Martha and the Muffins était un groupe new wave canadien surtout connu pour 'Echo Beach'.",
       "uri_apple_music": "applemusic://track/1672128812",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lpqDTQOFvf0",
-      "uri_tidal": "tidal://track/170170644",
       "fun_fact_nl": "Martha and the Muffins was een Canadese new-waveband, vooral bekend van 'Echo Beach'.",
       "awards_nl": [],
       "isrc": "GBAAA8000289",
