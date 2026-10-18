@@ -17,6 +17,9 @@ from custom_components.beatify.server.companion_auth import (
     is_companion_ua,
     is_local_remote,
 )
+from custom_components.beatify.server.ws_handlers._helpers import (
+    _ws_companion_trusted,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -153,8 +156,13 @@ def _fake_cloud_connected():
 # ---------------------------------------------------------------------------
 
 
-def _request(ua: str | None, remote: str | None, auth: str | None = None) -> MagicMock:
-    headers = {}
+def _request(
+    ua: str | None,
+    remote: str | None,
+    auth: str | None = None,
+    extra_headers: dict[str, str] | None = None,
+) -> MagicMock:
+    headers = dict(extra_headers or {})
     if ua is not None:
         headers["User-Agent"] = ua
     if auth is not None:
@@ -215,16 +223,43 @@ class TestIsCompanionTrustedRequest:
 
 class TestIsCompanionTrustedMeta:
     def test_accepts_stashed_meta_with_companion_signature(self):
-        meta = {"ua": "Home Assistant/2026 (Android 14)", "remote": "192.168.1.5"}
+        meta = {
+            "ua": "Home Assistant/2026 (Android 14)",
+            "remote": "192.168.1.5",
+            "proxied": False,
+        }
         assert is_companion_trusted_meta(meta, _hass()) is True
 
     def test_rejects_public_remote(self):
-        meta = {"ua": "Home Assistant/2026 (Android 14)", "remote": "8.8.8.8"}
+        meta = {
+            "ua": "Home Assistant/2026 (Android 14)",
+            "remote": "8.8.8.8",
+            "proxied": False,
+        }
         assert is_companion_trusted_meta(meta, _hass()) is False
 
     def test_rejects_loopback_remote(self):
         # #1357: loopback no longer trusted on the WS path either.
-        meta = {"ua": "Home Assistant/2026 (Android 14)", "remote": "127.0.0.1"}
+        meta = {
+            "ua": "Home Assistant/2026 (Android 14)",
+            "remote": "127.0.0.1",
+            "proxied": False,
+        }
+        assert is_companion_trusted_meta(meta, _hass()) is False
+
+    def test_rejects_proxied_meta(self):
+        # #3202: the upgrade request came through a proxy -> never trusted,
+        # even with a perfect Companion UA and a private remote.
+        meta = {
+            "ua": "Home Assistant/2026 (Android 14)",
+            "remote": "192.168.1.5",
+            "proxied": True,
+        }
+        assert is_companion_trusted_meta(meta, _hass()) is False
+
+    def test_meta_without_proxy_verdict_fails_closed(self):
+        # #3202: meta built without the upgrade-time verdict is not trusted.
+        meta = {"ua": "Home Assistant/2026 (Android 14)", "remote": "192.168.1.5"}
         assert is_companion_trusted_meta(meta, _hass()) is False
 
     def test_rejects_empty_meta(self):
@@ -233,7 +268,11 @@ class TestIsCompanionTrustedMeta:
 
     def test_bypass_disabled_rejects_perfect_companion(self):
         # #1357: opt-in gate also guards the WS path.
-        meta = {"ua": "Home Assistant/2026 (Android 14)", "remote": "192.168.1.5"}
+        meta = {
+            "ua": "Home Assistant/2026 (Android 14)",
+            "remote": "192.168.1.5",
+            "proxied": False,
+        }
         assert is_companion_trusted_meta(meta, _hass(bypass_enabled=False)) is False
 
 
@@ -308,16 +347,149 @@ class TestIsAuthorizedHttp:
 
 
 class TestExtractRequestMeta:
-    def test_captures_ua_and_remote(self):
+    def test_captures_ua_remote_and_proxy_verdict(self):
         req = _request("Home Assistant/2026 (Android 14)", "192.168.1.5")
-        meta = extract_request_meta(req)
+        meta = extract_request_meta(req, _hass())
         assert meta == {
             "ua": "Home Assistant/2026 (Android 14)",
             "remote": "192.168.1.5",
+            "proxied": False,
         }
 
     def test_handles_missing_ua_header(self):
         req = _request(None, "192.168.1.5")
-        meta = extract_request_meta(req)
+        meta = extract_request_meta(req, _hass())
         assert meta["ua"] is None
         assert meta["remote"] == "192.168.1.5"
+
+    def test_forwarding_header_marks_meta_proxied(self):
+        req = _request(
+            "Home Assistant/2026 (Android 14)",
+            "192.168.1.5",
+            extra_headers={"X-Forwarded-For": "203.0.113.7"},
+        )
+        assert extract_request_meta(req, _hass())["proxied"] is True
+
+    def test_cloud_connection_marks_meta_proxied(self, _fake_cloud_connected):
+        # The cloud check runs at upgrade time, where HA's request contextvar
+        # still exists — the WS path now inherits it (#3202).
+        req = _request("Home Assistant/2026 (Android 14)", "192.168.1.5")
+        assert extract_request_meta(req, _hass())["proxied"] is True
+
+
+# ---------------------------------------------------------------------------
+# #3202: reverse proxy on a private address
+# ---------------------------------------------------------------------------
+
+_COMPANION_UA = "Home Assistant/2026 (Android 14)"
+
+
+class TestReverseProxyHttp:
+    @pytest.mark.parametrize(
+        "header",
+        [
+            {"X-Forwarded-For": "203.0.113.7"},
+            {"Forwarded": "for=203.0.113.7;proto=https"},
+            {"X-Real-IP": "203.0.113.7"},
+            {"X-Forwarded-Host": "ha.example.com"},
+        ],
+    )
+    def test_forwarding_header_refuses_bypass(self, header, _fake_cloud_not_connected):
+        # Proxy on the LAN forwards an internet request: remote is private,
+        # UA is Companion, but the forwarding header gives the proxy away.
+        req = _request(_COMPANION_UA, "192.168.1.2", extra_headers=header)
+        assert is_companion_trusted_request(req, _hass()) is False
+        assert is_authorized_http(req, _hass()) is False
+
+    def test_ha_trusted_proxy_rewritten_remote_still_refused(
+        self, _fake_cloud_not_connected
+    ):
+        # HA's forwarded middleware (trusted_proxies) rewrites request.remote
+        # to the client IP but leaves X-Forwarded-For on the request, so the
+        # header check also covers proxies configured in trusted_proxies.
+        req = _request(
+            _COMPANION_UA,
+            "192.168.1.77",
+            extra_headers={"X-Forwarded-For": "192.168.1.77"},
+        )
+        assert is_companion_trusted_request(req, _hass()) is False
+
+    def test_direct_lan_request_trusted(self, _fake_cloud_not_connected):
+        req = _request(_COMPANION_UA, "192.168.1.5")
+        assert is_companion_trusted_request(req, _hass()) is True
+
+    def test_bypass_off_never_trusts_even_direct_lan(self):
+        req = _request(_COMPANION_UA, "192.168.1.5")
+        assert is_companion_trusted_request(req, _hass(bypass_enabled=False)) is False
+
+
+class TestReverseProxyWebSocket:
+    """WS path: the verdict is taken at the upgrade and read per message."""
+
+    def _ws_trusted(self, req, hass) -> bool:
+        ws = MagicMock()
+        ws.beatify_request_meta = extract_request_meta(req, hass)
+        return _ws_companion_trusted(ws, hass)
+
+    def test_proxied_upgrade_not_trusted(self, _fake_cloud_not_connected):
+        req = _request(
+            _COMPANION_UA,
+            "192.168.1.2",
+            extra_headers={"X-Forwarded-For": "203.0.113.7"},
+        )
+        assert self._ws_trusted(req, _hass()) is False
+
+    def test_cloud_upgrade_not_trusted(self, _fake_cloud_connected):
+        # Previously the WS path skipped the cloud check entirely.
+        req = _request(_COMPANION_UA, "192.168.1.5")
+        assert self._ws_trusted(req, _hass()) is False
+
+    def test_direct_lan_upgrade_trusted(self, _fake_cloud_not_connected):
+        req = _request(_COMPANION_UA, "192.168.1.5")
+        assert self._ws_trusted(req, _hass()) is True
+
+    def test_bypass_off_never_trusted(self, _fake_cloud_not_connected):
+        req = _request(_COMPANION_UA, "192.168.1.5")
+        assert self._ws_trusted(req, _hass(bypass_enabled=False)) is False
+
+    def test_bypass_toggled_off_after_upgrade_not_trusted(
+        self, _fake_cloud_not_connected
+    ):
+        # The opt-in gate is still evaluated per message.
+        req = _request(_COMPANION_UA, "192.168.1.5")
+        hass = _hass()
+        ws = MagicMock()
+        ws.beatify_request_meta = extract_request_meta(req, hass)
+        hass.data[DOMAIN]["companion_auth_bypass_enabled"] = False
+        assert _ws_companion_trusted(ws, hass) is False
+
+
+class TestWebSocketUpgradeStashesVerdict:
+    """BeatifyWebSocketHandler.handle stores the proxy verdict at upgrade."""
+
+    async def test_handle_stashes_proxied_meta(self, monkeypatch):
+        from custom_components.beatify.server import websocket as ws_mod
+
+        captured = {}
+
+        class _FakeWS:
+            def __init__(self, *args, **kwargs):
+                captured["ws"] = self
+
+            async def prepare(self, request):
+                raise RuntimeError("stop after upgrade")
+
+        monkeypatch.setattr(ws_mod.web, "WebSocketResponse", _FakeWS)
+        handler = ws_mod.BeatifyWebSocketHandler(_hass())
+        req = _request(
+            _COMPANION_UA,
+            "192.168.1.2",
+            extra_headers={"X-Forwarded-For": "203.0.113.7"},
+        )
+        with pytest.raises(RuntimeError):
+            await handler.handle(req)
+        assert captured["ws"].beatify_request_meta == {
+            "ua": _COMPANION_UA,
+            "remote": "192.168.1.2",
+            "proxied": True,
+        }
