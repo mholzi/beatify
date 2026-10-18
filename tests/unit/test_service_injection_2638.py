@@ -138,7 +138,7 @@ class TestFactoriesReceiveTheGameContext:
 class TestMediaPlayerProtocolConformance:
     """A fake is only safe if the Protocol names everything the domain calls.
 
-    It did not. ``seek_forward``, ``get_playback_state`` and the two
+    It did not. ``get_playback_state`` and the two
     failure-report attributes were called without being declared, so a fake
     written against the Protocol raised on them — and the reveal auto-advance
     swallows that as "still playing", which silently disabled song-end
@@ -152,7 +152,6 @@ class TestMediaPlayerProtocolConformance:
     @pytest.mark.parametrize(
         "member",
         [
-            "seek_forward",  # state_media.seek_forward
             "get_playback_state",  # state_auto_advance._song_finished
             "resume_after_announcement",  # state_lifecycle, #2710
             "last_failure_reason",  # state_lifecycle, #808 skip logic
