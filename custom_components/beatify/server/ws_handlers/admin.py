@@ -116,17 +116,13 @@ async def handle_admin(
         "reinstate_player": admin_reinstate_player,  # #2746
         "stop_song": admin_stop_song,
         "set_volume": admin_set_volume,
-        "seek_forward": admin_seek_forward,
         "end_game": admin_end_game,
         "pause_game": admin_pause_game,
         "resume_game": admin_resume_game,
         "dismiss_game": admin_dismiss_game,
         "rematch_game": admin_rematch_game,
-        "set_language": admin_set_language,
         "confirm_intro_splash": admin_confirm_intro_splash,
         "set_party_lights": admin_set_party_lights,
-        "toggle_party_lights": admin_toggle_party_lights,
-        "stop_lights": admin_stop_lights,
         "kick_player": admin_kick_player,
     }
     sub_handler = admin_handlers.get(action)
@@ -482,21 +478,6 @@ async def admin_set_volume(
     )
 
 
-async def admin_seek_forward(
-    handler: BeatifyWebSocketHandler,
-    ws: web.WebSocketResponse,
-    data: dict,
-    game_state: GameState,
-) -> None:
-    """Handle admin seek_forward action (#498)."""
-    if game_state.phase not in (GamePhase.PLAYING, GamePhase.REVEAL):
-        return
-    seconds = data.get("seconds", 10)
-    success = await game_state.seek_forward(seconds)
-    if success:
-        _LOGGER.info("Media seeked forward %ds", seconds)
-
-
 async def admin_end_game(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
@@ -836,33 +817,6 @@ async def admin_rematch_game(
     await handler.broadcast_state()
 
 
-async def admin_set_language(
-    handler: BeatifyWebSocketHandler,
-    ws: web.WebSocketResponse,
-    data: dict,
-    game_state: GameState,
-) -> None:
-    """Handle admin set_language action."""
-    if game_state.phase != GamePhase.LOBBY:
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": ERR_INVALID_ACTION,
-                "message": "Can only change language in lobby",
-                "message_key": "LANGUAGE_LOBBY_ONLY",
-            }
-        )
-        return
-
-    language = data.get("language", "en")
-    if language not in ("en", "de", "es", "fr", "nl", "it"):
-        language = "en"
-
-    game_state.language = language
-    _LOGGER.info("Game language set to: %s", language)
-    await handler.broadcast_state()
-
-
 async def admin_confirm_intro_splash(
     handler: BeatifyWebSocketHandler,
     ws: web.WebSocketResponse,
@@ -902,39 +856,6 @@ async def admin_set_party_lights(
         _LOGGER.info("Party Lights disabled")
 
     await ws.send_json({"type": "party_lights_updated", "enabled": enabled})
-
-
-async def admin_toggle_party_lights(
-    handler: BeatifyWebSocketHandler,
-    ws: web.WebSocketResponse,
-    data: dict,
-    game_state: GameState,
-) -> None:
-    """Handle admin toggle_party_lights action."""
-    if game_state._party_lights and game_state._party_lights._active:
-        await game_state.disable_party_lights()
-        await ws.send_json({"type": "party_lights_updated", "enabled": False})
-    else:
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": ERR_INVALID_ACTION,
-                "message": "Party Lights not configured — set up in game settings first",
-                "message_key": "PARTY_LIGHTS_NOT_CONFIGURED",
-            }
-        )
-
-
-async def admin_stop_lights(
-    handler: BeatifyWebSocketHandler,
-    ws: web.WebSocketResponse,
-    data: dict,
-    game_state: GameState,
-) -> None:
-    """Handle admin stop_lights action — emergency stop for party lights."""
-    await game_state.disable_party_lights()
-    _LOGGER.info("Party lights stopped by admin")
-    await handler.broadcast_state()
 
 
 async def admin_kick_player(

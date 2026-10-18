@@ -27,8 +27,8 @@ class MediaPlayerProtocol(Protocol):
     """Interface that GameState expects from a media-player service.
 
     #2711: this list is the whole contract, so it has to name everything the
-    domain actually calls. It did not: ``seek_forward``,
-    ``get_playback_state`` and the two failure-report attributes were called
+    domain actually calls. It did not: ``get_playback_state`` and the two
+    failure-report attributes were called
     without being declared, and a fake written against the Protocol therefore
     raised on them. The reveal auto-advance swallows that exception as "still
     playing" (``state_auto_advance.py``), so song-end auto-advance was
@@ -49,7 +49,6 @@ class MediaPlayerProtocol(Protocol):
     async def restore_volume(self) -> bool: ...
     async def restore_queue(self) -> bool: ...
     def snapshot_saved_states(self) -> dict[str, dict[str, Any]]: ...
-    async def seek_forward(self, seconds: int) -> bool: ...
     def get_playback_state(self) -> str | None: ...
     async def resume_after_announcement(
         self,

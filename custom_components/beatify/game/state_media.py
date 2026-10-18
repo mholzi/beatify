@@ -1,7 +1,7 @@
 """Media-player & party-lights output subsystem for :class:`GameState`.
 
 Issue #1271 next-increment extraction: the external-output cluster — media
-transport (``stop_media``, ``set_volume_on_player``, ``seek_forward``,
+transport (``stop_media``, ``set_volume_on_player``,
 ``play_deferred_song``), party-lights control (``configure_party_lights``,
 ``disable_party_lights``, ``_lights_set_phase``, ``_lights_flash``) and the
 host-side ``adjust_volume`` helper — is pulled out of the ``game/state.py``
@@ -150,12 +150,6 @@ class MediaControlMixin(GameStateBase):
             if snapshot:
                 self._pending_speaker_states.update(snapshot)
         self._media_player_service = None
-
-    async def seek_forward(self, seconds: int) -> bool:
-        """Seek media player forward by given seconds (#498)."""
-        if self._media_player_service:
-            return await self._media_player_service.seek_forward(seconds)
-        return False
 
     async def play_deferred_song(self, song: dict) -> bool:
         """Play a song that was deferred for intro splash (#321).

@@ -17,7 +17,6 @@ import logging
 import secrets
 from asyncio import timeout as async_timeout
 from collections.abc import Callable
-from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any
 from urllib.parse import quote
 
@@ -979,40 +978,6 @@ class MediaPlayerService:
         except (HomeAssistantError, ServiceNotFound) as err:
             _LOGGER.error("Failed to set volume: %s", err)  # noqa: TRY400
             self._record_error("MEDIA_PLAYER_ERROR", f"Failed to set volume: {err}")
-            return False
-
-    async def seek_forward(self, seconds: int) -> bool:
-        """Seek media forward by given seconds (#498).
-
-        Reads current position from HA state and seeks to position + seconds.
-        """
-        try:
-            state = self._hass.states.get(self._entity_id)
-            if not state:
-                return False
-            current_pos = state.attributes.get("media_position", 0) or 0
-            # Adjust for stale cached position — HA only updates
-            # media_position at media_position_updated_at
-            updated_at = state.attributes.get("media_position_updated_at")
-            if updated_at:
-                if isinstance(updated_at, str):
-                    updated_at = datetime.fromisoformat(updated_at)
-                elapsed = (datetime.now(timezone.utc) - updated_at).total_seconds()
-                if elapsed > 0:
-                    current_pos += elapsed
-            new_pos = current_pos + seconds
-            await self._hass.services.async_call(
-                "media_player",
-                "media_seek",
-                {
-                    "entity_id": self._entity_id,
-                    "seek_position": new_pos,
-                },
-            )
-            return True
-        except (HomeAssistantError, ServiceNotFound, ValueError, TypeError) as err:  # noqa: BLE001
-            _LOGGER.error("Failed to seek media: %s", err)  # noqa: TRY400
-            self._record_error("MEDIA_PLAYER_ERROR", f"Failed to seek: {err}")
             return False
 
     def is_available(self) -> bool:
