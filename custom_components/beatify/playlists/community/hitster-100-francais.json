@@ -1,17 +1,16 @@
 {
   "name": "100% Français 🇫🇷",
-  "version": "0.16",
+  "version": "0.17",
   "tags": [
     "french",
     "francais",
     "chanson",
-    "pop",
-    "hitster"
+    "pop"
   ],
   "language": "fr",
   "author": "Beatify Community",
   "added_date": "2026-06-19",
-  "description": "100 French-language hits across six decades — chanson, pop, rap and Eurodance, from Jacques Dutronc and Notre-Dame de Paris to Aya Nakamura and Bosh. Sourced from the community 'HITSTER - 100% Français' request (#1496). Years and ISRCs enriched via the Deezer API; cross-provider URIs (Apple Music / YouTube Music / Tidal) pending a follow-up enrichment pass.",
+  "description": "100 French-language hits across six decades — chanson, pop, rap and Eurodance, from Jacques Dutronc and Notre-Dame de Paris to Aya Nakamura and Bosh. Requested by the community (#1496). Years and ISRCs enriched via the Deezer API; cross-provider URIs (Apple Music / YouTube Music / Tidal) pending a follow-up enrichment pass.",
   "songs": [
     {
       "artist": "Amel Bent",
