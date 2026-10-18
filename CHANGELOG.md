@@ -4,6 +4,36 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.5-rc1] - 2026-10-18
+
+First candidate for 4.8.5, "Hold the Intro": a security fix for the Companion auth bypass, intro-round
+fixes and playlist repairs on top of 4.8.4.
+
+### Security
+- **The Companion auth bypass is refused behind a reverse proxy** (#3202, #3203, reported by email).
+  The opt-in bypass (`enable_companion_auth_bypass`, default off) trusted a private client address
+  plus a Companion User-Agent. Behind a proxy on a private address (nginx add-on, Traefik, Caddy),
+  every forwarded internet request looked local, and the WebSocket path also skipped the Nabu Casa
+  check. Requests carrying forwarding headers or arriving via Home Assistant Cloud no longer get the
+  bypass, on HTTP and WebSocket. The option text in all six languages now says so.
+
+### Fixed
+- **Intro rounds** (#3199, #3200, reported by @aenkieh in #3095): the previous round's song stops
+  while the intro round waits for the host, the admin countdown holds during the splash like the TV,
+  and the intro song is cut after 15 s instead of playing through the whole round. The reveal plays
+  it again as before.
+
+### Changed
+- **Dead admin actions removed** (#3204, #3205): `seek_forward`, `set_language`,
+  `toggle_party_lights` and `stop_lights` had no sender in the frontend. A contract test now requires
+  a sender for every admin WebSocket action.
+- **Playlist repairs**: wrong or broken links replaced in `american-classics-country-heartland`
+  (#3189, #3190), `sommerklassiker` (#3191, #3192), `eurovision-winners` (#3193, #3194) and
+  `funk-carioca` (#3197, #3198). `hitster-100-francais` and `hitster-brasil` no longer carry the
+  Hitster name in tags, descriptions or fun facts; file names are unchanged so saved selections keep
+  working (#3201). Each playlist's `version` went up with its change.
+- README links the new Beatify website (#3196).
+
 ## [4.8.4] - 2026-10-15
 
 Patch on top of 4.8.3, "One More Song": the final round is played again, the host can set how long

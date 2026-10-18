@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-10-15
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.4 (70 playlists, 8,724 songs; recounted at release, including james-bond-theme-songs and american-classics-country-heartland)
+> Catalogue state: v4.8.5-rc1 (v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json and eurovision-winners.json; 70 playlists, 8,724 songs; no songs added or removed)
 
 ## Summary
 
