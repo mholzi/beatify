@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import ipaddress
 import sys
 from types import ModuleType
 from unittest.mock import MagicMock
@@ -108,17 +107,10 @@ class TestLocalRemote:
 # ---------------------------------------------------------------------------
 
 
-def _hass(
-    *,
-    bypass_enabled: bool = True,
-    valid_token: str | None = None,
-    trusted_proxies: list | None = None,
-) -> MagicMock:
+def _hass(*, bypass_enabled: bool = True, valid_token: str | None = None) -> MagicMock:
     """Build a hass mock with the #1357 bypass flag set in hass.data."""
     hass = MagicMock()
     hass.data = {DOMAIN: {"companion_auth_bypass_enabled": bypass_enabled}}
-    # #3202: HA's http integration keeps the parsed list here.
-    hass.http.trusted_proxies = list(trusted_proxies or [])
 
     def _validate(token):
         if valid_token is not None and token == valid_token:
@@ -409,39 +401,22 @@ class TestReverseProxyHttp:
         assert is_companion_trusted_request(req, _hass()) is False
         assert is_authorized_http(req, _hass()) is False
 
-    def test_remote_in_trusted_proxies_refuses_bypass(self, _fake_cloud_not_connected):
-        # A proxy that strips/omits forwarding headers but is listed in HA's
-        # http.trusted_proxies is still recognised.
-        req = _request(_COMPANION_UA, "172.30.33.4")
-        hass = _hass(trusted_proxies=[ipaddress.ip_network("172.30.33.0/24")])
-        assert is_companion_trusted_request(req, hass) is False
-
-    def test_trusted_proxies_as_strings_are_honoured(self, _fake_cloud_not_connected):
-        req = _request(_COMPANION_UA, "192.168.1.2")
-        hass = _hass(trusted_proxies=["192.168.1.2", "not-a-network"])
-        assert is_companion_trusted_request(req, hass) is False
-
-    def test_trusted_proxies_with_ipv6_mapped_remote(self, _fake_cloud_not_connected):
-        req = _request(_COMPANION_UA, "::ffff:192.168.1.2")
-        hass = _hass(trusted_proxies=[ipaddress.ip_network("192.168.1.2/32")])
-        assert is_companion_trusted_request(req, hass) is False
-
-    def test_direct_lan_request_still_trusted_with_unrelated_trusted_proxies(
+    def test_ha_trusted_proxy_rewritten_remote_still_refused(
         self, _fake_cloud_not_connected
     ):
-        # A LAN client that is not the proxy keeps the bypass.
-        req = _request(_COMPANION_UA, "192.168.1.5")
-        hass = _hass(trusted_proxies=[ipaddress.ip_network("172.30.33.0/24")])
-        assert is_companion_trusted_request(req, hass) is True
+        # HA's forwarded middleware (trusted_proxies) rewrites request.remote
+        # to the client IP but leaves X-Forwarded-For on the request, so the
+        # header check also covers proxies configured in trusted_proxies.
+        req = _request(
+            _COMPANION_UA,
+            "192.168.1.77",
+            extra_headers={"X-Forwarded-For": "192.168.1.77"},
+        )
+        assert is_companion_trusted_request(req, _hass()) is False
 
-    def test_direct_lan_request_trusted_without_http_integration(
-        self, _fake_cloud_not_connected
-    ):
-        # No hass.http at all (or no trusted_proxies) is handled gracefully.
+    def test_direct_lan_request_trusted(self, _fake_cloud_not_connected):
         req = _request(_COMPANION_UA, "192.168.1.5")
-        hass = _hass()
-        hass.http = None
-        assert is_companion_trusted_request(req, hass) is True
+        assert is_companion_trusted_request(req, _hass()) is True
 
     def test_bypass_off_never_trusts_even_direct_lan(self):
         req = _request(_COMPANION_UA, "192.168.1.5")
@@ -463,11 +438,6 @@ class TestReverseProxyWebSocket:
             extra_headers={"X-Forwarded-For": "203.0.113.7"},
         )
         assert self._ws_trusted(req, _hass()) is False
-
-    def test_upgrade_from_trusted_proxy_not_trusted(self, _fake_cloud_not_connected):
-        req = _request(_COMPANION_UA, "172.30.33.4")
-        hass = _hass(trusted_proxies=[ipaddress.ip_network("172.30.33.0/24")])
-        assert self._ws_trusted(req, hass) is False
 
     def test_cloud_upgrade_not_trusted(self, _fake_cloud_connected):
         # Previously the WS path skipped the cloud check entirely.

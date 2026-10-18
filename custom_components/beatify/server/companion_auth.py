@@ -32,8 +32,11 @@ request look like it came from the LAN. The bypass is therefore refused when
 
   * the request carries a forwarding header (``X-Forwarded-For``,
     ``Forwarded``, ``X-Real-IP``, ``X-Forwarded-Host``), or
-  * ``request.remote`` is one of HA's configured ``http.trusted_proxies``, or
   * the request is a Home Assistant Cloud connection.
+
+HA's own forwarded middleware (``use_x_forwarded_for`` + ``trusted_proxies``)
+rewrites ``request.remote`` but leaves ``X-Forwarded-For`` on the request, so
+the header check also covers proxies configured in HA's ``trusted_proxies``.
 
 This "via a proxy or tunnel" verdict is taken once, while the aiohttp request
 (and HA's request contextvar) still exists: per request on the HTTP path, and
@@ -132,46 +135,6 @@ def _has_forwarding_headers(request: web.Request) -> bool:
     return any(name in headers for name in _FORWARDING_HEADERS)
 
 
-def _trusted_proxy_networks(
-    hass: HomeAssistant,
-) -> list[ipaddress.IPv4Network | ipaddress.IPv6Network]:
-    """Return HA's configured ``http.trusted_proxies`` as networks.
-
-    The http integration keeps the parsed list on ``hass.http.trusted_proxies``.
-    A missing integration, attribute or unparsable entry is skipped — an
-    install without ``trusted_proxies`` simply has none.
-    """
-    http = getattr(hass, "http", None)
-    raw = getattr(http, "trusted_proxies", None)
-    if not isinstance(raw, (list, tuple, set, frozenset)):
-        return []
-    networks: list[ipaddress.IPv4Network | ipaddress.IPv6Network] = []
-    for entry in raw:
-        if isinstance(entry, (ipaddress.IPv4Network, ipaddress.IPv6Network)):
-            networks.append(entry)
-            continue
-        try:
-            networks.append(ipaddress.ip_network(str(entry), strict=False))
-        except ValueError:
-            continue
-    return networks
-
-
-def _is_trusted_proxy(remote: str | None, hass: HomeAssistant) -> bool:
-    """Return True if ``remote`` falls inside HA's ``trusted_proxies``."""
-    if not isinstance(remote, str) or not remote:
-        return False
-    try:
-        ip = ipaddress.ip_address(remote)
-    except ValueError:
-        return False
-    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped is not None:
-        ip = ip.ipv4_mapped
-    return any(
-        ip.version == net.version and ip in net for net in _trusted_proxy_networks(hass)
-    )
-
-
 def _is_cloud_connection(hass: HomeAssistant) -> bool:
     """Return True if the current request is a Home Assistant Cloud connection.
 
@@ -190,16 +153,11 @@ def _is_cloud_connection(hass: HomeAssistant) -> bool:
 def is_proxied_request(request: web.Request, hass: HomeAssistant) -> bool:
     """Return True if ``request`` reached HA through a proxy or tunnel (#3202).
 
-    True when any forwarding header is present, when ``request.remote`` is one
-    of HA's ``trusted_proxies``, or when the request is a Home Assistant Cloud
-    connection. Any of these means ``request.remote`` does not tell us where
-    the client really is, so the Companion bypass must not apply.
+    True when any forwarding header is present or when the request is a Home
+    Assistant Cloud connection. Either means ``request.remote`` does not tell
+    us where the client really is, so the Companion bypass must not apply.
     """
-    return (
-        _has_forwarding_headers(request)
-        or _is_trusted_proxy(request.remote, hass)
-        or _is_cloud_connection(hass)
-    )
+    return _has_forwarding_headers(request) or _is_cloud_connection(hass)
 
 
 def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> bool:
@@ -210,9 +168,8 @@ def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> b
          bypass is disabled, this returns False immediately — no UA/IP is ever
          trusted.
       1. The request did NOT come through a proxy or tunnel (#3202, see
-         :func:`is_proxied_request`): no forwarding headers, ``remote`` is not
-         one of HA's ``trusted_proxies``, and it is not a Home Assistant Cloud
-         (Nabu Casa) connection.
+         :func:`is_proxied_request`): no forwarding headers, and it is not a
+         Home Assistant Cloud (Nabu Casa) connection.
       2. User-Agent matches the HA Android Companion regex.
       3. Source IP is private (RFC1918 / ULA; loopback excluded — request did
          not cross the public internet and did not arrive via a local tunnel).
@@ -224,7 +181,7 @@ def is_companion_trusted_request(request: web.Request, hass: HomeAssistant) -> b
         return False
 
     # #1357 / #3202: refuse the bypass for anything that came through a proxy
-    # or tunnel (forwarding headers, HA trusted_proxies, Nabu Casa). Behind a
+    # or tunnel (forwarding headers, Nabu Casa). Behind a
     # reverse proxy on a private IP, request.remote is the proxy's LAN address
     # and says nothing about the real client.
     if is_proxied_request(request, hass):
