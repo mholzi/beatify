@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "one-hit",
     "classics",
@@ -219,7 +219,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1455297694",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ScFBqyAN8Bw",
-      "uri_tidal": "tidal://track/124660699",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3471083641",
       "fun_fact_nl": "Geschreven terwijl hij ingesneeuwd raakte in een piepklein appartement in Seattle. Ondanks een bescheiden succes in de hitlijsten werd het een belangrijk nummer voor de FM-radio in het psychedelische tijdperk.",
       "awards_nl": [],
@@ -632,7 +632,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1618254459",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bjnFXgdyyLw",
-      "uri_tidal": "tidal://track/224189661",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/4633154",
       "fun_fact_nl": "Opgenomen in slechts 10 minuten als B-kant. Het werd een nummer 1 hit in meerdere landen tijdens de martial arts film rage van de jaren 1970.",
       "awards_nl": [],
@@ -897,7 +897,7 @@
         "Silver (UK)"
       ],
       "awards": [],
-      "uri_tidal": "tidal://track/84601690",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/558949042",
       "fun_fact_nl": "Robin Scott nam dit op onder alleen de letter 'M'. Het nummer voorspelde de elektronische toekomst van de muziek, maar Scott bleef liever een mysterieus eendagsvlieg.",
       "awards_nl": [],
@@ -1004,7 +1004,7 @@
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=mcCK99wHrk0",
       "uri_apple_music": "applemusic://track/52310973",
-      "uri_tidal": "tidal://track/69145431",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/8081935",
       "fun_fact_nl": "Wordt beschouwd als de eerste commercieel succesvolle hiphopsingle. De leden werden bij elkaar gebracht door een eigenaar van een platenlabel die het potentieel van hiphop zag.",
       "awards_nl": [],
@@ -1178,19 +1178,19 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1874710171",
       "uri_youtube_music": "https://music.youtube.com/watch?v=iIpfWORQWhU",
-      "uri_tidal": "tidal://track/4930181",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/1025577",
       "fun_fact_nl": "Het opvallende kapsel van de leadzanger werd net zo beroemd als het nummer. Ondanks lovende kritieken hebben ze dit succes nooit kunnen evenaren in Amerika.",
       "awards_nl": [],
       "isrc": "GBAHK9500304",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1874709779",
-        "de": "applemusic://track/825793214",
-        "gb": "applemusic://track/825793214",
-        "fr": "applemusic://track/825793214",
-        "es": "applemusic://track/825793214",
-        "nl": "applemusic://track/825793214",
-        "it": "applemusic://track/825793214"
+        "de": "applemusic://track/1874710171",
+        "gb": "applemusic://track/1874710171",
+        "fr": "applemusic://track/1874710171",
+        "es": "applemusic://track/1874710171",
+        "nl": "applemusic://track/1874710171",
+        "it": "applemusic://track/1874710171"
       }
     },
     {
@@ -1406,7 +1406,7 @@
       ],
       "awards": [],
       "uri_apple_music": "applemusic://track/1550643321",
-      "uri_tidal": "tidal://track/169150",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/14683660",
       "fun_fact_nl": "Een vervolg op David Bowie's 'Space Oddity'. De Duitse versie 'Völlig Losgelöst' was nog groter in Europa, maar Schilling kwam nooit meer in de hitlijsten van de VS.",
       "awards_nl": [],
@@ -1524,13 +1524,13 @@
       "awards_nl": [],
       "isrc": "USMO10000307",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1647277494",
-        "de": "applemusic://track/1647277494",
-        "gb": "applemusic://track/1647277494",
-        "fr": "applemusic://track/1647277494",
-        "es": "applemusic://track/1647277494",
-        "nl": "applemusic://track/1647277494",
-        "it": "applemusic://track/1647277494"
+        "us": "applemusic://track/1278579752",
+        "de": "applemusic://track/1278579752",
+        "gb": "applemusic://track/1278579752",
+        "fr": "applemusic://track/1278579752",
+        "es": "applemusic://track/1278579752",
+        "nl": "applemusic://track/1278579752",
+        "it": "applemusic://track/1278579752"
       }
     },
     {
@@ -3225,7 +3225,7 @@
       "awards": [],
       "uri_apple_music": "applemusic://track/1675516478",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3NoIusrv9OA",
-      "uri_tidal": "tidal://track/215538535",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/10426810",
       "fun_fact_nl": "Een slaapkameropname die een Al Bowlly-nummer uit 1930 samplet. Jyoti Mishra nam alles zelf op en was geschokt toen het nummer #1 werd in de UK.",
       "awards_nl": [],
