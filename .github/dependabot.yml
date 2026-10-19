@@ -79,10 +79,3 @@ updates:
       # Dependabot ihn hier anheben, liefen Test- und Laufzeit-Fassung
       # auseinander, ohne dass irgendetwas rot wird.
       - dependency-name: num2words
-      # mypy ist an ZWEI Stellen gepinnt: hier und hart in
-      # `.github/workflows/test.yml` („pip install mypy==1.18.2"). Dependabot
-      # sieht nur diese Datei. Ein Bump waere gruen und wuerde die beiden
-      # Staende trotzdem auseinanderlaufen lassen — die stille Sorte Schaden.
-      # Bis eine Pruefung die Gleichheit erzwingt, bleibt mypy von Hand.
-      # Siehe #2580, Abschnitt „Related".
-      - dependency-name: mypy
