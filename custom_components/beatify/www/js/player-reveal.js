@@ -1912,7 +1912,7 @@ function renderPointsBreakdown() {
     if (player.bet_outcome === 'won') {
         rows.push({
             emoji: '🎲',
-            label: utils.t('reveal.breakdown.betMultiplier') || 'Double or Nothing',
+            label: utils.t('reveal.breakdown.betMultiplier') || 'All-in bonus',
             value: '×' + betMult,
             kind: 'multiplier'
         });
