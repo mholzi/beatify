@@ -1,6 +1,6 @@
 {
   "name": "Movie & TV Soundtracks 🎬",
-  "version": "1.39",
+  "version": "1.40",
   "tags": [
     "movies",
     "soundtrack",
@@ -957,7 +957,7 @@
       "fun_fact_nl": "Het Magnificent Seven-thema van Elmer Bernstein is in ontelbare reclames gebruikt en werd bekender dan de film zelf.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1444043816",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yulmgTcGLZw",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ACj5KFaUS_0",
       "fun_fact_it": "Il tema dei Magnifici Sette di Elmer Bernstein è stato usato in innumerevoli pubblicità ed è diventato più celebre del film stesso."
     },
     {
@@ -1493,7 +1493,7 @@
         "Butch Cassidy and the Sundance Kid",
         "The Graduate"
       ],
-      "uri_tidal": "tidal://track/471163297",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/6069361",
       "fun_fact_nl": "Raindrops Keep Fallin' on My Head won de Oscar ondanks dat het niet op zijn plaats leek in een western. Het werd het lijflied van B.J. Thomas.",
       "awards_nl": [
@@ -1654,7 +1654,7 @@
         "nl": "applemusic://track/1842229145",
         "it": "applemusic://track/1842229145"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=E-sX2Y0W8l0",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BePfzCOMRZQ",
       "fun_fact_it": "Il tema dello Squalo di John Williams crea il terrore con due sole note. Steven Spielberg all'inizio pensò che il compositore stesse scherzando."
     },
     {
@@ -1754,7 +1754,7 @@
         "Oscar de la meilleure chanson originale (1987)",
         "Golden Globe de la meilleure chanson originale (1988)"
       ],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4BQLE_RrTSU",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6eyCDj1s4NI",
       "movie": "Dirty Dancing",
       "movie_choices": [
         "Dirty Dancing",
@@ -2807,7 +2807,7 @@
         "nl": "applemusic://track/1612220245",
         "it": "applemusic://track/1612220245"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=jC2ZY2loo74",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hnDY5ImhrIA",
       "fun_fact_it": "La colonna sonora di Black Caesar di James Brown portò il funk nel cinema blaxploitation. Compose e suonò tutto lui."
     },
     {
@@ -2877,7 +2877,7 @@
       "fun_fact_nl": "Het Big Country-thema van Jerome Moross maakt gebruik van meeslepende strijkers om de uitgestrektheid van het Amerikaanse Westen vast te leggen.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1657222496",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=RA-m5Ci2Oxg",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PxzoqFQ3USU",
       "isrc": "GBAJC0002984",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1657216199",
@@ -3009,7 +3009,7 @@
       },
       "certifications": [],
       "awards": [],
-      "uri_apple_music": "applemusic://track/1440807379",
+      "uri_apple_music": "applemusic://track/6781023024",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SsPCrYeiPhY",
       "movie": "Flash Gordon",
       "movie_choices": [
@@ -3017,13 +3017,13 @@
         "Flash Gordon",
         "Superman"
       ],
-      "uri_tidal": "tidal://track/6836336",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/12206981",
       "fun_fact_nl": "Queen schreef het thema van Flash voor Flash Gordon. De opera-achtige zang van Freddie Mercury paste perfect bij de campy toon van de film.",
       "awards_nl": [],
       "isrc": "GBUM71103355",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440807379",
+        "us": "applemusic://track/6781023024",
         "de": "applemusic://track/6781023024",
         "gb": "applemusic://track/6781023924",
         "fr": "applemusic://track/6781023924",
@@ -3477,7 +3477,7 @@
         "Spartacus",
         "Ben-Hur"
       ],
-      "uri_tidal": "tidal://track/27713892",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/12695118",
       "fun_fact_nl": "De Spartacus-score van Alex North was baanbrekend voor die tijd. Stanley Kubrick wees de muziek later af en gaf de voorkeur aan klassieke stukken.",
       "awards_nl": [
@@ -4609,7 +4609,7 @@
         "nl": "applemusic://track/1452656167",
         "it": "applemusic://track/1452656167"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=meU2gAU7Xss",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I9Doo9ajCyQ",
       "fun_fact_it": "La partitura della Cosa di Ennio Morricone fu respinta da John Carpenter, che la trovava troppo strana. Oggi è considerata un classico."
     },
     {
@@ -4809,7 +4809,7 @@
         "The Good, the Bad and the Ugly",
         "A Fistful of Dollars"
       ],
-      "uri_tidal": "tidal://track/424038123",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/75643473",
       "fun_fact_nl": "Ennio Morricone's Once Upon a Time in the West gebruikt harmonica als karaktermotief. De beklemmende melodie drijft het wraakcomplot aan.",
       "awards_nl": [],
@@ -5029,13 +5029,13 @@
       ],
       "isrc": "GBUM70905030",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1647479393",
-        "de": "applemusic://track/1647479393",
-        "gb": "applemusic://track/1440818532",
-        "fr": "applemusic://track/1647479393",
-        "es": "applemusic://track/1647479393",
-        "nl": "applemusic://track/1647479393",
-        "it": "applemusic://track/1647479393"
+        "us": "applemusic://track/1443259735",
+        "de": "applemusic://track/1443259735",
+        "gb": "applemusic://track/1443259735",
+        "fr": "applemusic://track/1443259735",
+        "es": "applemusic://track/1443259735",
+        "nl": "applemusic://track/1443259735",
+        "it": "applemusic://track/1443259735"
       },
       "fun_fact_it": "Tubular Bells di Mike Oldfield divenne celebre grazie all'Esorcista. L'album vendette milioni di copie dopo l'uso nel classico dell'horror."
     },
@@ -5197,7 +5197,7 @@
       "certifications": [],
       "awards": [],
       "uri_apple_music": "applemusic://track/174892425",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Bx4aK-YsPeU",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KxGwvJPycwo",
       "movie": "Taxi Driver",
       "movie_choices": [
         "Taxi Driver",
@@ -5325,7 +5325,7 @@
         "Apocalypse Now",
         "Platoon"
       ],
-      "uri_tidal": "tidal://track/36616798",
+      "uri_tidal": null,
       "fun_fact_nl": "Wagners Ride of the Valkyries in Apocalypse Now begeleidt een helikopteraanval. Coppola maakte klassieke muziek angstaanjagend.",
       "awards_nl": [],
       "isrc": "SEWDL6013547",
@@ -5852,7 +5852,7 @@
         "it": "applemusic://track/1452552843"
       },
       "uri_deezer": "deezer://track/2919225",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=mQQKZ5cgybU",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9G6eKiw82-Q",
       "fun_fact_it": "Now We Are Free, il tema del Gladiatore di Hans Zimmer e Lisa Gerrard, usa una voce senza parole per evocare l'antica Roma e l'aldilà."
     },
     {
@@ -6176,7 +6176,7 @@
         "nl": "applemusic://track/1802763015",
         "it": "applemusic://track/1802763015"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=KQIRbV_noi8",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cW8QfbmyGZE",
       "fun_fact_it": "La partitura di Un colpo all'italiana di Quincy Jones contiene On Days Like These cantata da Matt Monro. L'inseguimento con le Mini Cooper è leggendario."
     },
     {
@@ -6243,7 +6243,7 @@
         "nl": "applemusic://track/1377468571",
         "it": "applemusic://track/1377468571"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-9012SGz-yY",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FS8ydFYw8Sw",
       "fun_fact_it": "I fratelli Sherman scrissero tutte le canzoni di Mary Poppins. La partitura valse loro due premi Oscar nella stessa serata."
     },
     {
@@ -6641,7 +6641,7 @@
         "East of Eden",
         "Giant"
       ],
-      "uri_tidal": "tidal://track/227830521",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3908709",
       "fun_fact_nl": "Leonard Rosenman's Rebel Without a Cause score was baanbrekend voor het gebruik van dissonantie om tienerangst uit te drukken.",
       "awards_nl": [],
@@ -6766,7 +6766,7 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1052784975",
       "uri_deezer": "deezer://track/120866262",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gGycDDqBuX8",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wen_dkUQIjI",
       "fun_fact_it": "Il cacciatore usa Cavatina di Stanley Myers. Il brano delicato per chitarra contrasta in modo devastante con la violenza del film."
     },
     {
@@ -6923,7 +6923,7 @@
         "Mission: Impossible III",
         "The Bourne Ultimatum"
       ],
-      "uri_tidal": "tidal://track/69135572",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3808822422",
       "fun_fact_nl": "Moby's Extreme Ways sluit elke Bourne-film af. De elektronische track werd net zo essentieel voor de franchise als de actie.",
       "awards_nl": [],
@@ -7285,7 +7285,7 @@
         "Taxi Driver",
         "Easy Rider"
       ],
-      "uri_tidal": "tidal://track/295291345",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/417842972",
       "fun_fact_nl": "Everybody's Talkin' van Harry Nilsson won een Grammy voor Midnight Cowboy. Het weemoedige nummer beschrijft dromen van ontsnapping.",
       "awards_nl": [
@@ -7533,7 +7533,7 @@
       "fun_fact_fr": "La basse slappée et les bruits de bouche répondaient à un problème : le thème devait s'insérer entre les répliques de stand-up de Jerry Seinfeld, différentes chaque semaine. Wolff l'a conçu extensible.",
       "fun_fact_nl": "De slapbas en mondgeluiden waren de oplossing voor een probleem: de tune moest tussen Jerry Seinfelds stand-upregels passen, en die duurden elke week anders. Wolff maakte hem rekbaar.",
       "fun_fact_it": "Il basso slap e i suoni con la bocca risolvevano un problema: il tema doveva incastrarsi tra le battute di stand-up di Jerry Seinfeld, diverse ogni settimana. Wolff lo costruì elastico.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=oVldNNHQWVw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RWak0i_iqnM"
     },
     {
       "artist": "John Williams",
@@ -8213,7 +8213,7 @@
       "fun_fact_fr": "Le générique raconte le principe de la série en moins d'une minute, et c'était l'intention : un générique qui fait aussi office d'exposition. Will Smith rappe sa propre histoire.",
       "fun_fact_nl": "De tune vertelt de premisse van de serie in minder dan een minuut, en dat was de bedoeling: een titelsequentie die tegelijk de voorgeschiedenis is. Will Smith rapt zijn eigen verhaal.",
       "fun_fact_it": "La sigla racconta la premessa della serie in meno di un minuto, ed era proprio l'intento: titoli di testa che sono anche l'antefatto. Will Smith rappa il proprio passato.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Kr0tTbTbmVA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=62EjFgPECgo"
     },
     {
       "artist": "Angelo Badalamenti",
@@ -8253,7 +8253,7 @@
       "fun_fact_fr": "Le thème de la plume est une ligne de piano qui ne se résout jamais comme on l'attend : le propos du film sur le hasard, tenu en une seule mélodie.",
       "fun_fact_nl": "Het verenthema is een pianolijn die zich nooit oplost zoals je verwacht — het betoog van de film over toeval, gevat in één melodie.",
       "fun_fact_it": "Il tema della piuma è una linea di pianoforte che non si risolve mai come ci si aspetta: la tesi del film sul caso, racchiusa in una sola melodia.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3pO_ciLGAV4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ps_RXJ69iQA"
     },
     {
       "artist": "Nicola Piovani",
@@ -8313,7 +8313,7 @@
       "fun_fact_fr": "Tous deux jouaient dans un groupe de synthétiseurs à Austin quand les frères Duffer leur ont demandé un générique. L'arpège est un écho délibéré des partitions de John Carpenter du début des années quatre-vingt.",
       "fun_fact_nl": "De twee speelden in een synthesizerband in Austin toen de gebroeders Duffer hun om een titelsequentie vroegen. Het arpeggio is een bewuste echo van John Carpenters muziek uit de vroege jaren tachtig.",
       "fun_fact_it": "I due suonavano in una band di sintetizzatori ad Austin quando i fratelli Duffer chiesero loro una sigla. L'arpeggio è un'eco voluta delle partiture di John Carpenter dei primi anni Ottanta.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Ha2OcL_0gtM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pCfpTK0IB-w"
     },
     {
       "artist": "Kendrick Lamar",
@@ -8480,7 +8480,7 @@
       "title": "Star Trek - The Motion Picture: Main Title",
       "year": 1979,
       "uri": "spotify:track:43B5NwirruWiXQi5V1LaOd",
-      "uri_apple_music": "applemusic://track/49266664",
+      "uri_apple_music": "applemusic://track/1617833041",
       "uri_deezer": "deezer://track/119439166",
       "isrc": "US3M50016302",
       "alt_artists": [
