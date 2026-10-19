@@ -22,7 +22,7 @@
 #
 # Run locally:  mypy   (config + file list are both read from here)
 [tool.mypy]
-python_version = "3.13"
+python_version = "3.14"
 
 # Home Assistant + third-party libs are not installed in the lint/CI env and
 # ship no usable stubs for our purposes — treat their imports as Any rather
