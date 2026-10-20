@@ -72,7 +72,8 @@
       "dev": {
         "suddenDeath": "wer einmal danebenliegt, ist raus",
         "titleArtist": "ihr ratet Titel und Interpret statt des Jahres",
-        "duration": "jeder Song läuft nur {n} Sekunden",
+        "duration": "jeder Song läuft die ganze Runde, {n} Sekunden lang",
+        "durationSample": "ihr hört {song} Sekunden von jedem Song und habt {round} zum Antworten",
         "closestWins": "nur der nächste Tipp bekommt Punkte",
         "difficultyEasy": "auch grobe Schätzungen geben noch Punkte",
         "difficultyHard": "nur ganz knappe Tipps geben Punkte",

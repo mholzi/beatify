@@ -575,8 +575,28 @@ window.BeatifyUtils = (function() {
         finale_tiebreaker_enabled: false,
         difficulty_bet_scaling_enabled: false,
         intro_mode_enabled: false,
-        rampup_order_enabled: false
+        rampup_order_enabled: false,
+        sample_duration: 0
     };
+
+    /**
+     * How long the song plays per round, or 0 for the whole round (#3222).
+     *
+     * Mirrors `RoundManager.sample_playback_seconds()` on the server: a limit
+     * that is not shorter than the round is no limit at all, so a 20 s sample
+     * in a 15 s round reads as "the whole round". Intro rounds are left out on
+     * purpose — they are a per-round matter and have their own clause.
+     *
+     * @param {*} sample - `sample_duration` from the state payload
+     * @param {number} roundSeconds - the round time, already rounded
+     * @returns {number} the audible seconds, or 0
+     */
+    function lobbyBriefSampleSeconds(sample, roundSeconds) {
+        var seconds = Math.round(Number(sample));
+        if (!isFinite(seconds) || seconds < 1) return 0;
+        if (seconds >= roundSeconds) return 0;
+        return seconds;
+    }
 
     /** How many deviations the sentence may name before it stops being one glance. */
     var LOBBY_BRIEF_MAX_NAMED = 3;
@@ -675,15 +695,25 @@ window.BeatifyUtils = (function() {
             if (rule.yearRound && !yearRound) return;
             var value = data[rule.field];
             if (value === undefined || value === null) return;
-            if (value === LOBBY_BRIEF_DEFAULTS[rule.field]) return;
 
             if (rule.field === 'round_duration') {
                 var seconds = Math.round(Number(value));
                 if (!isFinite(seconds) || seconds < 1) return;
+                // #3222: a song sample is said even at the default 45 s —
+                // the music stopping halfway is the surprise, not the clock.
+                var sample = lobbyBriefSampleSeconds(data.sample_duration, seconds);
+                if (sample) {
+                    found.push({
+                        key: 'lobby.brief.dev.durationSample',
+                        params: { song: sample, round: seconds }
+                    });
+                    return;
+                }
                 if (seconds === LOBBY_BRIEF_DEFAULTS.round_duration) return;
                 found.push({ key: 'lobby.brief.dev.duration', params: { n: seconds } });
                 return;
             }
+            if (value === LOBBY_BRIEF_DEFAULTS[rule.field]) return;
             if (rule.field === 'difficulty') {
                 if (value !== 'easy' && value !== 'hard') return;
                 found.push({
@@ -736,7 +766,7 @@ window.BeatifyUtils = (function() {
         if (!openEnded && template.indexOf('{rounds}') === -1) return null;
 
         // #2958: without the rounds phrase in front, a clause can open the
-        // sentence — "every song runs just 30 seconds" is written lowercase
+        // sentence — "every song plays through the whole 30-second round" is written lowercase
         // because it normally follows a comma. Capitalise whichever slot the
         // locale's template starts with; the template decides the order.
         var lead = /^\{(\w+)\}/.exec(template);

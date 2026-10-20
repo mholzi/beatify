@@ -72,7 +72,8 @@
       "dev": {
         "suddenDeath": "chi sbaglia una volta è fuori",
         "titleArtist": "indovinate titolo e artista invece dell'anno",
-        "duration": "ogni brano dura solo {n} secondi",
+        "duration": "ogni brano suona per tutto il turno, {n} secondi",
+        "durationSample": "si sentono {song} secondi di ogni brano e ce ne sono {round} per rispondere",
         "closestWins": "fa punti solo chi si avvicina di più",
         "difficultyEasy": "anche una stima approssimativa fa punti",
         "difficultyHard": "fanno punti solo le risposte quasi esatte",

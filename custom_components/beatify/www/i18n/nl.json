@@ -72,7 +72,8 @@
       "dev": {
         "suddenDeath": "wie één keer misgokt, ligt eruit",
         "titleArtist": "jullie raden titel en artiest in plaats van het jaar",
-        "duration": "elk nummer duurt maar {n} seconden",
+        "duration": "elk nummer speelt de hele ronde, {n} seconden lang",
+        "durationSample": "je hoort {song} seconden van elk nummer en hebt er {round} om te antwoorden",
         "closestWins": "alleen wie er het dichtst bij zit, scoort",
         "difficultyEasy": "ook een ruwe gok levert nog punten op",
         "difficultyHard": "alleen een bijna perfecte gok scoort",

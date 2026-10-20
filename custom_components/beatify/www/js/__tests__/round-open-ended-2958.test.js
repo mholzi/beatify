@@ -73,8 +73,8 @@ describe('applyRoundTotal (#2958)', () => {
 describe('the lobby sentence without a round cap (#2958)', () => {
     it('drops the rounds part and opens with a capital (en)', () => {
         const brief = U.buildLobbyBrief(lobby({ round_duration: 30 }), T.en);
-        expect(brief.text).toBe('Every song runs just 30 seconds.');
-        expect(brief.html).toContain('Every song runs just 30 seconds');
+        expect(brief.text).toBe('Every song plays through the whole 30-second round.');
+        expect(brief.html).toContain('Every song plays through the whole 30-second round');
         expect(brief.text).not.toContain('266');
     });
 
@@ -87,7 +87,7 @@ describe('the lobby sentence without a round cap (#2958)', () => {
             lobby({ total_rounds: 10, max_rounds: 10, round_duration: 30 }),
             T.en,
         );
-        expect(brief.text).toBe('10 rounds, every song runs just 30 seconds.');
+        expect(brief.text).toBe('10 rounds, every song plays through the whole 30-second round.');
     });
 
     const cases = {
