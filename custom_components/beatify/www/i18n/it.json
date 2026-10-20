@@ -428,6 +428,10 @@
     "mixStartUnavailable": "Mix composto, ma la partita non è potuta partire.",
     "selectPlaylist": "Scegli la playlist",
     "selectMediaPlayer": "Scegli l'altoparlante",
+    "speakerChangeRejected": {
+      "title": "Altoparlante non cambiato",
+      "kept": "La partita resta su {speaker}."
+    },
     "selectMediaPlayerHint": "Scegli un lettore multimediale",
     "selectPlaylistHint": "Scegli almeno una playlist",
     "startGame": "Avvia la partita",

@@ -69,6 +69,7 @@ import {
     _setAdminToken,
     escapeHtml,
     errorHeadlineAndDetail,
+    speakerRejectedText,
     acquireWakeLockFirst,
     applyStoredGameSettings,
     roundDurationLabel,
@@ -152,6 +153,7 @@ import {
     initMediaPlayers,
     renderMediaPlayers,
     handleMediaPlayerSelect,
+    postLobbyUpdate,
 } from './admin/sections/media-players.js';
 
 // game-settings.js: chip/toggle wiring (language, timer, difficulty, bonus
@@ -893,7 +895,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // #2637: the media-players section's "no compatible players → Refresh"
     // button. Same reason, same shape.
-    initMediaPlayers({ refreshStatus: loadStatus });
+    initMediaPlayers({
+        refreshStatus: loadStatus,
+        onSpeakerRejected: showSpeakerRejected,  // #3223
+        onSpeakerChanged: () => clearBanner('home-start-banner'),
+    });
 
     // #1402 B7: one document-level Escape handler for all registered modals.
     // Wire it before the per-modal setups so their registerModalClose() calls
@@ -1628,23 +1634,19 @@ async function startGameplay() {
     // are covered by the server-side pre-start hook, configs are not — the
     // server has no store of them). Push the CURRENT configs right before
     // the phase flip, awaited so configure_* lands before announcements.
-    try {
-        await window.BeatifyAuth?.fetch('/beatify/api/game/update-lobby', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                media_player: (adminState.selectedMediaPlayer || {}).entityId || null,
-                tts: ttsConfig(),
-                party_lights: partyLightsConfig(),
-                // #2769: the play style, the mode flags and the round count
-                // were frozen at room creation too, and nothing pushed them.
-                // A wizard run between creation and start replaced them in
-                // saved_setup while the lobby kept the old ones.
-                game_options: buildGameOptionsPayload(),
-                playlists: buildLobbyPlaylistsPayload(),  // #2888
-            }),
-        });
-    } catch (e) { /* never block the start on a failed push */ }
+    // #3223: postLobbyUpdate reads the answer, so a refused speaker is put
+    // back and reported; it never throws, so the start is never blocked.
+    await postLobbyUpdate({
+        media_player: (adminState.selectedMediaPlayer || {}).entityId || null,
+        tts: ttsConfig(),
+        party_lights: partyLightsConfig(),
+        // #2769: the play style, the mode flags and the round count
+        // were frozen at room creation too, and nothing pushed them.
+        // A wizard run between creation and start replaced them in
+        // saved_setup while the lobby kept the old ones.
+        game_options: buildGameOptionsPayload(),
+        playlists: buildLobbyPlaylistsPayload(),  // #2888
+    });
 
     let originalHTML = null;
     if (btn) {
@@ -2088,7 +2090,7 @@ function showError(message) {
  * @param {{label: string, onClick: function}} [action] - Optional way out
  *   rendered as a button in the banner (#2269).
  */
-function showSetupError(message, action, detail) {
+function showSetupError(message, action, detail, title) {
     // #2365: dock above the footer row, not inside it — see bannerAnchorFor.
     var anchor = bannerAnchorFor(document.getElementById('home-start-game'));
     if (!anchor) {
@@ -2101,11 +2103,38 @@ function showSetupError(message, action, detail) {
     showBanner(message, {
         anchor: anchor,
         id: 'home-start-banner',
-        title: (window.BeatifyI18n && BeatifyI18n.t('errors.startNotPossible')) || 'Cannot start',
+        title: title || (window.BeatifyI18n && BeatifyI18n.t('errors.startNotPossible')) || 'Cannot start',
         type: 'error',
         detail: detail,
         action: action,
     });
+}
+
+/**
+ * The server refused a speaker switch in the lobby (#3223, design Variant C).
+ *
+ * The same banner as a refused start, shown as soon as the switch is refused
+ * instead of only at "Start game": the reason from the existing error texts,
+ * then which speaker the game stays on, and "Select Speaker" back to wizard
+ * step 1. media-players.js has already put the selection back.
+ * @param {object} data - the update-lobby rejection body.
+ */
+function showSpeakerRejected(data) {
+    const text = speakerRejectedText(
+        data,
+        adminState.mediaPlayers,
+        window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null
+    );
+    window.BeatifyHome?.refresh?.();
+    showSetupError(
+        text.message,
+        {
+            label: tr('admin.selectMediaPlayer', 'Select Speaker'),
+            onClick: () => openSetupStepOne(window),
+        },
+        undefined,
+        text.title
+    );
 }
 
 /**

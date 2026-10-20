@@ -428,6 +428,10 @@
     "mixStartUnavailable": "Mezcla creada, pero no se pudo iniciar el juego.",
     "selectPlaylist": "Seleccionar lista",
     "selectMediaPlayer": "Seleccionar altavoz",
+    "speakerChangeRejected": {
+      "title": "Altavoz no cambiado",
+      "kept": "La partida sigue en {speaker}."
+    },
     "selectMediaPlayerHint": "Selecciona un reproductor",
     "selectPlaylistHint": "Selecciona al menos una lista",
     "startGame": "Iniciar juego",

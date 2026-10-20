@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import contextlib
 import functools
+import json
 import logging
 from dataclasses import replace
 from typing import TYPE_CHECKING, Any
@@ -1356,14 +1357,18 @@ class UpdateLobbyView(BeatifyAdminView):
             return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
 
         updated: list[str] = []
+        # #3223: a rejected speaker no longer ends the request. The admin sends
+        # the speaker with every settings change (TTS, party lights, language),
+        # so returning here threw those changes away without a word. The
+        # rejection is held and returned after everything else is applied.
+        speaker_err: web.Response | None = None
         media_player = body.get("media_player")
         if isinstance(media_player, str) and media_player:
             # #3153: the same speaker checks as starting a game.
-            media_player, platform, err = await _validate_media_player(
+            media_player, platform, speaker_err = await _validate_media_player(
                 self.hass, media_player, game_state.provider
             )
-            if err is not None:
-                return err
+        if speaker_err is None and isinstance(media_player, str) and media_player:
             game_state.media_player = media_player
             game_state.platform = platform
             # The lazily-built MediaPlayerService captures entity/platform at
@@ -1546,7 +1551,40 @@ class UpdateLobbyView(BeatifyAdminView):
             if ws_handler:
                 await ws_handler.broadcast_state()
 
+        if speaker_err is not None:
+            return _speaker_rejected_response(
+                self.hass, speaker_err, game_state, updated
+            )
+
         return web.json_response({"updated": bool(updated), "fields": updated})
+
+
+def _speaker_rejected_response(
+    hass: HomeAssistant,
+    err: web.Response,
+    game_state: Any,
+    updated: list[str],
+) -> web.Response:
+    """The speaker rejection of an update-lobby call that applied the rest (#3223).
+
+    Keeps the status and the error body of the rejection (``code``,
+    ``message_key``, ``speaker``, ``provider``) so the admin can show the same
+    text as at game start, and adds what did happen: the fields that were
+    applied, and the speaker the game is still on, so the admin can put its
+    selection back to the server's.
+    """
+    payload: dict[str, Any] = json.loads(err.body)
+    current = game_state.media_player
+    state = hass.states.get(current) if current else None
+    payload.update(
+        {
+            "updated": bool(updated),
+            "fields": updated,
+            "media_player": current,
+            "current_speaker": (state.name if state else None) or current,
+        }
+    )
+    return web.json_response(payload, status=err.status)
 
 
 class StartGameplayView(BeatifyAdminView):

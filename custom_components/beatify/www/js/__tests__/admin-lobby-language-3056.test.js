@@ -25,6 +25,7 @@ describe('language chip -> update-lobby (#3056)', () => {
         const fn = src.slice(start, src.indexOf("localStorage", start));
         expect(fn).toContain('lobbyPatch');
         expect(fn).toContain('...lobbyPatch');
-        expect(fn).toContain('/beatify/api/game/update-lobby');
+        // #3223: posted through postLobbyUpdate, which reads the answer.
+        expect(fn).toContain('postLobbyUpdate({');
     });
 });
