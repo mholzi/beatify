@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.5-rc2] - 2026-10-20
+
+Second candidate for 4.8.5, "Hold the Intro": two fixes for a refused speaker on top of rc1.
+
+### Fixed
+- **Amazon Music refusals point to an Amazon Echo** (#3235, #3237). A speaker that can't play
+  Amazon Music used to suggest a Music Assistant speaker, which can't play it either. The start error
+  and the lobby banner now say to choose an Amazon Echo, in all six languages. Other providers keep
+  the Music Assistant advice.
+- **A refused speaker switch during a game shows a banner above the control bar** (#3236, #3238).
+  It used to be a toast that vanished after a few seconds. The banner names the reason, says the game
+  stays on the current speaker, and stays until it is closed, a switch succeeds or the game ends.
+  The automatic re-send of the stored speaker no longer raises it.
+
 ## [4.8.5-rc1] - 2026-10-18
 
 First candidate for 4.8.5, "Hold the Intro": a security fix for the Companion auth bypass, intro-round
