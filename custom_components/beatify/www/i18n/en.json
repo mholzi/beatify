@@ -1208,6 +1208,7 @@
       "SAMPLE_DURATION_TOO_LONG": "The song must play for less than the round duration",
       "NO_MEDIA_PLAYER": "No media player selected",
       "MEDIA_PLAYER_NOT_FOUND": "Media player not found",
+      "PROVIDER_NOT_SUPPORTED_AMAZON": "{speaker} can't play Amazon Music. Choose an Amazon Echo as the speaker.",
       "NO_ACTIVE_GAME": "No active game",
       "LIBRARY_GENERATION_FAILED": "Library playlist generation failed: {detail}",
       "LIBRARY_POOL_MISSING": "Your library hasn't been scanned yet. Open Settings and run 'Scan library' first (this takes a while on the first run).",

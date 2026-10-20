@@ -1208,6 +1208,7 @@
       "SAMPLE_DURATION_TOO_LONG": "La canción debe sonar menos tiempo que la duración de la ronda",
       "NO_MEDIA_PLAYER": "No se ha seleccionado ningún reproductor multimedia",
       "MEDIA_PLAYER_NOT_FOUND": "Reproductor multimedia no encontrado",
+      "PROVIDER_NOT_SUPPORTED_AMAZON": "{speaker} no puede reproducir Amazon Music. Elige un Amazon Echo como altavoz.",
       "NO_ACTIVE_GAME": "No hay ninguna partida activa",
       "LIBRARY_GENERATION_FAILED": "No se pudo generar la lista de la biblioteca: {detail}",
       "LIBRARY_POOL_MISSING": "Tu biblioteca todavía no se ha escaneado. Abre los ajustes y ejecuta primero «Escanear biblioteca» (la primera vez tarda un rato).",
