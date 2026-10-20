@@ -1,6 +1,6 @@
 {
   "name": "Deutschpop Klassiker 🇩🇪",
-  "version": "0.19",
+  "version": "0.20",
   "tags": [
     "german",
     "pop",
@@ -315,13 +315,13 @@
       "uri": "spotify:track:58zHoX9U5VlSXLUUmWTfe2",
       "uri_apple_music": "applemusic://track/6762966192",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/712383927",
+        "us": "applemusic://track/6762966192",
         "de": "applemusic://track/6762966192",
-        "gb": "applemusic://track/712383927",
-        "fr": "applemusic://track/712383927",
-        "es": "applemusic://track/712383927",
-        "nl": "applemusic://track/712383927",
-        "it": "applemusic://track/712383927"
+        "gb": "applemusic://track/6762966192",
+        "fr": "applemusic://track/6762966192",
+        "es": "applemusic://track/6762966192",
+        "nl": "applemusic://track/6762966192",
+        "it": "applemusic://track/6762966192"
       },
       "uri_deezer": "deezer://track/3090905",
       "uri_youtube_music": "https://music.youtube.com/watch?v=aC872j2-PDw",
@@ -1565,19 +1565,19 @@
       "year": 2011,
       "isrc": "DEA621100093",
       "uri": "spotify:track:1uKubXaFxoYl5KYiLAa0aw",
-      "uri_apple_music": "applemusic://track/1709938090",
+      "uri_apple_music": "applemusic://track/6822045533",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1706928241",
-        "de": "applemusic://track/1709938090",
-        "gb": "applemusic://track/1709938090",
-        "fr": "applemusic://track/1709938090",
-        "es": "applemusic://track/1709938090",
-        "nl": "applemusic://track/486293001",
-        "it": "applemusic://track/1709938090"
+        "us": "applemusic://track/6822045533",
+        "de": "applemusic://track/6822045533",
+        "gb": "applemusic://track/6822045533",
+        "fr": "applemusic://track/6822045533",
+        "es": "applemusic://track/6822045533",
+        "nl": "applemusic://track/6822045533",
+        "it": "applemusic://track/6822045533"
       },
       "uri_deezer": "deezer://track/14608673",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ZbsqG_R3ySE",
-      "uri_tidal": "tidal://track/6148607",
+      "uri_tidal": "tidal://track/306327346",
       "alt_artists": [
         "Glasperlenspiel",
         "Stefanie Heinzmann",
@@ -3771,15 +3771,15 @@
       "year": 1990,
       "isrc": "ATB792030303",
       "uri": "spotify:track:75A3w3uEqc2frjzHA1KUMt",
-      "uri_apple_music": "applemusic://track/1675989383",
+      "uri_apple_music": "applemusic://track/6794949942",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1675989383",
-        "de": "applemusic://track/1675989383",
-        "gb": "applemusic://track/1675989383",
-        "fr": "applemusic://track/1675989383",
-        "es": "applemusic://track/1675989383",
-        "nl": "applemusic://track/1675989383",
-        "it": "applemusic://track/1675989383"
+        "us": "applemusic://track/6794949942",
+        "de": "applemusic://track/6794949942",
+        "gb": "applemusic://track/6794949942",
+        "fr": "applemusic://track/6794949942",
+        "es": "applemusic://track/6794949942",
+        "nl": "applemusic://track/6794949942",
+        "it": "applemusic://track/6794949942"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=qh7cf9Wpk2w",
       "uri_tidal": "tidal://track/33973861",
@@ -3886,7 +3886,7 @@
       "fun_fact_fr": "Écrite pour le film Schimanski Zahn um Zahn, elle est restée plus d'un an dans les classements allemands, plus longtemps que le film à l'affiche.",
       "fun_fact_nl": "Geschreven voor de Schimanski-film Zahn um Zahn; het stond ruim een jaar in de Duitse lijsten, langer dan de film ergens draaide.",
       "fun_fact_it": "Scritta per il film di Schimanski Zahn um Zahn, restò oltre un anno nelle classifiche tedesche, più a lungo di quanto il film rimase nelle sale.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=lTlpWn7EcdA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ll9Q-42Iv6Q"
     },
     {
       "year": 1986,
