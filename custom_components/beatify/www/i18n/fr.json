@@ -72,7 +72,8 @@
       "dev": {
         "suddenDeath": "une seule erreur vous élimine",
         "titleArtist": "vous devinez le titre et l'artiste au lieu de l'année",
-        "duration": "chaque morceau ne dure que {n} secondes",
+        "duration": "chaque morceau passe toute la manche, {n} secondes",
+        "durationSample": "on entend {song} secondes de chaque morceau et on a {round} secondes pour répondre",
         "closestWins": "seul le plus proche marque des points",
         "difficultyEasy": "même une estimation large rapporte des points",
         "difficultyHard": "seule une réponse très proche rapporte des points",

@@ -106,7 +106,6 @@ const NOT_IN_SENTENCE = {
     provider: 'where the music comes from — not a rule of the game',
     platform: 'playback routing, invisible to players',
     max_rounds: 'a cap on the pool; the sentence says the resulting round count',
-    sample_duration: '#3152: no lobby clause was designed for it; the wizard hint and the in-game chip say it',
     reveal_auto_advance: 'host pacing, nothing a player can act on',
     artist_challenge_enabled: 'defaults ON and is not in the state payload — see the PR',
     movie_quiz_enabled: 'defaults ON and is not in the state payload — see the PR',
@@ -155,14 +154,14 @@ describe('the sentence (#2647)', () => {
     it('reads, in German, the game the issue describes', () => {
         expect(U.buildLobbyBrief(surprise, T.de).text).toBe(
             '10 Runden, ihr ratet Titel und Interpret statt des Jahres, '
-            + 'jeder Song läuft nur 20 Sekunden — und wer einmal danebenliegt, ist raus.',
+            + 'jeder Song läuft die ganze Runde, 20 Sekunden lang — und wer einmal danebenliegt, ist raus.',
         );
     });
 
     it('reads, in English, the same game', () => {
         expect(U.buildLobbyBrief(surprise, T.en).text).toBe(
             '10 rounds, you are guessing title and artist instead of the year, '
-            + 'every song runs just 20 seconds — and a single wrong answer knocks you out.',
+            + 'every song plays through the whole 20-second round — and a single wrong answer knocks you out.',
         );
     });
 
@@ -193,7 +192,7 @@ describe('the sentence (#2647)', () => {
     it('reads a float round_duration as whole seconds', () => {
         // The server stores it as a float (30.0) — #1867.
         const brief = U.buildLobbyBrief(lobby({ round_duration: 30.0 }), T.en);
-        expect(brief.text).toContain('every song runs just 30 seconds');
+        expect(brief.text).toContain('every song plays through the whole 30-second round');
     });
 });
 
@@ -213,7 +212,7 @@ describe('the cap at three named deviations (#2647)', () => {
         expect(brief.named).toBe(3);
         expect(brief.hidden).toBe(1);
         expect(brief.text).toBe(
-            '10 rounds, every song runs just 20 seconds, everyone gets one sabotage to spend, '
+            '10 rounds, every song plays through the whole 20-second round, everyone gets one sabotage to spend, '
             + 'plus one more twist — and a single wrong answer knocks you out.',
         );
     });
@@ -345,7 +344,7 @@ describe('the rendered line (#2647)', () => {
             '<span class="lobby-brief-em lobby-brief-em--alt">you are guessing title and artist instead of the year</span>',
         );
         expect(brief.html).toContain(
-            '<span class="lobby-brief-em">every song runs just 20 seconds</span>',
+            '<span class="lobby-brief-em">every song plays through the whole 20-second round</span>',
         );
         // "10 rounds" is not news: it carries no span at all.
         expect(brief.html.startsWith('10 rounds,')).toBe(true);

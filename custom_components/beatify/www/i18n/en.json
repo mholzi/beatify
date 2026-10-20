@@ -72,7 +72,8 @@
       "dev": {
         "suddenDeath": "a single wrong answer knocks you out",
         "titleArtist": "you are guessing title and artist instead of the year",
-        "duration": "every song runs just {n} seconds",
+        "duration": "every song plays through the whole {n}-second round",
+        "durationSample": "you hear {song} seconds of each song and get {round} to answer",
         "closestWins": "only the closest guess scores",
         "difficultyEasy": "even a rough guess still scores",
         "difficultyHard": "only a near-perfect guess scores",
