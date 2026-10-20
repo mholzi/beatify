@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-import html, json, os, re, sys, time, unicodedata, urllib.request, urllib.error
+import html, json, os, re, socket, sys, time, unicodedata, urllib.request, urllib.error
 from difflib import SequenceMatcher
+
+# Python 3.9 SSL handshakes can hang indefinitely even with per-request
+# timeouts. setdefaulttimeout caps the TCP+SSL layer globally.
+socket.setdefaulttimeout(30)
 
 # User-maintained deny-list for URIs confirmed dead in real Music Assistant
 # playback, even though public provider APIs still report them as healthy.
