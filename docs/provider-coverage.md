@@ -1,14 +1,14 @@
 # Beatify Provider-URI Coverage
-> Generated: 2026-10-15
+> Generated: 2026-10-20
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.5-rc1 (v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json, eurovision-winners.json and greatest-hits-of-all-time.json; 70 playlists, 8,724 songs; no songs added or removed)
+> Catalogue state: v4.8.5-rc1 (v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json, eurovision-winners.json, greatest-hits-of-all-time.json, movies-100-greatest-themes.json and one-hit-wonders.json; 70 playlists, 8,724 songs; no songs added or removed)
 
 ## Summary
 
 | Provider | Have | Total | Coverage |
 |---|---:|---:|---:|
 | Apple | 8391 | 8724 | 96.2% |
-| Tidal | 5924 | 8724 | 67.9% |
+| Tidal | 5925 | 8724 | 67.9% |
 | Deezer | 8631 | 8724 | 98.9% |
 | YouTube | 8453 | 8724 | 96.9% |
 
@@ -77,11 +77,11 @@
 | disco-funk-classics.json | 98 | 97 | 90 | 97 | 98 |
 | disney-classics.json | 69 | 69 | 69 | 69 | 69 |
 | eurovision-winners.json | 72 | 67 | 68 | 72 | 72 |
-| greatest-hits-of-all-time.json | 236 | 235 | 219 | 236 | 236 |
+| greatest-hits-of-all-time.json | 236 | 235 | 235 | 236 | 236 |
 | hits-2010s-2020s.json | 124 | 122 | 71 | 123 | 124 |
 | motown-soul-classics.json | 100 | 100 | 100 | 100 | 100 |
-| movies-100-greatest-themes.json | 257 | 240 | 156 | 252 | 257 |
-| one-hit-wonders.json | 98 | 96 | 98 | 98 | 98 |
+| movies-100-greatest-themes.json | 257 | 240 | 148 | 252 | 257 |
+| one-hit-wonders.json | 98 | 96 | 91 | 98 | 98 |
 | summer-party-anthems.json | 112 | 112 | 112 | 112 | 112 |
 | top-100-power-ballads.json | 99 | 99 | 99 | 99 | 99 |
 | top-songs-der-60er.json | 82 | 82 | 66 | 81 | 82 |

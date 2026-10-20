@@ -7,7 +7,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 ## [4.8.5-rc1] - 2026-10-18
 
 First candidate for 4.8.5, "Hold the Intro": a security fix for the Companion auth bypass, intro-round
-fixes and playlist repairs on top of 4.8.4.
+fixes, three fixes the host and players see (bet line, lobby sentence, refused speaker change) and
+playlist repairs on top of 4.8.4.
 
 ### Security
 - **The Companion auth bypass is refused behind a reverse proxy** (#3202, #3203, reported by email).
@@ -22,6 +23,16 @@ fixes and playlist repairs on top of 4.8.4.
   while the intro round waits for the host, the admin countdown holds during the splash like the TV,
   and the intro song is cut after 15 s instead of playing through the whole round. The reveal plays
   it again as before.
+- **Bet line in the points breakdown** (#3221, #3230): a won bet reads "All-in bonus" at every
+  multiplier. It used to say "Triple or Nothing" in every language, also at ×2 and ×5.
+- **Lobby sentence** (#3222, #3232): with a song length set, the lobby names both numbers ("you hear
+  15 seconds of each song and get 30 to answer"). It used to give the round time as the song length,
+  and said nothing about time at the 45 s default. A song length at least as long as the round
+  counts as no limit, as on the server.
+- **Refused speaker change in the lobby** (#3223, #3233): when the server refuses a new speaker, the
+  admin goes back to the previous one and shows a banner above "Start game" that stays until it is
+  closed. The other settings sent in the same request (TTS, party lights, game options, language)
+  are now applied instead of being dropped with the speaker.
 
 ### Changed
 - **Dead admin actions removed** (#3204, #3205): `seek_forward`, `set_language`,
@@ -30,10 +41,17 @@ fixes and playlist repairs on top of 4.8.4.
 - **Playlist repairs**: wrong or broken links replaced in `american-classics-country-heartland`
   (#3189, #3190), `sommerklassiker` (#3191, #3192), `eurovision-winners` (#3193, #3194) and
   `funk-carioca` (#3197, #3198), plus 45 dead links in `greatest-hits-of-all-time` (#3207, #3212).
+  `greatest-hits-of-all-time` also gets 16 of 17 missing Tidal links back, each checked by ISRC or
+  MusicBrainz recording, and "YMCA (Original Version 1978)" now plays the 1978 recording
+  (#3209, #3211, #3220, #3231). Dead links fixed in `movies-100-greatest-themes` (#3226, #3227) and
+  `one-hit-wonders` (#3228, #3229).
   `hitster-100-francais` and `hitster-brasil` no longer carry the
   Hitster name in tags, descriptions or fun facts; file names are unchanged so saved selections keep
   working (#3201). Each playlist's `version` went up with its change.
 - README links the new Beatify website (#3196).
+- Maintenance: the Deezer link backfill asks Deezer directly by ISRC instead of the retired Odesli
+  API (#3234). Dependencies: ruff 0.17.1, mypy 2.x, aiohttp >= 3.14.5, vitest, brace-expansion
+  (#3213–#3216, #3219).
 
 ## [4.8.4] - 2026-10-15
 
