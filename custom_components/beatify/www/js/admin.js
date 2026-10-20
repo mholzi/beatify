@@ -216,6 +216,10 @@ import { partyLightsConfig, refreshPartyLightsLabels } from './party-lights.js';
 // What changed is that there is exactly one copy of each module now.
 import './wizard.js';
 
+// #3236: update-lobby accepts a speaker switch in these phases besides LOBBY.
+const SPEAKER_BANNER_GAME_PHASES = ['PLAYING', 'REVEAL'];
+const INGAME_SPEAKER_BANNER_ID = 'ingame-speaker-banner';
+
 // Token helpers in util.js need the live `currentGame`. The resolver reads it
 // off the shared `adminState` object (#1279 step 5), so it stays in sync across
 // every `adminState.currentGame = …` without touching each assignment site.
@@ -898,7 +902,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initMediaPlayers({
         refreshStatus: loadStatus,
         onSpeakerRejected: showSpeakerRejected,  // #3223
-        onSpeakerChanged: () => clearBanner('home-start-banner'),
+        onSpeakerChanged: clearSpeakerRejectedBanners,  // #3223, #3236
     });
 
     // #1402 B7: one document-level Escape handler for all registered modals.
@@ -1240,6 +1244,8 @@ function showSetupView() {
     document.getElementById('admin-playing-section')?.classList.add('hidden');
     document.getElementById('admin-reveal-section')?.classList.add('hidden');
     document.getElementById('admin-end-section')?.classList.add('hidden');
+
+    clearBanner(INGAME_SPEAKER_BANNER_ID);  // #3236: no game, no in-game banner
 
     // Issue #477: Close admin WS if switching to setup
     closeAdminWs();
@@ -2119,13 +2125,21 @@ function showSetupError(message, action, detail, title) {
  * step 1. media-players.js has already put the selection back.
  * @param {object} data - the update-lobby rejection body.
  */
-function showSpeakerRejected(data) {
+function showSpeakerRejected(data, opts) {
     const text = speakerRejectedText(
         data,
         adminState.mediaPlayers,
         window.BeatifyI18n ? BeatifyI18n.t.bind(BeatifyI18n) : null
     );
     window.BeatifyHome?.refresh?.();
+    const phase = adminState.currentGame && adminState.currentGame.phase;
+    if (SPEAKER_BANNER_GAME_PHASES.includes(phase)) {
+        // #3236: the page re-sent the stored speaker by itself (reload). The
+        // host did nothing, so the silent revert is all that happens.
+        if (opts && opts.auto) return;
+        showInGameSpeakerBanner(text);
+        return;
+    }
     showSetupError(
         text.message,
         {
@@ -2135,6 +2149,49 @@ function showSpeakerRejected(data) {
         undefined,
         text.title
     );
+}
+
+/**
+ * A refused speaker switch during PLAYING / REVEAL (#3236, design Variant A).
+ *
+ * The #3223 banner, docked above the fixed control bar instead of the Start
+ * button that does not exist mid-game. It lives inside #admin-control-bar, the
+ * one control area both PLAYING and REVEAL show, so it survives the phase
+ * change with it. No "Select Speaker" button: the speaker list is only reachable
+ * through the setup wizard, which would leave the game screen. Removed by its
+ * own ×, a speaker switch that works, or the game leaving PLAYING/REVEAL/PAUSED.
+ * @param {{title: string, message: string}} text - from speakerRejectedText.
+ */
+function showInGameSpeakerBanner(text) {
+    var bar = document.getElementById('admin-control-bar');
+    if (!bar) {
+        showToast(text.message, { type: 'error' });
+        return;
+    }
+    var banner = showBanner(text.message, {
+        parent: bar,
+        id: INGAME_SPEAKER_BANNER_ID,
+        title: text.title,
+        type: 'error',
+    });
+    if (banner) banner.classList.add('beatify-banner--docked');
+}
+
+/**
+ * Drop the in-game speaker banner once the game is no longer running (#3236).
+ * PAUSED keeps it: the control bar is hidden there and comes back with it.
+ * @param {string} phase
+ */
+function syncInGameSpeakerBanner(phase) {
+    if (!SPEAKER_BANNER_GAME_PHASES.includes(phase) && phase !== 'PAUSED') {
+        clearBanner(INGAME_SPEAKER_BANNER_ID);
+    }
+}
+
+/** A speaker switch worked: both refusal banners are stale (#3223, #3236). */
+function clearSpeakerRejectedBanners() {
+    clearBanner('home-start-banner');
+    clearBanner(INGAME_SPEAKER_BANNER_ID);
 }
 
 /**
@@ -2776,6 +2833,9 @@ function renderAdminState(data) {
         !document.body.classList.contains('home-mode')) {
         window.BeatifyHome.enter();
     }
+
+    // #3236: a refused mid-game speaker stays until the game ends.
+    syncInGameSpeakerBanner(data.phase);
 
     // #2645: the Pause key's label follows the phase, and the PLAYING branch
     // below can return early (handing over to the player view), so it is set

@@ -65,10 +65,15 @@ export function initMediaPlayers(injected = {}) {
  * rejection plus `media_player`, the speaker the game is still on; the server
  * applies the rest of the patch either way.
  *
+ * #3236: `opts.auto` marks a push the page made on its own (the stored speaker
+ * re-selected on load), not a host action. It is handed to `onSpeakerRejected`
+ * so a refusal of that push can stay silent mid-game.
+ *
  * @param {object} payload - the update-lobby body.
+ * @param {{auto?: boolean}} [opts]
  * @returns {Promise<object|null>} the parsed response, or null.
  */
-export async function postLobbyUpdate(payload) {
+export async function postLobbyUpdate(payload, opts = {}) {
     let data;
     let ok;
     try {
@@ -85,7 +90,7 @@ export async function postLobbyUpdate(payload) {
     }
     if (!data) return null;
     if (!ok && isSpeakerRejection(data)) {
-        revertRejectedSpeaker(data);
+        revertRejectedSpeaker(data, { auto: !!opts.auto });
     } else if (ok && Array.isArray(data.fields) && data.fields.includes('media_player')
         && keptSpeaker && payload && payload.media_player && payload.media_player !== keptSpeaker) {
         keptSpeaker = null;
@@ -111,7 +116,7 @@ export function isSpeakerRejection(data) {
  * every status render re-selects that key and pushes it, so leaving the
  * refused speaker there would send the same switch again on the next load.
  */
-export function revertRejectedSpeaker(data) {
+export function revertRejectedSpeaker(data, opts = {}) {
     const previous = typeof data.media_player === 'string' && data.media_player
         ? data.media_player : null;
     keptSpeaker = previous;
@@ -134,7 +139,7 @@ export function revertRejectedSpeaker(data) {
             console.warn('Failed to persist reverted speaker:', e);
         }
     }
-    deps.onSpeakerRejected?.(data);
+    deps.onSpeakerRejected?.(data, { auto: !!opts.auto });
 }
 
 /**
@@ -399,8 +404,10 @@ export function handleMediaPlayerSelect(radio, skipSave = false, opts = {}) {
     // were created with and a switch only took effect one game later.
     // #3223: the answer is read — a refused speaker is put back. Skipped when
     // this call IS that revert (the game is already on that speaker).
+    // #3236: `skipSave` is the auto-select of the stored speaker on render,
+    // which the page does by itself on every load.
     if (opts.pushToLobby !== false) {
-        postLobbyUpdate({ media_player: entityId });
+        postLobbyUpdate({ media_player: entityId }, { auto: !!skipSave });
     }
 
     // Update visual selection

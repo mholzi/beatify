@@ -17618,6 +17618,24 @@ body.theme-dark .your-result-stats .stat-value {
 }
 .beatify-banner-close:hover { color: var(--color-text-white); }
 
+/* #3236 (design Variant A): a refused speaker switch mid-game. The banner is a
+   child of the fixed #admin-control-bar and floats 8px above it, so it stays in
+   view while the page scrolls and goes along with the bar into REVEAL. Solid:
+   the lobby's 8% red tint is layered over the stage colour, otherwise the
+   leaderboard would show through. */
+.beatify-banner--docked {
+    position: absolute;
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: calc(100% + var(--space-sm));
+    max-width: 560px;
+    margin: 0 auto;
+    background:
+        linear-gradient(rgba(255, 0, 64, 0.08), rgba(255, 0, 64, 0.08)),
+        var(--color-bg-primary);
+    box-shadow: inset 0 0 16px rgba(255, 0, 64, 0.12), 0 -8px 24px rgba(0, 0, 0, 0.55);
+}
+
 @media (prefers-reduced-motion: reduce) {
     .beatify-toast { transition: none; opacity: 1; transform: none; }
     .beatify-toast-progress { animation: none; }

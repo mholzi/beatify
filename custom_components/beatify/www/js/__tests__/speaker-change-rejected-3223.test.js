@@ -89,7 +89,8 @@ describe('the banner above "Start game" appears on rejection (#3223)', () => {
         const refresh = vi.fn();
         const win = { BeatifyI18n: { t }, BeatifyHome: { refresh } };
         const show = evaluate(
-            [declaration(ADMIN, 'showSetupError', 'admin.js'),
+            ["const SPEAKER_BANNER_GAME_PHASES = ['PLAYING', 'REVEAL'];",  // #3236
+                declaration(ADMIN, 'showSetupError', 'admin.js'),
                 declaration(ADMIN, 'showSpeakerRejected', 'admin.js')],
             'showSpeakerRejected',
             {
@@ -191,7 +192,7 @@ describe('postLobbyUpdate reverts a refused speaker (#3223)', () => {
         expect(radioOld.checked).toBe(true);
         expect(store.beatify_last_player).toBe('media_player.wohnzimmer');
         expect(globalThis.BeatifyPersistSetup).toHaveBeenCalled();
-        expect(onSpeakerRejected).toHaveBeenCalledWith(REJECTION);
+        expect(onSpeakerRejected).toHaveBeenCalledWith(REJECTION, { auto: false });
         // The revert itself does not push again: the game is on that speaker.
         expect(fetchMock).toHaveBeenCalledTimes(1);
         expect(onSpeakerChanged).not.toHaveBeenCalled();
