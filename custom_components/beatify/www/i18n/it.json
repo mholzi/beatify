@@ -1208,6 +1208,7 @@
       "SAMPLE_DURATION_TOO_LONG": "La canzone deve suonare meno della durata del round",
       "NO_MEDIA_PLAYER": "Nessun lettore multimediale selezionato",
       "MEDIA_PLAYER_NOT_FOUND": "Lettore multimediale non trovato",
+      "PROVIDER_NOT_SUPPORTED_AMAZON": "{speaker} non può riprodurre Amazon Music. Scegli un Amazon Echo come altoparlante.",
       "NO_ACTIVE_GAME": "Nessuna partita attiva",
       "LIBRARY_GENERATION_FAILED": "Generazione della playlist dalla libreria non riuscita: {detail}",
       "LIBRARY_POOL_MISSING": "La tua libreria non è ancora stata analizzata. Apri le impostazioni ed esegui prima «Analizza libreria» (la prima volta ci vuole un po').",

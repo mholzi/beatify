@@ -1208,6 +1208,7 @@
       "SAMPLE_DURATION_TOO_LONG": "Het nummer moet korter spelen dan de rondeduur",
       "NO_MEDIA_PLAYER": "Geen mediaspeler geselecteerd",
       "MEDIA_PLAYER_NOT_FOUND": "Mediaspeler niet gevonden",
+      "PROVIDER_NOT_SUPPORTED_AMAZON": "{speaker} kan Amazon Music niet afspelen. Kies een Amazon Echo als speaker.",
       "NO_ACTIVE_GAME": "Geen actief spel",
       "LIBRARY_GENERATION_FAILED": "Het genereren van de afspeellijst uit de bibliotheek is mislukt: {detail}",
       "LIBRARY_POOL_MISSING": "Je bibliotheek is nog niet gescand. Open de instellingen en voer eerst ‘Bibliotheek scannen’ uit (de eerste keer duurt dat even).",

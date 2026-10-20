@@ -1208,6 +1208,7 @@
       "SAMPLE_DURATION_TOO_LONG": "La chanson doit jouer moins longtemps que la durée de la manche",
       "NO_MEDIA_PLAYER": "Aucun lecteur multimédia sélectionné",
       "MEDIA_PLAYER_NOT_FOUND": "Lecteur multimédia introuvable",
+      "PROVIDER_NOT_SUPPORTED_AMAZON": "{speaker} ne peut pas lire Amazon Music. Choisis un Amazon Echo comme enceinte.",
       "NO_ACTIVE_GAME": "Aucune partie en cours",
       "LIBRARY_GENERATION_FAILED": "La génération de la playlist depuis la bibliothèque a échoué : {detail}",
       "LIBRARY_POOL_MISSING": "Votre bibliothèque n'a pas encore été analysée. Ouvrez les paramètres et lancez d'abord « Analyser la bibliothèque » (cela prend un moment la première fois).",

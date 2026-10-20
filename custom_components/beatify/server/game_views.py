@@ -1227,12 +1227,23 @@ def _check_speaker_platform(
     # blocks spelled out, so the five wordings they produced are unchanged.
     provider_spec = get_provider(provider)
     if provider_spec is not None and not provider_spec.plays_on(platform):
+        # #3235: errors.PROVIDER_NOT_SUPPORTED tells the host to switch to a
+        # Music Assistant speaker. Amazon Music is not on Music Assistant at
+        # all, it only plays on an Echo, so it gets its own message_key.
+        message_key = None
+        if provider_spec.id == "amazon_music":
+            message_key = "PROVIDER_NOT_SUPPORTED_AMAZON"
         return _json_error(
             f"{provider_spec.label} is not supported on this speaker. "
             f"{provider_spec.unsupported_hint}",
             400,
             code="PROVIDER_NOT_SUPPORTED",
-            details={"speaker": speaker_name, "provider": provider_spec.label},
+            details={
+                "speaker": speaker_name,
+                "provider": provider_spec.label,
+                "provider_id": provider_spec.id,
+            },
+            message_key=message_key,
         )
     return None
 
