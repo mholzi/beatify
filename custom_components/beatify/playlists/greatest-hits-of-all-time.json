@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.28",
+  "version": "2.29",
   "tags": [
     "classics",
     "top-hits",
@@ -631,7 +631,8 @@
         "nl": "applemusic://track/6781075748",
         "it": "applemusic://track/6781076397",
         "us": null
-      }
+      },
+      "uri_tidal": "tidal://track/534096894"
     },
     {
       "year": 1982,
@@ -2341,7 +2342,8 @@
         "nl": "applemusic://track/1881685586",
         "it": "applemusic://track/1881685586"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=wMsazR6Tnf8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wMsazR6Tnf8",
+      "uri_tidal": "tidal://track/492462481"
     },
     {
       "year": 1984,
@@ -2571,7 +2573,8 @@
         "nl": "applemusic://track/6781080944",
         "it": "applemusic://track/6781027364",
         "us": null
-      }
+      },
+      "uri_tidal": "tidal://track/534050515"
     },
     {
       "year": 1967,
@@ -3754,7 +3757,8 @@
         "nl": "applemusic://track/6781027712",
         "it": "applemusic://track/6781078887",
         "us": null
-      }
+      },
+      "uri_tidal": "tidal://track/534096680"
     },
     {
       "year": 1961,
@@ -3846,7 +3850,8 @@
         "it": "applemusic://track/1255089803",
         "es": null,
         "us": null
-      }
+      },
+      "uri_tidal": "tidal://track/534049405"
     },
     {
       "year": 1963,
@@ -4687,7 +4692,8 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=E1S-6LCCfxo",
       "uri_deezer": "deezer://track/2121812",
       "fun_fact_nl": "Pete Townshend schreef Behind Blue Eyes oorspronkelijk voor zijn onvoltooide rockopera 'Lifehouse'. Het nummer was bedoeld om gezongen te worden vanuit het perspectief van de schurk Jumbo. Roger Daltrey's vocale prestatie wordt algemeen beschouwd als een van zijn beste, met een perfecte weergave van de kwetsbaarheid in de zachte coupletten voordat hij uitbarst in de zware brug.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_tidal": "tidal://track/3710224"
     },
     {
       "year": 1984,
@@ -5257,7 +5263,8 @@
         "es": "applemusic://track/1764396024",
         "nl": "applemusic://track/1764396024",
         "it": "applemusic://track/1764396024"
-      }
+      },
+      "uri_tidal": "tidal://track/491706918"
     },
     {
       "year": 1973,
@@ -5776,7 +5783,8 @@
         "es": "applemusic://track/1728078888",
         "nl": "applemusic://track/1728078888",
         "it": "applemusic://track/1728078888"
-      }
+      },
+      "uri_tidal": "tidal://track/184450588"
     },
     {
       "year": 1983,
@@ -5982,7 +5990,8 @@
         "es": "applemusic://track/1722450564",
         "nl": "applemusic://track/1722450564",
         "it": "applemusic://track/1722450564"
-      }
+      },
+      "uri_tidal": "tidal://track/18676722"
     },
     {
       "year": 1981,
@@ -8026,7 +8035,7 @@
         "us": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7-F8wkjKWg8",
-      "uri_tidal": "tidal://track/35286168",
+      "uri_tidal": "tidal://track/109576042",
       "uri_deezer": "deezer://track/3809086042",
       "fun_fact": "A chart hit by Village People (1978).",
       "fun_fact_de": "Ein Chart-Hit von Village People (1978).",
