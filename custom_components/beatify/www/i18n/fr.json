@@ -428,6 +428,10 @@
     "mixStartUnavailable": "Mix composé, mais la partie n'a pas pu démarrer.",
     "selectPlaylist": "Choisir une playlist",
     "selectMediaPlayer": "Choisir une enceinte",
+    "speakerChangeRejected": {
+      "title": "Enceinte non changée",
+      "kept": "La partie reste sur {speaker}."
+    },
     "selectMediaPlayerHint": "Sélectionne un lecteur",
     "selectPlaylistHint": "Sélectionne au moins une playlist",
     "startGame": "Lancer la partie",

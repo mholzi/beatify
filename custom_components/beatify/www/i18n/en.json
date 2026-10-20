@@ -428,6 +428,10 @@
     "mixStartUnavailable": "Mix assembled but the game could not be started.",
     "selectPlaylist": "Select Playlist",
     "selectMediaPlayer": "Select Speaker",
+    "speakerChangeRejected": {
+      "title": "Speaker not changed",
+      "kept": "The game stays on {speaker}."
+    },
     "selectMediaPlayerHint": "Select a media player",
     "selectPlaylistHint": "Select at least one playlist",
     "startGame": "Start Game",

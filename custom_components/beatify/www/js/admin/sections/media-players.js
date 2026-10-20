@@ -34,7 +34,14 @@ const utils = window.BeatifyUtils || {};
 // Admin-core dependencies, injected once at init (#2637).
 const deps = {
     refreshStatus: null,   // admin.js `loadStatus`
+    onSpeakerRejected: null,  // admin.js: banner above Start (#3223)
+    onSpeakerChanged: null,   // admin.js: clear that banner (#3223)
 };
+
+// The speaker the game stayed on after the last refused switch (#3223). A
+// later push of that same speaker is the revert, not a new switch, so it must
+// not clear the banner; a push of any other speaker that the server accepts is.
+let keptSpeaker = null;
 
 /**
  * Wire the media-players section's admin-core dependencies once at init.
@@ -45,6 +52,89 @@ const deps = {
  */
 export function initMediaPlayers(injected = {}) {
     deps.refreshStatus = injected.refreshStatus || null;
+    deps.onSpeakerRejected = injected.onSpeakerRejected || null;
+    deps.onSpeakerChanged = injected.onSpeakerChanged || null;
+}
+
+/**
+ * POST a settings patch to update-lobby and act on a refused speaker (#3223).
+ *
+ * Both callers that send a speaker (the speaker pick and saveGameSettings) were
+ * fire-and-forget, so a speaker the server refused stayed selected here while
+ * the game kept playing on the old one. A refused speaker answers with the
+ * rejection plus `media_player`, the speaker the game is still on; the server
+ * applies the rest of the patch either way.
+ *
+ * @param {object} payload - the update-lobby body.
+ * @returns {Promise<object|null>} the parsed response, or null.
+ */
+export async function postLobbyUpdate(payload) {
+    let data;
+    let ok;
+    try {
+        const response = await window.BeatifyAuth?.fetch('/beatify/api/game/update-lobby', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+        if (!response) return null;
+        ok = !!response.ok;
+        data = await response.json();
+    } catch (e) {
+        return null;  // fire-and-forget: a failed push never blocks the admin
+    }
+    if (!data) return null;
+    if (!ok && isSpeakerRejection(data)) {
+        revertRejectedSpeaker(data);
+    } else if (ok && Array.isArray(data.fields) && data.fields.includes('media_player')
+        && keptSpeaker && payload && payload.media_player && payload.media_player !== keptSpeaker) {
+        keptSpeaker = null;
+        deps.onSpeakerChanged?.();
+    }
+    return data;
+}
+
+/**
+ * Whether an update-lobby error body is a refused speaker (#3223). Only that
+ * rejection carries the speaker the game stayed on.
+ */
+export function isSpeakerRejection(data) {
+    return !!data && typeof data === 'object'
+        && Object.prototype.hasOwnProperty.call(data, 'media_player')
+        && Array.isArray(data.fields);
+}
+
+/**
+ * Put the selection back on the speaker the server kept (#3223).
+ *
+ * `beatify_last_player` goes back too, here and in the server's saved setup:
+ * every status render re-selects that key and pushes it, so leaving the
+ * refused speaker there would send the same switch again on the next load.
+ */
+export function revertRejectedSpeaker(data) {
+    const previous = typeof data.media_player === 'string' && data.media_player
+        ? data.media_player : null;
+    keptSpeaker = previous;
+    if (previous) {
+        try {
+            localStorage.setItem(STORAGE_LAST_PLAYER, previous);
+        } catch (e) { /* private mode */ }
+        const radio = document.querySelector(
+            `.media-player-radio[data-entity-id="${CSS.escape(previous)}"]`
+        );
+        if (radio) {
+            radio.checked = true;
+            handleMediaPlayerSelect(radio, true, { pushToLobby: false });
+        } else {
+            adminState.selectedMediaPlayer = { entityId: previous, state: 'unknown', platform: 'unknown' };
+        }
+        try {
+            globalThis.BeatifyPersistSetup?.();
+        } catch (e) {
+            console.warn('Failed to persist reverted speaker:', e);
+        }
+    }
+    deps.onSpeakerRejected?.(data);
 }
 
 /**
@@ -287,8 +377,10 @@ export function attachPlayerSelectionHandlers() {
  * Updates provider options based on platform capabilities.
  * @param {HTMLInputElement} radio
  * @param {boolean} skipSave - If true, don't save to localStorage (used for auto-select)
+ * @param {{pushToLobby?: boolean}} [opts] - pushToLobby=false skips the
+ *   update-lobby push (#3223: the revert after a refused speaker).
  */
-export function handleMediaPlayerSelect(radio, skipSave = false) {
+export function handleMediaPlayerSelect(radio, skipSave = false, opts = {}) {
     const entityId = radio.dataset.entityId;
     const state = radio.dataset.state;
     const platform = radio.dataset.platform;
@@ -305,13 +397,11 @@ export function handleMediaPlayerSelect(radio, skipSave = false) {
     // Apply the device to an EXISTING lobby immediately (server no-ops when
     // no lobby-phase game exists). Without this, rooms keep the device they
     // were created with and a switch only took effect one game later.
-    try {
-        window.BeatifyAuth?.fetch('/beatify/api/game/update-lobby', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ media_player: entityId }),
-        });
-    } catch (e) { /* fire-and-forget */ }
+    // #3223: the answer is read — a refused speaker is put back. Skipped when
+    // this call IS that revert (the game is already on that speaker).
+    if (opts.pushToLobby !== false) {
+        postLobbyUpdate({ media_player: entityId });
+    }
 
     // Update visual selection
     document.querySelectorAll('.media-player-item').forEach(item => {

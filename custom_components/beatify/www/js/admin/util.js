@@ -249,6 +249,42 @@ export function errorHeadlineAndDetail(data, translate, fallback) {
     return result;
 }
 
+/**
+ * Title and text of the banner for a refused lobby speaker switch (#3223).
+ *
+ * The reason comes from the existing error texts (`errors.PROVIDER_NOT_SUPPORTED`,
+ * `errors.UNSUPPORTED_PLAYER`, `errors.host.MEDIA_PLAYER_NOT_FOUND`), followed
+ * by the speaker the game stays on. `media_player` in the body is that
+ * speaker's entity id; its name comes from the admin's player list, else from
+ * the server's `current_speaker`.
+ *
+ * @param {object} data - the update-lobby rejection body.
+ * @param {Array<{entity_id: string, friendly_name?: string}>} mediaPlayers
+ * @param {(key: string, params?: object) => string} [translate]
+ * @returns {{title: string, message: string}}
+ */
+export function speakerRejectedText(data, mediaPlayers, translate) {
+    const body = data || {};
+    const t = (key, fallback, params) => {
+        let v;
+        try { v = typeof translate === 'function' ? translate(key, params) : null; } catch (e) { v = null; }
+        return (typeof v === 'string' && v && v !== key) ? v : _interpolate(fallback, params);
+    };
+    let reason = errorHeadlineAndDetail(body, translate, '').message;
+    // "Media player not found" has no full stop; the kept sentence follows it.
+    if (reason && !/[.!?…]$/.test(reason)) reason += '.';
+    const keptId = body.media_player;
+    const match = (mediaPlayers || []).find((p) => p && p.entity_id === keptId);
+    const keptName = (match && match.friendly_name) || body.current_speaker || keptId;
+    const kept = keptName
+        ? t('admin.speakerChangeRejected.kept', 'The game stays on {speaker}.', { speaker: keptName })
+        : '';
+    return {
+        title: t('admin.speakerChangeRejected.title', 'Speaker not changed'),
+        message: [reason, kept].filter(Boolean).join(' '),
+    };
+}
+
 export function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;

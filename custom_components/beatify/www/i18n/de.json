@@ -428,6 +428,10 @@
     "mixStartUnavailable": "Mix erstellt, aber das Spiel konnte nicht gestartet werden.",
     "selectPlaylist": "Playlist wählen",
     "selectMediaPlayer": "Lautsprecher wählen",
+    "speakerChangeRejected": {
+      "title": "Lautsprecher nicht gewechselt",
+      "kept": "Das Spiel bleibt auf {speaker}."
+    },
     "selectMediaPlayerHint": "Wähle einen Mediaplayer",
     "selectPlaylistHint": "Wähle mindestens eine Playlist",
     "startGame": "Spiel starten",

@@ -428,6 +428,10 @@
     "mixStartUnavailable": "Mix samengesteld, maar het spel kon niet worden gestart.",
     "selectPlaylist": "Kies afspeellijst",
     "selectMediaPlayer": "Kies speaker",
+    "speakerChangeRejected": {
+      "title": "Speaker niet gewijzigd",
+      "kept": "Het spel blijft op {speaker}."
+    },
     "selectMediaPlayerHint": "Kies een mediaspeler",
     "selectPlaylistHint": "Kies minimaal één afspeellijst",
     "startGame": "Spel starten",
