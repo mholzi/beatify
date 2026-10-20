@@ -1699,3 +1699,182 @@ def test_attempted_providers_without_odesli_excludes_tidal():
 
 def test_attempted_providers_without_odesli_and_only_tidal_is_empty():
     assert bf.attempted_providers(["tidal"], False) == []
+
+
+# --- Python 3.9: socket.timeout is not a TimeoutError -----------------------
+def test_fetch_odesli_raw_socket_timeout_returns_none():
+    import socket
+
+    def getter(url):
+        raise socket.timeout("The read operation timed out")
+
+    assert bf.fetch_odesli("x" * 22, sleep=0, getter=getter) is None
+
+
+def test_fetch_deezer_isrc_and_itunes_swallow_socket_timeout():
+    import socket
+
+    def getter(url):
+        raise socket.timeout("timed out")
+
+    assert bf.fetch_deezer_isrc("USRC17607839", getter=getter) is None
+    assert bf.itunes_search("x", getter=getter) == []
+    assert bf.youtube_oembed_verify("a" * 11, "a", "b", getter=getter) is False
+
+
+# --- Deezer direct ISRC resolver (Odesli is deprecated) ---------------------
+ISRC = "USRC17607839"
+
+
+def test_resolve_deezer_by_isrc_hit():
+    seen = []
+
+    def getter(url):
+        seen.append(url)
+        return {"id": 2451377, "isrc": ISRC.lower()}
+
+    assert bf.resolve_deezer_by_isrc(ISRC, getter=getter) == ("2451377", "hit")
+    assert seen == [f"https://api.deezer.com/track/isrc:{ISRC}"]
+
+
+def test_resolve_deezer_by_isrc_mismatch_is_miss():
+    out = bf.resolve_deezer_by_isrc(
+        ISRC, getter=lambda u: {"id": 5, "isrc": "GBAAA0000001"}
+    )
+    assert out == (None, "miss")
+
+
+def test_resolve_deezer_by_isrc_error_object_is_miss():
+    out = bf.resolve_deezer_by_isrc(
+        ISRC, getter=lambda u: {"error": {"type": "DataException", "code": 800}}
+    )
+    assert out == (None, "miss")
+
+
+def test_resolve_deezer_by_isrc_quota_backs_off_then_hits():
+    answers = [
+        {"error": {"type": "Exception", "message": "Quota limit exceeded", "code": 4}},
+        {"error": {"code": 4}},
+        {"id": 7, "isrc": ISRC},
+    ]
+    slept = []
+    out = bf.resolve_deezer_by_isrc(
+        ISRC, getter=lambda u: answers.pop(0), sleeper=slept.append, backoff=1.0
+    )
+    assert out == ("7", "hit")
+    assert slept == [1.0, 2.0]
+
+
+def test_resolve_deezer_by_isrc_quota_exhausted_is_error_not_miss():
+    out = bf.resolve_deezer_by_isrc(
+        ISRC,
+        getter=lambda u: {"error": {"code": 4}},
+        sleeper=lambda s: None,
+        max_retries=2,
+    )
+    assert out == (None, "error")
+
+
+def test_resolve_deezer_by_isrc_network_errors_never_raise():
+    import socket
+    import urllib.error
+
+    for exc in (
+        socket.timeout("t"),
+        urllib.error.URLError("down"),
+        urllib.error.HTTPError("u", 500, "x", {}, None),
+        ValueError("bad json"),
+    ):
+
+        def getter(url, exc=exc):
+            raise exc
+
+        assert bf.resolve_deezer_by_isrc(ISRC, getter=getter) == (None, "error")
+
+
+def _provider_deezer_playlist(tmp_path, songs):
+    pl_dir = tmp_path / "custom_components" / "beatify" / "playlists"
+    pl_dir.mkdir(parents=True)
+    f = pl_dir / "t.json"
+    f.write_text(json.dumps({"name": "t", "version": "1.0", "songs": songs}))
+    return f
+
+
+def _dz_song(n, **extra):
+    base = {
+        "year": 1990,
+        "title": f"T{n}",
+        "artist": "A",
+        "uri": f"spotify:track:{n:022d}",
+        "uri_apple_music": "applemusic://track/1",
+        "uri_tidal": "tidal://track/1",
+        "uri_youtube_music": "https://music.youtube.com/watch?v=aaaaaaaaaaa",
+    }
+    base.update(extra)
+    return base
+
+
+def test_run_provider_deezer_never_calls_odesli_and_records_miss(tmp_path, monkeypatch):
+    f = _provider_deezer_playlist(
+        tmp_path,
+        [
+            _dz_song(1, isrc="AAA111"),  # hit
+            _dz_song(2, isrc="BBB222"),  # miss
+            _dz_song(3),  # no ISRC -> skipped, no miss recorded
+        ],
+    )
+
+    def boom(*a, **k):
+        raise AssertionError("Odesli must not be called")
+
+    monkeypatch.setattr(bf, "fetch_odesli", boom)
+    monkeypatch.setattr(bf, "resolve_deezer_via_search", boom)
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+
+    def fake(isrc, **k):
+        return ("42", "hit") if isrc == "AAA111" else (None, "miss")
+
+    monkeypatch.setattr(bf, "resolve_deezer_by_isrc", fake)
+    state = tmp_path / "state.json"
+    rc = bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--apply",
+            "--provider",
+            "deezer",
+            "--state",
+            str(state),
+            "--output",
+            str(tmp_path / "cov.md"),
+        ]
+    )
+    assert rc == 0
+    songs = json.loads(f.read_text())["songs"]
+    assert songs[0]["uri_deezer"] == "deezer://track/42"
+    assert "uri_deezer" not in songs[1] and "uri_deezer" not in songs[2]
+    misses = json.loads(state.read_text())["provider_misses"]
+    assert list(misses) == [songs[1]["uri"]]
+    assert set(misses[songs[1]["uri"]]) == {"deezer"}
+
+
+def test_run_provider_deezer_error_records_no_miss(tmp_path, monkeypatch):
+    _provider_deezer_playlist(tmp_path, [_dz_song(1, isrc="AAA111")])
+    monkeypatch.setattr(bf.time, "sleep", lambda s: None)
+    monkeypatch.delenv("YOUTUBE_API_KEY", raising=False)
+    monkeypatch.setattr(bf, "resolve_deezer_by_isrc", lambda i, **k: (None, "error"))
+    state = tmp_path / "state.json"
+    bf.main(
+        [
+            "--repo-root",
+            str(tmp_path),
+            "--provider",
+            "deezer",
+            "--state",
+            str(state),
+            "--output",
+            str(tmp_path / "cov.md"),
+        ]
+    )
+    assert json.loads(state.read_text())["provider_misses"] == {}

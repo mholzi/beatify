@@ -44,6 +44,7 @@ follow-up, not the default.
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 from datetime import datetime, timezone
 import importlib.util
@@ -780,6 +781,13 @@ def record_provider_misses(
 # ---------------------------------------------------------------------------
 # HTTP helpers (network; mocked in tests)
 # ---------------------------------------------------------------------------
+# Transient network failures a resolver must swallow. ``OSError`` covers URLError,
+# HTTPError, ConnectionError and ``socket.timeout`` -- which on Python 3.9 (the
+# system interpreter the nightly agents launch with) is NOT a ``TimeoutError``
+# subclass, so a read timeout used to escape and kill the whole run.
+NET_ERRORS = (OSError, ValueError, http.client.HTTPException)
+
+
 def _http_get_json(url: str, timeout: int = 30) -> dict:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -824,7 +832,7 @@ def fetch_odesli(
             # 429 with retries exhausted, 404, or any other HTTP status: skip
             # this provider for this song (do NOT raise / abort the run).
             return None
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
+        except NET_ERRORS:
             # Transient network / parse error → skip, retry next wave.
             return None
     return None
@@ -836,11 +844,68 @@ def fetch_deezer_isrc(
     """Map an ISRC to a Deezer track id via the public endpoint. None if absent."""
     try:
         data = getter(f"https://api.deezer.com/track/isrc:{isrc}")
-    except urllib.error.HTTPError:
+    except NET_ERRORS:
         return None
     if not data or data.get("error"):
         return None
     return _numeric_id(data.get("id"))
+
+
+DEEZER_QUOTA_CODE = 4
+DEEZER_THROTTLE_DEFAULT = 0.2
+
+
+def resolve_deezer_by_isrc(
+    isrc: str,
+    *,
+    getter: Callable[[str], dict] = _http_get_json,
+    sleeper: Callable[[float], None] = time.sleep,
+    max_retries: int = 3,
+    backoff: float = 5.0,
+) -> tuple[str | None, str]:
+    """Strict ISRC lookup against Deezer's public API; return ``(id, status)``.
+
+    Odesli (the former primary resolver) is dead, so this is the whole Deezer
+    path. ``status`` tells the caller whether a miss may be cached:
+
+    ``hit``    Deezer answered with a track whose ``isrc`` equals the request
+    ``miss``   Deezer answered cleanly but has no such track (``error`` object,
+               e.g. code 800, an empty body, a different ISRC, no numeric id)
+    ``error``  nothing learned: network/parse failure or the quota error
+               (code 4) that outlasted its backoff. Never cache this.
+
+    Deezer reports its quota (~50 req / 5 s) as an HTTP 200 ``error`` object with
+    ``code`` 4; that backs off exponentially instead of counting as a miss.
+    Never raises.
+    """
+    isrc = (isrc or "").strip().upper()
+    if not isrc:
+        return None, "miss"
+    url = f"https://api.deezer.com/track/isrc:{urllib.parse.quote(isrc)}"
+    wait = backoff
+    for attempt in range(max_retries + 1):
+        try:
+            data = getter(url)
+        except NET_ERRORS:
+            return None, "error"
+        if not isinstance(data, dict) or not data:
+            return None, "miss"
+        err = data.get("error")
+        if err:
+            code = err.get("code") if isinstance(err, dict) else None
+            if code == DEEZER_QUOTA_CODE:
+                if attempt < max_retries:
+                    sleeper(wait)
+                    wait *= 2
+                    continue
+                return None, "error"
+            return None, "miss"
+        got = str(data.get("isrc") or "").strip().upper()
+        did = _numeric_id(data.get("id"))
+        if did and got == isrc:
+            return did, "hit"
+        return None, "miss"
+    return None, "error"
 
 
 def deezer_search(
@@ -1010,12 +1075,7 @@ def itunes_search(
     q = urllib.parse.urlencode({"term": term, "entity": entity, "limit": limit})
     try:
         data = getter(f"{ITUNES_SEARCH}?{q}")
-    except (
-        urllib.error.HTTPError,
-        urllib.error.URLError,
-        TimeoutError,
-        json.JSONDecodeError,
-    ):
+    except NET_ERRORS:
         return []
     return (data or {}).get("results") or []
 
@@ -1083,12 +1143,7 @@ def youtube_oembed_verify(
     q = urllib.parse.urlencode({"url": watch, "format": "json"})
     try:
         data = getter(f"{YOUTUBE_OEMBED}?{q}")
-    except (
-        urllib.error.HTTPError,
-        urllib.error.URLError,
-        TimeoutError,
-        json.JSONDecodeError,
-    ):
+    except NET_ERRORS:
         return False
     if not data:
         return False
@@ -1211,6 +1266,8 @@ def run(args: argparse.Namespace) -> int:
     miss_skipped = 0
     miss_recorded = 0
 
+    deezer_only = getattr(args, "provider", "all") == "deezer"
+
     for path in playlist_paths:
         if stop_reason:
             break
@@ -1231,6 +1288,8 @@ def run(args: argparse.Namespace) -> int:
             global_idx += 1
             sid = spotify_track_id(song.get("uri"))
             gaps = song_gaps(song)
+            if deezer_only:
+                gaps = [g for g in gaps if g == "deezer"]
             if not sid or not gaps:
                 continue
             # Provider ueberspringen, deren Absage schon bekannt und noch frisch
@@ -1250,6 +1309,32 @@ def run(args: argparse.Namespace) -> int:
                 continue
 
             song_dirty = False
+            if deezer_only:
+                # Odesli's public API answers 401 PUBLIC_API_ACCESS_DEPRECATED, so
+                # Deezer gaps go straight to Deezer's own ISRC endpoint. No ISRC
+                # means no lookup: a title search would be a guess.
+                isrc = (song.get("isrc") or "").strip()
+                if not isrc:
+                    continue
+                queried += 1
+                did, status = resolve_deezer_by_isrc(isrc)
+                if did:
+                    song["uri_deezer"] = deezer_uri(did)
+                    cov.filled_this_run["deezer"] += 1
+                    song_dirty = True
+                elif status == "miss":
+                    miss_recorded += record_provider_misses(
+                        provider_misses, song_uri, ["deezer"], song, run_now
+                    )
+                time.sleep(args.deezer_sleep)
+                if song_dirty and args.apply:
+                    if not version_bumped:
+                        data["version"] = bump_version(data.get("version"))
+                        version_bumped = True
+                    path.write_text(
+                        json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+                    )
+                continue
             yt_gap = "youtube_music" in gaps
             non_yt_gaps = [g for g in gaps if g != "youtube_music"]
 
@@ -1563,6 +1648,22 @@ def build_arg_parser() -> argparse.ArgumentParser:
         type=float,
         default=6.0,
         help="Seconds between Odesli calls (free tier ~10/min, default 6)",
+    )
+    p.add_argument(
+        "--provider",
+        choices=("all", "deezer"),
+        default="all",
+        help=(
+            "'deezer' fills only Deezer gaps, directly by ISRC via api.deezer.com "
+            "-- Odesli is never called (its public API is deprecated, HTTP 401). "
+            "Songs without an ISRC are skipped. Default 'all' keeps the old flow."
+        ),
+    )
+    p.add_argument(
+        "--deezer-sleep",
+        type=float,
+        default=DEEZER_THROTTLE_DEFAULT,
+        help="Seconds between Deezer ISRC calls (limit ~50 req/5 s, default 0.2)",
     )
     p.add_argument(
         "--youtube-budget",
