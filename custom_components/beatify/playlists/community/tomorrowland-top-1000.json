@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.71",
+  "version": "0.72",
   "tags": [
     "edm",
     "electronic",
@@ -14174,7 +14174,8 @@
         "Lost Frequencies, Tom Gregory",
         "Benny Benassi, Gary Go",
         "Tiga, Kölsch"
-      ]
+      ],
+      "uri_deezer": "deezer://track/3783011272"
     },
     {
       "artist": "Anyma, Grimes",
