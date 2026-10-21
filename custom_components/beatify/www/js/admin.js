@@ -51,6 +51,8 @@ import {
 // #1715: in-flight guard for in-game Next/Skip/Stop/Volume controls (debounce
 // double-taps that would otherwise skip a whole round).
 import { createControlGuard } from './admin/control-guard.js';
+// GitHub star hint under "Start New Game" on the host end screen.
+import { updateStarHint, setupStarHint } from './admin/star-hint.js';
 
 // #2645: the host's pause and its announcement — shared with the player page's
 // drawer so a reason added once shows up on every surface.
@@ -949,6 +951,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
+    setupStarHint();
 
     // #805: Pause-recovery banner buttons (Resume / End game)
     document.getElementById('admin-resume-game')?.addEventListener('click', function() {
@@ -3691,6 +3694,10 @@ function showAdminEndView(data) {
     if (data.leaderboard) {
         renderAdminLeaderboard(data.leaderboard, 'admin-end-leaderboard');
     }
+
+    // GitHub star hint: from the third finished game on this device, counted
+    // once per game_id, until the host dismisses it (admin/star-hint.js).
+    updateStarHint(data);
 
     // Clean up game state for admin
     adminState.isPlaying = false;

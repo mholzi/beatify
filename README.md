@@ -1232,7 +1232,7 @@ The next great party moment is one QR scan away.
 
 **The open-source music quiz for Home Assistant. Built for fun.**
 
-[Report Bug](https://github.com/mholzi/beatify/issues) · [Request Feature](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions)
+[⭐ Star on GitHub](https://github.com/mholzi/beatify) · [Report Bug](https://github.com/mholzi/beatify/issues) · [Request Feature](https://github.com/mholzi/beatify/issues) · [Discussions](https://github.com/mholzi/beatify/discussions)
 
 <br>
 

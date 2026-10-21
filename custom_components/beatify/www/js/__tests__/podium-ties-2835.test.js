@@ -180,6 +180,7 @@ function renderAdmin(leaderboard) {
         utils: U,
         adminState: {},
         renderAdminLeaderboard: (lb) => { rankings = lb; },
+        updateStarHint: noop,
         countdownInterval: null,
         clearInterval: noop,
     })({ leaderboard });

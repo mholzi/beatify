@@ -1547,6 +1547,17 @@
                          is true whether or not the encore ships. -->
                     <p class="end-action-hint" data-i18n="admin.rematchHint">Every score back to 0</p>
                     <button id="admin-new-game" class="new-game-btn" data-i18n="admin.startNewGame">Start New Game</button>
+                    <!-- GitHub star hint: from the third finished game on this
+                         device, until dismissed (js/admin/star-hint.js). -->
+                    <p id="admin-star-hint" class="admin-star-hint" hidden>
+                        <span>
+                            <span data-i18n="admin.starHintBefore">Enjoying Beatify? A ⭐</span>
+                            <a href="https://github.com/mholzi/beatify" target="_blank" rel="noopener" data-i18n="admin.starHintLink">on GitHub</a>
+                            <span data-i18n="admin.starHintAfter">helps others find it.</span>
+                        </span>
+                        <button type="button" id="admin-star-hint-dismiss" class="admin-star-hint-dismiss"
+                                aria-label="Dismiss hint" data-i18n-aria-label="admin.starHintDismiss">✕</button>
+                    </p>
                 </div>
             </div>
         </div>
