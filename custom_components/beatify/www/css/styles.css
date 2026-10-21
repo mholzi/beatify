@@ -18353,6 +18353,48 @@ body.theme-dark .your-result-stats .stat-value {
     line-height: 1.35;
 }
 
+/* GitHub star hint under "Start New Game" on the host end screen. Muted on
+   purpose: one quiet line after the game, never a banner. */
+.admin-star-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm, 8px);
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.admin-star-hint[hidden] { display: none; }
+
+.admin-star-hint a {
+    color: var(--color-accent-secondary);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 245, 255, 0.4);
+    text-underline-offset: 2px;
+}
+
+.admin-star-hint-dismiss {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 0;
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--color-text-light);
+    font-size: 0.7rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
 /* #2503 — the one line under Rematch that says what it costs. Quiet: it is a
    fact about the button above it, not a warning about a normal action. */
 .end-action-hint {
