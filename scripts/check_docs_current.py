@@ -4,7 +4,7 @@
 Release step 7 says "pull the README and the docs along" and names two numbers.
 On 2026-09-10 both were right, the step was ticked off, and two other things
 had been stale for a month: the README's "What's New" stopped at v4.2.0, four
-minor versions back, and `docs/provider-coverage.md` still counted a 5,980-song
+minor versions back, and a provider-coverage report still counted a 5,980-song
 catalogue that had grown to 8,432.
 
 A prose instruction that ends in "and anything else under docs/" is not a
@@ -32,7 +32,6 @@ ROOT = Path(__file__).resolve().parents[1]
 PLAYLISTS = ROOT / "custom_components" / "beatify" / "playlists"
 MANIFEST = ROOT / "custom_components" / "beatify" / "manifest.json"
 README = ROOT / "README.md"
-PROVIDER_COVERAGE = ROOT / "docs" / "provider-coverage.md"
 
 
 def catalogue() -> tuple[int, int]:
@@ -141,34 +140,6 @@ def check() -> list[dict]:
                     "what": "What's New is behind",
                     "detail": (
                         f"newest entry is v{heads[0]}, the shipped version is v{stable}"
-                    ),
-                }
-            )
-
-    # 4. A generated report that names the catalogue it counted.
-    if PROVIDER_COVERAGE.exists() and not prerelease:
-        text = PROVIDER_COVERAGE.read_text(encoding="utf-8")
-        state = re.search(r"Catalogue state:\s*v?([\d.]+(?:-rc\d+)?)", text)
-        total = re.search(r"\|\s*Apple\s*\|\s*\d+\s*\|\s*(\d+)\s*\|", text)
-        if state and state.group(1).split("-")[0] != stable:
-            findings.append(
-                {
-                    "file": "docs/provider-coverage.md",
-                    "what": "counted an older catalogue",
-                    "detail": (
-                        f"header says v{state.group(1)}, the shipped version is "
-                        f"v{stable} — regenerate or date it explicitly"
-                    ),
-                }
-            )
-        if total and int(total.group(1)) != songs:
-            findings.append(
-                {
-                    "file": "docs/provider-coverage.md",
-                    "what": "coverage percentages use an old total",
-                    "detail": (
-                        f"totals {total.group(1)} songs, repository has {songs:,} — "
-                        f"every percentage in the table is off"
                     ),
                 }
             )
