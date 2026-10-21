@@ -999,7 +999,7 @@ new playlists and 1,162 more songs. Everything in 4.2.1-rc1 through rc3 is inclu
 
 ## [4.2.0] - 2026-08-09
 
-Stable cut of the 4.2.0 line ("Mix & Match") — see [docs/release-notes-v4.2.0.md](docs/release-notes-v4.2.0.md) for the user-facing notes covering the Smart Playlist Mixer and seasonal suggestions, Sudden Death, the six opt-in gameplay switches (Finale ×2, comeback token, ramp-up ordering, difficulty-scaled betting, Sabotage, Streak-Shield), the fairer speed bonus and unified side-challenge scoring, the speaker-twin and playback-recovery pass, cross-device setup reconciliation, the two-part Reset fix, and the catalogue growth from 46 playlists / 5,161 songs to 54 / 5,980 with Tidal coverage from 47.7 % to 86.5 % (detailed per rc below).
+Stable cut of the 4.2.0 line ("Mix & Match") — see [release notes v4.2.0](https://github.com/mholzi/beatify/releases/tag/v4.2.0) for the user-facing notes covering the Smart Playlist Mixer and seasonal suggestions, Sudden Death, the six opt-in gameplay switches (Finale ×2, comeback token, ramp-up ordering, difficulty-scaled betting, Sabotage, Streak-Shield), the fairer speed bonus and unified side-challenge scoring, the speaker-twin and playback-recovery pass, cross-device setup reconciliation, the two-part Reset fix, and the catalogue growth from 46 playlists / 5,161 songs to 54 / 5,980 with Tidal coverage from 47.7 % to 86.5 % (detailed per rc below).
 
 ## [4.2.0-rc23] - 2026-08-09
 
@@ -1061,7 +1061,7 @@ Pre-release — cut from current `main`, supersedes rc16. Two gameplay changes f
 - **Streak-Shield (#1666).** Reaching a streak milestone (3, 5, 10, 15, 20, 25 — the same table the streak bonus reads) hands the player a shield. The next wrong answer spends it instead of resetting the streak, so a single slip no longer undoes a long run. At most one shield is held at a time, it survives between rounds but not between games, and it absorbs **every** wrong answer including ones caused by a Sabotage timer-cut or freeze — a shield that failed against the one mechanic built to cause misses would be worse than no shield. The shield protects the run, not the points: no streak bonus is paid for the absorbed round, because the answer was still wrong. The reveal shows a 🛡️ line naming the streak it saved — on the wrong-answer path and the missed-round path alike, localized in all five languages. On a missed round it replaces the "lost your X-streak" notice, which would otherwise mourn a streak the player still has.
 
 ### Added
-- **FAQ for the LLM Playlist Generator ([docs/llm-playlist-generator.md](docs/llm-playlist-generator.md)).** The in-app guide already warns that assistants truncate large playlists, but only inside the generator modal — a user who hits the wall and searches the web, or asks in the forum, finds nothing. This page answers the same questions where they can be found and linked. It also gives the number the in-app hint does not: one finished song is ~920 characters (~260 tokens), so 32 songs land near 8 400 tokens — which is why the ceiling sits at ~30 songs and not somewhere arbitrary. Reported on the HA forum (thread 998895) before the in-app guide existed.
+- **FAQ for the LLM Playlist Generator (`docs/llm-playlist-generator.md`, since folded into the README).** The in-app guide already warns that assistants truncate large playlists, but only inside the generator modal — a user who hits the wall and searches the web, or asks in the forum, finds nothing. This page answers the same questions where they can be found and linked. It also gives the number the in-app hint does not: one finished song is ~920 characters (~260 tokens), so 32 songs land near 8 400 tokens — which is why the ceiling sits at ~30 songs and not somewhere arbitrary. Reported on the HA forum (thread 998895) before the in-app guide existed.
 
 ### Changed
 - **Crowd-Court resolves as soon as everyone has voted (#1667).** The near-miss vote window in Title & Artist mode held REVEAL for a fixed 30 seconds even when every eligible player had already tapped 👍/👎 — dead air with nothing left to decide. The window now closes as soon as all votes are in. Eligibility follows the rules the vote handler already enforces: active players only (a stale ghost socket cannot hold the room, #928), eliminated players excluded (#827), and nobody counts as a voter on their own near-miss. When nobody *can* vote — a solo game, or a near-miss whose only other players are gone — the timer runs as before rather than resolving instantly. The 30-second window itself is unchanged and stays fixed.
@@ -1176,21 +1176,21 @@ Pre-release — adds the Sudden Death game mode and a broad reliability / perfor
 
 ## [4.2.0-rc9] - 2026-06-28
 
-Pre-release — completes the speaker-twin fix so a previously-saved selection can't strand you on a non-streaming speaker. See [docs/release-notes-v4.2.0-rc9.md](docs/release-notes-v4.2.0-rc9.md) for the user-facing notes.
+Pre-release — completes the speaker-twin fix so a previously-saved selection can't strand you on a non-streaming speaker. See [release notes v4.2.0-rc9](https://github.com/mholzi/beatify/releases/tag/v4.2.0-rc9) for the user-facing notes.
 
 ### Fixed
 - **A saved speaker that points at the native duplicate of a Music Assistant speaker is now healed automatically (#1627 follow-up).** rc8 hid the native twin from the picker, but a selection saved earlier (e.g. from a prior session) still pointed at it, so the game could fail to start ("Media player not responding"). Beatify now remaps a saved native-twin selection to its Music Assistant twin (same `unique_id`) — both in the setup/Mix flow and as a safety net at game-start, so every path heals — and clears a saved selection that no longer exists.
 
 ## [4.2.0-rc8] - 2026-06-28
 
-Pre-release — fixes a speaker-picker footgun that could send playback to the wrong (non-streaming) entity. See [docs/release-notes-v4.2.0-rc8.md](docs/release-notes-v4.2.0-rc8.md) for the user-facing notes.
+Pre-release — fixes a speaker-picker footgun that could send playback to the wrong (non-streaming) entity. See [release notes v4.2.0-rc8](https://github.com/mholzi/beatify/releases/tag/v4.2.0-rc8) for the user-facing notes.
 
 ### Fixed
 - **Speaker picker no longer lists the native duplicate of a Music Assistant speaker (#1627).** When a Sonos (or similar) speaker is exposed both natively and through Music Assistant, Home Assistant shows two entities for the same physical speaker. Picking the native one broke playback (`UPnP Error 800` — it can't resolve provider URIs) and paused the game. Beatify now hides the native twin when a Music Assistant entity with the same `unique_id` exists, so only the streamable speaker is offered.
 
 ## [4.2.0-rc7] - 2026-06-28
 
-Pre-release — the Smart Playlist Mixer now flows through the full setup wizard, plus more Tidal coverage and a data fix. See [docs/release-notes-v4.2.0-rc7.md](docs/release-notes-v4.2.0-rc7.md) for the user-facing notes.
+Pre-release — the Smart Playlist Mixer now flows through the full setup wizard, plus more Tidal coverage and a data fix. See [release notes v4.2.0-rc7](https://github.com/mholzi/beatify/releases/tag/v4.2.0-rc7) for the user-facing notes.
 
 ### Added
 - **New community playlist "🌪️ Funk Carioca" (#1554).** 20 Brazilian baile funk hits spanning 2000–2018.
@@ -1204,7 +1204,7 @@ Pre-release — the Smart Playlist Mixer now flows through the full setup wizard
 
 ## [4.2.0-rc6] - 2026-06-27
 
-Pre-release — fixes a Smart Playlist Mixer blocker reported from the field, plus a Tidal catalogue top-up. See [docs/release-notes-v4.2.0-rc6.md](docs/release-notes-v4.2.0-rc6.md) for the user-facing notes.
+Pre-release — fixes a Smart Playlist Mixer blocker reported from the field, plus a Tidal catalogue top-up. See [release notes v4.2.0-rc6](https://github.com/mholzi/beatify/releases/tag/v4.2.0-rc6) for the user-facing notes.
 
 ### Fixed
 - **Mix tab no longer blocks with "Select a media player first" inside the setup wizard (#1619).** The wizard saves the chosen speaker to local storage, but the Mix tab wasn't reading it there, so "Mix starten" wrongly demanded a media player even after one was picked in step 1. It now resolves the speaker from the same source as the rest of the app.
@@ -1215,7 +1215,7 @@ Pre-release — fixes a Smart Playlist Mixer blocker reported from the field, pl
 
 ## [4.2.0-rc1] - 2026-06-24
 
-Pre-release — Smart Playlist Mixer, in-product seasonal suggestions, and a faster first round. See [docs/release-notes-v4.2.0-rc1.md](docs/release-notes-v4.2.0-rc1.md) for the user-facing notes.
+Pre-release — Smart Playlist Mixer, in-product seasonal suggestions, and a faster first round. See [release notes v4.2.0-rc1](https://github.com/mholzi/beatify/releases/tag/v4.2.0-rc1) for the user-facing notes.
 
 ### Added
 - **Smart Playlist Mixer (#1538).** A new "Mix" tab in the playlist picker assembles a de-duplicated set on the fly from any combination of decade / style / region / special tags and a target size (30 / 50 / 100 songs). Optionally save the result as a community playlist.
@@ -1226,7 +1226,7 @@ Pre-release — Smart Playlist Mixer, in-product seasonal suggestions, and a fas
 
 ## [4.1.3] - 2026-06-24
 
-Content + reliability release — two new German community playlists plus speaker and Android-translate fixes. See [docs/release-notes-v4.1.3.md](docs/release-notes-v4.1.3.md) for the user-facing notes.
+Content + reliability release — two new German community playlists plus speaker and Android-translate fixes. See [release notes v4.1.3](https://github.com/mholzi/beatify/releases/tag/v4.1.3) for the user-facing notes.
 
 ### Added
 - **Speaker volume is restored when the game ends (#1516).** If the host adjusts the speaker volume during a game, Beatify now hands the speaker back at its original pre-game level when the game ends — no more manually resetting the volume after every round. Complements the existing party-lights state restore (#331/#1402).
@@ -1239,14 +1239,14 @@ Content + reliability release — two new German community playlists plus speake
 
 ## [4.1.2] - 2026-06-22
 
-Content release — new German Disney playlist with the guess-the-film bonus. See [docs/release-notes-v4.1.2.md](docs/release-notes-v4.1.2.md) for the user-facing notes.
+Content release — new German Disney playlist with the guess-the-film bonus. See [release notes v4.1.2](https://github.com/mholzi/beatify/releases/tag/v4.1.2) for the user-facing notes.
 
 ### Added
 - **New community playlist "Disney Hits Deutschland 🇩🇪" (97 songs).** German-language Disney songs across the decades (Das Dschungelbuch 1967 → Mufasa 2024), year-mode ready with a verified film year per track and multi-provider URIs (Apple Music, Deezer, YouTube Music, Spotify). The guess-the-film bonus is enabled — each track carries its Disney/Pixar film plus two decoy choices, across 40 distinct films. Movie assignments, years and fun-facts were cross-checked by a multi-agent verification pass (#1505).
 
 ## [4.1.1] - 2026-06-20
 
-Content release — two new community playlists. See [docs/release-notes-v4.1.1.md](docs/release-notes-v4.1.1.md) for the user-facing notes.
+Content release — two new community playlists. See [release notes v4.1.1](https://github.com/mholzi/beatify/releases/tag/v4.1.1) for the user-facing notes.
 
 ### Added
 - **New community playlist "100% Brasil 🇧🇷" (66 songs).** Brazilian hits across the decades, year-mode ready (verified original release year + ISRC per track) with multi-provider URIs — Apple Music, Deezer, YouTube Music and Tidal alongside Spotify (#1495).
@@ -1262,7 +1262,7 @@ Content release — two new community playlists. See [docs/release-notes-v4.1.1.
 
 ## [4.1.0] - 2026-06-18
 
-Stable cut of the 4.1.0 line ("Rock Solid, New Look (Now on Amazon Music)") — see [docs/release-notes-v4.1.0.md](docs/release-notes-v4.1.0.md) for the user-facing notes covering the Spotlight Stage / Podium Stage reveal redesign, the Amazon Music provider, the screen-wake / TV-reconnect / login-loop reliability pass, the storefront-aware Apple Music fix, the Title & Artist polish, party-light fixes, and the security pass (detailed per rc below).
+Stable cut of the 4.1.0 line ("Rock Solid, New Look (Now on Amazon Music)") — see [release notes v4.1.0](https://github.com/mholzi/beatify/releases/tag/v4.1.0) for the user-facing notes covering the Spotlight Stage / Podium Stage reveal redesign, the Amazon Music provider, the screen-wake / TV-reconnect / login-loop reliability pass, the storefront-aware Apple Music fix, the Title & Artist polish, party-light fixes, and the security pass (detailed per rc below).
 
 ### Added
 - **New community playlist "Finnish Schlager Classics 🇫🇮" (293 songs).** Consolidates several overlapping Finnish iskelmä submissions (#1476/#1477/#1478/#1480/#1481/#1482) into one canonical playlist, deduplicated by ISRC then by Spotify URI (325 → 293 unique). Covers iskelmä/schlager from Olavi Virta to today (1949–2026). All 293 songs carry a verified original release year (the final 15 missing years were backfilled from Wikipedia/Discogs/Pomus sources rather than the unreliable ISRC year code) and a verified ISRC, so the playlist is year-mode ready. Songs are sorted ascending by year.
