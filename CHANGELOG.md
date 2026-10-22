@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- **New: Roadtrip Bangers** (42 songs, community) (#3251).
+
 ## [4.8.5-rc2] - 2026-10-20
 
 Second candidate for 4.8.5, "Hold the Intro": two fixes for a refused speaker on top of rc1.
