@@ -1,7 +1,7 @@
 {
   "name": "Musica Italiana 🇮🇹",
   "description": "Italian classics from the 1960s to the 2000s — cantautori, Sanremo winners and the songs every Italian party sings along to. Merged from playlist requests #2228 and #2229.",
-  "version": "0.16",
+  "version": "0.17",
   "songs": [
     {
       "year": 1962,
@@ -892,7 +892,7 @@
       "fun_fact_nl": "Adriano Pappalardo - \"Ricominciamo\" (1979), uit de Italiaanse popcanon.",
       "fun_fact_it": "Adriano Pappalardo - \"Ricominciamo\" (1979), dal canone del pop italiano.",
       "isrc": "ITB007900666",
-      "uri_apple_music": "applemusic://track/1080717875",
+      "uri_apple_music": "applemusic://track/1297227622",
       "uri_deezer": "deezer://track/1009010",
       "uri_youtube_music": "https://music.youtube.com/watch?v=1Hcf2TxhhX4"
     },
@@ -1540,7 +1540,7 @@
       "isrc": "ITB008670575",
       "uri_apple_music": "applemusic://track/255738823",
       "uri_deezer": "deezer://track/1017423",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=so34owtJSXY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=96qn4E2F6Jg"
     },
     {
       "year": 1983,
@@ -2164,7 +2164,7 @@
       "fun_fact_it": "Gianni Nazzaro - \"Quando L'Amore Diventa Poesía\" (2007), dal canone del pop italiano.",
       "isrc": null,
       "uri_apple_music": "applemusic://track/1780787742",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-HQ9NZ3IJ7w"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hW38itgingU"
     },
     {
       "year": 1990,
