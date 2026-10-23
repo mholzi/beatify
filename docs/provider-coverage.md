@@ -1,7 +1,7 @@
 # Beatify Provider-URI Coverage
 > Generated: 2026-10-20
 > Mode: OFFLINE COUNT (existing URIs counted from the playlist JSON; no network, no writes)
-> Catalogue state: v4.8.5-rc2 (unchanged since rc1; v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json, eurovision-winners.json, greatest-hits-of-all-time.json, movies-100-greatest-themes.json and one-hit-wonders.json; 70 playlists, 8,724 songs; no songs added or removed)
+> Catalogue state: v4.8.5-rc3 (rc2 + URI repairs in community/deutschpop-klassiker.json, 2000s-pop-anthems.json, community/musica-italiana.json and community/tomorrowland-top-1000.json; v4.8.4 + URI repairs in community/american-classics-country-heartland.json, community/sommerklassiker.json, community/funk-carioca.json, eurovision-winners.json, greatest-hits-of-all-time.json, movies-100-greatest-themes.json and one-hit-wonders.json; 70 playlists, 8,724 songs; no songs added or removed)
 
 ## Summary
 

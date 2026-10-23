@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.5-rc3] - 2026-10-23
+
+Third candidate for 4.8.5, "Hold the Intro": rc2 plus four playlist data fixes. No code changed.
+
+### Fixed
+- **Playlist repairs** (#3241, #3248, #3250, #3245). Broken links fixed in Deutschpop Klassiker (4),
+  2000s Pop Anthems (11) and Musica Italiana (3); Tomorrowland Top 1000 gains one Deezer link. Each
+  playlist version is bumped so existing installs receive the update. The health check script gets a
+  socket timeout.
+
 ## [4.8.5-rc2] - 2026-10-20
 
 Second candidate for 4.8.5, "Hold the Intro": two fixes for a refused speaker on top of rc1.
