@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.6-rc1] - 2026-10-23
+
+First candidate for 4.8.6, "Thanks for Playing": a quiet star hint on the host end screen, and
+`docs/` is no longer tracked in the repository.
+
+### Added
+- **A quiet GitHub star hint on the host end screen** (#3244). One muted line under "Start New
+  Game" ("Enjoying Beatify? A ⭐ on GitHub helps others find it.") from the third finished game on
+  the device, with a ✕ that hides it for good. Host screen only; the TV and guest phones are
+  unchanged. If browser storage is unavailable the hint stays hidden. The README footer links the
+  repository first.
+
+### Changed
+- **`docs/` is no longer tracked** (#3246). The folder was already in `.gitignore`, but 75 files had
+  been force-added over time. They stay in local clones; CHANGELOG links to release notes now point
+  to the GitHub releases, and the README carries the playlist-generator batching tip inline.
+
 ## [4.8.5] - 2026-10-23
 
 "Hold the Intro": a security fix for the Companion auth bypass, intro rounds that wait for the host,
