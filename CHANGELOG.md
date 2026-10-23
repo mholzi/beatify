@@ -4,35 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-## [4.8.5-rc3] - 2026-10-23
+## [4.8.5] - 2026-10-23
 
-Third candidate for 4.8.5, "Hold the Intro": rc2 plus four playlist data fixes. No code changed.
-
-### Fixed
-- **Playlist repairs** (#3241, #3248, #3250, #3245). Broken links fixed in Deutschpop Klassiker (4),
-  2000s Pop Anthems (11) and Musica Italiana (3); Tomorrowland Top 1000 gains one Deezer link. Each
-  playlist version is bumped so existing installs receive the update. The health check script gets a
-  socket timeout.
-
-## [4.8.5-rc2] - 2026-10-20
-
-Second candidate for 4.8.5, "Hold the Intro": two fixes for a refused speaker on top of rc1.
-
-### Fixed
-- **Amazon Music refusals point to an Amazon Echo** (#3235, #3237). A speaker that can't play
-  Amazon Music used to suggest a Music Assistant speaker, which can't play it either. The start error
-  and the lobby banner now say to choose an Amazon Echo, in all six languages. Other providers keep
-  the Music Assistant advice.
-- **A refused speaker switch during a game shows a banner above the control bar** (#3236, #3238).
-  It used to be a toast that vanished after a few seconds. The banner names the reason, says the game
-  stays on the current speaker, and stays until it is closed, a switch succeeds or the game ends.
-  The automatic re-send of the stored speaker no longer raises it.
-
-## [4.8.5-rc1] - 2026-10-18
-
-First candidate for 4.8.5, "Hold the Intro": a security fix for the Companion auth bypass, intro-round
-fixes, three fixes the host and players see (bet line, lobby sentence, refused speaker change) and
-playlist repairs on top of 4.8.4.
+"Hold the Intro": a security fix for the Companion auth bypass, intro rounds that wait for the host,
+clearer messages when a speaker can't play the music service, and playlist repairs on top of 4.8.4.
+rc2 passed the live test on 2026-10-21 (a full game to the podium, no blocker). rc3 adds only the
+playlist data fixes and goes out on that test, on Markus' decision; its own live test was blocked by
+a signed-out Apple Music provider in Music Assistant.
 
 ### Security
 - **The Companion auth bypass is refused behind a reverse proxy** (#3202, #3203, reported by email).
@@ -57,6 +35,14 @@ playlist repairs on top of 4.8.4.
   admin goes back to the previous one and shows a banner above "Start game" that stays until it is
   closed. The other settings sent in the same request (TTS, party lights, game options, language)
   are now applied instead of being dropped with the speaker.
+- **Amazon Music refusals point to an Amazon Echo** (#3235, #3237). A speaker that can't play
+  Amazon Music used to suggest a Music Assistant speaker, which can't play it either. The start error
+  and the lobby banner now say to choose an Amazon Echo, in all six languages. Other providers keep
+  the Music Assistant advice.
+- **A refused speaker switch during a game shows a banner above the control bar** (#3236, #3238).
+  It used to be a toast that vanished after a few seconds. The banner names the reason, says the game
+  stays on the current speaker, and stays until it is closed, a switch succeeds or the game ends.
+  The automatic re-send of the stored speaker no longer raises it.
 
 ### Changed
 - **Dead admin actions removed** (#3204, #3205): `seek_forward`, `set_language`,
@@ -68,14 +54,15 @@ playlist repairs on top of 4.8.4.
   `greatest-hits-of-all-time` also gets 16 of 17 missing Tidal links back, each checked by ISRC or
   MusicBrainz recording, and "YMCA (Original Version 1978)" now plays the 1978 recording
   (#3209, #3211, #3220, #3231). Dead links fixed in `movies-100-greatest-themes` (#3226, #3227) and
-  `one-hit-wonders` (#3228, #3229).
+  `one-hit-wonders` (#3228, #3229), in `deutschpop-klassiker` (4, #3241), `2000s-pop-anthems` (11, #3248)
+  and `musica-italiana` (3, #3250); `tomorrowland-top-1000` gains one Deezer link (#3245).
   `hitster-100-francais` and `hitster-brasil` no longer carry the
   Hitster name in tags, descriptions or fun facts; file names are unchanged so saved selections keep
   working (#3201). Each playlist's `version` went up with its change.
 - README links the new Beatify website (#3196).
 - Maintenance: the Deezer link backfill asks Deezer directly by ISRC instead of the retired Odesli
   API (#3234). Dependencies: ruff 0.17.1, mypy 2.x, aiohttp >= 3.14.5, vitest, brace-expansion
-  (#3213–#3216, #3219).
+  (#3213–#3216, #3219). The health check script gets a socket timeout (#3241).
 
 ## [4.8.4] - 2026-10-15
 

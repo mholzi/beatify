@@ -829,6 +829,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.5 — Hold the Intro 🎤
+- **Intro rounds wait for the host**: the last song stops under the waiting card, the admin countdown holds like the TV, and the intro stops after 15 s — thanks to @aenkieh for the report (#3199)
+- **The lobby names both numbers**: how long you hear each song and how long you have to answer (#3222)
+- **A speaker that can't play your music service is refused with a clear reason**, in the lobby and mid-game, and your other settings stay (#3223, #3235, #3236)
+- **A won bet reads "All-in bonus" at every multiplier** (#3221)
+- **The Companion auth bypass is refused behind a reverse proxy** (#3202)
+- **Playlist repairs** in eleven playlists (#3241, #3248, #3250 and more)
+
 ### v4.8.4 — One More Song 🎵
 - **The last song of the night gets played**: a game no longer ends one round early, most often on Music Assistant (#3116)
 - **The host decides how long each song plays** (10, 15, 20 or 30 s) while the round keeps running — thanks to @nirvdrum for the idea (#3152)
