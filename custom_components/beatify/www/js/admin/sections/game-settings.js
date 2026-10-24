@@ -515,7 +515,6 @@ export function updateGameSettingsSummary() {
     if (!summary) return;
 
     const difficultyLabels = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
-    const langLabels = { en: 'EN', de: 'DE', es: 'ES' };
     // #1180: year-round bonuses are suppressed while TA mode is on, so the badge
     // hides their icons too — but the underlying flags stay the host's untouched
     // source of truth (so toggling TA off restores them).
@@ -542,7 +541,7 @@ export function updateGameSettingsSummary() {
     // regardless of TA/year rounds), so its icon shows unconditionally.
     const sabotageIcon = adminState.sabotageEnabled ? ' • 💣' : '';
 
-    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${langLabels[adminState.selectedLanguage] || 'EN'}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}${betScalingIcon}${sabotageIcon}`;
+    summary.textContent = `${difficultyLabels[adminState.selectedDifficulty] || 'Normal'} • ${adminState.selectedDuration}s • ${String(adminState.selectedLanguage || 'en').toUpperCase()}${taIcon}${artistIcon}${movieIcon}${introIcon}${closestIcon}${rampupIcon}${finaleDoubleIcon}${finaleTbIcon}${comebackIcon}${betScalingIcon}${sabotageIcon}`;
 }
 
 /**

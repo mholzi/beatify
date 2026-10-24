@@ -3850,6 +3850,25 @@ body.theme-dark .setting-hint {
     color: var(--color-accent-secondary);
 }
 
+/* #3262: the six game-language chips sit beside the label as a compact 3x2
+   grid. In one flex row they ran past the card padding at 390 px, and every
+   new language made it worse. Fixed 44 px cells keep the tap target. */
+.chip-group--lang {
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.chip-group--lang .chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+}
+
 /* Compact toggle switch */
 .toggle-compact {
     display: flex;
