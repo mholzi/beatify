@@ -456,7 +456,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     // Set initial language chip active state
     document.querySelectorAll('.chip[data-lang]').forEach(c => {
-        c.classList.toggle('chip--active', c.dataset.lang === adminState.selectedLanguage);
+        const active = c.dataset.lang === adminState.selectedLanguage;
+        c.classList.toggle('chip--active', active);
+        c.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
 
     // #1941: seed the server-side setup BEFORE the wizard decides whether to
