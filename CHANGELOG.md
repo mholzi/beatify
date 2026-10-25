@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc1] - 2026-10-25
+
+First candidate for 4.8.7, "Skip to the End": two fixes for games where a song can't be played.
+
+### Fixed
+- **The round counter matches the real game length when songs are skipped** (#3279). If failed
+  songs shorten the game, the last round no longer reads "Round 7 of 10".
+- **An intro round whose song fails to start is skipped like any other round** (#3286), instead of
+  running the whole round in silence.
+
 ## [4.8.6] - 2026-10-25
 
 "Thanks for Playing": a quiet star hint for the host, Rematch that starts again without a reload,
