@@ -603,7 +603,7 @@ class RoundManager:
         on_round_end: Callable[[], Awaitable[None]] | None,
         timer_countdown: Callable[[float], Awaitable[None]] | None = None,
         is_playing: Callable[[], bool] | None = None,
-    ) -> None:
+    ) -> bool:
         """Handle admin confirmation of intro splash (Issue #292, #403).
 
         Plays the deferred song, starts the round timer and the intro
@@ -612,10 +612,14 @@ class RoundManager:
         #2875: ``is_playing`` reports whether the round is still in PLAYING
         once the song has started. If it is not (the round was ended or the
         game paused/stopped during the await), no new timer is armed.
+
+        #3286: returns False when the deferred song failed to start. No timer
+        is armed then and the caller must skip the round like any other
+        unplayable song; otherwise the round would run in silence.
         """
         if not self._intro_splash_pending:
             _LOGGER.warning("confirm_intro_splash called but no splash pending")
-            return
+            return True
 
         self._intro_splash_pending = False
         self._intro_splash_shown = True
@@ -626,6 +630,7 @@ class RoundManager:
         self._deadline_deferred = False
 
         song = self._intro_splash_deferred_song
+        started = True
         if song:
             # #2875: Music Assistant can take 4-25 s to confirm playback.
             # Until the deadline is re-stamped below, the placeholder from
@@ -633,7 +638,7 @@ class RoundManager:
             # sat on the splash, so hold is_deadline_passed() at False.
             self._intro_playback_pending = True
             try:
-                await play_deferred_song(song)
+                started = await play_deferred_song(song)
             finally:
                 self._intro_playback_pending = False
 
@@ -643,7 +648,14 @@ class RoundManager:
                 "not arming a round timer",
                 self.round,
             )
-            return
+            return True
+
+        if not started:
+            _LOGGER.warning(
+                "Round %d: intro song failed to start; no round timer (#3286)",
+                self.round,
+            )
+            return False
 
         # Cancel any existing timers to prevent leaks on double-tap (#493)
         self.cancel_timer()
@@ -666,3 +678,19 @@ class RoundManager:
         )
 
         _LOGGER.info("Intro splash confirmed, round timer started")
+        return True
+
+    def abort_intro_round(self) -> None:
+        """Roll back a round whose deferred intro song never started (#3286).
+
+        Undoes what ``initialize_round`` committed for the round so the next
+        song can take its number. The song stays marked as played.
+        """
+        self.cancel_timer()
+        self._cancel_intro_timer()
+        self.round = max(0, self.round - 1)
+        self.is_intro_round = False
+        self._intro_splash_pending = False
+        self._intro_splash_shown = False
+        self._intro_splash_deferred_song = None
+        self._intro_round_start_time = None
