@@ -16,9 +16,7 @@ from aiohttp import web
 from custom_components.beatify.const import (
     ERR_GAME_NOT_STARTED,
     ERR_INVALID_ACTION,
-    ERR_MEDIA_PLAYER_UNAVAILABLE,
     ERR_NO_PLAYABLE_SONGS,
-    ERR_NO_SONGS_REMAINING,
     ERR_NOT_ADMIN,
     ERR_UNAUTHORIZED,
     HOST_PAUSE_REASON,
@@ -32,6 +30,7 @@ from custom_components.beatify.game.start_gameplay import (
     REFUSE_ALREADY_STARTED,
     begin_gameplay,
     refusal_to_start,
+    start_failure,
 )
 from custom_components.beatify.game.state import GamePhase, GameState
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
@@ -167,46 +166,9 @@ async def admin_start_game(
     if success:
         await handler.broadcast_state()
     else:
-        error_code = ERR_GAME_NOT_STARTED
-        error_message = "Failed to start game"
-        error_key = "START_FAILED"
-        error_params: dict[str, Any] = {}
-
-        if game_state.phase == GamePhase.PAUSED:
-            pause_reason = game_state.pause_reason
-            error_detail = game_state.last_error_detail
-            if pause_reason == "media_player_error":
-                error_code = ERR_MEDIA_PLAYER_UNAVAILABLE
-                if error_detail:
-                    error_message = f"Media player error: {error_detail}"
-                    error_key = "MEDIA_PLAYER_ERROR"
-                    error_params = {"detail": error_detail}
-                else:
-                    error_message = (
-                        "Media player not responding - check speaker connection"
-                    )
-                    error_key = "MEDIA_PLAYER_NOT_RESPONDING"
-            elif pause_reason == "no_songs_available":
-                error_message = "No playable songs for selected provider"
-                error_key = "NO_SONGS_FOR_PROVIDER"
-            else:
-                error_message = f"Game paused: {pause_reason}"
-                error_key = "GAME_PAUSED"
-                error_params = {"reason": pause_reason}
-        elif game_state.phase == GamePhase.END:
-            error_code = ERR_NO_SONGS_REMAINING
-            error_message = "No songs available in playlist"
-            error_key = "NO_SONGS_IN_PLAYLIST"
-
-        await ws.send_json(
-            {
-                "type": "error",
-                "code": error_code,
-                "message": error_message,
-                "message_key": error_key,
-                **error_params,
-            }
-        )
+        # #3264: the reason (speaker/provider failure vs. empty pool) is read
+        # by the same helper the REST start uses.
+        await ws.send_json({"type": "error", **start_failure(game_state)})
         # #949: start_round failing pauses the game (media_player_error etc.),
         # but without broadcasting that the admin and players never leave the
         # lobby / "Starting..." view for the PAUSED recovery banner. Mirror
