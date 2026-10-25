@@ -11,7 +11,7 @@ meaningful:
 * ``ConfigFlow`` must be a real base class accepting ``domain=...`` and
   exposing ``async_create_entry`` / ``async_show_form``.
 * ``SensorEntity`` / ``BinarySensorEntity`` must be real classes to subclass.
-* ``callback`` must be an identity decorator.
+* ``callback`` must return the function unchanged (marked, like HA's).
 
 :func:`install` force-replaces just those symbols (the MagicMock leaves answer
 ``hasattr`` for everything, so we overwrite unconditionally). Call it once at
@@ -74,10 +74,18 @@ class _OptionsFlow:
         return {"type": "form", **kwargs}
 
 
+def _callback(func: Any) -> Any:
+    """Stand-in for ``homeassistant.core.callback``: mark and return."""
+    func._hass_callback = True
+    return func
+
+
 def install() -> None:
     """Force-install real HA stubs needed by the B6 platform modules."""
     core = _module("homeassistant.core")
-    core.callback = lambda func: func  # type: ignore[attr-defined]
+    # The real decorator marks the function; tests that mimic HA's listener
+    # dispatch read the marker (#3283), so keep it rather than an identity.
+    core.callback = _callback  # type: ignore[attr-defined]
     if not isinstance(getattr(core, "HomeAssistant", None), type):
         core.HomeAssistant = object  # type: ignore[attr-defined]
 

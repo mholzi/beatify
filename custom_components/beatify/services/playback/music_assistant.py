@@ -16,8 +16,10 @@ from __future__ import annotations
 import asyncio
 import logging
 import re
+import time
 from typing import Any, ClassVar
 
+from homeassistant.core import callback
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
@@ -363,12 +365,17 @@ class MusicAssistantStrategy(PlaybackStrategy):
         )
 
     def _note_abandoned_start(self, uri: str, song_key: str) -> None:
-        """Remember a play request Beatify gave up on (#3278)."""
-        self._abandoned_starts[uri] = (asyncio.get_event_loop().time(), song_key)
+        """Remember a play request Beatify gave up on (#3278).
+
+        #3283: stamped with ``time.monotonic()``, not the event loop's clock.
+        These entries are read from state-change listeners, and a reading that
+        needs a loop must never be able to fail there.
+        """
+        self._abandoned_starts[uri] = (time.monotonic(), song_key)
 
     def _live_abandoned_starts(self) -> dict[str, tuple[float, str]]:
         """Drop entries past MA_STALE_START_WINDOW and return the rest."""
-        now = asyncio.get_event_loop().time()
+        now = time.monotonic()
         self._abandoned_starts = {
             uri: entry
             for uri, entry in self._abandoned_starts.items()
@@ -436,6 +443,11 @@ class MusicAssistantStrategy(PlaybackStrategy):
         self._stale_corrections = 0
         self._stop_after_correction = False
 
+        # #3283: ``@callback`` makes Home Assistant run this in the event loop.
+        # A plain function is handed to a ``SyncWorker`` thread instead, where
+        # the stale check raised "no current event loop" on every call and the
+        # correction below was never reached.
+        @callback
         def _state_changed(ev) -> None:
             new_state = ev.data.get("new_state")
             if new_state is None or new_state.state != "playing":
@@ -470,9 +482,9 @@ class MusicAssistantStrategy(PlaybackStrategy):
         self._stale_guard_unsub = async_track_state_change_event(
             self._hass, [self._entity_id], _state_changed
         )
-        now = asyncio.get_event_loop().time()
+        now = time.monotonic()
         remaining = max(MA_STALE_START_WINDOW - (now - w) for w, _ in live.values())
-        self._stale_guard_timer = asyncio.get_event_loop().call_later(
+        self._stale_guard_timer = asyncio.get_running_loop().call_later(
             remaining, self._disarm_stale_guard
         )
 
@@ -1124,6 +1136,10 @@ class MusicAssistantStrategy(PlaybackStrategy):
             except (AttributeError, KeyError):
                 return False
 
+        # #3283: run in the event loop (see the stale-start guard). In a worker
+        # thread ``_check_state`` could not read the abandoned starts, and
+        # ``asyncio.Event.set()`` is not thread-safe either.
+        @callback
         def _state_changed(ev):
             new_state = ev.data.get("new_state")
             if _check_state(new_state):
