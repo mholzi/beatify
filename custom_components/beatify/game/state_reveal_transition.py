@@ -396,12 +396,16 @@ class RevealTransitionMixin(GameStateBase):
         """
         from .state import GamePhase  # noqa: PLC0415 — avoid circular import
 
-        await self._round_manager.confirm_intro_splash(
+        started = await self._round_manager.confirm_intro_splash(
             self.play_deferred_song,
             self._on_round_end,
             self._timer_countdown,
             is_playing=lambda: self.phase == GamePhase.PLAYING,
         )
+        if not started:
+            # #3286: same skip path as a normal round's failed start.
+            await self._skip_failed_intro_start()
+            return
         # #3152: the round clock was stamped just now, so the sample counts
         # from here too. Skipped when the round left PLAYING during the start.
         if self.phase == GamePhase.PLAYING and not self.intro_splash_pending:

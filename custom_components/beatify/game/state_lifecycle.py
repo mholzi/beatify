@@ -205,6 +205,60 @@ class RoundLifecycleMixin(GameStateBase):
                 return True
             return await self._start_round_locked(_retry_count)
 
+    async def _skip_failed_intro_start(self) -> None:
+        """Skip an intro round whose deferred song failed to start (#3286).
+
+        Mirrors the skip path of a normal round's failed start: roll the round
+        back, stop the speaker and try the next song. A storefront gap
+        ("unavailable") never counts toward the pause; other failures do, and
+        MAX_CONSECUTIVE_PLAYBACK_FAILURES in a row pause the game with the
+        previous phase restored to REVEAL so resume carries on to a new round.
+        """
+        from .state import GamePhase
+
+        song = self._round_manager.current_song or {}
+        service = self._media_player_service
+        reason = service.last_failure_reason if service else None
+        self._round_manager.abort_intro_round()
+
+        if reason == "unavailable":
+            _LOGGER.info(
+                "Skipping unavailable song silently: %s (likely not in "
+                "your provider's storefront/catalog) — trying next song",
+                song.get("title") or song.get("uri"),
+            )
+        else:
+            self._consecutive_playback_failures = (
+                getattr(self, "_consecutive_playback_failures", 0) + 1
+            )
+            if service:
+                try:
+                    await service.stop()
+                except Exception as err:  # noqa: BLE001 — must not raise
+                    _LOGGER.warning("Stop before skip failed: %s (#1936)", err)
+            if self._consecutive_playback_failures >= MAX_CONSECUTIVE_PLAYBACK_FAILURES:
+                self.last_error_detail = (
+                    f"{song.get('artist')} — {song.get('title')} on {self.media_player}"
+                )
+                _LOGGER.error(
+                    "Playback failed for %s on %s — pausing game",
+                    song.get("title") or song.get("uri"),
+                    self.media_player,
+                )
+                self._consecutive_playback_failures = 0
+                self._set_phase(GamePhase.REVEAL)
+                await self.pause_game("media_player_error")
+                return
+            _LOGGER.warning(
+                "Playback timed out for %s — skipping this song "
+                "(failure %d of %d in a row). Trying the next song. (#3286)",
+                song.get("title") or song.get("uri"),
+                self._consecutive_playback_failures,
+                MAX_CONSECUTIVE_PLAYBACK_FAILURES,
+            )
+        await asyncio.sleep(0.2)
+        await self.start_round(_retry_count=1)
+
     async def _start_round_locked(self, _retry_count: int = 0) -> bool:
         """Round-start orchestration body, run under ``_round_start_lock`` (#1697).
 
