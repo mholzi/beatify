@@ -3347,7 +3347,12 @@ function showAdminRevealView(data) {
         // setzt beide. Ein Anfangswert waere tot und wird seit eslint 10 als
         // `no-useless-assignment` gemeldet.
         var emotionText, emotionClass;
-        if (exactCount > 0) {
+        if (guessers.length === 0) {
+            // #3266: nobody guessed, so no banner (avgOff would stay 0 -> "So close!").
+            emotionEl.classList.add('hidden');
+            emotionEl.innerHTML = '';
+            emotionText = null;
+        } else if (exactCount > 0) {
             emotionText = '🎯 ' + exactCount + 'x ' + (BeatifyI18n.t('reveal.exact') || 'Exact!');
             emotionClass = 'reveal-emotion--exact';
         } else if (avgOff <= 3) {
@@ -3360,9 +3365,11 @@ function showAdminRevealView(data) {
             emotionText = '😅 Ø ' + (BeatifyI18n.t('reveal.yearsOff', { years: avgOff }) || avgOff + ' years off');
             emotionClass = 'reveal-emotion--wrong';
         }
-        emotionEl.className = 'reveal-emotion-inline ' + emotionClass;
-        emotionEl.innerHTML = '<span class="reveal-emotion-text">' + emotionText + '</span>';
-        emotionEl.classList.remove('hidden');
+        if (emotionText !== null) {
+            emotionEl.className = 'reveal-emotion-inline ' + emotionClass;
+            emotionEl.innerHTML = '<span class="reveal-emotion-text">' + emotionText + '</span>';
+            emotionEl.classList.remove('hidden');
+        }
     }
 
     // Round info
