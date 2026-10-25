@@ -694,3 +694,10 @@ class RoundManager:
         self._intro_splash_shown = False
         self._intro_splash_deferred_song = None
         self._intro_round_start_time = None
+        # #3293: the round is gone, so is its clock. The phase stays PLAYING
+        # while the next song starts (up to a full Music Assistant timeout),
+        # and the placeholder deadline stamped by initialize_round had long
+        # passed: the server backstop then ended the previous round again and
+        # revealed the song that never played. initialize_round stamps a fresh
+        # one for the next song.
+        self.deadline = None

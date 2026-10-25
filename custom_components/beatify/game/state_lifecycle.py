@@ -208,56 +208,148 @@ class RoundLifecycleMixin(GameStateBase):
     async def _skip_failed_intro_start(self) -> None:
         """Skip an intro round whose deferred song failed to start (#3286).
 
-        Mirrors the skip path of a normal round's failed start: roll the round
-        back, stop the speaker and try the next song. A storefront gap
-        ("unavailable") never counts toward the pause; other failures do, and
-        MAX_CONSECUTIVE_PLAYBACK_FAILURES in a row pause the game with the
-        previous phase restored to REVEAL so resume carries on to a new round.
+        #3293: runs the same skip path as a normal round's failed start
+        (``_skip_failed_start``), after rolling back the round that
+        ``initialize_round`` already committed for the intro song. That song
+        is marked played there, so the round counter has to shrink here too,
+        and the rolled-back round carries no deadline: the phase stays PLAYING
+        while the next song starts, and a stale deadline let the server
+        backstop end the previous round a second time and reveal the song
+        that never played. A pause after too many failures restores REVEAL
+        first, so resume carries on to a new round.
+        """
+        song = self._round_manager.current_song or {}
+        self._round_manager.abort_intro_round()
+        if await self._skip_failed_start(song, pause_to_reveal=True):
+            await self.start_round(_retry_count=1)
+
+    async def _skip_failed_start(
+        self, song: dict, *, pause_to_reveal: bool = False
+    ) -> bool:
+        """Decide what happens after ``song`` failed to start (#1936, #3293).
+
+        The caller has already marked the song played and holds no committed
+        round for it. Lowers ``total_rounds`` (#3279), then either skips the
+        song (returns True: the caller tries the next one) or pauses the game
+        after MAX_CONSECUTIVE_PLAYBACK_FAILURES in a row (returns False).
+        ``pause_to_reveal`` puts the phase back to REVEAL before that pause,
+        for the intro round whose failure is noticed while already PLAYING.
         """
         from .state import GamePhase
 
-        song = self._round_manager.current_song or {}
         service = self._media_player_service
-        reason = service.last_failure_reason if service else None
-        self._round_manager.abort_intro_round()
+        # #808 follow-up: classify the failure. "unavailable" means
+        # MA accepted the URI but the speaker stayed on the prior
+        # track — typically a region/storefront mismatch (the track
+        # ID isn't in the user's catalog). Skip silently and try the
+        # next song without counting against MAX_SONG_RETRIES; the
+        # user can't fix individual track availability and the game
+        # should keep playing the subset that IS available.
+        #
+        # "error" / unset → systemic failure (speaker offline, MA
+        # provider broken). Count toward MAX_SONG_RETRIES so the
+        # recovery banner kicks in for real problems.
+        # #2711: a plain read. The port declares this attribute, so
+        # a `getattr(..., None)` guard would only hide a fake that
+        # does not — by classifying its failures as "error" and
+        # quietly disabling the skip logic below.
+        failure_reason = service.last_failure_reason if service else None
+        self._shrink_total_rounds_to_pool()
 
-        if reason == "unavailable":
+        if failure_reason == "unavailable":
             _LOGGER.info(
                 "Skipping unavailable song silently: %s (likely not in "
                 "your provider's storefront/catalog) — trying next song",
                 song.get("title") or song.get("uri"),
             )
-        else:
-            self._consecutive_playback_failures = (
-                getattr(self, "_consecutive_playback_failures", 0) + 1
-            )
+            await asyncio.sleep(0.2)
+            return True
+
+        # #1936: a timeout is not proof of a broken system. Music
+        # Assistant's Apple Music provider rate-limits and then retries
+        # on its OWN exponential backoff, which can outlast whatever
+        # deadline we gave it. Pausing the whole game on that first
+        # timeout ended the evening for a provider that was working,
+        # and handed the host a re-authenticate banner for a problem
+        # they did not have.
+        #
+        # #2682 moved the deadline out to 25s so a start throttled to
+        # MA's fifth retry (~23s) now lands instead of timing out, and
+        # made the log say which cause it was — `last_failure_reason`
+        # is "rate_limited" when a recent start was measurably slow,
+        # "error" when none was. Both count here, deliberately: past
+        # the fifth retry the next one is ~16s away, and skipping the
+        # song beats holding the room in silence for it.
+        #
+        # So the first failures skip the song, exactly like a
+        # storefront gap; only MAX_CONSECUTIVE_PLAYBACK_FAILURES in a
+        # row still means systemic and pauses. An offline speaker or a
+        # genuinely dead provider therefore still reaches the recovery
+        # banner — a few songs later instead of instantly, which is the
+        # deliberate price for not ending a game over one slow start.
+        self._consecutive_playback_failures = (
+            getattr(self, "_consecutive_playback_failures", 0) + 1
+        )
+        if self._consecutive_playback_failures < MAX_CONSECUTIVE_PLAYBACK_FAILURES:
+            # Stop the speaker BEFORE moving on. MA may still be
+            # retrying the track we just gave up on; without this it can
+            # start mid-way through the *next* round and play the wrong
+            # song under a live question. This does not provably cancel
+            # MA's internal retry — it is the strongest lever this side
+            # of the boundary has.
             if service:
                 try:
                     await service.stop()
                 except Exception as err:  # noqa: BLE001 — must not raise
                     _LOGGER.warning("Stop before skip failed: %s (#1936)", err)
-            if self._consecutive_playback_failures >= MAX_CONSECUTIVE_PLAYBACK_FAILURES:
-                self.last_error_detail = (
-                    f"{song.get('artist')} — {song.get('title')} on {self.media_player}"
-                )
-                _LOGGER.error(
-                    "Playback failed for %s on %s — pausing game",
-                    song.get("title") or song.get("uri"),
-                    self.media_player,
-                )
-                self._consecutive_playback_failures = 0
-                self._set_phase(GamePhase.REVEAL)
-                await self.pause_game("media_player_error")
-                return
             _LOGGER.warning(
                 "Playback timed out for %s — skipping this song "
-                "(failure %d of %d in a row). Trying the next song. (#3286)",
+                "(failure %d of %d in a row; the provider may be "
+                "rate-limiting). Trying the next song. (#1936)",
                 song.get("title") or song.get("uri"),
                 self._consecutive_playback_failures,
                 MAX_CONSECUTIVE_PLAYBACK_FAILURES,
             )
-        await asyncio.sleep(0.2)
-        await self.start_round(_retry_count=1)
+            await asyncio.sleep(0.2)
+            return True
+
+        # #949: a systemic playback failure — the speaker stayed idle,
+        # or the Music Assistant provider is unauthenticated — does not
+        # fix itself by retrying. play_song already waited a full MA
+        # timeout. Retrying it ~3x more meant ~2 minutes of a silent
+        # "Starting..." button before the admin saw anything. Pause
+        # now so the recovery banner (which names the provider to
+        # re-authenticate) appears within seconds; its Resume button
+        # is the manual retry if it really was a transient blip.
+        # #1927 follow-up: report the URI that was ACTUALLY tried, not
+        # the song's Spotify base field. An Apple Music attempt used to
+        # be logged as `spotify:track:…`, which reads like a Spotify
+        # defect and sends the next reader into the wrong provider.
+        # Falls back to the base field when no attempt was recorded
+        # (e.g. the song carried no playable URI at all).
+        attempted_uri = (service.last_attempted_uri if service else None) or song.get(
+            "uri"
+        )
+        # #1927: name the speaker too. The pause banner used to explain
+        # *what* failed and *which provider* to re-authenticate, but
+        # never *where* it was playing — the whole reason a game running
+        # on the wrong speaker looked like a provider outage.
+        self.last_error_detail = (
+            f"{song.get('artist')} — {song.get('title')} "
+            f"on {self.media_player} ({attempted_uri})"
+        )
+        _LOGGER.error(
+            "Playback failed for %s on %s — speaker unreachable, pausing game",
+            attempted_uri,
+            self.media_player,
+        )
+        # #1936: the budget is spent — reset it so the Resume button
+        # gets a full one rather than pausing again on the next timeout.
+        self._consecutive_playback_failures = 0
+        if pause_to_reveal:
+            self._set_phase(GamePhase.REVEAL)
+        await self.pause_game("media_player_error")
+        return False
 
     async def _start_round_locked(self, _retry_count: int = 0) -> bool:
         """Round-start orchestration body, run under ``_round_start_lock`` (#1697).
@@ -425,118 +517,11 @@ class RoundLifecycleMixin(GameStateBase):
 
             success = await self._media_player_service.play_song(song)
             if not success:
-                # #808 follow-up: classify the failure. "unavailable" means
-                # MA accepted the URI but the speaker stayed on the prior
-                # track — typically a region/storefront mismatch (the track
-                # ID isn't in the user's catalog). Skip silently and try the
-                # next song without counting against MAX_SONG_RETRIES; the
-                # user can't fix individual track availability and the game
-                # should keep playing the subset that IS available.
-                #
-                # "error" / unset → systemic failure (speaker offline, MA
-                # provider broken). Count toward MAX_SONG_RETRIES so the
-                # recovery banner kicks in for real problems.
-                # #2711: a plain read. The port declares this attribute, so
-                # a `getattr(..., None)` guard would only hide a fake that
-                # does not — by classifying its failures as "error" and
-                # quietly disabling the skip logic below.
-                failure_reason = self._media_player_service.last_failure_reason
+                # #3293: the skip/pause decision is shared with the intro
+                # round, whose deferred start fails in confirm_intro_splash.
                 self._playlist_manager.mark_played(get_playback_uri(song))  # type: ignore[arg-type]
-                self._shrink_total_rounds_to_pool()
-
-                if failure_reason == "unavailable":
-                    _LOGGER.info(
-                        "Skipping unavailable song silently: %s (likely not in "
-                        "your provider's storefront/catalog) — trying next song",
-                        song.get("title") or song.get("uri"),
-                    )
-                    await asyncio.sleep(0.2)
+                if await self._skip_failed_start(song):
                     return await self._start_round_locked(_retry_count)
-
-                # #1936: a timeout is not proof of a broken system. Music
-                # Assistant's Apple Music provider rate-limits and then retries
-                # on its OWN exponential backoff, which can outlast whatever
-                # deadline we gave it. Pausing the whole game on that first
-                # timeout ended the evening for a provider that was working,
-                # and handed the host a re-authenticate banner for a problem
-                # they did not have.
-                #
-                # #2682 moved the deadline out to 25s so a start throttled to
-                # MA's fifth retry (~23s) now lands instead of timing out, and
-                # made the log say which cause it was — `last_failure_reason`
-                # is "rate_limited" when a recent start was measurably slow,
-                # "error" when none was. Both count here, deliberately: past
-                # the fifth retry the next one is ~16s away, and skipping the
-                # song beats holding the room in silence for it.
-                #
-                # So the first failures skip the song, exactly like a
-                # storefront gap; only MAX_CONSECUTIVE_PLAYBACK_FAILURES in a
-                # row still means systemic and pauses. An offline speaker or a
-                # genuinely dead provider therefore still reaches the recovery
-                # banner — a few songs later instead of instantly, which is the
-                # deliberate price for not ending a game over one slow start.
-                self._consecutive_playback_failures = (
-                    getattr(self, "_consecutive_playback_failures", 0) + 1
-                )
-                if (
-                    self._consecutive_playback_failures
-                    < MAX_CONSECUTIVE_PLAYBACK_FAILURES
-                ):
-                    # Stop the speaker BEFORE moving on. MA may still be
-                    # retrying the track we just gave up on; without this it can
-                    # start mid-way through the *next* round and play the wrong
-                    # song under a live question. This does not provably cancel
-                    # MA's internal retry — it is the strongest lever this side
-                    # of the boundary has.
-                    try:
-                        await self._media_player_service.stop()
-                    except Exception as err:  # noqa: BLE001 — must not raise
-                        _LOGGER.warning("Stop before skip failed: %s (#1936)", err)
-                    _LOGGER.warning(
-                        "Playback timed out for %s — skipping this song "
-                        "(failure %d of %d in a row; the provider may be "
-                        "rate-limiting). Trying the next song. (#1936)",
-                        song.get("title") or song.get("uri"),
-                        self._consecutive_playback_failures,
-                        MAX_CONSECUTIVE_PLAYBACK_FAILURES,
-                    )
-                    await asyncio.sleep(0.2)
-                    return await self._start_round_locked(_retry_count)
-
-                # #949: a systemic playback failure — the speaker stayed idle,
-                # or the Music Assistant provider is unauthenticated — does not
-                # fix itself by retrying. play_song already waited a full MA
-                # timeout. Retrying it ~3x more meant ~2 minutes of a silent
-                # "Starting..." button before the admin saw anything. Pause
-                # now so the recovery banner (which names the provider to
-                # re-authenticate) appears within seconds; its Resume button
-                # is the manual retry if it really was a transient blip.
-                # #1927 follow-up: report the URI that was ACTUALLY tried, not
-                # the song's Spotify base field. An Apple Music attempt used to
-                # be logged as `spotify:track:…`, which reads like a Spotify
-                # defect and sends the next reader into the wrong provider.
-                # Falls back to the base field when no attempt was recorded
-                # (e.g. the song carried no playable URI at all).
-                attempted_uri = (
-                    self._media_player_service.last_attempted_uri or song.get("uri")
-                )
-                # #1927: name the speaker too. The pause banner used to explain
-                # *what* failed and *which provider* to re-authenticate, but
-                # never *where* it was playing — the whole reason a game running
-                # on the wrong speaker looked like a provider outage.
-                self.last_error_detail = (
-                    f"{song.get('artist')} — {song.get('title')} "
-                    f"on {self.media_player} ({attempted_uri})"
-                )
-                _LOGGER.error(
-                    "Playback failed for %s on %s — speaker unreachable, pausing game",
-                    attempted_uri,
-                    self.media_player,
-                )
-                # #1936: the budget is spent — reset it so the Resume button
-                # gets a full one rather than pausing again on the next timeout.
-                self._consecutive_playback_failures = 0
-                await self.pause_game("media_player_error")
                 return False
 
             # #1936: a confirmed start clears the streak. Only CONSECUTIVE
