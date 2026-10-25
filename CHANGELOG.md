@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.6-rc4] - 2026-10-25
+
+Fourth candidate for 4.8.6, "Thanks for Playing": the late-song guard from rc3 now actually runs.
+
+### Fixed
+- **The guard against late-landing skipped songs works on a real Home Assistant** (#3283, follow-up
+  to #3278). Its state listeners ran in a worker thread and failed with "no current event loop", so
+  an abandoned song that landed after the next round started was never corrected. The listeners now
+  run in Home Assistant's event loop.
+
 ## [4.8.6-rc3] - 2026-10-25
 
 Third candidate for 4.8.6, "Thanks for Playing": the two blockers from the rc2 live test (Spotify,
