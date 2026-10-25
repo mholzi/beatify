@@ -36,6 +36,7 @@ function loadHaAuth({
     externalAppV2 = null,
     sessionStorageData = {},
     withDomBody = false,
+    parent = undefined,
 } = {}) {
     const storage = (initial) => {
         const map = new Map(Object.entries(initial));
@@ -116,6 +117,7 @@ function loadHaAuth({
         history: { replaceState: () => {} },
         externalApp: externalApp || undefined,
         externalAppV2: externalAppV2 || undefined,
+        parent: parent,
     };
     const navigatorShim = { userAgent: userAgent };
     const ctx = {
@@ -926,5 +928,109 @@ describe('auth-error screen is translated, not hardcoded German (#1933)', () => 
 
         expect(ctx.sessionStorage.getItem(K)).toBeNull();
         expect(ctx.sandboxWindow.location._lastReplace).toContain('/auth/authorize');
+    });
+});
+
+describe('Companion iframe uses the HA frontend token (#3275)', () => {
+    const COMPANION_UA =
+        'Mozilla/5.0 (Linux; Android 16; Pixel 7 Pro) AppleWebKit/537.36 ' +
+        '(KHTML, like Gecko) Chrome/Mobile Safari Home Assistant/2026.4.4-full';
+
+    // Minimal stand-in for the HA frontend's window.hassConnection: a promise
+    // of {auth, conn} where auth mirrors home-assistant-js-websocket's Auth.
+    function frontendParent({ token = 'ha-frontend-token', expired = false, refreshed = 'ha-refreshed-token' } = {}) {
+        const auth = {
+            data: { access_token: token, expires: Date.now() + 1800 * 1000 },
+            refreshCalls: 0,
+            get accessToken() { return this.data.access_token; },
+            get expired() { return expired; },
+            refreshAccessToken() {
+                this.refreshCalls++;
+                this.data = { access_token: refreshed, expires: Date.now() + 1800 * 1000 };
+                expired = false;
+                return Promise.resolve();
+            },
+        };
+        return { auth, parent: { hassConnection: Promise.resolve({ auth, conn: {} }) } };
+    }
+
+    it('authedFetch() sends the HA frontend token as Bearer instead of no header', async () => {
+        const calls = [];
+        const { auth, parent } = frontendParent();
+        const { BeatifyAuth } = loadHaAuth({
+            userAgent: COMPANION_UA,
+            parent,
+            fetchFn: async (url, opts) => { calls.push({ url, opts }); return { ok: true, status: 200 }; },
+        });
+        await BeatifyAuth.fetch('/beatify/api/start-game', { method: 'POST' });
+        expect(calls).toHaveLength(1);
+        expect(calls[0].opts.headers.Authorization).toBe('Bearer ha-frontend-token');
+        expect(auth.refreshCalls).toBe(0);
+    });
+
+    it('getAccessToken() / ensureAuthenticated() resolve the frontend token for the admin WS', async () => {
+        const { parent } = frontendParent();
+        const { BeatifyAuth } = loadHaAuth({ userAgent: COMPANION_UA, parent });
+        expect(await BeatifyAuth.getAccessToken()).toBe('ha-frontend-token');
+        expect(await BeatifyAuth.ensureAuthenticated()).toBe('ha-frontend-token');
+    });
+
+    it('refreshes an expired frontend token before using it', async () => {
+        const { auth, parent } = frontendParent({ expired: true });
+        const { BeatifyAuth } = loadHaAuth({ userAgent: COMPANION_UA, parent });
+        expect(await BeatifyAuth.getAccessToken()).toBe('ha-refreshed-token');
+        expect(auth.refreshCalls).toBe(1);
+    });
+
+    it('on 401 forces a frontend refresh and retries once, never redirecting', async () => {
+        const calls = [];
+        const { auth, parent } = frontendParent();
+        const ctx = loadHaAuth({
+            userAgent: COMPANION_UA,
+            parent,
+            fetchFn: async (url, opts) => {
+                calls.push(opts.headers.Authorization);
+                return calls.length === 1 ? { ok: false, status: 401 } : { ok: true, status: 200 };
+            },
+        });
+        const resp = await ctx.BeatifyAuth.fetch('/beatify/api/start-game', {});
+        expect(resp.status).toBe(200);
+        expect(calls).toEqual(['Bearer ha-frontend-token', 'Bearer ha-refreshed-token']);
+        expect(auth.refreshCalls).toBe(1);
+        expect(ctx.sandboxWindow.location._lastReplace).toBeUndefined();
+    });
+
+    it('handleServerRejection() returns a fresh frontend token so the admin WS can reconnect', async () => {
+        const { parent } = frontendParent();
+        const { BeatifyAuth } = loadHaAuth({ userAgent: COMPANION_UA, parent });
+        expect(await BeatifyAuth.handleServerRejection()).toBe('ha-refreshed-token');
+    });
+
+    it('falls back to the tokenless bypass request when the parent is cross-origin', async () => {
+        const calls = [];
+        const crossOrigin = {};
+        Object.defineProperty(crossOrigin, 'hassConnection', {
+            get() { throw new Error('SecurityError: cross-origin frame'); },
+        });
+        const { BeatifyAuth } = loadHaAuth({
+            userAgent: COMPANION_UA,
+            parent: crossOrigin,
+            fetchFn: async (url, opts) => { calls.push(opts); return { ok: true, status: 200 }; },
+        });
+        await BeatifyAuth.fetch('/beatify/api/start-game', {});
+        expect(calls).toHaveLength(1);
+        expect(calls[0].headers && calls[0].headers.Authorization).toBeUndefined();
+        expect(await BeatifyAuth.getAccessToken()).toBeNull();
+    });
+
+    it('a 401 without any frontend token is returned to the caller, not turned into a redirect', async () => {
+        const ctx = loadHaAuth({
+            userAgent: COMPANION_UA,
+            parent: { hassConnection: Promise.resolve({ auth: null }) },
+            fetchFn: async () => ({ ok: false, status: 401 }),
+        });
+        const resp = await ctx.BeatifyAuth.fetch('/beatify/api/start-game', {});
+        expect(resp.status).toBe(401);
+        expect(ctx.sandboxWindow.location._lastReplace).toBeUndefined();
     });
 });
