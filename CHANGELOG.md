@@ -4,6 +4,31 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.6] - 2026-10-25
+
+"Thanks for Playing": a quiet star hint for the host, Rematch that starts again without a reload,
+skipped songs that can no longer take over the next round, hosting from the Android Companion app,
+and a set of smaller fixes on top of 4.8.5. rc4 passed the live test on 2026-10-25 (Spotify, two
+full games to the podium with a Rematch in between; the late-song guard fired once and corrected
+the speaker within seconds). Shipped on Sunday instead of Friday, on Markus' decision.
+
+### Added
+- **A quiet GitHub star hint on the host end screen** (#3244).
+
+### Fixed
+- **Rematch starts the next game without reloading the admin page** (#3277).
+- **A skipped song can no longer take over the next round** (#3278, #3283).
+- **Host actions work in the Android Companion app** (#3275), thanks to @stefh1970 for the report.
+- **The first round names the real reason when it can't start** (#3264).
+- **No "So close!" on the admin reveal when nobody guessed** (#3266), **"Final Results" on the last
+  round's button** (#3268), **the lobby shows the playlist's real name** (#3267), **the tour's year
+  slider matches the game** (#3269).
+- **Italian is selectable in the admin game-language picker** (#3262).
+- **Five broken links in Summer Party Anthems repaired** (#3258).
+
+### Changed
+- **`docs/` is no longer tracked** (#3246).
+
 ## [4.8.6-rc4] - 2026-10-25
 
 Fourth candidate for 4.8.6, "Thanks for Playing": the late-song guard from rc3 now actually runs.

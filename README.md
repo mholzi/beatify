@@ -829,6 +829,14 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.6 — Thanks for Playing ⭐
+- **Rematch starts the next game straight away**, no page reload needed (#3277)
+- **A skipped song can no longer sneak back in** and play over the next round when the music service is slow (#3278, #3283)
+- **Hosting from the Home Assistant app on Android works** — thanks to @stefh1970 for the report (#3275)
+- **When the speaker won't start, the game says so and pauses** instead of claiming there are no songs (#3264)
+- **A quiet star hint for the host** after the third game, with a ✕ that hides it for good (#3244)
+- **Smaller fixes**: no "So close!" when nobody guessed, "Final Results" on the last round, the real playlist name in the lobby, Italian in the language picker (#3266, #3268, #3267, #3262)
+
 ### v4.8.5 — Hold the Intro 🎤
 - **Intro rounds wait for the host**: the last song stops under the waiting card, the admin countdown holds like the TV, and the intro stops after 15 s — thanks to @aenkieh for the report (#3199)
 - **The lobby names both numbers**: how long you hear each song and how long you have to answer (#3222)
