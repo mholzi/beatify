@@ -638,8 +638,14 @@ export function bannerAnchorFor(startButton) {
  * @param {{path?: string}|string} entry
  * @returns {string}
  */
-export function playlistDisplayName(entry) {
+export function playlistDisplayName(entry, playlistData) {
     const path = (entry && entry.path) || entry || '';
+    // #3267: prefer the playlist's real name (what the wizard shows) over the
+    // filename slug, which turns "80s Hits" into "80er hits".
+    const meta = Array.isArray(playlistData)
+        ? playlistData.find((d) => d && d.path === path)
+        : null;
+    if (meta && meta.name) return meta.name;
     return String(path).split('/').pop().replace('.json', '').replace(/-/g, ' ');
 }
 
@@ -674,6 +680,7 @@ export function lobbyPlaylistPaths(settings) {
  * @param {Object} setup
  * @param {string} setup.speakerLabel - already-resolved "🔊 <room>" (see setup-sync.js)
  * @param {Array} setup.playlists - `selectedPlaylists` from the stored settings blob
+ * @param {Array} [setup.playlistData] - `adminState.playlistData`, for the real playlist name (#3267)
  * @param {boolean} setup.isLibrary - Crate Digger generates its own playlist
  * @param {string} setup.difficulty - 'easy' | 'normal' | 'hard'
  * @param {string} setup.roundDurationLabel - from `roundDurationLabel(adminState)`
@@ -693,7 +700,7 @@ export function buildHomeMeta(setup, t) {
     } else if (playlists.length === 0) {
         playlistLabel = t('admin.home.noPlaylist', 'no playlist');
     } else if (playlists.length === 1) {
-        playlistLabel = playlistDisplayName(playlists[0]);
+        playlistLabel = playlistDisplayName(playlists[0], setup.playlistData);
     } else {
         playlistLabel = t('admin.home.playlistCount', '{count} playlists', {
             count: playlists.length,
