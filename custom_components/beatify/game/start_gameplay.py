@@ -24,7 +24,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
-from custom_components.beatify.const import MIN_PLAYERS, SUDDEN_DEATH_MIN_PLAYERS
+from custom_components.beatify.const import (
+    ERR_GAME_NOT_STARTED,
+    ERR_MEDIA_PLAYER_UNAVAILABLE,
+    ERR_NO_SONGS_REMAINING,
+    MIN_PLAYERS,
+    SUDDEN_DEATH_MIN_PLAYERS,
+)
 
 if TYPE_CHECKING:
     from custom_components.beatify.game.state import GameState
@@ -95,3 +101,58 @@ async def begin_gameplay(
         await ws_handler.broadcast({"type": "game_starting"})
     success = await game_state.start_round()
     return success, warning
+
+
+def start_failure(game_state: GameState) -> dict[str, Any]:
+    """Why :func:`begin_gameplay` failed, as ``code``/``message``/``message_key``.
+
+    #3264: ``start_round()`` returns a bare ``False``, and the reason is left
+    behind in the game state — PAUSED with a ``pause_reason`` when the speaker
+    or the provider could not play, END when the song pool ran dry. The
+    websocket path read that state; the REST path ignored it and called every
+    failure "no songs", so a host whose speaker failed was told to fix a
+    playlist that had 112 playable songs. Both surfaces now read the reason
+    here. Extra keys (``detail``, ``reason``) are the ``{placeholders}`` of the
+    message and travel at the top level of the error body.
+    """
+    from custom_components.beatify.game.state import GamePhase
+
+    if game_state.phase == GamePhase.PAUSED:
+        pause_reason = game_state.pause_reason
+        if pause_reason == "media_player_error":
+            error_detail = game_state.last_error_detail
+            if error_detail:
+                return {
+                    "code": ERR_MEDIA_PLAYER_UNAVAILABLE,
+                    "message": f"Media player error: {error_detail}",
+                    "message_key": "MEDIA_PLAYER_ERROR",
+                    "detail": error_detail,
+                }
+            return {
+                "code": ERR_MEDIA_PLAYER_UNAVAILABLE,
+                "message": "Media player not responding - check speaker connection",
+                "message_key": "MEDIA_PLAYER_NOT_RESPONDING",
+            }
+        if pause_reason == "no_songs_available":
+            return {
+                "code": ERR_GAME_NOT_STARTED,
+                "message": "No playable songs for selected provider",
+                "message_key": "NO_SONGS_FOR_PROVIDER",
+            }
+        return {
+            "code": ERR_GAME_NOT_STARTED,
+            "message": f"Game paused: {pause_reason}",
+            "message_key": "GAME_PAUSED",
+            "reason": pause_reason,
+        }
+    if game_state.phase == GamePhase.END:
+        return {
+            "code": ERR_NO_SONGS_REMAINING,
+            "message": "No songs available in playlist",
+            "message_key": "NO_SONGS_IN_PLAYLIST",
+        }
+    return {
+        "code": ERR_GAME_NOT_STARTED,
+        "message": "Failed to start game",
+        "message_key": "START_FAILED",
+    }

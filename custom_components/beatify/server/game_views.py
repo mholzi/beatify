@@ -29,6 +29,7 @@ from custom_components.beatify.game.start_gameplay import (
     REFUSE_ALREADY_STARTED,
     begin_gameplay,
     refusal_to_start,
+    start_failure,
 )
 from custom_components.beatify.const import (
     DEFAULT_ROUND_DURATION,
@@ -1670,11 +1671,23 @@ class StartGameplayView(BeatifyAdminView):
         # websocket path since #2929.
         success, sudden_death_warning = await begin_gameplay(game_state, ws_handler)
         if not success:
+            # #3264: every failure used to say "no songs", even when the songs
+            # were fine and the speaker or provider could not play them. Read
+            # the real reason from the same helper the websocket start uses.
+            failure = start_failure(game_state)
+            message = failure.pop("message")
+            code = failure.pop("code")
+            message_key = failure.pop("message_key")
+            if ws_handler:
+                # #949, as on the websocket path: the failed start paused the
+                # game, and without this broadcast the room stays on the loader.
+                await ws_handler.broadcast_state()
             return _json_error(
-                "Failed to start - no songs",
+                message,
                 500,
-                code="START_FAILED",
-                message_key="START_FAILED_NO_SONGS",
+                code=code,
+                message_key=message_key,
+                details=failure or None,
             )
 
         # Broadcast state to all connected players

@@ -77,6 +77,7 @@ def _sent_keys() -> set[str]:
         CC / "server" / "ws_handlers" / "admin.py",
         CC / "server" / "ws_handlers" / "lifecycle.py",
         CC / "server" / "game_views.py",
+        CC / "game" / "start_gameplay.py",  # #3264: start failures
     ):
         text = path.read_text(encoding="utf-8")
         keys |= set(re.findall(r'message_key\s*=\s*"([A-Z_]+)"', text))
