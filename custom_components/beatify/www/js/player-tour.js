@@ -128,9 +128,26 @@ export function renderProgress() {
 }
 
 /**
+ * #3269: the preview slider's right-hand label must read what the real
+ * slider's maximum is. The real one is the clock year at least (the server's
+ * default, see year_range() in serializers.py), widened by the playlist, and
+ * the markup's own max="2025" is only a placeholder. Derive, never hardcode.
+ */
+export function tourYearMax(sliderMax, now) {
+    var markup = parseInt(sliderMax, 10);
+    var year = (now || new Date()).getFullYear();
+    return isFinite(markup) ? Math.max(markup, year) : year;
+}
+
+/**
  * Show the card at the given index; hide others.
  */
 function renderCard(idx) {
+    var maxLabel = document.getElementById('tour-slider-max');
+    if (maxLabel) {
+        var slider = document.getElementById('year-slider');
+        maxLabel.textContent = String(tourYearMax(slider && slider.max));
+    }
     var cards = document.querySelectorAll('.tour-card');
     for (var i = 0; i < cards.length; i++) {
         cards[i].classList.toggle('hidden', i !== idx);

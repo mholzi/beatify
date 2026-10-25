@@ -37,7 +37,7 @@ vi.mock('../player-utils.js', () => ({
 }));
 
 // Dynamic import AFTER globals are in place.
-const { shouldShowTour, isActive } = await import('../player-tour.js');
+const { shouldShowTour, isActive, tourYearMax } = await import('../player-tour.js');
 
 // ------------------------------------------------------------------
 // shouldShowTour — gating logic for post-QR onboarding tour
@@ -82,5 +82,18 @@ describe('shouldShowTour', () => {
 describe('tour module lifecycle', () => {
     it('reports inactive before startTour is called', () => {
         expect(isActive()).toBe(false);
+    });
+});
+
+// #3269: tour preview slider label follows the real slider's maximum
+describe('tourYearMax', () => {
+    it('uses the clock year when the markup max is stale', () => {
+        expect(tourYearMax('2025', new Date('2026-10-25'))).toBe(2026);
+    });
+    it('keeps a server-widened max above the clock year', () => {
+        expect(tourYearMax('2028', new Date('2026-10-25'))).toBe(2028);
+    });
+    it('falls back to the clock year without a slider', () => {
+        expect(tourYearMax(undefined, new Date('2027-01-02'))).toBe(2027);
     });
 });
