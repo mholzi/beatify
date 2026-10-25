@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.6-rc2] - 2026-10-25
+
+Second candidate for 4.8.6, "Thanks for Playing": seven fixes on top of rc1. main passed two full
+games to the podium on 2026-10-25 (Spotify, backend and browser).
+
+### Fixed
+- **The first round names the real reason when it can't start** (#3264). A speaker that won't play
+  now reports a media-player error and pauses the game, instead of claiming there are no songs.
+- **No "So close!" on the admin reveal when nobody guessed** (#3266).
+- **The admin lobby shows the playlist's real name** (#3267), not one derived from the file name
+  ("80ER HITS" instead of "80s Hits").
+- **The last round's admin button says "Final Results"** (#3268) instead of "Next Round".
+- **The onboarding tour's year slider ends at the same year as the game** (#3269) instead of a fixed
+  2025.
+- **Italian is selectable in the admin game-language picker** (#3262).
+- **Five broken links in Summer Party Anthems repaired** (#3258), playlist version 1.18.
+
 ## [4.8.6-rc1] - 2026-10-23
 
 First candidate for 4.8.6, "Thanks for Playing": a quiet star hint on the host end screen, and
