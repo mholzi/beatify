@@ -358,7 +358,12 @@ class MediaPlayerService:
 
         The promises themselves know how to serialise (#2678) — including the
         empty queue capture, which a truthiness test used to drop.
+
+        #3278: this is also the moment the service is retired, so its Music
+        Assistant stale-start guard stops watching the old speaker here.
         """
+        if self._strategy is not None:
+            self._strategy.forget_pending_starts()
         return self._promises.snapshot()
 
     def save_volume(self) -> None:
@@ -431,6 +436,10 @@ class MediaPlayerService:
         Returns:
             True if at least one speaker got something back.
         """
+        # #3278: the game is over — an abandoned start that lands now must
+        # not be "corrected" into a round that no longer exists.
+        if self._strategy is not None:
+            self._strategy.forget_pending_starts()
         restored = False
         # Cleared as taken, BEFORE the awaits, so a re-entrant call can't
         # double-restore.
@@ -725,6 +734,9 @@ class MediaPlayerService:
             True if successful, False otherwise
 
         """
+        # #3278: tell the Music Assistant stale-start guard the room is meant
+        # to be silent now, so a correction it makes is silenced again.
+        self._context.audio_wanted = False
         try:
             await self._hass.services.async_call(
                 "media_player",
@@ -751,6 +763,7 @@ class MediaPlayerService:
             True if successful, False otherwise
 
         """
+        self._context.audio_wanted = True
         try:
             await self._hass.services.async_call(
                 "media_player",

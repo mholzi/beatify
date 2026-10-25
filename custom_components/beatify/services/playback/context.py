@@ -73,6 +73,12 @@ class PlayerContext:
         # writers — so they live on the thing both sides already share.
         self.last_attempted_uri: str | None = None
         self.last_failure_reason: str | None = None
+        # #3278: whether Beatify currently wants the round's song audible.
+        # The shell clears it on stop() and sets it on play(); a successful
+        # start sets it again. The Music Assistant stale-start guard reads it
+        # to decide whether a corrected start should keep playing or be
+        # silenced again.
+        self.audio_wanted: bool = True
 
     async def save_queue(self) -> None:
         """Tell the shell that the host's queue is about to be replaced."""

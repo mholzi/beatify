@@ -115,3 +115,10 @@ class PlaybackStrategy(ABC):
             track, its position, shuffle and repeat mode.
         """
         return None
+
+    def forget_pending_starts(self) -> None:
+        """The game is over: stop watching for abandoned starts (#3278).
+
+        Only Music Assistant can have a start still in flight after Beatify
+        gave up on it, so the default does nothing.
+        """

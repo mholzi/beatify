@@ -70,6 +70,22 @@ MA_PLAYBACK_TIMEOUT = 25.0
 # #3101: bound on each cancel call issued after a start is abandoned.
 MA_CANCEL_TIMEOUT = 3.0
 
+# #3278: how long a start Beatify gave up on can still land on the speaker.
+#
+# The #3101 cancel (stop + clear queue) does not reach a request that Music
+# Assistant is still resolving: its provider sits in a rate-limiter backoff,
+# and when that finally answers MA loads the track into whatever queue exists
+# by then — the NEXT round's. Measured in the v4.8.6-rc2 live test with
+# Spotify: the abandoned song took over the speaker 23 s after the skip and
+# 48 s after it was requested, one second after the next round had been
+# confirmed. MA's Apple Music limiter runs up to ~65 s. 120 s from the moment
+# Beatify gave up covers both with room to spare; past it, an old request is
+# not worth watching for.
+MA_STALE_START_WINDOW = 120.0
+# #3278: at most this many corrections per confirmed start, so a speaker that
+# keeps flipping cannot turn the guard into a play_media loop.
+MA_STALE_START_MAX_CORRECTIONS = 3
+
 # #1936: the FIRST play of a game gets a third more time (25.0s → 33.3s). A
 # speaker idle for a while was measured at 10.1s to first audio (Sonos via MA,
 # Apple Music) — close enough to the deadline that a cold start regularly lost
@@ -317,6 +333,175 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # one — so it is remembered and used to explain the next timeout.
         # NOT reset per song: throttling spans songs, which is the point.
         self._last_slow_start: tuple[float, float] | None = None
+        # #3278: starts Beatify gave up on that Music Assistant may still
+        # deliver late — ``uri -> (when abandoned, song key)``. NOT reset per
+        # song: the whole point is that they outlive the song they belonged to.
+        self._abandoned_starts: dict[str, tuple[float, str]] = {}
+        # #3278: the service data of the most recent play_media request, so
+        # the guard can repeat it exactly (name fallback included).
+        self._last_play_request: dict[str, Any] | None = None
+        # #3278: the guard watching a confirmed start for a late takeover.
+        self._stale_guard_unsub: Any = None
+        self._stale_guard_timer: asyncio.TimerHandle | None = None
+        self._stale_corrections = 0
+        # #3278: a correction made while the room was meant to be silent
+        # (sample stop, pause) must be stopped again once it has loaded.
+        self._stop_after_correction = False
+        # #3278: the song being started or played now. An abandoned request
+        # for another URI of the SAME song landing late is the right music.
+        self._current_song_key: str | None = None
+
+    # -- #3278: abandoned starts that land late ------------------------------
+
+    @staticmethod
+    def _song_key(song: dict[str, Any]) -> str:
+        """Identity of a song for the stale-start guard, independent of URI."""
+        return (
+            _normalize_for_match(song.get("artist") or "").strip()
+            + "|"
+            + _normalize_for_match(song.get("title") or "").strip()
+        )
+
+    def _note_abandoned_start(self, uri: str, song_key: str) -> None:
+        """Remember a play request Beatify gave up on (#3278)."""
+        self._abandoned_starts[uri] = (asyncio.get_event_loop().time(), song_key)
+
+    def _live_abandoned_starts(self) -> dict[str, tuple[float, str]]:
+        """Drop entries past MA_STALE_START_WINDOW and return the rest."""
+        now = asyncio.get_event_loop().time()
+        self._abandoned_starts = {
+            uri: entry
+            for uri, entry in self._abandoned_starts.items()
+            if now - entry[0] <= MA_STALE_START_WINDOW
+        }
+        return self._abandoned_starts
+
+    def _stale_start_in(self, content_id: str, own_tokens: list[str]) -> str | None:
+        """The abandoned URI the speaker is now playing, if it is one (#3278).
+
+        Content-id evidence only: a track that carries a token of the URI we
+        are playing right now is never stale, and a speaker that reports no
+        ``media_content_id`` never triggers anything — so the normal path,
+        with nothing abandoned, behaves exactly as before.
+        """
+        if not content_id:
+            return None
+        if own_tokens and any(token in content_id for token in own_tokens):
+            return None
+        for uri, (_, song_key) in self._live_abandoned_starts().items():
+            if song_key == self._current_song_key:
+                continue
+            if any(token in content_id for token in uri_match_tokens(uri)):
+                return uri
+        return None
+
+    def _disarm_stale_guard(self) -> None:
+        """Stop watching the previous start (a new one begins, or game over)."""
+        if self._stale_guard_unsub is not None:
+            self._stale_guard_unsub()
+            self._stale_guard_unsub = None
+        if self._stale_guard_timer is not None:
+            self._stale_guard_timer.cancel()
+            self._stale_guard_timer = None
+        self._stop_after_correction = False
+
+    def forget_pending_starts(self) -> None:
+        """Game over or speaker retired: watch nothing any more (#3278)."""
+        self._disarm_stale_guard()
+        self._abandoned_starts = {}
+
+    def _arm_stale_guard(self, uri: str, song_key: str) -> None:
+        """Watch a confirmed start for an abandoned one taking it over (#3278).
+
+        Music Assistant can finish a request Beatify gave up on long after the
+        skip and swap the speaker to it mid-round — the room then hears one
+        song while the reveal and the scores are for another. When that
+        happens, the current round's request is issued again (and silenced
+        again if Beatify had stopped the song in the meantime).
+
+        Only armed when something was abandoned inside MA_STALE_START_WINDOW;
+        an ordinary game never subscribes to anything here.
+        """
+        self.context.audio_wanted = True
+        # A late start of the SAME song (another URI candidate of it) is the
+        # right music, so it is not something to correct.
+        live = self._live_abandoned_starts()
+        for abandoned_uri in [u for u, (_, k) in live.items() if k == song_key]:
+            del live[abandoned_uri]
+        if not live or self._last_play_request is None:
+            return
+
+        own_tokens = uri_match_tokens(uri)
+        request = dict(self._last_play_request)
+        self._stale_corrections = 0
+        self._stop_after_correction = False
+
+        def _state_changed(ev) -> None:
+            new_state = ev.data.get("new_state")
+            if new_state is None or new_state.state != "playing":
+                return
+            content_id = new_state.attributes.get("media_content_id") or ""
+            if self._stop_after_correction:
+                if own_tokens and any(t in content_id for t in own_tokens):
+                    self._stop_after_correction = False
+                    self._hass.async_create_task(self._silence_after_correction())
+                return
+            stale = self._stale_start_in(content_id, own_tokens)
+            if stale is None:
+                return
+            # It landed: MA is done with that request.
+            self._abandoned_starts.pop(stale, None)
+            if self._stale_corrections >= MA_STALE_START_MAX_CORRECTIONS:
+                return
+            self._stale_corrections += 1
+            _LOGGER.warning(
+                "MA: the abandoned start of %s took over %s while %s should be "
+                "playing (now %r). Music Assistant finished the old request "
+                "late — re-issuing the current song so the room hears the song "
+                "that is scored. (#3278)",
+                stale,
+                self._entity_id,
+                uri,
+                content_id,
+            )
+            self._stop_after_correction = not self.context.audio_wanted
+            self._hass.async_create_task(self._reissue_play(request))
+
+        self._stale_guard_unsub = async_track_state_change_event(
+            self._hass, [self._entity_id], _state_changed
+        )
+        now = asyncio.get_event_loop().time()
+        remaining = max(MA_STALE_START_WINDOW - (now - w) for w, _ in live.values())
+        self._stale_guard_timer = asyncio.get_event_loop().call_later(
+            remaining, self._disarm_stale_guard
+        )
+
+    async def _reissue_play(self, request: dict[str, Any]) -> None:
+        """Repeat the current round's play_media request (#3278)."""
+        try:
+            await self._hass.services.async_call(
+                "music_assistant",
+                "play_media",
+                request,
+                target={"entity_id": self._entity_id},
+                blocking=False,
+            )
+        except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError) as err:
+            _LOGGER.warning("MA: re-issuing the current song failed: %s (#3278)", err)
+
+    async def _silence_after_correction(self) -> None:
+        """Stop a corrected start the room was not meant to hear (#3278)."""
+        if self.context.audio_wanted:
+            return
+        try:
+            await self._hass.services.async_call(
+                "media_player",
+                "media_stop",
+                {"entity_id": self._entity_id},
+                blocking=False,
+            )
+        except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError) as err:
+            _LOGGER.debug("MA: stop after correction failed: %s (#3278)", err)
 
     # -- #2682: telling a throttled start apart from a dead URI --------------
 
@@ -558,6 +743,8 @@ class MusicAssistantStrategy(PlaybackStrategy):
         self._stopped_for_cascade = False
 
         candidates = self.uri_candidates(song)
+        song_key = self._song_key(song)
+        self._current_song_key = song_key
         expected_title = song.get("title") or ""
         expected_artist = song.get("artist") or ""
 
@@ -611,7 +798,11 @@ class MusicAssistantStrategy(PlaybackStrategy):
                     _LOGGER.debug("MA preferred URI field now: %s (#768)", field)
                     self._ma_preferred_uri_field = field
                 self.last_failure_reason = None
+                self._arm_stale_guard(uri, song_key)
                 return True
+            # #3278: Beatify gave up on this request, Music Assistant may not
+            # have. Remember it so a late arrival is recognised.
+            self._note_abandoned_start(uri, song_key)
 
         # Last resort: let MA resolve the track from name + artist.
         #
@@ -654,6 +845,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
                     self.last_failure_reason = "wrong_track"
                     return False
                 self.last_failure_reason = None
+                self._arm_stale_guard(expected_title, song_key)
                 return True
 
         _LOGGER.error(
@@ -730,6 +922,9 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # #1927 follow-up: remember what we are about to play, so a failure is
         # reported with the URI that was really tried.
         self.last_attempted_uri = uri
+        # #3278: a new start supersedes the previous one's guard; the
+        # abandoned list itself survives and is checked during this wait.
+        self._disarm_stale_guard()
         # #1936: cold-start budget for the very first attempt of a game only.
         first_play = self._first_play_pending
         timeout = MA_PLAYBACK_TIMEOUT * (
@@ -782,6 +977,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # track NAME and the artist disambiguates it inside MA's resolver.
         if artist_filter:
             service_data["artist"] = artist_filter
+        self._last_play_request = dict(service_data)
         await self._hass.services.async_call(
             "music_assistant",
             "play_media",
@@ -853,6 +1049,13 @@ class MusicAssistantStrategy(PlaybackStrategy):
 
                 position_fresh = position_updated != position_updated_before
                 if not position_fresh:
+                    return False
+
+                # #3278: a song Beatify gave up on earlier, landing late, is
+                # not this song starting — whatever its title or artist.
+                if self._stale_start_in(
+                    state.attributes.get("media_content_id") or "", match_tokens
+                ):
                     return False
 
                 # #2333: the track has to have actually changed. The
@@ -1078,6 +1281,27 @@ class MusicAssistantStrategy(PlaybackStrategy):
             else ""
         )
         title_advanced = title_after != title_before
+
+        # #3278: the track that moved in is one Beatify abandoned earlier and
+        # Music Assistant delivered late — not progress on THIS request, so the
+        # #345 tolerance below must not wave it through. Cancel and skip, like
+        # any start that never arrived.
+        stale = self._stale_start_in(content_id_after, match_tokens)
+        if stale is not None:
+            self._abandoned_starts.pop(stale, None)
+            _LOGGER.warning(
+                "MA playback failed after %.1fs for %s — the speaker is playing "
+                "%r instead, a start Beatify abandoned earlier that Music "
+                "Assistant finished late. Skipping this song silently. (#3278)",
+                timeout,
+                uri,
+                content_id_after,
+            )
+            if await self._cancel_pending_start():
+                self._stopped_for_cascade = True
+            self.last_failure_reason = "unavailable"
+            return False
+
         # #2616: same reasoning as in the fast path — an unchanged title is
         # only evidence of a stuck speaker when the content id has not moved
         # to the track we asked for. Stopping the speaker here is what made
