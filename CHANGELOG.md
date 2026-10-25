@@ -4,6 +4,22 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.6-rc3] - 2026-10-25
+
+Third candidate for 4.8.6, "Thanks for Playing": the two blockers from the rc2 live test (Spotify,
+2026-10-25), plus a login fix for the Android Companion app.
+
+### Fixed
+- **Rematch starts again without reloading the admin page** (#3277). After "Rematch" the Start button
+  stayed on "Starting..." and disabled.
+- **A skipped song can no longer take over the next round** (#3278). When playback timed out (for
+  example while Music Assistant waited on a provider rate limit), the abandoned request could land
+  later and replace the current round's song, so the speaker played a different track than the one
+  revealed. Late starts of abandoned songs are now ignored or corrected.
+- **Host actions work in the Android Companion app** (#3275). The admin page now sends the token of
+  the app's existing Home Assistant session instead of relying on the optional local-network bypass,
+  which is off by default. The server-side bypass is unchanged.
+
 ## [4.8.6-rc2] - 2026-10-25
 
 Second candidate for 4.8.6, "Thanks for Playing": seven fixes on top of rc1. main passed two full
