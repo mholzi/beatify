@@ -20,6 +20,7 @@ from collections.abc import Callable
 from typing import TYPE_CHECKING, Any
 from urllib.parse import quote
 
+from homeassistant.core import callback
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
@@ -624,6 +625,10 @@ class MediaPlayerService:
                 return False
             return bool(ep) and ep != NO_ARTWORK_PLACEHOLDER
 
+        # #3283: ``@callback`` keeps this in the event loop. A plain function
+        # runs in a Home Assistant worker thread, where ``asyncio.Event.set()``
+        # is not thread-safe.
+        @callback
         def _state_changed(ev):
             new_state = ev.data.get("new_state")
             if new_state is None:

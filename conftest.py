@@ -65,6 +65,19 @@ for _leaf in _LEAVES:
         _make_leaf(_leaf)
 
 
+# `homeassistant.core.callback` must behave like the real decorator (#3283):
+# mark the function and return it unchanged. As a bare MagicMock attribute it
+# would replace every ``@callback`` function with a mock, and tests that mimic
+# Home Assistant's dispatch read the marker to decide whether a listener runs
+# in the event loop (marked) or in a worker thread (not marked).
+def _ha_callback(func):
+    func._hass_callback = True
+    return func
+
+
+sys.modules["homeassistant.core"].callback = _ha_callback  # type: ignore[attr-defined]
+
+
 # `homeassistant.components.http` needs special handling: views inherit from
 # `HomeAssistantView`, so it must be a real class (not a MagicMock attribute)
 # or every `class XView(RateLimitMixin, HomeAssistantView)` definition trips
