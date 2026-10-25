@@ -3387,6 +3387,18 @@ function showAdminRevealView(data) {
     // never carries it and this block simply stays hidden there.
     renderEncoreOffer(data);
 
+    // #3268: on the last reveal this button ends the game (the server runs
+    // finalize_and_end when `last_round` is set), so it must not promise a
+    // next round. Same label the host's phone already shows there
+    // (player-reveal.js). The data-i18n key moves too, so a language switch
+    // re-translates the right string instead of restoring "Next Round".
+    var nextRoundBtn = document.getElementById('admin-next-round');
+    if (nextRoundBtn) {
+        var nextKey = data.last_round ? 'leaderboard.finalResults' : 'admin.nextRound';
+        nextRoundBtn.setAttribute('data-i18n', nextKey);
+        nextRoundBtn.textContent = BeatifyI18n.t(nextKey);
+    }
+
     // Song hero
     if (data.song) {
         var titleEl = document.getElementById('admin-reveal-song-title');
