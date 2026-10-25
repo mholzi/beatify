@@ -764,6 +764,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const meta = buildHomeMeta({
                     speakerLabel: speakerLabelFor(speakerId, adminState.mediaPlayers, tr),
                     playlists: s.selectedPlaylists,
+                    playlistData: adminState.playlistData,
                     isLibrary: (s.provider || s.selectedProvider) === 'ma_library',
                     difficulty: s.difficulty,
                     roundDurationLabel: roundDurationLabel(adminState),

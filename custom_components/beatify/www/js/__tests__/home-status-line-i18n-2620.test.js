@@ -93,6 +93,13 @@ describe('the fragments say the right thing', () => {
         expect(line).toContain('80s classics');
     });
 
+    it('shows the playlist name, not the filename slug (#3267)', () => {
+        const playlistData = [{ path: '80er-hits.json', name: '80s Hits' }];
+        const line = buildHomeMeta({ ...BASE, playlists: [{ path: '80er-hits.json' }], playlistData }, t);
+        expect(line).toContain('80s Hits');
+        expect(line).not.toContain('80er hits');
+    });
+
     it('accepts both stored playlist shapes', () => {
         expect(playlistDisplayName('party/80s-classics.json')).toBe('80s classics');
         expect(playlistDisplayName({ path: 'party/80s-classics.json' })).toBe('80s classics');
