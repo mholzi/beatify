@@ -290,6 +290,7 @@ class RoundLifecycleMixin(GameStateBase):
             self._playlist_manager.mark_played(
                 get_song_uri(song, self.provider, self.storefront) or song.get("uri")  # type: ignore[arg-type]
             )
+            self._shrink_total_rounds_to_pool()
             if _retry_count >= MAX_SONG_RETRIES:
                 _LOGGER.error(
                     "No playable songs found after %d attempts, pausing game",
@@ -387,6 +388,7 @@ class RoundLifecycleMixin(GameStateBase):
                 # quietly disabling the skip logic below.
                 failure_reason = self._media_player_service.last_failure_reason
                 self._playlist_manager.mark_played(get_playback_uri(song))  # type: ignore[arg-type]
+                self._shrink_total_rounds_to_pool()
 
                 if failure_reason == "unavailable":
                     _LOGGER.info(
@@ -817,6 +819,28 @@ class RoundLifecycleMixin(GameStateBase):
             return False
         manager = getattr(self, "_playlist_manager", None)
         return manager is not None and manager.reserve_count() > 0
+
+    def _shrink_total_rounds_to_pool(self) -> None:
+        """Lower ``total_rounds`` to what the pool can still deliver (#3279).
+
+        A song dropped by a playback failure is marked played without a round
+        being committed (#2421), so the game ends with fewer rounds than
+        ``total_rounds`` promised and the screens read "Round 7 of 10" on the
+        final round. ``round`` counts committed rounds and the pool counts the
+        songs still left, so their sum is the real length of the game. Only
+        ever lowers the value; the host's cap stays in ``max_rounds``.
+        """
+        manager = self._playlist_manager
+        if manager is None:
+            return
+        deliverable = self.round + manager.get_remaining_count()
+        if deliverable < self.total_rounds:
+            _LOGGER.info(
+                "Song dropped: total_rounds %d -> %d (#3279)",
+                self.total_rounds,
+                deliverable,
+            )
+            self.total_rounds = deliverable
 
     def extend_rounds(self, count: int | None = None) -> int:
         """Add up to ``count`` more rounds to the running game (#2503).
