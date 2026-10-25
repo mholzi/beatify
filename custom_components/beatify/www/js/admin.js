@@ -500,6 +500,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.BeatifyHome = {
         enter() {
             document.body.classList.add('home-mode');
+            // #3277: startGameplay() leaves the button disabled on "Starting..."
+            // on the WS path (the home view just hides). A rematch brings the
+            // home view back with that stale state, so restore it here.
+            resetHomeStartButton();
             const v = document.getElementById('home-view');
             if (v) v.classList.remove('hidden');
             this.refresh();
