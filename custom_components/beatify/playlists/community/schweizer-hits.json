@@ -1,6 +1,6 @@
 {
   "name": "Schweizer Hits 🇨🇭",
-  "version": "0.16",
+  "version": "0.17",
   "tags": [
     "swiss",
     "mundart",
@@ -171,21 +171,20 @@
       "fun_fact_de": "Ein Titel aus der modernen Deutschschweizer Mundart-Musikszene.",
       "fun_fact_es": "Una canción de la moderna escena musical en dialecto suizo-alemán.",
       "fun_fact_fr": "Un titre de la scène musicale moderne en dialecte suisse-alémanique.",
-      "uri_apple_music": "applemusic://track/1622953303",
+      "uri_apple_music": "applemusic://track/6795677281",
       "uri_youtube_music": "https://music.youtube.com/watch?v=o5aVBKtXWwo",
-      "uri_tidal": "tidal://track/227959857",
       "uri_deezer": "deezer://track/1740334457",
       "fun_fact_nl": "Een nummer uit de moderne Zwitsers-Duitse dialectmuziekscene.",
       "awards_nl": [],
       "isrc": "CHA142200002",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1622953303",
-        "de": "applemusic://track/1622401256",
-        "gb": "applemusic://track/1622953303",
-        "fr": "applemusic://track/1622953303",
-        "es": "applemusic://track/1622401256",
-        "nl": "applemusic://track/1622953303",
-        "it": "applemusic://track/1622953303"
+        "us": "applemusic://track/6795677281",
+        "de": "applemusic://track/6795677281",
+        "gb": "applemusic://track/6795677281",
+        "fr": "applemusic://track/6795677281",
+        "es": "applemusic://track/6795677281",
+        "nl": "applemusic://track/6795677281",
+        "it": "applemusic://track/6795677281"
       }
     },
     {
@@ -2393,7 +2392,7 @@
       }
     },
     {
-      "year": 2026,
+      "year": 2023,
       "uri": "spotify:track:6USCcwUH4SGxHhHGbeKyk2",
       "artist": "Baschi",
       "alt_artists": [],
@@ -2407,10 +2406,10 @@
       "uri_apple_music": "applemusic://track/1693820368",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NhsfQ130cBE",
       "uri_tidal": "tidal://track/315168944",
-      "uri_deezer": "deezer://track/3957986731",
+      "uri_deezer": "deezer://track/2386448855",
       "fun_fact_nl": "Baschi is een popzanger uit Basel die doorbrak met 'Bring en hei' tijdens het WK van 2006.",
       "awards_nl": [],
-      "isrc": "DEA812500257",
+      "isrc": "CHUM72300124",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1693820368",
         "de": "applemusic://track/1693820368",
