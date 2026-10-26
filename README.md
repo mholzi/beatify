@@ -814,7 +814,11 @@ One thing to know before you press it: the saved setup lives on your Home Assist
 <details>
 <summary><strong>Do players need to be on the same network?</strong></summary>
 <br>
-Yes, players need to access your Home Assistant instance. Works great on home WiFi.
+No. Players only need to reach your Home Assistant. The QR code uses the address you opened the Beatify admin page with, so if you open it through Home Assistant Cloud (Nabu Casa) or your own Cloudflare/reverse-proxy URL, guests can join over mobile data without an HA login. The music still plays on your speakers, so it's meant for people in the same room.
+
+On home WiFi it just works. Guests on a separate guest network? See [Guest WiFi / Network Setup](#guest-wifi--network-setup).
+
+> ⚠️ If Beatify is reachable from outside, keep the **Companion app host bypass** option **off** (see [Options](#options-settings--devices--services--beatify--configure)).
 </details>
 
 <details>
