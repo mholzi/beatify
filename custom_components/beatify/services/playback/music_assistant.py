@@ -178,6 +178,25 @@ _EDITION_MARKERS = re.compile(
 )
 
 
+_PROVIDER_LABELS = {
+    "spotify": "Spotify",
+    "apple_music": "Apple Music",
+    "tidal": "Tidal",
+    "youtube_music": "YouTube Music",
+    "deezer": "Deezer",
+}
+
+
+def _provider_label(uri: str) -> str:
+    """Name the provider behind ``uri`` for log text (#3297).
+
+    Falls back to "provider's" so the sentence still reads right for a scheme
+    we have no name for (``its provider's rate limiter``).
+    """
+    scheme = re.split(r"[:/]", uri or "", maxsplit=1)[0].lower()
+    return _PROVIDER_LABELS.get(scheme, "provider's")
+
+
 def _edition_markers(text: str) -> set[str]:
     """Edition words present in a title, lower-cased."""
     return {m.group(0).lower() for m in _EDITION_MARKERS.finditer(text or "")}
@@ -550,7 +569,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
             "MA playback confirmed after %.1fs for %s — past the %.0fs "
             "slow-start mark, on a %.0fs budget (a healthy warm start is about "
             "4s). Nothing failed, but Music Assistant's provider is very "
-            "likely backing off: its Apple Music rate limiter retries on an "
+            "likely backing off: its %s rate limiter retries on an "
             "exponential schedule (1s, 2s, 4s, 8s, ...) and that wait lands on "
             "top of every start. The next one may not fit in the budget. "
             "Confirm it in the Music Assistant add-on log — look for 'Rate "
@@ -559,6 +578,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
             uri,
             MA_SLOW_START_SECONDS,
             timeout,
+            _provider_label(uri),
         )
 
     def _recent_slow_start(self) -> tuple[float, float] | None:
@@ -860,7 +880,11 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 self._arm_stale_guard(expected_title, song_key)
                 return True
 
-        _LOGGER.error(
+        # WARNING, not ERROR (#3297): this line is also the normal outcome of a
+        # rate-limited provider, where the song is skipped and the game goes
+        # on. The case that really stops the game logs its own ERROR in
+        # GameState._skip_failed_start ("speaker unreachable, pausing game").
+        _LOGGER.warning(
             "MA playback: all %d URI candidate(s) failed for %s - %s (#768)",
             len(candidates),
             song.get("artist"),
