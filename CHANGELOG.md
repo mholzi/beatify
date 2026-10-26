@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc2] - 2026-10-26
+
+Second candidate for 4.8.7, "Skip to the End": the intro-round fix from rc1 now finishes the job.
+
+### Fixed
+- **A failed intro start takes the same path as any other failed song** (#3293, follow-up to #3286).
+  The round counter drops by one, the round number no longer jumps back, and the song that never
+  played is not revealed. Found in the rc1 live test.
+
 ## [4.8.7-rc1] - 2026-10-25
 
 First candidate for 4.8.7, "Skip to the End": two fixes for games where a song can't be played.
