@@ -446,7 +446,9 @@ class PlaylistManager:
         """
         return len(self._reserve_songs)
 
-    def release_reserved_songs(self, count: int = 1, reason: str = "playoff") -> int:
+    def release_reserved_songs(
+        self, count: int = 1, reason: str = "playoff", *, next_up: bool = False
+    ) -> int:
         """Move up to ``count`` capped-out songs back into the playable pool.
 
         Returns the number of songs actually released (0 when the round cap was
@@ -460,6 +462,11 @@ class PlaylistManager:
         takes five because the host was asked for five more rounds. A log line
         that said "finale tiebreaker" for a host-tapped encore would send the
         next reader looking at the wrong feature.
+
+        ``next_up`` is for the host's song swap (#3321), the one caller that
+        releases mid-game. In a ramp-up game the released songs then go in front
+        of the arc's unplayed rest instead of after it, so the finale song keeps
+        its place as the last round.
         """
         if count <= 0 or not self._reserve_songs:
             return 0
@@ -478,7 +485,19 @@ class PlaylistManager:
         # game, after the finale song has played, so an extra stretch after it
         # is the only placement that leaves the arc already played untouched.
         if self._rampup_order is not None:
-            self._rampup_order.extend(self._arrange_by_difficulty(released))
+            arranged = self._arrange_by_difficulty(released)
+            if next_up:
+                position = next(
+                    (
+                        i
+                        for i, song in enumerate(self._rampup_order)
+                        if song["_precomputed_uri"] not in self._played_uris
+                    ),
+                    len(self._rampup_order),
+                )
+                self._rampup_order[position:position] = arranged
+            else:
+                self._rampup_order.extend(arranged)
         _LOGGER.info(
             "%s: released %d reserved song(s) (%d still held back)",
             reason,
