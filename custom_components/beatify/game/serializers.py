@@ -400,7 +400,9 @@ class GameStateSerializer:
         # travels with it so the control names the number instead of hardcoding
         # a five the reserve may not cover.
         state["encore_available"] = gs.encore_available()
-        state["encore_rounds"] = gs.ENCORE_ROUNDS
+        # #3323: what a tap would really add (a short reserve gives fewer),
+        # so "finish line to {total_rounds + encore_rounds}" is the tap result.
+        state["encore_rounds"] = gs.encore_offer_rounds()
         # #2746: wer zu dieser Runde zurueckgekommen ist. Eine Zeile auf dem
         # Fernseher, damit der Raum versteht, warum sich die Rangliste bewegt
         # hat — ohne sie sieht ein wieder auftauchender Name nach einem
