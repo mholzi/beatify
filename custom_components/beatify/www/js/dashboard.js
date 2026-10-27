@@ -588,6 +588,10 @@
             // indistinguishable from the speaker dying.
             songStoppedRound = lastRenderedRound;
             setSongStoppedChip(true);
+        } else if (data.type === 'song_skipped') {
+            // #3261: a new song in the same round is audible again.
+            songStoppedRound = null;
+            setSongStoppedChip(false);
         }
         // Dashboard ignores submit_ack and volume_changed since it doesn't interact
     }

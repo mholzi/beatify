@@ -1393,6 +1393,13 @@
                 <span class="round-end-choice-label" data-i18n="admin.roundEndScore">Score it as usual</span>
                 <span id="round-end-score-sub" class="round-end-choice-sub" hidden></span>
             </button>
+            <!-- #3261: same round, different song. Sits right above "Do not
+                 score it" so the host sees both exits side by side with what
+                 each costs. Disabled with a reason when the pool is empty. -->
+            <button id="round-end-swap" class="round-end-choice round-end-choice--swap" type="button">
+                <span class="round-end-choice-label" data-i18n="admin.roundEndSwap">Play a different song</span>
+                <span id="round-end-swap-sub" class="round-end-choice-sub"></span>
+            </button>
             <button id="round-end-void" class="round-end-choice round-end-choice--void" type="button">
                 <span class="round-end-choice-label" data-i18n="admin.roundEndVoid">Do not score it</span>
                 <span class="round-end-choice-sub" data-i18n="admin.roundEndVoidSub">No points, no broken streaks, nobody is eliminated</span>

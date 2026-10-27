@@ -3894,6 +3894,11 @@ function askBeforeEndingRound() {
             _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
                 function () { return sendAdminCommand({ type: 'admin', action: 'next_round' }); },
                 ADMIN_CONTROL_GUARD_MS);
+        } else if (answer.choice === 'swap') {
+            // #3261: same round, different song.
+            _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
+                function () { return sendAdminCommand({ type: 'admin', action: 'skip_song' }); },
+                ADMIN_CONTROL_GUARD_MS);
         } else if (answer.choice === 'void') {
             _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
                 function () {

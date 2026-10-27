@@ -3407,6 +3407,8 @@ function askBeforeEndingRound() {
     }).then(function (answer) {
         if (answer.choice === 'score') {
             sendNextRound();
+        } else if (answer.choice === 'swap') {
+            sendSkipSong();
         } else if (answer.choice === 'void') {
             sendVoidRound(answer.reason);
         }
@@ -3447,6 +3449,15 @@ function sendVoidRound(reason) {
             resetNextRoundPending();
         }
     }, 10000);
+}
+
+/** #3261: same round, different song. */
+function sendSkipSong() {
+    if (!state.ws || state.ws.readyState !== WebSocket.OPEN) {
+        showToast(utils.t('errors.CONNECTION_LOST'));
+        return;
+    }
+    state.ws.send(JSON.stringify({ type: 'admin', action: 'skip_song' }));
 }
 
 /** The original Next: end the round and score it. */

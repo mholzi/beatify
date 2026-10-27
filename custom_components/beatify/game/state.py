@@ -152,6 +152,12 @@ _UNIVERSAL_PHASE_TARGETS: frozenset[GamePhase] = frozenset(
 # game falls back to today's shared-winner behavior.
 FINALE_PLAYOFF_MAX_ROUNDS = 5
 
+# #3261: why GameState.skip_song refused. The admin handler turns each into
+# its own error frame; ``None`` means the song was swapped.
+SKIP_SONG_NOT_PLAYING = "not_playing"
+SKIP_SONG_NO_SONGS = "no_songs"
+SKIP_SONG_FAILED = "failed"
+
 
 class GameState(
     ChallengeMixin,
@@ -456,6 +462,10 @@ class GameState(
 
         # Issue AF2-013: Lock to prevent concurrent score updates
         self._score_lock: asyncio.Lock = asyncio.Lock()
+        # #3261: True while skip_song swaps the running round's song. The
+        # round is rolled back for that time, so end_round and void_round wait
+        # it out instead of scoring the old song.
+        self._song_swap_pending: bool = False
 
         # Issue #75: Game highlights reel
         self.highlights_tracker = HighlightsTracker()
@@ -887,6 +897,12 @@ class GameState(
         if self.phase != GamePhase.PLAYING:
             _LOGGER.debug("end_round skipped — phase already %s", self.phase.value)
             return
+        # #3261: the host is swapping this round's song. The round has been
+        # rolled back and is waiting for its new song; scoring it now would
+        # score the old song against guesses that were just cleared.
+        if self._song_swap_pending:
+            _LOGGER.debug("end_round skipped — song swap in progress (#3261)")
+            return
 
         # Cancel timer if still running
         self.cancel_timer()
@@ -1035,6 +1051,9 @@ class GameState(
         if self.phase != GamePhase.PLAYING:
             _LOGGER.debug("void_round skipped — phase already %s", self.phase.value)
             return False
+        if self._song_swap_pending:
+            _LOGGER.debug("void_round skipped — song swap in progress (#3261)")
+            return False
 
         self.cancel_timer()
         self._round_manager._cancel_intro_timer()
@@ -1098,6 +1117,80 @@ class GameState(
                     exc_info=True,
                 )
         return True
+
+    # ------------------------------------------------------------------
+    # Swapping the song of a running round (Issue #3261)
+    # ------------------------------------------------------------------
+
+    async def skip_song(self) -> str | None:
+        """Replace the running round's song with an unplayed one. Issue #3261.
+
+        The third answer on the host's "End round N" card, next to scoring and
+        voiding: the speaker played the wrong track, a live cut or a karaoke
+        version, and the round should simply run again with a different song.
+
+        * **Same round number.** The round is rolled back and started again
+          through :meth:`start_round`, so the new song gets a fresh timer, a
+          fresh challenge and the usual round-start announcements, and every
+          screen shows it the way it shows a round after ``next_round``.
+        * **No penalty.** Guesses already handed in are cleared with
+          ``reset_round()``, which leaves score, streak and the #1666 shield
+          alone. Nobody is scored, so nobody misses and nobody is eliminated.
+        * **From the same pool.** The replacement is the next unplayed song of
+          the game's playlist. The skipped one stays marked as played.
+
+        The skipped track is logged at info level with its URI, so a playlist
+        check can find it. How often a round may be swapped is not limited.
+
+        Returns:
+            ``None`` when the song was swapped, else one of the
+            ``SKIP_SONG_*`` refusals.
+
+        """
+        if self.phase != GamePhase.PLAYING or self._song_swap_pending:
+            return SKIP_SONG_NOT_PLAYING
+        if self.songs_remaining < 1:
+            return SKIP_SONG_NO_SONGS
+
+        self._song_swap_pending = True
+        try:
+            async with self._score_lock:
+                # The timer may have scored the round while the host read the
+                # card.
+                if self.phase != GamePhase.PLAYING:
+                    return SKIP_SONG_NOT_PLAYING
+                song = self.current_song or {}
+                _LOGGER.info(
+                    "Round %d: host skipped the song %s — %s (%s) (#3261)",
+                    self.round,
+                    song.get("artist", "?"),
+                    song.get("title", "?"),
+                    song.get("_resolved_uri") or song.get("uri") or "no uri",
+                )
+                self._round_manager._cancel_sample_timer()
+                # Cancels the round and intro timers, takes the round number
+                # back and drops the deadline, so nothing ends the round while
+                # the new song starts.
+                self._round_manager.abort_intro_round()
+                for player in self.players.values():
+                    player.reset_round()
+            returned = list(self._returned_this_round)
+            # The wrong song must not keep playing while the next one loads.
+            try:
+                await self.stop_media()
+            except Exception as err:  # noqa: BLE001 — must not block the swap
+                _LOGGER.warning("Stop before song swap failed: %s (#3261)", err)
+            started = await self.start_round()
+        finally:
+            self._song_swap_pending = False
+
+        # A guest let back at this round's start is still back.
+        self._returned_this_round = returned + [
+            name for name in self._returned_this_round if name not in returned
+        ]
+        # The swap used up a song without adding a round.
+        self._shrink_total_rounds_to_pool()
+        return None if started else SKIP_SONG_FAILED
 
     # ------------------------------------------------------------------
     # Sudden Death mode (Issue #827)
@@ -1251,6 +1344,9 @@ class GameState(
             # what happens without saying to whom.
             "eliminated": self._predicted_elimination(),
             "elimination_possible": bool(self._sudden_death_candidates()),
+            # #3261: "Play a different song" needs an unplayed song; at 0 the
+            # card shows the choice disabled with the reason.
+            "songs_left": self.songs_remaining,
         }
 
     def _apply_sudden_death_elimination(self) -> list[str]:

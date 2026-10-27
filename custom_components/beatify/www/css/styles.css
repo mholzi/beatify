@@ -18532,6 +18532,26 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-accent-primary);
 }
 
+/* #3261: "Play a different song" — the round runs again, so it reads as a
+   song action (blue), not as an end like the two choices around it. */
+.round-end-choice--swap {
+    border-color: var(--color-accent-blue);
+}
+
+.round-end-choice--swap .round-end-choice-label {
+    color: var(--color-accent-blue);
+}
+
+.round-end-choice:disabled {
+    border-color: var(--color-border-light);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.round-end-choice:disabled .round-end-choice-label {
+    color: var(--color-text-muted);
+}
+
 .round-end-choice--void {
     border-color: var(--color-accent-brand);
 }
