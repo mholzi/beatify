@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc4] - 2026-10-27
+
+Fourth candidate for 4.8.7, "Ding Dong": the host's phone catches up with the admin page, and Home Assistant can pause the party when the doorbell rings.
+
+### Added
+- **Home Assistant actions and events** (#3306): `beatify.pause_game` (with a reason such as door), `resume_game`, `next_round` and `end_game`, plus `beatify_round_revealed` and `beatify_game_ended` events. Calls from a non-admin user are refused.
+- **Encore on the phone** (#3303): a host playing on a phone can add five rounds and keep the scores.
+- **Guest list on the phone** (#3304): the host can sit out a guest who left and bring back a sat-out one.
+- **Swap the song** (#3261): "Play another song" in the end-round card replaces a wrong track without losing the round.
+- **Easy-to-hard from the first party** (#3305): unplayed songs are rated from chart and certification data.
+
 ## [4.8.7-rc3] - 2026-10-27
 
 Third candidate for 4.8.7, "Ding Dong": clearer logs when a song is skipped, plus playlist fixes.
