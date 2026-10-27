@@ -1149,7 +1149,7 @@ class GameState(
         """
         if self.phase != GamePhase.PLAYING or self._song_swap_pending:
             return SKIP_SONG_NOT_PLAYING
-        if self.songs_remaining < 1:
+        if self._songs_left_for_swap() < 1:
             return SKIP_SONG_NO_SONGS
 
         self._song_swap_pending = True
@@ -1175,6 +1175,14 @@ class GameState(
                 for player in self.players.values():
                     player.reset_round()
             returned = list(self._returned_this_round)
+            # #3321: the swapped-out song stays marked played, so the pool is
+            # one song short of the rounds it has to fill. A capped game holds
+            # the songs the cap left out in reserve (#2547); one of them makes
+            # up for the swap, so the game keeps its length.
+            manager = self._playlist_manager
+            refilled = manager is not None and bool(
+                manager.release_reserved_songs(1, reason="Song swap", next_up=True)
+            )
             # The wrong song must not keep playing while the next one loads.
             try:
                 await self.stop_media()
@@ -1188,9 +1196,21 @@ class GameState(
         self._returned_this_round = returned + [
             name for name in self._returned_this_round if name not in returned
         ]
-        # The swap used up a song without adding a round.
-        self._shrink_total_rounds_to_pool()
+        # #3321: a swap replaces the song inside the same round, so it does not
+        # touch ``total_rounds``. The reserve song released above keeps the pool
+        # whole. Only a game with no reserve left (no round cap, or a playlist
+        # no larger than the cap) really ends a round earlier; there the #3279
+        # accounting still has to say so, or the last reveal reads "9 of 10".
+        if not refilled:
+            self._shrink_total_rounds_to_pool()
         return None if started else SKIP_SONG_FAILED
+
+    def _songs_left_for_swap(self) -> int:
+        """Unplayed songs a swap can draw on, the round cap's reserve included."""
+        manager = self._playlist_manager
+        if manager is None:
+            return 0
+        return manager.get_remaining_count() + manager.reserve_count()
 
     # ------------------------------------------------------------------
     # Sudden Death mode (Issue #827)
@@ -1346,7 +1366,7 @@ class GameState(
             "elimination_possible": bool(self._sudden_death_candidates()),
             # #3261: "Play a different song" needs an unplayed song; at 0 the
             # card shows the choice disabled with the reason.
-            "songs_left": self.songs_remaining,
+            "songs_left": self._songs_left_for_swap(),
         }
 
     def _apply_sudden_death_elimination(self) -> list[str]:
