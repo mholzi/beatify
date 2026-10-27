@@ -4,6 +4,17 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc3] - 2026-10-27
+
+Third candidate for 4.8.7, "Ding Dong": clearer logs when a song is skipped, plus playlist fixes.
+
+### Fixed
+- **The slow-start warning names the provider that actually played** (#3297), and a skipped song
+  is logged at WARNING so it shows up in the default Home Assistant log.
+- **Schweizer Hits: three songs that would not play now point to working links** (#3301).
+- **Hitster 100 Français: corrected years** for "Tu t'en vas" (1975) and "Destinée" (1982)
+  (#3308, #3309, #3310).
+
 ## [4.8.7-rc2] - 2026-10-26
 
 Second candidate for 4.8.7, "Skip to the End": the intro-round fix from rc1 now finishes the job.
