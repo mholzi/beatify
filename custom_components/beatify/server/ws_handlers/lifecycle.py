@@ -268,7 +268,7 @@ async def handle_join(
         if not state_msg:
             return
         try:
-            await _send_state_to(handler, ws, state_msg)
+            await _send_state_to(handler, ws, state_msg, game_state)
         except (ConnectionError, RuntimeError) as err:
             _LOGGER.warning("Failed to send state to new player: %s", err)
             return
@@ -306,7 +306,7 @@ async def handle_get_state(
     """Handle dashboard/observer state request (Story 10.4)."""
     state_msg = build_state_message(game_state)
     if state_msg:
-        await _send_state_to(handler, ws, state_msg)
+        await _send_state_to(handler, ws, state_msg, game_state)
 
 
 async def handle_round_timeout(
@@ -518,7 +518,7 @@ async def handle_reconnect(
 
     state_msg = build_state_message(game_state)
     if state_msg:
-        await _send_state_to(handler, ws, state_msg)
+        await _send_state_to(handler, ws, state_msg, game_state)
 
     await handler.broadcast_state()
 
