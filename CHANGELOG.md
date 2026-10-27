@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc5] - 2026-10-27
+
+Fifth candidate for 4.8.7, "Ding Dong": three fixes from the rc4 live test.
+
+### Fixed
+- **Swapping a song keeps the game length** (#3321). The replacement comes from the reserve, so a 10-round game still has 10 rounds.
+- **The phone host's guest list shows a sit-out on the reveal screen right away** (#3322).
+- **Encore adds five rounds to the live total and then closes** (#3323). After dropped songs the hint and the result now match.
+
 ## [4.8.7-rc4] - 2026-10-27
 
 Fourth candidate for 4.8.7, "Ding Dong": the host's phone catches up with the admin page, and Home Assistant can pause the party when the doorbell rings.
