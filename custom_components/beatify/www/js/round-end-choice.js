@@ -16,6 +16,7 @@
  *     End round 5
  *     22 seconds left · 3 of 8 have answered
  *     [ Score it as usual   5 players count as wrong · 4 streaks break · Tom is eliminated ]
+ *     [ Play a different song   Same round, new song from the playlist. … ]   (#3261)
  *     [ Do not score it     No points, no broken streaks, nobody is eliminated ]
  *       Why? (optional)  · cover · silence · wrong year · wrong title ·
  *     [ Let it keep playing ]
@@ -219,6 +220,40 @@ export function scoreConsequence(preview, t) {
     return parts.join(' · ');
 }
 
+/**
+ * The "Play a different song" subtitle (#3261): the round runs again with a
+ * new song, so the guesses already handed in are what it costs.
+ *
+ * @param {Object} preview - `admin_round_end_preview` from the broadcast
+ * @param {function(string, string, Object=): string} t - key, fallback, params
+ * @returns {string}
+ */
+export function swapConsequence(preview, t) {
+    var n = (preview && preview.submitted_count) || 0;
+    if (n === 1) {
+        return t('admin.roundEndSwapSubOne',
+            'Same round, new song from the playlist. The timer restarts, the 1 guess is deleted, no points lost.',
+            { n: 1 });
+    }
+    if (n > 1) {
+        return t('admin.roundEndSwapSub',
+            'Same round, new song from the playlist. The timer restarts, the {n} guesses are deleted, no points lost.',
+            { n: n });
+    }
+    return t('admin.roundEndSwapSubNone',
+        'Same round, new song from the playlist. The timer restarts, no points lost.');
+}
+
+/**
+ * Whether the pool still has a song to swap in (#3261). An older server sends
+ * no `songs_left`; the choice stays open then and the server has the last word.
+ *
+ * @param {Object} preview - `admin_round_end_preview` from the broadcast
+ */
+export function canSwapSong(preview) {
+    return !preview || typeof preview.songs_left !== 'number' || preview.songs_left > 0;
+}
+
 // ---------------------------------------------------------------------------
 // The card itself
 // ---------------------------------------------------------------------------
@@ -235,7 +270,7 @@ export function scoreConsequence(preview, t) {
  * @param {function(string, string, Object=): string} opts.t
  * @param {function(Element): Object} [opts.focusTrap] - createModalFocusTrap
  * @returns {Promise<{choice: string, reason: (string|null)}>} choice is
- *   'score', 'void' or 'keep'; 'keep' is also what a backdrop tap or Escape
+ *   'score', 'swap' (#3261), 'void' or 'keep'; 'keep' is also what a backdrop tap or Escape
  *   resolves to, because doing nothing is the safe answer here.
  */
 /**
@@ -269,6 +304,8 @@ export function openRoundEndChoice(opts) {
         var subEl = doc.getElementById('round-end-sub');
         var scoreSubEl = doc.getElementById('round-end-score-sub');
         var scoreBtn = doc.getElementById('round-end-score');
+        var swapBtn = doc.getElementById('round-end-swap');
+        var swapSubEl = doc.getElementById('round-end-swap-sub');
         var voidBtn = doc.getElementById('round-end-void');
         var keepBtn = doc.getElementById('round-end-keep');
         var chipWrap = doc.getElementById('round-end-reasons');
@@ -284,6 +321,16 @@ export function openRoundEndChoice(opts) {
             var consequence = scoreConsequence(preview, t);
             scoreSubEl.textContent = consequence;
             scoreSubEl.hidden = !consequence;
+        }
+
+        // #3261: the swap needs an unplayed song. With none left the choice
+        // stays visible but disabled, and says why.
+        var canSwap = canSwapSong(preview);
+        if (swapBtn) swapBtn.disabled = !canSwap;
+        if (swapSubEl) {
+            swapSubEl.textContent = canSwap
+                ? swapConsequence(preview, t)
+                : t('admin.roundEndSwapEmpty', 'No unplayed songs left');
         }
 
         var reason = null;
@@ -306,6 +353,7 @@ export function openRoundEndChoice(opts) {
             _openCardRound = 0;
             modal.classList.add('hidden');
             if (scoreBtn) scoreBtn.removeEventListener('click', onScore);
+            if (swapBtn) swapBtn.removeEventListener('click', onSwap);
             if (voidBtn) voidBtn.removeEventListener('click', onVoid);
             if (keepBtn) keepBtn.removeEventListener('click', onKeep);
             if (backdrop) backdrop.removeEventListener('click', onKeep);
@@ -315,10 +363,12 @@ export function openRoundEndChoice(opts) {
         }
 
         function onScore() { finish('score'); }
+        function onSwap() { if (canSwap) finish('swap'); }
         function onVoid() { finish('void'); }
         function onKeep() { finish('keep'); }
 
         if (scoreBtn) scoreBtn.addEventListener('click', onScore);
+        if (swapBtn) swapBtn.addEventListener('click', onSwap);
         if (voidBtn) voidBtn.addEventListener('click', onVoid);
         if (keepBtn) keepBtn.addEventListener('click', onKeep);
         if (backdrop) backdrop.addEventListener('click', onKeep);

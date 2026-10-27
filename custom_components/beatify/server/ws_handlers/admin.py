@@ -32,7 +32,12 @@ from custom_components.beatify.game.start_gameplay import (
     refusal_to_start,
     start_failure,
 )
-from custom_components.beatify.game.state import GamePhase, GameState
+from custom_components.beatify.game.state import (
+    SKIP_SONG_NO_SONGS,
+    SKIP_SONG_NOT_PLAYING,
+    GamePhase,
+    GameState,
+)
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
 from custom_components.beatify.server.serializers import build_state_message
 from custom_components.beatify.server.ws_handlers._helpers import (
@@ -111,6 +116,7 @@ async def handle_admin(
         "start_game": admin_start_game,
         "next_round": admin_next_round,
         "void_round": admin_void_round,  # #2646
+        "skip_song": admin_skip_song,  # #3261
         "extend_rounds": admin_extend_rounds,  # #2503
         "reinstate_player": admin_reinstate_player,  # #2746
         "stop_song": admin_stop_song,
@@ -282,6 +288,55 @@ async def admin_void_round(
     # void_round already fired the round-end callback; broadcast once more the
     # way admin_next_round's paused branch does, so a spectator admin socket
     # that is not the round-end callback's target also sees REVEAL.
+    await handler.broadcast_state()
+
+
+async def admin_skip_song(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle admin skip_song action — same round, different song (#3261).
+
+    The fourth choice on the "End round N" card. :meth:`GameState.skip_song`
+    rolls the round back and starts it again with an unplayed song from the
+    same pool: same round number, fresh timer, guesses cleared, no penalty.
+    Admin rights are checked by :func:`handle_admin` like every other action.
+    """
+    refusal = await game_state.skip_song()
+    if refusal == SKIP_SONG_NOT_PLAYING:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only swap the song while the round is playing",
+                "message_key": "SKIP_SONG_PLAYING_ONLY",
+            }
+        )
+        return
+    if refusal == SKIP_SONG_NO_SONGS:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "No unplayed songs left",
+                "message_key": "NO_SONGS_LEFT_TO_SKIP",
+            }
+        )
+        return
+    if refusal is not None:
+        # The new song did not start. A paused game waits for the host, as
+        # in admin_next_round; a pool that ran dry ends the game the same way.
+        if game_state.phase == GamePhase.END:
+            await finalize_and_end(handler, game_state)
+        await handler.broadcast_state()
+        return
+
+    # The event goes out first: the round number did not change, so the
+    # clients cannot tell a swapped round from the old one by the state alone
+    # and reset the guess they handed in on this signal.
+    await handler.broadcast({"type": "song_skipped", "round": game_state.round})
     await handler.broadcast_state()
 
 

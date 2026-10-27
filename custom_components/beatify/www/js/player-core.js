@@ -1132,6 +1132,13 @@ function handleServerMessage(data) {
         handleSubmitError(data);
     } else if (data.type === 'song_stopped') {
         handleSongStopped();
+    } else if (data.type === 'song_skipped') {
+        // #3261: the host swapped the song. The round number stays the same,
+        // so the PLAYING handler's round-change reset never runs — reset the
+        // guess and the stop state here, then say what happened.
+        resetSubmissionState();
+        resetSongStoppedState();
+        showToast(utils.t('game.songSkippedToast', { n: data.round }), { type: 'info' });
     } else if (data.type === 'volume_changed') {
         handleVolumeChanged(data.level);
     } else if (data.type === 'game_ended') {

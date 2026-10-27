@@ -346,7 +346,9 @@ class RoundLifecycleMixin(GameStateBase):
         # #1936: the budget is spent — reset it so the Resume button
         # gets a full one rather than pausing again on the next timeout.
         self._consecutive_playback_failures = 0
-        if pause_to_reveal:
+        # #3261: a song swap rolled the round back like a failed intro start
+        # does, so its pause has to land on REVEAL for the same reason.
+        if pause_to_reveal or getattr(self, "_song_swap_pending", False):
             self._set_phase(GamePhase.REVEAL)
         await self.pause_game("media_player_error")
         return False
