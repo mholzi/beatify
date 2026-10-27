@@ -838,12 +838,11 @@ class RoundLifecycleMixin(GameStateBase):
 
         * REVEAL — the standings are on screen and the room is between songs.
         * ``_encore_window``, decided once on the way into this reveal and
-          cleared when the next round starts. It is a flag rather than a live
-          re-derivation because the first tap moves the finish line: "one song
-          left" stops being true the moment the host uses the offer, and a
-          re-derived condition would take the control away under their finger.
-          The drawn option annotates that a second tap makes it thirty, so the
-          offer has to survive its own use and die only when the round starts.
+          cleared when the next round starts or when the host uses it. A
+          successful tap closes it (#3323): the finish line has moved, so this
+          reveal is no longer the one before the last round, and an offer still
+          labelled "LAST ROUND NEXT" with five-plus rounds to go reads as a
+          bug. It reopens by itself on the reveal before the NEW last round.
           Set from the pool rather than from ``round >= total_rounds`` for the
           same reason ``last_round`` is (#2421): a song dropped by a playback
           failure is marked played without a round being committed, so the
@@ -860,6 +859,20 @@ class RoundLifecycleMixin(GameStateBase):
             return False
         manager = getattr(self, "_playlist_manager", None)
         return manager is not None and manager.reserve_count() > 0
+
+    def encore_offer_rounds(self) -> int:
+        """How many rounds a tap on the encore would add right now (#3323).
+
+        The reserve may hold fewer than :attr:`ENCORE_ROUNDS`; a short reserve
+        still gives what it has (see :meth:`extend_rounds`). The control names
+        this number and its hint adds it to the live ``total_rounds``, which is
+        exactly what :meth:`extend_rounds` does, so the promise and the result
+        cannot drift apart.
+        """
+        manager = getattr(self, "_playlist_manager", None)
+        if manager is None:
+            return self.ENCORE_ROUNDS
+        return max(0, min(self.ENCORE_ROUNDS, manager.reserve_count()))
 
     def _shrink_total_rounds_to_pool(self) -> None:
         """Lower ``total_rounds`` to what the pool can still deliver (#3279).
@@ -916,7 +929,15 @@ class RoundLifecycleMixin(GameStateBase):
         # otherwise a later manager rebuild (a lobby option patch, a rematch)
         # would sample the game straight back down to the old count.
         self.max_rounds = self.max_rounds + released if self.max_rounds else 0
-        self.total_rounds = self._playlist_manager.get_total_count()  # type: ignore[union-attr]
+        # #3323: add to the LIVE total, not the pool size. After drops (#3279)
+        # total_rounds is lower than len(pool) because dropped songs stay in
+        # the pool marked played; reading the pool size jumped 5 -> 15 while
+        # the hint (live total + 5) promised 10.
+        self.total_rounds += released
+        # #3323: the finish line moved, so this is no longer the reveal before
+        # the last round. Close the offer; the broadcast that follows the tap
+        # hides it, and it reopens on the reveal before the new last round.
+        self._encore_window = False
         _LOGGER.info(
             "Encore: +%d round(s) on the host's request, now %d total (#2503)",
             released,

@@ -141,15 +141,16 @@ class TestExtending:
         state.extend_rounds()
         assert state.max_rounds == 15
 
-    def test_a_second_tap_in_the_same_reveal_adds_five_more(self):
-        # Drawn behaviour: "Tapped twice it says 30." The window survives its
-        # own use — it is a flag on this reveal, not a re-derived count that
-        # the first tap would falsify.
+    def test_a_tap_closes_the_offer_for_this_reveal(self):
+        # #3323: after the tap the finish line has moved, so this reveal is no
+        # longer the one before the last round. A second tap in the same
+        # reveal is refused; the offer reopens before the new last round.
         state = _capped_game(cap=10, pool=30)
         _play_up_to_reveal_before_last(state)
         assert state.extend_rounds() == 5
-        assert state.extend_rounds() == 5
-        assert state.total_rounds == 20
+        assert state.encore_available() is False
+        assert state.extend_rounds() == 0
+        assert state.total_rounds == 15
 
     def test_a_short_reserve_still_gives_what_it_has(self):
         # Three more rounds answers "play a bit longer" better than a refusal
