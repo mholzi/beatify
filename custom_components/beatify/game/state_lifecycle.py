@@ -111,6 +111,7 @@ import contextlib
 import logging
 
 from custom_components.beatify.const import MAX_CONSECUTIVE_PLAYBACK_FAILURES
+from custom_components.beatify.providers import get_provider
 
 from .playlist import get_playback_uri, get_song_uri
 from .state_contract import GameStateBase
@@ -255,6 +256,29 @@ class RoundLifecycleMixin(GameStateBase):
         # quietly disabling the skip logic below.
         failure_reason = service.last_failure_reason if service else None
         self._shrink_total_rounds_to_pool()
+
+        if failure_reason == "provider_unavailable":
+            # #3328: Music Assistant refused the request because the provider
+            # is not available there at all. Every song fails the same way, so
+            # skipping through the playlist only delays the answer: pause now,
+            # with the provider named, through the same media_player_error
+            # path a dead speaker takes. It reaches the host as the start
+            # error on a first round, and as the pause banner later on.
+            known = get_provider(self.provider or "")
+            label = known.label if known else self.provider
+            self.last_error_detail = (
+                f"{label} is not available in Music Assistant ({self.media_player})"
+            )
+            _LOGGER.error(
+                "Provider %s is not available in Music Assistant — pausing game "
+                "(#3328)",
+                self.provider,
+            )
+            self._consecutive_playback_failures = 0
+            if pause_to_reveal or getattr(self, "_song_swap_pending", False):
+                self._set_phase(GamePhase.REVEAL)
+            await self.pause_game("media_player_error")
+            return False
 
         if failure_reason == "unavailable":
             _LOGGER.info(
