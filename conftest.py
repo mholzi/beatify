@@ -128,7 +128,23 @@ def _stub_exceptions_module() -> None:
     exc_mod = ModuleType("homeassistant.exceptions")
 
     class HomeAssistantError(Exception):
-        """Stand-in for HA's base error class."""
+        """Stand-in for HA's base error class.
+
+        Accepts the translation keywords the real class takes (#3306), so a
+        test can assert on *which* translated refusal an action raised.
+        """
+
+        def __init__(
+            self,
+            *args,
+            translation_domain=None,
+            translation_key=None,
+            translation_placeholders=None,
+        ) -> None:
+            super().__init__(*args)
+            self.translation_domain = translation_domain
+            self.translation_key = translation_key
+            self.translation_placeholders = translation_placeholders
 
     class ServiceNotFound(HomeAssistantError):
         """Stand-in for HA's missing-service error."""
@@ -136,13 +152,45 @@ def _stub_exceptions_module() -> None:
     class ServiceValidationError(HomeAssistantError):
         """Stand-in for HA's service argument validation error."""
 
+    class Unauthorized(HomeAssistantError):
+        """Stand-in for HA's permission error (#3306)."""
+
+        def __init__(self, context=None, user_id=None, **kwargs) -> None:
+            super().__init__("Unauthorized")
+            self.context = context
+            self.user_id = user_id
+
+    class UnknownUser(Unauthorized):
+        """Stand-in for HA's unknown-user error (#3306)."""
+
     exc_mod.HomeAssistantError = HomeAssistantError  # type: ignore[attr-defined]
     exc_mod.ServiceNotFound = ServiceNotFound  # type: ignore[attr-defined]
     exc_mod.ServiceValidationError = ServiceValidationError  # type: ignore[attr-defined]
+    exc_mod.Unauthorized = Unauthorized  # type: ignore[attr-defined]
+    exc_mod.UnknownUser = UnknownUser  # type: ignore[attr-defined]
     sys.modules["homeassistant.exceptions"] = exc_mod
 
 
 _stub_exceptions_module()
+
+
+# `voluptuous` is a Home Assistant runtime dependency, not a test dependency.
+# The integration's action schemas (#3306) are built at import time, so give
+# the package import a passthrough stand-in when the real library is absent.
+# Schemas are not exercised here: every action re-checks its own input.
+def _stub_voluptuous_module() -> None:
+    try:
+        import voluptuous  # noqa: F401, PLC0415
+    except ImportError:
+        vol_mod = ModuleType("voluptuous")
+        vol_mod.Schema = lambda schema=None, **kwargs: schema  # type: ignore[attr-defined]
+        vol_mod.Optional = lambda key, **kwargs: key  # type: ignore[attr-defined]
+        vol_mod.Required = lambda key, **kwargs: key  # type: ignore[attr-defined]
+        vol_mod.In = lambda container, **kwargs: container  # type: ignore[attr-defined]
+        sys.modules["voluptuous"] = vol_mod
+
+
+_stub_voluptuous_module()
 
 
 # Wire child attributes onto parent packages so `from homeassistant.X import Y` works

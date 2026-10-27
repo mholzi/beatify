@@ -26,5 +26,70 @@
                 }
             }
         }
+    },
+    "services": {
+        "pause_game": {
+            "name": "Mettre la partie en pause",
+            "description": "Met en pause la partie Beatify en cours et affiche la raison sur la TV et sur tous les téléphones. Si elle est déjà en pause, seule l’annonce change.",
+            "fields": {
+                "reason": {
+                    "name": "Raison",
+                    "description": "Ce que la pièce lit sur l’écran de pause. Laisser vide pour un simple « Pause »."
+                }
+            }
+        },
+        "resume_game": {
+            "name": "Reprendre la partie",
+            "description": "Reprend une partie Beatify en pause là où elle s’est arrêtée."
+        },
+        "next_round": {
+            "name": "Manche suivante",
+            "description": "Termine la manche en cours (révélation) ou lance la suivante depuis la révélation. À la révélation de la dernière manche, la partie se termine."
+        },
+        "end_game": {
+            "name": "Terminer la partie",
+            "description": "Termine la partie Beatify en cours et affiche le podium."
+        }
+    },
+    "selector": {
+        "pause_reason": {
+            "options": {
+                "food": "Le repas est arrivé",
+                "door": "Quelqu'un à la porte",
+                "away": "Je reviens tout de suite"
+            }
+        }
+    },
+    "exceptions": {
+        "no_active_game": {
+            "message": "Aucune partie Beatify n’est en cours."
+        },
+        "unknown_pause_reason": {
+            "message": "Raison de pause inconnue. Utilisez food, door ou away."
+        },
+        "pause_not_host": {
+            "message": "Beatify a mis la partie en pause lui-même (par exemple une erreur d’enceinte). Réglez cela, puis reprenez."
+        },
+        "no_round_to_pause": {
+            "message": "Il n’y a aucune manche à mettre en pause pour l’instant."
+        },
+        "pause_failed": {
+            "message": "La partie n’a pas pu être mise en pause."
+        },
+        "not_paused": {
+            "message": "La partie n’est pas en pause."
+        },
+        "resume_failed": {
+            "message": "La partie n’a pas pu reprendre."
+        },
+        "cannot_advance": {
+            "message": "La partie ne peut pas passer à la manche suivante pour l’instant."
+        },
+        "cannot_end_now": {
+            "message": "La partie ne peut pas être terminée pour l’instant."
+        },
+        "action_refused": {
+            "message": "Beatify a refusé l’action : {message}"
+        }
     }
 }

@@ -55,6 +55,9 @@ pretty = true
 # whole-package check) as the modules below in the ramp-up plan get fixed.
 files = [
     "custom_components/beatify/providers.py",
+    # #3306: the Home Assistant actions and bus events.
+    "custom_components/beatify/events.py",
+    "custom_components/beatify/ha_services.py",
     "custom_components/beatify/game/types.py",
     # #3030: GameState and its mixins, typed through game/state_contract.py.
     "custom_components/beatify/game/state.py",

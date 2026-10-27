@@ -26,5 +26,70 @@
         }
       }
     }
+  },
+  "services": {
+    "pause_game": {
+      "name": "Spel pauzeren",
+      "description": "Pauzeert het lopende Beatify-spel en toont de reden op de tv en op elke telefoon. Staat het al op pauze, dan verandert alleen de melding.",
+      "fields": {
+        "reason": {
+          "name": "Reden",
+          "description": "Wat de kamer op het pauzescherm leest. Leeg laten voor een gewone „Pauze”."
+        }
+      }
+    },
+    "resume_game": {
+      "name": "Spel hervatten",
+      "description": "Hervat een gepauzeerd Beatify-spel waar het stopte."
+    },
+    "next_round": {
+      "name": "Volgende ronde",
+      "description": "Beëindigt de lopende ronde (onthulling) of start vanuit de onthulling de volgende ronde. Bij de onthulling van de laatste ronde eindigt het spel."
+    },
+    "end_game": {
+      "name": "Spel beëindigen",
+      "description": "Beëindigt het lopende Beatify-spel en toont het podium."
+    }
+  },
+  "selector": {
+    "pause_reason": {
+      "options": {
+        "food": "Het eten is er",
+        "door": "Iemand aan de deur",
+        "away": "Zo terug"
+      }
+    }
+  },
+  "exceptions": {
+    "no_active_game": {
+      "message": "Er loopt geen Beatify-spel."
+    },
+    "unknown_pause_reason": {
+      "message": "Onbekende pauzereden. Gebruik food, door of away."
+    },
+    "pause_not_host": {
+      "message": "Beatify heeft het spel zelf gepauzeerd (bijvoorbeeld door een speakerfout). Los dat op en hervat dan."
+    },
+    "no_round_to_pause": {
+      "message": "Er is nu geen ronde om te pauzeren."
+    },
+    "pause_failed": {
+      "message": "Het spel kon niet worden gepauzeerd."
+    },
+    "not_paused": {
+      "message": "Het spel staat niet op pauze."
+    },
+    "resume_failed": {
+      "message": "Het spel kon niet worden hervat."
+    },
+    "cannot_advance": {
+      "message": "Het spel kan nu niet naar de volgende ronde."
+    },
+    "cannot_end_now": {
+      "message": "Het spel kan nu niet worden beëindigd."
+    },
+    "action_refused": {
+      "message": "Beatify heeft de actie geweigerd: {message}"
+    }
   }
 }

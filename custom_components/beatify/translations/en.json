@@ -26,5 +26,70 @@
                 }
             }
         }
+    },
+    "services": {
+        "pause_game": {
+            "name": "Pause game",
+            "description": "Pauses the running Beatify game and shows the reason on the TV and every phone. Called while the host already paused, it changes the announcement.",
+            "fields": {
+                "reason": {
+                    "name": "Reason",
+                    "description": "What the room reads on the pause screen. Leave empty for a plain \"Pause\"."
+                }
+            }
+        },
+        "resume_game": {
+            "name": "Resume game",
+            "description": "Resumes a paused Beatify game where it stopped."
+        },
+        "next_round": {
+            "name": "Next round",
+            "description": "Ends the round that is playing (reveal), or starts the next round from the reveal. On the last round's reveal it ends the game."
+        },
+        "end_game": {
+            "name": "End game",
+            "description": "Ends the running Beatify game and shows the podium."
+        }
+    },
+    "selector": {
+        "pause_reason": {
+            "options": {
+                "food": "Food is here",
+                "door": "Someone at the door",
+                "away": "Back in a minute"
+            }
+        }
+    },
+    "exceptions": {
+        "no_active_game": {
+            "message": "No Beatify game is running."
+        },
+        "unknown_pause_reason": {
+            "message": "Unknown pause reason. Use food, door or away."
+        },
+        "pause_not_host": {
+            "message": "The game was paused by Beatify itself (for example a speaker error). Fix that and resume instead."
+        },
+        "no_round_to_pause": {
+            "message": "There is no round to pause right now."
+        },
+        "pause_failed": {
+            "message": "The game could not be paused."
+        },
+        "not_paused": {
+            "message": "The game is not paused."
+        },
+        "resume_failed": {
+            "message": "The game could not be resumed."
+        },
+        "cannot_advance": {
+            "message": "The game cannot move to the next round right now."
+        },
+        "cannot_end_now": {
+            "message": "The game cannot be ended right now."
+        },
+        "action_refused": {
+            "message": "Beatify refused the action: {message}"
+        }
     }
 }

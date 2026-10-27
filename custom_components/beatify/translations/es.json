@@ -26,5 +26,70 @@
                 }
             }
         }
+    },
+    "services": {
+        "pause_game": {
+            "name": "Pausar partida",
+            "description": "Pausa la partida de Beatify en curso y muestra el motivo en la TV y en todos los móviles. Si ya está en pausa, solo cambia el aviso.",
+            "fields": {
+                "reason": {
+                    "name": "Motivo",
+                    "description": "Lo que la sala lee en la pantalla de pausa. Déjalo vacío para un simple «Pausa»."
+                }
+            }
+        },
+        "resume_game": {
+            "name": "Reanudar partida",
+            "description": "Reanuda una partida de Beatify en pausa donde se quedó."
+        },
+        "next_round": {
+            "name": "Siguiente ronda",
+            "description": "Termina la ronda en curso (revelación) o empieza la siguiente desde la revelación. En la revelación de la última ronda termina la partida."
+        },
+        "end_game": {
+            "name": "Terminar partida",
+            "description": "Termina la partida de Beatify en curso y muestra el podio."
+        }
+    },
+    "selector": {
+        "pause_reason": {
+            "options": {
+                "food": "Ya llegó la comida",
+                "door": "Alguien en la puerta",
+                "away": "Vuelvo enseguida"
+            }
+        }
+    },
+    "exceptions": {
+        "no_active_game": {
+            "message": "No hay ninguna partida de Beatify en curso."
+        },
+        "unknown_pause_reason": {
+            "message": "Motivo de pausa desconocido. Usa food, door o away."
+        },
+        "pause_not_host": {
+            "message": "Beatify ha pausado la partida por su cuenta (por ejemplo, por un error del altavoz). Soluciónalo y reanuda."
+        },
+        "no_round_to_pause": {
+            "message": "Ahora mismo no hay ninguna ronda que pausar."
+        },
+        "pause_failed": {
+            "message": "No se pudo pausar la partida."
+        },
+        "not_paused": {
+            "message": "La partida no está en pausa."
+        },
+        "resume_failed": {
+            "message": "No se pudo reanudar la partida."
+        },
+        "cannot_advance": {
+            "message": "Ahora mismo la partida no puede pasar a la siguiente ronda."
+        },
+        "cannot_end_now": {
+            "message": "Ahora mismo no se puede terminar la partida."
+        },
+        "action_refused": {
+            "message": "Beatify ha rechazado la acción: {message}"
+        }
     }
 }

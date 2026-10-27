@@ -235,6 +235,39 @@ HOST_PAUSE_REASONS: frozenset[str] = frozenset(
     }
 )
 
+# ---------------------------------------------------------------------------
+# Home Assistant actions and events (#3306)
+# ---------------------------------------------------------------------------
+# Actions (services) let an automation drive a running game: the doorbell rings,
+# ``beatify.pause_game`` with ``reason: door`` puts the "door" announcement on
+# every screen. They reuse the admin websocket's own handlers, so a game paused
+# from HA looks exactly like a game paused from the host's phone.
+SERVICE_PAUSE_GAME = "pause_game"
+SERVICE_RESUME_GAME = "resume_game"
+SERVICE_NEXT_ROUND = "next_round"
+SERVICE_END_GAME = "end_game"
+SERVICES: tuple[str, ...] = (
+    SERVICE_PAUSE_GAME,
+    SERVICE_RESUME_GAME,
+    SERVICE_NEXT_ROUND,
+    SERVICE_END_GAME,
+)
+ATTR_REASON = "reason"
+
+#: The ``reason`` an automation may pass, mapped onto the host pause reasons
+#: above. The short names are what a YAML author types; the long ones are what
+#: the screens already know how to print.
+SERVICE_PAUSE_REASONS: dict[str, str] = {
+    "food": HOST_PAUSE_REASON_FOOD,
+    "door": HOST_PAUSE_REASON_DOOR,
+    "away": HOST_PAUSE_REASON_AWAY,
+}
+
+#: Fired once per round, after the reveal has been broadcast to the room.
+EVENT_ROUND_REVEALED = f"{DOMAIN}_round_revealed"
+#: Fired once per game, after the game reached its END phase (podium).
+EVENT_GAME_ENDED = f"{DOMAIN}_game_ended"
+
 # Error codes
 ERR_NAME_TAKEN = "NAME_TAKEN"
 ERR_NAME_INVALID = "NAME_INVALID"

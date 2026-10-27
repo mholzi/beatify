@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING
 from aiohttp import web
 
 from custom_components.beatify.const import DOMAIN
+from custom_components.beatify.events import fire_game_ended
 from custom_components.beatify.game.state import GameState
 from custom_components.beatify.server.companion_auth import is_companion_trusted_meta
 from custom_components.beatify.server.serializers import (
@@ -202,3 +203,7 @@ async def finalize_and_end(
         # than hitting "already claimed" and stranding the game in REVEAL.
         handler._release_game_end(game_state.game_id)
         raise
+
+    # #3306: the claim above makes this once per game, and it runs only after
+    # advance_to_end put the game in END — the podium is what the event carries.
+    fire_game_ended(handler.hass, game_state)
