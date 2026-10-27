@@ -26,5 +26,70 @@
                 }
             }
         }
+    },
+    "services": {
+        "pause_game": {
+            "name": "Metti in pausa la partita",
+            "description": "Mette in pausa la partita Beatify in corso e mostra il motivo sulla TV e su tutti i telefoni. Se è già in pausa, cambia solo l’annuncio.",
+            "fields": {
+                "reason": {
+                    "name": "Motivo",
+                    "description": "Ciò che la stanza legge sulla schermata di pausa. Lascia vuoto per un semplice «Pausa»."
+                }
+            }
+        },
+        "resume_game": {
+            "name": "Riprendi la partita",
+            "description": "Riprende una partita Beatify in pausa da dove si era fermata."
+        },
+        "next_round": {
+            "name": "Round successivo",
+            "description": "Chiude il round in corso (rivelazione) o avvia il successivo dalla rivelazione. Alla rivelazione dell’ultimo round la partita finisce."
+        },
+        "end_game": {
+            "name": "Termina la partita",
+            "description": "Termina la partita Beatify in corso e mostra il podio."
+        }
+    },
+    "selector": {
+        "pause_reason": {
+            "options": {
+                "food": "È arrivato da mangiare",
+                "door": "Qualcuno alla porta",
+                "away": "Torno subito"
+            }
+        }
+    },
+    "exceptions": {
+        "no_active_game": {
+            "message": "Nessuna partita Beatify in corso."
+        },
+        "unknown_pause_reason": {
+            "message": "Motivo di pausa sconosciuto. Usa food, door o away."
+        },
+        "pause_not_host": {
+            "message": "Beatify ha messo in pausa la partita da solo (per esempio per un errore dell’altoparlante). Risolvi il problema e riprendi."
+        },
+        "no_round_to_pause": {
+            "message": "Al momento non c’è nessun round da mettere in pausa."
+        },
+        "pause_failed": {
+            "message": "Impossibile mettere in pausa la partita."
+        },
+        "not_paused": {
+            "message": "La partita non è in pausa."
+        },
+        "resume_failed": {
+            "message": "Impossibile riprendere la partita."
+        },
+        "cannot_advance": {
+            "message": "Al momento la partita non può passare al round successivo."
+        },
+        "cannot_end_now": {
+            "message": "Al momento la partita non può essere terminata."
+        },
+        "action_refused": {
+            "message": "Beatify ha rifiutato l’azione: {message}"
+        }
     }
 }

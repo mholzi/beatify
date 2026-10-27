@@ -33,6 +33,7 @@ from .game.playlist import (
     async_ensure_playlist_directory,
 )
 from .game.state import GameState
+from .ha_services import async_register_services, async_unregister_services
 from .server import async_register_static_paths
 from .server.views import (
     AdminView,
@@ -185,7 +186,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     ws_handler = BeatifyWebSocketHandler(hass)
 
     # Set up round end callback for timer expiry (Story 4.5)
-    game_state.set_round_end_callback(ws_handler.broadcast_state)
+    # #3306: broadcast_round_end also fires ``beatify_round_revealed``.
+    game_state.set_round_end_callback(ws_handler.broadcast_round_end)
 
     # #1753: wire the terminal game-end one-shot so the unattended REVEAL
     # auto-advance final round records stats + runs the podium ceremony through
@@ -345,6 +347,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             "re-registration on reload (#1364)"
         )
 
+    # #3306: pause / resume / next round / end game as Home Assistant actions,
+    # so an automation (the doorbell) can drive the game. Admin-only for user
+    # calls; see ha_services.py for the rule.
+    async_register_services(hass)
+
     # Register sidebar panel (Story 10.3)
     # Points to launcher page which opens game in a new tab (fullscreen, no HA chrome)
     async_register_built_in_panel(
@@ -420,6 +427,11 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     )
 
     if unload_ok:
+        # #3306: the actions resolve the game from hass.data, which is popped
+        # below — remove them with it rather than leave them answering
+        # "no active game" for an unloaded integration.
+        async_unregister_services(hass)
+
         # Remove sidebar panel (Story 10.3)
         try:
             async_remove_panel(hass, "beatify")

@@ -1654,7 +1654,7 @@ class StartGameplayView(BeatifyAdminView):
         # question from making the two start paths agree.
         ws_handler = data.get("ws_handler")
         if ws_handler:
-            game_state.set_round_end_callback(ws_handler.broadcast_state)
+            game_state.set_round_end_callback(ws_handler.broadcast_round_end)
             # #1753: wire the terminal game-end one-shot so the unattended REVEAL
             # auto-advance final round records stats + runs the podium ceremony
             # through the same claim as the admin sockets.

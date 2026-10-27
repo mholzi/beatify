@@ -26,5 +26,70 @@
                 }
             }
         }
+    },
+    "services": {
+        "pause_game": {
+            "name": "Spiel pausieren",
+            "description": "Pausiert das laufende Beatify-Spiel und zeigt den Grund auf dem Fernseher und allen Handys. Ist schon pausiert, wird nur die Ansage geändert.",
+            "fields": {
+                "reason": {
+                    "name": "Grund",
+                    "description": "Was der Raum auf dem Pausenbildschirm liest. Leer lassen für ein schlichtes „Pause“."
+                }
+            }
+        },
+        "resume_game": {
+            "name": "Spiel fortsetzen",
+            "description": "Setzt ein pausiertes Beatify-Spiel dort fort, wo es angehalten wurde."
+        },
+        "next_round": {
+            "name": "Nächste Runde",
+            "description": "Beendet die laufende Runde (Auflösung) oder startet aus der Auflösung die nächste Runde. In der Auflösung der letzten Runde endet das Spiel."
+        },
+        "end_game": {
+            "name": "Spiel beenden",
+            "description": "Beendet das laufende Beatify-Spiel und zeigt das Podium."
+        }
+    },
+    "selector": {
+        "pause_reason": {
+            "options": {
+                "food": "Das Essen ist da",
+                "door": "Jemand an der Tür",
+                "away": "Kurz weg"
+            }
+        }
+    },
+    "exceptions": {
+        "no_active_game": {
+            "message": "Es läuft kein Beatify-Spiel."
+        },
+        "unknown_pause_reason": {
+            "message": "Unbekannter Pausengrund. Erlaubt sind food, door oder away."
+        },
+        "pause_not_host": {
+            "message": "Beatify hat das Spiel selbst pausiert (zum Beispiel wegen eines Lautsprecherfehlers). Erst das beheben, dann fortsetzen."
+        },
+        "no_round_to_pause": {
+            "message": "Gerade gibt es keine Runde, die pausiert werden kann."
+        },
+        "pause_failed": {
+            "message": "Das Spiel konnte nicht pausiert werden."
+        },
+        "not_paused": {
+            "message": "Das Spiel ist nicht pausiert."
+        },
+        "resume_failed": {
+            "message": "Das Spiel konnte nicht fortgesetzt werden."
+        },
+        "cannot_advance": {
+            "message": "Das Spiel kann gerade nicht zur nächsten Runde wechseln."
+        },
+        "cannot_end_now": {
+            "message": "Das Spiel kann gerade nicht beendet werden."
+        },
+        "action_refused": {
+            "message": "Beatify hat die Aktion abgelehnt: {message}"
+        }
     }
 }

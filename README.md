@@ -214,6 +214,41 @@ After finishing, you land on the **"Ready to host"** screen: big Beatify wordmar
 
 </div>
 
+### Automations: Actions and Events
+
+Beatify adds four actions you can call from automations, scripts or **Developer Tools → Actions**:
+
+| Action | What it does |
+|---|---|
+| `beatify.pause_game` | Pauses the game. Optional `reason`: `food`, `door` or `away`. The reason shows on the TV, every phone and the admin page. Calling it again while paused changes the reason. |
+| `beatify.resume_game` | Resumes a paused game. |
+| `beatify.next_round` | Ends the round that is playing, or starts the next round from the reveal. After the last reveal it ends the game. |
+| `beatify.end_game` | Ends the game and shows the podium. |
+
+It also fires two events you can trigger on (watch them in **Developer Tools → Events**):
+
+- `beatify_round_revealed`: once per round, after the answer is on screen. Data: `game_id`, `round`, `total_rounds`, `last_round`, `voided`, `song` (`artist`, `title`, `year`), `leaders`.
+- `beatify_game_ended`: once per game, when the podium appears. Data: `game_id`, `rounds_played`, `winners`, `leaderboard` (`rank`, `name`, `score`).
+
+**Example: pause for the doorbell.**
+
+```yaml
+automation:
+  - alias: "Beatify: pause when the doorbell rings"
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.front_doorbell
+        to: "on"
+    actions:
+      - action: beatify.pause_game
+        data:
+          reason: door
+        # No game running? Skip quietly instead of logging an error.
+        continue_on_error: true
+```
+
+**Who can call them:** an automation or script that Home Assistant runs on its own can always call these actions. When a person calls one (from Developer Tools, a dashboard button or the API), that person has to be a Home Assistant administrator, the same rule as hosting a game. A non-admin user gets "Unauthorized". If no game is running, or the game is in a phase where the action makes no sense (resuming a game that is not paused, say), the action fails with a short explanation instead of doing anything.
+
 ---
 
 <br>

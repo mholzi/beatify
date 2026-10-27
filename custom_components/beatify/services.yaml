@@ -1,0 +1,16 @@
+# Home Assistant actions for a running game (#3306).
+# Names, descriptions and the pause-reason labels live in translations/*.json.
+pause_game:
+  fields:
+    reason:
+      required: false
+      selector:
+        select:
+          translation_key: pause_reason
+          options:
+            - food
+            - door
+            - away
+resume_game:
+next_round:
+end_game:
