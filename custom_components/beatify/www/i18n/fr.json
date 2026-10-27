@@ -888,7 +888,17 @@
     "sitOutConfirm": "Mettre en pause",
     "sitOutBody": "{name} ne joue plus cette partie et libère sa place. Ses {score} points restent.",
     "sitOutAria": "Mettre {name} en pause",
-    "bringBack": "Faire revenir"
+    "bringBack": "Faire revenir",
+    "guestsRowTitle": "Invités",
+    "guestsAway": "{count} hors ligne",
+    "guestsSatOut": "{count} en pause",
+    "guestsSatOutOne": "{count} en pause",
+    "guestsAllIn": "{count} en jeu",
+    "guestsSectionAway": "Hors ligne",
+    "guestsSectionPlaying": "En jeu",
+    "guestsSectionSatOut": "En pause",
+    "guestsHost": "Hôte",
+    "guestsFooter": "Les invités en pause gardent leurs points et peuvent toucher « Je suis de retour » eux-mêmes."
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",

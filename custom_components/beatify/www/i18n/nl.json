@@ -888,7 +888,17 @@
     "sitOutConfirm": "Eruit halen",
     "sitOutBody": "{name} speelt dit spel niet verder en houdt geen plek meer bezet. De {score} punten blijven.",
     "sitOutAria": "{name} eruit halen",
-    "bringBack": "Terughalen"
+    "bringBack": "Terughalen",
+    "guestsRowTitle": "Gasten",
+    "guestsAway": "{count} niet verbonden",
+    "guestsSatOut": "{count} zitten erbuiten",
+    "guestsSatOutOne": "{count} zit erbuiten",
+    "guestsAllIn": "{count} in het spel",
+    "guestsSectionAway": "Niet verbonden",
+    "guestsSectionPlaying": "In het spel",
+    "guestsSectionSatOut": "Zit erbuiten",
+    "guestsHost": "Host",
+    "guestsFooter": "Wie erbuiten zit, houdt zijn punten en kan zelf op ‘Ik ben terug’ tikken."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
