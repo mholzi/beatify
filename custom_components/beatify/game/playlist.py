@@ -54,6 +54,55 @@ MIN_ROUNDS = 10
 # plays / no stats). 2 == "medium" on the 1..4 star scale (#1726).
 _UNKNOWN_DIFFICULTY = 2
 
+# Metadata prior (#3305): stars for a song with no play history, derived from
+# the bundled playlist data so ramp-up ordering works on a fresh install.
+_PRIOR_FAMOUS = 1  # top-10 chart peak, or two or more certifications
+_PRIOR_KNOWN = 2  # charted / certified / awarded
+_PRIOR_NO_DATA = 3  # nothing on file: assume the song is harder
+_TOP_CHART_PEAK = 10
+_FAMOUS_CERTIFICATIONS = 2
+
+
+def _is_int(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def _count_entries(value: Any) -> int:
+    """Count non-empty entries of a list-or-string field; junk counts as 0."""
+    if isinstance(value, str):
+        return 1 if value.strip() else 0
+    if isinstance(value, list):
+        return sum(1 for v in value if isinstance(v, str) and v.strip())
+    return 0
+
+
+def metadata_difficulty_prior(song: dict[str, Any]) -> int:
+    """Estimate difficulty (1..4 stars) from bundled playlist metadata (#3305).
+
+    Used only when play stats have no rating yet. Top-10 peak in any chart
+    (``*_peak`` keys of ``chart_info``) or >= 2 certifications -> 1 star;
+    any chart entry, certification, award or Eurovision entry -> 2; no usable
+    data -> 3. Missing or malformed fields are treated as absent.
+    """
+    chart = song.get("chart_info")
+    peaks: list[int] = []
+    charted = False
+    if isinstance(chart, dict):
+        for key, value in chart.items():
+            if not _is_int(value) or value < 1:
+                continue
+            if key.endswith("_peak"):
+                peaks.append(value)
+                charted = True
+            elif key in ("eurovision_position", "eurovision_points", "weeks_on_chart"):
+                charted = True
+    certs = _count_entries(song.get("certifications"))
+    if any(p <= _TOP_CHART_PEAK for p in peaks) or certs >= _FAMOUS_CERTIFICATIONS:
+        return _PRIOR_FAMOUS
+    if charted or certs or _count_entries(song.get("awards")):
+        return _PRIOR_KNOWN
+    return _PRIOR_NO_DATA
+
 
 class PlaylistManager:
     """Manages song selection and played tracking.
@@ -80,6 +129,7 @@ class PlaylistManager:
         storefront: str | None = None,
         song_order: str = SONG_ORDER_RANDOM,
         difficulty_lookup: Callable[[str], int | None] | None = None,
+        use_metadata_prior: bool = False,
         max_rounds: int = 0,
     ) -> None:
         """Initialize with list of songs from loaded playlists.
@@ -96,6 +146,9 @@ class PlaylistManager:
             difficulty_lookup: Optional callable mapping a resolved song URI to
                 its known difficulty in stars (1..4) or ``None`` when there is
                 not enough data. Only consulted when ``song_order="rampup"``.
+            use_metadata_prior: When True, songs the lookup cannot rate fall
+                back to :func:`metadata_difficulty_prior` (#3305). Play stats
+                always win once available.
             max_rounds: Cap the playable pool at this many songs (#1475).
                 ``0`` (default) keeps every playable song, which is the
                 historic behaviour. Values below :data:`MIN_ROUNDS` are raised
@@ -214,6 +267,7 @@ class PlaylistManager:
         # known), so get_next_song falls through to the historic random path.
         self._song_order = song_order
         self._difficulty_lookup = difficulty_lookup
+        self._use_metadata_prior = use_metadata_prior
         self._rampup_order: list[dict[str, Any]] | None = None
         if song_order == SONG_ORDER_RAMPUP and difficulty_lookup is not None:
             self._rampup_order = self._build_rampup_order()
@@ -229,6 +283,14 @@ class PlaylistManager:
                     len(self._rampup_order),
                 )
 
+    def _stars_for(self, song: dict[str, Any]) -> int | None:
+        """Play-stats rating, else the metadata prior (#3305), else None."""
+        assert self._difficulty_lookup is not None  # noqa: S101 — guarded by caller
+        stars = self._difficulty_lookup(song["_precomputed_uri"])
+        if stars is None and self._use_metadata_prior:
+            return metadata_difficulty_prior(song)
+        return stars
+
     def _build_rampup_order(self) -> list[dict[str, Any]] | None:
         """Arrange the flat song pool into a difficulty arc (#1726).
 
@@ -243,7 +305,7 @@ class PlaylistManager:
         buckets: dict[int, list[dict[str, Any]]] = {1: [], 2: [], 3: [], 4: []}
         known: list[tuple[dict[str, Any], int]] = []
         for song in self._songs:
-            stars = self._difficulty_lookup(song["_precomputed_uri"])
+            stars = self._stars_for(song)
             if stars is not None:
                 known.append((song, stars))
             effective = stars if stars is not None else _UNKNOWN_DIFFICULTY
@@ -279,10 +341,9 @@ class PlaylistManager:
         Unknown difficulty counts as medium, as in the main arc.
         """
         assert self._difficulty_lookup is not None  # noqa: S101 — guarded by caller
-        lookup = self._difficulty_lookup
 
         def _level(song: dict[str, Any]) -> int:
-            stars = lookup(song["_precomputed_uri"])
+            stars = self._stars_for(song)
             return stars if stars is not None else _UNKNOWN_DIFFICULTY
 
         arranged = list(songs)

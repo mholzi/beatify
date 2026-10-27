@@ -488,7 +488,7 @@
     "titleArtistModeHint": "Players type the song title and artist instead of guessing the year. Replaces the year round — the artist challenge and closest-wins don't apply, but movie quiz and intro mode still do.",
     "closestWinsHint": "Only the player with the closest guess scores points each round. All-or-nothing showdown.",
     "rampupOrder": "Ramp-up Ordering",
-    "rampupOrderHint": "Order songs by difficulty instead of at random: easy rounds first, the hardest known song saved for the finale. Falls back to random until songs have enough play history.",
+    "rampupOrderHint": "Order songs by difficulty instead of at random: easy rounds first, the hardest known song saved for the finale. Songs without play history are rated from their chart and certification data.",
     "finaleDouble": "Finale ×2",
     "finaleDoubleHint": "Double every player's score on the final round, so a trailing player can still swing the game. A \"Finale ×2\" banner shows on the last round.",
     "finaleTiebreaker": "Finale Tiebreaker",

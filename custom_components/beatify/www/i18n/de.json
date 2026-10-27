@@ -488,7 +488,7 @@
     "titleArtistModeHint": "Spieler tippen Songtitel und Interpret, statt das Jahr zu raten. Ersetzt die Jahres-Runde — Künstler-Challenge und Nächster-gewinnt entfallen, Film-Quiz und Intro-Modus bleiben.",
     "closestWinsHint": "Nur der Spieler mit dem nächsten Tipp bekommt pro Runde Punkte. Alles-oder-nichts-Duell.",
     "rampupOrder": "Schwierigkeits-Steigerung",
-    "rampupOrderHint": "Songs nach Schwierigkeit ordnen statt zufällig: leichte Runden zuerst, der schwerste bekannte Song fürs Finale reserviert. Fällt auf Zufall zurück, solange Songs noch nicht genug gespielt wurden.",
+    "rampupOrderHint": "Songs nach Schwierigkeit ordnen statt zufällig: leichte Runden zuerst, der schwerste bekannte Song fürs Finale reserviert. Songs ohne Spielhistorie werden nach Chart- und Zertifizierungsdaten eingestuft.",
     "finaleDouble": "Finale ×2",
     "finaleDoubleHint": "Verdoppelt in der letzten Runde die Punkte aller Spieler, damit auch ein zurückliegender Spieler das Spiel noch drehen kann. In der letzten Runde erscheint ein \"Finale ×2\"-Banner.",
     "finaleTiebreaker": "Finale-Stechen",

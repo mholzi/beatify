@@ -488,7 +488,7 @@
     "titleArtistModeHint": "Los jugadores escriben el título y el artista en lugar de adivinar el año. Reemplaza la ronda de año — el desafío del artista y «el más cercano gana» no se aplican, pero el cuestionario de películas y el modo intro sí.",
     "closestWinsHint": "Solo el jugador con la respuesta más cercana gana puntos en cada ronda. Duelo de todo o nada.",
     "rampupOrder": "Orden progresivo",
-    "rampupOrderHint": "Ordena las canciones por dificultad en lugar de al azar: rondas fáciles primero y la canción más difícil conocida reservada para la final. Vuelve al orden aleatorio hasta que las canciones tengan suficiente historial de juego.",
+    "rampupOrderHint": "Ordena las canciones por dificultad en lugar de al azar: rondas fáciles primero y la canción más difícil conocida reservada para la final. Las canciones sin historial de juego se valoran según sus datos de listas y certificaciones.",
     "finaleDouble": "Final ×2",
     "finaleDoubleHint": "Duplica la puntuación de cada jugador en la ronda final, para que un jugador rezagado aún pueda dar la vuelta al juego. En la última ronda se muestra un cartel \"Final ×2\".",
     "finaleTiebreaker": "Desempate final",

@@ -268,8 +268,12 @@ class TestCreateGamePlumbing:
         assert levels == sorted(levels)
         assert order[-1]["_resolved_uri"] == "b"  # hardest known = finale
 
-    def test_flag_on_but_no_stats_degrades_to_random(self):
-        """Ramp-up on without a connected StatsService → graceful random."""
+    def test_flag_on_but_no_stats_uses_metadata_prior(self):
+        """No StatsService: the metadata prior (#3305) rates every song.
+
+        These fixtures carry no chart data, so all songs get the flat
+        "no data" rating and the arc is level but still serves every song.
+        """
         state = make_game_state()  # no stats service connected
         difficulties = {"a": 1, "b": 4}
 
@@ -282,8 +286,9 @@ class TestCreateGamePlumbing:
         )
 
         assert state.rampup_order_enabled is True
-        # No difficulty data reachable → arc degrades to uniform random.
-        assert state._playlist_manager._rampup_order is None
+        order = state._playlist_manager._rampup_order
+        assert order is not None
+        assert {s["uri"] for s in order} == set(difficulties)
 
 
 # ---------------------------------------------------------------------------
