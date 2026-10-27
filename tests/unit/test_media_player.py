@@ -67,8 +67,14 @@ class TestMANonBlockingPlayback:
     """Tests for Music Assistant non-blocking playback with actual playback detection."""
 
     @pytest.mark.asyncio
-    async def test_ma_uses_blocking_false(self):
-        """MA playback should use blocking=False to avoid hangs."""
+    async def test_ma_never_waits_on_the_play_media_call(self):
+        """A play_media that never returns must not hold up the start.
+
+        blocking=True hangs on MA+YTMusic, which is why the call was
+        fire-and-forget. #3328 runs it in its own task so its refusal can be
+        seen, and this is the invariant that has to survive that: the caller
+        still never waits on it, only on the speaker.
+        """
         hass = _make_hass("playing", media_title="Old Song")
         svc = MediaPlayerService(hass, "media_player.test", platform="music_assistant")
 
@@ -85,24 +91,31 @@ class TestMANonBlockingPlayback:
             media_position_updated_at="2020-01-01T00:00:10+00:00",
         )
         hass.states.get = MagicMock(side_effect=[old_state, new_state])
+        hanging = asyncio.get_running_loop().create_future()
+
+        async def _call(domain, service, *args, **kwargs):
+            if (domain, service) == ("music_assistant", "play_media"):
+                await hanging  # never resolves
+            return None
+
+        hass.services.async_call = AsyncMock(side_effect=_call)
 
         with patch(
             "custom_components.beatify.services.media_player.asyncio.sleep",
             new_callable=AsyncMock,
         ):
-            result = await svc.play_song(_make_song(title="New Song"))
+            result = await asyncio.wait_for(
+                svc.play_song(_make_song(title="New Song")), timeout=2
+            )
 
         assert result is True
-        # #2143 added a get_queue snapshot ahead of the play, so "awaited once"
-        # no longer holds. What must hold is that the PLAY is still exactly one
-        # call and still non-blocking — blocking=True hangs on MA+YTMusic.
         play_calls = [
             c
             for c in hass.services.async_call.await_args_list
             if c.args[:2] == ("music_assistant", "play_media")
         ]
         assert len(play_calls) == 1
-        assert play_calls[0].kwargs.get("blocking") is False
+        hanging.cancel()
 
     @pytest.mark.asyncio
     async def test_ma_fast_path_succeeds_when_title_matches_even_if_position_zero(self):

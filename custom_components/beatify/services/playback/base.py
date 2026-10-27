@@ -85,7 +85,9 @@ class PlaybackStrategy(ABC):
         against ``MAX_SONG_RETRIES``: only ``"unavailable"`` skips without
         counting, so ``"rate_limited"`` (#2682) behaves exactly as ``"error"``
         does and exists to carry the *reason* across the boundary rather than
-        to change what the game does with it."""
+        to change what the game does with it. ``"provider_unavailable"``
+        (#3328) is the one reason that pauses at once: Music Assistant refused
+        the request because the provider itself is down."""
         return self.context.last_failure_reason
 
     @last_failure_reason.setter

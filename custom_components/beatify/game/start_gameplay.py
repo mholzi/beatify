@@ -22,6 +22,9 @@ machine-readable reason and each surface says it in its own words.
 
 from __future__ import annotations
 
+import asyncio
+import functools
+import logging
 from typing import TYPE_CHECKING, Any
 
 from custom_components.beatify.const import (
@@ -34,6 +37,8 @@ from custom_components.beatify.const import (
 
 if TYPE_CHECKING:
     from custom_components.beatify.game.state import GameState
+
+_LOGGER = logging.getLogger(__name__)
 
 #: The game is not in LOBBY — somebody already started it.
 REFUSE_ALREADY_STARTED = "already_started"
@@ -99,8 +104,49 @@ async def begin_gameplay(
     warning = apply_sudden_death_floor(game_state)
     if ws_handler is not None:
         await ws_handler.broadcast({"type": "game_starting"})
-    success = await game_state.start_round()
+    # #3328: the first round runs in its own task, shielded from the caller.
+    # Home Assistant cancels an HTTP handler whose client hangs up
+    # (``handler_cancellation=True``), and a client that gives up before the
+    # first-play budget (33 s) — the live test's 30 s timeout, a proxy, a phone
+    # that locks — used to take the start down with it: the CancelledError
+    # unwound through the playback wait without a log line, the failure path
+    # never ran, and the game sat in LOBBY for good. The start now always
+    # finishes, and its outcome reaches the room by broadcast instead.
+    start = asyncio.ensure_future(game_state.start_round())
+    try:
+        success = await asyncio.shield(start)
+    except asyncio.CancelledError:
+        _LOGGER.warning(
+            "Start request went away while round 1 was starting — finishing "
+            "the start anyway and announcing the result to the room (#3328)"
+        )
+        start.add_done_callback(functools.partial(_announce_detached_start, ws_handler))
+        raise
     return success, warning
+
+
+#: Broadcasts scheduled for a start whose caller went away; kept so the loop's
+#: weak reference cannot drop them before they run.
+_DETACHED_BROADCASTS: set[asyncio.Future[Any]] = set()
+
+
+def _announce_detached_start(ws_handler: Any | None, start: asyncio.Future) -> None:
+    """Tell the room how a start ended after its caller stopped waiting (#3328).
+
+    Without a caller there is nobody to answer, so the result goes out the way
+    every other phase change does: a state broadcast, which puts a failed
+    start's ``media_player_error`` pause banner in front of the host.
+    """
+    if start.cancelled():
+        return
+    err = start.exception()
+    if err is not None:
+        _LOGGER.error("Detached game start failed: %s (#3328)", err)
+    if ws_handler is None:
+        return
+    task = asyncio.ensure_future(ws_handler.broadcast_state())
+    _DETACHED_BROADCASTS.add(task)
+    task.add_done_callback(_DETACHED_BROADCASTS.discard)
 
 
 def start_failure(game_state: GameState) -> dict[str, Any]:
