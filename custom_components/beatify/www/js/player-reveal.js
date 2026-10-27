@@ -426,7 +426,8 @@ export function updateRevealView(data) {
     // Show admin controls if admin
     var adminControls = document.getElementById('reveal-admin-controls');
     var nextRoundBtn = document.getElementById('next-round-btn');
-    if (adminControls && currentPlayer && currentPlayer.is_admin) {
+    renderPhoneEncoreOffer(data, isHost);
+    if (adminControls && isHost) {
         adminControls.classList.remove('hidden');
 
         if (nextRoundBtn) {
@@ -441,6 +442,48 @@ export function updateRevealView(data) {
         }
     } else if (adminControls) {
         adminControls.classList.add('hidden');
+    }
+}
+
+/**
+ * #3303: the encore offer (#2503) on the host's own phone — variant A of the
+ * design gate: the admin page's block, unchanged, between the standings and
+ * "Next round". The server opens the window on the reveal before the last
+ * round and sends `encore_available` only to the host's socket; the isHost
+ * check here is the second lock, so a guest never draws it either way.
+ * The tap sends the same `extend_rounds` the admin page sends.
+ */
+export function renderPhoneEncoreOffer(data, isHost) {
+    var box = document.getElementById('player-encore');
+    if (!box) return;
+    var available = !!(isHost && data && data.encore_available);
+    box.classList.toggle('hidden', !available);
+    if (!available) return;
+
+    var count = data.encore_rounds || 5;
+    var total = (data.total_rounds || 0) + count;
+    var label = document.getElementById('player-encore-label');
+    var hint = document.getElementById('player-encore-hint');
+    if (label) {
+        label.textContent = utils.t('admin.encoreButton', { count: count })
+            || ('Make it ' + count + ' more');
+    }
+    if (hint) {
+        hint.textContent = utils.t('admin.encoreHint', { total: total })
+            || ('Moves the finish line to ' + total + '. Scores stay.');
+    }
+
+    var btn = document.getElementById('player-encore-btn');
+    if (btn && !btn._encoreWired) {
+        btn._encoreWired = true;
+        btn.addEventListener('click', function() {
+            if (!state.ws || state.ws.readyState !== WebSocket.OPEN) return;
+            // Hidden again by the state broadcast that follows; the disable
+            // only covers the round trip, as on the admin page.
+            btn.disabled = true;
+            state.ws.send(JSON.stringify({ type: 'admin', action: 'extend_rounds' }));
+            setTimeout(function() { btn.disabled = false; }, 1500);
+        });
     }
 }
 

@@ -236,6 +236,50 @@ ADMIN_ONLY_KEYS: frozenset[str] = frozenset(
     }
 )
 
+#: #3303: the admin-only keys the host gets on their OWN phone when they play
+#: along. The host's phone is a player socket, so it receives the redacted copy
+#: — never the admin copy, which carries the round's answer. The encore offer
+#: (#2503) is the host's decision, not a secret about the song, so the host's
+#: player socket gets exactly these two keys on top of the redacted copy.
+#: Guests never do. Must stay a subset of :data:`ADMIN_ONLY_KEYS`.
+HOST_PLAYER_KEYS: frozenset[str] = frozenset({"encore_available", "encore_rounds"})
+
+
+def state_for_host_player(
+    message: dict[str, Any], player_copy: dict[str, Any]
+) -> dict[str, Any]:
+    """Return the payload for a player socket whose player ``is_admin`` (#3303).
+
+    ``player_copy`` is the result of :func:`redact_state_for_player` for
+    ``message``. The return value is that copy plus whichever
+    :data:`HOST_PLAYER_KEYS` ``message`` carries — nothing else from the admin
+    copy. When ``message`` carries none of them, ``player_copy`` itself is
+    returned so the broadcast path serializes no third variant.
+    """
+    if not isinstance(message, dict) or not isinstance(player_copy, dict):
+        return player_copy
+    extra = {key: message[key] for key in HOST_PLAYER_KEYS if key in message}
+    if not extra:
+        return player_copy
+    return {**player_copy, **extra}
+
+
+def host_player_sockets(game_state: Any) -> set[Any]:
+    """Return the sockets of players with ``is_admin`` — the host's phone (#3303).
+
+    Spectator admin sockets are not players and are not included; they get the
+    full admin copy through ``is_admin_socket``.
+    """
+    players = getattr(game_state, "players", None)
+    if not isinstance(players, dict):
+        return set()
+    return {
+        p.ws
+        for p in players.values()
+        if getattr(p, "is_admin", False) and getattr(p, "ws", None) is not None
+    }
+
+
 #: Keys of the PLAYING-phase ``song`` sub-dict a player may receive. The song
 #: card is where the answer lives, so it gets the same default-deny treatment
 #: one level down: a ``year`` accidentally added to the PLAYING payload would

@@ -22,7 +22,9 @@ from custom_components.beatify.server.serializers import (
     REDACTED_PLACEHOLDER,
     build_state_message,
     get_game_state,
+    host_player_sockets,
     redact_state_for_player,
+    state_for_host_player,
 )
 from custom_components.beatify.server.ws_handlers import (
     handle_admin,
@@ -477,11 +479,28 @@ class BeatifyWebSocketHandler:
         player_json = json.dumps(player_message)
         admin_json = player_json if player_message is message else json.dumps(message)
 
+        # #3303: a third variant for the host who plays on their phone — the
+        # redacted player copy plus the encore keys, never the admin copy (it
+        # carries the answer). Only built when the frame carries those keys.
+        host_sockets: set = set()
+        host_json = player_json
+        if message.get("type") == "state":
+            host_message = state_for_host_player(message, player_message)
+            if host_message is not player_message:
+                host_sockets = host_player_sockets(game_state)
+                if host_sockets:
+                    host_json = json.dumps(host_message)
+
         # Build list of send tasks for all open connections
         tasks = []
         for ws in list(targets):
             if not ws.closed:
-                payload = admin_json if ws in admin_sockets else player_json
+                if ws in admin_sockets:
+                    payload = admin_json
+                elif ws in host_sockets:
+                    payload = host_json
+                else:
+                    payload = player_json
                 tasks.append(self._safe_send(ws, payload))
 
         # Execute all sends in parallel

@@ -931,6 +931,17 @@
 
                 <!-- Admin Controls -->
                 <div id="reveal-admin-controls" class="reveal-admin-controls hidden">
+                    <!-- #3303: the admin page's encore offer (#2503), same
+                         markup and classes, for the host who plays on the
+                         phone. The server sends encore_available only to the
+                         host's own socket; guests never get it. -->
+                    <div id="player-encore" class="encore-offer hidden">
+                        <span class="encore-badge" data-i18n="admin.encoreBadge">LAST ROUND NEXT</span>
+                        <button id="player-encore-btn" type="button" class="btn btn-outline btn-full-width">
+                            <span id="player-encore-label">Make it 5 more</span>
+                        </button>
+                        <p id="player-encore-hint" class="encore-hint"></p>
+                    </div>
                     <div class="reveal-admin-buttons">
                         <button id="invite-players-btn" class="invite-btn" type="button"
                                 aria-label="Invite players to join the game">
