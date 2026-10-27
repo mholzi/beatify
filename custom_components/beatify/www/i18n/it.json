@@ -488,7 +488,7 @@
     "titleArtistModeHint": "I giocatori scrivono titolo e artista invece di indovinare l'anno. Sostituisce il turno sull'anno — la sfida artista e la modalità «vince chi si avvicina» non valgono, mentre quiz sui film e modalità intro restano attivi.",
     "closestWinsHint": "Ogni turno prende punti solo chi si avvicina di più. Tutto o niente.",
     "rampupOrder": "Ordine crescente di difficoltà",
-    "rampupOrderHint": "Ordina le canzoni per difficoltà invece che a caso: prima i turni facili, la canzone più difficile riservata al finale. Finché le canzoni non hanno abbastanza storico, l'ordine resta casuale.",
+    "rampupOrderHint": "Ordina le canzoni per difficoltà invece che a caso: prima i turni facili, la canzone più difficile riservata al finale. Le canzoni senza storico di gioco vengono valutate in base ai dati di classifica e certificazione.",
     "finaleDouble": "Finale ×2",
     "finaleDoubleHint": "Raddoppia il punteggio di tutti nell'ultimo turno, così anche chi insegue può ribaltare la partita. Nell'ultimo turno compare la scritta \"Finale ×2\".",
     "finaleTiebreaker": "Spareggio finale",

@@ -488,7 +488,7 @@
     "titleArtistModeHint": "Les joueurs saisissent le titre et l'artiste au lieu de deviner l'année. Remplace la manche d'année — le défi de l'artiste et « le plus proche gagne » ne s'appliquent pas, mais le quiz de films et le mode intro restent actifs.",
     "closestWinsHint": "Seul le joueur le plus proche marque des points à chaque manche. Duel tout ou rien.",
     "rampupOrder": "Ordre progressif",
-    "rampupOrderHint": "Classe les chansons par difficulté au lieu de les tirer au hasard : manches faciles d'abord, la chanson connue la plus difficile réservée pour la finale. Revient à l'ordre aléatoire tant que les chansons n'ont pas assez d'historique de jeu.",
+    "rampupOrderHint": "Classe les chansons par difficulté au lieu de les tirer au hasard : manches faciles d'abord, la chanson connue la plus difficile réservée pour la finale. Les chansons sans historique de jeu sont évaluées d'après leurs classements et certifications.",
     "finaleDouble": "Finale ×2",
     "finaleDoubleHint": "Double le score de chaque joueur lors de la dernière manche, pour qu'un joueur en retard puisse encore renverser la partie. Une bannière « Finale ×2 » s'affiche à la dernière manche.",
     "finaleTiebreaker": "Départage final",

@@ -877,6 +877,7 @@ class GameSetupMixin(GameStateBase):
             storefront=storefront,
             song_order=SONG_ORDER_RAMPUP,
             difficulty_lookup=_difficulty_lookup,
+            use_metadata_prior=True,  # #3305: chart/cert prior on a fresh install
             max_rounds=max_rounds,
         )
 
