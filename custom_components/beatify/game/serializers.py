@@ -614,6 +614,11 @@ class GameStateSerializer:
                 # is the phase where the row is on screen. Copied so a client
                 # payload can never alias the live player state.
                 "collection": [dict(entry) for entry in p.collection],
+                # #3322: same flags as get_players_state(). Without them the
+                # phone host's guest list (#3304) cannot show a sit-out until
+                # the next PLAYING broadcast.
+                "sat_out_by_host": p.sat_out_by_host,
+                "rejoin_requested": p.rejoin_requested,
             }
             # Story 20.4: Add artist bonus if challenge is enabled
             if gs.artist_challenge_enabled:
