@@ -888,7 +888,17 @@
     "sitOutConfirm": "Sit out",
     "sitOutBody": "{name} stops playing this game and stops holding a survivor slot. Their {score} points stay.",
     "sitOutAria": "Sit {name} out",
-    "bringBack": "Bring back"
+    "bringBack": "Bring back",
+    "guestsRowTitle": "Guests",
+    "guestsAway": "{count} not connected",
+    "guestsSatOut": "{count} sitting out",
+    "guestsSatOutOne": "{count} sitting out",
+    "guestsAllIn": "{count} in the game",
+    "guestsSectionAway": "Not connected",
+    "guestsSectionPlaying": "In the game",
+    "guestsSectionSatOut": "Sitting out",
+    "guestsHost": "Host",
+    "guestsFooter": "Guests who sit out keep their points and can tap “I'm back” themselves."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

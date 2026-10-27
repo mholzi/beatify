@@ -888,7 +888,17 @@
     "sitOutConfirm": "Dejar fuera",
     "sitOutBody": "{name} deja de jugar esta partida y libera su plaza. Sus {score} puntos se mantienen.",
     "sitOutAria": "Dejar fuera a {name}",
-    "bringBack": "Traer de vuelta"
+    "bringBack": "Traer de vuelta",
+    "guestsRowTitle": "Invitados",
+    "guestsAway": "{count} sin conexión",
+    "guestsSatOut": "{count} están fuera",
+    "guestsSatOutOne": "{count} está fuera",
+    "guestsAllIn": "{count} en el juego",
+    "guestsSectionAway": "Sin conexión",
+    "guestsSectionPlaying": "En el juego",
+    "guestsSectionSatOut": "Fuera",
+    "guestsHost": "Anfitrión",
+    "guestsFooter": "Quien queda fuera conserva sus puntos y puede tocar «He vuelto» por su cuenta."
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",

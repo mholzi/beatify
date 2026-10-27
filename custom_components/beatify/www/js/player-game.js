@@ -60,6 +60,8 @@ import { showToast } from './notify.js';
 // #2646: the "End round N" card that Next opens while a round is still
 // running, and the ask/no-ask rule behind it. Shared with admin.js.
 import { shouldAskBeforeEnding, openRoundEndChoice } from './round-end-choice.js';
+// #3304: the host's guest list (sit out / bring back) behind a drawer row.
+import { renderHostGuests, hideHostGuests } from './player-game/host-guests.js';
 
 var utils = window.BeatifyUtils || {};
 var debug = utils.debug || function() {};
@@ -2405,6 +2407,7 @@ export function hideHostDrawer() {
     if (body) body.hidden = true;
     var grip = document.getElementById('host-drawer-grip');
     if (grip) grip.setAttribute('aria-expanded', 'false');
+    hideHostGuests();   // #3304
 }
 
 /**
@@ -2434,6 +2437,7 @@ export function renderHostDrawer(data) {
     _renderPauseRow();
     _renderSuddenDeathRow(data);
     _renderPartyLightsRow(data);   // #2649
+    renderHostGuests(data);        // #3304
 }
 
 /**

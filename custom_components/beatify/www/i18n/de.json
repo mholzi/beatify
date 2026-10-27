@@ -888,7 +888,17 @@
     "sitOutConfirm": "Aussetzen",
     "sitOutBody": "{name} spielt dieses Spiel nicht weiter und belegt keinen Platz mehr. Die {score} Punkte bleiben.",
     "sitOutAria": "{name} aussetzen lassen",
-    "bringBack": "Zurückholen"
+    "bringBack": "Zurückholen",
+    "guestsRowTitle": "Gäste",
+    "guestsAway": "{count} nicht verbunden",
+    "guestsSatOut": "{count} sitzen aus",
+    "guestsSatOutOne": "{count} sitzt aus",
+    "guestsAllIn": "{count} im Spiel",
+    "guestsSectionAway": "Nicht verbunden",
+    "guestsSectionPlaying": "Im Spiel",
+    "guestsSectionSatOut": "Sitzt aus",
+    "guestsHost": "Gastgeber",
+    "guestsFooter": "Ausgesetzte behalten ihre Punkte und können selbst „Ich bin wieder da“ tippen."
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
