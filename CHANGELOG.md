@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc6] - 2026-10-27
+
+Sixth candidate for 4.8.7, "Ding Dong": one fix from the rc5 live test.
+
+### Fixed
+- **A game no longer hangs silently in the lobby when the music service is unavailable** (#3328). If Music Assistant refuses to play (for example Apple Music is signed out), the game pauses right away and the host sees which service is missing.
+
 ## [4.8.7-rc5] - 2026-10-27
 
 Fifth candidate for 4.8.7, "Ding Dong": three fixes from the rc4 live test.
