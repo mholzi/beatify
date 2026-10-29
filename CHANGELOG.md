@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7] — 2026-10-29
+
+The doorbell rings, Home Assistant pauses the party, and nobody misses the next song while the pizza arrives. This release lets your smart home and the host's phone run the game.
+
+### 🔔 Home Assistant joins the party
+
+Automations can now pause, resume, skip or end a game, and Beatify sends events they can react to. A host playing on a phone gets everything the admin page has: five more rounds without losing the scores, sitting out a guest who left and bringing them back. "Play another song" swaps the track and keeps the round.
+
+### ⭐ The small things
+
+When a song gets skipped, the round counter shows the real length of the game, and a failed intro round moves on instead of playing silence. If your music service isn't available, the game pauses and says so. Easy-to-hard ordering works from the very first party. Schweizer Hits, Hitster 100 Français and Tomorrowland Top 1000 play cleanly again.
+
 ## [4.8.7-rc7] - 2026-10-29
 
 Seventh candidate for 4.8.7, "Ding Dong": one playlist data fix since rc6.

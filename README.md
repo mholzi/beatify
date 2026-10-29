@@ -868,6 +868,13 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.7 — Ding Dong 🔔
+- **Home Assistant can run the party**: pause, resume, skip or end a game from an automation, with events to react to (#3306)
+- **The host's phone gets the admin page's tools**: five more rounds without losing scores, sit a guest out and bring them back, and "Play another song" to swap a track (#3303, #3304, #3261)
+- **Skipped songs no longer break the count**: the round counter shows the real game length, and a failed intro round moves on (#3279, #3286, #3293)
+- **If your music service isn't available, the game pauses and says so** (#3328)
+- **Smaller fixes**: easy-to-hard ordering works from the first party, and Schweizer Hits, Hitster 100 Français and Tomorrowland Top 1000 play cleanly again (#3305, #3301, #3331)
+
 ### v4.8.6 — Thanks for Playing ⭐
 - **Rematch starts the next game straight away**, no page reload needed (#3277)
 - **A skipped song can no longer sneak back in** and play over the next round when the music service is slow (#3278, #3283)
