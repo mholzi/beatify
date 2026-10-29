@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.7-rc7] - 2026-10-29
+
+Seventh candidate for 4.8.7, "Ding Dong": one playlist data fix since rc6.
+
+### Fixed
+- **17 broken track links in Tomorrowland Top 1000 are repaired** (#3331), so those songs play again.
+
 ## [4.8.7-rc6] - 2026-10-27
 
 Sixth candidate for 4.8.7, "Ding Dong": one fix from the rc5 live test.
