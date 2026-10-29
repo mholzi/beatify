@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.72",
+  "version": "0.73",
   "tags": [
     "edm",
     "electronic",
@@ -803,7 +803,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6798744299"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LCH1AsUydSc",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z1F05H0wDzc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7261457",
       "fun_fact": "“Miami 2 Ibiza - Radio Edit” appears on Swedish House Mafia’s release “Miami 2 Ibiza”.",
@@ -956,9 +956,9 @@
         "Dimitri Vegas & Like Mike",
         "Bedrock, John Digweed, Nick Muir"
       ],
-      "uri_apple_music": "applemusic://track/1043297503",
+      "uri_apple_music": "applemusic://track/1772899348",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1043297503"
+        "us": "applemusic://track/1772899348"
       }
     },
     {
@@ -1152,10 +1152,7 @@
       "year": 2011,
       "isrc": "GBAYE1101369",
       "uri": "spotify:track:7BOSqLjA3lnA3dKh29pOuQ",
-      "uri_apple_music": "applemusic://track/665202776",
-      "uri_apple_music_by_region": {
-        "us": "applemusic://track/665202776"
-      },
+      "uri_apple_music": null,
       "uri_youtube_music": "https://music.youtube.com/watch?v=gQA5gQQNkIo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/75815486",
@@ -1204,7 +1201,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6798409419"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=opxhEVjNvdk",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KbYijmQUOqs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/437979102",
       "fun_fact": "“On My Way” appears on Axwell /\\ Ingrosso’s release “More Than You Know”.",
@@ -1465,7 +1462,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6798405718"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yl2GaxVGUaI",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VZ-TM39_MLI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/435827332",
       "fun_fact": "“Dreamer” is the title track of Axwell /\\ Ingrosso’s release of the same name.",
@@ -2019,11 +2016,11 @@
       "year": 2018,
       "isrc": "USUG11801349",
       "uri": "spotify:track:5xzzxWj8a1YBbNZhNLqWuQ",
-      "uri_apple_music": "applemusic://track/1418775756",
+      "uri_apple_music": "applemusic://track/6798406709",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1418775756"
+        "us": "applemusic://track/6798406709"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=K4LfaSNod1E",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fwWI4yrMohQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/534018462",
       "fun_fact": "“Dancing Alone” is the title track of Axwell /\\ Ingrosso’s release of the same name.",
@@ -2272,9 +2269,9 @@
         "Dirty South, Rudy, Axwell",
         "Peggy Gou"
       ],
-      "uri_apple_music": "applemusic://track/716594626",
+      "uri_apple_music": "applemusic://track/6798743481",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/716594626"
+        "us": "applemusic://track/6798743481"
       }
     },
     {
@@ -3585,9 +3582,9 @@
         "Sub Focus",
         "Justice, Soulwax"
       ],
-      "uri_apple_music": "applemusic://track/1613337874",
+      "uri_apple_music": "applemusic://track/6804058895",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1613337874"
+        "us": "applemusic://track/6804058895"
       }
     },
     {
@@ -4464,11 +4461,11 @@
       "artist": "Martin Solveig, Dragonette",
       "title": "Hello",
       "year": 2011,
-      "isrc": "ARG991012059",
+      "isrc": "FR2PA1000020",
       "uri": "spotify:track:2Hy89WQAxszEUQAvpja0nx",
       "uri_youtube_music": "https://music.youtube.com/watch?v=LnET4RKXx5k",
       "uri_tidal": null,
-      "uri_deezer": "deezer://track/13214666",
+      "uri_deezer": "deezer://track/3803035232",
       "fun_fact": "“Hello” appears on Martin Solveig’s release “Hello (Karaoke)”.",
       "fun_fact_de": "„Hello“ erschien auf der Veröffentlichung „Hello (Karaoke)“ von Martin Solveig.",
       "fun_fact_es": "«Hello» aparece en el lanzamiento «Hello (Karaoke)» de Martin Solveig.",
@@ -4479,9 +4476,9 @@
         "BUNT., Nate Traveller",
         "Alesso, Katy Perry"
       ],
-      "uri_apple_music": "applemusic://track/405926184",
+      "uri_apple_music": "applemusic://track/551901361",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/405926184"
+        "us": "applemusic://track/551901361"
       }
     },
     {
@@ -4623,9 +4620,11 @@
         "David Guetta, MORTEN",
         "PAWSA"
       ],
-      "uri_apple_music": "applemusic://track/1399102683",
+      "uri_apple_music": "applemusic://track/1519035984",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1399102683"
+        "us": null,
+        "de": "applemusic://track/1519035984",
+        "gb": "applemusic://track/1519035984"
       }
     },
     {
@@ -5309,7 +5308,7 @@
       "year": 2014,
       "isrc": "USUG11401855",
       "uri": "spotify:track:5C4NMi4fPpdFPnMZVsyG8H",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=eCH9gClZprM",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jRzyE4pEMnA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/437979062",
       "fun_fact": "“Something New” appears on Axwell /\\ Ingrosso’s release “More Than You Know”.",
@@ -10133,9 +10132,9 @@
       "year": 2006,
       "isrc": "DEU670600052",
       "uri": "spotify:track:6VGNzYErt08Rai78mLkIzI",
-      "uri_apple_music": "applemusic://track/1790534561",
+      "uri_apple_music": "applemusic://track/6771024563",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1790534561"
+        "us": "applemusic://track/6771024563"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=CGBJVlY_yAY",
       "uri_tidal": null,
@@ -10887,9 +10886,9 @@
       "year": 2014,
       "isrc": "UK6VQ1400001",
       "uri": "spotify:track:0k7z2AgvfqnKr240HrPs0T",
-      "uri_apple_music": "applemusic://track/1730209074",
+      "uri_apple_music": "applemusic://track/6806024172",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1730209074"
+        "us": "applemusic://track/6806024172"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tuMgJrFoAFY",
       "uri_tidal": null,
@@ -11208,9 +11207,9 @@
         "Rune RK, Firebeatz",
         "C-Mos, Axwell"
       ],
-      "uri_apple_music": "applemusic://track/665202869",
+      "uri_apple_music": "applemusic://track/6805256719",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/665202869"
+        "us": "applemusic://track/6805256719"
       }
     },
     {
@@ -11451,7 +11450,7 @@
       "year": 2016,
       "isrc": "GB9TP1500674",
       "uri": "spotify:track:0n88HmRZGQew4UN1QaVY3A",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OyDg-VeCz6I",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3uj1bnQn8U0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/118168904",
       "fun_fact": "“Exhale - Original Mix” appears on Amelie Lens’s release “Exhale”.",
