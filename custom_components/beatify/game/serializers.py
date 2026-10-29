@@ -255,6 +255,9 @@ class GameStateSerializer:
             # *why* the game paused instead of staring at a blank "⏸ Paused"
             # label. Empty string for non-error pauses (admin disconnect etc).
             state["last_error_detail"] = gs.last_error_detail or ""
+            # #3339: the machine-readable cause, so the headline can name the
+            # one real fix instead of offering rate limiting as a second guess.
+            state["last_error_kind"] = gs.last_error_kind or ""
             # #808 follow-up: surface the user's selected music provider so
             # the recovery banner can name it ("Re-authenticate Apple Music
             # in Music Assistant") instead of generic "your music provider".

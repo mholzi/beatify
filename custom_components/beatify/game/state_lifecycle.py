@@ -266,6 +266,7 @@ class RoundLifecycleMixin(GameStateBase):
             # error on a first round, and as the pause banner later on.
             known = get_provider(self.provider or "")
             label = known.label if known else self.provider
+            self.last_error_kind = "provider_unavailable"
             self.last_error_detail = (
                 f"{label} is not available in Music Assistant ({self.media_player})"
             )
@@ -358,6 +359,7 @@ class RoundLifecycleMixin(GameStateBase):
         # *what* failed and *which provider* to re-authenticate, but
         # never *where* it was playing — the whole reason a game running
         # on the wrong speaker looked like a provider outage.
+        self.last_error_kind = ""
         self.last_error_detail = (
             f"{song.get('artist')} — {song.get('title')} "
             f"on {self.media_player} ({attempted_uri})"
@@ -486,6 +488,7 @@ class RoundLifecycleMixin(GameStateBase):
         # Play song via media player (skip if deferred for intro splash)
         if self._media_player_service and not will_defer_for_splash:
             if not self._media_player_service.is_available():
+                self.last_error_kind = ""
                 self.last_error_detail = (
                     f"Media player {self.media_player} is unavailable"
                 )
@@ -507,6 +510,7 @@ class RoundLifecycleMixin(GameStateBase):
                 if await self._round_start_aborted(start_epoch):
                     return False
                 if not responsive:
+                    self.last_error_kind = ""
                     self.last_error_detail = error_detail
                     _LOGGER.error(
                         "Media player not responsive: %s, pausing game", error_detail

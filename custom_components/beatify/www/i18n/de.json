@@ -606,6 +606,7 @@
       "title": "Spiel pausiert",
       "mediaPlayerError": "Die Wiedergabe ist mehrmals hintereinander nicht gestartet. Zwei häufige Ursachen: {provider} in Music Assistant muss neu angemeldet werden (Einstellungen → Music Assistant → {provider} → Neu verbinden), oder {provider} drosselt gerade — dann eine Minute warten und auf Fortsetzen tippen.",
       "mediaPlayerErrorGeneric": "Die Wiedergabe ist mehrmals hintereinander nicht gestartet. Zwei häufige Ursachen: dein Musikanbieter in Music Assistant muss neu angemeldet werden (Einstellungen → Music Assistant → Anbieter → Neu verbinden), oder er drosselt gerade — dann eine Minute warten und auf Fortsetzen tippen.",
+      "mediaPlayerErrorProviderUnavailable": "{provider} ist in Music Assistant nicht verfügbar. Dort neu verbinden (Einstellungen → Music Assistant → {provider} → Neu verbinden), dann auf Fortsetzen tippen.",
       "noSongsAvailable": "Keine spielbaren Songs für diesen Anbieter mehr. Fortsetzen, um es erneut zu versuchen, oder Spiel beenden.",
       "resume": "Fortsetzen",
       "endGame": "Spiel beenden",

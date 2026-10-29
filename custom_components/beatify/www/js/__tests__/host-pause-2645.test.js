@@ -508,6 +508,25 @@ describe('#2645 strings exist in every locale', () => {
         }
     });
 
+    it.each(LOCALES)('%s has a single-cause provider-unavailable headline (#3339)', (code) => {
+        // When Music Assistant says the provider is not available, the headline
+        // names that cause only. The two-cause text offers rate limiting, and a
+        // host who reads "wait a minute" never reconnects the provider.
+        const pr = locale(code).admin.pauseRecovery;
+        const text = pr.mediaPlayerErrorProviderUnavailable;
+        expect(typeof text, code).toBe('string');
+        expect(text).toContain('{provider}');
+        expect(text).not.toBe(pr.mediaPlayerError);
+        // The two-cause text carries "a minute" in every language; this must not.
+        expect(text).not.toMatch(/minute|minuut|minuto|Minute|rate|dross|limit|drossel/i);
+    });
+
+    it('admin.js picks the provider-unavailable headline off last_error_kind (#3339)', () => {
+        const src = readFileSync(join(BEATIFY, 'www', 'js', 'admin.js'), 'utf8');
+        expect(src).toContain("data.last_error_kind === 'provider_unavailable'");
+        expect(src).toContain('admin.pauseRecovery.mediaPlayerErrorProviderUnavailable');
+    });
+
     it('leaves the pauseRecovery subtree intact', () => {
         // admin.pauseRecovery is an OBJECT. A string written to a key one
         // character away from it would take the #805 banner's whole message

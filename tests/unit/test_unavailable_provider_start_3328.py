@@ -174,6 +174,29 @@ async def test_the_first_refusal_pauses_with_the_provider_named():
 
 
 @pytest.mark.asyncio
+async def test_the_pause_state_carries_the_cause_for_the_headline_3339():
+    """The headline must not offer rate limiting when the cause is known.
+
+    The detail line names the provider, but the headline above it is picked by
+    the host's browser. It can only pick the single-cause wording if the state
+    says what the cause was.
+    """
+    gs = _lobby_with(_refusing_speaker())
+
+    assert await gs.start_round() is False
+
+    state = gs.get_state()
+    assert state["last_error_kind"] == "provider_unavailable"
+    assert state["provider"] == "apple_music"
+    # The cause travels to the host's phone (a player socket) as well.
+    from custom_components.beatify.server.serializers import (
+        _PLAYER_VISIBLE_PAUSED,
+    )
+
+    assert "last_error_kind" in _PLAYER_VISIBLE_PAUSED
+
+
+@pytest.mark.asyncio
 async def test_a_start_outlives_a_caller_that_hangs_up():
     """Home Assistant cancels the request handler when the client goes away.
     The start must finish regardless and announce its result to the room."""

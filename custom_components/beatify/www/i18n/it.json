@@ -606,6 +606,7 @@
       "title": "Partita in pausa",
       "mediaPlayerError": "La riproduzione non è partita per diverse canzoni di fila. Due cause frequenti: {provider} in Music Assistant ha bisogno di una nuova autenticazione (Impostazioni → Music Assistant → {provider} → Riconnetti), oppure {provider} sta limitando le richieste in questo momento — in tal caso aspetta un minuto e premi Riprendi.",
       "mediaPlayerErrorGeneric": "La riproduzione non è partita per diverse canzoni di fila. Due cause frequenti: il tuo servizio musicale in Music Assistant ha bisogno di una nuova autenticazione (Impostazioni → Music Assistant → il tuo servizio → Riconnetti), oppure sta limitando le richieste in questo momento — in tal caso aspetta un minuto e premi Riprendi.",
+      "mediaPlayerErrorProviderUnavailable": "{provider} non è disponibile in Music Assistant. Riconnettilo lì (Impostazioni → Music Assistant → {provider} → Riconnetti), poi premi Riprendi.",
       "noSongsAvailable": "Non restano canzoni riproducibili per questo servizio. Riprendi per ritentare oppure termina la partita.",
       "resume": "Riprendi",
       "endGame": "Termina la partita",

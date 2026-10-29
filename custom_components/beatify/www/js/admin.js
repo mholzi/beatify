@@ -3765,6 +3765,13 @@ function _renderPauseRecoveryBanner(data) {
         if (reason === 'no_songs_available') {
             msg = BeatifyI18n.t('admin.pauseRecovery.noSongsAvailable') ||
                 'No playable songs left for this provider. Resume to retry, or end the game.';
+        } else if (providerName && data.last_error_kind === 'provider_unavailable') {
+            // #3339: the cause is known (Music Assistant does not have this
+            // provider at all), so say only that. The two-cause text below
+            // offers rate limiting, and a host who reads that waits.
+            msg = BeatifyI18n.t('admin.pauseRecovery.mediaPlayerErrorProviderUnavailable') ||
+                '{provider} is not available in Music Assistant. Reconnect it there (Settings → Music Assistant → {provider} → Reconnect), then hit Resume.';
+            msg = msg.replace(/\{provider\}/g, providerName);
         } else if (providerName) {
             // #808 follow-up: name the actual provider so the user knows
             // which one to re-authenticate in Music Assistant.

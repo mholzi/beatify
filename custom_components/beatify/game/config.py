@@ -53,6 +53,8 @@ class GameStateConfig:
 
     # Error tracking
     last_error_detail: str = ""
+    # #3339: machine-readable cause behind last_error_detail ("" = unknown).
+    last_error_kind: str = ""
 
     # Mode flags
     closest_wins_mode: bool = False

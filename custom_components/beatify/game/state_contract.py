@@ -131,6 +131,7 @@ if TYPE_CHECKING:
         _previous_phase: GamePhase | None
         disconnected_admin_name: str | None
         last_error_detail: str
+        last_error_kind: str
         closest_wins_mode: bool
         rampup_order_enabled: bool
         sudden_death_mode: bool
