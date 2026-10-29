@@ -606,6 +606,7 @@
       "title": "Partie en pause",
       "mediaPlayerError": "La lecture n'a pas démarré sur plusieurs morceaux d'affilée. Deux causes fréquentes : {provider} dans Music Assistant doit être réauthentifié (Paramètres → Music Assistant → {provider} → Reconnecter), ou {provider} limite actuellement les requêtes — dans ce cas, attends une minute puis appuie sur Reprendre.",
       "mediaPlayerErrorGeneric": "La lecture n'a pas démarré sur plusieurs morceaux d'affilée. Deux causes fréquentes : ton fournisseur de musique dans Music Assistant doit être réauthentifié (Paramètres → Music Assistant → fournisseur → Reconnecter), ou il limite actuellement les requêtes — dans ce cas, attends une minute puis appuie sur Reprendre.",
+      "mediaPlayerErrorProviderUnavailable": "{provider} n'est pas disponible dans Music Assistant. Reconnecte-le là-bas (Paramètres → Music Assistant → {provider} → Reconnecter), puis appuie sur Reprendre.",
       "noSongsAvailable": "Plus aucune chanson lisible pour ce service. Reprends pour réessayer, ou termine la partie.",
       "resume": "Reprendre",
       "endGame": "Terminer la partie",

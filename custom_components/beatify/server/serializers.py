@@ -155,6 +155,7 @@ _PLAYER_VISIBLE_PAUSED = frozenset(
         # renders off this. It names a phase, never an answer.
         "paused_from",
         "last_error_detail",
+        "last_error_kind",
         "provider",
         "media_player",
     }

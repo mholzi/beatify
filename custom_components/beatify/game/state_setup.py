@@ -287,6 +287,7 @@ class GameSetupMixin(GameStateBase):
 
         # Reset error detail
         self.last_error_detail = ""
+        self.last_error_kind = ""
         # #2614: the #1936 consecutive-timeout budget belongs to ONE game.
         # It is not config-managed, so nothing above clears it — and
         # create_game does not route through _reset_game_internals. Without
