@@ -1255,8 +1255,8 @@ async def _validate_media_player(
     """Validate a speaker chosen after the game was created (#3153).
 
     Applies the checks ``StartGameView`` runs on its speaker: the native-twin
-    remap (#1627), existence, the platform and ``provider_spec.plays_on``
-    (#2713). Returns ``(entity_id, platform, error_response)``; the entity_id
+    remap (#1627), existence, ``unavailable`` (#3343), the platform and
+    ``provider_spec.plays_on`` (#2713). Returns ``(entity_id, platform, error_response)``; the entity_id
     is the remapped one. ``StartGameView`` keeps its own inline sequence so its
     order against the song-loading errors stays as it was.
     """
@@ -1272,6 +1272,19 @@ async def _validate_media_player(
                 400,
                 code="INVALID_REQUEST",
                 message_key="MEDIA_PLAYER_NOT_FOUND",
+            ),
+        )
+    if state.state == "unavailable":
+        # #3343: same code and details as StartGameView, so the admin shows
+        # one message for a powered-off speaker on every path.
+        return (
+            entity_id,
+            "unknown",
+            _json_error(
+                "Media player is unavailable",
+                400,
+                code=ERR_MEDIA_PLAYER_UNAVAILABLE,
+                details={"entity_id": entity_id},
             ),
         )
     entity_entry = er.async_get(hass).async_get(entity_id)

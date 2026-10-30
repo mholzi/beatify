@@ -37,11 +37,15 @@ def _lobby(provider: str):
 
 
 async def _switch(
-    state, entity_id: str, platform: str, twin_remap: dict[str, str] | None = None
+    state,
+    entity_id: str,
+    platform: str,
+    twin_remap: dict[str, str] | None = None,
+    speaker_state: str = "idle",
 ) -> tuple[int, dict[str, Any]]:
     hass = MagicMock()
     hass.data = {DOMAIN: {"game": state}}
-    hass.states.get.return_value = SimpleNamespace(state="idle", name="Speaker")
+    hass.states.get.return_value = SimpleNamespace(state=speaker_state, name="Speaker")
     registry = MagicMock()
     registry.async_get.return_value = MagicMock(platform=platform)
     request = MagicMock()
@@ -93,3 +97,18 @@ async def test_a_native_twin_is_remapped_to_the_ma_speaker():
 
     assert status == 200
     assert state.media_player == "media_player.kitchen_ma"
+
+
+@pytest.mark.asyncio
+async def test_an_unavailable_speaker_is_rejected_like_game_start():
+    """#3343: same code and details as StartGameView; the game keeps its speaker."""
+    state = _lobby("spotify")
+
+    status, body = await _switch(
+        state, "media_player.kitchen", "music_assistant", speaker_state="unavailable"
+    )
+
+    assert status == 400
+    assert body["error"] == "MEDIA_PLAYER_UNAVAILABLE"
+    assert body["entity_id"] == "media_player.kitchen"
+    assert state.media_player == "media_player.party"

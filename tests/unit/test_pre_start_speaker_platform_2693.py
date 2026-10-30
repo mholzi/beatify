@@ -250,3 +250,41 @@ class TestPreStartHookMovesBoth:
             assert isinstance(_selected_strategy(game_state), SonosStrategy)
             # The attribute — necessary, but on its own it proves nothing.
             assert game_state.platform == "sonos"
+
+    async def test_unavailable_stored_speaker_is_skipped_not_applied(
+        self, library_game
+    ):
+        """#3343: a powered-off stored speaker no longer replaces the game's one.
+
+        The hook falls back to the speaker the game was created on, so the
+        start is not blocked; the stored one is only not applied.
+        """
+        view, request, game_state, hass = library_game
+        await self._start(view, request)
+        hass.states.get.side_effect = lambda eid: MagicMock(
+            state="unavailable" if eid == SONOS_SPEAKER else "playing"
+        )
+        with (
+            patch(
+                "homeassistant.helpers.entity_registry.async_get",
+                return_value=_registry(),
+            ),
+            patch(
+                "custom_components.beatify.server.game_views."
+                "async_get_native_twin_remap",
+                new=AsyncMock(return_value={}),
+            ),
+            patch(
+                "custom_components.beatify.server.game_views."
+                "async_load_game_output_settings",
+                new=AsyncMock(return_value={"media_player": SONOS_SPEAKER}),
+            ),
+            patch(
+                "custom_components.beatify.server.game_views._check_speaker_platform",
+                return_value=None,
+            ),
+        ):
+            await game_state.pre_start_hook(game_state)
+
+        assert game_state.media_player == MA_SPEAKER
+        assert game_state.platform == "music_assistant"
