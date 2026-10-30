@@ -14,26 +14,201 @@
 // therefore survive any such round trip untouched. The runtime output is
 // unchanged. tests/unit/test_worker_ascii_only_2526.py enforces the rule.
 
-async function handleReportData(request, env, corsHeaders) {
-  let body;
+// ===========================================================================
+// Input hardening for the open Beatify routes (#2688).
+//
+// These routes stay unauthenticated on purpose: thousands of installed Home
+// Assistant clients call them and cannot be updated at once, and any secret
+// shipped in an open-source integration is public. So what is protected here is
+// what an issue can CONTAIN, not who may file one.
+// ===========================================================================
+const BE_MAX_BODY_CHARS = 16384;
+const BE_MAX_ARTIST = 200;
+const BE_MAX_SONG_TITLE = 200;
+const BE_MAX_REPORTER = 40;
+const BE_MAX_PLAYLIST_FILE = 300;
+const BE_MAX_PLAYLIST_NAME = 200;
+const BE_MAX_SPOTIFY_URL = 300;
+const BE_MAX_ISSUE_TITLE = 250; // GitHub rejects titles over 256 characters.
+const BE_MAX_SEARCH_TERMS = 150; // GitHub rejects search queries over 256.
+// C0/C1 controls, line separators and bidi overrides. A no-break space (real
+// artist credits contain them) is deliberately not in this set.
+// eslint-disable-next-line no-control-regex -- matching them is the point
+const BE_UNSAFE_CHARS = /[\u0000-\u001F\u007F-\u009F\u200E\u200F\u2028-\u202E\u2066-\u2069]/g;
+const BE_SPOTIFY_PLAYLIST_URL = /^https:\/\/open\.spotify\.com\/playlist\/[a-zA-Z0-9]+\/?(\?[A-Za-z0-9_.~%=&-]*)?$/;
+
+/** Parse a capped JSON body. Returns a plain object, or null if it is not one. */
+async function beReadJsonObject(request) {
+  const raw = await request.text();
+  if (raw.length > BE_MAX_BODY_CHARS) return null;
   try {
-    body = await request.json();
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
   } catch {
+    return null;
+  }
+}
+
+/** Cap by code point, so an emoji is never cut into half a surrogate pair. */
+function beCap(s, max) {
+  return Array.from(s).slice(0, max).join('');
+}
+
+function beClean(value, max) {
+  return beCap(String(value == null ? '' : value).replace(BE_UNSAFE_CHARS, ' ').trim(), max);
+}
+
+/** Text for an issue BODY. qzEsc covers mentions, #refs, tables and Markdown
+ *  links; this adds what it leaves open: raw HTML (an <img> renders), entities,
+ *  emphasis, bare-URL autolinks and GH-123 refs. Callers cap at 240 or less, so
+ *  qzEsc's own 500-unit slice can never cut an escape in half. */
+function beEsc(value, max) {
+  return qzEsc(beClean(value, max))
+    .replace(/&(?=#?\w+;)/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/[*_~]/g, '\\$&')
+    .replace(/:\/\//g, ':\u200B//')
+    .replace(/\bwww\./gi, (m) => `${m.slice(0, 3)}\u200B.`)
+    .replace(/\bGH-(?=\d)/gi, '$&\u200B');
+}
+
+/** Text for an issue TITLE. GitHub does not render Markdown there, so backslash
+ *  escapes would show up literally and "Song (Live)" would read "Song \(Live\)".
+ *  Only what is live in a title is touched: refs, mentions and code spans. */
+function beTitleText(value, max) {
+  return beClean(value, max)
+    .replace(/`/g, "'")
+    .replace(/@/g, '@\u200B')
+    .replace(/#(?=\d)/g, '#\u200B')
+    .replace(/\bGH-(?=\d)/gi, '$&\u200B');
+}
+
+/** Required song text: a non-blank string, or a number (hand-written custom
+ *  playlists are not schema-checked and may carry a title like 1979). */
+function beIsSongText(value) {
+  if (typeof value === 'number') return Number.isFinite(value);
+  return typeof value === 'string' && beClean(value, BE_MAX_ARTIST) !== '';
+}
+
+/** Returns the year as display text, or null if malformed. The range is wider
+ *  than the playlist schema (1900-2100) on purpose: this route exists to report
+ *  wrong years, so an absurd but well-formed one must still get through. */
+function beYearText(year) {
+  if (year === undefined || year === null) return '?';
+  if (typeof year === 'number') {
+    return Number.isInteger(year) && year >= 0 && year <= 9999 ? String(year) : null;
+  }
+  return typeof year === 'string' && /^\d{1,4}$/.test(year) ? year : null;
+}
+
+/** Returns the playlist file, or null if malformed. Installed clients send a
+ *  relative path or an absolute one (/config/beatify/playlists/...), on any OS,
+ *  with any file name, plus the fallbacks below. The value is rendered inside a
+ *  code span, so only what could leave that span or break the table is refused. */
+function bePlaylistFile(value) {
+  if (value === undefined || value === null) return 'unknown';
+  if (typeof value !== 'string') return null;
+  if (value === 'unknown' || value === 'library') return value;
+  if (Array.from(value).length > BE_MAX_PLAYLIST_FILE) return null;
+  if (beClean(value, BE_MAX_PLAYLIST_FILE) !== value) return null;
+  return /^[^`|<>"*?]+\.json$/.test(value) ? value : null;
+}
+
+function beReportTitle(artist, title) {
+  return beCap(`data: wrong year reported \u2014 ${artist} \u2013 ${title}`, BE_MAX_ISSUE_TITLE);
+}
+
+/** Find an open report of the same song from the same playlist file. Compares the
+ *  file name only, because the same playlist has a different absolute path on
+ *  each install. Fails open: an error here must never lose a player's report. */
+async function beFindOpenReport(env, issueTitle, artist, title, playlistFile) {
+  try {
+    const terms = beCap(
+      `${artist} ${title}`.replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim(),
+      BE_MAX_SEARCH_TERMS
+    );
+    const q = `repo:mholzi/beatify is:issue is:open label:data-quality in:title ${terms}`;
+    const res = await fetch(
+      `https://api.github.com/search/issues?per_page=30&q=${encodeURIComponent(q)}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${env.GITHUB_PAT}`,
+          'Accept': 'application/vnd.github+json',
+          'User-Agent': 'Beatify-Bot',
+        },
+      }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const fileName = playlistFile.split(/[\\/]/).pop();
+    return (data.items || []).find(
+      (item) => item.title === issueTitle && String(item.body || '').includes(`${fileName}\``)
+    ) || null;
+  } catch {
+    return null;
+  }
+}
+
+/** Only an image on Spotify's own CDN may be embedded in a public issue. */
+function beSpotifyThumbnail(value) {
+  if (typeof value !== 'string' || /[()\s]/.test(value)) return null;
+  try {
+    const parsed = new URL(value);
+    const onCdn = /(^|\.)(scdn\.co|spotifycdn\.com)$/.test(parsed.hostname);
+    return parsed.protocol === 'https:' && onCdn ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+async function handleReportData(request, env, corsHeaders) {
+  // No browser calls this route: the guest's phone talks to Home Assistant over
+  // a WebSocket and HA posts from the server, which always sends this type
+  // (aiohttp json=). Dropping CORS alone would not stop a web page from SENDING
+  // a form-encoded POST; requiring JSON forces a preflight, and that now fails.
+  const contentType = (request.headers.get('Content-Type') || '').toLowerCase();
+  if (!contentType.startsWith('application/json')) {
+    return Response.json({ success: false, error: 'INVALID_CONTENT_TYPE' }, { status: 415, headers: corsHeaders });
+  }
+  const body = await beReadJsonObject(request);
+  if (!body) {
     return Response.json({ success: false, error: 'INVALID_JSON' }, { status: 400, headers: corsHeaders });
   }
-  const { artist, title, year, playlist_file, reporter } = body;
-  if (!artist || !title) {
+  if (!beIsSongText(body.artist) || !beIsSongText(body.title)) {
     return Response.json({ success: false, error: 'MISSING_FIELDS' }, { status: 400, headers: corsHeaders });
   }
-  const issueTitle = `data: wrong year reported \u2014 ${artist} \u2013 ${title}`;
+  const yearText = beYearText(body.year);
+  const playlistFile = bePlaylistFile(body.playlist_file);
+  if (yearText === null || playlistFile === null) {
+    return Response.json({ success: false, error: 'INVALID_FIELDS' }, { status: 400, headers: corsHeaders });
+  }
+  if (body.reporter !== undefined && body.reporter !== null && typeof body.reporter !== 'string') {
+    return Response.json({ success: false, error: 'INVALID_FIELDS' }, { status: 400, headers: corsHeaders });
+  }
+  const songArtist = beEsc(body.artist, BE_MAX_ARTIST);
+  const songTitle = beEsc(body.title, BE_MAX_SONG_TITLE);
+  const reporter = beEsc(body.reporter, BE_MAX_REPORTER) || 'unknown';
+
+  const issueTitle = beReportTitle(
+    beTitleText(body.artist, BE_MAX_ARTIST),
+    beTitleText(body.title, BE_MAX_SONG_TITLE)
+  );
+  const existing = await beFindOpenReport(
+    env, issueTitle, beClean(body.artist, BE_MAX_ARTIST), beClean(body.title, BE_MAX_SONG_TITLE), playlistFile
+  );
+  if (existing) {
+    return Response.json({ success: true, existing: true, issue_number: existing.number }, { headers: corsHeaders });
+  }
+
   const issueBody = [
     '## Wrong Year Report', '', 'A player flagged incorrect data during a game.', '',
     '| Field | Value |', '|-------|-------|',
-    `| **Song** | ${artist} \u2013 ${title} |`,
-    `| **Year in playlist** | ${year ?? '?'} |`,
-    `| **Playlist file** | \`${playlist_file}\` |`,
+    `| **Song** | ${songArtist} \u2013 ${songTitle} |`,
+    `| **Year in playlist** | ${yearText} |`,
+    `| **Playlist file** | \`${playlistFile}\` |`,
     `| **Reported by** | ${reporter} |`, '',
-    '### Next steps', `Look up the correct release year and update \`${playlist_file}\`.`,
+    '### Next steps', `Look up the correct release year and update \`${playlistFile}\`.`,
     '', '---', '*Auto-reported by Beatify in-game data quality flag (Issue #911)*',
   ].join('\n');
   const ghRes = await fetch('https://api.github.com/repos/mholzi/beatify/issues', {
@@ -225,7 +400,11 @@ export default {
       }
     }
 
-    const corsHeaders = {
+    // /report-data has no browser caller, so it gets no CORS headers (#2688). The
+    // playlist-request route is called from www/js/playlist-requests.js on each
+    // host's own origin, which no allow-list can name, so it keeps the wildcard.
+    const isReportData = qzUrl.pathname.endsWith('/report-data');
+    const corsHeaders = isReportData ? {} : {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
@@ -238,16 +417,26 @@ export default {
     if (request.method !== 'POST') {
       return Response.json({ error: 'POST only' }, { status: 405, headers: corsHeaders });
     }
-    const url = new URL(request.url);
-    if (url.pathname.endsWith('/report-data')) {
-      return handleReportData(request, env, corsHeaders);
+    if (isReportData) {
+      try {
+        return await handleReportData(request, env, corsHeaders);
+      } catch (e) {
+        console.error('Worker error:', e);
+        return Response.json({ success: false, error: 'server_error' }, { status: 500 });
+      }
     }
 
     try {
-      const { spotify_url } = await request.json();
+      const requestBody = await beReadJsonObject(request);
+      const spotify_url = requestBody ? requestBody.spotify_url : null;
 
-      // Validate URL format
-      if (!/^https:\/\/open\.spotify\.com\/playlist\/[a-zA-Z0-9]+/.test(spotify_url)) {
+      // Validate URL format. The query stays allowed: Spotify's share links carry
+      // ?si=... or ?pi=..., and installed clients send them as pasted.
+      if (
+        typeof spotify_url !== 'string' ||
+        spotify_url.length > BE_MAX_SPOTIFY_URL ||
+        !BE_SPOTIFY_PLAYLIST_URL.test(spotify_url)
+      ) {
         return Response.json(
           { success: false, error: 'invalid_format', message: 'Invalid Spotify playlist URL format' },
           { status: 400, headers: corsHeaders }
@@ -268,8 +457,13 @@ export default {
       }
 
       const oembedData = await oembedRes.json();
-      const playlist_name = oembedData.title || 'Custom Playlist';
-      const thumbnail_url = oembedData.thumbnail_url || null;
+      // Whoever creates a public Spotify playlist chooses this name, so it is as
+      // untrusted as the request itself. Raw for the caller's own UI, escaped for
+      // the issue.
+      const display_name =
+        (typeof oembedData.title === 'string' && beClean(oembedData.title, BE_MAX_PLAYLIST_NAME)) || 'Custom Playlist';
+      const playlist_name = beTitleText(display_name, BE_MAX_PLAYLIST_NAME);
+      const thumbnail_url = beSpotifyThumbnail(oembedData.thumbnail_url);
 
       // Check for duplicate request
       const searchRes = await fetch(
@@ -285,7 +479,7 @@ export default {
           existing: true,
           issue_number: existing.number,
           issue_url: existing.html_url,
-          playlist_name: playlist_name,
+          playlist_name: display_name,
           message: 'This playlist was already requested'
         }, { headers: corsHeaders });
       }
@@ -293,7 +487,7 @@ export default {
       // Create GitHub issue
       const issueBody = `## \u{1F3B5} Playlist Request
 
-**Playlist:** ${playlist_name}
+**Playlist:** ${beEsc(display_name, BE_MAX_PLAYLIST_NAME)}
 **Spotify URL:** ${spotify_url}
 **Requested:** ${new Date().toISOString()}
 
@@ -343,7 +537,7 @@ ${thumbnail_url ? `![Playlist Cover](${thumbnail_url})` : ''}
         success: true,
         issue_number: issue.number,
         issue_url: issue.html_url,
-        playlist_name: playlist_name,
+        playlist_name: display_name,
         thumbnail_url: thumbnail_url,
         message: 'Request submitted successfully'
       }, { headers: corsHeaders });
