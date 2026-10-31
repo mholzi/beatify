@@ -5,7 +5,7 @@
  * comes from the state broadcast. The row and the sheet are host-only, there is
  * no row on the last reveal, and the room's notice names only what changed.
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { locale, readSource } from './helpers/js-source.js';
 import { translator } from './helpers/mini-dom.js';
 
@@ -13,7 +13,7 @@ global.window = global.window || {};
 await import('../utils.js');
 const {
     setupRoundSettings, renderRoundSettings, closeRoundSettings,
-    roundSettingsRowText, roundSettingsAction,
+    roundSettingsRowText, roundSettingsAction, revealSecondsLeft,
 } = await import('../round-settings.js');
 const U = global.window.BeatifyUtils;
 
@@ -52,7 +52,8 @@ function makeDoc() {
     }
     ['round-settings-row', 'round-settings-row-text', 'round-settings-sheet', 'backdrop',
         'round-settings-timer', 'round-settings-difficulty', 'round-settings-difficulty-block',
-        'round-settings-hint', 'round-settings-foot', 'round-settings-next', 'next']
+        'round-settings-hint', 'round-settings-foot', 'round-settings-next',
+        'round-settings-next-count', 'next']
         .forEach(node);
     byId['round-settings-sheet'].classList.add('hidden');
     doc.getElementById = (id) => byId[id] || null;
@@ -168,6 +169,78 @@ describe('#2586 row and sheet', () => {
         doc.byId['round-settings-next'].click();
         expect(clicked).toBe(1);
         expect(sheetHidden()).toBe(true);
+    });
+});
+
+describe('#2586 countdown on the sheet\'s Next Round button', () => {
+    const START = 1_000_000;
+    let doc;
+    const count = () => doc.byId['round-settings-next-count'];
+    const counting = { ...REVEAL, reveal_auto_advance: 30, reveal_started_at: START };
+
+    beforeEach(() => {
+        vi.useFakeTimers();
+        vi.setSystemTime(START);
+        setLocale('en');
+        doc = makeDoc();
+        setupRoundSettings({ doc, send: () => {}, nextButtonId: 'next' });
+    });
+    afterEach(() => {
+        closeRoundSettings();
+        vi.useRealTimers();
+    });
+
+    it('counts down while the sheet is open and stops at 0', () => {
+        renderRoundSettings(counting, true);
+        doc.byId['round-settings-row'].click();
+        expect(count().classList.contains('hidden')).toBe(false);
+        expect(count().textContent).toBe('30');
+
+        vi.advanceTimersByTime(12_000);
+        expect(count().textContent).toBe('18');
+
+        vi.advanceTimersByTime(60_000);
+        expect(count().textContent).toBe('0');
+        expect(vi.getTimerCount()).toBe(0);
+    });
+
+    it('a broadcast mid-count does not stack timers or restart the seconds', () => {
+        renderRoundSettings(counting, true);
+        doc.byId['round-settings-row'].click();
+        vi.advanceTimersByTime(5_000);
+        renderRoundSettings(counting, true);
+        renderRoundSettings(counting, true);
+        expect(vi.getTimerCount()).toBe(1);
+        expect(count().textContent).toBe('25');
+    });
+
+    it('stays hidden with auto-advance off and when the server holds the reveal', () => {
+        renderRoundSettings(REVEAL, true);
+        doc.byId['round-settings-row'].click();
+        expect(count().classList.contains('hidden')).toBe(true);
+        expect(vi.getTimerCount()).toBe(0);
+
+        renderRoundSettings(counting, true);
+        expect(count().classList.contains('hidden')).toBe(false);
+        renderRoundSettings({ ...counting, idle_halt: true }, true);
+        expect(count().classList.contains('hidden')).toBe(true);
+        expect(vi.getTimerCount()).toBe(0);
+    });
+
+    it('does not tick behind a closed sheet', () => {
+        renderRoundSettings(counting, true);
+        expect(vi.getTimerCount()).toBe(0);
+        doc.byId['round-settings-row'].click();
+        expect(vi.getTimerCount()).toBe(1);
+        closeRoundSettings();
+        expect(vi.getTimerCount()).toBe(0);
+    });
+
+    it('reads the same fields as the existing countdowns', () => {
+        expect(revealSecondsLeft({ reveal_auto_advance: 30, reveal_started_at: 1000 }, 11_500)).toBe(20);
+        expect(revealSecondsLeft({ reveal_auto_advance: 0, reveal_started_at: 1000 }, 1000)).toBeNull();
+        expect(revealSecondsLeft({ reveal_auto_advance: 30 }, 1000)).toBeNull();
+        expect(revealSecondsLeft(null, 1000)).toBeNull();
     });
 });
 

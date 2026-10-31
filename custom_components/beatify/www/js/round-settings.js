@@ -6,9 +6,11 @@
  * once (the action goes out, the state broadcast repaints); there is no draft
  * and no save button, the same way the Sudden Death toggle works.
  *
- * The reveal's auto-advance countdown keeps running behind the sheet, and the
- * sheet closes when the phase leaves REVEAL. Holding the room up for the host
- * was the rejected alternative.
+ * The reveal's auto-advance countdown keeps running while the sheet is open, and
+ * the sheet closes when the phase leaves REVEAL. Holding the room up for the
+ * host was the rejected alternative. The countdown itself sits at the top of a
+ * long reveal, or on a control bar the sheet covers, so the sheet's own Next
+ * Round button carries the seconds.
  *
  * Both host surfaces import this: `admin.js` on the admin browser and
  * `player-reveal.js` on the phone of a host who plays along. Same markup in
@@ -53,8 +55,49 @@ export function roundSettingsAction(field, value) {
     return action;
 }
 
+/**
+ * Whole seconds until the reveal auto-advances, from the same three fields the
+ * admin's Next button and the phone's ring read. Null when nothing is counting:
+ * auto-advance off, or the server holding the reveal (`idle_halt`).
+ */
+export function revealSecondsLeft(data, now) {
+    var advance = (data && data.reveal_auto_advance) || 0;
+    var startedAt = data && data.reveal_started_at;
+    if (advance <= 0 || !startedAt || data.idle_halt) return null;
+    return Math.max(0, Math.ceil((startedAt + advance * 1000 - now) / 1000));
+}
+
 var _doc = null;
 var _returnFocus = null;
+var _lastData = null;
+var _countTick = null;
+
+function _paintCount() {
+    var count = _doc.getElementById('round-settings-next-count');
+    if (!count) return null;
+    var seconds = revealSecondsLeft(_lastData, Date.now());
+    count.classList.toggle('hidden', seconds === null);
+    count.textContent = seconds === null ? '' : String(seconds);
+    return seconds;
+}
+
+function _stopCount() {
+    if (_countTick !== null) {
+        clearInterval(_countTick);
+        _countTick = null;
+    }
+}
+
+/** Ticks only while the sheet is open, and stops at 0, as on the admin's button. */
+function _syncCount() {
+    _stopCount();
+    if (!_isOpen()) return;
+    var seconds = _paintCount();
+    if (!seconds) return;
+    _countTick = setInterval(function () {
+        if (!_paintCount()) _stopCount();
+    }, 500);
+}
 
 function _sheet() {
     return _doc ? _doc.getElementById('round-settings-sheet') : null;
@@ -112,10 +155,12 @@ function _openSheet() {
     var target = sheet.querySelector('.round-settings-chip.chip--active')
         || sheet.querySelector('.round-settings-chip');
     if (target) target.focus();
+    _syncCount();
 }
 
 /** Close the sheet if it is open. Safe to call from any phase, on any page. */
 export function closeRoundSettings() {
+    _stopCount();
     if (!_isOpen()) return;
     _sheet().classList.add('hidden');
     if (_returnFocus && _returnFocus.focus && _returnFocus.isConnected) {
@@ -183,6 +228,7 @@ export function setupRoundSettings(opts) {
 export function renderRoundSettings(data, visible) {
     var doc = _doc;
     if (!doc) return;
+    _lastData = data;
     var row = doc.getElementById('round-settings-row');
     var settings = visible && data ? data.next_round_settings : null;
     row.classList.toggle('hidden', !settings);
@@ -210,4 +256,5 @@ export function renderRoundSettings(data, visible) {
         'Applies from round {round}. Scores so far stay.',
         { round: (data.round || 0) + 1 }
     );
+    _syncCount();
 }

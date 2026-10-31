@@ -18884,6 +18884,18 @@ body.theme-dark .your-result-stats .stat-value {
     font-weight: 600;
     color: var(--color-accent-secondary);
 }
+.round-settings-next__count {
+    display: inline-block;
+    min-width: 28px;
+    margin-left: var(--space-xs);
+    padding: 0 6px;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+.round-settings-next__count.hidden { display: none; }
 .round-settings-row:focus-visible,
 .chip.round-settings-chip:focus-visible,
 .round-settings-sheet__card .btn:focus-visible {
