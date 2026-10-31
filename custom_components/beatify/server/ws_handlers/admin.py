@@ -23,6 +23,7 @@ from custom_components.beatify.const import (
     HOST_PAUSE_REASONS,
     MAX_REMATCH_PLAYLISTS,
     MIN_PLAYERS,
+    STALE_NEXT_ROUND_WINDOW_SECONDS,
     VOID_ROUND_REASONS,
 )
 from custom_components.beatify.game.playlist import async_load_songs_from_paths
@@ -348,6 +349,21 @@ async def admin_next_round(
 ) -> None:
     """Handle admin next_round action."""
     if game_state.phase == GamePhase.PLAYING:
+        # #3340: a next_round aimed at the previous round's REVEAL can land just
+        # after the auto-advance started this round (or a host double-taps).
+        # Revealing now would end a round that is only milliseconds old.
+        started = game_state.round_start_time
+        if started is not None:
+            elapsed = game_state.current_time() - started
+            if 0 <= elapsed < STALE_NEXT_ROUND_WINDOW_SECONDS:
+                _LOGGER.info(
+                    "Ignoring stale next_round: round %d started %.0f ms ago "
+                    "(window %.1f s)",
+                    game_state.round,
+                    elapsed * 1000,
+                    STALE_NEXT_ROUND_WINDOW_SECONDS,
+                )
+                return
         await game_state.end_round()
     elif game_state.phase == GamePhase.REVEAL:
         # #1180 Phase 4: finalize an open title/artist vote window (apply host

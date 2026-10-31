@@ -170,6 +170,11 @@ async def _call(hass, service: str, data: dict | None = None, user_id=None):
         data=data or {},
         context=SimpleNamespace(user_id=user_id),
     )
+    game_state = hass.data.get(DOMAIN, {}).get("game")
+    if game_state is not None and game_state.round_start_time is not None:
+        # #3340: a next_round in the first seconds of a round is treated as
+        # stale. These tests drive rounds back to back, so age the round first.
+        game_state.round_start_time -= 10
     await hass.services.handlers[(DOMAIN, service)](call)
 
 
