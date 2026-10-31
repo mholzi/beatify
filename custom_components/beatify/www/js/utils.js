@@ -598,6 +598,40 @@ window.BeatifyUtils = (function() {
         return seconds;
     }
 
+    /**
+     * The room notice after the host changed timer or difficulty (#2586).
+     *
+     * Names only what changed; the server leaves the other half out of
+     * `round_settings_notice`. Lives here because the phone and the TV both
+     * load this file, and the TV bundle cannot import a module.
+     *
+     * @param {?Object} notice - `round_settings_notice` from the state payload
+     * @param {boolean} long - TV wording ("30 seconds", with the points)
+     * @returns {string} the chip text, or '' when there is nothing to say
+     */
+    function roundSettingsNoticeText(notice, long) {
+        if (!notice) return '';
+        var parts = [];
+        if (notice.round_duration) {
+            parts.push(long
+                ? t('admin.roundSettingsNoticeSeconds', { seconds: notice.round_duration })
+                : notice.round_duration + 's');
+        }
+        if (notice.difficulty) {
+            var labels = { easy: t('admin.easy'), normal: t('admin.normal'), hard: t('admin.hard') };
+            var label = labels[notice.difficulty] || notice.difficulty;
+            parts.push(long
+                ? t('admin.roundSettingsNoticeBands', {
+                    difficulty: label,
+                    points: notice.close_points,
+                    range: notice.close_range
+                })
+                : label);
+        }
+        if (!parts.length) return '';
+        return t('admin.roundSettingsNotice', { value: parts.join(' · ') });
+    }
+
     /** How many deviations the sentence may name before it stops being one glance. */
     var LOBBY_BRIEF_MAX_NAMED = 3;
 
@@ -943,6 +977,9 @@ window.BeatifyUtils = (function() {
     return {
         // Debug
         debug: debug,
+
+        // Round settings room notice (#2586)
+        roundSettingsNoticeText: roundSettingsNoticeText,
 
         // Leaderboard (#1765)
         hydrateLeaderboard: hydrateLeaderboard,

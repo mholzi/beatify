@@ -23,6 +23,7 @@ import {
     REACTION_THROTTLE_SECONDS,
     REVEAL_AUTO_ADVANCE_OPTIONS,
     SAMPLE_DURATION_OPTIONS,
+    ROUND_TIMER_OPTIONS,
     POINTS_EXACT,
     POINTS_WRONG,
     DIFFICULTY_DEFAULT,
@@ -124,6 +125,10 @@ describe('game-constants.js mirrors const.py', () => {
 
     it('mirrors SAMPLE_DURATION_OPTIONS (#3152)', () => {
         expect(SAMPLE_DURATION_OPTIONS).toEqual(pyIntSeq('SAMPLE_DURATION_OPTIONS'));
+    });
+
+    it('mirrors ROUND_TIMER_OPTIONS (#2586)', () => {
+        expect(ROUND_TIMER_OPTIONS).toEqual(pyIntSeq('ROUND_TIMER_OPTIONS'));
     });
 
     it('mirrors VOID_ROUND_REASONS (#2646)', () => {

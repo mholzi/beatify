@@ -1495,6 +1495,11 @@
                              after it (carried over from option B). -->
                         <p id="admin-encore-hint" class="encore-hint"></p>
                     </div>
+                    <!-- #2586: what the next round runs with; a tap opens the sheet. -->
+                    <button id="round-settings-row" type="button" class="round-settings-row hidden">
+                        <span id="round-settings-row-text"></span>
+                        <span class="round-settings-row__change" data-i18n="admin.roundSettingsChange">Change</span>
+                    </button>
                     <div class="reveal-admin-buttons">
                         <button id="admin-next-round" class="btn btn-primary btn-large btn-full-width" data-i18n="admin.nextRound">Next Round</button>
                     </div>
@@ -1596,6 +1601,29 @@
          The subtitles are filled in from the server's `admin_round_end_preview`
          at open time, so the consequences are named with real numbers before
          they happen. The reason chips are optional and record only. -->
+    <!-- #2586: "Change for the next round". Same markup in admin.html and
+         player.html; js/round-settings.js paints the chips and the texts. -->
+    <div id="round-settings-sheet" class="modal round-settings-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="round-settings-title">
+        <div class="modal-backdrop"></div>
+        <div class="round-settings-sheet__card">
+            <h2 id="round-settings-title" data-i18n="admin.roundSettingsTitle">Change for the next round</h2>
+            <div>
+                <div class="round-settings-label" data-i18n="admin.roundSettingsTime">Time per round</div>
+                <div id="round-settings-timer" class="round-settings-chips"></div>
+            </div>
+            <div id="round-settings-difficulty-block">
+                <div class="round-settings-label" data-i18n="admin.difficulty">Difficulty</div>
+                <div id="round-settings-difficulty" class="round-settings-chips"></div>
+                <p id="round-settings-hint" class="round-settings-hint"></p>
+            </div>
+            <p id="round-settings-foot" class="round-settings-foot"></p>
+            <button id="round-settings-next" type="button" class="btn btn-primary btn-full-width">
+                <span data-i18n="admin.nextRound">Next Round</span>
+                <span id="round-settings-next-count" class="round-settings-next__count hidden" role="timer"></span>
+            </button>
+        </div>
+    </div>
+
     <div id="round-end-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="round-end-title">
         <div class="modal-backdrop"></div>
         <div class="modal-content round-end-card">

@@ -88,6 +88,12 @@ export function normalizeSampleDuration(sample, roundDuration) {
 }
 
 /**
+ * Mirror of `ROUND_TIMER_OPTIONS` in const.py: what the host can switch the
+ * round timer to between two rounds (#2586), in seconds.
+ */
+export const ROUND_TIMER_OPTIONS = [30, 45, 60];
+
+/**
  * Mirror of `VOID_ROUND_REASONS` in const.py: the optional reason chips under
  * "Do not score it" on the host's end-round card (#2646). Order is display
  * order. The server drops a reason it does not recognise, so a chip written out

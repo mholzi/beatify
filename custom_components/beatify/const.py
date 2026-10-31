@@ -24,6 +24,9 @@ SUDDEN_DEATH_MIN_PLAYERS = 3
 DEFAULT_ROUND_DURATION = 45  # seconds
 ROUND_DURATION_MIN = 15  # seconds (Story 13.1)
 ROUND_DURATION_MAX = 60  # seconds (Story 13.1)
+# #2586: what the host can switch the round timer to between two rounds.
+# www/js/game-constants.js mirrors the tuple for the chips.
+ROUND_TIMER_OPTIONS: tuple[int, ...] = (30, 45, 60)  # seconds
 # #3152: how long the song plays in a round, separately from how long the
 # players have to answer. 0 means "the whole round" (the behaviour before the
 # setting existed); otherwise one of these, and strictly shorter than the

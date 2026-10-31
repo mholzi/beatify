@@ -285,6 +285,9 @@ class GameStateSerializer:
         """Populate PLAYING-phase fields."""
         state["join_url"] = gs.join_url
         state["round"] = gs.round
+        # #2586: set for the one round after the host changed timer/difficulty,
+        # so nobody wonders why the clock looks different. None otherwise.
+        state["round_settings_notice"] = gs.round_settings_notice
         # total_rounds is in the base payload since #2647 — every phase gets it.
         state["deadline"] = gs.deadline
         # Client clocks skew: a device ~20s off displayed "20s remaining" at
@@ -406,6 +409,9 @@ class GameStateSerializer:
         # #3323: what a tap would really add (a short reserve gives fewer),
         # so "finish line to {total_rounds + encore_rounds}" is the tap result.
         state["encore_rounds"] = gs.encore_offer_rounds()
+        # #2586: the host's "next round" row. Host-only, like the encore: the
+        # room hears about a change when it lands, not while it is being made.
+        state["next_round_settings"] = gs.next_round_settings()
         # #2746: wer zu dieser Runde zurueckgekommen ist. Eine Zeile auf dem
         # Fernseher, damit der Raum versteht, warum sich die Rangliste bewegt
         # hat — ohne sie sieht ein wieder auftauchender Name nach einem

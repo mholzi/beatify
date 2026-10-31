@@ -15,6 +15,8 @@ import {
 import { renderArtistReveal, renderMovieReveal } from './player-game.js';
 // #2646: "this round does not count" banner, shared with admin.js.
 import { renderVoidedBanner } from './round-end-choice.js';
+// #2586: the row and sheet for timer and difficulty, shared with admin.js.
+import { setupRoundSettings, renderRoundSettings } from './round-settings.js';
 
 var utils = window.BeatifyUtils || {};
 
@@ -427,6 +429,7 @@ export function updateRevealView(data) {
     var adminControls = document.getElementById('reveal-admin-controls');
     var nextRoundBtn = document.getElementById('next-round-btn');
     renderPhoneEncoreOffer(data, isHost);
+    renderRoundSettings(data, isHost);
     if (adminControls && isHost) {
         adminControls.classList.remove('hidden');
 
@@ -2183,6 +2186,16 @@ function closeSheet(id) {
  * Called once from player-core's initAll via setupRevealControls.
  */
 export function setupRevealSheets() {
+    setupRoundSettings({
+        doc: document,
+        send: function(action) {
+            if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+                state.ws.send(JSON.stringify(action));
+            }
+        },
+        nextButtonId: 'next-round-btn'
+    });
+
     var ptsBtn = document.getElementById('points-breakdown-btn');
     if (ptsBtn) {
         ptsBtn.addEventListener('click', function() {

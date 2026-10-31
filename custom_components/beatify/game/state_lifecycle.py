@@ -635,6 +635,9 @@ class RoundLifecycleMixin(GameStateBase):
         self.last_round = (
             self.total_rounds > 1 and self._playlist_manager.get_remaining_count() <= 1
         )
+        # #2586: same reasoning as `last_round` above. An aborted start leaves
+        # the host's picks parked and the reveal's settings untouched.
+        self.apply_pending_round_settings()
         # #2503: the encore offer belongs to the reveal that preceded this
         # round and to no other moment. Closing it here is what makes the
         # finale final — the whole reason this option was chosen over a chip on

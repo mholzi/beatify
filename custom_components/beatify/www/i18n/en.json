@@ -905,7 +905,14 @@
     "guestsSectionPlaying": "In the game",
     "guestsSectionSatOut": "Sitting out",
     "guestsHost": "Host",
-    "guestsFooter": "Guests who sit out keep their points and can tap “I'm back” themselves."
+    "guestsFooter": "Guests who sit out keep their points and can tap “I'm back” themselves.",
+    "roundSettingsChange": "Change",
+    "roundSettingsTitle": "Change for the next round",
+    "roundSettingsTime": "Time per round",
+    "roundSettingsFoot": "Applies from round {round}. Scores so far stay.",
+    "roundSettingsNotice": "⏱ Now {value}",
+    "roundSettingsNoticeSeconds": "{seconds} seconds",
+    "roundSettingsNoticeBands": "{difficulty}: {points} points within ±{range} years"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -1236,7 +1243,9 @@
       "LIBRARY_GENERATION_FAILED": "Library playlist generation failed: {detail}",
       "LIBRARY_POOL_MISSING": "Your library hasn't been scanned yet. Open Settings and run 'Scan library' first (this takes a while on the first run).",
       "LIBRARY_POOL_EMPTY": "No songs in your library have a verified release year yet at this strictness. Scan again to verify more songs, or relax the \"Year accuracy\" setting.",
-      "PLATFORM_NOT_SUPPORTED": "Media player platform not supported"
+      "PLATFORM_NOT_SUPPORTED": "Media player platform not supported",
+      "ROUND_SETTINGS_REVEAL_ONLY": "Round settings can only change between two rounds",
+      "INVALID_ROUND_SETTINGS": "Those round settings are not available"
     }
   },
   "highlights": {

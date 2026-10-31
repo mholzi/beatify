@@ -1307,6 +1307,17 @@
             }
         }
 
+        // #2586: the larger notice, for the one round after the host changed
+        // timer or difficulty.
+        var settingsNotice = document.getElementById('dashboard-round-settings-notice');
+        if (settingsNotice) {
+            var settingsNoticeText = utils.roundSettingsNoticeText
+                ? utils.roundSettingsNoticeText(data.round_settings_notice, true)
+                : '';
+            settingsNotice.textContent = settingsNoticeText;
+            settingsNotice.classList.toggle('hidden', !settingsNoticeText);
+        }
+
         // Update album art (blurred - AC 10.4.3)
         // #1767: unchanged-src short-circuit (mirrors handleMetadataUpdate +
         // player-game.js/player-reveal.js). renderPlayingView runs on EVERY changed
