@@ -504,6 +504,8 @@
                          only the host's own button changed; to everyone else the
                          music just cut out while the timer kept running, which
                          reads as a failure. -->
+                    <!-- #2586: one round long, after the host changed the settings. -->
+                    <span id="round-settings-notice" class="arc-chip arc-chip--notice hidden"></span>
                     <span id="song-stopped-chip" class="arc-chip arc-chip--stopped hidden">
                         <span aria-hidden="true">⏹</span>
                         <span data-i18n="game.songStoppedChip">Song stopped — keep guessing</span>
@@ -942,6 +944,11 @@
                         </button>
                         <p id="player-encore-hint" class="encore-hint"></p>
                     </div>
+                    <!-- #2586: what the next round runs with; a tap opens the sheet. -->
+                    <button id="round-settings-row" type="button" class="round-settings-row hidden">
+                        <span id="round-settings-row-text"></span>
+                        <span class="round-settings-row__change" data-i18n="admin.roundSettingsChange">Change</span>
+                    </button>
                     <div class="reveal-admin-buttons">
                         <button id="invite-players-btn" class="invite-btn" type="button"
                                 aria-label="Invite players to join the game">
@@ -1377,6 +1384,26 @@
         </div>
     </div>
 
+
+    <!-- #2586: "Change for the next round". Same markup in admin.html and
+         player.html; js/round-settings.js paints the chips and the texts. -->
+    <div id="round-settings-sheet" class="modal round-settings-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="round-settings-title">
+        <div class="modal-backdrop"></div>
+        <div class="round-settings-sheet__card">
+            <h2 id="round-settings-title" data-i18n="admin.roundSettingsTitle">Change for the next round</h2>
+            <div>
+                <div class="round-settings-label" data-i18n="admin.roundSettingsTime">Time per round</div>
+                <div id="round-settings-timer" class="round-settings-chips"></div>
+            </div>
+            <div id="round-settings-difficulty-block">
+                <div class="round-settings-label" data-i18n="admin.difficulty">Difficulty</div>
+                <div id="round-settings-difficulty" class="round-settings-chips"></div>
+                <p id="round-settings-hint" class="round-settings-hint"></p>
+            </div>
+            <p id="round-settings-foot" class="round-settings-foot"></p>
+            <button id="round-settings-next" type="button" class="btn btn-primary btn-full-width" data-i18n="admin.nextRound">Next Round</button>
+        </div>
+    </div>
 
     <!-- #2646: "End round N" — the question Next asks when it is pressed while
          the round is still running. Three exits: score it (what Next always

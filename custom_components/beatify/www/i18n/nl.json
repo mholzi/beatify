@@ -905,7 +905,14 @@
     "guestsSectionPlaying": "In het spel",
     "guestsSectionSatOut": "Zit erbuiten",
     "guestsHost": "Host",
-    "guestsFooter": "Wie erbuiten zit, houdt zijn punten en kan zelf op ‘Ik ben terug’ tikken."
+    "guestsFooter": "Wie erbuiten zit, houdt zijn punten en kan zelf op ‘Ik ben terug’ tikken.",
+    "roundSettingsChange": "Wijzigen",
+    "roundSettingsTitle": "Wijzigen voor de volgende ronde",
+    "roundSettingsTime": "Tijd per ronde",
+    "roundSettingsFoot": "Geldt vanaf ronde {round}. Behaalde punten blijven staan.",
+    "roundSettingsNotice": "⏱ Nu {value}",
+    "roundSettingsNoticeSeconds": "{seconds} seconden",
+    "roundSettingsNoticeBands": "{difficulty}: {points} punten binnen ±{range} jaar"
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -1236,7 +1243,9 @@
       "LIBRARY_GENERATION_FAILED": "Het genereren van de afspeellijst uit de bibliotheek is mislukt: {detail}",
       "LIBRARY_POOL_MISSING": "Je bibliotheek is nog niet gescand. Open de instellingen en voer eerst ‘Bibliotheek scannen’ uit (de eerste keer duurt dat even).",
       "LIBRARY_POOL_EMPTY": "Geen enkel nummer in je bibliotheek heeft bij deze striktheid al een geverifieerd uitgavejaar. Scan opnieuw om meer nummers te verifiëren of versoepel de instelling ‘Nauwkeurigheid van het jaar’.",
-      "PLATFORM_NOT_SUPPORTED": "Mediaspelerplatform wordt niet ondersteund"
+      "PLATFORM_NOT_SUPPORTED": "Mediaspelerplatform wordt niet ondersteund",
+      "ROUND_SETTINGS_REVEAL_ONLY": "Ronde-instellingen kunnen alleen tussen twee rondes veranderen",
+      "INVALID_ROUND_SETTINGS": "Die ronde-instellingen zijn niet beschikbaar"
     }
   },
   "highlights": {

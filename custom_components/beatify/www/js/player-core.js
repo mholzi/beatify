@@ -44,6 +44,7 @@ import {
     showIntroSplashModal, hideIntroSplashModal
 } from './player-game.js';
 
+import { closeRoundSettings } from './round-settings.js';
 import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown, startRevealStaging } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
@@ -758,6 +759,8 @@ function handleServerMessage(data) {
     var nameInput = document.getElementById('name-input');
 
     if (data.type === 'state') {
+        // #2586: the sheet does not outlive its reveal.
+        if (data.phase !== 'REVEAL') closeRoundSettings();
         // #1765: the server sends a slim in-round leaderboard ({rank, name,
         // rank_change}). Re-attach each player's score/streak/connected/… from
         // data.players by name once, here (into a shallow copy), so every

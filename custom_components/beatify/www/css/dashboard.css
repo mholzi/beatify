@@ -3900,3 +3900,20 @@ body.join-corner-open #dashboard-reveal {
         animation: none;
     }
 }
+
+/* #2586: the room notice after the host changed timer or difficulty. */
+.dashboard-round-settings-notice {
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 10px 22px;
+    border: 1px solid var(--color-warning-alt, #ff6600);
+    border-radius: 999px;
+    background: rgba(255, 102, 0, 0.1);
+    color: var(--color-warning-alt, #ff6600);
+    font-family: 'Inter', var(--font-body, system-ui), sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+.dashboard-round-settings-notice.hidden { display: none; }

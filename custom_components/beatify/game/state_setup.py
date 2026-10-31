@@ -309,6 +309,9 @@ class GameSetupMixin(GameStateBase):
         # rematch path does not come through here, the admin page does) would
         # otherwise inherit the previous game's open window.
         self._encore_window = False
+        # #2586: picks parked on the old game's last reveal die with that game.
+        self._pending_round_settings = {}
+        self.round_settings_notice = None
         self._returned_this_round: list[str] = []
         self.pause_reason = None
         self._previous_phase = None
@@ -406,6 +409,10 @@ class GameSetupMixin(GameStateBase):
         service refs (_stats_service, _on_round_end, _on_metadata_update),
         or volume_level (caller's responsibility).
         """
+        # #2586: picks parked on the last reveal never landed, so they do not
+        # carry into a rematch. What did land is a game option and stays.
+        self._pending_round_settings = {}
+        self.round_settings_notice = None
         # #2638: the admin spectator WebSocket is an aiohttp socket the server
         # opens; it used to be de-referenced here. GameState no longer holds
         # it, so instead we tell whoever registered — in production

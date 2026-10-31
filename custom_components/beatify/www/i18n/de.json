@@ -905,7 +905,14 @@
     "guestsSectionPlaying": "Im Spiel",
     "guestsSectionSatOut": "Sitzt aus",
     "guestsHost": "Gastgeber",
-    "guestsFooter": "Ausgesetzte behalten ihre Punkte und können selbst „Ich bin wieder da“ tippen."
+    "guestsFooter": "Ausgesetzte behalten ihre Punkte und können selbst „Ich bin wieder da“ tippen.",
+    "roundSettingsChange": "Ändern",
+    "roundSettingsTitle": "Für die nächste Runde ändern",
+    "roundSettingsTime": "Zeit pro Runde",
+    "roundSettingsFoot": "Gilt ab Runde {round}. Bisherige Punkte bleiben.",
+    "roundSettingsNotice": "⏱ Jetzt {value}",
+    "roundSettingsNoticeSeconds": "{seconds} Sekunden",
+    "roundSettingsNoticeBands": "{difficulty}: {points} Punkte bei ±{range} Jahren"
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
@@ -1236,7 +1243,9 @@
       "LIBRARY_GENERATION_FAILED": "Die Playlist aus deiner Bibliothek konnte nicht erstellt werden: {detail}",
       "LIBRARY_POOL_MISSING": "Deine Bibliothek wurde noch nicht gescannt. Öffne die Einstellungen und starte zuerst „Bibliothek scannen“ (beim ersten Mal dauert das eine Weile).",
       "LIBRARY_POOL_EMPTY": "In deiner Bibliothek hat bei dieser Strenge noch kein Song ein geprüftes Erscheinungsjahr. Scanne erneut, um weitere Songs zu prüfen, oder lockere die „Jahres-Genauigkeit“.",
-      "PLATFORM_NOT_SUPPORTED": "Diese Mediaplayer-Plattform wird nicht unterstützt"
+      "PLATFORM_NOT_SUPPORTED": "Diese Mediaplayer-Plattform wird nicht unterstützt",
+      "ROUND_SETTINGS_REVEAL_ONLY": "Die Rundeneinstellungen lassen sich nur zwischen zwei Runden ändern",
+      "INVALID_ROUND_SETTINGS": "Diese Rundeneinstellungen gibt es nicht"
     }
   },
   "highlights": {

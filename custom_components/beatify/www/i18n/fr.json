@@ -905,7 +905,14 @@
     "guestsSectionPlaying": "En jeu",
     "guestsSectionSatOut": "En pause",
     "guestsHost": "Hôte",
-    "guestsFooter": "Les invités en pause gardent leurs points et peuvent toucher « Je suis de retour » eux-mêmes."
+    "guestsFooter": "Les invités en pause gardent leurs points et peuvent toucher « Je suis de retour » eux-mêmes.",
+    "roundSettingsChange": "Modifier",
+    "roundSettingsTitle": "Modifier pour la prochaine manche",
+    "roundSettingsTime": "Temps par manche",
+    "roundSettingsFoot": "S'applique dès la manche {round}. Les points déjà gagnés restent.",
+    "roundSettingsNotice": "⏱ Maintenant {value}",
+    "roundSettingsNoticeSeconds": "{seconds} secondes",
+    "roundSettingsNoticeBands": "{difficulty} : {points} points à ±{range} ans"
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
@@ -1236,7 +1243,9 @@
       "LIBRARY_GENERATION_FAILED": "La génération de la playlist depuis la bibliothèque a échoué : {detail}",
       "LIBRARY_POOL_MISSING": "Votre bibliothèque n'a pas encore été analysée. Ouvrez les paramètres et lancez d'abord « Analyser la bibliothèque » (cela prend un moment la première fois).",
       "LIBRARY_POOL_EMPTY": "Aucun titre de votre bibliothèque n'a encore d'année de sortie vérifiée à ce niveau d'exigence. Relancez l'analyse pour vérifier davantage de titres ou assouplissez le réglage « Précision de l'année ».",
-      "PLATFORM_NOT_SUPPORTED": "Plateforme de lecteur multimédia non prise en charge"
+      "PLATFORM_NOT_SUPPORTED": "Plateforme de lecteur multimédia non prise en charge",
+      "ROUND_SETTINGS_REVEAL_ONLY": "Les réglages de manche ne peuvent changer qu’entre deux manches",
+      "INVALID_ROUND_SETTINGS": "Ces réglages de manche ne sont pas disponibles"
     }
   },
   "highlights": {

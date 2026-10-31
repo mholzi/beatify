@@ -905,7 +905,14 @@
     "guestsSectionPlaying": "In gioco",
     "guestsSectionSatOut": "Fuori",
     "guestsHost": "Host",
-    "guestsFooter": "Chi è fuori mantiene i punti e può toccare «Sono tornato» da solo."
+    "guestsFooter": "Chi è fuori mantiene i punti e può toccare «Sono tornato» da solo.",
+    "roundSettingsChange": "Cambia",
+    "roundSettingsTitle": "Cambia per il prossimo round",
+    "roundSettingsTime": "Tempo per round",
+    "roundSettingsFoot": "Vale dal round {round}. I punti già ottenuti restano.",
+    "roundSettingsNotice": "⏱ Ora {value}",
+    "roundSettingsNoticeSeconds": "{seconds} secondi",
+    "roundSettingsNoticeBands": "{difficulty}: {points} punti entro ±{range} anni"
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",
@@ -1236,7 +1243,9 @@
       "LIBRARY_GENERATION_FAILED": "Generazione della playlist dalla libreria non riuscita: {detail}",
       "LIBRARY_POOL_MISSING": "La tua libreria non è ancora stata analizzata. Apri le impostazioni ed esegui prima «Analizza libreria» (la prima volta ci vuole un po').",
       "LIBRARY_POOL_EMPTY": "Nessuna canzone della tua libreria ha ancora un anno di uscita verificato con questo livello di rigore. Ripeti la scansione per verificare altre canzoni o allenta l'impostazione «Precisione dell'anno».",
-      "PLATFORM_NOT_SUPPORTED": "Piattaforma del lettore multimediale non supportata"
+      "PLATFORM_NOT_SUPPORTED": "Piattaforma del lettore multimediale non supportata",
+      "ROUND_SETTINGS_REVEAL_ONLY": "Le impostazioni del round si possono cambiare solo tra due round",
+      "INVALID_ROUND_SETTINGS": "Queste impostazioni del round non sono disponibili"
     }
   },
   "highlights": {

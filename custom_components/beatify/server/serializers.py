@@ -108,6 +108,9 @@ _PLAYER_VISIBLE_BASE = frozenset(
 #: LOBBY / PLAYING / REVEAL round context.
 _PLAYER_VISIBLE_ROUND = frozenset(
     {
+        # #2586: "now 30s, hard" for the first round after the host changed it.
+        # A setting everyone is about to play under, nothing about the song.
+        "round_settings_notice",
         "join_url",
         "round",
         "total_rounds",
@@ -234,6 +237,9 @@ ADMIN_ONLY_KEYS: frozenset[str] = frozenset(
         # declines is overruling twenty people instead of making a call.
         "encore_available",
         "encore_rounds",
+        # #2586: what the host has picked for the next round, undecided until
+        # the round starts. The room gets `round_settings_notice` instead.
+        "next_round_settings",
     }
 )
 
@@ -242,8 +248,12 @@ ADMIN_ONLY_KEYS: frozenset[str] = frozenset(
 #: — never the admin copy, which carries the round's answer. The encore offer
 #: (#2503) is the host's decision, not a secret about the song, so the host's
 #: player socket gets exactly these two keys on top of the redacted copy.
-#: Guests never do. Must stay a subset of :data:`ADMIN_ONLY_KEYS`.
-HOST_PLAYER_KEYS: frozenset[str] = frozenset({"encore_available", "encore_rounds"})
+#: #2586 adds the next-round settings for the same reason: a host decision, no
+#: secret about the song. Guests never get any of them. Must stay a subset of
+#: :data:`ADMIN_ONLY_KEYS`.
+HOST_PLAYER_KEYS: frozenset[str] = frozenset(
+    {"encore_available", "encore_rounds", "next_round_settings"}
+)
 
 
 def state_for_host_player(

@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, Any
 from aiohttp import web
 
 from custom_components.beatify.const import (
+    DIFFICULTY_SCORING,
     ERR_GAME_NOT_STARTED,
     ERR_INVALID_ACTION,
     ERR_NO_PLAYABLE_SONGS,
@@ -23,6 +24,7 @@ from custom_components.beatify.const import (
     HOST_PAUSE_REASONS,
     MAX_REMATCH_PLAYLISTS,
     MIN_PLAYERS,
+    ROUND_TIMER_OPTIONS,
     STALE_NEXT_ROUND_WINDOW_SECONDS,
     VOID_ROUND_REASONS,
 )
@@ -130,6 +132,7 @@ async def handle_admin(
         "confirm_intro_splash": admin_confirm_intro_splash,
         "set_party_lights": admin_set_party_lights,
         "kick_player": admin_kick_player,
+        "set_round_settings": admin_set_round_settings,  # #2586
     }
     sub_handler = admin_handlers.get(action)
     if sub_handler:
@@ -509,6 +512,58 @@ async def admin_set_volume(
             "level": new_level,
         }
     )
+
+
+async def admin_set_round_settings(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Change the timer and/or difficulty for the next round (#2586).
+
+    REVEAL only, and not on the last reveal, which has no next round. Admin
+    rights are checked by :func:`handle_admin` like every other action.
+    """
+    if game_state.phase != GamePhase.REVEAL or game_state.last_round:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Round settings can only change between two rounds",
+                "message_key": "ROUND_SETTINGS_REVEAL_ONLY",
+            }
+        )
+        return
+
+    timer = data.get("timer")
+    difficulty = data.get("difficulty")
+    # ``type() is int``: True and 30.0 are not values the chips send.
+    timer_ok = timer is None or (type(timer) is int and timer in ROUND_TIMER_OPTIONS)
+    # Title & Artist does not score by year, so there it has no difficulty.
+    difficulty_ok = difficulty is None or (
+        isinstance(difficulty, str)
+        and difficulty in DIFFICULTY_SCORING
+        and not game_state.title_artist_mode
+    )
+    if not timer_ok or not difficulty_ok or (timer is None and difficulty is None):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Invalid round settings",
+                "message_key": "INVALID_ROUND_SETTINGS",
+            }
+        )
+        return
+
+    game_state.set_round_settings(timer=timer, difficulty=difficulty)
+    _LOGGER.info(
+        "Host set round settings for the next round: timer=%s difficulty=%s",
+        timer,
+        difficulty,
+    )
+    await handler.broadcast_state()
 
 
 async def admin_end_game(

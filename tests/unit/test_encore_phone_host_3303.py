@@ -56,7 +56,7 @@ async def _broadcast(handler, message) -> dict:
 class TestHostPlayerPayload:
     def test_host_keys_are_admin_only_keys(self):
         host_keys = serializers.HOST_PLAYER_KEYS
-        assert host_keys == {"encore_available", "encore_rounds"}
+        assert {"encore_available", "encore_rounds"} <= host_keys
         assert host_keys <= ADMIN_ONLY_KEYS
 
     def test_host_copy_adds_only_the_encore_keys(self):
@@ -65,7 +65,7 @@ class TestHostPlayerPayload:
         assert host["encore_available"] is True
         assert host["encore_rounds"] == 5
         assert "admin_song" not in host
-        assert set(host) - set(player) == serializers.HOST_PLAYER_KEYS
+        assert set(host) - set(player) == {"encore_available", "encore_rounds"}
 
     def test_no_encore_keys_returns_the_player_copy_itself(self):
         msg = {"type": "state", "phase": "REVEAL", "admin_song": {"year": 1}}

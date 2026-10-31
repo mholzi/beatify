@@ -44,6 +44,8 @@ import time
 from enum import Enum
 from typing import TYPE_CHECKING, Any
 
+from custom_components.beatify.const import DIFFICULTY_SCORING
+
 from .challenges import (
     ArtistChallenge,  # noqa: F401 (re-exported for backward compatibility)
     ChallengeManager,
@@ -429,6 +431,11 @@ class GameState(
 
         # Issue #827: Sudden Death mode (last-place player eliminated per round)
         self.sudden_death_mode: bool = False
+
+        # #2586: what the host picked on this reveal for the next round, and
+        # the one-round notice for the room once a real change has landed.
+        self._pending_round_settings: dict[str, Any] = {}
+        self.round_settings_notice: dict[str, Any] | None = None
 
         # Issue #1725: Finale ×2 (double the last round's score) + finale
         # sudden-death tiebreaker (playoff among tied leaders when songs remain).
@@ -1175,6 +1182,8 @@ class GameState(
                 for player in self.players.values():
                     player.reset_round()
             returned = list(self._returned_this_round)
+            # #2586: same round, same settings; the room still gets its notice.
+            settings_notice = self.round_settings_notice
             # #3321: the swapped-out song stays marked played, so the pool is
             # one song short of the rounds it has to fill. A capped game holds
             # the songs the cap left out in reserve (#2547); one of them makes
@@ -1192,6 +1201,7 @@ class GameState(
         finally:
             self._song_swap_pending = False
 
+        self.round_settings_notice = settings_notice
         # A guest let back at this round's start is still back.
         self._returned_this_round = returned + [
             name for name in self._returned_this_round if name not in returned
@@ -1517,6 +1527,60 @@ class GameState(
             "Sudden Death mode set to %s (live toggle)", self.sudden_death_mode
         )
         return self.sudden_death_mode
+
+    def set_round_settings(
+        self, *, timer: int | None = None, difficulty: str | None = None
+    ) -> None:
+        """Remember the host's timer/difficulty for the next round. Issue #2586.
+
+        Parked instead of written to ``round_duration`` / ``difficulty``: both
+        still describe the round on screen. A title/artist round is scored at
+        the end of its vote window, *during* REVEAL, and reads both values then
+        (speed bonus, bands), so writing them now would rescore the revealed
+        round with the new settings. :meth:`apply_pending_round_settings` moves
+        them over when the next round is committed.
+        """
+        if timer is not None:
+            self._pending_round_settings["round_duration"] = timer
+        if difficulty is not None:
+            self._pending_round_settings["difficulty"] = difficulty
+
+    def next_round_settings(self) -> dict[str, Any] | None:
+        """What the next round will run with; None when there is no next round."""
+        if self.last_round:
+            return None
+        return {
+            "round_duration": int(
+                self._pending_round_settings.get("round_duration", self.round_duration)
+            ),
+            "difficulty": self._pending_round_settings.get(
+                "difficulty", self.difficulty
+            ),
+        }
+
+    def apply_pending_round_settings(self) -> None:
+        """Move the parked settings onto the round being committed (#2586).
+
+        Compares against the running values here rather than at tap time, so a
+        host who goes 45 -> 30 -> 45 on one reveal changed nothing and the room
+        is told nothing. A real change names only what changed; a round without
+        one clears the previous notice, which is what makes it last one round.
+        """
+        pending = self._pending_round_settings
+        self._pending_round_settings = {}
+        notice: dict[str, Any] = {}
+        timer = pending.get("round_duration")
+        if timer is not None and timer != self.round_duration:
+            self.round_duration = timer
+            notice["round_duration"] = timer
+        difficulty = pending.get("difficulty")
+        if difficulty is not None and difficulty != self.difficulty:
+            self.difficulty = difficulty
+            scoring = DIFFICULTY_SCORING[difficulty]
+            notice["difficulty"] = difficulty
+            notice["close_points"] = scoring["close_points"]
+            notice["close_range"] = scoring["close_range"]
+        self.round_settings_notice = notice or None
 
     # ------------------------------------------------------------------
     # Finale sudden-death tiebreaker (Issue #1725)

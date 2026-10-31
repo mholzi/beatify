@@ -38,6 +38,7 @@ import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
 // #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
+import { setupRoundSettings, renderRoundSettings, closeRoundSettings } from './round-settings.js';
 // #3059: the pending "join once the socket opens" wait, cancellable by the modal.
 import { startJoinWait, cancelJoinWait } from './admin/join-wait.js';
 // #2646: the "End round N" card Next opens while a round is still running, the
@@ -956,6 +957,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         sendAdminCommand({ type: 'admin', action: 'extend_rounds' });
         setTimeout(function() { if (btn) btn.disabled = false; }, 1500);
     });
+    // #2586: timer and difficulty for the next round.
+    setupRoundSettings({ doc: document, send: sendAdminCommand, nextButtonId: 'admin-next-round' });
     document.getElementById('admin-rematch')?.addEventListener('click', showRematchModal);
     document.getElementById('admin-new-game')?.addEventListener('click', adminDismissGame);
     setupStarHint();
@@ -2816,6 +2819,7 @@ function renderAdminState(data) {
     // down so the sticky Next button restores its icon for other phases.
     if (data.phase !== 'REVEAL') {
         _stopRevealAdvanceCountdown();
+        closeRoundSettings();  // #2586
     }
 
     // Also hide setup sections
@@ -3390,6 +3394,7 @@ function showAdminRevealView(data) {
     // encore_available is admin-only in the serializer, so a guest socket
     // never carries it and this block simply stays hidden there.
     renderEncoreOffer(data);
+    renderRoundSettings(data, true);
 
     // #3268: on the last reveal this button ends the game (the server runs
     // finalize_and_end when `last_round` is set), so it must not promise a

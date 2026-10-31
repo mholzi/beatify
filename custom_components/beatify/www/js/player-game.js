@@ -268,6 +268,16 @@ export function updateGameView(data) {
         }
     }
 
+    // #2586: "Now 30s · Hard", for the one round after the host changed it.
+    var settingsNotice = document.getElementById('round-settings-notice');
+    if (settingsNotice) {
+        var settingsNoticeText = utils.roundSettingsNoticeText
+            ? utils.roundSettingsNoticeText(data.round_settings_notice, false)
+            : '';
+        settingsNotice.textContent = settingsNoticeText;
+        settingsNotice.classList.toggle('hidden', !settingsNoticeText);
+    }
+
     // Issue #1727: surface the active bet payout on the bet toggle. The server
     // sends the live multiplier (3x flat when difficulty bet scaling is off,
     // 2/3/5x per difficulty when on) so players see what a bet is worth.
@@ -490,6 +500,7 @@ function syncArcChipRow() {
         'closest-wins-badge',
         'intro-badge',
         'last-round-banner',
+        'round-settings-notice',  // #2586
         'song-stopped-chip'  // #2554
     ];
     var anyVisible = childIds.some(function(id) {

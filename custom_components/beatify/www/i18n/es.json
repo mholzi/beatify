@@ -905,7 +905,14 @@
     "guestsSectionPlaying": "En el juego",
     "guestsSectionSatOut": "Fuera",
     "guestsHost": "Anfitrión",
-    "guestsFooter": "Quien queda fuera conserva sus puntos y puede tocar «He vuelto» por su cuenta."
+    "guestsFooter": "Quien queda fuera conserva sus puntos y puede tocar «He vuelto» por su cuenta.",
+    "roundSettingsChange": "Cambiar",
+    "roundSettingsTitle": "Cambiar para la próxima ronda",
+    "roundSettingsTime": "Tiempo por ronda",
+    "roundSettingsFoot": "Se aplica desde la ronda {round}. Los puntos conseguidos se mantienen.",
+    "roundSettingsNotice": "⏱ Ahora {value}",
+    "roundSettingsNoticeSeconds": "{seconds} segundos",
+    "roundSettingsNoticeBands": "{difficulty}: {points} puntos a ±{range} años"
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",
@@ -1236,7 +1243,9 @@
       "LIBRARY_GENERATION_FAILED": "No se pudo generar la lista de la biblioteca: {detail}",
       "LIBRARY_POOL_MISSING": "Tu biblioteca todavía no se ha escaneado. Abre los ajustes y ejecuta primero «Escanear biblioteca» (la primera vez tarda un rato).",
       "LIBRARY_POOL_EMPTY": "Ninguna canción de tu biblioteca tiene todavía un año de lanzamiento verificado con este nivel de exigencia. Vuelve a escanear para verificar más canciones o relaja el ajuste «Precisión del año».",
-      "PLATFORM_NOT_SUPPORTED": "Plataforma de reproductor multimedia no compatible"
+      "PLATFORM_NOT_SUPPORTED": "Plataforma de reproductor multimedia no compatible",
+      "ROUND_SETTINGS_REVEAL_ONLY": "Los ajustes de ronda solo se pueden cambiar entre dos rondas",
+      "INVALID_ROUND_SETTINGS": "Esos ajustes de ronda no están disponibles"
     }
   },
   "highlights": {
