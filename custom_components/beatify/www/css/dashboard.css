@@ -36,6 +36,72 @@
     display: none;
 }
 
+/* #3365: the scene wipe. Rests collapsed; only JS ever opens it, so a browser
+   that cannot animate never sees it. */
+.dashboard-wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: linear-gradient(90deg, #ff2d6a, #8b5cf6, #00f5ff);
+    transform: scaleX(0);
+    pointer-events: none;
+}
+
+/* #3365: the digit reel. Each column is one digit tall and clipped; the colours
+   stand in for the year's gradient, which background-clip cannot paint through
+   a transformed child. The plain text with the gradient returns when it stops. */
+.year-reel {
+    display: inline-flex;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+.year-reel-win {
+    display: block;
+    height: 1em;
+    overflow: hidden;
+}
+.year-reel-col,
+.year-reel-col > span {
+    display: block;
+}
+.year-reel-col > span {
+    height: 1em;
+    text-align: center;
+}
+/* background-clip: text would paint the gradient through the columns' resting
+   glyphs as a ghost, and a filter over moving layers re-renders every frame. */
+#dashboard-reveal .reveal-broadcast .reveal-year.year-reel-host {
+    background: none;
+    filter: none;
+}
+#dashboard-reveal .reveal-year .year-reel-win:nth-child(1) { -webkit-text-fill-color: #ff2d6a; color: #ff2d6a; }
+#dashboard-reveal .reveal-year .year-reel-win:nth-child(2) { -webkit-text-fill-color: #c75aa0; color: #c75aa0; }
+#dashboard-reveal .reveal-year .year-reel-win:nth-child(3) { -webkit-text-fill-color: #7f9fd0; color: #7f9fd0; }
+#dashboard-reveal .reveal-year .year-reel-win:nth-child(4) { -webkit-text-fill-color: #2fdcec; color: #2fdcec; }
+
+/* #3365: on the reveal board rows travel from their real old place, so the
+   fixed 40 px slide stays on the round board only. */
+#dashboard-reveal .leaderboard-entry--climbing,
+#dashboard-reveal .leaderboard-entry--falling {
+    animation: none;
+}
+
+/* #3365: a climbing row passes over the ones it overtakes. */
+.leaderboard-entry--travelling {
+    position: relative;
+    z-index: 1;
+}
+
+/* #3365: until the line has fallen every guess looks the same, because the
+   colours tell who was close. */
+#dashboard-reveal .guess-axis--hold .guess-axis-dot--exact,
+#dashboard-reveal .guess-axis--hold .guess-axis-dot--near {
+    background: var(--color-surface-dark, #1a1a2e);
+    border-color: var(--color-text-neon-muted, #b3b3c2);
+    color: #fff;
+    box-shadow: 0 0 0 5px var(--color-bg-primary, #0a0a12);
+}
+
 /* ==========================================
    Portrait Orientation Message (AC 10.4.6)
    ========================================== */

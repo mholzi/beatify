@@ -144,6 +144,156 @@ window.BeatifyUtils = (function() {
     }
 
     // ==========================================================================
+    // Reveal motion (#3365), shared by the TV and the phone
+    // ==========================================================================
+
+    /**
+     * Decides whether this client lived through the moment it is about to
+     * animate. Both surfaces re-render on every state update, so a start
+     * condition must survive repeats (#3117), and a client that reloads or
+     * reconnects into a running reveal has to get the final picture at once.
+     *
+     * REVEAL is live only straight after PLAYING of the same round, END only
+     * straight after a round. Anything else (first frame, PAUSED, a dropped
+     * socket via reset()) is not.
+     *
+     * @param {Object} [opts]
+     * @param {Function} [opts.reduced] - true when motion must be skipped
+     * @returns {{enter: Function, isLive: Function, once: Function, reset: Function}}
+     */
+    function createMotionGate(opts) {
+        var reduced = (opts && opts.reduced) || function() { return false; };
+        var last = null;
+        var live = false;
+        var done = {};
+        return {
+            enter: function(phase, round) {
+                if (last && last.phase === phase && last.round === round) return live;
+                var came = last ? last.phase : null;
+                live = !reduced() && (
+                    (phase === 'REVEAL' && came === 'PLAYING' && last.round === round) ||
+                    (phase === 'END' && (came === 'REVEAL' || came === 'PLAYING'))
+                );
+                last = { phase: phase, round: round };
+                done = {};
+                return live;
+            },
+            isLive: function() { return live; },
+            /** True the first time per phase entry, and only on a live one. */
+            once: function(name) {
+                if (!live || done[name]) return false;
+                done[name] = true;
+                return true;
+            },
+            reset: function() { last = null; live = false; done = {}; }
+        };
+    }
+
+    /**
+     * The digits one reel column runs through, ending on the real one. Later
+     * columns are longer, which is what makes them stop later.
+     * @param {string} digit
+     * @param {number} index - column, 0 = leftmost
+     * @returns {string[]}
+     */
+    function yearReelDigits(digit, index) {
+        var steps = 10 + index * 4;
+        var out = [];
+        for (var k = 0; k < steps; k++) out.push(String((+digit + k + 1 + index * 3) % 10));
+        out.push(String(digit));
+        return out;
+    }
+
+    /**
+     * Roll a year into an element, digits stopping left to right. Every column
+     * rests on its final digit and is animated from the top, so a browser that
+     * never runs a frame still lands on the answer. When the reel stops the
+     * plain text replaces it; the safety timer does the same with the tab asleep.
+     *
+     * @param {HTMLElement} el
+     * @param {number|string} year
+     * @param {Object} opts - {delay, base, step} in ms
+     * @returns {{active: Function, finish: Function, year: string}}
+     */
+    function rollYear(el, year, opts) {
+        var text = String(year);
+        var running = false;
+        var timer;
+        function finish() {
+            if (!running) return;
+            clearTimeout(timer);
+            running = false;
+            el.removeAttribute('aria-label');
+            el.classList.remove('year-reel-host');
+            el.textContent = text;
+        }
+        var controller = { year: text, active: function() { return running; }, finish: finish };
+        var cols = text.split('');
+        if (!/^\d+$/.test(text) || !el.animate) {
+            el.textContent = text;
+            return controller;
+        }
+        var delay = opts.delay || 0;
+        var total = delay + opts.base + (cols.length - 1) * opts.step;
+        el.setAttribute('aria-label', text);
+        el.classList.add('year-reel-host');
+        el.innerHTML = '<span class="year-reel" aria-hidden="true">' + cols.map(function(d, i) {
+            var digits = yearReelDigits(d, i);
+            return '<span class="year-reel-win"><span class="year-reel-col" style="transform:translateY(-' +
+                (digits.length - 1) + 'em)"><span>' + digits.join('</span><span>') + '</span></span></span>';
+        }).join('') + '</span>';
+        var colEls = el.querySelectorAll('.year-reel-col');
+        running = true;
+        for (var i = 0; i < colEls.length; i++) {
+            colEls[i].animate(
+                [{ transform: 'translateY(0)' }, { transform: colEls[i].style.transform }],
+                { delay: delay, duration: opts.base + i * opts.step, easing: 'cubic-bezier(.25,.8,.25,1)', fill: 'backwards' }
+            );
+        }
+        timer = setTimeout(finish, total + 60);
+        return controller;
+    }
+
+    /**
+     * When each guess lands: furthest first, closest last, inside a fixed total
+     * however many players there are.
+     * @param {number[]} offs - years off per dot, in DOM order
+     * @param {number} totalMs - start of the first landing to end of the last
+     * @param {number} landMs - one landing
+     * @returns {Array<{index: number, delay: number}>} in landing order
+     */
+    function guessLandingPlan(offs, totalMs, landMs) {
+        var order = offs.map(function(off, index) { return { index: index, off: +off || 0 }; });
+        order.sort(function(a, b) { return (b.off - a.off) || (a.index - b.index); });
+        var gap = order.length > 1 ? Math.max(0, totalMs - landMs) / (order.length - 1) : 0;
+        return order.map(function(item, i) {
+            return { index: item.index, delay: Math.round(i * gap) };
+        });
+    }
+
+    /**
+     * Where each shown row comes from, as a position among the rows on screen.
+     * The phone shows the podium and your own row, so an old place off screen
+     * clamps to the nearest row that is there. A row without an old place stays.
+     * @param {Array<{key: string, index: number}>} rows - shown rows, top down,
+     *   with `index` their place on the whole board
+     * @param {Object} prevOrder - key to old place on the whole board
+     * @returns {Array<{to: number, from: number}>} only rows that move
+     */
+    function rowTravelPlan(rows, prevOrder) {
+        var moves = [];
+        rows.forEach(function(row, to) {
+            var old = prevOrder ? prevOrder[row.key] : undefined;
+            if (typeof old !== 'number') return;
+            var from = 0;
+            rows.forEach(function(other) { if (other.index < old) from++; });
+            from = Math.min(from, rows.length - 1);
+            if (from !== to) moves.push({ to: to, from: from });
+        });
+        return moves;
+    }
+
+    // ==========================================================================
     // Localization Helpers
     // ==========================================================================
 
@@ -980,6 +1130,13 @@ window.BeatifyUtils = (function() {
 
         // Round settings room notice (#2586)
         roundSettingsNoticeText: roundSettingsNoticeText,
+
+        // Reveal motion (#3365)
+        createMotionGate: createMotionGate,
+        yearReelDigits: yearReelDigits,
+        rollYear: rollYear,
+        guessLandingPlan: guessLandingPlan,
+        rowTravelPlan: rowTravelPlan,
 
         // Leaderboard (#1765)
         hydrateLeaderboard: hydrateLeaderboard,

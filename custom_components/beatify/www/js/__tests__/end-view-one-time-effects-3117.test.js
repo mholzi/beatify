@@ -177,6 +177,7 @@ describe('TV end view (#3117)', () => {
             document: { getElementById: () => null, querySelector: () => null },
             utils: { podiumStands: (lb) => ({ stands: lb.slice(0, 3), rest: lb.slice(3) }), podiumMedal: () => '', t: (k) => k, escapeHtml: (s) => s },
             playClosingMoment: () => false,
+            _motionGate: null,
             renderSuddenDeathLastStanding: () => {},
             renderStatsComparison: () => {},
             renderSuperlatives: () => {},
