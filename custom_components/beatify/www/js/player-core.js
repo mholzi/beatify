@@ -28,7 +28,7 @@ import {
 
 import {
     startCountdown, stopCountdown,
-    updateGameView, handleMetadataUpdate,
+    updateGameView, handleMetadataUpdate, playRoundStartMotion,
     updateLeaderboard, setupLeaderboardToggle, resetLeaderboardSummary,
     initYearSelector, handleSubmitAck, handleSubmitError,
     resetSubmissionState,
@@ -101,6 +101,8 @@ var pushGameRender = createRenderCoalescer(updateGameView);
 
 var MAX_RECONNECT_ATTEMPTS = 7;
 var MAX_RECONNECT_DELAY_MS = 30000;
+var RECONNECT_OVERLAY_DELAY_MS = 1000;   // #3367
+var FIRST_RECONNECT_DELAY_MS = 250;      // #3367
 // #1663: how long a guest may sit on "Joining…" before we surface a retry.
 // The join WS has no server-side ack timeout, so a dead/slow socket would
 // otherwise hang the spinner forever.
@@ -225,8 +227,13 @@ function getReconnectDelay() {
     // state.reconnectAttempts is 1-based here (it is incremented in the onclose
     // handler BEFORE this is called); the helper never overflows for large
     // attempt counts, so the delay simply saturates at the 30s cap.
+    // #3367: the first retry has to be able to finish inside the overlay's wait,
+    // or a one-second first retry would show the overlay for every tiny dropout.
     if (utils.reconnectBackoffDelay) {
-        return utils.reconnectBackoffDelay(state.reconnectAttempts, { maxDelay: MAX_RECONNECT_DELAY_MS });
+        return utils.reconnectBackoffDelay(state.reconnectAttempts, {
+            maxDelay: MAX_RECONNECT_DELAY_MS,
+            firstDelay: FIRST_RECONNECT_DELAY_MS
+        });
     }
     // Fallback if utils failed to load: same capped exponential, 1-based attempt.
     return Math.min(1000 * Math.pow(2, state.reconnectAttempts - 1), MAX_RECONNECT_DELAY_MS);
@@ -260,7 +267,7 @@ function makeSocketCloseHandler(scheduleReconnect) {
             debug('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + attempt + ')');
         },
         onGiveUp: function() {
-            hideReconnectingOverlay();
+            reconnectOverlay.stop();
             showConnectionLostView();
         }
     };
@@ -308,19 +315,67 @@ function hideConnectionIndicator() {
     }
 }
 
-function showReconnectingOverlay() {
+function putOverlayOnScreen() {
     showConnectionIndicator();
     var overlay = document.getElementById('reconnecting-overlay');
     if (overlay) {
         overlay.classList.remove('hidden');
+        if (overlay.animate && !prefersReducedMotion()) {
+            overlay.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: 'ease-out' });
+        }
     }
 }
 
-function hideReconnectingOverlay() {
+function takeOverlayOffScreen() {
     var overlay = document.getElementById('reconnecting-overlay');
     if (overlay) {
         overlay.classList.add('hidden');
+        overlay.classList.remove('is-back');
+        if (overlay._backFade) overlay._backFade.cancel();
+        overlay._backFade = null;
     }
+}
+
+/** #3367: the ring turns green, then the page clears. Taps go through already. */
+function signalOverlayBack() {
+    var overlay = document.getElementById('reconnecting-overlay');
+    if (!overlay) return 0;
+    overlay.classList.add('is-back');
+    if (overlay.animate) {
+        overlay._backFade = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
+            delay: 260, duration: 180, easing: 'ease-in', fill: 'forwards'
+        });
+    }
+    return 440;
+}
+
+function cancelOverlayBack() {
+    var overlay = document.getElementById('reconnecting-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('is-back');
+    if (overlay._backFade) overlay._backFade.cancel();
+    overlay._backFade = null;
+}
+
+// #3367: decides when the overlay shows. The fallback for a failed utils load
+// behaves as before: on at once, off at once.
+var reconnectOverlay = utils.createReconnectOverlay
+    ? utils.createReconnectOverlay({
+        delay: RECONNECT_OVERLAY_DELAY_MS,
+        show: putOverlayOnScreen,
+        hide: takeOverlayOffScreen,
+        signal: signalOverlayBack,
+        unsignal: cancelOverlayBack,
+        reduced: function() { return prefersReducedMotion(); }
+    })
+    : { lost: putOverlayOnScreen, back: takeOverlayOffScreen, stop: takeOverlayOffScreen };
+
+function showReconnectingOverlay() {
+    reconnectOverlay.lost();
+}
+
+function hideReconnectingOverlay() {
+    reconnectOverlay.back();
 }
 
 function updateReconnectStatus(attempt) {
@@ -933,6 +988,8 @@ function handleServerMessage(data) {
                 startCountdown(data.deadline, data.seconds_remaining);
             }
             initYearSelector();
+            // #3367: once per round this phone saw begin, never on a repeat frame.
+            if (state.motionGate && state.motionGate.takeRoundStart()) playRoundStartMotion();
             setupLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('PLAYING', data);
@@ -1065,7 +1122,7 @@ function handleServerMessage(data) {
             // hint, no blind Try-Again that would just race the takeover); the
             // rejoin button starts a fresh join instead.
             state.isReconnecting = false;
-            hideReconnectingOverlay();
+            reconnectOverlay.stop();
             state.playerName = null;
             showView('session-takeover-view');
             console.warn('Session taken over by another tab');

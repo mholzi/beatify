@@ -315,12 +315,13 @@ export function handlePlaylistToggle(checkbox) {
             adminState.selectedPlaylists.push({ path, songCount: providerCount });
         }
         item.classList.add('is-selected');
+        utils.pickFeedback?.(item, checkbox);  // #3367
     } else {
         adminState.selectedPlaylists = adminState.selectedPlaylists.filter(p => p.path !== path);
         item.classList.remove('is-selected');
     }
 
-    updateSelectionSummary();
+    updateSelectionSummary({ animate: true });
     updateStartButtonState();
 }
 
@@ -461,7 +462,7 @@ export function calculateTotalSongs() {
 /**
  * Update the selection summary display
  */
-export function updateSelectionSummary() {
+export function updateSelectionSummary(opts = {}) {
     const summary = document.getElementById('playlist-summary');
     const selectedCount = document.getElementById('selected-count');
     const totalSongs = document.getElementById('total-songs');
@@ -473,10 +474,13 @@ export function updateSelectionSummary() {
 
     if (adminState.selectedPlaylists.length === 0) {
         summary.classList.add('hidden');
+        totalSongs.textContent = 0;  // #3367: the next first pick counts up from here
     } else {
         summary.classList.remove('hidden');
         selectedCount.textContent = adminState.selectedPlaylists.length;
-        totalSongs.textContent = calculateTotalSongs();
+        // #3367: only a tap counts. A render that restores a selection just shows it.
+        if (opts.animate && utils.countTo) utils.countTo(totalSongs, calculateTotalSongs());
+        else totalSongs.textContent = calculateTotalSongs();
     }
 }
 

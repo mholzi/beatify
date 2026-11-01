@@ -147,6 +147,17 @@ window.BeatifyUtils = (function() {
     // Reveal motion (#3365), shared by the TV and the phone
     // ==========================================================================
 
+    function prefersReducedMotionNow() {
+        return !!(typeof window !== 'undefined' && window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
+
+    // #3367: iOS Safari applies :active only while a touch listener exists on the
+    // way up the tree. Without this the shared button press never shows there.
+    if (typeof document !== 'undefined' && document.addEventListener) {
+        document.addEventListener('touchstart', function() {}, { passive: true });
+    }
+
     /**
      * Decides whether this client lived through the moment it is about to
      * animate. Both surfaces re-render on every state update, so a start
@@ -166,10 +177,15 @@ window.BeatifyUtils = (function() {
         var last = null;
         var live = false;
         var done = {};
+        var roundStart = false;
         return {
             enter: function(phase, round) {
                 if (last && last.phase === phase && last.round === round) return live;
                 var came = last ? last.phase : null;
+                // #3367: a round this phone saw begin. It says nothing about
+                // `live`, which stays the question of the reveal and the podium.
+                roundStart = !reduced() && phase === 'PLAYING' && !!last && last.round !== round
+                    && (came === 'REVEAL' || came === 'PLAYING' || came === 'LOBBY');
                 live = !reduced() && (
                     (phase === 'REVEAL' && came === 'PLAYING' && last.round === round) ||
                     (phase === 'END' && (came === 'REVEAL' || came === 'PLAYING'))
@@ -185,8 +201,115 @@ window.BeatifyUtils = (function() {
                 done[name] = true;
                 return true;
             },
-            reset: function() { last = null; live = false; done = {}; }
+            /** #3367: true once per round this phone saw begin, then false. */
+            takeRoundStart: function() {
+                var was = roundStart;
+                roundStart = false;
+                return was;
+            },
+            reset: function() { last = null; live = false; done = {}; roundStart = false; }
         };
+    }
+
+    /**
+     * #3367: the small selection answer. The check springs in and the tile glows
+     * once. The glow is a pseudo-element fading in opacity, so nothing repaints a
+     * shadow. Touches only the elements it is handed: a list that re-renders on a
+     * click passes the one tile that was tapped.
+     * @param {Element} tile
+     * @param {Element} [check]
+     */
+    function pickFeedback(tile, check) {
+        if (prefersReducedMotionNow()) return;
+        if (tile && tile.classList) {
+            tile.classList.remove('motion-pick-glow');
+            tile.classList.add('motion-pick-glow');
+            setTimeout(function() { tile.classList.remove('motion-pick-glow'); }, 320);
+        }
+        if (check && check.animate) {
+            check.animate(
+                [{ transform: 'scale(0)' }, { transform: 'scale(1.35)', offset: 0.65 }, { transform: 'none' }],
+                { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' }
+            );
+        }
+    }
+
+    /**
+     * #3367: a number walks to its new value instead of jumping. The final value
+     * is written first, so a browser that never runs a frame still shows it.
+     * @param {Element} el
+     * @param {number} to
+     * @param {number} [duration]
+     */
+    function countTo(el, to, duration) {
+        if (!el) return;
+        var from = parseInt(el.textContent, 10);
+        if (el._countFrame && typeof cancelAnimationFrame === 'function') cancelAnimationFrame(el._countFrame);
+        el._countFrame = null;
+        el.textContent = to;
+        if (!isFinite(from) || from === to || prefersReducedMotionNow()
+            || typeof requestAnimationFrame !== 'function') return;
+        var total = duration || 280;
+        var start = null;
+        function step(now) {
+            if (start === null) start = now;
+            var p = Math.min((now - start) / total, 1);
+            el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+            el._countFrame = p < 1 ? requestAnimationFrame(step) : null;
+        }
+        el._countFrame = requestAnimationFrame(step);
+    }
+
+    /**
+     * #3367: open or close one `.section-collapsible` in 200 ms. Only a tap comes
+     * through here; a state set while the page loads keeps writing the class
+     * directly and never moves. The `collapsed` class changes at once, so the
+     * state is right from the first moment, and `is-closing` keeps the content
+     * displayed until its height has run out. This is the one place in the app
+     * that animates a height: the page below has to move with it.
+     * @param {Element} section
+     * @returns {boolean} true when the section is now collapsed
+     */
+    function toggleCollapsibleSection(section) {
+        var collapse = !section.classList.contains('collapsed');
+        var content = section.querySelector ? section.querySelector('.section-content') : null;
+        var running = content && content._sectionAnim;
+        var fromHeight = content && content.getBoundingClientRect
+            ? content.getBoundingClientRect().height : 0;
+        if (running) {
+            content._sectionAnim = null;
+            running.cancel();
+        }
+        section.classList.remove('is-closing', 'is-toggling');
+        if (prefersReducedMotionNow() || !content || !content.animate) {
+            section.classList.toggle('collapsed', collapse);
+            return collapse;
+        }
+        section.classList.add('is-toggling');
+        if (collapse) section.classList.add('is-closing');
+        section.classList.toggle('collapsed', collapse);
+        var cs = getComputedStyle(content);
+        var open = {
+            height: (collapse ? fromHeight : content.scrollHeight) + 'px',
+            paddingTop: cs.paddingTop,
+            paddingBottom: cs.paddingBottom,
+            opacity: 1,
+            overflow: 'hidden'
+        };
+        var shut = { height: '0px', paddingTop: '0px', paddingBottom: '0px', opacity: 0, overflow: 'hidden' };
+        // Turning round half way starts from where the section stands right now.
+        var first = collapse ? open : (running ? Object.assign({}, open, { height: fromHeight + 'px' }) : shut);
+        var anim = content.animate([first, collapse ? shut : open], {
+            duration: 200,
+            easing: 'cubic-bezier(.2,.7,.2,1)'
+        });
+        content._sectionAnim = anim;
+        anim.onfinish = function() {
+            if (content._sectionAnim !== anim) return;
+            content._sectionAnim = null;
+            section.classList.remove('is-closing', 'is-toggling');
+        };
+        return collapse;
     }
 
     /**
@@ -535,7 +658,8 @@ window.BeatifyUtils = (function() {
      * (no overflow / NaN) — the caller may keep incrementing indefinitely.
      *
      * @param {number} attempt - 1-based reconnect attempt number
-     * @param {Object} [opts] - { baseDelay=1000, maxDelay=30000 }
+     * @param {Object} [opts] - { baseDelay=1000, maxDelay=30000, firstDelay }
+     *   firstDelay replaces the delay of attempt 1 only (#3367).
      * @returns {number} delay in ms, in [baseDelay, maxDelay]
      */
     function reconnectBackoffDelay(attempt, opts) {
@@ -543,9 +667,75 @@ window.BeatifyUtils = (function() {
         var baseDelay = opts.baseDelay || 1000;
         var maxDelay = opts.maxDelay || 30000;
         var n = (typeof attempt === 'number' && attempt > 0) ? attempt : 1;
+        if (n === 1 && opts.firstDelay) return opts.firstDelay;
         // Math.pow can overflow to Infinity for huge n; Math.min collapses that
         // to maxDelay, so the result is always a finite number in range.
         return Math.min(baseDelay * Math.pow(2, n - 1), maxDelay);
+    }
+
+    /**
+     * When the reconnecting overlay is on screen (#3367). A dropout shorter than
+     * the delay shows nothing at all; only an overlay that was really visible
+     * gets the "back" signal, and it does not cover the page while it plays.
+     *
+     * @param {Object} deps
+     * @param {number} deps.delay - wait after the loss, in ms
+     * @param {Function} deps.show - puts the overlay on screen
+     * @param {Function} deps.hide - takes it away at once
+     * @param {Function} [deps.signal] - starts the "back" signal; returns its length in ms
+     * @param {Function} [deps.unsignal] - the signal was cut short by a new loss
+     * @param {Function} [deps.reduced] - true: no signal, straight to the end picture
+     * @returns {{lost: Function, back: Function, stop: Function, state: Function}}
+     */
+    function createReconnectOverlay(deps) {
+        var current = 'idle';
+        var timer = null;
+        var reduced = deps.reduced || function() { return false; };
+        function clear() {
+            if (timer !== null) clearTimeout(timer);
+            timer = null;
+        }
+        return {
+            lost: function() {
+                if (current === 'idle') {
+                    current = 'waiting';
+                    timer = setTimeout(function() {
+                        timer = null;
+                        current = 'visible';
+                        deps.show();
+                    }, deps.delay);
+                } else if (current === 'signal') {
+                    clear();
+                    current = 'visible';
+                    if (deps.unsignal) deps.unsignal();
+                }
+            },
+            back: function() {
+                if (current === 'waiting') {
+                    clear();
+                    current = 'idle';
+                } else if (current === 'visible') {
+                    if (reduced() || !deps.signal) {
+                        current = 'idle';
+                        deps.hide();
+                        return;
+                    }
+                    current = 'signal';
+                    timer = setTimeout(function() {
+                        timer = null;
+                        current = 'idle';
+                        deps.hide();
+                    }, deps.signal());
+                }
+            },
+            /** Giving up or a takeover: no wait and no signal. */
+            stop: function() {
+                clear();
+                current = 'idle';
+                deps.hide();
+            },
+            state: function() { return current; }
+        };
     }
 
     /**
@@ -1133,6 +1323,10 @@ window.BeatifyUtils = (function() {
 
         // Reveal motion (#3365)
         createMotionGate: createMotionGate,
+        pickFeedback: pickFeedback,
+        countTo: countTo,
+        toggleCollapsibleSection: toggleCollapsibleSection,
+        createReconnectOverlay: createReconnectOverlay,
         yearReelDigits: yearReelDigits,
         rollYear: rollYear,
         guessLandingPlan: guessLandingPlan,
