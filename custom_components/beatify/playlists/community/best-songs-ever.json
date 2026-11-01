@@ -1,0 +1,973 @@
+{
+  "name": "Best Songs Ever",
+  "version": "0.1",
+  "tags": [
+    "classic-rock",
+    "pop",
+    "ballads",
+    "1960s",
+    "1970s",
+    "1980s",
+    "1990s",
+    "international"
+  ],
+  "language": "en",
+  "author": "Beatify Community",
+  "added_date": "2026-11-01",
+  "description": "Timeless rock and pop classics and ballads, from The Beatles and The Rolling Stones to U2, Radiohead and Adele.",
+  "source": "https://open.spotify.com/playlist/7dGotN3VluCVFxH8ls4kU0",
+  "songs": [
+    {
+      "year": 1975,
+      "uri": "spotify:track:1dtfTodJ3Uld533EXKQokC",
+      "artist": "Pink Floyd",
+      "alt_artists": [
+        "Yes",
+        "King Crimson",
+        "Genesis"
+      ],
+      "title": "Shine On You Crazy Diamond (Pts. 1-5)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written as a tribute to former bandmate Syd Barrett, who unexpectedly turned up at the Abbey Road sessions in 1975 and was barely recognisable to the band.",
+      "fun_fact_de": "Als Hommage an den früheren Bandkollegen Syd Barrett geschrieben, der 1975 plötzlich im Abbey-Road-Studio auftauchte und von der Band kaum wiedererkannt wurde.",
+      "fun_fact_es": "Escrita como homenaje a su antiguo compañero Syd Barrett, que apareció de sorpresa en las sesiones de Abbey Road en 1975 y casi no fue reconocido por la banda.",
+      "fun_fact_fr": "Écrite en hommage à l'ancien membre Syd Barrett, apparu par surprise aux séances d'Abbey Road en 1975 et à peine reconnaissable pour le groupe.",
+      "fun_fact_nl": "Geschreven als eerbetoon aan oud-bandlid Syd Barrett, die in 1975 onverwacht opdook bij de opnames in Abbey Road en door de band nauwelijks werd herkend.",
+      "uri_apple_music": "applemusic://track/1838026785",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Tu7oq3VNgpY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/116914036",
+      "awards_nl": [],
+      "isrc": "GBN9Y1100085",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1838026785"
+      }
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:2g7gviEeJr6pyxO7G35EWQ",
+      "artist": "Meat Loaf",
+      "alt_artists": [
+        "Bonnie Tyler",
+        "Jim Steinman",
+        "Queen"
+      ],
+      "title": "Paradise By the Dashboard Light",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The sports commentary in the middle is by baseball announcer Phil Rizzuto, and the female part is sung by Ellen Foley.",
+      "fun_fact_de": "Die Sportreportage in der Mitte stammt vom Baseball-Kommentator Phil Rizzuto, den weiblichen Gesangspart singt Ellen Foley.",
+      "fun_fact_es": "El comentario deportivo del medio es del locutor de béisbol Phil Rizzuto, y la parte femenina la canta Ellen Foley.",
+      "fun_fact_fr": "Le commentaire sportif au milieu est du commentateur de baseball Phil Rizzuto, et la partie féminine est chantée par Ellen Foley.",
+      "fun_fact_nl": "Het sportcommentaar in het midden komt van honkbalverslaggever Phil Rizzuto, en het vrouwelijke deel wordt gezongen door Ellen Foley.",
+      "uri_apple_music": "applemusic://track/991385389",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=C11MzbEcHlw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/125468092",
+      "awards_nl": [],
+      "isrc": "USSM11206829",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/991385389"
+      }
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:3nQRF1plQystLrsEXiE8cR",
+      "artist": "The Alan Parsons Project",
+      "alt_artists": [
+        "Supertramp",
+        "10cc",
+        "Pink Floyd"
+      ],
+      "title": "Old and Wise",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Eric Woolfson wrote it, and Colin Blunstone of The Zombies sings the lead; it closes the 1982 album Eye in the Sky.",
+      "fun_fact_de": "Eric Woolfson schrieb den Song, Colin Blunstone von den Zombies singt den Lead; er beschließt das Album Eye in the Sky von 1982.",
+      "fun_fact_es": "Eric Woolfson la escribió y Colin Blunstone, de The Zombies, canta la voz principal; cierra el álbum Eye in the Sky de 1982.",
+      "fun_fact_fr": "Eric Woolfson l'a écrite et Colin Blunstone, des Zombies, chante la voix principale ; elle clôt l'album Eye in the Sky de 1982.",
+      "fun_fact_nl": "Eric Woolfson schreef het nummer en Colin Blunstone van The Zombies zingt de leadzang; het sluit het album Eye in the Sky uit 1982 af.",
+      "uri_apple_music": "applemusic://track/1205671316",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FDlDKvidYbk",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/328213651",
+      "awards_nl": [],
+      "isrc": "USAR19700022",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1205671316"
+      }
+    },
+    {
+      "year": 1980,
+      "uri": "spotify:track:0T6kwiueP62ten2KLLmQS4",
+      "artist": "The Cure",
+      "alt_artists": [
+        "Joy Division",
+        "Siouxsie and the Banshees",
+        "New Order"
+      ],
+      "title": "A Forest",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The Cure's first UK top-40 hit, taken from the 1980 album Seventeen Seconds.",
+      "fun_fact_de": "Der erste Top-40-Hit der Cure in Großbritannien, vom Album Seventeen Seconds von 1980.",
+      "fun_fact_es": "El primer éxito de The Cure entre los 40 primeros del Reino Unido, del álbum Seventeen Seconds de 1980.",
+      "fun_fact_fr": "Premier tube de The Cure dans le top 40 britannique, tire de l'album Seventeen Seconds de 1980.",
+      "fun_fact_nl": "De eerste hit van The Cure in de Britse top 40, van het album Seventeen Seconds uit 1980.",
+      "uri_apple_music": "applemusic://track/65619482",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qh-jVXyn5CM",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2498167",
+      "awards_nl": [],
+      "isrc": "GBALB8000007",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/65619482"
+      }
+    },
+    {
+      "year": 1974,
+      "uri": "spotify:track:4j6rSruR2yQO6dOkf0OXbU",
+      "artist": "Supertramp",
+      "alt_artists": [
+        "Genesis",
+        "Electric Light Orchestra",
+        "10cc"
+      ],
+      "title": "School",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Opens Crime of the Century (1974), the album that made Supertramp stars and reached No. 4 in the UK.",
+      "fun_fact_de": "Eröffnet Crime of the Century (1974), das Album, das Supertramp zu Stars machte und in Großbritannien Platz 4 erreichte.",
+      "fun_fact_es": "Abre Crime of the Century (1974), el álbum que convirtió a Supertramp en estrellas y llegó al número 4 en el Reino Unido.",
+      "fun_fact_fr": "Ouvre Crime of the Century (1974), l'album qui a fait de Supertramp des vedettes et atteint la 4e place au Royaume-Uni.",
+      "fun_fact_nl": "Opent Crime of the Century (1974), het album dat Supertramp beroemd maakte en in Groot-Brittannië op nummer 4 kwam.",
+      "uri_apple_music": "applemusic://track/1440646886",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JgJRM_8GWHg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2503272",
+      "awards_nl": [],
+      "isrc": "USAM17404299",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440646886"
+      }
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:2bcC9Xyi40wnI7Od5uch31",
+      "artist": "Paolo Nutini",
+      "alt_artists": [
+        "James Morrison",
+        "Ben Howard",
+        "Tom Odell"
+      ],
+      "title": "Iron Sky",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The video is a short film that includes a spoken passage from Charlie Chaplin's speech in The Great Dictator.",
+      "fun_fact_de": "Das Video ist ein Kurzfilm mit einem gesprochenen Ausschnitt aus Charlie Chaplins Rede in Der große Diktator.",
+      "fun_fact_es": "El vídeo es un cortometraje que incluye un fragmento hablado del discurso de Charlie Chaplin en El gran dictador.",
+      "fun_fact_fr": "Le clip est un court métrage qui inclut un passage parlé du discours de Charlie Chaplin dans Le Dictateur.",
+      "fun_fact_nl": "De clip is een korte film met een gesproken fragment uit de toespraak van Charlie Chaplin in The Great Dictator.",
+      "uri_apple_music": "applemusic://track/903853645",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/76632643",
+      "awards_nl": [],
+      "isrc": "GBAHS1400044",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/903853645"
+      }
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:4sFbojhVXQv7dBC9PVCcRn",
+      "artist": "The Rolling Stones",
+      "alt_artists": [
+        "The Doors",
+        "The Kinks",
+        "Led Zeppelin"
+      ],
+      "title": "Sympathy For The Devil",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Mick Jagger was inspired by Bulgakov's novel The Master and Margarita, and Jean-Luc Godard filmed the recording sessions.",
+      "fun_fact_de": "Mick Jagger ließ sich von Bulgakows Roman Der Meister und Margarita inspirieren, und Jean-Luc Godard filmte die Aufnahmen.",
+      "fun_fact_es": "Mick Jagger se inspiró en la novela El maestro y Margarita de Bulgakov, y Jean-Luc Godard filmó las sesiones de grabación.",
+      "fun_fact_fr": "Mick Jagger s'est inspiré du roman Le Maître et Marguerite de Boulgakov, et Jean-Luc Godard a filmé les séances d'enregistrement.",
+      "fun_fact_nl": "Mick Jagger liet zich inspireren door Boelgakovs roman De meester en Margarita, en Jean-Luc Godard filmde de opnames.",
+      "uri_apple_music": "applemusic://track/1500643398",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HOYLkf3lZQo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/9956063",
+      "awards_nl": [],
+      "isrc": "USA176810010",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1500643398"
+      }
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:4wYq5wugZDzQiMZQYG4wVB",
+      "artist": "AC/DC",
+      "alt_artists": [
+        "Black Sabbath",
+        "Led Zeppelin",
+        "Motorhead"
+      ],
+      "title": "Whole Lotta Rosie",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bon Scott sings about a real woman named Rosie, a large Tasmanian he met on tour.",
+      "fun_fact_de": "Bon Scott singt über eine echte Frau namens Rosie, eine kräftige Tasmanierin, die er auf Tour kennenlernte.",
+      "fun_fact_es": "Bon Scott canta sobre una mujer real llamada Rosie, una corpulenta tasmana que conoció de gira.",
+      "fun_fact_fr": "Bon Scott chante une vraie femme nommée Rosie, une Tasmanienne bien en chair rencontrée en tournée.",
+      "fun_fact_nl": "Bon Scott zingt over een echte vrouw genaamd Rosie, een stevige Tasmaanse die hij op tournee ontmoette.",
+      "uri_apple_music": "applemusic://track/574124731",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BL58K-3XGKs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/92722980",
+      "awards_nl": [],
+      "isrc": "AUAP07700011",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/574124731"
+      }
+    },
+    {
+      "year": 2016,
+      "uri": "spotify:track:39HyltGRsg2q0s5PMA9ala",
+      "artist": "Kensington",
+      "alt_artists": [
+        "Racoon",
+        "Bløf",
+        "Jovink"
+      ],
+      "title": "Sorry",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Kensington is a Dutch rock band from Utrecht, and Sorry comes from their 2016 album Control.",
+      "fun_fact_de": "Kensington ist eine niederländische Rockband aus Utrecht, und Sorry stammt von ihrem Album Control von 2016.",
+      "fun_fact_es": "Kensington es una banda de rock neerlandesa de Utrecht, y Sorry pertenece a su álbum Control de 2016.",
+      "fun_fact_fr": "Kensington est un groupe de rock néerlandais d'Utrecht, et Sorry vient de leur album Control de 2016.",
+      "fun_fact_nl": "Kensington is een Nederlandse rockband uit Utrecht, en Sorry staat op hun album Control uit 2016.",
+      "uri_apple_music": "applemusic://track/1440868375",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZoQO7e2THIw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/134954286",
+      "awards_nl": [],
+      "isrc": "NLUB41600041",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440868375"
+      }
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:6wBJRGnGOrWy4sACdMekxO",
+      "artist": "Dire Straits",
+      "alt_artists": [
+        "Eric Clapton",
+        "J.J. Cale",
+        "Chris Rea"
+      ],
+      "title": "Private Investigations",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A six-minute, half-spoken ballad that still reached No. 2 on the UK singles chart in 1982.",
+      "fun_fact_de": "Eine sechsminütige, halb gesprochene Ballade, die 1982 trotzdem Platz 2 der britischen Single-Charts erreichte.",
+      "fun_fact_es": "Una balada de seis minutos, medio hablada, que aun así llegó al número 2 de la lista británica de sencillos en 1982.",
+      "fun_fact_fr": "Une ballade de six minutes, à moitié parlée, qui a quand même atteint la 2e place des ventes de singles britanniques en 1982.",
+      "fun_fact_nl": "Een ballade van zes minuten, half gesproken, die in 1982 toch op nummer 2 in de Britse singlehitlijst kwam.",
+      "uri_apple_music": "applemusic://track/73259895",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P9K27HvhDxA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2428801",
+      "awards_nl": [],
+      "isrc": "GBF088400792",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/73259895"
+      }
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:7uNvKuQZ40q2Qv3itfQDSi",
+      "artist": "U2",
+      "alt_artists": [
+        "Simple Minds",
+        "Coldplay",
+        "Bruce Springsteen"
+      ],
+      "title": "Where The Streets Have No Name",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Producers Brian Eno and Daniel Lanois reportedly considered erasing the master tape because the track was so hard to get right.",
+      "fun_fact_de": "Die Produzenten Brian Eno und Daniel Lanois wollten das Masterband Berichten zufolge löschen, weil der Song so schwer richtig hinzubekommen war.",
+      "fun_fact_es": "Según se cuenta, los productores Brian Eno y Daniel Lanois pensaron en borrar la cinta maestra porque la canción era muy difícil de acertar.",
+      "fun_fact_fr": "Les producteurs Brian Eno et Daniel Lanois auraient envisagé d'effacer la bande master tant le morceau était difficile à régler.",
+      "fun_fact_nl": "Producers Brian Eno en Daniel Lanois overwogen naar verluidt de masterband te wissen omdat het nummer zo moeilijk goed te krijgen was.",
+      "uri_apple_music": "applemusic://track/1440729868",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WfunypXsBO4",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/347363351",
+      "awards_nl": [],
+      "isrc": "GBAAN0400084",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440729868"
+      }
+    },
+    {
+      "year": 1975,
+      "uri": "spotify:track:1luVGXHe7oimtkPScdsKBe",
+      "artist": "Queen",
+      "alt_artists": [
+        "David Bowie",
+        "Elton John",
+        "Genesis"
+      ],
+      "title": "Love Of My Life",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Freddie Mercury wrote it at the piano, Brian May added the harp, and at live shows the audience sings it back to the band.",
+      "fun_fact_de": "Freddie Mercury schrieb es am Klavier, Brian May ergänzte die Harfe, und bei Konzerten singt das Publikum es der Band zurück.",
+      "fun_fact_es": "Freddie Mercury la compuso al piano, Brian May añadió el arpa y en directo el público se la canta a la banda.",
+      "fun_fact_fr": "Freddie Mercury l'a écrite au piano, Brian May a ajouté la harpe, et en concert le public la chante à la place du groupe.",
+      "fun_fact_nl": "Freddie Mercury schreef het aan de piano, Brian May voegde de harp toe, en live zingt het publiek het terug naar de band.",
+      "uri_apple_music": "applemusic://track/6781024435",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sUJkCXE4sAA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4091937381",
+      "awards_nl": [],
+      "isrc": "GBUM71100536",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6781024435"
+      }
+    },
+    {
+      "year": 1969,
+      "uri": "spotify:track:1dv3ePjze9tPq2pk8eWJdR",
+      "artist": "The Rolling Stones",
+      "alt_artists": [
+        "The Who",
+        "The Kinks",
+        "Creedence Clearwater Revival"
+      ],
+      "title": "Gimme Shelter",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Merry Clayton was called to the studio late at night to sing the duet part, and her voice famously cracks on the line about murder.",
+      "fun_fact_de": "Merry Clayton wurde spät nachts ins Studio gerufen, um den Duettpart zu singen, und ihre Stimme bricht berühmt bei der Zeile über Mord.",
+      "fun_fact_es": "Merry Clayton fue llamada al estudio de madrugada para cantar la parte a dúo, y su voz se quiebra de forma famosa en el verso sobre el asesinato.",
+      "fun_fact_fr": "Merry Clayton a été appelée en studio tard dans la nuit pour chanter la partie en duo, et sa voix se brise de façon mémorable sur le vers du meurtre.",
+      "fun_fact_nl": "Merry Clayton werd laat in de nacht naar de studio gebeld om de duetpartij te zingen, en haar stem breekt beroemd bij de regel over moord.",
+      "uri_apple_music": "applemusic://track/1440765880",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BINqh-LMQX0",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/9914834",
+      "awards_nl": [],
+      "isrc": "USA176910020",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440765880"
+      }
+    },
+    {
+      "year": 1982,
+      "uri": "spotify:track:4X7UqvLO8ThktU9M2XNxW9",
+      "artist": "Billy Joel",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Elton John",
+        "Bob Seger"
+      ],
+      "title": "Goodnight Saigon",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Billy Joel wrote it after talking with Vietnam veterans, and the song opens with the sound of helicopters.",
+      "fun_fact_de": "Billy Joel schrieb es nach Gesprächen mit Vietnam-Veteranen, und der Song beginnt mit Hubschrauberlärm.",
+      "fun_fact_es": "Billy Joel la escribió tras hablar con veteranos de Vietnam, y la canción empieza con el sonido de helicópteros.",
+      "fun_fact_fr": "Billy Joel l'a écrite après avoir parlé à des vétérans du Vietnam, et le morceau s'ouvre sur le bruit d'hélicoptères.",
+      "fun_fact_nl": "Billy Joel schreef het na gesprekken met Vietnamveteranen, en het nummer begint met het geluid van helikopters.",
+      "uri_apple_music": "applemusic://track/158816130",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ghllgDOV8uA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/67943077",
+      "awards_nl": [],
+      "isrc": "USSM18100396",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/158816130"
+      }
+    },
+    {
+      "year": 1977,
+      "uri": "spotify:track:4NEWVkE87oVAuSeKwzrqrZ",
+      "artist": "Supertramp",
+      "alt_artists": [
+        "Genesis",
+        "Pink Floyd",
+        "Yes"
+      ],
+      "title": "Fool's Overture",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A 10-minute epic from Even in the Quietest Moments (1977) that samples Winston Churchill's wartime speech and the chimes of Big Ben.",
+      "fun_fact_de": "Ein zehnminütiges Epos vom Album Even in the Quietest Moments (1977), das Winston Churchills Kriegsrede und den Klang von Big Ben einbindet.",
+      "fun_fact_es": "Una epopeya de diez minutos de Even in the Quietest Moments (1977) que incluye un discurso de guerra de Winston Churchill y las campanadas del Big Ben.",
+      "fun_fact_fr": "Une épopée de dix minutes d'Even in the Quietest Moments (1977) qui reprend un discours de guerre de Winston Churchill et les cloches de Big Ben.",
+      "fun_fact_nl": "Een epos van tien minuten van Even in the Quietest Moments (1977) met een oorlogstoespraak van Winston Churchill en de klokken van Big Ben.",
+      "uri_apple_music": "applemusic://track/1880517675",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9gn4KFJLdKs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/549271502",
+      "awards_nl": [],
+      "isrc": "USAM17774668",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1880517675"
+      }
+    },
+    {
+      "year": 2011,
+      "uri": "spotify:track:6QPKYGnAW9QozVz2dSWqRg",
+      "artist": "Adele",
+      "alt_artists": [
+        "Lana Del Rey",
+        "Amy Winehouse",
+        "Sam Smith"
+      ],
+      "title": "Someone Like You",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Co-written with Dan Wilson, this piano-and-voice ballad reached No. 1 in both the UK and the US.",
+      "fun_fact_de": "Gemeinsam mit Dan Wilson geschrieben, erreichte diese Ballade aus Klavier und Stimme Platz 1 in Großbritannien und den USA.",
+      "fun_fact_es": "Escrita con Dan Wilson, esta balada de piano y voz llegó al número 1 tanto en el Reino Unido como en Estados Unidos.",
+      "fun_fact_fr": "Coécrite avec Dan Wilson, cette ballade piano-voix a atteint la 1re place au Royaume-Uni comme aux États-Unis.",
+      "fun_fact_nl": "Samen met Dan Wilson geschreven; deze ballade voor piano en stem bereikte nummer 1 in zowel het Verenigd Koninkrijk als de VS.",
+      "uri_apple_music": "applemusic://track/1544491998",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=22c3_LoIfZQ",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/8086136",
+      "awards_nl": [],
+      "isrc": "GBBKS1000351",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1544491998"
+      }
+    },
+    {
+      "year": 1979,
+      "uri": "spotify:track:562JrM9b7jiu8LgzV62x3o",
+      "artist": "Bette Midler",
+      "alt_artists": [
+        "Barbra Streisand",
+        "Celine Dion",
+        "Cher"
+      ],
+      "title": "The Rose",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written by Amanda McBroom; Midler's version from the 1979 film The Rose won her a Grammy for Best Female Pop Vocal Performance.",
+      "fun_fact_de": "Geschrieben von Amanda McBroom; Midlers Version aus dem Film The Rose von 1979 brachte ihr einen Grammy als beste weibliche Pop-Gesangsdarbietung ein.",
+      "fun_fact_es": "Escrita por Amanda McBroom; la versión de Midler de la película The Rose (1979) le valió un Grammy a la mejor interpretación vocal pop femenina.",
+      "fun_fact_fr": "Écrite par Amanda McBroom ; la version de Midler pour le film The Rose (1979) lui a valu un Grammy de la meilleure interprétation vocale pop féminine.",
+      "fun_fact_nl": "Geschreven door Amanda McBroom; Midlers versie uit de film The Rose (1979) leverde haar een Grammy op voor beste vrouwelijke popzangprestatie.",
+      "uri_apple_music": "applemusic://track/740212490",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yyAeebaU6E8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4736197",
+      "awards_nl": [],
+      "isrc": "USAT20706105",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/740212490"
+      }
+    },
+    {
+      "year": 1985,
+      "uri": "spotify:track:3GCb2MEO7tKRshjHE8WxdZ",
+      "artist": "Falco",
+      "alt_artists": [
+        "Peter Schilling",
+        "Nena",
+        "Ultravox"
+      ],
+      "title": "Jeanny",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Falco's 1985 hit about a troubled young woman was banned by several radio stations over its story, yet it still topped charts in German-speaking countries.",
+      "fun_fact_de": "Falcos Hit von 1985 über eine verzweifelte junge Frau wurde von mehreren Radiosendern wegen der Geschichte nicht gespielt und stand trotzdem in deutschsprachigen Ländern an der Spitze.",
+      "fun_fact_es": "El éxito de Falco de 1985 sobre una joven atormentada fue vetado por varias emisoras por su historia, pero aun así lideró las listas de los países de habla alemana.",
+      "fun_fact_fr": "Le tube de Falco de 1985 sur une jeune femme en détresse a été interdit par plusieurs radios à cause de son histoire, mais a quand même dominé les classements germanophones.",
+      "fun_fact_nl": "Falco's hit uit 1985 over een jong meisje in nood werd door verschillende radiozenders geweerd vanwege het verhaal, maar stond toch bovenaan in Duitstalige landen.",
+      "uri_apple_music": "applemusic://track/289513271",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Urw-iutHw5E",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/142334591",
+      "awards_nl": [],
+      "isrc": "ATB158500019",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/289513271"
+      }
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:6OhTIcuyltiAHUC6pfRR0I",
+      "artist": "Sting",
+      "alt_artists": [
+        "The Police",
+        "Peter Gabriel",
+        "Paul Simon"
+      ],
+      "title": "Fragile",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Sting wrote it after Ben Linder, an American engineer, was killed in Nicaragua in 1987, with a Spanish-style guitar line.",
+      "fun_fact_de": "Sting schrieb es, nachdem der amerikanische Ingenieur Ben Linder 1987 in Nicaragua getötet wurde, mit einer spanisch angehauchten Gitarrenlinie.",
+      "fun_fact_es": "Sting la escribió tras la muerte en 1987 del ingeniero estadounidense Ben Linder en Nicaragua, con una línea de guitarra de aire español.",
+      "fun_fact_fr": "Sting l'a écrite après la mort en 1987 de l'ingénieur américain Ben Linder au Nicaragua, avec une ligne de guitare d'inspiration espagnole.",
+      "fun_fact_nl": "Sting schreef het nadat de Amerikaanse ingenieur Ben Linder in 1987 in Nicaragua werd gedood, met een Spaans aandoende gitaarlijn.",
+      "uri_apple_music": "applemusic://track/1650882913",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lB6a-iD6ZOY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2525868",
+      "awards_nl": [],
+      "isrc": "USAM18700043",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1650882913"
+      }
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:3ixTiPABjqkBKPocxq6oIe",
+      "artist": "Oasis",
+      "alt_artists": [
+        "Blur",
+        "The Verve",
+        "Stereophonics"
+      ],
+      "title": "Don't Look Back In Anger",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The first Oasis single with Noel Gallagher on lead vocals, and the piano intro echoes John Lennon's Imagine.",
+      "fun_fact_de": "Die erste Oasis-Single mit Noel Gallagher als Leadsänger, und das Klavier-Intro erinnert an John Lennons Imagine.",
+      "fun_fact_es": "El primer sencillo de Oasis con Noel Gallagher como voz principal, y la intro de piano recuerda a Imagine de John Lennon.",
+      "fun_fact_fr": "Le premier single d'Oasis avec Noel Gallagher au chant, et l'intro au piano rappelle Imagine de John Lennon.",
+      "fun_fact_nl": "De eerste Oasis-single met Noel Gallagher als leadzanger, en de pianointro doet denken aan Imagine van John Lennon.",
+      "uri_apple_music": "applemusic://track/1525933492",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oplra1FJxWI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/985722002",
+      "awards_nl": [],
+      "isrc": "GBAAW9500190",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1525933492"
+      }
+    },
+    {
+      "year": 1994,
+      "uri": "spotify:track:74X1epeRufHckhuX1KFD04",
+      "artist": "Jeff Buckley",
+      "alt_artists": [
+        "Leonard Cohen",
+        "Nick Drake",
+        "Elliott Smith"
+      ],
+      "title": "Hallelujah",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Buckley's 1994 cover of Leonard Cohen's song became famous mainly after his death in 1997; Cohen reportedly wrote dozens of draft verses.",
+      "fun_fact_de": "Buckleys Coverversion von Leonard Cohens Song aus dem Jahr 1994 wurde vor allem nach seinem Tod 1997 berühmt; Cohen soll Dutzende Strophenentwürfe geschrieben haben.",
+      "fun_fact_es": "La versión de Buckley de 1994 de la canción de Leonard Cohen se hizo famosa sobre todo tras su muerte en 1997; Cohen escribió decenas de borradores de versos.",
+      "fun_fact_fr": "La reprise de Buckley en 1994 de la chanson de Leonard Cohen est surtout devenue célèbre après sa mort en 1997 ; Cohen aurait écrit des dizaines de couplets.",
+      "fun_fact_nl": "Buckleys cover uit 1994 van het nummer van Leonard Cohen werd vooral beroemd na zijn dood in 1997; Cohen zou tientallen couplet-ontwerpen hebben geschreven.",
+      "uri_apple_music": "applemusic://track/1046187586",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=01bTOqDPmxE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/108733464",
+      "awards_nl": [],
+      "isrc": "USSM19400915",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1046187586"
+      }
+    },
+    {
+      "year": 1968,
+      "uri": "spotify:track:4Z92RMiyJpUrApZi3LtpJ6",
+      "artist": "The Beatles",
+      "alt_artists": [
+        "Simon & Garfunkel",
+        "Nick Drake",
+        "Bob Dylan"
+      ],
+      "title": "Blackbird",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Paul McCartney was inspired by Bach's Bourree in E minor and by the US civil rights movement, and the steady tapping is his foot.",
+      "fun_fact_de": "Paul McCartney ließ sich von Bachs Bourrée in e-Moll und der US-Bürgerrechtsbewegung inspirieren, und das gleichmäßige Klopfen ist sein Fuß.",
+      "fun_fact_es": "Paul McCartney se inspiró en la Bourrée en mi menor de Bach y en el movimiento por los derechos civiles de EE. UU.; el golpeteo constante es su pie.",
+      "fun_fact_fr": "Paul McCartney s'est inspiré de la Bourrée en mi mineur de Bach et du mouvement américain des droits civiques, et le tapotement régulier est son pied.",
+      "fun_fact_nl": "Paul McCartney liet zich inspireren door Bachs Bourrée in e-mineur en de Amerikaanse burgerrechtenbeweging; het constante getik is zijn voet.",
+      "uri_apple_music": "applemusic://track/1441133834",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Man4Xw8Xypo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/116348212",
+      "awards_nl": [],
+      "isrc": "GBAYE0601654",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1441133834"
+      }
+    },
+    {
+      "year": 1987,
+      "uri": "spotify:track:7gozgbG5EBTukCFWToTRA5",
+      "artist": "U2",
+      "alt_artists": [
+        "Bruce Springsteen",
+        "Simple Minds",
+        "R.E.M."
+      ],
+      "title": "I Still Haven't Found What I'm Looking For",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "A gospel-tinged track from The Joshua Tree that reached No. 1 on the US Billboard Hot 100 in 1987.",
+      "fun_fact_de": "Ein gospelgefärbter Song von The Joshua Tree, der 1987 Platz 1 der US-Billboard-Hot-100 erreichte.",
+      "fun_fact_es": "Un tema con aire gospel de The Joshua Tree que llegó al número 1 del Billboard Hot 100 de EE. UU. en 1987.",
+      "fun_fact_fr": "Un morceau aux accents gospel de The Joshua Tree qui a atteint la 1re place du Billboard Hot 100 américain en 1987.",
+      "fun_fact_nl": "Een gospelachtig nummer van The Joshua Tree dat in 1987 nummer 1 bereikte in de Amerikaanse Billboard Hot 100.",
+      "uri_apple_music": "applemusic://track/1442950019",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=neG5xgZbHOg",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/912481",
+      "awards_nl": [],
+      "isrc": "GBUM70709783",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442950019"
+      }
+    },
+    {
+      "year": 2006,
+      "uri": "spotify:track:7ouMYWpwJ422jRcDASZB7P",
+      "artist": "Muse",
+      "alt_artists": [
+        "Queen",
+        "Radiohead",
+        "Arctic Monkeys"
+      ],
+      "title": "Knights of Cydonia",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Matt Bellamy mixed Ennio Morricone-style western guitar with a galloping, Queen-like rhythm; Cydonia is a region on Mars.",
+      "fun_fact_de": "Matt Bellamy mischte westernartige Gitarren im Stil von Ennio Morricone mit einem galoppierenden, Queen-artigen Rhythmus; Cydonia ist eine Region auf dem Mars.",
+      "fun_fact_es": "Matt Bellamy mezcló guitarras de western al estilo de Ennio Morricone con un ritmo galopante a lo Queen; Cydonia es una región de Marte.",
+      "fun_fact_fr": "Matt Bellamy a mélangé des guitares de western à la Ennio Morricone et un rythme de galop proche de Queen ; Cydonia est une région de Mars.",
+      "fun_fact_nl": "Matt Bellamy combineerde westerngitaren in de stijl van Ennio Morricone met een galopperend, Queen-achtig ritme; Cydonia is een regio op Mars.",
+      "uri_apple_music": "applemusic://track/992222005",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G_sBOsh-vyI",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3590194",
+      "awards_nl": [],
+      "isrc": "GBAHT0500600",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/992222005"
+      }
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:4urcJLqBZ2OX9Qq9sMMXyV",
+      "artist": "U2",
+      "alt_artists": [
+        "Simple Minds",
+        "Peter Gabriel",
+        "Talk Talk"
+      ],
+      "title": "The Unforgettable Fire",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The title comes from an art exhibition of paintings by survivors of the atomic bombings of Hiroshima and Nagasaki; Brian Eno and Daniel Lanois produced it.",
+      "fun_fact_de": "Der Titel stammt von einer Kunstausstellung mit Bildern von Überlebenden der Atombombenabwürfe auf Hiroshima und Nagasaki; produziert von Brian Eno und Daniel Lanois.",
+      "fun_fact_es": "El título viene de una exposición de pinturas de supervivientes de las bombas atómicas de Hiroshima y Nagasaki; lo produjeron Brian Eno y Daniel Lanois.",
+      "fun_fact_fr": "Le titre vient d'une exposition de peintures de survivants des bombes atomiques d'Hiroshima et Nagasaki ; produit par Brian Eno et Daniel Lanois.",
+      "fun_fact_nl": "De titel komt van een kunsttentoonstelling met schilderijen van overlevenden van de atoombommen op Hiroshima en Nagasaki; geproduceerd door Brian Eno en Daniel Lanois.",
+      "uri_apple_music": "applemusic://track/1440732117",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CEgxfUoquYU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4587263",
+      "awards_nl": [],
+      "isrc": "GBUM70817521",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440732117"
+      }
+    },
+    {
+      "year": 2009,
+      "uri": "spotify:track:2DOSd7L6SxgMqQlkPDt3ZT",
+      "artist": "Kyteman",
+      "alt_artists": [
+        "Typhoon",
+        "Kensington",
+        "Moke"
+      ],
+      "title": "Sorry (Live in Tivoli)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Kyteman is the stage name of Dutch trumpeter and producer Colin Benders; this is a live recording from Tivoli.",
+      "fun_fact_de": "Kyteman ist der Künstlername des niederländischen Trompeters und Produzenten Colin Benders; dies ist eine Live-Aufnahme aus dem Tivoli.",
+      "fun_fact_es": "Kyteman es el nombre artístico del trompetista y productor neerlandés Colin Benders; esta es una grabación en directo desde el Tivoli.",
+      "fun_fact_fr": "Kyteman est le nom de scène du trompettiste et producteur néerlandais Colin Benders ; c'est un enregistrement live au Tivoli.",
+      "fun_fact_nl": "Kyteman is de artiestennaam van de Nederlandse trompettist en producer Colin Benders; dit is een liveopname uit Tivoli.",
+      "uri_apple_music": "applemusic://track/302970407",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=o7k31ETR91U",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1598750972",
+      "awards_nl": [],
+      "isrc": "NLEL60800007",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/302970407"
+      }
+    },
+    {
+      "year": 2014,
+      "uri": "spotify:track:34gCuhDGsG4bRPIf9bb02f",
+      "artist": "Ed Sheeran",
+      "alt_artists": [
+        "James Blunt",
+        "Passenger",
+        "Jamie Lawson"
+      ],
+      "title": "Thinking out Loud",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Co-written with Amy Wadge, it won the Grammy for Song of the Year in 2016.",
+      "fun_fact_de": "Gemeinsam mit Amy Wadge geschrieben, gewann es 2016 den Grammy als Song des Jahres.",
+      "fun_fact_es": "Escrita con Amy Wadge, ganó el Grammy a la Canción del Año en 2016.",
+      "fun_fact_fr": "Coécrite avec Amy Wadge, elle a remporté le Grammy de la chanson de l'année en 2016.",
+      "fun_fact_nl": "Samen met Amy Wadge geschreven; het won in 2016 de Grammy voor Song of the Year.",
+      "uri_apple_music": "applemusic://track/1050204631",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WpyfrixXBqU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/79875064",
+      "awards_nl": [],
+      "isrc": "GBAHS1400099",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1050204631"
+      }
+    },
+    {
+      "year": 2008,
+      "uri": "spotify:track:0mqTcM8kuu2IYPotMt7AzS",
+      "artist": "Adele",
+      "alt_artists": [
+        "Norah Jones",
+        "Duffy",
+        "Joss Stone"
+      ],
+      "title": "Make You Feel My Love",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Bob Dylan wrote it for his 1997 album Time Out of Mind, and Adele's cover on her debut 19 brought it to a new audience.",
+      "fun_fact_de": "Bob Dylan schrieb es für sein Album Time Out of Mind von 1997, und Adeles Coverversion auf ihrem Debüt 19 brachte es einem neuen Publikum nahe.",
+      "fun_fact_es": "Bob Dylan la escribió para su álbum Time Out of Mind de 1997, y la versión de Adele en su debut 19 la acercó a un nuevo público.",
+      "fun_fact_fr": "Bob Dylan l'a écrite pour son album Time Out of Mind de 1997, et la reprise d'Adele sur son premier album 19 l'a fait découvrir à un nouveau public.",
+      "fun_fact_nl": "Bob Dylan schreef het voor zijn album Time Out of Mind uit 1997, en Adeles cover op haar debuut 19 bracht het bij een nieuw publiek.",
+      "uri_apple_music": "applemusic://track/1545382976",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9IzKueQ2ZxY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/940347",
+      "awards_nl": [],
+      "isrc": "GBBKS0700586",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1545382976"
+      }
+    },
+    {
+      "year": 2005,
+      "uri": "spotify:track:2eFreVYQ9r8yxopGtiPMCy",
+      "artist": "Racoon",
+      "alt_artists": [
+        "Kensington",
+        "Bløf",
+        "Anouk"
+      ],
+      "title": "Love You More",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Racoon is a Dutch rock band from Goes in Zeeland; Armin van Buuren later made a trance version featuring the band.",
+      "fun_fact_de": "Racoon ist eine niederländische Rockband aus Goes in Zeeland; Armin van Buuren machte später eine Trance-Version mit der Band.",
+      "fun_fact_es": "Racoon es una banda de rock neerlandesa de Goes, en Zelanda; Armin van Buuren hizo despues una versión trance con la banda.",
+      "fun_fact_fr": "Racoon est un groupe de rock néerlandais de Goes, en Zélande ; Armin van Buuren en a ensuite fait une version trance avec le groupe.",
+      "fun_fact_nl": "Racoon is een Nederlandse rockband uit Goes in Zeeland; Armin van Buuren maakte later een trance-versie met de band.",
+      "uri_apple_music": "applemusic://track/1805894930",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2j4MWZevjYw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3304292571",
+      "awards_nl": [],
+      "isrc": "NLD320500003",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1805894930"
+      }
+    },
+    {
+      "year": 1992,
+      "uri": "spotify:track:5Q30xdABnojqN3wBIhrsQp",
+      "artist": "R.E.M.",
+      "alt_artists": [
+        "U2",
+        "Coldplay",
+        "Radiohead"
+      ],
+      "title": "Everybody Hurts",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Drummer Bill Berry wrote the music, and the video shows stuck drivers whose thoughts appear as subtitles.",
+      "fun_fact_de": "Schlagzeuger Bill Berry schrieb die Musik, und im Video erscheinen die Gedanken von Autofahrern im Stau als Untertitel.",
+      "fun_fact_es": "El baterista Bill Berry escribió la música, y en el vídeo los pensamientos de conductores atrapados en un atasco aparecen como subtítulos.",
+      "fun_fact_fr": "Le batteur Bill Berry a composé la musique, et dans le clip les pensées d'automobilistes bloqués apparaissent en sous-titres.",
+      "fun_fact_nl": "Drummer Bill Berry schreef de muziek, en in de clip verschijnen de gedachten van automobilisten in de file als ondertitels.",
+      "uri_apple_music": "applemusic://track/1440949865",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mhIay4-PbCY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/121921372",
+      "awards_nl": [],
+      "isrc": "USWB19901548",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440949865"
+      }
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:5gz38AxRkD6Ywxd4fr2pLj",
+      "artist": "Radiohead",
+      "alt_artists": [
+        "Coldplay",
+        "Muse",
+        "Travis"
+      ],
+      "title": "Street Spirit (Fade Out)",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Closes the 1995 album The Bends and reached the UK top 5 as a single in 1996.",
+      "fun_fact_de": "Beschließt das Album The Bends von 1995 und erreichte 1996 als Single die britischen Top 5.",
+      "fun_fact_es": "Cierra el álbum The Bends de 1995 y llegó al top 5 británico como sencillo en 1996.",
+      "fun_fact_fr": "Clôt l'album The Bends de 1995 et a atteint le top 5 britannique en single en 1996.",
+      "fun_fact_nl": "Sluit het album The Bends uit 1995 af en kwam in 1996 als single in de Britse top 5.",
+      "uri_apple_music": "applemusic://track/1097863295",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LCJblaUkkfc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/138544279",
+      "awards_nl": [],
+      "isrc": "GBAYE9400061",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1097863295"
+      }
+    },
+    {
+      "year": 1984,
+      "uri": "spotify:track:2mGggy2InQlzM1O82NEEU4",
+      "artist": "U2",
+      "alt_artists": [
+        "Simple Minds",
+        "The Alarm",
+        "Echo & the Bunnymen"
+      ],
+      "title": "Bad",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Written about heroin addiction; U2's extended performance at Live Aid in 1985 made it a landmark moment for the band.",
+      "fun_fact_de": "Geschrieben über Heroinsucht; U2s ausgedehnter Auftritt damit bei Live Aid 1985 wurde zum Meilenstein für die Band.",
+      "fun_fact_es": "Escrita sobre la adicción a la heroína; la larga interpretación de U2 en el Live Aid de 1985 fue un momento clave para la banda.",
+      "fun_fact_fr": "Écrite sur l'addiction à l'héroïne ; la longue interprétation d'U2 au Live Aid en 1985 a été un moment décisif pour le groupe.",
+      "fun_fact_nl": "Geschreven over heroïneverslaving; de uitgebreide uitvoering van U2 op Live Aid in 1985 werd een kantelpunt voor de band.",
+      "uri_apple_music": "applemusic://track/1440732129",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NNrEQZnWfd8",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4587438",
+      "awards_nl": [],
+      "isrc": "GBUM70817515",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440732129"
+      }
+    },
+    {
+      "year": 1967,
+      "uri": "spotify:track:3ZFBeIyP41HhnALjxWy1pR",
+      "artist": "The Beatles",
+      "alt_artists": [
+        "The Kinks",
+        "Pink Floyd",
+        "The Who"
+      ],
+      "title": "A Day In The Life",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "The closing orchestral crescendo uses a 40-piece orchestra, the final piano chord rings for about 40 seconds, and the BBC banned it over the line about turning on.",
+      "fun_fact_de": "Das orchestrale Finale nutzt ein 40-köpfiges Orchester, der letzte Klavierakkord klingt rund 40 Sekunden aus, und die BBC verbot den Song wegen einer Zeile über Drogen.",
+      "fun_fact_es": "El crescendo orquestal final usa una orquesta de 40 músicos, el último acorde de piano suena unos 40 segundos y la BBC la vetó por un verso sobre drogas.",
+      "fun_fact_fr": "Le crescendo orchestral final emploie un orchestre de 40 musiciens, l'accord de piano final dure environ 40 secondes et la BBC l'a interdite pour un vers sur la drogue.",
+      "fun_fact_nl": "Het orkestrale slot gebruikt een orkest van 40 muzikanten, het laatste pianoakkoord klinkt zo'n 40 seconden na en de BBC verbood het om een regel over drugs.",
+      "uri_apple_music": "applemusic://track/1441165168",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UYeV7jLBXvA",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/116348694",
+      "awards_nl": [],
+      "isrc": "GBAYE0601519",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1441165168"
+      }
+    },
+    {
+      "year": 1995,
+      "uri": "spotify:track:4GCGH6TJ69neckwITeBFXK",
+      "artist": "Michael Jackson",
+      "alt_artists": [
+        "Prince",
+        "Stevie Wonder",
+        "Lionel Richie"
+      ],
+      "title": "Earth Song",
+      "chart_info": {},
+      "certifications": [],
+      "awards": [],
+      "fun_fact": "Earth Song was the UK Christmas number one in 1995 and sold over a million copies there.",
+      "fun_fact_de": "Earth Song war 1995 die britische Weihnachts-Nummer-eins und verkaufte sich dort über eine Million Mal.",
+      "fun_fact_es": "Earth Song fue el número uno navideño en el Reino Unido en 1995 y vendió más de un millón de copias allí.",
+      "fun_fact_fr": "Earth Song a été numéro un de Noël au Royaume-Uni en 1995 et s'y est vendue à plus d'un million d'exemplaires.",
+      "fun_fact_nl": "Earth Song was in 1995 de Britse kerstnummer-een en verkocht daar meer dan een miljoen exemplaren.",
+      "uri_apple_music": "applemusic://track/310505593",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DN6It52dsmY",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/8164645",
+      "awards_nl": [],
+      "isrc": "USSM19500010",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/310505593"
+      }
+    }
+  ]
+}
