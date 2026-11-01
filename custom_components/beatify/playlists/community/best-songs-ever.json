@@ -1,6 +1,6 @@
 {
   "name": "Best Songs Ever",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "classic-rock",
     "pop",
@@ -176,7 +176,7 @@
       "fun_fact_fr": "Le clip est un court métrage qui inclut un passage parlé du discours de Charlie Chaplin dans Le Dictateur.",
       "fun_fact_nl": "De clip is een korte film met een gesproken fragment uit de toespraak van Charlie Chaplin in The Great Dictator.",
       "uri_apple_music": "applemusic://track/903853645",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ELKbtFljucQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/76632643",
       "awards_nl": [],
