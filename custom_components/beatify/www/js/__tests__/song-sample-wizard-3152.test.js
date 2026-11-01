@@ -169,6 +169,7 @@ describe('the chip row in the wizard (#3152)', () => {
                 _t: t,
                 // Stands in for the full step re-render, which ends up here again.
                 _renderGameMode: () => api.render(),
+                _chipPicked: () => {},  // #3367: motion only, covered in ux-motion-3367
             },
         );
         return {

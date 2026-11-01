@@ -1081,7 +1081,8 @@ export function setupLobbyCollapsible() {
             if (!section) return;
 
             var isCollapsed = section.classList.contains('collapsed');
-            section.classList.toggle('collapsed');
+            if (utils.toggleCollapsibleSection) utils.toggleCollapsibleSection(section);
+            else section.classList.toggle('collapsed');
             header.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
         });
     });

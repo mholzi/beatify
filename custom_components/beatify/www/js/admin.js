@@ -1202,7 +1202,8 @@ function setupCollapsibleSections() {
         if (!header) return;
         const section = header.closest('.section-collapsible');
         if (!section) return;
-        section.classList.toggle('collapsed');
+        if (utils.toggleCollapsibleSection) utils.toggleCollapsibleSection(section);
+        else section.classList.toggle('collapsed');
         header.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
     });
 }

@@ -410,7 +410,10 @@ function _hydrateLevelUpDetails() {
     } catch (e) { /* ignore */ }
 }
 
-function _setProgress(step) {
+function _setProgress(step, animate) {
+    // #3367: the bar only moves on a step change. Opening or resuming the wizard
+    // writes the same classes without this one and shows the final bar at once.
+    document.getElementById('wiz-progress')?.classList?.toggle('wiz-progress--live', !!animate);
     const segs = document.querySelectorAll('#wiz-progress .wiz-seg');
     segs.forEach((seg, i) => {
         const stepNum = i + 1;
@@ -458,11 +461,43 @@ function _syncStep3Mode() {
     }
 }
 
-function _showFrame(n) {
+/**
+ * #3367: which way a step change moves. 'forward' comes from the right, 'back'
+ * from the left, null does not move at all.
+ * @param {number} from
+ * @param {number} to
+ * @param {boolean} reduced - prefers-reduced-motion
+ * @returns {'forward'|'back'|null}
+ */
+export function wizardStepDirection(from, to, reduced) {
+    if (reduced || from === to) return null;
+    return to > from ? 'forward' : 'back';
+}
+
+function _reducedMotion() {
+    return !!(typeof window !== 'undefined' && window.matchMedia
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+/**
+ * @param {number} n - the step to show
+ * @param {Object} [opts]
+ * @param {boolean} [opts.instant] - opening or resuming: the final picture, no movement
+ */
+export function _showFrame(n, opts = {}) {
+    const direction = opts.instant ? null : wizardStepDirection(currentStep, n, _reducedMotion());
     document.querySelectorAll('.wiz-frame').forEach((frame) => {
         const frameNum = parseInt(frame.dataset.frame, 10);
-        if (frameNum === n) frame.removeAttribute('hidden');
-        else frame.setAttribute('hidden', '');
+        if (frameNum === n) {
+            frame.removeAttribute('hidden');
+            if (direction && frame.animate) {
+                const dx = direction === 'forward' ? 48 : -48;
+                frame.animate(
+                    [{ transform: `translateX(${dx}px)`, opacity: 0 }, { transform: 'none', opacity: 1 }],
+                    { duration: 240, easing: 'cubic-bezier(.2,.7,.2,1)' }
+                );
+            }
+        } else frame.setAttribute('hidden', '');
     });
     currentStep = n;
     if (n === 3) {
@@ -470,7 +505,7 @@ function _showFrame(n) {
     } else {
         document.body.classList.remove('wiz-lib-step');
     }
-    _setProgress(Math.min(n, TOTAL_STEPS));
+    _setProgress(Math.min(n, TOTAL_STEPS), !!direction);
     _updateCta();
     // Persist wizard state so refresh / revisit resumes at the right step.
     // Skip step 6 (done) here — _advance() writes the final 'done' state.
@@ -629,6 +664,12 @@ function _renderSpeakers() {
                 chosenProvider = null;
             }
             _renderSpeakers();
+            if (speakerChanged) {
+                // #3367: the list was just rebuilt, so look the tapped row up again.
+                const row = Array.from(list.querySelectorAll('.wiz-row[data-entity-id]'))
+                    .find((r) => r.dataset.entityId === newSpeaker);
+                if (row) window.BeatifyUtils?.pickFeedback?.(row, row.querySelector('.wiz-row-check'));
+            }
             // Capability set changed — Step 2's chip dimming must be recomputed
             // or users see stale lock icons from the previous speaker.
             _renderProviders();
@@ -942,6 +983,18 @@ export function buildWizChip(id, label, group, activeId) {
     return `<button type="button" class="wiz-chip${active}" data-${group}="${id}">${label}</button>`;
 }
 
+/**
+ * #3367: a chip group rebuilds on every tap, so the tapped chip is found again
+ * in the new markup. Tapping the chip that was already on stays quiet.
+ */
+function _chipPicked(elId, value, wasActive) {
+    if (wasActive) return;
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const chip = Array.from(el.querySelectorAll('.wiz-chip.active')).find((c) => c.dataset.value === value);
+    if (chip) window.BeatifyUtils?.pickFeedback?.(chip);
+}
+
 function _renderChipGroup(elId, items, active, onPick) {
     const el = document.getElementById(elId);
     if (!el) return;
@@ -958,8 +1011,11 @@ function _renderChipGroup(elId, items, active, onPick) {
     el.querySelectorAll('.wiz-chip').forEach((btn) => {
         btn.addEventListener('click', () => {
             const raw = btn.dataset.value;
+            const wasActive = btn.classList.contains('active');
             // Duration is numeric
-            onPick(items[0] && typeof items[0] === 'number' ? parseInt(raw, 10) : raw);
+            const done = onPick(items[0] && typeof items[0] === 'number' ? parseInt(raw, 10) : raw);
+            // The language chip re-renders only after its strings have loaded.
+            Promise.resolve(done).then(() => _chipPicked(elId, raw, wasActive));
         });
     });
 }
@@ -1019,8 +1075,10 @@ function _renderSampleDuration() {
         el.innerHTML = sampleChipsHtml(chosenSampleDuration, chosenDuration, _t);
         el.querySelectorAll('.wiz-chip:not([disabled])').forEach((btn) => {
             btn.addEventListener('click', () => {
+                const before = chosenSampleDuration;
                 chosenSampleDuration = normalizeSampleDuration(parseInt(btn.dataset.value, 10), chosenDuration);
                 _renderGameMode();
+                _chipPicked('wiz-sample', btn.dataset.value, before === chosenSampleDuration);
             });
         });
     }
@@ -1543,6 +1601,7 @@ function _renderRounds() {
     el.querySelectorAll('.wiz-chip').forEach((btn) => {
         btn.addEventListener('click', () => {
             const raw = btn.dataset.value;
+            const wasActive = btn.classList.contains('active');
             if (raw === 'custom') {
                 customRoundsOpen = true;
                 // Seed the field with the current cap so the host edits a
@@ -1553,6 +1612,7 @@ function _renderRounds() {
                 chosenMaxRounds = clampRoundCount(parseInt(raw, 10), pool);
             }
             _renderGameMode();
+            _chipPicked('wiz-rounds', raw, wasActive);
         });
     });
 
@@ -2240,7 +2300,7 @@ export async function show(stepOverride) {
     _renderProviders();
     _renderPlaylists();
     _renderGameMode();
-    _showFrame(start);
+    _showFrame(start, { instant: true });
 }
 
 export function hide({ dismissed } = {}) {

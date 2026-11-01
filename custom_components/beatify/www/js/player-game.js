@@ -209,6 +209,39 @@ function reconcileOwnSubmission(data) {
     handleSubmitAck();
 }
 
+/**
+ * #3367: the eye goes to the timer first. The timer pops, then whatever this
+ * round's input is follows 60 ms apart, all done in 400 ms. Everything rests on
+ * its final state and takes taps from the first frame. A part hidden in this
+ * mode (year and slider in Title & Artist) simply shows nothing.
+ */
+export function playRoundStartMotion() {
+    if (prefersReducedMotion()) return;
+    var ease = 'cubic-bezier(.2,.7,.2,1)';
+    var timer = document.getElementById('timer-neon');
+    if (timer && timer.animate) {
+        timer.animate(
+            [
+                { transform: 'scale(.3)', opacity: 0 },
+                { transform: 'scale(1.15)', opacity: 1, offset: 0.7 },
+                { transform: 'none', opacity: 1 }
+            ],
+            { duration: 240, easing: ease, fill: 'backwards' }
+        );
+    }
+    [['year-display-arc'], ['year-selector-container', 'title-artist-container'], ['submit-btn']]
+        .forEach(function(ids, i) {
+            ids.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (!el || !el.animate) return;
+                el.animate(
+                    [{ transform: 'translateY(14px)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+                    { delay: 60 * (i + 1), duration: 220, easing: ease, fill: 'backwards' }
+                );
+            });
+        });
+}
+
 export function updateGameView(data) {
     applyYearRange(data.year_range);
     reconcileOwnSubmission(data);

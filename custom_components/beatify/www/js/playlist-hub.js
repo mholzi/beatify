@@ -472,9 +472,11 @@ function _onClick(e) {
     if (check) {
         e.stopPropagation();
         const path = check.dataset.plhCheck;
+        const position = _tappedCardPosition(path, check);
         _toggleSelected(path);
         _renderTabBody();
         _renderCtaBar();
+        _answerPick(path, position);
         return;
     }
     const detailClose = e.target.closest('[data-plh-action="close-detail"]');
@@ -563,6 +565,30 @@ function _onKeyDown(e) {
         if (state.detailFor) { state.detailFor = null; _renderDetailSheet(); return; }
         if (state.showSelectedSheet) { state.showSelectedSheet = false; _renderDetailSheet(); }
     }
+}
+
+/** Every card of one playlist, in page order. Exported for unit tests. */
+export function _cardsFor(root, path) {
+    return Array.from(root.querySelectorAll('[data-plh-card]')).filter((c) => c.dataset.plhCard === path);
+}
+
+/**
+ * #3367: one playlist can sit on several shelves, and a re-render replaces them
+ * all. The position among its cards says which one was tapped; -1 when this tap
+ * takes the playlist out, which stays quiet.
+ */
+function _tappedCardPosition(path, check) {
+    if (state.selectedPaths.has(path)) return -1;
+    return _cardsFor(state.root, path).indexOf(check.closest('[data-plh-card]'));
+}
+
+function _answerPick(path, position) {
+    const feedback = window.BeatifyUtils?.pickFeedback;
+    if (!feedback || position < 0) return;
+    const card = _cardsFor(state.root, path)[position];
+    if (card) feedback(card.querySelector('.plh-cover'), card.querySelector('.plh-pill svg'));
+    // The bar has no song total, only this count of playlists, so it springs.
+    feedback(null, state.root.querySelector('.plh-cta-count'));
 }
 
 function _toggleSelected(path) {

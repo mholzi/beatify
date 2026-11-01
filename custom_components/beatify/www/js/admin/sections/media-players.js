@@ -416,6 +416,7 @@ export function handleMediaPlayerSelect(radio, skipSave = false, opts = {}) {
     });
     const playerItem = radio.closest('.media-player-item');
     playerItem.classList.add('is-selected');
+    if (!skipSave) utils.pickFeedback?.(playerItem, radio);  // #3367: a tap, not the restore on load
 
     // Get player name for summary
     const playerName = playerItem.querySelector('.player-name')?.textContent?.trim() || entityId;

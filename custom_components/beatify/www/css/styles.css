@@ -1769,10 +1769,6 @@ body.theme-dark .modal-content .name-input:focus {
     background: #ff4080;
 }
 
-.btn-neon:active {
-    transform: scale(0.98);
-}
-
 /* Glow effect for buttons */
 .btn-glow {
     transition: box-shadow var(--transition-fast), transform var(--transition-fast);
@@ -1783,7 +1779,6 @@ body.theme-dark .modal-content .name-input:focus {
 }
 
 .btn-glow:active {
-    transform: scale(0.98);
     box-shadow: var(--glow-primary);
 }
 
@@ -3643,7 +3638,6 @@ body.theme-dark .admin-controls {
 .lobby-container--compact .section-toggle {
     font-size: 0.625rem;
     color: var(--color-text-neon-muted);
-    transition: transform 0.2s ease;
     margin-left: var(--space-sm);
 }
 
@@ -3742,7 +3736,6 @@ body.theme-dark .admin-controls {
     margin-left: var(--space-sm);
     font-size: 0.625rem;
     color: var(--color-text-neon-muted);
-    transition: transform 0.2s ease;
 }
 
 .admin-content .section-collapsible:not(.collapsed) .section-toggle {
@@ -4539,10 +4532,6 @@ body.theme-dark .game-sticky-bar {
     position: relative;
 }
 
-.artist-option-btn:active {
-    transform: scale(0.98);
-}
-
 .artist-option-btn.is-loading {
     animation: artistPulse 1s infinite;
 }
@@ -4754,10 +4743,6 @@ body.theme-dark .artist-reveal-section {
     text-align: center;
 }
 
-.movie-option-btn:active {
-    transform: scale(0.98);
-}
-
 .movie-option-btn.is-loading {
     animation: moviePulse 1s infinite;
 }
@@ -4957,7 +4942,6 @@ body.theme-dark .movie-reveal-section {
 .year-adjust-btn:active {
     background: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
-    transform: scale(0.95);
 }
 
 .year-adjust-btn:disabled {
@@ -5049,10 +5033,6 @@ body.theme-dark .movie-reveal-section {
 
 .submit-btn:hover {
     background: var(--color-accent-brand-hover);
-}
-
-.submit-btn:active {
-    transform: scale(0.98);
 }
 
 .submit-btn:disabled {
@@ -7432,10 +7412,6 @@ body.theme-dark .result-value.is-bet-lost {
     border-color: var(--color-border-neon);
 }
 
-.invite-btn:active {
-    transform: scale(0.98);
-}
-
 .invite-btn-icon {
     font-size: var(--font-size-lg);
 }
@@ -7570,10 +7546,6 @@ body.theme-dark .invite-modal-url {
 
 .invite-copy-btn:hover {
     background: var(--color-accent-brand-hover);
-}
-
-.invite-copy-btn:active {
-    transform: scale(0.95);
 }
 
 .invite-copy-icon {
@@ -7845,10 +7817,6 @@ body.theme-dark .card-score {
 /* Volume button at limit (Story 6.4) */
 .control-btn.is-at-limit {
     opacity: 0.5;
-}
-
-.control-btn.is-at-limit:active {
-    transform: none;
 }
 
 .control-icon {
@@ -8500,10 +8468,6 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-bar {
     background: rgba(50, 50, 60, 0.7);
 }
 
-.reaction-btn:active {
-    transform: scale(0.9);
-}
-
 /* #1757: used-state feedback. Once a reaction is spent this phase the whole bar
    is disabled; the chosen emoji stays lit so the player sees what they sent. */
 .reaction-btn:disabled {
@@ -8528,10 +8492,6 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-bar {
 @media (prefers-reduced-motion: reduce) {
     .reaction-btn {
         transition: none;
-    }
-
-    .reaction-btn:active {
-        transform: none;
     }
 }
 
@@ -8853,6 +8813,21 @@ main:has(.admin-control-bar:not(.hidden)) .reaction-container {
 .reconnect-status {
     font-size: var(--font-size-md);
     color: var(--color-border-light);
+}
+
+/* #3367: back online. Green ring, no words, and the page takes taps already. */
+.reconnecting-overlay.is-back {
+    pointer-events: none;
+}
+
+.reconnecting-overlay.is-back .spinner {
+    border-color: var(--color-success-neon);
+    box-shadow: var(--glow-success);
+    animation: none;
+}
+
+.reconnecting-overlay.is-back .reconnect-status {
+    opacity: 0;
 }
 
 /* ============================================
@@ -9704,10 +9679,6 @@ body.device-tier-low .reveal-skip-hint {
     opacity: 0.9;
 }
 
-.share-btn:active {
-    transform: scale(0.97);
-}
-
 .share-toast {
     margin-top: 0.75rem;
     padding: 0.4rem 1rem;
@@ -10479,15 +10450,27 @@ body.wizard-active > .pwa-ios-hint {
     overflow: hidden;
 }
 .wiz-seg.filled {
-    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
     box-shadow: 0 0 12px rgba(255, 45, 106, 0.5);
 }
-.wiz-seg.active .wiz-seg-inner {
+/* #3367: the fill is one element in all three states, so a step change can run
+   it in either direction. It only runs under --live, which show() leaves off. */
+.wiz-seg-inner {
     height: 100%;
-    width: 60%;
+    width: 100%;
     background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
-    box-shadow: 0 0 12px rgba(255, 45, 106, 0.5);
     border-radius: var(--radius-full);
+    transform: scaleX(0);
+    transform-origin: left center;
+}
+.wiz-seg.active .wiz-seg-inner {
+    transform: scaleX(0.6);
+    box-shadow: 0 0 12px rgba(255, 45, 106, 0.5);
+}
+.wiz-seg.filled .wiz-seg-inner {
+    transform: none;
+}
+.wiz-progress--live .wiz-seg-inner {
+    transition: transform 240ms cubic-bezier(.2,.7,.2,1);
 }
 
 .wiz-frame {
@@ -12601,7 +12584,6 @@ body.is-ingame .player-header { display: none; }
     -webkit-appearance: none;
     appearance: none;
 }
-.home-away-remove:active { transform: scale(0.96); }
 .home-away-remove:focus-visible {
     outline: 2px solid var(--color-accent-secondary);
     outline-offset: 2px;
@@ -15874,8 +15856,6 @@ body.theme-dark .your-result-stats .stat-value {
     border-color: rgba(57, 255, 20, 0.6);
     outline: none;
 }
-.plh-cta-count-btn:active { transform: scale(0.96); }
-
 .plh-cta-start-disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -15975,7 +15955,6 @@ body.theme-dark .your-result-stats .stat-value {
     color: #ff7ab3;
     outline: none;
 }
-.plh-selected-remove:active { transform: scale(0.94); }
 .plh-selected-remove-label { line-height: 1; }
 .plh-selected-empty {
     text-align: center;
@@ -18929,4 +18908,57 @@ body.theme-dark .your-result-stats .stat-value {
     background: rgba(255, 102, 0, 0.12);
     border: 1px solid rgba(255, 102, 0, 0.5);
     font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   Motion while operating (#3367)
+   ============================================ */
+
+/* One press for every button, the TV aside. `scale` is its own property so that
+   a button resting on a transform (centred with translate, say) stays in place,
+   and it composes with the arcade buttons' own translateY press. The transition
+   has to win over each button's own list, or the release would snap back. */
+@media (prefers-reduced-motion: no-preference) {
+    body:not(.dashboard-body) button:not(:disabled):not(.is-disabled):not(.is-at-limit):not([aria-disabled="true"]),
+    body:not(.dashboard-body) .btn:not(:disabled):not(.is-disabled):not([aria-disabled="true"]) {
+        transition-property: scale, transform, opacity, background, background-color, color, border-color, box-shadow, filter !important;
+        transition-duration: 150ms !important;
+        transition-timing-function: cubic-bezier(.3,1.7,.5,1), ease, ease, ease, ease, ease, ease, ease, ease !important;
+    }
+    body:not(.dashboard-body) button:not(:disabled):not(.is-disabled):not(.is-at-limit):not([aria-disabled="true"]):active,
+    body:not(.dashboard-body) .btn:not(:disabled):not(.is-disabled):not([aria-disabled="true"]):active {
+        scale: 0.96;
+        transition-duration: 60ms !important;
+    }
+}
+
+/* Selection: the glow fades by opacity on a pseudo-element, never a live shadow. */
+.motion-pick-glow {
+    position: relative;
+}
+.motion-pick-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    box-shadow: 0 0 16px rgba(0, 245, 255, 0.6), inset 0 0 12px rgba(0, 245, 255, 0.45);
+    pointer-events: none;
+    opacity: 0;
+    animation: motion-pick-glow 300ms ease-out;
+}
+@keyframes motion-pick-glow {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Sections: `is-closing` keeps the content displayed while its height runs out,
+   `is-toggling` lets the chevron turn along, so a state set on load never moves. */
+.admin-content .section-collapsible.collapsed.is-closing .section-content,
+.lobby-container--compact .section-collapsible.collapsed.is-closing .section-content {
+    display: block;
+}
+.admin-content .section-collapsible.is-toggling .section-toggle,
+.lobby-container--compact .section-collapsible.is-toggling .section-toggle {
+    transition: transform 200ms cubic-bezier(.2,.7,.2,1);
 }
