@@ -14,6 +14,8 @@ disagrees with them.
 Usage:
     python3 scripts/check_docs_current.py           # report, exit 1 on drift
     python3 scripts/check_docs_current.py --json    # machine-readable
+    python3 scripts/check_docs_current.py --fix     # write the catalogue numbers
+                                                    # into the README, then report
 
 The check is deliberately narrow. It only compares claims that can be derived
 from the repository — song counts, playlist counts, the newest version named.
@@ -147,10 +149,42 @@ def check() -> list[dict]:
     return findings
 
 
+def fix_catalogue_numbers() -> bool:
+    """Write the real song and playlist counts into both README claims.
+
+    Only the two numbers derived from the catalogue. "What's New" stays a human
+    job, so anything else this check finds is still reported after a fix.
+    Returns True when the README changed.
+    """
+    playlists, songs = catalogue()
+    before = README.read_text(encoding="utf-8")
+    after = re.sub(
+        r"(comes with \*{0,2})[\d,\.]+(\*{0,2} songs across \*{0,2})\d+"
+        r"(\*{0,2} curated playlists)",
+        rf"\g<1>{songs:,}\g<2>{playlists}\g<3>",
+        before,
+    )
+    after = re.sub(
+        r"\d+ playlists ship with it, [\d,\.]+ songs",
+        f"{playlists} playlists ship with it, {songs:,} songs",
+        after,
+    )
+    if after == before:
+        return False
+    README.write_text(after, encoding="utf-8")
+    return True
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", action="store_true", help="machine-readable output")
+    ap.add_argument(
+        "--fix", action="store_true", help="write the catalogue numbers into the README"
+    )
     args = ap.parse_args()
+
+    if args.fix and fix_catalogue_numbers() and not args.json:
+        print("README.md: catalogue numbers updated")
 
     findings = check()
     if args.json:

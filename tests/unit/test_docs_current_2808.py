@@ -87,6 +87,29 @@ class TestTheNumbersItReads:
         assert v and v[0].isdigit(), v
 
 
+class TestFix:
+    def test_writes_both_claims_and_nothing_else(self, tmp_path, monkeypatch):
+        import check_docs_current as mod
+
+        readme = tmp_path / "README.md"
+        readme.write_text(
+            "Beatify comes with 8,724 songs across 69 curated playlists:\n"
+            "| Nothing. 69 playlists ship with it, 8,724 songs |\n"
+            "- 39 playlists, 4,340 songs, 5 music platforms\n",
+            encoding="utf-8",
+        )
+        monkeypatch.setattr(mod, "README", readme)
+        monkeypatch.setattr(mod, "catalogue", lambda: (70, 8763))
+
+        assert mod.fix_catalogue_numbers() is True
+        assert readme.read_text(encoding="utf-8") == (
+            "Beatify comes with 8,763 songs across 70 curated playlists:\n"
+            "| Nothing. 70 playlists ship with it, 8,763 songs |\n"
+            "- 39 playlists, 4,340 songs, 5 music platforms\n"
+        )
+        assert mod.fix_catalogue_numbers() is False
+
+
 @pytest.mark.parametrize("path", ["scripts/check_docs_current.py"])
 def test_the_checker_is_committed(path):
     """It only helps if it travels with the repository."""
