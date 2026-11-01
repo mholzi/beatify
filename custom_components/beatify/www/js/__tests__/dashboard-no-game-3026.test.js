@@ -29,6 +29,8 @@ function makeTv() {
     const scope = {
         debug: () => {},
         showView: (view) => calls.push({ fn: 'showView', arg: view }),
+        _sceneWipeHold: null,
+        _lastScenePhase: null,
         stopCountdown: () => calls.push({ fn: 'stopCountdown' }),
         showFloatingReaction: () => {},
         handleMetadataUpdate: () => {},

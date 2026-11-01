@@ -15,7 +15,8 @@ import {
     setEnergyLevel, triggerConfetti, stopConfetti,
     setupLobbyCollapsible,
     requestWakeLock, releaseWakeLock,
-    isJoinRejection, joinRejectionMessage, specificErrorText, validateName
+    isJoinRejection, joinRejectionMessage, specificErrorText, validateName,
+    prefersReducedMotion
 } from './player-utils.js';
 
 import {
@@ -89,6 +90,9 @@ var debug = utils.debug || function() {};
 // render so a stale REVEAL frame can't flush into the PLAYING view after a
 // phase flip (and vice-versa).
 var pushRevealRender = createRenderCoalescer(updateRevealView);
+
+// #3365: shared with player-reveal.js through state, like the rest of the session.
+if (utils.createMotionGate) state.motionGate = utils.createMotionGate({ reduced: function() { return prefersReducedMotion(); } });
 var pushGameRender = createRenderCoalescer(updateGameView);
 
 // ============================================
@@ -249,6 +253,8 @@ function makeSocketCloseHandler(scheduleReconnect) {
         scheduleReconnect: scheduleReconnect,
         stopHeartbeat: stopHeartbeat,
         onReconnecting: function(attempt, delay) {
+            // #3365: a phone back from a dropped socket gets the final picture.
+            if (state.motionGate) state.motionGate.reset();
             showReconnectingOverlay();
             updateReconnectStatus(attempt);
             debug('WebSocket closed. Reconnecting in ' + delay + 'ms... (attempt ' + attempt + ')');
@@ -759,6 +765,8 @@ function handleServerMessage(data) {
     var nameInput = document.getElementById('name-input');
 
     if (data.type === 'state') {
+        // #3365: did this phone live through what it is about to animate?
+        if (state.motionGate) state.motionGate.enter(data.phase, data.round);
         // #2586: the sheet does not outlive its reveal.
         if (data.phase !== 'REVEAL') closeRoundSettings();
         // #1765: the server sends a slim in-round leaderboard ({rank, name,
@@ -946,7 +954,9 @@ function handleServerMessage(data) {
             // pushRevealRender defers to the next frame, so starting the beats
             // inside the renderer would paint the whole reveal once and then
             // collapse it back to beat one — a flash instead of a build-up.
-            startRevealStaging(data);
+            // #3365: a phone that did not watch the round come to an end gets
+            // the final picture straight away (no gate: keep the beats).
+            if (!state.motionGate || state.motionGate.isLive()) startRevealStaging(data);
             showView('reveal-view');
             pushGameRender.cancel();     // #1707: leaving PLAYING — drop stale render
             pushRevealRender(data);      // #1706: coalesced REVEAL render

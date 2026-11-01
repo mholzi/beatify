@@ -143,6 +143,7 @@ function renderDashboard(leaderboard) {
     evaluate(['var endConfettiPlayedFor = null;', declaration(readSource('dashboard.js'), 'renderEndView', 'dashboard.js')], 'renderEndView', {
         document: doc(elements),
         utils: { ...U, escapeHtml: (s) => String(s) },
+        _motionGate: null,
         renderSuddenDeathLastStanding: noop,
         playClosingMoment: () => false,
         renderStatsComparison: noop,

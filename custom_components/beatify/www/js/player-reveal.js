@@ -290,7 +290,19 @@ export function updateRevealView(data) {
 
     var correctYear = document.getElementById('correct-year');
     if (correctYear) {
-        correctYear.textContent = song.year || '????';
+        // #3365: the same reel as the TV, shorter. Title & Artist has no year to
+        // roll and a voided round hides it. A running reel owns the element
+        // until it stops, unless the answer itself changed.
+        var yearText = String(song.year || '????');
+        var gate = state.motionGate;
+        if (_phoneReel && _phoneReel.active() && _phoneReel.year === yearText) {
+            // leave it running
+        } else if (gate && !data.title_artist_mode && !data.round_voided && gate.once('reel') && utils.rollYear) {
+            _phoneReel = utils.rollYear(correctYear, yearText, { base: PHONE_REEL_BASE_MS, step: PHONE_REEL_STEP_MS });
+        } else {
+            if (_phoneReel) _phoneReel.finish();
+            correctYear.textContent = song.year || '????';
+        }
     }
 
     var titleEl = document.getElementById('song-title');
@@ -414,8 +426,18 @@ export function updateRevealView(data) {
     _resetReportBtn();
 
     // Story 14.5: Check for new record and trigger rainbow confetti (AC2)
+    // #3365: once per reveal, and after the reel when there is one.
     if (data.game_performance && data.game_performance.is_new_record) {
-        triggerConfetti('record');
+        var recordGate = state.motionGate;
+        if (!recordGate) {
+            triggerConfetti('record');
+        } else if (recordGate.once('record')) {
+            if (_phoneReel && _phoneReel.active()) {
+                _revealStageTimers.push(setTimeout(function() { triggerConfetti('record'); }, PHONE_REEL_MS));
+            } else {
+                triggerConfetti('record');
+            }
+        }
     }
 
     // #2702 beat two — rendered every time, shown by CSS when its beat is due.
@@ -560,6 +582,14 @@ function setRevealWaiting(chip, numEl, fgCircle, waiting, circumference) {
 // the phase change simply cuts whatever beat was showing.
 var REVEAL_BEAT_2_MS = 1500;
 var REVEAL_BEAT_3_MS = 3000;
+// #3365: shorter than the TV's 1120 ms; which device should land first is for
+// the live test in a real room.
+var PHONE_REEL_BASE_MS = 360;
+var PHONE_REEL_STEP_MS = 110;
+var PHONE_REEL_MS = PHONE_REEL_BASE_MS + 3 * PHONE_REEL_STEP_MS;
+var ROW_TRAVEL_MS = 620;
+var _phoneReel = null;
+var _phoneRowTimer = null;
 var _revealStageTimers = [];
 var _revealStageKey = null;
 
@@ -578,6 +608,36 @@ export function stopRevealStaging() {
     _revealStageKey = null;
     var root = document.getElementById('reveal-view');
     if (root && root.removeAttribute) root.removeAttribute('data-reveal-stage');
+    // #3365: never leave the reel or a held-back score behind.
+    if (_phoneReel) _phoneReel.finish();
+    clearTimeout(_phoneRowTimer);
+    var listEl = document.getElementById('reveal-leaderboard-list');
+    if (listEl) listEl._beatifyHtml = null;
+}
+
+/**
+ * #3365: the shown standings rows travel from their old place when the
+ * standings beat comes up, and the totals count up with them. Measured at that
+ * moment, because the rows are not all the same height.
+ */
+function playPhoneRowTravel(listEl, rowKeys, prevOrder, counts) {
+    counts.forEach(function(item) { item.el.textContent = item.from; });
+    _phoneRowTimer = setTimeout(function() {
+        var els = listEl.querySelectorAll('.rstand-row');
+        var tops = [];
+        for (var i = 0; i < els.length; i++) tops.push(els[i].offsetTop);
+        var plan = utils.rowTravelPlan ? utils.rowTravelPlan(rowKeys, prevOrder) : [];
+        plan.forEach(function(move) {
+            var el = els[move.to];
+            if (el && el.animate) {
+                el.animate(
+                    [{ transform: 'translateY(' + (tops[move.from] - tops[move.to]) + 'px)' }, { transform: 'none' }],
+                    { duration: ROW_TRAVEL_MS, easing: 'cubic-bezier(.2,.7,.2,1)' }
+                );
+            }
+        });
+        counts.forEach(function(item) { animateValue(item.el, item.from, item.to, ROW_TRAVEL_MS); });
+    }, REVEAL_BEAT_3_MS);
 }
 
 /**
@@ -1779,6 +1839,12 @@ export function renderRevealStandings(data) {
 
     var youLabel = (utils.t('analytics.youMarker') || 'YOU').replace(/[()]/g, '');
 
+    // #3365: read before updatePreviousState below overwrites it.
+    var prevOrder = {};
+    (previousState.leaderboard || []).forEach(function(name, i) { prevOrder[name] = i; });
+    var prevPlayers = previousState.players || {};
+    var travelRows = [];
+
     var html = '';
     phoneStandingsRows(leaderboard, state.playerName).forEach(function(row) {
         if (row.gap) {
@@ -1787,6 +1853,7 @@ export function renderRevealStandings(data) {
         }
         var entry = row.entry;
         var idx = row.index;
+        travelRows.push({ key: entry.name, index: idx, score: entry.score || 0 });
         var p = byName[entry.name] || {};
         var isMe = entry.name === state.playerName;
         var initial = ((entry.name || '?').trim().charAt(0) || '?').toUpperCase();
@@ -1857,7 +1924,24 @@ export function renderRevealStandings(data) {
                 '</div>' +
             '</div>';
     });
-    listEl.innerHTML = html;
+    // #3365: REVEAL repeats. An unchanged list keeps its nodes, or every
+    // broadcast would throw away the rows that are travelling.
+    if (listEl._beatifyHtml !== html) {
+        listEl._beatifyHtml = html;
+        listEl.innerHTML = html;
+    }
+
+    if (state.motionGate && state.motionGate.once('rows')) {
+        var totals = listEl.querySelectorAll('.rstand-total');
+        var counts = [];
+        travelRows.forEach(function(row, i) {
+            var before = prevPlayers[row.key];
+            if (totals[i] && before && before.score !== row.score) {
+                counts.push({ el: totals[i], from: before.score, to: row.score });
+            }
+        });
+        playPhoneRowTravel(listEl, travelRows, prevOrder, counts);
+    }
 
     // Preserve the bookkeeping the old updateLeaderboard call did at REVEAL
     // (previousState powers the in-game score count-up + streak milestone).

@@ -207,7 +207,16 @@
     // #1705: coalesced entry point — the heavy DOM render runs at most once per
     // frame and only when the visible state changed. Assigned here (both the
     // renderer and the coalescer factory are hoisted function declarations).
-    var _scheduleRender = createRenderCoalescer(_applyStateRender, { isEqual: _stateRenderEqual });
+    var _scheduleRender = createRenderCoalescer(_applyFrame, { isEqual: _stateRenderEqual });
+
+    // #3365: did this TV live through the moment it is about to animate?
+    var _motionGate = utils.createMotionGate
+        ? utils.createMotionGate({ reduced: _reducedMotion })
+        : null;
+
+    function _reducedMotion() {
+        return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }
 
     // Utility functions from BeatifyUtils
     // waitForI18n, t, getLocalizedSongField, escapeHtml moved to BeatifyUtils
@@ -330,6 +339,10 @@
             // server-CONFIRMED no-game state (handleStateUpdate), never a
             // dropped socket — that used to read as a crash to the whole room.
             _setDisconnectedDim(true);
+            // #3365: whatever the next state shows, this TV did not watch it
+            // happen, so it gets the final picture.
+            if (_motionGate) _motionGate.reset();
+            _lastScenePhase = null;
             // #1578: surface the reconnect attempt visibly on the TV display.
             _showReconnectIndicator();
             var delay = getReconnectDelay();
@@ -541,6 +554,8 @@
      */
     function showNoGameView() {
         _scheduleRender.reset();
+        if (_sceneWipeHold) _sceneWipeHold.data = null;
+        _lastScenePhase = null;
         stopCountdown();
         showView('dashboard-no-game');
     }
@@ -677,6 +692,78 @@
      * of a burst — never call this directly from the WS handler.
      * @param {Object} data - State data
      */
+    function _applyFrame(data) {
+        // #3365: the wipe covers the screen first and the new scene is drawn
+        // under it. Frames arriving meanwhile only replace what gets drawn, so
+        // the #1705 rule of one paint per change still holds.
+        if (_sceneWipeHold) {
+            _sceneWipeHold.data = data;
+            return;
+        }
+        var from = _lastScenePhase;
+        var noGame = !data.phase || (data.phase === 'END' && !data.game_id);
+        _lastScenePhase = noGame ? null : data.phase;
+        if (!noGame && shouldWipeScene(from, data.phase, _reducedMotion())) {
+            var hold = { data: data };
+            _sceneWipeHold = hold;
+            var started = playSceneWipe(function() {
+                _sceneWipeHold = null;
+                if (hold.data) _renderFrame(hold.data);
+            });
+            if (started) return;
+            _sceneWipeHold = null;
+        }
+        _renderFrame(data);
+    }
+
+    function _renderFrame(data) {
+        // #3365: read before any view draws. The last round frame is also the
+        // only record of the order and scores the reveal starts from.
+        if (data.phase !== 'REVEAL') cutRevealMotion();
+        if (_motionGate && data.phase) _motionGate.enter(data.phase, data.round);
+        if (data.phase === 'PLAYING') _boardBefore = snapshotBoard(data);
+        _applyStateRender(data);
+    }
+
+    // #3365: the colour wipe between the scenes the room actually watches. A
+    // first frame, a reconnect and PAUSED are no scene change the room saw.
+    var SCENE_WIPE_PHASES = { LOBBY: true, PLAYING: true, REVEAL: true, END: true };
+    var SCENE_WIPE_IN_MS = 220;
+    var SCENE_WIPE_OUT_MS = 260;
+    var _sceneWipeHold = null;
+    var _lastScenePhase = null;
+
+    function shouldWipeScene(from, to, reduced) {
+        return !reduced && !!from && from !== to && !!SCENE_WIPE_PHASES[from] && !!SCENE_WIPE_PHASES[to];
+    }
+
+    /**
+     * Cover the screen, run onCovered, uncover. Returns false when the browser
+     * cannot animate: the caller then draws straight away.
+     */
+    function playSceneWipe(onCovered) {
+        var el = document.getElementById('dashboard-wipe');
+        if (!el || !el.animate) return false;
+        el.style.transformOrigin = 'left center';
+        var cover = el.animate(
+            [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+            { duration: SCENE_WIPE_IN_MS, easing: 'ease-in', fill: 'forwards' }
+        );
+        setTimeout(function() {
+            try {
+                onCovered();
+            } finally {
+                el.style.transformOrigin = 'right center';
+                el.animate(
+                    [{ transform: 'scaleX(1)' }, { transform: 'scaleX(0)' }],
+                    { duration: SCENE_WIPE_OUT_MS, easing: 'ease-out' }
+                );
+                cover.cancel();
+            }
+        }, SCENE_WIPE_IN_MS);
+        return true;
+    }
+
     function _applyStateRender(data) {
         var phase = data.phase;
 
@@ -1780,7 +1867,16 @@
 
         if (artistEl) artistEl.textContent = song.artist || 'Unknown Artist';
         if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
-        if (yearEl) yearEl.textContent = song.year || '????';
+        // #3365: a running reel owns the element until it stops. A re-render
+        // must not cut it, unless the answer itself changed (host override).
+        if (yearEl) {
+            var reelRunning = _revealReel && _revealReel.active();
+            if (reelRunning && _revealReel.year !== String(song.year)) {
+                _revealReel.finish();
+                reelRunning = false;
+            }
+            if (!reelRunning) yearEl.textContent = song.year || '????';
+        }
 
         // Lower-third announce: the YEAR is the hero in year mode; in Title &
         // Artist mode the year row hides and the TA banner carries the answer.
@@ -1819,6 +1915,7 @@
 
         // Render leaderboard with position changes
         renderRevealLeaderboard(data.leaderboard || []);
+        var boardLive = _motionGate ? _motionGate.isLive() : false;
         renderStandingsMore((data.leaderboard || []).length, axisMode);
         renderGhostLeague(data.ghost_league, 'ghost-league-reveal');
 
@@ -1859,24 +1956,217 @@
 
         // #2702: run the three beats. Keyed on the round inside, so calling it
         // on every re-broadcast is cheap and does not restart anything.
-        startRevealStaging(data);
+        if (boardLive && !axisMode) startRevealStaging(data);
+
+        // #3365: in year mode the axis runs its own sequence (guesses, line and
+        // reel, glow, standings), which replaces the #2702 beats. Title & Artist
+        // and a voided round have no year, so they keep the beats. A TV that did
+        // not live through the round gets neither: it shows the final picture.
+        if (_motionGate && boardLive) {
+            var rowsAt = REVEAL_BEAT_3_MS;
+            if (axisMode && _motionGate.once('axis')) rowsAt = playRevealSequence(song.year);
+            if (_motionGate.once('rows') && _boardBefore && _boardBefore.round === data.round) {
+                playRowTravel(document.getElementById('reveal-leaderboard'), data.leaderboard || [], _boardBefore, rowsAt);
+            }
+        }
 
         // Render song difficulty rating (Story 15.1)
         renderSongDifficulty(data.song_difficulty);
 
         // Story 14.5 (AC1, AC2, AC7): Trigger celebration confetti on dashboard
         // M1 fix: Prioritize record over exact to avoid duplicate confetti
+        var confettiType = null;
         if (data.game_performance && data.game_performance.is_new_record) {
-            triggerConfetti('record');
-        } else {
-            // Check for any exact guesses this round
-            var hasExactGuess = players.some(function(p) {
-                return p.years_off === 0 && !p.missed_round;
-            });
-            if (hasExactGuess) {
-                triggerConfetti('exact');
+            confettiType = 'record';
+        } else if (players.some(function(p) { return p.years_off === 0 && !p.missed_round; })) {
+            confettiType = 'exact';
+        }
+        // #3365: once per reveal, only for a TV that watched it, and only once
+        // the reel stands. Checked per frame: a host override can create the
+        // exact guess after the first frame.
+        if (confettiType && _motionGate && _motionGate.once('confetti')) {
+            var confettiWait = Math.max(0, _revealReelEndsAt - Date.now());
+            if (confettiWait > 0) {
+                _revealStageTimers.push(setTimeout(function() { triggerConfetti(confettiType); }, confettiWait));
+            } else {
+                triggerConfetti(confettiType);
             }
         }
+    }
+
+    // #3365: timings of the year-mode reveal, from the moment the scene is drawn
+    // (the wipe has been running for 220 ms by then, which is where the approved
+    // 0.4 / 1.5 / 2.7 / 2.9 s of the draft come from).
+    var REVEAL_LAND_AT_MS = 180;
+    var REVEAL_LAND_TOTAL_MS = 1000;
+    var REVEAL_LAND_MS = 420;
+    var REVEAL_REEL_AT_MS = 1280;
+    var REVEAL_REEL_BASE_MS = 520;
+    var REVEAL_REEL_STEP_MS = 200;
+    var REVEAL_GLOW_AFTER_REEL_MS = 80;
+    var REVEAL_ROWS_AFTER_REEL_MS = 280;
+    var ROW_TRAVEL_MS = 620;
+    var MOTION_EASE = 'cubic-bezier(.2,.7,.2,1)';
+    var _revealReel = null;
+    var _revealReelEndsAt = 0;
+    var _boardBefore = null;
+    var _rowCount = null;
+
+    /** The order and scores a reveal starts from. */
+    function snapshotBoard(data) {
+        var order = {};
+        var score = {};
+        utils.hydrateLeaderboard(data.leaderboard || [], data.players).forEach(function(entry, i) {
+            order[entry.name] = i;
+            score[entry.name] = entry.score;
+        });
+        return { round: data.round, order: order, score: score };
+    }
+
+    /**
+     * Year mode: guesses land furthest first, then the line falls and the reel
+     * runs, then the closest guess lights up. Colours and the span stay held
+     * back until then, since they give the answer away. Everything rests on the
+     * final picture, so a cut (next round, re-drawn axis) never leaves a gap.
+     * @param {number|string} year
+     * @returns {number} ms from now until the standings should move
+     */
+    function playRevealSequence(year) {
+        var plot = document.getElementById('guess-axis-plot');
+        var yearEl = document.getElementById('reveal-year');
+        var yearRow = document.getElementById('reveal-year-row');
+        var dots = plot ? [].slice.call(plot.querySelectorAll('.guess-axis-dot')) : [];
+
+        // Without guesses there is nothing to wait for.
+        var reelAt = dots.length ? REVEAL_REEL_AT_MS : REVEAL_LAND_AT_MS;
+        var reelMs = REVEAL_REEL_BASE_MS + 3 * REVEAL_REEL_STEP_MS;
+        var reelEnd = reelAt + reelMs;
+        var glowAt = reelEnd + REVEAL_GLOW_AFTER_REEL_MS;
+
+        if (plot && dots.length) {
+            plot.classList.add('guess-axis--hold');
+            var offs = dots.map(function(d) { return parseInt(d.getAttribute('data-off'), 10) || 0; });
+            utils.guessLandingPlan(offs, REVEAL_LAND_TOTAL_MS, REVEAL_LAND_MS).forEach(function(step) {
+                var dot = dots[step.index];
+                if (!dot.animate) return;
+                dot.animate([
+                    { opacity: 0, transform: 'translateY(-80px) scale(.7)' },
+                    { opacity: 1, transform: 'translateY(0) scale(1.15)', offset: 0.8 },
+                    { opacity: 1, transform: 'none' }
+                ], { delay: REVEAL_LAND_AT_MS + step.delay, duration: REVEAL_LAND_MS, easing: MOTION_EASE, fill: 'backwards' });
+            });
+            [].slice.call(plot.querySelectorAll('.guess-axis-span, .guess-axis-span-label, .guess-axis-span-name')).forEach(function(el) {
+                if (el.animate) {
+                    el.animate([{ opacity: 0 }, { opacity: 1 }], { delay: glowAt, duration: 300, easing: MOTION_EASE, fill: 'backwards' });
+                }
+            });
+            _revealStageTimers.push(setTimeout(function() {
+                plot.classList.remove('guess-axis--hold');
+                var closest = Math.min.apply(null, offs);
+                dots.forEach(function(dot, i) {
+                    if (offs[i] === closest && dot.animate) {
+                        dot.animate(
+                            [{ transform: 'none' }, { transform: 'scale(1.18)', offset: 0.5 }, { transform: 'none' }],
+                            { duration: 300, easing: MOTION_EASE }
+                        );
+                    }
+                });
+            }, glowAt));
+        }
+
+        var marker = plot ? plot.querySelector('.guess-axis-marker') : null;
+        if (marker && marker.animate) {
+            marker.style.transformOrigin = 'top';
+            marker.animate([{ transform: 'scaleY(0)' }, { transform: 'none' }],
+                { delay: reelAt, duration: 300, easing: MOTION_EASE, fill: 'backwards' });
+        }
+        if (yearRow && yearRow.animate) {
+            yearRow.animate([{ opacity: 0 }, { opacity: 1 }], { delay: reelAt, duration: 120, fill: 'backwards' });
+        }
+        if (yearEl) {
+            _revealReel = utils.rollYear(yearEl, year, { delay: reelAt, base: REVEAL_REEL_BASE_MS, step: REVEAL_REEL_STEP_MS });
+            _revealReelEndsAt = Date.now() + reelEnd;
+        }
+        return reelEnd + REVEAL_ROWS_AFTER_REEL_MS;
+    }
+
+    /**
+     * Rows travel from their old place to the new one while the scores count up.
+     * Only transforms, and at most one layout read, at the start of the reveal.
+     * @param {HTMLElement} container
+     * @param {Array} leaderboard - hydrated board
+     * @param {Object} before - snapshotBoard() of the round
+     * @param {number} delay - ms until the rows set off
+     */
+    function playRowTravel(container, leaderboard, before, delay) {
+        if (!container) return;
+        var place = {};
+        var finalScore = {};
+        leaderboard.forEach(function(entry, i) {
+            place[entry.name] = i;
+            finalScore[entry.name] = entry.score;
+        });
+        // A capped board hides its tail in CSS; those rows have no height.
+        var els = [].slice.call(container.children).filter(function(el) { return el.offsetHeight > 0; });
+        var rows = els.map(function(el) {
+            var key = el.getAttribute('data-row-key');
+            return { key: key, index: place[key] };
+        });
+        var tops = els.map(function(el) { return el.offsetTop; });
+        utils.rowTravelPlan(rows, before.order).forEach(function(move) {
+            var el = els[move.to];
+            if (!el.animate) return;
+            if (move.from > move.to) el.classList.add('leaderboard-entry--travelling');
+            el.animate(
+                [{ transform: 'translateY(' + (tops[move.from] - tops[move.to]) + 'px)' }, { transform: 'none' }],
+                { delay: delay, duration: ROW_TRAVEL_MS, easing: MOTION_EASE, fill: 'backwards' }
+            );
+        });
+        var items = [];
+        els.forEach(function(el, i) {
+            var key = rows[i].key;
+            var scoreEl = el.querySelector('.entry-score');
+            var from = before.score[key];
+            if (scoreEl && typeof from === 'number' && from !== finalScore[key]) {
+                scoreEl.textContent = from;
+                items.push({ el: scoreEl, from: from, to: finalScore[key] });
+            }
+        });
+        if (!items.length) return;
+        _rowCount = { items: items, tick: null, wait: null };
+        _rowCount.wait = setTimeout(function() {
+            var startedAt = Date.now();
+            // A stepped count: on a Chromecast 15 writes a second are enough to
+            // read as counting, a write every frame costs paint for nothing.
+            _rowCount.tick = setInterval(function() {
+                var p = Math.min(1, (Date.now() - startedAt) / ROW_TRAVEL_MS);
+                if (p >= 1) {
+                    finishRowCount();
+                    return;
+                }
+                items.forEach(function(item) {
+                    item.el.textContent = Math.round(item.from + (item.to - item.from) * p);
+                });
+            }, 66);
+        }, delay);
+    }
+
+    /** A fast next round cuts the sequence, and never halfway. */
+    function cutRevealMotion() {
+        if (_revealReel) _revealReel.finish();
+        _revealReelEndsAt = 0;
+        finishRowCount();
+        var plot = document.getElementById('guess-axis-plot');
+        if (plot && plot.classList) plot.classList.remove('guess-axis--hold');
+    }
+
+    /** Put every counting score on its final value and stop. */
+    function finishRowCount() {
+        if (!_rowCount) return;
+        clearTimeout(_rowCount.wait);
+        if (_rowCount.tick !== null) clearInterval(_rowCount.tick);
+        _rowCount.items.forEach(function(item) { item.el.textContent = item.to; });
+        _rowCount = null;
     }
 
     /**
@@ -2851,7 +3141,7 @@
         L.dots.forEach(function(dot) {
             var label = utils.escapeHtml(dot.name) + ' — ' + dot.guess;
             html += '<div class="guess-axis-dot guess-axis-dot--' + (dot.plus ? 'more' : dot.kind) + '" ' +
-                'style="left:' + pct(dot.x) + ';--row:' + dot.row + '" title="' + label + '" aria-label="' + label + '">' +
+                'style="left:' + pct(dot.x) + ';--row:' + dot.row + '" data-off="' + (dot.yearsOff || 0) + '" title="' + label + '" aria-label="' + label + '">' +
                 (dot.plus ? '+' + dot.plus : utils.escapeHtml(dot.initials)) +
                 '</div>';
         });
@@ -2965,6 +3255,26 @@
     // every reconnect, and a closing shot that replays on a dropped socket is
     // worse than no closing shot.
     var closingMomentPlayedFor = null;
+    // #3365: third place, second place, a pause, then the winner.
+    var PODIUM_BUILD = [['podium-3', 200], ['podium-2', 800], ['podium-1', 1800]];
+    var PODIUM_RISE_MS = 520;
+    var PODIUM_BUILD_MS = 1800 + PODIUM_RISE_MS;
+
+    /**
+     * Build the podium. It rests in place, so a cut shows the final picture.
+     * @param {number} startAt - ms until the stage is uncovered
+     */
+    function playPodiumBuild(startAt) {
+        PODIUM_BUILD.forEach(function(step) {
+            var place = document.querySelector('#dashboard-end .' + step[0]);
+            if (!place || !place.animate) return;
+            place.animate(
+                [{ transform: 'translateY(100%)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+                { delay: startAt + step[1], duration: PODIUM_RISE_MS, easing: MOTION_EASE, fill: 'backwards' }
+            );
+        });
+    }
+
     // #3117: renderEndView runs on every END frame; the winner confetti is a
     // one-time effect of reaching the podium, so it keys on the game too.
     var endConfettiPlayedFor = null;
@@ -3190,6 +3500,10 @@
         // #2563: the prologue covers the stage while the rest of this function
         // builds it underneath. Nothing below waits for it except the confetti.
         var momentOnScreen = playClosingMoment(data);
+        var stageAt = momentOnScreen ? 3600 : 0;
+        // #3365: once per game, and only for a TV that came here from a round.
+        var podiumBuilds = !!(_motionGate && _motionGate.once('podium'));
+        if (podiumBuilds) playPodiumBuild(stageAt);
 
         // Issue #827: Sudden-Death "Last One Standing" hero above the podium.
         renderSuddenDeathLastStanding(data);
@@ -3256,8 +3570,10 @@
             endConfettiPlayedFor = endGameId;
             // #2563: fired behind the prologue it would be over before anyone
             // saw it, so it waits for the stage to be uncovered.
-            if (momentOnScreen) {
-                setTimeout(function() { triggerConfetti('winner'); }, 3600);
+            // #3365: and the winner is on the podium before it goes off.
+            var confettiAt = stageAt + (podiumBuilds ? PODIUM_BUILD_MS : 0);
+            if (confettiAt > 0) {
+                setTimeout(function() { triggerConfetti('winner'); }, confettiAt);
             } else {
                 triggerConfetti('winner');
             }

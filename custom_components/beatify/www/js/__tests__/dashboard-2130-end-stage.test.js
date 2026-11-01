@@ -61,6 +61,7 @@ function renderEnd(leaderboard, { screen = endScreen(), ...extra } = {}) {
     evaluate(['var endConfettiPlayedFor = null;', declaration(DASHBOARD, 'renderEndView', 'dashboard.js')], 'renderEndView', {
         document: screen.document,
         utils: { ...U, escapeHtml: (s) => String(s) },
+        _motionGate: null,
         renderSuddenDeathLastStanding: noop,
         // #2563: the closing moment is a prologue over this screen; these
         // cases are about what the screen itself renders, so it stays off.

@@ -13083,6 +13083,25 @@ body.is-ingame .player-header { display: none; }
     letter-spacing: -0.03em;
 }
 .duel-year.mine { color: var(--color-text-neon-muted); }
+/* #3365: the digit reel of the correct year. */
+.year-reel {
+    display: inline-flex;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+.year-reel-win {
+    display: block;
+    height: 1em;
+    overflow: hidden;
+}
+.year-reel-col,
+.year-reel-col > span {
+    display: block;
+}
+.year-reel-col > span {
+    height: 1em;
+    text-align: center;
+}
 .duel-year.correct {
     color: var(--color-accent-secondary);
     text-shadow: 0 0 24px rgba(0, 245, 255, 0.6);

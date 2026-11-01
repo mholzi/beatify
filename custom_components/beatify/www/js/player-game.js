@@ -1109,6 +1109,7 @@ export function resetLeaderboardSummary(summaryId) {
 // ============================================
 
 var hasSubmitted = false;
+var guessJustTapped = false;  // #3365: see settleSubmit
 
 // #2339: the submit button was disabled on send and only ever re-enabled by
 // handleSubmitAck() or a new round. On a half-open socket — an access-point
@@ -1156,6 +1157,38 @@ var taInputWired = false;
 // the round number (round 2 → +2, round 3 → +3, etc).
 var yearSelectorInitialized = false;
 
+// #3365: the year answers the finger. A drag fires faster than the spring
+// lasts, so each change replaces the running one instead of stacking.
+var _yearSpring = null;
+
+function springYear() {
+    if (prefersReducedMotion()) return;
+    var el = document.getElementById('year-display-arc');
+    if (!el || !el.animate) return;
+    if (_yearSpring) _yearSpring.cancel();
+    _yearSpring = el.animate(
+        [{ transform: 'scale(1.1)' }, { transform: 'none' }],
+        { duration: 120, easing: 'ease-out' }
+    );
+}
+
+/**
+ * #3365: the button settles and the phone gives a short buzz. Only for a guess
+ * tapped just now, not for the ack path a reload or a duplicate submit takes.
+ * iOS Safari has no vibration API.
+ */
+function settleSubmit(btn) {
+    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+        navigator.vibrate(15);
+    }
+    if (btn && btn.animate && !prefersReducedMotion()) {
+        btn.animate(
+            [{ transform: 'scale(.92)' }, { transform: 'scale(1.03)', offset: 0.6 }, { transform: 'none' }],
+            { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
+    }
+}
+
 /**
  * Initialize year selector interaction
  */
@@ -1171,6 +1204,7 @@ export function initYearSelector() {
     slider.addEventListener('input', function() {
         if (meOutOfPlay()) return;  // #827 / #2612: out-of-play players can't act
         yearDisplay.textContent = this.value;
+        springYear();
     });
 
     // ±1 / ±5 year-step buttons (Issue #662 — orig +/- · Issue #851 — fix double-fire + add ±5)
@@ -1179,6 +1213,7 @@ export function initYearSelector() {
         newVal = Math.max(parseInt(slider.min, 10), Math.min(parseInt(slider.max, 10), newVal));
         slider.value = newVal;
         yearDisplay.textContent = newVal;
+        springYear();
     }
 
     /**
@@ -1351,11 +1386,13 @@ export function handleSubmitGuess() {
             year: year,
             bet: betActive || sabotageForcedBet  // #1665: forced bet rides along
         }));
+        guessJustTapped = true;
         // #2339: nothing below re-enables the button, so arm a watchdog.
         clearSubmitAckTimeout();
         submitAckTimeoutId = setTimeout(function () {
             submitAckTimeoutId = null;
             if (hasSubmitted) return;   // the ack won the race after all
+            guessJustTapped = false;
             var btn = document.getElementById('submit-btn');
             if (btn) {
                 btn.disabled = false;
@@ -1380,6 +1417,8 @@ export function handleSubmitAck() {
     // locked, and the player could submit twice.
     clearSubmitAckTimeout();
     hasSubmitted = true;
+    var settle = guessJustTapped;
+    guessJustTapped = false;
 
     var yearSelector = document.getElementById('year-selector');
     var yearXxl = document.getElementById('year-display-arc');
@@ -1402,6 +1441,7 @@ export function handleSubmitAck() {
         submitBtn.innerHTML = '<span>' + escapeHtml(utils.t('game.waitingForOthers') || 'Waiting for others') + '</span>'
             + '<span class="waiting-dot" aria-hidden="true"></span>';
     }
+    if (settle) settleSubmit(submitBtn);
 
     // Bet toggle stays visible but disabled — can't change after submit.
     if (betToggle) {
@@ -1424,6 +1464,7 @@ export function handleSubmitAck() {
  * @param {Object} data - Error data from server
  */
 export function handleSubmitError(data) {
+    guessJustTapped = false;
     var submitBtn = document.getElementById('submit-btn');
 
     if (submitBtn) {
@@ -1492,6 +1533,7 @@ export function resetSubmissionState() {
     // this one and flash an error at a player who has not tapped anything.
     clearSubmitAckTimeout();
     hasSubmitted = false;
+    guessJustTapped = false;
     betActive = false;
 
     var yearSelector = document.getElementById('year-selector');
