@@ -115,8 +115,15 @@ def test_every_sent_key_exists_in_every_locale(locale):
 
 
 def test_every_english_text_matches_what_the_server_sends():
-    """Same meaning as the server text: the English locale is that text."""
+    """Same meaning as the server text, plus what the host can do next.
+
+    #3386 rewrote the host texts from "what went wrong" to "what went wrong,
+    and what now", so the English locale no longer repeats the server's log
+    sentence word for word. The meaning and the placeholders stay.
+    """
     en = json.loads((I18N / "en.json").read_text(encoding="utf-8"))["errors"]["host"]
-    assert en["NEED_PLAYERS"] == "Need at least {min_players} players to start"
+    assert en["NEED_PLAYERS"] == (
+        "You need at least {min_players} players. Wait for more to join."
+    )
     assert en["ALREADY_STARTED"] == "Game already started"
-    assert en["NO_ACTIVE_GAME"] == "No active game"
+    assert en["NO_ACTIVE_GAME"] == "No game is running. Start a new one."

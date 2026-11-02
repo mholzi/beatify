@@ -72,6 +72,15 @@ jobs:
       - name: Check i18n keys
         run: python3 scripts/check_i18n_keys.py
 
+      # Wording, not structure (#3386): glossary terms per language, labels
+      # that grow past 1.4x the English, "..." instead of "…", Spanish "¡"/"¿".
+      # Warnings only: each finding is a PR annotation, the job stays green.
+      # Runs on one Python only so the annotations are not listed three times.
+      - name: Check i18n copy (warnings)
+        if: matrix.python-version == '3.14'
+        continue-on-error: true
+        run: python3 scripts/check_i18n_copy.py
+
   # ==========================================================================
   # STAGE 1a: TYPE CHECK (mypy)
   # ==========================================================================

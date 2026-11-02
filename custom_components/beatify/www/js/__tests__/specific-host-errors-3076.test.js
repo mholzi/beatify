@@ -47,24 +47,25 @@ describe('one player tries to start (#3076)', () => {
         expect(shown).toContain('2');
     });
 
+    // #3386: the server's meaning plus the host's next step.
     it('English reads like the server text', () => {
         const t = translator(dict.en);
         expect(errorHeadlineAndDetail(frame, t, '').message).toBe(
-            'Need at least 2 players to start',
+            'You need at least 2 players. Wait for more to join.',
         );
     });
 
     it('German is the translated sentence', () => {
         const t = translator(dict.de);
         expect(errorHeadlineAndDetail(frame, t, '').message).toBe(
-            'Zum Starten braucht es mindestens 2 Spieler',
+            'Es braucht mindestens 2 Spieler. Warte, bis noch jemand beitritt.',
         );
     });
 
     it('the WS error branch goes through the same lookup', () => {
         globalThis.window = globalThis.window || globalThis;
         globalThis.window.BeatifyI18n = { t: translator(dict.de) };
-        expect(localizedErrorMessage(frame)).toBe('Zum Starten braucht es mindestens 2 Spieler');
+        expect(localizedErrorMessage(frame)).toBe('Es braucht mindestens 2 Spieler. Warte, bis noch jemand beitritt.');
         delete globalThis.window.BeatifyI18n;
     });
 

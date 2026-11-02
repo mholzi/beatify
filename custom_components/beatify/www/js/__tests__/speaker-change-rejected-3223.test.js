@@ -63,7 +63,7 @@ describe('banner text (#3223)', () => {
             message: 'Media player not found', fields: [], media_player: 'media_player.wohnzimmer',
             current_speaker: 'Wohnzimmer',
         }, [], i18n('en'));
-        expect(text.message).toBe('Media player not found. The game stays on Wohnzimmer.');
+        expect(text.message).toBe("That speaker can't be found. Check it's on, or pick another one. The game stays on Wohnzimmer.");
     });
 
     it('has both new keys in all six languages', () => {

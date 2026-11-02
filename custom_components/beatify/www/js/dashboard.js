@@ -2010,8 +2010,8 @@
         var titleEl = document.getElementById('reveal-title');
         var yearEl = document.getElementById('reveal-year');
 
-        if (artistEl) artistEl.textContent = song.artist || 'Unknown Artist';
-        if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
+        if (artistEl) artistEl.textContent = song.artist || utils.t('reveal.unknownArtist', 'Unknown Artist');
+        if (titleEl) titleEl.textContent = song.title || utils.t('reveal.unknownSong', 'Unknown Song');
         // #3365: a running reel owns the element until it stops. A re-render
         // must not cut it, unless the answer itself changed (host override).
         if (yearEl) {

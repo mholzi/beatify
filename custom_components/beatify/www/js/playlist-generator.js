@@ -991,7 +991,7 @@ __JSON__
                 window.open(url, '_blank', 'noopener,noreferrer');
                 _renderFollowupOnly();
             } catch (err) {
-                _setHint('Could not parse JSON for submission: ' + err.message);
+                _setHint(_t('playlistGenerator.results.parseFailed', 'JSON parse failed: {error}', { error: err.message }));
             }
             return;
         }
@@ -1001,7 +1001,7 @@ __JSON__
             try {
                 data = JSON.parse(state.lastJsonText);
             } catch (err) {
-                _setHint('Could not parse JSON for save: ' + err.message);
+                _setHint(_t('playlistGenerator.results.parseFailed', 'JSON parse failed: {error}', { error: err.message }));
                 return;
             }
             _runActionButton('save-local', () => _saveLocally(data)).catch((err) => {
@@ -1033,8 +1033,8 @@ __JSON__
             if (!state.lastValidation) return;
             const md = formatValidationForLLM(state.lastValidation, state.lastJsonText);
             _copyToClipboard(md)
-                .then(() => _setHint('Validation feedback copied — paste it back into your LLM.'))
-                .catch(() => _setHint('Could not access clipboard.'));
+                .then(() => _setHint(_t('playlistGenerator.hints.resultCopied', 'Validation feedback copied — paste it back into your LLM.')))
+                .catch(() => _setHint(_t('playlistGenerator.hints.clipboardError', 'Could not access clipboard.')));
             return;
         }
         if (action === 'copy-json') {
@@ -1042,10 +1042,10 @@ __JSON__
             try {
                 const data = JSON.parse(state.lastJsonText);
                 _copyToClipboard(JSON.stringify(data, null, 2))
-                    .then(() => _setHint('Pretty-printed JSON copied.'))
-                    .catch(() => _setHint('Could not access clipboard.'));
+                    .then(() => _setHint(_t('playlistGenerator.hints.jsonCopied', 'Pretty-printed JSON copied.')))
+                    .catch(() => _setHint(_t('playlistGenerator.hints.clipboardError', 'Could not access clipboard.')));
             } catch (err) {
-                _setHint('JSON is not parseable: ' + err.message);
+                _setHint(_t('playlistGenerator.results.parseFailed', 'JSON parse failed: {error}', { error: err.message }));
             }
             return;
         }

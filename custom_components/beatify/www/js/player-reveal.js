@@ -158,6 +158,16 @@ export function renderIdleHalt(banner, halted, isHost) {
 }
 
 /**
+ * #3386: a translated fallback text. ``utils.t`` hands the key back when it
+ * does not know it (and some test doubles ignore the fallback argument), so
+ * the key itself never reaches the screen.
+ */
+function _tOr(key, fallback) {
+    var v = typeof utils.t === 'function' ? utils.t(key, fallback) : fallback;
+    return (typeof v === 'string' && v && v !== key) ? v : fallback;
+}
+
+/**
  * Update reveal view with round results
  * @param {Object} data - State data from server
  */
@@ -308,8 +318,8 @@ export function updateRevealView(data) {
 
     var titleEl = document.getElementById('song-title');
     var artistEl = document.getElementById('song-artist');
-    if (titleEl) titleEl.textContent = song.title || 'Unknown Song';
-    if (artistEl) artistEl.textContent = song.artist || 'Unknown Artist';
+    if (titleEl) titleEl.textContent = song.title || _tOr('reveal.unknownSong', 'Unknown Song');
+    if (artistEl) artistEl.textContent = song.artist || _tOr('reveal.unknownArtist', 'Unknown Artist');
 
     // New: render the Duel (your guess × gap × correct year) via its own helper
     // below — needs currentPlayer, so we stash song.year and call after the

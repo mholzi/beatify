@@ -45,6 +45,20 @@ function _t(key, fallback) {
     return fallback;
 }
 
+/**
+ * #3386: the game language for number and date formatting. Without it,
+ * toLocaleString() follows the browser, so an English laptop running a German
+ * party shows 1,234 where every other screen says 1.234.
+ */
+function _locale() {
+    const i18n = window.BeatifyI18n;
+    try {
+        return (i18n && typeof i18n.getLanguage === 'function' && i18n.getLanguage()) || undefined;
+    } catch (e) {
+        return undefined;
+    }
+}
+
 // #2583: `difficultyLabelFor` mapped the slider value to its human label
 // and was exported with no consumer anywhere.
 
@@ -551,7 +565,7 @@ function _wireBackup(inst) {
             setTimeout(() => URL.revokeObjectURL(url), 30000);
             const songs = resp.headers.get('X-Beatify-Songs');
             say(_t('admin.library.backupDone', 'Backup downloaded ({n} songs).')
-                .replace('{n}', Number(songs || 0).toLocaleString()));
+                .replace('{n}', Number(songs || 0).toLocaleString(_locale())));
         } catch (err) {
             say(_t('admin.library.backupFailed', 'Backup failed.'), true);
         } finally {
@@ -587,9 +601,9 @@ function _wireBackup(inst) {
                 const st = data.stats || {};
                 let msg = _t('admin.library.restoreDone',
                     'Restored: {total} songs ({added} new, {improved} improved).')
-                    .replace('{total}', Number(st.total || 0).toLocaleString())
-                    .replace('{added}', Number(st.added || 0).toLocaleString())
-                    .replace('{improved}', Number(st.improved || 0).toLocaleString());
+                    .replace('{total}', Number(st.total || 0).toLocaleString(_locale()))
+                    .replace('{added}', Number(st.added || 0).toLocaleString(_locale()))
+                    .replace('{improved}', Number(st.improved || 0).toLocaleString(_locale()));
                 if (data.foreign_source) {
                     msg += ' ' + _t('admin.library.restoreForeign',
                         'Note: this backup came from a different Music Assistant server, so some songs may need a rescan to play.');
@@ -626,7 +640,7 @@ function _refreshMatchCount() {
                 const el = i.root.querySelector('[data-lib="match-count"]');
                 if (!el) return;
                 let txt = _t('admin.library.matchCount', '{n} songs match these settings')
-                    .replace('{n}', n.toLocaleString());
+                    .replace('{n}', n.toLocaleString(_locale()));
                 if (low) {
                     txt += ' — ' + _t('admin.library.matchLow',
                         'not enough for a full game; the rest will come from related genres and the most popular matches');
@@ -851,16 +865,16 @@ function _renderPlaylistCheck(inst) {
     const missing = Math.max(0, total - usable);
     count.textContent = missing
         ? _t('admin.library.playlistUsable', '{usable} of {total} songs usable')
-            .replace('{usable}', usable.toLocaleString()).replace('{total}', total.toLocaleString())
+            .replace('{usable}', usable.toLocaleString(_locale())).replace('{total}', total.toLocaleString(_locale()))
         : _t('admin.library.playlistAllUsable', 'All {total} songs usable')
-            .replace('{total}', total.toLocaleString());
+            .replace('{total}', total.toLocaleString(_locale()));
     count.classList.toggle('library-match-count--low', usable === 0);
     if (!missing) { hide(); return; }
 
     why.classList.remove('hidden');
     why.setAttribute('aria-expanded', _droppedOpen ? 'true' : 'false');
     why.textContent = _t('admin.library.playlistMissing', '{n} missing · why?')
-        .replace('{n}', missing.toLocaleString()) + (_droppedOpen ? ' ▾' : ' ▸');
+        .replace('{n}', missing.toLocaleString(_locale())) + (_droppedOpen ? ' ▾' : ' ▸');
     box.classList.toggle('hidden', !_droppedOpen);
     if (!_droppedOpen) { box.innerHTML = ''; return; }
 
@@ -872,13 +886,13 @@ function _renderPlaylistCheck(inst) {
         const songs = (group.songs || []).slice(0, DROPPED_PREVIEW);
         const more = group.count - songs.length;
         html += `<div class="library-dropped-group" data-reason="${reason}">`;
-        html += `<div class="library-dropped-group__title">${group.count.toLocaleString()} · ${_escapeHtml(_t(key, fb))}</div>`;
+        html += `<div class="library-dropped-group__title">${group.count.toLocaleString(_locale())} · ${_escapeHtml(_t(key, fb))}</div>`;
         html += '<ul class="library-dropped-list">';
         for (const s_ of songs) {
             html += `<li><strong>${_escapeHtml(s_.title || '')}</strong> <span>${_escapeHtml(s_.artist || '')}</span></li>`;
         }
         if (more > 0) {
-            html += `<li class="library-dropped-more">${_escapeHtml(_t('admin.library.playlistMore', '+ {n} more').replace('{n}', more.toLocaleString()))}</li>`;
+            html += `<li class="library-dropped-more">${_escapeHtml(_t('admin.library.playlistMore', '+ {n} more').replace('{n}', more.toLocaleString(_locale())))}</li>`;
         }
         html += '</ul>';
         html += `<p class="hint-text">${_escapeHtml(_t(hintKey, hintFb))}</p>`;
@@ -897,7 +911,7 @@ function _wayOut(reason, check) {
             const n = Number(byGate[g] || 0);
             if (n > Number(check.usable || 0)) {
                 return `<button type="button" class="lib-btn lib-btn--ghost" data-way="gate" data-gate="${g}">${_escapeHtml(
-                    _t('admin.library.wayRelaxGate', 'Relax year accuracy → {n} usable').replace('{n}', n.toLocaleString()))}</button>`;
+                    _t('admin.library.wayRelaxGate', 'Relax year accuracy → {n} usable').replace('{n}', n.toLocaleString(_locale())))}</button>`;
             }
         }
         return '';
@@ -979,7 +993,7 @@ function _renderStatus(inst, data) {
             if (bar) bar.style.width = '2%';
             if (label) {
                 label.textContent = _t('admin.library.reading', 'Reading your library…')
-                    + ` ${done.toLocaleString()} ` + _t('admin.library.songsFound', 'songs found');
+                    + ` ${done.toLocaleString(_locale())} ` + _t('admin.library.songsFound', 'songs found');
             }
             _setStatusText(inst, _t('admin.library.statusScanning', 'Scanning your library in the background — you can continue.'));
             return;
@@ -1053,7 +1067,7 @@ function _renderStatus(inst, data) {
  * ------------------------------------------------------------------ */
 
 function _fmt(n) {
-    return (typeof n === 'number') ? n.toLocaleString() : '—';
+    return (typeof n === 'number') ? n.toLocaleString(_locale()) : '—';
 }
 
 function _renderRefreshRow(inst, refresh) {
@@ -1072,7 +1086,7 @@ function _renderRefreshRow(inst, refresh) {
         const pct = total > 0 ? Math.round((done / total) * 100) : 0;
         if (status) {
             status.textContent = total > 0
-                ? _t('admin.library.refreshing', 'Improving songs…') + ` ${done.toLocaleString()}/${total.toLocaleString()} (${pct}%)`
+                ? _t('admin.library.refreshing', 'Improving songs…') + ` ${done.toLocaleString(_locale())}/${total.toLocaleString(_locale())} (${pct}%)`
                 : _t('admin.library.refreshing', 'Improving songs…');
         }
         return;
@@ -1082,7 +1096,7 @@ function _renderRefreshRow(inst, refresh) {
         if (btn) btn.disabled = false;
         if (status) {
             status.textContent = _t('admin.library.refreshBacklog', '{n} songs can be improved')
-                .replace('{n}', backlog.toLocaleString());
+                .replace('{n}', backlog.toLocaleString(_locale()));
         }
     } else {
         row.classList.add('hidden');
@@ -1107,7 +1121,7 @@ function _renderStats(inst, data) {
         html += `<div class="library-stats__row"><span>${_t(key, fallback)}</span><strong>${_fmt(val)}</strong></div>`;
     }
     if (data.built_at) {
-        const when = new Date(data.built_at * 1000).toLocaleString();
+        const when = new Date(data.built_at * 1000).toLocaleString(_locale());
         html += `<div class="library-stats__row"><span>${_t('admin.library.stBuiltAt', 'Last scan finished')}</span><strong>${when}</strong></div>`;
     }
     const lg = data.last_generate;

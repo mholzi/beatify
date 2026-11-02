@@ -392,7 +392,7 @@ export function updateEndView(data) {
                     .then(function(resp) {
                         if (!resp.ok) return resp.json().then(function(e) {
                             // #3057: errors.<CODE> first; the server's English is the fallback.
-                            throw new Error(joinRejectionMessage(e.code, e.message || 'Rematch failed', utils.t, e));
+                            throw new Error(joinRejectionMessage(e.code, e.message || utils.t('admin.startRematchFailed', 'Failed to start rematch'), utils.t, e));
                         });
                         // Server will broadcast rematch_started to all clients (including admin).
                         // The rematch_started handler in player-core.js reconnects everyone via
@@ -403,7 +403,7 @@ export function updateEndView(data) {
                     })
                     .catch(function(err) {
                         console.error('[Player] Rematch failed:', err);
-                        showToast(err.message || 'Failed to start rematch');
+                        showToast(err.message || utils.t('admin.startRematchFailed', 'Failed to start rematch'));
                         resetGoButton();
                     });
             };
