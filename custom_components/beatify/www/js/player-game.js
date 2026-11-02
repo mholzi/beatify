@@ -1940,6 +1940,21 @@ function openStealModal(targets, leaderboard) {
 }
 
 /**
+ * #3386: numbers follow the game language, not the phone's. A guest with an
+ * English phone in a German party would otherwise read 1,240 next to the
+ * 1.240 everyone else sees. Undefined (= browser default) before i18n loads.
+ * @returns {string|undefined}
+ */
+function gameLocale() {
+    try {
+        var i18n = typeof window !== 'undefined' ? window.BeatifyI18n : null;
+        return (i18n && typeof i18n.getLanguage === 'function' && i18n.getLanguage()) || undefined;
+    } catch (e) {
+        return undefined;
+    }
+}
+
+/**
  * #1663 item 2: locale-aware score formatting for steal rows (e.g. 1240 → 1.240
  * in de). Falls back to the raw number if Intl is unavailable.
  * @param {number} score
@@ -1947,7 +1962,7 @@ function openStealModal(targets, leaderboard) {
  */
 function formatStealScore(score) {
     var n = Number(score) || 0;
-    try { return n.toLocaleString(); } catch (e) { return String(n); }
+    try { return n.toLocaleString(gameLocale()); } catch (e) { return String(n); }
 }
 
 /**

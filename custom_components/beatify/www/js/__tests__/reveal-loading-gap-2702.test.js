@@ -294,7 +294,7 @@ describe('#2702 TV ring', () => {
         });
         expect(parts.chip.classList.contains('is-waiting')).toBe(true);
         expect(parts.num.textContent).toBe('…');
-        expect(parts.label.textContent).toBe('Starting...');
+        expect(parts.label.textContent).toBe('Starting…');
         // #2619: data-i18n follows the text, or a mid-game language switch
         // re-renders a label that is no longer on screen.
         expect(parts.label.getAttribute('data-i18n')).toBe('game.starting');

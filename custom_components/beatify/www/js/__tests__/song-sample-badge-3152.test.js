@@ -63,7 +63,7 @@ const EXPECTED = {
     en: 'Song over · keep guessing',
     de: 'Song vorbei · weiter raten',
     es: 'Canción terminada · sigue adivinando',
-    fr: 'Chanson terminée · continuez à deviner',
+    fr: 'Chanson terminée · continue à deviner',
     it: 'Canzone finita · continua a indovinare',
     nl: 'Nummer voorbij · blijf gokken',
 };

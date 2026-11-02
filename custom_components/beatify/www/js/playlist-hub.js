@@ -59,6 +59,16 @@ export function _t(key, fallback) {
     return fallback;
 }
 
+/** #3386: dates follow the game language, not the browser's. */
+function _locale() {
+    try {
+        const i18n = window.BeatifyI18n;
+        return (i18n && typeof i18n.getLanguage === 'function' && i18n.getLanguage()) || undefined;
+    } catch (e) {
+        return undefined;
+    }
+}
+
 function _escape(s) {
     if (s == null) return '';
     return String(s)
@@ -88,7 +98,7 @@ function _relTime(unixSec) {
     if (delta < day * 7) return _t('playlistHub.time.daysAgo', '{n}d ago').replace('{n}', Math.floor(delta / day));
     if (delta < day * 30) return _t('playlistHub.time.weeksAgo', '{n}w ago').replace('{n}', Math.floor(delta / (day * 7)));
     const d = new Date(unixSec * 1000);
-    return d.toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+    return d.toLocaleDateString(_locale(), { month: 'short', year: 'numeric' });
 }
 
 function _formatAddedDate(iso) {
@@ -96,7 +106,7 @@ function _formatAddedDate(iso) {
     try {
         const d = new Date(iso);
         if (isNaN(d.getTime())) return '';
-        return d.toLocaleDateString(undefined, { month: 'short', year: '2-digit' }).toUpperCase();
+        return d.toLocaleDateString(_locale(), { month: 'short', year: '2-digit' }).toUpperCase();
     } catch (e) { return ''; }
 }
 
