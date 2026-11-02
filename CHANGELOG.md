@@ -4,6 +4,23 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc1] - 2026-11-02
+
+First candidate for 4.8.8, "Set in Motion": the game moves, and the host can change the pace between rounds.
+
+### Added
+- **Motion across the game** (#3365, #3367): year reel, guesses landing on the TV axis, TV scene wipes, travelling standings, a podium that builds up, button feedback, wizard transitions and a round start on the phone. Reduced motion shows the final picture.
+- **The host can change round timer and difficulty between rounds** (#2586), and guests see what changed.
+- **New community playlist: Best Songs Ever** (#3362), plus more tracks in Greatest Metal Songs (#3355).
+
+### Fixed
+- **A short network dropout no longer flashes the connection overlay** (#3367). The first reconnect retry now runs after 250 ms.
+- **The lobby refuses an unavailable speaker** (#3343), as game start already did.
+- **The pause headline names a missing music service** (#3339).
+- **A late Next Round no longer ends a round that just began** (#3340).
+- **67 broken song links repaired** in 80er Hits, 90er Hits and 100 Greatest Rock Songs (#3337, #3342, #3356), and two song years corrected (#3347, #3349).
+- **Caller input is neutralised in auto-filed issues** (#3346).
+
 ## [4.8.7] — 2026-10-29
 
 The doorbell rings, Home Assistant pauses the party, and nobody misses the next song while the pizza arrives. This release lets your smart home and the host's phone run the game.
