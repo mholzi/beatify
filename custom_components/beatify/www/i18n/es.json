@@ -21,7 +21,7 @@
   "player": {
     "welcomeBack": "¡Bienvenido de nuevo, {name}!",
     "waitingForHostReconnect": "Esperando al anfitrión...",
-    "speakerUnavailable": "El altavoz no responde — el anfitrión se está ocupando.",
+    "speakerUnavailable": "La música se ha parado un momento — el anfitrión se está ocupando.",
     "gamePaused": "Juego pausado. Por favor, espera...",
     "redirecting": "Redirigiendo...",
     "imBack": "He vuelto",
@@ -118,7 +118,7 @@
     "waitingForHost": "Esperando que el anfitrión se reconecte...",
     "pausedHint": "El juego continuará cuando el anfitrión regrese",
     "pausedHintSpeaker": "La partida continúa en cuanto vuelva el sonido",
-    "pausedSpeaker": "El altavoz no responde — el anfitrión se está ocupando",
+    "pausedSpeaker": "La música se ha parado un momento — el anfitrión se está ocupando",
     "pausedNoSongs": "No quedan más canciones",
     "songStoppedChip": "Canción detenida — seguid adivinando",
     "songSkippedToast": "Canción nueva · La ronda {n} empieza de nuevo",

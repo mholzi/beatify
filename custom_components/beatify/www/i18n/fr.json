@@ -21,7 +21,7 @@
   "player": {
     "welcomeBack": "Bon retour, {name} !",
     "waitingForHostReconnect": "En attente de l'hôte...",
-    "speakerUnavailable": "L'enceinte ne répond pas — l'hôte s'en occupe.",
+    "speakerUnavailable": "La musique s'est arrêtée un instant — l'hôte s'en occupe.",
     "gamePaused": "Jeu en pause. Veuillez patienter...",
     "redirecting": "Redirection...",
     "imBack": "Je suis de retour",
@@ -118,7 +118,7 @@
     "waitingForHost": "En attente de la reconnexion de l'hôte...",
     "pausedHint": "La partie reprendra quand l'hôte reviendra",
     "pausedHintSpeaker": "La partie reprend dès que le son revient",
-    "pausedSpeaker": "L'enceinte ne répond pas — l'hôte s'en occupe",
+    "pausedSpeaker": "La musique s'est arrêtée un instant — l'hôte s'en occupe",
     "pausedNoSongs": "Plus aucun morceau disponible",
     "songStoppedChip": "Morceau arrêté — continuez à deviner",
     "songSkippedToast": "Nouveau morceau · La manche {n} recommence",

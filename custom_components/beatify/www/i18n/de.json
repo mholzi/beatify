@@ -21,7 +21,7 @@
   "player": {
     "welcomeBack": "Willkommen zurück, {name}!",
     "waitingForHostReconnect": "Warte auf den Host...",
-    "speakerUnavailable": "Der Lautsprecher antwortet nicht — der Gastgeber kümmert sich darum.",
+    "speakerUnavailable": "Die Musik macht kurz Pause — der Gastgeber kümmert sich darum.",
     "gamePaused": "Spiel pausiert. Bitte warten...",
     "redirecting": "Weiterleiten...",
     "imBack": "Ich bin wieder da",
@@ -118,7 +118,7 @@
     "waitingForHost": "Warte auf Gastgeber...",
     "pausedHint": "Das Spiel geht weiter wenn der Gastgeber zurückkehrt",
     "pausedHintSpeaker": "Es geht weiter, sobald der Ton wieder da ist",
-    "pausedSpeaker": "Der Lautsprecher antwortet nicht — der Gastgeber kümmert sich darum",
+    "pausedSpeaker": "Die Musik macht kurz Pause — der Gastgeber kümmert sich darum",
     "pausedNoSongs": "Keine weiteren Songs verfügbar",
     "songStoppedChip": "Song gestoppt — weiter raten",
     "songSkippedToast": "Neuer Song · Runde {n} läuft neu",

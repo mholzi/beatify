@@ -21,7 +21,7 @@
   "player": {
     "welcomeBack": "Bentornato, {name}!",
     "waitingForHostReconnect": "In attesa che l'host si riconnetta...",
-    "speakerUnavailable": "L'altoparlante non risponde — l'host se ne sta occupando.",
+    "speakerUnavailable": "La musica si è fermata per un attimo — l'host se ne sta occupando.",
     "gamePaused": "Partita in pausa. Attendi...",
     "redirecting": "Reindirizzamento...",
     "imBack": "Sono tornato",
@@ -118,7 +118,7 @@
     "waitingForHost": "In attesa che l'host si riconnetta...",
     "pausedHint": "La partita riprenderà al ritorno dell'host",
     "pausedHintSpeaker": "La partita riprende appena torna l'audio",
-    "pausedSpeaker": "L'altoparlante non risponde — l'host se ne sta occupando",
+    "pausedSpeaker": "La musica si è fermata per un attimo — l'host se ne sta occupando",
     "pausedNoSongs": "Nessun brano rimasto",
     "songStoppedChip": "Brano fermato — continua a indovinare",
     "songSkippedToast": "Nuovo brano · Il turno {n} riparte",

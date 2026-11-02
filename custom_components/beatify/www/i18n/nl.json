@@ -21,7 +21,7 @@
   "player": {
     "welcomeBack": "Welkom terug, {name}!",
     "waitingForHostReconnect": "Wachten tot de host opnieuw verbindt...",
-    "speakerUnavailable": "De speaker reageert niet — de host is ermee bezig.",
+    "speakerUnavailable": "De muziek is even gestopt — de host is ermee bezig.",
     "gamePaused": "Spel gepauzeerd. Even geduld...",
     "redirecting": "Doorsturen...",
     "imBack": "Ik ben terug",
@@ -118,7 +118,7 @@
     "waitingForHost": "Wachten tot de host opnieuw verbindt...",
     "pausedHint": "Het spel gaat verder zodra de host terug is",
     "pausedHintSpeaker": "Het spel gaat verder zodra het geluid terug is",
-    "pausedSpeaker": "De speaker reageert niet — de host is ermee bezig",
+    "pausedSpeaker": "De muziek is even gestopt — de host is ermee bezig",
     "pausedNoSongs": "Geen nummers meer beschikbaar",
     "songStoppedChip": "Nummer gestopt — blijf raden",
     "songSkippedToast": "Nieuw nummer · Ronde {n} begint opnieuw",
