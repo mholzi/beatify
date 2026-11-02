@@ -36,6 +36,8 @@ const PLAYER_HTML = readFileSync(join(BEATIFY, 'www', 'player.html'), 'utf8');
 const PLAYER_GAME = readFileSync(join(BEATIFY, 'www', 'js', 'player-game.js'), 'utf8');
 const PLAYER_CORE = readFileSync(join(BEATIFY, 'www', 'js', 'player-core.js'), 'utf8');
 const STYLES = readFileSync(join(BEATIFY, 'www', 'css', 'styles.css'), 'utf8');
+// #3387: the :root tokens moved to tokens.css, which styles.css @imports.
+const TOKENS = readFileSync(join(BEATIFY, 'www', 'css', 'tokens.css'), 'utf8');
 
 const LOCALES = ['en', 'de', 'es', 'fr', 'it', 'nl'];
 const locale = (code) =>
@@ -86,7 +88,7 @@ describe('#2723 host drawer — built as a container, not a lid on one switch', 
         // The bar's height and the drawer's offset have to move together; a
         // literal in one of the two places is how the drawer ends up covering
         // the buttons on the next padding change.
-        expect(STYLES).toContain('--control-bar-h:');
+        expect(TOKENS).toContain('--control-bar-h:');
         expect(STYLES).toMatch(/bottom:\s*calc\(var\(--control-bar-h\)/);
     });
 

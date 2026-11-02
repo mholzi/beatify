@@ -1,0 +1,151 @@
+/* Beatify design tokens (#3387) — the one source for every screen.
+
+   styles.css pulls this file in at build time (`@import`, bundled into
+   styles.min.css), so player, admin, TV dashboard, analytics and the library
+   panel all read the same values. The launcher and the offline page do not load
+   styles.css and link tokens.min.css directly. Never redefine a token in another
+   file: give it a new name here instead. DESIGN.md names the roles. */
+
+:root {
+    /* Color Tokens - Background */
+    --color-bg-primary: #0a0a12;
+    --color-bg-surface: rgba(255, 255, 255, 0.05);
+    --color-bg-light: #f5f5f5;
+    --color-bg-white: #ffffff;
+    --color-bg-card: #f9fafb;
+    --color-bg-card-alt: #f3f4f6;
+
+    /* Color Tokens - Accent */
+    --color-accent-primary: #ff2d6a;  /* glow, ring, pink text */
+    /* #3387: fill under white text. White on #ff2d6a is 3.60:1, on this 4.59:1. */
+    --color-accent-primary-fill: #e0245c;
+    --color-accent-secondary: #00f5ff;
+    --color-accent-brand: #6366f1;
+    --color-accent-brand-hover: #4f46e5;
+    --color-accent-blue: #3b82f6;
+    --color-accent-blue-hover: #2563eb;
+
+    /* Color Tokens - Semantic */
+    --color-success: #10b981;
+    --color-success-hover: #059669;
+    --color-success-light: #d1fae5;
+    --color-success-alt: #22c55e;
+    --color-success-neon: #39ff14;
+    --color-warning: #f59e0b;
+    --color-warning-dark: #d97706;
+    --color-warning-light: #fef3c7;
+    --color-warning-alt: #ff6600;
+    --color-error: #ef4444;
+    --color-error-dark: #dc2626;
+    --color-error-light: #fee2e2;
+    --color-error-neon: #ff0040;
+
+    /* Purple colors for steal power-up (Story 15.3) */
+    --color-purple-primary: #8b5cf6;
+    --color-purple-secondary: #7c3aed;
+    --color-neon-purple: #9d4edd;  /* Analytics accent color */
+
+    /* Color Tokens - Badge Backgrounds (Story 14.1) */
+    --color-success-bg: rgba(16, 185, 129, 0.15);
+    --color-accent-brand-bg: rgba(99, 102, 241, 0.15);
+    --color-error-bg: rgba(239, 68, 68, 0.15);
+    --color-warning-bg: rgba(245, 158, 11, 0.15);
+
+    /* Color Tokens - Text
+       --color-text-primary / -secondary / -muted, --color-bg-white, --color-bg-card
+       and --color-border-light are left over from the old light admin; most uses
+       are overridden by a body.theme-dark rule. Do not use them in new code:
+       white is --color-text-white, muted is --color-text-neon-muted. */
+    --color-text-primary: #1f2937;
+    --color-text-secondary: #374151;
+    --color-text-muted: #6b7280;
+    --color-text-light: #9ca3af;
+    --color-text-white: #ffffff;
+    --color-text-dark: #1a1a1a;
+    --color-text-heading: #444444;
+    --color-text-neon-muted: #b3b3c2;
+    --color-text-dim: #6b6b7a;  /* decoration only (dots, placeholders), never text */
+
+    /* Color Tokens - Border */
+    --color-border-light: #e5e7eb;
+    --color-border-medium: #d1d5db;
+    --color-border-dark: #333333;
+    --color-border-neon: rgba(255, 255, 255, 0.1);
+
+    /* Dark Theme Surface Colors */
+    --color-dark-surface: rgba(255, 255, 255, 0.05);
+    --color-dark-surface-hover: rgba(255, 255, 255, 0.08);
+    --color-dark-card: rgba(255, 255, 255, 0.03);
+    --color-surface-dark: #1a1a2e;  /* Card background in dark mode */
+
+    /* Spacing Tokens */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+
+    /* Typography Tokens */
+    --font-display: 'Outfit', system-ui, sans-serif;
+    /* #3387: body text is the system stack on every screen, phone and TV. It
+       needs no download, so it renders on a party wifi without internet
+       (#2641). Only Outfit 700 and 900 are loaded; use nothing else. */
+    --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    --font-body: var(--font-system);
+    --font-mono: monospace;
+
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-base: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 28px;
+    --font-size-4xl: 32px;
+    --font-size-year: 56px;
+    --font-size-timer: 64px;
+    --font-size-hero: 72px;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    /* Effect Tokens - Glow */
+    --glow-primary: 0 0 20px var(--color-accent-primary);
+    --glow-secondary: 0 0 20px var(--color-accent-secondary);
+    --glow-success: 0 0 20px var(--color-success-neon);
+    --glow-warning: 0 0 20px var(--color-warning);
+    --glow-error: 0 0 20px var(--color-error);
+
+    /* Effect Tokens - Shadow */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+    /* Border Radius Tokens */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    --radius-full: 9999px;
+
+    /* Transition Tokens */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+
+    /* Z-Index Tokens */
+    --z-control-bar: 100;
+    /* #2723: height of .admin-control-bar, used to stack the host drawer on it */
+    --control-bar-h: 60px;
+    --z-reaction-bar: 101;  /* Story 18.9: Above control bar */
+    --z-modal: 1000;
+    --z-overlay: 1100;
+    --z-toast: 1200;  /* #1663 item 1: neon top-toast — above overlays/modals */
+}
