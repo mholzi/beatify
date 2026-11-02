@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc2] - 2026-11-02
+
+Second candidate for 4.8.8, with the two findings from the rc1 live test.
+
+### Fixed
+- **The phone and the TV reveal the year together** (#3370). Until the reel stops, nothing on the phone gives the year away.
+- **A missing music service no longer blames the speaker** (#3371). Guests and the TV get a neutral message, and the TV waits for a language switch to finish before it draws.
+
 ## [4.8.8-rc1] - 2026-11-02
 
 First candidate for 4.8.8, "Set in Motion": the game moves, and the host can change the pace between rounds.
