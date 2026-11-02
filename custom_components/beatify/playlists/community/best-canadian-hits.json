@@ -1,6 +1,6 @@
 {
   "name": "Best Canadian Hits: Top 100 🇨🇦",
-  "version": "0.19",
+  "version": "0.20",
   "tags": [
     "canadian",
     "canada",
@@ -669,7 +669,7 @@
         "it": "applemusic://track/1870995778"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Y0pdQU87dc8",
-      "uri_tidal": "tidal://track/1330631",
+      "uri_tidal": "tidal://track/2571006",
       "uri_deezer": "deezer://track/1182159",
       "alt_artists": [
         "Barenaked Ladies",
@@ -741,11 +741,11 @@
       "uri_apple_music": "applemusic://track/1440771622",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440771622",
-        "de": "applemusic://track/1440801885",
+        "de": null,
         "gb": "applemusic://track/1440910637",
         "fr": "applemusic://track/1440771622",
         "es": "applemusic://track/1440771622",
-        "nl": "applemusic://track/1440801885",
+        "nl": null,
         "it": "applemusic://track/1440771622"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=WPeBwVXgR8I",
@@ -1296,7 +1296,7 @@
         "it": "applemusic://track/714738520"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=lpqDTQOFvf0",
-      "uri_tidal": "tidal://track/170170644",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3152859",
       "alt_artists": [
         "Loverboy",
@@ -1328,7 +1328,7 @@
         "gb": "applemusic://track/1440783222",
         "fr": "applemusic://track/1497622519",
         "es": "applemusic://track/1497622519",
-        "nl": "applemusic://track/1440801093",
+        "nl": null,
         "it": "applemusic://track/1497622519"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wPBinohXHLc",
@@ -1872,7 +1872,7 @@
         "it": "applemusic://track/217503142"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=tT4d1LQy4es",
-      "uri_tidal": "tidal://track/1408377",
+      "uri_tidal": "tidal://track/393496",
       "uri_deezer": "deezer://track/674958",
       "alt_artists": [
         "Spirit Of The West",
@@ -2304,15 +2304,15 @@
       "uri_apple_music": "applemusic://track/1479631804",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1479631804",
-        "de": "applemusic://track/374486510",
-        "gb": "applemusic://track/374486510",
-        "fr": "applemusic://track/374486510",
-        "es": "applemusic://track/374486510",
-        "nl": "applemusic://track/374486510",
-        "it": "applemusic://track/374486510"
+        "de": null,
+        "gb": null,
+        "fr": null,
+        "es": null,
+        "nl": null,
+        "it": null
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=nM4okRvCg2g",
-      "uri_tidal": "tidal://track/4186366",
+      "uri_tidal": "tidal://track/117840259",
       "uri_deezer": "deezer://track/12180202",
       "alt_artists": [
         "Spoons",
@@ -2570,7 +2570,7 @@
         "it": "applemusic://track/6762961485"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=Jx6_-urg5fo",
-      "uri_tidal": "tidal://track/1108913",
+      "uri_tidal": null,
       "uri_deezer": "deezer://track/3475780",
       "alt_artists": [
         "54-40",
