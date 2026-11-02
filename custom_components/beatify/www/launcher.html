@@ -5,15 +5,10 @@
     <link rel="icon" href="/beatify/static/img/icon-256.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="launcher.title">Beatify</title>
+    <!-- #3387: the shared design tokens. The launcher does not load styles.css,
+         so it links the token file instead of keeping its own copy. -->
+    <link rel="stylesheet" href="/beatify/static/css/tokens.min.css?v={{ASSET_VER}}">
     <style>
-        :root {
-            --color-bg-primary: #0a0a12;
-            --color-accent-primary: #ff2d6a;
-            --color-accent-secondary: #00f5ff;
-            --color-text-primary: #ffffff;
-            --color-text-muted: #8b8b9e;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -21,26 +16,26 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: var(--font-body);
             background: var(--color-bg-primary);
-            color: var(--color-text-primary);
+            color: var(--color-text-white);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 24px;
+            padding: var(--space-lg);
         }
 
         .logo {
             font-size: 48px;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: var(--space-md);
         }
 
         .logo .beat {
-            color: var(--color-text-primary);
+            color: var(--color-text-white);
         }
 
         .logo .ify {
@@ -52,8 +47,8 @@
 
         .message {
             font-size: 18px;
-            color: var(--color-text-muted);
-            margin-bottom: 32px;
+            color: var(--color-text-neon-muted);
+            margin-bottom: var(--space-xl);
             line-height: 1.5;
         }
 
@@ -62,10 +57,10 @@
             align-items: center;
             gap: 10px;
             padding: 18px 40px;
-            background: linear-gradient(135deg, var(--color-accent-primary), #ff6b9d);
-            color: white;
+            background: var(--color-accent-primary-fill);
+            color: var(--color-text-white);
             text-decoration: none;
-            border-radius: 14px;
+            border-radius: var(--radius-lg);
             font-size: 18px;
             font-weight: 600;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -76,7 +71,7 @@
 
         .btn:hover {
             transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(255, 45, 106, 0.4);
+            box-shadow: var(--glow-primary);
         }
 
         .btn:active {

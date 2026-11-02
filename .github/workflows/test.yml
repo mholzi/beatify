@@ -135,6 +135,18 @@ jobs:
       - name: Lint JS (ESLint)
         run: npm run lint
 
+      # #3387: hard-coded colours and sizes outside www/css/tokens.css. Warning
+      # only while the design-system migration moves them onto tokens: the step
+      # never fails the job, it prints the last lines and puts the count on the
+      # run as an annotation. Raise to "error" in stylelint.config.mjs at the end
+      # of the migration plan.
+      - name: Lint CSS against hard-coded values (Stylelint, warning only)
+        continue-on-error: true
+        run: |
+          npm run --silent lint:css -- --formatter compact > stylelint-report.txt 2>&1 || true
+          tail -n 20 stylelint-report.txt
+          echo "::warning title=Stylelint (#3387)::$(grep -c ' warning ' stylelint-report.txt) hard-coded values outside tokens.css"
+
       - name: Verify min.js bundles match source
         run: npm run build:check
 

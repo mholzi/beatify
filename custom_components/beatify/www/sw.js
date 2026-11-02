@@ -31,6 +31,8 @@ function swDebug() {
 // ha-auth.js is intentionally excluded — see NEVER_CACHE below.
 var PRECACHE_ASSETS = [
     '/beatify/static/css/styles.min.css',
+    // #3387: offline.html and the launcher link the shared tokens on their own.
+    '/beatify/static/css/tokens.min.css',
     '/beatify/static/css/dashboard.min.css',
     '/beatify/static/css/library.min.css',
     '/beatify/static/js/player.bundle.min.js',

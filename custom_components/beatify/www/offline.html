@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Beatify — Offline</title>
-    <!-- #1761: fully self-contained (inline styles, no network deps) so it
-         renders when the network is down and no other asset is cached. -->
+    <!-- #1761: no network dependencies. The one stylesheet is the shared token
+         file (#3387); sw.js precaches it in the same install step as this page,
+         and color-scheme keeps the page dark and readable even without it. -->
+    <link rel="stylesheet" href="/beatify/static/css/tokens.min.css">
     <style>
         :root { color-scheme: dark; }
         * { box-sizing: border-box; }
@@ -15,26 +17,28 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            padding: 2rem;
+            gap: var(--space-md);
+            padding: var(--space-xl);
             text-align: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: #f2f2f7;
-            background: radial-gradient(circle at 50% 30%, #241a3a 0%, #0e0b18 70%);
+            font-family: var(--font-body);
+            color: var(--color-text-white);
+            background: var(--color-bg-primary);
         }
         .offline-emoji { font-size: 3.5rem; line-height: 1; }
-        h1 { margin: 0; font-size: 1.6rem; font-weight: 700; }
-        p { margin: 0; max-width: 22rem; color: rgba(242, 242, 247, 0.7); line-height: 1.5; }
+        h1 { margin: 0; font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; }
+        p { margin: 0; max-width: 22rem; color: var(--color-text-neon-muted); line-height: 1.5; }
         button {
-            margin-top: 0.5rem;
+            margin-top: var(--space-sm);
             padding: 0.85rem 2rem;
             min-height: 44px;
+            font-family: inherit;
             font-size: 1rem;
-            font-weight: 600;
-            color: #0e0b18;
-            background: #b072ff;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-white);
+            background: var(--color-accent-primary-fill);
             border: none;
-            border-radius: 999px;
+            border-radius: var(--radius-full);
+            box-shadow: var(--glow-primary);
             cursor: pointer;
         }
         button:active { transform: scale(0.97); }

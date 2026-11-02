@@ -3581,7 +3581,7 @@
             var name = el('text', {
                 x: RIGHT + 18, y: py(item.s.cum[rounds]) + 10, fill: item.color,
                 'font-size': '30', 'font-weight': '700', 'text-anchor': 'start',
-                stroke: 'var(--color-bg, #0a0a0f)', 'stroke-width': '6',
+                stroke: 'var(--color-bg-primary)', 'stroke-width': '6',
                 'paint-order': 'stroke',
                 'font-family': "var(--font-display, 'Outfit'), sans-serif"
             });

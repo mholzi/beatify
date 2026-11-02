@@ -57,11 +57,16 @@ export const BUNDLES = [
   { entry: "admin", out: "admin.min.js", format: "esm" },
 ];
 
-// Stylesheets: readable source → minified, 1:1. Every HTML page loads the
+// Stylesheets: readable source → minified, 1:1 (plus bundled @imports). Every HTML page loads the
 // .min.css, never the readable one, so anything missing here does not reach a
 // screen. Sourcemaps are emitted alongside because the committed tree has them
 // and dropping them would take away the only way to debug the shipped CSS.
-const CSS = ["styles", "analytics", "dashboard", "library"];
+//
+// tokens (#3387) is the one design-token file. styles.css `@import`s it and CSS
+// is built with `bundle: true`, so styles.min.css carries the tokens inline and
+// the pages that load it make no extra request. The launcher and the offline
+// page do not load styles.min.css and link tokens.min.css on its own.
+const CSS = ["tokens", "styles", "analytics", "dashboard", "library"];
 
 /** Build one target and return { path, contents } without touching disk. */
 async function compile(target) {
@@ -76,7 +81,7 @@ async function compile(target) {
       ...common,
       entryPoints: [path.join(CSS_DIR, `${target.name}.css`)],
       outfile: path.join(CSS_DIR, `${target.name}.min.css`),
-      bundle: false,
+      bundle: true,
       sourcemap: true,
       loader: { ".css": "css" },
     });

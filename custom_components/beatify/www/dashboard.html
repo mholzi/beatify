@@ -47,8 +47,8 @@
          the browser fetch it at low priority without blocking the render; the
          onload swap applies it the moment it arrives. The page is fully
          readable in the fallback stack until then. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&display=swap" rel="stylesheet"></noscript>
     <!-- Story 18.4: Use minified CSS in production -->
     <link rel="stylesheet" href="/beatify/static/css/styles.min.css?v={{ASSET_VER}}">
     <link rel="stylesheet" href="/beatify/static/css/dashboard.min.css?v={{ASSET_VER}}">
@@ -79,7 +79,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             color: #fff;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             animation: wakelock-banner-in 320ms ease-out;
         }
         .dashboard-wakelock-banner.hidden { display: none; }
@@ -165,7 +165,7 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             color: rgba(255, 255, 255, 0.85);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             font-size: 0.82rem;
             font-weight: 600;
             animation: dashboard-reconnect-in 320ms ease-out;

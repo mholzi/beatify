@@ -8,7 +8,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:css": "stylelint \"custom_components/beatify/www/css/*.css\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -17,6 +18,8 @@
     "esbuild": "0.28.2",
     "eslint": "^10.13.0",
     "globals": "^17.13.0",
+    "stylelint": "^17.16.0",
+    "stylelint-declaration-strict-value": "^1.12.1",
     "vitest": "^5.0.0"
   }
 }
