@@ -12854,6 +12854,29 @@ body.is-ingame .player-header { display: none; }
     #reveal-view[data-reveal-stage] [data-stage] { animation: none; }
 }
 
+/* #3370: until the reel stops with the TV's, nothing on a phone may give the year
+   away. Hidden with visibility, so the layout does not jump when it comes back,
+   and a hidden button cannot be tapped open. The title and artist stay, the TV
+   shows them straight away too. */
+#reveal-view.reveal-year-hold .duel-emotion,
+#reveal-view.reveal-year-hold .duel-gap,
+#reveal-view.reveal-year-hold #reveal-chip-row,
+#reveal-view.reveal-year-hold #reveal-sd-standing,
+#reveal-view.reveal-year-hold .score-row,
+#reveal-view.reveal-year-hold #reveal-streak-shield,
+#reveal-view.reveal-year-hold #collection-section,
+#reveal-view.reveal-year-hold #fun-fact-container,
+#reveal-view.reveal-year-hold #round-stats-btn,
+#reveal-view.reveal-year-hold .reveal-report-row,
+#admin-reveal-section.reveal-year-hold #admin-reveal-emotion,
+#admin-reveal-section.reveal-year-hold #admin-fun-fact-container,
+#admin-reveal-section.reveal-year-hold #admin-reveal-personal,
+#admin-reveal-section.reveal-year-hold #admin-reveal-arc-chip-row,
+#admin-reveal-section.reveal-year-hold .guesses-section,
+#admin-reveal-section.reveal-year-hold .leaderboard-section {
+    visibility: hidden;
+}
+
 /* #2702 beat two: who got it right this round. */
 #reveal-view .whogot-list {
     display: flex;
