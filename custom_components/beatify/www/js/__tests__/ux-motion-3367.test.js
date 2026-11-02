@@ -282,7 +282,7 @@ describe('#3367 round start', () => {
 
     it('is wired behind the gate in the PLAYING path', () => {
         const core = readFileSync(join(WWW, 'js/player-core.js'), 'utf8');
-        expect(core).toMatch(/motionGate\.takeRoundStart\(\)\) playRoundStartMotion\(\)/);
+        expect(core).toMatch(/motionGate\.takeRoundStart\(\)\) playRoundStartMotion\(data\)/);
     });
 
     it('reduced motion plays nothing', () => {

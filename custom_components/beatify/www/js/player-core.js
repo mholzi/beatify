@@ -989,7 +989,7 @@ function handleServerMessage(data) {
             }
             initYearSelector();
             // #3367: once per round this phone saw begin, never on a repeat frame.
-            if (state.motionGate && state.motionGate.takeRoundStart()) playRoundStartMotion();
+            if (state.motionGate && state.motionGate.takeRoundStart()) playRoundStartMotion(data);
             setupLeaderboardToggle();
             showAdminControlBar();
             updateControlBarState('PLAYING', data);

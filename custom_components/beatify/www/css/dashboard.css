@@ -207,6 +207,13 @@
     margin-bottom: var(--space-lg);
 }
 
+/* #3379: while the Finale x2 or tiebreaker pill flies in from the middle of
+   the screen it has to pass over the round content, not under it. */
+.sd-final-banner.is-announcing {
+    position: relative;
+    z-index: 50;
+}
+
 /* #2645: the host's announcement on the TV. The reason takes poster size and
    the word "Pause" drops to the line under it — inverted on purpose, because
    the room's question is "why did the music stop", not "did it".
