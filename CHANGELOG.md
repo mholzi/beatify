@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc3] - 2026-11-02
+
+Third candidate for 4.8.8: the round now moves for each player too.
+
+### Added
+- **Motion for your own result** (#3379): your verdict, distance and points land one after another, bonuses add up step by step, Title & Artist tallies grow with each vote, Finale ×2 and the tiebreaker are announced on the TV, your final rank counts down on the phone, and the TV pause gets an entrance. Reduced motion shows the final picture.
+- **New community playlist: Animés-Séries 80-90** (#3361), 40 French cartoon and TV series themes with the year of their first broadcast.
+
 ## [4.8.8-rc2] - 2026-11-02
 
 Second candidate for 4.8.8, with the two findings from the rc1 live test.
