@@ -84,7 +84,7 @@ vi.mock('../player-lobby.js', () => mockNamespace(
 vi.mock('../player-game.js', () => mockNamespace(
     ['startCountdown', 'stopCountdown', 'updateGameView', 'handleMetadataUpdate',
      'updateLeaderboard', 'setupLeaderboardToggle', 'resetLeaderboardSummary',
-     'initYearSelector', 'handleSubmitAck', 'handleSubmitError', 'resetSubmissionState',
+     'initYearSelector', 'handleSubmitAck', 'handleSubmitError', 'resetSubmissionState', 'cancelPendingPowerup',
      'handleArtistGuessAck', 'handleMovieGuessAck', 'handleTitleArtistGuessAck',
      'handleStealAck', 'handleStealTargets', 'showAdminControlBar', 'hideAdminControlBar',
      'showReactionBar', 'hideReactionBar', 'setupReactionBar', 'showFloatingReaction',

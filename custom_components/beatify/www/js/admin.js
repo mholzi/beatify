@@ -41,6 +41,8 @@ import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escap
 import { setupRoundSettings, renderRoundSettings, closeRoundSettings } from './round-settings.js';
 // #3059: the pending "join once the socket opens" wait, cancellable by the modal.
 import { startJoinWait, cancelJoinWait } from './admin/join-wait.js';
+// #3391: the refused-name mark, shared with the guest join form.
+import { markNameRejected, clearNameRejected } from './name-field.js';
 // #2646: the "End round N" card Next opens while a round is still running, the
 // ask/no-ask rule behind it, and the reveal's "does not count" banner. Shared
 // with the phone (player-game.js / player-reveal.js) so the wording and the
@@ -414,6 +416,7 @@ initAdminApi({
         ));
     },
     resetHomeStartButton: () => resetHomeStartButton(),
+    showJoinRejected: (name, message) => showAdminJoinRejected(name, message),
 });
 // #1048: REVEAL auto-advance countdown on the sticky Next button
 let revealAdvanceInterval = null;
@@ -2293,6 +2296,29 @@ function resetAdminJoinModalState() {
 }
 
 /**
+ * #3391: the server refused the host's name (NAME_TAKEN / NAME_INVALID). The
+ * home-mode join closes the modal as soon as it sends, so the refusal arrives
+ * after the field is gone. Bring the modal back holding the name, with the
+ * server's reason under the field and the field focused and marked, so the host
+ * types the fix straight away instead of reading a toast and starting over.
+ * @returns {boolean} false when there is no join modal on this page
+ */
+function showAdminJoinRejected(name, message) {
+    const modal = document.getElementById('admin-join-modal');
+    const nameInput = document.getElementById('admin-name-input');
+    const errorMsg = document.getElementById('admin-name-error');
+    if (!modal || !nameInput || !errorMsg) return false;
+    cancelJoinWait();
+    if (name && !nameInput.value) nameInput.value = name;
+    resetAdminJoinModalState();
+    errorMsg.textContent = message;
+    errorMsg.classList.remove('hidden');
+    modal.classList.remove('hidden');
+    markNameRejected(nameInput);
+    return true;
+}
+
+/**
  * Close admin join modal
  */
 function closeAdminJoinModal() {
@@ -2305,6 +2331,7 @@ function closeAdminJoinModal() {
     // Reset form — clear the name, then converge on the shared idle state.
     const nameInput = document.getElementById('admin-name-input');
     if (nameInput) nameInput.value = '';
+    clearNameRejected(nameInput);
     resetAdminJoinModalState();
 }
 
@@ -2326,6 +2353,7 @@ function setupAdminJoin() {
     if (nameInput) nameInput.maxLength = MAX_NAME_LENGTH;
 
     nameInput?.addEventListener('input', function() {
+        clearNameRejected(this);  // #3391
         joinBtn.disabled = !adminJoinNameValid(this.value.trim());
     });
 

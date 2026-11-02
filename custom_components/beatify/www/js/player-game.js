@@ -36,6 +36,7 @@ var _sabotageTrap = null;
 // player-game.js stays the public face and re-exports their consumer-facing
 // functions so player-core.js / player-reveal.js import surfaces are unchanged.
 export { startCountdown, stopCountdown } from './player-game/timer.js';
+import { countdownRemainingMs } from './player-game/timer.js';  // #3391
 export {
     renderArtistChallenge, handleArtistGuessAck,
     resetArtistChallengeState, renderArtistReveal
@@ -56,7 +57,7 @@ import {
 } from './player-game/movie-challenge.js';
 
 // #1663 item 1: non-blocking toast replaces the blocking alert() (connection lost).
-import { showToast } from './notify.js';
+import { showToast, showUndoToast } from './notify.js';
 // #2646: the "End round N" card that Next opens while a round is still
 // running, and the ask/no-ask rule behind it. Shared with admin.js.
 import { shouldAskBeforeEnding, openRoundEndChoice } from './round-end-choice.js';
@@ -1408,6 +1409,7 @@ export function initYearSelector() {
 export function handleSubmitGuess() {
     if (hasSubmitted) return;
     if (meOutOfPlay()) return;  // #827 / #2612: out-of-play players can't submit
+    settlePendingPowerupOnSubmit();  // #3391
 
     // #1665: freeze effect — the server rejects the submit with ERR_FROZEN, so
     // reflect that locally instead of firing a doomed request. A short toast
@@ -1579,6 +1581,7 @@ export function resetSubmissionState() {
     // #2339: a pending watchdog from the previous round must not fire into
     // this one and flash an error at a player who has not tapped anything.
     clearSubmitAckTimeout();
+    cancelPendingPowerup();  // #3391: a power-up armed last round stays there
     hasSubmitted = false;
     guessJustTapped = false;
     betActive = false;
@@ -1854,7 +1857,7 @@ function hideStealUI() {
  * Handle steal button click - request targets and open modal
  */
 function handleStealClick() {
-    if (!hasStealAvailable || hasSubmitted) return;
+    if (!hasStealAvailable || hasSubmitted || pendingPowerup) return;
 
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
         state.ws.send(JSON.stringify({ type: 'get_steal_targets' }));
@@ -1995,29 +1998,120 @@ function closeStealModal() {
 }
 
 /**
- * Select a steal target and confirm
+ * Select a steal target. #3391: the tap on the target is the decision; the
+ * steal leaves after the undo window (see armPowerup) instead of after a
+ * second "Steal Answer?" dialog.
  * @param {string} targetName - Name of player to steal from
  */
-async function selectStealTarget(targetName) {
-    var confirmMsg = utils.t('steal.confirm').replace('{name}', targetName);
-    var confirmed = await showConfirmModal(
-        utils.t('steal.confirmTitle') || 'Steal Answer?',
-        confirmMsg,
-        utils.t('steal.confirmButton') || 'Steal',
-        utils.t('common.cancel')
-    );
-    if (!confirmed) {
+function selectStealTarget(targetName) {
+    closeStealModal();
+    armPowerup('steal', targetName);
+}
+
+// ============================================
+// #3391: one tap plus Undo for steal and sabotage
+// ============================================
+// Picking a target used to open a confirm dialog on top of the target list:
+// three taps and two overlays while the round timer runs. Now the tap on the
+// target arms the power-up, a toast at the bottom says what is about to happen
+// with an Undo button, and the message goes to the server only when the toast
+// runs out. Undo sends nothing, so the token is still in hand. The server is
+// unchanged: it still receives one `steal` / `sabotage` message.
+
+var POWERUP_UNDO_MS = 3000;
+// The message has to reach the server before the deadline, or it is refused
+// with ERR_ROUND_EXPIRED and, for sabotage, burns nothing but time. A round
+// with less than undo + margin left gets a shorter window; under the margin it
+// goes straight away.
+var POWERUP_DEADLINE_MARGIN_MS = 600;
+var pendingPowerup = null;  // { kind, target, handle }
+
+/**
+ * How long the undo window may be with `remainingMs` left on the round.
+ * Pure, exported for the #3391 tests.
+ * @param {number|null} remainingMs - null when no countdown runs
+ * @returns {number} ms to wait before sending; 0 = send now
+ */
+export function powerupUndoWindowMs(remainingMs) {
+    if (typeof remainingMs !== 'number' || !isFinite(remainingMs)) return POWERUP_UNDO_MS;
+    var room = remainingMs - POWERUP_DEADLINE_MARGIN_MS;
+    if (room < 1000) return 0;  // a flash nobody can read is not an undo
+    return Math.min(POWERUP_UNDO_MS, room);
+}
+
+function sendPowerup(kind, targetName) {
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.send(JSON.stringify({ type: kind, target: targetName }));
+    }
+}
+
+function setPowerupButtonsPending(isPending) {
+    ['steal-btn', 'sabotage-btn'].forEach(function(id) {
+        var btn = document.getElementById(id);
+        if (btn) btn.disabled = !!isPending;
+    });
+}
+
+function armPowerup(kind, targetName) {
+    cancelPendingPowerup();
+    var windowMs = powerupUndoWindowMs(countdownRemainingMs());
+    if (windowMs <= 0) {
+        sendPowerup(kind, targetName);
         return;
     }
-
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-        state.ws.send(JSON.stringify({
-            type: 'steal',
-            target: targetName
-        }));
+    var isSteal = kind === 'steal';
+    var template = isSteal
+        ? (utils.t('steal.pending') || 'Stealing from {name}…')
+        : (utils.t('sabotage.pending') || 'Sabotaging {name}…');
+    var entry = { kind: kind, target: targetName, handle: null };
+    pendingPowerup = entry;
+    setPowerupButtonsPending(true);
+    entry.handle = showUndoToast(template.replace('{name}', targetName), {
+        duration: windowMs,
+        icon: isSteal ? '🥷' : '💣',
+        undoLabel: utils.t('common.undo') || 'Undo',
+        onCommit: function() {
+            if (pendingPowerup === entry) pendingPowerup = null;
+            setPowerupButtonsPending(false);
+            sendPowerup(kind, targetName);
+        },
+        onUndo: function() {
+            if (pendingPowerup === entry) pendingPowerup = null;
+            setPowerupButtonsPending(false);
+        },
+    });
+    if (!entry.handle) {
+        // No toast could be shown — never strand the choice.
+        pendingPowerup = null;
+        setPowerupButtonsPending(false);
+        sendPowerup(kind, targetName);
     }
+}
 
-    closeStealModal();
+/**
+ * Drop a power-up that has not been sent yet: the round ended, paused or a new
+ * one began under it. Nothing reaches the server, the token stays in hand.
+ */
+export function cancelPendingPowerup() {
+    if (!pendingPowerup) return;
+    var entry = pendingPowerup;
+    pendingPowerup = null;
+    if (entry.handle) entry.handle.cancel();
+    setPowerupButtonsPending(false);
+}
+
+/**
+ * The guest taps Submit while a power-up waits. A steal *is* a submission, so
+ * the own guess replaces it (nothing sent, token kept). A sabotage is aimed at
+ * someone else and stays valid, so it leaves now, ahead of the guess.
+ */
+function settlePendingPowerupOnSubmit() {
+    if (!pendingPowerup) return;
+    if (pendingPowerup.kind === 'sabotage' && pendingPowerup.handle) {
+        pendingPowerup.handle.commit();
+    } else {
+        cancelPendingPowerup();
+    }
 }
 
 /**
@@ -2148,7 +2242,7 @@ function hideSabotageUI() {
  * Handle sabotage button click - request targets and open modal (#1665).
  */
 function handleSabotageClick() {
-    if (!hasSabotageAvailable || hasSubmitted) return;
+    if (!hasSabotageAvailable || hasSubmitted || pendingPowerup) return;
 
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
         state.ws.send(JSON.stringify({ type: 'get_sabotage_targets' }));
@@ -2239,31 +2333,14 @@ function closeSabotageModal() {
 }
 
 /**
- * Select a sabotage target and confirm (#1665). The confirm copy states the
- * effect is random so the player is never surprised that they couldn't pick it.
+ * Select a sabotage target (#1665). #3391: one tap plus Undo, like steal. The
+ * picker's subtitle already says the effect is random, which is the one thing
+ * the removed confirm dialog added.
  * @param {string} targetName - Name of player to sabotage
  */
-async function selectSabotageTarget(targetName) {
-    var confirmMsg = (utils.t('sabotage.confirm') || 'Sabotage {name}? The effect is random.')
-        .replace('{name}', targetName);
-    var confirmed = await showConfirmModal(
-        utils.t('sabotage.confirmTitle') || 'Sabotage?',
-        confirmMsg,
-        utils.t('sabotage.confirmButton') || 'Sabotage',
-        utils.t('common.cancel')
-    );
-    if (!confirmed) {
-        return;
-    }
-
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-        state.ws.send(JSON.stringify({
-            type: 'sabotage',
-            target: targetName
-        }));
-    }
-
+function selectSabotageTarget(targetName) {
     closeSabotageModal();
+    armPowerup('sabotage', targetName);
 }
 
 /**

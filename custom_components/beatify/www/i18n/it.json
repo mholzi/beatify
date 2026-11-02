@@ -7,7 +7,8 @@
     "retry": "Riprova",
     "connecting": "Connessione…",
     "previous": "Precedente",
-    "next": "Avanti"
+    "next": "Avanti",
+    "undo": "Annulla"
   },
   "join": {
     "title": "Entra in partita",
@@ -177,14 +178,12 @@
     "selectTarget": "Scegli un bersaglio",
     "selectTargetHint": "Copia la sua risposta per questo turno",
     "waitForSubmit": "Nessun giocatore ha ancora risposto. Aspetta che qualcuno invii la sua risposta.",
-    "confirm": "Rubare la risposta di {name}?",
-    "confirmTitle": "Rubare la risposta?",
-    "confirmButton": "Ruba",
     "success": "Hai rubato la risposta di {name}: {year}",
     "stolenFrom": "Rubata a {name}",
     "stolenBy": "Risposta rubata da {name}",
     "comebackChip": "Furto di rimonta",
-    "comebackWhy": "Assegnato a metà partita agli ultimi in classifica. Funziona come ogni furto."
+    "comebackWhy": "Assegnato a metà partita agli ultimi in classifica. Funziona come ogni furto.",
+    "pending": "Stai rubando a {name}…"
   },
   "sabotage": {
     "available": "Sabotaggio pronto!",
@@ -192,9 +191,6 @@
     "selectTarget": "Scegli chi sabotare",
     "selectTargetHint": "L'effetto è casuale: tempo ridotto, scommessa forzata o blocco.",
     "noTargets": "Non c'è più nessuno da sabotare: hanno già risposto tutti.",
-    "confirm": "Sabotare {name}? L'effetto è casuale.",
-    "confirmTitle": "Sabotare?",
-    "confirmButton": "Sabota",
     "success": "Hai sabotato {name} · {effect}",
     "hit": "Sei stato sabotato da {name}! ({effect})",
     "frozen": "Bloccato — resisti",
@@ -202,7 +198,8 @@
       "timer_cut": "Tempo ridotto",
       "forced_bet": "Scommessa forzata",
       "freeze": "Blocco"
-    }
+    },
+    "pending": "Stai sabotando {name}…"
   },
   "reaction": {
     "fire": "Reazione fuoco",

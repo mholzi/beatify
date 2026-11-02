@@ -5,6 +5,7 @@
 
 // #3076: re-exported so the player modules keep importing from one place.
 import { specificErrorText } from './admin/util.js';
+import { prefillNameSuggestion } from './name-field.js';  // #3391
 export { specificErrorText };
 // #2627: the name cap comes from the shared mirror of const.py, not from a
 // local literal. It used to be declared here AND written out as
@@ -107,6 +108,9 @@ export function showView(viewId) {
         // player.html no longer ships `maxlength="20"` — a second copy of the
         // number that a server-side change would have left behind.
         applyNameLengthCap(document.getElementById('name-input'));
+        // #3391: an empty field after a rematch gets the name this tab last
+        // played under. Before resetJoinButton(), so the button reads it.
+        prefillNameSuggestion(document.getElementById('name-input'));
         // #2506: tapping Join disables the button and relabels it "Joining…",
         // and only the join-timeout path ever put it back. Leaving a game, a
         // session takeover, a failed reconnect and an unknown session all

@@ -182,6 +182,49 @@ function advance() {
     }
 }
 
+// #3391: one card back. The tour was a carousel without a way back — whoever
+// wanted to reread a card had to replay the whole tour from the lobby.
+function goBack() {
+    clearAutoAdvance();
+    if (tour.currentIdx > 0) {
+        tour.currentIdx--;
+        renderProgress();
+        renderCard(tour.currentIdx);
+    }
+}
+
+// #3391: a horizontal swipe of at least this many px turns the card. Below it
+// (or more vertical than horizontal) it is a tap or a scroll and stays one.
+export var SWIPE_THRESHOLD_PX = 40;
+
+/**
+ * Which way a finished swipe turns the tour. Pure, exported for the tests.
+ * @param {number} dx - horizontal travel in px (positive = to the right)
+ * @param {number} dy - vertical travel in px
+ * @returns {'next'|'prev'|null}
+ */
+export function swipeDirection(dx, dy) {
+    if (Math.abs(dx) < SWIPE_THRESHOLD_PX) return null;
+    if (Math.abs(dx) <= Math.abs(dy)) return null;
+    return dx < 0 ? 'next' : 'prev';
+}
+
+function setupSwipe(container) {
+    var start = null;
+    container.addEventListener('pointerdown', function(e) {
+        if (e.isPrimary === false) return;
+        start = { x: e.clientX, y: e.clientY };
+    });
+    container.addEventListener('pointercancel', function() { start = null; });
+    container.addEventListener('pointerup', function(e) {
+        if (!start || !tour.active) { start = null; return; }
+        var dir = swipeDirection(e.clientX - start.x, e.clientY - start.y);
+        start = null;
+        if (dir === 'next') advance();
+        else if (dir === 'prev') goBack();
+    });
+}
+
 function skip() {
     clearAutoAdvance();
     finishTour();
@@ -343,7 +386,7 @@ export function forceExit() {
 }
 
 /**
- * Attach Skip/Next/tap-card/replay-link event listeners once at init.
+ * Attach Skip/Next/tap-card/swipe/replay-link event listeners once at init.
  */
 export function setupTour() {
     // Skip link at top-right of the progress header
@@ -370,6 +413,8 @@ export function setupTour() {
     if (container) {
         container.addEventListener('touchstart', clearAutoAdvance, { passive: true });
         container.addEventListener('mousedown', clearAutoAdvance);
+        // #3391: left = Next, right = the card before. The buttons stay.
+        setupSwipe(container);
     }
 }
 

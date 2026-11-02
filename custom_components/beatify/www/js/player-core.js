@@ -18,6 +18,7 @@ import {
     isJoinRejection, joinRejectionMessage, specificErrorText, validateName,
     prefersReducedMotion
 } from './player-utils.js';
+import { markNameRejected, clearNameRejected, rememberLastName } from './name-field.js';  // #3391
 
 import {
     renderPlayerList, renderDifficultyBadge, renderLobbyBriefLine, renderQRCode,
@@ -31,7 +32,7 @@ import {
     updateGameView, handleMetadataUpdate, playRoundStartMotion,
     updateLeaderboard, setupLeaderboardToggle, resetLeaderboardSummary,
     initYearSelector, handleSubmitAck, handleSubmitError,
-    resetSubmissionState,
+    resetSubmissionState, cancelPendingPowerup,
     handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
     handleStealAck, handleStealTargets,
     handleSabotageAck, handleSabotageTargets, handleSabotaged,
@@ -188,6 +189,7 @@ function storePlayerName(name) {
     } catch (e) {
         console.error('[Beatify] Failed to store player name:', e);
     }
+    rememberLastName(name);  // #3391
 }
 
 function clearStoredPlayerName() {
@@ -1090,6 +1092,7 @@ function handleServerMessage(data) {
             // would flip it off and on again on every state broadcast.
         } else if (data.phase === 'REVEAL') {
             stopCountdown();
+            cancelPendingPowerup();  // #3391: an unsent steal/sabotage dies with the round
             hideIntroSplashModal();  // #3093: the splash can only live in PLAYING
             if (data.early_reveal) {
                 showEarlyRevealToast();
@@ -1119,6 +1122,7 @@ function handleServerMessage(data) {
             showReactionBar();
         } else if (data.phase === 'PAUSED') {
             stopCountdown();
+            cancelPendingPowerup();  // #3391
             // #3093: a pause during a pending splash keeps the flag on the server,
             // and the PLAYING frame after resume re-opens the modal above.
             hideIntroSplashModal();
@@ -1136,6 +1140,7 @@ function handleServerMessage(data) {
             renderPausedAdminActions(data);
         } else if (data.phase === 'END') {
             stopCountdown();
+            cancelPendingPowerup();  // #3391
             stopRevealCountdown();
             hideIntroSplashModal();  // #3093
             pushGameRender.cancel();
@@ -1461,6 +1466,8 @@ function failJoin(message) {
     // route back to the join view gets it, not just this one.
     showJoinError(message);
     showView('join-view');
+    // After showView: the field has to be on screen to take the focus.
+    markNameRejected(document.getElementById('name-input'));
 }
 
 
@@ -1527,6 +1534,7 @@ function setupJoinForm() {
     if (!nameInput || !joinBtn) return;
 
     nameInput.addEventListener('input', function() {
+        clearNameRejected(this);
         var result = validateName(this.value);
         joinBtn.disabled = !result.valid;
         if (validationMsg) {

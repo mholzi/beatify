@@ -347,6 +347,17 @@ function _ensureTimerFloatObserver(timerNeon, timerFloat) {
 }
 
 /**
+ * #3391: milliseconds left on the running round, on this phone's own clock, or
+ * null when no countdown runs. The steal/sabotage undo window reads it so the
+ * power-up still leaves before the deadline instead of after it.
+ * @returns {number|null}
+ */
+export function countdownRemainingMs() {
+    if (activeDeadline === null) return null;
+    return activeDeadline - Date.now();
+}
+
+/**
  * Stop countdown timer
  */
 export function stopCountdown() {

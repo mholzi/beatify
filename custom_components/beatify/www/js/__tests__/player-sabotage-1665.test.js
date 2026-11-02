@@ -50,6 +50,7 @@ function makeEl(id) {
         className: '',
         textContent: '',
         disabled: false,
+        style: {},
         _attrs: {},
         children,
         kids,
@@ -82,6 +83,8 @@ let els;
 global.document = {
     getElementById: (id) => els[id] || null,
     createElement: () => makeEl(),
+    // #3391: the undo toast docks its container on <body>.
+    body: makeEl('body'),
 };
 
 vi.mock('../player-utils.js', () => {
@@ -196,7 +199,11 @@ describe('sabotage target picker (#1665)', () => {
         handleSabotageTargets({ targets: ['Bob'], leaderboard: [] });
         const row = els['sabotage-target-list'].kids[0];
         row.dispatch('click');            // selectSabotageTarget('Bob')
-        await vi.runAllTimersAsync();     // let the confirm promise resolve
+        // #3391: no confirm dialog any more — the tap arms an undo toast and
+        // the message leaves when it runs out, not before.
+        expect(sent).toEqual([]);
+        expect(els['sabotage-modal'].classList.contains('hidden')).toBe(true);
+        await vi.advanceTimersByTimeAsync(3000);
 
         expect(sent).toEqual([{ type: 'sabotage', target: 'Bob' }]);
     });

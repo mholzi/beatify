@@ -1583,10 +1583,14 @@
                 from MAX_NAME_LENGTH (the mirror of const.py) in JS, so a
                 server-side change reaches the field instead of leaving a
                 stale literal behind. -->
+                <!-- #3391: same keyboard behaviour as the guest's name field. -->
                 <input type="text" id="admin-name-input" class="name-input"
                        data-i18n-placeholder="join.namePlaceholder"
                        placeholder="Your name"
-                       autocomplete="off" autocapitalize="words">
+                       autocomplete="off" autocapitalize="off"
+                       autocorrect="off" spellcheck="false"
+                       enterkeyhint="go"
+                       aria-describedby="admin-name-error">
                 <p id="admin-name-error" class="validation-msg hidden"></p>
             </div>
             <div class="modal-actions">
@@ -1738,7 +1742,7 @@
             <p id="kick-player-message">Remove this player from the lobby?</p>
             <p class="modal-hint" data-i18n="admin.kickPlayerNote">They lost their connection. Removing them frees their slot — they can scan the QR code again any time.</p>
             <div class="modal-actions">
-                <button id="kick-player-confirm-btn" class="btn btn-primary" data-i18n="admin.kickPlayerRemove">Remove</button>
+                <button id="kick-player-confirm-btn" class="btn btn-danger" data-i18n="admin.kickPlayerRemove">Remove</button>
                 <button id="kick-player-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
             </div>
         </div>
@@ -1751,7 +1755,7 @@
             <h2 id="reset-modal-title" data-i18n="admin.reset.title">Reset Beatify?</h2>
             <p data-i18n="admin.reset.message">Ends any active game and forgets your last setup. Connected players will be disconnected. The integration itself stays installed.</p>
             <div class="modal-actions">
-                <button id="reset-confirm-btn" class="btn btn-primary" data-i18n="admin.reset.confirm">Reset</button>
+                <button id="reset-confirm-btn" class="btn btn-danger" data-i18n="admin.reset.confirm">Reset</button>
                 <button id="reset-cancel-btn" class="btn btn-secondary" data-i18n="common.cancel">Cancel</button>
             </div>
         </div>
