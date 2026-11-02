@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.73",
+  "version": "0.74",
   "tags": [
     "edm",
     "electronic",
@@ -1152,7 +1152,7 @@
       "year": 2011,
       "isrc": "GBAYE1101369",
       "uri": "spotify:track:7BOSqLjA3lnA3dKh29pOuQ",
-      "uri_apple_music": null,
+      "uri_apple_music": "applemusic://track/726373148",
       "uri_youtube_music": "https://music.youtube.com/watch?v=gQA5gQQNkIo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/75815486",
