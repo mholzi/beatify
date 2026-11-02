@@ -38,22 +38,29 @@
      * @returns {Promise<Object>} Storage object with requests array
      */
     async function loadRequestsAsync() {
+        // #3390: a failed load is an error, not an empty list. It used to write
+        // {requests: []} into the cache, so "could not load" became "No
+        // requests yet" and the good list from the last load was gone. The
+        // cache now only ever holds an answer the backend actually gave.
+        let response;
         try {
             debug('[PlaylistRequests] Loading from backend API...');
-            const response = await fetch(BACKEND_API);
-            if (response.ok) {
-                const data = await response.json();
-                debug('[PlaylistRequests] Loaded from backend:', data.requests?.length || 0, 'requests');
-                _cache = data;
-                return data;
-            }
-            console.warn('[PlaylistRequests] Backend returned:', response.status);
+            response = await fetch(BACKEND_API);
         } catch (e) {
             console.error('[PlaylistRequests] Failed to load from backend:', e);
+            throw new Error('Could not load playlist requests', { cause: e });
         }
-        // Fallback to empty
-        _cache = { requests: [], last_poll: null };
-        return _cache;
+        if (!response.ok) {
+            console.warn('[PlaylistRequests] Backend returned:', response.status);
+            throw new Error('Could not load playlist requests (HTTP ' + response.status + ')');
+        }
+        const data = await response.json();
+        if (!data || !Array.isArray(data.requests)) {
+            throw new Error('Could not load playlist requests (bad answer)');
+        }
+        debug('[PlaylistRequests] Loaded from backend:', data.requests.length, 'requests');
+        _cache = data;
+        return data;
     }
 
     /**
@@ -94,9 +101,19 @@
             body: JSON.stringify({ spotify_url: spotifyUrl })
         });
 
-        const data = await response.json();
+        // #3390: a 5xx page is not JSON. Reading it blindly surfaced as
+        // "Unexpected token <" under the URL field.
+        let data;
+        try {
+            data = await response.json();
+        } catch (e) {
+            const err = new Error('Failed to submit request (HTTP ' + response.status + ')', { cause: e });
+            // errors.GITHUB_ERROR is the "backend unavailable, try again" text.
+            err.code = 'github_error';
+            throw err;
+        }
 
-        if (!data.success) {
+        if (!data || !data.success) {
             // Worker returns {success:false, error:"<code>", message:"<text>"}.
             // Surface the code so the UI can map it to a localized hint (#835).
             const err = new Error(data.message || 'Failed to submit request');
@@ -104,8 +121,18 @@
             throw err;
         }
 
-        // Store the request in backend
-        const store = await loadRequestsAsync();
+        // Store the request in backend.
+        // #3390: if the list does not load, do not save. Saving would write a
+        // list holding only this request over every earlier one. The request
+        // itself went through above, so the maintainers have it; only this
+        // device's list misses it.
+        let store;
+        try {
+            store = await loadRequestsAsync();
+        } catch (e) {
+            console.warn('[PlaylistRequests] Request sent, but the list did not load; not saving:', e);
+            return data;
+        }
 
         // Check if we already have this request stored
         const existingIndex = store.requests.findIndex(r => r.issue_number === data.issue_number);

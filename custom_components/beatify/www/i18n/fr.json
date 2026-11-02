@@ -16,7 +16,8 @@
     "joinButton": "Rejoindre",
     "reconnecting": "Reconnexion… (Tentative {attempt}/{max})",
     "otherLanguage": "autre langue",
-    "chooseLanguage": "Choisis ta langue"
+    "chooseLanguage": "Choisis ta langue",
+    "slowHint": "C'est plus long que d'habitude. Le Wi-Fi est peut-être lent."
   },
   "player": {
     "welcomeBack": "Bon retour, {name} !",
@@ -654,7 +655,8 @@
       "libraryPlaylistLabel": "ta bibliothèque",
       "noPlaylist": "aucune playlist",
       "playlistCount": "{count} playlists",
-      "noSpeaker": "aucune enceinte"
+      "noSpeaker": "aucune enceinte",
+      "playersStale": "Liste des joueurs mise à jour il y a {seconds} s. Home Assistant ne répond pas ; la liste se rattrapera toute seule."
     },
     "startRematchFailed": "Impossible de lancer la revanche. Réessaie.",
     "startGameplayFailed": "Échec du lancement de la partie",
@@ -983,7 +985,8 @@
     "guessAxisNoGuess": "Pas de réponse",
     "guessAxisYearsOff": "{count} ans d'écart",
     "guessAxisYearsOffOne": "1 an d'écart",
-    "standingsMore": "+ {count} autres"
+    "standingsMore": "+ {count} autres",
+    "reconnectNotice": "La télé n'arrive pas à joindre Home Assistant. Vérifiez le Wi-Fi de la télé."
   },
   "launcher": {
     "title": "Beatify",
@@ -1248,7 +1251,15 @@
       "PLATFORM_NOT_SUPPORTED": "Ce type d'enceinte n'est pas pris en charge. Utilise une enceinte Music Assistant.",
       "ROUND_SETTINGS_REVEAL_ONLY": "Les réglages de manche ne changent qu’entre deux manches. Réessaie à la révélation.",
       "INVALID_ROUND_SETTINGS": "Ces réglages de manche ne sont pas disponibles. Choisis une autre option."
-    }
+    },
+    "offlineTitle": "Impossible de joindre la partie",
+    "offlineHint": "Ton téléphone est-il sur le Wi-Fi de la soirée ? Les données mobiles et le Wi-Fi invité n'atteignent souvent pas la partie.",
+    "qrCodeIsFine": "Le code QR est bon.",
+    "haErrorTitle": "Home Assistant a eu un problème",
+    "haErrorHint": "La partie n'a pas pu être chargée. Attends un instant, puis réessaie. Si ça continue, préviens l'hôte.",
+    "gameStoppedTitle": "Cette partie est terminée",
+    "gameStoppedHint": "La partie s'est arrêtée dans Home Assistant, par exemple après un redémarrage. Quand l'hôte en lance une nouvelle, touche « Rejoindre ».",
+    "gameStoppedRejoin": "Rejoindre"
   },
   "highlights": {
     "highlight_exact_match": "{player} a trouvé '{song}' pile — {year} !",
@@ -1423,7 +1434,14 @@
     },
     "providerLibrarySub": "Ta bibliothèque Music Assistant personnelle",
     "providerYtmusicFreeSub": "Nécessite le fournisseur ytmusic_free dans Music Assistant",
-    "continueWithSongs": "Continuer avec {n} chansons"
+    "continueWithSongs": "Continuer avec {n} chansons",
+    "loadError": {
+      "speakersTitle": "Impossible de charger tes enceintes",
+      "speakersHint": "Home Assistant n'a pas répondu. Tes enceintes vont sûrement bien. Réessaie.",
+      "lightsTitle": "Impossible de charger tes lampes",
+      "ttsTitle": "Impossible de charger tes services vocaux",
+      "hint": "Home Assistant n'a pas répondu. Réessaie."
+    }
   },
   "onboarding": {
     "stepLabel": "Étape",
@@ -1582,7 +1600,9 @@
       }
     },
     "error": {
-      "title": "Impossible de charger les playlists"
+      "title": "Impossible de charger les playlists",
+      "body": "Home Assistant n'a pas répondu. Vérifie qu'il tourne, puis réessaie.",
+      "requestsTitle": "Impossible de charger tes demandes"
     },
     "time": {
       "justNow": "à l'instant",

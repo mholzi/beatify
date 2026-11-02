@@ -129,7 +129,8 @@ describe('checkGameStatus retry on transient errors (#1664 item 2)', () => {
         expect(showView).not.toHaveBeenCalledWith('not-found-view');
     });
 
-    it('gives up after MAX_ATTEMPTS transient failures and shows not-found', async () => {
+    // #3390: giving up is "could not get through", never "does not exist".
+    it('gives up after MAX_ATTEMPTS transient failures and shows the offline view, not not-found', async () => {
         global.fetch = vi.fn().mockRejectedValue(new Error('server down'));
 
         const p = checkGameStatus();
@@ -138,7 +139,8 @@ describe('checkGameStatus retry on transient errors (#1664 item 2)', () => {
         await p;
 
         expect(global.fetch).toHaveBeenCalledTimes(GAME_STATUS_MAX_ATTEMPTS);
-        expect(showView).toHaveBeenLastCalledWith('not-found-view');
+        expect(showView).toHaveBeenLastCalledWith('offline-view');
+        expect(showView).not.toHaveBeenCalledWith('not-found-view');
     });
 
     it('treats HTTP-200 {exists:false} as a valid negative answer — not-found immediately, no retry', async () => {

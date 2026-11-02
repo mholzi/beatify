@@ -16,7 +16,8 @@
     "joinButton": "Beitreten",
     "reconnecting": "Verbinde… (Versuch {attempt}/{max})",
     "otherLanguage": "andere Sprache",
-    "chooseLanguage": "Wähle deine Sprache"
+    "chooseLanguage": "Wähle deine Sprache",
+    "slowHint": "Dauert länger als sonst. Das WLAN ist vielleicht langsam."
   },
   "player": {
     "welcomeBack": "Willkommen zurück, {name}!",
@@ -654,7 +655,8 @@
       "libraryPlaylistLabel": "deine Bibliothek",
       "noPlaylist": "keine Playlist",
       "playlistCount": "{count} Playlists",
-      "noSpeaker": "kein Lautsprecher"
+      "noSpeaker": "kein Lautsprecher",
+      "playersStale": "Spielerliste zuletzt vor {seconds} s aktualisiert. Home Assistant antwortet nicht; die Liste holt von selbst auf."
     },
     "startRematchFailed": "Die Revanche ließ sich nicht starten. Versuch es noch mal.",
     "startGameplayFailed": "Spiel konnte nicht gestartet werden",
@@ -983,7 +985,8 @@
     "guessAxisNoGuess": "Kein Tipp",
     "guessAxisYearsOff": "{count} Jahre daneben",
     "guessAxisYearsOffOne": "1 Jahr daneben",
-    "standingsMore": "+ {count} weitere"
+    "standingsMore": "+ {count} weitere",
+    "reconnectNotice": "Der Fernseher erreicht Home Assistant nicht. WLAN des Fernsehers prüfen."
   },
   "launcher": {
     "title": "Beatify",
@@ -1248,7 +1251,15 @@
       "PLATFORM_NOT_SUPPORTED": "Dieser Lautsprecher-Typ wird nicht unterstützt. Nimm einen Music-Assistant-Lautsprecher.",
       "ROUND_SETTINGS_REVEAL_ONLY": "Die Rundeneinstellungen lassen sich nur zwischen zwei Runden ändern. Versuch es in der Auflösung.",
       "INVALID_ROUND_SETTINGS": "Diese Rundeneinstellungen gibt es nicht. Wähl eine andere Option."
-    }
+    },
+    "offlineTitle": "Keine Verbindung zum Spiel",
+    "offlineHint": "Ist dein Handy im WLAN der Party? Mobilfunk und Gäste-WLAN erreichen das Spiel oft nicht.",
+    "qrCodeIsFine": "Der QR-Code ist in Ordnung.",
+    "haErrorTitle": "Home Assistant hatte ein Problem",
+    "haErrorHint": "Das Spiel ließ sich nicht laden. Warte kurz und versuch es dann noch einmal. Passiert es wieder, sag dem Gastgeber Bescheid.",
+    "gameStoppedTitle": "Dieses Spiel ist beendet",
+    "gameStoppedHint": "Das Spiel wurde in Home Assistant beendet, zum Beispiel durch einen Neustart. Sobald der Gastgeber ein neues startet, tippe auf „Wieder beitreten“.",
+    "gameStoppedRejoin": "Wieder beitreten"
   },
   "highlights": {
     "highlight_exact_match": "{player} hat '{song}' genagelt — {year}!",
@@ -1423,7 +1434,14 @@
     },
     "providerLibrarySub": "Deine persönliche Music-Assistant-Bibliothek",
     "providerYtmusicFreeSub": "Braucht den ytmusic_free-Provider in Music Assistant",
-    "continueWithSongs": "Weiter mit {n} Songs"
+    "continueWithSongs": "Weiter mit {n} Songs",
+    "loadError": {
+      "speakersTitle": "Lautsprecher konnten nicht geladen werden",
+      "speakersHint": "Home Assistant hat nicht geantwortet. Deine Lautsprecher sind vermutlich in Ordnung. Versuch es noch einmal.",
+      "lightsTitle": "Lichter konnten nicht geladen werden",
+      "ttsTitle": "Sprachdienste konnten nicht geladen werden",
+      "hint": "Home Assistant hat nicht geantwortet. Versuch es noch einmal."
+    }
   },
   "onboarding": {
     "stepLabel": "Schritt",
@@ -1582,7 +1600,9 @@
       }
     },
     "error": {
-      "title": "Playlists konnten nicht geladen werden"
+      "title": "Playlists konnten nicht geladen werden",
+      "body": "Home Assistant hat nicht geantwortet. Prüf, ob es läuft, und versuch es dann noch einmal.",
+      "requestsTitle": "Deine Wünsche konnten nicht geladen werden"
     },
     "time": {
       "justNow": "gerade eben",

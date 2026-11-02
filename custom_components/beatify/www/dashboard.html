@@ -171,6 +171,17 @@
             animation: dashboard-reconnect-in 320ms ease-out;
         }
         .dashboard-reconnect-indicator.hidden { display: none; }
+        /* #3390: the one line about the network, below spinner + "Reconnecting…".
+           It appears without motion; the badge's own intro already ran. */
+        .dashboard-reconnect-indicator { flex-wrap: wrap; justify-content: center; }
+        .dashboard-reconnect-notice {
+            flex: 1 0 100%;
+            text-align: center;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .dashboard-reconnect-notice.hidden { display: none; }
+        .dashboard-reconnect-indicator--long { border-radius: 18px; }
         @keyframes dashboard-reconnect-in {
             from { opacity: 0; transform: translateY(-8px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -206,6 +217,7 @@
                 padding: 16px 32px;
                 font-size: 1.6rem;
             }
+            .dashboard-reconnect-indicator--long { border-radius: 28px; }
             .dashboard-reconnect-spinner {
                 width: 26px;
                 height: 26px;
@@ -776,6 +788,8 @@
     <div id="dashboard-reconnect-indicator" class="dashboard-reconnect-indicator hidden" role="status" aria-live="polite">
         <span class="dashboard-reconnect-spinner" aria-hidden="true"></span>
         <span data-i18n="dashboard.reconnecting">Reconnecting…</span>
+        <!-- #3390: appears after 30 s without a connection -->
+        <span id="dashboard-reconnect-notice" class="dashboard-reconnect-notice hidden" data-i18n="dashboard.reconnectNotice">The TV can't reach Home Assistant. Check the TV's Wi-Fi.</span>
     </div>
 
     <!-- Reaction Container (Story 18.9) - floating reactions from players -->
