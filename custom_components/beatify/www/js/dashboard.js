@@ -646,11 +646,39 @@
         debug('[Dashboard] Metadata updated:', song.artist, '-', song.title);
     }
 
+    // #3371: newest state seen. A state that waited for a language switch is
+    // dropped when a newer one has arrived since: the newer one is the screen.
+    var _stateSeq = 0;
+    // Upper bound for that wait, so a hung translation fetch cannot freeze the TV.
+    var LANGUAGE_WAIT_MS = 3000;
+
     /**
      * Handle state update from server
      * @param {Object} data - State data
      */
     function handleStateUpdate(data) {
+        var seq = ++_stateSeq;
+        // #3371: getLanguage() flips to the new code the moment a switch
+        // starts, but t() keeps answering in the old locale until the file has
+        // loaded. A state arriving in that window passed the check below
+        // (same code) and was painted in the previous language, a TV in an
+        // English game showing German. Hold it until the switch has settled.
+        if (typeof BeatifyI18n !== 'undefined' && BeatifyI18n.isSwitching && BeatifyI18n.isSwitching()) {
+            var settle = Promise.race([
+                BeatifyI18n.languageReady(),
+                new Promise(function(resolve) { setTimeout(resolve, LANGUAGE_WAIT_MS); })
+            ]);
+            settle.then(function() {
+                if (seq !== _stateSeq) return;
+                BeatifyI18n.initPageTranslations();
+                _handleStateNow(data, seq);
+            });
+            return;
+        }
+        _handleStateNow(data, seq);
+    }
+
+    function _handleStateNow(data, seq) {
         // Apply language from game state (Story 12.5, 16.3)
         // Must re-render after language loads to update dynamic content
         // Guard: skip if i18n unavailable
@@ -673,7 +701,10 @@
                     if (data.language !== appliedLang) {
                         data = Object.assign({}, data, { language: appliedLang });
                     }
-                    handleStateUpdate(data);
+                    // #3371: a newer state arrived while the file loaded; it
+                    // renders itself, this older one must not paint over it.
+                    if (seq !== _stateSeq) return;
+                    _handleStateNow(data, seq);
                 }
             });
             // Don't render yet - wait for language to load
@@ -876,7 +907,7 @@
         var fallback = 'Waiting for host to reconnect...';
         if (reason === 'media_player_error') {
             key = 'game.pausedSpeaker';
-            fallback = 'Speaker is not responding — the host is on it';
+            fallback = 'The music has stopped for a moment — the host is on it';
         } else if (reason === 'no_songs_available') {
             key = 'game.pausedNoSongs';
             fallback = 'No more songs available';

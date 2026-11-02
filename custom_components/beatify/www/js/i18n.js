@@ -32,6 +32,10 @@ window.BeatifyI18n = (function() {
     // settles. Callers (e.g. dashboard handleStateUpdate) can await this to
     // avoid rendering with empty/stale translations while a load is in flight.
     var languageReadyPromise = Promise.resolve();
+    // #3371: the generation whose translations have been committed. While it
+    // trails _loadGen a switch is in flight: getLanguage() already answers the
+    // NEW code but t() still answers the OLD one.
+    var _settledGen = 0;
 
     /**
      * Load translations for a specific language
@@ -113,6 +117,7 @@ window.BeatifyI18n = (function() {
 
         translations = data;
         isLoaded = true;
+        _settledGen = gen;
     }
 
     /**
@@ -453,6 +458,16 @@ window.BeatifyI18n = (function() {
         return languageReadyPromise;
     }
 
+    /**
+     * #3371: true while a language switch is in flight, i.e. getLanguage()
+     * has moved on but t() still answers in the previous locale. A screen
+     * that renders in this window paints the old language under the new code.
+     * @returns {boolean}
+     */
+    function isSwitching() {
+        return _settledGen !== _loadGen;
+    }
+
     // Public API
     return {
         t: t,
@@ -467,7 +482,8 @@ window.BeatifyI18n = (function() {
         getLanguageOptions: getLanguageOptions,
         init: init,
         isReady: isReady,
-        languageReady: languageReady
+        languageReady: languageReady,
+        isSwitching: isSwitching
     };
 })();
 
