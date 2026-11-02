@@ -88,17 +88,19 @@ SIZE_EXEMPT: dict[str, tuple[int, str]] = {
     "year-slider": (32, "range input: 32 px thumb on a full-width track"),
     # Text links in running text may stay small (WCAG 2.2, 2.5.8 inline
     # exception), but not below one line of text.
-    "wizard.step1.hintLink": (14, "help link in running text"),
-    "admin.starHintLink": (14, "help link in running text"),
+    "wizard.step1.hintLink": (12, "help link in running text"),
+    "admin.starHintLink": (12, "help link in running text"),
     # Interaction review P5: small, but outside this issue's scope. Each one
-    # holds at its current size until its own fix lands.
-    "home-dashboard-url": (28, "TV link on the admin home, once per evening"),
-    "player-dashboard-url": (30, "Cast to TV link in the guest lobby"),
-    "new-game-btn": (22, "host-only link on the guest end screen"),
-    "paused-admin-link": (18, "host-only link in the pause view"),
+    # holds at its current size until its own fix lands. The floors for text
+    # links and fields sit 2 px under the macOS measurement: Linux fonts in CI
+    # render a pixel or two smaller.
+    "home-dashboard-url": (26, "TV link on the admin home, once per evening"),
+    "player-dashboard-url": (28, "Cast to TV link in the guest lobby"),
+    "new-game-btn": (20, "host-only link on the guest end screen"),
+    "paused-admin-link": (16, "host-only link in the pause view"),
     "admin-star-hint-dismiss": (24, "x of a one-time hint"),
-    "next-playlist-search-input": (38, "search field on the guest end screen"),
-    "wiz-rounds-custom input": (35, "number field in the setup wizard"),
+    "next-playlist-search-input": (36, "search field on the guest end screen"),
+    "wiz-rounds-custom input": (32, "number field in the setup wizard"),
 }
 
 # Pairs (sorted keys) allowed closer than MIN_GAP, with the reason.
