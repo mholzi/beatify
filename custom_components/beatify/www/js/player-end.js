@@ -5,7 +5,7 @@
 
 import {
     state, escapeHtml, showConfirmModal, joinRejectionMessage,
-    AnimationQueue, triggerConfetti, stopConfetti, showView
+    AnimationQueue, triggerConfetti, stopConfetti, showView, prefersReducedMotion
 } from './player-utils.js';
 // #1663 item 1: non-blocking toast replaces the blocking alert() (rematch failed).
 import { showToast } from './notify.js';
@@ -159,6 +159,108 @@ function endGameKey(data) {
     return data && data.game_id ? String(data.game_id) : 'unknown';
 }
 
+// #3379: your own result gets its moment once the TV's podium stands: the rank
+// counts down to yours, the points count up, the three stats follow. The phone
+// cannot know how long the TV's closing moment runs before the podium, so it
+// starts on the podium's own time (dashboard.js: the last stand rises at 1800 ms
+// for 520 ms) and the card fades in just before.
+var END_RANK_AT_MS = 2320;
+var END_CARD_AT_MS = END_RANK_AT_MS - 200;
+var END_RANK_STEP_MS = 110;
+var END_RANK_MAX_STEPS = 4;
+var END_SCORE_AT_MS = END_RANK_AT_MS + 50;
+var END_SCORE_MS = 600;
+var END_STATS_AT_MS = END_RANK_AT_MS + 550;
+var END_EASE = 'cubic-bezier(.2,.7,.2,1)';
+
+function setCountedText(el, text) {
+    if (!el) return;
+    if (utils.setCountedText) utils.setCountedText(el, text);
+    else el.textContent = text;
+}
+
+/**
+ * #3379: the ranks shown before your own, from at most four places behind,
+ * never further back than the last place in the game.
+ * @param {number} rank - your final rank
+ * @param {number} playerCount - players in the final standings
+ * @returns {number[]} e.g. rank 4 of 8 -> [8, 7, 6, 5]; empty when nothing lies behind
+ */
+export function endRankCountdown(rank, playerCount) {
+    var r = parseInt(rank, 10);
+    var n = parseInt(playerCount, 10) || 0;
+    if (!(r > 0)) return [];
+    var start = Math.min(r + END_RANK_MAX_STEPS, Math.max(n, r));
+    var out = [];
+    for (var k = start; k > r; k--) out.push(k);
+    return out;
+}
+
+function playEndResult(player, playerCount) {
+    if (prefersReducedMotion()) return;
+    var card = document.querySelector('#end-view .your-result') || document.querySelector('.your-result');
+    if (card && card.animate) {
+        card.animate(
+            [{ transform: 'translateY(16px)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+            { delay: END_CARD_AT_MS, duration: 260, easing: END_EASE, fill: 'backwards' }
+        );
+    }
+
+    var rankEl = document.getElementById('your-final-rank');
+    var steps = endRankCountdown(player.rank, playerCount);
+    if (rankEl && steps.length) {
+        if (rankEl._countRun) rankEl._countRun.finish();
+        var timers = [];
+        var run = {
+            end: rankEl.textContent,
+            finish: function() {
+                if (rankEl._countRun !== run) return;
+                rankEl._countRun = null;
+                timers.forEach(clearTimeout);
+                rankEl.textContent = run.end;
+            }
+        };
+        rankEl._countRun = run;
+        rankEl.textContent = '#' + steps[0];
+        steps.slice(1).forEach(function(k, i) {
+            timers.push(setTimeout(function() { rankEl.textContent = '#' + k; }, END_RANK_AT_MS + (i + 1) * END_RANK_STEP_MS));
+        });
+        var landAt = END_RANK_AT_MS + steps.length * END_RANK_STEP_MS;
+        timers.push(setTimeout(run.finish, landAt));
+        if (rankEl.animate) {
+            rankEl.animate(
+                [{ transform: 'none' }, { transform: 'scale(1.25)', offset: 0.4 }, { transform: 'none' }],
+                { delay: landAt, duration: 280, easing: END_EASE }
+            );
+        }
+    }
+
+    var scoreEl = document.getElementById('your-final-score');
+    var score = parseInt(player.score, 10);
+    if (scoreEl && score > 0 && utils.countUp) {
+        var label = utils.t('leaderboard.points');
+        utils.countUp(scoreEl, 0, score, {
+            delay: END_SCORE_AT_MS,
+            duration: END_SCORE_MS,
+            format: function(n) { return n + ' ' + label; },
+            end: scoreEl.textContent
+        });
+    }
+
+    var stats = card && card.querySelectorAll ? card.querySelectorAll('.your-result-stats .stat') : [];
+    for (var i = 0; i < stats.length; i++) {
+        if (!stats[i].animate) continue;
+        stats[i].animate(
+            [
+                { transform: 'scale(.6)', opacity: 0 },
+                { transform: 'scale(1.12)', opacity: 1, offset: 0.65 },
+                { transform: 'none', opacity: 1 }
+            ],
+            { delay: END_STATS_AT_MS + i * 70, duration: 300, easing: END_EASE, fill: 'backwards' }
+        );
+    }
+}
+
 /**
  * Update end view with final standings and stats
  * @param {Object} data - State data with leaderboard and game_stats
@@ -210,11 +312,16 @@ export function updateEndView(data) {
     var betsEl = document.getElementById('stat-bets');
 
     if (currentPlayer) {
-        if (rankEl) rankEl.textContent = '#' + currentPlayer.rank;
-        if (scoreEl) scoreEl.textContent = currentPlayer.score + ' ' + utils.t('leaderboard.points');
+        // #3379: while the rank and points count, a repeated frame moves where they land.
+        setCountedText(rankEl, '#' + currentPlayer.rank);
+        setCountedText(scoreEl, currentPlayer.score + ' ' + utils.t('leaderboard.points'));
         if (bestStreakEl) bestStreakEl.textContent = currentPlayer.best_streak || 0;
         if (roundsEl) roundsEl.textContent = currentPlayer.rounds_played || 0;
         if (betsEl) betsEl.textContent = currentPlayer.bets_won || 0;
+        // Once per END this phone reached from a round; never on a reload.
+        if (state.motionGate && state.motionGate.once('end-result')) {
+            playEndResult(currentPlayer, leaderboard.length);
+        }
     }
 
     // Update full leaderboard (Story 11.4: disconnected styling)

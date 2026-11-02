@@ -261,6 +261,78 @@ window.BeatifyUtils = (function() {
     }
 
     /**
+     * #3379: a number counts up from `from` to `to` once `delay` has passed,
+     * shown through `format`. Unlike countTo it starts from a value the screen
+     * never showed (zero, the points before a bet), so the start is written
+     * first. The count always ends on `run.end`: a render that arrives while it
+     * runs replaces that through setCountedText instead of the live digits, and
+     * a safety timer lands it even when no frame runs (a phone put away).
+     * Reduced motion writes the end straight away and returns null. With
+     * `hold` the run stays on `to` for that long after counting, so a caller
+     * can step the text on (a bonus being added) before it lands on `end`.
+     * @param {Element} el
+     * @param {number} from
+     * @param {number} to
+     * @param {Object} [opts] - {delay, duration, format, end, hold}
+     * @returns {{end: string, finish: Function}|null}
+     */
+    function countUp(el, from, to, opts) {
+        if (!el) return null;
+        var o = opts || {};
+        var format = o.format || String;
+        var end = o.end != null ? String(o.end) : format(to);
+        if (el._countRun) el._countRun.finish();
+        if (from === to || prefersReducedMotionNow() || typeof requestAnimationFrame !== 'function') {
+            el.textContent = end;
+            return null;
+        }
+        var delay = o.delay || 0;
+        var total = o.duration || 380;
+        var hold = o.hold || 0;
+        var frame = null;
+        var start = null;
+        var run = { end: end, finish: finish };
+        function finish() {
+            if (el._countRun !== run) return;
+            el._countRun = null;
+            clearTimeout(begin);
+            clearTimeout(safety);
+            if (frame !== null && typeof cancelAnimationFrame === 'function') cancelAnimationFrame(frame);
+            el.textContent = run.end;
+        }
+        function step(now) {
+            if (el._countRun !== run) return;
+            if (start === null) start = now;
+            var p = Math.min((now - start) / total, 1);
+            if (p >= 1) {
+                frame = null;
+                if (hold) el.textContent = format(to);
+                else finish();
+                return;
+            }
+            el.textContent = format(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
+            frame = requestAnimationFrame(step);
+        }
+        el._countRun = run;
+        el.textContent = format(from);
+        var begin = setTimeout(function() { frame = requestAnimationFrame(step); }, delay);
+        var safety = setTimeout(finish, delay + total + hold + 120);
+        return run;
+    }
+
+    /**
+     * #3379: write a counted element's text. While a countUp runs on it the new
+     * text becomes where the count lands; otherwise it is written at once.
+     * @param {Element} el
+     * @param {string} text
+     */
+    function setCountedText(el, text) {
+        if (!el) return;
+        if (el._countRun) el._countRun.end = String(text);
+        else el.textContent = text;
+    }
+
+    /**
      * #3367: open or close one `.section-collapsible` in 200 ms. Only a tap comes
      * through here; a state set while the page loads keeps writing the class
      * directly and never moves. The `collapsed` class changes at once, so the
@@ -1345,6 +1417,8 @@ window.BeatifyUtils = (function() {
         createMotionGate: createMotionGate,
         pickFeedback: pickFeedback,
         countTo: countTo,
+        countUp: countUp,
+        setCountedText: setCountedText,
         toggleCollapsibleSection: toggleCollapsibleSection,
         createReconnectOverlay: createReconnectOverlay,
         yearReelDigits: yearReelDigits,

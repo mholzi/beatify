@@ -215,7 +215,7 @@ function reconcileOwnSubmission(data) {
  * its final state and takes taps from the first frame. A part hidden in this
  * mode (year and slider in Title & Artist) simply shows nothing.
  */
-export function playRoundStartMotion() {
+export function playRoundStartMotion(data) {
     if (prefersReducedMotion()) return;
     var ease = 'cubic-bezier(.2,.7,.2,1)';
     var timer = document.getElementById('timer-neon');
@@ -240,6 +240,20 @@ export function playRoundStartMotion() {
                 );
             });
         });
+    // #3379: Finale x2 and the tiebreaker are announced, not just there. The chip
+    // springs in once after the timer, while the round already runs. The render
+    // that fills it is coalesced and may come a frame later; the delay covers it.
+    var chip = document.getElementById('last-round-banner');
+    if (chip && chip.animate && data && (data.finale_double_active || data.finale_playoff_active)) {
+        chip.animate(
+            [
+                { transform: 'scale(.4)', opacity: 0 },
+                { transform: 'scale(1.12)', opacity: 1, offset: 0.65 },
+                { transform: 'none', opacity: 1 }
+            ],
+            { delay: 240, duration: 300, easing: ease, fill: 'backwards' }
+        );
+    }
 }
 
 export function updateGameView(data) {

@@ -633,9 +633,159 @@ function startYearHold(data) {
     hold.timers.push(setTimeout(function() {
         var confetti = hold.confetti;
         clearYearHold();
+        // #3379: only this release lands the result in order. Every other way
+        // out of the hold (a reconnect, a corrected year) shows it at once.
+        playResultLanding();
         if (confetti === 'record') triggerConfetti('record');
         else if (confetti) triggerConfetti();
     }, stopAt));
+}
+
+// #3379: your own result lands in reading order once the reel stops: the verdict
+// springs in, the gap drops into place, the score row rises and its points count
+// up. All of it inside 0.6 s, before "who got it" comes up at reel stop + 80 ms.
+// The bonuses then take their turn: the bet chip springs in and the number jumps
+// to the bet payout, then the streak chip adds its bonus.
+var RESULT_GAP_AT_MS = 80;
+var RESULT_SCORE_AT_MS = 160;
+var RESULT_COUNT_AT_MS = 200;
+var RESULT_COUNT_MS = 380;
+var RESULT_BET_AT_MS = 750;
+var RESULT_STREAK_AT_MS = 1350;
+// The number changes once the chip has nearly finished springing in.
+var RESULT_CHIP_TO_NUMBER_MS = 100;
+var MOTION_EASE = 'cubic-bezier(.2,.7,.2,1)';
+var _pointsRun = null;
+
+function formatRoundPoints(n) {
+    return (n >= 0 ? '+' : '') + n;
+}
+
+/**
+ * #3379: the values the points pass through on their way to the total, as data.
+ * The first value is counted up to; each later one is jumped to when its chip
+ * springs in. The bet multiplies only the accuracy points, which the server
+ * folds into `round_score`, so the value before the bet is rebuilt from
+ * `base_score + speed_bonus` (#3157: the pre-bet speed bonus exactly as the
+ * scorer awarded it). If that does not divide `round_score` evenly the payload
+ * is not what this expects, and the bet step is left out rather than guessed.
+ *
+ * @param {Object|null} player - the current player's REVEAL entry
+ * @returns {Array<{to: number, chip: string|null}>} empty when there is nothing to count
+ */
+export function resultPointsPlan(player) {
+    if (!player || player.missed_round) return [];
+    var total = computeTotalPoints(player);
+    if (!(total > 0)) return [];
+    var roundScore = player.round_score || 0;
+    var streak = (player.streak_bonus > 0 && player.streak) ? player.streak_bonus : 0;
+    var steps = [];
+    if (player.bet_outcome === 'won') {
+        var preBet = (player.base_score || 0) + (player.speed_bonus || 0);
+        if (typeof player.speed_bonus === 'number' && preBet > 0 &&
+            roundScore > preBet && roundScore % preBet === 0) {
+            var others = total - roundScore - streak;
+            steps.push({ to: preBet + others, chip: null });
+            steps.push({ to: roundScore + others, chip: 'bet' });
+        }
+    }
+    if (!steps.length) steps.push({ to: total - streak, chip: null });
+    if (streak) steps.push({ to: total, chip: 'streak' });
+    if (steps[0].to <= 0) steps.shift();
+    return steps;
+}
+
+/** Land the points on their final text now. Safe to call at any time. */
+function finishPointsRun() {
+    var run = _pointsRun;
+    _pointsRun = null;
+    if (run) run.finish();
+}
+
+function springIn(el, delay, from) {
+    if (!el || !el.animate) return;
+    el.animate(
+        [
+            { transform: 'scale(' + from + ')', opacity: 0 },
+            { transform: 'scale(1.12)', opacity: 1, offset: 0.65 },
+            { transform: 'none', opacity: 1 }
+        ],
+        { delay: delay, duration: 300, easing: MOTION_EASE, fill: 'backwards' }
+    );
+}
+
+function bumpNumber(el, delay) {
+    if (!el || !el.animate) return;
+    el.animate(
+        [{ transform: 'none' }, { transform: 'scale(1.25)', offset: 0.4 }, { transform: 'none' }],
+        { delay: delay, duration: 280, easing: MOTION_EASE }
+    );
+}
+
+/**
+ * Run the landing on the elements the reveal render has already filled. Called
+ * once, by the hold's release, which only exists on a live reveal with motion
+ * allowed. Touches transform, opacity and the points text, nothing else.
+ */
+function playResultLanding() {
+    if (prefersReducedMotion()) return;
+    var root = document.getElementById('reveal-view');
+    var ctx = state.lastRevealContext;
+    var player = ctx ? ctx.player : null;
+    var emotionEl = document.getElementById('reveal-emotion');
+    var gapEl = root && root.querySelector ? root.querySelector('.duel-gap') : null;
+    var scoreRow = root && root.querySelector ? root.querySelector('.score-row') : null;
+    var ptsEl = document.getElementById('reveal-total-pts');
+
+    springIn(emotionEl, 0, 0.4);
+    if (gapEl && gapEl.animate) {
+        // The pill is centred with a transform of its own; keep it under ours.
+        var rest = window.getComputedStyle ? window.getComputedStyle(gapEl).transform : 'none';
+        rest = (rest && rest !== 'none') ? rest + ' ' : '';
+        gapEl.animate(
+            [{ transform: rest + 'translateY(-14px)', opacity: 0 }, { transform: rest || 'none', opacity: 1 }],
+            { delay: RESULT_GAP_AT_MS, duration: 220, easing: MOTION_EASE, fill: 'backwards' }
+        );
+    }
+    if (scoreRow && scoreRow.animate) {
+        scoreRow.animate(
+            [{ transform: 'translateY(12px)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+            { delay: RESULT_SCORE_AT_MS, duration: 220, easing: MOTION_EASE, fill: 'backwards' }
+        );
+    }
+
+    var row = document.getElementById('reveal-chip-row');
+    var betChip = row && row.querySelector ? row.querySelector('.chip--bet-won, .chip--bet-lost') : null;
+    var streakChip = row && row.querySelector ? row.querySelector('.chip--streak') : null;
+    var plan = resultPointsPlan(player);
+    var chipAt = { bet: RESULT_BET_AT_MS, streak: betChip ? RESULT_STREAK_AT_MS : RESULT_BET_AT_MS };
+    springIn(betChip, chipAt.bet, 1.8);
+    springIn(streakChip, chipAt.streak, 1.8);
+
+    finishPointsRun();
+    if (!ptsEl || !plan.length || !utils.countUp) return;
+    var lastAt = plan.length > 1 ? chipAt[plan[plan.length - 1].chip] + RESULT_CHIP_TO_NUMBER_MS : 0;
+    var countEnd = RESULT_COUNT_AT_MS + RESULT_COUNT_MS;
+    // The render has already written the total; that is where the run lands.
+    var run = utils.countUp(ptsEl, 0, plan[0].to, {
+        delay: RESULT_COUNT_AT_MS,
+        duration: RESULT_COUNT_MS,
+        format: formatRoundPoints,
+        end: ptsEl.textContent,
+        hold: lastAt ? Math.max(0, lastAt - countEnd) : 0
+    });
+    if (!run) return;
+    _pointsRun = run;
+    plan.slice(1).forEach(function(step, i) {
+        var at = chipAt[step.chip] + RESULT_CHIP_TO_NUMBER_MS;
+        var isLast = i === plan.length - 2;
+        setTimeout(function() {
+            if (ptsEl._countRun !== run) return;
+            if (isLast) finishPointsRun();
+            else ptsEl.textContent = formatRoundPoints(step.to);
+        }, at);
+        bumpNumber(ptsEl, at);
+    });
 }
 
 /** Show everything again. Safe to call at any time, and owed confetti is dropped. */
@@ -678,6 +828,7 @@ export function stopRevealStaging() {
     // #3365: never leave the reel or a held-back score behind.
     clearYearHold();
     if (_phoneReel) _phoneReel.finish();
+    finishPointsRun();
     clearTimeout(_phoneRowTimer);
     var listEl = document.getElementById('reveal-leaderboard-list');
     if (listEl) listEl._beatifyHtml = null;
@@ -1773,7 +1924,9 @@ function renderScoreRow(player) {
     if (!ptsEl) return;
 
     var total = computeTotalPoints(player);
-    ptsEl.textContent = (total >= 0 ? '+' : '') + total;
+    // #3379: while the points count up, a repeated frame moves where they land.
+    if (utils.setCountedText) utils.setCountedText(ptsEl, formatRoundPoints(total));
+    else ptsEl.textContent = formatRoundPoints(total);
 
     if (subEl) {
         if (!player || player.missed_round) {
@@ -2588,6 +2741,69 @@ function _taOutcomeCard(o, fieldLabel) {
 }
 
 /**
+ * #3379: everything about the vote cards except the tallies. While this stays
+ * the same between two frames, the cards are updated in place.
+ */
+function taVoteStructureKey(nearMisses, votingOpen, isHost, fieldLabel) {
+    return JSON.stringify([votingOpen, isHost, utils.t('titleArtist.youVoted') || '', nearMisses.map(function(nm) {
+        var myVote = state.taMyVotes ? state.taMyVotes[nm.id] : undefined;
+        return [nm.id, nm.player, nm.guess, fieldLabel(nm.field), nm.player === state.playerName,
+            myVote === true ? 1 : (myVote === false ? 0 : -1)];
+    })]);
+}
+
+/**
+ * #3379: write the new tallies into the cards already on screen. Returns false
+ * when the cards are not the ones expected, and the caller rebuilds them.
+ */
+function updateTaTallies(cardsEl, nearMisses) {
+    var cards = cardsEl.children || [];
+    if (cards.length !== nearMisses.length) return false;
+    var parts = [];
+    for (var i = 0; i < nearMisses.length; i++) {
+        var card = cards[i];
+        if (!card || !card.querySelector) return false;
+        var p = {
+            yesText: card.querySelector('.ta-tally-yes'),
+            noText: card.querySelector('.ta-tally-no'),
+            yesFill: card.querySelector('.ta-tally-fill--yes'),
+            noFill: card.querySelector('.ta-tally-fill--no')
+        };
+        if (!p.yesText || !p.noText || !p.yesFill || !p.noFill) return false;
+        parts.push(p);
+    }
+    nearMisses.forEach(function(nm, idx) {
+        var yes = nm.votes_yes || 0;
+        var no = nm.votes_no || 0;
+        var pct = utils.taTallyPercents ? utils.taTallyPercents(yes, no) : null;
+        var yesPct = pct ? pct.yes : ((yes + no) ? Math.round((yes / (yes + no)) * 100) : 0);
+        var noPct = pct ? pct.no : ((yes + no) ? 100 - yesPct : 0);
+        parts[idx].yesText.textContent = '👍 ' + yes;
+        parts[idx].noText.textContent = '👎 ' + no;
+        parts[idx].yesFill.style.width = yesPct + '%';
+        parts[idx].noFill.style.width = noPct + '%';
+    });
+    return true;
+}
+
+/** #3379: the decided verdicts land like a stamp, one card after the other. */
+function stampTaVerdicts(cardsEl) {
+    if (prefersReducedMotion() || !cardsEl.querySelectorAll) return;
+    var verdicts = cardsEl.querySelectorAll('.ta-outcome-verdict');
+    for (var i = 0; i < verdicts.length; i++) {
+        if (!verdicts[i].animate) continue;
+        verdicts[i].animate(
+            [
+                { transform: 'rotate(-8deg) scale(2.4)', opacity: 0 },
+                { transform: 'rotate(-8deg) scale(.92)', opacity: 1, offset: 0.7 },
+                { transform: 'none', opacity: 1 }
+            ],
+            { delay: i * 80, duration: 300, easing: MOTION_EASE, fill: 'backwards' }
+        );
+    }
+}
+
+/**
  * Render the Title & Artist reveal: the truth, the current player's own
  * per-field result, the 👍/👎 voting cards for OTHER players' near-misses
  * (a player never votes on their own), and — for the host — Accept/Reject
@@ -2685,16 +2901,30 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
             titleEl.textContent = utils.t('titleArtist.closeCallsDecided') || 'Close calls — decided';
         }
         if (countdownEl) { countdownEl.textContent = ''; countdownEl.classList.add('hidden'); }
-        cardsEl.innerHTML = outcomes.map(function(o) { return _taOutcomeCard(o, fieldLabel); }).join('');
+        var outcomeHtml = outcomes.map(function(o) { return _taOutcomeCard(o, fieldLabel); }).join('');
+        // #3379: a repeated frame leaves the decided cards (and a running stamp) alone.
+        if (cardsEl._taHtml !== outcomeHtml) {
+            cardsEl.innerHTML = outcomeHtml;
+            cardsEl._taHtml = outcomeHtml;
+            cardsEl._taKey = null;
+        }
+        // The verdicts stamp in once, and only on a phone that watched the vote.
+        if (state._taVoteSeenFor === ta.correct_title && state._taStampedFor !== ta.correct_title) {
+            state._taStampedFor = ta.correct_title;
+            stampTaVerdicts(cardsEl);
+        }
         return;
     }
 
     if (nearMisses.length === 0) {
         votingWrap.classList.add('hidden');
         cardsEl.innerHTML = '';
+        cardsEl._taHtml = null;
+        cardsEl._taKey = null;
         _stopTaVoteCountdown();
         return;
     }
+    if (votingOpen) state._taVoteSeenFor = ta.correct_title;
 
     votingWrap.classList.remove('hidden');
     // Reset header to the live-vote state (a prior round may have set "decided").
@@ -2702,6 +2932,15 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
         titleEl.textContent = utils.t('titleArtist.voteHeader') || 'Close calls — vote 👍/👎';
     }
     if (countdownEl) { countdownEl.classList.remove('hidden'); }
+
+    // #3379: while nothing but the tallies changed, update them in place so the
+    // bars grow with each vote (the width transition in styles.css). Any other
+    // change (a new card, your own vote, the host role) rebuilds the cards.
+    var structureKey = taVoteStructureKey(nearMisses, votingOpen, isHost, fieldLabel);
+    if (cardsEl._taKey === structureKey && updateTaTallies(cardsEl, nearMisses)) {
+        _startTaVoteCountdownIfOpen(votingOpen, ta);
+        return;
+    }
 
     var html = '';
     nearMisses.forEach(function(nm) {
@@ -2773,8 +3012,14 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
         html += '</div>';
     });
     cardsEl.innerHTML = html;
+    cardsEl._taHtml = null;
+    cardsEl._taKey = structureKey;
 
     // 4) Countdown — ticks from the server's authoritative vote_seconds_remaining.
+    _startTaVoteCountdownIfOpen(votingOpen, ta);
+}
+
+function _startTaVoteCountdownIfOpen(votingOpen, ta) {
     if (votingOpen) {
         _startTaVoteCountdown(ta);
     } else {

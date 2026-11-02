@@ -744,7 +744,71 @@
             if (started) return;
             _sceneWipeHold = null;
         }
+        // #3379: leaving a pause, the pause card goes first, then the scene is drawn.
+        if (!noGame && from === 'PAUSED' && data.phase !== 'PAUSED' && !_reducedMotion()) {
+            var exitHold = { data: data };
+            _sceneWipeHold = exitHold;
+            var leaving = playPauseExit(function() {
+                _sceneWipeHold = null;
+                if (exitHold.data) _renderFrame(exitHold.data);
+            });
+            if (leaving) return;
+            _sceneWipeHold = null;
+        }
         _renderFrame(data);
+        // #3379: a pause the room watched begin gets its entrance. A reload or a
+        // reconnect into a pause (no scene before it) shows the final picture.
+        if (!noGame && data.phase === 'PAUSED' && !!from && from !== 'PAUSED') playPauseEntrance();
+    }
+
+    // #3379: the pause has an entrance. The emoji drops in and settles, the
+    // reason rises, then the word Pause and the hint follow. transform and
+    // opacity only, like every TV motion.
+    var PAUSE_EXIT_MS = 200;
+    var PAUSE_ENTRANCE = [
+        ['#dashboard-paused .dashboard-centered', [{ opacity: 0 }, { opacity: 1 }], 0, 200, 'linear'],
+        ['#dashboard-pause-icon', [
+            { transform: 'translateY(-160%)', opacity: 0 },
+            { transform: 'translateY(6%)', opacity: 1, offset: 0.6 },
+            { transform: 'translateY(-4%)', opacity: 1, offset: 0.82 },
+            { transform: 'none', opacity: 1 }
+        ], 100, 480, null],
+        ['#dashboard-pause-title', [{ transform: 'translateY(24px)', opacity: 0 }, { transform: 'none', opacity: 1 }], 380, 300, null],
+        ['#dashboard-pause-state', [{ opacity: 0 }, { opacity: 1 }], 520, 240, 'linear'],
+        ['#dashboard-pause-message', [{ transform: 'translateY(10px)', opacity: 0 }, { transform: 'none', opacity: 1 }], 620, 260, null]
+    ];
+
+    function playPauseEntrance() {
+        if (_reducedMotion()) return;
+        PAUSE_ENTRANCE.forEach(function(step) {
+            var el = document.querySelector(step[0]);
+            if (!el || !el.animate) return;
+            el.animate(step[1], {
+                delay: step[2], duration: step[3], easing: step[4] || MOTION_EASE, fill: 'backwards'
+            });
+        });
+    }
+
+    /**
+     * The pause card leaves in 200 ms, then onGone draws the next scene. Returns
+     * false when the browser cannot animate: the caller then draws straight away.
+     */
+    function playPauseExit(onGone) {
+        var card = document.querySelector('#dashboard-paused .dashboard-centered');
+        var view = document.getElementById('dashboard-paused');
+        if (!card || !card.animate || !view || view.classList.contains('hidden')) return false;
+        var out = card.animate(
+            [{ transform: 'none', opacity: 1 }, { transform: 'translateY(-16px)', opacity: 0 }],
+            { duration: PAUSE_EXIT_MS, easing: 'ease-in', fill: 'forwards' }
+        );
+        setTimeout(function() {
+            try {
+                onGone();
+            } finally {
+                out.cancel();
+            }
+        }, PAUSE_EXIT_MS);
+        return true;
     }
 
     function _renderFrame(data) {
@@ -753,7 +817,57 @@
         if (data.phase !== 'REVEAL') cutRevealMotion();
         if (_motionGate && data.phase) _motionGate.enter(data.phase, data.round);
         if (data.phase === 'PLAYING') _boardBefore = snapshotBoard(data);
+        // #3379: once per round this TV saw begin, never on a repeated frame.
+        var roundStart = data.phase === 'PLAYING' && !!_motionGate && _motionGate.takeRoundStart();
         _applyStateRender(data);
+        if (roundStart) playSpecialRoundAnnounce();
+    }
+
+    // #3379: the Finale x2 or tiebreaker pill is announced once at the start of
+    // its round: it stands large in the middle of the screen, then flies to its
+    // place in the chip strip. Same pill, only the way there is new. The round
+    // already runs underneath; the content is dimmed with opacity while it flies.
+    var ANNOUNCE_AT_MS = 150;
+    var ANNOUNCE_MS = 1400;
+    var ANNOUNCE_SCALE = 2.3;
+
+    function playSpecialRoundAnnounce() {
+        if (_reducedMotion()) return;
+        var ids = ['dashboard-playoff-banner-playing', 'dashboard-finale-banner-playing'];
+        var pill = null;
+        for (var i = 0; i < ids.length && !pill; i++) {
+            var el = document.getElementById(ids[i]);
+            if (el && !el.classList.contains('hidden')) pill = el;
+        }
+        if (!pill || !pill.animate || !pill.getBoundingClientRect) return;
+        var box = pill.getBoundingClientRect();
+        var vw = window.innerWidth || document.documentElement.clientWidth || 0;
+        var vh = window.innerHeight || document.documentElement.clientHeight || 0;
+        if (!box.width || !vw || !vh) return;
+        var big = Math.min(ANNOUNCE_SCALE, (vw * 0.9) / box.width);
+        if (big <= 1) return;
+        var at = 'translate(' + Math.round(vw / 2 - (box.left + box.width / 2)) + 'px,' +
+            Math.round(vh / 2 - (box.top + box.height / 2)) + 'px) ';
+        pill.classList.add('is-announcing');
+        var fly = pill.animate(
+            [
+                { transform: at + 'scale(' + (big * 0.7).toFixed(2) + ')', opacity: 0 },
+                { transform: at + 'scale(' + big.toFixed(2) + ')', opacity: 1, offset: 0.16 },
+                { transform: at + 'scale(' + (big * 0.93).toFixed(2) + ')', opacity: 1, offset: 0.62 },
+                { transform: 'none', opacity: 1 }
+            ],
+            { delay: ANNOUNCE_AT_MS, duration: ANNOUNCE_MS, easing: MOTION_EASE, fill: 'backwards' }
+        );
+        var done = function() { pill.classList.remove('is-announcing'); };
+        fly.onfinish = done;
+        fly.oncancel = done;
+        var content = document.querySelector('#dashboard-playing .dashboard-playing-content');
+        if (content && content.animate) {
+            content.animate(
+                [{ opacity: 0.35 }, { opacity: 0.35, offset: 0.55 }, { opacity: 1 }],
+                { delay: ANNOUNCE_AT_MS, duration: ANNOUNCE_MS, easing: 'linear', fill: 'backwards' }
+            );
+        }
     }
 
     // #3365: the colour wipe between the scenes the room actually watches. A
