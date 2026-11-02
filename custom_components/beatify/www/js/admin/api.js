@@ -89,6 +89,8 @@ let deps = {
     showError: () => {},
     showSpeakerSetupError: () => {},
     showKickError: () => {},
+    // #3391: reopen the join modal on a refused name; false = not handled.
+    showJoinRejected: () => false,
     resetHomeStartButton: () => {},
 };
 
@@ -462,9 +464,16 @@ export function handleAdminWsMessage(data) {
                 // can retry cleanly. The modal may already be closed (the join is
                 // sent optimistically), in which case openAdminJoinModal() also
                 // resets on reopen; this handles the case where it is still open.
-                deps.showError(localizedErrorMessage(data));
+                // #3391: the name the host sent, read before it is cleared, so
+                // the join modal can come back holding it with the reason under
+                // it. A page without that modal keeps the toast.
+                var rejectedName = deps.getAdminPlayerName();
+                var rejectionText = localizedErrorMessage(data);
                 deps.setIsPlaying(false);
                 deps.setAdminPlayerName(null);
+                if (!deps.showJoinRejected(rejectedName, rejectionText)) {
+                    deps.showError(rejectionText);
+                }
                 var joinBtn = document.getElementById('admin-join-btn');
                 if (joinBtn) {
                     joinBtn.disabled = false;

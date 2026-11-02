@@ -7,7 +7,8 @@
     "retry": "Opnieuw proberen",
     "connecting": "Verbinden…",
     "previous": "Vorige",
-    "next": "Volgende"
+    "next": "Volgende",
+    "undo": "Ongedaan maken"
   },
   "join": {
     "title": "Deelnemen aan spel",
@@ -177,14 +178,12 @@
     "selectTarget": "Kies een doelwit",
     "selectTargetHint": "Kopieer hun antwoord voor deze ronde",
     "waitForSubmit": "Nog geen spelers hebben iets ingestuurd. Wacht tot iemand een gok heeft gedaan.",
-    "confirm": "Antwoord van {name} stelen?",
-    "confirmTitle": "Antwoord stelen?",
-    "confirmButton": "Stelen",
     "success": "Antwoord van {name} gestolen: {year}",
     "stolenFrom": "Gestolen van {name}",
     "stolenBy": "Antwoord gestolen door {name}",
     "comebackChip": "Inhaal-jatkans",
-    "comebackWhy": "In de rust gegeven aan de achterhoede. Werkt als elke jatkans."
+    "comebackWhy": "In de rust gegeven aan de achterhoede. Werkt als elke jatkans.",
+    "pending": "Je steelt van {name}…"
   },
   "sabotage": {
     "available": "Sabotage klaar!",
@@ -192,9 +191,6 @@
     "selectTarget": "Kies wie je saboteert",
     "selectTargetHint": "Het effect is willekeurig — tijdverlies, gedwongen weddenschap of freeze.",
     "noTargets": "Niemand meer om te saboteren — iedereen heeft ingezonden.",
-    "confirm": "{name} saboteren? Het effect is willekeurig.",
-    "confirmTitle": "Saboteren?",
-    "confirmButton": "Sabotage",
     "success": "{name} gesaboteerd · {effect}",
     "hit": "Je bent gesaboteerd door {name}! ({effect})",
     "frozen": "Bevroren — even wachten",
@@ -202,7 +198,8 @@
       "timer_cut": "Tijdverlies",
       "forced_bet": "Gedwongen weddenschap",
       "freeze": "Freeze"
-    }
+    },
+    "pending": "Je saboteert {name}…"
   },
   "reaction": {
     "fire": "Vuurreactie",

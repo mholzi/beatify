@@ -571,6 +571,13 @@
         var banner = document.getElementById('dashboard-wakelock-banner');
         if (!banner) return;
         banner.classList.remove('hidden');
+        // #3391: a remote control has no pointer to aim with. Put the focus on
+        // Activate so the first OK press does the likely thing, and the ring
+        // in dashboard.html shows where the focus is.
+        var activateBtn = document.getElementById('dashboard-wakelock-activate');
+        if (activateBtn && typeof activateBtn.focus === 'function') {
+            try { activateBtn.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+        }
     }
 
     function _initWakeBanner() {

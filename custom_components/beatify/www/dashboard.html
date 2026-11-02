@@ -139,11 +139,26 @@
             color: rgba(255, 255, 255, 0.6);
             font-size: 1.1rem;
             line-height: 1;
-            transition: background 120ms ease, color 120ms ease;
+            transition: background 120ms ease, color 120ms ease, transform 120ms ease;
         }
         .dashboard-wakelock-dismiss:hover {
             background: rgba(255, 255, 255, 0.12);
             color: #fff;
+        }
+        /* #3391: the TV is driven by a remote (Fire TV, Chromecast), and a
+           remote has no pointer — without a visible ring nobody sees which of
+           the two buttons is selected. Cyan, 3 px, outside the button. The ×
+           also gets the press state the Activate button already had. */
+        .dashboard-wakelock-activate:focus-visible,
+        .dashboard-wakelock-dismiss:focus-visible {
+            outline: 3px solid var(--color-accent-secondary, #00f5ff);
+            outline-offset: 3px;
+        }
+        .dashboard-wakelock-dismiss:active { transform: scale(0.94); }
+        @media (prefers-reduced-motion: reduce) {
+            .dashboard-wakelock-banner { animation: none; }
+            .dashboard-wakelock-activate:active,
+            .dashboard-wakelock-dismiss:active { transform: none; }
         }
         /* Reconnect indicator (#1578): small unobtrusive top-right badge shown
            while the dashboard WebSocket is down and reconnecting. Same dark

@@ -2520,6 +2520,20 @@ body.theme-dark .qr-modal-label {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+/* #3391: the server refused this name. The field carries the mark (next to
+   the reason under it) until the next keystroke; aria-invalid says the same to
+   a screen reader. Listed with the theme selectors so it wins over their
+   :focus border, which is exactly the state the field is in at that moment. */
+.name-input.name-input--invalid,
+.name-input.name-input--invalid:focus,
+body.theme-dark .name-input.name-input--invalid,
+body.theme-dark .name-input.name-input--invalid:focus,
+body.theme-dark .modal-content .name-input.name-input--invalid,
+body.theme-dark .modal-content .name-input.name-input--invalid:focus {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px var(--color-error-bg);
+}
+
 .join-btn {
     width: 100%;
     min-height: 48px;
@@ -11706,6 +11720,9 @@ body.is-ingame .player-header { display: none; }
         var(--color-bg-primary);
     display: flex;
     flex-direction: column;
+    /* #3391: vertical scrolling stays the browser's, a sideways swipe comes
+       to player-tour.js and turns the card. */
+    touch-action: pan-y;
 }
 
 /* Wizard-style progress header (matches admin first-run wizard pattern) */
@@ -13631,10 +13648,42 @@ body.is-ingame .player-header { display: none; }
     height: 44px;
     transform: translate(-50%, -50%);
 }
-.slider-arcade { gap: 8px; }  /* tighten gap so 5 children fit on narrow screens */
+/* #3391: the track gets the full width, the four steppers sit in a row
+   underneath it. With all five in one row the track was 81 px wide at 375 px
+   (66 px at 360 px), about 1.6 years per pixel, and dragging was a lottery.
+   No new elements: the markup order stays −5 · − · track · + · +5 (which is
+   also the keyboard order), `order` lifts the track above the buttons and
+   `flex-wrap` breaks the row. */
+.slider-arcade {
+    flex-wrap: wrap;
+    gap: 12px var(--space-sm);
+    padding: 14px 12px 12px;
+}
 /* #2344: the track holds the input and the decade scale stacked, so the
    marks line up with the thumb's travel rather than with the box. */
-.slider-arcade-track { flex: 1; display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+.slider-arcade-track {
+    order: -1;
+    flex: 1 0 100%;
+    min-width: 0;
+    display: flex; flex-direction: column; align-items: stretch; gap: 4px;
+}
+/* #3391: the steppers share the row below evenly — four 44 px-high pills,
+   8 px apart, so a thumb that misses one still lands on nothing but itself. */
+.slider-arcade .slider-btn-year {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+}
+.slider-arcade .slider-btn-year--coarse {
+    font-size: 15px;
+}
+/* The 36 px visual of the coarse buttons is gone, and with it the invisible
+   44 px hit area #1759 put around them: the button itself is the target now. */
+.slider-arcade .slider-btn-year--coarse::after {
+    content: none;
+}
 .year-scale {
     position: relative;
     height: 13px;
@@ -17664,6 +17713,39 @@ body.theme-dark .your-result-stats .stat-value {
     to   { transform: scaleX(0); }
 }
 
+/* #3391: the undo toast (steal / sabotage). The same toast, docked at the
+   bottom where the thumb already is, with an Undo button in place of the ×.
+   It slides up from below instead of down from above; transform and opacity
+   only, and the reduced-motion block below switches both off. */
+.beatify-toast-container--bottom {
+    top: auto;
+    bottom: calc(var(--space-md) + env(safe-area-inset-bottom, 0px));
+}
+.beatify-toast-container--bottom .beatify-toast { transform: translateY(12px); }
+.beatify-toast-container--bottom .beatify-toast--in { transform: translateY(0); }
+.beatify-toast-container--bottom .beatify-toast--leaving { transform: translateY(12px); }
+.beatify-toast--undo { align-items: center; }
+.beatify-toast--undo .beatify-toast-body { align-items: center; }
+.beatify-toast-undo {
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 var(--space-md);
+    background: transparent;
+    border: 1px solid var(--color-accent-secondary);
+    border-radius: var(--radius-md);
+    color: var(--color-accent-secondary);
+    font-family: var(--font-display);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+.beatify-toast-undo:focus-visible {
+    outline: 3px solid var(--color-accent-secondary);
+    outline-offset: 2px;
+}
+
 /* --- Inline Panel-Banner (Variant C): docked above the primary action --- */
 .beatify-banner {
     display: flex;
@@ -17769,6 +17851,7 @@ body.theme-dark .your-result-stats .stat-value {
 
 @media (prefers-reduced-motion: reduce) {
     .beatify-toast { transition: none; opacity: 1; transform: none; }
+    .beatify-toast-container--bottom .beatify-toast { transform: none; }
     .beatify-toast-progress { animation: none; }
 }
 
@@ -18624,6 +18707,23 @@ body.theme-dark .your-result-stats .stat-value {
 .entry-host-action:focus-visible {
     background: var(--color-dark-surface-hover);
     color: var(--color-text-white);
+}
+
+/* #3391: a 44 px ⋮ in a 48 px row left 4 px to the ⋮ of the next row and
+   1–2 px to the collapsible header above the list; in a dark room a thumb
+   takes the neighbour. Rows that carry the control are 52 px, which puts the
+   targets 8 px apart, and the list opens 4 px lower so the first ⋮ keeps the
+   same 8 px to the header. Guest-side leaderboards have no ⋮ and stay at 48. */
+.leaderboard-list:has(.entry-host-action) {
+    padding-top: var(--space-xs);
+}
+.leaderboard-entry:has(.entry-host-action) {
+    height: 52px;
+}
+.leaderboard-entry--wrap:has(.entry-host-action) {
+    height: auto;
+    min-height: 52px;
+    padding-bottom: var(--space-xs);
 }
 
 /* The way back, on the guest's own phone. */

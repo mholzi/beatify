@@ -163,6 +163,40 @@ jobs:
         run: npm run test:coverage
 
   # ==========================================================================
+  # STAGE 1c: TAP TARGETS (non-blocking, #3391)
+  # ==========================================================================
+  # Loads the four pages with the real HTML and CSS in a headless Chromium at
+  # 375 px and measures every button, link and field: at least 44 x 44 px, at
+  # least 8 px between neighbours, and a year track long enough to drag. Needs
+  # a real layout engine (vitest has none), so it is its own job, and
+  # `continue-on-error` keeps a browser hiccup from blocking a merge. Read the
+  # job's log when it shows a warning; the exceptions are listed, with a
+  # reason, in tests/ui/test_tap_targets.py.
+  tap-targets:
+    name: Tap targets (Chromium, non-blocking)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Playwright + Chromium
+        run: |
+          python -m pip install --upgrade pip
+          pip install "pytest>=9.2.0" playwright==1.58.0
+          python -m playwright install --with-deps chromium
+
+      - name: Measure tap targets
+        # --noconftest: the repo's conftest files stub Home Assistant and need
+        # the full test requirements; this test needs neither.
+        run: pytest tests/ui -v --tb=short -p no:cacheprovider --noconftest
+
+  # ==========================================================================
   # STAGE 2: TEST
   # ==========================================================================
   test:

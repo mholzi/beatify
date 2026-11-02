@@ -7,7 +7,8 @@
     "retry": "Erneut versuchen",
     "connecting": "Verbinde…",
     "previous": "Zurück",
-    "next": "Weiter"
+    "next": "Weiter",
+    "undo": "Rückgängig"
   },
   "join": {
     "title": "Spiel beitreten",
@@ -177,14 +178,12 @@
     "selectTarget": "Wähle ein Ziel",
     "selectTargetHint": "Kopiere deren Tipp für diese Runde",
     "waitForSubmit": "Noch niemand hat abgegeben. Warte bis jemand tippt.",
-    "confirm": "{name}s Tipp klauen?",
-    "confirmTitle": "Tipp klauen?",
-    "confirmButton": "Klauen",
     "success": "{name}s Tipp geklaut: {year}",
     "stolenFrom": "Geklaut von {name}",
     "stolenBy": "Tipp geklaut von {name}",
     "comebackChip": "Aufhol-Steal",
-    "comebackWhy": "Zur Halbzeit an die hinteren Plätze vergeben. Funktioniert wie jeder Steal."
+    "comebackWhy": "Zur Halbzeit an die hinteren Plätze vergeben. Funktioniert wie jeder Steal.",
+    "pending": "Du klaust bei {name}…"
   },
   "sabotage": {
     "available": "Sabotage bereit!",
@@ -192,9 +191,6 @@
     "selectTarget": "Wen sabotieren?",
     "selectTargetHint": "Der Effekt ist zufällig — Zeit-Cut, Zwangswette oder Freeze.",
     "noTargets": "Niemand mehr zum Sabotieren — alle haben abgegeben.",
-    "confirm": "{name} sabotieren? Der Effekt ist zufällig.",
-    "confirmTitle": "Sabotieren?",
-    "confirmButton": "Sabotage",
     "success": "{name} sabotiert · {effect}",
     "hit": "Du wurdest von {name} sabotiert! ({effect})",
     "frozen": "Eingefroren — kurz warten",
@@ -202,7 +198,8 @@
       "timer_cut": "Zeit-Cut",
       "forced_bet": "Zwangswette",
       "freeze": "Freeze"
-    }
+    },
+    "pending": "Du sabotierst {name}…"
   },
   "reaction": {
     "fire": "Feuer-Reaktion",

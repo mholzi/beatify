@@ -7,7 +7,8 @@
     "retry": "Réessayer",
     "connecting": "Connexion…",
     "previous": "Précédent",
-    "next": "Suivant"
+    "next": "Suivant",
+    "undo": "Annuler"
   },
   "join": {
     "title": "Rejoindre la partie",
@@ -177,14 +178,12 @@
     "selectTarget": "Choisis une cible",
     "selectTargetHint": "Copie sa réponse pour cette manche",
     "waitForSubmit": "Aucun joueur n'a encore envoyé. Attends qu'un joueur envoie sa réponse.",
-    "confirm": "Voler la réponse de {name} ?",
-    "confirmTitle": "Voler la réponse ?",
-    "confirmButton": "Voler",
     "success": "Tu as volé la réponse de {name} : {year}",
     "stolenFrom": "Volé à {name}",
     "stolenBy": "Réponse volée par {name}",
     "comebackChip": "Vol de remontée",
-    "comebackWhy": "Attribué à mi-parcours aux derniers du classement. Fonctionne comme tout vol."
+    "comebackWhy": "Attribué à mi-parcours aux derniers du classement. Fonctionne comme tout vol.",
+    "pending": "Tu voles {name}…"
   },
   "sabotage": {
     "available": "Sabotage prêt !",
@@ -192,9 +191,6 @@
     "selectTarget": "Choisis qui saboter",
     "selectTargetHint": "L'effet est aléatoire — temps réduit, pari forcé ou gel.",
     "noTargets": "Plus personne à saboter — tout le monde a validé.",
-    "confirm": "Saboter {name} ? L'effet est aléatoire.",
-    "confirmTitle": "Saboter ?",
-    "confirmButton": "Sabotage",
     "success": "{name} saboté · {effect}",
     "hit": "Tu as été saboté par {name} ! ({effect})",
     "frozen": "Gelé — patiente un instant",
@@ -202,7 +198,8 @@
       "timer_cut": "Temps réduit",
       "forced_bet": "Pari forcé",
       "freeze": "Gel"
-    }
+    },
+    "pending": "Tu sabotes {name}…"
   },
   "reaction": {
     "fire": "Réaction feu",

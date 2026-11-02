@@ -37,7 +37,7 @@ vi.mock('../player-utils.js', () => ({
 }));
 
 // Dynamic import AFTER globals are in place.
-const { shouldShowTour, isActive, tourYearMax } = await import('../player-tour.js');
+const { shouldShowTour, isActive, tourYearMax, swipeDirection, SWIPE_THRESHOLD_PX } = await import('../player-tour.js');
 
 // ------------------------------------------------------------------
 // shouldShowTour — gating logic for post-QR onboarding tour
@@ -95,5 +95,26 @@ describe('tourYearMax', () => {
     });
     it('falls back to the clock year without a slider', () => {
         expect(tourYearMax(undefined, new Date('2027-01-02'))).toBe(2027);
+    });
+});
+
+// ------------------------------------------------------------------
+// #3391: the tour turns on a sideways swipe
+// ------------------------------------------------------------------
+describe('swipeDirection (#3391)', () => {
+    it('left is Next, right is the card before', () => {
+        expect(swipeDirection(-80, 5)).toBe('next');
+        expect(swipeDirection(80, -5)).toBe('prev');
+    });
+
+    it('needs the 40 px threshold', () => {
+        expect(SWIPE_THRESHOLD_PX).toBe(40);
+        expect(swipeDirection(-39, 0)).toBeNull();
+        expect(swipeDirection(-40, 0)).toBe('next');
+    });
+
+    it('a mostly vertical move is a scroll, not a swipe', () => {
+        expect(swipeDirection(-60, 90)).toBeNull();
+        expect(swipeDirection(60, 60)).toBeNull();
     });
 });

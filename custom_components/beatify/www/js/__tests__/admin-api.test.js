@@ -295,6 +295,21 @@ describe('handleAdminWsMessage join rejection reset (#1579)', () => {
         return { api, calls, joinBtn };
     }
 
+    // #3391: with the join modal on the page the refusal goes back into the
+    // modal (name kept, reason under the field) instead of a toast.
+    it('NAME_TAKEN hands the sent name and the reason to showJoinRejected', async () => {
+        const { api, calls } = await setup();
+        const rejected = [];
+        api.initAdminApi({
+            getAdminPlayerName: () => 'Jana',
+            showJoinRejected: (name, msg) => { rejected.push([name, msg]); return true; },
+        });
+        api.handleAdminWsMessage({ type: 'error', code: 'NAME_TAKEN', message: 'that name is taken' });
+        expect(rejected).toEqual([['Jana', 'that name is taken']]);
+        expect(calls.showError).toEqual([]);
+        expect(calls.adminPlayerName).toContain(null);
+    });
+
     for (const code of ['NAME_TAKEN', 'NAME_INVALID']) {
         it(`${code} re-enables the join button + restores the "Join" label`, async () => {
             const { api, calls, joinBtn } = await setup();

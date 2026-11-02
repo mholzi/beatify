@@ -518,6 +518,66 @@ function _reducedMotion() {
         && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 }
 
+// ------------------------------------------------------------------
+// #3391: Android Back (and the browser's Back) goes one step back
+// ------------------------------------------------------------------
+// Without a history entry of its own the wizard is one page, so the system
+// Back left the admin for whatever HA page came before — mid-setup, with the
+// host's choices only rescued by localStorage. Now, while the wizard is past
+// its first step, one "guard" entry sits on top of the history. Back pops it,
+// the wizard shows the step before, and the guard goes back on if there is
+// still a step to return to. On step 1, or once the wizard is closed, there is
+// no guard, so Back behaves as it always did. One entry at most, however many
+// steps are walked: going forward and back in the wizard never piles up
+// history the host would have to press through later.
+
+/**
+ * Pure, exported for the #3391 tests.
+ * @param {Object} deps
+ * @param {{pushState: Function, back: Function}} deps.history
+ * @param {() => boolean} deps.isOpen - the wizard is on screen
+ * @param {() => number} deps.getStep
+ * @param {() => void} deps.stepBack - show the step before (calls sync again)
+ */
+export function createWizardBackGuard({ history, isOpen, getStep, stepBack }) {
+    let guarded = false;
+    let swallowNextPop = false;
+    function sync() {
+        if (!history) return;
+        const want = isOpen() && getStep() > 1;
+        if (want && !guarded) {
+            try {
+                history.pushState({ beatifyWizardGuard: true }, '');
+                guarded = true;
+            } catch (e) { /* sandboxed frame — Back stays as it was */ }
+        } else if (!want && guarded) {
+            // Our entry is on top; take it off so the next Back leaves as usual.
+            guarded = false;
+            swallowNextPop = true;
+            try { history.back(); } catch (e) { swallowNextPop = false; }
+        }
+    }
+    function onPopState() {
+        if (swallowNextPop) { swallowNextPop = false; return; }
+        if (!guarded) return;  // not our entry
+        guarded = false;
+        if (isOpen() && getStep() > 1) stepBack();
+        else sync();
+    }
+    return { sync, onPopState, isGuarded: () => guarded };
+}
+
+let _backGuard = null;
+
+function _wizardOpen() {
+    const root = document.getElementById('wizard-root');
+    return !!root && !root.classList.contains('hidden');
+}
+
+function _syncBackGuard() {
+    if (_backGuard) _backGuard.sync();
+}
+
 /**
  * @param {number} n - the step to show
  * @param {Object} [opts]
@@ -546,6 +606,7 @@ export function _showFrame(n, opts = {}) {
     }
     _setProgress(Math.min(n, TOTAL_STEPS), !!direction);
     _updateCta();
+    _syncBackGuard();  // #3391
     // Persist wizard state so refresh / revisit resumes at the right step.
     // Skip step 6 (done) here — _advance() writes the final 'done' state.
     if (n >= 1 && n <= 5) {
@@ -2375,6 +2436,7 @@ export function hide({ dismissed } = {}) {
     root.classList.add('hidden');
     root.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('wizard-active');
+    _syncBackGuard();  // #3391: closed — Back leaves the admin again
     if (dismissed) {
         try { localStorage.setItem(LS_WIZARD_STATE, 'dismissed'); } catch (e) { /* private mode */ }
     }
@@ -2456,6 +2518,16 @@ async function _advance() {
 }
 
 export async function init() {
+    if (!_backGuard && typeof window !== 'undefined' && window.history
+        && typeof window.addEventListener === 'function') {
+        _backGuard = createWizardBackGuard({
+            history: window.history,
+            isOpen: _wizardOpen,
+            getStep: () => currentStep,
+            stepBack: () => _showFrame(currentStep - 1),
+        });
+        window.addEventListener('popstate', _backGuard.onPopState);
+    }
     const nextBtn = document.getElementById('wiz-next');
     const backBtn = document.getElementById('wiz-back');
     const skipBtn = document.getElementById('wiz-skip');

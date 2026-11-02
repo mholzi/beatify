@@ -76,7 +76,7 @@ function findById(node, id) {
     return null;
 }
 
-const { showToast, showBanner, clearBanner } = await import('../notify.js');
+const { showToast, showBanner, clearBanner, showUndoToast } = await import('../notify.js');
 
 describe('#1663 item 1 — showToast', () => {
     beforeEach(() => { installDom(); vi.useFakeTimers(); });
@@ -258,5 +258,62 @@ describe('#1663 item 1 — showBanner', () => {
         showBanner('gone soon', { anchor, id: 'home-start-banner' });
         clearBanner('home-start-banner');
         expect(parent.children.some((c) => c.id === 'home-start-banner')).toBe(false);
+    });
+});
+
+describe('#3391 — showUndoToast', () => {
+    beforeEach(() => { installDom(); vi.useFakeTimers(); });
+    afterEach(() => { vi.useRealTimers(); });
+
+    function setup(extra) {
+        const log = [];
+        const handle = showUndoToast('Stealing from Ben…', {
+            duration: 3000,
+            onCommit: () => log.push('commit'),
+            onUndo: () => log.push('undo'),
+            ...(extra || {}),
+        });
+        const undoBtn = handle.element.children.find((c) => c.classList.contains('beatify-toast-undo'));
+        return { log, handle, undoBtn };
+    }
+
+    it('reuses the toast look, docked in its own bottom container', () => {
+        const { handle, undoBtn } = setup();
+        const container = findById(body, 'beatify-undo-container');
+        expect(container.classList.contains('beatify-toast-container')).toBe(true);
+        expect(container.classList.contains('beatify-toast-container--bottom')).toBe(true);
+        expect(handle.element.classList.contains('beatify-toast')).toBe(true);
+        expect(undoBtn.textContent).toBe('Undo');
+        expect(handle.element.children.some((c) => c.classList.contains('beatify-toast-close'))).toBe(false);
+    });
+
+    it('commits once the bar runs out', () => {
+        const { log } = setup();
+        vi.advanceTimersByTime(2999);
+        expect(log).toEqual([]);
+        vi.advanceTimersByTime(1);
+        expect(log).toEqual(['commit']);
+    });
+
+    it('Undo runs instead of commit, and only once', () => {
+        const { log, undoBtn } = setup();
+        undoBtn._fire('click');
+        undoBtn._fire('click');
+        vi.advanceTimersByTime(10000);
+        expect(log).toEqual(['undo']);
+    });
+
+    it('cancel() runs neither', () => {
+        const { log, handle } = setup();
+        handle.cancel();
+        vi.advanceTimersByTime(10000);
+        expect(log).toEqual([]);
+    });
+
+    it('commit() runs early and only once', () => {
+        const { log, handle } = setup();
+        handle.commit();
+        vi.advanceTimersByTime(10000);
+        expect(log).toEqual(['commit']);
     });
 });

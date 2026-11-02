@@ -129,6 +129,110 @@ export function showToast(message, opts) {
     return toast;
 }
 
+var UNDO_CONTAINER_ID = 'beatify-undo-container';
+var DEFAULT_UNDO_MS = 3000;
+
+function ensureUndoContainer() {
+    var el = document.getElementById(UNDO_CONTAINER_ID);
+    if (!el) {
+        el = document.createElement('div');
+        el.id = UNDO_CONTAINER_ID;
+        el.className = 'beatify-toast-container beatify-toast-container--bottom';
+        el.setAttribute('aria-live', 'polite');
+        el.setAttribute('aria-atomic', 'false');
+        document.body.appendChild(el);
+    }
+    return el;
+}
+
+/**
+ * #3391: an action that has been chosen but not sent yet, with a way back.
+ *
+ * Same toast as showToast() (look, progress bar, reduced-motion rules), docked
+ * at the bottom of the screen in the thumb's reach and carrying an Undo button
+ * instead of the ×. When the bar runs out, `onCommit` runs; Undo runs `onUndo`
+ * instead. Exactly one of the two ever runs, and neither after `cancel()`.
+ *
+ * Used for steal and sabotage: picking the target is the decision, so a second
+ * "are you sure?" only cost a tap while the round timer ran. A mis-tap is now
+ * taken back instead of prevented.
+ *
+ * @param {string} message
+ * @param {Object} [opts]
+ * @param {number} [opts.duration=3000] - ms until onCommit
+ * @param {string} [opts.undoLabel='Undo']
+ * @param {string|null} [opts.icon]
+ * @param {function} [opts.onCommit]
+ * @param {function} [opts.onUndo]
+ * @returns {{commit: function, cancel: function, element: HTMLElement}|null}
+ */
+export function showUndoToast(message, opts) {
+    opts = opts || {};
+    if (!message) return null;
+    var container = ensureUndoContainer();
+    var duration = typeof opts.duration === 'number' && opts.duration > 0
+        ? opts.duration : DEFAULT_UNDO_MS;
+
+    var toast = document.createElement('div');
+    toast.className = 'beatify-toast beatify-toast--info beatify-toast--undo';
+    toast.setAttribute('role', 'status');
+
+    var body = document.createElement('div');
+    body.className = 'beatify-toast-body';
+    if (opts.icon) {
+        var iconEl = document.createElement('span');
+        iconEl.className = 'beatify-toast-icon';
+        iconEl.setAttribute('aria-hidden', 'true');
+        iconEl.textContent = opts.icon;
+        body.appendChild(iconEl);
+    }
+    var textEl = document.createElement('span');
+    textEl.className = 'beatify-toast-text';
+    textEl.textContent = String(message);
+    body.appendChild(textEl);
+    toast.appendChild(body);
+
+    var undoBtn = document.createElement('button');
+    undoBtn.type = 'button';
+    undoBtn.className = 'beatify-toast-undo';
+    undoBtn.textContent = opts.undoLabel || tr('common.undo', 'Undo');
+    toast.appendChild(undoBtn);
+
+    var progress = document.createElement('div');
+    progress.className = 'beatify-toast-progress';
+    progress.style.animationDuration = duration + 'ms';
+    toast.appendChild(progress);
+
+    container.appendChild(toast);
+    if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(function() { toast.classList.add('beatify-toast--in'); });
+    } else {
+        toast.classList.add('beatify-toast--in');
+    }
+
+    var settled = false;
+    var timer = null;
+    function settle(callback) {
+        if (settled) return;
+        settled = true;
+        if (timer) clearTimeout(timer);
+        toast.classList.remove('beatify-toast--in');
+        toast.classList.add('beatify-toast--leaving');
+        setTimeout(function() {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 280);
+        if (typeof callback === 'function') callback();
+    }
+    undoBtn.addEventListener('click', function() { settle(opts.onUndo); });
+    timer = setTimeout(function() { settle(opts.onCommit); }, duration);
+
+    return {
+        element: toast,
+        commit: function() { settle(opts.onCommit); },
+        cancel: function() { settle(null); },
+    };
+}
+
 /**
  * Show a persistent inline panel-banner docked above a primary action.
  * @param {string} message - Body text.

@@ -7,7 +7,8 @@
     "retry": "Try Again",
     "connecting": "Connecting…",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "undo": "Undo"
   },
   "join": {
     "title": "Join Game",
@@ -177,14 +178,12 @@
     "selectTarget": "Select a target",
     "selectTargetHint": "Copy their answer for this round",
     "waitForSubmit": "No players have submitted yet. Wait for someone to submit their guess.",
-    "confirm": "Steal {name}'s answer?",
-    "confirmTitle": "Steal Answer?",
-    "confirmButton": "Steal",
     "success": "Stole {name}'s answer: {year}",
     "stolenFrom": "Stolen from {name}",
     "stolenBy": "Answer stolen by {name}",
     "comebackChip": "Catch-up steal",
-    "comebackWhy": "Given at halftime to the trailing players. Works like any steal."
+    "comebackWhy": "Given at halftime to the trailing players. Works like any steal.",
+    "pending": "Stealing from {name}…"
   },
   "sabotage": {
     "available": "Sabotage Ready!",
@@ -192,9 +191,6 @@
     "selectTarget": "Pick who to sabotage",
     "selectTargetHint": "The effect is random — timer cut, forced bet or freeze.",
     "noTargets": "No one left to sabotage — everyone has locked in.",
-    "confirm": "Sabotage {name}? The effect is random.",
-    "confirmTitle": "Sabotage?",
-    "confirmButton": "Sabotage",
     "success": "Sabotaged {name} · {effect}",
     "hit": "You've been sabotaged by {name}! ({effect})",
     "frozen": "Frozen — hold on",
@@ -202,7 +198,8 @@
       "timer_cut": "Timer cut",
       "forced_bet": "Forced bet",
       "freeze": "Freeze"
-    }
+    },
+    "pending": "Sabotaging {name}…"
   },
   "reaction": {
     "fire": "Fire reaction",

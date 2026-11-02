@@ -3,7 +3,7 @@
  * These helpers drive the state machine: when to show, where to resume, when to show the pill.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload, modeHintHtml, doneSummaryHtml, buildLightsPayload } from '../wizard.js';
+import { resumeAtStep, shouldTrigger, shouldShowPill, providerSupportedForPlayer, capabilityBadgeForPlayer, applyGameModeTogglePrecedence, difficultyDisplayFor, buildWizChip, resolveGameLanguageDefault, buildTtsPayload, modeHintHtml, doneSummaryHtml, buildLightsPayload, createWizardBackGuard } from '../wizard.js';
 
 function makeLS(initial = {}) {
     const store = { ...initial };
@@ -714,5 +714,61 @@ describe('buildLightsPayload', () => {
         expect(buildLightsPayload({ ...base, enabled: true, mode: 'wled', wledPresets: presets }).wled_presets).toEqual(presets);
         expect(buildLightsPayload({ ...base, enabled: true, mode: 'wled', wledPresets: {} })).not.toHaveProperty('wled_presets');
         expect(buildLightsPayload({ ...base, enabled: true, wledPresets: presets })).not.toHaveProperty('wled_presets');
+    });
+});
+
+// ------------------------------------------------------------------
+// #3391: Android Back goes one wizard step back
+// ------------------------------------------------------------------
+describe('createWizardBackGuard (#3391)', () => {
+    function setup(step = 1) {
+        const h = { entries: 1, pushState() { this.entries++; }, back() { this.entries--; } };
+        const w = { open: true, step };
+        const guard = createWizardBackGuard({
+            history: h,
+            isOpen: () => w.open,
+            getStep: () => w.step,
+            stepBack: () => { w.step--; guard.sync(); },
+        });
+        return { h, w, guard };
+    }
+
+    it('step 1 has no entry of its own, so Back leaves as before', () => {
+        const { h, guard } = setup(1);
+        guard.sync();
+        expect(h.entries).toBe(1);
+        expect(guard.isGuarded()).toBe(false);
+    });
+
+    it('past step 1 Back shows the step before, down to step 1', () => {
+        const { h, w, guard } = setup(1);
+        w.step = 2; guard.sync();
+        w.step = 3; guard.sync();
+        w.step = 4; guard.sync();
+        expect(h.entries).toBe(2);  // one guard, however many steps
+        for (const expected of [3, 2, 1]) {
+            h.entries--;            // the browser pops our entry …
+            guard.onPopState();     // … and tells us
+            expect(w.step).toBe(expected);
+        }
+        expect(h.entries).toBe(1);
+        expect(guard.isGuarded()).toBe(false);
+    });
+
+    it('closing the wizard takes the entry off and ignores the resulting pop', () => {
+        const { h, w, guard } = setup(3);
+        guard.sync();
+        expect(h.entries).toBe(2);
+        w.open = false;
+        guard.sync();
+        expect(h.entries).toBe(1);
+        guard.onPopState();          // the pop from that back() — swallowed
+        expect(w.step).toBe(3);
+    });
+
+    it('a pop that is not ours does nothing', () => {
+        const { w, guard } = setup(1);
+        guard.onPopState();
+        expect(w.step).toBe(1);
     });
 });

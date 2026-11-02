@@ -156,10 +156,16 @@
                     from MAX_NAME_LENGTH (the mirror of const.py) in JS, so a
                     server-side change reaches the field instead of leaving a
                     stale literal behind. -->
+                    <!-- #3391: a name is not a word. Without autocorrect off and
+                    spellcheck off iOS "fixes" nicknames and suggests words above
+                    the keyboard; enterkeyhint="go" makes the return key say
+                    what it does here, which is join. -->
                     <input type="text" id="name-input" class="name-input"
                            data-i18n-placeholder="join.namePlaceholder"
                            placeholder="Your name"
-                           autocomplete="off" autocapitalize="words"
+                           autocomplete="off" autocapitalize="off"
+                           autocorrect="off" spellcheck="false"
+                           enterkeyhint="go"
                            aria-describedby="name-validation-msg">
                     <p id="name-validation-msg" class="validation-msg hidden"></p>
                 </div>
