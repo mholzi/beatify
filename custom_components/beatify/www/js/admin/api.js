@@ -299,6 +299,7 @@ export async function connectAdminWebSocket() {
             if (ws !== adminWs) return;
             deps.debug('[Admin WS] Disconnected');
             adminWs = null;
+            if (deps.onSocketClosed) deps.onSocketClosed();
             // Issue #550: Re-enable lobby polling while WS is down so
             // spectator admin still sees player join/leave updates
             if (deps.getCurrentView() === 'lobby') {
