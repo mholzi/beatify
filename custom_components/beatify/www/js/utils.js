@@ -378,6 +378,26 @@ window.BeatifyUtils = (function() {
     }
 
     /**
+     * #3370: how long after the REVEAL frame arrives the TV's year reel stops,
+     * or 0 when the TV rolls no reel (Title & Artist, voided, no year). Phones
+     * hold the answer back until this moment. Mirrors dashboard.js: the 220 ms
+     * scene wipe, then the reel start (guesses land first, if there are any),
+     * then the reel itself. reveal-year-hold-3370.test.js compares these
+     * numbers with the dashboard's constants.
+     * @param {Object} data - REVEAL state payload
+     * @returns {number} ms
+     */
+    function tvYearReelStopMs(data) {
+        var d = data || {};
+        if (d.title_artist_mode || d.round_voided) return 0;
+        if (!(parseInt((d.song || {}).year, 10) > 0)) return 0;
+        var guesses = ((d.round_analytics || {}).all_guesses || []).filter(function(g) {
+            return g && typeof g.guess === 'number';
+        });
+        return 220 + (guesses.length ? 1280 : 180) + 520 + 3 * 200;
+    }
+
+    /**
      * When each guess lands: furthest first, closest last, inside a fixed total
      * however many players there are.
      * @param {number[]} offs - years off per dot, in DOM order
@@ -1329,6 +1349,7 @@ window.BeatifyUtils = (function() {
         createReconnectOverlay: createReconnectOverlay,
         yearReelDigits: yearReelDigits,
         rollYear: rollYear,
+        tvYearReelStopMs: tvYearReelStopMs,
         guessLandingPlan: guessLandingPlan,
         rowTravelPlan: rowTravelPlan,
 

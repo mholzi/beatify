@@ -293,12 +293,13 @@ export function updateRevealView(data) {
         // #3365: the same reel as the TV, shorter. Title & Artist has no year to
         // roll and a voided round hides it. A running reel owns the element
         // until it stops, unless the answer itself changed.
+        // #3370: it stops together with the TV's reel, see startYearHold.
         var yearText = String(song.year || '????');
-        var gate = state.motionGate;
-        if (_phoneReel && _phoneReel.active() && _phoneReel.year === yearText) {
+        syncYearHold(data, yearText);
+        if (_yearHold) {
+            // held back: the placeholder or the running reel stays
+        } else if (_phoneReel && _phoneReel.active() && _phoneReel.year === yearText) {
             // leave it running
-        } else if (gate && !data.title_artist_mode && !data.round_voided && gate.once('reel') && utils.rollYear) {
-            _phoneReel = utils.rollYear(correctYear, yearText, { base: PHONE_REEL_BASE_MS, step: PHONE_REEL_STEP_MS });
         } else {
             if (_phoneReel) _phoneReel.finish();
             correctYear.textContent = song.year || '????';
@@ -426,14 +427,15 @@ export function updateRevealView(data) {
     _resetReportBtn();
 
     // Story 14.5: Check for new record and trigger rainbow confetti (AC2)
-    // #3365: once per reveal, and after the reel when there is one.
+    // #3365: once per reveal. #3370: while the year is held back, confetti would
+    // say how the round went, so it waits for the reel to stop.
     if (data.game_performance && data.game_performance.is_new_record) {
         var recordGate = state.motionGate;
         if (!recordGate) {
             triggerConfetti('record');
         } else if (recordGate.once('record')) {
-            if (_phoneReel && _phoneReel.active()) {
-                _revealStageTimers.push(setTimeout(function() { triggerConfetti('record'); }, PHONE_REEL_MS));
+            if (_yearHold) {
+                _yearHold.confetti = 'record';
             } else {
                 triggerConfetti('record');
             }
@@ -582,19 +584,84 @@ function setRevealWaiting(chip, numEl, fgCircle, waiting, circumference) {
 // the phase change simply cuts whatever beat was showing.
 var REVEAL_BEAT_2_MS = 1500;
 var REVEAL_BEAT_3_MS = 3000;
-// #3365: shorter than the TV's 1120 ms; which device should land first is for
-// the live test in a real room.
+// #3365: shorter than the TV's 1120 ms. #3370: it starts late enough to stop
+// together with the TV's reel.
 var PHONE_REEL_BASE_MS = 360;
 var PHONE_REEL_STEP_MS = 110;
 var PHONE_REEL_MS = PHONE_REEL_BASE_MS + 3 * PHONE_REEL_STEP_MS;
 var ROW_TRAVEL_MS = 620;
+// #3370: the TV lights the closest guess this long after its reel stops; the
+// phone's "who got it right" comes up with it.
+var WHO_GOT_IT_AFTER_REEL_MS = 80;
+var YEAR_PLACEHOLDER = '????';
 var _phoneReel = null;
 var _phoneRowTimer = null;
+var _yearHold = null;
 var _revealStageTimers = [];
 var _revealStageKey = null;
 
 function _setRevealStage(root, stage) {
     if (root && root.setAttribute) root.setAttribute('data-reveal-stage', String(stage));
+}
+
+/** The moment the TV's reel stops for this frame; 0 means nothing to wait for. */
+function yearHoldStopMs(data) {
+    if (!state.motionGate || !utils.rollYear || !utils.tvYearReelStopMs) return 0;
+    return utils.tvYearReelStopMs(data);
+}
+
+/**
+ * #3370: hold the answer back until the TV gets there. The ticket shows the
+ * placeholder, the reel starts late enough to stop with the TV's, and everything
+ * else that gives the year away stays hidden by the `reveal-year-hold` class
+ * (styles.css) until it stands. The real digits only enter the DOM when the reel
+ * starts. Once per live reveal, through the gate: a repeated frame, a reload, a
+ * reconnect, a late phone and reduced motion all start nothing.
+ */
+function startYearHold(data) {
+    var stopAt = yearHoldStopMs(data);
+    var root = document.getElementById('reveal-view');
+    var yearEl = document.getElementById('correct-year');
+    if (!stopAt || !root || !yearEl || !state.motionGate.once('reel')) return;
+    var hold = { year: String(data.song.year), confetti: null, timers: [] };
+    _yearHold = hold;
+    root.classList.add('reveal-year-hold');
+    yearEl.textContent = YEAR_PLACEHOLDER;
+    hold.timers.push(setTimeout(function() {
+        _phoneReel = utils.rollYear(yearEl, hold.year, { base: PHONE_REEL_BASE_MS, step: PHONE_REEL_STEP_MS });
+    }, Math.max(0, stopAt - PHONE_REEL_MS)));
+    hold.timers.push(setTimeout(function() {
+        var confetti = hold.confetti;
+        clearYearHold();
+        if (confetti === 'record') triggerConfetti('record');
+        else if (confetti) triggerConfetti();
+    }, stopAt));
+}
+
+/** Show everything again. Safe to call at any time, and owed confetti is dropped. */
+function clearYearHold() {
+    if (!_yearHold) return;
+    _yearHold.timers.forEach(clearTimeout);
+    _yearHold = null;
+    var root = document.getElementById('reveal-view');
+    if (root) root.classList.remove('reveal-year-hold');
+}
+
+/**
+ * Each render, before the year is written. Starts the hold if the render got here
+ * first, and ends it when this frame has no business waiting: the phone lost the
+ * live thread (reconnect), the round was voided, or the host corrected the year.
+ */
+function syncYearHold(data, yearText) {
+    if (_yearHold) {
+        if (!state.motionGate || !state.motionGate.isLive()) {
+            stopRevealStaging();
+        } else if (!yearHoldStopMs(data) || _yearHold.year !== yearText) {
+            clearYearHold();
+            if (_phoneReel) _phoneReel.finish();
+        }
+    }
+    startYearHold(data);
 }
 
 /**
@@ -609,6 +676,7 @@ export function stopRevealStaging() {
     var root = document.getElementById('reveal-view');
     if (root && root.removeAttribute) root.removeAttribute('data-reveal-stage');
     // #3365: never leave the reel or a held-back score behind.
+    clearYearHold();
     if (_phoneReel) _phoneReel.finish();
     clearTimeout(_phoneRowTimer);
     var listEl = document.getElementById('reveal-leaderboard-list');
@@ -657,7 +725,12 @@ export function startRevealStaging(data) {
     _revealStageTimers = [];
     _revealStageKey = key;
     _setRevealStage(root, 1);
-    _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 2); }, REVEAL_BEAT_2_MS));
+    // #3370: arm the hold here as well, before the view is shown. Beat two names
+    // guesses and points, so it cannot come before the reel stops. The standings
+    // at beat three are already later, and about when the TV's rows set off.
+    startYearHold(data);
+    var beatTwoAt = Math.max(REVEAL_BEAT_2_MS, _yearHold ? yearHoldStopMs(data) + WHO_GOT_IT_AFTER_REEL_MS : 0);
+    _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 2); }, beatTwoAt));
     _revealStageTimers.push(setTimeout(function() { _setRevealStage(root, 3); }, REVEAL_BEAT_3_MS));
 }
 
@@ -1391,7 +1464,12 @@ function showRevealEmotion(player, correctYear, difficulty) {
     emotionEl.classList.remove('hidden');
 
     if (emotionType === 'exact') {
-        triggerConfetti();
+        // #3370: an exact guess must not celebrate before the TV shows the year.
+        if (_yearHold) {
+            if (!_yearHold.confetti) _yearHold.confetti = 'exact';
+        } else {
+            triggerConfetti();
+        }
     }
 }
 

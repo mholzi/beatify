@@ -395,6 +395,8 @@ initAdminApi({
     setAdminPlayerName: (v) => { adminState.adminPlayerName = v; },
     setAdminSessionId: (v) => { adminState.adminSessionId = v; },
     handleAdminStateUpdate: (data) => handleAdminStateUpdate(data),
+    // #3370: after a reconnect this page did not watch the reveal begin.
+    onSocketClosed: () => { if (_adminMotionGate) _adminMotionGate.reset(); },
     startLobbyPolling: () => startLobbyPolling(),
     stopLobbyPolling: () => stopLobbyPolling(),
     showError: (msg) => showError(msg),
@@ -2787,6 +2789,10 @@ function renderAdminState(data) {
     }
     adminState.currentGame = data;
 
+    // #3370: read before any view draws, like the phone and the TV.
+    if (_adminMotionGate && data && data.phase) _adminMotionGate.enter(data.phase, data.round);
+    if (!data || data.phase !== 'REVEAL') clearAdminYearHold();
+
     // Restore adminState.isPlaying state from player list (survives page reload)
     if (data.players && !adminState.isPlaying) {
         var adminInList = data.players.find(function(p) { return p.is_admin; });
@@ -3312,6 +3318,53 @@ function startAdminCountdown(deadline, serverNowMs) {
 
 // ---- REVEAL phase view (#653: mirrors player layout) ----
 
+// #3370: the host's page holds the answer back until the TV's reel stops, like
+// the player phones, with the same gate. It has no reel of its own: the year
+// simply appears. Hoisted through `var`: initAdminApi above only reads this at
+// runtime, once a socket has closed.
+var _adminMotionGate = utils.createMotionGate
+    ? utils.createMotionGate({
+        reduced: function() {
+            return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        }
+    })
+    : null;
+var _adminYearHold = null;
+
+function clearAdminYearHold() {
+    if (!_adminYearHold) return;
+    clearTimeout(_adminYearHold.timer);
+    _adminYearHold = null;
+    var section = document.getElementById('admin-reveal-section');
+    if (section) section.classList.remove('reveal-year-hold');
+}
+
+/**
+ * Start or end the hold for this frame.
+ * @param {Object} data - REVEAL state payload
+ * @returns {boolean} true while the year must stay off the screen
+ */
+function syncAdminYearHold(data) {
+    var stopAt = utils.tvYearReelStopMs ? utils.tvYearReelStopMs(data) : 0;
+    var year = data.song ? String(data.song.year) : '';
+    if (_adminYearHold && (!_adminMotionGate.isLive() || !stopAt || _adminYearHold.year !== year)) {
+        clearAdminYearHold();
+    }
+    if (!_adminYearHold && stopAt && _adminMotionGate && _adminMotionGate.once('year-hold')) {
+        var section = document.getElementById('admin-reveal-section');
+        if (section) section.classList.add('reveal-year-hold');
+        _adminYearHold = {
+            year: year,
+            timer: setTimeout(function() {
+                clearAdminYearHold();
+                var yearEl = document.getElementById('admin-reveal-correct-year');
+                if (yearEl) yearEl.textContent = year;
+            }, stopAt)
+        };
+    }
+    return !!_adminYearHold;
+}
+
 function showAdminRevealView(data) {
     var section = document.getElementById('admin-reveal-section');
     if (!section) return;
@@ -3417,7 +3470,8 @@ function showAdminRevealView(data) {
         var artEl = document.getElementById('admin-reveal-album-art');
         if (titleEl) titleEl.textContent = data.song.title || '';
         if (artistEl) artistEl.textContent = data.song.artist || '';
-        if (yearEl) yearEl.textContent = data.song.year || '';
+        var yearHeld = syncAdminYearHold(data);
+        if (yearEl) yearEl.textContent = yearHeld ? '????' : (data.song.year || '');
         if (artEl && data.song.album_art) artEl.src = data.song.album_art;
     }
 

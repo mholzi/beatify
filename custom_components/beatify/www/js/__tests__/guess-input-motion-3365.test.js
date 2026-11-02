@@ -186,6 +186,7 @@ describe('#3365 phone reveal', () => {
         enter();
         reveal.updateRevealView(frame());
         reveal.updateRevealView(frame());
+        vi.advanceTimersByTime(3000);   // #3370: it starts late, with the TV
         expect(rolled).toHaveBeenCalledTimes(1);
         const opts = rolled.mock.calls[0][2];
         expect(opts.base + 3 * opts.step).toBeLessThan(1120);
