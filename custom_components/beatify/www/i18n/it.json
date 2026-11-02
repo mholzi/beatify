@@ -16,7 +16,8 @@
     "joinButton": "Entra in partita",
     "reconnecting": "Riconnessione… (tentativo {attempt}/{max})",
     "otherLanguage": "altra lingua",
-    "chooseLanguage": "Scegli la tua lingua"
+    "chooseLanguage": "Scegli la tua lingua",
+    "slowHint": "Ci vuole più del solito. Forse il Wi-Fi è lento."
   },
   "player": {
     "welcomeBack": "Bentornato, {name}!",
@@ -654,7 +655,8 @@
       "libraryPlaylistLabel": "la tua libreria",
       "noPlaylist": "nessuna playlist",
       "playlistCount": "{count} playlist",
-      "noSpeaker": "nessun altoparlante"
+      "noSpeaker": "nessun altoparlante",
+      "playersStale": "Elenco giocatori aggiornato {seconds} s fa. Home Assistant non risponde; l'elenco si aggiornerà da solo."
     },
     "startRematchFailed": "Impossibile avviare la rivincita. Riprova.",
     "startGameplayFailed": "Avvio della partita non riuscito",
@@ -983,7 +985,8 @@
     "guessAxisNoGuess": "Nessuna risposta",
     "guessAxisYearsOff": "{count} anni di scarto",
     "guessAxisYearsOffOne": "1 anno di scarto",
-    "standingsMore": "+ altri {count}"
+    "standingsMore": "+ altri {count}",
+    "reconnectNotice": "La TV non raggiunge Home Assistant. Controllate il Wi-Fi della TV."
   },
   "launcher": {
     "title": "Beatify",
@@ -1248,7 +1251,15 @@
       "PLATFORM_NOT_SUPPORTED": "Questo tipo di altoparlante non è supportato. Usa un altoparlante Music Assistant.",
       "ROUND_SETTINGS_REVEAL_ONLY": "Le impostazioni del turno si cambiano solo tra un turno e l'altro. Riprova alla rivelazione.",
       "INVALID_ROUND_SETTINGS": "Queste impostazioni del turno non sono disponibili. Scegli un'altra opzione."
-    }
+    },
+    "offlineTitle": "Impossibile raggiungere la partita",
+    "offlineHint": "Il telefono è sul Wi-Fi della festa? Con i dati mobili o il Wi-Fi ospiti spesso la partita non si raggiunge.",
+    "qrCodeIsFine": "Il codice QR va bene.",
+    "haErrorTitle": "Home Assistant ha avuto un problema",
+    "haErrorHint": "Non è stato possibile caricare la partita. Aspetta un attimo e riprova. Se succede ancora, avvisa l'host.",
+    "gameStoppedTitle": "Questa partita è finita",
+    "gameStoppedHint": "La partita si è fermata in Home Assistant, ad esempio dopo un riavvio. Quando l'host ne avvia una nuova, tocca «Partecipa di nuovo».",
+    "gameStoppedRejoin": "Partecipa di nuovo"
   },
   "highlights": {
     "highlight_exact_match": "{player} ha centrato '{song}' — {year}!",
@@ -1423,7 +1434,14 @@
     },
     "providerLibrarySub": "La tua libreria personale di Music Assistant",
     "providerYtmusicFreeSub": "Richiede il provider ytmusic_free in Music Assistant",
-    "continueWithSongs": "Continua con {n} canzoni"
+    "continueWithSongs": "Continua con {n} canzoni",
+    "loadError": {
+      "speakersTitle": "Impossibile caricare gli altoparlanti",
+      "speakersHint": "Home Assistant non ha risposto. Probabilmente gli altoparlanti funzionano. Riprova.",
+      "lightsTitle": "Impossibile caricare le luci",
+      "ttsTitle": "Impossibile caricare i servizi vocali",
+      "hint": "Home Assistant non ha risposto. Riprova."
+    }
   },
   "onboarding": {
     "stepLabel": "Passo",
@@ -1582,7 +1600,9 @@
       }
     },
     "error": {
-      "title": "Impossibile caricare le playlist"
+      "title": "Impossibile caricare le playlist",
+      "body": "Home Assistant non ha risposto. Controlla che sia attivo e riprova.",
+      "requestsTitle": "Impossibile caricare le tue richieste"
     },
     "time": {
       "justNow": "proprio ora",

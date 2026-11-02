@@ -16,7 +16,8 @@
     "joinButton": "Join Game",
     "reconnecting": "Reconnecting… (Attempt {attempt}/{max})",
     "otherLanguage": "other language",
-    "chooseLanguage": "Choose your language"
+    "chooseLanguage": "Choose your language",
+    "slowHint": "Taking longer than usual. The Wi-Fi may be slow."
   },
   "player": {
     "welcomeBack": "Welcome back, {name}!",
@@ -654,7 +655,8 @@
       "libraryPlaylistLabel": "your library",
       "noPlaylist": "no playlist",
       "playlistCount": "{count} playlists",
-      "noSpeaker": "no speaker"
+      "noSpeaker": "no speaker",
+      "playersStale": "Player list last updated {seconds} s ago. Home Assistant isn't answering; the list catches up on its own."
     },
     "startRematchFailed": "Couldn't start the rematch. Try again.",
     "startGameplayFailed": "Failed to start gameplay",
@@ -983,7 +985,8 @@
     "guessAxisNoGuess": "No guess",
     "guessAxisYearsOff": "{count} years off",
     "guessAxisYearsOffOne": "1 year off",
-    "standingsMore": "+ {count} more"
+    "standingsMore": "+ {count} more",
+    "reconnectNotice": "The TV can't reach Home Assistant. Check the TV's Wi-Fi."
   },
   "launcher": {
     "title": "Beatify",
@@ -1248,7 +1251,15 @@
       "PLATFORM_NOT_SUPPORTED": "This speaker type isn't supported. Use a Music Assistant speaker.",
       "ROUND_SETTINGS_REVEAL_ONLY": "Round settings can only change between rounds. Try again on the reveal.",
       "INVALID_ROUND_SETTINGS": "Those round settings aren't available. Pick another option."
-    }
+    },
+    "offlineTitle": "Can't reach the game",
+    "offlineHint": "Is your phone on the party Wi-Fi? Mobile data and guest Wi-Fi often can't reach the game.",
+    "qrCodeIsFine": "Your QR code is fine.",
+    "haErrorTitle": "Home Assistant had a problem",
+    "haErrorHint": "The game couldn't be loaded. Wait a moment, then try again. If it keeps happening, tell the host.",
+    "gameStoppedTitle": "This game has ended",
+    "gameStoppedHint": "The game stopped in Home Assistant, for example after a restart. Once the host starts a new game, tap Join again.",
+    "gameStoppedRejoin": "Join again"
   },
   "highlights": {
     "highlight_exact_match": "{player} nailed '{song}' — {year}!",
@@ -1423,7 +1434,14 @@
     },
     "providerLibrarySub": "Your personal Music Assistant library",
     "providerYtmusicFreeSub": "Needs the ytmusic_free provider in Music Assistant",
-    "continueWithSongs": "Continue with {n} songs"
+    "continueWithSongs": "Continue with {n} songs",
+    "loadError": {
+      "speakersTitle": "Couldn't load your speakers",
+      "speakersHint": "Home Assistant didn't answer. Your speakers are probably fine. Try again.",
+      "lightsTitle": "Couldn't load your lights",
+      "ttsTitle": "Couldn't load your voice services",
+      "hint": "Home Assistant didn't answer. Try again."
+    }
   },
   "onboarding": {
     "stepLabel": "Step",
@@ -1582,7 +1600,9 @@
       }
     },
     "error": {
-      "title": "Could not load playlists"
+      "title": "Could not load playlists",
+      "body": "Home Assistant didn't answer. Check that it is running, then try again.",
+      "requestsTitle": "Could not load your requests"
     },
     "time": {
       "justNow": "just now",

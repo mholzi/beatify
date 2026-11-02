@@ -762,3 +762,29 @@ export function openSetupStepOne(win) {
         win.BeatifyWizard.show(1);
     }
 }
+
+/**
+ * How stale the admin lobby's player list is (#3390). The REST poll that
+ * stands in while the admin socket is down used to fail silently, so the list
+ * froze and looked live — the host waited for guests who had long joined.
+ *
+ * `ok()` records a good poll; `fail()` returns the whole seconds since the
+ * last good one once that exceeds `thresholdMs`, else null. `reset()` starts
+ * the clock over (a fresh poll run: the socket had the list until now).
+ *
+ * @param {{thresholdMs?: number, now?: Function}} [opts]
+ */
+export function createLobbyFreshness(opts) {
+    const o = opts || {};
+    const threshold = o.thresholdMs != null ? o.thresholdMs : 10000;
+    const now = o.now || (() => Date.now());
+    let lastOk = now();
+    return {
+        reset() { lastOk = now(); },
+        ok() { lastOk = now(); },
+        fail() {
+            const age = now() - lastOk;
+            return age > threshold ? Math.floor(age / 1000) : null;
+        },
+    };
+}

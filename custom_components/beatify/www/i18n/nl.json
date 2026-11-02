@@ -16,7 +16,8 @@
     "joinButton": "Deelnemen aan spel",
     "reconnecting": "Opnieuw verbinden… (Poging {attempt}/{max})",
     "otherLanguage": "andere taal",
-    "chooseLanguage": "Kies je taal"
+    "chooseLanguage": "Kies je taal",
+    "slowHint": "Dit duurt langer dan normaal. De wifi is misschien traag."
   },
   "player": {
     "welcomeBack": "Welkom terug, {name}!",
@@ -654,7 +655,8 @@
       "libraryPlaylistLabel": "je bibliotheek",
       "noPlaylist": "geen playlist",
       "playlistCount": "{count} playlists",
-      "noSpeaker": "geen speaker"
+      "noSpeaker": "geen speaker",
+      "playersStale": "Spelerslijst {seconds} s geleden bijgewerkt. Home Assistant reageert niet; de lijst werkt zichzelf bij."
     },
     "startRematchFailed": "Kon de rematch niet starten. Probeer het opnieuw.",
     "startGameplayFailed": "Kan het spel niet starten",
@@ -983,7 +985,8 @@
     "guessAxisNoGuess": "Geen gok",
     "guessAxisYearsOff": "{count} jaar ernaast",
     "guessAxisYearsOffOne": "1 jaar ernaast",
-    "standingsMore": "+ {count} meer"
+    "standingsMore": "+ {count} meer",
+    "reconnectNotice": "De tv bereikt Home Assistant niet. Controleer de wifi van de tv."
   },
   "launcher": {
     "title": "Beatify",
@@ -1248,7 +1251,15 @@
       "PLATFORM_NOT_SUPPORTED": "Dit type speaker wordt niet ondersteund. Gebruik een Music Assistant-speaker.",
       "ROUND_SETTINGS_REVEAL_ONLY": "Ronde-instellingen veranderen alleen tussen rondes. Probeer het bij de onthulling.",
       "INVALID_ROUND_SETTINGS": "Die ronde-instellingen zijn niet beschikbaar. Kies een andere optie."
-    }
+    },
+    "offlineTitle": "Kan het spel niet bereiken",
+    "offlineHint": "Zit je telefoon op de wifi van het feest? Mobiele data en gastenwifi bereiken het spel vaak niet.",
+    "qrCodeIsFine": "De QR-code is in orde.",
+    "haErrorTitle": "Home Assistant had een probleem",
+    "haErrorHint": "Het spel kon niet worden geladen. Wacht even en probeer het opnieuw. Blijft het gebeuren, zeg het dan tegen de host.",
+    "gameStoppedTitle": "Dit spel is afgelopen",
+    "gameStoppedHint": "Het spel is gestopt in Home Assistant, bijvoorbeeld na een herstart. Start de host een nieuw spel, tik dan op ‘Opnieuw meedoen’.",
+    "gameStoppedRejoin": "Opnieuw meedoen"
   },
   "highlights": {
     "highlight_exact_match": "{player} had '{song}' perfect — {year}!",
@@ -1423,7 +1434,14 @@
     },
     "providerLibrarySub": "Je persoonlijke Music Assistant-bibliotheek",
     "providerYtmusicFreeSub": "Vereist de ytmusic_free-provider in Music Assistant",
-    "continueWithSongs": "Verder met {n} nummers"
+    "continueWithSongs": "Verder met {n} nummers",
+    "loadError": {
+      "speakersTitle": "Kan je speakers niet laden",
+      "speakersHint": "Home Assistant gaf geen antwoord. Je speakers zijn waarschijnlijk in orde. Probeer het opnieuw.",
+      "lightsTitle": "Kan je lampen niet laden",
+      "ttsTitle": "Kan je spraakdiensten niet laden",
+      "hint": "Home Assistant gaf geen antwoord. Probeer het opnieuw."
+    }
   },
   "onboarding": {
     "stepLabel": "Stap",
@@ -1582,7 +1600,9 @@
       }
     },
     "error": {
-      "title": "Kon playlists niet laden"
+      "title": "Kon playlists niet laden",
+      "body": "Home Assistant gaf geen antwoord. Controleer of het draait en probeer het opnieuw.",
+      "requestsTitle": "Kan je aanvragen niet laden"
     },
     "time": {
       "justNow": "zojuist",

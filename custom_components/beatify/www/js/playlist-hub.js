@@ -288,6 +288,7 @@ const state = {
     requestModalOpen: false,
     loading: true,
     error: null,
+    requestsError: false,      // #3390: the request list did not load
 };
 
 export function mount(rootEl, options = {}) {
@@ -364,7 +365,12 @@ async function _loadData() {
             _fetchJson(`${API_USAGE}?kind=recent&limit=12`).catch(() => ({ items: [] })),
         ]);
         if (!skipStatus) {
-            state.playlists = (statusResp && Array.isArray(statusResp.playlists)) ? statusResp.playlists : [];
+            // #3390: a failed status load used to become an empty list, so the
+            // hub said "no community playlists installed" and the error card
+            // below was unreachable. A list from an earlier load stays put.
+            const outcome = playlistLoadOutcome(statusResp, state.playlists);
+            state.playlists = outcome.playlists;
+            if (outcome.error) state.error = outcome.error;
         }
         state.topPlaylists = (topResp && Array.isArray(topResp.items)) ? topResp.items : [];
         state.recentPlaylists = (recentResp && Array.isArray(recentResp.items)) ? recentResp.items : [];
@@ -372,9 +378,16 @@ async function _loadData() {
         if (window.PlaylistRequests) {
             const cached = window.PlaylistRequests.loadRequests();
             state.requests = Array.isArray(cached.requests) ? cached.requests : [];
+            state.requestsError = false;
             window.PlaylistRequests.getRequestsForDisplayAsync()
                 .then((rs) => { state.requests = rs || []; if (state.currentTab === 'mine') _renderTabBody(); })
-                .catch((e) => console.warn('[PlaylistHub] requests load failed:', e));
+                .catch((e) => {
+                    // #3390: keep what is on screen; with nothing to show, say
+                    // the load failed instead of "No requests yet".
+                    console.warn('[PlaylistHub] requests load failed:', e);
+                    state.requestsError = true;
+                    if (state.currentTab === 'mine') _renderTabBody();
+                });
         }
     } catch (e) {
         state.error = e && e.message ? e.message : 'Failed to load';
@@ -831,6 +844,35 @@ function _counts() {
     return { bundled, community, mine };
 }
 
+/**
+ * What a finished status load leaves in the hub (#3390). Pure, for the tests.
+ * A missing answer is an error, unless an earlier load already filled the
+ * list — then that list stays and nothing is overwritten.
+ * @returns {{playlists: Array, error: string|null}}
+ */
+export function playlistLoadOutcome(statusResp, previous) {
+    if (statusResp && Array.isArray(statusResp.playlists)) {
+        return { playlists: statusResp.playlists, error: null };
+    }
+    const prev = Array.isArray(previous) ? previous : [];
+    if (statusResp) return { playlists: [], error: null };  // answered, no list field
+    return prev.length ? { playlists: prev, error: null } : { playlists: [], error: 'load-failed' };
+}
+
+/**
+ * The hub's error card (#3390): what happened, what to do, a retry button.
+ * Pure, exported for the tests.
+ */
+export function _loadErrorCardHtml(titleKey, titleFallback) {
+    return `
+            <div class="plh-empty" role="alert">
+                <div class="plh-empty-icon">⚠</div>
+                <h2 class="plh-empty-title">${_escape(_t(titleKey, titleFallback))}</h2>
+                <p class="plh-empty-body">${_escape(_t('playlistHub.error.body', "Home Assistant didn't answer. Check that it is running, then try again."))}</p>
+                <button class="plh-btn plh-btn-primary" data-plh-action="retry">${_escape(_t('playlistHub.retry', 'Retry'))}</button>
+            </div>`;
+}
+
 function _renderTabBody() {
     const host = state.root && state.root.querySelector('[data-plh-body]');
     if (!host) return;
@@ -839,13 +881,7 @@ function _renderTabBody() {
         return;
     }
     if (state.error) {
-        host.innerHTML = `
-            <div class="plh-empty">
-                <div class="plh-empty-icon">⚠</div>
-                <h2 class="plh-empty-title">${_escape(_t('playlistHub.error.title', 'Could not load playlists'))}</h2>
-                <p class="plh-empty-body">${_escape(state.error)}</p>
-                <button class="plh-btn plh-btn-primary" data-plh-action="retry">${_escape(_t('playlistHub.retry', 'Retry'))}</button>
-            </div>`;
+        host.innerHTML = _loadErrorCardHtml('playlistHub.error.title', 'Could not load playlists');
         return;
     }
     // #2970: the body is rebuilt from HTML on every change, including "+ Add"
@@ -1190,6 +1226,10 @@ function _languageName(code) {
 
 function _renderMine(host) {
     const reqs = state.requests || [];
+    if (reqs.length === 0 && state.requestsError) {
+        host.innerHTML = _loadErrorCardHtml('playlistHub.error.requestsTitle', 'Could not load your requests');
+        return;
+    }
     if (reqs.length === 0) {
         host.innerHTML = `
             <div class="plh-mine-empty">

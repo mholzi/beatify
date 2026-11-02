@@ -284,6 +284,85 @@
         if (el) el.classList.add('hidden');
     }
 
+    // #3390: after 30 s without a connection the badge gets one line about the
+    // network, so the room knows what to check. The TV keeps retrying forever.
+    var TV_LOST_NOTICE_MS = 30000;
+    function _setReconnectNotice(visible) {
+        var el = document.getElementById('dashboard-reconnect-notice');
+        if (el) el.classList.toggle('hidden', !visible);
+        var badge = document.getElementById('dashboard-reconnect-indicator');
+        if (badge) badge.classList.toggle('dashboard-reconnect-indicator--long', !!visible);
+    }
+    var _lostNotice = utils.createDelayedNotice
+        ? utils.createDelayedNotice({
+            delay: TV_LOST_NOTICE_MS,
+            show: function() { _setReconnectNotice(true); },
+            hide: function() { _setReconnectNotice(false); }
+        })
+        : { lost: function() {}, back: function() {} };
+
+    // #3390: the phone has had a heartbeat since #967, the TV had none. A Wi-Fi
+    // drop without a TCP reset left the socket half open: no onclose, no badge,
+    // and the old round on screen as if it were live. Same numbers as the
+    // phone: a ping every 15 s, and 40 s without any frame means dead.
+    var _heartbeat = utils.createSocketHeartbeat
+        ? utils.createSocketHeartbeat({
+            isOpen: function() { return !!ws && ws.readyState === WebSocket.OPEN; },
+            sendPing: function() { ws.send(JSON.stringify({ type: 'ping' })); },
+            onDead: function() {
+                debug('[Dashboard] No server frame for 40 s — treating the socket as dead');
+                _dropDeadSocket();
+            }
+        })
+        : { start: function() {}, stop: function() {}, activity: function() {} };
+
+    /**
+     * A half-open socket may take minutes to report its own close, so the
+     * heartbeat cuts it loose and runs the loss path right away (#3390).
+     */
+    function _dropDeadSocket() {
+        if (ws) {
+            ws.onopen = ws.onmessage = ws.onclose = ws.onerror = null;
+            try { ws.close(); } catch (e) { /* already closed */ }
+            ws = null;
+        }
+        _handleSocketLost();
+    }
+
+    /**
+     * The connection is gone: dim the last frame, show the badge, stop the
+     * clock and schedule the next attempt (#1398, #1712, #3390).
+     */
+    function _handleSocketLost() {
+        _heartbeat.stop();
+        // #1398 + #1397: retry FOREVER with capped backoff, scheduled through
+        // the dedup guard so a visibilitychange reconnect can cancel the
+        // pending timer instead of racing it into a second socket.
+        reconnectAttempts++;
+        // #1712: a transient mid-game WS drop must NOT wipe the live game.
+        // Keep whatever view is currently rendered (leaderboard / round /
+        // art / scores) frozen and dimmed, and surface ONLY the reconnect
+        // badge. The "No active game" screen is reserved for a
+        // server-CONFIRMED no-game state (handleStateUpdate), never a
+        // dropped socket — that used to read as a crash to the whole room.
+        _setDisconnectedDim(true);
+        // #3390: a frozen clock that keeps counting down reads as live. Stop
+        // it, and forget the painted frame so the first state after the
+        // reconnect repaints and restarts the clock from the server's deadline.
+        stopCountdown();
+        _scheduleRender.reset();
+        // #3365: whatever the next state shows, this TV did not watch it
+        // happen, so it gets the final picture.
+        if (_motionGate) _motionGate.reset();
+        _lastScenePhase = null;
+        // #1578: surface the reconnect attempt visibly on the TV display.
+        _showReconnectIndicator();
+        _lostNotice.lost();
+        var delay = getReconnectDelay();
+        debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
+        reconnectGuard.schedule(connectWebSocket, delay);
+    }
+
     /**
      * Connect to WebSocket as read-only observer (AC 10.4.1)
      */
@@ -309,6 +388,8 @@
             reconnectAttempts = 0;
             // #1578: connection is back — drop the "Reconnecting…" badge.
             _hideReconnectIndicator();
+            _lostNotice.back();
+            _heartbeat.start();
             // #1712: un-dim the frozen last frame; the server's next `state`
             // broadcast is what decides whether we stay on the live view or
             // switch to the confirmed "No active game" screen.
@@ -318,6 +399,7 @@
         };
 
         ws.onmessage = function(event) {
+            _heartbeat.activity();
             try {
                 var data = JSON.parse(event.data);
                 handleServerMessage(data);
@@ -328,26 +410,7 @@
 
         ws.onclose = function() {
             debug('[Dashboard] WebSocket closed');
-            // #1398 + #1397: retry FOREVER with capped backoff, scheduled through
-            // the dedup guard so a visibilitychange reconnect can cancel the
-            // pending timer instead of racing it into a second socket.
-            reconnectAttempts++;
-            // #1712: a transient mid-game WS drop must NOT wipe the live game.
-            // Keep whatever view is currently rendered (leaderboard / round /
-            // art / scores) frozen and dimmed, and surface ONLY the reconnect
-            // badge. The "No active game" screen is reserved for a
-            // server-CONFIRMED no-game state (handleStateUpdate), never a
-            // dropped socket — that used to read as a crash to the whole room.
-            _setDisconnectedDim(true);
-            // #3365: whatever the next state shows, this TV did not watch it
-            // happen, so it gets the final picture.
-            if (_motionGate) _motionGate.reset();
-            _lastScenePhase = null;
-            // #1578: surface the reconnect attempt visibly on the TV display.
-            _showReconnectIndicator();
-            var delay = getReconnectDelay();
-            debug('[Dashboard] Reconnecting in ' + delay + 'ms (attempt ' + reconnectAttempts + ')');
-            reconnectGuard.schedule(connectWebSocket, delay);
+            _handleSocketLost();
         };
 
         ws.onerror = function(err) {

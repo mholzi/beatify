@@ -831,6 +831,90 @@ window.BeatifyUtils = (function() {
     }
 
     /**
+     * App-level heartbeat for a socket that must notice server SILENCE (#3390).
+     *
+     * A half-open socket (Wi-Fi gone without a TCP reset) never fires onclose,
+     * so the screen keeps the last state as if it were live. Every `interval`
+     * this sends a ping while the socket is open; once nothing has arrived from
+     * the server for `timeout`, it calls `onDead()` once and stops. The server
+     * answers `{type:'ping'}` with a pong before any game check (#967), so a
+     * healthy socket is never quiet for long. Same numbers as the phone.
+     *
+     * @param {Object} deps
+     * @param {number} [deps.interval=15000]
+     * @param {number} [deps.timeout=40000]
+     * @param {Function} deps.isOpen - () => boolean
+     * @param {Function} deps.sendPing - () => void (may throw)
+     * @param {Function} deps.onDead - () => void
+     * @param {Function} [deps.now] - clock, defaults to Date.now
+     * @returns {{start: Function, stop: Function, activity: Function}}
+     */
+    function createSocketHeartbeat(deps) {
+        var interval = deps.interval || 15000;
+        var timeout = deps.timeout || 40000;
+        var now = deps.now || function() { return Date.now(); };
+        var timer = null;
+        var lastActivity = 0;
+        function stop() {
+            if (timer !== null) clearInterval(timer);
+            timer = null;
+        }
+        return {
+            start: function() {
+                stop();
+                lastActivity = now();
+                timer = setInterval(function() {
+                    if (!deps.isOpen()) return;
+                    if (now() - lastActivity > timeout) {
+                        stop();
+                        deps.onDead();
+                        return;
+                    }
+                    try { deps.sendPing(); } catch (e) { /* the timeout catches it */ }
+                }, interval);
+            },
+            stop: stop,
+            /** Any frame from the server proves the socket is alive. */
+            activity: function() { lastActivity = now(); }
+        };
+    }
+
+    /**
+     * A notice that appears only once a loss has lasted `delay` ms (#3390).
+     * `lost()` repeated during one outage keeps the first start time, so a
+     * reconnect loop does not push the notice back on every failed attempt.
+     *
+     * @param {Object} deps
+     * @param {number} deps.delay
+     * @param {Function} deps.show
+     * @param {Function} deps.hide
+     * @returns {{lost: Function, back: Function, isShown: Function}}
+     */
+    function createDelayedNotice(deps) {
+        var timer = null;
+        var shown = false;
+        return {
+            lost: function() {
+                if (timer !== null || shown) return;
+                timer = setTimeout(function() {
+                    timer = null;
+                    shown = true;
+                    deps.show();
+                }, deps.delay);
+            },
+            back: function() {
+                if (timer !== null) clearTimeout(timer);
+                timer = null;
+                if (shown) {
+                    shown = false;
+                    deps.hide();
+                }
+            },
+            isShown: function() { return shown; }
+        };
+    }
+
+    /**
      * Build a WebSocket `onclose` reconnect handler (#1662).
      *
      * The player page carried TWO near-identical onclose blocks (session
@@ -1468,6 +1552,8 @@ window.BeatifyUtils = (function() {
         reconnectBackoffDelay: reconnectBackoffDelay,
         createReconnectGuard: createReconnectGuard,
         createWsCloseHandler: createWsCloseHandler,
+        createSocketHeartbeat: createSocketHeartbeat,
+        createDelayedNotice: createDelayedNotice,
 
         // URL utilities
         getQueryParam: getQueryParam

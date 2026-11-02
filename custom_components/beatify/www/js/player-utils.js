@@ -64,8 +64,12 @@ var endView = document.getElementById('end-view');
 var connectionLostView = document.getElementById('connection-lost-view');
 // #1718: SESSION_TAKEOVER gets its own view (not the misleading connection-lost one).
 var sessionTakeoverView = document.getElementById('session-takeover-view');
+// #3390: honest join and game-gone states.
+var offlineView = document.getElementById('offline-view');
+var haErrorView = document.getElementById('ha-error-view');
+var gameStoppedView = document.getElementById('game-stopped-view');
 
-var allViews = [loadingView, startingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView, sessionTakeoverView];
+var allViews = [loadingView, startingView, notFoundView, endedView, inProgressView, joinView, tourView, readyView, lobbyView, gameView, revealView, pausedView, endView, connectionLostView, sessionTakeoverView, offlineView, haErrorView, gameStoppedView];
 
 /**
  * Show a specific view and hide all others
@@ -93,7 +97,8 @@ export function showView(viewId) {
     if (viewId === 'join-view' || viewId === 'loading-view' ||
         viewId === 'not-found-view' || viewId === 'ended-view' ||
         viewId === 'in-progress-view' || viewId === 'connection-lost-view' ||
-        viewId === 'session-takeover-view') {
+        viewId === 'session-takeover-view' || viewId === 'offline-view' ||
+        viewId === 'ha-error-view' || viewId === 'game-stopped-view') {
         setEnergyLevel('calm');
     }
 

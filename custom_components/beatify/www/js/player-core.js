@@ -80,7 +80,7 @@ import { showToast } from './notify.js';
 import { noteRoundState } from './round-end-choice.js';
 
 // #1664 item 2: retry game-status on transient errors before showing not-found.
-import { fetchGameStatusWithRetry } from './player-game-status.js';
+import { fetchGameStatusWithRetry, fetchGameStatusResult, statusFailureView } from './player-game-status.js';
 
 var utils = window.BeatifyUtils || {};
 var debug = utils.debug || function() {};
@@ -390,6 +390,56 @@ function showConnectionLostView() {
 }
 
 // ============================================
+// Slow / unreachable join states (#3390)
+// ============================================
+
+// The second line under "Connecting…" appears after this long.
+export var SLOW_STATUS_HINT_MS = 5000;
+var slowStatusHintTimer = null;
+
+function setSlowStatusHint(visible) {
+    var el = document.getElementById('loading-slow-hint');
+    if (el && el.classList) el.classList.toggle('hidden', !visible);
+}
+
+function startSlowStatusHint() {
+    stopSlowStatusHint();
+    slowStatusHintTimer = setTimeout(function() {
+        slowStatusHintTimer = null;
+        setSlowStatusHint(true);
+    }, SLOW_STATUS_HINT_MS);
+}
+
+function stopSlowStatusHint() {
+    if (slowStatusHintTimer !== null) {
+        clearTimeout(slowStatusHintTimer);
+        slowStatusHintTimer = null;
+    }
+    setSlowStatusHint(false);
+}
+
+// The two "could not get through" screens. A guest who fixes the Wi-Fi in the
+// settings app comes back to the page — that is the moment to try again.
+var UNREACHABLE_VIEWS = ['offline-view', 'ha-error-view'];
+
+function isUnreachableViewShowing() {
+    return UNREACHABLE_VIEWS.some(function(id) {
+        var el = document.getElementById(id);
+        return !!(el && el.classList && !el.classList.contains('hidden'));
+    });
+}
+
+/** Re-run the status check from an unreachable screen (#3390). */
+export function recheckGameStatus() {
+    showView('loading-view');
+    return checkGameStatus();
+}
+
+function recheckIfUnreachable() {
+    if (isUnreachableViewShowing()) recheckGameStatus();
+}
+
+// ============================================
 // Game Status Check
 // ============================================
 
@@ -409,18 +459,27 @@ export async function checkGameStatus() {
     }
 
     // #1664 item 2: silently retry transport/server errors (network blip, 5xx,
-    // JSON-parse failure) a few times BEFORE falling back to not-found. During
-    // the retries the current (loading) view stays put — no flash. Returns the
-    // parsed data, or null once every attempt has failed.
-    var data = await fetchGameStatusWithRetry(state.gameId);
+    // JSON-parse failure, #3390 timeout) a few times. During the retries the
+    // current (loading) view stays put — no flash.
+    // #3390: after SLOW_STATUS_HINT_MS the loading view adds a second line, so
+    // a slow Wi-Fi does not look like a hang.
+    startSlowStatusHint();
+    var result;
+    try {
+        result = await fetchGameStatusResult(state.gameId);
+    } finally {
+        stopSlowStatusHint();
+    }
 
-    if (data === null) {
-        // Every attempt hit a transport/server error → keep the previous
-        // fallback behaviour and show not-found.
-        console.error('Failed to check game status after retries');
-        showView('not-found-view');
+    if (!result.ok) {
+        // #3390: every attempt failed. That is "could not get through", never
+        // "the game does not exist" — the guest's QR code is fine. Offline and
+        // a Home Assistant error get their own screens.
+        console.error('Failed to check game status after retries:', result.reason);
+        showView(statusFailureView(result.reason));
         return;
     }
+    var data = result.data;
 
     // A successful HTTP-200 {exists:false} is a legitimate "game does not exist"
     // answer from the server — show not-found immediately, no retry involved.
@@ -470,6 +529,35 @@ export async function checkGameStatus() {
     } else {
         showView('in-progress-view');
     }
+}
+
+// ============================================
+// Game stopped under the guest (#3390)
+// ============================================
+
+/**
+ * The game this phone played is gone from the server (GAME_NOT_STARTED).
+ * Close the socket for good and say so. The phone does NOT follow into a new
+ * game on its own: after a restart the new game has a new id, and joining it
+ * is the guest's call (button on the view → a fresh status check).
+ * Exported for the #3390 tests.
+ */
+export function handleGameStopped() {
+    stopEndedViewPoll();
+    state.isReconnecting = false;
+    state.joinPending = false;
+    reconnectOverlay.stop();
+    stopHeartbeat();
+    // The session belongs to the game that is gone.
+    clearSessionCookie();
+    // No name → the foreground/visibility handler stops reconnecting.
+    state.playerName = null;
+    if (state.ws) {
+        state.intentionalLeave = true;
+        try { state.ws.close(); } catch (e) { /* already closed */ }
+        state.ws = null;
+    }
+    showView('game-stopped-view');
 }
 
 // ============================================
@@ -1110,6 +1198,14 @@ function handleServerMessage(data) {
             showView('end-view');
             return;
         }
+        if (data.code === 'GAME_NOT_STARTED') {
+            // #3390: the server has no game at all — after a Home Assistant
+            // restart or a reset the reconnect lands here. onopen already
+            // dropped the overlay and the dot says "Connected", so without
+            // this branch the guest froze on the last view with no text.
+            handleGameStopped();
+            return;
+        }
         if (data.code === 'NOT_ADMIN') {
             state.isAdmin = false;
             hideAdminControlBar();
@@ -1639,6 +1735,15 @@ document.getElementById('refresh-btn')?.addEventListener('click', function() {
     checkGameStatus();
 });
 
+// #3390: the three "could not join" screens all ask the server again.
+['offline-retry-btn', 'ha-error-retry-btn', 'game-stopped-rejoin-btn'].forEach(function(id) {
+    document.getElementById(id)?.addEventListener('click', recheckGameStatus);
+});
+// Back from the settings app, or the Wi-Fi came back: try again by itself.
+if (typeof window.addEventListener === 'function') {
+    window.addEventListener('online', recheckIfUnreachable);
+}
+
 document.getElementById('retry-btn')?.addEventListener('click', function() {
     showView('loading-view');
     checkGameStatus();
@@ -1681,6 +1786,8 @@ var FOREGROUND_RECONNECT_MIN_INTERVAL_MS = 3000;
 
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible') {
+        // #3390: a guest who switched Wi-Fi in the settings app is back.
+        recheckIfUnreachable();
         // #646: Re-acquire wake lock when tab becomes visible during any active session
         if (state.playerName) {
             requestWakeLock();

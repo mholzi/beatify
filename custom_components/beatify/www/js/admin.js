@@ -86,6 +86,7 @@ import {
     adminJoinNameValid,
     isLibrarySong,
     openSetupStepOne,
+    createLobbyFreshness,
 } from './admin/util.js';
 
 // #1279 Schritt 3/6: REST/WS hub layer. The admin WS connection lifecycle +
@@ -2502,12 +2503,32 @@ function renderLobbyPlayers(players) {
     }
 }
 
+// #3390: when did the poll last get an answer, and the line that says so.
+const lobbyFreshness = createLobbyFreshness({ thresholdMs: 10000 });
+
+function setLobbyStaleLine(seconds) {
+    const el = typeof document !== 'undefined' && typeof document.getElementById === 'function'
+        ? document.getElementById('home-players-stale') : null;
+    if (!el || !el.classList) return;
+    if (seconds == null) {
+        el.classList.add('hidden');
+        return;
+    }
+    el.textContent = '⚠️ ' + tr(
+        'admin.home.playersStale',
+        "Player list last updated {seconds} s ago. Home Assistant isn't answering; the list catches up on its own.",
+        { seconds }
+    );
+    el.classList.remove('hidden');
+}
+
 /**
  * Start polling for lobby state updates
  */
 function startLobbyPolling() {
     // Clear any existing interval
     stopLobbyPolling();
+    lobbyFreshness.reset();
 
     // Poll every 3 seconds (balanced between responsiveness and server load)
     lobbyPollingInterval = setInterval(async function() {
@@ -2518,14 +2539,18 @@ function startLobbyPolling() {
 
         try {
             var response = await fetch('/beatify/api/status');
-            if (!response.ok) return;
+            if (!response.ok) throw new Error('HTTP ' + response.status);
 
             var status = await response.json();
+            lobbyFreshness.ok();
+            setLobbyStaleLine(null);
             if (status.active_game && status.active_game.players) {
                 renderLobbyPlayers(status.active_game.players);
             }
         } catch (err) {
+            // #3390: say that the list is old instead of freezing silently.
             console.error('Lobby polling error:', err);
+            setLobbyStaleLine(lobbyFreshness.fail());
         }
     }, 3000);
 }
@@ -2538,6 +2563,7 @@ function stopLobbyPolling() {
         clearInterval(lobbyPollingInterval);
         lobbyPollingInterval = null;
     }
+    setLobbyStaleLine(null);
 }
 
 // ============================================
@@ -2688,7 +2714,13 @@ async function renderRequestsList() {
     // (list / empty-state / summary) was removed from admin.html; the home-view
     // request modal is now the sole surface. The backend load is kept for its
     // refresh side-effect; all DOM rendering below the old null guard was dead.
-    await window.PlaylistRequests.getRequestsForDisplayAsync();
+    // #3390: a failed load now rejects instead of pretending the list is
+    // empty. Nothing on this page draws the list, so a failure only logs.
+    try {
+        await window.PlaylistRequests.getRequestsForDisplayAsync();
+    } catch (e) {
+        console.warn('[Beatify] playlist requests did not load:', e);
+    }
 }
 
 // ============================================

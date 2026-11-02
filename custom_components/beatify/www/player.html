@@ -64,6 +64,8 @@
         <div id="loading-view" class="view">
             <div class="loading-spinner"></div>
             <p data-i18n="common.connecting">Connecting to game...</p>
+            <!-- #3390: shown after 5 s, so a slow Wi-Fi does not look like a hang -->
+            <p id="loading-slow-hint" class="hint hidden" data-i18n="join.slowHint">Taking longer than usual. The Wi-Fi may be slow.</p>
         </div>
 
         <!-- Cold-start bridge (#1287): animated vinyl disc while MA connects the
@@ -99,6 +101,34 @@
             <p data-i18n="errors.gameNotFoundHint">This game doesn't exist or the link is incorrect.</p>
             <p class="hint" data-i18n="errors.askHostQr">Ask the host for a new QR code.</p>
             <button id="refresh-btn" class="btn btn-primary btn-glow" data-i18n="common.retry">Try Again</button>
+        </div>
+
+        <!-- #3390: the status check never reached Home Assistant (offline,
+             wrong Wi-Fi, timeout). Not "game not found": the QR code is fine. -->
+        <div id="offline-view" class="view hidden">
+            <div class="error-icon">📶</div>
+            <h1 data-i18n="errors.offlineTitle">Can't reach the game</h1>
+            <p data-i18n="errors.offlineHint">Is your phone on the party Wi-Fi? Mobile data and guest Wi-Fi often can't reach the game.</p>
+            <p class="hint" data-i18n="errors.qrCodeIsFine">Your QR code is fine.</p>
+            <button id="offline-retry-btn" class="btn btn-primary btn-glow" data-i18n="common.retry">Try Again</button>
+        </div>
+
+        <!-- #3390: Home Assistant answered, but with an error (5xx). -->
+        <div id="ha-error-view" class="view hidden">
+            <div class="error-icon">⚠️</div>
+            <h1 data-i18n="errors.haErrorTitle">Home Assistant had a problem</h1>
+            <p data-i18n="errors.haErrorHint">The game couldn't be loaded. Wait a moment, then try again. If it keeps happening, tell the host.</p>
+            <p class="hint" data-i18n="errors.qrCodeIsFine">Your QR code is fine.</p>
+            <button id="ha-error-retry-btn" class="btn btn-primary btn-glow" data-i18n="common.retry">Try Again</button>
+        </div>
+
+        <!-- #3390: the server has no game any more (Home Assistant restarted or
+             the game was reset) while this phone was in it. -->
+        <div id="game-stopped-view" class="view hidden">
+            <div class="error-icon">⏹️</div>
+            <h1 data-i18n="errors.gameStoppedTitle">This game has ended</h1>
+            <p data-i18n="errors.gameStoppedHint">The game stopped in Home Assistant, for example after a restart. Once the host starts a new game, tap Join again.</p>
+            <button id="game-stopped-rejoin-btn" class="btn btn-primary btn-glow" data-i18n="errors.gameStoppedRejoin">Join again</button>
         </div>
 
         <!-- Error: Game ended -->

@@ -323,14 +323,31 @@ function _t(key, fallback, params) {
     return out;
 }
 
-async function _fetchStatus() {
+// #3390: a failed load is not an empty list. Each loader reports whether it
+// got an answer, so "No speakers found, install Music Assistant" is only shown
+// after Home Assistant really said "none" — never after it did not answer.
+let statusLoadFailed = false;
+let lightsLoadFailed = false;
+let ttsLoadFailed = false;
+
+/**
+ * GET a JSON endpoint and say whether it worked (#3390).
+ * @returns {Promise<{ok: boolean, data: any}>}
+ */
+export async function fetchJsonResult(url, fetchFn) {
     try {
-        const r = await fetch('/beatify/api/status');
-        if (!r.ok) return null;
-        return await r.json();
+        const r = await fetchFn(url);
+        if (!r.ok) return { ok: false, data: null };
+        return { ok: true, data: await r.json() };
     } catch (e) {
-        return null;
+        return { ok: false, data: null };
     }
+}
+
+async function _fetchStatus() {
+    const res = await fetchJsonResult('/beatify/api/status', (u) => fetch(u));
+    statusLoadFailed = !res.ok;
+    return res.ok ? res.data : null;
 }
 
 async function _fetchCapabilities() {
@@ -343,27 +360,49 @@ async function _fetchCapabilities() {
     }
 }
 
+// #3390: null (not []) on failure, so the next visit to step 5 asks again.
 async function _fetchLights() {
-    try {
-        const r = await BeatifyAuth.fetch('/beatify/api/lights');
-        if (!r.ok) return [];
-        const data = await r.json();
-        return (data && data.lights) || [];
-    } catch (e) {
-        return [];
-    }
+    const res = await fetchJsonResult('/beatify/api/lights', (u) => BeatifyAuth.fetch(u));
+    lightsLoadFailed = !res.ok;
+    if (!res.ok) return null;
+    return (res.data && res.data.lights) || [];
 }
 
 // #1073: list registered tts.* entities for the Step 5 dropdown picker.
 async function _fetchTtsEntities() {
-    try {
-        const r = await BeatifyAuth.fetch('/beatify/api/tts-entities');
-        if (!r.ok) return [];
-        const data = await r.json();
-        return (data && data.entities) || [];
-    } catch (e) {
-        return [];
+    const res = await fetchJsonResult('/beatify/api/tts-entities', (u) => BeatifyAuth.fetch(u));
+    ttsLoadFailed = !res.ok;
+    if (!res.ok) return null;
+    return (res.data && res.data.entities) || [];
+}
+
+/**
+ * The error block for a list that did not load (#3390): what happened, what
+ * to do, and a button that asks again. `kind` names the list for the button.
+ * Pure, exported for the tests.
+ */
+export function loadErrorHtml(kind, translate) {
+    const t = translate || _t;
+    const texts = {
+        speakers: [
+            t('wizard.loadError.speakersTitle', "Couldn't load your speakers"),
+            t('wizard.loadError.speakersHint', "Home Assistant didn't answer. Your speakers are probably fine. Try again."),
+        ],
+        lights: [
+            t('wizard.loadError.lightsTitle', "Couldn't load your lights"),
+            t('wizard.loadError.hint', "Home Assistant didn't answer. Try again."),
+        ],
+        tts: [
+            t('wizard.loadError.ttsTitle', "Couldn't load your voice services"),
+            t('wizard.loadError.hint', "Home Assistant didn't answer. Try again."),
+        ],
+    };
+    const [title, hint] = texts[kind] || texts.lights;
+    const retry = t('common.retry', 'Try Again');
+    if (kind === 'speakers') {
+        return `<div class="wiz-row" style="cursor:default" role="alert"><div class="wiz-row-text"><div class="wiz-row-name">${escapeText(title)}</div><div class="wiz-row-sub">${escapeText(hint)}</div></div><button type="button" class="btn btn-ghost" data-wiz-retry="speakers">${escapeText(retry)}</button></div>`;
     }
+    return `<div class="wiz-detail-empty" role="alert"><div>${escapeText(title)}</div><div>${escapeText(hint)}</div><button type="button" class="btn btn-ghost wiz-detail-test" data-wiz-retry="${escapeAttr(kind)}">${escapeText(retry)}</button></div>`;
 }
 
 // Hydrate level-up details from the existing admin localStorage shapes
@@ -613,6 +652,17 @@ function _renderSpeakers() {
     const list = document.getElementById('wiz-speaker-list');
     if (!list) return;
     const players = (cachedStatus && cachedStatus.media_players) || [];
+    if (players.length === 0 && statusLoadFailed) {
+        // #3390: Home Assistant did not answer — not "no speakers".
+        list.innerHTML = loadErrorHtml('speakers');
+        list.querySelector('[data-wiz-retry="speakers"]')?.addEventListener('click', async () => {
+            cachedStatus = await _fetchStatus();
+            _renderSpeakers();
+            _renderProviders();
+            _updateCta();
+        });
+        return;
+    }
     if (players.length === 0) {
         list.innerHTML = `<div class="wiz-row" style="cursor:default"><div class="wiz-row-text"><div class="wiz-row-name">${_t(
             'wizard.step1.empty',
@@ -1687,6 +1737,10 @@ function _renderGameMode() {
 
 function _lightsDetailHtml() {
     const lights = cachedLights || [];
+    // #3390: a failed load gets its own block instead of "No lights available".
+    if (lightsLoadFailed && cachedLights === null) {
+        return `<div class="wiz-detail"><div class="wiz-field">${loadErrorHtml('lights')}</div></div>`;
+    }
     const rows = lights.length
         ? lights.map((l) => {
               const checked = chosenLightEntityIds.has(l.entity_id) ? 'checked' : '';
@@ -1777,7 +1831,9 @@ function _ttsDetailHtml() {
     const staleOpt = (chosenTtsEntityId && !known.has(chosenTtsEntityId))
         ? `<option value="${escapeAttr(chosenTtsEntityId)}" selected>${escapeText(chosenTtsEntityId)} ${_t('wizard.step5.tts.entityStale', '(not currently registered)')}</option>`
         : '';
-    const placeholderLabel = entities.length === 0
+    // #3390: "add one in HA first" only when HA said there are none.
+    const ttsFailed = ttsLoadFailed && cachedTtsEntities === null;
+    const placeholderLabel = entities.length === 0 && !ttsFailed
         ? _t('wizard.step5.tts.entityNone', 'No TTS entities — add one in HA first')
         : _t('wizard.step5.tts.entityPlaceholder', '— Select TTS entity —');
     const entityFieldHtml = `
@@ -1790,6 +1846,7 @@ function _ttsDetailHtml() {
         <div class="wiz-detail">
           <div class="wiz-field">
             <span class="wiz-field-label">${_t('wizard.step5.tts.entityLabel', 'TTS service (entity ID)')}</span>
+            ${ttsFailed ? loadErrorHtml('tts') : ''}
             ${entityFieldHtml}
             <span class="wiz-field-hint">${_t('wizard.step5.tts.entityHint', "No TTS service yet? In Home Assistant: Settings → Devices & Services → Add Integration → 'Google Translate text-to-speech' (free, no API key). It will then appear in this list.")}</span>
             <button type="button" id="wiz-tts-test" class="btn btn-ghost wiz-detail-test" ${chosenTtsEntityId ? '' : 'disabled'}>
@@ -1858,6 +1915,15 @@ function _renderLevelUp() {
         head.addEventListener('click', () => {
             const key = card.dataset.levelup;
             chosenLevelUps[key] = !chosenLevelUps[key];
+            _renderLevelUp();
+        });
+    });
+
+    // #3390: "Try again" on a list that did not load.
+    list.querySelectorAll('[data-wiz-retry]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+            if (btn.dataset.wizRetry === 'lights') cachedLights = await _fetchLights();
+            if (btn.dataset.wizRetry === 'tts') cachedTtsEntities = await _fetchTtsEntities();
             _renderLevelUp();
         });
     });
