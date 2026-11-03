@@ -140,8 +140,8 @@ describe('#1927 speakerLabelFor', () => {
         expect(speakerLabelFor('media_player.esszimmer', players)).toBe('🔊 Esszimmer');
     });
 
-    it('falls back to the entity_id when the player list has no match yet', () => {
-        expect(speakerLabelFor('media_player.kuche_2', [])).toBe('🔊 media_player.kuche_2');
+    it('falls back to a readable form of the entity_id when the list has no match yet (#3396)', () => {
+        expect(speakerLabelFor('media_player.kuche_2', [])).toBe('🔊 Kuche 2');
     });
 
     it('says so when no speaker is resolved', () => {
