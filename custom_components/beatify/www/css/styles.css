@@ -2130,14 +2130,16 @@ body.theme-dark .final-score {
 }
 
 /* Dark theme new game button */
+/* #3395: secondary action next to the magenta Rematch button - surface tokens,
+   no neon green, no glow. */
 body.theme-dark .new-game-btn {
-    background: var(--color-success-neon);
-    color: var(--color-bg-primary);
-    box-shadow: var(--glow-success);
+    background: var(--color-dark-surface);
+    color: var(--color-text-white);
+    border: 1px solid var(--color-border-neon);
 }
 
 body.theme-dark .new-game-btn:hover {
-    background: #4dff1f;
+    background: var(--color-dark-surface-hover);
 }
 
 /* Dark theme end player message */
@@ -8960,7 +8962,7 @@ body.energy-party .year-display {
 
 .steal-modal-content {
     position: relative;
-    background: var(--color-bg-card);
+    background: var(--color-surface-dark);
     border: 2px solid var(--color-purple-primary, #8b5cf6);
     border-radius: var(--radius-xl);
     padding: var(--space-lg);
@@ -8973,13 +8975,13 @@ body.energy-party .year-display {
 .steal-modal-title {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
+    color: var(--color-text-white);
     margin-bottom: var(--space-xs);
 }
 
 .steal-modal-subtitle {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
+    color: var(--color-text-neon-muted);
     margin-bottom: var(--space-md);
 }
 
@@ -8997,7 +8999,7 @@ body.energy-party .year-display {
     background: var(--color-bg-surface);
     border: 1px solid var(--color-accent-secondary);
     border-radius: var(--radius-md);
-    color: var(--color-text-primary);
+    color: var(--color-text-white);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
@@ -9011,7 +9013,7 @@ body.energy-party .year-display {
 }
 
 .steal-no-targets {
-    color: var(--color-text-muted);
+    color: var(--color-text-neon-muted);
     font-size: var(--font-size-sm);
     padding: var(--space-md);
 }
@@ -9081,7 +9083,7 @@ body.energy-party .year-display {
 
 /* Dark mode adjustments */
 body.theme-dark .steal-modal-content {
-    background: var(--color-bg-card);
+    background: var(--color-surface-dark);
 }
 
 body.theme-dark .steal-target-btn {
