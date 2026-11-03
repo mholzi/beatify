@@ -292,6 +292,28 @@ class TestRecordSongResult:
         assert song["total_guesses"] == 2
 
     @pytest.mark.asyncio
+    async def test_round_log_reports_this_round_not_lifetime_totals(self, caplog):
+        """A round with no submissions logs 0 guesses, 0 correct (#3397)."""
+        uri = "spotify:track:abc123"
+        with patch.object(self.service, "save", new_callable=AsyncMock):
+            await self.service.record_song_result(
+                uri,
+                [
+                    {"submitted": True, "years_off": 0},
+                    {"submitted": True, "years_off": 9},
+                ],
+            )
+            caplog.clear()
+            with caplog.at_level("DEBUG", logger="custom_components.beatify"):
+                await self.service.record_song_result(
+                    uri, [{"submitted": False, "years_off": 0}]
+                )
+        msgs = [
+            r.getMessage() for r in caplog.records if "Recorded song" in r.getMessage()
+        ]
+        assert msgs and msgs[-1].endswith("0 guesses, 0 correct")
+
+    @pytest.mark.asyncio
     async def test_exact_match_tracked(self):
         player_results = [{"submitted": True, "years_off": 0}]
         with patch.object(self.service, "save", new_callable=AsyncMock):

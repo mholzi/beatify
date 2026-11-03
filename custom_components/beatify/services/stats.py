@@ -682,8 +682,11 @@ class StatsService:
         close_range = scoring.get("close_range", 3)
 
         # Process player results
+        round_guesses = 0
+        round_correct = 0
         for result in player_results:
             if result.get("submitted"):
+                round_guesses += 1
                 song["total_guesses"] += 1
                 years_off = result.get("years_off", 0)
                 song["total_years_off"] += years_off
@@ -692,12 +695,15 @@ class StatsService:
                 if years_off == 0:
                     song["exact_matches"] = song.get("exact_matches", 0) + 1
                     song["correct_guesses"] += 1
+                    round_correct += 1
                 # Close match - within difficulty tolerance (Story 19.7 AC5)
                 elif years_off <= close_range:
                     song["close_matches"] = song.get("close_matches", 0) + 1
                     song["correct_guesses"] += 1
+                    round_correct += 1
                 elif years_off <= CORRECT_GUESS_THRESHOLD:
                     song["correct_guesses"] += 1
+                    round_correct += 1
 
         # Schedule deferred save (non-blocking)
         self.schedule_save()
@@ -705,8 +711,8 @@ class StatsService:
         _LOGGER.debug(
             "Recorded song result for %s: %d guesses, %d correct",
             song_key,
-            song["total_guesses"],
-            song["correct_guesses"],
+            round_guesses,
+            round_correct,
         )
 
     def get_song_difficulty(self, song_uri: str) -> dict[str, Any] | None:
