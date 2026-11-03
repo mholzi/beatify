@@ -1,6 +1,6 @@
 {
   "name": "Animés-Séries 80-90",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "tv-themes",
     "cartoons",
@@ -24,7 +24,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1780485732"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EV_aHdpj23g",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/97792162",
       "fun_fact": "Theme song of 'Nicky Larson', first aired in 1990.",
@@ -43,7 +43,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/901926605"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jI_WOchL9CU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/81670580",
       "fun_fact": "Theme song of 'Inspecteur Gadget', first aired in 1983.",
@@ -59,7 +59,7 @@
       "isrc": "FR6F31506740",
       "uri": "spotify:track:0pZDgWEVktxUWL1XghB3G8",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Dnk85_SgBIo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/108479442",
       "fun_fact": "Theme song of 'Barbapapa', first aired in 1974.",
@@ -78,7 +78,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/364872867"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dn2vyORpuyw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/5703447",
       "fun_fact": "Song from the animated film 'Asterix and Cleopatra', released in 1968.",
@@ -94,7 +94,7 @@
       "isrc": "FRE428801980",
       "uri": "spotify:track:3z8AzXzZzDyyQ8uC3zGaG3",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KUBnnrvTC2o",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/16576211",
       "fun_fact": "Theme song of 'Dragon Ball', first aired in 1988.",
@@ -113,7 +113,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1498054808"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=234a0963oVw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/8134110",
       "fun_fact": "Theme song of 'Les Chevaliers du Zodiaque', first aired in 1988.",
@@ -132,7 +132,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1469429736"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_ciu7z4ELHE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/66114627",
       "fun_fact": "Theme song of 'Capitaine Flam', first aired in 1981.",
@@ -148,7 +148,7 @@
       "isrc": "FRY510882132",
       "uri": "spotify:track:3r0ujXoWk0CkvjMXM2ouaz",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E7PyfMeGnU0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1437037",
       "fun_fact": "Theme song of 'L'Île aux enfants', first aired in 1974.",
@@ -167,7 +167,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/901946087"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=X9fKnA6-JIw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/81670594",
       "fun_fact": "Theme song of 'Les Mystérieuses Cités d'or', first aired in 1983.",
@@ -183,7 +183,7 @@
       "isrc": "FRX089850120",
       "uri": "spotify:track:3YYJqoSGGIMSZcRkN64MvF",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0bJvIhYtPmA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1900117907",
       "fun_fact": "Theme song of 'Albator', first aired in 1980.",
@@ -199,7 +199,7 @@
       "isrc": "FRE428901760",
       "uri": "spotify:track:5rzKy9rRpwt5cVYIveI4JS",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p14y0lqVp9o",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/6473904",
       "fun_fact": "Theme song of 'Ken le Survivant', first aired in 1988.",
@@ -218,7 +218,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/979552686"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cl32FISycTo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/97879694",
       "fun_fact": "Theme song of 'Les Entrechats', first aired in 1985.",
@@ -234,7 +234,7 @@
       "isrc": "FRY510882090",
       "uri": "spotify:track:4IxioOA8H1anaL7NoLMOyk",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vhuZm-vMNUg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1436685",
       "fun_fact": "Theme song of 'Olive et Tom', first aired in 1988.",
@@ -253,7 +253,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1269735689"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=x83lxLWZLRE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/393264072",
       "fun_fact": "Theme song of 'Goldorak', first aired in 1978.",
@@ -272,7 +272,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/901944621"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jD9j-GuZpdY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/81670592",
       "fun_fact": "Theme song of 'Les Minipouss', first aired in 1984.",
@@ -288,7 +288,7 @@
       "isrc": "FRX089750268",
       "uri": "spotify:track:1VPipvzCBa1CpYag3Z1hRC",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CNvbfvbxsjg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/5933158",
       "fun_fact": "Theme song of 'Lady Oscar', first aired in 1986.",
@@ -307,7 +307,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/537262321"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6EKxv_n1h5U",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/38892061",
       "fun_fact": "Theme song of 'Judo Boy', first aired in 1984.",
@@ -326,7 +326,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1252952723"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Kvo-6jpZDuo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/377433551",
       "fun_fact": "Theme song of 'Starsky et Hutch', first aired in 1978.",
@@ -345,7 +345,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/915842503"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KK7W4ZNH98E",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/84797001",
       "fun_fact": "Theme song of 'L'Amour du risque', first aired in 1982.",
@@ -361,7 +361,7 @@
       "isrc": "FRX089750275",
       "uri": "spotify:track:5e9U1UsLL2uBLNMgINf5Jz",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nsrMTVMD-Bo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1900117937",
       "fun_fact": "Theme song of 'X-Or', first aired in 1983.",
@@ -377,7 +377,7 @@
       "isrc": "FRY510884082",
       "uri": "spotify:track:2Z6gUtd2GrYios7wZSwVlG",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iC2VvWPLPK8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2414196",
       "fun_fact": "Theme song of 'Supercopter', first aired in 1986.",
@@ -396,7 +396,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/901926681"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=A0uVdLyjLcw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/81670584",
       "fun_fact": "Theme song of 'L'Homme qui tombe à pic', first aired in 1982.",
@@ -412,7 +412,7 @@
       "isrc": "FR8GV2100210",
       "uri": "spotify:track:5tVRjfTUDthM9hRMvcshoA",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4XguTcMO1uw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1205075042",
       "fun_fact": "Theme song of 'Rémi sans famille', first aired in 1982.",
@@ -428,7 +428,7 @@
       "isrc": "FR8GV2100320",
       "uri": "spotify:track:7iMKr5W4L263coJmeQq98E",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fuxtyH1tRpg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1205075332",
       "fun_fact": "Theme song of 'Sandokan', first aired in 1976.",
@@ -444,7 +444,7 @@
       "isrc": "FR8GV2100340",
       "uri": "spotify:track:0GvOYcu4CpencfthBguxeo",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7QzmQTLi9is",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1222154212",
       "fun_fact": "Theme song of 'Magnum', first aired in 1980.",
@@ -460,7 +460,7 @@
       "isrc": "FR8GV2100360",
       "uri": "spotify:track:3fwp8tCJ5ZIhAp8367Wco3",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iAm35zAyOxc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1205075402",
       "fun_fact": "Theme song of 'Cosmocats', first aired in 1986.",
@@ -479,7 +479,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1498054822"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gb1z4CITPIc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/8134113",
       "fun_fact": "Theme song of 'Les Samouraïs de l'éternel', first aired in 1990.",
@@ -498,7 +498,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1780485736"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NHTsfjRUHVU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/95460102",
       "fun_fact": "Theme song of 'Ranma 1/2', first aired in 1992.",
@@ -517,7 +517,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1780485940"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mJx0NQsmbL8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/621528182",
       "fun_fact": "Theme song of 'Juliette je t'aime', first aired in 1988.",
@@ -533,7 +533,7 @@
       "isrc": "FRY510884079",
       "uri": "spotify:track:4B1LQ18CADGh1tqwrQ06df",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=14C20I4kDlA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2414192",
       "fun_fact": "Theme song of 'Thierry la Fronde', first aired in 1963.",
@@ -549,7 +549,7 @@
       "isrc": "FRY510884089",
       "uri": "spotify:track:1CtrF7WEZckCPeCK3RJZJJ",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Z86a-snDONk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2414204",
       "fun_fact": "Theme song of 'Alf', first aired in 1988.",
@@ -565,7 +565,7 @@
       "isrc": "FRY510884019",
       "uri": "spotify:track:601IS7IB6P5BGwhr9Zdlgs",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uKhukE8XF1E",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2578365",
       "fun_fact": "Theme song of 'Amicalement vôtre', first aired in 1972.",
@@ -581,7 +581,7 @@
       "isrc": "FRY510884026",
       "uri": "spotify:track:3hmyRLybGRhLDKX3fcxuh9",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-aMCzRj3Syg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2578372",
       "fun_fact": "Theme song of 'Deux flics à Miami', first aired in 1986.",
@@ -597,7 +597,7 @@
       "isrc": "FRY510884066",
       "uri": "spotify:track:7363yZpOqz7MuE9i9Yk6hq",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JDOrOMuo-9o",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2578327",
       "fun_fact": "Theme song of 'Beverly Hills 90210', first aired in 1993.",
@@ -613,7 +613,7 @@
       "isrc": "FRY510884074",
       "uri": "spotify:track:433uX8XuN7f2m2Xi3Db9Hu",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9EX-xNCKH7A",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2578335",
       "fun_fact": "Theme song of 'Columbo', first aired in 1972.",
@@ -645,7 +645,7 @@
       "isrc": "FRY510882136",
       "uri": "spotify:track:1q0X5GbClZQH9EfbapVI6B",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IwMdUXoLl_0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1437086",
       "fun_fact": "Theme song of 'Mon petit poney', first aired in 1987.",
@@ -661,7 +661,7 @@
       "isrc": "FRY510882103",
       "uri": "spotify:track:6bOFyEqPKqOPNcx9wSdmLI",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1Skr6aaZ6MI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1436847",
       "fun_fact": "Theme song of 'Les Schtroumpfs', first aired in 1982.",
@@ -677,7 +677,7 @@
       "isrc": "FRY510882105",
       "uri": "spotify:track:6lWG2RcCHaznDkcLeaBPMF",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rI6nFit-1DI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1436879",
       "fun_fact": "Theme song of 'Jeu, set et match', first aired in 1988.",
@@ -693,7 +693,7 @@
       "isrc": "FRY510882110",
       "uri": "spotify:track:5Vn9AHtRdQMTIMlUeJGBvE",
       "uri_apple_music": null,
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yWlPQvxaeGs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1436939",
       "fun_fact": "Theme song of 'Lamu', first aired in 1988.",
