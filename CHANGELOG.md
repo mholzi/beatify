@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc4] - 2026-11-03
+
+Fourth candidate for 4.8.8: clearer, calmer screens on every device.
+
+### Changed
+- **One shared design system** (#3387): phone, admin and TV use the same tokens, and the main button fill now meets AA contrast.
+- **Copy that tells you what to do next** (#3386): host errors name a next step, each thing has one name everywhere, and remaining hard-coded strings moved into all six languages.
+- **Honest states** (#3390): join errors say what went wrong, the TV notices when it loses the game, and admin errors no longer look like an empty list.
+- **Easier input** (#3391): the year slider spans the full width, the name field works with the keyboard, and steal is one tap with a 3-second undo.
+
+### Fixed
+- **Best Canadian Hits** (#3384): 5 broken Tidal links and 9 stale Apple Music entries repaired.
+
 ## [4.8.8-rc3] - 2026-11-02
 
 Third candidate for 4.8.8: the round now moves for each player too.
