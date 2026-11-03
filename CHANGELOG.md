@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc5] - 2026-11-03
+
+Fifth candidate for 4.8.8: four fixes from the rc4 live test.
+
+### Fixed
+- **End screen and steal picker** (#3395): Start New Game and the steal target picker use the shared design tokens instead of neon green and a light card.
+- **Room card after a failed create** (#3396): a network error shows a retry instead of hanging on "Creating room…", Start stays disabled until the room exists, and the speaker shows a readable name.
+- **Round stats log** (#3397): the log line counts this round's guesses, not the song's lifetime totals.
+- **Long names in the TV lobby** (#3398): the name wall uses fewer, wider columns so names are not cut off.
+
 ## [4.8.8-rc4] - 2026-11-03
 
 Fourth candidate for 4.8.8: clearer, calmer screens on every device.
