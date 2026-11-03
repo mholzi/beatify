@@ -34,7 +34,7 @@ import { STORAGE_LAST_PLAYER, STORAGE_GAME_SETTINGS } from './admin/constants.js
 import { MAX_NAME_LENGTH, normalizeSampleDuration } from './game-constants.js';
 // #1927: reconcile the server-side setup blob with this browser's localStorage
 // so a stale local speaker can no longer outlive a newer pick from another device.
-import { reconcileSavedSetup, speakerLabelFor } from './admin/setup-sync.js';
+import { reconcileSavedSetup, speakerLabelFor, roomCardFailure } from './admin/setup-sync.js';
 // #1402 B7: consolidated modal Escape-close registry (replaces 3 duplicate
 // document keydown listeners; adds Escape to the reset + request modals).
 import { registerModalClose, setupModalEscapeHandler } from './admin/modal-escape.js';
@@ -595,7 +595,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         },
         async startSession() {
             const loading = document.getElementById('home-qr-loading');
-            if (loading) loading.classList.remove('hidden');
+            const startBtn = document.getElementById('home-start-game');
+            if (loading) {
+                // #3396: a retry after a failed create starts from the plain
+                // "Creating room…" line again, not the error text.
+                loading.textContent = tr('admin.home.qrLoading', 'Creating room…');
+                loading.setAttribute('data-i18n', 'admin.home.qrLoading');
+                loading.removeAttribute('role');
+                loading.removeAttribute('tabindex');
+                loading.classList.remove('hidden');
+            }
+            // #3396: no room yet, nothing to start.
+            if (startBtn) startBtn.disabled = true;
+            adminState._createFailure = null;
             try {
                 // Guard: startGame() reads adminState.selectedPlaylists/adminState.selectedMediaPlayer from module globals.
                 // Those globals are populated by loadStatus() on page load, which runs before enter().
@@ -603,10 +615,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (err) {
                 console.warn('[Beatify] Home auto-start failed:', err);
             }
+            this.settleRoomCard();
+        },
+        // #3396: startGame() has settled. If no room came out of it, the card
+        // must not keep saying "Creating room…" with Start enabled.
+        settleRoomCard() {
+            const outcome = roomCardFailure(
+                adminState.currentGame, !!adminState._startInFlight, adminState._createFailure);
+            if (outcome === 'none') return;
+            const loading = document.getElementById('home-qr-loading');
+            const startBtn = document.getElementById('home-start-game');
+            if (outcome === 'rejected') {
+                // The server's reason is on screen as the setup banner; Start
+                // stays usable as the retry.
+                if (loading) loading.classList.add('hidden');
+                if (startBtn) startBtn.disabled = false;
+                return;
+            }
+            if (startBtn) startBtn.disabled = true;
+            if (!loading) return;
+            loading.textContent = tr('errors.networkRetry', 'Network error. Please try again.');
+            loading.removeAttribute('data-i18n');
+            loading.setAttribute('role', 'button');
+            loading.setAttribute('tabindex', '0');
+            loading.classList.remove('hidden');
+            if (!loading.dataset.retryBound) {
+                loading.dataset.retryBound = '1';
+                const retry = () => {
+                    if (loading.getAttribute('role') === 'button') window.BeatifyHome.startSession();
+                };
+                loading.addEventListener('click', retry);
+                loading.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); retry(); }
+                });
+            }
         },
         renderSession(gameData) {
             const loading = document.getElementById('home-qr-loading');
             if (loading) loading.classList.add('hidden');
+            // #3396: a room exists, Start is meaningful again.
+            adminState._createFailure = null;
+            const startNow = document.getElementById('home-start-game');
+            if (startNow) startNow.disabled = false;
 
             // Render the actual QR using the shared QRCode library.
             const qrContainer = document.getElementById('home-qr-code');
@@ -1617,6 +1667,7 @@ async function startGame() {
         connectAdminWebSocket();
 
     } catch (err) {
+        adminState._createFailure = 'network';  // #3396
         showError(tr('errors.networkRetry', 'Network error. Please try again.'));
         console.error('Start game error:', err);
     } finally {

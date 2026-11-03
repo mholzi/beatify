@@ -101,5 +101,41 @@ export function speakerLabelFor(entityId, mediaPlayers, t) {
         return `🔊 ${translate('admin.home.noSpeaker', 'no speaker')}`;
     }
     const match = (mediaPlayers || []).find((p) => p && p.entity_id === entityId);
-    return `🔊 ${(match && match.friendly_name) || entityId}`;
+    return `🔊 ${(match && match.friendly_name) || readableEntityId(entityId)}`;
+}
+
+/**
+ * #3396: a speaker whose friendly name is not known (the list did not load)
+ * used to be printed as the raw entity id, which the card's uppercase styling
+ * turned into `MEDIA_PLAYER.ESSZIMMER`. Drop the domain and spell the object id
+ * as words: `media_player.living_room` -> `Living Room`.
+ *
+ * @param {string} entityId
+ * @returns {string}
+ */
+export function readableEntityId(entityId) {
+    const id = String(entityId || '');
+    const object = id.includes('.') ? id.slice(id.indexOf('.') + 1) : id;
+    const words = object.split('_').filter(Boolean)
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1));
+    return words.length ? words.join(' ') : id;
+}
+
+/**
+ * #3396: what the home room card shows once `startGame()` has settled.
+ *
+ * `'network'` - the request never got an answer: show the error with a retry,
+ *   keep Start off (there is no room to start).
+ * `'rejected'` - the server answered no; its own banner carries the reason, the
+ *   card only stops saying "Creating room...".
+ * `'none'` - a room exists (or a create is still running): leave the card alone.
+ *
+ * @param {{join_url?: string}|null|undefined} game - `adminState.currentGame`.
+ * @param {boolean} inFlight - another create is still pending.
+ * @param {string|null|undefined} failure - `adminState._createFailure`.
+ * @returns {'none'|'network'|'rejected'}
+ */
+export function roomCardFailure(game, inFlight, failure) {
+    if (inFlight || (game && game.join_url)) return 'none';
+    return failure === 'network' ? 'network' : 'rejected';
 }
