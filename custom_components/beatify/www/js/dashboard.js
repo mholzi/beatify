@@ -1321,12 +1321,27 @@
      * so the right half stays filled without scrolling for a normal party.
      *
      * @param {number} count - players in the lobby
-     * @returns {number} 3, 4 or 5
+     * @param {Array<string>} [names] - player names; long ones lower the count (#3398)
+     * @returns {number} 2, 3, 4 or 5
      */
-    function lobbyWallColumns(count) {
-        if (count >= 13) return 5;
-        if (count >= 7) return 4;
-        return 3;
+    function lobbyWallColumns(count, names) {
+        var cols = 3;
+        if (count >= 13) cols = 5;
+        else if (count >= 7) cols = 4;
+        // #3398: a tile is only as wide as its column, so on a wide-but-few wall
+        // a name like "QA-Tester" was cut to "QA-Te…" while the screen had
+        // room. Step down to fewer, wider columns until the longest name fits.
+        // Budgets are characters per column count, kept on the safe side for
+        // the wide display font.
+        var budget = { 2: 12, 3: 7, 4: 6, 5: 6 };
+        var longest = 0;
+        (Array.isArray(names) ? names : []).forEach(function(n) {
+            longest = Math.max(longest, String(n == null ? '' : n).length);
+        });
+        // Two columns only while the wall stays short enough not to scroll.
+        var minCols = count > 8 ? 3 : 2;
+        while (cols > minCols && longest > budget[cols]) cols--;
+        return cols;
     }
 
     /**
@@ -1478,7 +1493,7 @@
         }).join('\u0001');
         if (listEl.getAttribute('data-wall') === signature) return;
         listEl.setAttribute('data-wall', signature);
-        listEl.setAttribute('data-cols', String(lobbyWallColumns(sortedPlayers.length)));
+        listEl.setAttribute('data-cols', String(lobbyWallColumns(sortedPlayers.length, sortedPlayers.map(function(p) { return p.name; }))));
 
         // Index the tiles already on screen by player name.
         var existing = {};

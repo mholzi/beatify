@@ -402,6 +402,9 @@
     --tile-pad-y: 0.9vw;
     --tile-pad-x: 1.2vw;
 }
+.dashboard-player-list[data-cols="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .dashboard-player-list[data-cols="4"] {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     --tile-avatar: 2.9vw;
