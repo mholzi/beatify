@@ -244,6 +244,7 @@ class GameSetupMixin(GameStateBase):
         # await from a prior game/session.
         self._game_epoch += 1
         self.game_id = secrets.token_urlsafe(8)
+        self.reported_songs: set[str] = set()  # #2688
         self.rematched_from_game_id = None  # #2947: a new game has no predecessor
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
         self._set_phase(GamePhase.LOBBY)
@@ -518,6 +519,7 @@ class GameSetupMixin(GameStateBase):
             await self.disable_tts()
             self._reset_game_internals()
             self.game_id = None
+            self.reported_songs = set()  # #2688
             self.rematched_from_game_id = None  # #2947
             self._set_phase(GamePhase.LOBBY, notify=False)
             self.players = {}
@@ -710,6 +712,7 @@ class GameSetupMixin(GameStateBase):
         # (QR scanned during the podium) can be led into this lobby.
         self.rematched_from_game_id = self.game_id
         self.game_id = secrets.token_urlsafe(8)
+        self.reported_songs = set()  # #2688: a rematch is a new game
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386
 
         # Regenerate join_url with new game_id

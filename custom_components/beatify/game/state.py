@@ -311,6 +311,11 @@ class GameState(
         self._service_factories = service_factories or GameOutputFactories()
         self._hass: HomeAssistant | None = None
         self.game_id: str | None = None
+        # #2688: songs already reported as wrong data in this game. Joining
+        # needs nothing but a name, so the per-player cap (#2579) alone lets one
+        # phone with twenty names file twenty issues per reveal. Reset with
+        # every new game_id.
+        self.reported_songs: set[str] = set()
         self.admin_token: str | None = None  # Issue #386: REST admin auth
         # #2947: the game_id this game replaced through a rematch. A guest who
         # scanned the QR code during the podium still holds that id; the

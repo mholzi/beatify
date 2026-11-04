@@ -224,6 +224,18 @@ async def handle_report_data(
         await ws.send_json({"type": "report_data_ack", "flagged_for_host": True})
         return
 
+    # #2688: one report per song per game. The per-player cap above is not
+    # enough on its own, because a player costs nothing but a name: one phone
+    # can open twenty sockets and file twenty public issues per reveal. The
+    # first report carries the signal; every further one for the same song
+    # would only be a duplicate issue.
+    song_key = f"{artist}\x1f{title}".casefold()
+    if song_key in game_state.reported_songs:
+        _LOGGER.debug("Ignoring repeat data report for %s — %s", artist, title)
+        await ws.send_json({"type": "report_data_ack", "duplicate": True})
+        return
+    game_state.reported_songs.add(song_key)
+
     report = {
         "date": datetime.now(timezone.utc).isoformat(),
         "artist": artist,
