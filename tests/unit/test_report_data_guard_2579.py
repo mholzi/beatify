@@ -38,6 +38,7 @@ def _aufbau(runde: int = 7):
     gs.phase = GamePhase.REVEAL
     gs.round = runde
     gs.game_id = "g1"
+    gs.reported_songs = set()  # #2688
     gs.get_player_by_ws = MagicMock(return_value=spieler)
     gs.current_song = {
         "artist": "Joe Cocker",
@@ -98,6 +99,8 @@ class TestOneReportPerRound:
         handler.hass.async_add_executor_job.reset_mock()
 
         gs.round = 8
+        # A new round plays a new song; the same song is gated by #2688.
+        gs.current_song = {"artist": "Nena", "title": "99 Luftballons", "year": 1983}
         await handle_report_data(handler, ws, {}, gs)
 
         handler.hass.async_add_executor_job.assert_awaited_once()
