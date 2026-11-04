@@ -244,7 +244,7 @@ class GameSetupMixin(GameStateBase):
         # await from a prior game/session.
         self._game_epoch += 1
         self.game_id = secrets.token_urlsafe(8)
-        self.reported_songs = set()  # #2688
+        self.reported_songs: set[str] = set()  # #2688
         self.rematched_from_game_id = None  # #2947: a new game has no predecessor
         self.admin_token = secrets.token_urlsafe(16)  # Issue #386: REST admin auth
         self._set_phase(GamePhase.LOBBY)
