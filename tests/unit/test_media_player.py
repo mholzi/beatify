@@ -2066,6 +2066,36 @@ class TestWaitForMetadataUpdateAlbumArt:
         assert result["album_art"] == "/api/media_player_proxy/x?token=old"
 
     @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        ("title", "level"),
+        [("Old", "DEBUG"), ("Unknown Title", "WARNING")],
+    )
+    async def test_timeout_fallback_log_level_3412(self, caplog, title, level):
+        """#3412: a routine timeout fallback is debug; warn only without a title."""
+        import logging
+
+        state = _art_state(
+            title=title,
+            content_id="spotify:track:OLD",
+            entity_picture="/api/media_player_proxy/x?token=old",
+        )
+        svc, _box = self._service_with_states(state)
+
+        with (
+            caplog.at_level(logging.DEBUG),
+            patch(_TRACK_PATH, side_effect=lambda *a, **k: MagicMock()),
+            patch(
+                "custom_components.beatify.services.media_player.METADATA_WAIT_TIMEOUT",
+                0.05,
+            ),
+        ):
+            await svc.wait_for_metadata_update("spotify:track:NEW")
+
+        recs = [r for r in caplog.records if "Metadata not updated" in r.getMessage()]
+        assert recs
+        assert all(r.levelname == level for r in recs)
+
+    @pytest.mark.asyncio
     async def test_transient_entity_picture_flicker_is_ignored(self):
         """#1260 follow-up: art goes old → placeholder → real cover across
         events. The guard skips the transient placeholder and surfaces the
