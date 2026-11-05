@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc7] - 2026-11-05
+
+Seventh candidate for 4.8.8: a quieter log.
+
+### Fixed
+- **Log noise** (#3412): the routine "metadata not updated" timeout is now logged at debug level instead of as a warning in nearly every round.
+
 ## [4.8.8-rc6] - 2026-11-05
 
 Sixth candidate for 4.8.8: hardened song reports and two fixed song links.
