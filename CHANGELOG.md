@@ -4,6 +4,14 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8-rc6] - 2026-11-05
+
+Sixth candidate for 4.8.8: hardened song reports and two fixed song links.
+
+### Fixed
+- **Song reports** (#2688): a song can be reported as wrong once per game, however many names a guest joins with.
+- **Song links** (#3404, #3407): a broken YouTube Music link in Deutschrock Best Of and a broken Tidal link in Québécois 1990-2020.
+
 ## [4.8.8-rc5] - 2026-11-03
 
 Fifth candidate for 4.8.8: four fixes from the rc4 live test.
