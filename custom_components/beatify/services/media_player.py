@@ -673,11 +673,22 @@ class MediaPlayerService:
                             METADATA_WAIT_TIMEOUT,
                         )
                         return art_metadata
-                    _LOGGER.warning(
-                        "Metadata not updated within %.1fs, using current state",
-                        METADATA_WAIT_TIMEOUT,
-                    )
-                    return await self.get_metadata()
+                    # #3412: on Music Assistant + Spotify the state often already
+                    # carries the right track by the time this times out, so the
+                    # fallback is routine. Only warn when it has no usable title.
+                    fallback = await self.get_metadata()
+                    if fallback.get("title") in (None, "", "Unknown Title"):
+                        _LOGGER.warning(
+                            "Metadata not updated within %.1fs and the current "
+                            "state has no track title",
+                            METADATA_WAIT_TIMEOUT,
+                        )
+                    else:
+                        _LOGGER.debug(
+                            "Metadata not updated within %.1fs, using current state",
+                            METADATA_WAIT_TIMEOUT,
+                        )
+                    return fallback
 
             elapsed = asyncio.get_event_loop().time() - start_time
             current_state = self._hass.states.get(self._entity_id)
