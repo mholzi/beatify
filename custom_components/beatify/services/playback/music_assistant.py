@@ -83,7 +83,11 @@ MA_CANCEL_TIMEOUT = 3.0
 # confirmed. MA's Apple Music limiter runs up to ~65 s. 120 s from the moment
 # Beatify gave up covers both with room to spare; past it, an old request is
 # not worth watching for.
-MA_STALE_START_WINDOW = 120.0
+#
+# #3418: widened to 300 s. The v4.8.8-rc7 live test (Spotify, heavy rate
+# limiting) saw an abandoned start land 184 s after Beatify gave up, 64 s past
+# the old window, and the round was then scored against the wrong song.
+MA_STALE_START_WINDOW = 300.0
 # #3278: at most this many corrections per confirmed start, so a speaker that
 # keeps flipping cannot turn the guard into a play_media loop.
 MA_STALE_START_MAX_CORRECTIONS = 3
@@ -1562,6 +1566,41 @@ class MusicAssistantStrategy(PlaybackStrategy):
             # recovery banner within seconds instead of silently burning
             # through the playlist one unplayable song at a time.
             self.last_failure_reason = "error"
+            return False
+
+        # #3418: the guard above only knows starts it still remembers. A late
+        # arrival it has forgotten (or never saw) looks exactly like slow
+        # buffering to the title check below. Content-id evidence closes the
+        # gap: the speaker moved to a track id that is not ours, AND neither
+        # its title nor its artist resembles what we asked for. A relinked
+        # copy of the right song keeps its title, so it still passes.
+        if (
+            content_id_after
+            and content_id_after != content_id_before
+            and not any(token in content_id_after for token in match_tokens)
+            and expected_title
+            and not _titles_plausibly_match(expected_title, title_after)
+            and not _artist_matches(
+                expected_artist,
+                (current_state.attributes.get("media_artist") or "")
+                if current_state
+                else "",
+            )
+        ):
+            _LOGGER.warning(
+                "MA playback failed after %.1fs for %s — the speaker moved to "
+                "%r (%r), which is neither the requested track nor a title or "
+                "artist match for it. Treating it as a start Beatify gave up "
+                "on earlier that Music Assistant finished late, not as slow "
+                "buffering. Skipping this song silently. (#3418)",
+                timeout,
+                uri,
+                content_id_after,
+                title_after,
+            )
+            if await self._cancel_pending_start():
+                self._stopped_for_cascade = True
+            self.last_failure_reason = "unavailable"
             return False
 
         # #345 slow-buffer tolerance, narrowed to "title genuinely changed":

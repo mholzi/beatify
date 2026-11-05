@@ -321,3 +321,57 @@ async def test_late_start_of_the_same_song_still_confirms_during_the_wait():
             )
         )
         assert await h.strategy.play(_song(CURRENT, "The Riddle")) is True
+
+
+async def _abandon_then_land_late(h: _Harness, age: float) -> bool:
+    """#3418: an abandoned start lands ``age`` seconds after Beatify gave up."""
+    with patch.object(ma, "MA_PLAYBACK_TIMEOUT", 0.05):
+        assert (
+            await h.strategy.play(
+                _song(SKIPPED, "Bello e impossibile", "Gianna Nannini")
+            )
+            is False
+        )
+        stamp, key = h.strategy._abandoned_starts[SKIPPED]
+        h.strategy._abandoned_starts[SKIPPED] = (stamp - age, key)
+        h.hass.states.get = MagicMock(
+            side_effect=_reads(
+                _state("idle", ""),
+                _state(
+                    "playing", "Bello e impossibile", SKIPPED, "t9", "Gianna Nannini"
+                ),
+            )
+        )
+        return await h.strategy.play(_song(CURRENT, "The Riddle", "Nik Kershaw"))
+
+
+@pytest.mark.asyncio
+async def test_start_abandoned_184s_ago_is_still_recognised_3418():
+    """Live test v4.8.8-rc7: the abandoned start landed 184 s later, outside
+    the old 120 s window, and #345 'Continuing anyway' accepted it."""
+    h = _Harness()
+    assert await _abandon_then_land_late(h, 184.0) is False
+    assert h.context.last_failure_reason == "unavailable"
+
+
+@pytest.mark.asyncio
+async def test_345_rejects_foreign_track_even_when_the_guard_forgot_3418():
+    """Beyond any remembered window the content id still says the speaker
+    moved to a track that is neither ours nor similar to ours."""
+    h = _Harness()
+    assert await _abandon_then_land_late(h, ma.MA_STALE_START_WINDOW + 60) is False
+    assert h.context.last_failure_reason == "unavailable"
+
+
+@pytest.mark.asyncio
+async def test_345_still_accepts_a_relinked_copy_of_our_song_3418():
+    """Different content id, same title: a relinked copy, not a stale start."""
+    h = _Harness()
+    with patch.object(ma, "MA_PLAYBACK_TIMEOUT", 0.05):
+        h.hass.states.get = MagicMock(
+            side_effect=_reads(
+                _state("idle", ""),
+                _state("playing", "The Riddle", "spotify://track/relinked1", "t9"),
+            )
+        )
+        assert await h.strategy.play(_song(CURRENT, "The Riddle")) is True
