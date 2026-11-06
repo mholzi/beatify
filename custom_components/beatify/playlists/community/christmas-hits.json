@@ -1,6 +1,6 @@
 {
   "name": "Christmas Hits",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "christmas",
     "holiday",
@@ -23,7 +23,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/202117984"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E8gmARGvPlI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1036586",
       "fun_fact": "'Last Christmas' by Wham! was first released in 1984.",
@@ -42,7 +42,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/585972803"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aAkMkVFwAoo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/62710442",
       "fun_fact": "'All I Want for Christmas Is You' by Mariah Carey was first released in 1994.",
@@ -61,7 +61,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1444032015"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TFsZy9t-qDc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/24136731",
       "fun_fact": "'Rockin' Around The Christmas Tree' by Brenda Lee was first released in 1958.",
@@ -80,7 +80,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1719737014"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nlR0MkrRklg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/90728983",
       "fun_fact": "'Santa Tell Me' by Ariana Grande was first released in 2014.",
@@ -99,7 +99,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/720861445"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EM2Fnp_qnE8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/71675345",
       "fun_fact": "'Underneath the Tree' by Kelly Clarkson was first released in 2013.",
@@ -118,7 +118,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1358462132"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZnDmmiiFSUU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7810995",
       "fun_fact": "'Jingle Bell Rock' by Bobby Helms was first released in 1957.",
@@ -137,7 +137,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440098017"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gset79KMmt0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/576178932",
       "fun_fact": "'Snowman' by Sia was first released in 2017.",
@@ -156,7 +156,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/724322860"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Rnil5LyK_B0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/5360543",
       "fun_fact": "'Let It Snow, Let It Snow, Let It Snow' by Dean Martin was first released in 1959.",
@@ -175,7 +175,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/336037344"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vf4ZXBzbAio",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/13073002",
       "fun_fact": "'Christmas (Baby Please Come Home)' by Darlene Love was first released in 1963.",
@@ -194,7 +194,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/669854837"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Dkq3LD-4pmM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2502270181",
       "fun_fact": "'Holly Jolly Christmas' by Michael Bublé was first released in 2011.",
@@ -213,7 +213,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1718999053"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hYIOC3y0tmg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2564193212",
       "fun_fact": "'Winter Wonderland' by Laufey was first released in 2023.",
@@ -232,7 +232,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1435551062"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wKhRnZZ0cJI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4228126",
       "fun_fact": "'The Christmas Song (Merry Christmas To You)' by Nat King Cole was first released in 1946.",
@@ -251,7 +251,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1049529730"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RGqVS6ONO4Y",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/110148756",
       "fun_fact": "'Carol of the Bells (From \"Home Alone\" Soundtrack)' by John Williams was first released in 1990.",
@@ -270,7 +270,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/171434594"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AN_R4pR1hck",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/585967",
       "fun_fact": "'It's the Most Wonderful Time of the Year' by Andy Williams was first released in 1963.",
@@ -289,7 +289,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1658432710"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t3zqFusFXis",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2526407891",
       "fun_fact": "'A Nonsense Christmas' by Sabrina Carpenter was first released in 2022.",
@@ -308,7 +308,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/255615879"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N8NcQzMQN_U",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/991049",
       "fun_fact": "'Feliz Navidad' by José Feliciano was first released in 1970.",
@@ -327,7 +327,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440953990"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2TfWo3GsIII",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/640963102",
       "fun_fact": "'Wonderful Christmastime - Edited Version / Remastered 2011' by Paul McCartney was first released in 1979.",
@@ -341,7 +341,7 @@
       "title": "2000 Miles",
       "year": 2026,
       "uri": "spotify:track:1HftwnsmpwF97Q3hnbyYWg",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S2bG8zskY2w",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'2000 Miles' by Freya Skye was first released in 2026.",
@@ -360,7 +360,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1831874211"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bYnqRzJTOYs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1934770197",
       "fun_fact": "'It's Beginning to Look a Lot like Christmas' by Michael Bublé was first released in 2011.",
@@ -379,7 +379,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/336037282"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DkXIJe8CaIc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/13072996",
       "fun_fact": "'Sleigh Ride' by The Ronettes was first released in 1963.",
@@ -398,7 +398,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440640717"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LUjn3RpkcKY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/14309710",
       "fun_fact": "'Mistletoe' by Justin Bieber was first released in 2011.",
@@ -417,7 +417,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/299701862"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=76WFkKp8Tjs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/571386662",
       "fun_fact": "'Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975' by Bruce Springsteen was first released in 1975.",
@@ -436,7 +436,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1775877096"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aBpYk9vuneE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3059583721",
       "fun_fact": "'Merry Christmas, Please Don't Call' by Bleachers was first released in 2024.",
@@ -455,7 +455,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1296455325"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LRP8d7hhpoQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/139404595",
       "fun_fact": "'Hallelujah' by Pentatonix was first released in 2016.",
@@ -474,7 +474,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1586039529"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PPcpd-YBlGw",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1519413812",
       "fun_fact": "'Santa, Can’t You Hear Me' by Kelly Clarkson was first released in 2021.",
@@ -493,7 +493,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1484999360"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IbRtGMm96F8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1124124",
       "fun_fact": "'Step Into Christmas' by Elton John was first released in 1973.",
@@ -512,7 +512,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440902881"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3ZT9_H4-hbM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/412545452",
       "fun_fact": "'You Make It Feel Like Christmas (feat. Blake Shelton)' by Gwen Stefani was first released in 2017.",
@@ -526,7 +526,7 @@
       "title": "Run Rudolph Run",
       "year": 2024,
       "uri": "spotify:track:6pheMGrfMwwnypqafU7d4k",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=W3H395QNohw",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'Run Rudolph Run' by Mark Ambor was first released in 2024.",
@@ -545,7 +545,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/635815759"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7Rv3wfwIVBc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/68099545",
       "fun_fact": "'Please Come Home for Christmas - 2013 Remaster' by Eagles was first released in 1978.",
@@ -564,7 +564,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1537659110"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_MzumcY3lpk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1122164292",
       "fun_fact": "'My Only Wish (This Year)' by Britney Spears was first released in 2000.",
@@ -583,7 +583,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1487732370"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FezVApPddqU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/540188042",
       "fun_fact": "'Mele Kalikimaka (Merry Christmas)' by Bing Crosby was first released in 1950.",
@@ -597,7 +597,7 @@
       "title": "Merry Christmas Darling",
       "year": 2026,
       "uri": "spotify:track:4ukTFyAEnLtqAYC1uw57aD",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2vmuuGs47IQ",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'Merry Christmas Darling' by NIKI was first released in 2026.",
@@ -616,7 +616,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1527742022"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8gWHlHWIaRQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7163389",
       "fun_fact": "'Happy Xmas (War Is Over) - Remastered 2010' by John Lennon was first released in 1971.",
@@ -635,7 +635,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1435551063"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kORRidv-p0Y",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/555637652",
       "fun_fact": "'Deck The Hall' by Nat King Cole was first released in 1959.",
@@ -654,7 +654,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1485796558"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ELX12U_PMCM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/796276052",
       "fun_fact": "'Like It's Christmas' by Jonas Brothers was first released in 2019.",
@@ -673,7 +673,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1773396393"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6_SsGMeJIHk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3041651671",
       "fun_fact": "'Santa Baby' by Laufey was first released in 2024.",
@@ -692,7 +692,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1490369895"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mN3rDTAdM2o",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/825783572",
       "fun_fact": "'Christmas Tree Farm' by Taylor Swift was first released in 2019.",
@@ -711,7 +711,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440949308"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4PzetPqepXA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/134403698",
       "fun_fact": "'Christmas Time Is Here - Vocal' by Vince Guaraldi Trio was first released in 1965.",
@@ -730,7 +730,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/250589899"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N-PyWfVkjZc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1132604282",
       "fun_fact": "'Merry Christmas Everyone - Remastered' by Shakin' Stevens was first released in 1985.",
@@ -749,7 +749,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440856020"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AbgxDgVmMF0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3253473",
       "fun_fact": "'Little Saint Nick - 1991 Remix' by The Beach Boys was first released in 1963.",
@@ -768,7 +768,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/107639519"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j9jbdgZidu8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/674162",
       "fun_fact": "'Fairytale of New York (feat. Kirsty MacColl) - Edit' by The Pogues was first released in 1987.",
@@ -787,7 +787,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/268456213"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SnunPV-XTbA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/571386752",
       "fun_fact": "'It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)' by Perry Como was first released in 1951.",
@@ -806,7 +806,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1485014027"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wtgGBgpNcIo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1123890012",
       "fun_fact": "'What Christmas Means to Me (feat. Stevie Wonder)' by John Legend was first released in 2018.",
@@ -820,7 +820,7 @@
       "title": "O Holy Night",
       "year": 2025,
       "uri": "spotify:track:7L3OGWgJMQdXSbY3zgUt1Q",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HgNDgy618lU",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'O Holy Night' by Ravyn Lenae was first released in 2025.",
@@ -839,7 +839,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440862453"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-tJtsKngXJU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3465341",
       "fun_fact": "'Have Yourself A Merry Little Christmas - Remastered 1999' by Frank Sinatra was first released in 1957.",
@@ -857,7 +857,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6816096653"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CLP15B43uNA",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'It Feels Like Christmas' by Fall Out Boy was first released in 2025.",
@@ -876,7 +876,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1842930496"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z1XRh1JZpPs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3618261642",
       "fun_fact": "'Where Are You Christmas?' by The Pretty Reckless was first released in 2025.",
@@ -895,7 +895,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1597450885"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q_yuO8UNGmY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1568002692",
       "fun_fact": "'Merry Christmas' by Ed Sheeran was first released in 2021.",
@@ -914,7 +914,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1482686692"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sE3uRRFVsmc",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/571386642",
       "fun_fact": "'Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)' by Frank Sinatra was first released in 1950.",
@@ -933,7 +933,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/676288368"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3KK6sMo8NBY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2506202691",
       "fun_fact": "'Blue Christmas' by Elvis Presley was first released in 1957.",
@@ -947,7 +947,7 @@
       "title": "Have Yourself a Merry Little Christmas",
       "year": 2026,
       "uri": "spotify:track:6liolbDYbru5D2WdNOWpoQ",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6wGcOo7TzcQ",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'Have Yourself a Merry Little Christmas' by Lykke Li was first released in 2026.",
@@ -966,7 +966,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/200299248"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U6kRYKvWF1E",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/587001",
       "fun_fact": "'Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version' by Gene Autry was first released in 1947.",
@@ -985,7 +985,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/6781461599"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qw2TD91Nytg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/4092348411",
       "fun_fact": "'Thank God It's Christmas' by Queen was first released in 1984.",
@@ -1004,7 +1004,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1445001424"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RH-xd5bPKTA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2261793",
       "fun_fact": "'Do They Know It's Christmas? - 1984 Version' by Band Aid was first released in 1984.",
@@ -1023,7 +1023,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440815080"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UjyKUthmIqM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/584448432",
       "fun_fact": "'Rudolph The Red-Nosed Reindeer' by Burl Ives was first released in 1964.",
@@ -1037,7 +1037,7 @@
       "title": "Driving Home for Christmas",
       "year": 2024,
       "uri": "spotify:track:2gciS7UJjv59l7608DFGNl",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qkN-ZN-JRYg",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'Driving Home for Christmas' by Dasha was first released in 2024.",
@@ -1056,7 +1056,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440862184"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hLf0-lro8X8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/110148086",
       "fun_fact": "'Jingle Bells' by Frank Sinatra was first released in 1957.",
@@ -1075,7 +1075,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/258613237"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GOzi-gD7-ts",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1076105",
       "fun_fact": "'Hard Candy Christmas' by Dolly Parton was first released in 1982.",
@@ -1094,7 +1094,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/924313597"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2suygUJeQrE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/87172779",
       "fun_fact": "'Baby It's Cold Outside (with Michael Bublé)' by Idina Menzel was first released in 2014.",
@@ -1113,7 +1113,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/939015076"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2P8RU_dHyi4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/90269801",
       "fun_fact": "'I'll Be Home' by Meghan Trainor was first released in 2014.",
@@ -1132,7 +1132,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1425235336"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=O89sPooBhyE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/540195752",
       "fun_fact": "'I Saw Mommy Kissing Santa Claus' by The Jackson 5 was first released in 1970.",
@@ -1151,7 +1151,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1537178765"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ek9LKDjgshU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1126565342",
       "fun_fact": "'Ave Maria' by Céline Dion was first released in 1998.",
@@ -1170,7 +1170,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1484131231"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ifCWN5pJGIE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/110956884",
       "fun_fact": "'Mary, Did You Know?' by Pentatonix was first released in 2014.",
@@ -1189,7 +1189,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1159442668"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2LbmhneqBnE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/14615458",
       "fun_fact": "'Christmas Eve / Sarajevo 12/24 - Instrumental' by Trans-Siberian Orchestra was first released in 1996.",
@@ -1208,7 +1208,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1482952067"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Vs9FPx3_Slk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3399697",
       "fun_fact": "'Do You Hear What I Hear? - Remastered 2006' by Bing Crosby was first released in 1963.",
@@ -1227,7 +1227,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/733985599"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j-_1-uJ6Ml4",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/72435416",
       "fun_fact": "'One More Sleep' by Leona Lewis was first released in 2013.",
@@ -1241,7 +1241,7 @@
       "title": "Holiday Road",
       "year": 2024,
       "uri": "spotify:track:6hZvOA9oBZZM812GNDLjEb",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2cwzjQNQU6Q",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'Holiday Road' by Kesha was first released in 2024.",
@@ -1260,7 +1260,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/585972807"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ah-U9ECRZog",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/62710444",
       "fun_fact": "'Christmas (Baby Please Come Home)' by Mariah Carey was first released in 1994.",
@@ -1279,7 +1279,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1587240124"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wKj92352UAE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/995572",
       "fun_fact": "'Merry Christmas, Happy Holidays' by *NSYNC was first released in 1998.",
@@ -1298,7 +1298,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/281714391"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PhKVSZsRxQM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/675107",
       "fun_fact": "'This Christmas' by Donny Hathaway was first released in 1970.",
@@ -1317,7 +1317,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443832242"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YiadNVhaGwk",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7372854",
       "fun_fact": "'Run Rudolph Run' by Chuck Berry was first released in 1958.",
@@ -1331,7 +1331,7 @@
       "title": "O Come All Ye Faithful",
       "year": 2025,
       "uri": "spotify:track:6iO6ZLKaJF13fuF5HUFSEM",
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=q8qexuhYhGE",
       "uri_tidal": null,
       "uri_deezer": null,
       "fun_fact": "'O Come All Ye Faithful' by Jordan Davis was first released in 2025.",
@@ -1350,7 +1350,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/348906128"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HTCFi4l3nkY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/960351",
       "fun_fact": "'Santa Baby (with Henri René & His Orchestra)' by Eartha Kitt was first released in 1953.",
@@ -1369,7 +1369,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1707634094"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-Z6AnCRjWX0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2456430565",
       "fun_fact": "'DJ Play A Christmas Song' by Cher was first released in 2023.",
@@ -1388,7 +1388,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1435551167"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jgAZVgfUxcg",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3595465822",
       "fun_fact": "'Joy To The World' by Nat King Cole was first released in 1960.",
@@ -1407,7 +1407,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1587392667"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fvNC-kPKWqQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1504148942",
       "fun_fact": "'Silent Night' by Teddy Swims was first released in 2021.",
@@ -1426,7 +1426,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1469551715"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Hmw4Fu4XupE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/548795512",
       "fun_fact": "'Frosty The Snowman' by Ella Fitzgerald was first released in 1960.",
@@ -1445,7 +1445,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/64807078"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DDt3u2Ev1cI",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/425956912",
       "fun_fact": "'Driving Home for Christmas' by Chris Rea was first released in 1986.",
@@ -1464,7 +1464,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1706917030"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m_Ok8S94HhQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2453007945",
       "fun_fact": "'We Wish You The Merriest' by Seth MacFarlane was first released in 2023.",
@@ -1483,7 +1483,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/676288365"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yWcFiGKm-JU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/60868776",
       "fun_fact": "'Here Comes Santa Claus (Right Down Santa Claus Lane)' by Elvis Presley was first released in 1957.",
@@ -1502,7 +1502,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1484609636"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=sg8Gk1iXEIs",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/788650882",
       "fun_fact": "'Cozy Little Christmas' by Katy Perry was first released in 2018.",
@@ -1521,7 +1521,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1537178987"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qt_OkgSOrkU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/1105576",
       "fun_fact": "'The Prayer' by Céline Dion was first released in 1998.",
@@ -1540,7 +1540,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1749926250"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y__tczZDkTo",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/608694892",
       "fun_fact": "'Someday At Christmas' by Stevie Wonder was first released in 1967.",
@@ -1559,7 +1559,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/710484197"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IJPc7esgvsA",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3167852",
       "fun_fact": "'I Wish It Could Be Christmas Everyday' by Wizzard was first released in 1973.",
@@ -1578,7 +1578,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1487550056"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OR07r0ZMFb8",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/994905",
       "fun_fact": "'Christmas In Hollis' by Run–D.M.C. was first released in 1987.",
@@ -1597,7 +1597,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1293259870"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FDeOmxccsD0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/420324502",
       "fun_fact": "'The First Noël (with Faith Hill)' by Josh Groban was first released in 2007.",
@@ -1616,7 +1616,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/697229920"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NJ6kJ7GWtv0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3123854",
       "fun_fact": "'Lonely This Christmas' by Mud was first released in 1974.",
@@ -1635,7 +1635,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1647391542"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5vyMuxxLsD0",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/8146773",
       "fun_fact": "'Jingle Bell Rock - Daryl's Version' by Daryl Hall & John Oates was first released in 2000.",
@@ -1654,7 +1654,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/693526009"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=z1rYmzQ8C9Q",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/7857354",
       "fun_fact": "'Christmas Lights' by Coldplay was first released in 2010.",
