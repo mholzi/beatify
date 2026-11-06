@@ -939,6 +939,11 @@
       "sonos": "Spotify must be linked in Sonos app",
       "alexa": "Service must be linked in Alexa app",
       "alexaCaveat": "Uses voice search - may occasionally play a different version of the song"
+    },
+    "speakerHint": {
+      "maNeededOne": "{services} requires a Music Assistant speaker",
+      "maNeededMany": "{services} require a Music Assistant speaker",
+      "amazonNeedsEcho": "Amazon Music requires an Amazon Echo (alexa_media)"
     }
   },
   "analyticsDashboard": {

@@ -164,7 +164,9 @@ class TestLibraryAiAndProviderKeys:
         keys = [
             k
             for k in _all_referenced_keys()
-            if k.startswith(("admin.libraryAi.", "admin.providerWarning."))
+            if k.startswith(
+                ("admin.libraryAi.", "admin.providerWarning.", "admin.speakerHint.")
+            )
         ]
         assert len(keys) >= 20
         for path in sorted((WWW / "i18n").glob("*.json")):

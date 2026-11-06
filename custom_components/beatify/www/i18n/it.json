@@ -939,6 +939,11 @@
       "sonos": "Spotify deve essere collegato nell'app Sonos",
       "alexa": "Il servizio deve essere collegato nell'app Alexa",
       "alexaCaveat": "Usa la ricerca vocale: a volte può riprodurre un'altra versione del brano"
+    },
+    "speakerHint": {
+      "maNeededOne": "{services} richiede un altoparlante Music Assistant",
+      "maNeededMany": "{services} richiedono un altoparlante Music Assistant",
+      "amazonNeedsEcho": "Amazon Music richiede un Amazon Echo (alexa_media)"
     }
   },
   "analyticsDashboard": {
