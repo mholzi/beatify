@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.8] — 2026-11-06
+
+The year spins into place, guesses land on the TV one by one, and your own points count up on your phone. Your party game moves.
+
+### 🎬 The whole game moves
+
+The TV wipes between scenes and the standings travel while scores count up. Phone and TV reveal the year together, then your result and bonuses add up step by step. Your final rank counts down. Buttons give under your thumb, and phone, TV and admin now share one look.
+
+### 🎛️ Easier to host, easier to play
+
+The host can change timer and difficulty between rounds. Errors say what to do next, a failed room start can be retried, and the TV notices when it loses the game. Long names fit the lobby wall. Stealing is one tap with undo. Animés-Séries 80-90 is new, and 114 broken song links play again.
+
 ## [4.8.8-rc7] - 2026-11-05
 
 Seventh candidate for 4.8.8: a quieter log.

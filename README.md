@@ -868,6 +868,12 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.8 — Set in Motion 🎬
+- **The whole game moves**: the year reel, guesses landing on the TV, scene wipes, standings that travel and a podium that builds up, with phone and TV revealing the year together (#3365, #3367, #3370, #3379)
+- **Phone, TV and admin share one look**, and errors say what to do next instead of failing quietly (#3387, #3386, #3390, #3396)
+- **The host can change timer and difficulty between rounds**, and stealing is one tap with undo (#2586, #3391)
+- **New community playlists**: Animés-Séries 80-90 and Best Songs Ever, plus 114 repaired song links (#3361, #3362, #3417)
+
 ### v4.8.7 — Ding Dong 🔔
 - **Home Assistant can run the party**: pause, resume, skip or end a game from an automation, with events to react to (#3306)
 - **The host's phone gets the admin page's tools**: five more rounds without losing scores, sit a guest out and bring them back, and "Play another song" to swap a track (#3303, #3304, #3261)
