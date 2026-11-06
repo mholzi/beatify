@@ -913,7 +913,33 @@
     "roundSettingsFoot": "Se aplica desde la ronda {round}. Los puntos conseguidos se mantienen.",
     "roundSettingsNotice": "⏱ Ahora {value}",
     "roundSettingsNoticeSeconds": "{seconds} segundos",
-    "roundSettingsNoticeBands": "{difficulty}: {points} puntos a ±{range} años"
+    "roundSettingsNoticeBands": "{difficulty}: {points} puntos a ±{range} años",
+    "libraryAi": {
+      "title": "Crear una playlist con IA",
+      "intro": "Beatify nunca contacta con una IA por su cuenta. Copia el prompt en el chatbot o modelo local que prefieras y pega después su respuesta aquí.",
+      "name": "Nombre de la playlist",
+      "theme": "Tema para la IA",
+      "count": "Canciones",
+      "copy": "Copiar prompt",
+      "paste": "Pega la respuesta de la IA",
+      "resolve": "Revisar y ver",
+      "save": "Guardar playlist",
+      "needScan": "Primero escanea tu biblioteca.",
+      "copied": "Prompt copiado: pégalo en tu IA y luego pega la respuesta abajo.",
+      "copyFailed": "No se pudo copiar: ¿tiene la página permiso para usar el portapapeles?",
+      "parseFail": "No se pudo leer ninguna canción de esa respuesta; se esperaba JSON como",
+      "defaultName": "Mezcla IA",
+      "matched": "Encontradas en tu biblioteca: ",
+      "unmatched": "No encontradas (omitidas): ",
+      "resolveFailed": "No se pudieron comprobar las canciones: ¿es accesible Home Assistant?",
+      "saved": "¡Guardada! La encontrarás en Playlists → Mías."
+    },
+    "providerWarning": {
+      "musicAssistant": "La cuenta Premium debe estar configurada en Music Assistant",
+      "sonos": "Spotify debe estar vinculado en la app de Sonos",
+      "alexa": "El servicio debe estar vinculado en la app de Alexa",
+      "alexaCaveat": "Usa búsqueda por voz: a veces puede reproducir otra versión de la canción"
+    }
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",

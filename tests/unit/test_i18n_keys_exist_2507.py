@@ -44,7 +44,7 @@ _HTML_KEY = re.compile(r'data-i18n(?:-[a-z]+(?:-[a-z]+)?)?="([A-Za-z0-9_.]+)"')
 # t('a.b') / t("a.b") on any of the wrappers: utils.t, BeatifyI18n.t, bare t —
 # and the local `tr(key, fallback)` guards several modules define (#2704 added
 # one to party-lights.js), which the bare-`t` pattern used to walk straight past.
-_JS_KEY = re.compile(r"""\b(?:t|tr)\(\s*['"]([A-Za-z0-9_.]+)['"]""")
+_JS_KEY = re.compile(r"""(?<![A-Za-z0-9])_?(?:t|tr)\(\s*['"]([A-Za-z0-9_.]+)['"]""")
 
 
 def _lookup(key: str):
@@ -61,11 +61,17 @@ def _is_dynamic(key: str) -> bool:
     return any(key.startswith(p) or p.rstrip(".") == key for p in DYNAMIC_PREFIXES)
 
 
+_ADMIN_SECTIONS = ("library-ai.js", "media-players.js")
+
+
 def _sources() -> list[Path]:
     files = sorted(WWW.glob("*.html"))
     files += [
         p for p in sorted((WWW / "js").glob("*.js")) if not p.name.endswith(".min.js")
     ]
+    # #3422: admin sections use their own `_t(key, fallback)` / `tr(...)` guards,
+    # whose fallback hid nine missing libraryAi keys in every language.
+    files += [WWW / "js" / "admin" / "sections" / n for n in _ADMIN_SECTIONS]
     return files
 
 
@@ -75,8 +81,13 @@ def _referenced_keys(suffix: str) -> dict[str, list[str]]:
     for path in _sources():
         if path.suffix != suffix:
             continue
-        pattern = _HTML_KEY if suffix == ".html" else _JS_KEY
-        for key in pattern.findall(path.read_text(encoding="utf-8")):
+        text = path.read_text(encoding="utf-8")
+        # JS-rendered markup (library-ai.js builds its modal in a template
+        # string) carries `data-i18n` attributes too (#3422).
+        keys = _HTML_KEY.findall(text)
+        if suffix == ".js":
+            keys += _JS_KEY.findall(text)
+        for key in keys:
             if "." not in key:
                 continue  # a bare word is a variable name, not a key path
             found.setdefault(key, []).append(path.name)
@@ -128,6 +139,47 @@ class TestEveryReferencedKeyResolves:
         for prefix in DYNAMIC_PREFIXES:
             head = prefix.split(".")[0]
             assert head in EN, prefix
+
+
+class TestLibraryAiAndProviderKeys:
+    """#3422: the Crate Digger AI modal and the speaker hints were English everywhere."""
+
+    def test_library_ai_keys_are_scanned(self):
+        keys = _all_referenced_keys()
+        for name in (
+            "title",
+            "intro",
+            "theme",
+            "count",
+            "copy",
+            "paste",
+            "resolve",
+            "name",
+            "save",
+        ):
+            assert f"admin.libraryAi.{name}" in keys, name
+        assert "admin.providerWarning.sonos" in keys
+
+    def test_keys_present_and_translated_in_every_locale(self):
+        keys = [
+            k
+            for k in _all_referenced_keys()
+            if k.startswith(("admin.libraryAi.", "admin.providerWarning."))
+        ]
+        assert len(keys) >= 20
+        for path in sorted((WWW / "i18n").glob("*.json")):
+            data = json.loads(path.read_text(encoding="utf-8"))
+            for key in keys:
+                node = data
+                for part in key.split("."):
+                    assert isinstance(node, dict) and part in node, (
+                        f"{path.name}: {key}"
+                    )
+                    node = node[part]
+                assert isinstance(node, str) and node.strip(), f"{path.name}: {key}"
+                # "Songs" is the same word in de/nl; nothing else may match en.
+                if path.name != "en.json" and key != "admin.libraryAi.count":
+                    assert node != _lookup(key), f"{path.name}: {key} is still English"
 
 
 class TestTheEightKeysFromTheReport:

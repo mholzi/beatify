@@ -913,7 +913,33 @@
     "roundSettingsFoot": "S'applique dès la manche {round}. Les points déjà gagnés restent.",
     "roundSettingsNotice": "⏱ Maintenant {value}",
     "roundSettingsNoticeSeconds": "{seconds} secondes",
-    "roundSettingsNoticeBands": "{difficulty} : {points} points à ±{range} ans"
+    "roundSettingsNoticeBands": "{difficulty} : {points} points à ±{range} ans",
+    "libraryAi": {
+      "title": "Créer une playlist avec l'IA",
+      "intro": "Beatify ne contacte jamais d'IA lui-même. Copie le prompt dans le chatbot ou le modèle local de ton choix, puis colle sa réponse ici.",
+      "name": "Nom de la playlist",
+      "theme": "Thème pour l'IA",
+      "count": "Titres",
+      "copy": "Copier le prompt",
+      "paste": "Colle la réponse de l'IA",
+      "resolve": "Vérifier et voir",
+      "save": "Enregistrer",
+      "needScan": "Analyse d'abord ta bibliothèque.",
+      "copied": "Prompt copié — colle-le dans ton IA, puis colle la réponse ci-dessous.",
+      "copyFailed": "Copie impossible — la page a-t-elle accès au presse-papiers ?",
+      "parseFail": "Aucun titre lisible dans cette réponse — JSON attendu, par exemple",
+      "defaultName": "Mix IA",
+      "matched": "Trouvés dans ta bibliothèque : ",
+      "unmatched": "Introuvables (ignorés) : ",
+      "resolveFailed": "Impossible de vérifier les titres — Home Assistant est-il joignable ?",
+      "saved": "Enregistrée ! Retrouve-la sous Playlists → Mes playlists."
+    },
+    "providerWarning": {
+      "musicAssistant": "Un compte Premium doit être configuré dans Music Assistant",
+      "sonos": "Spotify doit être associé dans l'app Sonos",
+      "alexa": "Le service doit être associé dans l'app Alexa",
+      "alexaCaveat": "Utilise la recherche vocale : peut parfois jouer une autre version du titre"
+    }
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
