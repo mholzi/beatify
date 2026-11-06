@@ -491,29 +491,64 @@ export function updateProviderOptions(player) {
     const hint = document.getElementById('provider-hint');
     if (hint) {
         const maSpeakerNeeded = [];
-        const otherParts = [];
+        let amazonNeedsEcho = false;
         for (const p of PROVIDERS) {
             if (p.id === 'spotify' || playerSupports(player, p.id)) continue;
             if (p.platforms.includes('music_assistant')) {
                 maSpeakerNeeded.push(p.label);
             } else if (p.id === 'amazon_music') {
-                otherParts.push('Amazon Music requires an Amazon Echo (alexa_media)');
+                amazonNeedsEcho = true;
             }
         }
 
-        const hintParts = [];
-        if (maSpeakerNeeded.length > 0) {
-            hintParts.push(`${maSpeakerNeeded.join(' and ')} require${maSpeakerNeeded.length === 1 ? 's' : ''} a Music Assistant speaker`);
-        }
-        hintParts.push(...otherParts);
-
-        if (hintParts.length > 0) {
-            hint.textContent = hintParts.join(' · ');
+        const hintText = providerHintText(maSpeakerNeeded, amazonNeedsEcho);
+        if (hintText) {
+            hint.textContent = hintText;
             hint.classList.remove('hidden');
         } else {
             hint.classList.add('hidden');
         }
     }
+}
+
+/**
+ * Join names as a localized list ("A, B and C" / "A, B und C"), using the
+ * current UI language. Falls back to a plain comma list where Intl.ListFormat
+ * is missing or rejects the language.
+ * @param {string[]} items
+ * @returns {string}
+ */
+export function formatNameList(items) {
+    const lang = (typeof window !== 'undefined' && window.BeatifyI18n
+        && typeof window.BeatifyI18n.getLanguage === 'function'
+        && window.BeatifyI18n.getLanguage()) || 'en';
+    try {
+        if (typeof Intl !== 'undefined' && typeof Intl.ListFormat === 'function') {
+            return new Intl.ListFormat(lang, { style: 'long', type: 'conjunction' }).format(items);
+        }
+    } catch (e) { /* unsupported language tag: use the plain list */ }
+    return items.join(', ');
+}
+
+/**
+ * Hint under the speaker list naming providers the selected speaker cannot
+ * play. Pure text, so it is unit-tested without a DOM (#3424).
+ * @param {string[]} maLabels - providers that need a Music Assistant speaker
+ * @param {boolean} amazonNeedsEcho - Amazon Music is unavailable on this speaker
+ * @returns {string} '' when there is nothing to say
+ */
+export function providerHintText(maLabels, amazonNeedsEcho) {
+    const parts = [];
+    if (maLabels.length > 0) {
+        const services = formatNameList(maLabels);
+        parts.push(maLabels.length === 1
+            ? tr('admin.speakerHint.maNeededOne', '{services} requires a Music Assistant speaker', { services })
+            : tr('admin.speakerHint.maNeededMany', '{services} require a Music Assistant speaker', { services }));
+    }
+    if (amazonNeedsEcho) {
+        parts.push(tr('admin.speakerHint.amazonNeedsEcho', 'Amazon Music requires an Amazon Echo (alexa_media)'));
+    }
+    return parts.join(' · ');
 }
 
 /**

@@ -939,6 +939,11 @@
       "sonos": "Spotify moet zijn gekoppeld in de Sonos-app",
       "alexa": "Dienst moet zijn gekoppeld in de Alexa-app",
       "alexaCaveat": "Gebruikt spraakzoekopdracht: speelt soms een andere versie van het nummer"
+    },
+    "speakerHint": {
+      "maNeededOne": "{services} heeft een Music Assistant-speaker nodig",
+      "maNeededMany": "{services} hebben een Music Assistant-speaker nodig",
+      "amazonNeedsEcho": "Amazon Music heeft een Amazon Echo nodig (alexa_media)"
     }
   },
   "analyticsDashboard": {
