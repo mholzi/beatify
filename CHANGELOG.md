@@ -4,6 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.9-rc1] - 2026-11-06
+
+First candidate for 4.8.9: the host page speaks every language.
+
+### Fixed
+- **Crate Digger AI modal and speaker hints** (#3422): the "Create with AI" window and the speaker provider hints on the host page are translated into all six languages.
+- **Music Assistant speaker hint** (#3424): the note on which services need a Music Assistant speaker, and the Amazon Music line, are translated with singular and plural forms and a localized list of services.
+- **Late song on Music Assistant** (#3418): a song that Music Assistant starts minutes after it was requested is skipped instead of playing as the wrong song.
+
 ## [4.8.8] — 2026-11-06
 
 The year spins into place, guesses land on the TV one by one, and your own points count up on your phone. Your party game moves.
