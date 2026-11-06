@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added the "Christmas Hits" community playlist, 89 tracks (#3427).
+
 ## [4.8.9-rc1] - 2026-11-06
 
 First candidate for 4.8.9: the host page speaks every language.

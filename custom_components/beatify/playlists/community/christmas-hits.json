@@ -1,0 +1,1667 @@
+{
+  "name": "Christmas Hits",
+  "version": "0.1",
+  "tags": [
+    "christmas",
+    "holiday",
+    "seasonal",
+    "pop",
+    "classics"
+  ],
+  "language": "en",
+  "author": "Beatify Community",
+  "added_date": "2026-11-06",
+  "description": "89 Christmas songs, from Bing Crosby-era standards and rock'n'roll classics to modern holiday pop: Last Christmas, All I Want for Christmas Is You, Jingle Bell Rock and more. Requested via the in-app playlist funnel (#3427).",
+  "songs": [
+    {
+      "artist": "Wham!",
+      "title": "Last Christmas",
+      "year": 1984,
+      "isrc": "GBBBM8400019",
+      "uri": "spotify:track:2FRnf9qhLbvw8fu4IBXx78",
+      "uri_apple_music": "applemusic://track/202117984",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/202117984"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1036586",
+      "fun_fact": "'Last Christmas' by Wham! was first released in 1984.",
+      "fun_fact_de": "'Last Christmas' von Wham! erschien erstmals 1984.",
+      "fun_fact_es": "'Last Christmas' de Wham! se publicó por primera vez en 1984.",
+      "fun_fact_fr": "« Last Christmas » de Wham! est sorti pour la première fois en 1984.",
+      "fun_fact_nl": "'Last Christmas' van Wham! verscheen voor het eerst in 1984."
+    },
+    {
+      "artist": "Mariah Carey",
+      "title": "All I Want for Christmas Is You",
+      "year": 1994,
+      "isrc": "USSM19400325",
+      "uri": "spotify:track:0bYg9bo50gSsH3LtXe2SQn",
+      "uri_apple_music": "applemusic://track/585972803",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/585972803"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/62710442",
+      "fun_fact": "'All I Want for Christmas Is You' by Mariah Carey was first released in 1994.",
+      "fun_fact_de": "'All I Want for Christmas Is You' von Mariah Carey erschien erstmals 1994.",
+      "fun_fact_es": "'All I Want for Christmas Is You' de Mariah Carey se publicó por primera vez en 1994.",
+      "fun_fact_fr": "« All I Want for Christmas Is You » de Mariah Carey est sorti pour la première fois en 1994.",
+      "fun_fact_nl": "'All I Want for Christmas Is You' van Mariah Carey verscheen voor het eerst in 1994."
+    },
+    {
+      "artist": "Brenda Lee",
+      "title": "Rockin' Around The Christmas Tree",
+      "year": 1958,
+      "isrc": "USMC15848998",
+      "uri": "spotify:track:2EjXfH91m7f8HiJN1yQg97",
+      "uri_apple_music": "applemusic://track/1444032015",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444032015"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/24136731",
+      "fun_fact": "'Rockin' Around The Christmas Tree' by Brenda Lee was first released in 1958.",
+      "fun_fact_de": "'Rockin' Around The Christmas Tree' von Brenda Lee erschien erstmals 1958.",
+      "fun_fact_es": "'Rockin' Around The Christmas Tree' de Brenda Lee se publicó por primera vez en 1958.",
+      "fun_fact_fr": "« Rockin' Around The Christmas Tree » de Brenda Lee est sorti pour la première fois en 1958.",
+      "fun_fact_nl": "'Rockin' Around The Christmas Tree' van Brenda Lee verscheen voor het eerst in 1958."
+    },
+    {
+      "artist": "Ariana Grande",
+      "title": "Santa Tell Me",
+      "year": 2014,
+      "isrc": "USUM71417401",
+      "uri": "spotify:track:1ADjWm8QNhgNV8yCNNgQ1T",
+      "uri_apple_music": "applemusic://track/1719737014",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1719737014"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/90728983",
+      "fun_fact": "'Santa Tell Me' by Ariana Grande was first released in 2014.",
+      "fun_fact_de": "'Santa Tell Me' von Ariana Grande erschien erstmals 2014.",
+      "fun_fact_es": "'Santa Tell Me' de Ariana Grande se publicó por primera vez en 2014.",
+      "fun_fact_fr": "« Santa Tell Me » de Ariana Grande est sorti pour la première fois en 2014.",
+      "fun_fact_nl": "'Santa Tell Me' van Ariana Grande verscheen voor het eerst in 2014."
+    },
+    {
+      "artist": "Kelly Clarkson",
+      "title": "Underneath the Tree",
+      "year": 2013,
+      "isrc": "GBCTA1300103",
+      "uri": "spotify:track:3nAp4IvdMPPWEH9uuXFFV5",
+      "uri_apple_music": "applemusic://track/720861445",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/720861445"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/71675345",
+      "fun_fact": "'Underneath the Tree' by Kelly Clarkson was first released in 2013.",
+      "fun_fact_de": "'Underneath the Tree' von Kelly Clarkson erschien erstmals 2013.",
+      "fun_fact_es": "'Underneath the Tree' de Kelly Clarkson se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Underneath the Tree » de Kelly Clarkson est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Underneath the Tree' van Kelly Clarkson verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Bobby Helms",
+      "title": "Jingle Bell Rock",
+      "year": 1957,
+      "isrc": "GBQRF1017669",
+      "uri": "spotify:track:7vQbuQcyTflfCIOu3Uzzya",
+      "uri_apple_music": "applemusic://track/1358462132",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1358462132"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7810995",
+      "fun_fact": "'Jingle Bell Rock' by Bobby Helms was first released in 1957.",
+      "fun_fact_de": "'Jingle Bell Rock' von Bobby Helms erschien erstmals 1957.",
+      "fun_fact_es": "'Jingle Bell Rock' de Bobby Helms se publicó por primera vez en 1957.",
+      "fun_fact_fr": "« Jingle Bell Rock » de Bobby Helms est sorti pour la première fois en 1957.",
+      "fun_fact_nl": "'Jingle Bell Rock' van Bobby Helms verscheen voor het eerst in 1957."
+    },
+    {
+      "artist": "Sia",
+      "title": "Snowman",
+      "year": 2017,
+      "isrc": "USAT21704212",
+      "uri": "spotify:track:7uoFMmxln0GPXQ0AcCBXRq",
+      "uri_apple_music": "applemusic://track/1440098017",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440098017"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/576178932",
+      "fun_fact": "'Snowman' by Sia was first released in 2017.",
+      "fun_fact_de": "'Snowman' von Sia erschien erstmals 2017.",
+      "fun_fact_es": "'Snowman' de Sia se publicó por primera vez en 2017.",
+      "fun_fact_fr": "« Snowman » de Sia est sorti pour la première fois en 2017.",
+      "fun_fact_nl": "'Snowman' van Sia verscheen voor het eerst in 2017."
+    },
+    {
+      "artist": "Dean Martin",
+      "title": "Let It Snow, Let It Snow, Let It Snow",
+      "year": 1959,
+      "isrc": "GBSWE0812816",
+      "uri": "spotify:track:1prYSRBfwPvE3v8jSRZL3Q",
+      "uri_apple_music": "applemusic://track/724322860",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/724322860"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/5360543",
+      "fun_fact": "'Let It Snow, Let It Snow, Let It Snow' by Dean Martin was first released in 1959.",
+      "fun_fact_de": "'Let It Snow, Let It Snow, Let It Snow' von Dean Martin erschien erstmals 1959.",
+      "fun_fact_es": "'Let It Snow, Let It Snow, Let It Snow' de Dean Martin se publicó por primera vez en 1959.",
+      "fun_fact_fr": "« Let It Snow, Let It Snow, Let It Snow » de Dean Martin est sorti pour la première fois en 1959.",
+      "fun_fact_nl": "'Let It Snow, Let It Snow, Let It Snow' van Dean Martin verscheen voor het eerst in 1959."
+    },
+    {
+      "artist": "Darlene Love",
+      "title": "Christmas (Baby Please Come Home)",
+      "year": 1963,
+      "isrc": "USSM10905172",
+      "uri": "spotify:track:47ohYW8e7dxCYn9qbUMBCI",
+      "uri_apple_music": "applemusic://track/336037344",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/336037344"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13073002",
+      "fun_fact": "'Christmas (Baby Please Come Home)' by Darlene Love was first released in 1963.",
+      "fun_fact_de": "'Christmas (Baby Please Come Home)' von Darlene Love erschien erstmals 1963.",
+      "fun_fact_es": "'Christmas (Baby Please Come Home)' de Darlene Love se publicó por primera vez en 1963.",
+      "fun_fact_fr": "« Christmas (Baby Please Come Home) » de Darlene Love est sorti pour la première fois en 1963.",
+      "fun_fact_nl": "'Christmas (Baby Please Come Home)' van Darlene Love verscheen voor het eerst in 1963."
+    },
+    {
+      "artist": "Michael Bublé",
+      "title": "Holly Jolly Christmas",
+      "year": 2011,
+      "isrc": "USRE11100705",
+      "uri": "spotify:track:5PuKlCjfEVIXl0ZBp5ZW9g",
+      "uri_apple_music": "applemusic://track/669854837",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/669854837"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2502270181",
+      "fun_fact": "'Holly Jolly Christmas' by Michael Bublé was first released in 2011.",
+      "fun_fact_de": "'Holly Jolly Christmas' von Michael Bublé erschien erstmals 2011.",
+      "fun_fact_es": "'Holly Jolly Christmas' de Michael Bublé se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Holly Jolly Christmas » de Michael Bublé est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Holly Jolly Christmas' van Michael Bublé verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Laufey",
+      "title": "Winter Wonderland",
+      "year": 2023,
+      "isrc": "QMFME2359177",
+      "uri": "spotify:track:1LmkdWSxjCV7wKTPsCvYWN",
+      "uri_apple_music": "applemusic://track/1718999053",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1718999053"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2564193212",
+      "fun_fact": "'Winter Wonderland' by Laufey was first released in 2023.",
+      "fun_fact_de": "'Winter Wonderland' von Laufey erschien erstmals 2023.",
+      "fun_fact_es": "'Winter Wonderland' de Laufey se publicó por primera vez en 2023.",
+      "fun_fact_fr": "« Winter Wonderland » de Laufey est sorti pour la première fois en 2023.",
+      "fun_fact_nl": "'Winter Wonderland' van Laufey verscheen voor het eerst in 2023."
+    },
+    {
+      "artist": "Nat King Cole",
+      "title": "The Christmas Song (Merry Christmas To You)",
+      "year": 1946,
+      "isrc": "USCA29900551",
+      "uri": "spotify:track:4PS1e8f2LvuTFgUs1Cn3ON",
+      "uri_apple_music": "applemusic://track/1435551062",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1435551062"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4228126",
+      "fun_fact": "'The Christmas Song (Merry Christmas To You)' by Nat King Cole was first released in 1946.",
+      "fun_fact_de": "'The Christmas Song (Merry Christmas To You)' von Nat King Cole erschien erstmals 1946.",
+      "fun_fact_es": "'The Christmas Song (Merry Christmas To You)' de Nat King Cole se publicó por primera vez en 1946.",
+      "fun_fact_fr": "« The Christmas Song (Merry Christmas To You) » de Nat King Cole est sorti pour la première fois en 1946.",
+      "fun_fact_nl": "'The Christmas Song (Merry Christmas To You)' van Nat King Cole verscheen voor het eerst in 1946."
+    },
+    {
+      "artist": "John Williams",
+      "title": "Carol of the Bells (From \"Home Alone\" Soundtrack)",
+      "year": 1990,
+      "isrc": "USSM19912814",
+      "uri": "spotify:track:4tHqQMWSqmL6YjXwsqthDI",
+      "uri_apple_music": "applemusic://track/1049529730",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1049529730"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/110148756",
+      "fun_fact": "'Carol of the Bells (From \"Home Alone\" Soundtrack)' by John Williams was first released in 1990.",
+      "fun_fact_de": "'Carol of the Bells (From \"Home Alone\" Soundtrack)' von John Williams erschien erstmals 1990.",
+      "fun_fact_es": "'Carol of the Bells (From \"Home Alone\" Soundtrack)' de John Williams se publicó por primera vez en 1990.",
+      "fun_fact_fr": "« Carol of the Bells (From \"Home Alone\" Soundtrack) » de John Williams est sorti pour la première fois en 1990.",
+      "fun_fact_nl": "'Carol of the Bells (From \"Home Alone\" Soundtrack)' van John Williams verscheen voor het eerst in 1990."
+    },
+    {
+      "artist": "Andy Williams",
+      "title": "It's the Most Wonderful Time of the Year",
+      "year": 1963,
+      "isrc": "USSM16300086",
+      "uri": "spotify:track:5hslUAKq9I9CG2bAulFkHN",
+      "uri_apple_music": "applemusic://track/171434594",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/171434594"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/585967",
+      "fun_fact": "'It's the Most Wonderful Time of the Year' by Andy Williams was first released in 1963.",
+      "fun_fact_de": "'It's the Most Wonderful Time of the Year' von Andy Williams erschien erstmals 1963.",
+      "fun_fact_es": "'It's the Most Wonderful Time of the Year' de Andy Williams se publicó por primera vez en 1963.",
+      "fun_fact_fr": "« It's the Most Wonderful Time of the Year » de Andy Williams est sorti pour la première fois en 1963.",
+      "fun_fact_nl": "'It's the Most Wonderful Time of the Year' van Andy Williams verscheen voor het eerst in 1963."
+    },
+    {
+      "artist": "Sabrina Carpenter",
+      "title": "A Nonsense Christmas",
+      "year": 2022,
+      "isrc": "USUM72222808",
+      "uri": "spotify:track:73ye7F9Ub51dQ3CrnCHFhr",
+      "uri_apple_music": "applemusic://track/1658432710",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1658432710"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2526407891",
+      "fun_fact": "'A Nonsense Christmas' by Sabrina Carpenter was first released in 2022.",
+      "fun_fact_de": "'A Nonsense Christmas' von Sabrina Carpenter erschien erstmals 2022.",
+      "fun_fact_es": "'A Nonsense Christmas' de Sabrina Carpenter se publicó por primera vez en 2022.",
+      "fun_fact_fr": "« A Nonsense Christmas » de Sabrina Carpenter est sorti pour la première fois en 2022.",
+      "fun_fact_nl": "'A Nonsense Christmas' van Sabrina Carpenter verscheen voor het eerst in 2022."
+    },
+    {
+      "artist": "José Feliciano",
+      "title": "Feliz Navidad",
+      "year": 1970,
+      "isrc": "USRC17002573",
+      "uri": "spotify:track:7taXf5odg9xCAZERYfyOkS",
+      "uri_apple_music": "applemusic://track/255615879",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/255615879"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/991049",
+      "fun_fact": "'Feliz Navidad' by José Feliciano was first released in 1970.",
+      "fun_fact_de": "'Feliz Navidad' von José Feliciano erschien erstmals 1970.",
+      "fun_fact_es": "'Feliz Navidad' de José Feliciano se publicó por primera vez en 1970.",
+      "fun_fact_fr": "« Feliz Navidad » de José Feliciano est sorti pour la première fois en 1970.",
+      "fun_fact_nl": "'Feliz Navidad' van José Feliciano verscheen voor het eerst in 1970."
+    },
+    {
+      "artist": "Paul McCartney",
+      "title": "Wonderful Christmastime - Edited Version / Remastered 2011",
+      "year": 1979,
+      "isrc": "GBCCS1000219",
+      "uri": "spotify:track:1SV1fxF65n9NhRHp3KlBuu",
+      "uri_apple_music": "applemusic://track/1440953990",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440953990"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/640963102",
+      "fun_fact": "'Wonderful Christmastime - Edited Version / Remastered 2011' by Paul McCartney was first released in 1979.",
+      "fun_fact_de": "'Wonderful Christmastime - Edited Version / Remastered 2011' von Paul McCartney erschien erstmals 1979.",
+      "fun_fact_es": "'Wonderful Christmastime - Edited Version / Remastered 2011' de Paul McCartney se publicó por primera vez en 1979.",
+      "fun_fact_fr": "« Wonderful Christmastime - Edited Version / Remastered 2011 » de Paul McCartney est sorti pour la première fois en 1979.",
+      "fun_fact_nl": "'Wonderful Christmastime - Edited Version / Remastered 2011' van Paul McCartney verscheen voor het eerst in 1979."
+    },
+    {
+      "artist": "Freya Skye",
+      "title": "2000 Miles",
+      "year": 2026,
+      "uri": "spotify:track:1HftwnsmpwF97Q3hnbyYWg",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'2000 Miles' by Freya Skye was first released in 2026.",
+      "fun_fact_de": "'2000 Miles' von Freya Skye erschien erstmals 2026.",
+      "fun_fact_es": "'2000 Miles' de Freya Skye se publicó por primera vez en 2026.",
+      "fun_fact_fr": "« 2000 Miles » de Freya Skye est sorti pour la première fois en 2026.",
+      "fun_fact_nl": "'2000 Miles' van Freya Skye verscheen voor het eerst in 2026."
+    },
+    {
+      "artist": "Michael Bublé",
+      "title": "It's Beginning to Look a Lot like Christmas",
+      "year": 2011,
+      "isrc": "USRE11100700",
+      "uri": "spotify:track:5a1iz510sv2W9Dt1MvFd5R",
+      "uri_apple_music": "applemusic://track/1831874211",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1831874211"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1934770197",
+      "fun_fact": "'It's Beginning to Look a Lot like Christmas' by Michael Bublé was first released in 2011.",
+      "fun_fact_de": "'It's Beginning to Look a Lot like Christmas' von Michael Bublé erschien erstmals 2011.",
+      "fun_fact_es": "'It's Beginning to Look a Lot like Christmas' de Michael Bublé se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« It's Beginning to Look a Lot like Christmas » de Michael Bublé est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'It's Beginning to Look a Lot like Christmas' van Michael Bublé verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "The Ronettes",
+      "title": "Sleigh Ride",
+      "year": 1963,
+      "isrc": "USSM10905166",
+      "uri": "spotify:track:5ASM6Qjiav2xPe7gRkQMsQ",
+      "uri_apple_music": "applemusic://track/336037282",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/336037282"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13072996",
+      "fun_fact": "'Sleigh Ride' by The Ronettes was first released in 1963.",
+      "fun_fact_de": "'Sleigh Ride' von The Ronettes erschien erstmals 1963.",
+      "fun_fact_es": "'Sleigh Ride' de The Ronettes se publicó por primera vez en 1963.",
+      "fun_fact_fr": "« Sleigh Ride » de The Ronettes est sorti pour la première fois en 1963.",
+      "fun_fact_nl": "'Sleigh Ride' van The Ronettes verscheen voor het eerst in 1963."
+    },
+    {
+      "artist": "Justin Bieber",
+      "title": "Mistletoe",
+      "year": 2011,
+      "isrc": "USUM71116290",
+      "uri": "spotify:track:32OWobmyAz8J2qA8iWekyS",
+      "uri_apple_music": "applemusic://track/1440640717",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440640717"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/14309710",
+      "fun_fact": "'Mistletoe' by Justin Bieber was first released in 2011.",
+      "fun_fact_de": "'Mistletoe' von Justin Bieber erschien erstmals 2011.",
+      "fun_fact_es": "'Mistletoe' de Justin Bieber se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Mistletoe » de Justin Bieber est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Mistletoe' van Justin Bieber verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Bruce Springsteen",
+      "title": "Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975",
+      "year": 1975,
+      "isrc": "USSM17500461",
+      "uri": "spotify:track:6s2wpWPFPAgKg2LXxi1Oee",
+      "uri_apple_music": "applemusic://track/299701862",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/299701862"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/571386662",
+      "fun_fact": "'Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975' by Bruce Springsteen was first released in 1975.",
+      "fun_fact_de": "'Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975' von Bruce Springsteen erschien erstmals 1975.",
+      "fun_fact_es": "'Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975' de Bruce Springsteen se publicó por primera vez en 1975.",
+      "fun_fact_fr": "« Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975 » de Bruce Springsteen est sorti pour la première fois en 1975.",
+      "fun_fact_nl": "'Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975' van Bruce Springsteen verscheen voor het eerst in 1975."
+    },
+    {
+      "artist": "Bleachers",
+      "title": "Merry Christmas, Please Don't Call",
+      "year": 2024,
+      "isrc": "GBK3W2403232",
+      "uri": "spotify:track:0UOG0zUn7t8m8QcxfzR7AH",
+      "uri_apple_music": "applemusic://track/1775877096",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1775877096"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3059583721",
+      "fun_fact": "'Merry Christmas, Please Don't Call' by Bleachers was first released in 2024.",
+      "fun_fact_de": "'Merry Christmas, Please Don't Call' von Bleachers erschien erstmals 2024.",
+      "fun_fact_es": "'Merry Christmas, Please Don't Call' de Bleachers se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Merry Christmas, Please Don't Call » de Bleachers est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Merry Christmas, Please Don't Call' van Bleachers verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Pentatonix",
+      "title": "Hallelujah",
+      "year": 2016,
+      "isrc": "USRC11601833",
+      "uri": "spotify:track:0HZk0QsXPhMNAWNDR3rYE8",
+      "uri_apple_music": "applemusic://track/1296455325",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1296455325"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/139404595",
+      "fun_fact": "'Hallelujah' by Pentatonix was first released in 2016.",
+      "fun_fact_de": "'Hallelujah' von Pentatonix erschien erstmals 2016.",
+      "fun_fact_es": "'Hallelujah' de Pentatonix se publicó por primera vez en 2016.",
+      "fun_fact_fr": "« Hallelujah » de Pentatonix est sorti pour la première fois en 2016.",
+      "fun_fact_nl": "'Hallelujah' van Pentatonix verscheen voor het eerst in 2016."
+    },
+    {
+      "artist": "Kelly Clarkson, Ariana Grande",
+      "title": "Santa, Can’t You Hear Me",
+      "year": 2021,
+      "isrc": "USAT22104760",
+      "uri": "spotify:track:2O3MQ6H3gjrIWDcpeTrikT",
+      "uri_apple_music": "applemusic://track/1586039529",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1586039529"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1519413812",
+      "fun_fact": "'Santa, Can’t You Hear Me' by Kelly Clarkson was first released in 2021.",
+      "fun_fact_de": "'Santa, Can’t You Hear Me' von Kelly Clarkson erschien erstmals 2021.",
+      "fun_fact_es": "'Santa, Can’t You Hear Me' de Kelly Clarkson se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Santa, Can’t You Hear Me » de Kelly Clarkson est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Santa, Can’t You Hear Me' van Kelly Clarkson verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Elton John",
+      "title": "Step Into Christmas",
+      "year": 1973,
+      "isrc": "GBAMB9500053",
+      "uri": "spotify:track:10HDoLPz2bucGBkoNEjDHW",
+      "uri_apple_music": "applemusic://track/1484999360",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1484999360"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1124124",
+      "fun_fact": "'Step Into Christmas' by Elton John was first released in 1973.",
+      "fun_fact_de": "'Step Into Christmas' von Elton John erschien erstmals 1973.",
+      "fun_fact_es": "'Step Into Christmas' de Elton John se publicó por primera vez en 1973.",
+      "fun_fact_fr": "« Step Into Christmas » de Elton John est sorti pour la première fois en 1973.",
+      "fun_fact_nl": "'Step Into Christmas' van Elton John verscheen voor het eerst in 1973."
+    },
+    {
+      "artist": "Gwen Stefani, Blake Shelton",
+      "title": "You Make It Feel Like Christmas (feat. Blake Shelton)",
+      "year": 2017,
+      "isrc": "USUM71708114",
+      "uri": "spotify:track:6C81GGUCNbEmR8gMIi0CpH",
+      "uri_apple_music": "applemusic://track/1440902881",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440902881"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/412545452",
+      "fun_fact": "'You Make It Feel Like Christmas (feat. Blake Shelton)' by Gwen Stefani was first released in 2017.",
+      "fun_fact_de": "'You Make It Feel Like Christmas (feat. Blake Shelton)' von Gwen Stefani erschien erstmals 2017.",
+      "fun_fact_es": "'You Make It Feel Like Christmas (feat. Blake Shelton)' de Gwen Stefani se publicó por primera vez en 2017.",
+      "fun_fact_fr": "« You Make It Feel Like Christmas (feat. Blake Shelton) » de Gwen Stefani est sorti pour la première fois en 2017.",
+      "fun_fact_nl": "'You Make It Feel Like Christmas (feat. Blake Shelton)' van Gwen Stefani verscheen voor het eerst in 2017."
+    },
+    {
+      "artist": "Mark Ambor",
+      "title": "Run Rudolph Run",
+      "year": 2024,
+      "uri": "spotify:track:6pheMGrfMwwnypqafU7d4k",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'Run Rudolph Run' by Mark Ambor was first released in 2024.",
+      "fun_fact_de": "'Run Rudolph Run' von Mark Ambor erschien erstmals 2024.",
+      "fun_fact_es": "'Run Rudolph Run' de Mark Ambor se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Run Rudolph Run » de Mark Ambor est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Run Rudolph Run' van Mark Ambor verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Eagles",
+      "title": "Please Come Home for Christmas - 2013 Remaster",
+      "year": 1978,
+      "isrc": "USEE11300376",
+      "uri": "spotify:track:3QIoEi8Enr9uHffwInGIsC",
+      "uri_apple_music": "applemusic://track/635815759",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/635815759"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/68099545",
+      "fun_fact": "'Please Come Home for Christmas - 2013 Remaster' by Eagles was first released in 1978.",
+      "fun_fact_de": "'Please Come Home for Christmas - 2013 Remaster' von Eagles erschien erstmals 1978.",
+      "fun_fact_es": "'Please Come Home for Christmas - 2013 Remaster' de Eagles se publicó por primera vez en 1978.",
+      "fun_fact_fr": "« Please Come Home for Christmas - 2013 Remaster » de Eagles est sorti pour la première fois en 1978.",
+      "fun_fact_nl": "'Please Come Home for Christmas - 2013 Remaster' van Eagles verscheen voor het eerst in 1978."
+    },
+    {
+      "artist": "Britney Spears",
+      "title": "My Only Wish (This Year)",
+      "year": 2000,
+      "isrc": "USJI10000522",
+      "uri": "spotify:track:0YWUHZPJVg4iujddsJDwhM",
+      "uri_apple_music": "applemusic://track/1537659110",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1537659110"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1122164292",
+      "fun_fact": "'My Only Wish (This Year)' by Britney Spears was first released in 2000.",
+      "fun_fact_de": "'My Only Wish (This Year)' von Britney Spears erschien erstmals 2000.",
+      "fun_fact_es": "'My Only Wish (This Year)' de Britney Spears se publicó por primera vez en 2000.",
+      "fun_fact_fr": "« My Only Wish (This Year) » de Britney Spears est sorti pour la première fois en 2000.",
+      "fun_fact_nl": "'My Only Wish (This Year)' van Britney Spears verscheen voor het eerst in 2000."
+    },
+    {
+      "artist": "Bing Crosby, The Andrews Sisters",
+      "title": "Mele Kalikimaka (Merry Christmas)",
+      "year": 1950,
+      "isrc": "USMC15005830",
+      "uri": "spotify:track:04vLj9QUXoKdRlsp3gkURo",
+      "uri_apple_music": "applemusic://track/1487732370",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1487732370"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/540188042",
+      "fun_fact": "'Mele Kalikimaka (Merry Christmas)' by Bing Crosby was first released in 1950.",
+      "fun_fact_de": "'Mele Kalikimaka (Merry Christmas)' von Bing Crosby erschien erstmals 1950.",
+      "fun_fact_es": "'Mele Kalikimaka (Merry Christmas)' de Bing Crosby se publicó por primera vez en 1950.",
+      "fun_fact_fr": "« Mele Kalikimaka (Merry Christmas) » de Bing Crosby est sorti pour la première fois en 1950.",
+      "fun_fact_nl": "'Mele Kalikimaka (Merry Christmas)' van Bing Crosby verscheen voor het eerst in 1950."
+    },
+    {
+      "artist": "NIKI",
+      "title": "Merry Christmas Darling",
+      "year": 2026,
+      "uri": "spotify:track:4ukTFyAEnLtqAYC1uw57aD",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'Merry Christmas Darling' by NIKI was first released in 2026.",
+      "fun_fact_de": "'Merry Christmas Darling' von NIKI erschien erstmals 2026.",
+      "fun_fact_es": "'Merry Christmas Darling' de NIKI se publicó por primera vez en 2026.",
+      "fun_fact_fr": "« Merry Christmas Darling » de NIKI est sorti pour la première fois en 2026.",
+      "fun_fact_nl": "'Merry Christmas Darling' van NIKI verscheen voor het eerst in 2026."
+    },
+    {
+      "artist": "John Lennon, Yoko Ono",
+      "title": "Happy Xmas (War Is Over) - Remastered 2010",
+      "year": 1971,
+      "isrc": "GBAYE1000862",
+      "uri": "spotify:track:27RYrbL6S02LNVhDWVl38b",
+      "uri_apple_music": "applemusic://track/1527742022",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1527742022"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7163389",
+      "fun_fact": "'Happy Xmas (War Is Over) - Remastered 2010' by John Lennon was first released in 1971.",
+      "fun_fact_de": "'Happy Xmas (War Is Over) - Remastered 2010' von John Lennon erschien erstmals 1971.",
+      "fun_fact_es": "'Happy Xmas (War Is Over) - Remastered 2010' de John Lennon se publicó por primera vez en 1971.",
+      "fun_fact_fr": "« Happy Xmas (War Is Over) - Remastered 2010 » de John Lennon est sorti pour la première fois en 1971.",
+      "fun_fact_nl": "'Happy Xmas (War Is Over) - Remastered 2010' van John Lennon verscheen voor het eerst in 1971."
+    },
+    {
+      "artist": "Nat King Cole",
+      "title": "Deck The Hall",
+      "year": 1959,
+      "isrc": "USCA29900552",
+      "uri": "spotify:track:0rHToGels2lt8Y0mCYoF90",
+      "uri_apple_music": "applemusic://track/1435551063",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1435551063"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/555637652",
+      "fun_fact": "'Deck The Hall' by Nat King Cole was first released in 1959.",
+      "fun_fact_de": "'Deck The Hall' von Nat King Cole erschien erstmals 1959.",
+      "fun_fact_es": "'Deck The Hall' de Nat King Cole se publicó por primera vez en 1959.",
+      "fun_fact_fr": "« Deck The Hall » de Nat King Cole est sorti pour la première fois en 1959.",
+      "fun_fact_nl": "'Deck The Hall' van Nat King Cole verscheen voor het eerst in 1959."
+    },
+    {
+      "artist": "Jonas Brothers",
+      "title": "Like It's Christmas",
+      "year": 2019,
+      "isrc": "USUG11903894",
+      "uri": "spotify:track:1OjmlSFuzYflWjSMTCyTJv",
+      "uri_apple_music": "applemusic://track/1485796558",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1485796558"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/796276052",
+      "fun_fact": "'Like It's Christmas' by Jonas Brothers was first released in 2019.",
+      "fun_fact_de": "'Like It's Christmas' von Jonas Brothers erschien erstmals 2019.",
+      "fun_fact_es": "'Like It's Christmas' de Jonas Brothers se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Like It's Christmas » de Jonas Brothers est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Like It's Christmas' van Jonas Brothers verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Laufey",
+      "title": "Santa Baby",
+      "year": 2024,
+      "isrc": "QMDA62475902",
+      "uri": "spotify:track:4jHl6jgzZOnS4nGamPZ1Uk",
+      "uri_apple_music": "applemusic://track/1773396393",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1773396393"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3041651671",
+      "fun_fact": "'Santa Baby' by Laufey was first released in 2024.",
+      "fun_fact_de": "'Santa Baby' von Laufey erschien erstmals 2024.",
+      "fun_fact_es": "'Santa Baby' de Laufey se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Santa Baby » de Laufey est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Santa Baby' van Laufey verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Taylor Swift",
+      "title": "Christmas Tree Farm",
+      "year": 2019,
+      "isrc": "USUG11904285",
+      "uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek",
+      "uri_apple_music": "applemusic://track/1490369895",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1490369895"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/825783572",
+      "fun_fact": "'Christmas Tree Farm' by Taylor Swift was first released in 2019.",
+      "fun_fact_de": "'Christmas Tree Farm' von Taylor Swift erschien erstmals 2019.",
+      "fun_fact_es": "'Christmas Tree Farm' de Taylor Swift se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Christmas Tree Farm » de Taylor Swift est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Christmas Tree Farm' van Taylor Swift verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Vince Guaraldi Trio",
+      "title": "Christmas Time Is Here - Vocal",
+      "year": 1965,
+      "isrc": "USC4R1201098",
+      "uri": "spotify:track:06Pfxmp9TtC2H00apclouT",
+      "uri_apple_music": "applemusic://track/1440949308",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440949308"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/134403698",
+      "fun_fact": "'Christmas Time Is Here - Vocal' by Vince Guaraldi Trio was first released in 1965.",
+      "fun_fact_de": "'Christmas Time Is Here - Vocal' von Vince Guaraldi Trio erschien erstmals 1965.",
+      "fun_fact_es": "'Christmas Time Is Here - Vocal' de Vince Guaraldi Trio se publicó por primera vez en 1965.",
+      "fun_fact_fr": "« Christmas Time Is Here - Vocal » de Vince Guaraldi Trio est sorti pour la première fois en 1965.",
+      "fun_fact_nl": "'Christmas Time Is Here - Vocal' van Vince Guaraldi Trio verscheen voor het eerst in 1965."
+    },
+    {
+      "artist": "Shakin' Stevens",
+      "title": "Merry Christmas Everyone - Remastered",
+      "year": 1985,
+      "isrc": "GBARL0801716",
+      "uri": "spotify:track:23lpJkE7jJ4BVQhc3lj0VM",
+      "uri_apple_music": "applemusic://track/250589899",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/250589899"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1132604282",
+      "fun_fact": "'Merry Christmas Everyone - Remastered' by Shakin' Stevens was first released in 1985.",
+      "fun_fact_de": "'Merry Christmas Everyone - Remastered' von Shakin' Stevens erschien erstmals 1985.",
+      "fun_fact_es": "'Merry Christmas Everyone - Remastered' de Shakin' Stevens se publicó por primera vez en 1985.",
+      "fun_fact_fr": "« Merry Christmas Everyone - Remastered » de Shakin' Stevens est sorti pour la première fois en 1985.",
+      "fun_fact_nl": "'Merry Christmas Everyone - Remastered' van Shakin' Stevens verscheen voor het eerst in 1985."
+    },
+    {
+      "artist": "The Beach Boys",
+      "title": "Little Saint Nick - 1991 Remix",
+      "year": 1963,
+      "isrc": "USCA29100193",
+      "uri": "spotify:track:5xlS0QkVrSH7ssEbBgBzbM",
+      "uri_apple_music": "applemusic://track/1440856020",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440856020"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3253473",
+      "fun_fact": "'Little Saint Nick - 1991 Remix' by The Beach Boys was first released in 1963.",
+      "fun_fact_de": "'Little Saint Nick - 1991 Remix' von The Beach Boys erschien erstmals 1963.",
+      "fun_fact_es": "'Little Saint Nick - 1991 Remix' de The Beach Boys se publicó por primera vez en 1963.",
+      "fun_fact_fr": "« Little Saint Nick - 1991 Remix » de The Beach Boys est sorti pour la première fois en 1963.",
+      "fun_fact_nl": "'Little Saint Nick - 1991 Remix' van The Beach Boys verscheen voor het eerst in 1963."
+    },
+    {
+      "artist": "The Pogues, Kirsty MacColl",
+      "title": "Fairytale of New York (feat. Kirsty MacColl) - Edit",
+      "year": 1987,
+      "isrc": "GBAHT8703085",
+      "uri": "spotify:track:4soJpnUFA0SPs7XTi6QIVp",
+      "uri_apple_music": "applemusic://track/107639519",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/107639519"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/674162",
+      "fun_fact": "'Fairytale of New York (feat. Kirsty MacColl) - Edit' by The Pogues was first released in 1987.",
+      "fun_fact_de": "'Fairytale of New York (feat. Kirsty MacColl) - Edit' von The Pogues erschien erstmals 1987.",
+      "fun_fact_es": "'Fairytale of New York (feat. Kirsty MacColl) - Edit' de The Pogues se publicó por primera vez en 1987.",
+      "fun_fact_fr": "« Fairytale of New York (feat. Kirsty MacColl) - Edit » de The Pogues est sorti pour la première fois en 1987.",
+      "fun_fact_nl": "'Fairytale of New York (feat. Kirsty MacColl) - Edit' van The Pogues verscheen voor het eerst in 1987."
+    },
+    {
+      "artist": "Perry Como, The Fontane Sisters, Mitchell Ayres & His Orchestra",
+      "title": "It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)",
+      "year": 1951,
+      "isrc": "USRC15106173",
+      "uri": "spotify:track:2pXpURmn6zC5ZYDMms6fwa",
+      "uri_apple_music": "applemusic://track/268456213",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/268456213"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/571386752",
+      "fun_fact": "'It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)' by Perry Como was first released in 1951.",
+      "fun_fact_de": "'It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)' von Perry Como erschien erstmals 1951.",
+      "fun_fact_es": "'It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)' de Perry Como se publicó por primera vez en 1951.",
+      "fun_fact_fr": "« It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra) » de Perry Como est sorti pour la première fois en 1951.",
+      "fun_fact_nl": "'It's Beginning to Look a Lot Like Christmas (with Mitchell Ayres & His Orchestra)' van Perry Como verscheen voor het eerst in 1951."
+    },
+    {
+      "artist": "John Legend, Stevie Wonder",
+      "title": "What Christmas Means to Me (feat. Stevie Wonder)",
+      "year": 2018,
+      "isrc": "USSM11807713",
+      "uri": "spotify:track:13XMz3rpVYITzjFIsSYlZ1",
+      "uri_apple_music": "applemusic://track/1485014027",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1485014027"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1123890012",
+      "fun_fact": "'What Christmas Means to Me (feat. Stevie Wonder)' by John Legend was first released in 2018.",
+      "fun_fact_de": "'What Christmas Means to Me (feat. Stevie Wonder)' von John Legend erschien erstmals 2018.",
+      "fun_fact_es": "'What Christmas Means to Me (feat. Stevie Wonder)' de John Legend se publicó por primera vez en 2018.",
+      "fun_fact_fr": "« What Christmas Means to Me (feat. Stevie Wonder) » de John Legend est sorti pour la première fois en 2018.",
+      "fun_fact_nl": "'What Christmas Means to Me (feat. Stevie Wonder)' van John Legend verscheen voor het eerst in 2018."
+    },
+    {
+      "artist": "Ravyn Lenae",
+      "title": "O Holy Night",
+      "year": 2025,
+      "uri": "spotify:track:7L3OGWgJMQdXSbY3zgUt1Q",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'O Holy Night' by Ravyn Lenae was first released in 2025.",
+      "fun_fact_de": "'O Holy Night' von Ravyn Lenae erschien erstmals 2025.",
+      "fun_fact_es": "'O Holy Night' de Ravyn Lenae se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« O Holy Night » de Ravyn Lenae est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'O Holy Night' van Ravyn Lenae verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Frank Sinatra",
+      "title": "Have Yourself A Merry Little Christmas - Remastered 1999",
+      "year": 1957,
+      "isrc": "USCA29900549",
+      "uri": "spotify:track:2FPfeYlrbSBR8PwCU0zaqq",
+      "uri_apple_music": "applemusic://track/1440862453",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440862453"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3465341",
+      "fun_fact": "'Have Yourself A Merry Little Christmas - Remastered 1999' by Frank Sinatra was first released in 1957.",
+      "fun_fact_de": "'Have Yourself A Merry Little Christmas - Remastered 1999' von Frank Sinatra erschien erstmals 1957.",
+      "fun_fact_es": "'Have Yourself A Merry Little Christmas - Remastered 1999' de Frank Sinatra se publicó por primera vez en 1957.",
+      "fun_fact_fr": "« Have Yourself A Merry Little Christmas - Remastered 1999 » de Frank Sinatra est sorti pour la première fois en 1957.",
+      "fun_fact_nl": "'Have Yourself A Merry Little Christmas - Remastered 1999' van Frank Sinatra verscheen voor het eerst in 1957."
+    },
+    {
+      "artist": "Fall Out Boy",
+      "title": "It Feels Like Christmas",
+      "year": 2025,
+      "uri": "spotify:track:34sUWOEjFKrj8Rzk1HHicq",
+      "uri_apple_music": "applemusic://track/6816096653",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6816096653"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'It Feels Like Christmas' by Fall Out Boy was first released in 2025.",
+      "fun_fact_de": "'It Feels Like Christmas' von Fall Out Boy erschien erstmals 2025.",
+      "fun_fact_es": "'It Feels Like Christmas' de Fall Out Boy se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« It Feels Like Christmas » de Fall Out Boy est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'It Feels Like Christmas' van Fall Out Boy verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "The Pretty Reckless",
+      "title": "Where Are You Christmas?",
+      "year": 2025,
+      "isrc": "US5262527754",
+      "uri": "spotify:track:7zqv6rEbwXksyE0tk9RCO1",
+      "uri_apple_music": "applemusic://track/1842930496",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1842930496"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3618261642",
+      "fun_fact": "'Where Are You Christmas?' by The Pretty Reckless was first released in 2025.",
+      "fun_fact_de": "'Where Are You Christmas?' von The Pretty Reckless erschien erstmals 2025.",
+      "fun_fact_es": "'Where Are You Christmas?' de The Pretty Reckless se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Where Are You Christmas? » de The Pretty Reckless est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Where Are You Christmas?' van The Pretty Reckless verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Ed Sheeran, Elton John",
+      "title": "Merry Christmas",
+      "year": 2021,
+      "isrc": "GBAHS2101360",
+      "uri": "spotify:track:0aoUM0zcu0kCX7Cv7O939I",
+      "uri_apple_music": "applemusic://track/1597450885",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1597450885"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1568002692",
+      "fun_fact": "'Merry Christmas' by Ed Sheeran was first released in 2021.",
+      "fun_fact_de": "'Merry Christmas' von Ed Sheeran erschien erstmals 2021.",
+      "fun_fact_es": "'Merry Christmas' de Ed Sheeran se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Merry Christmas » de Ed Sheeran est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Merry Christmas' van Ed Sheeran verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Frank Sinatra, B. Swanson Quartet",
+      "title": "Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)",
+      "year": 1950,
+      "isrc": "USSM10018232",
+      "uri": "spotify:track:7inXu0Eaeg02VsM8kHNvzM",
+      "uri_apple_music": "applemusic://track/1482686692",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1482686692"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/571386642",
+      "fun_fact": "'Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)' by Frank Sinatra was first released in 1950.",
+      "fun_fact_de": "'Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)' von Frank Sinatra erschien erstmals 1950.",
+      "fun_fact_es": "'Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)' de Frank Sinatra se publicó por primera vez en 1950.",
+      "fun_fact_fr": "« Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet) » de Frank Sinatra est sorti pour la première fois en 1950.",
+      "fun_fact_nl": "'Let It Snow! Let It Snow! Let It Snow! (with The B. Swanson Quartet)' van Frank Sinatra verscheen voor het eerst in 1950."
+    },
+    {
+      "artist": "Elvis Presley",
+      "title": "Blue Christmas",
+      "year": 1957,
+      "isrc": "USRN12300104",
+      "uri": "spotify:track:3QiAAp20rPC3dcAtKtMaqQ",
+      "uri_apple_music": "applemusic://track/676288368",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/676288368"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2506202691",
+      "fun_fact": "'Blue Christmas' by Elvis Presley was first released in 1957.",
+      "fun_fact_de": "'Blue Christmas' von Elvis Presley erschien erstmals 1957.",
+      "fun_fact_es": "'Blue Christmas' de Elvis Presley se publicó por primera vez en 1957.",
+      "fun_fact_fr": "« Blue Christmas » de Elvis Presley est sorti pour la première fois en 1957.",
+      "fun_fact_nl": "'Blue Christmas' van Elvis Presley verscheen voor het eerst in 1957."
+    },
+    {
+      "artist": "Lykke Li",
+      "title": "Have Yourself a Merry Little Christmas",
+      "year": 2026,
+      "uri": "spotify:track:6liolbDYbru5D2WdNOWpoQ",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'Have Yourself a Merry Little Christmas' by Lykke Li was first released in 2026.",
+      "fun_fact_de": "'Have Yourself a Merry Little Christmas' von Lykke Li erschien erstmals 2026.",
+      "fun_fact_es": "'Have Yourself a Merry Little Christmas' de Lykke Li se publicó por primera vez en 2026.",
+      "fun_fact_fr": "« Have Yourself a Merry Little Christmas » de Lykke Li est sorti pour la première fois en 2026.",
+      "fun_fact_nl": "'Have Yourself a Merry Little Christmas' van Lykke Li verscheen voor het eerst in 2026."
+    },
+    {
+      "artist": "Gene Autry",
+      "title": "Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version",
+      "year": 1947,
+      "isrc": "USSM10309760",
+      "uri": "spotify:track:25leEEaz1gIpp7o21Fqyjo",
+      "uri_apple_music": "applemusic://track/200299248",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/200299248"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/587001",
+      "fun_fact": "'Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version' by Gene Autry was first released in 1947.",
+      "fun_fact_de": "'Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version' von Gene Autry erschien erstmals 1947.",
+      "fun_fact_es": "'Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version' de Gene Autry se publicó por primera vez en 1947.",
+      "fun_fact_fr": "« Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version » de Gene Autry est sorti pour la première fois en 1947.",
+      "fun_fact_nl": "'Here Comes Santa Claus (Right Down Santa Claus Lane) - 1947 Version' van Gene Autry verscheen voor het eerst in 1947."
+    },
+    {
+      "artist": "Queen",
+      "title": "Thank God It's Christmas",
+      "year": 1984,
+      "isrc": "GBCEG8400019",
+      "uri": "spotify:track:0QtJZpyfZF67QF32p41NXa",
+      "uri_apple_music": "applemusic://track/6781461599",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/6781461599"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/4092348411",
+      "fun_fact": "'Thank God It's Christmas' by Queen was first released in 1984.",
+      "fun_fact_de": "'Thank God It's Christmas' von Queen erschien erstmals 1984.",
+      "fun_fact_es": "'Thank God It's Christmas' de Queen se publicó por primera vez en 1984.",
+      "fun_fact_fr": "« Thank God It's Christmas » de Queen est sorti pour la première fois en 1984.",
+      "fun_fact_nl": "'Thank God It's Christmas' van Queen verscheen voor het eerst in 1984."
+    },
+    {
+      "artist": "Band Aid",
+      "title": "Do They Know It's Christmas? - 1984 Version",
+      "year": 1984,
+      "isrc": "GBF088400001",
+      "uri": "spotify:track:4Yg2w0P29BBBMixyeNjDtj",
+      "uri_apple_music": "applemusic://track/1445001424",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1445001424"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2261793",
+      "fun_fact": "'Do They Know It's Christmas? - 1984 Version' by Band Aid was first released in 1984.",
+      "fun_fact_de": "'Do They Know It's Christmas? - 1984 Version' von Band Aid erschien erstmals 1984.",
+      "fun_fact_es": "'Do They Know It's Christmas? - 1984 Version' de Band Aid se publicó por primera vez en 1984.",
+      "fun_fact_fr": "« Do They Know It's Christmas? - 1984 Version » de Band Aid est sorti pour la première fois en 1984.",
+      "fun_fact_nl": "'Do They Know It's Christmas? - 1984 Version' van Band Aid verscheen voor het eerst in 1984."
+    },
+    {
+      "artist": "Burl Ives",
+      "title": "Rudolph The Red-Nosed Reindeer",
+      "year": 1964,
+      "isrc": "USMC16516116",
+      "uri": "spotify:track:47otoIkhx3fkdivEXL5OB6",
+      "uri_apple_music": "applemusic://track/1440815080",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440815080"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/584448432",
+      "fun_fact": "'Rudolph The Red-Nosed Reindeer' by Burl Ives was first released in 1964.",
+      "fun_fact_de": "'Rudolph The Red-Nosed Reindeer' von Burl Ives erschien erstmals 1964.",
+      "fun_fact_es": "'Rudolph The Red-Nosed Reindeer' de Burl Ives se publicó por primera vez en 1964.",
+      "fun_fact_fr": "« Rudolph The Red-Nosed Reindeer » de Burl Ives est sorti pour la première fois en 1964.",
+      "fun_fact_nl": "'Rudolph The Red-Nosed Reindeer' van Burl Ives verscheen voor het eerst in 1964."
+    },
+    {
+      "artist": "Dasha",
+      "title": "Driving Home for Christmas",
+      "year": 2024,
+      "uri": "spotify:track:2gciS7UJjv59l7608DFGNl",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'Driving Home for Christmas' by Dasha was first released in 2024.",
+      "fun_fact_de": "'Driving Home for Christmas' von Dasha erschien erstmals 2024.",
+      "fun_fact_es": "'Driving Home for Christmas' de Dasha se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Driving Home for Christmas » de Dasha est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Driving Home for Christmas' van Dasha verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Frank Sinatra",
+      "title": "Jingle Bells",
+      "year": 1957,
+      "isrc": "USCA28700222",
+      "uri": "spotify:track:4KV9bM7a1KDc7b7OakFZic",
+      "uri_apple_music": "applemusic://track/1440862184",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1440862184"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/110148086",
+      "fun_fact": "'Jingle Bells' by Frank Sinatra was first released in 1957.",
+      "fun_fact_de": "'Jingle Bells' von Frank Sinatra erschien erstmals 1957.",
+      "fun_fact_es": "'Jingle Bells' de Frank Sinatra se publicó por primera vez en 1957.",
+      "fun_fact_fr": "« Jingle Bells » de Frank Sinatra est sorti pour la première fois en 1957.",
+      "fun_fact_nl": "'Jingle Bells' van Frank Sinatra verscheen voor het eerst in 1957."
+    },
+    {
+      "artist": "Dolly Parton",
+      "title": "Hard Candy Christmas",
+      "year": 1982,
+      "isrc": "USRN18200001",
+      "uri": "spotify:track:0uTVChzibEWKrXojPaJ9y1",
+      "uri_apple_music": "applemusic://track/258613237",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/258613237"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1076105",
+      "fun_fact": "'Hard Candy Christmas' by Dolly Parton was first released in 1982.",
+      "fun_fact_de": "'Hard Candy Christmas' von Dolly Parton erschien erstmals 1982.",
+      "fun_fact_es": "'Hard Candy Christmas' de Dolly Parton se publicó por primera vez en 1982.",
+      "fun_fact_fr": "« Hard Candy Christmas » de Dolly Parton est sorti pour la première fois en 1982.",
+      "fun_fact_nl": "'Hard Candy Christmas' van Dolly Parton verscheen voor het eerst in 1982."
+    },
+    {
+      "artist": "Idina Menzel, Michael Bublé",
+      "title": "Baby It's Cold Outside (with Michael Bublé)",
+      "year": 2014,
+      "isrc": "USWB11402616",
+      "uri": "spotify:track:0Ie5uiv54KgCr7P4sYDTHl",
+      "uri_apple_music": "applemusic://track/924313597",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/924313597"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/87172779",
+      "fun_fact": "'Baby It's Cold Outside (with Michael Bublé)' by Idina Menzel was first released in 2014.",
+      "fun_fact_de": "'Baby It's Cold Outside (with Michael Bublé)' von Idina Menzel erschien erstmals 2014.",
+      "fun_fact_es": "'Baby It's Cold Outside (with Michael Bublé)' de Idina Menzel se publicó por primera vez en 2014.",
+      "fun_fact_fr": "« Baby It's Cold Outside (with Michael Bublé) » de Idina Menzel est sorti pour la première fois en 2014.",
+      "fun_fact_nl": "'Baby It's Cold Outside (with Michael Bublé)' van Idina Menzel verscheen voor het eerst in 2014."
+    },
+    {
+      "artist": "Meghan Trainor",
+      "title": "I'll Be Home",
+      "year": 2014,
+      "isrc": "USSM11408623",
+      "uri": "spotify:track:0YupMLYOYz6lZDbN3kRt7A",
+      "uri_apple_music": "applemusic://track/939015076",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/939015076"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/90269801",
+      "fun_fact": "'I'll Be Home' by Meghan Trainor was first released in 2014.",
+      "fun_fact_de": "'I'll Be Home' von Meghan Trainor erschien erstmals 2014.",
+      "fun_fact_es": "'I'll Be Home' de Meghan Trainor se publicó por primera vez en 2014.",
+      "fun_fact_fr": "« I'll Be Home » de Meghan Trainor est sorti pour la première fois en 2014.",
+      "fun_fact_nl": "'I'll Be Home' van Meghan Trainor verscheen voor het eerst in 2014."
+    },
+    {
+      "artist": "The Jackson 5",
+      "title": "I Saw Mommy Kissing Santa Claus",
+      "year": 1970,
+      "isrc": "USMO17082669",
+      "uri": "spotify:track:15sxLiiChE5dCW3Y756oas",
+      "uri_apple_music": "applemusic://track/1425235336",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1425235336"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/540195752",
+      "fun_fact": "'I Saw Mommy Kissing Santa Claus' by The Jackson 5 was first released in 1970.",
+      "fun_fact_de": "'I Saw Mommy Kissing Santa Claus' von The Jackson 5 erschien erstmals 1970.",
+      "fun_fact_es": "'I Saw Mommy Kissing Santa Claus' de The Jackson 5 se publicó por primera vez en 1970.",
+      "fun_fact_fr": "« I Saw Mommy Kissing Santa Claus » de The Jackson 5 est sorti pour la première fois en 1970.",
+      "fun_fact_nl": "'I Saw Mommy Kissing Santa Claus' van The Jackson 5 verscheen voor het eerst in 1970."
+    },
+    {
+      "artist": "Céline Dion",
+      "title": "Ave Maria",
+      "year": 1998,
+      "isrc": "CAC229800212",
+      "uri": "spotify:track:7v6DvsyQHmsQQhmVDmrnZg",
+      "uri_apple_music": "applemusic://track/1537178765",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1537178765"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1126565342",
+      "fun_fact": "'Ave Maria' by Céline Dion was first released in 1998.",
+      "fun_fact_de": "'Ave Maria' von Céline Dion erschien erstmals 1998.",
+      "fun_fact_es": "'Ave Maria' de Céline Dion se publicó por primera vez en 1998.",
+      "fun_fact_fr": "« Ave Maria » de Céline Dion est sorti pour la première fois en 1998.",
+      "fun_fact_nl": "'Ave Maria' van Céline Dion verscheen voor het eerst in 1998."
+    },
+    {
+      "artist": "Pentatonix",
+      "title": "Mary, Did You Know?",
+      "year": 2014,
+      "isrc": "USRC11402151",
+      "uri": "spotify:track:4aCqRYHavLWbUCuoBjh7Xs",
+      "uri_apple_music": "applemusic://track/1484131231",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1484131231"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/110956884",
+      "fun_fact": "'Mary, Did You Know?' by Pentatonix was first released in 2014.",
+      "fun_fact_de": "'Mary, Did You Know?' von Pentatonix erschien erstmals 2014.",
+      "fun_fact_es": "'Mary, Did You Know?' de Pentatonix se publicó por primera vez en 2014.",
+      "fun_fact_fr": "« Mary, Did You Know? » de Pentatonix est sorti pour la première fois en 2014.",
+      "fun_fact_nl": "'Mary, Did You Know?' van Pentatonix verscheen voor het eerst in 2014."
+    },
+    {
+      "artist": "Trans-Siberian Orchestra",
+      "title": "Christmas Eve / Sarajevo 12/24 - Instrumental",
+      "year": 1996,
+      "isrc": "USAT20101381",
+      "uri": "spotify:track:3sBnSBnzpEYKpJYGsAIbup",
+      "uri_apple_music": "applemusic://track/1159442668",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1159442668"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/14615458",
+      "fun_fact": "'Christmas Eve / Sarajevo 12/24 - Instrumental' by Trans-Siberian Orchestra was first released in 1996.",
+      "fun_fact_de": "'Christmas Eve / Sarajevo 12/24 - Instrumental' von Trans-Siberian Orchestra erschien erstmals 1996.",
+      "fun_fact_es": "'Christmas Eve / Sarajevo 12/24 - Instrumental' de Trans-Siberian Orchestra se publicó por primera vez en 1996.",
+      "fun_fact_fr": "« Christmas Eve / Sarajevo 12/24 - Instrumental » de Trans-Siberian Orchestra est sorti pour la première fois en 1996.",
+      "fun_fact_nl": "'Christmas Eve / Sarajevo 12/24 - Instrumental' van Trans-Siberian Orchestra verscheen voor het eerst in 1996."
+    },
+    {
+      "artist": "Bing Crosby",
+      "title": "Do You Hear What I Hear? - Remastered 2006",
+      "year": 1963,
+      "isrc": "USCA20600974",
+      "uri": "spotify:track:5aDoUmxBsbdpS16alksb5Z",
+      "uri_apple_music": "applemusic://track/1482952067",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1482952067"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3399697",
+      "fun_fact": "'Do You Hear What I Hear? - Remastered 2006' by Bing Crosby was first released in 1963.",
+      "fun_fact_de": "'Do You Hear What I Hear? - Remastered 2006' von Bing Crosby erschien erstmals 1963.",
+      "fun_fact_es": "'Do You Hear What I Hear? - Remastered 2006' de Bing Crosby se publicó por primera vez en 1963.",
+      "fun_fact_fr": "« Do You Hear What I Hear? - Remastered 2006 » de Bing Crosby est sorti pour la première fois en 1963.",
+      "fun_fact_nl": "'Do You Hear What I Hear? - Remastered 2006' van Bing Crosby verscheen voor het eerst in 1963."
+    },
+    {
+      "artist": "Leona Lewis",
+      "title": "One More Sleep",
+      "year": 2013,
+      "isrc": "GBHMU1300298",
+      "uri": "spotify:track:78pn8k7RogKo2oxl0DyX6d",
+      "uri_apple_music": "applemusic://track/733985599",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/733985599"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/72435416",
+      "fun_fact": "'One More Sleep' by Leona Lewis was first released in 2013.",
+      "fun_fact_de": "'One More Sleep' von Leona Lewis erschien erstmals 2013.",
+      "fun_fact_es": "'One More Sleep' de Leona Lewis se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« One More Sleep » de Leona Lewis est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'One More Sleep' van Leona Lewis verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Kesha",
+      "title": "Holiday Road",
+      "year": 2024,
+      "uri": "spotify:track:6hZvOA9oBZZM812GNDLjEb",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'Holiday Road' by Kesha was first released in 2024.",
+      "fun_fact_de": "'Holiday Road' von Kesha erschien erstmals 2024.",
+      "fun_fact_es": "'Holiday Road' de Kesha se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Holiday Road » de Kesha est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Holiday Road' van Kesha verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Mariah Carey",
+      "title": "Christmas (Baby Please Come Home)",
+      "year": 1994,
+      "isrc": "USSM19402077",
+      "uri": "spotify:track:3PIDciSFdrQxSQSihim3hN",
+      "uri_apple_music": "applemusic://track/585972807",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/585972807"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/62710444",
+      "fun_fact": "'Christmas (Baby Please Come Home)' by Mariah Carey was first released in 1994.",
+      "fun_fact_de": "'Christmas (Baby Please Come Home)' von Mariah Carey erschien erstmals 1994.",
+      "fun_fact_es": "'Christmas (Baby Please Come Home)' de Mariah Carey se publicó por primera vez en 1994.",
+      "fun_fact_fr": "« Christmas (Baby Please Come Home) » de Mariah Carey est sorti pour la première fois en 1994.",
+      "fun_fact_nl": "'Christmas (Baby Please Come Home)' van Mariah Carey verscheen voor het eerst in 1994."
+    },
+    {
+      "artist": "*NSYNC",
+      "title": "Merry Christmas, Happy Holidays",
+      "year": 1998,
+      "isrc": "DEA819800761",
+      "uri": "spotify:track:5SyQ5OhqrkJGb35V7RBoL0",
+      "uri_apple_music": "applemusic://track/1587240124",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1587240124"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/995572",
+      "fun_fact": "'Merry Christmas, Happy Holidays' by *NSYNC was first released in 1998.",
+      "fun_fact_de": "'Merry Christmas, Happy Holidays' von *NSYNC erschien erstmals 1998.",
+      "fun_fact_es": "'Merry Christmas, Happy Holidays' de *NSYNC se publicó por primera vez en 1998.",
+      "fun_fact_fr": "« Merry Christmas, Happy Holidays » de *NSYNC est sorti pour la première fois en 1998.",
+      "fun_fact_nl": "'Merry Christmas, Happy Holidays' van *NSYNC verscheen voor het eerst in 1998."
+    },
+    {
+      "artist": "Donny Hathaway",
+      "title": "This Christmas",
+      "year": 1970,
+      "isrc": "USAT20180585",
+      "uri": "spotify:track:38xhBO2AKrJnjdjVnhJES6",
+      "uri_apple_music": "applemusic://track/281714391",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/281714391"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/675107",
+      "fun_fact": "'This Christmas' by Donny Hathaway was first released in 1970.",
+      "fun_fact_de": "'This Christmas' von Donny Hathaway erschien erstmals 1970.",
+      "fun_fact_es": "'This Christmas' de Donny Hathaway se publicó por primera vez en 1970.",
+      "fun_fact_fr": "« This Christmas » de Donny Hathaway est sorti pour la première fois en 1970.",
+      "fun_fact_nl": "'This Christmas' van Donny Hathaway verscheen voor het eerst in 1970."
+    },
+    {
+      "artist": "Chuck Berry",
+      "title": "Run Rudolph Run",
+      "year": 1958,
+      "isrc": "USMC15819663",
+      "uri": "spotify:track:2pnPe4pJtq7689i5ydzvJJ",
+      "uri_apple_music": "applemusic://track/1443832242",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443832242"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7372854",
+      "fun_fact": "'Run Rudolph Run' by Chuck Berry was first released in 1958.",
+      "fun_fact_de": "'Run Rudolph Run' von Chuck Berry erschien erstmals 1958.",
+      "fun_fact_es": "'Run Rudolph Run' de Chuck Berry se publicó por primera vez en 1958.",
+      "fun_fact_fr": "« Run Rudolph Run » de Chuck Berry est sorti pour la première fois en 1958.",
+      "fun_fact_nl": "'Run Rudolph Run' van Chuck Berry verscheen voor het eerst in 1958."
+    },
+    {
+      "artist": "Jordan Davis",
+      "title": "O Come All Ye Faithful",
+      "year": 2025,
+      "uri": "spotify:track:6iO6ZLKaJF13fuF5HUFSEM",
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": null,
+      "fun_fact": "'O Come All Ye Faithful' by Jordan Davis was first released in 2025.",
+      "fun_fact_de": "'O Come All Ye Faithful' von Jordan Davis erschien erstmals 2025.",
+      "fun_fact_es": "'O Come All Ye Faithful' de Jordan Davis se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« O Come All Ye Faithful » de Jordan Davis est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'O Come All Ye Faithful' van Jordan Davis verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Eartha Kitt, Henri René and His Orchestra",
+      "title": "Santa Baby (with Henri René & His Orchestra)",
+      "year": 1953,
+      "isrc": "USBB10101085",
+      "uri": "spotify:track:1foCxQtxBweJtZmdxhEHVO",
+      "uri_apple_music": "applemusic://track/348906128",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/348906128"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/960351",
+      "fun_fact": "'Santa Baby (with Henri René & His Orchestra)' by Eartha Kitt was first released in 1953.",
+      "fun_fact_de": "'Santa Baby (with Henri René & His Orchestra)' von Eartha Kitt erschien erstmals 1953.",
+      "fun_fact_es": "'Santa Baby (with Henri René & His Orchestra)' de Eartha Kitt se publicó por primera vez en 1953.",
+      "fun_fact_fr": "« Santa Baby (with Henri René & His Orchestra) » de Eartha Kitt est sorti pour la première fois en 1953.",
+      "fun_fact_nl": "'Santa Baby (with Henri René & His Orchestra)' van Eartha Kitt verscheen voor het eerst in 1953."
+    },
+    {
+      "artist": "Cher",
+      "title": "DJ Play A Christmas Song",
+      "year": 2023,
+      "isrc": "USWB12304055",
+      "uri": "spotify:track:18uSfZqFBxQFi8CsXOIbhy",
+      "uri_apple_music": "applemusic://track/1707634094",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1707634094"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2456430565",
+      "fun_fact": "'DJ Play A Christmas Song' by Cher was first released in 2023.",
+      "fun_fact_de": "'DJ Play A Christmas Song' von Cher erschien erstmals 2023.",
+      "fun_fact_es": "'DJ Play A Christmas Song' de Cher se publicó por primera vez en 2023.",
+      "fun_fact_fr": "« DJ Play A Christmas Song » de Cher est sorti pour la première fois en 2023.",
+      "fun_fact_nl": "'DJ Play A Christmas Song' van Cher verscheen voor het eerst in 2023."
+    },
+    {
+      "artist": "Nat King Cole",
+      "title": "Joy To The World",
+      "year": 1960,
+      "isrc": "USCA29900569",
+      "uri": "spotify:track:5jjsm4Jjq8xjDaue3rW9Go",
+      "uri_apple_music": "applemusic://track/1435551167",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1435551167"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3595465822",
+      "fun_fact": "'Joy To The World' by Nat King Cole was first released in 1960.",
+      "fun_fact_de": "'Joy To The World' von Nat King Cole erschien erstmals 1960.",
+      "fun_fact_es": "'Joy To The World' de Nat King Cole se publicó por primera vez en 1960.",
+      "fun_fact_fr": "« Joy To The World » de Nat King Cole est sorti pour la première fois en 1960.",
+      "fun_fact_nl": "'Joy To The World' van Nat King Cole verscheen voor het eerst in 1960."
+    },
+    {
+      "artist": "Teddy Swims",
+      "title": "Silent Night",
+      "year": 2021,
+      "isrc": "USWB12004922",
+      "uri": "spotify:track:1rRb8IFx7OYqlZnt6ag7cP",
+      "uri_apple_music": "applemusic://track/1587392667",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1587392667"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1504148942",
+      "fun_fact": "'Silent Night' by Teddy Swims was first released in 2021.",
+      "fun_fact_de": "'Silent Night' von Teddy Swims erschien erstmals 2021.",
+      "fun_fact_es": "'Silent Night' de Teddy Swims se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Silent Night » de Teddy Swims est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Silent Night' van Teddy Swims verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Ella Fitzgerald",
+      "title": "Frosty The Snowman",
+      "year": 1960,
+      "isrc": "USF096025350",
+      "uri": "spotify:track:6MPpnJDLk37GEIM0iGGITd",
+      "uri_apple_music": "applemusic://track/1469551715",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1469551715"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/548795512",
+      "fun_fact": "'Frosty The Snowman' by Ella Fitzgerald was first released in 1960.",
+      "fun_fact_de": "'Frosty The Snowman' von Ella Fitzgerald erschien erstmals 1960.",
+      "fun_fact_es": "'Frosty The Snowman' de Ella Fitzgerald se publicó por primera vez en 1960.",
+      "fun_fact_fr": "« Frosty The Snowman » de Ella Fitzgerald est sorti pour la première fois en 1960.",
+      "fun_fact_nl": "'Frosty The Snowman' van Ella Fitzgerald verscheen voor het eerst in 1960."
+    },
+    {
+      "artist": "Chris Rea",
+      "title": "Driving Home for Christmas",
+      "year": 1986,
+      "isrc": "GBAHS9904091",
+      "uri": "spotify:track:3Z3QhZAZpqwZa1phsbQ3JZ",
+      "uri_apple_music": "applemusic://track/64807078",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/64807078"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/425956912",
+      "fun_fact": "'Driving Home for Christmas' by Chris Rea was first released in 1986.",
+      "fun_fact_de": "'Driving Home for Christmas' von Chris Rea erschien erstmals 1986.",
+      "fun_fact_es": "'Driving Home for Christmas' de Chris Rea se publicó por primera vez en 1986.",
+      "fun_fact_fr": "« Driving Home for Christmas » de Chris Rea est sorti pour la première fois en 1986.",
+      "fun_fact_nl": "'Driving Home for Christmas' van Chris Rea verscheen voor het eerst in 1986."
+    },
+    {
+      "artist": "Seth MacFarlane, Liz Gillies",
+      "title": "We Wish You The Merriest",
+      "year": 2023,
+      "isrc": "USUG12306609",
+      "uri": "spotify:track:6ImuFqEAZf9dkpuYahSr0K",
+      "uri_apple_music": "applemusic://track/1706917030",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1706917030"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2453007945",
+      "fun_fact": "'We Wish You The Merriest' by Seth MacFarlane was first released in 2023.",
+      "fun_fact_de": "'We Wish You The Merriest' von Seth MacFarlane erschien erstmals 2023.",
+      "fun_fact_es": "'We Wish You The Merriest' de Seth MacFarlane se publicó por primera vez en 2023.",
+      "fun_fact_fr": "« We Wish You The Merriest » de Seth MacFarlane est sorti pour la première fois en 2023.",
+      "fun_fact_nl": "'We Wish You The Merriest' van Seth MacFarlane verscheen voor het eerst in 2023."
+    },
+    {
+      "artist": "Elvis Presley",
+      "title": "Here Comes Santa Claus (Right Down Santa Claus Lane)",
+      "year": 1957,
+      "isrc": "USRC15701156",
+      "uri": "spotify:track:7n7VsX3sv66znBwA8b5uhp",
+      "uri_apple_music": "applemusic://track/676288365",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/676288365"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/60868776",
+      "fun_fact": "'Here Comes Santa Claus (Right Down Santa Claus Lane)' by Elvis Presley was first released in 1957.",
+      "fun_fact_de": "'Here Comes Santa Claus (Right Down Santa Claus Lane)' von Elvis Presley erschien erstmals 1957.",
+      "fun_fact_es": "'Here Comes Santa Claus (Right Down Santa Claus Lane)' de Elvis Presley se publicó por primera vez en 1957.",
+      "fun_fact_fr": "« Here Comes Santa Claus (Right Down Santa Claus Lane) » de Elvis Presley est sorti pour la première fois en 1957.",
+      "fun_fact_nl": "'Here Comes Santa Claus (Right Down Santa Claus Lane)' van Elvis Presley verscheen voor het eerst in 1957."
+    },
+    {
+      "artist": "Katy Perry",
+      "title": "Cozy Little Christmas",
+      "year": 2018,
+      "isrc": "USUM71819190",
+      "uri": "spotify:track:02FaKXXL7KUtRc7K0k54tL",
+      "uri_apple_music": "applemusic://track/1484609636",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1484609636"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/788650882",
+      "fun_fact": "'Cozy Little Christmas' by Katy Perry was first released in 2018.",
+      "fun_fact_de": "'Cozy Little Christmas' von Katy Perry erschien erstmals 2018.",
+      "fun_fact_es": "'Cozy Little Christmas' de Katy Perry se publicó por primera vez en 2018.",
+      "fun_fact_fr": "« Cozy Little Christmas » de Katy Perry est sorti pour la première fois en 2018.",
+      "fun_fact_nl": "'Cozy Little Christmas' van Katy Perry verscheen voor het eerst in 2018."
+    },
+    {
+      "artist": "Céline Dion, Andrea Bocelli",
+      "title": "The Prayer",
+      "year": 1998,
+      "isrc": "ITZ049900380",
+      "uri": "spotify:track:6zlY4xmlgqvn4LxjzoS2mz",
+      "uri_apple_music": "applemusic://track/1537178987",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1537178987"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1105576",
+      "fun_fact": "'The Prayer' by Céline Dion was first released in 1998.",
+      "fun_fact_de": "'The Prayer' von Céline Dion erschien erstmals 1998.",
+      "fun_fact_es": "'The Prayer' de Céline Dion se publicó por primera vez en 1998.",
+      "fun_fact_fr": "« The Prayer » de Céline Dion est sorti pour la première fois en 1998.",
+      "fun_fact_nl": "'The Prayer' van Céline Dion verscheen voor het eerst in 1998."
+    },
+    {
+      "artist": "Stevie Wonder",
+      "title": "Someday At Christmas",
+      "year": 1967,
+      "isrc": "USMO16782672",
+      "uri": "spotify:track:0OdTRhhGt8aq4UXh67CKQg",
+      "uri_apple_music": "applemusic://track/1749926250",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1749926250"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/608694892",
+      "fun_fact": "'Someday At Christmas' by Stevie Wonder was first released in 1967.",
+      "fun_fact_de": "'Someday At Christmas' von Stevie Wonder erschien erstmals 1967.",
+      "fun_fact_es": "'Someday At Christmas' de Stevie Wonder se publicó por primera vez en 1967.",
+      "fun_fact_fr": "« Someday At Christmas » de Stevie Wonder est sorti pour la première fois en 1967.",
+      "fun_fact_nl": "'Someday At Christmas' van Stevie Wonder verscheen voor het eerst in 1967."
+    },
+    {
+      "artist": "Wizzard",
+      "title": "I Wish It Could Be Christmas Everyday",
+      "year": 1973,
+      "isrc": "GBAYE7300088",
+      "uri": "spotify:track:1mH6tZC6iXIHPI6EixCwxw",
+      "uri_apple_music": "applemusic://track/710484197",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/710484197"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3167852",
+      "fun_fact": "'I Wish It Could Be Christmas Everyday' by Wizzard was first released in 1973.",
+      "fun_fact_de": "'I Wish It Could Be Christmas Everyday' von Wizzard erschien erstmals 1973.",
+      "fun_fact_es": "'I Wish It Could Be Christmas Everyday' de Wizzard se publicó por primera vez en 1973.",
+      "fun_fact_fr": "« I Wish It Could Be Christmas Everyday » de Wizzard est sorti pour la première fois en 1973.",
+      "fun_fact_nl": "'I Wish It Could Be Christmas Everyday' van Wizzard verscheen voor het eerst in 1973."
+    },
+    {
+      "artist": "Run–D.M.C.",
+      "title": "Christmas In Hollis",
+      "year": 1987,
+      "isrc": "USAR10001682",
+      "uri": "spotify:track:41onDks2UPbyjer5fMeUWf",
+      "uri_apple_music": "applemusic://track/1487550056",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1487550056"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/994905",
+      "fun_fact": "'Christmas In Hollis' by Run–D.M.C. was first released in 1987.",
+      "fun_fact_de": "'Christmas In Hollis' von Run–D.M.C. erschien erstmals 1987.",
+      "fun_fact_es": "'Christmas In Hollis' de Run–D.M.C. se publicó por primera vez en 1987.",
+      "fun_fact_fr": "« Christmas In Hollis » de Run–D.M.C. est sorti pour la première fois en 1987.",
+      "fun_fact_nl": "'Christmas In Hollis' van Run–D.M.C. verscheen voor het eerst in 1987."
+    },
+    {
+      "artist": "Josh Groban, Faith Hill",
+      "title": "The First Noël (with Faith Hill)",
+      "year": 2007,
+      "isrc": "USRE10701716",
+      "uri": "spotify:track:5fhjN7E4rV0GqsRSQBsWeo",
+      "uri_apple_music": "applemusic://track/1293259870",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1293259870"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/420324502",
+      "fun_fact": "'The First Noël (with Faith Hill)' by Josh Groban was first released in 2007.",
+      "fun_fact_de": "'The First Noël (with Faith Hill)' von Josh Groban erschien erstmals 2007.",
+      "fun_fact_es": "'The First Noël (with Faith Hill)' de Josh Groban se publicó por primera vez en 2007.",
+      "fun_fact_fr": "« The First Noël (with Faith Hill) » de Josh Groban est sorti pour la première fois en 2007.",
+      "fun_fact_nl": "'The First Noël (with Faith Hill)' van Josh Groban verscheen voor het eerst in 2007."
+    },
+    {
+      "artist": "Mud",
+      "title": "Lonely This Christmas",
+      "year": 1974,
+      "isrc": "GBAYE7400041",
+      "uri": "spotify:track:5DMItYJluCFc7YtFdP4aXo",
+      "uri_apple_music": "applemusic://track/697229920",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/697229920"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3123854",
+      "fun_fact": "'Lonely This Christmas' by Mud was first released in 1974.",
+      "fun_fact_de": "'Lonely This Christmas' von Mud erschien erstmals 1974.",
+      "fun_fact_es": "'Lonely This Christmas' de Mud se publicó por primera vez en 1974.",
+      "fun_fact_fr": "« Lonely This Christmas » de Mud est sorti pour la première fois en 1974.",
+      "fun_fact_nl": "'Lonely This Christmas' van Mud verscheen voor het eerst in 1974."
+    },
+    {
+      "artist": "Daryl Hall & John Oates",
+      "title": "Jingle Bell Rock - Daryl's Version",
+      "year": 2000,
+      "isrc": "USRC10400165",
+      "uri": "spotify:track:6pVW5LRWgeLaHudxauOTJU",
+      "uri_apple_music": "applemusic://track/1647391542",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1647391542"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/8146773",
+      "fun_fact": "'Jingle Bell Rock - Daryl's Version' by Daryl Hall & John Oates was first released in 2000.",
+      "fun_fact_de": "'Jingle Bell Rock - Daryl's Version' von Daryl Hall & John Oates erschien erstmals 2000.",
+      "fun_fact_es": "'Jingle Bell Rock - Daryl's Version' de Daryl Hall & John Oates se publicó por primera vez en 2000.",
+      "fun_fact_fr": "« Jingle Bell Rock - Daryl's Version » de Daryl Hall & John Oates est sorti pour la première fois en 2000.",
+      "fun_fact_nl": "'Jingle Bell Rock - Daryl's Version' van Daryl Hall & John Oates verscheen voor het eerst in 2000."
+    },
+    {
+      "artist": "Coldplay",
+      "title": "Christmas Lights",
+      "year": 2010,
+      "isrc": "GBAYE1001401",
+      "uri": "spotify:track:4fzyvSu73BhGvi96p2zwjL",
+      "uri_apple_music": "applemusic://track/693526009",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/693526009"
+      },
+      "uri_youtube_music": null,
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7857354",
+      "fun_fact": "'Christmas Lights' by Coldplay was first released in 2010.",
+      "fun_fact_de": "'Christmas Lights' von Coldplay erschien erstmals 2010.",
+      "fun_fact_es": "'Christmas Lights' de Coldplay se publicó por primera vez en 2010.",
+      "fun_fact_fr": "« Christmas Lights » de Coldplay est sorti pour la première fois en 2010.",
+      "fun_fact_nl": "'Christmas Lights' van Coldplay verscheen voor het eerst in 2010."
+    }
+  ]
+}
