@@ -913,7 +913,33 @@
     "roundSettingsFoot": "Applies from round {round}. Scores so far stay.",
     "roundSettingsNotice": "⏱ Now {value}",
     "roundSettingsNoticeSeconds": "{seconds} seconds",
-    "roundSettingsNoticeBands": "{difficulty}: {points} points within ±{range} years"
+    "roundSettingsNoticeBands": "{difficulty}: {points} points within ±{range} years",
+    "libraryAi": {
+      "title": "Create a playlist with AI",
+      "intro": "Beatify never contacts an AI itself. Copy the prompt into any chatbot or local model you trust, then paste its answer back.",
+      "name": "Playlist name",
+      "theme": "Theme for the AI",
+      "count": "Songs",
+      "copy": "Copy prompt",
+      "paste": "Paste the AI's answer",
+      "resolve": "Check & preview",
+      "save": "Save playlist",
+      "needScan": "Scan your library first.",
+      "copied": "Prompt copied — paste it into your AI, then paste the answer below.",
+      "copyFailed": "Could not copy — is the page allowed to use the clipboard?",
+      "parseFail": "Couldn't read any songs from that answer — expected JSON like",
+      "defaultName": "AI Mix",
+      "matched": "Matched in your library: ",
+      "unmatched": "Not found (skipped): ",
+      "resolveFailed": "Could not check the songs — is Home Assistant reachable?",
+      "saved": "Saved! Find it under Playlists → Mine."
+    },
+    "providerWarning": {
+      "musicAssistant": "Premium account must be configured in Music Assistant",
+      "sonos": "Spotify must be linked in Sonos app",
+      "alexa": "Service must be linked in Alexa app",
+      "alexaCaveat": "Uses voice search - may occasionally play a different version of the song"
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",

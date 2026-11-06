@@ -525,21 +525,17 @@ export function updateProviderWarning(player) {
     const warningEl = document.getElementById('provider-warning');
     if (!warningEl) return;
 
+    const alexaWarning = tr('admin.providerWarning.alexa', 'Service must be linked in Alexa app');
+    const alexaCaveat = tr('admin.providerWarning.alexaCaveat', 'Uses voice search - may occasionally play a different version of the song');
     const platformInfo = {
         music_assistant: {
-            warning: 'Premium account must be configured in Music Assistant',
+            warning: tr('admin.providerWarning.musicAssistant', 'Premium account must be configured in Music Assistant'),
         },
         sonos: {
-            warning: 'Spotify must be linked in Sonos app',
+            warning: tr('admin.providerWarning.sonos', 'Spotify must be linked in Sonos app'),
         },
-        alexa_media: {
-            warning: 'Service must be linked in Alexa app',
-            caveat: 'Uses voice search - may occasionally play a different version of the song',
-        },
-        alexa: {
-            warning: 'Service must be linked in Alexa app',
-            caveat: 'Uses voice search - may occasionally play a different version of the song',
-        },
+        alexa_media: { warning: alexaWarning, caveat: alexaCaveat },
+        alexa: { warning: alexaWarning, caveat: alexaCaveat },
     };
 
     const info = platformInfo[player.platform];

@@ -913,7 +913,33 @@
     "roundSettingsFoot": "Gilt ab Runde {round}. Bisherige Punkte bleiben.",
     "roundSettingsNotice": "⏱ Jetzt {value}",
     "roundSettingsNoticeSeconds": "{seconds} Sekunden",
-    "roundSettingsNoticeBands": "{difficulty}: {points} Punkte bei ±{range} Jahren"
+    "roundSettingsNoticeBands": "{difficulty}: {points} Punkte bei ±{range} Jahren",
+    "libraryAi": {
+      "title": "Playlist mit KI erstellen",
+      "intro": "Beatify kontaktiert nie selbst eine KI. Kopiere den Prompt in einen Chatbot oder ein lokales Modell deiner Wahl und füge die Antwort danach hier ein.",
+      "name": "Playlist-Name",
+      "theme": "Thema für die KI",
+      "count": "Songs",
+      "copy": "Prompt kopieren",
+      "paste": "Antwort der KI einfügen",
+      "resolve": "Prüfen & Vorschau",
+      "save": "Playlist speichern",
+      "needScan": "Scanne zuerst deine Bibliothek.",
+      "copied": "Prompt kopiert — füge ihn in deine KI ein und die Antwort danach unten.",
+      "copyFailed": "Kopieren fehlgeschlagen — darf die Seite auf die Zwischenablage zugreifen?",
+      "parseFail": "Aus dieser Antwort konnten keine Songs gelesen werden — erwartet wird JSON wie",
+      "defaultName": "KI-Mix",
+      "matched": "In deiner Bibliothek gefunden: ",
+      "unmatched": "Nicht gefunden (übersprungen): ",
+      "resolveFailed": "Songs konnten nicht geprüft werden — ist Home Assistant erreichbar?",
+      "saved": "Gespeichert! Du findest sie unter Playlists → Meine."
+    },
+    "providerWarning": {
+      "musicAssistant": "Premium-Konto muss in Music Assistant eingerichtet sein",
+      "sonos": "Spotify muss in der Sonos-App verknüpft sein",
+      "alexa": "Dienst muss in der Alexa-App verknüpft sein",
+      "alexaCaveat": "Nutzt Sprachsuche – spielt gelegentlich eine andere Version des Songs"
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",

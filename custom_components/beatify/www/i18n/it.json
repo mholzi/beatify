@@ -913,7 +913,33 @@
     "roundSettingsFoot": "Vale dal turno {round}. I punti già ottenuti restano.",
     "roundSettingsNotice": "⏱ Ora {value}",
     "roundSettingsNoticeSeconds": "{seconds} secondi",
-    "roundSettingsNoticeBands": "{difficulty}: {points} punti entro ±{range} anni"
+    "roundSettingsNoticeBands": "{difficulty}: {points} punti entro ±{range} anni",
+    "libraryAi": {
+      "title": "Crea una playlist con l'IA",
+      "intro": "Beatify non contatta mai un'IA da solo. Copia il prompt nel chatbot o nel modello locale che preferisci, poi incolla qui la risposta.",
+      "name": "Nome della playlist",
+      "theme": "Tema per l'IA",
+      "count": "Brani",
+      "copy": "Copia il prompt",
+      "paste": "Incolla la risposta dell'IA",
+      "resolve": "Controlla e anteprima",
+      "save": "Salva la playlist",
+      "needScan": "Prima scansiona la tua libreria.",
+      "copied": "Prompt copiato — incollalo nella tua IA, poi incolla la risposta qui sotto.",
+      "copyFailed": "Impossibile copiare — la pagina può usare gli appunti?",
+      "parseFail": "Nessun brano leggibile in quella risposta — era atteso un JSON come",
+      "defaultName": "Mix IA",
+      "matched": "Trovati nella tua libreria: ",
+      "unmatched": "Non trovati (saltati): ",
+      "resolveFailed": "Impossibile controllare i brani — Home Assistant è raggiungibile?",
+      "saved": "Salvata! La trovi in Playlist → Mie."
+    },
+    "providerWarning": {
+      "musicAssistant": "L'account Premium deve essere configurato in Music Assistant",
+      "sonos": "Spotify deve essere collegato nell'app Sonos",
+      "alexa": "Il servizio deve essere collegato nell'app Alexa",
+      "alexaCaveat": "Usa la ricerca vocale: a volte può riprodurre un'altra versione del brano"
+    }
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",

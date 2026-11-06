@@ -913,7 +913,33 @@
     "roundSettingsFoot": "Geldt vanaf ronde {round}. Behaalde punten blijven staan.",
     "roundSettingsNotice": "⏱ Nu {value}",
     "roundSettingsNoticeSeconds": "{seconds} seconden",
-    "roundSettingsNoticeBands": "{difficulty}: {points} punten binnen ±{range} jaar"
+    "roundSettingsNoticeBands": "{difficulty}: {points} punten binnen ±{range} jaar",
+    "libraryAi": {
+      "title": "Playlist maken met AI",
+      "intro": "Beatify neemt nooit zelf contact op met een AI. Kopieer de prompt naar een chatbot of lokaal model naar keuze en plak het antwoord hier terug.",
+      "name": "Naam van de playlist",
+      "theme": "Thema voor de AI",
+      "count": "Nummers",
+      "copy": "Prompt kopiëren",
+      "paste": "Plak het antwoord van de AI",
+      "resolve": "Check en bekijk",
+      "save": "Playlist opslaan",
+      "needScan": "Scan eerst je bibliotheek.",
+      "copied": "Prompt gekopieerd — plak hem in je AI en plak het antwoord hieronder.",
+      "copyFailed": "Kopiëren mislukt — mag de pagina het klembord gebruiken?",
+      "parseFail": "Geen nummers gevonden in dat antwoord — verwacht JSON zoals",
+      "defaultName": "AI-mix",
+      "matched": "Gevonden in je bibliotheek: ",
+      "unmatched": "Niet gevonden (overgeslagen): ",
+      "resolveFailed": "Kon de nummers niet controleren — is Home Assistant bereikbaar?",
+      "saved": "Opgeslagen! Je vindt hem onder Playlists → Mijn."
+    },
+    "providerWarning": {
+      "musicAssistant": "Premium-account moet zijn ingesteld in Music Assistant",
+      "sonos": "Spotify moet zijn gekoppeld in de Sonos-app",
+      "alexa": "Dienst moet zijn gekoppeld in de Alexa-app",
+      "alexaCaveat": "Gebruikt spraakzoekopdracht: speelt soms een andere versie van het nummer"
+    }
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
