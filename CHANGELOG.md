@@ -4,7 +4,15 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-- Added the "Christmas Hits" community playlist, 89 tracks (#3427).
+## [4.8.9-rc2] - 2026-11-07
+
+Second candidate for 4.8.9: a Christmas playlist and the AI window in your language.
+
+### Added
+- **Christmas Hits** (#3427): a new community playlist with 89 Christmas songs, each with its original release year.
+
+### Fixed
+- **Crate Digger AI window** (#3431): the "Create with AI" window and the library panel now actually apply their translations instead of staying English.
 
 ## [4.8.9-rc1] - 2026-11-06
 
