@@ -221,6 +221,26 @@ def _is_provider_unavailable(err: BaseException) -> bool:
     return False
 
 
+def _is_media_not_found(err: BaseException) -> bool:
+    """Whether Music Assistant said the requested item does not exist (#3429).
+
+    Home Assistant's Music Assistant integration surfaces the client's
+    ``MediaNotFoundError`` as "The requested media item could not be found."
+    That is a dead link for this one song: the opposite of a throttling
+    provider, and certain the moment Music Assistant says it, so the attempt
+    ends at once instead of waiting out the playback budget.
+    """
+    seen: BaseException | None = err
+    while seen is not None:
+        if type(seen).__name__ == "MediaNotFoundError":
+            return True
+        text = str(seen).lower()
+        if "media item" in text and "could not be found" in text:
+            return True
+        seen = seen.__cause__
+    return False
+
+
 def _edition_markers(text: str) -> set[str]:
     """Edition words present in a title, lower-cased."""
     return {m.group(0).lower() for m in _EDITION_MARKERS.finditer(text or "")}
@@ -1080,6 +1100,13 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # (a blocking play_media can hang on MA+YTMusic, see above), but its
         # failure wakes the wait below and ends this attempt at once.
         rejection: list[BaseException] = []
+        # #3429: Music Assistant answering "media item could not be found".
+        not_found: list[BaseException] = []
+        # Set once this attempt has returned. Music Assistant can answer a
+        # request long after Beatify gave up on it (the report saw it 29 s
+        # late); that answer belongs to a song the game has moved on from and
+        # must not touch the attempt that is running by then.
+        attempt_over = False  # rebound in the finally below; read by _play_done
 
         def _play_done(task: asyncio.Future[Any]) -> None:
             if task.cancelled():
@@ -1087,8 +1114,20 @@ class MusicAssistantStrategy(PlaybackStrategy):
             err = task.exception()
             if err is None:
                 return
+            if attempt_over:
+                _LOGGER.debug(
+                    "MA play_media for %s answered after Beatify gave up on "
+                    "it, ignoring: %s (#3429)",
+                    uri,
+                    err,
+                )
+                return
             if _is_provider_unavailable(err):
                 rejection.append(err)
+                confirmed.set()
+                return
+            if _is_media_not_found(err):
+                not_found.append(err)
                 confirmed.set()
                 return
             # Any other refusal keeps the old behaviour: the budget runs out
@@ -1114,7 +1153,11 @@ class MusicAssistantStrategy(PlaybackStrategy):
             # bad data): raise it as the direct call did, so play_song reports
             # it at once instead of waiting out the budget.
             early = play_task.exception()
-            if early is not None and not _is_provider_unavailable(early):
+            if (
+                early is not None
+                and not _is_provider_unavailable(early)
+                and not _is_media_not_found(early)
+            ):
                 raise early
 
         # Wait for the EXPECTED song to actually play on the speaker:
@@ -1283,6 +1326,15 @@ class MusicAssistantStrategy(PlaybackStrategy):
             await asyncio.wait_for(confirmed.wait(), timeout=timeout)
             if rejection:
                 return self._provider_unavailable(uri, rejection[0])
+            if not_found:
+                _LOGGER.warning(
+                    "MA playback: %s is not in Music Assistant (%s) — dead "
+                    "link, skipping this song. (#3429)",
+                    uri,
+                    not_found[0],
+                )
+                self.last_failure_reason = "unavailable"
+                return False
             elapsed = asyncio.get_event_loop().time() - start_time
             final = self.context.state()
             _LOGGER.debug(
@@ -1297,6 +1349,8 @@ class MusicAssistantStrategy(PlaybackStrategy):
             pass
         finally:
             unsub()
+            # The wait is over: from here on an answer from play_media is late.
+            attempt_over = True
 
         current_state = await self.context.state_with_retry()
         speaker_state = current_state.state if current_state else "unknown"
