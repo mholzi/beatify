@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.9-rc3] - 2026-11-07
+
+Third candidate for 4.8.9: the host page in your language, a Christmas playlist, and a game that no longer hangs on dead song links.
+
+### Added
+- **Christmas Hits** (#3427): a new community playlist with 89 Christmas songs, each with its original release year.
+
+### Fixed
+- **Game stuck between rounds** (#3429): a song link that Music Assistant cannot find is skipped at once instead of after a long wait, and two stalled starts in a row pause the game, where Resume retries.
+
 ## [4.8.9-rc2] - 2026-11-07
 
 Second candidate for 4.8.9: a Christmas playlist and the AI window in your language.
