@@ -61,9 +61,14 @@ REACTION_THROTTLE_SECONDS = 8
 # backoff up to its fifth retry (~23s to first audio). A timeout that still
 # happens under that budget means MA is at its sixth attempt or later, where
 # the next retry alone is ~16s — so waiting is no longer the better answer and
-# this counter is what keeps the game moving instead. Three of them in a row
-# still pauses, and the log now says which of the two causes it was.
-MAX_CONSECUTIVE_PLAYBACK_FAILURES = 3
+# this counter is what keeps the game moving instead. Two of them in a row
+# pause, and the log now says which of the two causes it was.
+#
+# #3429 lowered it from 3 to 2: at a 25s budget each, a third attempt kept the
+# players in REVEAL with no feedback for another 25s. A song Music Assistant
+# reports as not found does not count here: that answer is immediate and
+# certain, so skipping it costs no time.
+MAX_CONSECUTIVE_PLAYBACK_FAILURES = 2
 
 # Server-side round backstop (#1865). A periodic tick ends a round whose
 # deadline passed while the phase is still PLAYING, so the game does not depend

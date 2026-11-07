@@ -2841,8 +2841,11 @@ class TestRateLimitTolerance:
     async def test_a_success_clears_the_streak(self):
         """One bad song between two good ones must not accumulate."""
         gs, svc = self._game_with_failing_player()
-        # fail, fail, then succeed — the streak must be back to zero.
-        svc.play_song = AsyncMock(side_effect=[False, False, True])
+        # fail (one short of the cap), then succeed — back to zero. (#3429: the
+        # cap is 2, so exactly one failure is the longest streak that survives.)
+        svc.play_song = AsyncMock(
+            side_effect=[False] * (MAX_CONSECUTIVE_PLAYBACK_FAILURES - 1) + [True]
+        )
 
         with patch(
             "custom_components.beatify.game.state.asyncio.sleep",
