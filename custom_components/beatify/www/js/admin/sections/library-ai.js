@@ -163,8 +163,9 @@ function _ensureModal() {
         <div class="library-ai-result hidden" data-ai="result" aria-live="polite"></div>
       </div>`;
     document.body.appendChild(wrap);
-    if (window.BeatifyI18n && typeof window.BeatifyI18n.apply === 'function') {
-        try { window.BeatifyI18n.apply(wrap); } catch (e) { /* pre-init */ }
+    // #3431: i18n.js exposes initPageTranslations (document-wide), not apply().
+    if (window.BeatifyI18n && typeof window.BeatifyI18n.initPageTranslations === 'function') {
+        try { window.BeatifyI18n.initPageTranslations(); } catch (e) { /* pre-init */ }
     }
 
     const $ = (sel) => wrap.querySelector(`[data-ai="${sel}"]`);
