@@ -919,6 +919,8 @@
       "intro": "Beatify never contacts an AI itself. Copy the prompt into any chatbot or local model you trust, then paste its answer back.",
       "name": "Playlist name",
       "theme": "Theme for the AI",
+      "namePlaceholder": "Summer BBQ bangers",
+      "themePlaceholder": "upbeat summer hits, mostly 80s-00s",
       "count": "Songs",
       "copy": "Copy prompt",
       "paste": "Paste the AI's answer",

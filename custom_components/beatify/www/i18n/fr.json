@@ -919,6 +919,8 @@
       "intro": "Beatify ne contacte jamais d'IA lui-même. Copie le prompt dans le chatbot ou le modèle local de ton choix, puis colle sa réponse ici.",
       "name": "Nom de la playlist",
       "theme": "Thème pour l'IA",
+      "namePlaceholder": "Tubes du barbecue d'été",
+      "themePlaceholder": "tubes d'été entraînants, surtout des années 80 aux années 2000",
       "count": "Titres",
       "copy": "Copier le prompt",
       "paste": "Colle la réponse de l'IA",
