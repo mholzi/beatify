@@ -1,6 +1,6 @@
 {
   "name": "2000s Pop Anthems",
-  "version": "1.34",
+  "version": "1.35",
   "tags": [
     "2000s",
     "pop",
@@ -2469,7 +2469,10 @@
       ],
       "awards_es": [
         "Grammy - Mejor Interpretación Urbana/Alternativa"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1032178989"
+      }
     },
     {
       "year": 2001,
@@ -5793,7 +5796,10 @@
       "uri_tidal": "tidal://track/71508889",
       "uri_deezer": "deezer://track/144203048",
       "fun_fact_nl": "De op aerobics geïnspireerde videoclip, gebaseerd op workoutvideo's uit de jaren 80, werd een van de meest bekeken video's op het vroege internet en hielp het nummer naar de eerste plaats in het VK. Het bevat een sample van Steve Winwoods 'Valerie'.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1216951257"
+      }
     },
     {
       "year": 2006,
@@ -6653,13 +6659,13 @@
       "uri": "spotify:track:0O45fw2L5vsWpdsOdXwNAR",
       "uri_apple_music": "applemusic://track/400946435",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/400946435",
-        "de": "applemusic://track/908949044",
-        "gb": "applemusic://track/908949044",
-        "fr": "applemusic://track/908949044",
-        "es": "applemusic://track/908949044",
-        "nl": "applemusic://track/908949044",
-        "it": "applemusic://track/908949044"
+        "us": "applemusic://track/187666051",
+        "de": "applemusic://track/187666051",
+        "gb": "applemusic://track/187666051",
+        "fr": "applemusic://track/187666051",
+        "es": "applemusic://track/187666051",
+        "nl": "applemusic://track/187666051",
+        "it": "applemusic://track/187666051"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g_V6wqBlADw",
       "uri_tidal": "tidal://track/555115",
@@ -6707,7 +6713,9 @@
       "isrc": null,
       "uri": "spotify:track:2Uy6EhQXAYkXA6MohPgjpV",
       "uri_apple_music": "applemusic://track/697402070",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/697402070"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=wU26xVT_vBU",
       "uri_tidal": "tidal://track/124215",
       "uri_deezer": "deezer://track/3135553",
@@ -6833,13 +6841,13 @@
       "uri": "spotify:track:0CAfXk7DXMnon4gLudAp7J",
       "uri_apple_music": "applemusic://track/1689511710",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1689511710",
-        "de": "applemusic://track/1689511710",
-        "gb": "applemusic://track/1689511710",
-        "fr": "applemusic://track/1689511710",
-        "es": "applemusic://track/1689511710",
-        "nl": "applemusic://track/1689511710",
-        "it": "applemusic://track/1689511710"
+        "us": "applemusic://track/1802159350",
+        "de": "applemusic://track/1802159350",
+        "gb": "applemusic://track/1802159350",
+        "fr": "applemusic://track/1802159350",
+        "es": "applemusic://track/1802159350",
+        "nl": "applemusic://track/1802159350",
+        "it": "applemusic://track/1802159350"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=uUL8a7eJCk8",
       "uri_tidal": "tidal://track/1653995",
@@ -6861,7 +6869,9 @@
       "isrc": null,
       "uri": "spotify:track:0PLGnOgmf8RPgZNkaaSYyM",
       "uri_apple_music": "applemusic://track/338484852",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/338484852"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=YZo-cb6GNS0",
       "uri_tidal": "tidal://track/36507114",
       "uri_deezer": "deezer://track/4631883",
@@ -7246,7 +7256,9 @@
       "isrc": null,
       "uri": "spotify:track:5W3cjX2J3tjhG8zb6u0qHn",
       "uri_apple_music": "applemusic://track/697195787",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/697195787"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JhulBGMA7G4",
       "uri_tidal": "tidal://track/1550549",
       "uri_deezer": "deezer://track/3135556",
@@ -7487,7 +7499,10 @@
       "fun_fact_fr": "Le groupe s'est formé à Ravensburg autour d'un chanteur irlandais, et leur premier single reste celui que la radio allemande choisit vingt-cinq ans plus tard.",
       "fun_fact_nl": "De band ontstond in Ravensburg rond een Ierse zanger, en hun eerste single is vijfentwintig jaar later nog steeds waar de Duitse radio naar grijpt.",
       "fun_fact_it": "Il gruppo nacque a Ravensburg attorno a un cantante irlandese, e il loro primo singolo è ancora quello che la radio tedesca sceglie venticinque anni dopo.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ucI3IpuM-NQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ucI3IpuM-NQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/712743105"
+      }
     },
     {
       "year": 2001,
@@ -7508,7 +7523,10 @@
       "fun_fact_fr": "Elle vient de l'album avec lequel Shakira est passée à l'anglais, écrite avec Lester Mendez alors qu'elle apprenait encore à écrire des textes dans cette langue.",
       "fun_fact_nl": "Het komt van het album waarmee Shakira overstapte op het Engels, geschreven met Lester Mendez toen ze nog leerde teksten in die taal te schrijven.",
       "fun_fact_it": "Viene dall'album con cui Shakira passò all'inglese, scritta con Lester Mendez mentre stava ancora imparando a scrivere testi in quella lingua.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=uwBwKcQ1k84"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uwBwKcQ1k84",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1593887500"
+      }
     },
     {
       "year": 2001,
@@ -7529,7 +7547,10 @@
       "fun_fact_fr": "Osbourne a écrit une ballade écologiste à la manière d'« Imagine » et en a tiré ce qui ressemble le plus à un tube soft rock de sa carrière.",
       "fun_fact_nl": "Osbourne schreef een milieuballade in de trant van 'Imagine' en kreeg er het dichtst bij een softrockhit uit zijn loopbaan mee.",
       "fun_fact_it": "Osbourne scrisse una ballata ambientalista alla maniera di 'Imagine' e ne ricavò la cosa più simile a un successo soft rock della sua carriera.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LCCiwPEdEpg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LCCiwPEdEpg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/307631403"
+      }
     },
     {
       "year": 2001,
@@ -7550,7 +7571,10 @@
       "fun_fact_fr": "Le groupe irlandais avait déjà placé sept singles directement à la première place britannique, une série que personne n'avait réussie avant eux.",
       "fun_fact_nl": "De Ierse groep had al zeven singles rechtstreeks op nummer één in Groot-Brittannië gezet, een reeks die niemand vóór hen had gehaald.",
       "fun_fact_it": "Il gruppo irlandese aveva già portato sette singoli direttamente al primo posto britannico, una serie che nessuno aveva ottenuto prima.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=eTQyzCEtGBQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eTQyzCEtGBQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1267957350"
+      }
     },
     {
       "year": 2002,
@@ -7571,7 +7595,10 @@
       "fun_fact_fr": "Dion avait cessé d'enregistrer pendant deux ans pour élever son fils, et c'est ce disque qui a annoncé son retour.",
       "fun_fact_nl": "Dion had twee jaar niet opgenomen om haar zoon groot te brengen, en dit was de plaat waarmee ze haar terugkeer aankondigde.",
       "fun_fact_it": "Dion aveva smesso di incidere per due anni per crescere il figlio, e fu questo il disco che annunciò il suo ritorno.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NaGLVS5b_ZY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NaGLVS5b_ZY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1481513255"
+      }
     },
     {
       "year": 2003,
@@ -7592,7 +7619,10 @@
       "fun_fact_fr": "Le banjo qui la traverse appartient à une chanson sur le fait qu'on demande de paraître moins portugaise, ce que dit précisément le titre.",
       "fun_fact_nl": "De banjo die er doorheen loopt hoort bij een lied over het verzoek er minder Portugees uit te zien, precies wat de titel beweert.",
       "fun_fact_it": "Il banjo che l'attraversa appartiene a una canzone sul sentirsi chiedere di sembrare meno portoghese, che è esattamente ciò che dice il titolo.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PygftD5gAR4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PygftD5gAR4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1460193857"
+      }
     },
     {
       "year": 2004,
@@ -7613,7 +7643,10 @@
       "fun_fact_fr": "Connor a chanté en anglais dès le début et a atteint la première place en Allemagne avec une ballade que la plupart de ses auditeurs ne pouvaient pas traduire mot à mot.",
       "fun_fact_nl": "Connor zong vanaf het begin in het Engels en werd in Duitsland nummer één met een ballade die de meeste luisteraars niet woord voor woord konden vertalen.",
       "fun_fact_it": "Connor cantò in inglese fin dall'inizio e arrivò al primo posto in Germania con una ballata che la maggior parte dei suoi ascoltatori non sapeva tradurre parola per parola.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YIEfguNqvJo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YIEfguNqvJo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442239301"
+      }
     },
     {
       "year": 2005,
@@ -7634,7 +7667,10 @@
       "fun_fact_fr": "American Idol le passait chaque semaine au départ du candidat éliminé, et c'est ce créneau hebdomadaire, plus que la radio, qui en a fait la chanson de l'année.",
       "fun_fact_nl": "American Idol gebruikte het elke week om de afvaller uit te zwaaien, en die wekelijkse plek maakte het meer dan de radio tot het grootste nummer van dat jaar.",
       "fun_fact_it": "American Idol lo usava ogni settimana per congedare il concorrente eliminato, e fu quello spazio settimanale, più della radio, a farne la canzone dell'anno.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gH476CxJxfg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gH476CxJxfg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/63816165"
+      }
     },
     {
       "year": 2005,
@@ -7655,7 +7691,10 @@
       "fun_fact_fr": "Un chroniqueur de New Scientist a publiquement contesté le vers sur un univers vieux de douze milliards d'années, et Melua a enregistré une version corrigée en réponse.",
       "fun_fact_nl": "Een columnist van New Scientist maakte publiek bezwaar tegen de regel over een twaalf miljard jaar oud heelal, en Melua nam als antwoord een gecorrigeerde versie op.",
       "fun_fact_it": "Un editorialista di New Scientist contestò pubblicamente il verso sull'universo di dodici miliardi di anni, e Melua incise per risposta una versione corretta.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rrPUJsZQSkw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rrPUJsZQSkw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1528517557"
+      }
     },
     {
       "year": 2006,
@@ -7676,7 +7715,10 @@
       "fun_fact_fr": "Le chanteur allemand a fait un tube radio de la phrase que chantent les tribunes de football, en lui retirant entièrement la mélodie des stades.",
       "fun_fact_nl": "De Duitse zanger maakte een radiohit van de zin die voetbalvakken zingen, en liet de stadionmelodie volledig weg.",
       "fun_fact_it": "Il cantante tedesco fece un successo radiofonico dalla frase che cantano le curve di calcio, togliendole del tutto la melodia da stadio.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=CwCwCLvH2Jk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CwCwCLvH2Jk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/188729584"
+      }
     },
     {
       "year": 2006,
@@ -7697,7 +7739,10 @@
       "fun_fact_fr": "Le single du retour est arrivé onze ans après la séparation et sans Robbie Williams, et il est resté quatre semaines premier malgré tout.",
       "fun_fact_nl": "De comebacksingle kwam elf jaar na de breuk en zonder Robbie Williams, en stond toch vier weken op nummer één.",
       "fun_fact_it": "Il singolo del ritorno arrivò undici anni dopo lo scioglimento e senza Robbie Williams, e restò comunque quattro settimane al primo posto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=273eSvOwpKk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=273eSvOwpKk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440762915"
+      }
     },
     {
       "year": 2006,
@@ -7718,7 +7763,10 @@
       "fun_fact_fr": "OneRepublic l'avait déjà sortie et leur label les avait lâchés ; le remix de Timbaland un an plus tard a fait de ce même enregistrement un tube mondial.",
       "fun_fact_nl": "OneRepublic had het al uitgebracht en was door hun label gedropt; Timbalands remix een jaar later maakte van dezelfde opname een wereldhit.",
       "fun_fact_it": "I OneRepublic l'avevano già pubblicata ed erano stati scaricati dall'etichetta; il remix di Timbaland un anno dopo fece della stessa incisione un successo mondiale.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZSM3w1v-A_Y"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZSM3w1v-A_Y",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440771632"
+      }
     },
     {
       "year": 2006,
@@ -7739,7 +7787,10 @@
       "fun_fact_fr": "Le groupe finlandais a percé d'abord en Allemagne et y est resté, remplissant des salles dans un pays où personne ne situait leur ville natale.",
       "fun_fact_nl": "De Finse band brak eerst door in Duitsland en bleef daar, met arena's in een land waar niemand hun woonplaats kon plaatsen.",
       "fun_fact_it": "Il gruppo finlandese sfondò prima in Germania e lì restò, riempiendo palazzetti in un paese dove nessuno sapeva collocare la loro città.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OUyfQLd3bCs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OUyfQLd3bCs",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/715844988"
+      }
     },
     {
       "year": 2007,
@@ -7760,7 +7811,10 @@
       "fun_fact_fr": "Alison Sudol avait vingt-deux ans et l'a enregistrée au piano et presque rien d'autre ; la chanson a touché bien plus de monde en Europe que dans son pays.",
       "fun_fact_nl": "Alison Sudol was tweeëntwintig en nam het op met piano en weinig meer; het nummer bereikte in Europa veel meer mensen dan in haar eigen land.",
       "fun_fact_it": "Alison Sudol aveva ventidue anni e la incise con pianoforte e poco altro; la canzone raggiunse in Europa molte più persone che nel suo paese.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=I_S_TbD1XFM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I_S_TbD1XFM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724597654"
+      }
     },
     {
       "year": 2008,
@@ -7781,7 +7835,10 @@
       "fun_fact_fr": "Snow Patrol l'avait sortie deux fois sans succès ; la version de Lewis est allée droit à la première place sur les seuls téléchargements dès la première semaine.",
       "fun_fact_nl": "Snow Patrol had het twee keer zonder succes uitgebracht; de versie van Lewis ging in de eerste week alleen op downloads rechtstreeks naar nummer één.",
       "fun_fact_it": "Gli Snow Patrol l'avevano pubblicata due volte senza successo; la versione di Lewis andò dritta al primo posto con i soli download nella prima settimana.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=jqpAgMxhx30"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jqpAgMxhx30",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/299246218"
+      }
     },
     {
       "year": 2009,
@@ -7802,7 +7859,10 @@
       "fun_fact_fr": "Le morceau était un disque indé américain jusqu'à ce qu'une publicité allemande pour la téléphonie le reprenne ; il est ensuite resté près d'un an dans le top dix allemand.",
       "fun_fact_nl": "Het nummer was een Amerikaanse indieplaat tot een Duitse telefoonreclame het oppikte; daarna stond het bijna een jaar in de Duitse top tien.",
       "fun_fact_it": "Il brano era un disco indie americano finché una pubblicità tedesca di telefonia lo riprese; dopo restò quasi un anno nella top ten tedesca.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5mQVljB7JGw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5mQVljB7JGw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/316795262"
+      }
     },
     {
       "year": 2009,
@@ -7823,7 +7883,10 @@
       "fun_fact_fr": "La ligne de cuivres cite « Fernando » d'ABBA d'assez près pour que Gaga l'ait désignée comme point de départ, et les prénoms du titre suivent le même schéma.",
       "fun_fact_nl": "De blazerslijn citeert ABBA's 'Fernando' zo duidelijk dat Gaga het zelf als uitgangspunt heeft genoemd, en de namen in de titel volgen hetzelfde patroon.",
       "fun_fact_it": "La linea di fiati cita 'Fernando' degli ABBA così da vicino che Gaga l'ha indicata come punto di partenza, e i nomi nel titolo seguono lo stesso schema.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=niqrrmev4mA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=niqrrmev4mA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1476727671"
+      }
     },
     {
       "year": 2009,
@@ -7844,7 +7907,10 @@
       "fun_fact_fr": "La chanteuse néerlandaise a vendu un disque de swing des années quarante à un public de téléchargement, et son premier album a tenu trente semaines la première place aux Pays-Bas.",
       "fun_fact_nl": "De Nederlandse zangeres verkocht een swingplaat uit de jaren veertig aan een downloadpubliek, en haar debuutalbum hield dertig weken de Nederlandse nummer één vast.",
       "fun_fact_it": "La cantante olandese vendette un disco swing degli anni quaranta a un pubblico da download, e il suo album d'esordio tenne trenta settimane il primo posto nei Paesi Bassi.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=74LXx0wSqMI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=74LXx0wSqMI",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/647779610"
+      }
     },
     {
       "year": 2009,
@@ -7865,7 +7931,10 @@
       "fun_fact_fr": "Après des années de guitares, le groupe est revenu au son de synthétiseur de son premier disque, et a annoncé sa séparation lors de la tournée qui a suivi.",
       "fun_fact_nl": "Na jaren gitaren keerde de band terug naar het synthesizergeluid van hun eerste plaat, en kondigde tijdens de daaropvolgende tournee hun einde aan.",
       "fun_fact_it": "Dopo anni di chitarre la band tornò al suono di sintetizzatore del primo disco, e annunciò lo scioglimento nella tournée che seguì.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=m36SBHLmYXc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=m36SBHLmYXc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443573745"
+      }
     },
     {
       "year": 2000,
@@ -7886,7 +7955,10 @@
       "fun_fact_fr": "Anastacia avait trente et un ans et essuyait des refus depuis dix ans pour son apparence ; la voix de ce disque a clos le débat.",
       "fun_fact_nl": "Anastacia was eenendertig en werd al tien jaar afgewezen omdat ze er verkeerd uitzag; de stem op deze plaat beëindigde de discussie.",
       "fun_fact_it": "Anastacia aveva trentun anni ed era stata rifiutata per un decennio per il suo aspetto; la voce di questo disco chiuse la discussione.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TnOy6HEf7HU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TnOy6HEf7HU",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/250558355"
+      }
     },
     {
       "year": 2000,
@@ -7907,7 +7979,10 @@
       "fun_fact_fr": "Le groupe a poursuivi son propre manager pendant que le titre était en tête des ventes et a récupéré les droits sur son nom.",
       "fun_fact_nl": "De groep klaagde hun eigen manager aan terwijl dit in de lijsten stond, en won de rechten op hun naam terug.",
       "fun_fact_it": "Il gruppo fece causa al proprio manager mentre il brano era in classifica e riottenne i diritti sul proprio nome.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Eo-KmOd3i7s"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Eo-KmOd3i7s",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/254906599"
+      }
     },
     {
       "year": 2001,
@@ -7928,7 +8003,10 @@
       "fun_fact_fr": "Le trio belge a bâti sa carrière sur des versions trance de ballades, et leurs disques se classaient mieux en Allemagne que chez eux.",
       "fun_fact_nl": "Het Belgische trio bouwde een carrière op trance-versies van ballades, en hun platen scoorden in Duitsland hoger dan thuis.",
       "fun_fact_it": "Il trio belga costruì la carriera su versioni trance di ballate, e i loro dischi andavano meglio in Germania che in patria.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zVXoee6N5lQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zVXoee6N5lQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1541606765"
+      }
     },
     {
       "year": 2002,
@@ -7949,7 +8027,10 @@
       "fun_fact_fr": "Un groupe allemand de soft rock en anglais ; le single a tourné des mois à la radio allemande alors que l'album se vendait à peine.",
       "fun_fact_nl": "Een Duitse band met Engelse softrock; de single draaide maanden op de Duitse radio terwijl het album nauwelijks verkocht.",
       "fun_fact_it": "Un gruppo tedesco di soft rock in inglese; il singolo passò per mesi nelle radio tedesche mentre l'album vendeva a stento.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=HnZPif5CQ-w"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HnZPif5CQ-w",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1225177986"
+      }
     },
     {
       "year": 2002,
@@ -7970,7 +8051,10 @@
       "fun_fact_fr": "Lavigne avait dix-sept ans et un contrat pour un album de country ; elle a refusé de le faire et a écrit ceci à la place.",
       "fun_fact_nl": "Lavigne was zeventien en had een platencontract voor een countryalbum; ze weigerde het te maken en schreef dit in plaats daarvan.",
       "fun_fact_it": "Lavigne aveva diciassette anni e un contratto per un album country; si rifiutò di farlo e scrisse questo.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5NPBIwQyPWE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5NPBIwQyPWE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/315025823"
+      }
     },
     {
       "year": 2002,
@@ -7991,7 +8075,10 @@
       "fun_fact_fr": "Carlton l'a écrite à dix-neuf ans sur quelqu'un qui ne l'a jamais remarquée, et le motif de piano a été travaillé des années avant de devenir une chanson.",
       "fun_fact_nl": "Carlton schreef het op haar negentiende over iemand die haar nooit opmerkte, en de pianofiguur oefende ze jaren voordat het een lied werd.",
       "fun_fact_it": "Carlton la scrisse a diciannove anni su qualcuno che non la notò mai, e la figura di pianoforte la esercitò per anni prima che diventasse una canzone.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Cwkej79U3ek"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Cwkej79U3ek",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1699263739"
+      }
     },
     {
       "year": 2003,
@@ -8012,7 +8099,10 @@
       "fun_fact_fr": "Klaws a gagné la première saison allemande du télécrochet, et ce single suivant devait prouver que la victoire n'était pas un hasard.",
       "fun_fact_nl": "Klaws won het eerste Duitse seizoen van de talentenjacht, en dit was de opvolgsingle die moest bewijzen dat de zege geen toeval was.",
       "fun_fact_it": "Klaws vinse la prima edizione tedesca del talent, e questo fu il singolo successivo che doveva dimostrare che la vittoria non era stata un caso.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=KMHsNUWIS98"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KMHsNUWIS98",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/255031533"
+      }
     },
     {
       "year": 2003,
@@ -8033,7 +8123,10 @@
       "fun_fact_fr": "Son frère Rollo l'a produite, et le clip se termine par la mort de la chanteuse dans une voiture, ce que le label voulait couper.",
       "fun_fact_nl": "Haar broer Rollo produceerde het, en de video eindigt met de zangeres die in een auto sterft — wat het label eruit wilde knippen.",
       "fun_fact_it": "Il fratello Rollo la produsse, e il video finisce con la cantante che muore in un'auto, cosa che l'etichetta voleva tagliare.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=j-fWDrZSiZs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j-fWDrZSiZs",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/427875172"
+      }
     },
     {
       "year": 2003,
@@ -8054,7 +8147,10 @@
       "fun_fact_fr": "Connor l'a enregistrée avec un groupe a cappella américain et elle est restée des années le générique d'un gala télévisé allemand.",
       "fun_fact_nl": "Connor nam het op met een Amerikaanse a-capellagroep en het was jarenlang de tune van een Duitse tv-gala.",
       "fun_fact_it": "Connor la incise con un gruppo a cappella americano e per anni fu la sigla di un galà televisivo tedesco.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5EmNiiAutno"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5EmNiiAutno",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1600265508"
+      }
     },
     {
       "year": 2004,
@@ -8075,7 +8171,10 @@
       "fun_fact_fr": "Un duo danois a intitulé une chanson d'après deux villes où il n'avait jamais joué, et elle est devenue l'un des plus grands disques dance européens de la décennie.",
       "fun_fact_nl": "Een Deens duo noemde een nummer naar twee steden waar het nooit had gespeeld, en het werd een van de grootste Europese danceplaten van het decennium.",
       "fun_fact_it": "Un duo danese intitolò una canzone a due città in cui non aveva mai suonato, e divenne uno dei più grandi dischi dance europei del decennio.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=THt5u-i2d9k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=THt5u-i2d9k",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/252065201"
+      }
     },
     {
       "year": 2005,
@@ -8096,7 +8195,10 @@
       "fun_fact_fr": "Zimmer est aveugle de naissance et a atteint le top cinq allemand avec son premier single, avant de quitter en grande partie le métier.",
       "fun_fact_nl": "Zimmer is blind vanaf haar geboorte en haalde met haar eerste single de Duitse top vijf; daarna verliet ze de branche grotendeels.",
       "fun_fact_it": "Zimmer è cieca dalla nascita e arrivò nella top cinque tedesca col primo singolo; poi lasciò in gran parte il settore.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5UUGt2p_hwY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5UUGt2p_hwY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444310742"
+      }
     },
     {
       "year": 2005,
@@ -8117,7 +8219,10 @@
       "fun_fact_fr": "Melanie C l'a écrite après avoir quitté les Spice Girls et une longue maladie ; elle a atteint la première place en Allemagne, pas au Royaume-Uni.",
       "fun_fact_nl": "Melanie C schreef het na haar vertrek bij de Spice Girls en een lange ziekte; het werd nummer één in Duitsland, maar niet in Groot-Brittannië.",
       "fun_fact_it": "Melanie C la scrisse dopo l'uscita dalle Spice Girls e una lunga malattia; arrivò al primo posto in Germania, non in Gran Bretagna.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=W9n5AkJU-so"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=W9n5AkJU-so",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/81250639"
+      }
     },
     {
       "year": 2006,
@@ -8138,7 +8243,10 @@
       "fun_fact_fr": "Elton John a coécrit et joué du piano, et il a fallu convaincre le groupe de garder le refrain en fausset.",
       "fun_fact_nl": "Elton John schreef mee en speelde piano, en de band moest worden overtuigd om het falsetrefrein te houden.",
       "fun_fact_it": "Elton John coscrisse e suonò il pianoforte, e la band dovette essere convinta a tenere il ritornello in falsetto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4H5I6y1Qvz0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4H5I6y1Qvz0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442963300"
+      }
     },
     {
       "year": 2006,
@@ -8159,7 +8267,10 @@
       "fun_fact_fr": "La ligne de cuivres vient d'une cumbia colombienne des années soixante-dix, et la chanson a fait de Shakira la première artiste latine avec un numéro un mondial en deux langues.",
       "fun_fact_nl": "De blazerslijn komt uit een Colombiaanse cumbia uit de jaren zeventig, en het nummer maakte Shakira de eerste Latijns-Amerikaanse artiest met een wereldwijde nummer één in twee talen.",
       "fun_fact_it": "La linea di fiati viene da una cumbia colombiana degli anni settanta, e la canzone rese Shakira la prima artista latina con un numero uno mondiale in due lingue.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DUT5rEU6pqM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DUT5rEU6pqM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/482267480"
+      }
     },
     {
       "year": 2007,
@@ -8180,7 +8291,10 @@
       "fun_fact_fr": "Son frère Daniel a eu un numéro un trois ans avant elle, ce qui en fait le premier frère et sœur à dominer séparément le classement britannique.",
       "fun_fact_nl": "Haar broer Daniel had drie jaar eerder een nummer één, waarmee ze het eerste broer-zusduo waren dat apart de Britse lijst aanvoerde.",
       "fun_fact_it": "Suo fratello Daniel ebbe un numero uno tre anni prima di lei: furono i primi fratelli a guidare separatamente la classifica britannica.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=P27MPi3ZhCg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=P27MPi3ZhCg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/257727943"
+      }
     },
     {
       "year": 2007,
@@ -8201,7 +8315,10 @@
       "fun_fact_fr": "Le groupe vient de Leeds et s'est nommé d'après un chant de supporters ; personne dans le groupe n'a jamais dit qui est Ruby.",
       "fun_fact_nl": "De band komt uit Leeds en noemde zich naar een voetbalkreet; niemand in de groep heeft ooit gezegd wie Ruby is.",
       "fun_fact_it": "Il gruppo viene da Leeds e prese il nome da un coro da stadio; nessuno nella band ha mai detto chi sia Ruby.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qObzgUfCl28"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qObzgUfCl28",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443919262"
+      }
     },
     {
       "year": 2007,
@@ -8222,7 +8339,10 @@
       "fun_fact_fr": "Medlock a gagné le télécrochet allemand et Dieter Bohlen a écrit le single ; il est allé droit à la première place et y est resté six semaines.",
       "fun_fact_nl": "Medlock won de Duitse talentenjacht en Dieter Bohlen schreef de single; die ging rechtstreeks naar nummer één en bleef er zes weken.",
       "fun_fact_it": "Medlock vinse il talent tedesco e Dieter Bohlen scrisse il singolo; andò dritto al primo posto e vi restò sei settimane.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NkBCdeu4vgw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NkBCdeu4vgw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/279404486"
+      }
     },
     {
       "year": 2007,
@@ -8243,7 +8363,10 @@
       "fun_fact_fr": "Macdonald avait dix-neuf ans et l'a écrite sur les nuits de Glasgow ; l'album s'est vendu à trois millions d'exemplaires, surtout sur le continent.",
       "fun_fact_nl": "Macdonald was negentien en schreef het over Glasgowse stapavonden; het album verkocht drie miljoen keer, grotendeels op het continent.",
       "fun_fact_it": "Macdonald aveva diciannove anni e la scrisse sulle notti di Glasgow; l'album vendette tre milioni di copie, per lo più nel continente.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=iRYvuS9OxdA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iRYvuS9OxdA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440717953"
+      }
     },
     {
       "year": 2008,
@@ -8264,7 +8387,10 @@
       "fun_fact_fr": "Un chanteur belge a transformé un disque de 50 Cent en ballade acoustique pour rire à la radio, et c'est devenu le plus grand tube de sa carrière.",
       "fun_fact_nl": "Een Belgische zanger maakte van een 50 Cent-plaat als grap voor de radio een akoestische ballade, en het werd de grootste hit van zijn loopbaan.",
       "fun_fact_it": "Un cantante belga trasformò per scherzo un disco di 50 Cent in una ballata acustica per la radio, e divenne il successo più grande della sua carriera.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DE9IchvpOPk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DE9IchvpOPk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1842961342"
+      }
     },
     {
       "year": 2009,
@@ -8285,7 +8411,10 @@
       "fun_fact_fr": "Le groupe suédois s'est nommé d'après le rêve d'un de ses membres et a vendu plus de disques en Allemagne qu'en Suède chaque année de son existence.",
       "fun_fact_nl": "De Zweedse band noemde zich naar de droom van een van de leden en verkocht elk jaar van hun bestaan in Duitsland meer platen dan in Zweden.",
       "fun_fact_it": "Il gruppo svedese prese il nome dal sogno di un membro e vendette in Germania più dischi che in Svezia in ogni anno della sua esistenza.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=HymfdPeYxEo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HymfdPeYxEo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1617774512"
+      }
     },
     {
       "year": 2009,
@@ -8306,7 +8435,10 @@
       "fun_fact_fr": "Max Martin l'a écrite, et le single a réalisé le plus grand bond hebdomadaire de l'histoire des classements américains, de la 97e à la 1re place.",
       "fun_fact_nl": "Max Martin schreef het, en de single maakte de grootste weeksprong in de Amerikaanse hitlijstgeschiedenis tot dan, van 97 naar 1.",
       "fun_fact_it": "La scrisse Max Martin, e il singolo fece il più grande balzo settimanale della storia delle classifiche americane, dal 97 al primo posto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cRM70Jw7F4M"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cRM70Jw7F4M",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/305149906"
+      }
     },
     {
       "year": 2009,
@@ -8327,7 +8459,10 @@
       "fun_fact_fr": "Elena Alexandra Apostoleanu enregistre sous le nom d'INNA et faisait partie d'une vague d'artistes dance roumains que les radios européennes passaient sans jamais nommer le pays.",
       "fun_fact_nl": "Elena Alexandra Apostoleanu neemt op als INNA en hoorde bij een golf Roemeense dance-acts die de Europese radio draaide zonder ooit het land te noemen.",
       "fun_fact_it": "Elena Alexandra Apostoleanu incide come INNA e faceva parte di un'ondata di artisti dance rumeni che le radio europee passavano senza mai nominare il paese.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gKHe12T6GMY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gKHe12T6GMY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/891266908"
+      }
     },
     {
       "year": 2009,
@@ -8348,7 +8483,10 @@
       "fun_fact_fr": "Cruz a d'abord écrit pour d'autres, dont un numéro un britannique à dix-neuf ans, avant d'enregistrer sous son propre nom.",
       "fun_fact_nl": "Cruz schreef eerst voor anderen, waaronder een Britse nummer één op zijn negentiende, voordat hij iets onder eigen naam opnam.",
       "fun_fact_it": "Cruz scrisse prima per altri, tra cui un numero uno britannico a diciannove anni, prima di incidere a proprio nome.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=y_SI2EDM6Lo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y_SI2EDM6Lo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1840456303"
+      }
     },
     {
       "year": 2009,
@@ -8369,7 +8507,10 @@
       "fun_fact_fr": "Allen a mis une plainte contre son petit ami sur une valse country avec pedal steel, là où personne ne l'attendait.",
       "fun_fact_nl": "Allen zette een klacht over haar vriend op een countrywals met pedal steel, waar niemand haar verwachtte.",
       "fun_fact_it": "Allen mise una lamentela sul fidanzato in un valzer country con pedal steel, un posto in cui nessuno se l'aspettava.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=fUYaosyR4bE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fUYaosyR4bE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/732024601"
+      }
     }
   ]
 }

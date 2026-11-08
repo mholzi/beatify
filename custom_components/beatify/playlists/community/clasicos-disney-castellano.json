@@ -1,6 +1,6 @@
 {
   "name": "Clásicos Disney (Castellano)",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "disney",
     "movies",
@@ -28,7 +28,10 @@
         "Mario A. González",
         "Sergio Zamora"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Aladdín» della Disney (1992)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Aladdín» della Disney (1992).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1460036862"
+      }
     },
     {
       "year": 1994,
@@ -45,7 +48,10 @@
         "Gema Castaño",
         "Josema Yuste"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561435690"
+      }
     },
     {
       "year": 2003,
@@ -64,7 +70,10 @@
         "Anolita Domínguez",
         "Naima Barroso"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724265116"
+      }
     },
     {
       "year": 1999,
@@ -83,7 +92,10 @@
         "Geraldine Larrosa",
         "Marco Antonio Solís"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tarzán» della Disney (1999)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tarzán» della Disney (1999).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428612"
+      }
     },
     {
       "year": 1995,
@@ -102,7 +114,10 @@
         "Gisela",
         "Pablo Perea"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Pocahontas» della Disney (1995)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Pocahontas» della Disney (1995).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561429829"
+      }
     },
     {
       "year": 1998,
@@ -119,7 +134,10 @@
         "Lupita Pérez",
         "Miguel Ángel Jenner"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428690"
+      }
     },
     {
       "year": 1998,
@@ -135,7 +153,10 @@
         "Gisela",
         "Sergio Zamora"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724322841"
+      }
     },
     {
       "year": 1997,
@@ -153,7 +174,10 @@
         "AD Santos",
         "Jordi Vila"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724322938"
+      }
     },
     {
       "year": 1967,
@@ -169,7 +193,10 @@
         "Chila Lynn",
         "Jim Sutherland"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Libro de la Selva» della Disney (1967)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Libro de la Selva» della Disney (1967).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724918399"
+      }
     },
     {
       "year": 1991,
@@ -188,7 +215,10 @@
         "Chila Lynn",
         "Flavio"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991)."
+      "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428447"
+      }
     },
     {
       "year": 1967,
@@ -207,7 +237,10 @@
         "Christina Aguilera",
         "Marco Antonio Solís"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Libro de la Selva» della Disney (1967)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Libro de la Selva» della Disney (1967).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1419765830"
+      }
     },
     {
       "year": 2010,
@@ -224,7 +257,10 @@
         "Luis Ángel Gómez Jaramillo",
         "Lupita Pérez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Enredados» della Disney (2010)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Enredados» della Disney (2010).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561435176"
+      }
     },
     {
       "year": 1997,
@@ -243,7 +279,10 @@
         "Christina Aguilera",
         "Pablo Perea"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/185392252"
+      }
     },
     {
       "year": 1996,
@@ -276,7 +315,10 @@
         "Gema Castaño",
         "Malú"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561435532"
+      }
     },
     {
       "year": 1996,
@@ -292,7 +334,10 @@
         "Jim Sutherland",
         "Pablo Perea"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Jorobado de Notre Dame» della Disney (1996)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Jorobado de Notre Dame» della Disney (1996).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724322701"
+      }
     },
     {
       "year": 2013,
@@ -346,7 +391,10 @@
         "Jim Sutherland",
         "Pablo Perea"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1478292200"
+      }
     },
     {
       "year": 1959,
@@ -364,7 +412,10 @@
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «La Bella Durmiente» della Disney (1959).",
       "uri_apple_music": "applemusic://track/1443804803",
-      "uri_deezer": "deezer://track/1761711397"
+      "uri_deezer": "deezer://track/1761711397",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443804803"
+      }
     },
     {
       "year": 1995,
@@ -383,7 +434,10 @@
         "Malú",
         "Marc Pociello"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Pocahontas» della Disney (1995)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Pocahontas» della Disney (1995).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1475708124"
+      }
     },
     {
       "year": 2016,
@@ -402,7 +456,10 @@
         "Carmen López",
         "Miguel Ángel Jenner"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6762975237"
+      }
     },
     {
       "year": 2009,
@@ -421,7 +478,10 @@
         "Alex Ubago",
         "Sleeping Beauty"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tiana y el Sapo» della Disney (2009)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tiana y el Sapo» della Disney (2009).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428321"
+      }
     },
     {
       "year": 1998,
@@ -454,7 +514,10 @@
         "Anolita Domínguez",
         "Chila Lynn"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561435687"
+      }
     },
     {
       "year": 2010,
@@ -473,7 +536,10 @@
         "Jon Secada",
         "Susan Martín"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Enredados» della Disney (2010)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Enredados» della Disney (2010).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561434968"
+      }
     },
     {
       "year": 2012,
@@ -490,7 +556,10 @@
         "Ferran Gonzalez",
         "Naima Barroso"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Indomable» della Disney (2012)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Indomable» della Disney (2012).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561440069"
+      }
     },
     {
       "year": 2012,
@@ -507,7 +576,10 @@
         "Luis Ángel Gómez Jaramillo",
         "Marta Martorell"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Indomable» della Disney (2012)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Indomable» della Disney (2012).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561440068"
+      }
     },
     {
       "year": 1937,
@@ -525,7 +597,10 @@
         "Alex Ubago",
         "Susan Martín"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Blancanieves» della Disney (1937)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Blancanieves» della Disney (1937).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724625978"
+      }
     },
     {
       "year": 2009,
@@ -542,7 +617,10 @@
         "Gipsy Kings",
         "Gisela"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tiana y el Sapo» della Disney (2009)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tiana y el Sapo» della Disney (2009).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428378"
+      }
     },
     {
       "year": 2006,
@@ -579,7 +657,10 @@
         "Armando Pita",
         "Pablo Perea"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Rey León» della Disney (1994).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561435534"
+      }
     },
     {
       "year": 2016,
@@ -598,7 +679,10 @@
         "Gisela",
         "Sol Pilas"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6762975277"
+      }
     },
     {
       "year": 1970,
@@ -634,7 +718,10 @@
         "Chila Lynn",
         "Gipsy Kings"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «El Planeta del Tesoro» della Disney (2002)."
+      "fun_fact_it": "Dalla versione in spagnolo di «El Planeta del Tesoro» della Disney (2002).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/265000193"
+      }
     },
     {
       "year": 1959,
@@ -667,7 +754,10 @@
         "Beatriz Luengo",
         "Ferran Gonzalez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 3» della Disney (2010)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Toy Story 3» della Disney (2010).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440810229"
+      }
     },
     {
       "year": 2016,
@@ -684,7 +774,10 @@
         "Alex Ubago",
         "Sol Pilas"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6762975239"
+      }
     },
     {
       "year": 1940,
@@ -701,7 +794,10 @@
         "Gisela",
         "Luis Ángel Gómez Jaramillo"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Pinocho» della Disney (1940)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Pinocho» della Disney (1940).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561432711"
+      }
     },
     {
       "year": 1959,
@@ -718,7 +814,10 @@
         "Jesús Aguirre"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «La Bella Durmiente» della Disney (1959).",
-      "uri_apple_music": "applemusic://track/1561428721"
+      "uri_apple_music": "applemusic://track/1561428721",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428721"
+      }
     },
     {
       "year": 2016,
@@ -737,7 +836,10 @@
         "Angélica Valle",
         "Beatriz Luengo"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Vaiana» della Disney (2016).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6762975278"
+      }
     },
     {
       "year": 1998,
@@ -755,7 +857,10 @@
         "Marco Antonio Solís"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998).",
-      "uri_deezer": "deezer://track/613917582"
+      "uri_deezer": "deezer://track/613917582",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428838"
+      }
     },
     {
       "year": 1937,
@@ -773,7 +878,10 @@
         "Jon Secada",
         "Marco Antonio Solís"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Blancanieves» della Disney (1937)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Blancanieves» della Disney (1937).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724626583"
+      }
     },
     {
       "year": 1997,
@@ -791,7 +899,10 @@
         "Josema Yuste",
         "Pablo Perea"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724322867"
+      }
     },
     {
       "year": 2013,
@@ -829,7 +940,10 @@
         "AD Santos",
         "Yolanda de las Heras"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442277238"
+      }
     },
     {
       "year": 2017,
@@ -846,7 +960,10 @@
         "Beatriz Luengo",
         "Flavio"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442277244"
+      }
     },
     {
       "year": 2017,
@@ -865,7 +982,10 @@
         "Carmen López",
         "Flavio"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442277249"
+      }
     },
     {
       "year": 2017,
@@ -885,7 +1005,10 @@
         "Yolanda de las Heras"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Coco» della Disney (2017).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZZkVaNWvatM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZZkVaNWvatM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442277524"
+      }
     },
     {
       "year": 1997,
@@ -904,7 +1027,10 @@
         "Sleeping Beauty"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Hércules» della Disney (1997).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ItyNru6j0CY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ItyNru6j0CY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724322984"
+      }
     },
     {
       "year": 1998,
@@ -924,7 +1050,10 @@
         "Susan Martín"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Mulán» della Disney (1998).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=b7EfMXGdeqM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b7EfMXGdeqM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/250506522"
+      }
     },
     {
       "year": 1999,
@@ -944,7 +1073,10 @@
         "Lupita Pérez"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Tarzán» della Disney (1999).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5k8NySrpplY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5k8NySrpplY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6794863909"
+      }
     },
     {
       "year": 1953,
@@ -983,7 +1115,10 @@
         "Chila Lynn"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «El Jorobado de Notre Dame» della Disney (1996).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_6t2g06U2wo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_6t2g06U2wo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6794864077"
+      }
     },
     {
       "year": 2003,
@@ -1017,7 +1152,10 @@
         "Miguel Morant"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Blancanieves» della Disney (1937).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=mix2vXsFKcc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mix2vXsFKcc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724625989"
+      }
     },
     {
       "year": 1995,
@@ -1037,7 +1175,10 @@
         "Susan Martín"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Pocahontas» della Disney (1995).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hl61cQcSu9Y"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hl61cQcSu9Y",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561429810"
+      }
     },
     {
       "year": 1996,
@@ -1072,7 +1213,10 @@
         "Naima Barroso"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=a93jxmsrimo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a93jxmsrimo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428299"
+      }
     },
     {
       "year": 1995,
@@ -1090,7 +1234,10 @@
         "Jesús Aguirre"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Pocahontas» della Disney (1995).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=p2z-Xv_ScDg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p2z-Xv_ScDg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561429825"
+      }
     },
     {
       "year": 1991,
@@ -1128,7 +1275,10 @@
         "Ricky Martin"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Aladdín» della Disney (1992).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tzXxK2e_AQY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tzXxK2e_AQY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1460036863"
+      }
     },
     {
       "year": 1992,
@@ -1148,7 +1298,10 @@
         "Sol Pilas"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «Aladdín» della Disney (1992).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YbQHMw5DJaY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YbQHMw5DJaY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1460036858"
+      }
     },
     {
       "year": 1991,
@@ -1168,7 +1321,10 @@
         "Malú"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yE6J-_TjlkM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yE6J-_TjlkM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1561428432"
+      }
     }
   ]
 }

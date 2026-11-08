@@ -1,6 +1,6 @@
 {
   "name": "100 Summer Anthems ☀️",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "party",
     "classics",
@@ -117,7 +117,10 @@
       "uri_deezer": "deezer://track/3091992",
       "fun_fact_nl": "Good Vibrations' kostte in 1966 meer dan 50.000 dollar om te produceren (vandaag de dag ongeveer 470.000 dollar), waarmee het de duurste single was die ooit werd opgenomen. Het werd samengesteld uit sessies in vier verschillende studio's.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1442865074"
+      "uri_apple_music": "applemusic://track/1442865074",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442865074"
+      }
     },
     {
       "year": 1985,
@@ -964,7 +967,10 @@
       "uri_deezer": "deezer://track/75994742",
       "fun_fact_nl": "Itchycoo Park' van Small Faces was een van de eerste popsingles waarin flanging werd gebruikt, een studio-effect dat wordt gecreëerd door met een vinger tegen een bandspoel te drukken. Het park in de titel verwijst naar een echt park in East End in Londen.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/956517200"
+      "uri_apple_music": "applemusic://track/956517200",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/956517200"
+      }
     },
     {
       "year": 1978,
@@ -3473,7 +3479,10 @@
       "uri_deezer": "deezer://track/309174",
       "fun_fact_nl": "Lambada' was het onderwerp van meerdere rechtszaken omdat de melodie zonder toestemming was overgenomen van 'Llorando Se Fue' van de Boliviaanse groep Los Kjarkas. Ondanks de juridische controverses werd het een wereldwijd fenomeen, bereikte #1 in meer dan 15 landen en verkocht meer dan 5 miljoen exemplaren.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1460025553"
+      "uri_apple_music": "applemusic://track/1460025553",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1460025553"
+      }
     },
     {
       "year": 1993,

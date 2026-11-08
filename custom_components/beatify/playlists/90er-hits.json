@@ -1,6 +1,6 @@
 {
   "name": "90s Hits",
-  "version": "1.36",
+  "version": "1.37",
   "tags": [
     "1990s",
     "pop",
@@ -1223,7 +1223,10 @@
       "uri_deezer": "deezer://track/623469",
       "fun_fact_nl": "Zoon van Randy Bachman (Bachman-Turner Overdrive). Deze eenaggers vergeleek zijn crush met Cleopatra, Jeanne d'Arc en Aphrodite.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/1311156"
+      "uri_tidal": "tidal://track/1311156",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/158610105"
+      }
     },
     {
       "year": 1999,
@@ -1253,7 +1256,10 @@
       "uri_deezer": "deezer://track/962260",
       "fun_fact_nl": "Geschreven door Wyclef Jean. De titelsong van haar comeback-album toonde een volwassenere, minder popdiva Whitney. Het nummer gaat over onvoorwaardelijke liefde.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/517436"
+      "uri_tidal": "tidal://track/517436",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/251090745"
+      }
     },
     {
       "artist": "Captain Hollywood Project",
@@ -2858,7 +2864,9 @@
       "isrc": null,
       "uri": "spotify:track:3lcUQs5nyrjoHpQR9Vo2aA",
       "uri_apple_music": "applemusic://track/1778288336",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1778288336"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=BlaWhtHmUw4",
       "uri_tidal": "tidal://track/40845268",
       "uri_deezer": "deezer://track/78304375",
@@ -3421,7 +3429,10 @@
       "fun_fact_fr": "Écrite pour Young Guns II après qu'Emilio Estevez eut demandé 'Wanted Dead or Alive' et que Bon Jovi eut préféré composer du neuf — elle lui a valu un Golden Globe.",
       "fun_fact_nl": "Geschreven voor Young Guns II nadat Emilio Estevez om 'Wanted Dead or Alive' vroeg en Bon Jovi liever iets nieuws schreef — het leverde hem een Golden Globe op.",
       "fun_fact_it": "Scritta per Young Guns II dopo che Emilio Estevez chiese 'Wanted Dead or Alive' e Bon Jovi preferì comporre qualcosa di nuovo: gli valse un Golden Globe.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=MfmYCM4CS8o"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MfmYCM4CS8o",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440657907"
+      }
     },
     {
       "year": 1991,
@@ -3442,7 +3453,10 @@
       "fun_fact_fr": "En 1991, les Bee Gees avaient été enterrés deux fois comme groupe disco ; ce single les a ramenés dans le top cinq britannique sans la moindre trace de falsetto disco.",
       "fun_fact_nl": "In 1991 waren de Bee Gees al twee keer afgeschreven als discoband; deze single bracht ze zonder een spoor van falsetdisco terug in de Britse top vijf.",
       "fun_fact_it": "Nel 1991 i Bee Gees erano stati dati per finiti come gruppo disco due volte; questo singolo li riportò nella top cinque britannica senza traccia di falsetto disco.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=iVseOSFTGAw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iVseOSFTGAw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1445670131"
+      }
     },
     {
       "year": 1991,
@@ -3463,7 +3477,10 @@
       "fun_fact_fr": "Mike Rutherford menait ce groupe en parallèle de Genesis, et pendant un temps le projet parallèle se classait plus sûrement que le principal au Royaume-Uni.",
       "fun_fact_nl": "Mike Rutherford leidde deze band naast Genesis, en een tijdlang scoorde het zijproject in Groot-Brittannië betrouwbaarder dan de hoofdband.",
       "fun_fact_it": "Mike Rutherford portava avanti questa band accanto ai Genesis, e per un periodo il progetto parallelo entrava in classifica in Gran Bretagna più del principale.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7jbSwMU7H0w"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7jbSwMU7H0w",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1721958582"
+      }
     },
     {
       "year": 1991,
@@ -3484,7 +3501,10 @@
       "fun_fact_fr": "Nik Kershaw l'a écrite, Hawkes avait dix-neuf ans quand elle est restée cinq semaines première, et il n'a jamais eu d'autre top quarante — la définition du terme.",
       "fun_fact_nl": "Nik Kershaw schreef het, Hawkes was negentien toen het vijf weken op nummer één stond, en hij had nooit meer een top-veertig-hit — de definitie van het begrip.",
       "fun_fact_it": "La scrisse Nik Kershaw, Hawkes aveva diciannove anni quando restò cinque settimane al primo posto, e non ebbe mai più una top quaranta: la definizione del termine.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZvMsp7s78Do"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZvMsp7s78Do",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1629183924"
+      }
     },
     {
       "year": 1992,
@@ -3505,7 +3525,10 @@
       "fun_fact_fr": "Siobhan Fahey avait quitté Bananarama pour ce duo, et la suite de 'Stay' a tourné la même pop gothique vers le cadran de la radio.",
       "fun_fact_nl": "Siobhan Fahey had Bananarama verlaten voor dit duo, en de opvolger van 'Stay' richtte diezelfde gotische pop op de radioschaal zelf.",
       "fun_fact_it": "Siobhan Fahey aveva lasciato le Bananarama per questo duo, e il seguito di 'Stay' rivolse lo stesso pop gotico alla manopola della radio.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=IrbFydtLF-Y"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IrbFydtLF-Y",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1321520085"
+      }
     },
     {
       "year": 1993,
@@ -3526,7 +3549,10 @@
       "fun_fact_fr": "Le clip a fait d'Alicia Silverstone une star et d'Aerosmith un groupe MTV à nouveau ; les trois clips de cet album sont encore présentés comme une trilogie.",
       "fun_fact_nl": "De video maakte Alicia Silverstone een ster en Aerosmith weer een MTV-band; de drie clips van dat album worden nog steeds als trilogie getoond.",
       "fun_fact_it": "Il video rese Alicia Silverstone una star e riportò gli Aerosmith su MTV; i tre clip di quell'album sono ancora mostrati come trilogia.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qfNmyxV2Ncw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qfNmyxV2Ncw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1680799490"
+      }
     },
     {
       "year": 1993,
@@ -3547,7 +3573,10 @@
       "fun_fact_fr": "Le groupe a fait suivre son numéro un acoustique d'une autre reprise de Cat Stevens, et cette voie plus douce a marché en Europe bien après avoir cessé de marcher chez eux.",
       "fun_fact_nl": "De band liet hun akoestische nummer één volgen door nog een Cat Stevens-cover, en de zachtere weg werkte in Europa nog lang nadat hij thuis niet meer werkte.",
       "fun_fact_it": "La band fece seguire al suo numero uno acustico un'altra cover di Cat Stevens, e la via più morbida funzionò in Europa molto dopo che a casa aveva smesso.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Za9LY6Q3EuI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Za9LY6Q3EuI",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1270576307"
+      }
     },
     {
       "year": 1994,
@@ -3569,7 +3598,10 @@
       "fun_fact_nl": "Een decennium later kreeg het nummer een tweede leven in een videospel, waarvan een level eromheen het introduceerde bij spelers die na de hitperiode waren geboren.",
       "fun_fact_it": "Un decennio dopo la canzone ebbe una seconda vita in un videogioco, il cui livello costruito attorno a essa la fece conoscere a giocatori nati dopo il suo passaggio in classifica.",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tfZx3R9kDhM",
-      "uri_tidal": "tidal://track/33348472"
+      "uri_tidal": "tidal://track/33348472",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1436488400"
+      }
     },
     {
       "year": 1994,
@@ -3590,7 +3622,10 @@
       "fun_fact_fr": "Tony Mortimer l'a écrite sur le suicide de son frère ; elle est sortie comme single de Noël avec des grelots ajoutés, et la plupart n'ont entendu que les grelots.",
       "fun_fact_nl": "Tony Mortimer schreef het over de zelfdoding van zijn broer; het verscheen als kerstsingle met toegevoegde sleebellen, en de meesten hoorden alleen de bellen.",
       "fun_fact_it": "Tony Mortimer la scrisse sul suicidio del fratello; uscì come singolo natalizio con sonagli aggiunti, e i più sentirono solo i sonagli.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-wNhdjoF-6M"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-wNhdjoF-6M",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1313407184"
+      }
     },
     {
       "year": 1996,
@@ -3611,7 +3646,10 @@
       "fun_fact_fr": "Skin a écrit ce vers sur le désir de voir quelqu'un échouer comme une étude de la rancœur, et l'unique ballade du groupe est devenue de loin son plus grand succès.",
       "fun_fact_nl": "Skin schreef de regel over willen dat iemand faalt als een studie in wrok, en de enige ballade van de band werd veruit hun grootste hit.",
       "fun_fact_it": "Skin scrisse il verso sul desiderare il fallimento altrui come studio del rancore, e l'unica ballata della band divenne di gran lunga il loro successo maggiore.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LLs-JP5FGAg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LLs-JP5FGAg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/336927563"
+      }
     },
     {
       "year": 1996,
@@ -3632,7 +3670,10 @@
       "fun_fact_fr": "Le groupe a été européen pendant deux années entières avant que l'Amérique ne les remarque ; ce single a été classé en Allemagne bien avant chez eux.",
       "fun_fact_nl": "De groep was twee volle jaren een Europese act voordat Amerika hen opmerkte; deze single stond in Duitsland allang in de lijsten voordat dat thuis gebeurde.",
       "fun_fact_it": "Il gruppo fu una band europea per due anni interi prima che l'America se ne accorgesse; questo singolo entrò in classifica in Germania molto prima che in patria.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Ug88HO2mg44"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ug88HO2mg44",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/217939769"
+      }
     },
     {
       "year": 1996,
@@ -3652,7 +3693,10 @@
       "fun_fact_es": "La cantante galesa tomó el título de un verso de una novela de H. E. Bates, y se quedó nueve semanas atascada en el número dos en Estados Unidos.",
       "fun_fact_fr": "La chanteuse galloise a tiré le titre d'une phrase d'un roman de H. E. Bates, et le morceau est resté bloqué neuf semaines à la deuxième place aux États-Unis.",
       "fun_fact_nl": "De Welshe zangeres ontleende de titel aan een zin uit een roman van H. E. Bates, en het bleef negen weken steken op nummer twee in Amerika.",
-      "fun_fact_it": "La cantante gallese prese il titolo da una frase di un romanzo di H. E. Bates, e restò bloccata nove settimane al secondo posto in America."
+      "fun_fact_it": "La cantante gallese prese il titolo da una frase di un romanzo di H. E. Bates, e restò bloccata nove settimane al secondo posto in America.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/281708889"
+      }
     },
     {
       "year": 1997,
@@ -3672,7 +3716,10 @@
       "fun_fact_es": "Todo el disco se construye sobre una canción de The Dream Academy de 1985, y el trío se puso el nombre de un entrenador de fútbol y no de ninguno de sus miembros.",
       "fun_fact_fr": "Tout le disque repose sur un morceau de The Dream Academy de 1985, et le trio s'est nommé d'après un entraîneur de football plutôt que d'après l'un de ses membres.",
       "fun_fact_nl": "De hele plaat is gebouwd op een nummer van The Dream Academy uit 1985, en het trio noemde zich naar een voetbaltrainer in plaats van naar een van de leden.",
-      "fun_fact_it": "L'intero disco è costruito su un brano dei Dream Academy del 1985, e il trio prese il nome da un allenatore di calcio anziché da uno dei suoi membri."
+      "fun_fact_it": "L'intero disco è costruito su un brano dei Dream Academy del 1985, e il trio prese il nome da un allenatore di calcio anziché da uno dei suoi membri.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1629187353"
+      }
     },
     {
       "year": 1998,
@@ -3692,7 +3739,10 @@
       "fun_fact_es": "Un tribunal belga prohibió brevemente la venta de la canción en el país por una demanda de plagio que años después se anuló en apelación.",
       "fun_fact_fr": "Un tribunal belge a brièvement interdit la vente du morceau dans le pays pour une accusation de plagiat annulée des années plus tard en appel.",
       "fun_fact_nl": "Een Belgische rechtbank verbood de verkoop van het nummer in het land tijdelijk wegens een plagiaatclaim die jaren later in hoger beroep werd vernietigd.",
-      "fun_fact_it": "Un tribunale belga vietò brevemente la vendita del brano nel paese per un'accusa di plagio annullata anni dopo in appello."
+      "fun_fact_it": "Un tribunale belga vietò brevemente la vendita del brano nel paese per un'accusa di plagio annullata anni dopo in appello.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/952683"
+      }
     },
     {
       "year": 1998,
@@ -3712,7 +3762,10 @@
       "fun_fact_es": "Sascha Schmitz cantaba siempre en inglés y los oyentes alemanes que nunca habían visto su nombre escrito lo tomaban habitualmente por un artista británico.",
       "fun_fact_fr": "Sascha Schmitz chantait toujours en anglais et les auditeurs allemands qui n'avaient jamais vu son nom écrit le prenaient couramment pour un Britannique.",
       "fun_fact_nl": "Sascha Schmitz zong altijd in het Engels en werd door Duitse luisteraars die zijn naam nooit geschreven hadden gezien geregeld voor een Brit aangezien.",
-      "fun_fact_it": "Sascha Schmitz cantava sempre in inglese e gli ascoltatori tedeschi che non avevano mai visto il suo nome scritto lo scambiavano abitualmente per un britannico."
+      "fun_fact_it": "Sascha Schmitz cantava sempre in inglese e gli ascoltatori tedeschi che non avevano mai visto il suo nome scritto lo scambiavano abitualmente per un britannico.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/124952477"
+      }
     },
     {
       "year": 1999,
@@ -3732,7 +3785,10 @@
       "fun_fact_es": "Fran Healy la escribió en unas raras vacaciones soleadas en Israel, y en Glastonbury, el año que entró en listas, la lluvia empezó durante el primer estribillo.",
       "fun_fact_fr": "Fran Healy l'a écrite lors de rares vacances ensoleillées en Israël, et à Glastonbury, l'année de son classement, la pluie a commencé pendant le premier refrain.",
       "fun_fact_nl": "Fran Healy schreef het tijdens een zeldzame zonnige vakantie in Israël, en op Glastonbury begon in het hitjaar de regen tijdens het eerste refrein.",
-      "fun_fact_it": "Fran Healy la scrisse durante una rara vacanza soleggiata in Israele, e a Glastonbury, l'anno in cui entrò in classifica, la pioggia iniziò durante il primo ritornello."
+      "fun_fact_it": "Fran Healy la scrisse durante una rara vacanza soleggiata in Israele, e a Glastonbury, l'anno in cui entrò in classifica, la pioggia iniziò durante il primo ritornello.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1458139090"
+      }
     },
     {
       "year": 1999,
@@ -3752,7 +3808,10 @@
       "fun_fact_es": "El cantante jamaicano trabajaba con Michael Cretu de Enigma cuando regrabó esta balada de Air Supply, y la nueva versión vendió más que el original en Europa.",
       "fun_fact_fr": "Le chanteur jamaïcain travaillait avec Michael Cretu d'Enigma quand il a réenregistré cette ballade d'Air Supply, et la reprise s'est mieux vendue que l'original en Europe.",
       "fun_fact_nl": "De Jamaicaanse zanger werkte met Michael Cretu van Enigma toen hij deze Air Supply-ballade opnieuw opnam, en de remake verkocht in Europa beter dan het origineel.",
-      "fun_fact_it": "Il cantante giamaicano lavorava con Michael Cretu degli Enigma quando reincise questa ballata degli Air Supply, e il rifacimento vendette in Europa più dell'originale."
+      "fun_fact_it": "Il cantante giamaicano lavorava con Michael Cretu degli Enigma quando reincise questa ballata degli Air Supply, e il rifacimento vendette in Europa più dell'originale.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/723608871"
+      }
     },
     {
       "year": 1999,
@@ -3772,7 +3831,10 @@
       "fun_fact_es": "Blondie volvió tras diecisiete años separados y llegó directa al número uno en Gran Bretaña, diecisiete años después de que 'Atomic' hiciera lo mismo.",
       "fun_fact_fr": "Blondie est revenu après dix-sept ans de séparation et est allé droit à la première place britannique, dix-sept ans après qu'« Atomic » eut fait de même.",
       "fun_fact_nl": "Blondie keerde na zeventien jaar terug en ging in Groot-Brittannië rechtstreeks naar nummer één, zeventien jaar nadat 'Atomic' hetzelfde had gedaan.",
-      "fun_fact_it": "I Blondie tornarono dopo diciassette anni di separazione e andarono dritti al primo posto in Gran Bretagna, diciassette anni dopo che 'Atomic' aveva fatto lo stesso."
+      "fun_fact_it": "I Blondie tornarono dopo diciassette anni di separazione e andarono dritti al primo posto in Gran Bretagna, diciassette anni dopo che 'Atomic' aveva fatto lo stesso.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1712086824"
+      }
     },
     {
       "year": 1990,
@@ -3792,7 +3854,10 @@
       "fun_fact_es": "Stevie B venía de la escena freestyle de Miami, y esta balada, lo menos típico que grabó nunca, fue lo único que llegó al número uno.",
       "fun_fact_fr": "Stevie B venait de la scène freestyle de Miami, et cette ballade — la chose la moins typique qu'il ait enregistrée — fut la seule à atteindre la première place.",
       "fun_fact_nl": "Stevie B kwam uit de Miami-freestylescene, en deze ballade — het minst typische wat hij ooit opnam — was het enige dat nummer één werd.",
-      "fun_fact_it": "Stevie B veniva dalla scena freestyle di Miami, e questa ballata, la cosa meno tipica che abbia mai inciso, fu l'unica ad arrivare al primo posto."
+      "fun_fact_it": "Stevie B veniva dalla scena freestyle di Miami, e questa ballata, la cosa meno tipica che abbia mai inciso, fu l'unica ad arrivare al primo posto.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/287556086"
+      }
     },
     {
       "year": 1990,
@@ -3812,7 +3877,10 @@
       "fun_fact_es": "El grupo tenía cinco miembros del Boston obrero y vendió más que cualquier otro artista en Estados Unidos dos años seguidos.",
       "fun_fact_fr": "Le groupe comptait cinq membres issus du Boston ouvrier et a vendu plus que tout autre artiste en Amérique deux années de suite.",
       "fun_fact_nl": "De groep had vijf leden uit het arbeidersmilieu van Boston en verkocht twee jaar op rij meer dan elke andere act in Amerika.",
-      "fun_fact_it": "Il gruppo aveva cinque membri della Boston operaia e vendette più di ogni altro artista in America per due anni di fila."
+      "fun_fact_it": "Il gruppo aveva cinque membri della Boston operaia e vendette più di ogni altro artista in America per due anni di fila.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/157281771"
+      }
     },
     {
       "year": 1990,
@@ -3852,7 +3920,10 @@
       "fun_fact_es": "A Kamen lo descubrió Madonna; el disco fue un éxito modesto entonces y se volvió un estándar europeo gracias a versiones posteriores.",
       "fun_fact_fr": "Kamen a été découvert par Madonna ; le disque fut un succès modeste à l'époque et n'est devenu un standard européen que par des reprises ultérieures.",
       "fun_fact_nl": "Kamen werd ontdekt door Madonna; de plaat was destijds een bescheiden hit en werd pas via latere covers een Europese standard.",
-      "fun_fact_it": "Kamen fu scoperto da Madonna; il disco fu un successo modesto all'epoca e divenne uno standard europeo solo grazie a cover successive."
+      "fun_fact_it": "Kamen fu scoperto da Madonna; il disco fu un successo modesto all'epoca e divenne uno standard europeo solo grazie a cover successive.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1453505140"
+      }
     },
     {
       "year": 1991,
@@ -3872,7 +3943,10 @@
       "fun_fact_es": "El grupo sueco se vestía de cortesanos barrocos y ponía samples de coro eclesiástico sobre un ritmo dance; nadie lo había pedido y todos lo compraron.",
       "fun_fact_fr": "Le groupe suédois s'habillait en courtisans baroques et posait des samples de chœur d'église sur un beat dance ; personne ne l'avait demandé, tout le monde l'a acheté.",
       "fun_fact_nl": "De Zweedse groep kleedde zich als barokke hovelingen en zette kerkkoorsamples op een dancebeat; niemand had erom gevraagd en iedereen kocht het.",
-      "fun_fact_it": "Il gruppo svedese si vestiva da cortigiani barocchi e metteva campioni di coro da chiesa su un ritmo dance; nessuno l'aveva chiesto e tutti lo comprarono."
+      "fun_fact_it": "Il gruppo svedese si vestiva da cortigiani barocchi e metteva campioni di coro da chiesa su un ritmo dance; nessuno l'aveva chiesto e tutti lo comprarono.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442520826"
+      }
     },
     {
       "year": 1991,
@@ -3892,7 +3966,10 @@
       "fun_fact_es": "Grant la escribió sobre su hija recién nacida; llevaba una década como cantante de gospel antes de que esto la llevara a la radio pop.",
       "fun_fact_fr": "Grant l'a écrite pour sa fille nouveau-née ; elle avait passé dix ans comme chanteuse de gospel avant que ce titre ne l'amène à la radio pop.",
       "fun_fact_nl": "Grant schreef het over haar pasgeboren dochter; ze was tien jaar gospelzangeres geweest voordat dit haar naar de popradio bracht.",
-      "fun_fact_it": "Grant la scrisse per la figlia appena nata; era stata cantante gospel per un decennio prima che questo brano la portasse alle radio pop."
+      "fun_fact_it": "Grant la scrisse per la figlia appena nata; era stata cantante gospel per un decennio prima che questo brano la portasse alle radio pop.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440833131"
+      }
     },
     {
       "year": 1991,
@@ -3912,7 +3989,10 @@
       "fun_fact_es": "El grupo neozelandés nunca tuvo éxito con ella en casa; fue top diez en Gran Bretaña y un clásico en Alemania.",
       "fun_fact_fr": "Le groupe néo-zélandais n'a jamais eu de succès avec elle chez lui ; ce fut un top dix britannique et un standard en Allemagne.",
       "fun_fact_nl": "De Nieuw-Zeelandse band had er thuis nooit een hit mee; het werd een top tien in Groot-Brittannië en een standard in Duitsland.",
-      "fun_fact_it": "Il gruppo neozelandese non ebbe successo in patria; fu una top ten in Gran Bretagna e uno standard in Germania."
+      "fun_fact_it": "Il gruppo neozelandese non ebbe successo in patria; fu una top ten in Gran Bretagna e uno standard in Germania.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724472291"
+      }
     },
     {
       "year": 1991,
@@ -3932,7 +4012,10 @@
       "fun_fact_es": "Los hermanos Fairbrass eran bajistas de sesión que habían tocado con Bowie y Boy George antes de escribir una broma sobre sí mismos.",
       "fun_fact_fr": "Les frères Fairbrass étaient bassistes de studio et avaient joué pour Bowie et Boy George avant d'écrire une blague sur eux-mêmes.",
       "fun_fact_nl": "De broers Fairbrass waren sessiebassisten die bij Bowie en Boy George hadden gespeeld voordat ze een grap over zichzelf schreven.",
-      "fun_fact_it": "I fratelli Fairbrass erano bassisti turnisti che avevano suonato per Bowie e Boy George prima di scrivere una battuta su se stessi."
+      "fun_fact_it": "I fratelli Fairbrass erano bassisti turnisti che avevano suonato per Bowie e Boy George prima di scrivere una battuta su se stessi.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1536969306"
+      }
     },
     {
       "year": 1992,
@@ -3952,7 +4035,10 @@
       "fun_fact_es": "Clapton la escribió tras la caída de su hijo de cuatro años desde una ventana en Nueva York, y años después dejó de tocarla porque ya había cumplido su función.",
       "fun_fact_fr": "Clapton l'a écrite après la chute de son fils de quatre ans d'une fenêtre à New York, et a cessé de la jouer des années plus tard : elle avait fait son œuvre.",
       "fun_fact_nl": "Clapton schreef het nadat zijn vierjarige zoon uit een raam in New York was gevallen, en stopte jaren later met spelen omdat het zijn werk had gedaan.",
-      "fun_fact_it": "Clapton la scrisse dopo la caduta del figlio di quattro anni da una finestra a New York, e anni dopo smise di suonarla perché aveva fatto il suo lavoro."
+      "fun_fact_it": "Clapton la scrisse dopo la caduta del figlio di quattro anni da una finestra a New York, e anni dopo smise di suonarla perché aveva fatto il suo lavoro.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1648144423"
+      }
     },
     {
       "year": 1992,
@@ -3973,7 +4059,10 @@
       "fun_fact_fr": "La chanson a lancé une vague de line dance qui a rempli les salles américaines pendant deux ans, et Cyrus dit qu'il accepte d'en rester le symbole.",
       "fun_fact_nl": "Het nummer ontketende een linedancerage die Amerikaanse danszalen twee jaar vulde, en Cyrus zegt dat hij er vrede mee heeft daarom herinnerd te worden.",
       "fun_fact_it": "La canzone scatenò una moda del line dance che riempì le sale americane per due anni, e Cyrus dice di essere sereno all'idea di essere ricordato per questo.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=byQIPdHMpjc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=byQIPdHMpjc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442285450"
+      }
     },
     {
       "year": 1992,
@@ -3994,7 +4083,10 @@
       "fun_fact_fr": "Le clip montrait des photos d'enfants réellement disparus, et plusieurs ont été retrouvés parce que quelqu'un avait reconnu un visage sur MTV.",
       "fun_fact_nl": "De video toonde foto's van echte vermiste kinderen, en meerdere werden gevonden doordat iemand een gezicht herkende op MTV.",
       "fun_fact_it": "Il video mostrava foto di bambini realmente scomparsi, e diversi furono ritrovati perché qualcuno riconobbe un volto su MTV.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NRtvqT_wMeY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NRtvqT_wMeY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/466738518"
+      }
     },
     {
       "year": 1993,
@@ -4015,7 +4107,10 @@
       "fun_fact_fr": "Jim Steinman ne dit jamais dans le texte ce qu'est « cela », et on a posé la question à Meat Loaf pendant trente ans en interview.",
       "fun_fact_nl": "Jim Steinman zegt in de tekst nooit wat 'dat' is, en Meat Loaf kreeg de vraag dertig jaar lang in interviews.",
       "fun_fact_it": "Jim Steinman non dice mai nel testo cosa sia 'quello', e a Meat Loaf lo chiesero nelle interviste per trent'anni.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9X_ViIPA-Gc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9X_ViIPA-Gc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1612740301"
+      }
     },
     {
       "year": 1993,
@@ -4036,7 +4131,10 @@
       "fun_fact_fr": "L'original des Village People de 1979 était un hymne gay ; les Pet Shop Boys l'ont enregistré à la chute de l'Union soviétique et en ont fait autre chose.",
       "fun_fact_nl": "Het origineel van Village People uit 1979 was een homohymne; de Pet Shop Boys namen het op tijdens het uiteenvallen van de Sovjet-Unie en maakten er dat van.",
       "fun_fact_it": "L'originale dei Village People del 1979 era un inno gay; i Pet Shop Boys lo incisero mentre crollava l'Unione Sovietica e ne fecero altro.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GER396B6M7w"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GER396B6M7w",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/709434688"
+      }
     },
     {
       "year": 1993,
@@ -4057,7 +4155,10 @@
       "fun_fact_fr": "René Baumann était un breakdancer et coiffeur suisse qui a pressé son premier disque lui-même et le vendait depuis sa voiture.",
       "fun_fact_nl": "René Baumann was een Zwitserse breakdancer en kapper die zijn eerste plaat zelf perste en vanuit een auto verkocht.",
       "fun_fact_it": "René Baumann era un breakdancer e parrucchiere svizzero che stampò il primo disco da sé e lo vendeva dall'auto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3wsXysoAMHw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3wsXysoAMHw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1505831927"
+      }
     },
     {
       "year": 1993,
@@ -4078,7 +4179,10 @@
       "fun_fact_fr": "Nestor Haddaway est né à Trinidad et enregistrait à Cologne ; la suite de « What Is Love » s'est vendue à un million grâce au premier.",
       "fun_fact_nl": "Nestor Haddaway werd geboren in Trinidad en nam op in Keulen; de opvolger van 'What Is Love' verkocht een miljoen op krediet van de eerste.",
       "fun_fact_it": "Nestor Haddaway nacque a Trinidad e incise a Colonia; il seguito di 'What Is Love' vendette un milione sulla scia del primo.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=xyaGQPjXGyE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xyaGQPjXGyE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1731413661"
+      }
     },
     {
       "year": 1993,
@@ -4099,7 +4203,10 @@
       "fun_fact_fr": "Heather Small chantait pour un groupe nommé d'après les initiales de son manager, et le titre est devenu cinq ans plus tard l'hymne d'une campagne électorale britannique.",
       "fun_fact_nl": "Heather Small zong voor een band genoemd naar de initialen van hun manager, en dit werd vijf jaar later de hymne van een Britse verkiezingscampagne.",
       "fun_fact_it": "Heather Small cantava per un gruppo chiamato con le iniziali del suo manager, e cinque anni dopo il brano divenne l'inno di una campagna elettorale britannica.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zkHOVJINRD8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zkHOVJINRD8",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/943232443"
+      }
     },
     {
       "year": 1994,
@@ -4120,7 +4227,10 @@
       "fun_fact_fr": "La chanson est chantée en anglais, français et wolof, et le clip a été tourné en un seul plan-séquence où les deux ne se regardent jamais.",
       "fun_fact_nl": "Het nummer wordt in het Engels, Frans en Wolof gezongen, en de video werd in één ononderbroken take opgenomen waarin de twee elkaar nooit aankijken.",
       "fun_fact_it": "La canzone è cantata in inglese, francese e wolof, e il video fu girato in un unico piano sequenza in cui i due non si guardano mai.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GbfBML1LHfs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GbfBML1LHfs",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/456868718"
+      }
     },
     {
       "year": 1994,
@@ -4141,7 +4251,10 @@
       "fun_fact_fr": "La famille avait joué dans la rue à travers l'Europe depuis un bus pendant quinze ans avant que ce single ne se vende à cinq millions dans les pays germanophones.",
       "fun_fact_nl": "Het gezin had vijftien jaar vanuit een bus door Europa op straat gespeeld voordat deze single vijf miljoen keer verkocht in het Duitstalige gebied.",
       "fun_fact_it": "La famiglia aveva suonato per strada in tutta Europa da un autobus per quindici anni prima che questo singolo vendesse cinque milioni nei paesi di lingua tedesca.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=aUpmd4nm7YM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=aUpmd4nm7YM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440883862"
+      }
     },
     {
       "year": 1995,
@@ -4162,7 +4275,10 @@
       "fun_fact_fr": "Orville Burrell a servi dans les Marines américains pendant la guerre du Golfe avant d'enregistrer ; la voix grave est la sienne, pas un effet.",
       "fun_fact_nl": "Orville Burrell diende voor zijn opnames bij de Amerikaanse mariniers in de Golfoorlog; de lage stem is de zijne en geen effect.",
       "fun_fact_it": "Orville Burrell prestò servizio nei Marines americani nella Guerra del Golfo prima di incidere; la voce profonda è la sua, non un effetto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6W5pq4bIzIw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6W5pq4bIzIw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724654640"
+      }
     },
     {
       "year": 1995,
@@ -4183,7 +4299,10 @@
       "fun_fact_fr": "Gary Barlow l'a écrite en quinze minutes et ce fut leur seul tube américain ; le groupe s'est séparé huit mois plus tard.",
       "fun_fact_nl": "Gary Barlow schreef het in vijftien minuten en het bleef de enige Amerikaanse hit van de band; acht maanden later ging de groep uit elkaar.",
       "fun_fact_it": "Gary Barlow la scrisse in quindici minuti e fu l'unico successo americano della band; si sciolsero otto mesi dopo.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=N2ICtCO8TCw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=N2ICtCO8TCw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/299699600"
+      }
     },
     {
       "year": 1995,
@@ -4204,7 +4323,10 @@
       "fun_fact_fr": "Presque aucune des situations du texte n'est réellement ironique, ce qui fait débattre les professeurs d'anglais depuis trente ans.",
       "fun_fact_nl": "Bijna geen van de situaties in de tekst is echt ironisch, waarover leraren Engels al dertig jaar discussiëren.",
       "fun_fact_it": "Quasi nessuna delle situazioni del testo è davvero ironica, cosa su cui gli insegnanti di inglese discutono da trent'anni.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Jne9t8sHpUc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Jne9t8sHpUc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1031419968"
+      }
     },
     {
       "year": 1996,
@@ -4225,7 +4347,10 @@
       "fun_fact_fr": "Diane Warren l'a écrite sur son père et Dion la chante comme une chanson d'amour ; l'autrice a dit préférer qu'on l'ignore.",
       "fun_fact_nl": "Diane Warren schreef het over haar vader en Dion zingt het als liefdeslied; de schrijfster zegt dat ze liever heeft dat men dat niet weet.",
       "fun_fact_it": "Diane Warren la scrisse sul padre e Dion la canta come una canzone d'amore; l'autrice ha detto di preferire che non si sappia.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=fpl4if07ics"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fpl4if07ics",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1473319252"
+      }
     },
     {
       "year": 1996,
@@ -4246,7 +4371,10 @@
       "fun_fact_fr": "Le groupe de Brême a eu un tube en Allemagne avec une chanson dont personne, pas même le groupe, ne savait expliquer le titre.",
       "fun_fact_nl": "De groep uit Bremen had een hit in Duitsland met een nummer waarvan niemand de titel kon uitleggen, de band incluis.",
       "fun_fact_it": "Il gruppo di Brema ebbe un successo in Germania con una canzone il cui titolo nessuno sapeva spiegare, band compresa.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9uJK6BHb14U"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9uJK6BHb14U",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1877136192"
+      }
     },
     {
       "year": 1996,
@@ -4267,7 +4395,10 @@
       "fun_fact_fr": "Il a fallu convaincre Braxton d'enregistrer une ballade de Diane Warren qu'elle jugeait trop sentimentale ; elle est restée onze semaines première.",
       "fun_fact_nl": "Braxton moest worden overtuigd om een ballade van Diane Warren op te nemen die ze te sentimenteel vond; het stond elf weken op nummer één.",
       "fun_fact_it": "Braxton dovette essere convinta a incidere una ballata di Diane Warren che riteneva troppo sentimentale; restò undici settimane al primo posto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=p2Rch6WvPJE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p2Rch6WvPJE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/526521417"
+      }
     },
     {
       "year": 1996,
@@ -4288,7 +4419,10 @@
       "fun_fact_fr": "Le duo bavarois mêlait une voix féminine à de la trance, un schéma que la radio allemande a répété tout le reste de la décennie.",
       "fun_fact_nl": "Het Beierse duo mengde een vrouwenstem over trance, een patroon dat de Duitse radio de rest van het decennium herhaalde.",
       "fun_fact_it": "Il duo bavarese mescolava una voce femminile alla trance, uno schema che la radio tedesca ripeté per il resto del decennio.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ytTqmOANYJc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ytTqmOANYJc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/43689021"
+      }
     },
     {
       "year": 1997,
@@ -4309,7 +4443,10 @@
       "fun_fact_fr": "Un groupe berlinois de rockabilly pop en anglais a atteint le top dix allemand avec son premier single et ne s'en est jamais réapproché.",
       "fun_fact_nl": "Een Berlijnse band met Engelse rockabillypop haalde met hun eerste single de Duitse top tien en kwam daar nooit meer in de buurt.",
       "fun_fact_it": "Un gruppo berlinese di rockabilly pop in inglese entrò nella top ten tedesca col primo singolo e non ci si riavvicinò mai più.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=S-F4N084M6U"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S-F4N084M6U",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/402655446"
+      }
     },
     {
       "year": 1997,
@@ -4330,7 +4467,10 @@
       "fun_fact_fr": "Le single est sorti la semaine de la première de leur film et fut le dernier enregistré à cinq.",
       "fun_fact_nl": "De single verscheen in de week van de filmpremière van de groep en was de laatste opname met alle vijf leden.",
       "fun_fact_it": "Il singolo uscì la settimana della prima del loro film e fu l'ultimo inciso con tutte e cinque.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9wfpXI5PKlw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9wfpXI5PKlw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724614188"
+      }
     },
     {
       "year": 1998,
@@ -4351,7 +4491,10 @@
       "fun_fact_fr": "Folcker a chanté les chœurs pour Ace of Base avant sa carrière solo, et ses disques ont mieux marché en Allemagne qu'en Suède.",
       "fun_fact_nl": "Folcker zong achtergrondzang voor Ace of Base voordat ze solo ging, en haar platen deden het beter in Duitsland dan in Zweden.",
       "fun_fact_it": "Folcker cantò i cori per gli Ace of Base prima di andare da sola, e i suoi dischi andarono meglio in Germania che in Svezia.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5sJ4oxGDqzQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5sJ4oxGDqzQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/575971771"
+      }
     },
     {
       "year": 1998,
@@ -4372,7 +4515,10 @@
       "fun_fact_fr": "Cher avait cinquante-deux ans et avait été enterrée deux fois ; l'album en a fait la femme la plus âgée à dominer le classement américain.",
       "fun_fact_nl": "Cher was tweeënvijftig en al twee keer afgeschreven; het album maakte haar de oudste vrouw die ooit de Amerikaanse lijst aanvoerde.",
       "fun_fact_it": "Cher aveva cinquantadue anni ed era stata data per finita due volte; l'album la rese la donna più anziana ad aver mai guidato la classifica americana.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=tXOgmvZyzxk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tXOgmvZyzxk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/73273625"
+      }
     },
     {
       "year": 1999,
@@ -4393,7 +4539,10 @@
       "fun_fact_fr": "Le groupe a été monté pour une série télévisée et devait jouer autant que chanter ; le premier single est entré directement au top dix britannique.",
       "fun_fact_nl": "De groep werd samengesteld voor een televisieserie en moest ook acteren; de debuutsingle ging rechtstreeks de Britse top tien in.",
       "fun_fact_it": "Il gruppo fu messo insieme per una serie televisiva e doveva recitare oltre che cantare; il singolo d'esordio entrò dritto nella top ten britannica.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=GLQ0biK-ZgA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GLQ0biK-ZgA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440920784"
+      }
     },
     {
       "year": 1999,
@@ -4414,7 +4563,10 @@
       "fun_fact_fr": "Mousse T. produit depuis Hanovre, et ce remix a ramené un chanteur gallois de cinquante-neuf ans dans le top cinq européen.",
       "fun_fact_nl": "Mousse T. produceert vanuit Hannover, en deze remix bracht een negenenvijftigjarige Welshe zanger terug in de Europese top vijf.",
       "fun_fact_it": "Mousse T. produce da Hannover, e questo remix riportò un cantante gallese di cinquantanove anni nella top cinque europea.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WZ32gSLNHfA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WZ32gSLNHfA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440715352"
+      }
     },
     {
       "year": 1999,
@@ -4435,7 +4587,10 @@
       "fun_fact_fr": "Trois sœurs et un frère de Dundalk qui jouaient tous leurs instruments en direct, chose rare pour un groupe vendu sur son apparence.",
       "fun_fact_nl": "Drie zussen en een broer uit Dundalk die allemaal live hun instrumenten speelden, ongebruikelijk voor een band die op uiterlijk werd verkocht.",
       "fun_fact_it": "Tre sorelle e un fratello di Dundalk che suonavano tutti dal vivo, cosa insolita per un gruppo venduto sull'aspetto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=js-Wg53U-3k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=js-Wg53U-3k",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/28046743"
+      }
     }
   ]
 }

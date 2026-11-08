@@ -1,6 +1,6 @@
 {
   "name": "Deutschrap Klassiker",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "deutschrap",
     "hip-hop",
@@ -34,7 +34,10 @@
       "fun_fact_nl": "Schwester S. was de vroege artiestennaam van Sabrina Setlur, die later onder haar eigen voornaam in de hitlijsten kwam — dezelfde artieste met twee namen.",
       "uri_deezer": "deezer://track/124641868",
       "uri_apple_music": "applemusic://track/1119306834",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=3I7JOglOqtM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3I7JOglOqtM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1119306834"
+      }
     },
     {
       "year": 1997,
@@ -54,7 +57,10 @@
       "fun_fact_nl": "De titel is een palindroom en het refrein speelt daarmee: de naam wordt gespeld omdat hij in beide richtingen hetzelfde leest.",
       "uri_apple_music": "applemusic://track/298144521",
       "uri_deezer": "deezer://track/15644778",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=qtVa-BwoZsU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qtVa-BwoZsU",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/298144521"
+      }
     },
     {
       "year": 1998,
@@ -74,7 +80,10 @@
       "fun_fact_nl": "Het komt van Bambule, het Hamburgse album dat Duitstalige rap van scene-zaak tot hitlijstformaat maakte.",
       "uri_apple_music": "applemusic://track/1440731825",
       "uri_deezer": "deezer://track/2176668",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=k8gNzJcpHW0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=k8gNzJcpHW0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440731825"
+      }
     },
     {
       "year": 2001,
@@ -120,7 +129,10 @@
       "fun_fact_nl": "Gebouwd op het thema van de serie Prison Break, met Adel Tawil op het refrein, jaren voordat Ich + Ich een begrip werd.",
       "uri_deezer": "deezer://track/1163878",
       "uri_apple_music": "applemusic://track/1444292071",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-vSbQ7d4x1o"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-vSbQ7d4x1o",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444292071"
+      }
     },
     {
       "year": 2008,
@@ -140,7 +152,10 @@
       "fun_fact_nl": "Een rapversie van Forever Young van Alphaville, gezongen door Karel Gott — een combinatie van Duitse rap en Schlager die niemand eerder probeerde.",
       "uri_apple_music": "applemusic://track/1555448874",
       "uri_deezer": "deezer://track/1256158602",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kxRRRkXNRcY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kxRRRkXNRcY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1555448874"
+      }
     },
     {
       "year": 2009,
@@ -164,7 +179,10 @@
       "fun_fact_nl": "De Berlijnse groep zingt in het Duits, Engels, Spaans en Jamaicaans Patois — Monsta bracht die mix naar de zomerhitlijsten.",
       "uri_apple_music": "applemusic://track/1593834204",
       "uri_deezer": "deezer://track/1543798462",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VNWO5N8Vxsc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VNWO5N8Vxsc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1593834204"
+      }
     },
     {
       "year": 2010,
@@ -184,7 +202,10 @@
       "fun_fact_nl": "Van het album Zum Glueck in die Zukunft, waarmee de rapper uit Rostock zijn eerdere Engelstalige fase definitief achter zich liet.",
       "uri_apple_music": "applemusic://track/1625550159",
       "uri_deezer": "deezer://track/1761910157",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=AWcFHEdhYys"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AWcFHEdhYys",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1625550159"
+      }
     },
     {
       "year": 2012,
@@ -240,7 +261,10 @@
       "fun_fact_nl": "Het hele nummer is een bekentenis: het somt dingen op die de zanger fout vindt en toch geniet, en de titel zegt dat in twee woorden.",
       "uri_apple_music": "applemusic://track/1562123058",
       "uri_deezer": "deezer://track/82120542",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZPJlyRv_IGI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZPJlyRv_IGI",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1562123058"
+      }
     },
     {
       "year": 2012,
@@ -264,7 +288,10 @@
       "fun_fact_nl": "Max Herre schreef A-N-N-A met Freundeskreis al vijftien jaar eerder — dezelfde stem, twee tijdperken Duitse rap uit elkaar.",
       "uri_apple_music": "applemusic://track/1440865655",
       "uri_deezer": "deezer://track/46425761",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7VCbxcyKTT0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7VCbxcyKTT0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440865655"
+      }
     },
     {
       "year": 2012,
@@ -317,7 +344,10 @@
       "fun_fact_nl": "Van het album 30-11-80, dat Sido naar zijn eigen geboortedatum noemde.",
       "uri_apple_music": "applemusic://track/1443107793",
       "uri_deezer": "deezer://track/72370901",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WsmXm_XSMug"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WsmXm_XSMug",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1445874395"
+      }
     },
     {
       "year": 2016,
@@ -382,7 +412,10 @@
       "fun_fact_nl": "De titel dateert een modecollectie: RIN rapt over de Dior-lijn van 2001, niet over het jaar waarin het nummer uitkwam.",
       "uri_apple_music": "applemusic://track/1473865026",
       "uri_deezer": "deezer://track/717156672",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VmEWlKLbBF4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VmEWlKLbBF4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1473865026"
+      }
     },
     {
       "year": 2018,
@@ -421,7 +454,10 @@
       "fun_fact_nl": "Sido kijkt terug op zijn eigen begin en geeft de tweede helft aan Apache 207, die in het jaar van de titel twee was.",
       "uri_apple_music": "applemusic://track/1462078882",
       "uri_deezer": "deezer://track/760466952",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9_BvGdWbYoM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9_BvGdWbYoM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1462078882"
+      }
     },
     {
       "year": 2019,
@@ -441,7 +477,10 @@
       "fun_fact_nl": "Het verscheen in het jaar waarin Capital Bra een Duits hitlijstrecord vestigde met een reeks nummer-1-singles.",
       "uri_apple_music": "applemusic://track/1460798637",
       "uri_deezer": "deezer://track/672190002",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=V9Y-BM-I_x0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V9Y-BM-I_x0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1460798637"
+      }
     },
     {
       "year": 2020,
@@ -461,7 +500,10 @@
       "fun_fact_nl": "Twee van de bekendste vrouwen in de Duitse rap op een nummer, geproduceerd door Miksu en Macloud, die de sound van dat jaar mee bepaalden.",
       "uri_apple_music": "applemusic://track/1494301748",
       "uri_deezer": "deezer://track/851311772",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=fm_hC0bjJ5M"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fm_hC0bjJ5M",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1494301748"
+      }
     },
     {
       "year": 2020,
@@ -485,7 +527,10 @@
       "fun_fact_nl": "Berlijnse straatrap vernoemd naar een kauwgom — deel van een golf die beelden ontleende aan alledaagse merken in plaats van luxemerken.",
       "uri_apple_music": "applemusic://track/1512773990",
       "uri_deezer": "deezer://track/957653672",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=i5wsXLmWhCM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=i5wsXLmWhCM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1512773990"
+      }
     },
     {
       "year": 2021,
@@ -524,7 +569,10 @@
       "fun_fact_nl": "Het tweede Pashanim-nummer op deze lijst, een jaar na Airwaves — dezelfde Berlijnse zomertoon, een jaar later.",
       "uri_apple_music": "applemusic://track/1572443408",
       "uri_deezer": "deezer://track/1408516272",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=YOWEsoigyPg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YOWEsoigyPg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1572443408"
+      }
     },
     {
       "year": 2022,
@@ -544,7 +592,10 @@
       "fun_fact_nl": "Luciano werd geboren in Chili en groeide op in Berlijn — zijn melodische rap draagt beide, en dit is een van zijn zachtste voorbeelden.",
       "uri_apple_music": "applemusic://track/1647178504",
       "uri_deezer": "deezer://track/1730583477",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BWUR1e6fMtw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BWUR1e6fMtw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1647178504"
+      }
     },
     {
       "year": 2022,

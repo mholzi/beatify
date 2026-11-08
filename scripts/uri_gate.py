@@ -32,6 +32,15 @@ import re
 import unicodedata
 
 _FEAT_RE = re.compile(r"\s*[\(\[]?\b(feat|ft|featuring|with)\b\.?\s.*$", re.I)
+# Only the featured-guest credit itself — a bracketed ``(feat. X)`` group, or an
+# unbracketed ``feat. X`` run up to the next bracket or `` - ``. Unlike
+# ``_FEAT_RE`` it leaves what follows the credit alone, so a take marker after
+# it survives: ``Jackie Chan (feat. Preme) [Sebastian Perez Remix]``.
+_FEAT_CREDIT_RE = re.compile(
+    r"\s*[\(\[]\s*(?:feat|ft|featuring|with)\b\.?\s[^)\]]*[)\]]"
+    r"|\s+(?:feat|ft|featuring)\b\.?\s(?:(?!\s-\s)[^(\[])*",
+    re.I,
+)
 _PAREN_RE = re.compile(r"\s*[\(\[][^)\]]*[)\]]")
 _PAREN_CONTENT_RE = re.compile(r"[\(\[]([^)\]]*)[)\]]")
 _PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
@@ -70,17 +79,24 @@ _SOUNDTRACK_ORIGIN_RE = re.compile(
 )
 
 
-def normalise(text: str, *, drop_parens: bool = False) -> str:
+def normalise(
+    text: str, *, drop_parens: bool = False, cut_feat_tail: bool = True
+) -> str:
     """Fold a title/artist to a comparable form.
 
     Deliberately conservative: diacritics are kept (``Böhse`` must not collapse
     onto ``Bohse`` and start matching unrelated artists), only case, punctuation,
     ``&``/``and`` and whitespace are unified.
+
+    ``cut_feat_tail=False`` keeps everything after a ``feat.``/``with`` word.
+    The suffix check needs that: the tail cut also hits ordinary titles
+    (``The Man With the Red Face - Video Edit`` folds to ``the man``).
     """
     if not text:
         return ""
     out = unicodedata.normalize("NFC", text)
-    out = _FEAT_RE.sub("", out)
+    if cut_feat_tail:
+        out = _FEAT_RE.sub("", out)
     if drop_parens:
         out = _PAREN_RE.sub("", out)
     out = out.casefold()
@@ -171,15 +187,18 @@ def artist_matches(want: str, got: str) -> bool:
 def parenthetical_suffixes(text: str) -> list[str]:
     """Normalised contents of every ``(...)``/``[...]`` group.
 
-    ``feat.``-tails are cut first — ``normalise`` already handles those, and a
-    featured guest is not a different recording.
+    The featured-guest credit is cut first — a featured guest is not a different
+    recording. Only the credit: cutting the whole ``feat.``-tail (as
+    ``normalise`` does) also swallowed a take marker behind it, so
+    ``Jackie Chan (feat. Preme) [Sebastian Perez Remix]`` reported no suffix
+    and a remix passed the gate as the original.
     """
     if not text:
         return []
-    cleaned = _FEAT_RE.sub("", text)
+    cleaned = _FEAT_CREDIT_RE.sub("", text)
     out = []
     for raw in _PAREN_CONTENT_RE.findall(cleaned):
-        norm = normalise(raw)
+        norm = normalise(raw, cut_feat_tail=False)
         if norm:
             out.append(norm)
     return out
@@ -203,7 +222,11 @@ def suffix_conflict(a: str, b: str) -> str | None:
     Anything else names a different take and is returned for rejection.
     """
     for src, other in ((a, b), (b, a)):
-        other_norm = normalise(other)
+        # Same reason as parenthetical_suffixes: keep what follows a feat.
+        # credit, or a suffix the other side does carry is not found there.
+        other_norm = normalise(
+            _FEAT_CREDIT_RE.sub("", other or ""), cut_feat_tail=False
+        )
         for suffix in parenthetical_suffixes(src):
             if suffix in other_norm:
                 continue

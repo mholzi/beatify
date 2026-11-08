@@ -1,6 +1,6 @@
 {
   "name": "Ballermann Party Hits",
-  "version": "1.31",
+  "version": "1.32",
   "tags": [
     "schlager",
     "party",
@@ -1405,7 +1405,9 @@
       "isrc": null,
       "uri": "spotify:track:5t2L4RyK0XjpMgbkvOxwrD",
       "uri_apple_music": "applemusic://track/1740370877",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1740370877"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=7ICiUTFl0H0",
       "uri_tidal": "tidal://track/356880385",
       "uri_deezer": "deezer://track/2747834271",
@@ -2483,7 +2485,9 @@
       "isrc": null,
       "uri": "spotify:track:6HtDN2JPFmUTZXjs9dewjN",
       "uri_apple_music": "applemusic://track/1642919743",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1642919743"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=JGBUp35-ZqQ",
       "uri_tidal": "tidal://track/246121474",
       "uri_deezer": "deezer://track/2036363687",
@@ -3030,7 +3034,9 @@
       "isrc": null,
       "uri": "spotify:track:2kVaYYo0HCAh6DLEBVFyrC",
       "uri_apple_music": "applemusic://track/1721526801",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1721526801"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=ozegflGA8jM",
       "uri_tidal": "tidal://track/336999603",
       "uri_deezer": "deezer://track/2836089382",
@@ -3051,7 +3057,9 @@
       "isrc": null,
       "uri": "spotify:track:0VRemx1mBBJ9LeWQjIecWH",
       "uri_apple_music": "applemusic://track/1721519021",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1721519021"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=R1khp5lA6Cc",
       "uri_tidal": "tidal://track/336998913",
       "uri_deezer": "deezer://track/2598565712",
@@ -3143,7 +3151,9 @@
       "isrc": null,
       "uri": "spotify:track:7xTy2pipCAytjQJSySIbKT",
       "uri_apple_music": "applemusic://track/362714130",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/362714130"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=X0qtLof0eeg",
       "uri_tidal": "tidal://track/16670983",
       "uri_deezer": null,
@@ -3844,7 +3854,9 @@
       "isrc": null,
       "uri": "spotify:track:5p72jZxWouRGRrNJawy2d3",
       "uri_apple_music": "applemusic://track/1437555810",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1437555810"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=PJVqqdbaluE",
       "uri_tidal": "tidal://track/103928543",
       "uri_deezer": "deezer://track/671464252",
@@ -4375,7 +4387,9 @@
       "isrc": null,
       "uri": "spotify:track:7sdBx6DRf6r7a8ILex6cys",
       "uri_apple_music": "applemusic://track/1721521529",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1721521529"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=b3CYsa_luYI",
       "uri_tidal": "tidal://track/100116950",
       "uri_deezer": "deezer://track/2598567532",
@@ -4648,7 +4662,9 @@
       "isrc": null,
       "uri": "spotify:track:404cZYK4mrx3Mwf27C08Dq",
       "uri_apple_music": "applemusic://track/1124113027",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1124113027"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=QIdVNto7mkI",
       "uri_tidal": "tidal://track/61998120",
       "uri_deezer": "deezer://track/126731415",
@@ -4685,7 +4701,9 @@
       "isrc": null,
       "uri": "spotify:track:4LDwIQ6zHywMuMVQqjDB2D",
       "uri_apple_music": "applemusic://track/1444209941",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1411384733"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hEUMThMU0l4",
       "uri_tidal": "tidal://track/105812003",
       "uri_deezer": "deezer://track/527184041",

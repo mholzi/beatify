@@ -1,6 +1,6 @@
 {
   "name": "80s Hits",
-  "version": "2.30",
+  "version": "2.31",
   "tags": [
     "1980s",
     "pop",
@@ -108,7 +108,10 @@
       "uri_deezer": "deezer://track/1787693427",
       "fun_fact_nl": "Beroemd van de VK nummer 1 plek gehouden door Joe Dolce's 'Shaddap You Face', wordt Vienna vaak aangehaald als het grootste nummer dat nooit de nummer 1 positie in het VK bereikte.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1630208751"
+      "uri_apple_music": "applemusic://track/1630208751",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1630208751"
+      }
     },
     {
       "year": 1981,
@@ -168,7 +171,10 @@
       "uri_deezer": "deezer://track/14640464",
       "fun_fact_nl": "Van het album 'Abacab' was dit een van de eerste Genesis-nummers die Phil Collins' popsensibiliteit weerspiegelden in plaats van de progressieve rockwortels van de band.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1472171998"
+      "uri_apple_music": "applemusic://track/1472171998",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1472171998"
+      }
     },
     {
       "year": 1981,
@@ -2341,7 +2347,10 @@
       "awards_nl": [],
       "uri_tidal": "tidal://track/22936962",
       "uri_apple_music": "applemusic://track/1440912610",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BUfcT5OoP-8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BUfcT5OoP-8",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440912610"
+      }
     },
     {
       "year": 1983,
@@ -2364,7 +2373,10 @@
       "uri_deezer": "deezer://track/3803453672",
       "fun_fact_nl": "Ondanks hun naam waren de Thompson Twins eigenlijk een trio en geen tweeling. De naam was ontleend aan de detectives Jansen en Janssen uit de Kuifje-strips.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1675310468"
+      "uri_apple_music": "applemusic://track/1675310468",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1675310468"
+      }
     },
     {
       "year": 1983,
@@ -4207,7 +4219,10 @@
       "uri_deezer": "deezer://track/699130",
       "fun_fact_nl": "Heinz Rudolf Kunze schreef deze hartverwarmende ballade die een van de grootste Duitse hits van 1985 werd. Zijn poëtische teksten leverden hem vergelijkingen op met Bob Dylan in Duitstalige landen.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/79280627"
+      "uri_apple_music": "applemusic://track/79280627",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/79280627"
+      }
     },
     {
       "year": 1985,
@@ -5516,7 +5531,10 @@
       "fun_fact_nl": "Oorspronkelijk met Dolly Parton in gedachten voor de vrouwelijke zang, zong Kate Bush uiteindelijk het duet. Het nummer was geïnspireerd op Depressie-era foto's van Dorothea Lange.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/986800861",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VjEq-r2agqc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VjEq-r2agqc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/986800861"
+      }
     },
     {
       "year": 1986,
@@ -5546,7 +5564,10 @@
       "uri_deezer": "deezer://track/664178",
       "fun_fact_nl": "Prince schreef dit oorspronkelijk voor de band Mazarati maar vond de demo zo goed dat hij het hield. De sobere productie was revolutionair - alleen drums, gitaar en zang met bijna geen bas of keyboards.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/260336471"
+      "uri_apple_music": "applemusic://track/260336471",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/260336471"
+      }
     },
     {
       "year": 1986,
@@ -5732,7 +5753,10 @@
       "uri_tidal": "tidal://track/1112476",
       "uri_deezer": "deezer://track/2535353",
       "fun_fact_nl": "Colin Vearncombe schreef dit terwijl hij in bijna-armoede leefde in Liverpool. Ondanks de opbeurende boodschap schreef hij het tijdens een van de donkerste periodes van zijn leven, waarbij hij hoop vond door muziek.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443379066"
+      }
     },
     {
       "year": 1987,
@@ -5839,7 +5863,10 @@
       "uri_deezer": "deezer://track/8146779",
       "fun_fact_nl": "George Michael schreef, produceerde en speelde bijna elk instrument op dit nummer. Het iconische gitaarriff aan het begin was geïnspireerd op Bo Diddley. Het gelijknamige album maakte hem de eerste blanke soloartiest die nummer 1 bereikte op de Amerikaanse R&B-hitparade.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/282658468"
+      "uri_apple_music": "applemusic://track/282658468",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/282658468"
+      }
     },
     {
       "year": 1987,
@@ -8291,7 +8318,9 @@
       "isrc": null,
       "uri": "spotify:track:0CtkjgZpkgnW7U6WmHsakD",
       "uri_apple_music": "applemusic://track/256097956",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/256097956"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=g6nthFTiPiI",
       "uri_tidal": "tidal://track/38036078",
       "uri_deezer": "deezer://track/2170703",
@@ -8350,7 +8379,10 @@
       "fun_fact_fr": "Rossi et Bown l'ont écrite en quelques minutes dans une chambre d'hôtel, et elle a donné au groupe son meilleur classement britannique depuis le début des années soixante-dix.",
       "fun_fact_nl": "Rossi en Bown schreven het in een paar minuten in een hotelkamer, en het gaf de band hun hoogste Britse notering sinds begin jaren zeventig.",
       "fun_fact_it": "Rossi e Bown la scrissero in pochi minuti in una stanza d'albergo, e diede alla band la miglior posizione britannica dai primi anni settanta.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9sivblqJGN4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9sivblqJGN4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1692897029"
+      }
     },
     {
       "year": 1980,
@@ -8371,7 +8403,10 @@
       "fun_fact_fr": "Björn a écrit le texte sur son divorce d'avec Agnetha, puis lui a confié la chanson — elle a qualifié cet enregistrement de journée la plus dure de sa carrière.",
       "fun_fact_nl": "Björn schreef de tekst over zijn scheiding van Agnetha en gaf haar daarna het nummer om te zingen — ze noemde die opname de zwaarste dag van haar loopbaan.",
       "fun_fact_it": "Björn scrisse il testo sul divorzio da Agnetha e poi le affidò la canzone da cantare: lei ha definito quell'incisione il giorno più duro della sua carriera.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=92cwKCU8Z5c"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=92cwKCU8Z5c",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440816849"
+      }
     },
     {
       "year": 1981,
@@ -8392,7 +8427,10 @@
       "fun_fact_fr": "Le groupe jouait dans des bars de blues depuis douze ans quand ce disque pop est resté six semaines premier et est devenu la seule chose pour laquelle on le connaît.",
       "fun_fact_nl": "De band speelde twaalf jaar in bluesbars toen deze popplaat zes weken op nummer één stond en het enige werd waarvoor de meeste luisteraars hen kennen.",
       "fun_fact_it": "La band suonava nei bar blues da dodici anni quando questo disco pop restò sei settimane al primo posto e divenne l'unica cosa per cui la conoscono.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=BqDjMZKf-wg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BqDjMZKf-wg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724071636"
+      }
     },
     {
       "year": 1983,
@@ -8413,7 +8451,10 @@
       "fun_fact_fr": "Fendrich l'a écrite pour sa mère et la chante en dialecte viennois ; depuis, elle fait partie des enterrements et des adieux autrichiens.",
       "fun_fact_nl": "Fendrich schreef het voor zijn moeder en zingt het in Weens dialect; sindsdien hoort het vast bij Oostenrijkse begrafenissen en afscheiden.",
       "fun_fact_it": "Fendrich la scrisse per sua madre e la canta in dialetto viennese; da allora è parte fissa dei funerali e dei commiati austriaci.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=QQqWtxKN4cA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QQqWtxKN4cA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440924198"
+      }
     },
     {
       "year": 1984,
@@ -8434,7 +8475,10 @@
       "fun_fact_fr": "Kershaw a dit que le texte est un charabia écrit comme provisoire et jamais remplacé, ce qui n'a pas empêché des années de chasse au sens caché.",
       "fun_fact_nl": "Kershaw heeft gezegd dat de tekst onzin is die hij als tijdelijke invulling schreef en nooit verving, wat luisteraars jarenlang niet weerhield van zoeken naar de verborgen betekenis.",
       "fun_fact_it": "Kershaw ha detto che il testo è un nonsenso scritto come segnaposto e mai sostituito, il che non ha impedito anni di caccia al significato nascosto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bDygS0a6Tgo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bDygS0a6Tgo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443315009"
+      }
     },
     {
       "year": 1984,
@@ -8455,7 +8499,10 @@
       "fun_fact_fr": "Jim Steinman l'a écrite pour la bande originale de Footloose, et son galop était conçu pour la course de tracteurs du film, pas pour la radio.",
       "fun_fact_nl": "Jim Steinman schreef het voor de Footloose-soundtrack, en de galop was gemaakt voor de tractorachtervolging in de film, niet voor de radio.",
       "fun_fact_it": "Jim Steinman la scrisse per la colonna sonora di Footloose, e il suo galoppo era fatto per l'inseguimento dei trattori del film, non per la radio.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=bWcASV2sey0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bWcASV2sey0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1721624197"
+      }
     },
     {
       "year": 1984,
@@ -8476,7 +8523,10 @@
       "fun_fact_fr": "Dee Snider a bâti la mélodie sur le chant de Noël 'O Come, All Ye Faithful', et un an plus tard il a défendu la chanson vers par vers devant une commission du Sénat américain.",
       "fun_fact_nl": "Dee Snider bouwde de melodie op het kerstlied 'O Come, All Ye Faithful', en verdedigde het nummer een jaar later regel voor regel voor een commissie van de Amerikaanse Senaat.",
       "fun_fact_it": "Dee Snider costruì la melodia sul canto natalizio 'O Come, All Ye Faithful', e un anno dopo difese la canzone verso per verso davanti a una commissione del Senato americano.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4xmckWVPRaI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4xmckWVPRaI",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1788380899"
+      }
     },
     {
       "year": 1985,
@@ -8497,7 +8547,10 @@
       "fun_fact_fr": "Le texte de Bernie Taupin parle d'une garde-frontière de l'autre côté du mur de Berlin, et le clip montre le chanteur essayant de la rejoindre.",
       "fun_fact_nl": "De tekst van Bernie Taupin gaat over een grenswacht aan de andere kant van de Berlijnse Muur, en de video toont de zanger die haar probeert te bereiken.",
       "fun_fact_it": "Il testo di Bernie Taupin parla di una guardia di frontiera dall'altra parte del Muro di Berlino, e il video mostra il cantante che cerca di raggiungerla.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Tg-Q-Acv4qs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Tg-Q-Acv4qs",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440912804"
+      }
     },
     {
       "year": 1985,
@@ -8518,7 +8571,10 @@
       "fun_fact_fr": "Rush était une Américaine installée à Francfort, et ses disques se vendaient en Allemagne bien avant que quiconque aux États-Unis n'entende parler d'elle.",
       "fun_fact_nl": "Rush was een Amerikaanse die in Frankfurt woonde, en haar platen verkochten in Duitsland lang voordat iemand in de Verenigde Staten van haar had gehoord.",
       "fun_fact_it": "Rush era un'americana che viveva a Francoforte, e i suoi dischi vendevano in Germania molto prima che negli Stati Uniti la conoscessero.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WXS0YMbUzo4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WXS0YMbUzo4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/250562025"
+      }
     },
     {
       "year": 1986,
@@ -8539,7 +8595,10 @@
       "fun_fact_fr": "Neil Tennant a pris le titre du film de Penelope Spheeris de 1983 sur les punks de Los Angeles, et le disque s'ouvre sur des aboiements en écho.",
       "fun_fact_nl": "Neil Tennant ontleende de titel aan de film van Penelope Spheeris uit 1983 over punks in Los Angeles, en de plaat opent passend met blaffende honden.",
       "fun_fact_it": "Neil Tennant prese il titolo dal film di Penelope Spheeris del 1983 sui punk di Los Angeles, e il disco si apre di conseguenza con cani che abbaiano.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-VCqAjYO3NM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-VCqAjYO3NM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/710663004"
+      }
     },
     {
       "year": 1986,
@@ -8559,7 +8618,10 @@
       "fun_fact_es": "Randy Newman la escribió y grabó en 1972 como una canción seca e incómoda; la versión de Cocker para la película Nueve semanas y media la convirtió en lo contrario.",
       "fun_fact_fr": "Randy Newman l'a écrite et enregistrée en 1972 comme un morceau sec et gênant ; la version de Cocker pour le film 9 semaines ½ en a fait l'inverse.",
       "fun_fact_nl": "Randy Newman schreef en nam het in 1972 op als een droog, ongemakkelijk nummer; Cockers versie voor de film 9½ Weken maakte er het tegendeel van.",
-      "fun_fact_it": "Randy Newman la scrisse e incise nel 1972 come un pezzo asciutto e a disagio; la versione di Cocker per il film 9 settimane e ½ ne fece l'opposto."
+      "fun_fact_it": "Randy Newman la scrisse e incise nel 1972 come un pezzo asciutto e a disagio; la versione di Cocker per il film 9 settimane e ½ ne fece l'opposto.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/696198625"
+      }
     },
     {
       "year": 1986,
@@ -8579,7 +8641,10 @@
       "fun_fact_es": "El título juega con la película de Salzburgo por la que Austria es conocida fuera, algo que a Falco le parecía un poco embarazoso y que usó igualmente.",
       "fun_fact_fr": "Le titre joue sur le film salzbourgeois qui fait la renommée de l'Autriche à l'étranger, ce que Falco trouvait légèrement gênant et qu'il a utilisé quand même.",
       "fun_fact_nl": "De titel speelt met de Salzburgse film waar Oostenrijk in het buitenland om bekend staat, wat Falco lichtelijk gênant vond en toch gebruikte.",
-      "fun_fact_it": "Il titolo gioca sul film salisburghese per cui l'Austria è nota all'estero, cosa che Falco trovava lievemente imbarazzante e che usò comunque."
+      "fun_fact_it": "Il titolo gioca sul film salisburghese per cui l'Austria è nota all'estero, cosa che Falco trovava lievemente imbarazzante e che usò comunque.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/355932256"
+      }
     },
     {
       "year": 1988,
@@ -8600,7 +8665,10 @@
       "fun_fact_fr": "La mélodie est tirée d'une sonatine de Muzio Clementi de 1801, ce qui en fait l'un des rares numéros un bâtis sur un exercice de piano classique.",
       "fun_fact_nl": "De melodie komt uit een sonatine van Muzio Clementi uit 1801, wat het een van de weinige nummer-één-hits maakt met een klassieke pianoetude eronder.",
       "fun_fact_it": "La melodia viene da una sonatina di Muzio Clementi del 1801, il che ne fa uno dei pochi primi posti costruiti su un esercizio di pianoforte classico.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=HsC_SARyPzk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HsC_SARyPzk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1148701935"
+      }
     },
     {
       "year": 1988,
@@ -8621,7 +8689,10 @@
       "fun_fact_fr": "Dominoe était un groupe munichois chantant en anglais, et cette seule ballade a survécu au reste de leur catalogue à la radio allemande pendant des décennies.",
       "fun_fact_nl": "Dominoe was een band uit München die in het Engels zong, en deze ene ballade overleefde de rest van hun catalogus op de Duitse radio met decennia.",
       "fun_fact_it": "I Dominoe erano un gruppo di Monaco che cantava in inglese, e questa sola ballata sopravvisse al resto del loro catalogo nelle radio tedesche per decenni.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=5x5bXOhMTdw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5x5bXOhMTdw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1476351641"
+      }
     },
     {
       "year": 1988,
@@ -8642,7 +8713,10 @@
       "fun_fact_fr": "Le duo avait écrit 'How Will I Know' pour Whitney Houston, lui a aussi proposé celle-ci, s'est fait refuser et l'a enregistrée lui-même.",
       "fun_fact_nl": "Het duo had 'How Will I Know' voor Whitney Houston geschreven, bood haar ook dit nummer aan, werd afgewezen en nam het zelf op.",
       "fun_fact_it": "Il duo aveva scritto 'How Will I Know' per Whitney Houston, offrì anche questa, fu rifiutato e la incise da sé.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=RhxF9Qg5mOU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RhxF9Qg5mOU",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1357864216"
+      }
     },
     {
       "year": 1989,
@@ -8663,7 +8737,10 @@
       "fun_fact_fr": "Camouflage venait de Bietigheim-Bissingen et on les prenait si souvent pour un projet parallèle de Depeche Mode que la comparaison les a suivis dix ans.",
       "fun_fact_nl": "Camouflage kwam uit Bietigheim-Bissingen en werd zo vaak voor een zijproject van Depeche Mode aangezien dat de vergelijking hen tien jaar achtervolgde.",
       "fun_fact_it": "I Camouflage venivano da Bietigheim-Bissingen ed erano scambiati così spesso per un progetto parallelo dei Depeche Mode che il paragone li seguì per un decennio.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=zXzqcDnzDgc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zXzqcDnzDgc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443862180"
+      }
     },
     {
       "year": 1982,
@@ -8684,7 +8761,10 @@
       "fun_fact_fr": "Jimmy Webb a composé toute la musique du film d'animation, et la version allemande a gardé la chanson-titre en anglais, ce qui en fait un standard là-bas et nulle part ailleurs.",
       "fun_fact_nl": "Jimmy Webb schreef de hele filmmuziek voor de animatiefilm, en de Duitse nasynchronisatie behield het Engelse titellied; daarom is het daar een standard en nergens anders.",
       "fun_fact_it": "Jimmy Webb scrisse tutta la colonna sonora del film d'animazione, e il doppiaggio tedesco mantenne la canzone in inglese: per questo lì è uno standard e altrove no.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=51Ez6ZVz68c"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=51Ez6ZVz68c",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1476083695"
+      }
     },
     {
       "year": 1980,
@@ -8705,7 +8785,10 @@
       "fun_fact_fr": "Barry Gibb l'a écrite et produite et chante les chœurs ; Streisand n'avait jamais travaillé avec un producteur extérieur.",
       "fun_fact_nl": "Barry Gibb schreef en produceerde het en zingt de achtergrondzang; Streisand had nooit eerder met een externe producer gewerkt.",
       "fun_fact_it": "Barry Gibb la scrisse, la produsse e canta i cori; Streisand non aveva mai lavorato con un produttore esterno.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=hQLGCX8D-1Y"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hQLGCX8D-1Y",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/185861190"
+      }
     },
     {
       "year": 1980,
@@ -8726,7 +8809,10 @@
       "fun_fact_fr": "Parton l'a écrite sur le tournage entre deux prises et battait la mesure avec ses ongles en acrylique, que l'on entend sur le disque.",
       "fun_fact_nl": "Parton schreef het op de set tussen opnames en hield de maat met haar kunstnagels, die op de plaat te horen zijn.",
       "fun_fact_it": "Parton la scrisse sul set tra una ripresa e l'altra battendo il tempo con le unghie finte, che si sentono nel disco.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UbxUSsFXYo4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UbxUSsFXYo4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/282883590"
+      }
     },
     {
       "year": 1981,
@@ -8747,7 +8833,10 @@
       "fun_fact_fr": "Gloria Jones l'a enregistrée en 1964 comme face B de northern soul ; Soft Cell l'a ralentie et elle est devenue l'un des singles britanniques les plus vendus.",
       "fun_fact_nl": "Gloria Jones nam het in 1964 op als northern-soul-B-kant; Soft Cell vertraagde het en het werd een van de best verkochte Britse singles ooit.",
       "fun_fact_it": "Gloria Jones la incise nel 1964 come lato B northern soul; i Soft Cell la rallentarono e divenne uno dei singoli britannici più venduti di sempre.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XZVpR3Pk-r8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XZVpR3Pk-r8",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440913008"
+      }
     },
     {
       "year": 1981,
@@ -8768,7 +8857,10 @@
       "fun_fact_fr": "Stevens a été l'artiste de singles le plus vendu de Grande-Bretagne sur toute la décennie, devant tous les groupes dont on se souvient aujourd'hui.",
       "fun_fact_nl": "Stevens was het hele decennium de best verkopende singleartiest van Groot-Brittannië, boven elke band die nu als tachtiger wordt herinnerd.",
       "fun_fact_it": "Stevens fu l'artista di singoli più venduto in Gran Bretagna per tutto il decennio, davanti a ogni gruppo oggi ricordato come anni ottanta.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OFZH1ZqrRS0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OFZH1ZqrRS0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1539000123"
+      }
     },
     {
       "year": 1982,
@@ -8789,7 +8881,10 @@
       "fun_fact_fr": "Robert Fitoussi est français et chantait en anglais pour un marché européen mené par l'Allemagne ; le disque a marché presque partout sauf au Royaume-Uni.",
       "fun_fact_nl": "Robert Fitoussi is Frans en zong in het Engels voor een door Duitsland gedreven Europese markt; de plaat scoorde bijna overal behalve in Groot-Brittannië.",
       "fun_fact_it": "Robert Fitoussi è francese e cantava in inglese per un mercato europeo guidato dalla Germania; il disco funzionò quasi ovunque tranne che in Gran Bretagna.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=PTsSk0r_Tq8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=PTsSk0r_Tq8",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/490807202"
+      }
     },
     {
       "year": 1982,
@@ -8810,7 +8905,10 @@
       "fun_fact_fr": "Le groupe portait des salopettes et jouait du violon en plein essor de la synthpop, et ce fut leur unique numéro un américain.",
       "fun_fact_nl": "De band droeg tuinbroeken en speelde viool op het hoogtepunt van de synthpop, en dit was hun enige Amerikaanse nummer één.",
       "fun_fact_it": "Il gruppo indossava salopette e suonava violini nel pieno del synth pop, e questo restò il loro unico numero uno americano.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=6BODDyZRF6A"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6BODDyZRF6A",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1490914106"
+      }
     },
     {
       "year": 1983,
@@ -8831,7 +8929,10 @@
       "fun_fact_fr": "Le titre emprunte au film de Fellini, et le chanteur est italien mais a enregistré en anglais parce que c'est ce que voulaient les classements allemands.",
       "fun_fact_nl": "De titel leent Fellini's film, en de zanger is Italiaan maar nam in het Engels op omdat de Duitse lijsten dat wilden.",
       "fun_fact_it": "Il titolo prende in prestito il film di Fellini, e il cantante è italiano ma incise in inglese perché era ciò che volevano le classifiche tedesche.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=EXmABxvHTG4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EXmABxvHTG4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/453093678"
+      }
     },
     {
       "year": 1984,
@@ -8852,7 +8953,10 @@
       "fun_fact_fr": "La chanson avait dix ans et était oubliée quand les deux chanteurs l'ont enregistrée en duo ; elle est arrivée première du classement country.",
       "fun_fact_nl": "Het nummer was tien jaar oud en vergeten toen de twee zangers het als duet opnamen; het werd nummer één in de countrylijst.",
       "fun_fact_it": "La canzone aveva dieci anni ed era dimenticata quando i due cantanti la incisero in duetto; arrivò al primo posto nella classifica country.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rVq0ONrSH-Q"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rVq0ONrSH-Q",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/719442565"
+      }
     },
     {
       "year": 1986,
@@ -8873,7 +8977,10 @@
       "fun_fact_fr": "José María Cano a écrit une chanson savante espagnole sur une légende gitane et l'a mise sur un disque pop ; elle a depuis été reprise dans une douzaine de langues.",
       "fun_fact_nl": "José María Cano schreef een Spaans kunstlied over een zigeunerlegende en zette het op een popplaat; sindsdien is het in een tiental talen gecoverd.",
       "fun_fact_it": "José María Cano scrisse una canzone d'arte spagnola su una leggenda gitana e la mise su un disco pop; da allora è stata reincisa in una dozzina di lingue.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OwGG5fX7bxY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OwGG5fX7bxY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1559520587"
+      }
     },
     {
       "year": 1986,
@@ -8894,7 +9001,10 @@
       "fun_fact_fr": "Dieter Bohlen écrivait et produisait tout et chantait lui-même les voix aiguës ; Thomas Anders était le visage et la voix grave.",
       "fun_fact_nl": "Dieter Bohlen schreef en produceerde alles en zong zelf de hoge partijen; Thomas Anders was het gezicht en de lage stem.",
       "fun_fact_it": "Dieter Bohlen scriveva e produceva tutto e cantava lui stesso le parti acute; Thomas Anders era il volto e la voce grave.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Lp2qcCrdBLA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Lp2qcCrdBLA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/348891991"
+      }
     },
     {
       "year": 1986,
@@ -8915,7 +9025,10 @@
       "fun_fact_fr": "Le groupe l'a chantée a cappella, et leur bassiste Norman Cook est devenu plus tard Fatboy Slim.",
       "fun_fact_nl": "De band zong het a capella, en hun eigen bassist Norman Cook werd later Fatboy Slim.",
       "fun_fact_it": "Il gruppo la cantò a cappella, e il loro bassista Norman Cook divenne poi Fatboy Slim.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ehfiQd7lcPY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ehfiQd7lcPY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1527750547"
+      }
     },
     {
       "year": 1987,
@@ -8936,7 +9049,10 @@
       "fun_fact_fr": "Deux frères australiens se sont installés à Berlin, chantaient en anglais et étaient pris pour un groupe allemand par presque tous les acheteurs.",
       "fun_fact_nl": "Twee Australische broers verhuisden naar Berlijn, zongen in het Engels en werden door bijna elke koper voor een Duitse band aangezien.",
       "fun_fact_it": "Due fratelli australiani si trasferirono a Berlino, cantavano in inglese ed erano scambiati per un gruppo tedesco da quasi tutti gli acquirenti.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=U4a6-MFR9es"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=U4a6-MFR9es",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442299008"
+      }
     },
     {
       "year": 1987,
@@ -8957,7 +9073,10 @@
       "fun_fact_fr": "Carlisle avait été la chanteuse d'un groupe punk de Los Angeles, et le clip a été réalisé par Diane Keaton.",
       "fun_fact_nl": "Carlisle was zangeres geweest van een punkband uit Los Angeles, en de video werd geregisseerd door Diane Keaton.",
       "fun_fact_it": "Carlisle era stata la cantante di una band punk di Los Angeles, e il video fu diretto da Diane Keaton.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=j2F4INQFjEI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j2F4INQFjEI",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1818605567"
+      }
     },
     {
       "year": 1987,
@@ -8999,7 +9118,10 @@
       "fun_fact_fr": "Fancy est Manfred Alois Segieth, de Munich ; ses disques d'italo-disco se vendaient dans toute l'Europe tandis que le Royaume-Uni les ignorait totalement.",
       "fun_fact_nl": "Fancy is Manfred Alois Segieth uit München; zijn italodiscoplaten verkochten in heel Europa terwijl Groot-Brittannië ze volledig negeerde.",
       "fun_fact_it": "Fancy è Manfred Alois Segieth, di Monaco; i suoi dischi italo disco vendevano in tutta Europa mentre la Gran Bretagna li ignorava del tutto.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8C35sdjc_cw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8C35sdjc_cw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/330638484"
+      }
     },
     {
       "year": 1988,
@@ -9020,7 +9142,10 @@
       "fun_fact_fr": "Vince Clarke avait déjà quitté Depeche Mode et Yazoo avant Erasure ; ce fut son troisième groupe et celui qui a duré.",
       "fun_fact_nl": "Vince Clarke had voor Erasure al Depeche Mode en Yazoo verlaten; dit was zijn derde band en degene die bleef.",
       "fun_fact_it": "Vince Clarke aveva già lasciato Depeche Mode e Yazoo prima degli Erasure; fu la sua terza band e quella che durò.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ekc_aR5LyAk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ekc_aR5LyAk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1770272565"
+      }
     },
     {
       "year": 1989,
@@ -9041,7 +9166,10 @@
       "fun_fact_fr": "Sandra était mariée à Michael Cretu, qui produisait ses disques et a plus tard bâti Enigma sur le même studio et la même voix.",
       "fun_fact_nl": "Sandra was getrouwd met Michael Cretu, die haar platen produceerde en later Enigma bouwde op dezelfde studio en dezelfde stem.",
       "fun_fact_it": "Sandra era sposata con Michael Cretu, che produceva i suoi dischi e più tardi costruì gli Enigma sullo stesso studio e sulla stessa voce.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=kPrBhiRoQyc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=kPrBhiRoQyc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443070134"
+      }
     }
   ]
 }

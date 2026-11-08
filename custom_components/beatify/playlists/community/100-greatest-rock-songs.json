@@ -1,6 +1,6 @@
 {
   "name": "100 Greatest Rock Songs",
-  "version": "0.18",
+  "version": "0.19",
   "tags": [
     "rock",
     "classic-rock",
@@ -4731,7 +4731,8 @@
       "uri_deezer": "deezer://track/14477354",
       "isrc": "USSM19922509",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/201281527"
+        "us": "applemusic://track/201281527",
+        "de": "applemusic://track/201281527"
       }
     },
     {
@@ -4759,7 +4760,8 @@
       "uri_deezer": "deezer://track/1040945",
       "isrc": "USSM17000790",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/917030915"
+        "us": "applemusic://track/917030915",
+        "de": "applemusic://track/917030915"
       }
     },
     {
@@ -4786,7 +4788,9 @@
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3161471",
       "isrc": "GBGYU0300038",
-      "uri_apple_music_by_region": {}
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1750160810"
+      }
     },
     {
       "year": 1975,
@@ -4813,7 +4817,8 @@
       "uri_deezer": "deezer://track/1271164422",
       "isrc": "GBBGF9810001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/277746983"
+        "us": "applemusic://track/277746983",
+        "de": "applemusic://track/277746983"
       }
     },
     {
@@ -4841,7 +4846,8 @@
       "uri_deezer": "deezer://track/674063",
       "isrc": "USEE10184779",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/64808924"
+        "us": "applemusic://track/64808924",
+        "de": "applemusic://track/64808924"
       }
     },
     {
@@ -4869,7 +4875,8 @@
       "uri_deezer": "deezer://track/588236252",
       "isrc": "USUG10400001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1469579559"
+        "us": "applemusic://track/1469579559",
+        "de": "applemusic://track/1469579559"
       }
     },
     {
@@ -4897,7 +4904,8 @@
       "uri_deezer": "deezer://track/3332066",
       "isrc": "USCA28800036",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/725816792"
+        "us": "applemusic://track/725816792",
+        "de": "applemusic://track/725816792"
       }
     },
     {
@@ -4925,7 +4933,8 @@
       "uri_deezer": "deezer://track/116348192",
       "isrc": "GBAYE0601644",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1441133197"
+        "us": "applemusic://track/1441133197",
+        "de": "applemusic://track/1441133197"
       }
     },
     {
@@ -4953,7 +4962,8 @@
       "uri_deezer": "deezer://track/541866052",
       "isrc": "USPR37330006",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1455534880"
+        "us": "applemusic://track/1455534880",
+        "de": "applemusic://track/1455534880"
       }
     },
     {
@@ -4981,7 +4991,8 @@
       "uri_deezer": "deezer://track/13228340",
       "isrc": "USSM10021131",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/171076717"
+        "us": "applemusic://track/171076717",
+        "de": "applemusic://track/324296707"
       }
     },
     {
@@ -5009,7 +5020,8 @@
       "uri_deezer": "deezer://track/2461767",
       "isrc": "USIR28500003",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440651176"
+        "us": "applemusic://track/1440651176",
+        "de": "applemusic://track/1440651176"
       }
     },
     {
@@ -5037,7 +5049,8 @@
       "uri_deezer": "deezer://track/3858835",
       "isrc": "USWB10104988",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1031010969"
+        "us": "applemusic://track/1031010969",
+        "de": "applemusic://track/1031010969"
       }
     },
     {
@@ -5065,7 +5078,8 @@
       "uri_deezer": "deezer://track/626119",
       "isrc": "USSM18300031",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/169782152"
+        "us": "applemusic://track/169782152",
+        "de": "applemusic://track/190737693"
       }
     },
     {
@@ -5093,7 +5107,8 @@
       "uri_deezer": "deezer://track/2718504",
       "isrc": "GBF087700030",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1845835721"
+        "us": "applemusic://track/1845835721",
+        "de": "applemusic://track/1443403234"
       }
     },
     {
@@ -5121,7 +5136,8 @@
       "uri_deezer": "deezer://track/628518",
       "isrc": "USRC10301338",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/258517392"
+        "us": "applemusic://track/258517392",
+        "de": "applemusic://track/258517392"
       }
     },
     {
@@ -5149,7 +5165,8 @@
       "uri_deezer": "deezer://track/3102776",
       "isrc": "USEM30000046",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1476772799"
+        "us": "applemusic://track/1476772799",
+        "de": "applemusic://track/1476772799"
       }
     },
     {
@@ -5177,7 +5194,8 @@
       "uri_deezer": "deezer://track/13157931",
       "isrc": "USSM17100079",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/192492200"
+        "us": "applemusic://track/192492200",
+        "de": "applemusic://track/456919832"
       }
     },
     {
@@ -5205,7 +5223,8 @@
       "uri_deezer": "deezer://track/1066565",
       "isrc": "USSM10020612",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/203280224"
+        "us": "applemusic://track/203280224",
+        "de": "applemusic://track/203280224"
       }
     },
     {
@@ -5233,7 +5252,8 @@
       "uri_deezer": "deezer://track/2262518",
       "isrc": "USPR37930021",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1443913369"
+        "us": "applemusic://track/1443913369",
+        "de": "applemusic://track/1443913369"
       }
     },
     {
@@ -5261,7 +5281,8 @@
       "uri_deezer": "deezer://track/454843722",
       "isrc": "USRC18108188",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/286005748"
+        "us": "applemusic://track/286005748",
+        "de": "applemusic://track/286005748"
       }
     },
     {
@@ -5289,7 +5310,8 @@
       "uri_deezer": "deezer://track/3151773",
       "isrc": "USCA20500172",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/725789244"
+        "us": "applemusic://track/725789244",
+        "de": "applemusic://track/725789244"
       }
     },
     {
@@ -5317,7 +5339,8 @@
       "uri_deezer": "deezer://track/60702996",
       "isrc": "NLC287300054",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/81667968"
+        "us": "applemusic://track/81667968",
+        "de": "applemusic://track/81667968"
       }
     },
     {
@@ -5345,7 +5368,8 @@
       "uri_deezer": "deezer://track/5885699",
       "isrc": "USMR17800036",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1440855387"
+        "us": "applemusic://track/1440855387",
+        "de": "applemusic://track/1538079182"
       }
     },
     {
@@ -5373,7 +5397,8 @@
       "uri_deezer": "deezer://track/3431870",
       "isrc": "GBAYE7100063",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/699276150"
+        "us": "applemusic://track/699276150",
+        "de": "applemusic://track/699276150"
       }
     },
     {
@@ -5401,7 +5426,8 @@
       "uri_deezer": "deezer://track/3613215",
       "isrc": "USAT20702539",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1082025496"
+        "us": "applemusic://track/1082025496",
+        "de": "applemusic://track/1082025496"
       }
     },
     {
@@ -5429,7 +5455,8 @@
       "uri_deezer": "deezer://track/2158223987",
       "isrc": "USCA29101731",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1673136166"
+        "us": "applemusic://track/1673136166",
+        "de": "applemusic://track/1673136166"
       }
     },
     {
@@ -5457,7 +5484,8 @@
       "uri_deezer": "deezer://track/3153065",
       "isrc": "USCA28100081",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/724363409"
+        "us": "applemusic://track/724363409",
+        "de": "applemusic://track/724363409"
       }
     },
     {
@@ -5485,7 +5513,8 @@
       "uri_deezer": "deezer://track/3102884",
       "isrc": "GBAYE7400036",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/697229785"
+        "us": "applemusic://track/697229785",
+        "de": "applemusic://track/697229785"
       }
     },
     {
@@ -5513,7 +5542,8 @@
       "uri_deezer": "deezer://track/116348476",
       "isrc": "GBAYE0601702",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1441164599"
+        "us": "applemusic://track/1441164599",
+        "de": "applemusic://track/1441164599"
       }
     }
   ]

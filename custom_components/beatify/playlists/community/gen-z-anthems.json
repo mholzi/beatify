@@ -1,6 +1,6 @@
 {
   "name": "Gen Z Anthems",
-  "version": "1.6",
+  "version": "1.7",
   "tags": [
     "2010s",
     "2020s",
@@ -277,7 +277,10 @@
       "awards_es": [
         "Grammy - Canción del Año",
         "Grammy - Mejor Interpretación Pop Solista"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1594982922"
+      }
     },
     {
       "year": 2013,
@@ -445,7 +448,10 @@
         "Grammy - Grabación del Año",
         "Grammy - Canción del Año",
         "Grammy - Mejor Interpretación Pop Solista"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1051333148"
+      }
     },
     {
       "year": 2016,
@@ -543,7 +549,10 @@
       "awards_es": [
         "Grammy - Mejor Interpretación Pop Solista",
         "Billboard Music Award - Mejor Canción del Hot 100"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1193700923"
+      }
     },
     {
       "year": 2017,
@@ -669,7 +678,10 @@
       "awards_es": [
         "Grammy - Mejor Canción de Rap",
         "Billboard Music Award - Mejor Canción del Hot 100"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1406109863"
+      }
     },
     {
       "year": 2018,
@@ -773,7 +785,10 @@
         "Grammy - Grabación del Año",
         "Grammy - Canción del Año",
         "Grammy - Mejor Interpretación Pop Solista"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1450695739"
+      }
     },
     {
       "year": 2019,
@@ -1001,7 +1016,10 @@
       "uri_tidal": "tidal://track/132569886",
       "uri_deezer": "deezer://track/1124841682",
       "fun_fact_nl": "Levitating stond in 2021 meer weken in de Billboard Hot 100 dan bijna elk ander nummer, met een piek op #2 — de DaBaby-remix gaf het een tweede leven.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1551800727"
+      }
     },
     {
       "year": 2019,
@@ -1378,7 +1396,10 @@
       ],
       "awards_es": [
         "Grammy - Mejor Interpretación Pop Solista"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6788150545"
+      }
     },
     {
       "year": 2023,

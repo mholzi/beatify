@@ -1,6 +1,6 @@
 {
   "name": "Eurovision Winners (1956-2025)",
-  "version": "1.17",
+  "version": "1.18",
   "tags": [
     "eurovision",
     "contest",
@@ -535,7 +535,10 @@
       ],
       "uri_tidal": "tidal://track/41386583",
       "uri_apple_music": "applemusic://track/1721242740",
-      "fun_fact_it": "Poupée de cire, poupée de son (Bambola di cera, bambola di crusca) fu scritta dal leggendario autore francese Serge Gainsbourg. France Gall aveva solo 17 anni e pare non fosse consapevole dei doppi sensi del testo. Divenne un classico assoluto del pop yé-yé."
+      "fun_fact_it": "Poupée de cire, poupée de son (Bambola di cera, bambola di crusca) fu scritta dal leggendario autore francese Serge Gainsbourg. France Gall aveva solo 17 anni e pare non fosse consapevole dei doppi sensi del testo. Divenne un classico assoluto del pop yé-yé.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1721242740"
+      }
     },
     {
       "year": 1966,
@@ -741,7 +744,10 @@
       "awards_it": [
         "Vincitore dell'Eurovision Song Contest 1969 (ex aequo a quattro)"
       ],
-      "fun_fact_it": "De Troubadour fece parte dell'unico quadruplo ex aequo nella storia dell'Eurovision. Paesi Bassi, Francia, Spagna e Regno Unito si divisero il primo posto con 18 punti a testa. Il risultato controverso portò a un cambio di regolamento."
+      "fun_fact_it": "De Troubadour fece parte dell'unico quadruplo ex aequo nella storia dell'Eurovision. Paesi Bassi, Francia, Spagna e Regno Unito si divisero il primo posto con 18 punti a testa. Il risultato controverso portò a un cambio di regolamento.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1622858673"
+      }
     },
     {
       "year": 1969,
@@ -1226,7 +1232,10 @@
       "uri_tidal": "tidal://track/181365005",
       "uri_apple_music": "applemusic://track/104581124",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BPxuq4uQ0OU",
-      "fun_fact_it": "Ding-A-Dong diede ai Paesi Bassi la quarta vittoria all'Eurovision. Il brano pop orecchiabile affrontò una concorrenza agguerrita in un'edizione ricca di proposte forti. I Teach-In ebbero una breve carriera internazionale dopo il trionfo."
+      "fun_fact_it": "Ding-A-Dong diede ai Paesi Bassi la quarta vittoria all'Eurovision. Il brano pop orecchiabile affrontò una concorrenza agguerrita in un'edizione ricca di proposte forti. I Teach-In ebbero una breve carriera internazionale dopo il trionfo.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/104581124"
+      }
     },
     {
       "year": 1976,
@@ -2075,7 +2084,10 @@
         "Vincitore dell'Eurovision Song Contest 1991"
       ],
       "uri_apple_music": "applemusic://track/586785384",
-      "fun_fact_it": "Fångad av en stormvind (Travolta da una tempesta d'amore) vinse in un'edizione ospitata a Roma. Carola aveva già rappresentato la Svezia nel 1983. La ballata drammatica confermò il talento svedese nel produrre vincitori dell'Eurovision."
+      "fun_fact_it": "Fångad av en stormvind (Travolta da una tempesta d'amore) vinse in un'edizione ospitata a Roma. Carola aveva già rappresentato la Svezia nel 1983. La ballata drammatica confermò il talento svedese nel produrre vincitori dell'Eurovision.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/586785384"
+      }
     },
     {
       "year": 1992,
@@ -2899,7 +2911,10 @@
         "Vincitore dell'Eurovision Song Contest 2007"
       ],
       "uri_apple_music": "applemusic://track/1578027079",
-      "fun_fact_it": "Molitva (Preghiera) fu la prima partecipazione e la prima vittoria della Serbia come nazione indipendente dopo la dissoluzione della Jugoslavia. La ballata intensa di Marija Šerifović, cantata interamente in serbo, si impose nettamente. Un brano potente che non aveva bisogno di effetti."
+      "fun_fact_it": "Molitva (Preghiera) fu la prima partecipazione e la prima vittoria della Serbia come nazione indipendente dopo la dissoluzione della Jugoslavia. La ballata intensa di Marija Šerifović, cantata interamente in serbo, si impose nettamente. Un brano potente che non aveva bisogno di effetti.",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1578027079"
+      }
     },
     {
       "year": 2008,
