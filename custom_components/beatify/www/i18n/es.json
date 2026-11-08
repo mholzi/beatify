@@ -919,6 +919,8 @@
       "intro": "Beatify nunca contacta con una IA por su cuenta. Copia el prompt en el chatbot o modelo local que prefieras y pega después su respuesta aquí.",
       "name": "Nombre de la playlist",
       "theme": "Tema para la IA",
+      "namePlaceholder": "Éxitos para la barbacoa de verano",
+      "themePlaceholder": "éxitos veraniegos y animados, sobre todo de los 80 a los 2000",
       "count": "Canciones",
       "copy": "Copiar prompt",
       "paste": "Pega la respuesta de la IA",

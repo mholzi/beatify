@@ -919,6 +919,8 @@
       "intro": "Beatify neemt nooit zelf contact op met een AI. Kopieer de prompt naar een chatbot of lokaal model naar keuze en plak het antwoord hier terug.",
       "name": "Naam van de playlist",
       "theme": "Thema voor de AI",
+      "namePlaceholder": "Zomerse barbecuekrakers",
+      "themePlaceholder": "vrolijke zomerhits, vooral uit de jaren 80 tot 2000",
       "count": "Nummers",
       "copy": "Prompt kopiëren",
       "paste": "Plak het antwoord van de AI",

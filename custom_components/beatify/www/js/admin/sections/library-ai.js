@@ -130,11 +130,11 @@ function _ensureModal() {
 
         <div class="library-ai-row">
           <label class="library-label" data-i18n="admin.libraryAi.name">Playlist name</label>
-          <input type="text" class="text-input" data-ai="name" maxlength="100" placeholder="Summer BBQ bangers">
+          <input type="text" class="text-input" data-ai="name" maxlength="100" data-i18n-placeholder="admin.libraryAi.namePlaceholder" placeholder="Summer BBQ bangers">
         </div>
         <div class="library-ai-row">
           <label class="library-label" data-i18n="admin.libraryAi.theme">Theme for the AI</label>
-          <input type="text" class="text-input" data-ai="theme" maxlength="200" placeholder="upbeat summer hits, mostly 80s-00s">
+          <input type="text" class="text-input" data-ai="theme" maxlength="200" data-i18n-placeholder="admin.libraryAi.themePlaceholder" placeholder="upbeat summer hits, mostly 80s-00s">
         </div>
         <div class="library-ai-row library-ai-row--split">
           <label class="library-label" data-i18n="admin.libraryAi.count">Songs</label>

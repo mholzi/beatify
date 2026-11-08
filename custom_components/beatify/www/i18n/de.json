@@ -919,6 +919,8 @@
       "intro": "Beatify kontaktiert nie selbst eine KI. Kopiere den Prompt in einen Chatbot oder ein lokales Modell deiner Wahl und füge die Antwort danach hier ein.",
       "name": "Playlist-Name",
       "theme": "Thema für die KI",
+      "namePlaceholder": "Sommer-Grillhits",
+      "themePlaceholder": "fröhliche Sommerhits, hauptsächlich aus den 80ern bis 2000ern",
       "count": "Songs",
       "copy": "Prompt kopieren",
       "paste": "Antwort der KI einfügen",
