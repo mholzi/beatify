@@ -868,6 +868,11 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v4.8.9 — Every Word at Home 🌍
+- **The host page speaks your language**: the Crate Digger AI window, its examples and the speaker hints are translated into all six languages (#3422, #3424, #3431, #3434)
+- **More songs**: Christmas Hits is new, Greatest Hits of All Time grows by 100 songs, and German Apple Music users get checked links in 43 playlists (#3427, #3440)
+- **Games keep going**: a song Music Assistant cannot find is skipped at once and replaced, so a ten-round game stays ten rounds (#3429, #3441)
+
 ### v4.8.8 — Set in Motion 🎬
 - **The whole game moves**: the year reel, guesses landing on the TV, scene wipes, standings that travel and a podium that builds up, with phone and TV revealing the year together (#3365, #3367, #3370, #3379)
 - **Phone, TV and admin share one look**, and errors say what to do next instead of failing quietly (#3387, #3386, #3390, #3396)
