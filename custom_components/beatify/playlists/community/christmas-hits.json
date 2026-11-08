@@ -1,6 +1,6 @@
 {
   "name": "Christmas Hits",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "christmas",
     "holiday",
@@ -1094,7 +1094,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/924313597"
       },
-      "uri_youtube_music": "https://music.youtube.com/watch?v=2suygUJeQrE",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6bbuBubZ1yE",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/87172779",
       "fun_fact": "'Baby It's Cold Outside (with Michael Bublé)' by Idina Menzel was first released in 2014.",
