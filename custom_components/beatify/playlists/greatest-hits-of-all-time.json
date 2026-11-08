@@ -1,6 +1,6 @@
 {
   "name": "Greatest Hits of All Time",
-  "version": "2.30",
+  "version": "2.31",
   "tags": [
     "classics",
     "top-hits",
@@ -10992,7 +10992,8 @@
       "fun_fact_it": "Il gruppo indossava salopette e suonava violini nel pieno del synth pop, e questo restò il loro unico numero uno americano.",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/1490914106"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6BODDyZRF6A"
     },
     {
       "year": 1984,
@@ -12167,7 +12168,8 @@
       "fun_fact_it": "Il primo numero uno di Shakira negli USA. Lo cantò con Wyclef Jean alla cerimonia di chiusura dei Mondiali 2006 a Berlino.",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/482267480"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DUT5rEU6pqM"
     },
     {
       "artist": "The Killers",
@@ -12592,7 +12594,8 @@
         "es": "applemusic://track/1440818897",
         "nl": "applemusic://track/1440818897",
         "it": "applemusic://track/1440818897"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CevxZvSJLk8"
     },
     {
       "year": 2010,
@@ -12615,7 +12618,8 @@
       "fun_fact_it": "Il primo singolo da solista di Bruno Mars arrivò al numero uno negli USA e gli valse il Grammy per la miglior interpretazione vocale pop maschile.",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/396795873"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LjhCEhWiKXk"
     },
     {
       "artist": "Mark Ronson",
@@ -12840,7 +12844,8 @@
         "es": "applemusic://track/403037877",
         "nl": "applemusic://track/403037877",
         "it": "applemusic://track/403037877"
-      }
+      },
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rYEDA3JcQqw"
     },
     {
       "year": 2015,
