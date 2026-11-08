@@ -255,7 +255,7 @@ class RoundLifecycleMixin(GameStateBase):
         # does not — by classifying its failures as "error" and
         # quietly disabling the skip logic below.
         failure_reason = service.last_failure_reason if service else None
-        self._shrink_total_rounds_to_pool()
+        self._replace_dropped_song()
 
         if failure_reason == "provider_unavailable":
             # #3328: Music Assistant refused the request because the provider
@@ -464,7 +464,7 @@ class RoundLifecycleMixin(GameStateBase):
             self._playlist_manager.mark_played(
                 get_song_uri(song, self.provider, self.storefront) or song.get("uri")  # type: ignore[arg-type]
             )
-            self._shrink_total_rounds_to_pool()
+            self._replace_dropped_song()
             if _retry_count >= MAX_SONG_RETRIES:
                 _LOGGER.error(
                     "No playable songs found after %d attempts, pausing game",
@@ -904,6 +904,26 @@ class RoundLifecycleMixin(GameStateBase):
         if manager is None:
             return self.ENCORE_ROUNDS
         return max(0, min(self.ENCORE_ROUNDS, manager.reserve_count()))
+
+    def _replace_dropped_song(self) -> None:
+        """Keep the game's length when a song is dropped (#3441).
+
+        A dropped song (no URI, or a start that did not land) used to cost the
+        game a round outright (#3279). With a round cap the playlist's other
+        songs sit in the reserve (#2547), so the dropped one is replaced from
+        there first, exactly as the host's song swap does (#3321). In the
+        #3441 report a rate-limited provider dropped four playable songs from a
+        98-song playlist capped at 10 rounds, and the game ended after six.
+        Only a game whose reserve is spent (no cap, or a playlist no larger
+        than the cap) still loses the round, and then the #3279 accounting
+        says so.
+        """
+        manager = self._playlist_manager
+        if manager is not None and manager.release_reserved_songs(
+            1, reason="Dropped song replaced (#3441)", next_up=True
+        ):
+            return
+        self._shrink_total_rounds_to_pool()
 
     def _shrink_total_rounds_to_pool(self) -> None:
         """Lower ``total_rounds`` to what the pool can still deliver (#3279).
