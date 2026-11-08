@@ -26,6 +26,7 @@ import { STORAGE_LAST_PLAYER, PLATFORM_LABELS } from '../constants.js';
 import { PROVIDERS } from '../../providers.generated.js';
 import { updateStartButtonState } from './playlists.js';
 import { tr } from '../util.js';
+import { createTvConnectionWatch } from '../browser-playback.js';
 
 // BeatifyUtils is a classic global script loaded before admin.min.js (module,
 // deferred), so this is safe at module init. Mirrors the admin.js pattern.
@@ -36,7 +37,12 @@ const deps = {
     refreshStatus: null,   // admin.js `loadStatus`
     onSpeakerRejected: null,  // admin.js: banner above Start (#3223)
     onSpeakerChanged: null,   // admin.js: clear that banner (#3223)
+    onSpeakerSelected: null,  // admin.js: "This phone" registers the page
 };
+
+// Play without a speaker: while the "TV screen" row says the TV page is not
+// open, ask every few seconds and re-render once it is.
+let tvWatch = null;
 
 // The speaker the game stayed on after the last refused switch (#3223). A
 // later push of that same speaker is the revert, not a new switch, so it must
@@ -54,6 +60,7 @@ export function initMediaPlayers(injected = {}) {
     deps.refreshStatus = injected.refreshStatus || null;
     deps.onSpeakerRejected = injected.onSpeakerRejected || null;
     deps.onSpeakerChanged = injected.onSpeakerChanged || null;
+    deps.onSpeakerSelected = injected.onSpeakerSelected || null;
 }
 
 /**
@@ -183,7 +190,12 @@ export function renderMediaPlayers(players) {
     container?.removeAttribute('data-i18n');
     container?.removeAttribute('aria-busy');
     container?.classList.remove('skeleton-list');
-    const totalPlayers = players ? players.length : 0;
+    // Play without a speaker: the TV screen and this phone arrive in the same
+    // list, flagged `browser_target`, and get their own group below the real
+    // speakers (design gate 2026-11-08, variant B).
+    const speakers = (players || []).filter((p) => !p.browser_target);
+    const browserTargets = (players || []).filter((p) => p.browser_target);
+    const totalPlayers = speakers.length;
 
     // #1619-followup: only drop the selection when the chosen player is actually
     // gone from the new payload. A blind reset here silently lost a still-valid
@@ -196,12 +208,12 @@ export function renderMediaPlayers(players) {
     }
 
     // Filter out unavailable players
-    const availablePlayers = (players || []).filter(p => p.state !== 'unavailable');
+    const availablePlayers = speakers.filter(p => p.state !== 'unavailable');
 
     // Hide validation message when showing empty states (avoid redundant messaging)
     const validationMsg = document.getElementById('media-player-validation-msg');
 
-    if (totalPlayers === 0) {
+    if (totalPlayers === 0 && browserTargets.length === 0) {
         // No compatible players found - show setup message with MA link
         container.innerHTML = `
             <div class="no-players-message">
@@ -230,12 +242,13 @@ export function renderMediaPlayers(players) {
         return;
     }
 
-    if (availablePlayers.length === 0) {
+    let speakerHtml;
+    if (totalPlayers > 0 && availablePlayers.length === 0) {
         // Players exist but all unavailable
         const docsLink = adminState.mediaPlayerDocsUrl
             ? `<a href="${utils.escapeHtml(adminState.mediaPlayerDocsUrl)}" target="_blank" rel="noopener">Troubleshooting</a>`
             : '';
-        container.innerHTML = `
+        speakerHtml = `
             <div class="empty-state">
                 <p class="status-error">All media players are unavailable. Check your devices are powered on.</p>
                 ${docsLink ? `<p style="margin-top: 12px;">${docsLink}</p>` : ''}
@@ -244,12 +257,15 @@ export function renderMediaPlayers(players) {
         if (validationMsg) {
             validationMsg.classList.add('hidden');
         }
-        return;
+    } else {
+        // Render all players with platform badges on each item
+        speakerHtml = availablePlayers.map(player => renderPlayerItem(player)).join('');
     }
-
-    // Render all players with platform badges on each item
-    container.innerHTML = availablePlayers.map(player => renderPlayerItem(player)).join('');
+    // With no speaker at all the group stands on its own, instead of the old
+    // "no compatible players" dead end (the gate's recommendation, from D).
+    container.innerHTML = speakerHtml + renderBrowserTargetGroup(browserTargets);
     attachPlayerSelectionHandlers();
+    watchTvConnection(browserTargets);
 
     // Try to auto-select last used player from localStorage
     const lastPlayerId = localStorage.getItem(STORAGE_LAST_PLAYER);
@@ -350,6 +366,86 @@ export function renderPlayerItem(player) {
 }
 
 /**
+ * The "without a speaker" group: label, the TV screen and this phone, and the
+ * plain-text source note (Deezer's guidelines: text, no logo). Same item and
+ * radio markup as a speaker, so selection, saving and the provider gate work
+ * unchanged; only the text inside differs.
+ * @param {Array} targets - status entries with `browser_target` set
+ * @returns {string} HTML ('' without targets)
+ */
+export function renderBrowserTargetGroup(targets) {
+    if (!targets || targets.length === 0) return '';
+    const items = targets.map((player) => renderBrowserTargetItem(player)).join('');
+    return `
+        <div class="media-player-group-label">${utils.escapeHtml(tr('browserTarget.group', 'Without a speaker · 30-s previews'))}</div>
+        ${items}
+        <p class="media-player-group-note">${utils.escapeHtml(tr('browserTarget.source', 'Previews: Deezer'))}</p>
+    `;
+}
+
+/**
+ * One browser target row. The TV says whether its page is open; the phone
+ * carries the "This device" badge.
+ * @param {Object} player - status entry with `browser_target`
+ * @returns {string} HTML
+ */
+export function renderBrowserTargetItem(player) {
+    const isTv = player.browser_target === 'tv';
+    const name = isTv
+        ? tr('browserTarget.tvName', 'TV screen')
+        : tr('browserTarget.phoneName', 'This phone');
+    let badge = '';
+    let sub;
+    if (isTv) {
+        sub = player.connected
+            ? `${utils.escapeHtml(tr('browserTarget.tvSub', 'Sound from the TV'))} · <span class="target-badge target-badge--ok">${utils.escapeHtml(tr('browserTarget.tvConnected', 'connected'))}</span>`
+            : `${utils.escapeHtml(tr('browserTarget.tvSub', 'Sound from the TV'))} · ${utils.escapeHtml(tr('browserTarget.tvOpenHint', 'Open the TV page on it'))}`;
+    } else {
+        badge = `<span class="target-badge target-badge--device">${utils.escapeHtml(tr('browserTarget.phoneBadge', 'This device'))}</span>`;
+        sub = utils.escapeHtml(tr('browserTarget.phoneSub', 'For small groups'));
+    }
+    return `
+        <div class="media-player-item list-item is-selectable media-player-item--browser"
+             data-entity-id="${utils.escapeHtml(player.entity_id)}"
+             data-platform="${utils.escapeHtml(player.platform)}"
+             data-browser-target="${utils.escapeHtml(player.browser_target)}"
+             ${supportsAttributes(player)}>
+            <label class="radio-label">
+                <input type="radio"
+                       class="media-player-radio"
+                       name="media-player"
+                       data-entity-id="${utils.escapeHtml(player.entity_id)}"
+                       data-state="${utils.escapeHtml(player.state)}"
+                       data-platform="${utils.escapeHtml(player.platform)}"
+                       ${supportsAttributes(player)}>
+                <span class="player-info">
+                    <span class="player-name">${utils.escapeHtml(name)}</span>
+                    ${badge}
+                </span>
+            </label>
+            <span class="meta">${sub}</span>
+        </div>
+    `;
+}
+
+/** Poll for the TV page while the TV row says it is not open. */
+function watchTvConnection(targets) {
+    const tv = (targets || []).find((p) => p.browser_target === 'tv');
+    if (!tvWatch) {
+        tvWatch = createTvConnectionWatch({
+            fetchFn: (url) => fetch(url),
+            onConnected: () => { deps.refreshStatus?.(); },
+            isVisible: () => typeof document === 'undefined' || document.visibilityState !== 'hidden',
+        });
+    }
+    if (tv && !tv.connected) {
+        if (!tvWatch.isRunning()) tvWatch.start();
+    } else {
+        tvWatch.stop();
+    }
+}
+
+/**
  * Attach event handlers to player selection elements
  */
 export function attachPlayerSelectionHandlers() {
@@ -430,6 +526,8 @@ export function handleMediaPlayerSelect(radio, skipSave = false, opts = {}) {
 
     // Update provider options based on platform capabilities
     updateProviderOptions(adminState.selectedMediaPlayer);
+    // Play without a speaker: picking "This phone" makes this page the player.
+    deps.onSpeakerSelected?.(adminState.selectedMediaPlayer);
 
     // Update warning message
     updateProviderWarning(adminState.selectedMediaPlayer);
@@ -477,19 +575,27 @@ export function updateProviderOptions(player) {
         btn.classList.toggle('chip--disabled', !supported);
     }
 
-    // If current selection is now disabled, switch to Spotify.
+    // If current selection is now disabled, switch to Spotify — or, on a
+    // speaker that cannot play Spotify either (a browser target plays only
+    // Deezer previews), to the first service it can play.
     const selected = adminState.selectedProvider;
-    if (selected && selected !== 'spotify' && !playerSupports(player, selected)) {
+    if (selected && !playerSupports(player, selected)) {
+        const fallback = fallbackProvider(player);
         document.querySelectorAll('.chip[data-provider]').forEach(c => c.classList.remove('chip--active'));
-        if (spotifyBtn) spotifyBtn.classList.add('chip--active');
-        adminState.selectedProvider = 'spotify';
+        const fallbackBtn = fallback === 'spotify' ? spotifyBtn : chipFor(fallback);
+        if (fallbackBtn) fallbackBtn.classList.add('chip--active');
+        adminState.selectedProvider = fallback;
     }
 
     // Show hint for disabled providers. A provider Music Assistant can serve
     // is named in the MA line; one it cannot (Amazon Music, which needs an
     // Echo) gets its own line from the registry's own wording.
     const hint = document.getElementById('provider-hint');
-    if (hint) {
+    if (hint && player && player.platform === 'beatify_browser') {
+        // The group already says "30-s previews · Deezer"; a list of services
+        // that "require a Music Assistant speaker" would only confuse here.
+        hint.classList.add('hidden');
+    } else if (hint) {
         const maSpeakerNeeded = [];
         let amazonNeedsEcho = false;
         for (const p of PROVIDERS) {
@@ -509,6 +615,19 @@ export function updateProviderOptions(player) {
             hint.classList.add('hidden');
         }
     }
+}
+
+/**
+ * The provider to fall back to when the selected one does not play on
+ * `player`: Spotify where it can, else the first one the registry lists that
+ * it can play. Exported for the unit test.
+ * @param {Object} player - selected player with a `supports` map
+ * @returns {string}
+ */
+export function fallbackProvider(player) {
+    if (playerSupports(player, 'spotify')) return 'spotify';
+    const first = PROVIDERS.find((p) => playerSupports(player, p.id));
+    return first ? first.id : 'spotify';
 }
 
 /**

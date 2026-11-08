@@ -39,6 +39,12 @@ from custom_components.beatify.server.serializers import (
 )
 from custom_components.beatify.server.setup_state import read_setup, write_setup
 from custom_components.beatify.services.lights import PartyLightsService
+from custom_components.beatify.services.browser_player import (
+    BrowserTtsService,
+    browser_target_players,
+    is_browser_target,
+)
+from custom_components.beatify.services.playback.browser import registry_from_hass
 from custom_components.beatify.services.media_player import (
     album_art_signature_is_valid,
     async_get_media_players_with_remap,
@@ -571,6 +577,12 @@ class StatusView(HomeAssistantView):
             media_players,
             media_player_twin_remap,
         ) = await async_get_media_players_with_remap(self.hass)
+        # The two browser targets (TV screen, this phone) ride the same list,
+        # so the admin and the wizard select and save them like a speaker.
+        media_players = [
+            *media_players,
+            *browser_target_players(registry_from_hass(self.hass)),
+        ]
 
         # Discover playlists (#1704: memoised — reuses the parsed corpus unless a
         # file changed on disk; the heavy json.loads/validate/count now runs in
@@ -606,6 +618,32 @@ class StatusView(HomeAssistantView):
         )
 
         return web.json_response(status)
+
+
+class BrowserTargetsView(HomeAssistantView):
+    """Whether a TV page is open to play the 30-second previews.
+
+    The wizard and the admin poll this while the "TV screen" row says it is
+    not connected, so the row turns to "connected" the moment the TV page is
+    opened — without re-reading the whole ``/api/status``. Unauthenticated
+    like that endpoint: it says "a TV page is open", nothing else.
+    """
+
+    url = "/beatify/api/browser-targets"
+    name = "beatify:api:browser-targets"
+    requires_auth = False
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:  # noqa: ARG002
+        """Return ``{"tv": bool, "phone": bool}``."""
+        registry = registry_from_hass(self.hass)
+        status = registry.status() if registry is not None else {}
+        return web.json_response(
+            {"tv": bool(status.get("tv")), "phone": bool(status.get("phone"))}
+        )
 
 
 class CapabilitiesView(HomeAssistantView):
@@ -1068,6 +1106,17 @@ class TtsTestView(RateLimitMixin, HomeAssistantView):
                 },
                 status=400,
             )
+        if is_browser_target(media_player_entity_id):
+            # The TV screen / this phone: the announcement goes to that page
+            # as an audio URL, the way it would during a game.
+            announcer = BrowserTtsService(
+                self.hass,
+                tts_entity_id=entity_id,
+                target_entity_id=media_player_entity_id,
+                clients=registry_from_hass(self.hass),
+            )
+            await announcer.speak(message)
+            return web.json_response({"ok": True})
         mp_state = self.hass.states.get(media_player_entity_id)
         if not mp_state or mp_state.domain != "media_player":
             return web.json_response(

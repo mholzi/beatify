@@ -18,6 +18,7 @@ import {
     getPlaylistByPath as plhGetPlaylistByPath,
 } from './playlist-hub.js';
 import { PROVIDERS } from './providers.generated.js';
+import { createTvConnectionWatch } from './admin/browser-playback.js';
 import {
     MIN_ROUNDS,
     roundCountOptions,
@@ -584,6 +585,14 @@ function _syncBackGuard() {
  * @param {boolean} [opts.instant] - opening or resuming: the final picture, no movement
  */
 export function _showFrame(n, opts = {}) {
+    // Play without a speaker: a browser target plays Deezer previews only, so
+    // step 2 (the music service) has nothing to ask. Going forward it is
+    // skipped, going back from step 3 it lands on step 1.
+    if (n === 2 && isBrowserTargetId(chosenSpeaker)) {
+        chosenProvider = 'deezer';
+        n = currentStep >= 3 ? 1 : 3;
+        if (n === 3) _persistGameSettings();
+    }
     const direction = opts.instant ? null : wizardStepDirection(currentStep, n, _reducedMotion());
     document.querySelectorAll('.wiz-frame').forEach((frame) => {
         const frameNum = parseInt(frame.dataset.frame, 10);
@@ -709,6 +718,77 @@ function _capabilityBadge(player) {
     });
 }
 
+// Play without a speaker (design gate 2026-11-08, variant B).
+const TV_ICON = `<svg class="wiz-row-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
+const PHONE_ICON = `<svg class="wiz-row-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>`;
+const ROW_CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>';
+
+/** True for the TV-screen and this-phone targets. */
+export function isBrowserTargetId(entityId) {
+    return entityId === 'beatify_browser.tv' || entityId === 'beatify_browser.phone';
+}
+
+/**
+ * The "without a speaker" group of step 1: label, TV screen, this phone, and
+ * the plain-text source note. Pure, so it is unit-tested.
+ * @param {Array} targets - status entries with `browser_target`
+ * @param {string|null} selectedId - the chosen speaker
+ * @param {(key: string, fallback: string) => string} t - translate
+ * @returns {string} HTML ('' without targets)
+ */
+export function browserTargetGroupHtml(targets, selectedId, t) {
+    if (!targets || targets.length === 0) return '';
+    const rows = targets.map((p) => {
+        const isTv = p.browser_target === 'tv';
+        const selected = selectedId === p.entity_id;
+        const name = isTv ? t('browserTarget.tvName', 'TV screen') : t('browserTarget.phoneName', 'This phone');
+        const nameBadge = isTv
+            ? ''
+            : ` <span class="target-badge target-badge--device">${escapeText(t('browserTarget.phoneBadge', 'This device'))}</span>`;
+        let sub;
+        if (isTv) {
+            const state = p.connected
+                ? `<span class="target-badge target-badge--ok">${escapeText(t('browserTarget.tvConnected', 'connected'))}</span>`
+                : escapeText(t('browserTarget.tvOpenHint', 'Open the TV page on it'));
+            sub = `${escapeText(t('browserTarget.tvSub', 'Sound from the TV'))} · ${state}`;
+        } else {
+            sub = escapeText(t('browserTarget.phoneSub', 'For small groups'));
+        }
+        return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${escapeAttr(p.entity_id)}" data-browser-target="${escapeAttr(p.browser_target)}">
+          <div class="wiz-row-avatar wiz-row-avatar--browser">${isTv ? TV_ICON : PHONE_ICON}</div>
+          <div class="wiz-row-text">
+            <div class="wiz-row-name wiz-row-name--with-badge">${escapeText(name)}${nameBadge}</div>
+            <div class="wiz-row-sub">${sub}</div>
+          </div>
+          ${selected ? ROW_CHECK : ''}
+        </button>`;
+    }).join('');
+    return `<div class="wiz-group-label">${escapeText(t('browserTarget.group', 'Without a speaker · 30-s previews'))}</div>${rows}<p class="wiz-group-note">${escapeText(t('browserTarget.source', 'Previews: Deezer'))}</p>`;
+}
+
+// While the TV row says its page is not open, ask every few seconds and
+// re-render step 1 once it is.
+let _tvWatch = null;
+function _watchTv(targets) {
+    const tv = (targets || []).find((p) => p.browser_target === 'tv');
+    if (!_tvWatch) {
+        _tvWatch = createTvConnectionWatch({
+            fetchFn: (url) => fetch(url),
+            onConnected: async () => {
+                cachedStatus = await _fetchStatus();
+                _renderSpeakers();
+            },
+            isVisible: () => currentStep === 1 && _wizardOpen()
+                && (typeof document === 'undefined' || document.visibilityState !== 'hidden'),
+        });
+    }
+    if (tv && !tv.connected) {
+        if (!_tvWatch.isRunning()) _tvWatch.start();
+    } else {
+        _tvWatch.stop();
+    }
+}
+
 function _renderSpeakers() {
     const list = document.getElementById('wiz-speaker-list');
     if (!list) return;
@@ -724,6 +804,10 @@ function _renderSpeakers() {
         });
         return;
     }
+    // Play without a speaker: the TV screen and this phone come in the same
+    // list, flagged `browser_target`, and get their own group below.
+    const speakers = players.filter((p) => !p.browser_target);
+    const browserTargets = players.filter((p) => p.browser_target);
     if (players.length === 0) {
         list.innerHTML = `<div class="wiz-row" style="cursor:default"><div class="wiz-row-text"><div class="wiz-row-name">${_t(
             'wizard.step1.empty',
@@ -734,7 +818,7 @@ function _renderSpeakers() {
         )}</div></div></div>`;
         return;
     }
-    list.innerHTML = players
+    list.innerHTML = speakers
         .map((p) => {
             const selected = chosenSpeaker === p.entity_id;
             const platform = _platformLabel(p.platform) || p.state || '';
@@ -754,7 +838,8 @@ function _renderSpeakers() {
           ${selected ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
         </button>`;
         })
-        .join('');
+        .join('') + browserTargetGroupHtml(browserTargets, chosenSpeaker, _t);
+    _watchTv(browserTargets);
     list.querySelectorAll('.wiz-row[data-entity-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
             const newSpeaker = btn.dataset.entityId;
@@ -774,6 +859,8 @@ function _renderSpeakers() {
                 // user with a selection they can't complete.
                 chosenProvider = null;
             }
+            // A browser target plays Deezer previews: no service to pick.
+            if (isBrowserTargetId(chosenSpeaker)) chosenProvider = 'deezer';
             _renderSpeakers();
             if (speakerChanged) {
                 // #3367: the list was just rebuilt, so look the tapped row up again.
@@ -2179,6 +2266,8 @@ function _persistLevelUpDetails() {
 
 function _speakerLabel(entityId) {
     if (!entityId) return '—';
+    if (entityId === 'beatify_browser.tv') return _t('browserTarget.tvName', 'TV screen');
+    if (entityId === 'beatify_browser.phone') return _t('browserTarget.phoneName', 'This phone');
     // Prefer the friendly_name from /api/status over deriving from the entity_id.
     // Sonos speakers in particular often have entity_ids like "media_player.unnamed_room"
     // while the friendly_name is the actual room name ("Esszimmer", "Küche", etc.).

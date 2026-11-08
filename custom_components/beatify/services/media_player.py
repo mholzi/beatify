@@ -24,8 +24,10 @@ from homeassistant.core import callback
 from homeassistant.exceptions import HomeAssistantError, ServiceNotFound
 from homeassistant.helpers.event import async_track_state_change_event
 
+from custom_components.beatify.const import BROWSER_TARGET_ROLES
 from custom_components.beatify.game.playlist import get_playback_uri
 from custom_components.beatify.providers import (
+    PLATFORM_BROWSER,
     normalise_platform,
     platform_provider_flags,
     supports_keys,
@@ -133,6 +135,11 @@ def resolve_entity_platform(hass: HomeAssistant, entity_id: str) -> str:
     player, a test double) or when the registry is unreadable; every caller
     treats that the same way it always has.
     """
+    # A browser target (the TV screen, the host's phone) is no entity at all;
+    # its platform is fixed by its id.
+    if entity_id in BROWSER_TARGET_ROLES:
+        return PLATFORM_BROWSER
+
     # Late import: mirrors async_get_media_players — entity_registry is not
     # importable in the unit-test env without a full HA setup. (noqa: PLC0415)
     from homeassistant.helpers import entity_registry as er

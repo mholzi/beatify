@@ -87,6 +87,7 @@ export const PROVIDERS = [
         "label": "Deezer",
         "shortLabel": "Deezer",
         "platforms": [
+            "beatify_browser",
             "music_assistant"
         ],
         "supportsKey": "supports_deezer",

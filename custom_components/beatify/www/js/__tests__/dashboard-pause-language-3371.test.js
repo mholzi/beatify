@@ -129,6 +129,8 @@ function tv(i18n) {
             }),
         setTimeout,
         Promise,
+        // Play without a speaker: the "Sound on" prompt follows the game.
+        _setTvTarget: () => {},
     };
     const consts = [
         DASHBOARD.match(/var _stateSeq = 0;/)[0],

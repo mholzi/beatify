@@ -396,6 +396,8 @@
             _setDisconnectedDim(false);
             // Request current state as read-only observer
             ws.send(JSON.stringify({ type: 'get_state' }));
+            // Play without a speaker: offer this screen as the TV speaker.
+            _registerForPlayback();
         };
 
         ws.onmessage = function(event) {
@@ -623,6 +625,7 @@
      * A later `state` broadcast (new game's LOBBY) switches the TV back.
      */
     function showNoGameView() {
+        _setTvTarget(false);
         _scheduleRender.reset();
         if (_sceneWipeHold) _sceneWipeHold.data = null;
         _lastScenePhase = null;
@@ -673,6 +676,19 @@
             // indistinguishable from the speaker dying.
             songStoppedRound = lastRenderedRound;
             setSongStoppedChip(true);
+        } else if (data.type === 'browser_audio') {
+            // The round's preview (or an announcement) for this screen. Only
+            // the page that holds the TV role is sent these.
+            var player = _ensureTvAudio();
+            if (player) player.handle(data);
+        } else if (data.type === 'playback_registered') {
+            _tvHoldsRole = !!data.active;
+            _syncSoundGate();
+        } else if (data.type === 'playback_released') {
+            // Another TV page took over with its own "Sound on".
+            _tvHoldsRole = false;
+            if (_tvAudio) _tvAudio.release();
+            _syncSoundGate();
         } else if (data.type === 'song_skipped') {
             // #3261: a new song in the same round is audible again.
             songStoppedRound = null;
@@ -749,6 +765,8 @@
     }
 
     function _handleStateNow(data, seq) {
+        // Play without a speaker: does this game play on the TV screen?
+        _setTvTarget(data.browser_playback === 'tv');
         // Apply language from game state (Story 12.5, 16.3)
         // Must re-render after language loads to update dynamic content
         // Guard: skip if i18n unavailable
@@ -4424,6 +4442,98 @@
     }
 
     // ============================================
+    // Play without a speaker: this TV as the speaker
+    // ============================================
+    // When the host picks "TV screen" as the speaker, the server sends each
+    // round's 30-second preview to one TV page, which plays it through
+    // browser-audio.js. A TV only plays sound after one touch, so the screen
+    // shows "Sound on" once; that tap also claims the role, which settles
+    // which screen plays when several TV pages are open (the last one
+    // switched on).
+
+    var _browserAudioLib = window.BeatifyBrowserAudio || null;
+    var _tvAudio = null;
+    var _tvSoundOn = false;      // the host tapped "Sound on" on this page
+    var _tvHoldsRole = false;    // the server plays the previews on this page
+    var _tvTargetActive = false; // the running game plays on the TV screen
+    var _tvClipWaiting = false;  // a clip arrived before the tap
+
+    /**
+     * Whether the "Sound on" prompt shows. Pure, so it is unit-tested.
+     * @param {{targetActive: boolean, soundOn: boolean, holdsRole: boolean, clipWaiting: boolean}} s
+     */
+    function soundGateVisible(s) {
+        if (s.clipWaiting) return true;
+        if (!s.targetActive) return false;
+        return !s.soundOn || !s.holdsRole;
+    }
+
+    function _sendFrame(frame) {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            try { ws.send(JSON.stringify(frame)); } catch (e) { /* reconnect resends */ }
+        }
+    }
+
+    function _ensureTvAudio() {
+        if (!_tvAudio && _browserAudioLib) {
+            _tvAudio = _browserAudioLib.createBrowserAudio({
+                send: _sendFrame,
+                onNeedsTap: function(needed) {
+                    _tvClipWaiting = needed;
+                    _syncSoundGate();
+                }
+            });
+        }
+        return _tvAudio;
+    }
+
+    function _registerForPlayback() {
+        if (!_browserAudioLib) return;
+        _sendFrame({ type: 'playback_register', role: 'tv', claim: _tvSoundOn });
+    }
+
+    /** Whether the running game plays on the TV screen (from each state). */
+    function _setTvTarget(active) {
+        _tvTargetActive = !!active;
+        _syncSoundGate();
+    }
+
+    function _syncSoundGate() {
+        var gate = document.getElementById('dashboard-sound-gate');
+        if (!gate) return;
+        var visible = soundGateVisible({
+            targetActive: _tvTargetActive,
+            soundOn: _tvSoundOn,
+            holdsRole: _tvHoldsRole,
+            clipWaiting: _tvClipWaiting
+        });
+        var wasHidden = gate.classList.contains('hidden');
+        gate.classList.toggle('hidden', !visible);
+        if (visible && wasHidden) {
+            // A remote has no pointer: the first OK press must hit the button.
+            var btn = document.getElementById('dashboard-sound-gate-btn');
+            if (btn && typeof btn.focus === 'function') {
+                try { btn.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+            }
+        }
+    }
+
+    function _initSoundGate() {
+        var btn = document.getElementById('dashboard-sound-gate-btn');
+        if (!btn) return;
+        btn.addEventListener('click', function() {
+            var player = _ensureTvAudio();
+            if (player) player.unlock();  // inside the tap: the browser allows sound now
+            _tvSoundOn = true;
+            _tvClipWaiting = false;
+            _registerForPlayback();
+            // The same trusted tap is a good moment to keep the screen awake.
+            requestWakeLock();
+            _syncSoundGate();
+        });
+    }
+
+    // ============================================
     // Initialization
     // ============================================
 
@@ -4443,6 +4553,7 @@
         }
         connectWebSocket();
         _initWakeBanner();  // #1285: wire the activation banner's tap handlers
+        _initSoundGate();  // play without a speaker: the one-time "Sound on"
         // #1122: keep TV/monitor display awake. On a passive iOS display the
         // native lock is gesture-gated and won't engage here, so surface the
         // #1285 banner that offers a one-tap re-try inside a trusted gesture.

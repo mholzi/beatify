@@ -1016,7 +1016,12 @@
     "guessAxisYearsOff": "{count} Jahre daneben",
     "guessAxisYearsOffOne": "1 Jahr daneben",
     "standingsMore": "+ {count} weitere",
-    "reconnectNotice": "Der Fernseher erreicht Home Assistant nicht. WLAN des Fernsehers prüfen."
+    "reconnectNotice": "Der Fernseher erreicht Home Assistant nicht. WLAN des Fernsehers prüfen.",
+    "soundGate": {
+      "title": "Musik läuft über diesen Bildschirm",
+      "button": "Ton an",
+      "hint": "Einmal mit der Fernbedienung bestätigen"
+    }
   },
   "launcher": {
     "title": "Beatify",
@@ -1748,5 +1753,16 @@
     "errorTitle": "Anmeldung fehlgeschlagen",
     "errorBody": "Beatify konnte keine Verbindung zu Home Assistant herstellen. Bitte prüfe die Beatify-Konfiguration (interne URL / SSL) und versuche es erneut.",
     "errorRetry": "Erneut versuchen"
+  },
+  "browserTarget": {
+    "group": "Ohne Lautsprecher · 30-s-Ausschnitte",
+    "source": "Ausschnitte: Deezer",
+    "tvName": "TV-Bildschirm",
+    "tvSub": "Ton aus dem Fernseher",
+    "tvConnected": "verbunden",
+    "tvOpenHint": "TV-Seite dort öffnen",
+    "phoneName": "Dieses Handy",
+    "phoneBadge": "Dieses Gerät",
+    "phoneSub": "Für kleine Runden"
   }
 }

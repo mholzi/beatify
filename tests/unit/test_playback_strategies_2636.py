@@ -82,7 +82,13 @@ class TestTheDispatchHappensInOnePlace:
         by two implementations, and none is silently served by none."""
         platforms = supported_platforms()
         assert sorted(platforms) == sorted(set(platforms))
-        assert set(platforms) == {"music_assistant", "sonos", "alexa_media", "alexa"}
+        assert set(platforms) == {
+            "music_assistant",
+            "sonos",
+            "alexa_media",
+            "alexa",
+            "beatify_browser",
+        }
 
     def test_every_strategy_answers_the_same_interface(self):
         for platform in supported_platforms():

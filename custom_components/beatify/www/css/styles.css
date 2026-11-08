@@ -18939,3 +18939,63 @@ body.theme-dark .your-result-stats .stat-value {
 .lobby-container--compact .section-collapsible.is-toggling .section-toggle {
     transition: transform 200ms cubic-bezier(.2,.7,.2,1);
 }
+
+/* Play without a speaker (design gate 2026-11-08, variant B): the TV screen
+   and this phone as a second group below the real speakers. The group label
+   says the limit ("30-s previews") before the tap; the badges follow the
+   wizard's capability badge (Outfit 700, 10px, uppercase pill). */
+.wiz-group-label,
+.media-player-group-label {
+    margin-top: var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+}
+.wiz-group-note,
+.media-player-group-note {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+}
+.wiz-row-avatar--browser {
+    background: linear-gradient(135deg, var(--color-accent-secondary), var(--color-accent-brand));
+}
+.wiz-row-name--with-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    white-space: normal;
+}
+.target-badge {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.target-badge--ok {
+    color: var(--color-success-neon);
+    background: rgba(57, 255, 20, 0.08);
+    border-color: rgba(57, 255, 20, 0.4);
+}
+.target-badge--device {
+    color: var(--color-accent-secondary);
+    background: rgba(0, 245, 255, 0.08);
+    border-color: rgba(0, 245, 255, 0.45);
+}
+.media-player-item--browser .player-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}

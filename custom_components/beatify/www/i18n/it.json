@@ -1016,7 +1016,12 @@
     "guessAxisYearsOff": "{count} anni di scarto",
     "guessAxisYearsOffOne": "1 anno di scarto",
     "standingsMore": "+ altri {count}",
-    "reconnectNotice": "La TV non raggiunge Home Assistant. Controllate il Wi-Fi della TV."
+    "reconnectNotice": "La TV non raggiunge Home Assistant. Controllate il Wi-Fi della TV.",
+    "soundGate": {
+      "title": "La musica passa da questo schermo",
+      "button": "Attiva audio",
+      "hint": "Conferma una volta con il telecomando"
+    }
   },
   "launcher": {
     "title": "Beatify",
@@ -1748,5 +1753,16 @@
     "errorTitle": "Accesso non riuscito",
     "errorBody": "Beatify non è riuscito a collegarsi a Home Assistant. Controlla la configurazione di Beatify (URL interno / SSL) e riprova.",
     "errorRetry": "Riprova"
+  },
+  "browserTarget": {
+    "group": "Senza altoparlante · estratti di 30 s",
+    "source": "Estratti: Deezer",
+    "tvName": "Schermo TV",
+    "tvSub": "Audio dal televisore",
+    "tvConnected": "connesso",
+    "tvOpenHint": "Apri lì la pagina TV",
+    "phoneName": "Questo telefono",
+    "phoneBadge": "Questo dispositivo",
+    "phoneSub": "Per piccoli gruppi"
   }
 }

@@ -100,6 +100,13 @@ export function speakerLabelFor(entityId, mediaPlayers, t) {
     if (!entityId) {
         return `🔊 ${translate('admin.home.noSpeaker', 'no speaker')}`;
     }
+    // Play without a speaker: the two browser targets have translated names.
+    if (entityId === 'beatify_browser.tv') {
+        return `📺 ${translate('browserTarget.tvName', 'TV screen')}`;
+    }
+    if (entityId === 'beatify_browser.phone') {
+        return `📱 ${translate('browserTarget.phoneName', 'This phone')}`;
+    }
     const match = (mediaPlayers || []).find((p) => p && p.entity_id === entityId);
     return `🔊 ${(match && match.friendly_name) || readableEntityId(entityId)}`;
 }

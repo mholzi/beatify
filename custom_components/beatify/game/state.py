@@ -44,7 +44,12 @@ import time
 from enum import Enum
 from typing import TYPE_CHECKING, Any
 
-from custom_components.beatify.const import DIFFICULTY_SCORING
+from custom_components.beatify.const import (
+    BROWSER_PREVIEW_SECONDS,
+    BROWSER_TARGET_ROLES,
+    DIFFICULTY_SCORING,
+)
+from custom_components.beatify.providers import PLATFORM_BROWSER
 
 from .challenges import (
     ArtistChallenge,  # noqa: F401 (re-exported for backward compatibility)
@@ -414,8 +419,9 @@ class GameState(
         # Volume control (Story 6.4)
         self.volume_level: float = 0.5  # Default 50%
 
-        # Platform identifier for playback routing (replaces is_mass)
-        self.platform: str = "unknown"
+        # Platform identifier for playback routing (replaces is_mass). A
+        # property: a browser target also caps the round timer (see below).
+        self.platform = "unknown"
 
         # Stats service reference (Story 14.4)
         self._stats_service: StatsService | None = None
@@ -494,6 +500,32 @@ class GameState(
         """Apply a GameStateConfig to self, setting all config-managed fields."""
         for field_name in GameStateConfig.field_names():
             setattr(self, field_name, getattr(config, field_name))
+
+    @property
+    def platform(self) -> str:
+        """The speaker's platform identifier (``music_assistant``, ``sonos``…)."""
+        return self._platform
+
+    @platform.setter
+    def platform(self, value: str) -> None:
+        """Set the platform; a browser target caps the round at its preview.
+
+        The preview a browser plays is 30 seconds long. Rounds on it are capped
+        to that length instead of leaving the room silent for the rest of a
+        45- or 60-second timer; the host's own choice stays stored and comes
+        back with a real speaker. Every way a speaker is set (create, rematch,
+        the lobby switch, the pre-start hook) writes this attribute, so the cap
+        cannot drift from the speaker.
+        """
+        self._platform = value
+        self._round_manager.round_duration_cap = (
+            float(BROWSER_PREVIEW_SECONDS) if value == PLATFORM_BROWSER else None
+        )
+
+    @property
+    def browser_playback(self) -> str | None:
+        """``"tv"`` / ``"phone"`` when a browser plays the music, else None."""
+        return BROWSER_TARGET_ROLES.get(self.media_player or "")
 
     def set_hass(self, hass: HomeAssistant) -> None:
         """Store the Home Assistant instance for service creation."""

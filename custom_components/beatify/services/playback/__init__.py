@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING
 
 from .alexa import AlexaStrategy
 from .base import PLAYBACK_TIMEOUT, PlaybackStrategy
+from .browser import BrowserClientRegistry, BrowserStrategy
 from .context import PlayerContext
 from .music_assistant import MusicAssistantStrategy
 from .queue_restore import MaQueueRestorer
@@ -38,6 +39,7 @@ _STRATEGIES: tuple[type[PlaybackStrategy], ...] = (
     MusicAssistantStrategy,
     SonosStrategy,
     AlexaStrategy,
+    BrowserStrategy,
 )
 
 _BY_PLATFORM: dict[str, type[PlaybackStrategy]] = {}
@@ -85,6 +87,8 @@ def strategy_for_platform(platform: str) -> type[PlaybackStrategy] | None:
 __all__ = [
     "PLAYBACK_TIMEOUT",
     "AlexaStrategy",
+    "BrowserClientRegistry",
+    "BrowserStrategy",
     "MaQueueRestorer",
     "MusicAssistantStrategy",
     "PlaybackStrategy",

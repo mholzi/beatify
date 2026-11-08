@@ -1016,7 +1016,12 @@
     "guessAxisYearsOff": "{count} ans d'écart",
     "guessAxisYearsOffOne": "1 an d'écart",
     "standingsMore": "+ {count} autres",
-    "reconnectNotice": "La télé n'arrive pas à joindre Home Assistant. Vérifiez le Wi-Fi de la télé."
+    "reconnectNotice": "La télé n'arrive pas à joindre Home Assistant. Vérifiez le Wi-Fi de la télé.",
+    "soundGate": {
+      "title": "La musique passe par cet écran",
+      "button": "Activer le son",
+      "hint": "Confirme une fois avec la télécommande"
+    }
   },
   "launcher": {
     "title": "Beatify",
@@ -1748,5 +1753,16 @@
     "errorTitle": "Échec de la connexion",
     "errorBody": "Beatify n'a pas pu se connecter à Home Assistant. Vérifie la configuration de Beatify (URL interne / SSL) et réessaie.",
     "errorRetry": "Réessayer"
+  },
+  "browserTarget": {
+    "group": "Sans enceinte · extraits de 30 s",
+    "source": "Extraits : Deezer",
+    "tvName": "Écran TV",
+    "tvSub": "Son depuis la télé",
+    "tvConnected": "connecté",
+    "tvOpenHint": "Ouvre la page TV dessus",
+    "phoneName": "Ce téléphone",
+    "phoneBadge": "Cet appareil",
+    "phoneSub": "Petits groupes"
   }
 }

@@ -1016,7 +1016,12 @@
     "guessAxisYearsOff": "{count} jaar ernaast",
     "guessAxisYearsOffOne": "1 jaar ernaast",
     "standingsMore": "+ {count} meer",
-    "reconnectNotice": "De tv bereikt Home Assistant niet. Controleer de wifi van de tv."
+    "reconnectNotice": "De tv bereikt Home Assistant niet. Controleer de wifi van de tv.",
+    "soundGate": {
+      "title": "Muziek speelt via dit scherm",
+      "button": "Geluid aan",
+      "hint": "Bevestig één keer met de afstandsbediening"
+    }
   },
   "launcher": {
     "title": "Beatify",
@@ -1748,5 +1753,16 @@
     "errorTitle": "Aanmelden mislukt",
     "errorBody": "Beatify kon geen verbinding maken met Home Assistant. Controleer de Beatify-configuratie (interne URL / SSL) en probeer het opnieuw.",
     "errorRetry": "Opnieuw proberen"
+  },
+  "browserTarget": {
+    "group": "Zonder speaker · fragmenten van 30 s",
+    "source": "Fragmenten: Deezer",
+    "tvName": "Tv-scherm",
+    "tvSub": "Geluid via de tv",
+    "tvConnected": "verbonden",
+    "tvOpenHint": "Open daar de tv-pagina",
+    "phoneName": "Deze telefoon",
+    "phoneBadge": "Dit apparaat",
+    "phoneSub": "Voor kleine groepen"
   }
 }
