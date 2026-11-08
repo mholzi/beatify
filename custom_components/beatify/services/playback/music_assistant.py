@@ -446,22 +446,40 @@ class MusicAssistantStrategy(PlaybackStrategy):
         }
         return self._abandoned_starts
 
-    def _stale_start_in(self, content_id: str, own_tokens: list[str]) -> str | None:
+    def _stale_start_in(
+        self,
+        content_id: str,
+        own_tokens: list[str],
+        title: str = "",
+        artist: str = "",
+    ) -> str | None:
         """The abandoned URI the speaker is now playing, if it is one (#3278).
 
-        Content-id evidence only: a track that carries a token of the URI we
-        are playing right now is never stale, and a speaker that reports no
-        ``media_content_id`` never triggers anything — so the normal path,
-        with nothing abandoned, behaves exactly as before.
+        A track that carries a token of the URI we are playing right now is
+        never stale, and a speaker that reports no ``media_content_id`` never
+        triggers anything — so the normal path, with nothing abandoned,
+        behaves exactly as before.
+
+        #3447: Music Assistant can resolve an abandoned Spotify id to another
+        id of the same recording (relinking), so the content id alone misses
+        it. The speaker's title + artist, normalised exactly like the song key
+        stored with the abandoned start, recognise it as well.
         """
         if not content_id:
             return None
         if own_tokens and any(token in content_id for token in own_tokens):
             return None
+        played_key = (
+            self._song_key({"title": title, "artist": artist})
+            if title and artist
+            else None
+        )
         for uri, (_, song_key) in self._live_abandoned_starts().items():
             if song_key == self._current_song_key:
                 continue
             if any(token in content_id for token in uri_match_tokens(uri)):
+                return uri
+            if played_key is not None and played_key == song_key:
                 return uri
         return None
 
@@ -521,7 +539,12 @@ class MusicAssistantStrategy(PlaybackStrategy):
                     self._stop_after_correction = False
                     self._hass.async_create_task(self._silence_after_correction())
                 return
-            stale = self._stale_start_in(content_id, own_tokens)
+            stale = self._stale_start_in(
+                content_id,
+                own_tokens,
+                new_state.attributes.get("media_title") or "",
+                new_state.attributes.get("media_artist") or "",
+            )
             if stale is None:
                 return
             # It landed: MA is done with that request.
@@ -1227,7 +1250,10 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 # #3278: a song Beatify gave up on earlier, landing late, is
                 # not this song starting — whatever its title or artist.
                 if self._stale_start_in(
-                    state.attributes.get("media_content_id") or "", match_tokens
+                    state.attributes.get("media_content_id") or "",
+                    match_tokens,
+                    current_title,
+                    current_artist,
                 ):
                     return False
 
@@ -1476,7 +1502,14 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # Music Assistant delivered late — not progress on THIS request, so the
         # #345 tolerance below must not wave it through. Cancel and skip, like
         # any start that never arrived.
-        stale = self._stale_start_in(content_id_after, match_tokens)
+        stale = self._stale_start_in(
+            content_id_after,
+            match_tokens,
+            title_after or "",
+            (current_state.attributes.get("media_artist") or "")
+            if current_state
+            else "",
+        )
         if stale is not None:
             self._abandoned_starts.pop(stale, None)
             _LOGGER.warning(

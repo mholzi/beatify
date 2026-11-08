@@ -375,3 +375,87 @@ async def test_345_still_accepts_a_relinked_copy_of_our_song_3418():
             )
         )
         assert await h.strategy.play(_song(CURRENT, "The Riddle")) is True
+
+
+@pytest.mark.asyncio
+async def test_relinked_abandoned_start_is_replaced_by_the_current_song_3447():
+    """Live test v4.8.9-rc4: MA resolved the abandoned Spotify id to another id
+    of the same recording. The content id never matched the abandoned URI, so
+    the wrong song played for the whole round. Title + artist recognise it."""
+    h = _Harness()
+    with patch.object(ma, "async_track_state_change_event", h.track):
+        await _skip_then_play(h)
+        guard, _ = h.subs[-1]
+        plays_before = len(h.calls("music_assistant", "play_media"))
+
+        guard(
+            _event(
+                _state(
+                    "playing",
+                    "Bello e impossibile",
+                    "spotify--UcpG62CQ://track/0cKk8BKEi7zX",
+                    "t2",
+                )
+            )
+        )
+        await h.run_tasks()
+
+    plays = h.calls("music_assistant", "play_media")
+    assert len(plays) == plays_before + 1
+    assert plays[-1].args[2]["media_id"] == CURRENT
+    assert SKIPPED not in h.strategy._abandoned_starts
+
+
+@pytest.mark.asyncio
+async def test_unrelated_foreign_track_is_not_a_relinked_abandoned_start_3447():
+    """Another id with another title or artist is not the abandoned song."""
+    h = _Harness()
+    with patch.object(ma, "async_track_state_change_event", h.track):
+        await _skip_then_play(h)
+        guard, _ = h.subs[-1]
+        plays_before = len(h.calls("music_assistant", "play_media"))
+        guard(
+            _event(
+                _state(
+                    "playing",
+                    "Bello e impossibile",
+                    "spotify://track/otherOne",
+                    "t2",
+                    "Somebody Else",
+                )
+            )
+        )
+        guard(_event(_state("playing", "Another Song", "spotify://track/x2", "t3")))
+        await h.run_tasks()
+    assert len(h.calls("music_assistant", "play_media")) == plays_before
+
+
+@pytest.mark.asyncio
+async def test_relinked_abandoned_track_is_rejected_by_the_345_tolerance_3447():
+    """A relinked copy of the abandoned song landing during the next start is
+    not that start — even though its content id is not the abandoned URI.
+    (Pin: #3418's foreign-track check already rejects it; this keeps it so.)"""
+    h = _Harness()
+    with patch.object(ma, "MA_PLAYBACK_TIMEOUT", 0.05):
+        assert (
+            await h.strategy.play(
+                _song(SKIPPED, "Bello e impossibile", "Gianna Nannini")
+            )
+            is False
+        )
+        h.hass.states.get = MagicMock(
+            side_effect=_reads(
+                _state("idle", ""),
+                _state(
+                    "playing",
+                    "Bello e impossibile",
+                    "spotify://track/relinkedB",
+                    "t9",
+                    "Gianna Nannini",
+                ),
+            )
+        )
+        assert (
+            await h.strategy.play(_song(CURRENT, "The Riddle", "Nik Kershaw")) is False
+        )
+    assert h.context.last_failure_reason == "unavailable"
