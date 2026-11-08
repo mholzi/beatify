@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.9] — 2026-11-08
+
+The host page speaks your language, the party can turn festive, and a game keeps its full length when a song will not play.
+
+### 🌍 Every word at home
+
+The "Create with AI" window for Crate Digger is in all six languages, down to the examples in its input fields. So are the speaker hints: which services need a Music Assistant speaker, named in your own language.
+
+### 🎄 More songs, fewer gaps
+
+Christmas Hits is new with 89 holiday songs, and Greatest Hits of All Time grows by 100 songs, thanks to **@Muggedadscher**. German Apple Music users get checked links in 43 playlists. A song Music Assistant cannot find is skipped at once, and a fresh one takes its place, so ten rounds stay ten rounds. After two stalled starts in a row the game pauses, and Resume tries again.
+
 ## [4.8.9-rc4] - 2026-11-08
 
 Fourth candidate for 4.8.9: 100 more Greatest Hits, verified German Apple Music links, the last English placeholders in the AI window, and a game that keeps its length when a song is dropped.
