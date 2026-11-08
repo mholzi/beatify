@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [4.8.9-rc4] - 2026-11-08
+
+Fourth candidate for 4.8.9: 100 more Greatest Hits, verified German Apple Music links, the last English placeholders in the AI window, and a game that keeps its length when a song is dropped.
+
+### Added
+- **Greatest Hits of All Time +100** (#3440): 236 → 336 songs, ported from @Muggedadscher's fork, with fun facts in all languages and provider URIs.
+- **German Apple Music links** (#3440): verified de-storefront links in 43 playlists.
+
+### Fixed
+- **AI window placeholders** (#3434): the name and theme examples in the Crate Digger AI window are translated into all six languages.
+- **Game ends early** (#3441): a dropped song in a game with a round cap is replaced from the remaining playlist songs instead of shortening the game.
+- **Remix passed as original** (#3440): a take marker behind a `feat.` credit is no longer ignored by the URI gate.
+
 ## [4.8.9-rc3] - 2026-11-07
 
 Third candidate for 4.8.9: the host page in your language, a Christmas playlist, and a game that no longer hangs on dead song links.
