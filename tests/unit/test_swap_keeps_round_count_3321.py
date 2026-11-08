@@ -5,8 +5,9 @@ dropped-song accounting of #3279, so every swap took a round off
 ``total_rounds``: a 10-round game with two swaps ended after 8 and the phones
 counted "1/7", "2/6", "3/5". A swap replaces the song inside the same round. In
 a capped game the songs the cap left out wait in reserve (#2547); one of them
-makes up for the swapped-out song, so the game keeps its length. A song that
-fails to play still lowers ``total_rounds`` as before.
+makes up for the swapped-out song, so the game keeps its length. Since #3441 a
+song that fails to play is replaced from the reserve the same way; only a game
+with no reserve left still loses the round (#3279).
 """
 
 from __future__ import annotations
@@ -125,8 +126,9 @@ class TestSwapKeepsTheRoundCount:
         assert gs.total_rounds == 10
         assert not set(served) & set(swapped_out)
 
-    async def test_failed_song_still_lowers_total_rounds(self):
-        """#3279 stays: a song that never played costs a round."""
+    async def test_failed_song_is_replaced_from_the_reserve(self):
+        """#3441: a song that never played no longer costs a round while the
+        reserve can replace it (it used to, per #3279)."""
         gs = await _start(pool=30, cap=10)
         svc = gs._media_player_service
         results = iter([False, True])
@@ -141,7 +143,7 @@ class TestSwapKeepsTheRoundCount:
         assert await gs.start_round() is True
 
         assert gs.round == 2
-        assert gs.total_rounds == 9
+        assert gs.total_rounds == 10
 
     async def test_swap_without_a_reserve_still_says_the_game_is_shorter(self):
         """No cap, no reserve: the swap used up a real round's song, so the
