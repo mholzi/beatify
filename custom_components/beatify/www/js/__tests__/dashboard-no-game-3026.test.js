@@ -39,6 +39,8 @@ function makeTv() {
         songStoppedRound: null,
         lastRenderedRound: null,
         _scheduleRender: null,
+        // Play without a speaker: the "Sound on" prompt follows the game.
+        _setTvTarget: () => {},
     };
     const createRenderCoalescer = evaluate(src('createRenderCoalescer'), 'createRenderCoalescer');
     scope._scheduleRender = createRenderCoalescer(

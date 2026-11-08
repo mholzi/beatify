@@ -92,6 +92,11 @@ let deps = {
     // #3391: reopen the join modal on a refused name; false = not handled.
     showJoinRejected: () => false,
     resetHomeStartButton: () => {},
+    // Play without a speaker: the phone-playback hub (admin/browser-playback.js).
+    // `onPlaybackFrame` sees every frame and returns true for the ones it
+    // consumed; `onAdminConnected` runs once the socket is authenticated.
+    onPlaybackFrame: () => false,
+    onAdminConnected: () => {},
 };
 
 /**
@@ -335,6 +340,9 @@ export async function connectAdminWebSocket() {
  * Route incoming WebSocket messages.
  */
 export function handleAdminWsMessage(data) {
+    // Play without a speaker: preview frames for this phone go to the player;
+    // a `state` frame is only read there and continues below.
+    if (deps.onPlaybackFrame(data)) return;
     switch (data.type) {
         case 'admin_connect_ack':
             deps.debug('[Admin WS] Authenticated, game_id:', data.game_id);
@@ -343,6 +351,8 @@ export function handleAdminWsMessage(data) {
             adminWsAuthRecoveryAttempts = 0;
             // Stop REST polling — WS pushes are active
             deps.stopLobbyPolling();
+            // The phone-playback role needs the authenticated socket.
+            deps.onAdminConnected();
             break;
 
         case 'state':

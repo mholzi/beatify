@@ -66,6 +66,7 @@ from .server.views import (
     StartGameView,
     StatsView,
     StatusView,
+    BrowserTargetsView,
     SetupView,
     UsageView,
 )
@@ -93,6 +94,7 @@ from .server.setup_state import clear_setup
 from .server.websocket import BeatifyWebSocketHandler
 from .server.ws_handlers._helpers import finalize_and_end
 from .services.factories import ha_service_factories
+from .services.playback import BrowserClientRegistry
 from .services.stats import StatsService
 
 if TYPE_CHECKING:
@@ -161,7 +163,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # place that decides the game's outputs are Home-Assistant-backed. The
     # domain package itself never names a concrete service class, which is what
     # makes GameState constructible (and testable) without hass.
-    game_state = GameState(service_factories=ha_service_factories(hass))
+    # The pages that play audio when a browser is the speaker. Shared by the
+    # WebSocket handler (which registers them) and the factories (which play
+    # on them), so it is built before either.
+    browser_clients = BrowserClientRegistry()
+    game_state = GameState(
+        service_factories=ha_service_factories(hass, browser_clients=browser_clients)
+    )
     game_state.set_hass(hass)
 
     # Initialize stats service (Story 14.4)
@@ -183,7 +191,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     game_state.set_stats_service(stats_service)
 
     # Initialize WebSocket handler
-    ws_handler = BeatifyWebSocketHandler(hass)
+    ws_handler = BeatifyWebSocketHandler(hass, browser_clients=browser_clients)
 
     # Set up round end callback for timer expiry (Story 4.5)
     # #3306: broadcast_round_end also fires ``beatify_round_revealed``.
@@ -223,6 +231,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "playlist_dir": str(playlist_dir),
         "game": game_state,
         "ws_handler": ws_handler,
+        "browser_clients": browser_clients,
         "stats": stats_service,
         "analytics": analytics,
         "companion_auth_bypass_enabled": companion_auth_bypass_enabled,
@@ -272,6 +281,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.http.register_view(BeatifyAuthCallbackView(hass))
         hass.http.register_view(BeatifyAuthRefreshView(hass))
         hass.http.register_view(StatusView(hass))
+        hass.http.register_view(BrowserTargetsView(hass))
         hass.http.register_view(CapabilitiesView(hass))
         hass.http.register_view(SetupView(hass))  # #1663 — server-side setup flag
         hass.http.register_view(LightsView(hass))  # Issue #331

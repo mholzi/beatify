@@ -218,6 +218,10 @@ class GameStateSerializer:
             # the phones say in one line.
             "sample_duration": gs.sample_duration,
             "sample_stopped": gs.sample_stopped,
+            # "tv" / "phone" when a browser plays the 30-second previews,
+            # None for a real speaker. The TV shows its one-time "Sound on"
+            # from it; nothing about the song is in it.
+            "browser_playback": getattr(gs, "browser_playback", None),
             # #2337: the bounds the player's year slider must offer. The
             # markup shipped with max="2025" while 46 songs in the catalogue
             # carried year 2026 — those rounds could not be answered

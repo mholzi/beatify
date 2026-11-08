@@ -78,7 +78,11 @@ class RoundManager:
         self.current_song: dict[str, Any] | None = None
         self.last_round: bool = False
         self.round_start_time: float | None = None
-        self.round_duration: float = DEFAULT_ROUND_DURATION
+        # The host's timer. ``round_duration`` reads it through
+        # ``round_duration_cap``, which a browser target sets to its 30-second
+        # preview length: the clip ends there, so the round does too.
+        self._round_duration: float = DEFAULT_ROUND_DURATION
+        self.round_duration_cap: float | None = None
         self.song_stopped: bool = False
         self.round_analytics: RoundAnalytics | None = None
 
@@ -128,6 +132,23 @@ class RoundManager:
         self._intro_splash_shown: bool = False
         self._intro_splash_deferred_song: dict[str, Any] | None = None
         self._rounds_since_intro: int = 0
+
+    @property
+    def round_duration(self) -> float:
+        """The round timer in force: the host's choice, capped by the speaker.
+
+        Only a browser target sets a cap (``BROWSER_PREVIEW_SECONDS``): its
+        preview clip is 30 seconds long, and a 45-second round would leave the
+        room in silence for the last 15. The host's choice is kept as it was,
+        so switching back to a real speaker restores it.
+        """
+        if self.round_duration_cap is not None:
+            return min(self._round_duration, self.round_duration_cap)
+        return self._round_duration
+
+    @round_duration.setter
+    def round_duration(self, value: float) -> None:
+        self._round_duration = value
 
     # ------------------------------------------------------------------
     # Reset

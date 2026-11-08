@@ -1016,7 +1016,12 @@
     "guessAxisYearsOff": "{count} years off",
     "guessAxisYearsOffOne": "1 year off",
     "standingsMore": "+ {count} more",
-    "reconnectNotice": "The TV can't reach Home Assistant. Check the TV's Wi-Fi."
+    "reconnectNotice": "The TV can't reach Home Assistant. Check the TV's Wi-Fi.",
+    "soundGate": {
+      "title": "Music plays through this screen",
+      "button": "Sound on",
+      "hint": "Confirm once with the remote"
+    }
   },
   "launcher": {
     "title": "Beatify",
@@ -1748,5 +1753,16 @@
     "errorTitle": "Sign-in failed",
     "errorBody": "Beatify could not connect to Home Assistant. Please check the Beatify configuration (internal URL / SSL) and try again.",
     "errorRetry": "Try again"
+  },
+  "browserTarget": {
+    "group": "Without a speaker · 30-s previews",
+    "source": "Previews: Deezer",
+    "tvName": "TV screen",
+    "tvSub": "Sound from the TV",
+    "tvConnected": "connected",
+    "tvOpenHint": "Open the TV page on it",
+    "phoneName": "This phone",
+    "phoneBadge": "This device",
+    "phoneSub": "For small groups"
   }
 }

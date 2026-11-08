@@ -43,6 +43,10 @@ from .const import (
 PLATFORM_MUSIC_ASSISTANT = "music_assistant"
 PLATFORM_SONOS = "sonos"
 PLATFORM_ALEXA = "alexa_media"
+#: Not a Home Assistant integration: the TV screen or the host's phone, playing
+#: 30-second previews in the browser itself. ``services/playback/browser.py``
+#: is the strategy that claims it.
+PLATFORM_BROWSER = "beatify_browser"
 
 #: ``alexa`` and ``alexa_media`` are the same speaker seen through two versions
 #: of the integration.
@@ -246,7 +250,9 @@ PROVIDERS: tuple[Provider, ...] = (
         id="deezer",
         label="Deezer",
         short_label="Deezer",
-        platforms=frozenset({PLATFORM_MUSIC_ASSISTANT}),
+        # The browser target plays Deezer's public 30-second previews, keyed by
+        # the same `uri_deezer` field, so a game on it is a Deezer game.
+        platforms=frozenset({PLATFORM_MUSIC_ASSISTANT, PLATFORM_BROWSER}),
         catalogue_uris=(
             UriField("uri_deezer", URI_PATTERN_DEEZER, "deezer://track/{id}"),
         ),
@@ -400,6 +406,7 @@ def provider_uri_fields() -> dict[str, tuple[str, ...]]:
 
 __all__ = [
     "PLATFORM_ALEXA",
+    "PLATFORM_BROWSER",
     "PLATFORM_MUSIC_ASSISTANT",
     "PLATFORM_SONOS",
     "PROVIDERS",

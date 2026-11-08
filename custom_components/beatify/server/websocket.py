@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
 import logging
 import time
@@ -14,6 +15,7 @@ from custom_components.beatify.const import (
     ADMIN_DISCONNECT_PAUSE_REASON,
     ERR_GAME_NOT_STARTED,
     ERR_INTERNAL,
+    ERR_UNAUTHORIZED,
     LOBBY_DISCONNECT_GRACE_PERIOD,
     MAX_GUESS_LEN,
 )
@@ -28,6 +30,7 @@ from custom_components.beatify.server.serializers import (
     state_for_host_player,
 )
 from custom_components.beatify.server.ws_handlers import (
+    _is_ha_authenticated,
     handle_admin,
     handle_admin_connect,
     handle_artist_guess,
@@ -51,6 +54,8 @@ from custom_components.beatify.server.ws_handlers import (
     handle_title_artist_override,
     handle_title_artist_vote,
 )
+from custom_components.beatify.services.playback import BrowserClientRegistry
+from custom_components.beatify.services.playback.browser import ROLES as BROWSER_ROLES
 from custom_components.beatify.wire_debug import get_wire_logger
 
 if TYPE_CHECKING:
@@ -81,15 +86,23 @@ class BeatifyWebSocketHandler:
     RATE_LIMIT_CONNECTIONS = 10
     RATE_LIMIT_WINDOW = 60  # seconds
 
-    def __init__(self, hass: HomeAssistant) -> None:
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        *,
+        browser_clients: BrowserClientRegistry | None = None,
+    ) -> None:
         """
         Initialize handler.
 
         Args:
             hass: Home Assistant instance
+            browser_clients: the pages that play audio when a browser is the
+                speaker. The TV page and the admin page register here.
 
         """
         self.hass = hass
+        self.browser_clients = browser_clients or BrowserClientRegistry()
         self.connections: set[web.WebSocketResponse] = set()
         # Issue #477 / #2638: the admin spectator socket (a host watching
         # without being a player). This handler opens it, redacts for it and
@@ -424,6 +437,15 @@ class BeatifyWebSocketHandler:
             await handle_ping(self, ws, data, game_state)
             return
 
+        # A page that plays audio for a browser target registers before any
+        # game exists: the wizard shows "TV screen · connected" from it.
+        if msg_type == "playback_register":
+            await self._handle_playback_register(ws, data)
+            return
+        if msg_type == "playback_report":
+            self.browser_clients.handle_report(ws, data)
+            return
+
         if not game_state or not game_state.game_id:
             await ws.send_json(
                 {
@@ -439,6 +461,55 @@ class BeatifyWebSocketHandler:
             await handler(self, ws, data, game_state)
         else:
             _LOGGER.warning("Unknown message type: %s", msg_type)
+
+    # ------------------------------------------------------------------
+    # Browser playback (play without a speaker)
+    # ------------------------------------------------------------------
+
+    async def _handle_playback_register(
+        self, ws: web.WebSocketResponse, data: dict
+    ) -> None:
+        """Let a page play audio for the TV-screen or this-phone target.
+
+        ``tv`` is the TV page, which connects without a login like every
+        spectator screen. ``phone`` is the host's own admin page, so it needs
+        the host's login — the same proof ``admin_connect`` asks for.
+        ``claim`` is sent after the host tapped "Sound on" on that page: it
+        takes the role from any other page, which is then told to stop.
+        """
+        role = data.get("role")
+        if role not in BROWSER_ROLES:
+            return
+        if role == "phone" and not (
+            self.is_admin_socket(ws) or _is_ha_authenticated(self, data, ws)
+        ):
+            await ws.send_json(
+                {
+                    "type": "error",
+                    "code": ERR_UNAUTHORIZED,
+                    "message": "Home Assistant login required",
+                    "message_key": "HA_LOGIN_REQUIRED",
+                }
+            )
+            return
+        displaced = self.browser_clients.register(
+            role, ws, claim=bool(data.get("claim"))
+        )
+        if displaced is not None:
+            with contextlib.suppress(Exception):
+                await displaced.send_json({"type": "playback_released", "role": role})
+        _LOGGER.info(
+            "Browser playback: %s page %s",
+            role,
+            "registered" if self.browser_clients.holds(role, ws) else "standing by",
+        )
+        await ws.send_json(
+            {
+                "type": "playback_registered",
+                "role": role,
+                "active": self.browser_clients.holds(role, ws),
+            }
+        )
 
     # ------------------------------------------------------------------
     # Broadcasting
@@ -673,6 +744,8 @@ class BeatifyWebSocketHandler:
         # Before the game check, so a socket never outlives its connection.
         if self.remove_admin_socket(ws):
             _LOGGER.info("Admin spectator WebSocket disconnected")
+        for role in self.browser_clients.unregister(ws):
+            _LOGGER.info("Browser playback: %s page left", role)
 
         game_state = get_game_state(self.hass)
         if not game_state:

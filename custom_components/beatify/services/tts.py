@@ -120,28 +120,36 @@ class TTSService:
             )
 
     def _supported_languages(self) -> list[str] | None:
-        """Best-effort read of the TTS entity's advertised language codes.
+        """Best-effort read of the TTS entity's advertised language codes."""
+        return supported_tts_languages(self._hass, self._tts_entity_id)
 
-        Locates the ``tts`` entity component regardless of HA version (it scans
-        ``hass.data`` for the component rather than assuming a key) and returns
-        the entity's ``supported_languages``. Returns ``None`` on any problem so
-        the caller safely omits the language rather than guessing one.
-        """
-        try:
-            from homeassistant.helpers.entity_component import (  # noqa: PLC0415
-                EntityComponent,
-            )
 
-            for value in self._hass.data.values():
-                if (
-                    isinstance(value, EntityComponent)
-                    and getattr(value, "domain", None) == "tts"
-                ):
-                    entity = value.get_entity(self._tts_entity_id)
-                    langs = getattr(entity, "supported_languages", None)
-                    return list(langs) if langs else None
-        except (ImportError, AttributeError, TypeError):
-            # Introspection is strictly best-effort: the helper import may be
-            # absent on some HA versions, and entity/attribute access may vary.
-            return None
+def supported_tts_languages(
+    hass: HomeAssistant, tts_entity_id: str
+) -> list[str] | None:
+    """Best-effort read of a TTS entity's advertised language codes.
+
+    Locates the ``tts`` entity component regardless of HA version (it scans
+    ``hass.data`` for the component rather than assuming a key) and returns
+    the entity's ``supported_languages``. Returns ``None`` on any problem so
+    the caller safely omits the language rather than guessing one. Shared with
+    the browser announcer (``browser_player.py``).
+    """
+    try:
+        from homeassistant.helpers.entity_component import (  # noqa: PLC0415
+            EntityComponent,
+        )
+
+        for value in hass.data.values():
+            if (
+                isinstance(value, EntityComponent)
+                and getattr(value, "domain", None) == "tts"
+            ):
+                entity = value.get_entity(tts_entity_id)
+                langs = getattr(entity, "supported_languages", None)
+                return list(langs) if langs else None
+    except (ImportError, AttributeError, TypeError):
+        # Introspection is strictly best-effort: the helper import may be
+        # absent on some HA versions, and entity/attribute access may vary.
         return None
+    return None

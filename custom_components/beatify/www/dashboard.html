@@ -796,6 +796,18 @@
         <button id="dashboard-wakelock-dismiss" type="button" class="dashboard-wakelock-dismiss" data-i18n-title="dashboard.wakeLockDismiss" title="Schließen" aria-label="Schließen">&times;</button>
     </div>
 
+    <!-- Play without a speaker: the one-time "Sound on" for this screen. A TV
+         only plays sound after one touch; dashboard.js shows this while the
+         game plays on the TV screen and this page has not been switched on.
+         The button takes the remote's first OK press (focus is moved to it). -->
+    <div id="dashboard-sound-gate" class="dashboard-sound-gate hidden" role="dialog" aria-labelledby="dashboard-sound-gate-title">
+        <div class="dashboard-sound-gate-card">
+            <p id="dashboard-sound-gate-title" class="dashboard-sound-gate-title" data-i18n="dashboard.soundGate.title">Music plays through this screen</p>
+            <button id="dashboard-sound-gate-btn" type="button" class="dashboard-sound-gate-btn" data-i18n="dashboard.soundGate.button">Sound on</button>
+            <p class="dashboard-sound-gate-hint" data-i18n="dashboard.soundGate.hint">Confirm once with the remote</p>
+        </div>
+    </div>
+
     <!-- Reconnect indicator (#1578): hidden by default; dashboard.js reveals it
          while the WebSocket is down (onclose) and hides it on reconnect (onopen)
          so an always-on TV display visibly shows it is re-establishing the
@@ -852,6 +864,8 @@
          exists by the time any call site looks for it. The guards in
          player-utils.js and dashboard.js stay as they are. -->
     <script src="/beatify/static/js/vendor/confetti.browser.js?v={{ASSET_VER}}"></script>
+    <!-- Play without a speaker: the preview player, read by dashboard.js. -->
+    <script src="/beatify/static/js/browser-audio.js?v={{ASSET_VER}}"></script>
     <script src="/beatify/static/js/dashboard.min.js?v={{ASSET_VER}}"></script>
     <!-- v3.2.1 Arcade shims: submission meter fill, album ring progress, reveal round mirror.
          Pure view-layer helpers — no state, no API calls. Safe to remove if dashboard.js

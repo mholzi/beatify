@@ -105,6 +105,8 @@ import {
     closeAdminWs,
     resetReconnectAttempts,
 } from './admin/api.js';
+// Play without a speaker: this phone as the speaker (30-second previews).
+import { createPhonePlayback } from './admin/browser-playback.js';
 
 // #1279 Schritt 4/6: pure spectator-view render helpers. These are fully
 // data-in / DOM-out (no admin-private state, no cross-refs) so they lift out
@@ -389,7 +391,19 @@ let countdownInterval = null;
 // it through these closures and writes via the setters. Functions referenced
 // here (handleAdminStateUpdate, startLobbyPolling, …) are declared later but
 // are only ever *invoked* at runtime, so hoisting makes this init-safe.
+// Play without a speaker: plays the previews on this page when the host
+// picked "This phone". Wakes the audio inside the host's taps (the one on
+// "Start game" included), so the phone needs no extra "Sound on" step.
+const phonePlayback = createPhonePlayback({
+    send: (frame) => sendAdminWs(frame),
+    getSelectedEntityId: () => adminState.selectedMediaPlayer?.entityId || null,
+    lib: (typeof window !== 'undefined' && window.BeatifyBrowserAudio) || null,
+});
+if (typeof document !== 'undefined') phonePlayback.armUnlockOnTap(document);
+
 initAdminApi({
+    onPlaybackFrame: (data) => phonePlayback.handle(data),
+    onAdminConnected: () => { phonePlayback.onConnected(); },
     debug: (...args) => debug(...args),
     getCurrentGame: () => adminState.currentGame,
     getCurrentView: () => adminState.currentView,
@@ -969,6 +983,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         refreshStatus: loadStatus,
         onSpeakerRejected: showSpeakerRejected,  // #3223
         onSpeakerChanged: clearSpeakerRejectedBanners,  // #3223, #3236
+        // Play without a speaker: picking "This phone" registers this page.
+        onSpeakerSelected: () => phonePlayback.selectionChanged(),
     });
 
     // #1402 B7: one document-level Escape handler for all registered modals.

@@ -57,7 +57,11 @@ from custom_components.beatify.game.playlist import (
 )
 from custom_components.beatify.game.state import GamePhase
 from custom_components.beatify.game.state_setup import NoPlayableSongsError
-from custom_components.beatify.providers import PROVIDERS_BY_ID, get_provider
+from custom_components.beatify.providers import (
+    PLATFORM_BROWSER,
+    PROVIDERS_BY_ID,
+    get_provider,
+)
 from custom_components.beatify.server.ws_handlers._helpers import finalize_and_end
 from custom_components.beatify.server.base import (
     BeatifyAdminView,
@@ -69,6 +73,7 @@ from custom_components.beatify.server.serializers import (
     build_state_message,
 )
 from custom_components.beatify.server.setup_state import clear_setup
+from custom_components.beatify.services.browser_player import is_browser_target
 from custom_components.beatify.services.media_player import (
     async_get_native_twin_remap,
     get_platform_capabilities,
@@ -358,40 +363,46 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 message_key="NO_MEDIA_PLAYER",
             )
 
-        # #1627 follow-up: heal a stale selection that points at the native twin
-        # of a Music Assistant speaker. #1628 hides such twins from the picker,
-        # but a saved selection (wizard localStorage, admin auto-restore, or a
-        # direct API call) can still carry the native entity_id (e.g.
-        # media_player.unnamed_room) — playing on it routes provider URIs to a
-        # player that can't resolve them (UPnP Error 800), pausing the game with
-        # media_player_error. Remap to the MA twin (same physical speaker) BEFORE
-        # any validation/platform detection so every start path heals uniformly.
-        twin_remap = await async_get_native_twin_remap(self.hass)
-        if media_player in twin_remap:
-            ma_twin = twin_remap[media_player]
-            _LOGGER.info(
-                "Remapped native-twin media player %s → MA twin %s (#1627)",
-                media_player,
-                ma_twin,
-            )
-            media_player = ma_twin
+        # A browser target (TV screen / this phone) is no Home Assistant
+        # entity: nothing to remap, look up or find unavailable. Whether its
+        # page is open is checked when a round starts, like a dead speaker.
+        browser_target = is_browser_target(media_player)
+        media_player_state = None
+        if not browser_target:
+            # #1627 follow-up: heal a stale selection that points at the native twin
+            # of a Music Assistant speaker. #1628 hides such twins from the picker,
+            # but a saved selection (wizard localStorage, admin auto-restore, or a
+            # direct API call) can still carry the native entity_id (e.g.
+            # media_player.unnamed_room) — playing on it routes provider URIs to a
+            # player that can't resolve them (UPnP Error 800), pausing the game with
+            # media_player_error. Remap to the MA twin (same physical speaker) BEFORE
+            # any validation/platform detection so every start path heals uniformly.
+            twin_remap = await async_get_native_twin_remap(self.hass)
+            if media_player in twin_remap:
+                ma_twin = twin_remap[media_player]
+                _LOGGER.info(
+                    "Remapped native-twin media player %s → MA twin %s (#1627)",
+                    media_player,
+                    ma_twin,
+                )
+                media_player = ma_twin
 
-        # Validate media player entity exists
-        media_player_state = self.hass.states.get(media_player)
-        if not media_player_state:
-            return _json_error(
-                "Media player not found",
-                400,
-                code="INVALID_REQUEST",
-                message_key="MEDIA_PLAYER_NOT_FOUND",
-            )
-        if media_player_state.state == "unavailable":
-            return _json_error(
-                "Media player is unavailable",
-                400,
-                code=ERR_MEDIA_PLAYER_UNAVAILABLE,  # #2294: same code the WS path uses
-                details={"entity_id": media_player},
-            )
+            # Validate media player entity exists
+            media_player_state = self.hass.states.get(media_player)
+            if not media_player_state:
+                return _json_error(
+                    "Media player not found",
+                    400,
+                    code="INVALID_REQUEST",
+                    message_key="MEDIA_PLAYER_NOT_FOUND",
+                )
+            if media_player_state.state == "unavailable":
+                return _json_error(
+                    "Media player is unavailable",
+                    400,
+                    code=ERR_MEDIA_PLAYER_UNAVAILABLE,  # #2294: same code the WS path uses
+                    details={"entity_id": media_player},
+                )
 
         # Load and validate playlists -- or, for the library provider, sample a
         # fresh playlist from the enriched library pool (no files involved).
@@ -442,9 +453,12 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
 
         # Detect platform and validate compatibility (resolves #38, #39)
 
-        ent_reg = er.async_get(self.hass)
-        entity_entry = ent_reg.async_get(media_player)
-        platform = entity_entry.platform if entity_entry else "unknown"
+        if browser_target:
+            platform = PLATFORM_BROWSER
+        else:
+            ent_reg = er.async_get(self.hass)
+            entity_entry = ent_reg.async_get(media_player)
+            platform = entity_entry.platform if entity_entry else "unknown"
 
         # #1663: the admin UI renders setup errors concretely ("Speaker X can't
         # play Apple Music") by interpolating {speaker}/{provider} from these
@@ -561,7 +575,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
                 out = await async_load_game_output_settings(self.hass)
                 if out:
                     mp = out.get("media_player")
-                    if isinstance(mp, str) and mp and self.hass.states.get(mp):
+                    if (
+                        isinstance(mp, str)
+                        and mp
+                        and (self.hass.states.get(mp) or is_browser_target(mp))
+                    ):
                         # #3153: a stored speaker that cannot play this game's
                         # provider is skipped, not applied.
                         mp, _mp_platform, mp_err = await _validate_media_player(
@@ -1260,6 +1278,11 @@ async def _validate_media_player(
     is the remapped one. ``StartGameView`` keeps its own inline sequence so its
     order against the song-loading errors stays as it was.
     """
+    if is_browser_target(entity_id):
+        err = _check_speaker_platform(
+            PLATFORM_BROWSER, provider, speaker_name=entity_id
+        )
+        return entity_id, PLATFORM_BROWSER, err
     twin_remap = await async_get_native_twin_remap(hass)
     entity_id = twin_remap.get(entity_id, entity_id)
     state = hass.states.get(entity_id)

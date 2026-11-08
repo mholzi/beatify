@@ -1870,6 +1870,9 @@
          script that cannot import from the bundle at all. Every one of those
          reads is event-driven (after DOMContentLoaded / on click), never at
          parse time. -->
+    <!-- Play without a speaker: the preview player, read by admin.js when the
+         host picked "This phone". -->
+    <script src="/beatify/static/js/browser-audio.js?v={{ASSET_VER}}"></script>
     <script type="module" src="/beatify/static/js/admin.min.js?v={{ASSET_VER}}"></script>
 </body>
 </html>

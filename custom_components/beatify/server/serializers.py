@@ -101,6 +101,10 @@ _PLAYER_VISIBLE_BASE = frozenset(
         # the room can hear both.
         "sample_duration",
         "sample_stopped",
+        # Which browser plays the previews ("tv" / "phone"), or None. The TV
+        # page reads it for its "Sound on" prompt; it is about the room's
+        # speaker, never the song.
+        "browser_playback",
         "year_range",
     }
 )

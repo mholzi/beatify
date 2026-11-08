@@ -61,6 +61,19 @@ var NEVER_CACHE = [
     '/beatify/static/js/ha-auth.js',
 ];
 
+// Hosts the browser target streams preview clips from (play without a speaker).
+var PREVIEW_AUDIO_HOSTS = /(^|\.)(dzcdn\.net|deezer\.com|itunes\.apple\.com|mzstatic\.com)$/;
+
+/**
+ * Audio that must never be cached: any <audio> request, a preview clip host,
+ * or Home Assistant's TTS proxy. Deezer's terms forbid keeping the previews.
+ */
+function isUncacheableAudio(request, url) {
+    return request.destination === 'audio'
+        || PREVIEW_AUDIO_HOSTS.test(url.hostname)
+        || url.pathname.indexOf('/api/tts_proxy/') === 0;
+}
+
 /**
  * Install event: Precache critical assets
  */
@@ -118,6 +131,16 @@ self.addEventListener('fetch', function(event) {
 
     // Skip WebSocket connections (AC: #2 - only WebSocket requires network)
     if (url.pathname.includes('/beatify/ws') || url.protocol === 'ws:' || url.protocol === 'wss:') {
+        return;
+    }
+
+    // Play without a speaker: the 30-second previews (Deezer, Apple) and the
+    // announcements stream straight from their source into an <audio>
+    // element. Deezer's terms forbid storing the audio, so none of it may
+    // ever land in this cache. The previews are cross-origin and would be
+    // passed through below anyway; this says so explicitly, and also keeps
+    // Home Assistant's own /api/tts_proxy/ files out.
+    if (isUncacheableAudio(event.request, url)) {
         return;
     }
 

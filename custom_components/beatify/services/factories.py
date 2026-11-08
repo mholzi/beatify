@@ -21,8 +21,10 @@ from custom_components.beatify.game.protocols import (
     TtsProtocol,
 )
 
+from .browser_player import BrowserPlayerService, BrowserTtsService, is_browser_target
 from .lights import PartyLightsService
 from .media_player import MediaPlayerService, resolve_entity_platform
+from .playback import BrowserClientRegistry
 from .tts import TTSService
 
 if TYPE_CHECKING:
@@ -31,8 +33,18 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 
-def ha_service_factories(hass: HomeAssistant) -> GameOutputFactories:
-    """Return factories that build the real HA-backed services for ``hass``."""
+def ha_service_factories(
+    hass: HomeAssistant,
+    *,
+    browser_clients: BrowserClientRegistry | None = None,
+) -> GameOutputFactories:
+    """Return factories that build the real HA-backed services for ``hass``.
+
+    ``browser_clients`` is the page registry the WebSocket handler fills. A
+    browser target (the TV screen, the host's phone) is no Home Assistant
+    entity, so its media player and announcer are built here from that
+    registry instead of from the entity registry.
+    """
 
     def _media_player(
         entity_id: str,
@@ -41,6 +53,10 @@ def ha_service_factories(hass: HomeAssistant) -> GameOutputFactories:
         provider: str = "spotify",
         inherited_states: dict[str, dict[str, Any]] | None = None,
     ) -> MediaPlayerProtocol:
+        if is_browser_target(entity_id):
+            return BrowserPlayerService(
+                hass, entity_id, clients=browser_clients, provider=provider
+            )
         # #2693: the platform is DERIVED here, not taken on trust. Since #2636
         # it is the key `build_strategy` dispatches on, so a caller that
         # changes the speaker but forgets the platform (the Crate Digger
@@ -81,6 +97,13 @@ def ha_service_factories(hass: HomeAssistant) -> GameOutputFactories:
         tts_entity_id: str,
         media_player_entity_id: str,
     ) -> TtsProtocol:
+        if is_browser_target(media_player_entity_id):
+            return BrowserTtsService(
+                hass,
+                tts_entity_id=tts_entity_id,
+                target_entity_id=media_player_entity_id,
+                clients=browser_clients,
+            )
         return TTSService(
             hass,
             tts_entity_id=tts_entity_id,

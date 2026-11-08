@@ -3993,3 +3993,68 @@ body.join-corner-open #dashboard-reveal {
     font-variant-numeric: tabular-nums;
 }
 .dashboard-round-settings-notice.hidden { display: none; }
+
+/* Play without a speaker: the one-time "Sound on" on the TV screen.
+   A TV browser plays sound only after one touch. The card says what is about
+   to happen, the one pink button takes the remote's OK, the hint says it is a
+   one-off. Over the stage, not instead of it, so the QR code stays in view
+   behind it. Glow on the button only (DESIGN.md: glow on the one element that
+   matters). */
+.dashboard-sound-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 2147482000;
+    display: grid;
+    place-items: center;
+    padding: var(--space-lg);
+    background: radial-gradient(circle at 50% 45%, rgba(255, 45, 106, 0.18), rgba(10, 10, 18, 0.82) 62%);
+}
+.dashboard-sound-gate.hidden { display: none; }
+.dashboard-sound-gate-card {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-md);
+    max-width: min(720px, 90vw);
+    padding: var(--space-xl) var(--space-2xl);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface-dark);
+    text-align: center;
+}
+.dashboard-sound-gate-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-4xl);
+    line-height: 1.15;
+    color: var(--color-text-white);
+    text-wrap: balance;
+}
+.dashboard-sound-gate-btn {
+    min-height: 56px;
+    padding: var(--space-md) var(--space-2xl);
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--color-accent-primary-fill);
+    box-shadow: var(--glow-primary);
+    color: var(--color-text-white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+}
+/* A remote has no pointer: the focus ring shows what OK will press (#3391). */
+.dashboard-sound-gate-btn:focus-visible {
+    outline: 3px solid var(--color-accent-secondary);
+    outline-offset: 4px;
+}
+.dashboard-sound-gate-hint {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-neon-muted);
+}
+@media (min-width: 1400px) {
+    .dashboard-sound-gate-title { font-size: var(--font-size-year); }
+    .dashboard-sound-gate-btn { font-size: var(--font-size-4xl); min-height: 72px; }
+    .dashboard-sound-gate-hint { font-size: var(--font-size-2xl); }
+}

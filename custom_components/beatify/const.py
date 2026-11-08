@@ -33,6 +33,22 @@ ROUND_TIMER_OPTIONS: tuple[int, ...] = (30, 45, 60)  # seconds
 # round. www/js/game-constants.js mirrors the tuple for the wizard chips.
 SAMPLE_DURATION_OPTIONS: tuple[int, ...] = (10, 15, 20, 30)  # seconds
 
+# "Play without a speaker": the TV screen or the host's phone plays the song's
+# 30-second preview in the browser. The two targets ride the same
+# `media_player` field as a real speaker, so every saved selection, the
+# lobby switch and the start-game payload carry them unchanged. They are not
+# Home Assistant entities: `beatify_browser` is no integration domain.
+BROWSER_TARGET_TV = "beatify_browser.tv"
+BROWSER_TARGET_PHONE = "beatify_browser.phone"
+#: target entity_id -> the role the playing browser registers under.
+BROWSER_TARGET_ROLES: dict[str, str] = {
+    BROWSER_TARGET_TV: "tv",
+    BROWSER_TARGET_PHONE: "phone",
+}
+#: A preview is 30 seconds long, so a round on a browser target is too: the
+#: round timer is capped here instead of leaving the room in silence.
+BROWSER_PREVIEW_SECONDS = 30
+
 # #2562: the one place the reaction brake is defined. Reactions used to be
 # capped at one per player per REVEAL phase, which is a sane budget for a
 # five-second reveal and a nonsensical one for a 45-second round — and #2562
