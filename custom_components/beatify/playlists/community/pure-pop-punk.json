@@ -1,6 +1,6 @@
 {
   "name": "Pure Pop Punk 🎸",
-  "version": "1.15",
+  "version": "1.16",
   "tags": [
     "2000s",
     "pop-punk",
@@ -593,7 +593,10 @@
       "uri_tidal": "tidal://track/72187910",
       "uri_deezer": "deezer://track/3814347422",
       "fun_fact_nl": "De debuutsingle van We The Kings werd een slaaphit en bereikte uiteindelijk de platina status door gestage streaming en radio play.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1437557562"
+      }
     },
     {
       "year": 2017,
@@ -1198,7 +1201,10 @@
       "uri_tidal": "tidal://track/38982811",
       "uri_deezer": "deezer://track/2438121",
       "fun_fact_nl": "Geïnspireerd op het PostSecret-project waarbij mensen anoniem geheimen delen op ansichtkaarten. Echte ansichtkaarten van fans verschijnen in de video.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6790495186"
+      }
     },
     {
       "year": 1998,
@@ -2292,7 +2298,10 @@
       "uri_tidal": "tidal://track/1192931",
       "uri_deezer": "deezer://track/556340432",
       "fun_fact_nl": "Joey Ramone schreef dit terwijl hij ziek was in een hotel in Londen, wachtend op de volgende show. Het is een van de meest gecoverde punksongs ooit.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/77817249"
+      }
     },
     {
       "year": 2003,
@@ -3126,7 +3135,10 @@
       "uri_tidal": "tidal://track/35711773",
       "uri_deezer": "deezer://track/2438123",
       "fun_fact_nl": "Het inspirerende volkslied van The All-American Rejects werd hun grootste hit en een vast onderdeel van sportarena's en diploma-uitreikingen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/6790495198"
+      }
     },
     {
       "year": 2004,
@@ -3192,13 +3204,13 @@
       "awards_nl": [],
       "isrc": "USAT22506013",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/725822633",
-        "de": "applemusic://track/725822633",
-        "gb": "applemusic://track/725822633",
-        "fr": "applemusic://track/725822633",
-        "es": "applemusic://track/725822633",
-        "nl": "applemusic://track/725822633",
-        "it": "applemusic://track/725822633"
+        "us": "applemusic://track/1140560589",
+        "de": "applemusic://track/1140560589",
+        "gb": "applemusic://track/1140560589",
+        "fr": "applemusic://track/1140560589",
+        "es": "applemusic://track/1140560589",
+        "nl": "applemusic://track/1140560589",
+        "it": "applemusic://track/1140560589"
       }
     },
     {
@@ -3227,7 +3239,10 @@
       "uri_tidal": "tidal://track/144527410",
       "uri_deezer": "deezer://track/88380247",
       "fun_fact_nl": "AFI's doorbraak naar mainstream alternatieve rock. De gothic ondertonen van het nummer wijzen op de donkerdere richting die ze later zouden inslaan.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440797579"
+      }
     },
     {
       "year": 1978,

@@ -1,6 +1,6 @@
 {
   "name": "Fiesta Latina 90s 🇲🇽",
-  "version": "1.10",
+  "version": "1.11",
   "tags": [
     "1990s",
     "latin",
@@ -181,7 +181,10 @@
       ],
       "awards_es": [
         "Nominación al Grammy - Grabación del Año"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/192821659"
+      }
     },
     {
       "year": 1993,
@@ -2078,7 +2081,10 @@
       "uri_tidal": "tidal://track/67046483",
       "uri_deezer": "deezer://track/78573546",
       "fun_fact_nl": "Als dochter van de legendarische Mexicaanse filmactrice Silvia Pinal en zanger Enrique Guzmán, werd Alejandra een rock- en popicoon op eigen kracht. Bekend als 'La Reina de Corazones' (De Hartenkoningin), inspireerde haar rebelse imago een generatie Mexicaanse vrouwen.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443545257"
+      }
     }
   ]
 }

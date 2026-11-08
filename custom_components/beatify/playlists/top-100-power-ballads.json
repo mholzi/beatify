@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Power Ballads",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "1980s",
     "1990s",
@@ -1543,13 +1543,13 @@
       "awards_nl": [],
       "isrc": "USSM19303176",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1706160979",
-        "de": "applemusic://track/1706160979",
-        "gb": "applemusic://track/1706160979",
-        "fr": "applemusic://track/1706160979",
-        "es": "applemusic://track/1706160979",
-        "nl": "applemusic://track/1683633450",
-        "it": "applemusic://track/1706160979"
+        "us": "applemusic://track/1621745267",
+        "de": "applemusic://track/1621745267",
+        "gb": "applemusic://track/1621745267",
+        "fr": "applemusic://track/1621745267",
+        "es": "applemusic://track/1621745267",
+        "nl": "applemusic://track/1621745267",
+        "it": "applemusic://track/1621745267"
       }
     },
     {
@@ -3012,13 +3012,13 @@
       "awards_nl": [],
       "isrc": "USWB10902266",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/319402893",
-        "de": "applemusic://track/319402893",
-        "gb": "applemusic://track/319402893",
-        "fr": "applemusic://track/319402893",
-        "es": "applemusic://track/319402893",
-        "nl": "applemusic://track/319402893",
-        "it": "applemusic://track/319402893"
+        "us": "applemusic://track/696375679",
+        "de": "applemusic://track/1535767182",
+        "gb": "applemusic://track/1532898878",
+        "fr": "applemusic://track/1532898878",
+        "es": "applemusic://track/1532898878",
+        "nl": "applemusic://track/1532898878",
+        "it": "applemusic://track/1532898878"
       }
     },
     {
@@ -3128,13 +3128,7 @@
       "awards_nl": [],
       "isrc": "USRH11603951",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1148642452",
-        "de": "applemusic://track/1148701808",
-        "gb": "applemusic://track/1148642452",
-        "fr": "applemusic://track/1148642452",
-        "es": "applemusic://track/1148642452",
-        "nl": "applemusic://track/1148642452",
-        "it": "applemusic://track/1148642452"
+        "de": "applemusic://track/723338381"
       }
     },
     {
@@ -3434,7 +3428,10 @@
       "uri_tidal": "tidal://track/234636699",
       "uri_deezer": "deezer://track/855863",
       "fun_fact_nl": "Kerry Livgren schreef dit na het lezen van een gedicht over sterfelijkheid. Het akoestische vingerpluktechniek was geïnspireerd op de klassieke gitarist Fernando Sor.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/193730684"
+      }
     },
     {
       "year": 2003,
@@ -3501,7 +3498,10 @@
       "uri_tidal": "tidal://track/1868118",
       "uri_deezer": "deezer://track/4085312",
       "fun_fact_nl": "Taime Downe schreef deze emotionele ballade over persoonlijke strubbelingen. Het toonde de glam metal-band's vermogen om gevoelig materiaal te schrijven buiten feestnummers.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/298109233"
+      }
     },
     {
       "year": 1990,
@@ -3568,13 +3568,13 @@
       "awards_nl": [],
       "isrc": "USMR18100007",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1590962269",
-        "de": "applemusic://track/1595986989",
-        "gb": "applemusic://track/1590962269",
-        "fr": "applemusic://track/1590962269",
-        "es": "applemusic://track/1590962269",
-        "nl": "applemusic://track/1590962269",
-        "it": "applemusic://track/1590962269"
+        "us": "applemusic://track/216661494",
+        "de": "applemusic://track/216661494",
+        "gb": "applemusic://track/216661494",
+        "fr": "applemusic://track/216661494",
+        "es": "applemusic://track/216661494",
+        "nl": "applemusic://track/216661494",
+        "it": "applemusic://track/216661494"
       }
     },
     {
@@ -3646,13 +3646,13 @@
       "awards_nl": [],
       "isrc": "CAE159000001",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1707064758",
-        "de": "applemusic://track/712779002",
-        "gb": "applemusic://track/714420565",
-        "fr": "applemusic://track/714420565",
-        "es": "applemusic://track/714420565",
-        "nl": "applemusic://track/714420565",
-        "it": "applemusic://track/714420565"
+        "us": "applemusic://track/1691630008",
+        "de": "applemusic://track/1691630008",
+        "gb": "applemusic://track/1691630008",
+        "fr": "applemusic://track/1691630008",
+        "es": "applemusic://track/1691630008",
+        "nl": "applemusic://track/1691630008",
+        "it": "applemusic://track/1691630008"
       }
     },
     {

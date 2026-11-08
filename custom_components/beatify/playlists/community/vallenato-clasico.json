@@ -1,6 +1,6 @@
 {
   "name": "Vallenato Clásico",
-  "version": "0.4",
+  "version": "0.5",
   "tags": [
     "vallenato",
     "latin",
@@ -33,7 +33,10 @@
       "isrc": "COS019800939",
       "uri_deezer": "deezer://track/1260967672",
       "uri_apple_music": "applemusic://track/309963885",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZOYtGYK3DsU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZOYtGYK3DsU",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/309963885"
+      }
     },
     {
       "year": 1993,
@@ -73,7 +76,10 @@
       "isrc": "COC019321636",
       "uri_deezer": "deezer://track/11108567",
       "uri_apple_music": "applemusic://track/1714010659",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OMwKdES6rBs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OMwKdES6rBs",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1714010659"
+      }
     },
     {
       "year": 1993,
@@ -94,7 +100,10 @@
       "isrc": "COC019321633",
       "uri_deezer": "deezer://track/1401666",
       "uri_apple_music": "applemusic://track/1714010382",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=I-cOD2x-qBs"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I-cOD2x-qBs",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1714010382"
+      }
     },
     {
       "year": 1994,
@@ -133,7 +142,10 @@
       "fun_fact_nl": "Een jarennegentigklassieker van de Magdalenakust, toen een hit op cassette van bus naar bus reisde.",
       "isrc": "COF019400762",
       "uri_deezer": "deezer://track/113292858",
-      "uri_apple_music": "applemusic://track/14948007"
+      "uri_apple_music": "applemusic://track/14948007",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/14948007"
+      }
     },
     {
       "year": 1994,
@@ -154,7 +166,10 @@
       "isrc": "COC019422066",
       "uri_deezer": "deezer://track/1441559132",
       "uri_apple_music": "applemusic://track/1714007712",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Slq06yg060o"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Slq06yg060o",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1714007712"
+      }
     },
     {
       "year": 1995,
@@ -174,7 +189,10 @@
       "fun_fact_nl": "Morales heeft een van de hoogste stemmen van het genre, daarom liggen zijn liedjes precies waar het accordeon speelt.",
       "isrc": "COC019522545",
       "uri_deezer": "deezer://track/1982972",
-      "uri_apple_music": "applemusic://track/1714260565"
+      "uri_apple_music": "applemusic://track/1714260565",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1714260565"
+      }
     },
     {
       "year": 1995,
@@ -195,7 +213,10 @@
       "isrc": "COC019421831",
       "uri_deezer": "deezer://track/11531391",
       "uri_apple_music": "applemusic://track/1713349727",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZK5vbL2V6-0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZK5vbL2V6-0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713349727"
+      }
     },
     {
       "year": 1995,
@@ -216,7 +237,10 @@
       "isrc": "COC019120680",
       "uri_deezer": "deezer://track/11531388",
       "uri_apple_music": "applemusic://track/1713349693",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DUGXFJIRJaY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DUGXFJIRJaY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713349693"
+      }
     },
     {
       "year": 1996,
@@ -236,7 +260,10 @@
       "fun_fact_nl": "De jaren negentig waren het decennium waarin vallenatogroepen aan de kust de salsaorkesten voorbijstreefden.",
       "isrc": "COC019622727",
       "uri_deezer": "deezer://track/489726042",
-      "uri_apple_music": "applemusic://track/1714001563"
+      "uri_apple_music": "applemusic://track/1714001563",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1714001563"
+      }
     },
     {
       "year": 1996,
@@ -256,7 +283,10 @@
       "fun_fact_nl": "Los Inquietos lanceerden twee solocarrières tegelijk: Miguel Morales en Nelson Velásquez zongen hier eerst.",
       "isrc": "COC011308934",
       "uri_deezer": "deezer://track/104857252",
-      "uri_apple_music": "applemusic://track/1770649711"
+      "uri_apple_music": "applemusic://track/1770649711",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1770649711"
+      }
     },
     {
       "year": 1997,
@@ -277,7 +307,10 @@
       "isrc": "COC019723063",
       "uri_deezer": "deezer://track/695600752",
       "uri_apple_music": "applemusic://track/1713636579",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=JoFk4xc8fQ8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JoFk4xc8fQ8",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713636579"
+      }
     },
     {
       "year": 1997,
@@ -297,7 +330,10 @@
       "fun_fact_nl": "Hun reeks in de tweede helft van de jaren negentig is wat oudere luisteraars 'de goede jaren' noemen.",
       "isrc": "COC011308948",
       "uri_deezer": "deezer://track/106211306",
-      "uri_apple_music": "applemusic://track/1770562567"
+      "uri_apple_music": "applemusic://track/1770562567",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1770562567"
+      }
     },
     {
       "year": 1997,
@@ -317,7 +353,10 @@
       "fun_fact_nl": "Geles schreef voor het halve genre voordat hij zelf opnam; andermans hits betaalden zijn eigen platen.",
       "isrc": "COC019723192",
       "uri_deezer": "deezer://track/1442700",
-      "uri_apple_music": "applemusic://track/1713462233"
+      "uri_apple_music": "applemusic://track/1713462233",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713462233"
+      }
     },
     {
       "year": 1997,
@@ -337,7 +376,10 @@
       "fun_fact_nl": "Hij stierf in mei 2024, en de eerbetonen waren vooral andere artiesten die liedjes zongen die hij voor hen had geschreven.",
       "isrc": "COC019723194",
       "uri_deezer": "deezer://track/1442732",
-      "uri_apple_music": "applemusic://track/1713462235"
+      "uri_apple_music": "applemusic://track/1713462235",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713462235"
+      }
     },
     {
       "year": 1998,
@@ -358,7 +400,10 @@
       "isrc": "COC019823620",
       "uri_deezer": "deezer://track/1963948",
       "uri_apple_music": "applemusic://track/1711885415",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=yry3rgGlRUw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yry3rgGlRUw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1711885415"
+      }
     },
     {
       "year": 1998,
@@ -379,7 +424,10 @@
       "isrc": "COC019823506",
       "uri_deezer": "deezer://track/1021507152",
       "uri_apple_music": "applemusic://track/1711687529",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=HSJPdcbGuX0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HSJPdcbGuX0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1711687529"
+      }
     },
     {
       "year": 1999,
@@ -400,7 +448,10 @@
       "isrc": "COC019924109",
       "uri_deezer": "deezer://track/1913357",
       "uri_apple_music": "applemusic://track/1711885417",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=V7FPHa7k_wg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=V7FPHa7k_wg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1711885417"
+      }
     },
     {
       "year": 1999,
@@ -420,7 +471,10 @@
       "fun_fact_nl": "Een afscheidslied dat een vaste waarde werd op feesten waar niemand iemand verlaat.",
       "isrc": "COC019924107",
       "uri_deezer": "deezer://track/1963988",
-      "uri_apple_music": "applemusic://track/1711885420"
+      "uri_apple_music": "applemusic://track/1711885420",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1711885420"
+      }
     },
     {
       "year": 1999,
@@ -460,7 +514,10 @@
       "fun_fact_nl": "Vallenato-albums uit die tijd waren identiek opgebouwd: vier paseos, een merengue, een son en een puya als slot.",
       "isrc": "COC019923868",
       "uri_deezer": "deezer://track/489726432",
-      "uri_apple_music": "applemusic://track/1714003118"
+      "uri_apple_music": "applemusic://track/1714003118",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1714003118"
+      }
     },
     {
       "year": 1999,
@@ -481,7 +538,10 @@
       "isrc": "COC011308930",
       "uri_deezer": "deezer://track/106660326",
       "uri_apple_music": "applemusic://track/1770449831",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=vNR-vEvj7_0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vNR-vEvj7_0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1770449831"
+      }
     },
     {
       "year": 2001,
@@ -502,7 +562,10 @@
       "isrc": "COS010100098",
       "uri_deezer": "deezer://track/57236501",
       "uri_apple_music": "applemusic://track/487291492",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9F50nHPNXvE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9F50nHPNXvE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/487291492"
+      }
     },
     {
       "year": 2002,
@@ -522,7 +585,10 @@
       "fun_fact_nl": "'Ay hombe' is een kustuitroep voor alles van verrukking tot ongeloof, en Celedón maakte er zijn handelsmerk van.",
       "isrc": "COS010200058",
       "uri_deezer": "deezer://track/13255682",
-      "uri_apple_music": "applemusic://track/321735944"
+      "uri_apple_music": "applemusic://track/321735944",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/321735944"
+      }
     },
     {
       "year": 2002,
@@ -542,7 +608,10 @@
       "fun_fact_nl": "De liefdesliedjes van de vallenato gaan bijna altijd over verlaten worden, nooit over verlaten — deze houdt zich eraan.",
       "isrc": "COC010225263",
       "uri_deezer": "deezer://track/2512993391",
-      "uri_apple_music": "applemusic://track/1713446675"
+      "uri_apple_music": "applemusic://track/1713446675",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713446675"
+      }
     },
     {
       "year": 2004,
@@ -563,7 +632,10 @@
       "isrc": "COS010400081",
       "uri_deezer": "deezer://track/57236701",
       "uri_apple_music": "applemusic://track/478753993",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=4HW6hDGro1g"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4HW6hDGro1g",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/478753993"
+      }
     },
     {
       "year": 2005,
@@ -584,7 +656,10 @@
       "isrc": "COS010500095",
       "uri_deezer": "deezer://track/13307180",
       "uri_apple_music": "applemusic://track/321603264",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZBKwUHRlaHE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZBKwUHRlaHE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/321603264"
+      }
     },
     {
       "year": 2005,
@@ -605,7 +680,10 @@
       "isrc": "COS010500007",
       "uri_deezer": "deezer://track/14927757",
       "uri_apple_music": "applemusic://track/337611229",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8TgZyPzcuYI"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8TgZyPzcuYI",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/337611229"
+      }
     },
     {
       "year": 2005,
@@ -625,7 +703,10 @@
       "fun_fact_nl": "Kaleth Morales bedacht de 'nueva ola': vallenato met popakkoorden, gericht op leeftijdsgenoten.",
       "isrc": "COSO10500162",
       "uri_deezer": "deezer://track/13322836",
-      "uri_apple_music": "applemusic://track/309679406"
+      "uri_apple_music": "applemusic://track/309679406",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/309679406"
+      }
     },
     {
       "year": 2008,
@@ -645,7 +726,10 @@
       "fun_fact_nl": "Peláez studeerde geneeskunde voordat hij besloot dat vallenato zingen een beter gebruik van een goed geheugen was.",
       "isrc": "COSO10801045",
       "uri_deezer": "deezer://track/71784107",
-      "uri_apple_music": "applemusic://track/828299686"
+      "uri_apple_music": "applemusic://track/828299686",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/828299686"
+      }
     },
     {
       "year": 2009,
@@ -666,7 +750,10 @@
       "isrc": "COC010927729",
       "uri_deezer": "deezer://track/4839657",
       "uri_apple_music": "applemusic://track/1713205304",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=uOZoTJeg9KE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uOZoTJeg9KE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1713205304"
+      }
     },
     {
       "year": 2009,
@@ -686,7 +773,10 @@
       "fun_fact_nl": "Ochoa is een accordeonist die bijna elke grote stem van de laatste twintig jaar heeft begeleid, ook deze.",
       "isrc": "FRX202111727",
       "uri_deezer": "deezer://track/1385283342",
-      "uri_apple_music": "applemusic://track/1569624444"
+      "uri_apple_music": "applemusic://track/1569624444",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1569624444"
+      }
     },
     {
       "year": 2011,
@@ -706,7 +796,10 @@
       "fun_fact_nl": "Martín Elías was de zoon van Diomedes Díaz en bracht de familienaam naar een sneller, popperiger vallenato.",
       "isrc": "COC011128185",
       "uri_deezer": "deezer://track/61787325",
-      "uri_apple_music": "applemusic://track/1712533964"
+      "uri_apple_music": "applemusic://track/1712533964",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1712533964"
+      }
     },
     {
       "year": 2011,
@@ -726,7 +819,10 @@
       "fun_fact_nl": "Centeno zong bij Los Diablitos voordat hij solo ging, vandaar dat de frasering zo vertrouwd klinkt.",
       "isrc": "COC011128517",
       "uri_deezer": "deezer://track/24020291",
-      "uri_apple_music": "applemusic://track/1712801308"
+      "uri_apple_music": "applemusic://track/1712801308",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1712801308"
+      }
     },
     {
       "year": 2013,
@@ -746,7 +842,10 @@
       "fun_fact_nl": "Dangond is de stadionact van het genre, en dit is het lied dat zijn concerten in meezingavonden veranderde.",
       "isrc": "COSO11300077",
       "uri_deezer": "deezer://track/67526510",
-      "uri_apple_music": "applemusic://track/650738436"
+      "uri_apple_music": "applemusic://track/650738436",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/650738436"
+      }
     },
     {
       "year": 2014,
@@ -767,7 +866,10 @@
       "isrc": "COSO11400454",
       "uri_deezer": "deezer://track/90697283",
       "uri_apple_music": "applemusic://track/935722121",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=xjWb_xeP1pA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xjWb_xeP1pA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/935722121"
+      }
     },
     {
       "year": 2015,
@@ -788,7 +890,10 @@
       "isrc": "COSO11500348",
       "uri_deezer": "deezer://track/105183412",
       "uri_apple_music": "applemusic://track/1027596322",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=dkQJ30aQhZA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dkQJ30aQhZA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1027596322"
+      }
     },
     {
       "year": 2017,
@@ -809,7 +914,10 @@
       "isrc": "COC011732269",
       "uri_deezer": "deezer://track/414935302",
       "uri_apple_music": "applemusic://track/1712799908",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=58t5u2h0qvA"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=58t5u2h0qvA",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1712799908"
+      }
     },
     {
       "year": 2019,
@@ -830,7 +938,10 @@
       "isrc": "COC011933298",
       "uri_deezer": "deezer://track/712895702",
       "uri_apple_music": "applemusic://track/1712550581",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rtuVn3BsY5k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rtuVn3BsY5k",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1712550581"
+      }
     },
     {
       "year": 2020,
@@ -851,7 +962,10 @@
       "isrc": "USSD12000513",
       "uri_deezer": "deezer://track/1111735572",
       "uri_apple_music": "applemusic://track/1540731458",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LqKscPDW8Y0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LqKscPDW8Y0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1540731458"
+      }
     }
   ]
 }

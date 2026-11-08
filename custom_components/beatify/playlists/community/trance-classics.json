@@ -1,6 +1,6 @@
 {
   "name": "Trance Classics",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "trance",
     "hands-up",
@@ -1120,7 +1120,9 @@
       "isrc": null,
       "uri": "spotify:track:673Yit8at9JmZoxB8hvsSl",
       "uri_apple_music": null,
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1604205920"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=2oNnjVBMTKU",
       "uri_tidal": "tidal://track/276644242",
       "uri_deezer": null,
@@ -1162,7 +1164,9 @@
       "isrc": null,
       "uri": "spotify:track:6PUzxtIHkv346yP89NzP9X",
       "uri_apple_music": "applemusic://track/129611463",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/129611463"
+      },
       "uri_youtube_music": "https://music.youtube.com/watch?v=hjexeNExXKU",
       "uri_tidal": "tidal://track/13143071",
       "uri_deezer": "deezer://track/7121774",

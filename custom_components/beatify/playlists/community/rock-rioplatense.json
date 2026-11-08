@@ -1,6 +1,6 @@
 {
   "name": "Rock Rioplatense",
-  "version": "1.3",
+  "version": "1.4",
   "tags": [
     "rock",
     "spanish",
@@ -33,7 +33,10 @@
       "isrc": "UYB141602506",
       "uri_deezer": "deezer://track/3257569121",
       "uri_apple_music": "applemusic://track/1573663046",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=y9LlnLTH87U"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=y9LlnLTH87U",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1573663046"
+      }
     },
     {
       "year": 2006,
@@ -54,7 +57,10 @@
       "isrc": "UYB141602504",
       "uri_deezer": "deezer://track/3257569101",
       "uri_apple_music": "applemusic://track/1573663034",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=K7XcO81TckU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=K7XcO81TckU",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1573663034"
+      }
     },
     {
       "year": 2009,
@@ -95,7 +101,10 @@
       "isrc": "UYH121900007",
       "uri_deezer": "deezer://track/661625492",
       "uri_apple_music": "applemusic://track/1442408689",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=j7uxvgJcWqc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=j7uxvgJcWqc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442408689"
+      }
     },
     {
       "year": 2012,
@@ -116,7 +125,10 @@
       "isrc": "UYH121200025",
       "uri_deezer": "deezer://track/588479072",
       "uri_apple_music": "applemusic://track/1442408692",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NvB0sFK1sjY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NvB0sFK1sjY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1442408692"
+      }
     },
     {
       "year": 2004,
@@ -137,7 +149,10 @@
       "isrc": "ARF841700043",
       "uri_deezer": "deezer://track/395890422",
       "uri_apple_music": "applemusic://track/1043375433",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=MWwaih5U710"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MWwaih5U710",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1043375433"
+      }
     },
     {
       "year": 2004,
@@ -158,7 +173,10 @@
       "isrc": "ARF840400142",
       "uri_deezer": "deezer://track/109383418",
       "uri_apple_music": "applemusic://track/1043375136",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=JwjvT-9Zz58"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JwjvT-9Zz58",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1043375136"
+      }
     },
     {
       "year": 2006,
@@ -199,7 +217,10 @@
       "isrc": "ARF140400100",
       "uri_deezer": "deezer://track/1566896",
       "uri_apple_music": "applemusic://track/1444074881",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OtPz-UQVK-k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OtPz-UQVK-k",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444074881"
+      }
     },
     {
       "year": 2004,
@@ -220,7 +241,10 @@
       "isrc": "ARF140400097",
       "uri_deezer": "deezer://track/1566891",
       "uri_apple_music": "applemusic://track/1444074692",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=H5CJpZGlmFU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=H5CJpZGlmFU",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444074692"
+      }
     },
     {
       "year": 2001,
@@ -241,7 +265,10 @@
       "isrc": "ARF140100186",
       "uri_deezer": "deezer://track/7337794",
       "uri_apple_music": "applemusic://track/1444106633",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=Zt6nCSMAIZg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zt6nCSMAIZg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444106633"
+      }
     },
     {
       "year": 2000,
@@ -262,7 +289,10 @@
       "isrc": "ARF140100136",
       "uri_deezer": "deezer://track/812044772",
       "uri_apple_music": "applemusic://track/1443620090",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XsIsqOmeMHc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XsIsqOmeMHc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443620090"
+      }
     },
     {
       "year": 2003,
@@ -283,7 +313,10 @@
       "isrc": "ARA140300104",
       "uri_deezer": "deezer://track/3874514201",
       "uri_apple_music": "applemusic://track/1881332777",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ZjwCEVLn8V0"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZjwCEVLn8V0",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1881332777"
+      }
     },
     {
       "year": 2004,
@@ -304,7 +337,10 @@
       "isrc": "ARF040400453",
       "uri_deezer": "deezer://track/3411903",
       "uri_apple_music": "applemusic://track/722225923",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UFIMtSQ225o"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UFIMtSQ225o",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/722225923"
+      }
     },
     {
       "year": 2000,
@@ -325,7 +361,10 @@
       "isrc": "ARF040704995",
       "uri_deezer": "deezer://track/3412182",
       "uri_apple_music": "applemusic://track/724574280",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UoUOJtDzJ1g"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UoUOJtDzJ1g",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724574280"
+      }
     },
     {
       "year": 2006,
@@ -346,7 +385,10 @@
       "isrc": "ARF850600142",
       "uri_deezer": "deezer://track/1490492922",
       "uri_apple_music": "applemusic://track/1585328489",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=TD1e3EdW6Lk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TD1e3EdW6Lk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1585328489"
+      }
     },
     {
       "year": 1998,
@@ -367,7 +409,10 @@
       "isrc": "ARF099800056",
       "uri_deezer": "deezer://track/4154478",
       "uri_apple_music": "applemusic://track/1443372137",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=_0DQZLsUc8c"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_0DQZLsUc8c",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443372137"
+      }
     },
     {
       "year": 2006,
@@ -388,7 +433,10 @@
       "isrc": "ARF030600057",
       "uri_deezer": "deezer://track/13255149",
       "uri_apple_music": "applemusic://track/157364342",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=uLIs0j2WnlM"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uLIs0j2WnlM",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/157364342"
+      }
     },
     {
       "year": 2009,
@@ -409,7 +457,10 @@
       "isrc": "ARF100900383",
       "uri_deezer": "deezer://track/472033662",
       "uri_apple_music": "applemusic://track/1358493168",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=-ACG_gupkDw"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-ACG_gupkDw",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1358493168"
+      }
     },
     {
       "year": 2007,
@@ -430,7 +481,10 @@
       "isrc": "ARF470700340",
       "uri_deezer": "deezer://track/7727689",
       "uri_apple_music": "applemusic://track/405156235",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=wGOWrMAQN-k"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=wGOWrMAQN-k",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/405156235"
+      }
     },
     {
       "year": 2007,
@@ -451,7 +505,10 @@
       "isrc": "ARF470700345",
       "uri_deezer": "deezer://track/7727694",
       "uri_apple_music": "applemusic://track/405156358",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ytaCTtAyHh4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ytaCTtAyHh4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/405156358"
+      }
     },
     {
       "year": 1983,
@@ -492,7 +549,10 @@
       "isrc": "AR5CC8800008",
       "uri_deezer": "deezer://track/2593826682",
       "uri_apple_music": "applemusic://track/1722336139",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XhYiBaYux4Y"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XhYiBaYux4Y",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1722336139"
+      }
     },
     {
       "year": 1991,
@@ -513,7 +573,10 @@
       "isrc": "AR5CC9100007",
       "uri_deezer": "deezer://track/2593932742",
       "uri_apple_music": "applemusic://track/1722348402",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=DRf5Nzgq3Lk"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DRf5Nzgq3Lk",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1722348402"
+      }
     },
     {
       "year": 1993,
@@ -534,7 +597,10 @@
       "isrc": "AR5CC9300011",
       "uri_deezer": "deezer://track/2594136922",
       "uri_apple_music": "applemusic://track/1722371231",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=XacNmPqBork"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XacNmPqBork",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1722371231"
+      }
     },
     {
       "year": 2004,
@@ -555,7 +621,10 @@
       "isrc": "ARG601101170",
       "uri_deezer": "deezer://track/2593678462",
       "uri_apple_music": "applemusic://track/1722315375",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=OK_WAw7hOEE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OK_WAw7hOEE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1722315375"
+      }
     },
     {
       "year": 2013,
@@ -576,7 +645,10 @@
       "isrc": "ARG601300550",
       "uri_deezer": "deezer://track/2756585911",
       "uri_apple_music": "applemusic://track/1722315298",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WlBwsQ2NWB8"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WlBwsQ2NWB8",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1722315298"
+      }
     },
     {
       "year": 2013,
@@ -597,7 +669,10 @@
       "isrc": "ARG601300556",
       "uri_deezer": "deezer://track/2756585971",
       "uri_apple_music": "applemusic://track/1722315304",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ajfLkBoXYQQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ajfLkBoXYQQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1722315304"
+      }
     },
     {
       "year": 2011,
@@ -618,7 +693,10 @@
       "isrc": "ARW251100631",
       "uri_deezer": "deezer://track/3246179981",
       "uri_apple_music": "applemusic://track/1462846132",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=UJrfYfNG0rg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UJrfYfNG0rg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1462846132"
+      }
     },
     {
       "year": 2002,
@@ -639,7 +717,10 @@
       "isrc": "QM7281627110",
       "uri_deezer": "deezer://track/3271796591",
       "uri_apple_music": "applemusic://track/1462847892",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=VLl8n-ivOuY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VLl8n-ivOuY",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1462847892"
+      }
     },
     {
       "year": 2007,
@@ -660,7 +741,10 @@
       "isrc": "ARW251100640",
       "uri_deezer": "deezer://track/3246179471",
       "uri_apple_music": "applemusic://track/1463034653",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=NPHCo_oql-U"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NPHCo_oql-U",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1463034653"
+      }
     },
     {
       "year": 1992,
@@ -681,7 +765,10 @@
       "isrc": "ARG601100044",
       "uri_deezer": "deezer://track/1377576012",
       "uri_apple_music": "applemusic://track/1613774320",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=8TdbQUBo8iQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8TdbQUBo8iQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1613774320"
+      }
     },
     {
       "year": 2004,
@@ -702,7 +789,10 @@
       "isrc": "ES5010400008",
       "uri_deezer": "deezer://track/3885291",
       "uri_apple_music": "applemusic://track/101255701",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=B8uJbE60hhg"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=B8uJbE60hhg",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/101255701"
+      }
     },
     {
       "year": 1999,
@@ -723,7 +813,10 @@
       "isrc": "ARF149900164",
       "uri_deezer": "deezer://track/5498976",
       "uri_apple_music": "applemusic://track/1443374248",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=7IkzCIJlJVo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7IkzCIJlJVo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443374248"
+      }
     },
     {
       "year": 2013,
@@ -744,7 +837,10 @@
       "isrc": "ARJ401300005",
       "uri_deezer": "deezer://track/72139632",
       "uri_apple_music": "applemusic://track/735082554",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ICwDcBLmZEc"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ICwDcBLmZEc",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/735082554"
+      }
     },
     {
       "year": 2001,
@@ -765,7 +861,10 @@
       "isrc": "ARF040100627",
       "uri_deezer": "deezer://track/3531995",
       "uri_apple_music": "applemusic://track/723951558",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=1MLcVhMgxOQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1MLcVhMgxOQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/723951558"
+      }
     }
   ]
 }

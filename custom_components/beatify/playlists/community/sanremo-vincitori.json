@@ -1,7 +1,7 @@
 {
   "name": "Sanremo: I Vincitori 🇮🇹",
   "description": "Every winning song of the Sanremo Music Festival, from Nilla Pizzi in 1951 to Sal Da Vinci in 2026. Years verified against the official Albo d'oro. Requested in #2230.",
-  "version": "0.11",
+  "version": "0.12",
   "tags": [
     "italian",
     "sanremo",
@@ -35,7 +35,9 @@
       "fun_fact_it": "Nilla Pizzi - \"Grazie dei fiori\" ha vinto il Festival di Sanremo nel 1951.",
       "isrc": "ESA012124170",
       "uri_apple_music": "applemusic://track/426799152",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/426799152"
+      },
       "uri_deezer": "deezer://track/2821564382",
       "uri_youtube_music": "https://music.youtube.com/watch?v=IYsH9jgiLHE",
       "uri_tidal": null
@@ -56,7 +58,9 @@
       "fun_fact_it": "Nilla Pizzi - \"Vola colomba\" ha vinto il Festival di Sanremo nel 1952.",
       "isrc": "USA560645663",
       "uri_apple_music": "applemusic://track/444469120",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/444469120"
+      },
       "uri_deezer": "deezer://track/1955614",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Zm_MNebKBLU",
       "uri_tidal": null
@@ -77,7 +81,9 @@
       "fun_fact_it": "Carla Boni - \"Viale d'autunno\" ha vinto il Festival di Sanremo nel 1953.",
       "isrc": "DEZZ42173067",
       "uri_apple_music": "applemusic://track/1595876263",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1595876263"
+      },
       "uri_deezer": "deezer://track/1555561732",
       "uri_youtube_music": "https://music.youtube.com/watch?v=zda8-yzZfoU",
       "uri_tidal": null
@@ -98,7 +104,9 @@
       "fun_fact_it": "Giorgio Consolini - \"Tutte le mamme\" ha vinto il Festival di Sanremo nel 1954.",
       "isrc": "NLHR52295284",
       "uri_apple_music": "applemusic://track/1657565243",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1657565243"
+      },
       "uri_deezer": "deezer://track/3591863562",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qAQfRG_wgiA",
       "uri_tidal": null
@@ -119,7 +127,9 @@
       "fun_fact_it": "Claudio Villa - \"Buongiorno tristezza\" ha vinto il Festival di Sanremo nel 1955.",
       "isrc": "ITA617007978",
       "uri_apple_music": "applemusic://track/159173352",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/159173352"
+      },
       "uri_deezer": "deezer://track/5383130",
       "uri_youtube_music": "https://music.youtube.com/watch?v=mEqwOLpIh-w",
       "uri_tidal": null
@@ -140,7 +150,9 @@
       "fun_fact_it": "Franca Raimondi - \"Aprite Le Finestre\" ha vinto il Festival di Sanremo nel 1956.",
       "isrc": "USV351400392",
       "uri_apple_music": "applemusic://track/1844701849",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1844701849"
+      },
       "uri_deezer": "deezer://track/87339647",
       "uri_youtube_music": "https://music.youtube.com/watch?v=F0qlLCL6MLE",
       "uri_tidal": null
@@ -161,7 +173,9 @@
       "fun_fact_it": "\"Corde della mia chitarra\" ha vinto il Festival di Sanremo nel 1957, interpretata da Claudio Villa e Nunzio Gallo. Questa è l'incisione di Nilla Pizzi.",
       "isrc": "GBELT1233228",
       "uri_apple_music": "applemusic://track/485704485",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/485704485"
+      },
       "uri_deezer": "deezer://track/120575892",
       "uri_youtube_music": "https://music.youtube.com/watch?v=C_R2unQmkjE",
       "uri_tidal": null
@@ -182,7 +196,9 @@
       "fun_fact_it": "Domenico Modugno - \"Nel blu dipinto di blu\" ha vinto il Festival di Sanremo nel 1958.",
       "isrc": "ITD015800707",
       "uri_apple_music": null,
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/597996710"
+      },
       "uri_deezer": "deezer://track/10180259",
       "uri_youtube_music": "https://music.youtube.com/watch?v=6jWsIpAbo-8",
       "uri_tidal": null
@@ -203,7 +219,9 @@
       "fun_fact_it": "Domenico Modugno - \"Ciao Ciao Bambina - Piove\" ha vinto il Festival di Sanremo nel 1959.",
       "isrc": "ITD015900419",
       "uri_apple_music": "applemusic://track/1591849658",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1591849658"
+      },
       "uri_deezer": "deezer://track/687814",
       "uri_youtube_music": "https://music.youtube.com/watch?v=ygiHfNMwpdI",
       "uri_tidal": null
@@ -224,7 +242,9 @@
       "fun_fact_it": "Tony Dallara - \"Romantica\" ha vinto il Festival di Sanremo nel 1960.",
       "isrc": "ESA031422729",
       "uri_apple_music": "applemusic://track/1126764043",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1126764043"
+      },
       "uri_deezer": "deezer://track/85952577",
       "uri_youtube_music": "https://music.youtube.com/watch?v=I8J7h_n9DZ4",
       "uri_tidal": null
@@ -245,7 +265,9 @@
       "fun_fact_it": "Luciano Tajoli - \"Al di là\" ha vinto il Festival di Sanremo nel 1961.",
       "isrc": "ITA618005469",
       "uri_apple_music": "applemusic://track/203599197",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/203599197"
+      },
       "uri_deezer": "deezer://track/6885215",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jAooPFd--HA",
       "uri_tidal": null
@@ -266,7 +288,9 @@
       "fun_fact_it": "Domenico Modugno - \"Addio...addio\" ha vinto il Festival di Sanremo nel 1962.",
       "isrc": "FR6V81548910",
       "uri_apple_music": "applemusic://track/1054721225",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1054721225"
+      },
       "uri_deezer": "deezer://track/366792741",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jHA0cr7vGBY",
       "uri_tidal": null
@@ -287,7 +311,9 @@
       "fun_fact_it": "Tony Renis - \"Uno per tutte\" ha vinto il Festival di Sanremo nel 1963.",
       "isrc": "ITD000400099",
       "uri_apple_music": "applemusic://track/713221938",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/713221938"
+      },
       "uri_deezer": "deezer://track/3183052",
       "uri_youtube_music": "https://music.youtube.com/watch?v=n7e0adbO8Xo",
       "uri_tidal": null
@@ -308,7 +334,9 @@
       "fun_fact_it": "Bobby Solo - \"Se piangi, se ridi\" ha vinto il Festival di Sanremo nel 1965.",
       "isrc": "ES6601404075",
       "uri_apple_music": "applemusic://track/200485866",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/200485866"
+      },
       "uri_deezer": "deezer://track/91547020",
       "uri_youtube_music": "https://music.youtube.com/watch?v=sRPB7_Y-IBY",
       "uri_tidal": null
@@ -329,7 +357,9 @@
       "fun_fact_it": "Domenico Modugno - \"Dio, come ti amo!\" ha vinto il Festival di Sanremo nel 1966.",
       "isrc": "ES6601702194",
       "uri_apple_music": "applemusic://track/201496454",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/201496454"
+      },
       "uri_deezer": "deezer://track/475369812",
       "uri_youtube_music": "https://music.youtube.com/watch?v=BV9Lnr_jOjU",
       "uri_tidal": null
@@ -350,7 +380,9 @@
       "fun_fact_it": "Iva Zanicchi - \"Non pensare a me\" ha vinto il Festival di Sanremo nel 1967.",
       "isrc": "ITA646700200",
       "uri_apple_music": "applemusic://track/1545172858",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1545172858"
+      },
       "uri_deezer": "deezer://track/518982662",
       "uri_youtube_music": "https://music.youtube.com/watch?v=24eQcaDaFOI",
       "uri_tidal": null
@@ -371,7 +403,9 @@
       "fun_fact_it": "Sergio Endrigo - \"Canzone per te\" ha vinto il Festival di Sanremo nel 1968.",
       "isrc": "ITD010003182",
       "uri_apple_music": "applemusic://track/486408817",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/486408817"
+      },
       "uri_deezer": "deezer://track/74295501",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rB3mVB7TENI",
       "uri_tidal": null
@@ -392,7 +426,9 @@
       "fun_fact_it": "Iva Zanicchi - \"Zingara\" ha vinto il Festival di Sanremo nel 1969.",
       "isrc": "ITA646900195",
       "uri_apple_music": "applemusic://track/1546222942",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1546222942"
+      },
       "uri_deezer": "deezer://track/518993422",
       "uri_youtube_music": "https://music.youtube.com/watch?v=dtRqysnRdk0",
       "uri_tidal": null
@@ -413,7 +449,9 @@
       "fun_fact_it": "Adriano Celentano - \"Chi Non Lavora Non Fa L'amore\" ha vinto il Festival di Sanremo nel 1970.",
       "isrc": "ITR057000002",
       "uri_apple_music": "applemusic://track/1781321150",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1781321150"
+      },
       "uri_deezer": "deezer://track/3106613311",
       "uri_youtube_music": "https://music.youtube.com/watch?v=wHmt7pDq_Uo",
       "uri_tidal": null
@@ -455,7 +493,9 @@
       "fun_fact_it": "Nicola Di Bari - \"Il Giorni Dell'Arcobaleno\" ha vinto il Festival di Sanremo nel 1972.",
       "isrc": "DEVU51838658",
       "uri_apple_music": "applemusic://track/997827499",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/997827499"
+      },
       "uri_deezer": "deezer://track/551007132",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YBQ_1BIn22g",
       "uri_tidal": null
@@ -476,7 +516,9 @@
       "fun_fact_it": "Peppino Di Capri - \"Un Grande Amore E Niente Più\" ha vinto il Festival di Sanremo nel 1973.",
       "isrc": "ITK019800013",
       "uri_apple_music": "applemusic://track/281435827",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/281435827"
+      },
       "uri_deezer": "deezer://track/112671730",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3YAGvCq2L0E",
       "uri_tidal": null
@@ -497,7 +539,9 @@
       "fun_fact_it": "Iva Zanicchi - \"Ciao cara come stai\" ha vinto il Festival di Sanremo nel 1974.",
       "isrc": "ITA647200201",
       "uri_apple_music": "applemusic://track/1404320888",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1404320888"
+      },
       "uri_deezer": "deezer://track/518979602",
       "uri_youtube_music": "https://music.youtube.com/watch?v=kmMCp37Ybbk",
       "uri_tidal": null
@@ -518,7 +562,9 @@
       "fun_fact_it": "Homo Sapiens - \"Bella da morire\" ha vinto il Festival di Sanremo nel 1977.",
       "isrc": "ITA647700396",
       "uri_apple_music": "applemusic://track/153564720",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/153564720"
+      },
       "uri_deezer": "deezer://track/518983182",
       "uri_youtube_music": "https://music.youtube.com/watch?v=NbqgfXdyQnk",
       "uri_tidal": null
@@ -539,7 +585,9 @@
       "fun_fact_it": "Matia Bazar - \"E Dirsi Ciao\" ha vinto il Festival di Sanremo nel 1978.",
       "isrc": "ITPOO9600078",
       "uri_apple_music": "applemusic://track/1472028400",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1472028400"
+      },
       "uri_deezer": "deezer://track/3343020",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Vqm_gp-jXu0",
       "uri_tidal": null
@@ -560,7 +608,9 @@
       "fun_fact_it": "Mino Vergnaghi - \"Amare\" ha vinto il Festival di Sanremo nel 1979.",
       "isrc": "ITA647900455",
       "uri_apple_music": "applemusic://track/1404815907",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1404815907"
+      },
       "uri_deezer": "deezer://track/518973112",
       "uri_youtube_music": "https://music.youtube.com/watch?v=3WhIDovXjA0",
       "uri_tidal": null
@@ -581,7 +631,9 @@
       "fun_fact_it": "Alice - \"Per Elisa\" ha vinto il Festival di Sanremo nel 1981.",
       "isrc": "ITD008100001",
       "uri_apple_music": "applemusic://track/724022925",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/724022925"
+      },
       "uri_deezer": "deezer://track/3374113",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Yv3wl1uadXI",
       "uri_tidal": null
@@ -602,7 +654,9 @@
       "fun_fact_it": "Riccardo Fogli - \"Storie di tutti i giorni\" ha vinto il Festival di Sanremo nel 1982.",
       "isrc": "ITR008200471",
       "uri_apple_music": "applemusic://track/1453582477",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1453582477"
+      },
       "uri_deezer": "deezer://track/755986",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bgLeOgspkEA",
       "uri_tidal": null
@@ -623,7 +677,9 @@
       "fun_fact_it": "Tiziana Rivale - \"Sarà quel che sarà\" ha vinto il Festival di Sanremo nel 1983.",
       "isrc": "ITA619603165",
       "uri_apple_music": "applemusic://track/331491155",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/331491155"
+      },
       "uri_deezer": "deezer://track/4551185",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RX6-yDC3Fqg",
       "uri_tidal": null
@@ -665,7 +721,9 @@
       "fun_fact_it": "Ricchi E Poveri - \"Se m'innamoro\" ha vinto il Festival di Sanremo nel 1985.",
       "isrc": "DEA810401865",
       "uri_apple_music": "applemusic://track/302109565",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/302109565"
+      },
       "uri_deezer": "deezer://track/636414",
       "uri_youtube_music": "https://music.youtube.com/watch?v=GA8l0-N6Ds4",
       "uri_tidal": null
@@ -686,7 +744,9 @@
       "fun_fact_it": "Eros Ramazzotti - \"Adesso tu\" ha vinto il Festival di Sanremo nel 1986.",
       "isrc": "ITB008671030",
       "uri_apple_music": "applemusic://track/254548552",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/254548552"
+      },
       "uri_deezer": "deezer://track/87677323",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Wx3R0vUDG68",
       "uri_tidal": null
@@ -707,7 +767,9 @@
       "fun_fact_it": "Gianni Morandi, Enrico Ruggeri, Umberto Tozzi - \"Si può dare di più\" ha vinto il Festival di Sanremo nel 1987.",
       "isrc": "ITR008700171",
       "uri_apple_music": "applemusic://track/1542650676",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1542650676"
+      },
       "uri_deezer": "deezer://track/1413160962",
       "uri_youtube_music": "https://music.youtube.com/watch?v=qd26426Rfsg",
       "uri_tidal": null
@@ -728,7 +790,9 @@
       "fun_fact_it": "Pooh - \"Uomini soli\" ha vinto il Festival di Sanremo nel 1990.",
       "isrc": "ITR041200100",
       "uri_apple_music": "applemusic://track/1862479831",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1862479831"
+      },
       "uri_deezer": "deezer://track/3724746532",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lI1kdwCjhzI",
       "uri_tidal": null
@@ -749,7 +813,9 @@
       "fun_fact_it": "Riccardo Cocciante - \"Se stiamo insieme\" ha vinto il Festival di Sanremo nel 1991.",
       "isrc": "NLD600690030",
       "uri_apple_music": "applemusic://track/1881560562",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1881560562"
+      },
       "uri_deezer": "deezer://track/3875874271",
       "uri_youtube_music": "https://music.youtube.com/watch?v=lClgsfT0x2s",
       "uri_tidal": null
@@ -770,7 +836,9 @@
       "fun_fact_it": "Luca Barbarossa - \"Portami a ballare\" ha vinto il Festival di Sanremo nel 1992.",
       "isrc": "ITD091100012",
       "uri_apple_music": "applemusic://track/419105660",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/419105660"
+      },
       "uri_deezer": "deezer://track/9979989",
       "uri_youtube_music": "https://music.youtube.com/watch?v=7AkHfSYJMfo",
       "uri_tidal": null
@@ -791,7 +859,9 @@
       "fun_fact_it": "Enrico Ruggeri - \"Mistero\" ha vinto il Festival di Sanremo nel 1993.",
       "isrc": "ITR009300281",
       "uri_apple_music": "applemusic://track/1542650505",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1542650505"
+      },
       "uri_deezer": "deezer://track/760539",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vSSCP3ShDZI",
       "uri_tidal": null
@@ -812,7 +882,9 @@
       "fun_fact_it": "Giorgia - \"Come saprei\" ha vinto il Festival di Sanremo nel 1995.",
       "isrc": "IT00Y9900016",
       "uri_apple_music": "applemusic://track/188035286",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/188035286"
+      },
       "uri_deezer": "deezer://track/995873",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vDaT9RvgHpY",
       "uri_tidal": null
@@ -833,7 +905,9 @@
       "fun_fact_it": "Ron, Tosca - \"Vorrei incontrarti fra cent'anni (feat. Tosca)\" ha vinto il Festival di Sanremo nel 1996.",
       "isrc": "ITQ009600331",
       "uri_apple_music": "applemusic://track/298829546",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/298829546"
+      },
       "uri_deezer": "deezer://track/702227",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hJGXNFGLGwM",
       "uri_tidal": null
@@ -854,7 +928,9 @@
       "fun_fact_it": "Jalisse - \"Fiumi Di Parole\" ha vinto il Festival di Sanremo nel 1997.",
       "isrc": "IT0480500001",
       "uri_apple_music": "applemusic://track/1851334605",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1851334605"
+      },
       "uri_deezer": "deezer://track/3640764212",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YueCZsr9Wtk",
       "uri_tidal": null
@@ -875,7 +951,9 @@
       "fun_fact_it": "Annalisa Minetti - \"Senza te o con te\" ha vinto il Festival di Sanremo nel 1998.",
       "isrc": "ITE010302330",
       "uri_apple_music": "applemusic://track/336928387",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/336928387"
+      },
       "uri_deezer": "deezer://track/1673475297",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JdbhVNOmzYY",
       "uri_tidal": null
@@ -896,7 +974,9 @@
       "fun_fact_it": "Anna Oxa - \"Senza pietà\" ha vinto il Festival di Sanremo nel 1999.",
       "isrc": "ITM009901360",
       "uri_apple_music": "applemusic://track/403923545",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/403923545"
+      },
       "uri_deezer": "deezer://track/579329",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MWC2R-li-pw",
       "uri_tidal": null
@@ -917,7 +997,9 @@
       "fun_fact_it": "Avion Travel - \"Sentimento\" ha vinto il Festival di Sanremo nel 2000.",
       "isrc": "ITZ040000524",
       "uri_apple_music": "applemusic://track/1525394636",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1525394636"
+      },
       "uri_deezer": "deezer://track/1035708632",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Byf8nazCIj0",
       "uri_tidal": null
@@ -938,7 +1020,9 @@
       "fun_fact_it": "Elisa - \"Luce (Tramonti a Nord Est)\" ha vinto il Festival di Sanremo nel 2001.",
       "isrc": "ITZ040100664",
       "uri_apple_music": "applemusic://track/705069435",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444579807"
+      },
       "uri_deezer": "deezer://track/1024698802",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tPwqOWK6EFw",
       "uri_tidal": null
@@ -959,7 +1043,9 @@
       "fun_fact_it": "Matia Bazar - \"Messaggio D'Amore\" ha vinto il Festival di Sanremo nel 2002.",
       "isrc": "ITC220200001",
       "uri_apple_music": "applemusic://track/1623153240",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1623153240"
+      },
       "uri_deezer": "deezer://track/1745225757",
       "uri_youtube_music": "https://music.youtube.com/watch?v=rH-zTfbYMu8",
       "uri_tidal": null
@@ -980,7 +1066,9 @@
       "fun_fact_it": "Alexia - \"Per dire di no\" ha vinto il Festival di Sanremo nel 2003.",
       "isrc": "ITM000300046",
       "uri_apple_music": "applemusic://track/200324905",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/336016874"
+      },
       "uri_deezer": "deezer://track/15855519",
       "uri_youtube_music": "https://music.youtube.com/watch?v=wMm7gUgdgzc",
       "uri_tidal": null
@@ -1001,7 +1089,9 @@
       "fun_fact_it": "Marco Masini - \"L'uomo volante\" ha vinto il Festival di Sanremo nel 2004.",
       "isrc": "ITZ351200132",
       "uri_apple_music": "applemusic://track/1600943637",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1600943637"
+      },
       "uri_deezer": "deezer://track/1594546561",
       "uri_youtube_music": "https://music.youtube.com/watch?v=AlVmxmsjGaU",
       "uri_tidal": null
@@ -1022,7 +1112,9 @@
       "fun_fact_it": "Francesco Renga - \"Angelo\" ha vinto il Festival di Sanremo nel 2005.",
       "isrc": "IT7000500015",
       "uri_apple_music": "applemusic://track/1450934916",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1450934916"
+      },
       "uri_deezer": "deezer://track/2175872",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vCE6KYMh6yk",
       "uri_tidal": null
@@ -1044,7 +1136,8 @@
       "isrc": "ITV000600038",
       "uri_apple_music": "applemusic://track/1519834045",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1519834045"
+        "us": "applemusic://track/1519834045",
+        "de": "applemusic://track/1519834045"
       },
       "uri_deezer": "deezer://track/999720362",
       "uri_youtube_music": "https://music.youtube.com/watch?v=X_dPtwAVF8w",
@@ -1069,7 +1162,8 @@
       "uri_apple_music_by_region": {
         "es": "applemusic://track/217831136",
         "nl": "applemusic://track/217831136",
-        "it": "applemusic://track/217831136"
+        "it": "applemusic://track/217831136",
+        "de": "applemusic://track/217831136"
       },
       "uri_deezer": "deezer://track/2170433",
       "uri_youtube_music": "https://music.youtube.com/watch?v=x8RiA5ZRKMs",
@@ -1095,7 +1189,8 @@
         "gb": "applemusic://track/1444749282",
         "fr": "applemusic://track/1444749282",
         "es": "applemusic://track/1444749282",
-        "it": "applemusic://track/1444749282"
+        "it": "applemusic://track/1444749282",
+        "de": "applemusic://track/1444749282"
       },
       "uri_deezer": "deezer://track/594809612",
       "uri_youtube_music": "https://music.youtube.com/watch?v=MGAHrzJRBnY",
@@ -1117,7 +1212,9 @@
       "fun_fact_it": "Marco Carta - \"La forza mia\" ha vinto il Festival di Sanremo nel 2009.",
       "isrc": "ITR000900003",
       "uri_apple_music": "applemusic://track/305208085",
-      "uri_apple_music_by_region": {},
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/305694984"
+      },
       "uri_deezer": "deezer://track/2913698",
       "uri_youtube_music": "https://music.youtube.com/watch?v=-msSyWcO8Ys",
       "uri_tidal": null
@@ -1139,7 +1236,8 @@
       "isrc": "ITD001000024",
       "uri_apple_music": null,
       "uri_apple_music_by_region": {
-        "fr": "applemusic://track/712877672"
+        "fr": "applemusic://track/712877672",
+        "de": "applemusic://track/712877672"
       },
       "uri_deezer": "deezer://track/5522920",
       "uri_youtube_music": "https://music.youtube.com/watch?v=9PRT5NSpPCA",
@@ -1190,7 +1288,8 @@
         "gb": "applemusic://track/1442358784",
         "fr": "applemusic://track/1442358784",
         "es": "applemusic://track/1442766759",
-        "nl": "applemusic://track/1442358784"
+        "nl": "applemusic://track/1442358784",
+        "de": "applemusic://track/1442358784"
       },
       "uri_deezer": "deezer://track/16607983",
       "uri_youtube_music": "https://music.youtube.com/watch?v=pMzNxA81qmE",
@@ -1215,7 +1314,8 @@
       "uri_apple_music_by_region": {
         "gb": "applemusic://track/734536533",
         "es": "applemusic://track/599931269",
-        "it": "applemusic://track/599931269"
+        "it": "applemusic://track/599931269",
+        "de": "applemusic://track/599931269"
       },
       "uri_deezer": "deezer://track/64784607",
       "uri_youtube_music": "https://music.youtube.com/watch?v=unRjK82bDLw",
@@ -1242,7 +1342,8 @@
         "gb": "applemusic://track/819907122",
         "fr": "applemusic://track/819907122",
         "nl": "applemusic://track/819907122",
-        "it": "applemusic://track/819907122"
+        "it": "applemusic://track/819907122",
+        "de": "applemusic://track/819907122"
       },
       "uri_deezer": "deezer://track/75373315",
       "uri_youtube_music": "https://music.youtube.com/watch?v=wPrKYs2iDKQ",
@@ -1266,7 +1367,8 @@
       "uri_apple_music": "applemusic://track/1032526596",
       "uri_apple_music_by_region": {
         "gb": "applemusic://track/1115243096",
-        "es": "applemusic://track/963093889"
+        "es": "applemusic://track/963093889",
+        "de": "applemusic://track/1032526596"
       },
       "uri_deezer": "deezer://track/95138258",
       "uri_youtube_music": "https://music.youtube.com/watch?v=w1f6o1HQBvg",
@@ -1317,7 +1419,8 @@
       "isrc": "ITDV91600040",
       "uri_apple_music": "applemusic://track/1637409876",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1637409876"
+        "us": "applemusic://track/1637409876",
+        "de": "applemusic://track/1637409876"
       },
       "uri_deezer": "deezer://track/3782900022",
       "uri_youtube_music": "https://music.youtube.com/watch?v=-OnRxfhbHB4",

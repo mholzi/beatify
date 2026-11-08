@@ -65,6 +65,33 @@ suffix_conflict = backfill_apple.suffix_conflict
         # A featured guest is not a different recording.
         ("Teenage Dirtbag", "Teenage Dirtbag (feat. Bobby John)", None),
         ("Drift Away", "Drift Away", None),
+        # A take marker *behind* a feat. credit is still a different take: the
+        # credit used to be cut together with everything after it, so these
+        # remixes passed as the original.
+        (
+            "Jackie Chan",
+            "Jackie Chan (feat. Preme & Post Malone) [Sebastian Perez Remix]",
+            "sebastian perez remix",
+        ),
+        ("Song", "Song feat. X (Club Mix)", "club mix"),
+        # ...and the same marker on both sides behind a credit is no conflict.
+        (
+            "Memories (feat. Kid Cudi) - 2021 Remix",
+            "Memories (feat. Kid Cudi) [2021 Remix]",
+            None,
+        ),
+        (
+            "Promesses - Radio Edit",
+            "Promesses (Radio Edit) [feat. Kaleem Taylor]",
+            None,
+        ),
+        # "with" inside an ordinary title is not a credit to cut.
+        (
+            "The Man With the Red Face - Video Edit",
+            "The Man With the Red Face (Video Edit)",
+            None,
+        ),
+        ("Dancing with Myself", "Dancing with Myself (Live)", "live"),
     ],
 )
 def test_suffix_conflict(catalogue: str, apple: str, expected: str | None) -> None:

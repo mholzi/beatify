@@ -1,6 +1,6 @@
 {
   "name": "One-Hit Wonders",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "one-hit",
     "classics",
@@ -902,7 +902,10 @@
       "fun_fact_nl": "Robin Scott nam dit op onder alleen de letter 'M'. Het nummer voorspelde de elektronische toekomst van de muziek, maar Scott bleef liever een mysterieus eendagsvlieg.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1435333807",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=gPoiv0sZ4s4"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gPoiv0sZ4s4",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1435333807"
+      }
     },
     {
       "year": 1979,
@@ -1046,7 +1049,10 @@
       "uri_deezer": "deezer://track/906566",
       "fun_fact_nl": "Geschreven over het willen verlaten van Minneapolis voor een grotere stad. Het nummer is honderden keren gecoverd en gesampled in verschillende genres.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1440894579"
+      "uri_apple_music": "applemusic://track/1440894579",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1440894579"
+      }
     },
     {
       "year": 1980,
@@ -1675,7 +1681,10 @@
       "uri_tidal": "tidal://track/1112476",
       "uri_deezer": "deezer://track/2535353",
       "fun_fact_nl": "Colin Vearncombe koos 'Black' als zijn artiestennaam. Deze bitterzoete ballade werd een Europese hit, maar in de VS bleef hij een cultfiguur.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1443379066"
+      }
     },
     {
       "year": 1987,

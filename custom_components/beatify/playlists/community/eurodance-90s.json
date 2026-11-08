@@ -1,6 +1,6 @@
 {
   "name": "Eurodance 90s 💥",
-  "version": "1.21",
+  "version": "1.22",
   "tags": [
     "1990s",
     "eurodance",
@@ -193,7 +193,10 @@
       "uri_deezer": "deezer://track/89629717",
       "fun_fact_nl": "Eiffel 65's 'Blue' stond bovenaan de hitlijsten in 17 landen. De zwaar met autotune bewerkte zang en de repetitieve hook maakten het zowel geliefd als bespot, en het werd een bepalend geluid voor de Eurodance van de late jaren '90.",
       "awards_nl": [],
-      "uri_tidal": "tidal://track/539111445"
+      "uri_tidal": "tidal://track/539111445",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/358200264"
+      }
     },
     {
       "year": 1995,
@@ -460,7 +463,10 @@
       "uri_deezer": "deezer://track/17347911",
       "fun_fact_nl": "Culture Beats 'Mr. Vain' stond 4 weken bovenaan de Britse hitlijsten en verkocht wereldwijd meer dan 9 miljoen exemplaren. Het blijft een van de grootste Eurodance-hits van de jaren '90.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/505475126"
+      "uri_apple_music": "applemusic://track/505475126",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/505475126"
+      }
     },
     {
       "year": 1998,
@@ -767,7 +773,10 @@
       "awards_nl": [],
       "uri_tidal": "tidal://track/4343025",
       "uri_apple_music": "applemusic://track/401123583",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=ge_U6zw0gLo"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ge_U6zw0gLo",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/385054820"
+      }
     },
     {
       "year": 1994,
@@ -1069,7 +1078,10 @@
       "uri_deezer": "deezer://track/696667752",
       "fun_fact_nl": "De eigenzinnige Franse Eurodance-track van Daddy DJ werd een hit in heel Europa met zijn speelse teksten en vrolijke beats.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1841918964"
+      "uri_apple_music": "applemusic://track/1841918964",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1841918964"
+      }
     },
     {
       "year": 1998,
@@ -1264,7 +1276,10 @@
       "uri_deezer": "deezer://track/91348522",
       "fun_fact_nl": "Robert Miles' 'Children' wordt toegeschreven aan het populair maken van dream trance/dream house. De Italiaanse producent zei dat hij het schreef als protest tegen rijden onder invloed, nadat hij clubbezoekers dronken naar huis had zien rijden.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1499501875"
+      "uri_apple_music": "applemusic://track/1499501875",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1499501875"
+      }
     },
     {
       "year": 1995,
@@ -1707,7 +1722,10 @@
       "uri_deezer": "deezer://track/133204794",
       "fun_fact_nl": "De opvolger van Sash! op 'Encore Une Fois' zette hun door trance beïnvloede Eurodance-geluid voort met panfluit-samples die een exotische sfeer creëerden.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1160359227"
+      "uri_apple_music": "applemusic://track/1160359227",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1160359227"
+      }
     },
     {
       "year": 1995,
@@ -2285,7 +2303,10 @@
       "uri_deezer": "deezer://track/1538974072",
       "fun_fact_nl": "De virale hit van O-Zone werd een wereldwijd internetfenomeen door de 'Numa Numa'-video. De aanstekelijke Roemeense tekst van de Moldavische popgroep maakte het tot een van de meest herkende nummers ter wereld.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1593081404"
+      "uri_apple_music": "applemusic://track/1593081404",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1593081404"
+      }
     },
     {
       "year": 1995,
@@ -2547,7 +2568,10 @@
       "uri_deezer": "deezer://track/6907036",
       "fun_fact_nl": "De debuutsingle van Whigfield stond bovenaan de hitlijsten in 17 landen en veroorzaakte een dansrage. Het nummer werd oorspronkelijk uitgebracht in Italië, waar het een zomerhit werd voordat het zich wereldwijd verspreidde.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/79145702"
+      "uri_apple_music": "applemusic://track/79145702",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/120152901"
+      }
     },
     {
       "year": 1995,
@@ -2716,7 +2740,10 @@
       "fun_fact_nl": "Het trance-anthem van Sash! werd een van de bepalende nummers van de Europese dansmuziek van eind jaren 90, met beklijvende Franse vocalen.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1164431858",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=frhVSxCxUGE"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=frhVSxCxUGE",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1164431858"
+      }
     },
     {
       "year": 1995,
@@ -3047,7 +3074,10 @@
       "fun_fact_nl": "De grootste hit van 2 Unlimited stond bovenaan de hitlijsten in heel Europa en er werden meer dan 2,8 miljoen exemplaren van verkocht. De meedogenloze energie en 'No no limits!'-hook maakten het een typische Eurodance-track.",
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/1541663058",
-      "uri_deezer": "deezer://track/134706074"
+      "uri_deezer": "deezer://track/134706074",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1541663058"
+      }
     },
     {
       "year": 1995,
@@ -3209,7 +3239,10 @@
       "uri_deezer": "deezer://track/133204800",
       "fun_fact_nl": "Tina Cousins' samenwerking met Sash! werd een enorme trance-Eurodance crossover hit met haar etherische vocalen en stuwende productie.",
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1171882165"
+      "uri_apple_music": "applemusic://track/1171882165",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1171882165"
+      }
     },
     {
       "year": 1995,

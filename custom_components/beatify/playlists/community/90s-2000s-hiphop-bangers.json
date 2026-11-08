@@ -1,6 +1,6 @@
 {
   "name": "90s & 2000s Hip Hop Bangers",
-  "version": "1.4",
+  "version": "1.5",
   "tags": [
     "90s",
     "2000s",
@@ -1298,7 +1298,10 @@
       ],
       "awards_es": [
         "Grammy - Mejor Interpretación de Rap Solista Femenina"
-      ]
+      ],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1264527"
+      }
     },
     {
       "year": 2003,
@@ -1552,7 +1555,10 @@
       "uri_tidal": "tidal://track/222419939",
       "uri_deezer": "deezer://track/7609573",
       "fun_fact_nl": "Het nummer bevat een niet-vermelde vocale bijdrage van Justin Timberlake, die het nummer mede schreef. Het werd geschreven in reactie op de aanslagen van 11 september en werd de internationale doorbraakhit van de groep.",
-      "awards_nl": []
+      "awards_nl": [],
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1615142635"
+      }
     },
     {
       "year": 2003,

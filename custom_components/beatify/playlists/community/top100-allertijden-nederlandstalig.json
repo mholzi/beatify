@@ -1,6 +1,6 @@
 {
   "name": "Top 100 Dutch Classics 🇳🇱",
-  "version": "1.23",
+  "version": "1.24",
   "tags": [
     "nederlandstalig",
     "dutch",
@@ -1808,7 +1808,10 @@
       "fun_fact_fr": "Blijf Bij Mij est devenu un grand succès en 2017, montrant le côté plus doux et romantique de Ronnie Flex.",
       "fun_fact_nl": "Blijf Bij Mij werd een grote hit in 2017 en liet de zachtere, meer romantische kant van Ronnie Flex zien. Als een van de meest succesvolle Nederlandse hiphop/R&B-artiesten hielp Flex het genre naar een mainstream Nederlands publiek te brengen. Het oprechte sentiment van het nummer maakte het een van zijn meest geliefde nummers.",
       "awards_nl": [],
-      "uri_deezer": "deezer://track/438142772"
+      "uri_deezer": "deezer://track/438142772",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444279843"
+      }
     },
     {
       "year": 2000,
@@ -2260,7 +2263,10 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=LDDy4m_TiVk",
       "uri_tidal": "tidal://track/463294300",
       "uri_apple_music": "applemusic://track/1842499184",
-      "uri_deezer": "deezer://track/3575624831"
+      "uri_deezer": "deezer://track/3575624831",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1842499184"
+      }
     },
     {
       "year": 2023,
@@ -2444,7 +2450,10 @@
       "awards_nl": [],
       "uri_apple_music": "applemusic://track/259313534",
       "uri_deezer": "deezer://track/134543785",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=rqg_kNRvWNQ"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rqg_kNRvWNQ",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/259313534"
+      }
     },
     {
       "year": 2020,
@@ -2624,7 +2633,10 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=-mABxYPPqYc",
       "uri_tidal": "tidal://track/211497323",
       "uri_apple_music": "applemusic://track/1603656634",
-      "uri_deezer": "deezer://track/1613100472"
+      "uri_deezer": "deezer://track/1613100472",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1603656634"
+      }
     },
     {
       "year": 2004,
@@ -2869,7 +2881,10 @@
       "uri_apple_music": "applemusic://track/1444579291",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4vZ_SBbeURs",
       "uri_tidal": "tidal://track/51693783",
-      "uri_deezer": "deezer://track/108125620"
+      "uri_deezer": "deezer://track/108125620",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1444579291"
+      }
     },
     {
       "year": 2002,
@@ -3024,7 +3039,10 @@
       "uri_youtube_music": "https://music.youtube.com/watch?v=8EAUAGtTclo",
       "uri_tidal": "tidal://track/462805468",
       "uri_apple_music": "applemusic://track/1842004262",
-      "uri_deezer": "deezer://track/3568133801"
+      "uri_deezer": "deezer://track/3568133801",
+      "uri_apple_music_by_region": {
+        "de": "applemusic://track/1842004262"
+      }
     },
     {
       "year": 1967,
