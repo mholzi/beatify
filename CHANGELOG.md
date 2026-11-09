@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.0-rc1] - 2026-11-09
+
+First candidate for 5.0: play without a speaker. The TV screen or the host's phone plays each round's 30-second preview.
+
+### Added
+- **Play without a speaker** (#3444): a new group "Without a speaker · 30-s previews" in the setup wizard and the admin speaker list. The TV screen (dashboard/TV browser) or this phone (the host's admin page) plays each round's 30-second Deezer preview, with the Apple iTunes preview as fallback. The TV shows a one-time "Sound on" button, rounds are capped at 30 seconds while a browser target plays, and announcements play on the same page.
+
+### Fixed
+- **Wrong song for a whole round** (#3447): the stale-start guard now also recognises an abandoned start that Music Assistant relinks to another Spotify track id, by title and artist.
+- **Christmas Hits** (#3451): one broken YouTube Music link fixed.
+- **Spice Girls year** (#3453): "Who Do You Think You Are" is listed as 1997.
+- **British Invasion & Britpop** (#3456): 15 dead links fixed.
+- **Eurodance 90s** (#3458, #3461): 8 broken links fixed, and the official YouTube Music link for Paradisio - Bailando added.
+
 ## [4.8.9] — 2026-11-08
 
 The host page speaks your language, the party can turn festive, and a game keeps its full length when a song will not play.
