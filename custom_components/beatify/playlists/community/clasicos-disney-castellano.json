@@ -1,6 +1,6 @@
 {
   "name": "Clásicos Disney (Castellano)",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "disney",
     "movies",
@@ -1131,7 +1131,8 @@
         "Geraldine Larrosa",
         "Lupita Pérez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003)."
+      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003).",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zRgu_yySfto"
     },
     {
       "year": 1937,
