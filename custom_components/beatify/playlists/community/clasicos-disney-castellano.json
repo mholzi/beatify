@@ -1,6 +1,6 @@
 {
   "name": "Clásicos Disney (Castellano)",
-  "version": "0.6",
+  "version": "0.7",
   "tags": [
     "disney",
     "movies",
@@ -627,8 +627,6 @@
       "artist": "Beatriz Luengo",
       "title": "Se llama Amistad",
       "uri": "spotify:track:36zkLhWqPFxRHzqFCBu0ky",
-      "isrc": "QMFMG1361058",
-      "uri_deezer": "deezer://track/70649010",
       "fun_fact": "From the Spanish-language version of Disney's \"Hermano Oso 2\" (2006).",
       "fun_fact_de": "Aus der spanischsprachigen Fassung von Disneys „Hermano Oso 2\" (2006).",
       "fun_fact_es": "De la versión en español de \"Hermano Oso 2\" de Disney (2006).",
@@ -689,7 +687,6 @@
       "artist": "Gisela",
       "title": "Canta Mi Canción",
       "uri": "spotify:track:4xwATfnqfb4bAQalH4gJo3",
-      "uri_apple_music": "applemusic://track/712324217",
       "fun_fact": "From the Spanish-language version of Disney's \"Los Aristogatos\" (1970).",
       "fun_fact_de": "Aus der spanischsprachigen Fassung von Disneys „Los Aristogatos\" (1970).",
       "fun_fact_es": "De la versión en español de \"Los Aristogatos\" de Disney (1970).",
@@ -1134,8 +1131,7 @@
         "Geraldine Larrosa",
         "Lupita Pérez"
       ],
-      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=vrjis75CBmw"
+      "fun_fact_it": "Dalla versione in spagnolo di «Tierra de Osos» della Disney (2003)."
     },
     {
       "year": 1937,
@@ -1195,7 +1191,7 @@
         "Jim Sutherland"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «El Jorobado de Notre Dame» della Disney (1996).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=cwkDAsrFVfY"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=QqJDOgSnz08"
     },
     {
       "year": 1991,
@@ -1244,7 +1240,6 @@
       "artist": "María Caneda",
       "title": "Cuando Me Quería",
       "uri": "spotify:track:2pfjeexrlZCpjCkDHTGggv",
-      "uri_apple_music": "applemusic://track/712324237",
       "fun_fact": "From the Spanish-language version of Disney's \"La Bella y la Bestia\" (1991).",
       "fun_fact_de": "Aus der spanischsprachigen Fassung von Disneys „La Bella y la Bestia\" (1991).",
       "fun_fact_es": "De la versión en español de \"La Bella y la Bestia\" de Disney (1991).",
@@ -1308,9 +1303,9 @@
       "artist": "Marta Martorell",
       "title": "La Bella Y La Bestia",
       "uri": "spotify:track:0zqY0ttERCqwSfgzfMWMNG",
-      "isrc": "USWD10629578",
+      "isrc": "USWD10526694",
       "uri_apple_music": "applemusic://track/1561428432",
-      "uri_deezer": "deezer://track/713784132",
+      "uri_deezer": "deezer://track/713784152",
       "fun_fact": "From the Spanish-language version of Disney's \"La Bella y la Bestia\" (1991).",
       "fun_fact_de": "Aus der spanischsprachigen Fassung von Disneys „La Bella y la Bestia\" (1991).",
       "fun_fact_es": "De la versión en español de \"La Bella y la Bestia\" de Disney (1991).",
