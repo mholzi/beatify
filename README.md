@@ -491,7 +491,7 @@ Playlists are displayed on the main Beatify admin screen:
 
 ### Included Playlists
 
-Beatify comes with 9,026 songs across 73 curated playlists:
+Beatify comes with 10,361 songs across 77 curated playlists:
 
 - 🎸 **100 Greatest Rock Songs** — 151 rock essentials spanning 1964–2026
 - ☀️ **100 Summer Anthems** — 112 feel-good tracks from 1957–2020
@@ -509,8 +509,11 @@ Beatify comes with 9,026 songs across 73 curated playlists:
 - 🦃 **American Classics · Country & Heartland** — 66 country, heartland rock and folk favourites from 1951 to 2022, built for Thanksgiving
 - 🎌 **Anime Openings** — 140 opening themes from Cowboy Bebop to Chainsaw Man
 - 🍺 **Ballermann Party Hits** — 189 Mallorca and Schlager party tracks
+- ⚔️ **Battle of the Generations (1985-2004)** — 139 pop and party hits from 1985 to 2004
+- ⚔️ **Battle of the Generations (2005-2025)** — 140 pop and party hits from 2005 to 2025
 - 🇨🇦 **Best Canadian Hits: Top 100** — 100 Canadian hits across six decades, from The Guess Who and Rush to The Weeknd
 - 🦒 **Best of Giraffenaffen** — 26 German children's songs
+- 🎪 **Best of Pinkpop 50 Years** — 533 rock, pop and Dutch favourites from half a century of the Pinkpop festival
 - 🪔 **Bollywood Party Hits** — 79 Hindi film and party songs from 1995 to 2025, from Bole Chudiyan and Desi Girl to Stree 2
 - 🇬🇧 **British Invasion & Britpop** — 100 tracks from The Beatles to Blur
 - 🏰 **Clásicos Disney (Castellano)** — 64 Disney songs in the Spanish of Spain
@@ -538,7 +541,7 @@ Beatify comes with 9,026 songs across 73 curated playlists:
 - 🎬 **ICONIC movie songs** — 72 songs from the movies, with a dedicated movie-quiz mode
 - 🍸 **James Bond Theme Songs** — 24 title songs from Dr. No to Spectre, spanning 1962–2015
 - 🎵 **Motown & Soul Classics** — 100 iconic soul tracks from Diana Ross, Marvin Gaye, The Temptations
-- 🎬 **Movie & TV Soundtracks** — 257 iconic film soundtracks
+- 🎬 **Movie & TV Soundtracks** — 559 iconic film and TV soundtracks
 - 🇮🇹 **Musica Italiana** — 115 Italian hits from the 1960s to the 2000s
 - 🎸 **NDW – Neue Deutsche Welle** — 50 German New Wave classics from 1976–1986
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
@@ -554,6 +557,7 @@ Beatify comes with 9,026 songs across 73 curated playlists:
 - 🇨🇭 **Schweizer Hits** — 97 Swiss tracks
 - ☀️ **Sommerklassiker** — 60 international summer hits from 1978–2023
 - 🇿🇦 **South Africa by Q** — 89 Amapiano, Afro House and Afrobeats tracks, mostly from the 2020s, with reggae and highlife classics back to 1979
+- 🥁 **This is DNB** — 221 drum and bass tracks from Chase & Status, SHY FX, Dimension and more
 - 🎪 **Tomorrowland Top 1000** — 825 tracks from the festival's own all-time ranking
 - 🇳🇱 **Top 100 Dutch Classics** — 104 Nederlandstalig tracks
 - 💔 **Top 100 Power Ballads** — 99 epic rock ballads from the 80s and 90s
@@ -726,7 +730,7 @@ comparison — including where the card game wins.
 
 | | Card-based music party game | Beatify |
 |---|---|---|
-| **What you buy** | A box, and a new box or expansion for more music | Nothing. 73 playlists ship with it, 9,026 songs |
+| **What you buy** | A box, and a new box or expansion for more music | Nothing. 77 playlists ship with it, 10,361 songs |
 | **Where the music comes from** | A fixed printed deck | Spotify, Apple Music, YouTube Music, Tidal, Deezer, Amazon Music — **or your own Plex / Jellyfin / local library** |
 | **Subscription** | None | None required since v4.3.0 (streaming is one option, your own library is another) |
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |

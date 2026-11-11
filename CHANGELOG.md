@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Added
+- **Community playlists from @estarren** (Discussion #3449): This is DNB, Best of Pinkpop 50 Years, and Battle of the Generations (1985-2004 and 2005-2025) are new. Movie & TV Soundtracks grows by 302 songs.
+
 ## [5.0.0-rc1] - 2026-11-09
 
 First candidate for 5.0: play without a speaker. The TV screen or the host's phone plays each round's 30-second preview.
