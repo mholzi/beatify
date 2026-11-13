@@ -162,7 +162,7 @@ export function buildRequestRowHtml(request) {
  * #3076: the translation of ONE specific server message.
  *
  * ``errors.<CODE>`` is generic by design — INVALID_ACTION alone covers twenty
- * unrelated refusals, and GAME_NOT_STARTED turned "Need at least 2 players to
+ * unrelated refusals, and GAME_NOT_STARTED turned "Need at least one connected player to
  * start" into "Game has not started". The server therefore tags each message
  * with a stable ``message_key`` (and puts its parameters next to it in the same
  * frame); this looks that key up under ``errors.host.<message_key>``.

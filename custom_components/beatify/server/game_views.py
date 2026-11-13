@@ -1675,7 +1675,7 @@ class StartGameplayView(BeatifyAdminView):
                     message_key="ALREADY_STARTED",
                 )
             return _json_error(
-                f"Need at least {MIN_PLAYERS} players to start",
+                "Need at least one connected player to start",
                 409,
                 code="NOT_ENOUGH_PLAYERS",
                 message_key="NEED_PLAYERS",

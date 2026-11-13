@@ -152,9 +152,15 @@ describe('sabotage button visibility (#1665)', () => {
     });
 
     it('shows the button when the token is in hand and not submitted', () => {
-        updateGameView({ players: [{ name: ME, sabotage_available: true }] });
+        updateGameView({ players: [{ name: ME, sabotage_available: true }, { name: 'Other' }] });
         expect(els['sabotage-btn'].classList.contains('hidden')).toBe(false);
         expect(els['sabotage-indicator'].classList.contains('hidden')).toBe(false);
+    });
+
+    // #3491: a solo game has nobody to hit, so the chip stays hidden.
+    it('hides the button in a solo game', () => {
+        updateGameView({ players: [{ name: ME, sabotage_available: true }] });
+        expect(els['sabotage-btn'].classList.contains('hidden')).toBe(true);
     });
 
     it('hides the button when no token is available', () => {

@@ -125,13 +125,13 @@ class TestNeitherPathAnnouncesARefusal:
 
     async def test_websocket_refusal_is_silent(self):
         handler = _handler()
-        state = _started_game(1, sudden_death=False)  # one short of MIN_PLAYERS
+        state = _started_game(0, sudden_death=False)  # one short of MIN_PLAYERS
         await _start_over_websocket(state, handler)
         assert not TestBothPathsAnnounceTheStart._announced(handler)
 
     async def test_rest_refusal_is_silent(self):
         handler = _handler()
-        state = _started_game(1, sudden_death=False)
+        state = _started_game(0, sudden_death=False)
         resp = await _start_over_rest(state, handler)
         assert resp.status == 409
         assert not TestBothPathsAnnounceTheStart._announced(handler)

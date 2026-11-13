@@ -42,7 +42,7 @@ _LOGGER = logging.getLogger(__name__)
 
 #: The game is not in LOBBY — somebody already started it.
 REFUSE_ALREADY_STARTED = "already_started"
-#: Fewer than ``MIN_PLAYERS`` have joined (#2497).
+#: Fewer than ``MIN_PLAYERS`` connected players (#2497, #3491).
 REFUSE_NOT_ENOUGH_PLAYERS = "not_enough_players"
 
 
@@ -57,7 +57,10 @@ def refusal_to_start(game_state: GameState) -> str | None:
 
     if game_state.phase != GamePhase.LOBBY:
         return REFUSE_ALREADY_STARTED
-    if len(game_state.players) < MIN_PLAYERS:
+    # #3491: only *connected* players count. With a floor of one, a single
+    # closed tab (a ghost still in the registry) would otherwise be enough to
+    # start a game nobody is playing.
+    if sum(1 for p in game_state.players.values() if p.connected) < MIN_PLAYERS:
         return REFUSE_NOT_ENOUGH_PLAYERS
     return None
 

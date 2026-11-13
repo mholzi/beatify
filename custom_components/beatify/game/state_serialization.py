@@ -210,6 +210,9 @@ class StateSerializationMixin(GameStateBase):
             "playlist": playlist_name,
             "rounds": rounds_played,
             "player_count": player_count,
+            # #3491: a one-player game says nothing about a party; the stats
+            # and analytics layers leave it out of the averages.
+            "solo": player_count == 1,
             "winner": winner_name,
             "winner_score": winner_score,
             "total_points": total_points,
@@ -253,6 +256,9 @@ class StateSerializationMixin(GameStateBase):
         """
         if not self._stats_service:
             _LOGGER.debug("get_game_performance: No stats service connected")
+            return None
+        # #3491: no comparison against party averages for a solo game.
+        if len(self.players) == 1:
             return None
 
         current_avg = self._calculate_current_avg()

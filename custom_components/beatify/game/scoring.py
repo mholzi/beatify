@@ -318,8 +318,14 @@ def _apply_streak(
     player: PlayerSession,
     speed_score: int,
     streak_achievements: dict[str, int],
+    *,
+    steal_enabled: bool = True,
 ) -> None:
-    """Update streak, streak bonus, and streak achievements. Mutates player."""
+    """Update streak, streak bonus, and streak achievements. Mutates player.
+
+    #3491: ``steal_enabled`` is False in a solo game — a steal needs a second
+    player's answer to copy, so no token is unlocked.
+    """
     if speed_score > 0:
         player.previous_streak = 0
         player.streak += 1
@@ -328,7 +334,7 @@ def _apply_streak(
         if milestone_key in streak_achievements:
             streak_achievements[milestone_key] += 1
         player.streak_bonus = calculate_streak_bonus(player.streak)
-        if player.streak == STEAL_UNLOCK_STREAK:
+        if steal_enabled and player.streak == STEAL_UNLOCK_STREAK:
             player.unlock_steal()
         # #1666: reaching a milestone hands out a shield. Reuses the same
         # STREAK_MILESTONES table the bonus reads, so "milestone" means one
@@ -379,6 +385,8 @@ def _score_title_artist_round(
     player: PlayerSession,
     title_artist_manager: Any,
     streak_achievements: dict[str, int],
+    *,
+    steal_enabled: bool = True,
 ) -> None:
     """Score a player in title/artist mode (#1180). Mutates player in-place.
 
@@ -419,7 +427,12 @@ def _score_title_artist_round(
 
     # Reuse the shared streak machinery, keyed on title correctness rather
     # than a positive year score (which doesn't exist in this mode).
-    _apply_streak(player, 1 if title_correct else 0, streak_achievements)
+    _apply_streak(
+        player,
+        1 if title_correct else 0,
+        streak_achievements,
+        steal_enabled=steal_enabled,
+    )
 
     player.score += player.round_score + player.streak_bonus
     player.rounds_played += 1
@@ -1053,10 +1066,15 @@ class ScoringService:
         scales with difficulty (easy 2x / normal 3x / hard 5x); when False the
         flat 3x applies on every difficulty (unchanged).
         """
+        # #3491: steal and sabotage are duels — hidden silently in a solo game.
+        steal_enabled = len(all_players) != 1
         if title_artist_manager is not None:
             if player.submitted:
                 _score_title_artist_round(
-                    player, title_artist_manager, streak_achievements
+                    player,
+                    title_artist_manager,
+                    streak_achievements,
+                    steal_enabled=steal_enabled,
                 )
                 # #1180: movie quiz + intro mode are compatible bonuses that
                 # stack on top of the title/artist score (both are independent
@@ -1123,7 +1141,9 @@ class ScoringService:
                 ),
             )
 
-            _apply_streak(player, speed_score, streak_achievements)
+            _apply_streak(
+                player, speed_score, streak_achievements, steal_enabled=steal_enabled
+            )
             _score_artist_challenge(player, artist_challenge)
             _score_movie_challenge(player, movie_challenge)
             _score_intro_round(

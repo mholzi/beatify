@@ -1223,7 +1223,7 @@
       "HA_LOGIN_REQUIRED": "Connecte-toi à Home Assistant pour faire ça.",
       "ONLY_ADMIN": "Seul l'hôte peut faire ça.",
       "ALREADY_STARTED": "La partie a déjà commencé",
-      "NEED_PLAYERS": "Il faut au moins {min_players} joueurs. Attends que d'autres rejoignent la partie.",
+      "NEED_PLAYERS": "Au moins un joueur doit rejoindre la partie avant de pouvoir la lancer.",
       "START_FAILED": "La partie n'a pas démarré. Réessaie.",
       "START_FAILED_NO_SONGS": "Aucun titre à jouer. Choisis une autre playlist.",
       "MEDIA_PLAYER_ERROR": "L'enceinte a un problème ({detail}). Vérifie-la, puis touche « Reprendre ».",

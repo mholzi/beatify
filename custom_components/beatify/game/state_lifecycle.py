@@ -143,6 +143,10 @@ class RoundLifecycleMixin(GameStateBase):
         """
         if not self.sabotage_enabled:
             return
+        # #3491: a solo game has nobody to sabotage — no token, and the phone
+        # hides the chip. Silent on purpose; the wizard shows no hint.
+        if len(self.players) == 1:
+            return
         for player in self.players.values():
             player.unlock_sabotage()
 

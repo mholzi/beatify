@@ -165,7 +165,7 @@ async def admin_start_game(
         else:
             frame.update(
                 code=ERR_GAME_NOT_STARTED,
-                message=f"Need at least {MIN_PLAYERS} players to start",
+                message="Need at least one connected player to start",
                 message_key="NEED_PLAYERS",
                 min_players=MIN_PLAYERS,
             )

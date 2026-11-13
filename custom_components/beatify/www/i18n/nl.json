@@ -1223,7 +1223,7 @@
       "HA_LOGIN_REQUIRED": "Log hiervoor in bij Home Assistant.",
       "ONLY_ADMIN": "Alleen de host kan dat doen.",
       "ALREADY_STARTED": "Het spel is al gestart",
-      "NEED_PLAYERS": "Je hebt minstens {min_players} spelers nodig. Wacht tot er meer meedoen.",
+      "NEED_PLAYERS": "Er moet minstens één speler meedoen voordat het spel kan beginnen.",
       "START_FAILED": "Het spel startte niet. Probeer het opnieuw.",
       "START_FAILED_NO_SONGS": "Geen nummers om te spelen. Kies een andere playlist.",
       "MEDIA_PLAYER_ERROR": "De speaker heeft een probleem ({detail}). Controleer hem en tik op ‘Hervatten’.",

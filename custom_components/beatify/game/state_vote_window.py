@@ -92,7 +92,7 @@ class VoteWindowMixin(GameStateBase):
         """
         if not self.title_artist_mode:
             return
-        if self.has_near_misses():
+        if self.has_near_misses() and self._has_eligible_voter():
             self._title_artist_voting_open = True
             self._title_artist_vote_deadline = (
                 self._now() + TITLE_ARTIST_VOTE_WINDOW_SECONDS
@@ -104,9 +104,33 @@ class VoteWindowMixin(GameStateBase):
         else:
             # No vote-eligible fields — finalize now (everything exact/fuzzy/
             # skipped), no window, advance behaves exactly as the year mode.
-            self._challenge_manager.resolve_title_artist()
+            # #3491: also when nobody may vote (solo game): the near-miss is
+            # accepted at once (counts as correct) instead of waiting 30 s for
+            # a vote that cannot come. A host override set beforehand still wins.
+            self._challenge_manager.resolve_title_artist(
+                accept_unvoted=self.has_near_misses()
+            )
             self._title_artist_voting_open = False
             self._title_artist_vote_deadline = None
+
+    def _has_eligible_voter(self) -> bool:
+        """True when at least one near-miss has someone allowed to vote (#3491).
+
+        Same rules as :meth:`all_crowd_court_votes_in`: connected, not
+        eliminated, and never the owner of the near-miss. Deliberately the
+        looser ``connected`` flag rather than ``is_active``: this only decides
+        whether to open the window at all, so a doubtful voter keeps it open
+        (the pre-#3491 behaviour). In a solo game the only player owns every
+        near-miss, so the window would only burn 30 s.
+        """
+        active = [
+            p.name for p in self.players.values() if p.connected and not p.eliminated
+        ]
+        for near_miss in self.get_near_misses():
+            owner = near_miss["id"].rsplit(":", 1)[0]
+            if any(name != owner for name in active):
+                return True
+        return False
 
     def all_crowd_court_votes_in(self) -> bool:
         """True when every eligible voter has voted on every near-miss (#1667).
