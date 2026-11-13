@@ -4,8 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.0-rc2] - 2026-11-13
+
+Second candidate for 5.0: one person can now play alone, and four community playlists join the collection.
+
 ### Added
+- **Solo mode** (#3491): a single player can start a game. Steal and sabotage stay hidden when nobody else is playing, a Title & Artist near-miss counts as correct at once instead of waiting 30 seconds for votes, only connected players count toward the start, and solo games stay out of the party averages in the stats.
 - **Community playlists from @estarren** (Discussion #3449): This is DNB, Best of Pinkpop 50 Years, and Battle of the Generations (1985-2004 and 2005-2025) are new. Movie & TV Soundtracks grows by 302 songs.
+
+### Fixed
+- **Broken links** (#3470, #3475, #3478, #3482, #3489): Fiesta Latina 90s, Salsa y Merengue, Clásicos Disney, Gen Z Anthems and Best of Pinkpop play again on every service. 64 more YouTube Music links added (#3480, #3486, #3487).
 
 ## [5.0.0-rc1] - 2026-11-09
 
