@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.0-rc3] - 2026-11-13
+
+Third candidate for 5.0: a fix for solo games found in the rc2 live test.
+
+### Fixed
+- **Solo near-miss scoring** (#3494): in a solo game, an accepted Title & Artist near-miss now adds its points to the score, and the round shows up in the results.
+
 ## [5.0.0-rc2] - 2026-11-13
 
 Second candidate for 5.0: one person can now play alone, and four community playlists join the collection.
