@@ -1,7 +1,7 @@
 {
   "name": "James Bond Theme Songs 🎬",
   "description": "Every shaken-not-stirred title song, from the 1962 James Bond Theme and Shirley Bassey's Goldfinger to Adele's Skyfall and Billie Eilish, with a film quiz for each track. Years follow the film releases. Requested in #3149, extended with @estarren's list from #3449.",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "james-bond",
     "007",
@@ -876,7 +876,8 @@
         "The Man with the Golden Gun",
         "You Only Live Twice",
         "From Russia with Love"
-      ]
+      ],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dNKnlP7urDU"
     },
     {
       "artist": "John Barry",
@@ -1000,7 +1001,8 @@
         "No Time to Die",
         "Casino Royale",
         "Spectre"
-      ]
+      ],
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CDwwXiE_VKw"
     },
     {
       "artist": "Billie Eilish",
