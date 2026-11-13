@@ -1795,7 +1795,9 @@ function updateStealUI(players) {
 
     if (!currentPlayer) return;
 
-    hasStealAvailable = currentPlayer.steal_available && !hasSubmitted;
+    // #3491: a solo game hides the duel chips silently. The server grants no
+    // token either; this keeps a stale flag from showing a chip with no target.
+    hasStealAvailable = currentPlayer.steal_available && !hasSubmitted && players.length > 1;
 
     var stealIndicator = document.getElementById('steal-indicator');
     var stealBtn = document.getElementById('steal-btn');
@@ -2212,7 +2214,7 @@ function updateSabotageUI(players) {
         applySabotageFreeze(freezeRemaining);
     }
 
-    hasSabotageAvailable = currentPlayer.sabotage_available && !hasSubmitted;
+    hasSabotageAvailable = currentPlayer.sabotage_available && !hasSubmitted && players.length > 1;
 
     var sabotageIndicator = document.getElementById('sabotage-indicator');
     var sabotageBtn = document.getElementById('sabotage-btn');

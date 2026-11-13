@@ -106,12 +106,10 @@ class TestSabotageGrantOnTheRealStartPath:
 
 
 class TestMinimumPlayersOnTheRealStartPath:
-    async def test_websocket_start_refuses_a_single_player(self):
+    async def test_websocket_start_refuses_an_empty_lobby(self):
         handler, gs = _handler_game()
-        sockets = _join(gs, ["Alice"])
-        ws = sockets["Alice"]
-        gs.set_admin("Alice")
-        ws.send_json.reset_mock()
+        ws = _ws()
+        gs.set_admin("Alice")  # nobody has joined; the host's socket is not a player
 
         await handler._handle_message(ws, {"type": "admin", "action": "start_game"})
 

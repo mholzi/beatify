@@ -1223,7 +1223,7 @@
       "HA_LOGIN_REQUIRED": "Melde dich dafür bei Home Assistant an.",
       "ONLY_ADMIN": "Das darf nur der Gastgeber.",
       "ALREADY_STARTED": "Das Spiel läuft bereits",
-      "NEED_PLAYERS": "Es braucht mindestens {min_players} Spieler. Warte, bis noch jemand beitritt.",
+      "NEED_PLAYERS": "Mindestens ein Spieler muss beitreten, bevor das Spiel starten kann.",
       "START_FAILED": "Das Spiel ist nicht gestartet. Versuch es noch mal.",
       "START_FAILED_NO_SONGS": "Keine Songs zum Spielen. Wähl eine andere Playlist.",
       "MEDIA_PLAYER_ERROR": "Der Lautsprecher hat ein Problem ({detail}). Prüf ihn und tippe dann auf „Fortsetzen“.",

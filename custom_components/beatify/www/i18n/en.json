@@ -1223,7 +1223,7 @@
       "HA_LOGIN_REQUIRED": "Log in to Home Assistant to do this.",
       "ONLY_ADMIN": "Only the host can do that.",
       "ALREADY_STARTED": "Game already started",
-      "NEED_PLAYERS": "You need at least {min_players} players. Wait for more to join.",
+      "NEED_PLAYERS": "At least one player must join before the game can start.",
       "START_FAILED": "The game didn't start. Try again.",
       "START_FAILED_NO_SONGS": "No songs to play. Pick a different playlist.",
       "MEDIA_PLAYER_ERROR": "The speaker ran into a problem ({detail}). Check it, then tap Resume.",

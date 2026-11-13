@@ -14,7 +14,7 @@ import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, TypedDict, cast
+from typing import TYPE_CHECKING, Any, NotRequired, TypedDict, cast
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -61,6 +61,9 @@ class GameRecord(TypedDict):
     # Story 19.12: Bet tracking
     total_bets: int  # Total bets placed in game
     bets_won: int  # Bets that won (doubled points)
+    # #3491: one-player game. Absent on records written before solo mode, which
+    # reads as False — stored history stays valid.
+    solo: NotRequired[bool]
 
 
 class ErrorEvent(TypedDict):
@@ -844,12 +847,15 @@ class AnalyticsStorage:
 
         # Compute current period metrics
         total_games = len(current_games)
-        total_players = sum(g["player_count"] for g in current_games)
+        # #3491: solo games count as games and rounds, but stay out of the
+        # party figures (players per game, peak, average score).
+        party_games = [g for g in current_games if not g.get("solo")]
+        total_players = sum(g["player_count"] for g in party_games)
         total_rounds = sum(g["rounds_played"] for g in current_games)
-        total_score = sum(g["average_score"] * g["player_count"] for g in current_games)
+        total_score = sum(g["average_score"] * g["player_count"] for g in party_games)
         total_errors = len(current_errors)
 
-        avg_players = total_players / total_games if total_games > 0 else 0
+        avg_players = total_players / len(party_games) if party_games else 0
         avg_score = total_score / total_players if total_players > 0 else 0
         # Error rate = errors per round (should be a small decimal, e.g., 0.05 = 5%)
         error_rate = total_errors / total_rounds if total_rounds > 0 else 0
@@ -859,10 +865,11 @@ class AnalyticsStorage:
 
         # Compute previous period metrics for trends
         prev_total_games = len(previous_games)
-        prev_total_players = sum(g["player_count"] for g in previous_games)
+        prev_party_games = [g for g in previous_games if not g.get("solo")]
+        prev_total_players = sum(g["player_count"] for g in prev_party_games)
         prev_total_rounds = sum(g["rounds_played"] for g in previous_games)
         prev_total_score = sum(
-            g["average_score"] * g["player_count"] for g in previous_games
+            g["average_score"] * g["player_count"] for g in prev_party_games
         )
         prev_errors = self.get_errors(
             start_date=previous_start, end_date=current_start - 1
@@ -870,7 +877,7 @@ class AnalyticsStorage:
         prev_total_errors = len(prev_errors)
 
         prev_avg_players = (
-            prev_total_players / prev_total_games if prev_total_games > 0 else 0
+            prev_total_players / len(prev_party_games) if prev_party_games else 0
         )
         prev_avg_score = (
             prev_total_score / prev_total_players if prev_total_players > 0 else 0
@@ -898,7 +905,7 @@ class AnalyticsStorage:
         )
 
         # Story 19.8: Calculate peak concurrent players
-        peak_players = max((g["player_count"] for g in current_games), default=0)
+        peak_players = max((g["player_count"] for g in party_games), default=0)
 
         result = {
             "period": period,

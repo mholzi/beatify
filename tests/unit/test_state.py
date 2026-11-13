@@ -2719,28 +2719,6 @@ class TestStartGameplayFloor:
         "custom_components.beatify.server.game_views.is_authorized_http",
         return_value=True,
     )
-    async def test_one_short_of_the_floor_is_refused(self, _auth):
-        state = make_game_state()
-        _create_fresh_game(state)
-        for i in range(MIN_PLAYERS - 1):
-            _add_live_player(state, f"P{i}")
-        state.start_round = AsyncMock(return_value=True)
-
-        resp = await StartGameplayView(self._hass(state)).post(MagicMock())
-        body = json.loads(resp.body)
-
-        assert resp.status == 409
-        assert body["code"] == "NOT_ENOUGH_PLAYERS"
-        # The message names the floor, so raising MIN_PLAYERS cannot leave the
-        # host reading the old number (same guarantee as #2699's warning).
-        assert str(MIN_PLAYERS) in body["message"]
-        assert state.phase == GamePhase.LOBBY
-        state.start_round.assert_not_awaited()
-
-    @patch(
-        "custom_components.beatify.server.game_views.is_authorized_http",
-        return_value=True,
-    )
     async def test_empty_lobby_is_refused(self, _auth):
         state = make_game_state()
         _create_fresh_game(state)

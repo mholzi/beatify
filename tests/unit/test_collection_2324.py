@@ -30,9 +30,9 @@ def _started_game(*names: str, difficulty: str = "normal"):
     """Build a game with ``names`` plus a silent extra player.
 
     "Nobody" never submits, so it never collects and never affects a threshold
-    assertion. It was added because ``MIN_PLAYERS`` is 2 and the old
-    ``start_game()`` shortcut refused a one-player room; #2717 deleted that
-    method (nothing in production called it) and ``_begin_round`` below owns
+    assertion. It was added because ``MIN_PLAYERS`` used to be 2 and the old
+    ``start_game()`` shortcut refused a one-player room (#3491 lowered the floor
+    to 1); #2717 deleted that method (nothing in production called it) and ``_begin_round`` below owns
     the PLAYING flip anyway. The extra body stays so the fixture shape — and
     every round_results / leaderboard assertion built on it — is unchanged.
     """

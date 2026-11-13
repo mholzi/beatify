@@ -1223,7 +1223,7 @@
       "HA_LOGIN_REQUIRED": "Inicia sesión en Home Assistant para hacer esto.",
       "ONLY_ADMIN": "Eso solo puede hacerlo el anfitrión.",
       "ALREADY_STARTED": "La partida ya ha comenzado",
-      "NEED_PLAYERS": "Hacen falta al menos {min_players} jugadores. Espera a que se una alguien más.",
+      "NEED_PLAYERS": "Al menos un jugador debe unirse antes de que pueda empezar la partida.",
       "START_FAILED": "La partida no ha empezado. Inténtalo de nuevo.",
       "START_FAILED_NO_SONGS": "No hay canciones para jugar. Elige otra playlist.",
       "MEDIA_PLAYER_ERROR": "El altavoz ha tenido un problema ({detail}). Revísalo y toca «Reanudar».",

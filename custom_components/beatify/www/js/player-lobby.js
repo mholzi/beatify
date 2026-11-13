@@ -509,7 +509,7 @@ export function handleStartFailure(data) {
     startBtn.appendChild(label);
 
     var code = data && data.code;
-    // #3076: the specific message ("Need at least 2 players to start") before
+    // #3076: the specific message ("Need at least one connected player to start") before
     // the generic errors.<CODE> ("Game has not started").
     var message = specificErrorText(data, utils.t)
         || (code ? utils.t('errors.' + code) : null);

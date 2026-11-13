@@ -780,14 +780,16 @@ class ChallengeManager:
                 )
         return outcomes
 
-    def resolve_title_artist(self) -> None:
+    def resolve_title_artist(self, *, accept_unvoted: bool = False) -> None:
         """
         Finalize all near-misses and mark the challenge resolved (Issue #1180).
 
         Per near-miss field, accept if:
           * a host override is present -> use the override value; else
           * cast votes exist and 👍 / (👍 + 👎) >= 0.5 (majority of cast).
-        Default with no votes and no override -> reject.
+        Default with no votes and no override -> reject, unless
+        ``accept_unvoted`` (#3491: nobody was allowed to vote, a solo game)
+        -> accept.
 
         Accepted fields get their status set to "near_miss_accepted" so
         title_artist_points awards partial credit. Idempotent: a no-op if
@@ -806,7 +808,10 @@ class ChallengeManager:
                 yes = near_miss["votes_yes"]
                 no = near_miss["votes_no"]
                 total = yes + no
-                accepted = total > 0 and (yes / total) >= 0.5
+                if total == 0:
+                    accepted = accept_unvoted
+                else:
+                    accepted = (yes / total) >= 0.5
 
             if accepted:
                 player = near_miss["player"]

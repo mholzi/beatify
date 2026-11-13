@@ -12,7 +12,7 @@ DEFAULT_ENABLE_COMPANION_AUTH_BYPASS = False
 
 # Game configuration
 MAX_PLAYERS = 20
-MIN_PLAYERS = 2
+MIN_PLAYERS = 1
 # #2699: the one place the Sudden Death floor is defined. server/game_views.py
 # enforces it at the LOBBY->PLAYING transition, www/js/game-constants.js mirrors
 # it for the wizard card (guarded by

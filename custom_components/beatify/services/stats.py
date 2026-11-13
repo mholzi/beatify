@@ -309,6 +309,9 @@ class StatsService:
         rounds = game_summary.get("rounds", 1)
         player_count = game_summary.get("player_count", 1)
         total_points = game_summary.get("total_points", 0)
+        # #3491: solo games are kept in the history but stay out of the party
+        # aggregates (all-time average, record, per-playlist average).
+        solo = bool(game_summary.get("solo", False))
 
         # Avoid division by zero
         if rounds * player_count == 0:
@@ -330,6 +333,8 @@ class StatsService:
             "avg_score_per_round": round(avg_score_per_round, 2),
             "total_points": total_points,
         }
+        if solo:
+            game_entry["solo"] = True
 
         # Record to analytics storage (Story 19.1 AC: #1)
         if self._analytics:
@@ -358,11 +363,15 @@ class StatsService:
                 "total_bets": game_summary.get("total_bets", 0),
                 "bets_won": game_summary.get("bets_won", 0),
             }
+            if solo:
+                analytics_record["solo"] = True
             await self._analytics.add_game(analytics_record)
             self._game_start_time = None  # Reset for next game
 
         # Store comparison before updating stats
         comparison = self.get_game_comparison(avg_score_per_round)
+        if solo:
+            comparison["is_new_record"] = False
 
         # Invalidate cached all-time average
         self._all_time_avg_cache = None
@@ -394,11 +403,14 @@ class StatsService:
         # Maintain avg_score_per_round as a rounds*players-weighted mean,
         # matching the all_time weighting (#1402).
         weight = rounds * player_count
-        playlist_stats["total_weighted_score"] = (
-            playlist_stats.get("total_weighted_score", 0.0)
-            + avg_score_per_round * weight
-        )
-        playlist_stats["total_weight"] = playlist_stats.get("total_weight", 0) + weight
+        if not solo:
+            playlist_stats["total_weighted_score"] = (
+                playlist_stats.get("total_weighted_score", 0.0)
+                + avg_score_per_round * weight
+            )
+            playlist_stats["total_weight"] = (
+                playlist_stats.get("total_weight", 0) + weight
+            )
         if playlist_stats["total_weight"] > 0:
             playlist_stats["avg_score_per_round"] = round(
                 playlist_stats["total_weighted_score"] / playlist_stats["total_weight"],
@@ -408,6 +420,10 @@ class StatsService:
         # Update all-time stats. This one may be edited in place: all_time is a
         # top-level container, so _snapshot() already copies it (#2642).
         all_time = self._stats["all_time"]
+        if solo:
+            await self.async_flush()
+            _LOGGER.info("Recorded solo game %s (excluded from averages)", game_id)
+            return comparison
         all_time["games_played"] += 1
         # Maintain the running weighted score sum that backs all_time_avg, so
         # the average is correct even after old games are folded out of the
@@ -546,6 +562,8 @@ class StatsService:
         total_weight = 0
 
         for game in games:
+            if game.get("solo"):
+                continue
             weight = game.get("rounds", 1) * game.get("player_count", 1)
             avg = game.get("avg_score_per_round", 0.0)
             total_weighted += avg * weight

@@ -2,7 +2,7 @@
  * #3076: the host phone shows the SPECIFIC server message again.
  *
  * #3057 looked every error up as `errors.<CODE>`, which is generic by design:
- * "Need at least 2 players to start" (code GAME_NOT_STARTED) read
+ * "Need at least one connected player to start" (code GAME_NOT_STARTED) read
  * "Game has not started". The server now sends a stable `message_key` per
  * message; `errors.host.<message_key>` wins, `errors.<CODE>` is the fallback.
  */
@@ -33,39 +33,38 @@ function translator(d) {
 const frame = {
     type: 'error',
     code: 'GAME_NOT_STARTED',
-    message: 'Need at least 2 players to start',
+    message: 'Need at least one connected player to start',
     message_key: 'NEED_PLAYERS',
-    min_players: 2,
+    min_players: 1,
 };
 
-describe('one player tries to start (#3076)', () => {
+describe('nobody has joined yet and the host tries to start (#3076)', () => {
     it.each(LOCALES)('%s: shows the need-players text, not the generic code text', (l) => {
         const t = translator(dict[l]);
         const shown = errorHeadlineAndDetail(frame, t, frame.message).message;
-        expect(shown).toBe(dict[l].errors.host.NEED_PLAYERS.replace('{min_players}', '2'));
+        expect(shown).toBe(dict[l].errors.host.NEED_PLAYERS);
         expect(shown).not.toBe(dict[l].errors.GAME_NOT_STARTED);
-        expect(shown).toContain('2');
     });
 
     // #3386: the server's meaning plus the host's next step.
     it('English reads like the server text', () => {
         const t = translator(dict.en);
         expect(errorHeadlineAndDetail(frame, t, '').message).toBe(
-            'You need at least 2 players. Wait for more to join.',
+            'At least one player must join before the game can start.',
         );
     });
 
     it('German is the translated sentence', () => {
         const t = translator(dict.de);
         expect(errorHeadlineAndDetail(frame, t, '').message).toBe(
-            'Es braucht mindestens 2 Spieler. Warte, bis noch jemand beitritt.',
+            'Mindestens ein Spieler muss beitreten, bevor das Spiel starten kann.',
         );
     });
 
     it('the WS error branch goes through the same lookup', () => {
         globalThis.window = globalThis.window || globalThis;
         globalThis.window.BeatifyI18n = { t: translator(dict.de) };
-        expect(localizedErrorMessage(frame)).toBe('Es braucht mindestens 2 Spieler. Warte, bis noch jemand beitritt.');
+        expect(localizedErrorMessage(frame)).toBe('Mindestens ein Spieler muss beitreten, bevor das Spiel starten kann.');
         delete globalThis.window.BeatifyI18n;
     });
 
@@ -97,7 +96,7 @@ describe('fallbacks stay in place', () => {
 
     it('an unfilled placeholder falls back instead of showing {braces}', () => {
         const r = errorHeadlineAndDetail(
-            { code: 'GAME_NOT_STARTED', message: 'x', message_key: 'NEED_PLAYERS' },
+            { code: 'GAME_NOT_STARTED', message: 'x', message_key: 'GAME_PAUSED' },
             t,
             '',
         );

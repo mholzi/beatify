@@ -2,7 +2,7 @@
 
 #3057 mapped every error frame to ``errors.<CODE>``. Several codes are shared by
 many refusals (INVALID_ACTION alone covers twenty), and some are plainly less
-precise than the server text: "Need at least 2 players to start" became "Game has
+precise than the server text: "Need at least one connected player to start" became "Game has
 not started". The server now tags each message with a stable ``message_key`` and
 the frontend resolves it under ``errors.host.<message_key>``.
 
@@ -47,10 +47,10 @@ def _lobby_with(players: int):
     return state
 
 
-async def test_ws_start_with_one_player_sends_the_specific_key():
+async def test_ws_start_with_no_players_sends_the_specific_key():
     ws = AsyncMock()
     handler = MagicMock()
-    await admin_start_game(handler, ws, {}, _lobby_with(1))
+    await admin_start_game(handler, ws, {}, _lobby_with(0))
     frame = ws.send_json.call_args.args[0]
     assert frame["code"] == "GAME_NOT_STARTED"  # unchanged, still the fallback
     assert frame["message_key"] == "NEED_PLAYERS"
@@ -61,9 +61,9 @@ async def test_ws_start_with_one_player_sends_the_specific_key():
     "custom_components.beatify.server.game_views.is_authorized_http",
     return_value=True,
 )
-async def test_rest_start_with_one_player_sends_the_specific_key(_auth):
+async def test_rest_start_with_no_players_sends_the_specific_key(_auth):
     hass = MagicMock()
-    hass.data = {DOMAIN: {"game": _lobby_with(1), "ws_handler": MagicMock()}}
+    hass.data = {DOMAIN: {"game": _lobby_with(0), "ws_handler": MagicMock()}}
     resp = await StartGameplayView(hass).post(MagicMock())
     body = json.loads(resp.body)
     assert resp.status == 409
@@ -123,7 +123,7 @@ def test_every_english_text_matches_what_the_server_sends():
     """
     en = json.loads((I18N / "en.json").read_text(encoding="utf-8"))["errors"]["host"]
     assert en["NEED_PLAYERS"] == (
-        "You need at least {min_players} players. Wait for more to join."
+        "At least one player must join before the game can start."
     )
     assert en["ALREADY_STARTED"] == "Game already started"
     assert en["NO_ACTIVE_GAME"] == "No game is running. Start a new one."

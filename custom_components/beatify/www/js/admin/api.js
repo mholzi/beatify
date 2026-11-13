@@ -62,7 +62,7 @@ export function reconnectDelay(attempt) {
 
 /**
  * #3057: the text for a `type:'error'` frame. The server's `message` is hard
- * English ("Need at least 2 players to start"); `errors.<CODE>` exists in all
+ * English ("Need at least one connected player to start"); `errors.<CODE>` exists in all
  * six locales, so look the code up first and keep the server sentence only as
  * the fallback for a code without a translation.
  */
