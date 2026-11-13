@@ -107,11 +107,17 @@ class VoteWindowMixin(GameStateBase):
             # #3491: also when nobody may vote (solo game): the near-miss is
             # accepted at once (counts as correct) instead of waiting 30 s for
             # a vote that cannot come. A host override set beforehand still wins.
-            self._challenge_manager.resolve_title_artist(
-                accept_unvoted=self.has_near_misses()
-            )
+            deferred = self.has_near_misses()
+            self._challenge_manager.resolve_title_artist(accept_unvoted=deferred)
             self._title_artist_voting_open = False
             self._title_artist_vote_deadline = None
+            if deferred:
+                # #3494: _score_round skipped scoring because of this near-miss,
+                # and no vote window will run _finalize_title_artist_window. Run
+                # the same post-resolve steps here. Our caller
+                # (_end_round_unlocked) already holds _score_lock and this
+                # method is sync, so use the lock-free helper.
+                self._apply_title_artist_post_resolve()
 
     def _has_eligible_voter(self) -> bool:
         """True when at least one near-miss has someone allowed to vote (#3491).
@@ -264,19 +270,25 @@ class VoteWindowMixin(GameStateBase):
         self._title_artist_vote_deadline = None
         self._challenge_manager.resolve_title_artist()
         async with self._score_lock:
-            await self._score_title_artist_round()
-            # #1747: the deferred title/artist scores are now final, so run the
-            # Sudden Death cut that _end_round_unlocked deferred for this path.
-            # Guarded by voting_open above so it runs exactly once per round (the
-            # host-advance and window-expiry races both resolve through here).
-            # Caller-held _score_lock is required by _apply_sudden_death_elimination.
-            self._apply_sudden_death_elimination()
-            # #1724: the deferred scores are now final too, so run the halfway
-            # comeback-token grant that _end_round_unlocked deferred for this
-            # path. Idempotent per game via the per-player granted flag.
-            self._maybe_grant_comeback_tokens()
+            self._apply_title_artist_post_resolve()
 
-    async def _score_title_artist_round(self) -> None:
+    def _apply_title_artist_post_resolve(self) -> None:
+        """Post-resolve steps for a deferred title/artist round (#3494).
+
+        Shared by the vote-window finalize and the solo instant-accept branch.
+        Caller MUST hold ``_score_lock`` (sync, so it cannot take it itself).
+        """
+        self._score_title_artist_round()
+        # #1747: the deferred title/artist scores are now final, so run the
+        # Sudden Death cut that _end_round_unlocked deferred for this path.
+        # Runs exactly once per round (voting_open guard / solo branch).
+        self._apply_sudden_death_elimination()
+        # #1724: the deferred scores are now final too, so run the halfway
+        # comeback-token grant that _end_round_unlocked deferred for this
+        # path. Idempotent per game via the per-player granted flag.
+        self._maybe_grant_comeback_tokens()
+
+    def _score_title_artist_round(self) -> None:
         """Run the deferred title/artist scoring pass. Caller holds the lock.
 
         Scores every player exactly once now that near-misses are resolved,
