@@ -4,6 +4,9 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+### Changed
+- **James Bond Theme Songs** (Discussion #3449, @estarren): 8 more songs, up to No Time to Die, and a film quiz for every track.
+
 ## [5.0.0] - 2026-11-13
 
 Beatify no longer needs a speaker in Home Assistant, one person can play alone, and four new playlists arrive from the community.
