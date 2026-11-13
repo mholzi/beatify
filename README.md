@@ -872,6 +872,11 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v5.0.0 — No Speaker Needed 📺
+- **No speaker? No problem**: the TV browser or the host's phone plays a 30-second preview each round, so any room with a screen can host a quiz (#3444)
+- **Play alone**: one player is enough to start, and steal and sabotage wait until friends join (#3491, #3494)
+- **New community playlists**: This Is DNB, Best of Pinkpop – 50 Years and two Battle of the Generations lists, plus 300 more soundtrack songs and seven repaired playlists (#3449, #3470, #3489)
+
 ### v4.8.9 — Every Word at Home 🌍
 - **The host page speaks your language**: the Crate Digger AI window, its examples and the speaker hints are translated into all six languages (#3422, #3424, #3431, #3434)
 - **More songs**: Christmas Hits is new, Greatest Hits of All Time grows by 100 songs, and German Apple Music users get checked links in 43 playlists (#3427, #3440)

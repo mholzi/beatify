@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-11-13
+
+Beatify no longer needs a speaker in Home Assistant, one person can play alone, and four new playlists arrive from the community.
+
+### 📺 Play on the TV, a phone, or solo
+
+The TV browser or the host's phone can now play a 30-second preview each round, so any living room with a screen can host a quiz. One player is enough to start a game, and the duel features step aside until friends join.
+
+### 🎶 Four new playlists
+
+This Is DNB, Best of Pinkpop – 50 Years and two Battle of the Generations lists join the collection, and Movie & TV Soundtracks grows by 300 songs, thanks to **@estarren**. Seven playlists get their broken links fixed.
+
 ## [5.0.0-rc3] - 2026-11-13
 
 Third candidate for 5.0: a fix for solo games found in the rc2 live test.
