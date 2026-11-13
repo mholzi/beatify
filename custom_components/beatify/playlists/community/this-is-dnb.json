@@ -1,6 +1,6 @@
 {
   "name": "This is DNB",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "drum-and-bass",
     "dnb",
@@ -338,9 +338,7 @@
       "certifications": [],
       "awards": [],
       "awards_nl": [],
-      "isrc": "GBUM72207786",
       "uri": "spotify:track:3uyEfOe9WtKJztamx4FaUL",
-      "uri_deezer": "deezer://track/3430470411",
       "fun_fact": "“Clart” was released by Bru-C, Hedex in 2022. The year refers to this recording.",
       "fun_fact_de": "“Clart” von Bru-C, Hedex erschien 2022. Das Jahr bezieht sich auf diese Aufnahme.",
       "fun_fact_es": "“Clart”, de Bru-C, Hedex, se publicó en 2022. El año corresponde a esta grabación.",
@@ -4667,7 +4665,7 @@
       "fun_fact_fr": "“Regular”, par Vital, est sorti en 2019. L’année correspond à cet enregistrement.",
       "fun_fact_nl": "“Regular” is een uitgave van Vital uit 2019. Het jaar verwijst naar deze opname.",
       "fun_fact_it": "“Regular” di Vital è uscito nel 2019. L’anno si riferisce a questa registrazione.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=WcyzRqnpj3U"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Kw0Z04zFCEc"
     },
     {
       "artist": "Crissy Criss, Youngman, Sub Killaz, Profile",
@@ -5367,7 +5365,7 @@
       "fun_fact_fr": "“Real”, par Upgrade (UK), Bassman, est sorti en 2019. L’année correspond à cet enregistrement.",
       "fun_fact_nl": "“Real” is een uitgave van Upgrade (UK), Bassman uit 2019. Het jaar verwijst naar deze opname.",
       "fun_fact_it": "“Real” di Upgrade (UK), Bassman è uscito nel 2019. L’anno si riferisce a questa registrazione.",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=fs7OKW0EJBU"
+      "uri_youtube_music": "https://music.youtube.com/watch?v=NqYzzkCAubA"
     },
     {
       "artist": "Critical Impact, Furniss, Youngman",
