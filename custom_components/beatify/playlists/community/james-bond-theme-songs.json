@@ -1,7 +1,7 @@
 {
   "name": "James Bond Theme Songs 🎬",
-  "description": "Every shaken-not-stirred title song, from the 1962 James Bond Theme and Shirley Bassey's Goldfinger to Adele's Skyfall and Sam Smith. Years follow the film releases. Requested in #3149.",
-  "version": "0.2",
+  "description": "Every shaken-not-stirred title song, from the 1962 James Bond Theme and Shirley Bassey's Goldfinger to Adele's Skyfall and Billie Eilish, with a film quiz for each track. Years follow the film releases. Requested in #3149, extended with @estarren's list from #3449.",
+  "version": "0.3",
   "tags": [
     "james-bond",
     "007",
@@ -42,7 +42,13 @@
       },
       "uri_deezer": "deezer://track/107900036",
       "uri_youtube_music": "https://music.youtube.com/watch?v=8jzDnsjYv9A",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Spectre",
+      "movie_choices": [
+        "Spectre",
+        "Die Another Day",
+        "Tomorrow Never Dies"
+      ]
     },
     {
       "year": 2012,
@@ -68,7 +74,13 @@
       },
       "uri_deezer": "deezer://track/82715364",
       "uri_youtube_music": "https://music.youtube.com/watch?v=DeumyOzKqgI",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Skyfall",
+      "movie_choices": [
+        "No Time to Die",
+        "The World Is Not Enough",
+        "Skyfall"
+      ]
     },
     {
       "year": 1973,
@@ -94,7 +106,13 @@
       },
       "uri_deezer": "deezer://track/126368823",
       "uri_youtube_music": "https://music.youtube.com/watch?v=08saJgLmytU",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Live and Let Die",
+      "movie_choices": [
+        "The Spy Who Loved Me",
+        "The Man with the Golden Gun",
+        "Live and Let Die"
+      ]
     },
     {
       "year": 2006,
@@ -120,7 +138,13 @@
       },
       "uri_deezer": "deezer://track/584262412",
       "uri_youtube_music": "https://music.youtube.com/watch?v=YnzgdBAKyJo",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Casino Royale",
+      "movie_choices": [
+        "Skyfall",
+        "Casino Royale",
+        "No Time to Die"
+      ]
     },
     {
       "year": 1985,
@@ -146,7 +170,13 @@
       },
       "uri_deezer": "deezer://track/3130429",
       "uri_youtube_music": "https://music.youtube.com/watch?v=Fp4CR2HcHLQ",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "A View to a Kill",
+      "movie_choices": [
+        "Moonraker",
+        "A View to a Kill",
+        "Tomorrow Never Dies"
+      ]
     },
     {
       "year": 2008,
@@ -172,7 +202,13 @@
       },
       "uri_deezer": "deezer://track/2466273",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hM5UJvnbbuY",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Quantum of Solace",
+      "movie_choices": [
+        "No Time to Die",
+        "Tomorrow Never Dies",
+        "Quantum of Solace"
+      ]
     },
     {
       "year": 2002,
@@ -198,7 +234,13 @@
       },
       "uri_deezer": "deezer://track/783963",
       "uri_youtube_music": "https://music.youtube.com/watch?v=VlbaJA7aO9M",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Die Another Day",
+      "movie_choices": [
+        "Spectre",
+        "Tomorrow Never Dies",
+        "Die Another Day"
+      ]
     },
     {
       "year": 1962,
@@ -224,7 +266,13 @@
       },
       "uri_deezer": "deezer://track/1037326",
       "uri_youtube_music": "https://music.youtube.com/watch?v=tCr5BhPqUjk",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Dr. No",
+      "movie_choices": [
+        "You Only Live Twice",
+        "Thunderball",
+        "Dr. No"
+      ]
     },
     {
       "year": 1964,
@@ -250,7 +298,13 @@
       },
       "uri_deezer": "deezer://track/3093484",
       "uri_youtube_music": "https://music.youtube.com/watch?v=vIEw2P0RUGA",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Goldfinger",
+      "movie_choices": [
+        "From Russia with Love",
+        "You Only Live Twice",
+        "Goldfinger"
+      ]
     },
     {
       "year": 1977,
@@ -276,7 +330,13 @@
       },
       "uri_deezer": "deezer://track/3169698",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SaV-6qerkqI",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "The Spy Who Loved Me",
+      "movie_choices": [
+        "Octopussy",
+        "Moonraker",
+        "The Spy Who Loved Me"
+      ]
     },
     {
       "year": 1963,
@@ -302,7 +362,13 @@
       },
       "uri_deezer": "deezer://track/116226426",
       "uri_youtube_music": "https://music.youtube.com/watch?v=O_fCUGJFQOI",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "From Russia with Love",
+      "movie_choices": [
+        "Live and Let Die",
+        "On Her Majesty's Secret Service",
+        "From Russia with Love"
+      ]
     },
     {
       "year": 1965,
@@ -328,7 +394,13 @@
       },
       "uri_deezer": "deezer://track/525869952",
       "uri_youtube_music": "https://music.youtube.com/watch?v=XYNzL42AsI4",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Thunderball",
+      "movie_choices": [
+        "Thunderball",
+        "On Her Majesty's Secret Service",
+        "Diamonds Are Forever"
+      ]
     },
     {
       "year": 1967,
@@ -354,7 +426,13 @@
       },
       "uri_deezer": "deezer://track/3092187421",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hs8uYxTJ530",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "You Only Live Twice",
+      "movie_choices": [
+        "Diamonds Are Forever",
+        "You Only Live Twice",
+        "On Her Majesty's Secret Service"
+      ]
     },
     {
       "year": 1967,
@@ -380,7 +458,13 @@
       },
       "uri_deezer": "deezer://track/1035133782",
       "uri_youtube_music": "https://music.youtube.com/watch?v=SzqRiW_w23Q",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Casino Royale",
+      "movie_choices": [
+        "Casino Royale",
+        "Thunderball",
+        "Never Say Never Again"
+      ]
     },
     {
       "year": 1969,
@@ -406,7 +490,13 @@
       },
       "uri_deezer": "deezer://track/3169677",
       "uri_youtube_music": "https://music.youtube.com/watch?v=RMxRDTfzgpU",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "On Her Majesty's Secret Service",
+      "movie_choices": [
+        "The Man with the Golden Gun",
+        "On Her Majesty's Secret Service",
+        "From Russia with Love"
+      ]
     },
     {
       "year": 1971,
@@ -432,7 +522,13 @@
       },
       "uri_deezer": "deezer://track/3093485",
       "uri_youtube_music": "https://music.youtube.com/watch?v=jboEolwHIIA",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Diamonds Are Forever",
+      "movie_choices": [
+        "Diamonds Are Forever",
+        "The Spy Who Loved Me",
+        "You Only Live Twice"
+      ]
     },
     {
       "year": 1974,
@@ -458,7 +554,13 @@
       },
       "uri_deezer": "deezer://track/355914641",
       "uri_youtube_music": "https://music.youtube.com/watch?v=r81iUVZR9Jw",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "The Man with the Golden Gun",
+      "movie_choices": [
+        "The Man with the Golden Gun",
+        "On Her Majesty's Secret Service",
+        "You Only Live Twice"
+      ]
     },
     {
       "year": 1979,
@@ -484,7 +586,13 @@
       },
       "uri_deezer": "deezer://track/5533432",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2JZ17NPFULw",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Moonraker",
+      "movie_choices": [
+        "Live and Let Die",
+        "For Your Eyes Only",
+        "Moonraker"
+      ]
     },
     {
       "year": 1983,
@@ -510,7 +618,13 @@
       },
       "uri_deezer": "deezer://track/38988191",
       "uri_youtube_music": "https://music.youtube.com/watch?v=bFurkDf6WXg",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Octopussy",
+      "movie_choices": [
+        "Octopussy",
+        "Licence to Kill",
+        "The Spy Who Loved Me"
+      ]
     },
     {
       "year": 1983,
@@ -536,7 +650,13 @@
       },
       "uri_deezer": "deezer://track/1783813257",
       "uri_youtube_music": "https://music.youtube.com/watch?v=47rbbS9XNJE",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Never Say Never Again",
+      "movie_choices": [
+        "Moonraker",
+        "Never Say Never Again",
+        "GoldenEye"
+      ]
     },
     {
       "year": 1987,
@@ -562,7 +682,13 @@
       },
       "uri_deezer": "deezer://track/4094807",
       "uri_youtube_music": "https://music.youtube.com/watch?v=hR2OwmariWk",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "The Living Daylights",
+      "movie_choices": [
+        "A View to a Kill",
+        "The Living Daylights",
+        "Octopussy"
+      ]
     },
     {
       "year": 1995,
@@ -588,7 +714,13 @@
       },
       "uri_deezer": "deezer://track/3147390",
       "uri_youtube_music": "https://music.youtube.com/watch?v=4hGQ97tCTOs",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "GoldenEye",
+      "movie_choices": [
+        "GoldenEye",
+        "The World Is Not Enough",
+        "Licence to Kill"
+      ]
     },
     {
       "year": 1997,
@@ -614,7 +746,13 @@
       },
       "uri_deezer": "deezer://track/13659976",
       "uri_youtube_music": "https://music.youtube.com/watch?v=2BxTwJtpGYA",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "Tomorrow Never Dies",
+      "movie_choices": [
+        "Licence to Kill",
+        "Casino Royale",
+        "Tomorrow Never Dies"
+      ]
     },
     {
       "year": 1999,
@@ -640,7 +778,263 @@
       },
       "uri_deezer": "deezer://track/1761526417",
       "uri_youtube_music": "https://music.youtube.com/watch?v=JBrz-5ai1mo",
-      "uri_tidal": null
+      "uri_tidal": null,
+      "movie": "The World Is Not Enough",
+      "movie_choices": [
+        "The World Is Not Enough",
+        "Tomorrow Never Dies",
+        "Skyfall"
+      ]
+    },
+    {
+      "artist": "John Barry",
+      "title": "From Russia with Love",
+      "year": 1963,
+      "isrc": "GBBBN6600002",
+      "uri": "spotify:track:7rmkzBH4ulaMQlLcruvenc",
+      "uri_apple_music": "applemusic://track/250565000",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/250565000",
+        "de": "applemusic://track/250565000",
+        "gb": "applemusic://track/250565000",
+        "fr": "applemusic://track/250565000",
+        "es": "applemusic://track/250565000",
+        "nl": "applemusic://track/250565000",
+        "it": "applemusic://track/250565000"
+      },
+      "uri_deezer": "deezer://track/1037314",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-zOfY_DhhTg",
+      "uri_tidal": "tidal://track/650841",
+      "fun_fact": "",
+      "fun_fact_de": "",
+      "fun_fact_es": "",
+      "fun_fact_fr": "",
+      "fun_fact_nl": "",
+      "movie": "From Russia with Love",
+      "movie_choices": [
+        "Diamonds Are Forever",
+        "From Russia with Love",
+        "You Only Live Twice"
+      ]
+    },
+    {
+      "artist": "John Barry",
+      "title": "Goldfinger",
+      "year": 1964,
+      "isrc": "GBBBN6600009",
+      "uri": "spotify:track:1Qp2AIwskcvxfCI5fTuUQX",
+      "uri_apple_music": "applemusic://track/250564991",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/250564991",
+        "de": "applemusic://track/250564991",
+        "gb": "applemusic://track/250564991",
+        "fr": "applemusic://track/250564991",
+        "es": "applemusic://track/250564991",
+        "nl": "applemusic://track/250564991",
+        "it": "applemusic://track/250564991"
+      },
+      "uri_deezer": "deezer://track/1037311",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hWqv974oYhk",
+      "uri_tidal": "tidal://track/650840",
+      "fun_fact": "",
+      "fun_fact_de": "",
+      "fun_fact_es": "",
+      "fun_fact_fr": "",
+      "fun_fact_nl": "",
+      "movie": "Goldfinger",
+      "movie_choices": [
+        "Diamonds Are Forever",
+        "Goldfinger",
+        "On Her Majesty's Secret Service"
+      ]
+    },
+    {
+      "artist": "John Barry",
+      "title": "You Only Live Twice",
+      "year": 1967,
+      "isrc": "USMG20900022",
+      "uri": "spotify:track:43SuNjtbziquhNjaxP5rEt",
+      "uri_apple_music": "applemusic://track/320502236",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/320502236",
+        "de": "applemusic://track/320502236",
+        "gb": "applemusic://track/320502236",
+        "fr": "applemusic://track/320502236",
+        "es": "applemusic://track/320502236",
+        "nl": "applemusic://track/320502236",
+        "it": "applemusic://track/320502236"
+      },
+      "uri_deezer": "deezer://track/3169738",
+      "uri_tidal": "tidal://track/2409345",
+      "fun_fact": "",
+      "fun_fact_de": "",
+      "fun_fact_es": "",
+      "fun_fact_fr": "",
+      "fun_fact_nl": "",
+      "movie": "You Only Live Twice",
+      "movie_choices": [
+        "The Man with the Golden Gun",
+        "You Only Live Twice",
+        "From Russia with Love"
+      ]
+    },
+    {
+      "artist": "John Barry",
+      "title": "On Her Majesty's Secret Service - Remastered 2003",
+      "year": 1969,
+      "isrc": "USMG20200046",
+      "uri": "spotify:track:3M0zi8iD2KRzY71XcGFUpE",
+      "uri_apple_music": "applemusic://track/1874771762",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1874771762",
+        "de": "applemusic://track/1874771762",
+        "gb": "applemusic://track/1874771762",
+        "fr": "applemusic://track/1874771762",
+        "es": "applemusic://track/1874771762",
+        "nl": "applemusic://track/1874771762",
+        "it": "applemusic://track/1874771762"
+      },
+      "uri_deezer": "deezer://track/3169682",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=AFaJWqVcv8k",
+      "uri_tidal": "tidal://track/2409305",
+      "fun_fact": "",
+      "fun_fact_de": "",
+      "fun_fact_es": "",
+      "fun_fact_fr": "",
+      "fun_fact_nl": "",
+      "movie": "On Her Majesty's Secret Service",
+      "movie_choices": [
+        "Thunderball",
+        "On Her Majesty's Secret Service",
+        "Diamonds Are Forever"
+      ]
+    },
+    {
+      "artist": "Sheena Easton",
+      "title": "For Your Eyes Only",
+      "year": 1981,
+      "isrc": "USMG28100001",
+      "uri": "spotify:track:4jRJWlkCn3pAwezfqFODU3",
+      "uri_apple_music": "applemusic://track/735021066",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/735021066",
+        "de": "applemusic://track/735021066",
+        "gb": "applemusic://track/735021066",
+        "fr": "applemusic://track/735021066",
+        "es": "applemusic://track/735021066",
+        "nl": "applemusic://track/735021066",
+        "it": "applemusic://track/735021066"
+      },
+      "uri_deezer": "deezer://track/68895740",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LTfRZQqp7oM",
+      "uri_tidal": "tidal://track/21209874",
+      "fun_fact": "\"For Your Eyes Only\" is the 1981 theme to the 12th James Bond movie of the same name, written by Bill Conti and Mick Leeson, and performed by Scottish singer Sheena Easton for the accompanying soundtrack album.",
+      "fun_fact_de": "For Your Eyes Only (englisch für „Nur für Ihre Augen“) ist ein Lied der britischen Sängerin und Schauspielerin Sheena Easton. Es erschien im Juni 1981 und diente als Soundtrack zu James Bond 007 – In tödlicher Mission.",
+      "fun_fact_es": "\"For Your Eyes Only\" es el tema central de la duodécima película de James Bond del mismo título, escrita por Bill Conti y Mick Leeson, e interpretada por la cantante británica Sheena Easton.",
+      "fun_fact_fr": "For Your Eyes Only est une chanson de Sheena Easton, servant de générique d'entrée au film de James Bond sorti en 1981, Rien que pour vos yeux (For Your Eyes Only). Elle est composée par Bill Conti et écrite par Mick Leeson.",
+      "fun_fact_nl": "For Your Eyes Only is het themanummer van de twaalfde James Bond-film For Your Eyes Only uit 1981. Het nummer wordt gezongen door de Schotse zangeres Sheena Easton.",
+      "fun_fact_it": "For Your Eyes Only è un singolo della cantante britannica Sheena Easton, pubblicato nel 1981.",
+      "movie": "For Your Eyes Only",
+      "movie_choices": [
+        "For Your Eyes Only",
+        "Octopussy",
+        "Live and Let Die"
+      ]
+    },
+    {
+      "artist": "Gladys Knight",
+      "title": "Licence To Kill",
+      "year": 1989,
+      "isrc": "USMC18928828",
+      "uri": "spotify:track:2ytwDkF0RLOi6qL2uJ2cQG",
+      "uri_apple_music": "applemusic://track/1444202576",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444202576",
+        "de": "applemusic://track/1444202576",
+        "gb": "applemusic://track/1444202576",
+        "fr": "applemusic://track/1444202576",
+        "es": "applemusic://track/1444202576",
+        "nl": "applemusic://track/1444202576",
+        "it": "applemusic://track/1444202576"
+      },
+      "uri_deezer": "deezer://track/2434771",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gaaXjHCNthI",
+      "uri_tidal": "tidal://track/577879",
+      "fun_fact": "\"Licence to Kill\" is a song by American singer Gladys Knight, written and recorded for the 1989 James Bond film Licence to Kill, taken from the soundtrack of the film's same name.",
+      "fun_fact_de": "Licence to Kill ist ein im Mai 1989 veröffentlichtes Lied von Gladys Knight und Titelsong des Films James Bond 007 – Lizenz zum Töten.",
+      "fun_fact_es": "",
+      "fun_fact_fr": "Licence to Kill est une chanson de Gladys Knight, écrit et composé par Narada Michael Walden, Jeffrey Cohen et Walter Afanasieff. Le titre est la musique de film et le générique de Permis de tuer, 16e film de la série James Bond.",
+      "fun_fact_nl": "Licence to Kill is een nummer van de Amerikaanse zangeres Gladys Knight uit 1989. Het nummer is geschreven en opgenomen voor de soundtrack voor de gelijknamige film.",
+      "movie": "Licence to Kill",
+      "movie_choices": [
+        "Never Say Never Again",
+        "Licence to Kill",
+        "The Living Daylights"
+      ]
+    },
+    {
+      "artist": "David Arnold",
+      "title": "The Name's Bond... James Bond (From \"Casino Royale\" Soundtrack)",
+      "year": 2006,
+      "isrc": "USSM10606471",
+      "uri": "spotify:track:52cYivJcryreRplexrYTlC",
+      "uri_apple_music": "applemusic://track/203965229",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/203965229",
+        "de": "applemusic://track/203965229",
+        "gb": "applemusic://track/203965229",
+        "fr": "applemusic://track/203965229",
+        "es": "applemusic://track/203965229",
+        "nl": "applemusic://track/203965229",
+        "it": "applemusic://track/203965229"
+      },
+      "uri_deezer": "deezer://track/13148256",
+      "uri_tidal": "tidal://track/557326",
+      "fun_fact": "",
+      "fun_fact_de": "",
+      "fun_fact_es": "",
+      "fun_fact_fr": "",
+      "fun_fact_nl": "",
+      "movie": "Casino Royale",
+      "movie_choices": [
+        "No Time to Die",
+        "Casino Royale",
+        "Spectre"
+      ]
+    },
+    {
+      "artist": "Billie Eilish",
+      "title": "No Time To Die",
+      "year": 2020,
+      "isrc": "USUM72002771",
+      "uri": "spotify:track:73SpzrcaHk0RQPFP73vqVR",
+      "uri_apple_music": "applemusic://track/1498647654",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1498647654",
+        "de": "applemusic://track/1498647654",
+        "gb": "applemusic://track/1498647654",
+        "fr": "applemusic://track/1498647654",
+        "es": "applemusic://track/1498647654",
+        "nl": "applemusic://track/1498647654",
+        "it": "applemusic://track/1498647654"
+      },
+      "uri_deezer": "deezer://track/877873612",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=0oAAlssVwEw",
+      "uri_tidal": "tidal://track/131333084",
+      "fun_fact": "\"No Time to Die\" is the theme song for the James Bond film of the same name, performed by American singer-songwriter Billie Eilish.",
+      "fun_fact_de": "No Time to Die ist das Titellied zum James-Bond-Film Keine Zeit zu sterben, dessen Originaltitel es teilt.",
+      "fun_fact_es": "«No Time to Die» —en español: «No hay tiempo para morir»— es una canción de la cantante estadounidense Billie Eilish. Es la canción principal de la película de James Bond que lleva el mismo nombre.",
+      "fun_fact_fr": "No Time to Die est une chanson sortie en février 2020 interprétée par la chanteuse américaine Billie Eilish et co-composée avec son frère Finneas O'Connell .",
+      "fun_fact_nl": "\"No Time to Die\" is een single uit 2020 van de Amerikaanse zangeres Billie Eilish. Het is de titelsong van de 25e James Bondfilm No Time to Die, die in september 2021 in première ging.",
+      "fun_fact_it": "No Time to Die è un singolo della cantante statunitense Billie Eilish, pubblicato il 14 febbraio 2020 come primo estratto dalla colonna sonora del film omonimo.",
+      "movie": "No Time to Die",
+      "movie_choices": [
+        "No Time to Die",
+        "The World Is Not Enough",
+        "Die Another Day"
+      ]
     }
-  ]
+  ],
+  "movie_quiz_enabled": true,
+  "author": "Beatify Community, estarren"
 }
