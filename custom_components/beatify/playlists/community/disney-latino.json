@@ -1,6 +1,6 @@
 {
   "name": "Disney Latino",
-  "version": "0.7",
+  "version": "0.8",
   "tags": [
     "disney",
     "movies",
@@ -439,7 +439,7 @@
         "Luis Fonsi"
       ],
       "fun_fact_it": "Dalla versione in spagnolo di «La Bella y la Bestia» della Disney (1991).",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=K8X0Kdceb6w",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=xGVANSfnKIE",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/1444046536"
       }
@@ -816,7 +816,7 @@
       "uri": "spotify:track:6mHFhk4i8hhQbVnW1yleq2",
       "isrc": "USSYS1067454",
       "uri_apple_music": "applemusic://track/1440855860",
-      "uri_deezer": "deezer://track/2227808127",
+      "uri_deezer": "deezer://track/137206826",
       "fun_fact": "From the Spanish-language version of Disney's \"Moana\" (2016).",
       "fun_fact_de": "Aus der spanischsprachigen Fassung von Disneys „Moana\" (2016).",
       "fun_fact_es": "De la versión en español de \"Moana\" de Disney (2016).",
