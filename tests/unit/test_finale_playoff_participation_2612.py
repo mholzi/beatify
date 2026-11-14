@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import DOMAIN, ERR_ELIMINATED
@@ -73,7 +75,7 @@ class TestFinalePlayoffGuessGuard:
 
         hass = MagicMock()
         hass.data = {DOMAIN: {"game": state}}
-        handler = BeatifyWebSocketHandler(hass)
+        handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
         ws.send_json = AsyncMock()
 
         await handler._handle_message(ws, {"type": "submit", "year": 1980})

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import DOMAIN, ERR_INVALID_ACTION, ERR_NOT_ADMIN
@@ -44,7 +46,9 @@ def _make_handler_game():
     )
     gs.platform = "music_assistant"  # skip the verify_responsive branch
     mock_hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()
     handler.debounced_broadcast_state = AsyncMock()

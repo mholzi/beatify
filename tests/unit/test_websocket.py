@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import asyncio
 import time
 from unittest.mock import AsyncMock, MagicMock
@@ -58,7 +60,9 @@ def _make_handler_and_game(
     )
     mock_hass.data = {DOMAIN: {"game": game_state}}
 
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     # #2638: mirror the composition root — the handler owns the admin spectator
     # socket and drops it when the game is torn down or rebuilt.
     game_state.register_reset_callback(handler.clear_admin_socket)
@@ -88,7 +92,9 @@ class TestNoActiveGame:
     async def test_no_game_in_hass_data(self):
         mock_hass = MagicMock()
         mock_hass.data = {}
-        handler = BeatifyWebSocketHandler(mock_hass)
+        handler = BeatifyWebSocketHandler(
+            mock_hass, browser_clients=BrowserClientRegistry()
+        )
         ws = _make_ws()
 
         await handler._handle_message(ws, {"type": "join", "name": "Alice"})
@@ -103,7 +109,9 @@ class TestNoActiveGame:
         game_state = make_game_state()
         # game_state exists but no game_id (no create_game called)
         mock_hass.data = {DOMAIN: {"game": game_state}}
-        handler = BeatifyWebSocketHandler(mock_hass)
+        handler = BeatifyWebSocketHandler(
+            mock_hass, browser_clients=BrowserClientRegistry()
+        )
         ws = _make_ws()
 
         await handler._handle_message(ws, {"type": "submit", "year": 1990})
@@ -1307,7 +1315,9 @@ class TestHeartbeat:
         # to keep working on the end screen and between games.
         mock_hass = MagicMock()
         mock_hass.data = {}
-        handler = BeatifyWebSocketHandler(mock_hass)
+        handler = BeatifyWebSocketHandler(
+            mock_hass, browser_clients=BrowserClientRegistry()
+        )
         ws = _make_ws()
 
         await handler._handle_message(ws, {"type": "ping"})

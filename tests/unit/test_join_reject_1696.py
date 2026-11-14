@@ -15,6 +15,8 @@ brand-new players are still removed.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import (
@@ -40,7 +42,9 @@ def _make_handler_and_game() -> tuple[BeatifyWebSocketHandler, GameState, AsyncM
     )
     mock_hass.data = {DOMAIN: {"game": game_state}}
 
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     ws = AsyncMock()
     ws.send_json = AsyncMock()
     ws.closed = False

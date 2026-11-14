@@ -12,6 +12,8 @@ These tests pin that contract. Every one of them builds real game logic with no
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
@@ -196,7 +198,7 @@ class TestAdminSocketOwnership:
     def test_handler_owns_it_and_can_drop_it(self):
         hass = MagicMock()
         hass.data = {DOMAIN: {"game": make_game_state()}}
-        handler = BeatifyWebSocketHandler(hass)
+        handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
         assert handler.admin_ws is None
 
         handler.admin_ws = MagicMock()
@@ -233,7 +235,7 @@ class TestAdminSocketOwnership:
         """The owner closes the socket it opened, then drops the reference."""
         hass = MagicMock()
         hass.data = {DOMAIN: {"game": make_game_state()}}
-        handler = BeatifyWebSocketHandler(hass)
+        handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
 
         ws = AsyncMock()
         ws.closed = False

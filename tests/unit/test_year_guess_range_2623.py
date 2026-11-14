@@ -25,6 +25,8 @@ goes in and has to come back as ``submit_ack``.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import json
 from datetime import datetime, timezone
 from unittest.mock import AsyncMock, MagicMock
@@ -134,7 +136,7 @@ async def _playing_game(*years: int):
     gs.platform = "music_assistant"
     hass.data = {DOMAIN: {"game": gs}}
 
-    handler = BeatifyWebSocketHandler(hass)
+    handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()
     handler.debounced_broadcast_state = AsyncMock()

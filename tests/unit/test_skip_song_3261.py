@@ -12,6 +12,8 @@ a guest socket is tested here as well, not only assumed from ``handle_admin``.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import logging
 from unittest.mock import AsyncMock, MagicMock
 
@@ -64,7 +66,7 @@ def _handler_for(gs, admin_ws=None):
 
     hass = MagicMock()
     hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(hass)
+    handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
     if admin_ws is not None:
         handler.admin_ws = admin_ws
     handler.broadcast_state = AsyncMock()

@@ -22,6 +22,8 @@ What is worth failing a build over:
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -125,7 +127,7 @@ async def _setup(*, rounds: int = 4, start: bool = True):
     hass.auth = _FakeAuth()
 
     game_state = make_game_state()
-    handler = BeatifyWebSocketHandler(hass)
+    handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
     hass.data = {DOMAIN: {"game": game_state, "ws_handler": handler}}
 
     real_broadcast_state = handler.broadcast_state

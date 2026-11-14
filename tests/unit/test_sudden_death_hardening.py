@@ -15,6 +15,8 @@ These guard the six elimination-logic findings from the Fable re-review round 2:
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import asyncio
 from unittest.mock import AsyncMock, MagicMock
 
@@ -168,7 +170,9 @@ def _make_year_handler_game(sudden_death=True):
     gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"
     mock_hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()
     handler.debounced_broadcast_state = AsyncMock()

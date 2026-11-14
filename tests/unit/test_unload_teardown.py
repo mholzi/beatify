@@ -17,6 +17,8 @@ These tests prove:
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import asyncio
 import sys
 from types import ModuleType, SimpleNamespace
@@ -89,7 +91,7 @@ async def test_async_shutdown_idempotent_when_idle():
 
 
 def _make_handler() -> BeatifyWebSocketHandler:
-    return BeatifyWebSocketHandler(MagicMock())
+    return BeatifyWebSocketHandler(MagicMock(), browser_clients=BrowserClientRegistry())
 
 
 @pytest.mark.asyncio

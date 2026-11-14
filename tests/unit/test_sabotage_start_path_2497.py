@@ -12,6 +12,8 @@ These tests deliberately drive the paths a host actually uses.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import DOMAIN, MIN_PLAYERS
@@ -44,7 +46,9 @@ def _handler_game(**create_kwargs):
     gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"
     mock_hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()
     handler.debounced_broadcast_state = AsyncMock()

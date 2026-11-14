@@ -22,6 +22,8 @@ fuer zwei getrennte Testklassen statt einer parametrisierten:
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.const import DOMAIN, ERR_ROUND_EXPIRED
@@ -62,7 +64,9 @@ async def _playing_game(*, deadline_passed: bool):
     gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"
     mock_hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()
     handler.debounced_broadcast_state = AsyncMock()

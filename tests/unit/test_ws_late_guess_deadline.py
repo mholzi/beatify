@@ -9,6 +9,8 @@ could still bank points/bonus while ``phase`` was still ``PLAYING``.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
@@ -51,7 +53,9 @@ async def _playing_game_with_player():
     gs._media_player_service = _stub_media_service()
     gs.platform = "music_assistant"  # skip the verify_responsive branch
     mock_hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()
     handler.debounced_broadcast_state = AsyncMock()

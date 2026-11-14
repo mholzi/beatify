@@ -18,6 +18,8 @@ mitschreibt, was zurueckgeht.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -88,7 +90,7 @@ async def _run(handler, ws):
 
 
 def _handler(on_message=None):
-    h = BeatifyWebSocketHandler(MagicMock())
+    h = BeatifyWebSocketHandler(MagicMock(), browser_clients=BrowserClientRegistry())
     if on_message is not None:
         h._handle_message = on_message
     return h
