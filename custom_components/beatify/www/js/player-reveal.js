@@ -32,6 +32,63 @@ var _lastRevealCoverSrc = null;
 var _lastBackdropArt = null;
 
 // ============================================
+// #3504: expandable fun fact (design Variante 1)
+// ============================================
+//
+// The reveal clamps the fun fact to a 2-line hook. When the text does not fit,
+// a "more" button shows at the end of line two; it and the text itself toggle
+// the full text ("less" collapses again). REVEAL broadcasts repeat for every
+// reaction and vote, so the state only resets when the text changes or the
+// phase leaves REVEAL (stopRevealCountdown), never on a re-render.
+var _funFactShown = null;
+
+function _setFunFactExpanded(textEl, btn, expanded) {
+    var key = expanded ? 'reveal.funFactLess' : 'reveal.funFactMore';
+    textEl.classList.toggle('is-expanded', expanded);
+    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    // data-i18n follows the state, so a language switch keeps the right word.
+    btn.setAttribute('data-i18n', key);
+    btn.textContent = _tOr(key, expanded ? 'less' : 'more');
+}
+
+function _measureFunFact(textEl, btn) {
+    // Expanded text has no clamp to measure against; it keeps its toggle.
+    if (textEl.classList.contains('is-expanded')) return;
+    // A hidden view measures 0 x 0, so no toggle; the observer re-measures
+    // once the reveal is laid out.
+    var overflows = textEl.textContent !== ''
+        && textEl.scrollHeight > textEl.clientHeight + 1;
+    textEl.classList.toggle('is-expandable', overflows);
+    btn.classList.toggle('hidden', !overflows);
+}
+
+export function renderFunFactToggle(text) {
+    var textEl = document.getElementById('fun-fact');
+    var btn = document.getElementById('fun-fact-toggle');
+    if (!textEl || !btn) return;
+    if (!btn._funFactBound) {
+        btn._funFactBound = true;
+        var toggle = function () {
+            if (!textEl.classList.contains('is-expandable')) return;
+            _setFunFactExpanded(textEl, btn, !textEl.classList.contains('is-expanded'));
+        };
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggle();
+        });
+        textEl.addEventListener('click', toggle);
+        if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(function () { _measureFunFact(textEl, btn); }).observe(textEl);
+        }
+    }
+    if (text !== _funFactShown) {
+        _funFactShown = text;
+        _setFunFactExpanded(textEl, btn, false);
+    }
+    _measureFunFact(textEl, btn);
+}
+
+// ============================================
 // Reveal View (Story 4.6)
 // ============================================
 
@@ -335,6 +392,7 @@ export function updateRevealView(data) {
     if (funFactText) {
         funFactText.textContent = localizedFunFact || '';
     }
+    renderFunFactToggle(localizedFunFact || '');
 
     if (funFactHeader) {
         funFactHeader.style.display = localizedFunFact ? 'flex' : 'none';
@@ -915,6 +973,8 @@ export function stopRevealCountdown() {
     // REVEAL re-applies the (new) art even if the DOM was reused.
     _lastRevealCoverSrc = null;
     _lastBackdropArt = null;
+    // #3504: the next reveal starts collapsed, even with the same fun fact.
+    _funFactShown = null;
 }
 
 /**

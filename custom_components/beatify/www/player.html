@@ -937,7 +937,14 @@
                         <!-- #2588: steht VOR dem Fun Fact — die Erklaerung muss
                              vor dem Widerspruch kommen, nicht danach. -->
                         <div id="cover-hint" class="cover-hint hidden"></div>
-                        <div id="fun-fact" class="fun-fact-text"></div>
+                        <!-- #3504: the 2-line hook expands in place. The toggle only
+                             shows when the text overflows; tapping the text works too. -->
+                        <div class="fun-fact-wrap">
+                            <div id="fun-fact" class="fun-fact-text"></div>
+                            <button type="button" id="fun-fact-toggle" class="fun-fact-toggle hidden"
+                                    aria-controls="fun-fact" aria-expanded="false"
+                                    data-i18n="reveal.funFactMore">more</button>
+                        </div>
                     </div>
                 </section>
 

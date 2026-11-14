@@ -218,6 +218,8 @@
     "idleHaltBanner": "Jeu en pause — personne n'a joué ce tour. Appuie sur « Tour suivant » pour continuer.",
     "idleHaltBannerGuest": "Jeu en pause — personne n'a joué ce tour. L'hôte lancera le tour suivant.",
     "funFact": "Le savais-tu",
+    "funFactMore": "plus",
+    "funFactLess": "moins",
     "collection": {
       "title": "Ta collection",
       "count": "{count} gardées"
