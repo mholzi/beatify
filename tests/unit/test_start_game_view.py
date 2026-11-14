@@ -6,6 +6,8 @@ import json
 import logging
 from unittest.mock import AsyncMock, MagicMock, patch
 
+import pytest
+
 
 from custom_components.beatify.const import DEFAULT_ROUND_DURATION, DOMAIN
 from custom_components.beatify.game.state import GamePhase, GameState
@@ -378,3 +380,43 @@ class TestRoundDurationProvenanceLog:
         # The absent case must be distinguishable from a client that sent the
         # same number — that difference is the whole point of the line.
         assert "client sent None" in line
+
+
+# --- #3474: one speaker resolve step shared by StartGameView and the lobby ---
+
+
+@pytest.mark.asyncio
+async def test_resolve_media_player_browser_target_skips_ha_lookups():
+    from unittest.mock import MagicMock
+
+    from custom_components.beatify.server import game_views
+    from custom_components.beatify.services.browser_player import (
+        BROWSER_TARGET_ROLES,
+        is_browser_target,
+    )
+
+    hass = MagicMock()
+    target = next(iter(BROWSER_TARGET_ROLES))
+    assert is_browser_target(target)
+    entity_id, platform, state, err = await game_views._resolve_media_player(
+        hass, target
+    )
+    assert (entity_id, state, err) == (target, None, None)
+    assert platform == game_views.PLATFORM_BROWSER
+    hass.states.get.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_validate_media_player_reports_unavailable_speaker():
+    from unittest.mock import MagicMock, patch
+
+    from custom_components.beatify.server import game_views
+
+    hass = MagicMock()
+    hass.states.get.return_value = MagicMock(state="unavailable")
+    with patch.object(game_views, "async_get_native_twin_remap", return_value={}):
+        entity_id, _, err = await game_views._validate_media_player(
+            hass, "media_player.off", "spotify"
+        )
+    assert entity_id == "media_player.off"
+    assert err is not None and err.status == 400
