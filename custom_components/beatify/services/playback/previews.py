@@ -80,7 +80,9 @@ def parse_deezer_track(data: Any) -> Preview | None:
     url = _https(data.get("preview"))
     if url is None:
         return None
-    album = data.get("album") if isinstance(data.get("album"), dict) else {}
+    album = data.get("album")
+    if not isinstance(album, dict):
+        album = {}
     art = _https(album.get("cover_xl")) or _https(album.get("cover_big"))
     return Preview(url=url, source="deezer", album_art=art)
 
