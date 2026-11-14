@@ -218,6 +218,8 @@
     "idleHaltBanner": "Spielpause — in dieser Runde hat niemand mitgespielt. Tippe auf Nächste Runde, um weiterzuspielen.",
     "idleHaltBannerGuest": "Spielpause — in dieser Runde hat niemand mitgespielt. Der Gastgeber startet die nächste Runde.",
     "funFact": "Fun Fact",
+    "funFactMore": "mehr",
+    "funFactLess": "weniger",
     "collection": {
       "title": "Deine Sammlung",
       "count": "{count} behalten"

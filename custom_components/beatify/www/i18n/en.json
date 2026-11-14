@@ -218,6 +218,8 @@
     "idleHaltBanner": "Game idle — no one played this round. Tap Next round to keep going.",
     "idleHaltBannerGuest": "Game idle — no one played this round. The host will start the next round.",
     "funFact": "Fun fact",
+    "funFactMore": "more",
+    "funFactLess": "less",
     "collection": {
       "title": "Your collection",
       "count": "{count} kept"

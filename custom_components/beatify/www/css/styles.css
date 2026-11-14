@@ -17260,6 +17260,68 @@ body.theme-dark .your-result-stats .stat-value {
     overflow: hidden;
 }
 
+/* #3504 (design Variante 1): the hook expands in place. A cyan "… more" sits
+   at the end of line two over a fade; the button and the text both toggle.
+   The fade is a mask on the text, not a painted gradient, because the card
+   is a translucent blur and no solid colour matches it. The button is a
+   44 x 44 target whose label hugs its bottom-right corner, so it overhangs
+   the text a little instead of growing the card. */
+#reveal-view .fun-fact-wrap {
+    position: relative;
+    margin-bottom: var(--space-sm);
+}
+#reveal-view .fun-fact-wrap .fun-fact-text {
+    margin-bottom: 0;
+}
+#reveal-view .fun-fact-text.is-expandable {
+    cursor: pointer;
+    -webkit-mask-image: linear-gradient(var(--color-text-white), var(--color-text-white)), linear-gradient(to left, transparent 52px, var(--color-text-white) 84px);
+    mask-image: linear-gradient(var(--color-text-white), var(--color-text-white)), linear-gradient(to left, transparent 52px, var(--color-text-white) 84px);
+    -webkit-mask-size: 100% 50%, 100% 50%;
+    mask-size: 100% 50%, 100% 50%;
+    -webkit-mask-position: top, bottom;
+    mask-position: top, bottom;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+#reveal-view .fun-fact-text.is-expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+#reveal-view .fun-fact-toggle {
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0 0 6px;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-accent-secondary);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+#reveal-view .fun-fact-toggle[aria-expanded="false"]::before {
+    content: "\2026\00a0";
+}
+/* Expanded: "less" follows the full text on its own right-aligned row. */
+#reveal-view .fun-fact-toggle[aria-expanded="true"] {
+    position: static;
+    display: flex;
+    width: fit-content;
+    margin: -12px 0 -6px auto;
+}
+
 /* ==========================================================================
    Smart Playlist Mixer — "Mix" tab (#1538, design option 1 "chip-cloud")
    Reuses the Beatify dark look (bg #0a0a12, pink #ff2d6a, cyan #00f5ff,

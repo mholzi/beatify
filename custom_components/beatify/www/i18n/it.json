@@ -218,6 +218,8 @@
     "idleHaltBanner": "Partita ferma: nessuno ha giocato questo turno. Tocca Turno successivo per proseguire.",
     "idleHaltBannerGuest": "Partita ferma: nessuno ha giocato questo turno. L'host avvierà il turno successivo.",
     "funFact": "Curiosità",
+    "funFactMore": "altro",
+    "funFactLess": "meno",
     "collection": {
       "title": "La tua collezione",
       "count": "{count} tenute"

@@ -218,6 +218,8 @@
     "idleHaltBanner": "Partida en pausa — nadie jugó esta ronda. Toca «Siguiente ronda» para continuar.",
     "idleHaltBannerGuest": "Partida en pausa — nadie jugó esta ronda. El anfitrión iniciará la siguiente ronda.",
     "funFact": "Dato curioso",
+    "funFactMore": "más",
+    "funFactLess": "menos",
     "collection": {
       "title": "Tu colección",
       "count": "{count} guardadas"
