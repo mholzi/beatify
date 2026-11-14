@@ -90,6 +90,11 @@ files = [
     "custom_components/beatify/services/tts.py",
     "custom_components/beatify/services/media_player.py",
     "custom_components/beatify/services/lights.py",
+    # #3472: the browser ("TV screen" / "This phone") playback path.
+    "custom_components/beatify/services/browser_player.py",
+    "custom_components/beatify/services/playback/browser.py",
+    "custom_components/beatify/services/playback/previews.py",
+    "custom_components/beatify/services/factories.py",
 ]
 
 # -----------------------------------------------------------------------------
