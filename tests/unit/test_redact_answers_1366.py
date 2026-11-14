@@ -10,6 +10,8 @@ connection gets a redacted copy.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import json
 from unittest.mock import AsyncMock, MagicMock
 
@@ -127,7 +129,9 @@ class TestBroadcastRedaction:
     def _handler(self, gs):
         mock_hass = MagicMock()
         mock_hass.data = {DOMAIN: {"game": gs}}
-        return BeatifyWebSocketHandler(mock_hass)
+        return BeatifyWebSocketHandler(
+            mock_hass, browser_clients=BrowserClientRegistry()
+        )
 
     async def test_player_gets_redacted_admin_gets_full(self):
         gs = _playing_game(title_artist_mode=True)

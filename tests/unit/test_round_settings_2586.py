@@ -7,6 +7,8 @@ REVEAL, so writing them straight away would rescore the round on screen.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
@@ -84,7 +86,7 @@ async def _reveal(gs, years_off: int = 3) -> None:
 def _handler(gs) -> BeatifyWebSocketHandler:
     hass = MagicMock()
     hass.data = {DOMAIN: {"game": gs}}
-    handler = BeatifyWebSocketHandler(hass)
+    handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
     handler.broadcast_state = AsyncMock()
     return handler
 

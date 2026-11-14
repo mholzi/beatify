@@ -14,6 +14,8 @@ report, so a re-worded card or a moved DOM node does not touch them.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock
 
 from custom_components.beatify.game.state import GamePhase
@@ -390,7 +392,7 @@ class TestVoidRoundAction:
 
         hass = MagicMock()
         hass.data = {DOMAIN: {"game": gs}}
-        handler = BeatifyWebSocketHandler(hass)
+        handler = BeatifyWebSocketHandler(hass, browser_clients=BrowserClientRegistry())
         handler.admin_ws = ws
         handler.broadcast_state = AsyncMock()
         handler.broadcast = AsyncMock()

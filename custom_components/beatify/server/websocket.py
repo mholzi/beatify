@@ -90,7 +90,7 @@ class BeatifyWebSocketHandler:
         self,
         hass: HomeAssistant,
         *,
-        browser_clients: BrowserClientRegistry | None = None,
+        browser_clients: BrowserClientRegistry,
     ) -> None:
         """
         Initialize handler.
@@ -98,11 +98,14 @@ class BeatifyWebSocketHandler:
         Args:
             hass: Home Assistant instance
             browser_clients: the pages that play audio when a browser is the
-                speaker. The TV page and the admin page register here.
+                speaker. The TV page and the admin page register here. Required:
+                it must be the same registry the playback strategies and views
+                read (``hass.data[DOMAIN]["browser_clients"]``), so a private
+                fallback can never swallow registrations.
 
         """
         self.hass = hass
-        self.browser_clients = browser_clients or BrowserClientRegistry()
+        self.browser_clients = browser_clients
         self.connections: set[web.WebSocketResponse] = set()
         # Issue #477 / #2638: the admin spectator socket (a host watching
         # without being a player). This handler opens it, redacts for it and

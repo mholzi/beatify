@@ -13,6 +13,8 @@ The fallback stays open for ordinary players and closes for a host session.
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 from unittest.mock import AsyncMock, MagicMock, patch
 
 from custom_components.beatify.const import DOMAIN, ERR_UNAUTHORIZED
@@ -41,7 +43,9 @@ def _handler_and_game() -> tuple[BeatifyWebSocketHandler, GameState]:
         base_url="http://localhost:8123",
     )
     mock_hass.data = {DOMAIN: {"game": game_state}}
-    handler = BeatifyWebSocketHandler(mock_hass)
+    handler = BeatifyWebSocketHandler(
+        mock_hass, browser_clients=BrowserClientRegistry()
+    )
     handler.debounced_broadcast_state = AsyncMock()
     handler.broadcast_state = AsyncMock()
     handler.broadcast = AsyncMock()

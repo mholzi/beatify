@@ -614,3 +614,9 @@ class TestWebSocketRegistration:
         await handler._handle_message(tv, {"type": "playback_register", "role": "tv"})
         await handler._handle_disconnect(tv)
         assert not handler.browser_clients.connected("tv")
+
+
+def test_websocket_handler_requires_browser_clients() -> None:
+    """#3473: no silent private registry; the registry is a required argument."""
+    with pytest.raises(TypeError):
+        BeatifyWebSocketHandler(MagicMock())  # type: ignore[call-arg]

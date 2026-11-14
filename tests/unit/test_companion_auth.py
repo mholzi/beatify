@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from custom_components.beatify.services.playback import BrowserClientRegistry
+
 import sys
 from types import ModuleType
 from unittest.mock import MagicMock
@@ -480,7 +482,9 @@ class TestWebSocketUpgradeStashesVerdict:
                 raise RuntimeError("stop after upgrade")
 
         monkeypatch.setattr(ws_mod.web, "WebSocketResponse", _FakeWS)
-        handler = ws_mod.BeatifyWebSocketHandler(_hass())
+        handler = ws_mod.BeatifyWebSocketHandler(
+            _hass(), browser_clients=BrowserClientRegistry()
+        )
         req = _request(
             _COMPANION_UA,
             "192.168.1.2",
