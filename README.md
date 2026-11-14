@@ -83,16 +83,18 @@ what it does not do at all.
 
 ### Step 1: Install
 
-**Via HACS (Recommended)** — Beatify is in the **default HACS store**, so there is nothing to add manually. One click:
+**Via the Marketplace (Recommended)** — Since Home Assistant 2026.11, HACS is built into Home Assistant as the **Marketplace**. Beatify is in its default catalog, so there is nothing to add manually. One click:
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration)
+[![Open your Home Assistant instance and open the Beatify repository in the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=mholzi&repository=beatify&category=integration)
 
 Or find it yourself:
 ```
-HACS → Search for "Beatify"
+Settings → Marketplace → Search for "Beatify"
 → Download
 → Restart Home Assistant
 ```
+
+On Home Assistant older than 2026.11, the same steps work in HACS (HACS → Search for "Beatify"). If you already installed Beatify through HACS, nothing changes: it stays installed and keeps getting updates through the Marketplace.
 
 **Manual**
 ```bash
@@ -736,7 +738,7 @@ comparison — including where the card game wins.
 | **Playback** | A phone speaker on the table | The Sonos, Alexa or Music Assistant speakers you already own |
 | **How you answer** | Physically place a card on your timeline | Guess the year — or name the title and artist in a second mode |
 | **Timeline placement** | ✅ The core mechanic | ❌ **Not implemented.** Rounds score a year guess instead |
-| **Setup** | Open the box | Home Assistant 2025.1+, a supported speaker, HACS install |
+| **Setup** | Open the box | Home Assistant 2025.1+, a supported speaker, Marketplace install |
 | **Players** | Limited by the components | 20+ on their own phones, no app |
 
 Two rows deserve more than a checkmark. Beatify has **no timeline-placement mechanic** — the most
@@ -758,7 +760,7 @@ needs a table, this needs a server. If you do not have one, the box wins.
 - **A music source**, either of:
   - **A streaming service** — Spotify, Apple Music, YouTube Music, Tidal, Deezer or Amazon Music, each of which needs a **paid plan** (on-demand single-track playback; free/ad-supported tiers don't allow it — Spotify Free is blocked, and Music Assistant's YouTube Music provider [requires Premium too](https://www.music-assistant.io/music-providers/youtube-music/)). Amazon Music playback is Alexa-only (text search — see [Supported Speakers](#supported-speakers)).
   - **Your own library** — Plex, Jellyfin, local files, or anything else Music Assistant exposes as a library provider. No subscription required. Beatify builds a playable pool from it and verifies release years against MusicBrainz first, because a year-guessing game is only fair if the year is right (v4.3.0).
-- **HACS** (recommended) or manual installation
+- **Marketplace** (built in since Home Assistant 2026.11, formerly HACS; recommended) or manual installation
 
 ### How It Works
 - Native Home Assistant integration
@@ -788,7 +790,7 @@ Beatify is built with substantial help from AI coding tools (Claude Code). That'
 - **Test coverage**: 69 Python test files, JS tests via Vitest, integration tests for the WebSocket protocol — every regression gets a test before the fix lands.
 - **Architecture is documented in code**: see `custom_components/beatify/services/media_player.py` lines 111–128 — the comment block walks through *why* the provider-URI dispatch was rewritten, names the specific user (Levtos) whose bug report drove the change, and references the original GitHub issues (#768, #805, #808).
 - **890+ closed issues with traceable root causes**, not just "fixed". URI-validation, playback-recovery, and import-flow security got dedicated sweeps in v3.3.x.
-- **Real users, not vanity metrics**: 218 stars, 12 forks (forks = devs reading the code), 428 active HACS installs, top 11% HACS rank, MIT-licensed.
+- **Real users, not vanity metrics**: 237 stars, 15 forks (forks = devs reading the code), 564 active installs, top 7% of all custom integrations by installs, MIT-licensed.
 
 The AI is the typist. The decisions, the architecture, the bug triage, and the "ship it" call are all human. If something looks off in the code, [open an issue](https://github.com/mholzi/beatify/issues) — that's how the documented bug-fix sweeps started in the first place.
 
