@@ -281,12 +281,16 @@ def _origin_from_request(request: web.Request) -> str:
     and proxies plain HTTP to HA, so request.scheme alone says "http").
     """
     forwarded_proto = request.headers.get("X-Forwarded-Proto")
+    scheme = forwarded_proto or request.scheme
+    return f"{scheme}://{_host_from_request(request)}"
+
+
+def _host_from_request(request: web.Request) -> str:
+    """Return the host[:port] the browser sees (the netloc of client_id)."""
     forwarded_host = request.headers.get("X-Forwarded-Host") or request.headers.get(
         "Host"
     )
-    scheme = forwarded_proto or request.scheme
-    host = forwarded_host or request.host
-    return f"{scheme}://{host}"
+    return forwarded_host or request.host
 
 
 def _is_secure_origin(request: web.Request) -> bool:
@@ -337,9 +341,19 @@ def _clear_session_cookies(response: web.Response) -> None:
 
 
 async def _exchange_with_ha(
-    hass: HomeAssistant, body: str
+    hass: HomeAssistant, body: str, *, host: str
 ) -> tuple[int, dict | None, str]:
     """POST the urlencoded body to HA's loopback /auth/token.
+
+    ``host`` is the host[:port] the browser used, i.e. the netloc of the
+    ``client_id`` in ``body``. It goes out as the ``Host`` header (#3512):
+    HA's IndieAuth check only accepts a client_id on a non-private IP
+    (Tailscale 100.64/10, IPv6 GUA, public LAN ranges) when it equals the
+    netloc the token request was made to. Over loopback that netloc would be
+    ``127.0.0.1:<port>``, so every such exchange failed with "Invalid client
+    id" and the admin page looped on the login screen. The header only
+    restores what the browser itself sent; the code stays bound to its
+    client_id, so HA's validation is unchanged.
 
     Returns ``(status, parsed_json_or_None, raw_text)``. ``parsed_json``
     is None when HA returned non-JSON (HTTP error pages, mostly), which
@@ -350,7 +364,10 @@ async def _exchange_with_ha(
         async with session.post(
             _loopback_url(hass),
             data=body,
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Host": host,
+            },
             timeout=ClientTimeout(total=10),
             **_ssl_kwargs(hass),
         ) as resp:
@@ -427,7 +444,9 @@ class BeatifyAuthCallbackView(HomeAssistantView):
             }
         )
 
-        status, parsed, raw = await _exchange_with_ha(self.hass, body)
+        status, parsed, raw = await _exchange_with_ha(
+            self.hass, body, host=_host_from_request(request)
+        )
         if status != 200 or not parsed or not parsed.get("access_token"):
             _LOGGER.warning(
                 "OAuth code exchange failed (status=%s body=%s)", status, raw[:200]
@@ -481,7 +500,9 @@ class BeatifyAuthRefreshView(HomeAssistantView):
                 "client_id": f"{origin}/beatify/",
             }
         )
-        status, parsed, raw = await _exchange_with_ha(self.hass, body)
+        status, parsed, raw = await _exchange_with_ha(
+            self.hass, body, host=_host_from_request(request)
+        )
         if status != 200 or not parsed or not parsed.get("access_token"):
             _LOGGER.info("Refresh failed (status=%s) — clearing session", status)
             response = web.json_response(
