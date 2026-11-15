@@ -4,8 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.1-rc1] - 2026-11-15
+
+First candidate for 5.0.1: read the whole fun fact on your phone, a bigger Bond list, and fixed links.
+
+### Added
+- **Expandable fun fact** (#3504): on the player reveal, a fun fact that does not fit in two lines gets a "more" link; tapping it or the text shows the full fact, "less" folds it again. Each round starts folded.
+
 ### Changed
 - **James Bond Theme Songs** (Discussion #3449, @estarren): 8 more songs, up to No Time to Die, and a film quiz for every track.
+- **Internal** (#3472, #3473, #3474): browser playback is type-checked, the browser client list has a single source, and the game start shares one speaker check. No change in play.
+
+### Fixed
+- **This Is DNB** (#3500): 3 broken links fixed.
+- **Disney Latino** (#3509): 2 broken links fixed.
 
 ## [5.0.0] - 2026-11-13
 
