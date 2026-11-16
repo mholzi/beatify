@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.1-rc3] - 2026-11-16
+
+Third candidate for 5.0.1: the reveal stays up when the TV or a phone plays the music.
+
+### Fixed
+- **Reveal on the TV or phone speaker** (#3520): when the TV screen or the host's phone played the 30-second preview, the clip ended with the round and the game moved on after about two seconds, before anyone could read the answer. The reveal now stays until the host taps Next or the reveal timer runs out.
+
 ## [5.0.1-rc2] - 2026-11-16
 
 Second candidate for 5.0.1: the admin login works again over Tailscale and IPv6.
