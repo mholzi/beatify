@@ -4,6 +4,13 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.1-rc2] - 2026-11-16
+
+Second candidate for 5.0.1: the admin login works again over Tailscale and IPv6.
+
+### Fixed
+- **Admin login over Tailscale/IPv6** (#3512, @hardlock75): when Home Assistant was reached through a non-local address, the admin page could not log in. Beatify now sends the browser's host on its internal login call.
+
 ## [5.0.1-rc1] - 2026-11-15
 
 First candidate for 5.0.1: read the whole fun fact on your phone, a bigger Bond list, and fixed links.
