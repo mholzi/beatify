@@ -19,7 +19,7 @@
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
     "stylelint": "^17.16.0",
-    "stylelint-declaration-strict-value": "^1.12.1",
+    "stylelint-declaration-strict-value": "^1.13.0",
     "vitest": "^5.0.0"
   }
 }
