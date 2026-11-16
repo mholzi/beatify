@@ -87,6 +87,8 @@ import asyncio
 import logging
 import time
 
+from custom_components.beatify.providers import PLATFORM_BROWSER
+
 from .state_contract import GameStateBase
 
 _LOGGER = logging.getLogger(__name__)
@@ -147,6 +149,16 @@ class RevealAutoAdvanceMixin(GameStateBase):
                 "song-finished poll: the host stopped the song — not a song "
                 "end, keeping the reveal up (#2690)"
             )
+            return False
+        if getattr(self, "platform", None) == PLATFORM_BROWSER:
+            # #3520: a browser target plays a 30s preview, not the full track,
+            # and the round is capped to that length. The page reports
+            # ``ended`` (mapped to ``idle``) when the clip finishes, which is
+            # about when the round ends — so on the first poll it would look
+            # like a song end and skip the reveal. The clip ending says
+            # nothing about a track still running, so there is no song-end
+            # signal here: the dwell falls through to the configured seconds
+            # or the stall-guard, exactly like the #2690 branch above.
             return False
         if not self._media_player_service:
             return False
