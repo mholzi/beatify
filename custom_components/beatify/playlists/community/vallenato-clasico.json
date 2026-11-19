@@ -1,6 +1,6 @@
 {
   "name": "Vallenato Clásico",
-  "version": "0.5",
+  "version": "0.6",
   "tags": [
     "vallenato",
     "latin",
@@ -562,7 +562,7 @@
       "isrc": "COS010100098",
       "uri_deezer": "deezer://track/57236501",
       "uri_apple_music": "applemusic://track/487291492",
-      "uri_youtube_music": "https://music.youtube.com/watch?v=9F50nHPNXvE",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=BbTaeCrvvhw",
       "uri_apple_music_by_region": {
         "de": "applemusic://track/487291492"
       }
