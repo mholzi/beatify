@@ -1,6 +1,6 @@
 {
   "name": "Cologne Carnival 🎭",
-  "version": "1.18",
+  "version": "1.19",
   "tags": [
     "german",
     "carnival",
@@ -1983,20 +1983,20 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=pMB4xoIB3OI",
-      "uri_apple_music": "applemusic://track/1766474419",
+      "uri_apple_music": "applemusic://track/1641818944",
       "uri_tidal": "tidal://track/1414557",
       "uri_deezer": "deezer://track/3154477",
       "fun_fact_nl": "De kermismix van 'Nu gaat het los!' - carnaval deelt veel met de traditionele kermis; beide vieren de vreugde van de gemeenschap en feestelijke chaos.",
       "awards_nl": [],
       "isrc": "DEH842401456",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1766474419",
-        "de": "applemusic://track/1766474419",
-        "gb": "applemusic://track/1766474419",
-        "fr": "applemusic://track/1766474419",
-        "es": "applemusic://track/1766474419",
-        "nl": "applemusic://track/1766474419",
-        "it": "applemusic://track/1766474419"
+        "us": "applemusic://track/1641818944",
+        "de": "applemusic://track/1641818944",
+        "gb": "applemusic://track/1641818944",
+        "fr": "applemusic://track/1641818944",
+        "es": "applemusic://track/1641818944",
+        "nl": "applemusic://track/1641818944",
+        "it": "applemusic://track/1641818944"
       }
     },
     {
@@ -2348,7 +2348,7 @@
       "fun_fact_fr": "Une parodie kölsch du « Moskau » de Dschinghis Khan - le carnaval adore adapter les tubes internationaux avec des paroles en dialecte colonais.",
       "certifications": [],
       "awards": [],
-      "uri_youtube_music": "https://music.youtube.com/watch?v=LJ4XsW6BM8k",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=OQHgnRT786w",
       "uri_apple_music": "applemusic://track/716548563",
       "uri_tidal": "tidal://track/11202341",
       "uri_deezer": "deezer://track/13444787",
@@ -8785,7 +8785,6 @@
       "certifications": [],
       "awards": [],
       "uri_youtube_music": "https://music.youtube.com/watch?v=Cx9RAamwjhY",
-      "uri_tidal": "tidal://track/482962193",
       "fun_fact_nl": "Keulen aan de Rijn - deze uitgave uit 2025 viert de ligging van de stad aan de beroemde rivier die haar identiteit bepaalt.",
       "awards_nl": []
     },
