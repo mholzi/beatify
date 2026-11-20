@@ -172,6 +172,17 @@ class BrowserPlayerService:
             self.last_failure_reason = "error"
             return False
 
+    def running_clip_url(self) -> str | None:
+        """The preview of the clip meant to be playing now, else None.
+
+        None once the music was stopped (host pressed stop) or before any clip
+        started.
+        """
+        preview = self._strategy.last_preview
+        if preview is None or not self._context.audio_wanted:
+            return None
+        return preview.url
+
     async def wait_for_metadata_update(self, uri: str) -> dict[str, Any]:
         """The cover from the preview lookup; no entity to wait for."""
         preview = self._strategy.last_preview
