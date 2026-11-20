@@ -124,7 +124,17 @@ describe('browser-audio.js', () => {
         p.handle({ type: 'browser_audio', action: 'play', url: CLIP, id: 1 });
         await flush();
         music.onended();
-        expect(sent.at(-1)).toEqual({ type: 'playback_report', state: 'ended' });
+        expect(sent.at(-1)).toEqual({ type: 'playback_report', state: 'ended', id: 1 });
+    });
+
+    it('an ended report names the clip that ended, not a later one', async () => {
+        const { p, sent, music } = player();
+        p.handle({ type: 'browser_audio', action: 'play', url: CLIP, id: 4 });
+        await flush();
+        p.handle({ type: 'browser_audio', action: 'play', url: CLIP + '?2', id: 5 });
+        await flush();
+        music.onended();
+        expect(sent.at(-1)).toEqual({ type: 'playback_report', state: 'ended', id: 5 });
     });
 
     it('stop pauses, resume plays the same clip again', async () => {
