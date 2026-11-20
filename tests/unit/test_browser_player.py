@@ -273,6 +273,30 @@ class TestRegistry:
         assert reg.handle_report(_ws(), {"state": "ended"}) is False
         assert reg.playback_state("tv") == "idle"
 
+    async def test_a_late_ended_from_the_previous_clip_is_ignored_3525(self):
+        reg = BrowserClientRegistry()
+        tv = _ws()
+        reg.register("tv", tv)
+        ids: list[int] = []
+
+        async def answer(message: dict) -> None:
+            ids.append(message["id"])
+            reg.handle_report(tv, {"state": "playing", "id": message["id"]})
+
+        tv.send_json.side_effect = answer
+        play = {"type": "browser_audio", "action": "play", "url": "https://x/a"}
+        await reg.request("tv", play, timeout=1)
+        await reg.request("tv", play, timeout=1)
+        first, second = ids
+        assert reg.playback_state("tv") == "playing"
+
+        # The page moved on, then the first clip's `ended` arrives late.
+        assert reg.handle_report(tv, {"state": "ended", "id": first}) is False
+        assert reg.playback_state("tv") == "playing"
+        # The current clip's own `ended` still counts.
+        assert reg.handle_report(tv, {"state": "ended", "id": second}) is True
+        assert reg.playback_state("tv") == "ended"
+
     def test_an_unknown_report_state_is_ignored(self):
         reg = BrowserClientRegistry()
         tv = _ws()

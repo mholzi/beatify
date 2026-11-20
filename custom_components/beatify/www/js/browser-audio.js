@@ -60,6 +60,7 @@
         var unlocked = false;
         var waiting = null;      // {url, id} of a clip blocked until the tap
         var currentUrl = null;   // the clip in `music`, for resume
+        var currentId = null;    // its request id, so `ended` names the clip
         var level = clampLevel(opts.volume == null ? 0.8 : opts.volume);
         var ducked = false;
         var needsTap = false;
@@ -111,7 +112,7 @@
         }
 
         music.onended = function() {
-            if (music.src && music.src !== SILENT_WAV && currentUrl) report('ended');
+            if (music.src && music.src !== SILENT_WAV && currentUrl) report('ended', currentId);
         };
         voice.onended = function() {
             ducked = false;
@@ -125,6 +126,7 @@
                 return;
             }
             currentUrl = url;
+            currentId = typeof id === 'number' ? id : null;
             music.src = url;
             applyVolume();
             start(music, id);
@@ -183,6 +185,7 @@
         function release() {
             waiting = null;
             currentUrl = null;
+            currentId = null;
             try { music.pause(); } catch (e) { /* idle */ }
             try { voice.pause(); } catch (e) { /* idle */ }
             setNeedsTap(false);
