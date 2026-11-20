@@ -874,6 +874,11 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v5.0.1 — The whole story 📖
+- **Read the full fun fact**: on a phone, a "more" link opens the whole fun fact on the reveal (#3504)
+- **More Bond, fewer snags**: eight more James Bond theme songs with a film quiz, the answer stays on screen when the TV or a phone plays the music, and the admin page logs in over Tailscale or IPv6 again (#3449, #3520, #3512)
+- **Six playlists repaired**, from Greatest Metal Songs to Kölner Karneval (#3500, #3509, #3523, #3528, #3530, #3532)
+
 ### v5.0.0 — No Speaker Needed 📺
 - **No speaker? No problem**: the TV browser or the host's phone plays a 30-second preview each round, so any room with a screen can host a quiz (#3444)
 - **Play alone**: one player is enough to start, and steal and sabotage wait until friends join (#3491, #3494)
