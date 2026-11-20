@@ -55,7 +55,7 @@ from custom_components.beatify.game.text_match import (
 # player isn't punished for actually listening to the song before committing to
 # a year. After the grace it decays linearly to 1.0x at the deadline.
 SPEED_MULTIPLIER_MAX = 3.0
-SPEED_GRACE_FRACTION = 1.0 / 3.0
+SPEED_GRACE_FRACTION = 0.6
 
 # A won bet (exact year) multiplies the round score by this (#1004).
 # This is the flat, difficulty-agnostic payout — the default that applies when
