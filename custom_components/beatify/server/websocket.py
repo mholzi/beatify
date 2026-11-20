@@ -13,6 +13,7 @@ from aiohttp import WSCloseCode, WSMsgType, web
 
 from custom_components.beatify.const import (
     ADMIN_DISCONNECT_PAUSE_REASON,
+    BROWSER_PREVIEW_SECONDS,
     ERR_GAME_NOT_STARTED,
     ERR_INTERNAL,
     ERR_UNAUTHORIZED,
@@ -513,6 +514,35 @@ class BeatifyWebSocketHandler:
                 "active": self.browser_clients.holds(role, ws),
             }
         )
+        if data.get("claim") and self.browser_clients.holds(role, ws):
+            await self._start_running_clip_on(role)
+
+    async def _start_running_clip_on(self, role: str) -> None:
+        """Hand the running round's clip to a page that just took the role.
+
+        The host may tap "Sound on" after the round has started (#3527): the
+        clip was sent while no page played, so the page only has the silent
+        unlock sound. Send the clip again, from where the round is now.
+        """
+        from custom_components.beatify.game.state import (  # noqa: PLC0415
+            GamePhase,
+        )
+
+        game_state = get_game_state(self.hass)
+        if game_state is None or game_state.phase is not GamePhase.PLAYING:
+            return
+        if game_state.browser_playback != role:
+            return
+        service = getattr(game_state, "_media_player_service", None)
+        url_of = getattr(service, "running_clip_url", None)
+        url = url_of() if callable(url_of) else None
+        if not url:
+            return
+        started = game_state.round_start_time
+        elapsed = game_state.current_time() - started if started else 0.0
+        if elapsed >= BROWSER_PREVIEW_SECONDS:
+            return  # the clip is over; the next round starts it normally
+        await self.browser_clients.send_play(role, url, position=max(0.0, elapsed))
 
     # ------------------------------------------------------------------
     # Broadcasting

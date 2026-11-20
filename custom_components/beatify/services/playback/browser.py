@@ -21,7 +21,8 @@ The WebSocket handler owns the sockets and forwards ``playback_register`` /
 
 Wire format, server -> page::
 
-    {"type": "browser_audio", "action": "play", "url": ..., "id": n}
+    {"type": "browser_audio", "action": "play", "url": ..., "id": n,
+     "position": seconds}   # position only for a page that joins mid-clip
     {"type": "browser_audio", "action": "stop" | "resume"}
     {"type": "browser_audio", "action": "volume", "level": 0..1}
     {"type": "browser_audio", "action": "announce", "url": ...}
@@ -198,6 +199,25 @@ class BrowserClientRegistry:
                 return {"state": "timeout"}
         finally:
             self._pending.pop(req_id, None)
+
+    async def send_play(self, role: str, url: str, *, position: float = 0.0) -> bool:
+        """Tell the page for ``role`` to play ``url`` from ``position`` seconds.
+
+        For a page that took the role while a clip was already running (the
+        host tapped "Sound on" mid-round): nobody waits for its answer, but
+        the clip still gets an id, like any other clip.
+        """
+        req_id = next(self._ids)
+        self._play_id[role] = req_id
+        message: dict[str, Any] = {
+            "type": "browser_audio",
+            "action": "play",
+            "url": url,
+            "id": req_id,
+        }
+        if position > 0:
+            message["position"] = round(position, 1)
+        return await self.send(role, message)
 
     def handle_report(self, ws: Any, data: dict[str, Any]) -> bool:
         """Take a ``playback_report`` from ``ws``; False when it was ignored.
