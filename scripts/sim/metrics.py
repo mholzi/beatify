@@ -12,14 +12,16 @@ OBJECTIVE (fixed before any tuning run, must NOT be changed by phase 2)
 Each metric is mapped linearly onto 0..1 between a "bad" and a "good" anchor
 (clamped), then combined with the weights below into a 0..100 score. Higher is
 better. The anchors are judgement calls, written down here once so a tuning run
-cannot move them after seeing results.
+cannot move them after seeing results. They were widened once in phase 1,
+after the first baseline showed two terms pinned at 0 (no gradient to tune
+against); that was before any tuning and they are frozen from here on.
 
   metric                         weight  bad -> good anchor   why
-  podium_gap_pct (median)         0.20   60 -> 10             a tight podium is
+  podium_gap_pct (median)         0.20   100 -> 10            a tight podium is
         the strongest single driver of "anyone can still win" tension
   lead_changes (median)           0.20   0 -> 4               the lead should
         change hands a few times per game, not never, not every round
-  zero_round_share (median)       0.15   0.50 -> 0.15         a blank round is
+  zero_round_share (median)       0.15   0.65 -> 0.15         a blank round is
         frustration; too many means guessers feel shut out
   open_to_last (proportion)       0.15   0.0 -> 0.5            about half of the
         games should still be open going into the last round
@@ -44,9 +46,9 @@ from statistics import median
 
 #: name -> (weight, bad anchor, good anchor). FIXED, see module docstring.
 OBJECTIVE_TERMS: dict[str, tuple[float, float, float]] = {
-    "podium_gap_pct": (0.20, 60.0, 10.0),
+    "podium_gap_pct": (0.20, 100.0, 10.0),
     "lead_changes": (0.20, 0.0, 4.0),
-    "zero_round_share": (0.15, 0.50, 0.15),
+    "zero_round_share": (0.15, 0.65, 0.15),
     "open_to_last": (0.15, 0.0, 0.5),
     "gelegenheit_podium": (0.15, 0.20, 0.60),
     "award_coverage": (0.15, 0.20, 0.80),

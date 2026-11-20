@@ -1,0 +1,31 @@
+diff --git a/scripts/sim/fun_sim.py b/scripts/sim/fun_sim.py
+index 6b234e02..dd0dd9c3 100644
+--- a/scripts/sim/fun_sim.py
++++ b/scripts/sim/fun_sim.py
+@@ -127,20 +127,12 @@ def play_round(
+             player.submit_guess(decision.guess, ROUND_START + decision.elapsed)
+             player.bet = decision.bet
+     for player in players:
+-        ScoringService.score_player_round(
+-            player,
+-            correct_year=correct_year,
+-            round_start_time=ROUND_START,
+-            round_duration=round_duration,
+-            difficulty=difficulty,
+-            artist_challenge=None,
+-            movie_challenge=None,
+-            is_intro_round=False,
+-            intro_round_start_time=None,
+-            all_players=players,
+-            streak_achievements=streak_achievements,
+-            bet_tracking=bet_tracking,
+-        )
++        # MUTATION: own point math instead of the real scoring code.
++        if player.submitted:
++            base = 10 if player.current_guess == correct_year else 0
++            if base == 0 and abs(player.current_guess - correct_year) <= 3:
++                base = 5
++            player.score += int(base * 1.5)
+     if closest_wins:
+         ScoringService.apply_closest_wins(players, correct_year, streak_achievements)
+     return [p.score - b for p, b in zip(players, before, strict=True)]
