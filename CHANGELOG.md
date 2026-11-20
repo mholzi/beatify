@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added the "New Year's Eve Party" playlist, 101 songs for the countdown and the party after midnight (#3526).
+
 ## [5.0.1] - 2026-11-20
 
 A small update after 5.0, built from what players asked for.
