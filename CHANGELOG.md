@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.0.1] - 2026-11-20
+
+A small update after 5.0, built from what players asked for.
+
+### 📖 Read the full fun fact
+
+On a phone, the fun fact on the reveal used to stop after two lines. Now a "more" link opens the whole story. Thanks to **@tomeztom** for the idea.
+
+### 🎬 More Bond, fewer snags
+
+James Bond Theme Songs grows by eight songs up to No Time to Die, with a film quiz for every track, thanks to **@estarren**. When the TV or a phone plays the music, the answer now stays on screen instead of vanishing after two seconds. The admin page logs in again over Tailscale or IPv6, thanks to **@hardlock75**. Six playlists, from Greatest Metal Songs to Kölner Karneval, get their broken links fixed.
+
 ## [5.0.1-rc3] - 2026-11-16
 
 Third candidate for 5.0.1: the reveal stays up when the TV or a phone plays the music.
