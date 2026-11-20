@@ -546,7 +546,7 @@ Beatify comes with 10,470 songs across 78 curated playlists:
 - 🎬 **Movie & TV Soundtracks** — 559 iconic film and TV soundtracks
 - 🇮🇹 **Musica Italiana** — 115 Italian hits from the 1960s to the 2000s
 - 🎸 **NDW – Neue Deutsche Welle** — 50 German New Wave classics from 1976–1986
-- 🎆 **New Year's Eve Party** — 101 countdown, midnight and party songs from 1942–2022, with a few German favourites
+- 🎆 **New Year's Eve Party** — 101 countdown, midnight and celebration songs from 1942–2021, with a few German favourites
 - 🎤 **One-Hit Wonders** — 98 flash-in-the-pan classics
 - 🇵🇱 **Polski Rock** — 100 Polish rock tracks
 - 🇵🇱 **Polskie hity radiowe** — 92 Polish pop and rock radio hits from 1972–2016

@@ -11,7 +11,7 @@
   "language": "en",
   "author": "Beatify",
   "added_date": "2026-11-20",
-  "description": "101 songs for the last night of the year: countdown and midnight classics, party anthems and a few German favourites, from Bing Crosby in 1942 to Sam Smith in 2022. Requested in #3526.",
+  "description": "101 songs for the last night of the year: countdown, midnight and celebration classics, party anthems and a few German favourites, from Bing Crosby in 1942 to the 2020s. Requested in #3526.",
   "songs": [
     {
       "year": 1942,
@@ -199,6 +199,17 @@
       "fun_fact_nl": "'Could You Be Loved' komt van Uprising (1980), het laatste album dat Bob Marley tijdens zijn leven uitbracht."
     },
     {
+      "year": 1980,
+      "artist": "Kool & The Gang",
+      "title": "Celebration",
+      "uri": "spotify:track:6pc8xULSlsMdFB3OrqbvZ4",
+      "fun_fact": "'Celebration' reached number one in the US in early 1981 and has been played at midnight parties, weddings and victory parades ever since.",
+      "fun_fact_de": "'Celebration' erreichte Anfang 1981 Platz eins in den USA und läuft seitdem auf Mitternachtspartys, Hochzeiten und Siegesfeiern.",
+      "fun_fact_es": "'Celebration' llegó al número uno en EE. UU. a principios de 1981 y desde entonces suena en fiestas de medianoche, bodas y celebraciones de victorias.",
+      "fun_fact_fr": "« Celebration » a atteint la première place aux États-Unis début 1981 et passe depuis lors dans les fêtes de minuit, les mariages et les célébrations de victoire.",
+      "fun_fact_nl": "'Celebration' bereikte begin 1981 nummer één in de VS en wordt sindsdien gedraaid op middernachtfeesten, bruiloften en overwinningsvieringen."
+    },
+    {
       "year": 1981,
       "artist": "Earth, Wind & Fire",
       "title": "Let's Groove",
@@ -210,6 +221,19 @@
       "fun_fact_es": "'Let's Groove' es del álbum Raise! (1981) y llegó al número uno de la lista de R&B de EE. UU.",
       "fun_fact_fr": "« Let's Groove » vient de l'album Raise! (1981) et a atteint la première place du classement R&B américain.",
       "fun_fact_nl": "'Let's Groove' komt van het album Raise! (1981) en bereikte nummer één in de Amerikaanse R&B-lijst."
+    },
+    {
+      "year": 1981,
+      "artist": "Journey",
+      "title": "Don't Stop Believin'",
+      "uri": "spotify:track:4bHsxqR3GMrXTxEPLuK5ue",
+      "isrc": "USSM18100116",
+      "uri_deezer": "deezer://track/625643",
+      "fun_fact": "The title line 'Don't stop believin'' only appears near the very end of the song, which made it a famous singalong finale (1981).",
+      "fun_fact_de": "Die Titelzeile 'Don't stop believin'' kommt erst ganz am Ende des Songs vor, was ihn 1981 zum berühmten Mitsing-Finale machte.",
+      "fun_fact_es": "La frase del título 'Don't stop believin'' solo aparece casi al final de la canción, lo que la convirtió en un famoso final para cantar en grupo (1981).",
+      "fun_fact_fr": "La phrase du titre « Don't stop believin' » n'apparaît que tout à la fin de la chanson, ce qui en a fait un célèbre final à chanter en chœur (1981).",
+      "fun_fact_nl": "De titelregel 'Don't stop believin'' komt pas helemaal aan het eind van het nummer voor, waardoor het een beroemd meezingfinale werd (1981)."
     },
     {
       "year": 1981,
@@ -252,6 +276,19 @@
     },
     {
       "year": 1982,
+      "artist": "Prince",
+      "title": "1999",
+      "uri": "spotify:track:2H7PHVdQ3mXqEHXcvclTB0",
+      "isrc": "USWB18200028",
+      "uri_deezer": "deezer://track/690101",
+      "fun_fact": "Prince's '1999' imagines one last party before the year 2000. It is the title track of his 1982 album.",
+      "fun_fact_de": "Princes '1999' stellt sich eine letzte Party vor dem Jahr 2000 vor. Es ist der Titelsong seines Albums von 1982.",
+      "fun_fact_es": "'1999' de Prince imagina una última fiesta antes del año 2000. Es el tema que da título a su álbum de 1982.",
+      "fun_fact_fr": "« 1999 » de Prince imagine une dernière fête avant l'an 2000. C'est le morceau-titre de son album de 1982.",
+      "fun_fact_nl": "'1999' van Prince schetst een laatste feest vóór het jaar 2000. Het is de titelsong van zijn album uit 1982."
+    },
+    {
+      "year": 1982,
       "artist": "Scorpions",
       "title": "No One Like You",
       "uri": "spotify:track:0lc0bCHJIwcvh7U3xY4VWU",
@@ -291,14 +328,29 @@
     },
     {
       "year": 1983,
-      "artist": "Grandmaster Flash & Melle Mel",
-      "title": "White Lines (Don't Do It)",
-      "uri": "spotify:track:7zIBSt9PdDRWWJQnEHtY4K",
-      "fun_fact": "The bass line of 'White Lines' (1983) closely follows 'Cavern' by Liquid Liquid, which led to a legal dispute.",
-      "fun_fact_de": "Die Basslinie von 'White Lines' (1983) folgt eng 'Cavern' von Liquid Liquid, was zu einem Rechtsstreit führte.",
-      "fun_fact_es": "La línea de bajo de 'White Lines' (1983) sigue de cerca 'Cavern' de Liquid Liquid, lo que provocó una disputa legal.",
-      "fun_fact_fr": "La ligne de basse de « White Lines » (1983) suit de près « Cavern » de Liquid Liquid, ce qui a mené à un litige.",
-      "fun_fact_nl": "De baslijn van 'White Lines' (1983) lijkt sterk op 'Cavern' van Liquid Liquid, wat tot een juridisch geschil leidde."
+      "artist": "Nena",
+      "title": "99 Luftballons",
+      "uri": "spotify:track:4ZhPLoMzZwewHLLjV1J15c",
+      "isrc": "DEE868300011",
+      "uri_deezer": "deezer://track/3786206112",
+      "fun_fact": "'99 Luftballons' is about balloons drifting into the sky at night. The German original reached number two in the US in 1984.",
+      "fun_fact_de": "'99 Luftballons' handelt von Luftballons, die nachts in den Himmel steigen. Das deutsche Original erreichte 1984 Platz zwei in den USA.",
+      "fun_fact_es": "'99 Luftballons' trata de globos que suben al cielo de noche. El original en alemán llegó al número dos en EE. UU. en 1984.",
+      "fun_fact_fr": "« 99 Luftballons » parle de ballons qui montent dans le ciel nocturne. L'original en allemand a atteint la deuxième place aux États-Unis en 1984.",
+      "fun_fact_nl": "'99 Luftballons' gaat over ballonnen die 's nachts de lucht in zweven. Het Duitse origineel bereikte in 1984 nummer twee in de VS."
+    },
+    {
+      "year": 1983,
+      "artist": "U2",
+      "title": "New Year's Day",
+      "uri": "spotify:track:2LcBjt97tnX1dd2AhceQXn",
+      "isrc": "GBUM70809759",
+      "uri_deezer": "deezer://track/1579267",
+      "fun_fact": "Bono's lyrics for 'New Year's Day' (1983) were inspired by the Solidarity movement in Poland.",
+      "fun_fact_de": "Bonos Text zu 'New Year's Day' (1983) wurde von der Solidarność-Bewegung in Polen inspiriert.",
+      "fun_fact_es": "La letra de Bono para 'New Year's Day' (1983) se inspiró en el movimiento Solidaridad de Polonia.",
+      "fun_fact_fr": "Les paroles de Bono pour « New Year's Day » (1983) sont inspirées du mouvement Solidarność en Pologne.",
+      "fun_fact_nl": "Bono's tekst voor 'New Year's Day' (1983) was geïnspireerd door de Solidariteitsbeweging in Polen."
     },
     {
       "year": 1984,
@@ -338,6 +390,19 @@
       "fun_fact_es": "El líder de Cameo, Larry Blackmon, llevaba una bragueta roja en el vídeo de 'Word Up!' (1986).",
       "fun_fact_fr": "Le chanteur de Cameo, Larry Blackmon, portait une braguette rouge dans le clip de « Word Up! » (1986).",
       "fun_fact_nl": "Cameo-frontman Larry Blackmon droeg in de video van 'Word Up!' (1986) een rode gulpkapsel."
+    },
+    {
+      "year": 1986,
+      "artist": "Europe",
+      "title": "The Final Countdown",
+      "uri": "spotify:track:3MrRksHupTVEQ7YbA0FsZK",
+      "isrc": "USSM18600196",
+      "uri_deezer": "deezer://track/858371",
+      "fun_fact": "Singer Joey Tempest wrote 'The Final Countdown' after being inspired by David Bowie's 'Space Oddity'. It went to number one in many countries in 1986.",
+      "fun_fact_de": "Sänger Joey Tempest schrieb 'The Final Countdown', inspiriert von David Bowies 'Space Oddity'. 1986 erreichte es in vielen Ländern Platz eins.",
+      "fun_fact_es": "El cantante Joey Tempest escribió 'The Final Countdown' inspirado por 'Space Oddity' de David Bowie. En 1986 fue número uno en muchos países.",
+      "fun_fact_fr": "Le chanteur Joey Tempest a écrit « The Final Countdown » en s'inspirant de « Space Oddity » de David Bowie. Le titre a atteint la première place dans de nombreux pays en 1986.",
+      "fun_fact_nl": "Zanger Joey Tempest schreef 'The Final Countdown' geïnspireerd door David Bowie's 'Space Oddity'. In 1986 werd het in veel landen nummer één."
     },
     {
       "year": 1986,
@@ -424,19 +489,6 @@
     },
     {
       "year": 1989,
-      "artist": "Depeche Mode",
-      "title": "Personal Jesus",
-      "uri": "spotify:track:72a9JWKqJ8SGo0OdyCS12P",
-      "isrc": "GBAJH0602195",
-      "uri_deezer": "deezer://track/68513563",
-      "fun_fact": "Martin Gore took the idea for 'Personal Jesus' from Priscilla Presley's book Elvis and Me.",
-      "fun_fact_de": "Martin Gore holte die Idee zu 'Personal Jesus' aus Priscilla Presleys Buch Elvis and Me.",
-      "fun_fact_es": "Martin Gore sacó la idea de 'Personal Jesus' del libro Elvis and Me de Priscilla Presley.",
-      "fun_fact_fr": "Martin Gore a puisé l'idée de « Personal Jesus » dans le livre Elvis and Me de Priscilla Presley.",
-      "fun_fact_nl": "Martin Gore haalde het idee voor 'Personal Jesus' uit Priscilla Presleys boek Elvis and Me."
-    },
-    {
-      "year": 1989,
       "artist": "Marius Müller-Westernhagen",
       "title": "Sexy",
       "uri": "spotify:track:2C8ymluZHrPz34w5tfk5QD",
@@ -486,19 +538,6 @@
       "fun_fact_es": "La cantante Martha Wash grabó las voces, y la disputa por su falta de crédito ayudó a cambiar cómo se acredita a los cantantes de sesión.",
       "fun_fact_fr": "La chanteuse Martha Wash a enregistré les voix, et le litige sur l'absence de son nom a contribué à changer la mention des choristes de studio.",
       "fun_fact_nl": "Zangeres Martha Wash nam de zang op, en het geschil over haar ontbrekende vermelding hielp veranderen hoe sessiezangers worden vermeld."
-    },
-    {
-      "year": 1990,
-      "artist": "Depeche Mode",
-      "title": "Enjoy the Silence",
-      "uri": "spotify:track:0ULPav7qqKTHn7vgi9v42k",
-      "isrc": "GBAJH9800146",
-      "uri_deezer": "deezer://track/68515055",
-      "fun_fact": "Martin Gore wrote 'Enjoy the Silence' as a slow ballad before the band turned it into a dance track.",
-      "fun_fact_de": "Martin Gore schrieb 'Enjoy the Silence' als langsame Ballade, bevor die Band daraus einen Dance-Titel machte.",
-      "fun_fact_es": "Martin Gore escribió 'Enjoy the Silence' como una balada lenta antes de que la banda la convirtiera en un tema de baile.",
-      "fun_fact_fr": "Martin Gore a écrit « Enjoy the Silence » comme une ballade lente avant que le groupe n'en fasse un titre dance.",
-      "fun_fact_nl": "Martin Gore schreef 'Enjoy the Silence' als langzame ballad voordat de band er een dansnummer van maakte."
     },
     {
       "year": 1990,
@@ -590,32 +629,6 @@
       "fun_fact_es": "Inner Circle es una banda de reggae jamaicana, también conocida por 'Bad Boys', el tema de la serie de televisión Cops.",
       "fun_fact_fr": "Inner Circle est un groupe de reggae jamaïcain, aussi connu pour « Bad Boys », le générique de la série télévisée Cops.",
       "fun_fact_nl": "Inner Circle is een Jamaicaanse reggaeband, ook bekend van 'Bad Boys', de tune van de tv-serie Cops."
-    },
-    {
-      "year": 1992,
-      "artist": "Sir Mix-a-Lot",
-      "title": "Baby Got Back",
-      "uri": "spotify:track:7MCNnnmwm7TXMh7xyNGohi",
-      "isrc": "USA561380023",
-      "uri_deezer": "deezer://track/61548256",
-      "fun_fact": "'Baby Got Back' spent five weeks at number one in the US in 1992 and won a Grammy for Best Solo Rap Performance.",
-      "fun_fact_de": "'Baby Got Back' stand 1992 fünf Wochen auf Platz eins in den USA und gewann einen Grammy für die beste Solo-Rap-Performance.",
-      "fun_fact_es": "'Baby Got Back' estuvo cinco semanas en el número uno de EE. UU. en 1992 y ganó un Grammy a la mejor interpretación de rap en solitario.",
-      "fun_fact_fr": "« Baby Got Back » est resté cinq semaines en tête aux États-Unis en 1992 et a remporté un Grammy de la meilleure performance rap solo.",
-      "fun_fact_nl": "'Baby Got Back' stond in 1992 vijf weken op nummer één in de VS en won een Grammy voor beste solo-rapoptreden."
-    },
-    {
-      "year": 1993,
-      "artist": "Cypress Hill",
-      "title": "Insane in the Brain",
-      "uri": "spotify:track:1oTHteQbmJw15rPxPVXUTv",
-      "isrc": "USSM19303133",
-      "uri_deezer": "deezer://track/1015862",
-      "fun_fact": "'Insane in the Brain' is from Cypress Hill's 1993 album Black Sunday, which debuted at number one on the US album chart.",
-      "fun_fact_de": "'Insane in the Brain' stammt vom Cypress-Hill-Album Black Sunday (1993), das auf Platz eins der US-Albumcharts einstieg.",
-      "fun_fact_es": "'Insane in the Brain' es del álbum Black Sunday (1993) de Cypress Hill, que debutó en el número uno de la lista de álbumes de EE. UU.",
-      "fun_fact_fr": "« Insane in the Brain » figure sur l'album Black Sunday (1993) de Cypress Hill, entré directement à la première place du classement américain des albums.",
-      "fun_fact_nl": "'Insane in the Brain' staat op Black Sunday (1993) van Cypress Hill, dat op nummer één in de Amerikaanse albumlijst binnenkwam."
     },
     {
       "year": 1993,
@@ -713,29 +726,27 @@
     },
     {
       "year": 1999,
-      "artist": "Santana & Rob Thomas",
-      "title": "Smooth",
-      "uri": "spotify:track:2pX4FpOgwItRVPPUFdRcxA",
-      "isrc": "USAR19900033",
-      "uri_deezer": "deezer://track/82241402",
-      "fun_fact": "'Smooth' spent twelve weeks at number one in the US in 1999 and won the Grammy for Record of the Year.",
-      "fun_fact_de": "'Smooth' stand 1999 zwölf Wochen auf Platz eins in den USA und gewann den Grammy als Aufnahme des Jahres.",
-      "fun_fact_es": "'Smooth' estuvo doce semanas en el número uno de EE. UU. en 1999 y ganó el Grammy a la grabación del año.",
-      "fun_fact_fr": "« Smooth » est resté douze semaines en tête aux États-Unis en 1999 et a remporté le Grammy de l'enregistrement de l'année.",
-      "fun_fact_nl": "'Smooth' stond in 1999 twaalf weken op nummer één in de VS en won de Grammy voor opname van het jaar."
+      "artist": "Kenny G",
+      "title": "Auld Lang Syne",
+      "uri": "spotify:track:2VXxwZGNncVERYn1o3Lov7",
+      "isrc": "USAR10201247",
+      "uri_deezer": "deezer://track/970677",
+      "fun_fact": "The tune is a traditional Scottish song with words by Robert Burns. Kenny G's saxophone version from 1999 became a New Year's Eve radio staple.",
+      "fun_fact_de": "Die Melodie ist ein traditionelles schottisches Lied mit Text von Robert Burns. Kenny Gs Saxofon-Version von 1999 wurde zum Silvester-Radioklassiker.",
+      "fun_fact_es": "La melodía es una canción tradicional escocesa con letra de Robert Burns. La versión de saxofón de Kenny G de 1999 se volvió un clásico de la radio en Nochevieja.",
+      "fun_fact_fr": "L'air est une chanson traditionnelle écossaise sur des paroles de Robert Burns. La version au saxophone de Kenny G de 1999 est devenue un classique radio du réveillon.",
+      "fun_fact_nl": "De melodie is een traditioneel Schots lied met woorden van Robert Burns. Kenny G's saxofoonversie uit 1999 werd een oudejaarsklassieker op de radio."
     },
     {
       "year": 1999,
-      "artist": "Sisqó",
-      "title": "Thong Song",
-      "uri": "spotify:track:5Mmk2ii6laakqfeCT7OnVD",
-      "isrc": "USDJ29905218",
-      "uri_deezer": "deezer://track/2548870",
-      "fun_fact": "'Thong Song' reached number three on the US Hot 100 and was a hit around the world in 1999 and 2000.",
-      "fun_fact_de": "'Thong Song' erreichte Platz drei der US-Hot-100 und war 1999 und 2000 weltweit ein Hit.",
-      "fun_fact_es": "'Thong Song' llegó al número tres del Hot 100 de EE. UU. y fue un éxito mundial entre 1999 y 2000.",
-      "fun_fact_fr": "« Thong Song » a atteint la troisième place du Hot 100 américain et a été un tube mondial en 1999 et 2000.",
-      "fun_fact_nl": "'Thong Song' bereikte nummer drie in de Amerikaanse Hot 100 en was in 1999 en 2000 wereldwijd een hit."
+      "artist": "Will Smith",
+      "title": "Will 2K",
+      "uri": "spotify:track:6dbB6H2WgXjcErDh082mbr",
+      "fun_fact": "'Will 2K' was Will Smith's 1999 millennium countdown single and samples The Clash's 'Rock the Casbah'.",
+      "fun_fact_de": "'Will 2K' war Will Smiths Countdown-Single zur Jahrtausendwende 1999 und sampelt 'Rock the Casbah' von The Clash.",
+      "fun_fact_es": "'Will 2K' fue el sencillo de cuenta atrás del milenio de Will Smith en 1999 y samplea 'Rock the Casbah' de The Clash.",
+      "fun_fact_fr": "« Will 2K » était le single de Will Smith pour le passage à l'an 2000, en 1999, et sample « Rock the Casbah » des Clash.",
+      "fun_fact_nl": "'Will 2K' was Will Smiths aftelsingle voor de millenniumwisseling in 1999 en samplet 'Rock the Casbah' van The Clash."
     },
     {
       "year": 2000,
@@ -813,19 +824,6 @@
     },
     {
       "year": 2004,
-      "artist": "Green Day",
-      "title": "Boulevard of Broken Dreams",
-      "uri": "spotify:track:1hwJKpe0BPUsq6UUrwBWTw",
-      "isrc": "USRE10401426",
-      "uri_deezer": "deezer://track/6611231",
-      "fun_fact": "'Boulevard of Broken Dreams' won the Grammy for Record of the Year in 2006.",
-      "fun_fact_de": "'Boulevard of Broken Dreams' gewann 2006 den Grammy als Aufnahme des Jahres.",
-      "fun_fact_es": "'Boulevard of Broken Dreams' ganó el Grammy a la grabación del año en 2006.",
-      "fun_fact_fr": "« Boulevard of Broken Dreams » a remporté le Grammy de l'enregistrement de l'année en 2006.",
-      "fun_fact_nl": "'Boulevard of Broken Dreams' won in 2006 de Grammy voor opname van het jaar."
-    },
-    {
-      "year": 2004,
       "artist": "Usher",
       "title": "Yeah!",
       "uri": "spotify:track:5rb9QrpfcKFHM1EUbSIurX",
@@ -888,6 +886,19 @@
       "fun_fact_es": "'All My Friends' se basa en una única figura de piano que se repite sin parar. Está en el álbum Sound of Silver (2007).",
       "fun_fact_fr": "« All My Friends » repose sur une seule figure de piano répétée sans relâche. Le titre figure sur l'album Sound of Silver (2007).",
       "fun_fact_nl": "'All My Friends' is gebouwd op één zich herhalend pianomotief dat nooit stopt. Het staat op het album Sound of Silver (2007)."
+    },
+    {
+      "year": 2009,
+      "artist": "Black Eyed Peas",
+      "title": "I Gotta Feeling",
+      "uri": "spotify:track:4kLLWz7srcuLKA7Et40PQR",
+      "isrc": "USUM70965169",
+      "uri_deezer": "deezer://track/4619466",
+      "fun_fact": "'I Gotta Feeling' spent fourteen weeks at number one on the US Hot 100 in 2009.",
+      "fun_fact_de": "'I Gotta Feeling' stand 2009 vierzehn Wochen auf Platz eins der US-Hot-100.",
+      "fun_fact_es": "'I Gotta Feeling' estuvo catorce semanas en el número uno del Hot 100 de EE. UU. en 2009.",
+      "fun_fact_fr": "« I Gotta Feeling » est resté quatorze semaines en tête du Hot 100 américain en 2009.",
+      "fun_fact_nl": "'I Gotta Feeling' stond in 2009 veertien weken op nummer één in de Amerikaanse Hot 100."
     },
     {
       "year": 2009,
@@ -956,17 +967,6 @@
     },
     {
       "year": 2010,
-      "artist": "Robyn",
-      "title": "Dancing on My Own",
-      "uri": "spotify:track:2UT3iEU7uQAXNUxCKfiZAj",
-      "fun_fact": "'Dancing on My Own' sets a heartbroken lyric to a dance beat. It is from Robyn's 2010 album Body Talk Pt. 1.",
-      "fun_fact_de": "'Dancing on My Own' legt einen gebrochenen Liedtext über einen Tanzbeat. Es stammt von Robyns Album Body Talk Pt. 1 (2010).",
-      "fun_fact_es": "'Dancing on My Own' pone una letra de desamor sobre un ritmo de baile. Es del álbum Body Talk Pt. 1 (2010) de Robyn.",
-      "fun_fact_fr": "« Dancing on My Own » met des paroles de chagrin sur un rythme de dance. Le titre vient de l'album Body Talk Pt. 1 (2010) de Robyn.",
-      "fun_fact_nl": "'Dancing on My Own' zet een gebroken-hart-tekst op een dansbeat. Het komt van Robyns album Body Talk Pt. 1 (2010)."
-    },
-    {
-      "year": 2010,
       "artist": "Usher",
       "title": "OMG",
       "uri": "spotify:track:3r04p85xiJh9Wqk59YDYdc",
@@ -1032,6 +1032,19 @@
     },
     {
       "year": 2011,
+      "artist": "LMFAO",
+      "title": "Party Rock Anthem",
+      "uri": "spotify:track:7mitXLIMCflkhZiD34uEQI",
+      "isrc": "USUM71100061",
+      "uri_deezer": "deezer://track/12565420",
+      "fun_fact": "'Party Rock Anthem' (with Lauren Bennett and GoonRock) spent six weeks at number one on the US Hot 100 in 2011.",
+      "fun_fact_de": "'Party Rock Anthem' (mit Lauren Bennett und GoonRock) stand 2011 sechs Wochen auf Platz eins der US-Hot-100.",
+      "fun_fact_es": "'Party Rock Anthem' (con Lauren Bennett y GoonRock) estuvo seis semanas en el número uno del Hot 100 de EE. UU. en 2011.",
+      "fun_fact_fr": "« Party Rock Anthem » (avec Lauren Bennett et GoonRock) est resté six semaines en tête du Hot 100 américain en 2011.",
+      "fun_fact_nl": "'Party Rock Anthem' (met Lauren Bennett en GoonRock) stond in 2011 zes weken op nummer één in de Amerikaanse Hot 100."
+    },
+    {
+      "year": 2011,
       "artist": "Lady Gaga",
       "title": "Born This Way",
       "uri": "spotify:track:6wAdqKcL7uESrsekjLTKod",
@@ -1042,6 +1055,19 @@
       "fun_fact_es": "'Born This Way' se convirtió en 2011 en el número uno mil de la historia del Billboard Hot 100 de EE. UU.",
       "fun_fact_fr": "« Born This Way » est devenu en 2011 le 1 000e numéro un de l'histoire du Billboard Hot 100 américain.",
       "fun_fact_nl": "'Born This Way' werd in 2011 de duizendste nummer één in de geschiedenis van de Amerikaanse Billboard Hot 100."
+    },
+    {
+      "year": 2011,
+      "artist": "M83",
+      "title": "Midnight City",
+      "uri": "spotify:track:602yOjjco8BtdznV8wRb41",
+      "isrc": "GB55H1100002",
+      "uri_deezer": "deezer://track/92198180",
+      "fun_fact": "'Midnight City' closes with a saxophone solo that became one of the most recognisable moments of 2011. It is from the album Hurry Up, We're Dreaming.",
+      "fun_fact_de": "'Midnight City' endet mit einem Saxofonsolo, das 2011 zu einem der bekanntesten Momente wurde. Es stammt vom Album Hurry Up, We're Dreaming.",
+      "fun_fact_es": "'Midnight City' termina con un solo de saxofón que fue uno de los momentos más reconocibles de 2011. Es del álbum Hurry Up, We're Dreaming.",
+      "fun_fact_fr": "« Midnight City » se termine par un solo de saxophone devenu l'un des moments les plus reconnaissables de 2011. Le titre vient de l'album Hurry Up, We're Dreaming.",
+      "fun_fact_nl": "'Midnight City' eindigt met een saxofoonsolo die in 2011 een van de herkenbaarste momenten werd. Het komt van het album Hurry Up, We're Dreaming."
     },
     {
       "year": 2011,
@@ -1083,15 +1109,30 @@
       "fun_fact_nl": "'We Found Love' stond tien weken op nummer één in de Amerikaanse Hot 100. Calvin Harris produceerde het nummer."
     },
     {
+      "year": 2012,
+      "artist": "Swedish House Mafia",
+      "title": "Don't You Worry Child",
+      "uri": "spotify:track:2V65y3PX4DkRhy1djlxd9p",
+      "isrc": "GBAAA1200728",
+      "uri_deezer": "deezer://track/60842359",
+      "fun_fact": "'Don't You Worry Child' (feat. John Martin) was one of Swedish House Mafia's biggest hits, released in 2012 before the trio split up in 2013.",
+      "fun_fact_de": "'Don't You Worry Child' (feat. John Martin) war 2012 einer der größten Hits von Swedish House Mafia, kurz bevor sich das Trio 2013 trennte.",
+      "fun_fact_es": "'Don't You Worry Child' (feat. John Martin) fue uno de los mayores éxitos de Swedish House Mafia en 2012, poco antes de que el trío se separara en 2013.",
+      "fun_fact_fr": "« Don't You Worry Child » (feat. John Martin) était l'un des plus grands tubes de Swedish House Mafia en 2012, peu avant la séparation du trio en 2013.",
+      "fun_fact_nl": "'Don't You Worry Child' (feat. John Martin) was in 2012 een van de grootste hits van Swedish House Mafia, vlak voordat het trio in 2013 uiteenging."
+    },
+    {
       "year": 2013,
-      "artist": "Arcade Fire",
-      "title": "Reflektor",
-      "uri": "spotify:track:0UjGKszZwvDrxl0WlAU7Wc",
-      "fun_fact": "David Bowie sings backing vocals on 'Reflektor', the title track of Arcade Fire's 2013 album.",
-      "fun_fact_de": "David Bowie singt auf 'Reflektor', dem Titelsong von Arcade Fires Album von 2013, im Hintergrund mit.",
-      "fun_fact_es": "David Bowie canta coros en 'Reflektor', el tema que da título al álbum de Arcade Fire de 2013.",
-      "fun_fact_fr": "David Bowie chante en chœur sur « Reflektor », le morceau-titre de l'album d'Arcade Fire de 2013.",
-      "fun_fact_nl": "David Bowie zingt achtergrondzang op 'Reflektor', de titelsong van Arcade Fires album uit 2013."
+      "artist": "Helene Fischer",
+      "title": "Atemlos durch die Nacht",
+      "uri": "spotify:track:1cSXzDZt8vzuUp2XREQEJN",
+      "isrc": "DEUM71303188",
+      "uri_deezer": "deezer://track/72761680",
+      "fun_fact": "Helene Fischer released 'Atemlos durch die Nacht' in 2013, and it became one of the biggest German party hits of the decade.",
+      "fun_fact_de": "Helene Fischer veröffentlichte 'Atemlos durch die Nacht' 2013, und es wurde einer der größten deutschen Partyhits des Jahrzehnts.",
+      "fun_fact_es": "Helene Fischer publicó 'Atemlos durch die Nacht' en 2013 y se convirtió en uno de los mayores éxitos de fiesta alemanes de la década.",
+      "fun_fact_fr": "Helene Fischer a sorti « Atemlos durch die Nacht » en 2013, et le titre est devenu l'un des plus grands tubes de fête allemands de la décennie.",
+      "fun_fact_nl": "Helene Fischer bracht 'Atemlos durch die Nacht' uit in 2013 en het werd een van de grootste Duitse feesthits van het decennium."
     },
     {
       "year": 2013,
@@ -1116,32 +1157,6 @@
       "fun_fact_es": "'Timber' llegó al número uno del Hot 100 de EE. UU. a principios de 2014.",
       "fun_fact_fr": "« Timber » a atteint la première place du Hot 100 américain début 2014.",
       "fun_fact_nl": "'Timber' bereikte begin 2014 nummer één in de Amerikaanse Hot 100."
-    },
-    {
-      "year": 2013,
-      "artist": "Robin Thicke",
-      "title": "Blurred Lines",
-      "uri": "spotify:track:0n4bITAu0Y0nigrz3MFJMb",
-      "isrc": "USUM71307668",
-      "uri_deezer": "deezer://track/70335406",
-      "fun_fact": "'Blurred Lines' (featuring T.I. and Pharrell Williams) spent twelve weeks at number one in the US in 2013.",
-      "fun_fact_de": "'Blurred Lines' (mit T.I. und Pharrell Williams) stand 2013 zwölf Wochen auf Platz eins in den USA.",
-      "fun_fact_es": "'Blurred Lines' (con T.I. y Pharrell Williams) estuvo doce semanas en el número uno de EE. UU. en 2013.",
-      "fun_fact_fr": "« Blurred Lines » (avec T.I. et Pharrell Williams) est resté douze semaines en tête aux États-Unis en 2013.",
-      "fun_fact_nl": "'Blurred Lines' (met T.I. en Pharrell Williams) stond in 2013 twaalf weken op nummer één in de VS."
-    },
-    {
-      "year": 2014,
-      "artist": "Jungle",
-      "title": "Busy Earnin'",
-      "uri": "spotify:track:6J8SONJwAIizCJm0QhEi4Y",
-      "isrc": "GBBKS1400112",
-      "uri_deezer": "deezer://track/80884844",
-      "fun_fact": "'Busy Earnin'' comes from the debut album of the London collective Jungle, released in 2014.",
-      "fun_fact_de": "'Busy Earnin'' stammt vom 2014 veröffentlichten Debütalbum des Londoner Kollektivs Jungle.",
-      "fun_fact_es": "'Busy Earnin'' es del álbum debut del colectivo londinense Jungle, publicado en 2014.",
-      "fun_fact_fr": "« Busy Earnin' » vient du premier album du collectif londonien Jungle, sorti en 2014.",
-      "fun_fact_nl": "'Busy Earnin'' komt van het debuutalbum van het Londense collectief Jungle, uitgebracht in 2014."
     },
     {
       "year": 2014,
@@ -1266,19 +1281,6 @@
       "fun_fact_es": "'Moth to a Flame' reunió a Swedish House Mafia y The Weeknd en el álbum Paradise Again (2022) del grupo.",
       "fun_fact_fr": "« Moth to a Flame » a réuni Swedish House Mafia et The Weeknd sur l'album Paradise Again (2022) du groupe.",
       "fun_fact_nl": "'Moth to a Flame' bracht Swedish House Mafia en The Weeknd samen op het album Paradise Again (2022) van de groep."
-    },
-    {
-      "year": 2022,
-      "artist": "Sam Smith & Kim Petras",
-      "title": "Unholy",
-      "uri": "spotify:track:0NZPBYD5qbEWRs3PrGiRkT",
-      "isrc": "GBUM72205415",
-      "uri_deezer": "deezer://track/1905751117",
-      "fun_fact": "'Unholy' reached number one in the US in 2022 and won a Grammy for Best Pop Duo/Group Performance.",
-      "fun_fact_de": "'Unholy' erreichte 2022 Platz eins in den USA und gewann einen Grammy für die beste Pop-Duo/Gruppen-Darbietung.",
-      "fun_fact_es": "'Unholy' llegó al número uno en EE. UU. en 2022 y ganó un Grammy a la mejor interpretación pop de dúo o grupo.",
-      "fun_fact_fr": "« Unholy » a atteint la première place aux États-Unis en 2022 et a remporté un Grammy de la meilleure performance pop en duo ou en groupe.",
-      "fun_fact_nl": "'Unholy' bereikte in 2022 nummer één in de VS en won een Grammy voor beste popprestatie door een duo of groep."
     }
   ]
 }
