@@ -81,6 +81,9 @@ class BrowserClientRegistry:
         self._clients: dict[str, Any] = {}
         self._state: dict[str, str] = {}
         self._pending: dict[int, tuple[str, asyncio.Future]] = {}
+        #: The id of the clip each role was last told to play. A report that
+        #: carries another id belongs to an earlier clip and is dropped.
+        self._play_id: dict[str, int] = {}
         self._ids = itertools.count(1)
         self._listeners: list[Callable[[], None]] = []
 
@@ -103,6 +106,7 @@ class BrowserClientRegistry:
             return None
         self._clients[role] = ws
         self._state[role] = "idle"
+        self._play_id.pop(role, None)
         self._notify()
         return current if current is not None and not _closed(current) else None
 
@@ -112,6 +116,7 @@ class BrowserClientRegistry:
         for role in roles:
             del self._clients[role]
             self._state.pop(role, None)
+            self._play_id.pop(role, None)
             for req_id, (req_role, fut) in list(self._pending.items()):
                 if req_role == role and not fut.done():
                     fut.set_result({"state": "gone"})
@@ -182,6 +187,8 @@ class BrowserClientRegistry:
         req_id = next(self._ids)
         fut: asyncio.Future = asyncio.get_running_loop().create_future()
         self._pending[req_id] = (role, fut)
+        if message.get("action") == "play":
+            self._play_id[role] = req_id
         try:
             if not await self.send(role, {**message, "id": req_id}):
                 return {"state": "unsent"}
@@ -196,14 +203,19 @@ class BrowserClientRegistry:
         """Take a ``playback_report`` from ``ws``; False when it was ignored.
 
         A page that does not hold a role has nothing to report, so its frames
-        are dropped — a second TV cannot answer for the one that plays.
+        are dropped — a second TV cannot answer for the one that plays. So are
+        reports about an earlier clip: when the page moves on, a late ``ended``
+        from the previous clip must not mark the new one as finished.
         """
         role = self.role_of(ws)
         state = data.get("state")
         if role is None or state not in REPORT_STATES:
             return False
-        self._state[role] = state
         req_id = data.get("id")
+        current = self._play_id.get(role)
+        if isinstance(req_id, int) and current is not None and req_id != current:
+            return False
+        self._state[role] = state
         if isinstance(req_id, int):
             pending = self._pending.get(req_id)
             if pending is not None and pending[0] == role and not pending[1].done():
