@@ -111,41 +111,41 @@ class TestAccuracyScoreFallback:
 
 class TestSpeedMultiplier:
     def test_instant_submission(self):
-        assert calculate_speed_multiplier(0.0, 30.0) == pytest.approx(2.0)
+        assert calculate_speed_multiplier(0.0, 30.0) == pytest.approx(5.0)
 
     def test_at_deadline(self):
         assert calculate_speed_multiplier(30.0, 30.0) == pytest.approx(1.0)
 
     def test_grace_window_holds_max(self):
-        # #1722: the first third (10s of a 30s round) stays at the full 2.0x so
+        # #1722: the first 60% (18s of a 30s round) stays at the full 5.0x so
         # listening to recognise the song isn't punished.
-        assert calculate_speed_multiplier(5.0, 30.0) == pytest.approx(2.0)
-        assert calculate_speed_multiplier(10.0, 30.0) == pytest.approx(2.0)
+        assert calculate_speed_multiplier(5.0, 30.0) == pytest.approx(5.0)
+        assert calculate_speed_multiplier(18.0, 30.0) == pytest.approx(5.0)
 
     def test_decays_after_grace(self):
-        # #1722: past the 10s grace edge the multiplier decays linearly over the
-        # remaining 20s; 15s → 2.0 - 0.25 = 1.75, 20s → 1.5.
-        assert calculate_speed_multiplier(15.0, 30.0) == pytest.approx(1.75)
-        assert calculate_speed_multiplier(20.0, 30.0) == pytest.approx(1.5)
+        # #1722: past the 18s grace edge the multiplier decays linearly over the
+        # remaining 12s; 24s → 5.0 - 4.0 * 0.5 = 3.0, 27s → 2.0.
+        assert calculate_speed_multiplier(24.0, 30.0) == pytest.approx(3.0)
+        assert calculate_speed_multiplier(27.0, 30.0) == pytest.approx(2.0)
 
     def test_over_deadline_clamped(self):
         # More than round_duration → clamped to 1.0
         assert calculate_speed_multiplier(45.0, 30.0) == pytest.approx(1.0)
 
     def test_negative_time_clamped(self):
-        # Negative elapsed → clamped to 2.0
-        assert calculate_speed_multiplier(-5.0, 30.0) == pytest.approx(2.0)
+        # Negative elapsed → clamped to the maximum (5.0)
+        assert calculate_speed_multiplier(-5.0, 30.0) == pytest.approx(5.0)
 
     def test_zero_round_duration(self):
         # Division by zero guard → returns 1.0
         assert calculate_speed_multiplier(5.0, 0.0) == pytest.approx(1.0)
 
     def test_custom_duration(self):
-        # #1722: grace scales with the round (20s of a 60s round).
-        assert calculate_speed_multiplier(0.0, 60.0) == pytest.approx(2.0)
-        assert calculate_speed_multiplier(20.0, 60.0) == pytest.approx(2.0)
+        # #1722: grace scales with the round (36s of a 60s round).
+        assert calculate_speed_multiplier(0.0, 60.0) == pytest.approx(5.0)
+        assert calculate_speed_multiplier(36.0, 60.0) == pytest.approx(5.0)
         assert calculate_speed_multiplier(60.0, 60.0) == pytest.approx(1.0)
-        assert calculate_speed_multiplier(40.0, 60.0) == pytest.approx(1.5)
+        assert calculate_speed_multiplier(48.0, 60.0) == pytest.approx(3.0)
 
 
 # ---------------------------------------------------------------------------
@@ -157,8 +157,8 @@ class TestRoundScore:
     def test_exact_instant_submission(self):
         final, base, multiplier = calculate_round_score(1985, 1985, 0.0, 30.0)
         assert base == 10
-        assert multiplier == pytest.approx(2.0)
-        assert final == 20  # 10 * 2.0
+        assert multiplier == pytest.approx(5.0)
+        assert final == 50  # 10 * 5.0
 
     def test_exact_at_deadline(self):
         final, base, multiplier = calculate_round_score(1985, 1985, 30.0, 30.0)
@@ -172,24 +172,24 @@ class TestRoundScore:
         assert final == 0  # 0 * 2.0 = 0
 
     def test_close_guess_with_speed_bonus(self):
-        # #1722: 15s → 1.75x (post-grace decay); round(5 * 1.75) = round(8.75) = 9.
-        final, base, multiplier = calculate_round_score(1983, 1985, 15.0, 30.0)
+        # #1722: 26s → 2.333x (post-grace decay); round(5 * 2.333) = round(11.67) = 12.
+        final, base, multiplier = calculate_round_score(1983, 1985, 26.0, 30.0)
         assert base == 5
-        assert multiplier == pytest.approx(1.75)
-        assert final == 9
+        assert multiplier == pytest.approx(7.0 / 3.0)
+        assert final == 12
 
     def test_hard_difficulty(self):
         final, base, _ = calculate_round_score(1983, 1985, 0.0, 30.0, "hard")
         assert base == 3  # hard: ±2 → 3pts
-        assert final == 6  # 3 * 2.0 = 6
+        assert final == 15  # 3 * 5.0 = 15
 
     def test_low_tier_keeps_speed_bonus(self):
         # #1722 regression: with int() a 1-point accuracy tier was speed-immune
-        # (int(1 * 1.75) == 1). round() now credits the bonus. Normal ±4 = 1pt.
-        final, base, multiplier = calculate_round_score(1981, 1985, 15.0, 30.0)
+        # (int(1 * 3.67) == 3). round() now credits the bonus. Normal ±4 = 1pt.
+        final, base, multiplier = calculate_round_score(1981, 1985, 22.0, 30.0)
         assert base == 1
-        assert multiplier == pytest.approx(1.75)
-        assert final == 2  # round(1 * 1.75) = 2, not 1
+        assert multiplier == pytest.approx(11.0 / 3.0)
+        assert final == 4  # round(1 * 3.67) = 4, not 3
 
 
 # ---------------------------------------------------------------------------
@@ -326,14 +326,14 @@ class TestStreakBonus:
         [
             (1, 0),
             (2, 0),
-            (3, 20),
+            (3, 5),
             (4, 0),
-            (5, 50),
+            (5, 10),
             (6, 0),
-            (10, 100),
-            (15, 150),
-            (20, 250),
-            (25, 400),
+            (10, 20),
+            (15, 30),
+            (20, 50),
+            (25, 80),
             (30, 0),  # Not a milestone
         ],
     )
@@ -797,11 +797,11 @@ class TestTitleArtistScoring:
     def test_streak_milestone_bonus_applies(self):
         mgr = _FakeTitleArtistManager({"Alice": (10, 5)}, {"Alice": "exact"})
         p = self._player()
-        p.streak = 2  # this round makes it 3 -> +20 milestone
+        p.streak = 2  # this round makes it 3 -> +5 milestone
         _score_title_artist(p, mgr)
         assert p.streak == 3
-        assert p.streak_bonus == 20
-        assert p.score == 15 + 20
+        assert p.streak_bonus == 5
+        assert p.score == 15 + 5
 
     def test_no_speed_bet_intro_in_title_artist_mode(self):
         mgr = _FakeTitleArtistManager({"Alice": (10, 5)}, {"Alice": "exact"})

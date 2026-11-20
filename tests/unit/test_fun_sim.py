@@ -45,15 +45,15 @@ class TestCrossCheckAgainstScoringTests:
     """Same scenarios as test_scoring.py; the expected numbers are pinned."""
 
     def test_close_guess_with_speed_bonus(self):
-        # test_scoring: 1983 vs 1985, 15 s of 30 s -> base 5 x 1.75 -> 9
-        deltas, _, _ = _round([Decision(1983, 15.0)], 1985)
-        assert deltas == [9]
+        # test_scoring: 1983 vs 1985, 26 s of 30 s -> base 5 x 2.33 -> 12
+        deltas, _, _ = _round([Decision(1983, 26.0)], 1985)
+        assert deltas == [12]
 
     def test_exact_instant_and_hard_difficulty(self):
-        # test_scoring: exact + instant -> 10 x 2.0 = 20
+        # test_scoring: exact + instant -> 10 x 5.0 = 50
         deltas, _, _ = _round([Decision(1985, 0.0)], 1985)
-        assert deltas == [20]
-        # test_scoring: hard, 1983 vs 1985 instant -> 3 x 2.0 = 6
+        assert deltas == [50]
+        # test_scoring: hard, 1983 vs 1985 instant -> 3 x 5.0 = 15
         players = fun_sim.make_players(["A"])
         streaks, bets = fun_sim.new_trackers()
         hard = fun_sim.play_round(
@@ -65,18 +65,18 @@ class TestCrossCheckAgainstScoringTests:
             round_duration=DURATION,
             difficulty="hard",
         )
-        assert hard == [6]
+        assert hard == [15]
 
     def test_bet_won_triples_and_lost_forfeits(self):
-        # exact + instant = 20; won bet x3 = 60 (test_bet_won_on_exact)
+        # exact + instant = 50; won bet x3 = 150 (test_bet_won_on_exact)
         deltas, _, _ = _round([Decision(1985, 0.0, bet=True)], 1985)
-        assert deltas == [60]
+        assert deltas == [150]
         # close guess + bet that is not exact -> forfeited (test_bet_lost_*)
         deltas, _, _ = _round([Decision(1983, 0.0, bet=True)], 1985)
         assert deltas == [0]
 
     def test_streak_milestone_bonus_at_three(self):
-        # 3 exact answers at (almost) the deadline: 10 + 10 + (10 + 20 bonus)
+        # 3 exact answers at (almost) the deadline: 10 + 10 + (10 + 5 bonus)
         players = fun_sim.make_players(["A"])
         trackers = fun_sim.new_trackers()
         totals = []
@@ -85,7 +85,7 @@ class TestCrossCheckAgainstScoringTests:
                 [Decision(1985, 29.999)], 1985, players=players, trackers=trackers
             )
             totals.append(deltas[0])
-        assert totals == [10, 10, 30]
+        assert totals == [10, 10, 15]
         assert players[0].streak == 3
 
     def test_closest_wins_only_closest_keeps_points(self):

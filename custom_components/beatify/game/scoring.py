@@ -147,8 +147,8 @@ def calculate_speed_multiplier(elapsed_time: float, round_duration: float) -> fl
 
     #1722: a grace window keeps the multiplier at its maximum for the first
     third of the round, so listening to recognise the song isn't penalised.
-    - Instant .. grace edge (round_duration / 3): 2.0x (double points!)
-    - Grace edge .. deadline: linear decay 2.0x → 1.0x
+    - Instant .. grace edge (60% of round_duration): 5.0x
+    - Grace edge .. deadline: linear decay 5.0x → 1.0x
     - At / past the deadline: 1.0x (no bonus)
 
     Args:
