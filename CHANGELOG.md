@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added the "Blasmusik" community playlist, 100 brass band tracks: marches, Bohemian polkas, Ernst Mosch, Avsenik and current brass bands, no covers.
+
 ## [5.1.0-rc1] - 2026-11-21
 
 First candidate for 5.1.0: a New Year's Eve playlist and steadier sound on the TV or phone.
