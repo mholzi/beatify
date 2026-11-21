@@ -137,6 +137,45 @@ describe('browser-audio.js', () => {
         expect(sent.at(-1)).toEqual({ type: 'playback_report', state: 'ended', id: 5 });
     });
 
+    it('a clip sent mid-round starts at the round position', async () => {
+        const { p, sent, music } = player();
+        p.handle({ type: 'browser_audio', action: 'play', url: CLIP, id: 9, position: 12.3 });
+        await flush();
+        expect(music.currentTime).toBe(12.3);
+        expect(sent).toEqual([{ type: 'playback_report', state: 'playing', id: 9 }]);
+    });
+
+    it('a clip without a position starts at the beginning', async () => {
+        const { p, music } = player();
+        p.handle({ type: 'browser_audio', action: 'play', url: CLIP, id: 9 });
+        await flush();
+        expect(music.currentTime).toBeUndefined();
+    });
+
+    it('Sound on mid-round: the unlock tap, then the clip the server resends, plays', async () => {
+        // A browser refuses play() until a tap woke the page; model that refusal.
+        let activated = false;
+        let inTap = false;
+        const refusing = () => (activated || inTap ? Promise.resolve() : notAllowed());
+        const { p, sent, music } = player({ outcomes: [refusing, refusing] });
+        music.play.mockImplementation(() => {
+            music.played.push(music.src);
+            if (inTap) activated = true;
+            return refusing();
+        });
+        inTap = true;
+        p.unlock();                      // the tap: only the silent WAV plays
+        inTap = false;
+        expect(music.played).toEqual([Lib.SILENT_WAV]);
+        // The server resends the running clip after the claim.
+        p.handle({ type: 'browser_audio', action: 'play', url: CLIP, id: 4, position: 8 });
+        await flush();
+        expect(music.src).toBe(CLIP);
+        expect(music.currentTime).toBe(8);
+        expect(music.played.at(-1)).toBe(CLIP);
+        expect(sent).toEqual([{ type: 'playback_report', state: 'playing', id: 4 }]);
+    });
+
     it('stop pauses, resume plays the same clip again', async () => {
         const { p, sent, music } = player();
         p.handle({ type: 'browser_audio', action: 'play', url: CLIP, id: 1 });

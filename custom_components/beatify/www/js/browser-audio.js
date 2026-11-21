@@ -6,7 +6,8 @@
  * plays it in an <audio> element. Shared by the TV page (dashboard.js) and the
  * admin page (admin.js), so the two speak one protocol:
  *
- *   server -> page  {type: 'browser_audio', action: 'play', url, id}
+ *   server -> page  {type: 'browser_audio', action: 'play', url, id, position?}
+ *                   (position: seconds into the clip, for a page that joins mid-round)
  *                   {type: 'browser_audio', action: 'stop' | 'resume'}
  *                   {type: 'browser_audio', action: 'volume', level}
  *                   {type: 'browser_audio', action: 'announce', url}
@@ -120,7 +121,7 @@
         };
         voice.onerror = voice.onended;
 
-        function play(url, id) {
+        function play(url, id, position) {
             if (typeof url !== 'string' || url.indexOf('https://') !== 0) {
                 report('error', id);
                 return;
@@ -128,6 +129,10 @@
             currentUrl = url;
             currentId = typeof id === 'number' ? id : null;
             music.src = url;
+            var offset = Number(position);
+            if (isFinite(offset) && offset > 0) {
+                try { music.currentTime = offset; } catch (e) { /* metadata not loaded: plays from 0 */ }
+            }
             applyVolume();
             start(music, id);
         }
@@ -194,7 +199,7 @@
         function handle(msg) {
             if (!msg || msg.type !== 'browser_audio') return false;
             switch (msg.action) {
-                case 'play': play(msg.url, msg.id); break;
+                case 'play': play(msg.url, msg.id, msg.position); break;
                 case 'stop': stop(); break;
                 case 'resume': resume(); break;
                 case 'volume': level = clampLevel(msg.level); applyVolume(); break;

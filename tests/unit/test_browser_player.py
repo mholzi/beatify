@@ -297,6 +297,27 @@ class TestRegistry:
         assert reg.handle_report(tv, {"state": "ended", "id": second}) is True
         assert reg.playback_state("tv") == "ended"
 
+    async def test_a_mid_round_play_becomes_the_current_clip_3525_3527(self):
+        reg = BrowserClientRegistry()
+        tv = _ws()
+        reg.register("tv", tv)
+        ids: list[int] = []
+
+        async def answer(message: dict) -> None:
+            ids.append(message["id"])
+
+        tv.send_json.side_effect = answer
+        play = {"type": "browser_audio", "action": "play", "url": "https://x/a"}
+        await reg.request("tv", play, timeout=0.01)
+        await reg.send_play("tv", "https://x/a", position=5)
+        first, resent = ids
+
+        # The `ended` of the clip sent before Sound on no longer counts ...
+        assert reg.handle_report(tv, {"state": "ended", "id": first}) is False
+        # ... the resent clip's reports do.
+        assert reg.handle_report(tv, {"state": "playing", "id": resent}) is True
+        assert reg.playback_state("tv") == "playing"
+
     def test_an_unknown_report_state_is_ignored(self):
         reg = BrowserClientRegistry()
         tv = _ws()
@@ -586,6 +607,66 @@ class TestWebSocketRegistration:
             {"type": "playback_registered", "role": "tv", "active": True}
         )
         assert handler.browser_clients.holds("tv", tv)
+
+    def _playing_round(self, handler, *, elapsed: float, wanted: bool = True):
+        """A running PLAYING round on the TV target whose clip already started."""
+        from custom_components.beatify.game.state import GamePhase
+
+        reg = handler.browser_clients
+        service = BrowserPlayerService(MagicMock(), BROWSER_TARGET_TV, clients=reg)
+        service._strategy.last_preview = PREVIEW
+        service._context.audio_wanted = wanted
+        gs = MagicMock()
+        gs.phase = GamePhase.PLAYING
+        gs.browser_playback = "tv"
+        gs._media_player_service = service
+        gs.round_start_time = 1000.0
+        gs.current_time.return_value = 1000.0 + elapsed
+        handler.hass.data[DOMAIN]["game"] = gs
+        return gs
+
+    async def test_sound_on_mid_round_starts_the_running_clip_3527(self):
+        handler = self._handler()
+        self._playing_round(handler, elapsed=12.34)
+        tv = _ws()
+        await handler._handle_message(
+            tv, {"type": "playback_register", "role": "tv", "claim": True}
+        )
+        frames = [c[0][0] for c in tv.send_json.call_args_list]
+        assert frames[0]["type"] == "playback_registered"
+        play = frames[1]
+        assert play["action"] == "play"
+        assert play["url"] == PREVIEW.url
+        assert play["position"] == 12.3
+        assert isinstance(play["id"], int)
+
+    async def test_sound_on_in_the_lobby_sends_no_clip_3527(self):
+        handler = self._handler()
+        gs = self._playing_round(handler, elapsed=3)
+        from custom_components.beatify.game.state import GamePhase
+
+        gs.phase = GamePhase.LOBBY
+        tv = _ws()
+        await handler._handle_message(
+            tv, {"type": "playback_register", "role": "tv", "claim": True}
+        )
+        assert tv.send_json.await_count == 1  # only playback_registered
+
+    async def test_sound_on_after_the_host_stopped_the_music_sends_no_clip(self):
+        handler = self._handler()
+        self._playing_round(handler, elapsed=3, wanted=False)
+        tv = _ws()
+        await handler._handle_message(
+            tv, {"type": "playback_register", "role": "tv", "claim": True}
+        )
+        assert tv.send_json.await_count == 1
+
+    async def test_a_plain_registration_does_not_restart_the_clip(self):
+        handler = self._handler()
+        self._playing_round(handler, elapsed=3)
+        tv = _ws()
+        await handler._handle_message(tv, {"type": "playback_register", "role": "tv"})
+        assert tv.send_json.await_count == 1
 
     async def test_a_second_tv_stands_by_until_it_claims(self):
         handler = self._handler()

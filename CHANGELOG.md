@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc1] - 2026-11-21
+
+First candidate for 5.1.0: a New Year's Eve playlist and steadier sound on the TV or phone.
+
+### Added
+- **New Year's Eve Party playlist** (#3526): 101 songs for the countdown and the party after midnight.
+
+### Fixed
+- **Sound on mid-round** (#3527): on a TV or phone speaker, tapping "Sound on" after the round started now plays the running clip from where the round stands instead of staying silent.
+- **Late reports from the previous clip** (#3525): a late "ended" from the previous browser clip no longer marks the new clip as finished.
+- **Polish radio hits** (#3539): two broken links fixed.
+
 ## [5.0.1] - 2026-11-20
 
 A small update after 5.0, built from what players asked for.
