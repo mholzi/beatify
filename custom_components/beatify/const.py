@@ -123,7 +123,7 @@ VOLUME_STEP = 0.1
 
 # Streak milestone bonuses (Story 5.2, Issue #147)
 # Key = streak count, Value = bonus points
-STREAK_MILESTONES: dict[int, int] = {3: 20, 5: 50, 10: 100, 15: 150, 20: 250, 25: 400}
+STREAK_MILESTONES: dict[int, int] = {3: 5, 5: 10, 10: 20, 15: 30, 20: 50, 25: 80}
 
 # Side-challenge bonus (Story 20.1 artist quiz, Issue #28 movie quiz).
 # Both side challenges are winner-takes-all (Issue #1723): the single fastest

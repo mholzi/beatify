@@ -54,8 +54,8 @@ from custom_components.beatify.game.text_match import (
 # #1722: the speed bonus holds at its maximum for an initial grace window so a
 # player isn't punished for actually listening to the song before committing to
 # a year. After the grace it decays linearly to 1.0x at the deadline.
-SPEED_MULTIPLIER_MAX = 2.0
-SPEED_GRACE_FRACTION = 1.0 / 3.0
+SPEED_MULTIPLIER_MAX = 5.0
+SPEED_GRACE_FRACTION = 0.6
 
 # A won bet (exact year) multiplies the round score by this (#1004).
 # This is the flat, difficulty-agnostic payout — the default that applies when
@@ -147,8 +147,8 @@ def calculate_speed_multiplier(elapsed_time: float, round_duration: float) -> fl
 
     #1722: a grace window keeps the multiplier at its maximum for the first
     third of the round, so listening to recognise the song isn't penalised.
-    - Instant .. grace edge (round_duration / 3): 2.0x (double points!)
-    - Grace edge .. deadline: linear decay 2.0x → 1.0x
+    - Instant .. grace edge (60% of round_duration): 5.0x
+    - Grace edge .. deadline: linear decay 5.0x → 1.0x
     - At / past the deadline: 1.0x (no bonus)
 
     Args:

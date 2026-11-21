@@ -1,0 +1,241 @@
+{
+  "games_per_batch": 1000,
+  "objective_terms": {
+    "podium_gap_pct": {
+      "weight": 0.2,
+      "bad": 100.0,
+      "good": 10.0
+    },
+    "lead_changes": {
+      "weight": 0.2,
+      "bad": 0.0,
+      "good": 4.0
+    },
+    "zero_round_share": {
+      "weight": 0.15,
+      "bad": 0.65,
+      "good": 0.15
+    },
+    "open_to_last": {
+      "weight": 0.15,
+      "bad": 0.0,
+      "good": 0.5
+    },
+    "gelegenheit_podium": {
+      "weight": 0.15,
+      "bad": 0.2,
+      "good": 0.6
+    },
+    "award_coverage": {
+      "weight": 0.15,
+      "bad": 0.2,
+      "good": 0.8
+    }
+  },
+  "batches": [
+    {
+      "games": 1000,
+      "podium_gap_pct": {
+        "median": 64.703,
+        "q1": 43.4628,
+        "q3": 78.7349
+      },
+      "lead_changes": {
+        "median": 2.0,
+        "q1": 0.0,
+        "q3": 3.0
+      },
+      "zero_round_share": {
+        "median": 0.4167,
+        "q1": 0.325,
+        "q3": 0.5
+      },
+      "settled_round": {
+        "median": 5.0,
+        "q1": 1.0,
+        "q3": 13.0
+      },
+      "open_to_last": {
+        "share": 0.075
+      },
+      "gelegenheit_podium": {
+        "share": 0.2746,
+        "chance_level": 0.5017,
+        "seats": 976
+      },
+      "award_coverage": {
+        "median": 0.5,
+        "q1": 0.4,
+        "q3": 0.6667
+      },
+      "objective": {
+        "score": 37.39,
+        "term_goodness": {
+          "podium_gap_pct": 0.3922,
+          "lead_changes": 0.5,
+          "zero_round_share": 0.4666,
+          "open_to_last": 0.15,
+          "gelegenheit_podium": 0.1865,
+          "award_coverage": 0.5
+        }
+      },
+      "seed": 1,
+      "mix": "default",
+      "rounds": 20,
+      "difficulty": "normal"
+    },
+    {
+      "games": 1000,
+      "podium_gap_pct": {
+        "median": 64.8714,
+        "q1": 45.1344,
+        "q3": 78.5944
+      },
+      "lead_changes": {
+        "median": 2.0,
+        "q1": 0.0,
+        "q3": 3.0
+      },
+      "zero_round_share": {
+        "median": 0.4083,
+        "q1": 0.3214,
+        "q3": 0.4875
+      },
+      "settled_round": {
+        "median": 5.0,
+        "q1": 1.0,
+        "q3": 13.5
+      },
+      "open_to_last": {
+        "share": 0.083
+      },
+      "gelegenheit_podium": {
+        "share": 0.2625,
+        "chance_level": 0.5048,
+        "seats": 1002
+      },
+      "award_coverage": {
+        "median": 0.5,
+        "q1": 0.4,
+        "q3": 0.6667
+      },
+      "objective": {
+        "score": 37.39,
+        "term_goodness": {
+          "podium_gap_pct": 0.3903,
+          "lead_changes": 0.5,
+          "zero_round_share": 0.4834,
+          "open_to_last": 0.166,
+          "gelegenheit_podium": 0.1562,
+          "award_coverage": 0.5
+        }
+      },
+      "seed": 2,
+      "mix": "default",
+      "rounds": 20,
+      "difficulty": "normal"
+    },
+    {
+      "games": 1000,
+      "podium_gap_pct": {
+        "median": 65.4467,
+        "q1": 47.4228,
+        "q3": 80.1724
+      },
+      "lead_changes": {
+        "median": 2.0,
+        "q1": 1.0,
+        "q3": 3.0
+      },
+      "zero_round_share": {
+        "median": 0.5333,
+        "q1": 0.4667,
+        "q3": 0.6
+      },
+      "settled_round": {
+        "median": 6.0,
+        "q1": 2.0,
+        "q3": 14.0
+      },
+      "open_to_last": {
+        "share": 0.061
+      },
+      "gelegenheit_podium": {
+        "share": 0.4977,
+        "chance_level": 0.5029,
+        "seats": 1957
+      },
+      "award_coverage": {
+        "median": 0.5,
+        "q1": 0.375,
+        "q3": 0.6667
+      },
+      "objective": {
+        "score": 41.67,
+        "term_goodness": {
+          "podium_gap_pct": 0.3839,
+          "lead_changes": 0.5,
+          "zero_round_share": 0.2334,
+          "open_to_last": 0.122,
+          "gelegenheit_podium": 0.7442,
+          "award_coverage": 0.5
+        }
+      },
+      "seed": 1,
+      "mix": "casual",
+      "rounds": 20,
+      "difficulty": "normal"
+    },
+    {
+      "games": 1000,
+      "podium_gap_pct": {
+        "median": 64.6989,
+        "q1": 45.2744,
+        "q3": 79.082
+      },
+      "lead_changes": {
+        "median": 2.0,
+        "q1": 1.0,
+        "q3": 4.0
+      },
+      "zero_round_share": {
+        "median": 0.5433,
+        "q1": 0.4694,
+        "q3": 0.6062
+      },
+      "settled_round": {
+        "median": 7.0,
+        "q1": 2.0,
+        "q3": 14.0
+      },
+      "open_to_last": {
+        "share": 0.064
+      },
+      "gelegenheit_podium": {
+        "share": 0.4916,
+        "chance_level": 0.4922,
+        "seats": 2032
+      },
+      "award_coverage": {
+        "median": 0.5,
+        "q1": 0.375,
+        "q3": 0.6667
+      },
+      "objective": {
+        "score": 41.4,
+        "term_goodness": {
+          "podium_gap_pct": 0.3922,
+          "lead_changes": 0.5,
+          "zero_round_share": 0.2134,
+          "open_to_last": 0.128,
+          "gelegenheit_podium": 0.729,
+          "award_coverage": 0.5
+        }
+      },
+      "seed": 2,
+      "mix": "casual",
+      "rounds": 20,
+      "difficulty": "normal"
+    }
+  ]
+}
