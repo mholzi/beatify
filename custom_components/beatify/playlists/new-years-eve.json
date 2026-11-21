@@ -1,6 +1,6 @@
 {
   "name": "New Year's Eve Party 🎆",
-  "version": "1.2",
+  "version": "1.3",
   "tags": [
     "party",
     "new-years-eve",
@@ -1422,7 +1422,8 @@
       "fun_fact_es": "'New Year's Day' es el tema final de piano de Reputation (2017), el álbum de Taylor Swift. Habla de la mañana siguiente y de recoger el desorden.",
       "fun_fact_fr": "« New Year's Day » est le morceau de clôture au piano de l'album Reputation (2017) de Taylor Swift. Il parle du lendemain matin et du rangement.",
       "fun_fact_nl": "'New Year's Day' is de rustige pianoafsluiter van Taylor Swifts album Reputation (2017). Het gaat over de ochtend erna en het opruimen van de rommel.",
-      "uri_apple_music": "applemusic://track/1440934434"
+      "uri_apple_music": "applemusic://track/1440934434",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=KkvTYrFIxNM"
     },
     {
       "year": 2018,
@@ -1436,7 +1437,8 @@
       "fun_fact_es": "'Dancing' fue el primer sencillo de Golden (2018), el álbum de Kylie Minogue, una canción sobre querer despedirse bailando.",
       "fun_fact_fr": "« Dancing » était le premier single de l'album Golden (2018) de Kylie Minogue, une chanson sur l'envie de partir en dansant.",
       "fun_fact_nl": "'Dancing' was de eerste single van Kylie Minogues album Golden (2018), een nummer over dansend willen vertrekken.",
-      "uri_apple_music": "applemusic://track/1370328250"
+      "uri_apple_music": "applemusic://track/1370328250",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-BDImdAfodA"
     },
     {
       "year": 2019,
@@ -1449,7 +1451,8 @@
       "fun_fact_fr": "« Say So » est devenu un tube en 2020 grâce à une danse virale sur TikTok, et un remix avec Nicki Minaj l'a propulsé à la première place aux États-Unis.",
       "fun_fact_nl": "'Say So' werd in 2020 een hit na een virale TikTok-dans, en een remix met Nicki Minaj bracht het naar nummer één in de VS.",
       "uri_apple_music": "applemusic://track/1486465101",
-      "uri_deezer": "deezer://track/797228462"
+      "uri_deezer": "deezer://track/797228462",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pok8H_KF1FA"
     },
     {
       "year": 2019,
@@ -1461,7 +1464,8 @@
       "fun_fact_es": "'Don't Start Now' llegó al número dos en EE. UU. y abrió el camino a Future Nostalgia (2020), el álbum de Dua Lipa.",
       "fun_fact_fr": "« Don't Start Now » a atteint la deuxième place aux États-Unis et a ouvert la voie à l'album Future Nostalgia (2020) de Dua Lipa.",
       "fun_fact_nl": "'Don't Start Now' bereikte nummer twee in de VS en luidde Dua Lipa's album Future Nostalgia (2020) in.",
-      "uri_apple_music": "applemusic://track/1484636829"
+      "uri_apple_music": "applemusic://track/1484636829",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oygrmJFKYZY"
     },
     {
       "year": 2021,
@@ -1475,7 +1479,8 @@
       "fun_fact_es": "'Moth to a Flame' reunió a Swedish House Mafia y The Weeknd en el álbum Paradise Again (2022) del grupo.",
       "fun_fact_fr": "« Moth to a Flame » a réuni Swedish House Mafia et The Weeknd sur l'album Paradise Again (2022) du groupe.",
       "fun_fact_nl": "'Moth to a Flame' bracht Swedish House Mafia en The Weeknd samen op het album Paradise Again (2022) van de groep.",
-      "uri_apple_music": "applemusic://track/1618145602"
+      "uri_apple_music": "applemusic://track/1618145602",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u9n7Cw-4_HQ"
     }
   ]
 }
