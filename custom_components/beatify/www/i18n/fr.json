@@ -85,7 +85,8 @@
         "finaleTiebreaker": "une égalité en tête se joue au départage",
         "betScaling": "la mise paie selon la difficulté",
         "intro": "certaines manches ne jouent que l'intro",
-        "rampup": "les morceaux vont du plus facile au plus difficile"
+        "rampup": "les morceaux vont du plus facile au plus difficile",
+        "titleArtistRace": "vous faites la course au titre et à l'artiste, la première bonne réponse gagne"
       }
     }
   },
@@ -948,7 +949,9 @@
       "maNeededOne": "{services} nécessite une enceinte Music Assistant",
       "maNeededMany": "{services} nécessitent une enceinte Music Assistant",
       "amazonNeedsEcho": "Amazon Music nécessite un Amazon Echo (alexa_media)"
-    }
+    },
+    "titleArtistRaceMode": "Course en direct",
+    "titleArtistRaceModeHint": "Essais illimités, tout le monde voit les propositions en direct. Le premier qui trouve le titre ou l'artiste remporte ces 10 points. La manche s'arrête quand les deux sont trouvés ou que le temps est écoulé."
   },
   "analyticsDashboard": {
     "title": "Statistiques Beatify",
@@ -1088,7 +1091,20 @@
     "verdictWin": "Dans le mille !",
     "verdictPartial": "Une bonne !",
     "verdictMiss": "Pas cette fois",
-    "verdictPending": "En attente du verdict…"
+    "verdictPending": "En attente du verdict…",
+    "raceGuess": "Deviner",
+    "raceTitleLabel": "Titre",
+    "raceArtistLabel": "Artiste",
+    "raceOpen": "ouvert",
+    "raceNobody": "Personne",
+    "raceWonBoth": "Les deux sont à toi ! 🏆",
+    "raceWonTitle": "Le titre est à toi ! 🏆",
+    "raceWonArtist": "L'artiste est à toi ! 🏆",
+    "raceTooLate": "Juste, mais quelqu'un a été plus rapide !",
+    "raceKeepTrying": "Pas tout à fait, continue !",
+    "raceFoundTitle": "a trouvé le titre",
+    "raceFoundArtist": "a trouvé l'artiste",
+    "raceFeedLabel": "Propositions en direct"
   },
   "earlyReveal": {
     "message": "Tout le monde a répondu !"
@@ -1296,7 +1312,8 @@
     "haErrorHint": "La partie n'a pas pu être chargée. Attends un instant, puis réessaie. Si ça continue, préviens l'hôte.",
     "gameStoppedTitle": "Cette partie est terminée",
     "gameStoppedHint": "La partie s'est arrêtée dans Home Assistant, par exemple après un redémarrage. Quand l'hôte en lance une nouvelle, touche « Rejoindre ».",
-    "gameStoppedRejoin": "Rejoindre"
+    "gameStoppedRejoin": "Rejoindre",
+    "GUESS_TOO_FAST": "Une proposition à la fois"
   },
   "highlights": {
     "highlight_exact_match": "{player} a trouvé '{song}' pile — {year} !",
@@ -1404,7 +1421,9 @@
       "styleDramaticLine": "Ça monte, et la dernière manche décide.",
       "styleChaos": "Chaos",
       "styleChaosLine": "Ils peuvent se chercher des noises. Pas pour la belle-famille.",
-      "styleCustom": "Personnalisé"
+      "styleCustom": "Personnalisé",
+      "taRaceScoring": "Titre 10 · Artiste 10 · la première bonne réponse gagne",
+      "raceShort": "Course"
     },
     "done": {
       "badge": "PRÊT À JOUER",

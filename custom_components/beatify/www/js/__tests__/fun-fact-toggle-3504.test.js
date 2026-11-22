@@ -64,7 +64,7 @@ vi.mock('../player-utils.js', () => ({
     state: {}, escapeHtml: (s) => s, prefersReducedMotion: () => true,
     animateValue: () => {}, previousState: {}, isPreviousStateInitialized: () => false,
     AnimationUtils: {}, updatePreviousState: () => {}, triggerConfetti: () => {},
-    stopConfetti: () => {}, isTitleArtistMode: () => false,
+    stopConfetti: () => {}, isTitleArtistMode: () => false, isTitleArtistRaceMode: () => false,
     createModalFocusTrap: () => ({}), classifyYearsOff: () => '',
 }));
 vi.mock('../player-game.js', () => ({ renderArtistReveal: () => {}, renderMovieReveal: () => {} }));

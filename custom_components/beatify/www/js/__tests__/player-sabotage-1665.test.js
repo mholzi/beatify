@@ -112,6 +112,7 @@ vi.mock('../player-utils.js', () => {
         triggerConfetti: () => {},
         stopConfetti: () => {},
         isTitleArtistMode: () => false,
+        isTitleArtistRaceMode: () => false,
         // #1665: the sabotage modal reuses the steal focus-trap helper.
         createModalFocusTrap: () => ({ activate: () => {}, deactivate: () => {} }),
     };

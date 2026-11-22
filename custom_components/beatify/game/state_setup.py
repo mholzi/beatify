@@ -366,6 +366,7 @@ class GameSetupMixin(GameStateBase):
             artist_challenge_enabled=opts.artist_challenge_enabled,
             movie_quiz_enabled=opts.movie_quiz_enabled,
             title_artist_mode=opts.title_artist_mode,
+            title_artist_race_mode=opts.title_artist_race_mode,
         )
 
         # #1725: runtime bookkeeping for the tiebreaker playoff — not an
@@ -850,6 +851,7 @@ class GameSetupMixin(GameStateBase):
             artist_challenge_enabled=options.artist_challenge_enabled,
             movie_quiz_enabled=options.movie_quiz_enabled,
             title_artist_mode=options.title_artist_mode,
+            title_artist_race_mode=options.title_artist_race_mode,
         )
         self._playlist_manager = manager
         self.total_rounds = manager.get_total_count()

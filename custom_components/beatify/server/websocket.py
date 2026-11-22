@@ -53,6 +53,7 @@ from custom_components.beatify.server.ws_handlers import (
     handle_submit,
     handle_title_artist_guess,
     handle_title_artist_override,
+    handle_title_artist_race_guess,
     handle_title_artist_vote,
 )
 from custom_components.beatify.services.playback import BrowserClientRegistry
@@ -155,6 +156,7 @@ class BeatifyWebSocketHandler:
             "title_artist_vote": handle_title_artist_vote,
             "title_artist_override": handle_title_artist_override,
             "title_artist_guess": handle_title_artist_guess,
+            "title_artist_race_guess": handle_title_artist_race_guess,  # #3557
             "player_onboarded": handle_player_onboarded,
             "report_data": handle_report_data,
             "round_timeout": handle_round_timeout,

@@ -461,7 +461,7 @@ export function updateRevealView(data) {
         renderDuel(currentPlayer, song.year, difficulty);
         renderChipRow(currentPlayer, data);
     }
-    renderScoreRow(currentPlayer);
+    renderScoreRow(currentPlayer, data);
     // #2721: the halftime beat fires from inside the reveal render so it lands
     // in the same frame as the reveal the TV is showing — a takeover one
     // broadcast late would sit on top of the next round's question.
@@ -1988,7 +1988,7 @@ function computeTotalPoints(player) {
 /**
  * Populate the big score row: "You earned · 1 year off · +120".
  */
-function renderScoreRow(player) {
+function renderScoreRow(player, data) {
     var ptsEl = document.getElementById('reveal-total-pts');
     var subEl = document.getElementById('score-row-subtitle');
     if (!ptsEl) return;
@@ -2001,6 +2001,12 @@ function renderScoreRow(player) {
     if (subEl) {
         if (!player || player.missed_round) {
             subEl.textContent = utils.t('reveal.noSubmission') || 'No guess submitted';
+        } else if (isTitleArtistMode(data)) {
+            // #3557: Title & Artist has no year distance (years_off is null),
+            // and the year line used to read that as "exact", so a 0-point
+            // round said "Nailed it!". Count the fields actually won instead.
+            var taVerdict = titleArtistVerdict(data && data.title_artist_challenge, player.name);
+            subEl.textContent = taVerdict ? taVerdict.text : (utils.t('titleArtist.verdictMiss') || 'Not this time');
         } else {
             var yo = player.years_off != null ? player.years_off : 0;
             var key = yo === 0 ? 'reveal.exact'
@@ -2762,6 +2768,34 @@ function _taStatusPill(status) {
 }
 
 /**
+ * #3557: the round verdict for one player in either Title & Artist variant —
+ * "Nailed it!" for both fields, "Got one!" for one, "Not this time" for none.
+ * A race counts the fields this player won first; the one-shot mode reads the
+ * player's own result (and waits while the room still votes on a near miss).
+ * @param {Object|null} ta - REVEAL title_artist_challenge
+ * @param {string} name - player name
+ * @returns {{tier: string, text: string}|null} null when the payload is missing
+ */
+export function titleArtistVerdict(ta, name) {
+    if (!ta) return null;
+    if (ta.race) {
+        var got = (ta.race.title_winner === name ? 1 : 0) + (ta.race.artist_winner === name ? 1 : 0);
+        return _taVerdictForCount(got);
+    }
+    var results = ta.results || [];
+    for (var i = 0; i < results.length; i++) {
+        if (results[i].player === name) return _taOwnVerdict(results[i], !!ta.voting_open);
+    }
+    return _taVerdictForCount(0);
+}
+
+function _taVerdictForCount(got) {
+    if (got === 2) return { tier: 'win', text: utils.t('titleArtist.verdictWin') || 'Nailed it!' };
+    if (got === 1) return { tier: 'partial', text: utils.t('titleArtist.verdictPartial') || 'Got one!' };
+    return { tier: 'miss', text: utils.t('titleArtist.verdictMiss') || 'Not this time' };
+}
+
+/**
  * Classify the current player's own Title & Artist result into an emotional
  * verdict for the reveal banner (#1180). Honest about pending votes: while the
  * window is open and a field is still a near-miss, it shows "awaiting the
@@ -2778,10 +2812,7 @@ function _taOwnVerdict(own, votingOpen) {
     if (votingOpen && (ts === 'near_miss' || as === 'near_miss')) {
         return { tier: 'pending', text: utils.t('titleArtist.verdictPending') || 'Awaiting the room’s verdict…' };
     }
-    var got = (GOT[ts] ? 1 : 0) + (GOT[as] ? 1 : 0);
-    if (got === 2) return { tier: 'win', text: utils.t('titleArtist.verdictWin') || 'Nailed it!' };
-    if (got === 1) return { tier: 'partial', text: utils.t('titleArtist.verdictPartial') || 'Got one!' };
-    return { tier: 'miss', text: utils.t('titleArtist.verdictMiss') || 'Not this time' };
+    return _taVerdictForCount((GOT[ts] ? 1 : 0) + (GOT[as] ? 1 : 0));
 }
 
 /**
@@ -2874,6 +2905,34 @@ function stampTaVerdicts(cardsEl) {
 }
 
 /**
+ * #3557: the Race reveal on the phone — your verdict, then who won the title
+ * and who won the artist. Reuses the one-shot slots and hides the vote.
+ * @param {Object} ta - REVEAL title_artist_challenge (carries .race)
+ */
+function _renderTitleArtistRaceReveal(ta) {
+    _stopTaVoteCountdown();
+    var votingWrap = document.getElementById('ta-voting');
+    if (votingWrap) votingWrap.classList.add('hidden');
+
+    var ownEl = document.getElementById('ta-reveal-own');
+    if (!ownEl) return;
+    var race = ta.race || {};
+    var nobody = utils.t('titleArtist.raceNobody') || 'Nobody';
+    var verdict = titleArtistVerdict(ta, state.playerName);
+    var row = function(label, winner) {
+        var mine = winner && winner === state.playerName;
+        return '<div class="ta-own-row ta-race-winner-row' + (mine ? ' is-mine' : '') + '">' +
+            '<span class="ta-own-label">' + escapeHtml(label) + '</span>' +
+            '<span class="ta-own-guess">' + (winner ? '🏆 ' + escapeHtml(winner) : escapeHtml(nobody)) + '</span>' +
+        '</div>';
+    };
+    ownEl.innerHTML =
+        (verdict ? '<div class="ta-verdict ta-verdict--' + verdict.tier + '">' + escapeHtml(verdict.text) + '</div>' : '') +
+        row('🎵 ' + (utils.t('titleArtist.raceTitleLabel') || 'Title'), race.title_winner) +
+        row('🎤 ' + (utils.t('titleArtist.raceArtistLabel') || 'Artist'), race.artist_winner);
+}
+
+/**
  * Render the Title & Artist reveal: the truth, the current player's own
  * per-field result, the 👍/👎 voting cards for OTHER players' near-misses
  * (a player never votes on their own), and — for the host — Accept/Reject
@@ -2910,6 +2969,13 @@ export function renderTitleArtistReveal(ta, currentPlayer) {
             '<span class="ta-truth-title">' + escapeHtml(ta.correct_title) + '</span>' +
             '<span class="ta-truth-sep" aria-hidden="true">—</span>' +
             '<span class="ta-truth-artist">' + escapeHtml(ta.correct_artist || '') + '</span>';
+    }
+
+    // #3557: a race has no per-player guesses or close calls to vote on —
+    // show who won each field and this player's verdict, then stop.
+    if (ta.race) {
+        _renderTitleArtistRaceReveal(ta);
+        return;
     }
 
     // 2) Own per-field result

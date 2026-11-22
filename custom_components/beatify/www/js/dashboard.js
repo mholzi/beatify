@@ -149,6 +149,15 @@
     // re-triggered CSS animation), changed rows are swapped in place, stale rows
     // are removed, and the child order is synced to `rows`.
     function _reconcileRows(container, rows) {
+        // #3557 (from the fork's race batch): one row per key. A key that
+        // arrives twice (the same player shipped twice) used to leave two nodes
+        // with one data-row-key, and the keyed removal below kept both forever.
+        var seenKeys = {};
+        rows = (rows || []).filter(function(row) {
+            if (seenKeys[row.key]) return false;
+            seenKeys[row.key] = true;
+            return true;
+        });
         var existing = {};
         var child = container.firstElementChild;
         while (child) {
@@ -178,14 +187,14 @@
             }
             if (el) { newSig[row.key] = row.html; desired.push(el); }
         });
-        // Remove nodes that are no longer desired.
-        var desiredKeys = {};
-        desired.forEach(function(n) { desiredKeys[n.getAttribute('data-row-key')] = true; });
+        // Remove every child that is not one of the desired NODES. Matching by
+        // node rather than key also prunes a stale duplicate whose key is
+        // still desired, so a TV already showing a doubled row heals itself.
+        var desiredSet = new Set(desired);
         child = container.firstElementChild;
         while (child) {
             var next = child.nextElementSibling;
-            var ck = child.getAttribute('data-row-key');
-            if (ck == null || !desiredKeys[ck]) container.removeChild(child);
+            if (!desiredSet.has(child)) container.removeChild(child);
             child = next;
         }
         // Sync order / insert new nodes.
@@ -1718,6 +1727,38 @@
         // points, or an extra song because the top of the table is tied.
         renderFinaleDoubleBanner(data, 'dashboard-finale-banner-playing');
         renderFinalePlayoffBanner(data, 'dashboard-playoff-banner-playing');
+
+        // #3557: Title & Artist race — the room watches the guesses land.
+        renderDashboardRacePanel(data);
+    }
+
+    /**
+     * #3557: the Title & Artist race on the TV during PLAYING — who holds the
+     * title and the artist so far, and everyone's guesses, newest first. Hidden
+     * outside a race. The server never sends the answer mid-round: a correct
+     * guess reaches the TV as "found the title", without its text.
+     * @param {Object} data - PLAYING state payload
+     */
+    function renderDashboardRacePanel(data) {
+        var panel = document.getElementById('dashboard-race-panel');
+        if (!panel) return;
+        var race = (data && data.title_artist_mode && data.title_artist_race_mode
+            && data.title_artist_challenge && data.title_artist_challenge.race) || null;
+        if (!race) {
+            panel.classList.add('hidden');
+            return;
+        }
+        panel.classList.remove('hidden');
+        var statusEl = document.getElementById('dashboard-race-status');
+        var feedEl = document.getElementById('dashboard-race-feed');
+        if (statusEl) statusEl.innerHTML = utils.raceChipsHtml(race);
+        if (feedEl) {
+            var html = utils.raceFeedHtml(race.feed);
+            if (feedEl._raceHtml !== html) {
+                feedEl.innerHTML = html;
+                feedEl._raceHtml = html;
+            }
+        }
     }
 
     /**
@@ -2440,6 +2481,32 @@
         var artistEl = document.getElementById('dashboard-ta-artist');
         if (titleEl) titleEl.textContent = ta.correct_title || '';
         if (artistEl) artistEl.textContent = ta.correct_artist || '';
+
+        // #3557: a race has nothing to vote on — show who won each field under
+        // the answer and stop.
+        if (ta.race) {
+            _stopTaLiveCountdown();
+            var raceLiveEl = document.getElementById('dashboard-ta-live');
+            var raceVotingEl = document.getElementById('dashboard-ta-voting');
+            var raceOutcomesEl = document.getElementById('dashboard-ta-outcomes');
+            if (raceLiveEl) { raceLiveEl.innerHTML = ''; raceLiveEl.classList.add('hidden'); }
+            if (raceVotingEl) raceVotingEl.classList.add('hidden');
+            if (raceOutcomesEl) {
+                var nobody = utils.t('titleArtist.raceNobody', 'Nobody');
+                var winnerChip = function(icon, label, winner) {
+                    return '<div class="dashboard-ta-chip' + (winner ? ' dashboard-ta-chip--accepted' : ' dashboard-ta-chip--rejected') + '">' +
+                        '<span class="dashboard-ta-chip-field">' + icon + ' ' + utils.escapeHtml(label) + '</span>' +
+                        '<span class="dashboard-ta-chip-who">' + (winner ? '🏆 ' + utils.escapeHtml(winner) : utils.escapeHtml(nobody)) + '</span>' +
+                    '</div>';
+                };
+                raceOutcomesEl.innerHTML = '<div class="dashboard-ta-chips">' +
+                    winnerChip('🎵', utils.t('titleArtist.raceTitleLabel', 'Title'), ta.race.title_winner) +
+                    winnerChip('🎤', utils.t('titleArtist.raceArtistLabel', 'Artist'), ta.race.artist_winner) +
+                    '</div>';
+                raceOutcomesEl.classList.remove('hidden');
+            }
+            return;
+        }
 
         var votingOpen = !!ta.voting_open;
         var nearMisses = ta.near_misses || [];

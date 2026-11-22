@@ -553,6 +553,26 @@ class TtsAnnouncerMixin(GameStateBase):
                 )
             )
 
+        if getattr(challenge, "race_mode", False):
+            # Race mode (#3557): nobody is marked submitted; a field counts only
+            # for the first player who landed it. Name a player who won both,
+            # and say "nobody" when the room guessed but neither field fell.
+            winner = challenge.title_winner
+            if (
+                winner
+                and winner == challenge.artist_winner
+                and self._tts_announce_exact_guess
+            ):
+                frags.append(tts_phrases.phrase(lang, "exact", names=winner))
+            elif (
+                challenge.feed
+                and not challenge.title_winner
+                and not challenge.artist_winner
+                and self._tts_announce_nobody_correct
+            ):
+                frags.append(tts_phrases.phrase(lang, "nobody"))
+            return
+
         right = (STATUS_EXACT, STATUS_FUZZY, STATUS_NEAR_MISS_ACCEPTED)
         guesses = challenge.guesses
         submitters = [p for p in players if p.submitted]

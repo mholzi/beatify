@@ -34,6 +34,7 @@ import {
     initYearSelector, handleSubmitAck, handleSubmitError,
     resetSubmissionState, cancelPendingPowerup,
     handleArtistGuessAck, handleMovieGuessAck, handleTitleArtistGuessAck,
+    handleTitleArtistRaceGuessAck,
     handleStealAck, handleStealTargets,
     handleSabotageAck, handleSabotageTargets, handleSabotaged,
     showAdminControlBar, hideAdminControlBar,
@@ -1358,6 +1359,8 @@ function handleServerMessage(data) {
         handleMovieGuessAck(data);
     } else if (data.type === 'title_artist_guess_ack') {
         handleTitleArtistGuessAck(data);
+    } else if (data.type === 'title_artist_race_guess_ack') {
+        handleTitleArtistRaceGuessAck(data);  // #3557
     } else if (data.type === 'player_reaction') {
         // #2562: during the round the bubbles fly on the TV only. The phone in
         // a still-thinking player's hand is a working surface — they are

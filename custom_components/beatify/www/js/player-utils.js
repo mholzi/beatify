@@ -447,6 +447,18 @@ export function isTitleArtistMode(data) {
     return !!(data && data.title_artist_mode);
 }
 
+/**
+ * #3557: the live Race variant of Title & Artist (first correct guess wins,
+ * unlimited attempts). Ships as the top-level `title_artist_race_mode` flag next
+ * to `title_artist_mode`; the server only sets it together with that flag.
+ *
+ * @param {Object} data - server state payload
+ * @returns {boolean} True when the Race variant is active
+ */
+export function isTitleArtistRaceMode(data) {
+    return !!(data && data.title_artist_mode && data.title_artist_race_mode);
+}
+
 // ============================================
 // Score Animation Utilities (Story 13.2)
 // ============================================

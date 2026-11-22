@@ -444,6 +444,7 @@ export function applyStoredGameSettings(adminState, s) {
     if (typeof s.introMode === 'boolean') adminState.introModeEnabled = s.introMode;
     if (typeof s.closestWinsMode === 'boolean') adminState.closestWinsModeEnabled = s.closestWinsMode;
     if (typeof s.titleArtistMode === 'boolean') adminState.titleArtistModeEnabled = s.titleArtistMode;
+    if (typeof s.titleArtistRaceMode === 'boolean') adminState.titleArtistRaceModeEnabled = s.titleArtistRaceMode;  // #3557
     if (typeof s.rampupOrder === 'boolean') adminState.rampupOrderEnabled = s.rampupOrder;
     if (typeof s.finaleDouble === 'boolean') adminState.finaleDoubleEnabled = s.finaleDouble;
     if (typeof s.finaleTiebreaker === 'boolean') adminState.finaleTiebreakerEnabled = s.finaleTiebreaker;

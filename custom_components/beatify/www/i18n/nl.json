@@ -85,7 +85,8 @@
         "finaleTiebreaker": "gelijkspel bovenaan gaat naar een beslissingsronde",
         "betScaling": "de inzet betaalt uit naar moeilijkheid",
         "intro": "sommige rondes spelen alleen de intro",
-        "rampup": "de nummers gaan van makkelijk naar moeilijk"
+        "rampup": "de nummers gaan van makkelijk naar moeilijk",
+        "titleArtistRace": "jullie racen om titel en artiest, de eerste goede gok wint"
       }
     }
   },
@@ -948,7 +949,9 @@
       "maNeededOne": "{services} heeft een Music Assistant-speaker nodig",
       "maNeededMany": "{services} hebben een Music Assistant-speaker nodig",
       "amazonNeedsEcho": "Amazon Music heeft een Amazon Echo nodig (alexa_media)"
-    }
+    },
+    "titleArtistRaceMode": "Live-race (buzzer)",
+    "titleArtistRaceModeHint": "Onbeperkt raden, iedereen ziet de gokken live. Wie als eerste de titel of de artiest noemt, pakt die 10 punten. De ronde eindigt als beide geraden zijn of de tijd om is."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -1088,7 +1091,20 @@
     "verdictWin": "Helemaal goed!",
     "verdictPartial": "Eentje goed!",
     "verdictMiss": "Deze keer niet",
-    "verdictPending": "Wachten op het oordeel…"
+    "verdictPending": "Wachten op het oordeel…",
+    "raceGuess": "Raden",
+    "raceTitleLabel": "Titel",
+    "raceArtistLabel": "Artiest",
+    "raceOpen": "open",
+    "raceNobody": "Niemand",
+    "raceWonBoth": "Je hebt ze allebei! 🏆",
+    "raceWonTitle": "De titel is van jou! 🏆",
+    "raceWonArtist": "De artiest is van jou! 🏆",
+    "raceTooLate": "Goed, maar iemand was sneller!",
+    "raceKeepTrying": "Net niet, blijf raden!",
+    "raceFoundTitle": "heeft de titel",
+    "raceFoundArtist": "heeft de artiest",
+    "raceFeedLabel": "Gokken live"
   },
   "earlyReveal": {
     "message": "Alle gokken zijn binnen!"
@@ -1296,7 +1312,8 @@
     "haErrorHint": "Het spel kon niet worden geladen. Wacht even en probeer het opnieuw. Blijft het gebeuren, zeg het dan tegen de host.",
     "gameStoppedTitle": "Dit spel is afgelopen",
     "gameStoppedHint": "Het spel is gestopt in Home Assistant, bijvoorbeeld na een herstart. Start de host een nieuw spel, tik dan op ‘Opnieuw meedoen’.",
-    "gameStoppedRejoin": "Opnieuw meedoen"
+    "gameStoppedRejoin": "Opnieuw meedoen",
+    "GUESS_TOO_FAST": "Eén gok tegelijk"
   },
   "highlights": {
     "highlight_exact_match": "{player} had '{song}' perfect — {year}!",
@@ -1404,7 +1421,9 @@
       "styleDramaticLine": "Het loopt op, en de laatste ronde beslist.",
       "styleChaos": "Chaos",
       "styleChaosLine": "Ze mogen elkaar dwarszitten. Niet voor de schoonfamilie.",
-      "styleCustom": "Eigen keuze"
+      "styleCustom": "Eigen keuze",
+      "taRaceScoring": "Titel 10 · Artiest 10 · de eerste goede gok wint",
+      "raceShort": "Race"
     },
     "done": {
       "badge": "KLAAR OM TE SPELEN",

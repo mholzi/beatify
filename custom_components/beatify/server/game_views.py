@@ -267,6 +267,11 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
         closest_wins_mode = body.get("closest_wins_mode", False)  # Issue #442
         sudden_death_mode = bool(body.get("sudden_death_mode", False))  # Issue #827
         title_artist_mode = body.get("title_artist_mode", False)  # #1180
+        # #3557: Race variant of Title & Artist (live, first-correct-wins). It
+        # implies Title & Artist, so the song filter below and the challenge
+        # setup both see the base mode switched on.
+        title_artist_race_mode = body.get("title_artist_race_mode", False) is True
+        title_artist_mode = bool(title_artist_mode) or title_artist_race_mode
         rampup_order_enabled = bool(
             body.get("rampup_order_enabled", False)
         )  # Issue #1726
@@ -458,6 +463,7 @@ class StartGameView(RateLimitMixin, HomeAssistantView):
             closest_wins_mode=closest_wins_mode,  # Issue #442
             sudden_death_mode=sudden_death_mode,  # Issue #827
             title_artist_mode=title_artist_mode,  # #1180
+            title_artist_race_mode=title_artist_race_mode,  # #3557
             rampup_order_enabled=rampup_order_enabled,  # Issue #1726
             finale_double_enabled=finale_double_enabled,  # Issue #1725
             finale_tiebreaker_enabled=finale_tiebreaker_enabled,  # Issue #1725

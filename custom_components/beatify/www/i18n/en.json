@@ -85,7 +85,8 @@
         "finaleTiebreaker": "a tie at the top goes to a playoff",
         "betScaling": "the bet pays out by difficulty",
         "intro": "some rounds play the intro only",
-        "rampup": "the songs run easiest to hardest"
+        "rampup": "the songs run easiest to hardest",
+        "titleArtistRace": "you race for title and artist, and the first right guess wins"
       }
     }
   },
@@ -948,7 +949,9 @@
       "maNeededOne": "{services} requires a Music Assistant speaker",
       "maNeededMany": "{services} require a Music Assistant speaker",
       "amazonNeedsEcho": "Amazon Music requires an Amazon Echo (alexa_media)"
-    }
+    },
+    "titleArtistRaceMode": "Live race (buzzer)",
+    "titleArtistRaceModeHint": "Unlimited guesses, shown live to everyone. The first to name the title or the artist wins those 10 points. The round ends when both are found or time runs out."
   },
   "analyticsDashboard": {
     "title": "Beatify Analytics",
@@ -1088,7 +1091,20 @@
     "verdictWin": "Nailed it!",
     "verdictPartial": "Got one!",
     "verdictMiss": "Not this time",
-    "verdictPending": "Awaiting the room’s verdict…"
+    "verdictPending": "Awaiting the room’s verdict…",
+    "raceGuess": "Guess",
+    "raceTitleLabel": "Title",
+    "raceArtistLabel": "Artist",
+    "raceOpen": "open",
+    "raceNobody": "Nobody",
+    "raceWonBoth": "You got both! 🏆",
+    "raceWonTitle": "You got the title! 🏆",
+    "raceWonArtist": "You got the artist! 🏆",
+    "raceTooLate": "Right, but someone was faster!",
+    "raceKeepTrying": "Not quite, keep guessing!",
+    "raceFoundTitle": "found the title",
+    "raceFoundArtist": "found the artist",
+    "raceFeedLabel": "Live guesses"
   },
   "earlyReveal": {
     "message": "All guesses in!"
@@ -1296,7 +1312,8 @@
     "haErrorHint": "The game couldn't be loaded. Wait a moment, then try again. If it keeps happening, tell the host.",
     "gameStoppedTitle": "This game has ended",
     "gameStoppedHint": "The game stopped in Home Assistant, for example after a restart. Once the host starts a new game, tap Join again.",
-    "gameStoppedRejoin": "Join again"
+    "gameStoppedRejoin": "Join again",
+    "GUESS_TOO_FAST": "One guess at a time"
   },
   "highlights": {
     "highlight_exact_match": "{player} nailed '{song}' — {year}!",
@@ -1404,7 +1421,9 @@
       "styleDramaticLine": "It builds, and the last round decides it.",
       "styleChaos": "Chaos",
       "styleChaosLine": "They get to mess with each other. Not for the in-laws.",
-      "styleCustom": "Custom"
+      "styleCustom": "Custom",
+      "taRaceScoring": "Title 10 · Artist 10 · first correct guess wins",
+      "raceShort": "Race"
     },
     "done": {
       "badge": "READY TO PLAY",

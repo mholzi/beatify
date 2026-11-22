@@ -103,6 +103,7 @@ vi.mock('../player-utils.js', () => {
         triggerConfetti: () => {},
         stopConfetti: () => {},
         isTitleArtistMode: () => false,
+        isTitleArtistRaceMode: () => false,
         createModalFocusTrap: () => ({ activate: () => {}, deactivate: () => {} }),
     };
 });
@@ -134,6 +135,7 @@ function tvRender() {
         renderSuddenDeathFinalBanner: noop,
         renderFinaleDoubleBanner: noop,
         renderFinalePlayoffBanner: noop,
+        renderDashboardRacePanel: noop,  // #3557
     });
 }
 

@@ -85,7 +85,8 @@
         "finaleTiebreaker": "bei Gleichstand an der Spitze entscheidet ein Stechen",
         "betScaling": "die Wette zahlt je nach Schwierigkeit aus",
         "intro": "manche Runden spielen nur das Intro",
-        "rampup": "die Songs laufen von leicht nach schwer"
+        "rampup": "die Songs laufen von leicht nach schwer",
+        "titleArtistRace": "ihr ratet Titel und Interpret um die Wette, der erste richtige Tipp gewinnt"
       }
     }
   },
@@ -948,7 +949,9 @@
       "maNeededOne": "{services} braucht einen Music-Assistant-Lautsprecher",
       "maNeededMany": "{services} brauchen einen Music-Assistant-Lautsprecher",
       "amazonNeedsEcho": "Amazon Music braucht einen Amazon Echo (alexa_media)"
-    }
+    },
+    "titleArtistRaceMode": "Live-Buzzer (Race)",
+    "titleArtistRaceModeHint": "Unbegrenzt raten, alle sehen die Tipps live. Wer Titel oder Interpret zuerst nennt, holt die 10 Punkte. Die Runde endet, wenn beides gefunden ist oder die Zeit abläuft."
   },
   "analyticsDashboard": {
     "title": "Beatify Statistik",
@@ -1088,7 +1091,20 @@
     "verdictWin": "Volltreffer!",
     "verdictPartial": "Eins erwischt!",
     "verdictMiss": "Diesmal nicht",
-    "verdictPending": "Das Publikum entscheidet…"
+    "verdictPending": "Das Publikum entscheidet…",
+    "raceGuess": "Raten",
+    "raceTitleLabel": "Titel",
+    "raceArtistLabel": "Interpret",
+    "raceOpen": "offen",
+    "raceNobody": "Niemand",
+    "raceWonBoth": "Du hast beides! 🏆",
+    "raceWonTitle": "Du hast den Titel! 🏆",
+    "raceWonArtist": "Du hast den Interpreten! 🏆",
+    "raceTooLate": "Richtig, aber jemand war schneller!",
+    "raceKeepTrying": "Nicht ganz, weiter raten!",
+    "raceFoundTitle": "hat den Titel",
+    "raceFoundArtist": "hat den Interpreten",
+    "raceFeedLabel": "Tipps live"
   },
   "earlyReveal": {
     "message": "Alle haben geraten!"
@@ -1296,7 +1312,8 @@
     "haErrorHint": "Das Spiel ließ sich nicht laden. Warte kurz und versuch es dann noch einmal. Passiert es wieder, sag dem Gastgeber Bescheid.",
     "gameStoppedTitle": "Dieses Spiel ist beendet",
     "gameStoppedHint": "Das Spiel wurde in Home Assistant beendet, zum Beispiel durch einen Neustart. Sobald der Gastgeber ein neues startet, tippe auf „Wieder beitreten“.",
-    "gameStoppedRejoin": "Wieder beitreten"
+    "gameStoppedRejoin": "Wieder beitreten",
+    "GUESS_TOO_FAST": "Ein Tipp nach dem anderen"
   },
   "highlights": {
     "highlight_exact_match": "{player} hat '{song}' genagelt — {year}!",
@@ -1404,7 +1421,9 @@
       "styleDramaticLine": "Es steigert sich, und die letzte Runde entscheidet.",
       "styleChaos": "Chaos",
       "styleChaosLine": "Sie dürfen sich gegenseitig ärgern. Nicht für die Schwiegereltern.",
-      "styleCustom": "Eigene Auswahl"
+      "styleCustom": "Eigene Auswahl",
+      "taRaceScoring": "Titel 10 · Interpret 10 · der erste richtige Tipp gewinnt",
+      "raceShort": "Race"
     },
     "done": {
       "badge": "BEREIT ZUM SPIELEN",
