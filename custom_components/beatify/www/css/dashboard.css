@@ -2294,6 +2294,85 @@
     }
 }
 
+/* #3557: Title & Artist race on the TV during PLAYING — who holds title /
+   artist, and the live guesses above the leaderboard. */
+.dashboard-race-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    min-height: 0;
+}
+.dashboard-race-panel.hidden { display: none; }
+.dashboard-race-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+.dashboard-race-panel .ta-race-chip {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-neon);
+    background: var(--color-dark-surface);
+}
+.dashboard-race-panel .ta-race-chip-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-md);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-neon-muted);
+}
+.dashboard-race-panel .ta-race-chip-who {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-white);
+}
+.dashboard-race-panel .ta-race-chip.is-solved {
+    border-color: var(--color-success-neon);
+    box-shadow: var(--glow-success);
+}
+.dashboard-race-panel .ta-race-chip.is-solved .ta-race-chip-who { color: var(--color-success-neon); }
+.dashboard-race-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 30vh;
+    overflow: hidden;
+}
+.dashboard-race-feed .ta-race-feed-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    min-width: 0;
+    padding: 6px var(--space-md);
+    border-radius: var(--radius-md);
+    background: var(--color-dark-surface);
+    font-size: var(--font-size-xl);
+}
+.dashboard-race-feed .ta-race-feed-icon { flex-shrink: 0; }
+.dashboard-race-feed .ta-race-feed-player {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+.dashboard-race-feed .ta-race-feed-guess {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--color-text-neon-muted);
+}
+.dashboard-race-feed .ta-race-feed-item.is-correct .ta-race-feed-guess { color: var(--color-success-neon); }
+
 /* Title & Artist resolved verdicts — spectator view (#1180, #1243).
    Once voting closes the room sees what counted: a chip per close call. */
 .dashboard-ta-outcomes.hidden { display: none; }

@@ -18,6 +18,7 @@ from custom_components.beatify.const import (
     ERR_CANNOT_SABOTAGE_SELF,
     ERR_ELIMINATED,
     ERR_FROZEN,
+    ERR_GUESS_TOO_FAST,
     ERR_INVALID_ACTION,
     ERR_NO_ARTIST_CHALLENGE,
     ERR_NO_MOVIE_CHALLENGE,
@@ -28,8 +29,14 @@ from custom_components.beatify.const import (
     ERR_ROUND_EXPIRED,
     ERR_TARGET_ALREADY_SABOTAGED,
     ERR_TARGET_ALREADY_SUBMITTED,
+    RACE_GUESS_MIN_INTERVAL,
 )
 from custom_components.beatify.game.serializers import year_range
+from custom_components.beatify.game.text_match import (
+    STATUS_EXACT,
+    STATUS_FUZZY,
+    STATUS_SKIPPED,
+)
 from custom_components.beatify.game.state import GamePhase, GameState
 
 if TYPE_CHECKING:
@@ -795,6 +802,19 @@ async def handle_title_artist_guess(
         )
         return
 
+    # #3557: a Race round takes its guesses through title_artist_race_guess.
+    # A one-shot guess here would mark the player submitted in a mode that has
+    # no submitted state.
+    if game_state.title_artist_race_mode:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "This round is a race — use the live guess",
+            }
+        )
+        return
+
     title = data.get("title", "")
     artist = data.get("artist", "")
     if not isinstance(title, str):
@@ -843,6 +863,150 @@ async def handle_title_artist_guess(
         result["title_status"],
         artist,
         result["artist_status"],
+    )
+
+
+def _race_ack_status(status: str) -> str:
+    """Collapse a field classification to what a race guesser may learn (#3557).
+
+    ``exact`` / ``fuzzy`` → ``correct``, ``skipped`` stays, everything else
+    (``near_miss``, ``wrong``) → ``wrong``.
+    """
+    if status in (STATUS_EXACT, STATUS_FUZZY):
+        return "correct"
+    if status == STATUS_SKIPPED:
+        return STATUS_SKIPPED
+    return "wrong"
+
+
+async def handle_title_artist_race_guess(
+    handler: BeatifyWebSocketHandler,
+    ws: web.WebSocketResponse,
+    data: dict,
+    game_state: GameState,
+) -> None:
+    """Handle one Race-mode title/artist attempt (live, first-correct-wins).
+
+    Unlike handle_title_artist_guess this allows UNLIMITED attempts: the player
+    is never marked ``submitted`` and there is no per-player one-shot lock. Each
+    attempt is classified, pushed to the live feed broadcast to everyone, and the
+    first correct guess of each field claims its points. The round ends (early
+    reveal) once both fields are solved.
+    """
+    if game_state.phase != GamePhase.PLAYING:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Can only guess during PLAYING phase",
+            }
+        )
+        return
+
+    # #1662: reject late guesses in the window between deadline expiry and the
+    # end_round phase flip.
+    if game_state.is_deadline_passed():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_ROUND_EXPIRED,
+                "message": "Time's up!",
+            }
+        )
+        return
+
+    player = game_state.get_player_by_ws(ws)
+    if not player:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NOT_IN_GAME,
+                "message": "Not in game",
+            }
+        )
+        return
+
+    # #1748 / #2612: reject guesses from any player out of this round.
+    if await _reject_out_of_play(ws, player):
+        return
+
+    if not game_state.title_artist_challenge or not game_state.title_artist_race_mode:
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_NO_TITLE_ARTIST_CHALLENGE,
+                "message": "No title & artist race this round",
+            }
+        )
+        return
+
+    title = data.get("title", "")
+    artist = data.get("artist", "")
+    if not isinstance(title, str):
+        title = ""
+    if not isinstance(artist, str):
+        artist = ""
+    # Guess length is capped at the WS ingest boundary (#1581) before dispatch.
+    if not title.strip() and not artist.strip():
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_INVALID_ACTION,
+                "message": "Guess cannot be empty",
+            }
+        )
+        return
+
+    # Unlimited attempts, but not unlimited speed: every attempt is classified,
+    # stored in the feed and rebroadcast to the room, so a script hammering the
+    # socket would both flood every phone and brute-force the answer. One
+    # attempt per RACE_GUESS_MIN_INTERVAL per player is far above human typing.
+    guess_time = game_state.current_time()
+    if not game_state.title_artist_challenge.race_attempt_allowed(
+        player.name, guess_time, RACE_GUESS_MIN_INTERVAL
+    ):
+        await ws.send_json(
+            {
+                "type": "error",
+                "code": ERR_GUESS_TOO_FAST,
+                "message": "Too fast, try again",
+            }
+        )
+        return
+
+    result = game_state.submit_race_guess(player.name, title, artist, guess_time)
+
+    # The ack says right / wrong per field, never "near miss": with unlimited
+    # attempts a "you are close" signal would let a guesser walk towards the
+    # answer one edit at a time.
+    await ws.send_json(
+        {
+            "type": "title_artist_race_guess_ack",
+            "title_status": _race_ack_status(result["title_status"]),
+            "artist_status": _race_ack_status(result["artist_status"]),
+            "won_title": result["won_title"],
+            "won_artist": result["won_artist"],
+        }
+    )
+
+    # Broadcast the live feed / solved state to the whole room. Skip the extra
+    # frame when this guess completes the round — trigger_early_reveal_if_complete
+    # broadcasts via the round-end callback (mirrors handle_title_artist_guess).
+    if not game_state.check_all_guesses_complete():
+        # #1763: in-round progress → debounce (coalesces bursts).
+        await handler.debounced_broadcast_state()
+
+    await game_state.trigger_early_reveal_if_complete()
+
+    _LOGGER.debug(
+        "Race guess from %s: title=%r (%s, won=%s), artist=%r (%s, won=%s)",
+        player.name,
+        title,
+        result["title_status"],
+        result["won_title"],
+        artist,
+        result["artist_status"],
+        result["won_artist"],
     )
 
 

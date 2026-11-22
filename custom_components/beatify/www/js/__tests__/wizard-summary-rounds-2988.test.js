@@ -40,7 +40,7 @@ describe('roundsSummaryPart (#2988)', () => {
 });
 
 describe('the summary mode line carries the round count (#2988)', () => {
-    function render(maxRounds, titleArtist = false) {
+    function render(maxRounds, titleArtist = false, race = false) {
         let html = '';
         const el = { set innerHTML(v) { html = v; } };
         const t = tFor('en');
@@ -54,6 +54,7 @@ describe('the summary mode line carries the round count (#2988)', () => {
             chosenPlaylists: new Set(),
             _playlistName: (p) => p,
             chosenTitleArtistMode: titleArtist,
+            chosenTitleArtistRaceMode: race,  // #3557
             chosenDifficulty: 'normal',
             chosenDuration: 45,
             chosenMaxRounds: maxRounds,
@@ -76,5 +77,13 @@ describe('the summary mode line carries the round count (#2988)', () => {
 
     it('also in Title & Artist mode', () => {
         expect(render(0, true)).toContain('Title &amp; Artist · 45s · All songs · EN');
+    });
+
+    it('names the race in Title & Artist race mode (#3557)', () => {
+        expect(render(0, true, true)).toContain('Title &amp; Artist · Race · 45s · All songs · EN');
+    });
+
+    it('ignores a stored race flag in Year mode (#3557)', () => {
+        expect(render(0, false, true)).toContain('Year mode · Normal · 45s · All songs · EN');
     });
 });

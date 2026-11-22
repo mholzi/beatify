@@ -70,6 +70,7 @@ from custom_components.beatify.server.ws_handlers.guessing import (
     handle_submit,
     handle_title_artist_guess,
     handle_title_artist_override,
+    handle_title_artist_race_guess,
     handle_title_artist_vote,
 )
 from custom_components.beatify.server.ws_handlers.lifecycle import (
@@ -358,6 +359,7 @@ __all__ = [
     "handle_artist_guess",
     "handle_movie_guess",
     "handle_title_artist_guess",
+    "handle_title_artist_race_guess",
     "handle_title_artist_vote",
     "handle_title_artist_override",
     # report data

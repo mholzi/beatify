@@ -85,7 +85,8 @@
         "finaleTiebreaker": "un pari in testa si decide allo spareggio",
         "betScaling": "la scommessa paga in base alla difficoltà",
         "intro": "in alcuni turni si sente solo l'intro",
-        "rampup": "i brani vanno dal più facile al più difficile"
+        "rampup": "i brani vanno dal più facile al più difficile",
+        "titleArtistRace": "fate a gara su titolo e artista, vince la prima risposta giusta"
       }
     }
   },
@@ -948,7 +949,9 @@
       "maNeededOne": "{services} richiede un altoparlante Music Assistant",
       "maNeededMany": "{services} richiedono un altoparlante Music Assistant",
       "amazonNeedsEcho": "Amazon Music richiede un Amazon Echo (alexa_media)"
-    }
+    },
+    "titleArtistRaceMode": "Gara dal vivo",
+    "titleArtistRaceModeHint": "Tentativi illimitati, tutti vedono le risposte dal vivo. Chi indovina per primo il titolo o l'artista prende quei 10 punti. Il round finisce quando sono stati trovati entrambi o il tempo scade."
   },
   "analyticsDashboard": {
     "title": "Statistiche Beatify",
@@ -1088,7 +1091,20 @@
     "verdictWin": "Centrata!",
     "verdictPartial": "Una l'hai presa!",
     "verdictMiss": "Non stavolta",
-    "verdictPending": "In attesa del verdetto della sala…"
+    "verdictPending": "In attesa del verdetto della sala…",
+    "raceGuess": "Indovina",
+    "raceTitleLabel": "Titolo",
+    "raceArtistLabel": "Artista",
+    "raceOpen": "aperto",
+    "raceNobody": "Nessuno",
+    "raceWonBoth": "Li hai presi entrambi! 🏆",
+    "raceWonTitle": "Il titolo è tuo! 🏆",
+    "raceWonArtist": "L'artista è tuo! 🏆",
+    "raceTooLate": "Giusto, ma qualcuno è stato più veloce!",
+    "raceKeepTrying": "Non proprio, continua!",
+    "raceFoundTitle": "ha indovinato il titolo",
+    "raceFoundArtist": "ha indovinato l'artista",
+    "raceFeedLabel": "Risposte dal vivo"
   },
   "earlyReveal": {
     "message": "Hanno risposto tutti!"
@@ -1296,7 +1312,8 @@
     "haErrorHint": "Non è stato possibile caricare la partita. Aspetta un attimo e riprova. Se succede ancora, avvisa l'host.",
     "gameStoppedTitle": "Questa partita è finita",
     "gameStoppedHint": "La partita si è fermata in Home Assistant, ad esempio dopo un riavvio. Quando l'host ne avvia una nuova, tocca «Partecipa di nuovo».",
-    "gameStoppedRejoin": "Partecipa di nuovo"
+    "gameStoppedRejoin": "Partecipa di nuovo",
+    "GUESS_TOO_FAST": "Un tentativo alla volta"
   },
   "highlights": {
     "highlight_exact_match": "{player} ha centrato '{song}' — {year}!",
@@ -1404,7 +1421,9 @@
       "styleDramaticLine": "Cresce, e l'ultimo turno decide tutto.",
       "styleChaos": "Caos",
       "styleChaosLine": "Possono farsi dispetti a vicenda. Non per i suoceri.",
-      "styleCustom": "Personalizzato"
+      "styleCustom": "Personalizzato",
+      "taRaceScoring": "Titolo 10 · Artista 10 · vince la prima risposta giusta",
+      "raceShort": "Gara"
     },
     "done": {
       "badge": "PRONTI A GIOCARE",

@@ -117,6 +117,13 @@ class RevealTransitionMixin(GameStateBase):
             True if all connected players have completed all required guesses
 
         """
+        # Race mode ends the round the moment BOTH the title and the artist have
+        # been solved (by anyone) — not when every player has submitted. Players
+        # keep guessing until then, so they are never marked ``submitted`` and
+        # the all_submitted() gate below would never fire. Check this first.
+        if self.title_artist_race_mode and self.title_artist_challenge:
+            return self.race_complete()
+
         # First check year guesses using existing method
         # Note: all_submitted() already returns False for zero connected players
         if not self.all_submitted():

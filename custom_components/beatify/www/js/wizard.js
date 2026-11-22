@@ -194,10 +194,12 @@ export function applyGameModeTogglePrecedence(flags, key, value) {
  * @param {boolean} titleArtistMode
  * @returns {{ showChips: boolean, summaryKey: string|null }}
  */
-export function difficultyDisplayFor(titleArtistMode) {
-    return titleArtistMode
-        ? { showChips: false, summaryKey: 'wizard.step4.taScoring' }
-        : { showChips: true, summaryKey: null };
+export function difficultyDisplayFor(titleArtistMode, raceMode = false) {
+    if (!titleArtistMode) return { showChips: true, summaryKey: null };
+    // #3557: a race pays 10 + 10 to the first correct guess, no partials.
+    return raceMode
+        ? { showChips: false, summaryKey: 'wizard.step4.taRaceScoring' }
+        : { showChips: false, summaryKey: 'wizard.step4.taScoring' };
 }
 
 /**
@@ -273,6 +275,10 @@ let chosenIntroMode = false;
 let chosenClosestWins = false;
 let chosenSuddenDeath = true; // Issue #827 — default ON (unlike the other bonuses); gated to >=3 players
 let chosenTitleArtistMode = false; // #1180
+// #3557: the live Race variant of Title & Artist. Kept as its own flag so a
+// trip to Year mode and back keeps the host's choice; it only takes effect
+// (and is only sent) while chosenTitleArtistMode is on.
+let chosenTitleArtistRaceMode = false;
 // #2692: the six modes that shipped complete and unreachable — their only
 // switches lived in the flat admin panel that CSS hides (admin.html:581-656,
 // styles.css:10181). All six default OFF, which is what every game has been
@@ -1494,14 +1500,27 @@ export const PLAY_STYLES = [
  *
  * `suddenDeath` is deliberately left alone: it defaults ON, is gated on the
  * player count, and is not a flavour of the evening but a rule about it.
+ *
+ * The core game mode (Year vs Title & Artist, and the Race variant under it)
+ * is left alone too (#3557). A play style flavours the bonus layer; it is not
+ * a core-mode choice. The Classic style names 'artist', and `m.set` for it goes
+ * through `_setGameModeToggle`, whose precedence turns Title & Artist OFF when
+ * a year bonus goes ON. Without the snapshot/restore below, tapping a play
+ * style in Title & Artist or Race mode silently dropped the host back to
+ * guessing years. Year bonuses stay suppressed under Title & Artist at
+ * payload-build time, so restoring the core mode loses nothing.
  */
 export function applyPlayStyle(styleKey) {
     const style = PLAY_STYLES.find((s) => s.key === styleKey);
     if (!style) return false;
+    const coreTitleArtist = chosenTitleArtistMode;
+    const coreRace = chosenTitleArtistRaceMode;
     GAME_MODES.forEach((m) => {
         if (m.key === 'suddenDeath') return;
         m.set(style.modes.indexOf(m.key) !== -1);
     });
+    chosenTitleArtistMode = coreTitleArtist;
+    chosenTitleArtistRaceMode = coreRace;
     chosenPlayStyle = style.key;
     return true;
 }
@@ -1592,12 +1611,53 @@ function _renderCoreMode() {
             m.pick();
             // A mode change cascades into the difficulty + bonus sections.
             _renderCoreMode();
+            _renderRaceToggle();
             _renderDifficulty();
             _renderGameModes();
             // #2692: Title & Artist hides two cards, which changes both the
             // switch count and whether the current combination is still a style.
             _renderPlayStyles();
         });
+    });
+}
+
+/**
+ * #3557: the Race variant of Title & Artist, one switch under the two core-mode
+ * cards. It lives in its own full-width container instead of the cards' two-
+ * column grid, so at phone width it is not squeezed into one column. Same card
+ * and switch as the bonus modes below, so it reads as a setting, not a third
+ * core mode.
+ */
+function _renderRaceToggle() {
+    const el = document.getElementById('wiz-coremode-race');
+    if (!el) return;
+    if (!chosenTitleArtistMode) {
+        el.classList.add('hidden');
+        el.innerHTML = '';
+        return;
+    }
+    el.classList.remove('hidden');
+    const on = chosenTitleArtistRaceMode;
+    el.innerHTML = `<div class="wiz-mode-card wiz-race-card ${on ? 'on' : ''}" data-race-toggle role="switch" tabindex="0" aria-checked="${on}">
+            <div class="wiz-mode-icon" aria-hidden="true">⚡</div>
+            <div class="wiz-mode-body">
+                <div class="wiz-mode-title">${_t('admin.titleArtistRaceMode', 'Live race (buzzer)')}</div>
+                <div class="wiz-mode-hint">${_t('admin.titleArtistRaceModeHint', 'Unlimited guesses, shown live to everyone. The first to name the title or the artist wins those 10 points.')}</div>
+            </div>
+            <div class="wiz-lvl-toggle"></div>
+        </div>`;
+    const card = el.querySelector('[data-race-toggle]');
+    if (!card) return;
+    const flip = () => {
+        chosenTitleArtistRaceMode = !chosenTitleArtistRaceMode;
+        _renderRaceToggle();
+        _renderDifficulty();
+        const again = el.querySelector('[data-race-toggle]');
+        if (again) again.focus();
+    };
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
     });
 }
 
@@ -1741,7 +1801,7 @@ function _renderDifficultyHint() {
 // Difficulty area depends on the core mode. Jahr: year-distance chips + hint.
 // Title & Artist: chips hidden, a fixed scoring summary shown instead.
 function _renderDifficulty() {
-    const display = difficultyDisplayFor(chosenTitleArtistMode);
+    const display = difficultyDisplayFor(chosenTitleArtistMode, chosenTitleArtistRaceMode);
     const group = document.getElementById('wiz-difficulty');
     const hintEl = document.getElementById('wiz-difficulty-hint');
     const summaryEl = document.getElementById('wiz-difficulty-summary');
@@ -1750,7 +1810,9 @@ function _renderDifficulty() {
     if (summaryEl) {
         summaryEl.classList.toggle('hidden', display.showChips);
         if (display.summaryKey) {
-            summaryEl.textContent = _t(display.summaryKey, 'Title 10 · Artist 5 · Partial 5/3');
+            summaryEl.textContent = display.summaryKey === 'wizard.step4.taRaceScoring'
+                ? _t(display.summaryKey, 'Title 10 · Artist 10 · first correct guess wins')
+                : _t(display.summaryKey, 'Title 10 · Artist 5 · Partial 5/3');
         }
     }
     if (display.showChips) {
@@ -1853,6 +1915,7 @@ function _renderRounds() {
 
 function _renderGameMode() {
     _renderCoreMode();
+    _renderRaceToggle();  // #3557
     _renderDifficulty();
     _renderChipGroup('wiz-timer', DURATIONS, chosenDuration, (val) => {
         chosenDuration = val;
@@ -2306,9 +2369,12 @@ function _renderDoneSummary() {
     // #1180: lead the mode line with the core game mode so the host can confirm
     // Title & Artist vs Year at a glance. Difficulty is year-only, so it's
     // dropped in T&I mode (where it doesn't affect scoring).
-    const coreModeLabel = chosenTitleArtistMode
+    let coreModeLabel = chosenTitleArtistMode
         ? _t('wizard.step4.modeTitleArtist', 'Title & Artist')
         : _t('wizard.step4.modeYear', 'Year mode');
+    if (chosenTitleArtistMode && chosenTitleArtistRaceMode) {
+        coreModeLabel += ` · ${_t('wizard.step4.raceShort', 'Race')}`;  // #3557
+    }
     const roundsPart = ` · ${roundsSummaryPart(chosenMaxRounds, _t)}`;
     // #3004: the same label as the difficulty chip on step 4, not the raw id.
     const difficultyLabel = _t(`wizard.step4.${chosenDifficulty}`, chosenDifficulty);
@@ -2398,6 +2464,7 @@ function _persistGameSettings() {
             closestWinsMode: chosenClosestWins,
             suddenDeathMode: chosenSuddenDeath,  // Issue #827
             titleArtistMode: chosenTitleArtistMode,  // #1180
+            titleArtistRaceMode: chosenTitleArtistRaceMode,  // #3557
             // #2692: the six that had no path out of the wizard at all. The key
             // names match what admin/util.js `applySavedSettings` reads, which
             // is the only reason they reach the server.
@@ -2503,6 +2570,7 @@ export async function show(stepOverride) {
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
             if (typeof s.suddenDeathMode === 'boolean') chosenSuddenDeath = s.suddenDeathMode;  // Issue #827
             if (typeof s.titleArtistMode === 'boolean') chosenTitleArtistMode = s.titleArtistMode;
+            if (typeof s.titleArtistRaceMode === 'boolean') chosenTitleArtistRaceMode = s.titleArtistRaceMode;  // #3557
             if (Array.isArray(s.selectedPlaylists)) {
                 s.selectedPlaylists.forEach((entry) => {
                     const path = typeof entry === 'string' ? entry : entry && entry.path;

@@ -88,6 +88,7 @@ vi.mock('../player-utils.js', () => ({
     triggerConfetti: () => {},
     stopConfetti: () => {},
     isTitleArtistMode: (data) => !!(data && data.title_artist_mode),
+    isTitleArtistRaceMode: (data) => !!(data && data.title_artist_mode && data.title_artist_race_mode),
 }));
 vi.mock('../player-game.js', () => ({
     updateLeaderboard: () => {},

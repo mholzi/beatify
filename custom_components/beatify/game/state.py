@@ -1757,22 +1757,38 @@ class GameState(
         # immediately and falls through to the normal auto-advance when there
         # are none. When the window is open it already owns _auto_advance_task,
         # so skip the song-end auto-advance scheduling entirely.
-        if self.title_artist_mode:
+        # Race mode has no near-miss Crowd Court — the answer was raced live, so
+        # there is nothing to vote on. Skip straight to the auto-advance.
+        if self.title_artist_mode and not self.title_artist_race_mode:
             self._schedule_title_artist_vote_window()
         if not self._title_artist_voting_open:
             self._schedule_song_end_auto_advance()
+
+    def round_had_engagement(self) -> bool:
+        """Whether anyone actually played this round (drives idle-halt).
+
+        Normally "did the party engage?" is "did anyone submit a guess?".
+        Race mode never marks players ``submitted`` (unlimited attempts), so
+        engagement is read off the live guess feed instead — otherwise a
+        fully-raced round would wrongly look idle. Single source of truth for
+        both the idle-halt auto-advance branch and the ``idle_halt`` state flag
+        surfaced to the REVEAL screen.
+        """
+        if self.title_artist_race_mode and self.title_artist_challenge:
+            return bool(self.title_artist_challenge.feed)
+        return any(p.submitted for p in self.players.values())
 
     def _schedule_song_end_auto_advance(self) -> None:
         """Spawn the song-end auto-advance / idle-halt task (#1012).
 
         The non-vote-window tail of :meth:`_schedule_reveal_advance`: if anyone
-        submitted a guess, arm the song-end auto-advance; otherwise the party is
+        engaged this round, arm the song-end auto-advance; otherwise the party is
         idle, so arm the idle-halt (let the song finish, stop, hold on REVEAL).
         Assumes the caller already cancelled any prior task and that no vote
         window owns the ``_auto_advance_task`` slot. Reused by
         ``resume_game`` (#1371) to re-arm a REVEAL that was paused mid-dwell.
         """
-        if any(p.submitted for p in self.players.values()):
+        if self.round_had_engagement():
             self._auto_advance_task = asyncio.create_task(
                 self._reveal_auto_advance(self.reveal_auto_advance)
             )

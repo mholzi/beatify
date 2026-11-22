@@ -165,6 +165,9 @@ class GameOptions:
     movie_quiz_enabled: bool = True
     #: Issue #1180: Title & Artist guessing replaces the year guess.
     title_artist_mode: bool = False
+    #: #3557: Title & Artist as a live race — unlimited attempts, the first
+    #: correct guess of each field wins it. Implies ``title_artist_mode``.
+    title_artist_race_mode: bool = False
 
     # --- Round flow (owned by RoundManager) ----------------------------
     #: Issue #23: intro mode (~20% random rounds).

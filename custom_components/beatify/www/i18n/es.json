@@ -85,7 +85,8 @@
         "finaleTiebreaker": "un empate arriba se decide en un desempate",
         "betScaling": "la apuesta paga según la dificultad",
         "intro": "algunas rondas suenan solo la intro",
-        "rampup": "las canciones van de fácil a difícil"
+        "rampup": "las canciones van de fácil a difícil",
+        "titleArtistRace": "competís por el título y el artista, y gana la primera respuesta correcta"
       }
     }
   },
@@ -948,7 +949,9 @@
       "maNeededOne": "{services} requiere un altavoz de Music Assistant",
       "maNeededMany": "{services} requieren un altavoz de Music Assistant",
       "amazonNeedsEcho": "Amazon Music requiere un Amazon Echo (alexa_media)"
-    }
+    },
+    "titleArtistRaceMode": "Carrera en directo",
+    "titleArtistRaceModeHint": "Intentos ilimitados y todos ven las respuestas en directo. Quien acierte primero el título o el intérprete se lleva esos 10 puntos. La ronda termina cuando se aciertan los dos o se acaba el tiempo."
   },
   "analyticsDashboard": {
     "title": "Estadísticas de Beatify",
@@ -1088,7 +1091,20 @@
     "verdictWin": "¡Clavado!",
     "verdictPartial": "¡Una bien!",
     "verdictMiss": "Esta vez no",
-    "verdictPending": "Esperando el veredicto…"
+    "verdictPending": "Esperando el veredicto…",
+    "raceGuess": "Adivinar",
+    "raceTitleLabel": "Título",
+    "raceArtistLabel": "Intérprete",
+    "raceOpen": "abierto",
+    "raceNobody": "Nadie",
+    "raceWonBoth": "¡Los dos son tuyos! 🏆",
+    "raceWonTitle": "¡El título es tuyo! 🏆",
+    "raceWonArtist": "¡El intérprete es tuyo! 🏆",
+    "raceTooLate": "¡Bien, pero alguien fue más rápido!",
+    "raceKeepTrying": "Casi, ¡sigue intentándolo!",
+    "raceFoundTitle": "acertó el título",
+    "raceFoundArtist": "acertó el intérprete",
+    "raceFeedLabel": "Respuestas en directo"
   },
   "earlyReveal": {
     "message": "¡Todos han respondido!"
@@ -1296,7 +1312,8 @@
     "haErrorHint": "No se pudo cargar la partida. Espera un momento y vuelve a intentarlo. Si sigue pasando, avisa al anfitrión.",
     "gameStoppedTitle": "Esta partida ha terminado",
     "gameStoppedHint": "La partida se detuvo en Home Assistant, por ejemplo tras un reinicio. Cuando el anfitrión empiece una nueva, toca «Volver a unirse».",
-    "gameStoppedRejoin": "Volver a unirse"
+    "gameStoppedRejoin": "Volver a unirse",
+    "GUESS_TOO_FAST": "Un intento cada vez"
   },
   "highlights": {
     "highlight_exact_match": "¡{player} clavó '{song}' — {year}!",
@@ -1404,7 +1421,9 @@
       "styleDramaticLine": "Va subiendo, y la última ronda lo decide.",
       "styleChaos": "Caos",
       "styleChaosLine": "Pueden fastidiarse entre ellos. No para la familia política.",
-      "styleCustom": "Personalizado"
+      "styleCustom": "Personalizado",
+      "taRaceScoring": "Título 10 · Intérprete 10 · gana el primero que acierta",
+      "raceShort": "Carrera"
     },
     "done": {
       "badge": "LISTO PARA JUGAR",

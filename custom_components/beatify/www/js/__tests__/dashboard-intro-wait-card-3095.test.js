@@ -92,6 +92,7 @@ beforeEach(() => {
         renderSuddenDeathFinalBanner: noop,
         renderFinaleDoubleBanner: noop,
         renderFinalePlayoffBanner: noop,
+        renderDashboardRacePanel: noop,  // #3557
         renderLobbyView: noop,
         renderRevealView: noop,
         renderEndView: noop,

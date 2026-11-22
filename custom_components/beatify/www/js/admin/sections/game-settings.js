@@ -272,6 +272,16 @@ export function setupGameSettings(opts = {}) {
         saveGameSettings();
     });
 
+    // #3557: Race variant of Title & Artist. It keeps its own flag so turning
+    // Title & Artist off and on again brings the host's race choice back; the
+    // payload only sends it while Title & Artist is on.
+    document.getElementById('title-artist-race-toggle')?.addEventListener('change', function() {
+        adminState.titleArtistRaceModeEnabled = this.checked;
+        syncTitleArtistModeUI();
+        updateGameSettingsSummary();
+        saveGameSettings();
+    });
+
     // Provider chips (Music Service)
     document.querySelectorAll('.chip[data-provider]').forEach(chip => {
         chip.addEventListener('click', function() {
@@ -432,6 +442,12 @@ export async function loadSavedSettings() {
                 const taToggle = document.getElementById('title-artist-mode-toggle');
                 if (taToggle) taToggle.checked = settings.titleArtistMode;
             }
+            // #3557: Race variant of Title & Artist
+            if (typeof settings.titleArtistRaceMode === 'boolean') {
+                adminState.titleArtistRaceModeEnabled = settings.titleArtistRaceMode;
+                const raceToggle = document.getElementById('title-artist-race-toggle');
+                if (raceToggle) raceToggle.checked = settings.titleArtistRaceMode;
+            }
             syncTitleArtistModeUI();
 
             // Apply provider
@@ -474,6 +490,7 @@ export function saveGameSettings(lobbyPatch = {}) {
             introMode: adminState.introModeEnabled,  // Issue #23
             closestWinsMode: adminState.closestWinsModeEnabled,  // Issue #442
             titleArtistMode: adminState.titleArtistModeEnabled,  // #1180
+            titleArtistRaceMode: adminState.titleArtistRaceModeEnabled,  // #3557
             rampupOrder: adminState.rampupOrderEnabled,  // Issue #1726
             finaleDouble: adminState.finaleDoubleEnabled,  // Issue #1725
             finaleTiebreaker: adminState.finaleTiebreakerEnabled,  // Issue #1725
@@ -523,7 +540,9 @@ export function updateGameSettingsSummary() {
     const movieIcon = (yearRoundActive && adminState.movieQuizEnabled) ? ' • 🎬' : '';  // #947
     const introIcon = (yearRoundActive && adminState.introModeEnabled) ? ' • ⚡' : '';  // Issue #23
     const closestIcon = (yearRoundActive && adminState.closestWinsModeEnabled) ? ' • 🎯' : '';  // Issue #442
-    const taIcon = adminState.titleArtistModeEnabled ? ' • 🎵' : '';  // #1180
+    const taIcon = adminState.titleArtistModeEnabled
+        ? (adminState.titleArtistRaceModeEnabled ? ' • 🎵⚡' : ' • 🎵')  // #1180, #3557
+        : '';
     // Issue #1726: ramp-up ordering is independent of the year-round bonuses
     // (it just reorders songs), so its icon shows regardless of TA mode.
     const rampupIcon = adminState.rampupOrderEnabled ? ' • 📈' : '';
@@ -577,7 +596,19 @@ export function syncTitleArtistModeUI() {
     var diffHint = document.getElementById('admin-difficulty-hint');
     if (diffHint) diffHint.classList.toggle('hidden', adminState.titleArtistModeEnabled);
     var taSummary = document.getElementById('admin-difficulty-ta-summary');
-    if (taSummary) taSummary.classList.toggle('hidden', !adminState.titleArtistModeEnabled);
+    if (taSummary) {
+        taSummary.classList.toggle('hidden', !adminState.titleArtistModeEnabled);
+        // #3557: a race pays 10 + 10 to the first correct guess, no partials.
+        var raceScoring = adminState.titleArtistRaceModeEnabled;
+        var summaryKey = raceScoring ? 'wizard.step4.taRaceScoring' : 'wizard.step4.taScoring';
+        taSummary.setAttribute('data-i18n', summaryKey);
+        taSummary.textContent = raceScoring
+            ? tr(summaryKey, 'Title 10 · Artist 10 · first correct guess wins')
+            : tr(summaryKey, 'Title 10 · Artist 5 · Partial 5/3');
+    }
+    // #3557: the race switch only exists under Title & Artist.
+    var raceGroup = document.getElementById('title-artist-race-group');
+    if (raceGroup) raceGroup.classList.toggle('hidden', !adminState.titleArtistModeEnabled);
     // #3106: the My Music song count depends on the mode.
     refreshLibraryMatchCount();
 }

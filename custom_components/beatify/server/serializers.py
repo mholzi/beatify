@@ -94,6 +94,8 @@ _PLAYER_VISIBLE_BASE = frozenset(
         "finale_double_enabled",
         "finale_tiebreaker_enabled",
         "title_artist_mode",
+        # #3557: the Race variant of Title & Artist. A setting, not an answer.
+        "title_artist_race_mode",
         "is_intro_round",
         "intro_stopped",
         "intro_splash_pending",

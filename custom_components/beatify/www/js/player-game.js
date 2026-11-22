@@ -12,7 +12,7 @@ import {
     initLeaderboardObserver, renderLazyLeaderboardRange,
     renderLeaderboardEntry, calculateInitialVisibleRange,
     setupLeaderboardResizeHandler, setEnergyLevel,
-    triggerConfetti, stopConfetti, isTitleArtistMode,
+    triggerConfetti, stopConfetti, isTitleArtistMode, isTitleArtistRaceMode,
     createModalFocusTrap
 } from './player-utils.js';
 // #2645: the host's pause and the announcement that goes with it.
@@ -449,7 +449,7 @@ export function updateGameView(data) {
     // Arcade no-bonus filler — shown when neither challenge is active
     syncNoBonusFiller(data);
 
-    renderSubmissionTracker(data.players);
+    renderSubmissionTracker(data.players, isTitleArtistRaceMode(data));
 
     if (data.leaderboard) {
         // #1663 item 2: remember standings so the steal modal can show rank+score.
@@ -857,12 +857,23 @@ export function waitingLine(activeList) {
         || ('Locked in · waiting for ' + waiting.length + ' more');
 }
 
-function renderSubmissionTracker(players) {
+function renderSubmissionTracker(players, raceMode) {
     var tracker = document.getElementById('submission-tracker');
     var container = document.getElementById('submitted-players');
     var countEl = document.getElementById('arc-submission-count');
 
     if (!tracker || !container) return;
+
+    // #3557: a race has no "submitted" state (unlimited attempts), so the strip
+    // would sit at "0 of N submitted" all round. The race chips and the live
+    // feed show the progress instead.
+    if (raceMode) {
+        tracker.classList.add('hidden');
+        container.innerHTML = '';
+        if (countEl) countEl.textContent = '';
+        return;
+    }
+    tracker.classList.remove('hidden');
 
     var playerList = players || [];
     // #827 / #2612 / #2746: eliminated players, playoff spectators and guests
@@ -1197,6 +1208,8 @@ var sabotageForcedBet = false;
 
 // Title & Artist Mode state (#1180)
 var titleArtistMode = false;
+// #3557: Race variant — unlimited attempts, the first correct guess wins.
+var titleArtistRaceMode = false;
 var taInputWired = false;
 
 // #854: initYearSelector is called from player-core.js on every PLAYING-phase
@@ -1350,7 +1363,13 @@ export function initYearSelector() {
             titleInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    if (artistInput) artistInput.focus();
+                    // #3557: in a race Enter sends the guess straight away;
+                    // the one-shot mode keeps the hop to the artist field.
+                    if (titleArtistRaceMode) {
+                        handleTitleArtistSubmit();
+                    } else if (artistInput) {
+                        artistInput.focus();
+                    }
                 }
             });
         }
@@ -1567,7 +1586,7 @@ export function showSubmitError(message) {
             // the button reading "Submit Guess" where it should read the
             // mode's own label.
             submitBtn.textContent = titleArtistMode
-                ? utils.t('titleArtist.submitGuess')
+                ? utils.t(titleArtistRaceMode ? 'titleArtist.raceGuess' : 'titleArtist.submitGuess')
                 : utils.t('game.submitGuess');
             submitBtn.classList.remove('is-error');
         }, 2000);
@@ -1677,6 +1696,7 @@ export function resetSubmissionState() {
 export function renderTitleArtistInput(data) {
     var on = isTitleArtistMode(data);
     titleArtistMode = on;
+    titleArtistRaceMode = isTitleArtistRaceMode(data);
 
     var taContainer = document.getElementById('title-artist-container');
     var yearWrap = document.getElementById('year-selector-container');
@@ -1692,6 +1712,9 @@ export function renderTitleArtistInput(data) {
         if (yearWrap) yearWrap.classList.add('hidden');
         if (yearXxl) yearXxl.classList.add('hidden');
         if (betToggle) betToggle.classList.add('hidden');
+        // #3557: an eliminated guest still watches the race on the TV; the
+        // phone shows the spectator view, so drop the live panel here too.
+        _hideRacePanel();
         return;
     }
 
@@ -1702,14 +1725,85 @@ export function renderTitleArtistInput(data) {
     if (yearXxl) yearXxl.classList.toggle('hidden', on);
     if (betToggle) betToggle.classList.toggle('hidden', on);  // no betting in v1 TA mode
 
-    if (!on) return;
+    if (!on) { _hideRacePanel(); return; }
 
     // Relabel the submit button (still id=submit-btn, reused). Only while not
     // already submitted/locked, so we don't stomp the "Waiting for others" copy.
+    // A race never locks, so its label is always "Guess".
     var submitBtn = document.getElementById('submit-btn');
-    if (submitBtn && !hasSubmitted) {
+    if (submitBtn && titleArtistRaceMode) {
+        if (!submitBtn.classList.contains('is-error') && !submitBtn.classList.contains('is-loading')) {
+            submitBtn.textContent = utils.t('titleArtist.raceGuess') || 'Guess';
+        }
+    } else if (submitBtn && !hasSubmitted) {
         submitBtn.textContent = utils.t('titleArtist.submitGuess') || 'Submit';
     }
+
+    if (titleArtistRaceMode) {
+        _renderRacePanel(data);
+    } else {
+        _hideRacePanel();
+    }
+}
+
+/** The two "+N" badges on the Title & Artist input labels (title, artist). */
+function _taPointSpans() {
+    var container = document.getElementById('title-artist-container');
+    if (!container || typeof container.querySelectorAll !== 'function') return [];
+    return Array.prototype.slice.call(container.querySelectorAll('.ta-input-points'));
+}
+
+function _hideRacePanel() {
+    var statusEl = document.getElementById('ta-race-status');
+    var feedEl = document.getElementById('ta-race-feed');
+    // Put the one-shot points (+10 / +5 in the markup) back after a race game.
+    _taPointSpans().forEach(function(span) {
+        if (span.dataset && span.dataset.basePoints) span.textContent = span.dataset.basePoints;
+    });
+    if (statusEl) { statusEl.classList.add('hidden'); statusEl.innerHTML = ''; }
+    if (feedEl) { feedEl.classList.add('hidden'); feedEl.innerHTML = ''; feedEl._raceHtml = ''; }
+}
+
+/**
+ * #3557: the live Race view on the phone — who holds the title and the artist
+ * so far, and everyone's guesses, newest first. A solved field's input locks
+ * (it can no longer be won); the open one stays live. A correct guess arrives
+ * with its text withheld until REVEAL, so the feed says "found the title"
+ * instead of the answer.
+ * @param {Object} data - PLAYING state payload
+ */
+function _renderRacePanel(data) {
+    var race = (data && data.title_artist_challenge && data.title_artist_challenge.race) || null;
+    var statusEl = document.getElementById('ta-race-status');
+    var feedEl = document.getElementById('ta-race-feed');
+    if (!race || !statusEl || !feedEl) return;
+
+    var pointSpans = _taPointSpans();
+    if (race.points && pointSpans.length >= 2) {
+        pointSpans.forEach(function(span) {
+            if (!span.dataset.basePoints) span.dataset.basePoints = span.textContent;
+        });
+        pointSpans[0].textContent = '+' + race.points.title;
+        pointSpans[1].textContent = '+' + race.points.artist;
+    }
+
+    statusEl.innerHTML = utils.raceChipsHtml(race);
+    statusEl.classList.remove('hidden');
+
+    var titleInput = document.getElementById('ta-title-input');
+    var artistInput = document.getElementById('ta-artist-input');
+    if (titleInput) titleInput.disabled = !!race.title_solved;
+    if (artistInput) artistInput.disabled = !!race.artist_solved;
+    var submitBtn = document.getElementById('submit-btn');
+    if (submitBtn && race.title_solved && race.artist_solved) submitBtn.disabled = true;
+
+    var html = utils.raceFeedHtml(race.feed);
+    // A repeated frame leaves the list (and the guest's scroll position) alone.
+    if (feedEl._raceHtml !== html) {
+        feedEl.innerHTML = html;
+        feedEl._raceHtml = html;
+    }
+    feedEl.classList.toggle('hidden', !html);
 }
 
 /**
@@ -1717,7 +1811,8 @@ export function renderTitleArtistInput(data) {
  * allowed (scores 0 for that field server-side, status "skipped").
  */
 export function handleTitleArtistSubmit() {
-    if (hasSubmitted) return;
+    // #3557: the one-shot mode locks after one submit; a race never locks.
+    if (!titleArtistRaceMode && hasSubmitted) return;
     if (meOutOfPlay()) return;  // #827 / #2612: out-of-play players can't submit
 
     var titleInput = document.getElementById('ta-title-input');
@@ -1725,18 +1820,30 @@ export function handleTitleArtistSubmit() {
     var submitBtn = document.getElementById('submit-btn');
     if (!titleInput || !artistInput || !submitBtn) return;
 
-    var title = (titleInput.value || '').trim();
-    var artist = (artistInput.value || '').trim();
+    // #3557: a field already won is locked; its leftover text is not a guess.
+    var title = titleInput.disabled && titleArtistRaceMode ? '' : (titleInput.value || '').trim();
+    var artist = artistInput.disabled && titleArtistRaceMode ? '' : (artistInput.value || '').trim();
+
+    if (titleArtistRaceMode && !title && !artist) return;  // nothing to send
+    if (titleArtistRaceMode && submitBtn.classList.contains('is-loading')) return;  // one in flight
 
     submitBtn.disabled = true;
     submitBtn.classList.add('is-loading');
 
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
         state.ws.send(JSON.stringify({
-            type: 'title_artist_guess',
+            type: titleArtistRaceMode ? 'title_artist_race_guess' : 'title_artist_guess',
             title: title,
             artist: artist
         }));
+        // #3557: clear the open fields so the next attempt starts clean, and
+        // keep the keyboard on the first field that can still be won.
+        if (titleArtistRaceMode) {
+            if (!titleInput.disabled) titleInput.value = '';
+            if (!artistInput.disabled) artistInput.value = '';
+            if (!titleInput.disabled) titleInput.focus();
+            else if (!artistInput.disabled) artistInput.focus();
+        }
     } else {
         showSubmitError(utils.t('errors.connectionLost'));
         submitBtn.disabled = false;
@@ -1766,6 +1873,49 @@ export function handleTitleArtistGuessAck(data) {
 }
 
 /**
+ * #3557: the server's title_artist_race_guess_ack. A race never locks, so the
+ * button comes back at once; the line under the inputs says how this attempt
+ * went. Only the guesser sees it — the room sees the feed.
+ * @param {Object} data - { title_status, artist_status, won_title, won_artist }
+ */
+export function handleTitleArtistRaceGuessAck(data) {
+    var submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) {
+        submitBtn.classList.remove('is-loading');
+        var titleInput = document.getElementById('ta-title-input');
+        var artistInput = document.getElementById('ta-artist-input');
+        var bothLocked = titleInput && artistInput && titleInput.disabled && artistInput.disabled;
+        submitBtn.disabled = !!bothLocked;
+    }
+
+    var ackEl = document.getElementById('ta-input-ack');
+    if (!ackEl) return;
+    ackEl.textContent = raceAckText(data, utils.t);
+    ackEl.classList.toggle('ta-input-ack--miss', !(data && (data.won_title || data.won_artist)));
+    ackEl.classList.remove('hidden');
+}
+
+/**
+ * #3557: the guesser's own line after a race attempt. Pure, exported for vitest.
+ * @param {Object} data - race ack
+ * @param {Function} t - translate function
+ * @returns {string}
+ */
+export function raceAckText(data, t) {
+    var d = data || {};
+    if (d.won_title && d.won_artist) return t('titleArtist.raceWonBoth') || 'You got both! 🏆';
+    if (d.won_title) return t('titleArtist.raceWonTitle') || 'You got the title! 🏆';
+    if (d.won_artist) return t('titleArtist.raceWonArtist') || 'You got the artist! 🏆';
+    // The server collapses exact/fuzzy to "correct" (#3557); the older names
+    // are kept so a mixed-version frame still reads right.
+    var right = function(s) { return s === 'correct' || s === 'exact' || s === 'fuzzy'; };
+    if (right(d.title_status) || right(d.artist_status)) {
+        return t('titleArtist.raceTooLate') || 'Right, but someone was faster!';
+    }
+    return t('titleArtist.raceKeepTrying') || 'Not quite, keep guessing!';
+}
+
+/**
  * Reset Title & Artist input state for a new round.
  */
 function resetTitleArtistState() {
@@ -1775,7 +1925,12 @@ function resetTitleArtistState() {
 
     if (titleInput) { titleInput.value = ''; titleInput.disabled = false; }
     if (artistInput) { artistInput.value = ''; artistInput.disabled = false; }
-    if (ackEl) { ackEl.textContent = ''; ackEl.classList.add('hidden'); }
+    if (ackEl) {
+        ackEl.textContent = '';
+        ackEl.classList.add('hidden');
+        ackEl.classList.remove('ta-input-ack--miss');
+    }
+    _hideRacePanel();  // #3557
 }
 
 // ============================================

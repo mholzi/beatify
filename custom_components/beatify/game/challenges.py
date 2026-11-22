@@ -10,14 +10,19 @@ from typing import Any
 from custom_components.beatify.const import (
     ARTIST_PARTIAL_POINTS,
     ARTIST_POINTS,
+    ARTIST_RACE_POINTS,
     CHALLENGE_BONUS_POINTS,
+    MAX_GUESS_LEN,
+    RACE_FEED_MAX,
     TITLE_PARTIAL_POINTS,
     TITLE_POINTS,
+    TITLE_RACE_POINTS,
 )
 from custom_components.beatify.game.text_match import (
     STATUS_EXACT,
     STATUS_FUZZY,
     STATUS_NEAR_MISS,
+    STATUS_SKIPPED,
     classify_field,
 )
 
@@ -171,6 +176,55 @@ class TitleArtistChallenge:
     overrides: dict[str, bool] = field(default_factory=dict)
     resolved: bool = False
 
+    # --- Race mode (live buzzer variant) -------------------------------------
+    # When True this round runs as a first-correct-wins race: unlimited attempts,
+    # a live guess feed, and the first player to land each field banks the points
+    # (title and artist are raced independently, possibly by different players).
+    race_mode: bool = False
+    title_winner: str | None = None
+    title_winner_ts: float | None = None
+    artist_winner: str | None = None
+    artist_winner_ts: float | None = None
+    # Rolling live feed of every submitted guess (both fields), newest last:
+    # [{"player": str, "field": "title"|"artist", "guess": str,
+    #   "correct": bool, "ts": float}]. Capped at RACE_FEED_MAX.
+    feed: list[dict[str, Any]] = field(default_factory=list)
+    # Server time of each player's last accepted race attempt (throttle).
+    last_attempt: dict[str, float] = field(default_factory=dict)
+
+    def race_attempt_allowed(
+        self, player_name: str, now: float, min_interval: float
+    ) -> bool:
+        """Accept at most one race attempt per ``min_interval`` per player.
+
+        Records ``now`` when the attempt is allowed, so a rejected attempt does
+        not push the next allowed moment further out.
+        """
+        last = self.last_attempt.get(player_name)
+        if last is not None and now - last < min_interval:
+            return False
+        self.last_attempt[player_name] = now
+        return True
+
+    def race_field_done(self, field_name: str) -> bool:
+        """Whether a race field is settled (won, or has no truth to guess).
+
+        A song with an empty title/artist truth can never be "won", so treat an
+        empty truth as already-done — otherwise the round could only ever end on
+        the timer.
+        """
+        if field_name == "title":
+            return self.title_winner is not None or not self.correct_title.strip()
+        return self.artist_winner is not None or not self.correct_artist.strip()
+
+    def race_complete(self) -> bool:
+        """True once both race fields are settled (Race mode end condition)."""
+        return (
+            self.race_mode
+            and self.race_field_done("title")
+            and self.race_field_done("artist")
+        )
+
 
 # ------------------------------------------------------------------
 # Option builder helpers
@@ -297,6 +351,10 @@ class ChallengeManager:
 
         # Issue #1180: Title & Artist guessing mode
         self.title_artist_mode: bool = False
+        # Race variant of Title & Artist mode (live buzzer, first-correct-wins).
+        # Implies title_artist_mode (the round still needs the title/artist
+        # challenge built), so it is never enabled on its own.
+        self.title_artist_race_mode: bool = False
         self.title_artist_challenge: TitleArtistChallenge | None = None
 
     # ------------------------------------------------------------------
@@ -309,6 +367,7 @@ class ChallengeManager:
         artist_challenge_enabled: bool = True,
         movie_quiz_enabled: bool = True,
         title_artist_mode: bool = False,
+        title_artist_race_mode: bool = False,
     ) -> None:
         """
         Set challenge configuration for a new game.
@@ -317,8 +376,16 @@ class ChallengeManager:
             artist_challenge_enabled: Whether to enable artist guessing
             movie_quiz_enabled: Whether to enable movie quiz bonus
             title_artist_mode: Whether title/artist guessing replaces the year guess
+            title_artist_race_mode: Whether the title/artist round runs as a live
+                first-correct-wins race. Implies title_artist_mode.
 
         """
+        # Race mode is a variant of title/artist mode — it still needs the
+        # title/artist challenge built each round, so enabling it forces the
+        # base mode on regardless of the base flag.
+        self.title_artist_race_mode = title_artist_race_mode
+        title_artist_mode = title_artist_mode or title_artist_race_mode
+
         # Title & Artist mode already asks players for the artist directly, so
         # the artist multiple-choice challenge must never run alongside it —
         # otherwise the broadcast options leak the correct artist (and the +5
@@ -346,6 +413,7 @@ class ChallengeManager:
         # Issue #1180: Title & Artist mode is opt-in, default off
         self.title_artist_challenge = None
         self.title_artist_mode = False
+        self.title_artist_race_mode = False
 
     # ------------------------------------------------------------------
     # Round initialization
@@ -390,6 +458,7 @@ class ChallengeManager:
             guesses={},
             votes={},
             overrides={},
+            race_mode=self.title_artist_race_mode,
         )
 
     def _init_artist_challenge(self, song: dict[str, Any]) -> ArtistChallenge | None:
@@ -650,6 +719,84 @@ class ChallengeManager:
 
         return {"title_status": title_status, "artist_status": artist_status}
 
+    def submit_race_guess(
+        self, player_name: str, title: str, artist: str, ts: float
+    ) -> dict[str, Any]:
+        """Submit one attempt in Race mode; classify each field and race for it.
+
+        Unlimited attempts: a player may call this repeatedly. Each non-empty
+        field is classified and pushed to the live feed. The FIRST player to
+        land a field (exact/fuzzy) claims it — later correct guesses on an
+        already-won field do not steal it. Title and artist are raced
+        independently, so different players can win them.
+
+        Args:
+            player_name: Name of the player guessing
+            title: Raw title guess (may be empty to guess only the artist)
+            artist: Raw artist guess (may be empty to guess only the title)
+            ts: Server timestamp of the submission
+
+        Returns:
+            Dict with keys: title_status, artist_status (each an exact|fuzzy|
+            near_miss|wrong|skipped classification of THIS attempt), won_title,
+            won_artist (bool — whether THIS attempt claimed the field).
+
+        Raises:
+            ValueError: If no title/artist challenge active
+
+        """
+        if not self.title_artist_challenge:
+            raise ValueError("No title/artist challenge active")
+
+        ch = self.title_artist_challenge
+        result: dict[str, Any] = {
+            "title_status": STATUS_SKIPPED,
+            "artist_status": STATUS_SKIPPED,
+            "won_title": False,
+            "won_artist": False,
+        }
+
+        for field_name, raw, truth in (
+            ("title", title, ch.correct_title),
+            ("artist", artist, ch.correct_artist),
+        ):
+            if not raw or not raw.strip():
+                continue
+            value = raw.strip()[:MAX_GUESS_LEN]
+            status = classify_field(value, truth)
+            result[f"{field_name}_status"] = status
+            correct = status in (STATUS_EXACT, STATUS_FUZZY)
+
+            winner_attr = f"{field_name}_winner"
+            if correct and getattr(ch, winner_attr) is None:
+                setattr(ch, winner_attr, player_name)
+                setattr(ch, f"{field_name}_winner_ts", ts)
+                result[f"won_{field_name}"] = True
+                _LOGGER.info("Race: %s won the %s (%r)", player_name, field_name, value)
+
+            ch.feed.append(
+                {
+                    "player": player_name,
+                    "field": field_name,
+                    "guess": value,
+                    "correct": correct,
+                    "ts": ts,
+                }
+            )
+
+        # Keep only the most recent RACE_FEED_MAX entries so a spammer cannot
+        # grow the broadcast state frame without bound.
+        if len(ch.feed) > RACE_FEED_MAX:
+            del ch.feed[:-RACE_FEED_MAX]
+
+        return result
+
+    def race_complete(self) -> bool:
+        """Whether the current Race round is over (both fields settled)."""
+        if not self.title_artist_challenge:
+            return False
+        return self.title_artist_challenge.race_complete()
+
     def register_title_artist_vote(
         self,
         voter_name: str,
@@ -838,6 +985,22 @@ class ChallengeManager:
         """
         if not self.title_artist_challenge:
             return 0, 0
+
+        # Race mode: only the first correct guesser of each field banks points,
+        # and both fields are worth the same. There is no partial credit.
+        if self.title_artist_challenge.race_mode:
+            title_pts = (
+                TITLE_RACE_POINTS
+                if self.title_artist_challenge.title_winner == player_name
+                else 0
+            )
+            artist_pts = (
+                ARTIST_RACE_POINTS
+                if self.title_artist_challenge.artist_winner == player_name
+                else 0
+            )
+            return title_pts, artist_pts
+
         guess = self.title_artist_challenge.guesses.get(player_name)
         if not guess:
             return 0, 0
@@ -860,10 +1023,19 @@ class ChallengeManager:
 
         """
         if not self.title_artist_challenge:
-            return "skipped"
+            return STATUS_SKIPPED
+
+        # Race mode has no stored per-player guess; a field "counts" only for the
+        # player who won it. This keeps the streak/superlative machinery (which
+        # reads these statuses) coherent — the winner is EXACT, everyone else
+        # skipped for that field.
+        if self.title_artist_challenge.race_mode:
+            winner = getattr(self.title_artist_challenge, f"{field}_winner", None)
+            return STATUS_EXACT if winner == player_name else STATUS_SKIPPED
+
         guess = self.title_artist_challenge.guesses.get(player_name)
         if not guess:
-            return "skipped"
+            return STATUS_SKIPPED
         return guess[f"{field}_status"]
 
     def title_artist_round_result(self, player_name: str) -> str:
@@ -900,6 +1072,40 @@ class ChallengeManager:
         if status == STATUS_NEAR_MISS_ACCEPTED:
             return partial
         return 0
+
+    def _race_dict(self, *, include_answer: bool) -> dict[str, Any]:
+        """Build the Race-mode payload for the broadcast state.
+
+        Always carries the live guess feed and who has solved each field so far.
+        The correct answer is included only at REVEAL (``include_answer``); during
+        PLAYING it must stay hidden or the race is spoiled. Assumes a race
+        challenge is active (callers guard on ``race_mode``).
+        """
+        ch = self.title_artist_challenge
+        assert ch is not None  # noqa: S101 — callers guard on race_mode
+        # A correct guess IS the answer (or a fuzzy spelling of it). During
+        # PLAYING its text is withheld from the room — the feed only says who
+        # landed which field — or a solved title would hand everyone the
+        # artist. The text comes back at REVEAL with the answer (#3557).
+        if include_answer:
+            feed = [dict(entry) for entry in ch.feed]
+        else:
+            feed = [
+                {**entry, "guess": None} if entry["correct"] else dict(entry)
+                for entry in ch.feed
+            ]
+        payload: dict[str, Any] = {
+            "title_winner": ch.title_winner,
+            "artist_winner": ch.artist_winner,
+            "title_solved": ch.race_field_done("title"),
+            "artist_solved": ch.race_field_done("artist"),
+            "feed": feed,
+            "points": {"title": TITLE_RACE_POINTS, "artist": ARTIST_RACE_POINTS},
+        }
+        if include_answer:
+            payload["correct_title"] = ch.correct_title
+            payload["correct_artist"] = ch.correct_artist
+        return payload
 
     # ------------------------------------------------------------------
     # State serialization helpers
@@ -952,7 +1158,26 @@ class ChallengeManager:
             return None
 
         if not include_answer:
-            return {"active": True}
+            payload: dict[str, Any] = {"active": True}
+            # Race mode broadcasts a live view mid-round: the guess feed and who
+            # has solved each field so far — but never the correct answer yet.
+            if self.title_artist_challenge.race_mode:
+                payload["race"] = self._race_dict(include_answer=False)
+            return payload
+
+        if self.title_artist_challenge.race_mode:
+            # Race mode has no per-player near-miss results / vote cards; the
+            # REVEAL just shows the answer and who won each field.
+            return {
+                "correct_title": self.title_artist_challenge.correct_title,
+                "correct_artist": self.title_artist_challenge.correct_artist,
+                "results": [],
+                "near_misses": [],
+                "near_miss_outcomes": [],
+                "voting_open": False,
+                "vote_seconds_remaining": 0,
+                "race": self._race_dict(include_answer=True),
+            }
 
         results = [
             {

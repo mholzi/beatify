@@ -16694,6 +16694,122 @@ body.theme-dark .your-result-stats .stat-value {
     color: var(--color-success-neon);
 }
 .ta-input-ack.hidden { display: none; }
+/* #3557: a race attempt that missed is not a success — keep it neutral. */
+.ta-input-ack--miss { color: var(--color-text-neon-muted); }
+
+/* --------------------------------------------------------------------------
+   #3557 Title & Artist RACE — who holds title / artist + the live guess feed.
+   Ported from the fork by @Muggedadscher, moved onto the design tokens.
+   -------------------------------------------------------------------------- */
+.ta-race-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+.ta-race-status.hidden,
+.ta-race-feed.hidden { display: none; }
+.ta-race-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 0;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-neon);
+    background: var(--color-dark-surface);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-neon-muted);
+    text-align: center;
+}
+.ta-race-chip-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+}
+.ta-race-chip-who {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+.ta-race-chip.is-solved {
+    border-color: var(--color-success-neon);
+    background: rgba(57, 255, 20, 0.08);
+}
+.ta-race-chip.is-solved .ta-race-chip-who { color: var(--color-success-neon); }
+.ta-race-feed {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-height: 168px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+.ta-race-feed-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    min-width: 0;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    background: var(--color-dark-surface);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+}
+.ta-race-feed-icon { flex-shrink: 0; }
+.ta-race-feed-player {
+    flex-shrink: 0;
+    max-width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+.ta-race-feed-guess {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--color-text-neon-muted);
+}
+.ta-race-feed-item.is-correct { background: rgba(57, 255, 20, 0.08); }
+.ta-race-feed-item.is-correct .ta-race-feed-guess { color: var(--color-success-neon); }
+/* Reveal: the field you won is yours. */
+.ta-race-winner-row.is-mine .ta-own-guess { color: var(--color-success-neon); }
+
+/* #3557: the Race switch under the Title & Artist toggle in the host's game
+   settings — indented as a sub-setting of the toggle above. */
+.ta-race-setting {
+    margin-top: var(--space-sm);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--color-border-neon);
+}
+.ta-race-setting.hidden { display: none; }
+.ta-race-setting .setting-row { gap: var(--space-sm); }
+.ta-race-setting .setting-label { min-width: 0; }
+
+/* #3557: the wizard's Race switch, full width under the two core-mode cards
+   (in the fork it sat inside their two-column grid and was squeezed into one
+   column at phone width). Cyan when on, the Title & Artist accent. */
+.wiz-coremode-race { margin-top: var(--space-sm); }
+.wiz-coremode-race.hidden { display: none; }
+.wiz-race-card.on {
+    background: rgba(0, 245, 255, 0.08);
+    border-color: var(--color-accent-secondary);
+}
+.wiz-race-card.on .wiz-lvl-toggle {
+    background: var(--color-accent-secondary);
+    border-color: var(--color-accent-secondary);
+}
+.wiz-race-card:focus-visible {
+    outline: 2px solid var(--color-accent-secondary);
+    outline-offset: 2px;
+}
 
 /* ==========================================================================
    Spotlight Stage — player reveal skin

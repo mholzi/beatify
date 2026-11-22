@@ -92,6 +92,7 @@ vi.mock('../player-utils.js', async (importOriginal) => {
         triggerConfetti: () => {},
         stopConfetti: () => {},
         isTitleArtistMode: (data) => !!(data && data.title_artist_mode),
+        isTitleArtistRaceMode: (data) => !!(data && data.title_artist_mode && data.title_artist_race_mode),
         createModalFocusTrap: () => ({}),
         // the classifier under test is the REAL one
         classifyYearsOff: real.classifyYearsOff,

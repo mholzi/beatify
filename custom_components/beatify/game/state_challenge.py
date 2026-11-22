@@ -106,6 +106,15 @@ class ChallengeMixin(GameStateBase):
         self._challenge_manager.title_artist_mode = value
 
     @property
+    def title_artist_race_mode(self) -> bool:
+        """Whether the title/artist round runs as a live first-correct race."""
+        return self._challenge_manager.title_artist_race_mode
+
+    @title_artist_race_mode.setter
+    def title_artist_race_mode(self, value: bool) -> None:
+        self._challenge_manager.title_artist_race_mode = value
+
+    @property
     def title_artist_challenge(self) -> Any:
         """Current title/artist challenge state (Issue #1180)."""
         return self._challenge_manager.title_artist_challenge
@@ -232,3 +241,17 @@ class ChallengeMixin(GameStateBase):
         return self._challenge_manager.submit_title_artist_guess(
             player_name, title, artist, ts
         )
+
+    def submit_race_guess(
+        self, player_name: str, title: str, artist: str, ts: float
+    ) -> dict[str, Any]:
+        """Submit one Race-mode attempt. Delegates to ChallengeManager.
+
+        Returns {"title_status", "artist_status", "won_title", "won_artist"}.
+        Unlimited attempts; the first correct guesser of each field wins it.
+        """
+        return self._challenge_manager.submit_race_guess(player_name, title, artist, ts)
+
+    def race_complete(self) -> bool:
+        """Whether the Race round is over (both fields settled). Delegates."""
+        return self._challenge_manager.race_complete()

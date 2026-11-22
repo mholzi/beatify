@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import math
 import time
+import unicodedata
 from typing import TYPE_CHECKING, Any
 
 from ..const import (
@@ -29,6 +30,26 @@ if TYPE_CHECKING:
 from .player import PlayerSession
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def normalize_name(name: str) -> str:
+    """Canonicalize a display name to NFC (composed) Unicode form.
+
+    Mobile keyboards (notably iOS) can submit the same visible name in
+    different Unicode normalization forms — e.g. "Joäni" as NFC (ä = U+00E4)
+    on one join and NFD (a + combining ¨ = U+0061 U+0308) on the next. Those
+    are byte-distinct, so ``name.lower()`` produced two different
+    ``_name_index`` keys and a rejoining player was created as a SECOND session
+    instead of reconnecting — the same name showing up several times on the
+    leaderboard. Folding every name to NFC before it becomes an index key (and
+    before it is stored for display) collapses those variants.
+    """
+    return unicodedata.normalize("NFC", name)
+
+
+def _name_key(name: str) -> str:
+    """Lookup key for ``_name_index``: NFC-normalized, case-insensitive."""
+    return normalize_name(name).lower()
 
 
 class PlayerRegistry:
@@ -82,7 +103,7 @@ class PlayerRegistry:
     def _rebuild_indexes(self) -> None:
         """Rebuild ``_name_index`` and ``_sessions`` from ``_players``."""
         self._name_index = {
-            player.name.lower(): player_id
+            _name_key(player.name): player_id
             for player_id, player in self._players.items()
         }
         self._sessions = {
@@ -129,8 +150,10 @@ class PlayerRegistry:
         """
         from .state import GamePhase
 
-        # Validate name
-        name = name.strip()
+        # Validate name. NFC first (see normalize_name): the same visible name
+        # sent in another Unicode form on a rejoin must resolve to the SAME
+        # player, not spawn a duplicate session.
+        name = normalize_name(name.strip())
         if not name or len(name) < MIN_NAME_LENGTH:
             return False, ERR_NAME_INVALID
         if len(name) > MAX_NAME_LENGTH:
@@ -147,7 +170,7 @@ class PlayerRegistry:
         # fallback for clients that rejoin by name without a valid session_id
         # (old cookies, cleared storage). It will be removed in PR-5 once prod
         # logs confirm it is unused.
-        existing_id = self._name_index.get(name.lower())
+        existing_id = self._name_index.get(_name_key(name))
         existing_player = self.players.get(existing_id) if existing_id else None
         if existing_player is not None:
             # #2501 (security): the fallback above matches on a display name,
@@ -210,7 +233,7 @@ class PlayerRegistry:
         )
         # #1664 PR-2: key by player_id (== session_id), not the display name.
         self._players[player.player_id] = player
-        self._name_index[name.lower()] = player.player_id
+        self._name_index[_name_key(name)] = player.player_id
         self._sessions[player.session_id] = player.player_id
 
         # Log join with score info
@@ -237,7 +260,7 @@ class PlayerRegistry:
         ``get_player`` / ``remove_player`` / ``set_admin`` — all resolve through
         the same ``_name_index`` (name.lower() → player_id).
         """
-        player_id = self._name_index.get(name.lower())
+        player_id = self._name_index.get(_name_key(name))
         return self.players.get(player_id) if player_id else None
 
     def get_player_by_session_id(self, session_id: str) -> PlayerSession | None:
@@ -295,12 +318,12 @@ class PlayerRegistry:
 
     def remove_player(self, name: str) -> None:
         """Remove player from game (by display name, case-insensitive — F6)."""
-        player_id = self._name_index.get(name.lower())
+        player_id = self._name_index.get(_name_key(name))
         player = self.players.get(player_id) if player_id else None
         if player_id is None or player is None:
             return
         self._sessions.pop(player.session_id, None)
-        self._name_index.pop(player.name.lower(), None)
+        self._name_index.pop(_name_key(player.name), None)
         # #2562: drop the throttle stamp with the player, so the name can be
         # re-used by a fresh join without inheriting somebody else's cooldown.
         self._last_reaction_at.pop(player.name, None)

@@ -132,6 +132,8 @@
                 <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.coreMode">Game mode</label>
                     <div id="wiz-coremode" class="wiz-coremode-cards"></div>
+                    <!-- #3557: the Race variant of Title & Artist, full width under the two cards -->
+                    <div id="wiz-coremode-race" class="wiz-mode-cards wiz-coremode-race hidden"></div>
                 </div>
                 <div class="wiz-field">
                     <label class="wiz-field-label" data-i18n="wizard.step4.difficulty">Difficulty</label>
@@ -525,6 +527,20 @@
                         </label>
                     </div>
                     <p class="setting-hint" data-i18n="admin.titleArtistModeHint">Players type the song title and artist instead of guessing the year. Replaces the year round, so the per-round bonuses below are turned off.</p>
+                    <!-- #3557: Race variant, only shown while Title & Artist is on -->
+                    <div id="title-artist-race-group" class="ta-race-setting hidden">
+                        <div class="setting-row">
+                            <span class="setting-label">
+                                <span class="setting-icon" aria-hidden="true">⚡</span>
+                                <span data-i18n="admin.titleArtistRaceMode">Live race (buzzer)</span>
+                            </span>
+                            <label class="toggle-compact">
+                                <input type="checkbox" id="title-artist-race-toggle">
+                                <span class="toggle-switch-compact"></span>
+                            </label>
+                        </div>
+                        <p class="setting-hint" data-i18n="admin.titleArtistRaceModeHint">Unlimited guesses, shown live to everyone. The first to name the title or the artist wins those 10 points. The round ends when both are found or time runs out.</p>
+                    </div>
                 </div>
 
                 <!-- Artist Challenge - Inline toggle -->

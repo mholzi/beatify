@@ -990,6 +990,56 @@ window.BeatifyUtils = (function() {
         return accepted ? '✓ +' + (points || 0) : '✗';
     }
 
+    // #3557: the same icons as the two Title & Artist input labels.
+    var RACE_FIELD_ICON = { title: '🎵', artist: '🎤' };
+
+    /**
+     * #3557: the two "who has it" chips of a Title & Artist race. Shared by the
+     * phone and the TV.
+     * @param {Object} race - title_artist_challenge.race
+     * @returns {string} HTML
+     */
+    function raceChipsHtml(race) {
+        var r = race || {};
+        var open = t('titleArtist.raceOpen', 'open');
+        var chip = function(field, label, solved, winner) {
+            var right = solved ? '🏆 ' + escapeHtml(winner || '✓') : escapeHtml(open);
+            return '<span class="ta-race-chip' + (solved ? ' is-solved' : '') + '" data-field="' + field + '">' +
+                '<span class="ta-race-chip-label">' + RACE_FIELD_ICON[field] + ' ' + escapeHtml(label) + '</span>' +
+                '<span class="ta-race-chip-who">' + right + '</span>' +
+                '</span>';
+        };
+        return chip('title', t('titleArtist.raceTitleLabel', 'Title'), !!r.title_solved, r.title_winner) +
+            chip('artist', t('titleArtist.raceArtistLabel', 'Artist'), !!r.artist_solved, r.artist_winner);
+    }
+
+    /**
+     * #3557: the live guess feed of a race, newest first. During PLAYING the
+     * server withholds the text of a correct guess (it is the answer), so such
+     * an entry reads "Anna — found the title". Shared by the phone and the TV.
+     * @param {Array} feed - title_artist_challenge.race.feed
+     * @returns {string} HTML ('' for an empty feed)
+     */
+    function raceFeedHtml(feed) {
+        var items = Array.isArray(feed) ? feed.slice().reverse() : [];
+        return items.map(function(f) {
+            var field = f && f.field === 'artist' ? 'artist' : 'title';
+            var text;
+            if (f.correct && (f.guess == null || f.guess === '')) {
+                text = field === 'artist'
+                    ? t('titleArtist.raceFoundArtist', 'found the artist')
+                    : t('titleArtist.raceFoundTitle', 'found the title');
+            } else {
+                text = '“' + (f.guess || '') + '”';
+            }
+            return '<div class="ta-race-feed-item' + (f.correct ? ' is-correct' : '') + '">' +
+                '<span class="ta-race-feed-icon" aria-hidden="true">' + (f.correct ? '✅' : RACE_FIELD_ICON[field]) + '</span>' +
+                '<span class="ta-race-feed-player">' + escapeHtml(f.player) + '</span>' +
+                '<span class="ta-race-feed-guess">' + escapeHtml(text) + '</span>' +
+                '</div>';
+        }).join('');
+    }
+
     /**
      * Title & Artist live tally split as integer percentages (#1180).
      * Returns {yes, no} summing to 100 when any vote is cast, else {0, 0}.
@@ -1082,6 +1132,9 @@ window.BeatifyUtils = (function() {
     var LOBBY_BRIEF_DEFAULTS = {
         sudden_death_mode: false,
         title_artist_mode: false,
+        // #3557: read inside the title_artist_mode clause, never on its own —
+        // a race is a kind of Title & Artist game, not a second deviation.
+        title_artist_race_mode: false,
         round_duration: 45,
         closest_wins_mode: false,
         difficulty: 'normal',
@@ -1273,6 +1326,13 @@ window.BeatifyUtils = (function() {
                 return;
             }
             if (value !== true) return;
+            // #3557: a race changes how the whole round is played (everyone's
+            // guesses live, the first correct one wins), so it gets its own
+            // clause in place of the plain Title & Artist one.
+            if (rule.field === 'title_artist_mode' && data.title_artist_race_mode === true) {
+                found.push({ key: 'lobby.brief.dev.titleArtistRace', params: null });
+                return;
+            }
             found.push({ key: 'lobby.brief.dev.' + rule.clause, params: null });
         });
 
@@ -1536,6 +1596,8 @@ window.BeatifyUtils = (function() {
         // Title & Artist helpers
         taVerdictLabel: taVerdictLabel,
         taTallyPercents: taTallyPercents,
+        raceChipsHtml: raceChipsHtml,  // #3557
+        raceFeedHtml: raceFeedHtml,  // #3557
 
         // View management
         showView: showView,

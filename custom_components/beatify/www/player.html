@@ -636,6 +636,10 @@
                                placeholder="Type the artist">
                     </div>
                     <div id="ta-input-ack" class="ta-input-ack hidden" aria-live="polite"></div>
+                    <!-- #3557: Race mode — who holds title / artist, and everyone's guesses live -->
+                    <div id="ta-race-status" class="ta-race-status hidden"></div>
+                    <div id="ta-race-feed" class="ta-race-feed hidden" role="log" aria-live="polite"
+                         data-i18n-aria-label="titleArtist.raceFeedLabel" aria-label="Live guesses"></div>
                 </section>
 
                 <!-- Actions: bet (compact) + submit (primary) — moved above the challenge cards (#1458) -->

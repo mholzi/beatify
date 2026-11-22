@@ -1069,7 +1069,11 @@ class ScoringService:
         # #3491: steal and sabotage are duels — hidden silently in a solo game.
         steal_enabled = len(all_players) != 1
         if title_artist_manager is not None:
-            if player.submitted:
+            # Race mode (#3557) never marks players ``submitted`` (unlimited
+            # attempts), so every player is scored through the title/artist
+            # path: the field winners bank points, everyone else gets 0.
+            race_mode = getattr(title_artist_manager, "title_artist_race_mode", False)
+            if player.submitted or race_mode:
                 _score_title_artist_round(
                     player,
                     title_artist_manager,
