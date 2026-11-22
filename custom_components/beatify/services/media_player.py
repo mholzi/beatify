@@ -41,7 +41,7 @@ from .playback import (
     supported_platforms,
     uri_match_tokens,
 )
-from .playback.base import PLAYBACK_TIMEOUT
+from .playback.base import PLAYBACK_TIMEOUT, ROUND_START_HARD_DEADLINE
 from .speaker_promises import SpeakerPromises
 
 if TYPE_CHECKING:
@@ -519,8 +519,22 @@ class MediaPlayerService:
             return False
 
         try:
-            return await self._strategy.play(song)
+            async with asyncio.timeout(ROUND_START_HARD_DEADLINE) as guard:
+                return await self._strategy.play(song)
         except (TimeoutError, asyncio.TimeoutError):
+            if guard.expired():
+                # #3562: a game must never wait on a start without a deadline.
+                # Same outcome as any failed start: the caller skips the song
+                # or pauses with media_player_error.
+                _LOGGER.error(
+                    "Playback of %s did not finish within the %.0fs hard "
+                    "deadline — treating it as a failed start (#3562)",
+                    uri,
+                    ROUND_START_HARD_DEADLINE,
+                )
+                self.last_failure_reason = "error"
+                self._record_error("PLAYBACK_TIMEOUT", f"Hard deadline hit: {uri}")
+                return False
             _LOGGER.error(
                 "Playback timed out after %ss for %s: %s",
                 PLAYBACK_TIMEOUT,
