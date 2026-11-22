@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc2] - 2026-11-22
+
+Second candidate for 5.1.0: quick guesses now pay off more.
+
+### Changed
+- **Speed bonus** (#3546): a fast answer counts up to 5x instead of 2x, and the full bonus holds for the first 60% of the round instead of the first third.
+- **Streak bonuses** (#3546): milestone bonuses are smaller (3 in a row: 5 points instead of 20), so the podium stays closer.
+
+### Fixed
+- **80s Hits**: "Man in the Mirror" now has the album year 1987 (#3552).
+- **New Year's Eve Party**: one broken YouTube Music link fixed (#3554).
+
 ## [5.1.0-rc1] - 2026-11-21
 
 First candidate for 5.1.0: a New Year's Eve playlist and steadier sound on the TV or phone.
