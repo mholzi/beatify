@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc3] - 2026-11-22
+
+Third candidate for 5.1.0: a live race mode for Title & Artist and shorter auto-advance delays.
+
+### Added
+- **Race mode for Title & Artist** (#3557): players guess title and artist as often as they like, every guess shows up live on the phones and the TV, and the first correct guess wins each field (10 points each). Ported from the fork by @Muggedadscher.
+- **Auto-advance after the reveal** (#3558): 10 s and 15 s join Off / 30 / 60 / 90 s.
+
+### Fixed
+- **Title & Artist verdict**: the reveal no longer says "Volltreffer!" on a 0-point round (#3557).
+- **Leaderboard**: a player whose name was typed in a different Unicode form no longer appears twice (#3557).
+
 ## [5.1.0-rc2] - 2026-11-22
 
 Second candidate for 5.1.0: quick guesses now pay off more.
