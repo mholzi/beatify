@@ -58,7 +58,7 @@ export const REACTION_THROTTLE_SECONDS = 8;
  * pick at the reveal, in seconds. `0` is "off" — advance manually or when the
  * song ends. Order is display order; index 0 is the default.
  */
-export const REVEAL_AUTO_ADVANCE_OPTIONS = [0, 30, 60, 90];
+export const REVEAL_AUTO_ADVANCE_OPTIONS = [0, 10, 15, 30, 60, 90];
 
 /**
  * Mirror of `SAMPLE_DURATION_OPTIONS` in const.py: how long the song can play

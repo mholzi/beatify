@@ -42,7 +42,7 @@ def test_off_is_one_of_the_choices() -> None:
     assert 0 in REVEAL_AUTO_ADVANCE_OPTIONS
 
 
-@pytest.mark.parametrize("value", [15, 120, 45, -30, 1, 10_000])
+@pytest.mark.parametrize("value", [120, 45, -30, 1, 10_000])
 def test_a_delay_nobody_supports_becomes_off(value: int) -> None:
     assert value not in REVEAL_AUTO_ADVANCE_OPTIONS  # guard the fixture itself
     assert normalize_reveal_auto_advance(value) == 0
@@ -76,3 +76,11 @@ def test_choosing_off_is_not_reported_as_a_rejection(
         assert normalize_reveal_auto_advance(0) == 0
         assert normalize_reveal_auto_advance(None) == 0
     assert not [r for r in caplog.records if r.levelno >= logging.WARNING], caplog.text
+
+
+@pytest.mark.parametrize("seconds", [10, 15])
+def test_short_delays_are_accepted(seconds: int) -> None:
+    """#3558: 10 s and 15 s are offered and survive untouched."""
+    assert seconds in REVEAL_AUTO_ADVANCE_OPTIONS
+    assert normalize_reveal_auto_advance(seconds) == seconds
+    assert normalize_reveal_auto_advance(str(seconds)) == seconds

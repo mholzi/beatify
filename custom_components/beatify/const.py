@@ -104,7 +104,7 @@ STALE_NEXT_ROUND_WINDOW_SECONDS = 2.0
 # www/js/__tests__/game-constants-mirror.test.js), so both the wizard chips and
 # the admin chips are rendered from it. Before that, three hand-kept lists could
 # disagree and a chip the UI showed as selected silently became "off".
-REVEAL_AUTO_ADVANCE_OPTIONS: tuple[int, ...] = (0, 30, 60, 90)
+REVEAL_AUTO_ADVANCE_OPTIONS: tuple[int, ...] = (0, 10, 15, 30, 60, 90)
 
 # #2627: the one place the player-name cap is defined. game/player_registry.py
 # enforces it, and www/js/game-constants.js mirrors it for the join forms
