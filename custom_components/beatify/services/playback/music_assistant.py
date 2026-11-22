@@ -72,6 +72,19 @@ MA_PLAYBACK_TIMEOUT = 25.0
 # #3101: bound on each cancel call issued after a start is abandoned.
 MA_CANCEL_TIMEOUT = 3.0
 
+# #3562: hard deadline of ONE start attempt = its playback budget plus this
+# grace. The budget itself only bounds the wait for the speaker to confirm; the
+# awaits around it (queue snapshot, the post-timeout state read, the cancel
+# calls) used to have no deadline of their own, and an attempt that hung in one
+# of them left the game in REVEAL with nothing in the log. The guard turns any
+# such hang into an ordinary failed start, so the skip / media_player_error
+# logic of #1936 takes over.
+MA_ATTEMPT_GRACE = 5.0
+# #3562: bound on the get_queue snapshot taken before the first start of a
+# game. It goes through the same Music Assistant provider that is rate
+# limiting, and a blocking service call has no timeout of its own.
+MA_QUEUE_SNAPSHOT_TIMEOUT = 5.0
+
 # #3278: how long a start Beatify gave up on can still land on the speaker.
 #
 # The #3101 cancel (stop + clear queue) does not reach a request that Music
@@ -777,14 +790,15 @@ class MusicAssistantStrategy(PlaybackStrategy):
         able to remember the queue must never stop the round from playing.
         """
         try:
-            response = await self._hass.services.async_call(
-                "music_assistant",
-                "get_queue",
-                {"entity_id": self._entity_id},
-                blocking=True,
-                return_response=True,
-            )
-        except (HomeAssistantError, ServiceNotFound, TypeError) as err:
+            async with asyncio.timeout(MA_QUEUE_SNAPSHOT_TIMEOUT):
+                response = await self._hass.services.async_call(
+                    "music_assistant",
+                    "get_queue",
+                    {"entity_id": self._entity_id},
+                    blocking=True,
+                    return_response=True,
+                )
+        except (HomeAssistantError, ServiceNotFound, TypeError, TimeoutError) as err:
             # TypeError guards older MA versions whose get_queue takes no
             # response — there is nothing to remember then, and pretending
             # otherwise would make restore_queue play a phantom track.
@@ -1034,6 +1048,49 @@ class MusicAssistantStrategy(PlaybackStrategy):
         return False
 
     async def try_play(
+        self,
+        uri: str,
+        expected_title: str,
+        expected_artist: str = "",
+        artist_filter: str | None = None,
+    ) -> bool:
+        """Run one start attempt under a hard deadline (#3562).
+
+        The attempt itself is :meth:`_try_play_attempt`. This wrapper adds the
+        invariant that a start never outlives its budget by more than
+        ``MA_ATTEMPT_GRACE``: whatever it is parked on, it ends here as a failed
+        start, classified ``error`` so the game skips the song and pauses with
+        ``media_player_error`` after repeated failures.
+        """
+        budget = MA_PLAYBACK_TIMEOUT * (
+            MA_FIRST_PLAY_TIMEOUT_FACTOR if self._first_play_pending else 1
+        )
+        deadline = budget + MA_ATTEMPT_GRACE
+        try:
+            async with asyncio.timeout(deadline):
+                return await self._try_play_attempt(
+                    uri, expected_title, expected_artist, artist_filter
+                )
+        except TimeoutError:
+            _LOGGER.error(
+                "MA playback: the start of %s on %s did not finish within %.1fs "
+                "(budget %.1fs + %.1fs grace) — a call in the start path hung "
+                "and the hard deadline fired. Treating it as a failed start: "
+                "the song is skipped, and the game pauses if it keeps "
+                "happening. (#3562)",
+                uri,
+                self._entity_id,
+                deadline,
+                budget,
+                MA_ATTEMPT_GRACE,
+            )
+            self.last_failure_reason = "error"
+            # The request may still land on the speaker later. Best effort,
+            # and bounded like every other cancel.
+            await self._cancel_pending_start()
+            return False
+
+    async def _try_play_attempt(
         self,
         uri: str,
         expected_title: str,

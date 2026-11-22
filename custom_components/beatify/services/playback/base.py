@@ -25,6 +25,13 @@ if TYPE_CHECKING:
 # Music Assistant runs on its own, much longer budget (see MA_PLAYBACK_TIMEOUT).
 PLAYBACK_TIMEOUT = 8.0
 
+# #3562: outer backstop for everything ``play_song`` does, whatever the
+# platform. Music Assistant's per-attempt guard (MA_ATTEMPT_GRACE) already ends
+# each start at budget + grace; this covers the walk over several URI
+# candidates and any strategy that has no deadline of its own. Three Music
+# Assistant attempts at the cold-start budget (33.3 s + 5 s grace) fit.
+ROUND_START_HARD_DEADLINE = 120.0
+
 
 class PlaybackStrategy(ABC):
     """One platform's answer to "play this song on this speaker"."""
