@@ -1,6 +1,6 @@
 {
   "name": "Disney Classics",
-  "version": "1.11",
+  "version": "1.12",
   "tags": [
     "disney",
     "movies",
@@ -147,7 +147,7 @@
         "Brother Bear"
       ],
       "uri_tidal": "tidal://track/67177682",
-      "uri_deezer": "deezer://track/2506660671",
+      "uri_deezer": "deezer://track/136349846",
       "isrc": "DEUM72311526",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440639292",
@@ -1494,7 +1494,7 @@
         "Aladdin"
       ],
       "uri_tidal": "tidal://track/92315573",
-      "uri_deezer": "deezer://track/3272583431",
+      "uri_deezer": "deezer://track/531228901",
       "isrc": "USNLR2500155",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1412859037",
@@ -1684,7 +1684,7 @@
         "Aladdin"
       ],
       "uri_tidal": "tidal://track/71411186",
-      "uri_deezer": "deezer://track/3913809571",
+      "uri_deezer": "deezer://track/144130222",
       "isrc": "QZHN72636555",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1443431255",
@@ -1780,7 +1780,7 @@
         "Aladdin"
       ],
       "uri_tidal": "tidal://track/71411192",
-      "uri_deezer": "deezer://track/2320097",
+      "uri_deezer": "deezer://track/7087376",
       "isrc": "USMC60400031",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1440618895",
@@ -2210,7 +2210,7 @@
         "Frozen"
       ],
       "uri_tidal": "tidal://track/34186931",
-      "uri_deezer": "deezer://track/1110643562",
+      "uri_deezer": "deezer://track/5323413",
       "isrc": "USWD12098246",
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1452871166",
