@@ -412,3 +412,99 @@ async def test_failed_start_over_the_socket_ends_paused_not_in_reveal():
         await ws.close()
     finally:
         await client.close()
+
+
+# ---------------------------------------------------------------------------
+# Round-start dispatches are serialized
+# ---------------------------------------------------------------------------
+
+
+async def test_two_next_rounds_back_to_back_advance_exactly_once():
+    calls = []
+
+    async def play_song(song):
+        calls.append(song)
+        await asyncio.sleep(0.1)
+        return True
+
+    gs = await _revealed_game(play_song)
+    handler, client = await _serve(gs)
+    try:
+        ws = await client.ws_connect("/ws")
+        other = await client.ws_connect("/ws")
+        await ws.send_json({"type": "admin", "action": "next_round"})
+        await other.send_json({"type": "admin", "action": "next_round"})
+        await asyncio.sleep(0.6)
+        assert gs.phase == GamePhase.PLAYING
+        assert gs.round == 2, "one advance, the second tap hit the stale guard"
+        assert len(calls) == 1
+        await ws.close()
+        await other.close()
+    finally:
+        await client.close()
+
+
+async def test_hung_first_start_does_not_block_the_second_beyond_the_deadline(
+    monkeypatch,
+):
+    """The first start hangs; the hard deadline ends it, then the lock frees."""
+    from custom_components.beatify.services import media_player as mp
+
+    monkeypatch.setattr(mp, "ROUND_START_HARD_DEADLINE", 0.3)
+    svc, speaker = _service(play_media=_plays_at_once)
+    first = {"hang": True}
+    real_play = svc._strategy.play
+
+    async def play(song):
+        if first["hang"]:
+            first["hang"] = False
+            await asyncio.Event().wait()
+        return await real_play(song)
+
+    svc._strategy.play = play
+    gs = await _revealed_game(None)
+    gs._media_player_service = svc
+    handler, client = await _serve(gs)
+    try:
+        ws = await client.ws_connect("/ws")
+        started = time.monotonic()
+        await ws.send_json({"type": "admin", "action": "next_round"})
+        await asyncio.sleep(0.05)
+        assert handler._round_start_dispatch_lock.locked()
+        await ws.send_json({"type": "admin", "action": "next_round"})
+        async with asyncio.timeout(5):
+            while not (gs.phase == GamePhase.PLAYING and speaker.play_requests):
+                await asyncio.sleep(0.02)
+        assert time.monotonic() - started < 0.3 + 2.0
+        async with asyncio.timeout(2):
+            while handler._round_start_dispatch_lock.locked():
+                await asyncio.sleep(0.02)
+        await ws.close()
+    finally:
+        await client.close()
+
+
+async def test_other_messages_are_served_while_the_lock_is_held():
+    release = asyncio.Event()
+
+    async def play_song(song):
+        await release.wait()
+        return True
+
+    gs = await _revealed_game(play_song)
+    handler, client = await _serve(gs)
+    try:
+        ws = await client.ws_connect("/ws")
+        await ws.send_json({"type": "admin", "action": "next_round"})
+        await asyncio.sleep(0.05)
+        assert handler._round_start_dispatch_lock.locked()
+        await ws.send_json({"type": "ping"})
+        assert (await _recv(ws, "pong"))["type"] == "pong"
+        await ws.send_json({"type": "admin", "action": "set_volume", "direction": "up"})
+        await ws.send_json({"type": "ping"})
+        assert (await _recv(ws, "pong"))["type"] == "pong"
+        release.set()
+        await ws.close()
+    finally:
+        release.set()
+        await client.close()

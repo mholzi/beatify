@@ -138,6 +138,9 @@ class BeatifyWebSocketHandler:
         self._admin_disconnect_task: asyncio.Task | None = None
         # #3562: handler tasks that must outlive their socket (round starts).
         self._dispatch_tasks: set[asyncio.Task] = set()
+        # #3562: round-start dispatches run one after another. Only they take
+        # it; every other message is dispatched without it.
+        self._round_start_dispatch_lock = asyncio.Lock()
         self._analytics: AnalyticsStorage | None = None
         # #1702: game_ids whose terminal end sequence (finalize_game +
         # record_game + advance_to_end) has already been claimed. An admin has
@@ -430,9 +433,23 @@ class BeatifyWebSocketHandler:
         round start it carries must reach PLAYING, a skip or a pause even when
         the host's socket drops while it runs.
         """
-        task = asyncio.create_task(self._dispatch_message(ws, parsed))
+        task = asyncio.create_task(self._serialized_dispatch(ws, parsed))
         self._dispatch_tasks.add(task)
         task.add_done_callback(self._dispatch_tasks.discard)
+
+    async def _serialized_dispatch(
+        self, ws: web.WebSocketResponse, parsed: dict
+    ) -> None:
+        """Dispatch a round-start message strictly after the previous one (#3562).
+
+        Awaited inline these were serialized per socket; as tasks a double tap
+        or a second admin socket would race. The later one now waits, then
+        meets the usual guards (#3340 stale next_round, phase checks). The lock
+        is released when the holder ends, and every start ends within its hard
+        deadline (budget + grace), so it cannot outlive a hung start.
+        """
+        async with self._round_start_dispatch_lock:
+            await self._dispatch_message(ws, parsed)
 
     async def _dispatch_message(self, ws: web.WebSocketResponse, parsed: dict) -> None:
         """Dispatch one parsed message and answer a handler failure with an error frame."""
