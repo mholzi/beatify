@@ -20,6 +20,14 @@ import {
 import { PROVIDERS } from './providers.generated.js';
 import { createTvConnectionWatch } from './admin/browser-playback.js';
 import {
+    splitSpeakers,
+    defaultVisible,
+    buildOverrides,
+    moreRowHtml,
+    manageEntryHtml,
+    manageViewHtml,
+} from './admin/speaker-shortlist.js';
+import {
     MIN_ROUNDS,
     roundCountOptions,
     clampRoundCount,
@@ -824,28 +832,59 @@ function _renderSpeakers() {
         )}</div></div></div>`;
         return;
     }
-    list.innerHTML = speakers
-        .map((p) => {
-            const selected = chosenSpeaker === p.entity_id;
-            const platform = _platformLabel(p.platform) || p.state || '';
-            const badge = _capabilityBadge(p);
-            // Summarized badges keep the full service list on a title tooltip so
-            // no information is lost (#1319 AC: full list still discoverable).
-            const badgeTitle = badge && badge.title ? ` title="${badge.title}"` : '';
-            const badgeHtml = badge
-                ? `<span class="cap-dot" aria-hidden="true"></span><span class="cap-badge ${badge.cls}"${badgeTitle}>${badge.label}</span>`
-                : '';
-            return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${escapeAttr(p.entity_id)}">
-          <div class="wiz-row-avatar">${SPEAKER_ICON}</div>
-          <div class="wiz-row-text">
-            <div class="wiz-row-name">${escapeText(p.friendly_name || p.entity_id)}</div>
-            <div class="wiz-row-sub">${platform}${badgeHtml}</div>
-          </div>
-          ${selected ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
-        </button>`;
-        })
-        .join('') + browserTargetGroupHtml(browserTargets, chosenSpeaker, _t);
+    // #3537: the manage view replaces the list while it is open, and its own
+    // Save takes the place of the wizard's Continue.
+    document.getElementById('wizard-root')?.classList.toggle('wiz-managing-speakers', !!_speakerManage);
+    if (_speakerManage) {
+        _renderSpeakerManage(list, speakers);
+        return;
+    }
+    const { short, more } = splitSpeakers(speakers, chosenSpeaker);
+    if (more.length === 0) _speakerMoreExpanded = false;
+    const moreHtml = more.length
+        ? moreRowHtml(more.length, _speakerMoreExpanded, _t)
+            + (_speakerMoreExpanded
+                ? `<div class="wiz-list wiz-speaker-more" id="wiz-speaker-more">${more.map(_speakerRowHtml).join('')}</div>`
+                : '')
+        : '';
+    list.innerHTML = short.map(_speakerRowHtml).join('')
+        + moreHtml
+        + (speakers.length ? manageEntryHtml(_t) : '')
+        + browserTargetGroupHtml(browserTargets, chosenSpeaker, _t);
+    list.querySelector('[data-wiz-more]')?.addEventListener('click', () => {
+        _speakerMoreExpanded = !_speakerMoreExpanded;
+        _renderSpeakers();
+        list.querySelector('[data-wiz-more]')?.focus();
+    });
+    list.querySelector('[data-wiz-manage]')?.addEventListener('click', () => {
+        _openSpeakerManage(speakers);
+    });
     _watchTv(browserTargets);
+    _bindSpeakerRows(list);
+}
+
+// One speaker row of step 1 (short list and the expanded rest alike).
+function _speakerRowHtml(p) {
+    const selected = chosenSpeaker === p.entity_id;
+    const platform = _platformLabel(p.platform) || p.state || '';
+    const badge = _capabilityBadge(p);
+    // Summarized badges keep the full service list on a title tooltip so
+    // no information is lost (#1319 AC: full list still discoverable).
+    const badgeTitle = badge && badge.title ? ` title="${badge.title}"` : '';
+    const badgeHtml = badge
+        ? `<span class="cap-dot" aria-hidden="true"></span><span class="cap-badge ${badge.cls}"${badgeTitle}>${badge.label}</span>`
+        : '';
+    return `<button type="button" class="wiz-row ${selected ? 'selected' : ''}" data-entity-id="${escapeAttr(p.entity_id)}">
+  <div class="wiz-row-avatar">${SPEAKER_ICON}</div>
+  <div class="wiz-row-text">
+    <div class="wiz-row-name">${escapeText(p.friendly_name || p.entity_id)}</div>
+    <div class="wiz-row-sub">${platform}${badgeHtml}</div>
+  </div>
+  ${selected ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="wiz-row-check"><path d="M5 12l5 5L20 7"/></svg>' : ''}
+</button>`;
+}
+
+function _bindSpeakerRows(list) {
     list.querySelectorAll('.wiz-row[data-entity-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
             const newSpeaker = btn.dataset.entityId;
@@ -880,6 +919,77 @@ function _renderSpeakers() {
             _updateCta();
         });
     });
+}
+
+// #3537: Step 1 shows a short list; the rest sits behind "Show N more".
+let _speakerMoreExpanded = false;
+// The "Choose which speakers show here" view while it is open:
+// { draft: {entity_id: on}, previous: {shown, hidden}, error, saving }.
+let _speakerManage = null;
+
+async function _openSpeakerManage(speakers) {
+    const draft = {};
+    for (const p of speakers) draft[p.entity_id] = defaultVisible(p);
+    _speakerManage = { draft, previous: {}, error: '', saving: false };
+    _renderSpeakers();
+    // The stored choice also holds speakers that are not in the list right
+    // now; read it so saving keeps them.
+    try {
+        const r = await BeatifyAuth.fetch('/beatify/api/speaker-visibility');
+        if (r && r.ok && _speakerManage) _speakerManage.previous = await r.json();
+    } catch (e) { /* keep {} — the listed speakers are still saved */ }
+}
+
+function _renderSpeakerManage(list, speakers) {
+    const m = _speakerManage;
+    list.innerHTML = manageViewHtml(speakers, m.draft, {
+        t: _t,
+        platformLabel: _platformLabel,
+        error: m.error,
+        saving: m.saving,
+    });
+    list.querySelectorAll('[data-vis-id]').forEach((row) => {
+        row.addEventListener('click', () => {
+            const id = row.dataset.visId;
+            m.draft[id] = !m.draft[id];
+            _renderSpeakers();
+            list.querySelector(`[data-vis-id="${CSS.escape(id)}"]`)?.focus();
+        });
+    });
+    list.querySelector('[data-vis-cancel]')?.addEventListener('click', () => {
+        _speakerManage = null;
+        _renderSpeakers();
+        list.querySelector('[data-wiz-manage]')?.focus();
+    });
+    list.querySelector('[data-vis-save]')?.addEventListener('click', () => _saveSpeakerManage(speakers));
+}
+
+async function _saveSpeakerManage(speakers) {
+    const m = _speakerManage;
+    if (!m || m.saving) return;
+    m.saving = true;
+    m.error = '';
+    _renderSpeakers();
+    let ok;
+    try {
+        const r = await BeatifyAuth.fetch('/beatify/api/speaker-visibility', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(buildOverrides(speakers, m.draft, m.previous)),
+        });
+        ok = !!(r && r.ok);
+    } catch (e) { ok = false; }
+    if (!ok) {
+        m.saving = false;
+        m.error = _t('wizard.step1.saveError', "Couldn't save. Try again.");
+        _renderSpeakers();
+        return;
+    }
+    _speakerManage = null;
+    _speakerMoreExpanded = false;
+    cachedStatus = (await _fetchStatus()) || cachedStatus;
+    _renderSpeakers();
+    document.querySelector('#wiz-speaker-list [data-wiz-manage]')?.focus();
 }
 
 // #2713: the chip list IS the integration's provider registry, generated from
@@ -2495,6 +2605,8 @@ export async function show(stepOverride) {
     root.classList.remove('hidden');
     root.setAttribute('aria-hidden', 'false');
     document.body.classList.add('wizard-active');
+    _speakerManage = null;  // #3537: always open on the list, not the manage view
+    _speakerMoreExpanded = false;
     const ls = typeof window !== 'undefined' ? window.localStorage : null;
     const start = stepOverride || resumeAtStep(ls) || 1;
     // Hydrate chosen values from admin's localStorage so Continue works immediately

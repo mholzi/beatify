@@ -43,6 +43,7 @@ from .playback import (
 )
 from .playback.base import PLAYBACK_TIMEOUT, ROUND_START_HARD_DEADLINE
 from .speaker_promises import SpeakerPromises
+from .speaker_shortlist import find_duplicates
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -1237,8 +1238,11 @@ def _build_media_player_list(
     from homeassistant.helpers import entity_registry as er
 
     ent_reg = er.async_get(hass)
+    dev_reg = _device_registry(hass)
 
     media_players = []
+    # #3537: device and area per listed speaker, for the duplicate check.
+    speaker_meta: dict[str, dict[str, str | None]] = {}
     # #1866: entity_ids seen this pass, so stale cache entries can be dropped.
     scanned_keys: set[str] = {_SCAN_COUNT_KEY}
     for state in hass.states.async_all("media_player"):
@@ -1285,6 +1289,7 @@ def _build_media_player_list(
             )
             continue
 
+        speaker_meta[state.entity_id] = _speaker_meta(entity_entry, dev_reg)
         media_players.append(
             {
                 "entity_id": state.entity_id,
@@ -1313,7 +1318,54 @@ def _build_media_player_list(
         len(media_players),
     )
     _prune_scan_log_state(scanned_keys)
+    # #3537: a native player for the same physical speaker as a Music Assistant
+    # player (same device, or same area and name) is marked, so Step 1 can
+    # leave it off the short list. It stays in the list: the wizard shows it
+    # under "Show N more speakers", and picking it still works.
+    duplicates = find_duplicates(media_players, speaker_meta)
+    for player in media_players:
+        player["duplicate_of"] = duplicates.get(player["entity_id"])
     return media_players
+
+
+def _device_registry(hass: HomeAssistant) -> Any:
+    """The device registry, or ``None`` where it cannot be loaded (#3537).
+
+    Late import like the entity registry; the unit-test stubs have no device
+    registry, and without one the duplicate check simply finds fewer pairs.
+    """
+    try:
+        from homeassistant.helpers import device_registry as dr
+    except ImportError:
+        return None
+    try:
+        return dr.async_get(hass)
+    except Exception:  # noqa: BLE001 - registry missing: no device signal
+        return None
+
+
+def _speaker_meta(entity_entry: Any, dev_reg: Any) -> dict[str, str | None]:
+    """Device id and area of one speaker entity (#3537).
+
+    The entity's own area wins; otherwise the area of its device, which is
+    where HA keeps it for most speakers. Non-string values (a registry stub)
+    count as unknown.
+    """
+
+    def _s(value: Any) -> str | None:
+        return value if isinstance(value, str) and value else None
+
+    if entity_entry is None:
+        return {"device_id": None, "area_id": None}
+    device_id = _s(getattr(entity_entry, "device_id", None))
+    area_id = _s(getattr(entity_entry, "area_id", None))
+    if area_id is None and device_id and dev_reg is not None:
+        try:
+            device = dev_reg.async_get(device_id)
+        except Exception:  # noqa: BLE001 - treat as unknown
+            device = None
+        area_id = _s(getattr(device, "area_id", None)) if device else None
+    return {"device_id": device_id, "area_id": area_id}
 
 
 async def async_get_media_players(hass: HomeAssistant) -> list[dict[str, Any]]:

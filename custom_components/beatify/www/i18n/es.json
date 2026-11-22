@@ -1349,7 +1349,22 @@
       "capMost": "Todos los servicios principales",
       "capOnlyTemplate": "solo {provider}",
       "capMoreTemplate": "{provider} +{count}",
-      "capNone": "Sin servicios"
+      "capNone": "Sin servicios",
+      "moreShowOne": "Mostrar 1 altavoz más",
+      "moreShowMany": "Mostrar {count} altavoces más",
+      "moreHide": "Mostrar menos altavoces",
+      "moreSub": "Duplicados y altavoces que ocultaste",
+      "manage": "Elegir qué altavoces aparecen aquí",
+      "shortNote": "Beatify propone una lista corta por sí solo: uno por habitación, Music Assistant primero.",
+      "manageTitle": "Altavoces en el paso 1",
+      "manageSub": "Los altavoces activados aparecen primero. Los demás quedan en «Mostrar más».",
+      "duplicatesOne": "1 duplicado",
+      "duplicatesMany": "{count} duplicados",
+      "duplicateOf": "Duplicado de {name}",
+      "saveOne": "Guardar · 1 altavoz visible",
+      "saveMany": "Guardar · {count} altavoces visibles",
+      "cancel": "Cancelar",
+      "saveError": "No se pudo guardar. Inténtalo de nuevo."
     },
     "step2": {
       "eyebrow": "Paso 2 · Servicio de música",

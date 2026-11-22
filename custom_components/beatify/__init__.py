@@ -68,6 +68,7 @@ from .server.views import (
     StatusView,
     BrowserTargetsView,
     SetupView,
+    SpeakerVisibilityView,
     UsageView,
 )
 from .server.library_views import (
@@ -284,6 +285,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.http.register_view(BrowserTargetsView(hass))
         hass.http.register_view(CapabilitiesView(hass))
         hass.http.register_view(SetupView(hass))  # #1663 — server-side setup flag
+        hass.http.register_view(SpeakerVisibilityView(hass))  # #3537
         hass.http.register_view(LightsView(hass))  # Issue #331
         hass.http.register_view(AlbumArtView(hass))  # Issue #933 — remote album art
         hass.http.register_view(PreviewLightsView(hass))  # Issue #408

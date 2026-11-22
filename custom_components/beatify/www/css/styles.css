@@ -19177,3 +19177,126 @@ body.theme-dark .your-result-stats .stat-value {
     gap: 6px;
     flex-wrap: wrap;
 }
+
+/* #3537: Step 1 shows a short list of speakers (one per room, Music Assistant
+   first). The rest sits behind a collapsed "Show N more speakers" row; a ghost
+   button opens the view that chooses which speakers show here. Every target
+   is at least 48 px tall. */
+.wiz-more-row,
+.wiz-vis-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    min-height: 48px;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-white);
+    font-family: var(--font-body);
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.wiz-more-row:hover,
+.wiz-vis-row:hover { background: var(--color-dark-surface-hover); }
+.wiz-more-row .wiz-row-name,
+.wiz-more-row .wiz-row-sub,
+.wiz-vis-row .wiz-row-name,
+.wiz-vis-row .wiz-row-sub { display: block; }
+.wiz-vis-row .wiz-row-sub {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wiz-more-chevron {
+    flex-shrink: 0;
+    color: var(--color-accent-secondary);
+    transition: transform var(--transition-fast);
+}
+.wiz-more-row.is-expanded .wiz-more-chevron { transform: rotate(180deg); }
+.wiz-speaker-more { margin: 0; }
+.wiz-manage-btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+.wiz-shortlist-note { margin-top: calc(-1 * var(--space-xs)); }
+
+/* The manage view. A switch per speaker (the whole row is the target). */
+.wiz-vis {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+.wiz-vis-head { margin-bottom: var(--space-xs); }
+.wiz-vis-title {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-white);
+}
+.wiz-vis-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+.wiz-dup-chip {
+    padding: 1px var(--space-sm);
+    border: 1px solid var(--color-accent-secondary);
+    border-radius: var(--radius-full);
+    color: var(--color-accent-secondary);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.06em;
+}
+.wiz-vis-row:not(.is-on) .wiz-row-name,
+.wiz-vis-row:not(.is-on) .wiz-row-sub { color: var(--color-text-light); }
+.wiz-vis-switch {
+    position: relative;
+    flex-shrink: 0;
+    width: 48px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--color-border-neon);
+    transition: background var(--transition-fast);
+}
+.wiz-vis-switch::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--color-text-white);
+    transition: transform var(--transition-fast);
+}
+.wiz-vis-row.is-on .wiz-vis-switch { background: var(--color-accent-primary-fill); }
+.wiz-vis-row.is-on .wiz-vis-switch::after { transform: translateX(20px); }
+.wiz-vis-row:focus-visible,
+.wiz-more-row:focus-visible {
+    outline: 2px solid var(--color-accent-secondary);
+    outline-offset: 2px;
+}
+.wiz-vis-error {
+    margin: 0;
+    color: var(--color-error-neon);
+    font-size: var(--font-size-sm);
+}
+.wiz-vis-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+.wiz-vis-actions .btn { width: 100%; min-height: 48px; }
+.wiz-managing-speakers .wiz-cta { display: none; }
+@media (prefers-reduced-motion: reduce) {
+    .wiz-more-chevron,
+    .wiz-vis-switch,
+    .wiz-vis-switch::after { transition: none; }
+}

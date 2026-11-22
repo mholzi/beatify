@@ -1349,7 +1349,22 @@
       "capMost": "Alle gängigen Dienste",
       "capOnlyTemplate": "nur {provider}",
       "capMoreTemplate": "{provider} +{count}",
-      "capNone": "Keine Dienste"
+      "capNone": "Keine Dienste",
+      "moreShowOne": "1 weiteren Lautsprecher zeigen",
+      "moreShowMany": "{count} weitere Lautsprecher zeigen",
+      "moreHide": "Weniger Lautsprecher zeigen",
+      "moreSub": "Duplikate und von dir ausgeblendete Lautsprecher",
+      "manage": "Angezeigte Lautsprecher wählen",
+      "shortNote": "Beatify schlägt selbst eine kurze Liste vor: ein Eintrag pro Raum, Music Assistant zuerst.",
+      "manageTitle": "Lautsprecher in Schritt 1",
+      "manageSub": "Eingeschaltete Lautsprecher stehen oben. Die anderen bleiben unter „Mehr zeigen“.",
+      "duplicatesOne": "1 Duplikat",
+      "duplicatesMany": "{count} Duplikate",
+      "duplicateOf": "Duplikat von {name}",
+      "saveOne": "Speichern · 1 Lautsprecher sichtbar",
+      "saveMany": "Speichern · {count} Lautsprecher sichtbar",
+      "cancel": "Abbrechen",
+      "saveError": "Speichern hat nicht geklappt. Versuch es noch mal."
     },
     "step2": {
       "eyebrow": "Schritt 2 · Musikdienst",
