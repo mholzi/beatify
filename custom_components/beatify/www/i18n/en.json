@@ -1349,7 +1349,22 @@
       "capMost": "All major services",
       "capOnlyTemplate": "{provider} only",
       "capMoreTemplate": "{provider} +{count}",
-      "capNone": "No services"
+      "capNone": "No services",
+      "moreShowOne": "Show 1 more speaker",
+      "moreShowMany": "Show {count} more speakers",
+      "moreHide": "Show fewer speakers",
+      "moreSub": "Duplicates and speakers you hid",
+      "manage": "Choose which speakers show here",
+      "shortNote": "Beatify suggests a short list on its own: one entry per room, Music Assistant first.",
+      "manageTitle": "Speakers in Step 1",
+      "manageSub": "Speakers switched on show up first. The others stay under “Show more”.",
+      "duplicatesOne": "1 duplicate",
+      "duplicatesMany": "{count} duplicates",
+      "duplicateOf": "Duplicate of {name}",
+      "saveOne": "Save · 1 speaker shown",
+      "saveMany": "Save · {count} speakers shown",
+      "cancel": "Cancel",
+      "saveError": "Couldn’t save. Try again."
     },
     "step2": {
       "eyebrow": "Step 2 · Music service",

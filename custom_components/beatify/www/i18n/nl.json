@@ -1349,7 +1349,22 @@
       "capMost": "Alle grote diensten",
       "capOnlyTemplate": "alleen {provider}",
       "capMoreTemplate": "{provider} +{count}",
-      "capNone": "Geen diensten"
+      "capNone": "Geen diensten",
+      "moreShowOne": "Nog 1 speaker tonen",
+      "moreShowMany": "Nog {count} speakers tonen",
+      "moreHide": "Minder speakers tonen",
+      "moreSub": "Dubbele en door jou verborgen speakers",
+      "manage": "Kies welke speakers hier staan",
+      "shortNote": "Beatify stelt zelf een korte lijst voor: één per ruimte, Music Assistant eerst.",
+      "manageTitle": "Speakers in stap 1",
+      "manageSub": "Ingeschakelde speakers staan bovenaan. De rest blijft onder ‘Meer tonen’.",
+      "duplicatesOne": "1 dubbel",
+      "duplicatesMany": "{count} dubbel",
+      "duplicateOf": "Dubbel van {name}",
+      "saveOne": "Opslaan · 1 speaker zichtbaar",
+      "saveMany": "Opslaan · {count} speakers zichtbaar",
+      "cancel": "Annuleren",
+      "saveError": "Opslaan mislukt. Probeer het opnieuw."
     },
     "step2": {
       "eyebrow": "Stap 2 · Muziekdienst",

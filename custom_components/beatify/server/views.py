@@ -37,7 +37,12 @@ from custom_components.beatify.server.companion_auth import is_authorized_http
 from custom_components.beatify.server.serializers import (
     build_status_response,
 )
-from custom_components.beatify.server.setup_state import read_setup, write_setup
+from custom_components.beatify.server.setup_state import (
+    async_load_speaker_visibility,
+    async_save_speaker_visibility,
+    read_setup,
+    write_setup,
+)
 from custom_components.beatify.services.lights import PartyLightsService
 from custom_components.beatify.services.browser_player import (
     BrowserTtsService,
@@ -48,6 +53,10 @@ from custom_components.beatify.services.playback.browser import registry_from_ha
 from custom_components.beatify.services.media_player import (
     album_art_signature_is_valid,
     async_get_media_players_with_remap,
+)
+from custom_components.beatify.services.speaker_shortlist import (
+    apply_shortlist,
+    sanitize_overrides,
 )
 
 # Re-export game views
@@ -619,6 +628,13 @@ class StatusView(HomeAssistantView):
         # to the executor (blocking I/O off the event loop).
         saved_setup = await self.hass.async_add_executor_job(read_setup, self.hass)
 
+        # #3537: which speakers Step 1 shows on its own. Duplicates of a Music
+        # Assistant player are left off, the admin's own choice wins over that,
+        # and the saved speaker is always on the short list.
+        media_players = await async_shortlist_players(
+            self.hass, media_players, saved_setup
+        )
+
         # #2332: this view stays unauthenticated on purpose — the wizard
         # (`wizard.js`) and the playlist hub fetch it with a bare `fetch` and
         # no token, so a hard `is_authorized_http` gate here would break setup
@@ -639,6 +655,67 @@ class StatusView(HomeAssistantView):
         )
 
         return web.json_response(status)
+
+
+async def async_shortlist_players(
+    hass: HomeAssistant,
+    media_players: list[dict],
+    saved_setup: dict | None,
+) -> list[dict]:
+    """Add the Step 1 short-list fields to the status player list (#3537)."""
+    try:
+        overrides = await async_load_speaker_visibility(hass)
+    except Exception:  # noqa: BLE001 - a broken store must not break status
+        _LOGGER.warning("Failed to load the speaker visibility settings")
+        overrides = {}
+    duplicates = {
+        p["entity_id"]: p["duplicate_of"]
+        for p in media_players
+        if isinstance(p.get("duplicate_of"), str)
+    }
+    pinned = [saved_setup.get("last_player")] if isinstance(saved_setup, dict) else []
+    return apply_shortlist(media_players, duplicates, overrides, pinned)
+
+
+class SpeakerVisibilityView(HomeAssistantView):
+    """The admin's choice of speakers Step 1 shows on its own (#3537).
+
+    GET returns ``{"shown": [...], "hidden": [...]}``; POST replaces it. Both
+    sit behind the same admin auth as every other host setting
+    (:func:`is_authorized_http`, which also admits the Companion app). Guests
+    never write it: ``/api/status`` only reads it.
+    """
+
+    url = "/beatify/api/speaker-visibility"
+    name = "beatify:api:speaker-visibility"
+    requires_auth = False  # auth handled in-handler so Companion path works (#1131)
+
+    def __init__(self, hass: HomeAssistant) -> None:
+        """Initialize the view."""
+        self.hass = hass
+
+    async def get(self, request: web.Request) -> web.Response:
+        """Return the stored choice."""
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+        stored = await async_load_speaker_visibility(self.hass)
+        return web.json_response(sanitize_overrides(stored))
+
+    async def post(self, request: web.Request) -> web.Response:
+        """Replace the stored choice with the posted one."""
+        if not is_authorized_http(request, self.hass):
+            return _json_error("Unauthorized", 401, code="UNAUTHORIZED")
+        try:
+            body = await request.json()
+        except (json.JSONDecodeError, ValueError):
+            return _json_error("Invalid JSON", 400, code="INVALID_REQUEST")
+        if not isinstance(body, dict):
+            return _json_error(
+                "Invalid speaker visibility payload", 400, code="INVALID_REQUEST"
+            )
+        overrides = sanitize_overrides(body)
+        await async_save_speaker_visibility(self.hass, overrides)
+        return web.json_response({"ok": True, **overrides})
 
 
 class BrowserTargetsView(HomeAssistantView):

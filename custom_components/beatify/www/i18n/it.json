@@ -1349,7 +1349,22 @@
       "capMost": "Tutti i servizi principali",
       "capOnlyTemplate": "Solo {provider}",
       "capMoreTemplate": "{provider} +{count}",
-      "capNone": "Nessun servizio"
+      "capNone": "Nessun servizio",
+      "moreShowOne": "Mostra 1 altro altoparlante",
+      "moreShowMany": "Mostra altri {count} altoparlanti",
+      "moreHide": "Mostra meno altoparlanti",
+      "moreSub": "Doppioni e altoparlanti che hai nascosto",
+      "manage": "Scegli quali altoparlanti mostrare qui",
+      "shortNote": "Beatify propone da solo una lista breve: uno per stanza, prima Music Assistant.",
+      "manageTitle": "Altoparlanti nel passo 1",
+      "manageSub": "Gli altoparlanti attivi compaiono per primi. Gli altri restano sotto «Mostra altri».",
+      "duplicatesOne": "1 doppione",
+      "duplicatesMany": "{count} doppioni",
+      "duplicateOf": "Doppione di {name}",
+      "saveOne": "Salva · 1 altoparlante visibile",
+      "saveMany": "Salva · {count} altoparlanti visibili",
+      "cancel": "Annulla",
+      "saveError": "Salvataggio non riuscito. Riprova."
     },
     "step2": {
       "eyebrow": "Passo 2 · Servizio musicale",

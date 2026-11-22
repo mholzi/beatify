@@ -119,6 +119,22 @@ INJECT = r"""
  const lb = names.map((n,i)=>`<div class="leaderboard-entry"><span class="entry-rank">#${i+1}</span>`
    + `<span class="entry-name">${n}</span><span class="entry-meta"></span><span class="entry-score">${40-i*5}</span>`
    + `<button type="button" class="entry-host-action" data-action="sit-out" aria-label="Sit ${n} out">⋮</button></div>`).join('');
+ // #3537: Step 1 short list, the "show more" row, the manage entry and the
+ // manage view's switches and buttons, as wizard.js renders them.
+ const spk=(id,n)=>`<button type="button" class="wiz-row" data-entity-id="${id}"><div class="wiz-row-avatar"></div>`
+   + `<div class="wiz-row-text"><div class="wiz-row-name">${n}</div><div class="wiz-row-sub">Music Assistant</div></div></button>`;
+ const vis=(id,n,on)=>`<button type="button" class="wiz-vis-row${on?' is-on':''}" role="switch" aria-checked="${on}" data-vis-id="${id}">`
+   + `<span class="wiz-row-text"><span class="wiz-row-name">${n}</span><span class="wiz-row-sub">${id}</span></span>`
+   + `<span class="wiz-vis-switch" aria-hidden="true"></span></button>`;
+ put('wiz-speaker-list', spk('media_player.a','Living Room') + spk('media_player.b','Kitchen')
+   + `<button type="button" class="wiz-more-row" data-wiz-more aria-expanded="false"><span class="wiz-row-text">`
+   + `<span class="wiz-row-name">Show 9 more speakers</span><span class="wiz-row-sub">Duplicates and speakers you hid</span></span></button>`
+   + `<button type="button" class="btn btn-ghost wiz-manage-btn" data-wiz-manage>Choose which speakers show here</button>`
+   + `<p class="wiz-group-note wiz-shortlist-note">Beatify suggests a short list on its own.</p>`
+   + `<div class="wiz-vis"><div class="wiz-group-label wiz-vis-group">Sonos <span class="wiz-dup-chip">2 duplicates</span></div>`
+   + vis('media_player.c','Living Room',true) + vis('media_player.d','Kitchen',false)
+   + `<div class="wiz-vis-actions"><button type="button" class="btn btn-primary wiz-vis-save">Save</button>`
+   + `<button type="button" class="btn btn-ghost wiz-vis-cancel">Cancel</button></div></div>`);
  put('admin-playing-leaderboard-list', lb);
  put('admin-reveal-leaderboard', lb);
 })();

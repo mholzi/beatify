@@ -139,3 +139,34 @@ async def async_load_library_settings(hass: HomeAssistant) -> dict[str, Any]:
 
     store = Store(hass, SETTINGS_STORE_VERSION, SETTINGS_STORE_KEY)
     return await store.async_load() or {}
+
+
+# ---------------------------------------------------------------------------
+# Which speakers Step 1 shows on its own (#3537)
+# ---------------------------------------------------------------------------
+
+SPEAKER_VISIBILITY_KEY = "beatify.speaker_visibility"
+
+
+async def async_load_speaker_visibility(hass: HomeAssistant) -> dict[str, Any]:
+    """Load the admin's show/hide choice per speaker ({} when unset).
+
+    Shape: ``{"shown": [entity_id, ...], "hidden": [entity_id, ...]}``. Only
+    the speakers the admin switched away from the automatic short list are
+    stored, so a speaker added later still follows the automatic rule.
+    """
+    from homeassistant.helpers.storage import Store
+
+    store = Store(hass, SETTINGS_STORE_VERSION, SPEAKER_VISIBILITY_KEY)
+    data = await store.async_load()
+    return data if isinstance(data, dict) else {}
+
+
+async def async_save_speaker_visibility(
+    hass: HomeAssistant, overrides: dict[str, Any]
+) -> None:
+    """Replace the stored show/hide choice (already sanitised by the caller)."""
+    from homeassistant.helpers.storage import Store
+
+    store = Store(hass, SETTINGS_STORE_VERSION, SPEAKER_VISIBILITY_KEY)
+    await store.async_save(overrides)

@@ -1349,7 +1349,22 @@
       "capMost": "Tous les services principaux",
       "capOnlyTemplate": "{provider} uniquement",
       "capMoreTemplate": "{provider} +{count}",
-      "capNone": "Aucun service"
+      "capNone": "Aucun service",
+      "moreShowOne": "Afficher 1 enceinte de plus",
+      "moreShowMany": "Afficher {count} enceintes de plus",
+      "moreHide": "Afficher moins d’enceintes",
+      "moreSub": "Doublons et enceintes que tu as masquées",
+      "manage": "Choisir les enceintes affichées ici",
+      "shortNote": "Beatify propose tout seul une liste courte : une entrée par pièce, Music Assistant d’abord.",
+      "manageTitle": "Enceintes à l’étape 1",
+      "manageSub": "Les enceintes activées apparaissent en premier. Les autres restent sous « Afficher plus ».",
+      "duplicatesOne": "1 doublon",
+      "duplicatesMany": "{count} doublons",
+      "duplicateOf": "Doublon de {name}",
+      "saveOne": "Enregistrer · 1 enceinte affichée",
+      "saveMany": "Enregistrer · {count} enceintes affichées",
+      "cancel": "Annuler",
+      "saveError": "Échec de l’enregistrement. Réessaie."
     },
     "step2": {
       "eyebrow": "Étape 2 · Service musical",
