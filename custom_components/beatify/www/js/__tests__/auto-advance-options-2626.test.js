@@ -116,7 +116,7 @@ describe('normalizeRevealAutoAdvance mirrors the server fallback', () => {
     });
 
     it('turns anything outside the list into Off', () => {
-        for (const bad of [15, 120, -30, 45.5, 'soon', null, undefined, NaN, {}]) {
+        for (const bad of [20, 120, -30, 45.5, 'soon', null, undefined, NaN, {}]) {
             expect(normalizeRevealAutoAdvance(bad)).toBe(0);
         }
     });
