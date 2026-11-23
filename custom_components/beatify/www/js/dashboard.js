@@ -1786,6 +1786,14 @@
 
         debug('[Dashboard] Submissions:', submitted, '/', total);
 
+        // #3563: a Title & Artist race has no "submitted" state (unlimited
+        // attempts), so the chip would sit at 0/N all round. Same check as the
+        // phone (isTitleArtistRaceMode in player-utils.js, #3557). Toggled each
+        // render so the chip returns in the next non-race round / game.
+        var raceMode = !!(data && data.title_artist_mode && data.title_artist_race_mode);
+        var meterEl = document.getElementById('dashboard-submissions-meter');
+        if (meterEl) meterEl.classList.toggle('hidden', raceMode);
+
         var submissionsEl = document.getElementById('dashboard-submissions');
         if (submissionsEl) {
             submissionsEl.textContent = submitted + '/' + total;
