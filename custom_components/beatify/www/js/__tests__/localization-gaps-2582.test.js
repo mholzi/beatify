@@ -27,6 +27,7 @@ import { join } from 'node:path';
 import { block, declaration, evaluate, locale, readSource, WWW_DIR } from './helpers/js-source.js';
 import { translator } from './helpers/mini-dom.js';
 import { specificErrorText } from '../admin/util.js';
+import { tr } from '../translate.js';
 
 const LOCALES = ['en', 'de', 'es', 'fr', 'it', 'nl'];
 const i18n = Object.fromEntries(LOCALES.map((l) => [l, locale(l)]));
@@ -198,18 +199,25 @@ describe('#2582 ADMIN_CANNOT_LEAVE looks up the code before the server text', ()
 });
 
 describe('#2582 the library-fix fallback can actually fall back (#1402-B8 again)', () => {
+    // #3582: library-fix.js no longer carries its own `_t`; it uses the shared
+    // translate.js helper, so the shipped function is imported and run here.
     const LIBRARY_FIX = readSource('admin/sections/library-fix.js');
 
-    /** The shipped `_t`, with `BeatifyI18n` swapped for a controlled one. */
     function t(key, fallback, i18nStub) {
-        return evaluate(
-            declaration(LIBRARY_FIX, '_t', 'library-fix.js'),
-            '_t',
-            { window: { BeatifyI18n: i18nStub } },
-        )(key, fallback);
+        global.window = { BeatifyI18n: i18nStub };
+        try {
+            return tr(key, fallback);
+        } finally {
+            delete global.window;
+        }
     }
 
     const REAL = { t: (key) => lookup(i18n.de, key) ?? key };
+
+    it('uses the shared helper instead of a local copy', () => {
+        expect(LIBRARY_FIX).toMatch(/import \{ tr as _t \} from '..\/..\/translate\.js'/);
+        expect(LIBRARY_FIX).not.toMatch(/function _t\(/);
+    });
 
     it('returns the translation when there is one', () => {
         expect(t('errors.ADMIN_CANNOT_LEAVE', 'fallback', REAL))

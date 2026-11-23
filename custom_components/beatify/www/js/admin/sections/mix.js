@@ -23,6 +23,7 @@
  */
 
 import { adminState } from '../state.js';
+import { tr as t } from '../../translate.js';  // #3582
 import { errorHeadlineAndDetail } from '../util.js';
 import { TAG_CATEGORIES } from '../constants.js';
 import { providerCountForPlaylist } from '../provider-counts.js';
@@ -50,11 +51,6 @@ const mixState = {
     _startGame: null,        // injected admin-core startGame()
     _refreshStatus: null,    // injected admin-core loadStatus() (#2637)
 };
-
-const t = (key, fallback) =>
-    (typeof window !== 'undefined' && window.BeatifyI18n && window.BeatifyI18n.t)
-        ? (window.BeatifyI18n.t(key) !== key ? window.BeatifyI18n.t(key) : fallback)
-        : fallback;
 
 /**
  * Per-category accent so chips read as "Decade=cyan, Style=pink, …" — matches

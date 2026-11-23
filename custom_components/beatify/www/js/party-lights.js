@@ -12,22 +12,13 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-/**
- * Translate, with the English wording as the fallback (#2704).
- *
- * init() runs at DOMContentLoaded while admin.js is still awaiting
- * BeatifyI18n.init(), so the first paint happens before any locale is loaded —
- * BeatifyI18n.t() would hand back the raw key. The static markup carries
- * data-i18n and is fixed up by initPageTranslations(); the labels this module
- * composes are refreshed by refreshPartyLightsLabels(), which admin.js calls
- * once translations are in.
- */
-function tr(key, fallback, params) {
-    var i18n = typeof window !== 'undefined' ? window.BeatifyI18n : null;
-    if (!i18n || typeof i18n.t !== 'function' || !i18n.isReady()) return fallback;
-    var value = i18n.t(key, params);
-    return value === key ? fallback : value;
-}
+// Labels go through the shared tr(key, fallback, params) (#3582). init() runs at
+// DOMContentLoaded while admin.js is still awaiting BeatifyI18n.init(), so the
+// first paint happens before any locale is loaded and tr() answers with the
+// English fallback (#2704). The static markup carries data-i18n and is fixed up
+// by initPageTranslations(); the labels this module composes are refreshed by
+// refreshPartyLightsLabels(), which admin.js calls once translations are in.
+import { tr } from './translate.js';
 
 var STORAGE_KEY = 'beatify_party_lights';
 var selectedLights = [];

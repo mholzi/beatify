@@ -106,6 +106,8 @@ global.window = global.window || {};
 global.window.location = global.window.location || { search: '', href: 'http://localhost/beatify/player' };
 global.window.matchMedia = global.window.matchMedia || (() => ({ matches: true, addEventListener: () => {} }));
 global.window.BeatifyUtils = translator(locale('de'));
+// #3582: the shared translate.js helper reads BeatifyI18n directly.
+global.window.BeatifyI18n = global.window.BeatifyUtils;
 global.URLSearchParams = global.URLSearchParams || URLSearchParams;
 global.IntersectionObserver = global.IntersectionObserver || class { observe() {} disconnect() {} };
 global.WebSocket = global.WebSocket || { OPEN: 1 };

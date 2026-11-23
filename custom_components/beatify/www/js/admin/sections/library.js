@@ -26,6 +26,7 @@
  */
 
 import { adminState } from '../state.js';
+import { tr as _t } from '../../translate.js';  // #3582
 import { openLibraryAiModal } from './library-ai.js';
 
 const POLL_INTERVAL_MS = 2000;
@@ -34,15 +35,6 @@ const POLL_INTERVAL_MS = 2000;
 function _fetch(url, opts) {
     const f = (window.BeatifyAuth && window.BeatifyAuth.fetch) || fetch;
     return f(url, opts);
-}
-
-function _t(key, fallback) {
-    const i18n = window.BeatifyI18n;
-    if (i18n && typeof i18n.t === 'function') {
-        const v = i18n.t(key);
-        if (v && v !== key) return v;
-    }
-    return fallback;
 }
 
 /**

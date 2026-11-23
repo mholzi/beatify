@@ -27,6 +27,7 @@
 
 import { state, escapeHtml, createModalFocusTrap } from '../player-utils.js';
 import { showToast } from '../notify.js';
+import { tr } from '../translate.js';
 
 var SCREEN_ID = 'host-guests';
 var SHEET_ID = 'host-guests-sheet';
@@ -36,13 +37,6 @@ var _open = false;
 var _lastData = null;
 var _pendingName = null;
 var _sheetTrap = null;
-
-function tr(key, params, fallback) {
-    var utils = (typeof window !== 'undefined' && window.BeatifyUtils) || {};
-    var s = typeof utils.t === 'function' ? utils.t(key, params) : '';
-    if (!s || s === key) return fallback || key;
-    return s;
-}
 
 function byScore(a, b) {
     var d = (b.player.score || 0) - (a.player.score || 0);
@@ -111,17 +105,17 @@ export function guestGroups(players, opts) {
 export function guestsSummary(groups) {
     var parts = [];
     if (groups.away.length) {
-        parts.push(tr('admin.guestsAway', { count: groups.away.length },
-            groups.away.length + ' not connected'));
+        parts.push(tr('admin.guestsAway', groups.away.length + ' not connected',
+            { count: groups.away.length }));
     }
     if (groups.satOut.length) {
         var n = groups.satOut.length;
         parts.push(tr(n === 1 ? 'admin.guestsSatOutOne' : 'admin.guestsSatOut',
-            { count: n }, n + ' sitting out'));
+            n + ' sitting out', { count: n }));
     }
     if (!parts.length) {
-        parts.push(tr('admin.guestsAllIn', { count: groups.playing.length },
-            groups.playing.length + ' in the game'));
+        parts.push(tr('admin.guestsAllIn', groups.playing.length + ' in the game',
+            { count: groups.playing.length }));
     }
     return parts.join(' · ');
 }
@@ -168,7 +162,7 @@ export function renderHostGuests(data) {
         '<span class="host-drawer__row-icon">👥</span>' +
         '<span class="host-drawer__row-text">' +
             '<span class="host-drawer__row-title">' +
-                escapeHtml(tr('admin.guestsRowTitle', null, 'Guests')) + '</span>' +
+                escapeHtml(tr('admin.guestsRowTitle', 'Guests')) + '</span>' +
             '<span class="host-drawer__row-sub">' +
                 (groups.away.length ? '<span class="host-guests__away-dot"></span>' : '') +
                 escapeHtml(guestsSummary(groups)) + '</span>' +
@@ -190,30 +184,30 @@ function rowHtml(entry) {
     label += name;
     if (entry.host) {
         label += ' <span class="host-guests__host">' +
-            escapeHtml(tr('admin.guestsHost', null, 'Host')) + '</span>';
+            escapeHtml(tr('admin.guestsHost', 'Host')) + '</span>';
     }
     if (entry.eliminated) {
         label += ' <span class="host-guests__badge">💀 ' +
-            escapeHtml(tr('game.eliminated', null, 'Eliminated')) + '</span>';
+            escapeHtml(tr('game.eliminated', 'Eliminated')) + '</span>';
     }
     if (entry.pending) {
         label += ' <span class="host-guests__badge">' +
-            escapeHtml(tr('player.rejoinPending', null, 'Back in for the next round')) + '</span>';
+            escapeHtml(tr('player.rejoinPending', 'Back in for the next round')) + '</span>';
     }
 
     var action;
     if (entry.action === 'reinstate') {
         action = '<button type="button" class="host-guests__btn host-guests__btn--back"' +
             ' data-guest-action="reinstate" data-player="' + name + '">' +
-            escapeHtml(tr('admin.bringBack', null, 'Bring back')) + '</button>';
+            escapeHtml(tr('admin.bringBack', 'Bring back')) + '</button>';
     } else if (entry.action === 'sit-out' && entry.quiet) {
         action = '<button type="button" class="host-guests__more"' +
             ' data-guest-action="sit-out" data-player="' + name + '"' +
-            ' aria-label="' + escapeHtml(tr('admin.sitOutAria', { name: p.name }, 'Sit ' + p.name + ' out')) + '">⋮</button>';
+            ' aria-label="' + escapeHtml(tr('admin.sitOutAria', 'Sit ' + p.name + ' out', { name: p.name })) + '">⋮</button>';
     } else if (entry.action === 'sit-out') {
         action = '<button type="button" class="host-guests__btn host-guests__btn--warn"' +
             ' data-guest-action="sit-out" data-player="' + name + '">' +
-            escapeHtml(tr('admin.sitOutConfirm', null, 'Sit out')) + '</button>';
+            escapeHtml(tr('admin.sitOutConfirm', 'Sit out')) + '</button>';
     } else {
         action = '<span class="host-guests__spacer"></span>';
     }
@@ -228,7 +222,7 @@ function rowHtml(entry) {
 function sectionHtml(key, fallback, entries, extraClass) {
     if (!entries.length) return '';
     return '<div class="host-guests__sec' + (extraClass ? ' ' + extraClass : '') + '">' +
-        escapeHtml(tr(key, null, fallback)) + ' · ' + entries.length + '</div>' +
+        escapeHtml(tr(key, fallback)) + ' · ' + entries.length + '</div>' +
         entries.map(rowHtml).join('');
 }
 
@@ -237,9 +231,9 @@ export function guestsScreenHtml(data) {
     var groups = groupsFor(data);
     return '<div class="host-guests__head">' +
             '<button type="button" class="host-guests__back" data-guests-back="1">‹ ' +
-                escapeHtml(tr('admin.drawerTitle', null, 'Game flow')) + '</button>' +
+                escapeHtml(tr('admin.drawerTitle', 'Game flow')) + '</button>' +
             '<h2 class="host-guests__title" id="host-guests-title">' +
-                escapeHtml(tr('admin.guestsRowTitle', null, 'Guests')) + '</h2>' +
+                escapeHtml(tr('admin.guestsRowTitle', 'Guests')) + '</h2>' +
         '</div>' +
         '<div class="host-guests__body">' +
             sectionHtml('admin.guestsSectionAway', 'Not connected', groups.away, 'is-away') +
@@ -247,7 +241,7 @@ export function guestsScreenHtml(data) {
             sectionHtml('admin.guestsSectionSatOut', 'Sitting out', groups.satOut) +
         '</div>' +
         '<div class="host-guests__foot">' +
-            escapeHtml(tr('admin.guestsFooter', null,
+            escapeHtml(tr('admin.guestsFooter',
                 'Guests who sit out keep their points and can tap “I\'m back” themselves.')) +
         '</div>';
 }
@@ -315,7 +309,7 @@ export function isGuestsScreenOpen() {
 function sendAdmin(payload) {
     var open = typeof WebSocket !== 'undefined' ? WebSocket.OPEN : 1;
     if (!state.ws || state.ws.readyState !== open) {
-        showToast(tr('errors.CONNECTION_LOST', null, 'Connection lost'));
+        showToast(tr('errors.CONNECTION_LOST', 'Connection lost'));
         return false;
     }
     state.ws.send(JSON.stringify(payload));
@@ -358,14 +352,14 @@ export function requestSitOut(name) {
         '<div class="modal-content host-guests-sheet__card">' +
             '<span class="host-guests-sheet__handle"></span>' +
             '<h2 id="host-guests-sheet-title">' +
-                escapeHtml(tr('admin.sitOutTitle', null, 'Sit this guest out?')) + '</h2>' +
+                escapeHtml(tr('admin.sitOutTitle', 'Sit this guest out?')) + '</h2>' +
             '<p>' + escapeHtml(tr('admin.sitOutBody',
-                { name: name, score: entry ? (entry.score || 0) : 0 },
-                name + ' stops playing this game. Their points stay.')) + '</p>' +
+                name + ' stops playing this game. Their points stay.',
+                { name: name, score: entry ? (entry.score || 0) : 0 })) + '</p>' +
             '<button type="button" class="btn btn-primary host-guests-sheet__btn" data-sheet-action="confirm">' +
-                escapeHtml(tr('admin.sitOutConfirm', null, 'Sit out')) + '</button>' +
+                escapeHtml(tr('admin.sitOutConfirm', 'Sit out')) + '</button>' +
             '<button type="button" class="btn btn-secondary host-guests-sheet__btn" data-sheet-action="cancel">' +
-                escapeHtml(tr('common.cancel', null, 'Cancel')) + '</button>' +
+                escapeHtml(tr('common.cancel', 'Cancel')) + '</button>' +
         '</div>';
     sheet.classList.remove('hidden');
 

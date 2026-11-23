@@ -19,6 +19,7 @@
  */
 
 import { PROVIDERS } from './providers.generated.js';
+import { tr as _t } from './translate.js';  // #3582
 
 const API_STATUS = '/beatify/api/status';
 const API_USAGE = '/beatify/api/usage';
@@ -42,21 +43,6 @@ function _hasTag(tags, needle) {
     if (!Array.isArray(tags)) return false;
     const n = needle.toLowerCase();
     return tags.some((t) => typeof t === 'string' && t.toLowerCase().includes(n));
-}
-
-export function _t(key, fallback) {
-    // #1402-B8: BeatifyI18n.t(key, params) takes a PARAMS OBJECT as its second
-    // arg, not a fallback string, and returns the key itself (truthy) when the
-    // translation is missing. Passing `fallback` here did nothing and the
-    // `if (val)` check let the raw key through — so a missing key rendered as
-    // "playlistHub.chips.pop" instead of "Pop". Compare against the key.
-    try {
-        if (window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
-            const val = window.BeatifyI18n.t(key);
-            if (val && val !== key) return val;
-        }
-    } catch (e) { /* i18n not ready */ }
-    return fallback;
 }
 
 /** #3386: dates follow the game language, not the browser's. */

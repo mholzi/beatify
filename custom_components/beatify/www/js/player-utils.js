@@ -6,6 +6,7 @@
 // #3076: re-exported so the player modules keep importing from one place.
 import { specificErrorText } from './admin/util.js';
 import { prefillNameSuggestion } from './name-field.js';  // #3391
+import { tr } from './translate.js';  // #3582
 export { specificErrorText };
 // #2627: the name cap comes from the shared mirror of const.py, not from a
 // local literal. It used to be declared here AND written out as
@@ -149,11 +150,6 @@ export function applyNameLengthCap(input) {
  * Validate a typed player name. Pure — moved here from player-core (#2506) so
  * the join view's button state has one owner that can reach it.
  */
-/** utils.t with the same optional-utils guard the rest of this module uses. */
-function tr(key, fallback) {
-    return utils.t ? utils.t(key, fallback) : fallback;
-}
-
 export function validateName(name) {
     var trimmed = (name || '').trim();
     if (!trimmed) {

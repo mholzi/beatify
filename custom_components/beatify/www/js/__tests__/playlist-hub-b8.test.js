@@ -7,7 +7,7 @@
  * onto a genre chip instead of "Pop".
  */
 import { describe, it, expect, afterEach } from 'vitest';
-import { _t } from '../playlist-hub.js';
+import { tr as _t } from '../translate.js';
 
 afterEach(() => {
     delete globalThis.window;

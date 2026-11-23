@@ -14,26 +14,16 @@
  *                  setup/validation errors (e.g. PROVIDER_NOT_SUPPORTED, "start
  *                  not possible").
  *
- * Framework-free and import-free so the same module bundles cleanly into BOTH
+ * Framework-free (its only import is the shared translate.js helper) so the same module bundles cleanly into BOTH
  * admin.min.js (entry admin.js) and player.bundle.min.js (entry player-core.js)
  * without pulling in either bundle's local state. Also exposed on
  * `window.BeatifyNotify` for classic (non-module) callers / debugging.
  */
 
+import { tr } from './translate.js';
+
 var TOAST_CONTAINER_ID = 'beatify-toast-container';
 var DEFAULT_TOAST_MS = 4000;
-
-// i18n lookup with a hard fallback — mirrors the `window.BeatifyI18n && …`
-// guard the rest of the codebase uses so this works before i18n has loaded.
-function tr(key, fallback) {
-    try {
-        if (window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
-            var s = window.BeatifyI18n.t(key);
-            if (s && s !== key) return s;
-        }
-    } catch (e) { /* i18n not ready — use fallback */ }
-    return fallback;
-}
 
 function ensureToastContainer() {
     var el = document.getElementById(TOAST_CONTAINER_ID);
