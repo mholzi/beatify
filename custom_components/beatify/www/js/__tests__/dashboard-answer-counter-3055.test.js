@@ -12,12 +12,17 @@ const DASHBOARD = readSource('dashboard.js');
 const SNIPPETS = [declaration(DASHBOARD, 'renderRoundStats', 'dashboard.js')];
 
 let submissionsEl;
+let meterEl;
 let render;
 
 beforeEach(() => {
     submissionsEl = { textContent: '' };
+    meterEl = {
+        hidden: false,
+        classList: { toggle: (cls, on) => { if (cls === 'hidden') meterEl.hidden = !!on; } },
+    };
     render = evaluate(SNIPPETS, 'renderRoundStats', {
-        document: { getElementById: (id) => (id === 'dashboard-submissions' ? submissionsEl : null) },
+        document: { getElementById: (id) => (id === 'dashboard-submissions' ? submissionsEl : id === 'dashboard-submissions-meter' ? meterEl : null) },
         debug: () => {},
     });
 });
@@ -53,5 +58,33 @@ describe('#3055 TV answer counter', () => {
         const players = [p('A'), p('B', { eliminated: true, submitted: true })];
         render({ players }, players);
         expect(submissionsEl.textContent).toBe('0/1');
+    });
+});
+
+describe('#3563 submissions chip in Title & Artist race mode', () => {
+    const players = [p('A'), p('B', { submitted: true })];
+
+    it('hides the whole chip when race mode is on', () => {
+        render({ players, title_artist_mode: true, title_artist_race_mode: true }, players);
+        expect(meterEl.hidden).toBe(true);
+    });
+
+    it('shows the chip with the count when race mode is off', () => {
+        render({ players, title_artist_mode: true, title_artist_race_mode: false }, players);
+        expect(meterEl.hidden).toBe(false);
+        expect(submissionsEl.textContent).toBe('1/2');
+    });
+
+    it('shows the chip when the race field is absent', () => {
+        render({ players }, players);
+        expect(meterEl.hidden).toBe(false);
+        expect(submissionsEl.textContent).toBe('1/2');
+    });
+
+    it('shows the chip again in the next non-race round', () => {
+        render({ players, title_artist_mode: true, title_artist_race_mode: true }, players);
+        expect(meterEl.hidden).toBe(true);
+        render({ players }, players);
+        expect(meterEl.hidden).toBe(false);
     });
 });
