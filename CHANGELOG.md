@@ -4,6 +4,19 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc6] - 2026-11-23
+
+Sixth candidate for 5.1.0: one speaker entry per TV and a tidier admin.
+
+### Fixed
+- **Speaker list in setup** (#3580): Music Assistant players that are the same device under slightly different names show up once.
+- **Admin round-end dialog** (#3581): admin and player share one dialog; keyboard focus stays inside it on the admin page.
+- **Schlager-Klassiker**: one stale US Apple Music link fixed (#3578).
+- **Polish All-Time Hits**: 3 broken links fixed (#3586).
+
+### Changed
+- One shared translation helper in the frontend replaces twelve copies (#3582).
+
 ## [5.1.0-rc5] - 2026-11-23
 
 Fifth candidate for 5.1.0: a cleaner TV during the race.
