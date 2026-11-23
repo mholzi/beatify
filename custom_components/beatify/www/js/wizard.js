@@ -18,6 +18,7 @@ import {
     getPlaylistByPath as plhGetPlaylistByPath,
 } from './playlist-hub.js';
 import { PROVIDERS } from './providers.generated.js';
+import { tr as _t } from './translate.js';  // #3582
 import { createTvConnectionWatch } from './admin/browser-playback.js';
 import {
     splitSpeakers,
@@ -314,29 +315,6 @@ let chosenTtsPreset = 'standard'; // minimal | standard | full | custom
 let cachedTtsEntities = null; // #1073: [{entity_id, friendly_name}], lazy-fetched
 
 const TOTAL_STEPS = 5; // 1:speakers 2:music 3:playlist 4:game-mode 5:level-up (+ done frame)
-
-// Lookup a translated string. The optional `params` object is forwarded to
-// BeatifyI18n.t for {placeholder} interpolation inside the translation. When
-// the i18n module isn't loaded (tests, early boot), we fall back to the
-// English default and interpolate `{placeholder}` locally so callers don't
-// care about load state.
-function _t(key, fallback, params) {
-    let translated;
-    if (typeof window !== 'undefined' && window.BeatifyI18n && typeof window.BeatifyI18n.t === 'function') {
-        translated = window.BeatifyI18n.t(key, params);
-        // BeatifyI18n returns the key itself when the translation is missing —
-        // that's our cue to use the fallback instead of showing "wizard.step1.capAll"
-        // in the UI.
-        if (translated && translated !== key) return translated;
-    }
-    let out = fallback;
-    if (params && typeof out === 'string') {
-        Object.keys(params).forEach((p) => {
-            out = out.replace(new RegExp('\\{' + p + '\\}', 'g'), params[p]);
-        });
-    }
-    return out;
-}
 
 // #3390: a failed load is not an empty list. Each loader reports whether it
 // got an answer, so "No speakers found, install Music Assistant" is only shown

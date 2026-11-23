@@ -22,16 +22,7 @@ import {
     ROUND_TIMER_OPTIONS,
     difficultyHint,
 } from './game-constants.js';
-
-/** `t(key, fallback, params)` over BeatifyUtils.t, as difficultyHint wants it. */
-function _t(key, fallback, params) {
-    var utils = (typeof window !== 'undefined' && window.BeatifyUtils) || {};
-    var out = utils.t ? utils.t(key, params) : null;
-    if (out && out !== key) return out;
-    return String(fallback).replace(/\{(\w+)\}/g, function (match, name) {
-        return params && params[name] !== undefined ? params[name] : match;
-    });
-}
+import { tr as _t } from './translate.js';  // #3582: `_t(key, fallback, params)`, as difficultyHint wants it
 
 function _difficultyLabel(level) {
     var label = DIFFICULTY_LABELS[level];

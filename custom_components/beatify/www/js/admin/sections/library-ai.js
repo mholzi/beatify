@@ -21,14 +21,7 @@
  * The prompt builder is exported pure for unit tests.
  */
 
-function _t(key, fallback) {
-    const i18n = window.BeatifyI18n;
-    if (i18n && typeof i18n.t === 'function') {
-        const v = i18n.t(key);
-        if (v && v !== key) return v;
-    }
-    return fallback;
-}
+import { tr as _t } from '../../translate.js';  // #3582
 
 function _fetch(url, opts) {
     const f = (window.BeatifyAuth && window.BeatifyAuth.fetch) || fetch;

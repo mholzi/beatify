@@ -22,6 +22,7 @@ import {
     MAX_NAME_LENGTH,
     normalizeRevealAutoAdvance,
 } from '../game-constants.js';
+import { tr, interpolate } from '../translate.js';
 
 // --- currentGame injection -------------------------------------------------
 // admin.js owns the mutable `currentGame`; we read it through a resolver so the
@@ -75,37 +76,8 @@ export function groupPlayersByPlatform(players) {
 }
 
 // --- i18n helper -----------------------------------------------------------
-/**
- * Resolve a translation key via the global BeatifyI18n module, falling back to
- * the supplied English string when i18n is unavailable (e.g. in unit tests /
- * before the module loads) or the key is missing. BeatifyI18n.t() returns the
- * key itself for a missing translation, so we treat that as "not found".
- *
- * `params` (#2620) fills `{placeholder}` slots. BeatifyI18n.t interpolates them
- * itself; the fallback path has to do it here, otherwise a host who hits the
- * fallback reads a literal "{count} playlists".
- *
- * @param {string} key
- * @param {string} fallback
- * @param {Object} [params] - `{placeholder}` values
- * @returns {string}
- */
-export function tr(key, fallback, params) {
-    const m = (typeof window !== 'undefined') && window.BeatifyI18n;
-    if (m && typeof m.t === 'function') {
-        const v = m.t(key, params);
-        if (typeof v === 'string' && v && v !== key) return v;
-    }
-    return _interpolate(fallback, params);
-}
-
-function _interpolate(text, params) {
-    if (!params || typeof text !== 'string') return text;
-    return Object.keys(params).reduce(
-        (out, name) => out.replace(new RegExp('\\{' + name + '\\}', 'g'), params[name]),
-        text,
-    );
-}
+// One shared lookup (#3582): see translate.js. Re-exported so existing importers keep working.
+export { tr };
 
 // --- request-row rendering -------------------------------------------------
 // English fallbacks (with status emoji). The live label is resolved through
@@ -268,7 +240,7 @@ export function speakerRejectedText(data, mediaPlayers, translate) {
     const t = (key, fallback, params) => {
         let v;
         try { v = typeof translate === 'function' ? translate(key, params) : null; } catch (e) { v = null; }
-        return (typeof v === 'string' && v && v !== key) ? v : _interpolate(fallback, params);
+        return (typeof v === 'string' && v && v !== key) ? v : interpolate(fallback, params);
     };
     let reason = errorHeadlineAndDetail(body, translate, '').message;
     // "Media player not found" has no full stop; the kept sentence follows it.

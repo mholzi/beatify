@@ -21,6 +21,8 @@ const LOCALES = ['en', 'de', 'es', 'fr', 'it', 'nl'];
 
 function setLocale(lang) {
     global.BeatifyI18n = translator(locale(lang));
+    // #3582: the shared translate.js helper reads window.BeatifyI18n.
+    global.window.BeatifyI18n = global.BeatifyI18n;
 }
 
 /** Just enough DOM for the sheet: ids, classes, listeners, focus. */
