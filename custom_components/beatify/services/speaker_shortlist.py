@@ -15,6 +15,11 @@ plain dicts:
   Assistant shares the speaker's MAC with the native integration) or the same
   area plus the same name once integration words are removed. Anything weaker
   is not a duplicate: when in doubt both stay on the list.
+  #3580: Music Assistant itself can list one device several times (a Cast
+  player, a second protocol, a "dashboard:chromecast" player, ...), each with
+  its own device and unique_id. Two Music Assistant players whose names reduce
+  to the same words and whose areas do not conflict are one speaker: all but
+  one are marked as duplicates of it.
 * :func:`apply_shortlist` decides which speakers the wizard shows on its own.
   Duplicates are left off; the admin's own choice (stored server-side) wins
   over that; the speaker that is selected or was used last is always shown.
@@ -106,6 +111,51 @@ def _same_speaker(
     return bool(key) and key == name_key(ma.get("friendly_name"))
 
 
+def _ma_twin_pairs(
+    ma_players: list[Mapping[str, Any]],
+    meta: Mapping[str, Mapping[str, Any]],
+) -> dict[str, str]:
+    """#3580: map each extra Music Assistant player to the one that stays.
+
+    Two Music Assistant players are the same speaker when their names reduce
+    to the same words and their areas do not conflict (equal, or at least one
+    side has no area). Different areas, or different words, keep both. Of a
+    group the available player wins, then the plainest name (no "+" or other
+    marks), then the lowest entity_id, so the choice is stable.
+    """
+
+    def _area(p: Mapping[str, Any]) -> str | None:
+        return _str_or_none(meta.get(p["entity_id"], {}).get("area_id"))
+
+    def _rank(p: Mapping[str, Any]) -> tuple[bool, int, str]:
+        name = str(p.get("friendly_name") or "")
+        marks = sum(1 for ch in name if not (ch.isalnum() or ch.isspace()))
+        return (_unavailable(p), marks, p["entity_id"])
+
+    by_name: dict[str, list[Mapping[str, Any]]] = {}
+    for p in ma_players:
+        key = name_key(p.get("friendly_name"))
+        if key:
+            by_name.setdefault(key, []).append(p)
+    twins: dict[str, str] = {}
+    for group in by_name.values():
+        remaining = sorted(group, key=_rank)
+        while remaining:
+            keeper = remaining.pop(0)
+            keeper_area = _area(keeper)
+            rest = []
+            for other in remaining:
+                other_area = _area(other)
+                if keeper_area and other_area and keeper_area != other_area:
+                    rest.append(other)
+                elif _unavailable(other) or not _unavailable(keeper):
+                    twins[other["entity_id"]] = keeper["entity_id"]
+                else:
+                    rest.append(other)
+            remaining = rest
+    return twins
+
+
 def find_duplicates(
     players: Iterable[Mapping[str, Any]],
     meta: Mapping[str, Mapping[str, Any]],
@@ -118,8 +168,9 @@ def find_duplicates(
 
     Conservative on purpose:
 
-    * only a non-Music-Assistant player can be a duplicate, and only of a
-      Music Assistant player that is in the list;
+    * a non-Music-Assistant player can only be a duplicate of a Music
+      Assistant player that is in the list; a Music Assistant player only of
+      another one with the same name (#3580);
     * a player that is available is never hidden behind one that is not, so
       the only working entry for a speaker always stays on the short list.
     """
@@ -127,7 +178,8 @@ def find_duplicates(
     ma_players = [p for p in speakers if p.get("platform") == MA_PLATFORM]
     if not ma_players:
         return {}
-    duplicates: dict[str, str] = {}
+    ma_twins = _ma_twin_pairs(ma_players, meta)
+    duplicates: dict[str, str] = dict(ma_twins)
     for native in speakers:
         if native.get("platform") == MA_PLATFORM:
             continue
@@ -135,7 +187,8 @@ def find_duplicates(
         if not _unavailable(native):
             matches = [m for m in matches if not _unavailable(m)]
         if matches:
-            duplicates[native["entity_id"]] = matches[0]["entity_id"]
+            first = matches[0]["entity_id"]
+            duplicates[native["entity_id"]] = ma_twins.get(first, first)
     return duplicates
 
 
