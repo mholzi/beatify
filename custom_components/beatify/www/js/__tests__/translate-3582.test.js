@@ -67,6 +67,20 @@ describe('shared translation helper (#3582)', () => {
         expect(tr('a.hit', 'Fallback text')).toBe('Fallback text');
     });
 
+    it('asks BeatifyUtils.t when BeatifyI18n is missing', () => {
+        global.window = { BeatifyUtils: { t: (k, p) => (k === 'a.hit' ? 'Utils ' + (p ? p.n : '') : k) } };
+        expect(tr('a.hit', 'Fallback text', { n: 2 })).toBe('Utils 2');
+        expect(tr('a.missing', 'Fallback {n}', { n: 2 })).toBe('Fallback 2');
+        global.window = { BeatifyI18n: {}, BeatifyUtils: { t: () => 'Via utils' } };
+        expect(tr('a.hit', 'Fallback text')).toBe('Via utils');
+    });
+
+    it('does not consult BeatifyUtils when BeatifyI18n answers or misses', () => {
+        global.window = { BeatifyI18n: makeI18n('de'), BeatifyUtils: { t: () => 'Via utils' } };
+        expect(tr('a.hit', 'Fallback text')).toBe('Treffer DE');
+        expect(tr('a.missing', 'Fallback text')).toBe('Fallback text');
+    });
+
     it('uses the fallback when BeatifyI18n.t throws', () => {
         global.window = { BeatifyI18n: { t() { throw new Error('not ready'); } } };
         expect(tr('a.hit', 'Fallback text')).toBe('Fallback text');

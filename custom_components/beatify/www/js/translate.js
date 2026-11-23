@@ -14,7 +14,8 @@
  *   2. The caller's `fallback` string, with `params` interpolated locally so a
  *      host or guest who hits the fallback never reads a literal "{count}".
  *
- * i18n not loaded yet (early boot, unit tests) goes straight to step 2.
+ * `BeatifyI18n` missing but `BeatifyUtils.t` present: that is asked instead (same
+ * contract), then step 2. i18n not loaded at all goes straight to step 2.
  *
  * @param {string} key
  * @param {string} [fallback] - English text used when the key has no translation
@@ -27,6 +28,15 @@ export function tr(key, fallback, params) {
         if (i18n && typeof i18n.t === 'function') {
             var v = i18n.t(key, params);
             if (typeof v === 'string' && v && v !== key) return v;
+        } else {
+            // No BeatifyI18n: the player/admin callers that used to go through
+            // BeatifyUtils.t keep that path. When BeatifyI18n exists,
+            // BeatifyUtils.t only wraps it, so the branch above already covers it.
+            var utils = typeof window !== 'undefined' ? window.BeatifyUtils : null;
+            if (utils && typeof utils.t === 'function') {
+                var u = utils.t(key, params);
+                if (typeof u === 'string' && u && u !== key) return u;
+            }
         }
     } catch (e) { /* i18n not ready — use the fallback */ }
     return interpolate(fallback, params);
