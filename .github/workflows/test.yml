@@ -56,7 +56,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install ruff
-        run: pip install ruff==0.17.5
+        run: pip install ruff==0.17.6
 
       - name: Run ruff linter
         run: ruff check .
