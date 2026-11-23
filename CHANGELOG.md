@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc5] - 2026-11-23
+
+Fifth candidate for 5.1.0: a cleaner TV during the race.
+
+### Fixed
+- **TV dashboard in race mode** (#3563): the "Submissions 0/N" chip is hidden while Title & Artist runs as a live race, where nobody submits; it comes back in normal rounds.
+
+### Dependencies
+- ESLint 10.15.0, Vitest group update and Ruff 0.17.6 (dev tooling only; #3573, #3574, #3575).
+
 ## [5.1.0-rc4] - 2026-11-23
 
 Fourth candidate for 5.1.0: a shorter speaker list in setup and a fix for a round that never started.
