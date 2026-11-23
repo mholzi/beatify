@@ -16,7 +16,7 @@
     "@vitest/coverage-v8": "^5.1.0",
     "acorn": "^8.19.0",
     "esbuild": "0.28.2",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "globals": "^17.14.0",
     "stylelint": "^17.16.0",
     "stylelint-declaration-strict-value": "^1.13.0",
