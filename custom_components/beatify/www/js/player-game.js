@@ -60,7 +60,7 @@ import {
 import { showToast, showUndoToast } from './notify.js';
 // #2646: the "End round N" card that Next opens while a round is still
 // running, and the ask/no-ask rule behind it. Shared with admin.js.
-import { shouldAskBeforeEnding, openRoundEndChoice } from './round-end-choice.js';
+import { shouldAskBeforeEnding, askBeforeEndingRound as askRoundEnd, makeRoundEndT } from './round-end-choice.js';
 // #3304: the host's guest list (sit out / bring back) behind a drawer row.
 import { renderHostGuests, hideHostGuests } from './player-game/host-guests.js';
 
@@ -3749,37 +3749,21 @@ export function handleNextRound() {
  * backs out.
  */
 function askBeforeEndingRound() {
-    openRoundEndChoice({
+    askRoundEnd({
         doc: document,
         t: _tRoundEnd,
-        focusTrap: createModalFocusTrap,
-    }).then(function (answer) {
-        if (answer.choice === 'score') {
-            sendNextRound();
-        } else if (answer.choice === 'swap') {
-            sendSkipSong();
-        } else if (answer.choice === 'void') {
-            sendVoidRound(answer.reason);
-        }
-        // 'keep' — the misfire the third exit exists for. Nothing is sent.
+        on: {
+            score: sendNextRound,
+            swap: sendSkipSong,
+            void: sendVoidRound,
+        },
     });
 }
 
 /** `t(key, fallback, params)` over BeatifyI18n, for round-end-choice.js. */
-function _tRoundEnd(key, fallback, params) {
-    var out = utils.t ? utils.t(key, params) : null;
-    if (!out || out === key) {
-        out = fallback;
-        // BeatifyI18n interpolates for us; the English fallback has to do its
-        // own, or an untranslated locale shows a literal "{n} seconds left".
-        if (params) {
-            Object.keys(params).forEach(function (name) {
-                out = out.split('{' + name + '}').join(String(params[name]));
-            });
-        }
-    }
-    return out;
-}
+var _tRoundEnd = makeRoundEndT(function (key, params) {
+    return utils.t ? utils.t(key, params) : null;
+});
 
 /** #2646: end the round without scoring it. */
 function sendVoidRound(reason) {

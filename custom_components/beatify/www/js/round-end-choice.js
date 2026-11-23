@@ -37,6 +37,7 @@
  */
 
 import { VOID_ROUND_REASONS } from './game-constants.js';
+import { createModalFocusTrap } from './modal-focus-trap.js';
 
 /**
  * i18n key + English fallback per reason chip. Literal keys so
@@ -268,7 +269,7 @@ export function canSwapSong(preview) {
  * @param {number} [opts.round] - round number for the heading; same default
  * @param {number|null} [opts.secondsLeft] - same default
  * @param {function(string, string, Object=): string} opts.t
- * @param {function(Element): Object} [opts.focusTrap] - createModalFocusTrap
+ * @param {function(Element): Object} [opts.focusTrap] - defaults to createModalFocusTrap (#3581)
  * @returns {Promise<{choice: string, reason: (string|null)}>} choice is
  *   'score', 'swap' (#3261), 'void' or 'keep'; 'keep' is also what a backdrop tap or Escape
  *   resolves to, because doing nothing is the safe answer here.
@@ -338,7 +339,7 @@ export function openRoundEndChoice(opts) {
             reason = picked;
         });
 
-        var trap = opts.focusTrap ? opts.focusTrap(modal) : null;
+        var trap = (opts.focusTrap || createModalFocusTrap)(modal);
         _openCardRound = cardRound;
         _closeOpenCard = function () { finish('keep'); };
         modal.classList.remove('hidden');
@@ -429,4 +430,50 @@ export function renderVoidedBanner(doc, bannerId, data) {
     var banner = doc.getElementById(bannerId);
     if (!banner) return;
     banner.classList.toggle('hidden', !(data && data.round_voided));
+}
+
+/**
+ * #3581: the one place the round-end card is opened and its answer dispatched,
+ * shared by the admin browser and the player host controls.
+ *
+ * @param {Object} opts
+ * @param {Document} opts.doc
+ * @param {function(string, string, Object=): string} opts.t
+ * @param {{score: function, swap: function, void: function(string|null)}} opts.on -
+ *   one action per exit; 'keep' sends nothing.
+ * @returns {Promise<void>}
+ */
+export function askBeforeEndingRound(opts) {
+    return openRoundEndChoice({ doc: opts.doc, t: opts.t }).then(function (answer) {
+        if (answer.choice === 'score') {
+            opts.on.score();
+        } else if (answer.choice === 'swap') {
+            opts.on.swap();
+        } else if (answer.choice === 'void') {
+            opts.on.void(answer.reason);
+        }
+        // 'keep' - the misfire the third exit exists for. Nothing is sent.
+    });
+}
+
+/**
+ * `t(key, fallback, params)` over a page's own translate function, for the
+ * card. The English fallback does its own interpolation, or an untranslated
+ * locale would show a literal "{n} seconds left".
+ *
+ * @param {function(string, Object=): (string|null)} translate
+ */
+export function makeRoundEndT(translate) {
+    return function (key, fallback, params) {
+        var out = translate(key, params);
+        if (!out || out === key) {
+            out = fallback;
+            if (params) {
+                Object.keys(params).forEach(function (name) {
+                    out = out.split('{' + name + '}').join(String(params[name]));
+                });
+            }
+        }
+        return out;
+    };
 }

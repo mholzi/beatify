@@ -48,7 +48,7 @@ import { markNameRejected, clearNameRejected } from './name-field.js';
 // with the phone (player-game.js / player-reveal.js) so the wording and the
 // rule cannot drift apart between the two host surfaces.
 import {
-    noteRoundState, shouldAskBeforeEnding, openRoundEndChoice, renderVoidedBanner,
+    noteRoundState, shouldAskBeforeEnding, askBeforeEndingRound as askRoundEnd, makeRoundEndT, renderVoidedBanner,
     closeRoundEndChoice
 } from './round-end-choice.js';
 // #1715: in-flight guard for in-game Next/Skip/Stop/Volume controls (debounce
@@ -4083,50 +4083,30 @@ function adminNextRound() {
 
 /** Show the #2646 card and act on the host's choice. */
 function askBeforeEndingRound() {
-    openRoundEndChoice({
+    var guarded = function (command) {
+        _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
+            function () { return sendAdminCommand(command); },
+            ADMIN_CONTROL_GUARD_MS);
+    };
+    askRoundEnd({
         doc: document,
         t: _tRoundEnd,
-    }).then(function (answer) {
-        if (answer.choice === 'score') {
-            _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
-                function () { return sendAdminCommand({ type: 'admin', action: 'next_round' }); },
-                ADMIN_CONTROL_GUARD_MS);
-        } else if (answer.choice === 'swap') {
+        on: {
+            score: function () { guarded({ type: 'admin', action: 'next_round' }); },
             // #3261: same round, different song.
-            _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
-                function () { return sendAdminCommand({ type: 'admin', action: 'skip_song' }); },
-                ADMIN_CONTROL_GUARD_MS);
-        } else if (answer.choice === 'void') {
-            _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
-                function () {
-                    return sendAdminCommand({
-                        type: 'admin',
-                        action: 'void_round',
-                        reason: answer.reason || null
-                    });
-                },
-                ADMIN_CONTROL_GUARD_MS);
-        }
-        // 'keep' — the misfire the third exit exists for. Nothing is sent, and
-        // the control guard was never armed, so Next stays live.
+            swap: function () { guarded({ type: 'admin', action: 'skip_song' }); },
+            void: function (reason) {
+                guarded({ type: 'admin', action: 'void_round', reason: reason || null });
+            },
+        },
     });
+    // 'keep' sends nothing, and the control guard was never armed, so Next stays live.
 }
 
 /** `t(key, fallback, params)` over BeatifyI18n, for round-end-choice.js. */
-function _tRoundEnd(key, fallback, params) {
-    var out = (window.BeatifyI18n && BeatifyI18n.t) ? BeatifyI18n.t(key, params) : null;
-    if (!out || out === key) {
-        out = fallback;
-        // BeatifyI18n interpolates for us; the English fallback has to do its
-        // own, or an untranslated locale shows a literal "{n} seconds left".
-        if (params) {
-            Object.keys(params).forEach(function (name) {
-                out = out.split('{' + name + '}').join(String(params[name]));
-            });
-        }
-    }
-    return out;
-}
+var _tRoundEnd = makeRoundEndT(function (key, params) {
+    return (window.BeatifyI18n && BeatifyI18n.t) ? BeatifyI18n.t(key, params) : null;
+});
 
 function adminStopSong() {
     _controlGuard.run('stop_song', ['admin-stop-song'],

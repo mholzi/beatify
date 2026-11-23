@@ -144,7 +144,10 @@ describe('both host surfaces (#3261)', () => {
     ['js/admin.js', 'js/player-game.js'].forEach((file) => {
         it(`${file} sends skip_song for the swap choice`, () => {
             const src = read(file);
-            const at = src.indexOf("answer.choice === 'swap'");
+            // #3581: the dispatch on answer.choice lives once, in the shared
+            // askBeforeEndingRound; each page supplies its `swap` action.
+            expect(read('js/round-end-choice.js')).toContain("answer.choice === 'swap'");
+            const at = src.indexOf('swap:');
             expect(at).toBeGreaterThan(-1);
             const body = file === 'js/admin.js'
                 ? src.slice(at, at + 400)
