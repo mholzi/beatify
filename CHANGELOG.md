@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc4] - 2026-11-23
+
+Fourth candidate for 5.1.0: a shorter speaker list in setup and a fix for a round that never started.
+
+### Added
+- **Short speaker list in setup** (#3537): Step 1 shows one entry per speaker, Music Assistant first. Duplicates and hidden speakers sit behind "Show N more speakers", and "Choose which speakers show here" lets the host pick which ones appear.
+
+### Fixed
+- **Round start hanging in the reveal** (#3562): when a Music Assistant play call stalls, the game no longer stays in the reveal; the next round starts or the host gets an error.
+- **Pure Pop Punk**: 52 broken or swapped Tidal links and one stale Apple Music link fixed (#3567).
+- **Disney Classics**: 5 wrong Deezer links fixed (#3570).
+
 ## [5.1.0-rc3] - 2026-11-22
 
 Third candidate for 5.1.0: a live race mode for Title & Artist and shorter auto-advance delays.
