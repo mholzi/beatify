@@ -116,6 +116,7 @@ import {
     renderAdminSubmissionDots,
     renderAdminLeaderboard,
     renderAdminResultCards,
+    adminMyAccuracyText,
     renderAdminChallengeOptions,
     buildHomePlayerTiles,
     buildHomePlayerCount,
@@ -3662,12 +3663,10 @@ function showAdminRevealView(data) {
                     if (guessEl) guessEl.textContent = '—';
                     if (accuracyEl) accuracyEl.textContent = BeatifyI18n.t('reveal.noGuessShort') || 'Missed';
                 } else {
-                    var yearsOff = adminPlayer.years_off || 0;
                     if (guessEl) guessEl.textContent = adminPlayer.guess || '—';
                     if (accuracyEl) {
-                        accuracyEl.textContent = yearsOff === 0
-                            ? (BeatifyI18n.t('reveal.exact') || 'Exact!')
-                            : (BeatifyI18n.t('reveal.shortOff', { years: yearsOff }) || yearsOff + ' off');
+                        accuracyEl.textContent = adminMyAccuracyText(adminPlayer,
+                            data.title_artist_mode ? data.title_artist_challenge : null);
                     }
                 }
                 if (scoreEl) scoreEl.textContent = '+' + (adminPlayer.round_score || 0);
