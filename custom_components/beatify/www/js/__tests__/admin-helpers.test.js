@@ -277,6 +277,19 @@ describe('applyStoredGameSettings — settings → adminState hydration', () => 
         });
     });
 
+    // #3591: a saved race flag without Title & Artist must not show race as on.
+    it('clears race mode when saved Title & Artist is off', () => {
+        const adminState = { titleArtistModeEnabled: false, titleArtistRaceModeEnabled: false };
+        applyStoredGameSettings(adminState, { titleArtistMode: false, titleArtistRaceMode: true });
+        expect(adminState.titleArtistRaceModeEnabled).toBe(false);
+    });
+
+    it('keeps race mode when saved Title & Artist is on', () => {
+        const adminState = { titleArtistModeEnabled: false, titleArtistRaceModeEnabled: false };
+        applyStoredGameSettings(adminState, { titleArtistMode: true, titleArtistRaceMode: true });
+        expect(adminState.titleArtistRaceModeEnabled).toBe(true);
+    });
+
     it('hydrates scalar settings (language, duration, difficulty, provider, autoadvance)', () => {
         const adminState = {};
         applyStoredGameSettings(adminState, {
