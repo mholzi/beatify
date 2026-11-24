@@ -4,6 +4,16 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc7] - 2026-11-24
+
+Seventh candidate for 5.1.0: admin fixes from the nightly test.
+
+### Fixed
+- **Admin "Alle Tipps" list** (#3589): a wrong Title & Artist guess no longer reads "Volltreffer!"; the list shows the same verdict as the phone.
+- **Admin's own result line** (#3595): the same fix when the admin plays along.
+- **Round-end dialog** (#3590): closing it returns keyboard focus to the WEITER button.
+- **Saved setup** (#3591): race mode is switched off when Title & Artist is off, so the game matches the settings.
+
 ## [5.1.0-rc6] - 2026-11-23
 
 Sixth candidate for 5.1.0: one speaker entry per TV and a tidier admin.
