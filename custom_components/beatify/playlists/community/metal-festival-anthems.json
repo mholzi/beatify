@@ -1,6 +1,6 @@
 {
   "name": "Metal Festival Anthems",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "metal",
     "rock",
@@ -846,7 +846,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/498742988"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=LoF_a0-7xVQ",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/17150507",
       "alt_artists": [
@@ -1059,7 +1059,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1458823317"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=u4lxo7Ia_rY",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/61793483",
       "alt_artists": [
@@ -1248,7 +1248,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/1498848363"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=75tvdg-GpkM",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/3803547512",
       "alt_artists": [
@@ -1887,7 +1887,7 @@
       "uri_apple_music_by_region": {
         "us": "applemusic://track/206154073"
       },
-      "uri_youtube_music": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5gU5Vg2JokU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/619302",
       "alt_artists": [
