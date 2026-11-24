@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added the "Metal Festival Anthems" community playlist, 100 tracks (#3598).
+
 ## [5.1.0-rc7] - 2026-11-24
 
 Seventh candidate for 5.1.0: admin fixes from the nightly test.
