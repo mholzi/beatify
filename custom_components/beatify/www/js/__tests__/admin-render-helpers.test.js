@@ -173,6 +173,36 @@ describe('renderAdminResultCards', () => {
     });
 });
 
+describe('renderAdminResultCards: Title & Artist verdict (#3589)', () => {
+    const raceTa = { race: { title_winner: 'Anna', artist_winner: 'Anna' } };
+    const card = (name, score) => ({ name, guess: 'n/a', years_off: null, round_score: score, missed_round: false });
+
+    it('a 0-point race guess is "Not this time", never "exact"', () => {
+        renderAdminResultCards([card('Ben', 0)], false, 1999, raceTa);
+        const html = els['admin-reveal-guesses'].innerHTML;
+        expect(html).not.toContain('reveal.exact');
+        expect(html).toContain('Not this time');
+    });
+
+    it('race winner of both fields reads "Nailed it!", of one "Got one!"', () => {
+        renderAdminResultCards([card('Anna', 20)], false, 1999, raceTa);
+        expect(els['admin-reveal-guesses'].innerHTML).toContain('Nailed it!');
+        renderAdminResultCards([card('Anna', 10)], false, 1999, { race: { title_winner: 'Anna', artist_winner: 'Ben' } });
+        expect(els['admin-reveal-guesses'].innerHTML).toContain('Got one!');
+    });
+
+    it('one-shot mode reads the player result entry', () => {
+        const ta = { results: [{ player: 'Ben', title_status: 'wrong', artist_status: 'wrong' }] };
+        renderAdminResultCards([card('Ben', 0)], false, 1999, ta);
+        expect(els['admin-reveal-guesses'].innerHTML).toContain('Not this time');
+    });
+
+    it('without a Title & Artist payload the year label is unchanged', () => {
+        renderAdminResultCards([{ name: 'A', years_off: 0, round_score: 10, missed_round: false }], false, 1999);
+        expect(els['admin-reveal-guesses'].innerHTML).toContain('reveal.exact');
+    });
+});
+
 describe('renderAdminChallengeOptions', () => {
     it('renders one read-only option per entry (string or object), escaped', () => {
         renderAdminChallengeOptions('opts', ['<A>', { label: 'B' }, { name: 'C' }]);

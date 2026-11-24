@@ -3687,7 +3687,8 @@ function showAdminRevealView(data) {
     _renderSuddenDeathRevealChips(data);
 
     // All guesses grid (player-style result cards)
-    renderAdminResultCards(data.players, data.closest_wins_mode, data.song ? data.song.year : null);
+    renderAdminResultCards(data.players, data.closest_wins_mode, data.song ? data.song.year : null,
+        data.title_artist_mode ? data.title_artist_challenge : null);
 
     // Leaderboard (player-style entries)
     // #2746: true = render the host's per-row control. The END screen

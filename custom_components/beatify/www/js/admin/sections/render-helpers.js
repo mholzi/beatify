@@ -162,9 +162,35 @@ export function renderAdminLeaderboard(leaderboard, containerId, withHostControl
 }
 
 /**
- * Render player-style result cards for reveal (matches player-reveal.js renderPlayerResultCards).
+ * #3589: the Title & Artist verdict line for one player — the same words and
+ * the same counting as the phone's titleArtistVerdict (player-reveal.js, #3557):
+ * a race counts the fields this player won first, the one-shot mode reads the
+ * player's own result and waits while the room still votes on a near miss.
+ * Title & Artist has no year distance, so years_off must never decide this.
  */
-export function renderAdminResultCards(players, closestWinsMode, correctYear) {
+function taVerdictText(ta, name) {
+    var got;
+    if (ta.race) {
+        got = (ta.race.title_winner === name ? 1 : 0) + (ta.race.artist_winner === name ? 1 : 0);
+    } else {
+        var GOT = { exact: 1, fuzzy: 1, near_miss_accepted: 1 };
+        var own = (ta.results || []).filter(function(r) { return r.player === name; })[0];
+        if (own && ta.voting_open && (own.title_status === 'near_miss' || own.artist_status === 'near_miss')) {
+            return tr('titleArtist.verdictPending', 'Awaiting the room\u2019s verdict\u2026');
+        }
+        got = own ? (GOT[own.title_status] ? 1 : 0) + (GOT[own.artist_status] ? 1 : 0) : 0;
+    }
+    if (got === 2) return tr('titleArtist.verdictWin', 'Nailed it!');
+    if (got === 1) return tr('titleArtist.verdictPartial', 'Got one!');
+    return tr('titleArtist.verdictMiss', 'Not this time');
+}
+
+/**
+ * Render player-style result cards for reveal (matches player-reveal.js renderPlayerResultCards).
+ * @param {Object} [titleArtist] - REVEAL title_artist_challenge when Title & Artist
+ *   is on; swaps the year-distance label for the round verdict (#3589).
+ */
+export function renderAdminResultCards(players, closestWinsMode, correctYear, titleArtist) {
     var container = document.getElementById('admin-reveal-guesses');
     if (!container) return;
     if (!players || players.length === 0) { container.innerHTML = ''; return; }
@@ -190,6 +216,7 @@ export function renderAdminResultCards(players, closestWinsMode, correctYear) {
         var closestClass = isClosest ? ' is-closest-winner' : '';
         var guessDisplay = isMissed ? '—' : (p.guess || 'n/a');
         var yearsOffDisplay = isMissed ? t('reveal.noGuessShort') || 'Missed' :
+            titleArtist ? taVerdictText(titleArtist, p.name) :
             yearsOff === 0 ? t('reveal.exact') || 'Exact!' :
             (t('reveal.shortOff', { years: yearsOff }) || yearsOff + ' off');
         var betIndicator = p.bet ? '<span class="card-bet">🎲</span>' : '';
