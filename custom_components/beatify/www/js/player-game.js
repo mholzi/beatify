@@ -3730,12 +3730,12 @@ var nextRoundPending = false;
  * card names those consequences and offers the two other exits. After the
  * timer has expired nothing is asked: the round is over either way.
  */
-export function handleNextRound() {
+export function handleNextRound(e) {
     if (nextRoundPending) {
         return;
     }
     if (shouldAskBeforeEnding()) {
-        askBeforeEndingRound();
+        askBeforeEndingRound(e && e.currentTarget);
         return;
     }
     sendNextRound();
@@ -3748,10 +3748,11 @@ export function handleNextRound() {
  * armed once a command actually goes out, so the button stays live if the host
  * backs out.
  */
-function askBeforeEndingRound() {
+function askBeforeEndingRound(opener) {
     askRoundEnd({
         doc: document,
         t: _tRoundEnd,
+        returnFocus: opener,
         on: {
             score: sendNextRound,
             swap: sendSkipSong,
@@ -3850,8 +3851,8 @@ export function resetNextRoundPending() {
 /**
  * Handle Next Round from control bar (reuse reveal logic)
  */
-function handleNextRoundFromBar() {
-    handleNextRound();
+function handleNextRoundFromBar(e) {
+    handleNextRound(e);
 }
 
 /**

@@ -172,3 +172,25 @@ describe('both pages use the shared helper (#3581)', () => {
         expect(src).not.toMatch(/function _tRoundEnd/);
     });
 });
+
+// #3590: a click does not always focus its button (Safari, programmatic
+// clicks), so nothing holds focus when the card opens. The caller names the
+// opener and focus goes back to it on every exit.
+describe('round-end dialog returns focus to the named opener (#3590)', () => {
+    beforeEach(() => noteRoundState(PLAYING, 1000));
+
+    it.each([
+        ['Escape', (doc) => doc._fire('keydown', { key: 'Escape', preventDefault: () => {} })],
+        ['keep playing', (doc) => doc._el('round-end-keep').click()],
+    ])('on %s', async (_name, close) => {
+        const doc = makeDoc();
+        const on = { score: vi.fn(), swap: vi.fn(), void: vi.fn() };
+        doc.activeElement = null; // nothing focused: the trigger was clicked, not tabbed to
+        const done = askBeforeEndingRound({
+            doc, t: makeRoundEndT(() => null), on, returnFocus: doc._el('trigger'),
+        });
+        close(doc);
+        await done;
+        expect(doc.activeElement).toBe(doc._el('trigger'));
+    });
+});

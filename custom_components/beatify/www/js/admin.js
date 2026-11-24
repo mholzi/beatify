@@ -4071,9 +4071,9 @@ function releaseAllAdminControls() {
  * numbers and offers the two other exits. Once the timer has expired nothing
  * is asked — the round is over either way.
  */
-function adminNextRound() {
+function adminNextRound(e) {
     if (shouldAskBeforeEnding()) {
-        askBeforeEndingRound();
+        askBeforeEndingRound(e && e.currentTarget);
         return;
     }
     _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
@@ -4082,7 +4082,7 @@ function adminNextRound() {
 }
 
 /** Show the #2646 card and act on the host's choice. */
-function askBeforeEndingRound() {
+function askBeforeEndingRound(opener) {
     var guarded = function (command) {
         _controlGuard.run('next_round', ['admin-next-round', 'admin-skip-round'],
             function () { return sendAdminCommand(command); },
@@ -4091,6 +4091,7 @@ function askBeforeEndingRound() {
     askRoundEnd({
         doc: document,
         t: _tRoundEnd,
+        returnFocus: opener,
         on: {
             score: function () { guarded({ type: 'admin', action: 'next_round' }); },
             // #3261: same round, different song.
