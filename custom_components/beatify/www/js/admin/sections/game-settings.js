@@ -272,9 +272,8 @@ export function setupGameSettings(opts = {}) {
         saveGameSettings();
     });
 
-    // #3557: Race variant of Title & Artist. It keeps its own flag so turning
-    // Title & Artist off and on again brings the host's race choice back; the
-    // payload only sends it while Title & Artist is on.
+    // #3557: Race variant of Title & Artist. #3591: switching Title & Artist
+    // off clears it (syncTitleArtistModeUI), so the pair never disagrees.
     document.getElementById('title-artist-race-toggle')?.addEventListener('change', function() {
         adminState.titleArtistRaceModeEnabled = this.checked;
         syncTitleArtistModeUI();
@@ -579,6 +578,13 @@ export function updateGameSettingsSummary() {
  * the next reload.
  */
 export function syncTitleArtistModeUI() {
+    // #3591: race is a variant of Title & Artist, so it is off whenever Title &
+    // Artist is off. Clears a stale saved pair and a switched-off toggle alike.
+    if (!adminState.titleArtistModeEnabled && adminState.titleArtistRaceModeEnabled) {
+        adminState.titleArtistRaceModeEnabled = false;
+    }
+    var raceToggleEl = document.getElementById('title-artist-race-toggle');
+    if (raceToggleEl) raceToggleEl.checked = !!adminState.titleArtistRaceModeEnabled;
     // #1180: only the truly-incompatible modes are hidden in TA mode. Movie
     // quiz and intro mode are compatible bonuses, so they stay available.
     var ids = ['artist-challenge-toggle', 'closest-wins-toggle'];
