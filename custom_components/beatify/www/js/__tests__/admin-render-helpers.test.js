@@ -26,6 +26,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
     renderAdminLeaderboard,
     renderAdminResultCards,
+    adminMyAccuracyText,
     renderAdminChallengeOptions,
     renderAdminSubmissionDots,
     _providerDisplayName,
@@ -200,6 +201,24 @@ describe('renderAdminResultCards: Title & Artist verdict (#3589)', () => {
     it('without a Title & Artist payload the year label is unchanged', () => {
         renderAdminResultCards([{ name: 'A', years_off: 0, round_score: 10, missed_round: false }], false, 1999);
         expect(els['admin-reveal-guesses'].innerHTML).toContain('reveal.exact');
+    });
+});
+
+describe('adminMyAccuracyText (#3595)', () => {
+    it('Title & Artist: a wrong guess is "Not this time", never "exact"', () => {
+        const ta = { results: [{ player: 'Ben', title_status: 'wrong', artist_status: 'wrong' }] };
+        const txt = adminMyAccuracyText({ name: 'Ben', years_off: null }, ta);
+        expect(txt).toBe('Not this time');
+    });
+
+    it('Title & Artist: race winner reads "Nailed it!"', () => {
+        const ta = { race: { title_winner: 'Ben', artist_winner: 'Ben' } };
+        expect(adminMyAccuracyText({ name: 'Ben', years_off: null }, ta)).toBe('Nailed it!');
+    });
+
+    it('year path unchanged without a Title & Artist payload', () => {
+        expect(adminMyAccuracyText({ name: 'A', years_off: 0 })).toBe('reveal.exact');
+        expect(adminMyAccuracyText({ name: 'A', years_off: 3 })).toBe('reveal.shortOff');
     });
 });
 

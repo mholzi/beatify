@@ -186,6 +186,21 @@ function taVerdictText(ta, name) {
 }
 
 /**
+ * #3595: the admin's own result line (admin-reveal-my-accuracy). Title & Artist
+ * has no year distance, so it shows the same verdict as the cards (#3589);
+ * otherwise the year path: "Exact!" / "N off".
+ * @param {Object} player - the admin's own player entry
+ * @param {Object} [titleArtist] - REVEAL title_artist_challenge when Title & Artist is on
+ */
+export function adminMyAccuracyText(player, titleArtist) {
+    if (titleArtist) return taVerdictText(titleArtist, player.name);
+    var yearsOff = player.years_off || 0;
+    return yearsOff === 0
+        ? (BeatifyI18n.t('reveal.exact') || 'Exact!')
+        : (BeatifyI18n.t('reveal.shortOff', { years: yearsOff }) || yearsOff + ' off');
+}
+
+/**
  * Render player-style result cards for reveal (matches player-reveal.js renderPlayerResultCards).
  * @param {Object} [titleArtist] - REVEAL title_artist_challenge when Title & Artist
  *   is on; swaps the year-distance label for the round verdict (#3589).
