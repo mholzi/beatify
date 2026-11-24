@@ -293,6 +293,10 @@ export function openRoundEndChoice(opts) {
     var cardRound = round || (preview && preview.round) || 0;
     var secondsLeft = opts.secondsLeft !== undefined ? opts.secondsLeft : secondsLeftNow();
     var modal = doc.getElementById('round-end-modal');
+    // #3590: where focus goes back to on close. A click does not always focus
+    // its button (Safari, programmatic clicks), so the caller can name the
+    // opener; otherwise it is whatever held focus when the card opened.
+    var opener = opts.returnFocus || doc.activeElement;
     return new Promise(function (resolve) {
         if (!modal) {
             // No markup (an old cached page): fall back to the behaviour that
@@ -360,6 +364,10 @@ export function openRoundEndChoice(opts) {
             if (backdrop) backdrop.removeEventListener('click', onKeep);
             chips.forEach(function (c) { c.el.removeEventListener('click', c.handler); });
             if (trap) trap.deactivate();
+            if (opener && opener !== doc.activeElement && !opener.disabled &&
+                typeof opener.focus === 'function') {
+                opener.focus();
+            }
             resolve({ choice: choice, reason: choice === 'void' ? reason : null });
         }
 
@@ -439,12 +447,13 @@ export function renderVoidedBanner(doc, bannerId, data) {
  * @param {Object} opts
  * @param {Document} opts.doc
  * @param {function(string, string, Object=): string} opts.t
+ * @param {Element} [opts.returnFocus] - the control that opened the card (#3590)
  * @param {{score: function, swap: function, void: function(string|null)}} opts.on -
  *   one action per exit; 'keep' sends nothing.
  * @returns {Promise<void>}
  */
 export function askBeforeEndingRound(opts) {
-    return openRoundEndChoice({ doc: opts.doc, t: opts.t }).then(function (answer) {
+    return openRoundEndChoice({ doc: opts.doc, t: opts.t, returnFocus: opts.returnFocus }).then(function (answer) {
         if (answer.choice === 'score') {
             opts.on.score();
         } else if (answer.choice === 'swap') {
