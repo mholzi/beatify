@@ -27,6 +27,7 @@ import {
     renderAdminLeaderboard,
     renderAdminResultCards,
     adminMyAccuracyText,
+    taGuessText,
     renderAdminChallengeOptions,
     renderAdminSubmissionDots,
     _providerDisplayName,
@@ -201,6 +202,30 @@ describe('renderAdminResultCards: Title & Artist verdict (#3589)', () => {
     it('without a Title & Artist payload the year label is unchanged', () => {
         renderAdminResultCards([{ name: 'A', years_off: 0, round_score: 10, missed_round: false }], false, 1999);
         expect(els['admin-reveal-guesses'].innerHTML).toContain('reveal.exact');
+    });
+});
+
+describe('Title & Artist guess display (#3605)', () => {
+    const ta = { results: [{ player: 'Ben', title: 'Sweet Dreams', artist: 'Eurythmics', title_status: 'exact', artist_status: 'exact' }] };
+
+    it('taGuessText joins submitted title and artist, empty when none', () => {
+        expect(taGuessText(ta, 'Ben')).toBe('Sweet Dreams \u2014 Eurythmics');
+        expect(taGuessText(ta, 'Zoe')).toBe('');
+        expect(taGuessText({ results: [{ player: 'A', title: '', artist: 'X' }] }, 'A')).toBe('X');
+    });
+
+    it('admin cards show the submission, not "n/a"', () => {
+        renderAdminResultCards([{ name: 'Ben', guess: 'n/a', round_score: 20, missed_round: false }], false, 1983, ta);
+        const html = els['admin-reveal-guesses'].innerHTML;
+        expect(html).toContain('Sweet Dreams');
+        expect(html).not.toContain('n/a');
+    });
+
+    it('admin cards fall back to the localized "No guess" when nothing was sent', () => {
+        renderAdminResultCards([{ name: 'Zoe', guess: null, round_score: 0, missed_round: false }], false, 1983, ta);
+        const html = els['admin-reveal-guesses'].innerHTML;
+        expect(html).toContain('reveal.noGuessShort');
+        expect(html).not.toContain('n/a');
     });
 });
 
