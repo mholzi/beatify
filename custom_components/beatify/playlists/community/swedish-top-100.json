@@ -1,6 +1,6 @@
 {
   "name": "Swedish Top 100",
-  "version": "0.1",
+  "version": "0.2",
   "tags": [
     "swedish",
     "sweden",
@@ -35,7 +35,8 @@
       "fun_fact_de": "'Svag' von Victor Leksell erschien erstmals 2020.",
       "fun_fact_es": "'Svag' de Victor Leksell se publicó por primera vez en 2020.",
       "fun_fact_fr": "« Svag » de Victor Leksell est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'Svag' van Victor Leksell verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'Svag' van Victor Leksell verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dSRZ_1ncRhQ"
     },
     {
       "artist": "Petra Marklund",
@@ -58,7 +59,8 @@
       "fun_fact_de": "'Händerna mot himlen' von Petra Marklund erschien erstmals 2012.",
       "fun_fact_es": "'Händerna mot himlen' de Petra Marklund se publicó por primera vez en 2012.",
       "fun_fact_fr": "« Händerna mot himlen » de Petra Marklund est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'Händerna mot himlen' van Petra Marklund verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'Händerna mot himlen' van Petra Marklund verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=f4fB9EXpMTI"
     },
     {
       "artist": "Veronica Maggio",
@@ -77,7 +79,8 @@
       "fun_fact_de": "'Välkommen in' von Veronica Maggio erschien erstmals 2011.",
       "fun_fact_es": "'Välkommen in' de Veronica Maggio se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Välkommen in » de Veronica Maggio est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Välkommen in' van Veronica Maggio verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Välkommen in' van Veronica Maggio verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=E33_9ECy7FU"
     },
     {
       "artist": "Den svenska björnstammen",
@@ -100,7 +103,8 @@
       "fun_fact_de": "'Vart jag mig i världen vänder' von Den svenska björnstammen erschien erstmals 2011.",
       "fun_fact_es": "'Vart jag mig i världen vänder' de Den svenska björnstammen se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Vart jag mig i världen vänder » de Den svenska björnstammen est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Vart jag mig i världen vänder' van Den svenska björnstammen verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Vart jag mig i världen vänder' van Den svenska björnstammen verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jI2EcRXR7RU"
     },
     {
       "artist": "Hov1",
@@ -119,7 +123,8 @@
       "fun_fact_de": "'Hon dansar vidare i livet' von Hov1 erschien erstmals 2018.",
       "fun_fact_es": "'Hon dansar vidare i livet' de Hov1 se publicó por primera vez en 2018.",
       "fun_fact_fr": "« Hon dansar vidare i livet » de Hov1 est sorti pour la première fois en 2018.",
-      "fun_fact_nl": "'Hon dansar vidare i livet' van Hov1 verscheen voor het eerst in 2018."
+      "fun_fact_nl": "'Hon dansar vidare i livet' van Hov1 verscheen voor het eerst in 2018.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9RgmIgb_Vy8"
     },
     {
       "artist": "Molly Sandén, Victor Leksell",
@@ -142,7 +147,8 @@
       "fun_fact_de": "'Lost and found' von Molly Sandén, Victor Leksell erschien erstmals 2024.",
       "fun_fact_es": "'Lost and found' de Molly Sandén, Victor Leksell se publicó por primera vez en 2024.",
       "fun_fact_fr": "« Lost and found » de Molly Sandén, Victor Leksell est sorti pour la première fois en 2024.",
-      "fun_fact_nl": "'Lost and found' van Molly Sandén, Victor Leksell verscheen voor het eerst in 2024."
+      "fun_fact_nl": "'Lost and found' van Molly Sandén, Victor Leksell verscheen voor het eerst in 2024.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MSYfD3WPv5k"
     },
     {
       "artist": "Veronica Maggio",
@@ -161,7 +167,8 @@
       "fun_fact_de": "'Jag kommer' von Veronica Maggio erschien erstmals 2011.",
       "fun_fact_es": "'Jag kommer' de Veronica Maggio se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Jag kommer » de Veronica Maggio est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Jag kommer' van Veronica Maggio verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Jag kommer' van Veronica Maggio verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VjZwz3yxS9I"
     },
     {
       "artist": "kent",
@@ -184,7 +191,8 @@
       "fun_fact_de": "'Utan dina andetag' von kent erschien erstmals 1997.",
       "fun_fact_es": "'Utan dina andetag' de kent se publicó por primera vez en 1997.",
       "fun_fact_fr": "« Utan dina andetag » de kent est sorti pour la première fois en 1997.",
-      "fun_fact_nl": "'Utan dina andetag' van kent verscheen voor het eerst in 1997."
+      "fun_fact_nl": "'Utan dina andetag' van kent verscheen voor het eerst in 1997.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Q-qnIk9Oxlg"
     },
     {
       "artist": "Oskar Linnros",
@@ -207,7 +215,8 @@
       "fun_fact_de": "'Från och med Du' von Oskar Linnros erschien erstmals 2010.",
       "fun_fact_es": "'Från och med Du' de Oskar Linnros se publicó por primera vez en 2010.",
       "fun_fact_fr": "« Från och med Du » de Oskar Linnros est sorti pour la première fois en 2010.",
-      "fun_fact_nl": "'Från och med Du' van Oskar Linnros verscheen voor het eerst in 2010."
+      "fun_fact_nl": "'Från och med Du' van Oskar Linnros verscheen voor het eerst in 2010.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lJaFgeLTYgY"
     },
     {
       "artist": "Albin Lee Meldau",
@@ -230,7 +239,8 @@
       "fun_fact_de": "'Josefin' von Albin Lee Meldau erschien erstmals 2021.",
       "fun_fact_es": "'Josefin' de Albin Lee Meldau se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Josefin » de Albin Lee Meldau est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Josefin' van Albin Lee Meldau verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Josefin' van Albin Lee Meldau verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=JeBbe26lXDg"
     },
     {
       "artist": "Daniel Adams-Ray",
@@ -249,7 +259,8 @@
       "fun_fact_de": "'Gubben i lådan' von Daniel Adams-Ray erschien erstmals 2010.",
       "fun_fact_es": "'Gubben i lådan' de Daniel Adams-Ray se publicó por primera vez en 2010.",
       "fun_fact_fr": "« Gubben i lådan » de Daniel Adams-Ray est sorti pour la première fois en 2010.",
-      "fun_fact_nl": "'Gubben i lådan' van Daniel Adams-Ray verscheen voor het eerst in 2010."
+      "fun_fact_nl": "'Gubben i lådan' van Daniel Adams-Ray verscheen voor het eerst in 2010.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=71PrWLvO7Z8"
     },
     {
       "artist": "Victor Leksell",
@@ -272,7 +283,8 @@
       "fun_fact_de": "'Lys på mig' von Victor Leksell erschien erstmals 2025.",
       "fun_fact_es": "'Lys på mig' de Victor Leksell se publicó por primera vez en 2025.",
       "fun_fact_fr": "« Lys på mig » de Victor Leksell est sorti pour la première fois en 2025.",
-      "fun_fact_nl": "'Lys på mig' van Victor Leksell verscheen voor het eerst in 2025."
+      "fun_fact_nl": "'Lys på mig' van Victor Leksell verscheen voor het eerst in 2025.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G-j5v1O93fc"
     },
     {
       "artist": "Miss Li",
@@ -295,7 +307,8 @@
       "fun_fact_de": "'Komplicerad' von Miss Li erschien erstmals 2020.",
       "fun_fact_es": "'Komplicerad' de Miss Li se publicó por primera vez en 2020.",
       "fun_fact_fr": "« Komplicerad » de Miss Li est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'Komplicerad' van Miss Li verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'Komplicerad' van Miss Li verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HxrnJQl7KTU"
     },
     {
       "artist": "Thomas Stenström",
@@ -318,7 +331,8 @@
       "fun_fact_de": "'Slå mig hårt i ansiktet' von Thomas Stenström erschien erstmals 2014.",
       "fun_fact_es": "'Slå mig hårt i ansiktet' de Thomas Stenström se publicó por primera vez en 2014.",
       "fun_fact_fr": "« Slå mig hårt i ansiktet » de Thomas Stenström est sorti pour la première fois en 2014.",
-      "fun_fact_nl": "'Slå mig hårt i ansiktet' van Thomas Stenström verscheen voor het eerst in 2014."
+      "fun_fact_nl": "'Slå mig hårt i ansiktet' van Thomas Stenström verscheen voor het eerst in 2014.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qBB-HusEtps"
     },
     {
       "artist": "Håkan Hellström",
@@ -341,7 +355,8 @@
       "fun_fact_de": "'Det kommer aldrig va över för mig' von Håkan Hellström erschien erstmals 2013.",
       "fun_fact_es": "'Det kommer aldrig va över för mig' de Håkan Hellström se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Det kommer aldrig va över för mig » de Håkan Hellström est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Det kommer aldrig va över för mig' van Håkan Hellström verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Det kommer aldrig va över för mig' van Håkan Hellström verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Upx_t4YR3X8"
     },
     {
       "artist": "Miss Li",
@@ -383,7 +398,8 @@
       "fun_fact_de": "'Din låt' von Victor Leksell, Einár erschien erstmals 2022.",
       "fun_fact_es": "'Din låt' de Victor Leksell, Einár se publicó por primera vez en 2022.",
       "fun_fact_fr": "« Din låt » de Victor Leksell, Einár est sorti pour la première fois en 2022.",
-      "fun_fact_nl": "'Din låt' van Victor Leksell, Einár verscheen voor het eerst in 2022."
+      "fun_fact_nl": "'Din låt' van Victor Leksell, Einár verscheen voor het eerst in 2022.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=quIKHa7OM9o"
     },
     {
       "artist": "Veronica Maggio, Håkan Hellström",
@@ -406,7 +422,8 @@
       "fun_fact_de": "'Hela huset' von Veronica Maggio, Håkan Hellström erschien erstmals 2013.",
       "fun_fact_es": "'Hela huset' de Veronica Maggio, Håkan Hellström se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Hela huset » de Veronica Maggio, Håkan Hellström est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Hela huset' van Veronica Maggio, Håkan Hellström verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Hela huset' van Veronica Maggio, Håkan Hellström verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nPUtRUoW_Qc"
     },
     {
       "artist": "estraden, Victor Leksell",
@@ -429,7 +446,8 @@
       "fun_fact_de": "'Bra för dig' von estraden, Victor Leksell erschien erstmals 2019.",
       "fun_fact_es": "'Bra för dig' de estraden, Victor Leksell se publicó por primera vez en 2019.",
       "fun_fact_fr": "« Bra för dig » de estraden, Victor Leksell est sorti pour la première fois en 2019.",
-      "fun_fact_nl": "'Bra för dig' van estraden, Victor Leksell verscheen voor het eerst in 2019."
+      "fun_fact_nl": "'Bra för dig' van estraden, Victor Leksell verscheen voor het eerst in 2019.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=rHEvFj_fdC4"
     },
     {
       "artist": "Bolaget",
@@ -448,7 +466,8 @@
       "fun_fact_de": "'Kan Inte Gå' von Bolaget erschien erstmals 2021.",
       "fun_fact_es": "'Kan Inte Gå' de Bolaget se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Kan Inte Gå » de Bolaget est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Kan Inte Gå' van Bolaget verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Kan Inte Gå' van Bolaget verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oRMiSRkYcIM"
     },
     {
       "artist": "Thomas Stenström",
@@ -471,7 +490,8 @@
       "fun_fact_de": "'Ser du månen där du är ikväll? (Tillsammans igen)' von Thomas Stenström erschien erstmals 2020.",
       "fun_fact_es": "'Ser du månen där du är ikväll? (Tillsammans igen)' de Thomas Stenström se publicó por primera vez en 2020.",
       "fun_fact_fr": "« Ser du månen där du är ikväll? (Tillsammans igen) » de Thomas Stenström est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'Ser du månen där du är ikväll? (Tillsammans igen)' van Thomas Stenström verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'Ser du månen där du är ikväll? (Tillsammans igen)' van Thomas Stenström verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Iaiwv0JiMVk"
     },
     {
       "artist": "Stiftelsen",
@@ -494,7 +514,8 @@
       "fun_fact_de": "'Vart jag än går' von Stiftelsen erschien erstmals 2012.",
       "fun_fact_es": "'Vart jag än går' de Stiftelsen se publicó por primera vez en 2012.",
       "fun_fact_fr": "« Vart jag än går » de Stiftelsen est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'Vart jag än går' van Stiftelsen verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'Vart jag än går' van Stiftelsen verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WWw4IJyOShw"
     },
     {
       "artist": "Molly Sandén",
@@ -517,7 +538,8 @@
       "fun_fact_de": "'Sand' von Molly Sandén erschien erstmals 2018.",
       "fun_fact_es": "'Sand' de Molly Sandén se publicó por primera vez en 2018.",
       "fun_fact_fr": "« Sand » de Molly Sandén est sorti pour la première fois en 2018.",
-      "fun_fact_nl": "'Sand' van Molly Sandén verscheen voor het eerst in 2018."
+      "fun_fact_nl": "'Sand' van Molly Sandén verscheen voor het eerst in 2018.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=UKUAJ-2nQvw"
     },
     {
       "artist": "Norlie & KKV",
@@ -536,7 +558,8 @@
       "fun_fact_de": "'Ingen annan rör mig som du' von Norlie & KKV erschien erstmals 2015.",
       "fun_fact_es": "'Ingen annan rör mig som du' de Norlie & KKV se publicó por primera vez en 2015.",
       "fun_fact_fr": "« Ingen annan rör mig som du » de Norlie & KKV est sorti pour la première fois en 2015.",
-      "fun_fact_nl": "'Ingen annan rör mig som du' van Norlie & KKV verscheen voor het eerst in 2015."
+      "fun_fact_nl": "'Ingen annan rör mig som du' van Norlie & KKV verscheen voor het eerst in 2015.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=URbjo_9ABfs"
     },
     {
       "artist": "Kapten Röd",
@@ -559,7 +582,8 @@
       "fun_fact_de": "'Ju Mer Dom Spottar' von Kapten Röd erschien erstmals 2001.",
       "fun_fact_es": "'Ju Mer Dom Spottar' de Kapten Röd se publicó por primera vez en 2001.",
       "fun_fact_fr": "« Ju Mer Dom Spottar » de Kapten Röd est sorti pour la première fois en 2001.",
-      "fun_fact_nl": "'Ju Mer Dom Spottar' van Kapten Röd verscheen voor het eerst in 2001."
+      "fun_fact_nl": "'Ju Mer Dom Spottar' van Kapten Röd verscheen voor het eerst in 2001.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=MbPNwzFNQ7E"
     },
     {
       "artist": "Veronica Maggio",
@@ -578,7 +602,8 @@
       "fun_fact_de": "'17 år' von Veronica Maggio erschien erstmals 2008.",
       "fun_fact_es": "'17 år' de Veronica Maggio se publicó por primera vez en 2008.",
       "fun_fact_fr": "« 17 år » de Veronica Maggio est sorti pour la première fois en 2008.",
-      "fun_fact_nl": "'17 år' van Veronica Maggio verscheen voor het eerst in 2008."
+      "fun_fact_nl": "'17 år' van Veronica Maggio verscheen voor het eerst in 2008.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=dFkHkPpRcYw"
     },
     {
       "artist": "Jakob Karlberg",
@@ -601,7 +626,8 @@
       "fun_fact_de": "'Fan va bra' von Jakob Karlberg erschien erstmals 2015.",
       "fun_fact_es": "'Fan va bra' de Jakob Karlberg se publicó por primera vez en 2015.",
       "fun_fact_fr": "« Fan va bra » de Jakob Karlberg est sorti pour la première fois en 2015.",
-      "fun_fact_nl": "'Fan va bra' van Jakob Karlberg verscheen voor het eerst in 2015."
+      "fun_fact_nl": "'Fan va bra' van Jakob Karlberg verscheen voor het eerst in 2015.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cqwO3wKd26M"
     },
     {
       "artist": "Tjuvjakt",
@@ -624,7 +650,8 @@
       "fun_fact_de": "'Tandtråd' von Tjuvjakt erschien erstmals 2013.",
       "fun_fact_es": "'Tandtråd' de Tjuvjakt se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Tandtråd » de Tjuvjakt est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Tandtråd' van Tjuvjakt verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Tandtråd' van Tjuvjakt verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ooKmEPXaEFs"
     },
     {
       "artist": "Danny Saucedo",
@@ -647,7 +674,8 @@
       "fun_fact_de": "'Dör för dig' von Danny Saucedo erschien erstmals 2015.",
       "fun_fact_es": "'Dör för dig' de Danny Saucedo se publicó por primera vez en 2015.",
       "fun_fact_fr": "« Dör för dig » de Danny Saucedo est sorti pour la première fois en 2015.",
-      "fun_fact_nl": "'Dör för dig' van Danny Saucedo verscheen voor het eerst in 2015."
+      "fun_fact_nl": "'Dör för dig' van Danny Saucedo verscheen voor het eerst in 2015.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yPJQMNFjLZo"
     },
     {
       "artist": "AKI, Kapten Röd",
@@ -666,7 +694,8 @@
       "fun_fact_de": "'När solen går ner' von AKI, Kapten Röd erschien erstmals 2012.",
       "fun_fact_es": "'När solen går ner' de AKI, Kapten Röd se publicó por primera vez en 2012.",
       "fun_fact_fr": "« När solen går ner » de AKI, Kapten Röd est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'När solen går ner' van AKI, Kapten Röd verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'När solen går ner' van AKI, Kapten Röd verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=W-BkWPk9Hqo"
     },
     {
       "artist": "September",
@@ -689,7 +718,8 @@
       "fun_fact_de": "'Mikrofonkåt' von September erschien erstmals 2010.",
       "fun_fact_es": "'Mikrofonkåt' de September se publicó por primera vez en 2010.",
       "fun_fact_fr": "« Mikrofonkåt » de September est sorti pour la première fois en 2010.",
-      "fun_fact_nl": "'Mikrofonkåt' van September verscheen voor het eerst in 2010."
+      "fun_fact_nl": "'Mikrofonkåt' van September verscheen voor het eerst in 2010.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=gJ3c7lLm2ig"
     },
     {
       "artist": "Veronica Maggio",
@@ -708,7 +738,8 @@
       "fun_fact_de": "'Snälla bli min' von Veronica Maggio erschien erstmals 2011.",
       "fun_fact_es": "'Snälla bli min' de Veronica Maggio se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Snälla bli min » de Veronica Maggio est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Snälla bli min' van Veronica Maggio verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Snälla bli min' van Veronica Maggio verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=S6TmUcnhhX8"
     },
     {
       "artist": "Molly Sandén",
@@ -731,7 +762,8 @@
       "fun_fact_de": "'Rosa himmel (från \"Störst av allt\")' von Molly Sandén erschien erstmals 2019.",
       "fun_fact_es": "'Rosa himmel (från \"Störst av allt\")' de Molly Sandén se publicó por primera vez en 2019.",
       "fun_fact_fr": "« Rosa himmel (från \"Störst av allt\") » de Molly Sandén est sorti pour la première fois en 2019.",
-      "fun_fact_nl": "'Rosa himmel (från \"Störst av allt\")' van Molly Sandén verscheen voor het eerst in 2019."
+      "fun_fact_nl": "'Rosa himmel (från \"Störst av allt\")' van Molly Sandén verscheen voor het eerst in 2019.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T3s39VtMuqM"
     },
     {
       "artist": "Mares",
@@ -754,7 +786,8 @@
       "fun_fact_de": "'Sunnanvind' von Mares erschien erstmals 2019.",
       "fun_fact_es": "'Sunnanvind' de Mares se publicó por primera vez en 2019.",
       "fun_fact_fr": "« Sunnanvind » de Mares est sorti pour la première fois en 2019.",
-      "fun_fact_nl": "'Sunnanvind' van Mares verscheen voor het eerst in 2019."
+      "fun_fact_nl": "'Sunnanvind' van Mares verscheen voor het eerst in 2019.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GFaCGLnFBpk"
     },
     {
       "artist": "Melissa Horn",
@@ -777,7 +810,8 @@
       "fun_fact_de": "'Jag saknar dig mindre och mindre' von Melissa Horn erschien erstmals 2011.",
       "fun_fact_es": "'Jag saknar dig mindre och mindre' de Melissa Horn se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Jag saknar dig mindre och mindre » de Melissa Horn est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Jag saknar dig mindre och mindre' van Melissa Horn verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Jag saknar dig mindre och mindre' van Melissa Horn verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lBfSPpKJWz8"
     },
     {
       "artist": "Miss Li",
@@ -800,7 +834,8 @@
       "fun_fact_de": "'X' von Miss Li erschien erstmals 2020.",
       "fun_fact_es": "'X' de Miss Li se publicó por primera vez en 2020.",
       "fun_fact_fr": "« X » de Miss Li est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'X' van Miss Li verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'X' van Miss Li verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Sbt5inLayfc"
     },
     {
       "artist": "Bolaget",
@@ -819,7 +854,8 @@
       "fun_fact_de": "'Ikväll Igen' von Bolaget erschien erstmals 2023.",
       "fun_fact_es": "'Ikväll Igen' de Bolaget se publicó por primera vez en 2023.",
       "fun_fact_fr": "« Ikväll Igen » de Bolaget est sorti pour la première fois en 2023.",
-      "fun_fact_nl": "'Ikväll Igen' van Bolaget verscheen voor het eerst in 2023."
+      "fun_fact_nl": "'Ikväll Igen' van Bolaget verscheen voor het eerst in 2023.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=lLw6VpcUpVE"
     },
     {
       "artist": "Magnus Uggla",
@@ -842,7 +878,8 @@
       "fun_fact_de": "'Kung för en dag' von Magnus Uggla erschien erstmals 1992.",
       "fun_fact_es": "'Kung för en dag' de Magnus Uggla se publicó por primera vez en 1992.",
       "fun_fact_fr": "« Kung för en dag » de Magnus Uggla est sorti pour la première fois en 1992.",
-      "fun_fact_nl": "'Kung för en dag' van Magnus Uggla verscheen voor het eerst in 1992."
+      "fun_fact_nl": "'Kung för en dag' van Magnus Uggla verscheen voor het eerst in 1992.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7aOc2fL2pRM"
     },
     {
       "artist": "Albin Johnsén, Kristin Amparo",
@@ -861,7 +898,8 @@
       "fun_fact_de": "'Din soldat' von Albin Johnsén, Kristin Amparo erschien erstmals 2025.",
       "fun_fact_es": "'Din soldat' de Albin Johnsén, Kristin Amparo se publicó por primera vez en 2025.",
       "fun_fact_fr": "« Din soldat » de Albin Johnsén, Kristin Amparo est sorti pour la première fois en 2025.",
-      "fun_fact_nl": "'Din soldat' van Albin Johnsén, Kristin Amparo verscheen voor het eerst in 2025."
+      "fun_fact_nl": "'Din soldat' van Albin Johnsén, Kristin Amparo verscheen voor het eerst in 2025.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3FDo9LmIpEo"
     },
     {
       "artist": "Petter, Veronica Maggio",
@@ -884,7 +922,8 @@
       "fun_fact_de": "'Längesen' von Petter, Veronica Maggio erschien erstmals 2010.",
       "fun_fact_es": "'Längesen' de Petter, Veronica Maggio se publicó por primera vez en 2010.",
       "fun_fact_fr": "« Längesen » de Petter, Veronica Maggio est sorti pour la première fois en 2010.",
-      "fun_fact_nl": "'Längesen' van Petter, Veronica Maggio verscheen voor het eerst in 2010."
+      "fun_fact_nl": "'Längesen' van Petter, Veronica Maggio verscheen voor het eerst in 2010.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c9kv3JK7TjY"
     },
     {
       "artist": "Thomas Stenström",
@@ -907,7 +946,8 @@
       "fun_fact_de": "'Andas in andas ut' von Thomas Stenström erschien erstmals 2023.",
       "fun_fact_es": "'Andas in andas ut' de Thomas Stenström se publicó por primera vez en 2023.",
       "fun_fact_fr": "« Andas in andas ut » de Thomas Stenström est sorti pour la première fois en 2023.",
-      "fun_fact_nl": "'Andas in andas ut' van Thomas Stenström verscheen voor het eerst in 2023."
+      "fun_fact_nl": "'Andas in andas ut' van Thomas Stenström verscheen voor het eerst in 2023.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5aHs9sBCCoQ"
     },
     {
       "artist": "Tjuvjakt, Fanny Avonne",
@@ -930,7 +970,8 @@
       "fun_fact_de": "'Tusen spänn' von Tjuvjakt, Fanny Avonne erschien erstmals 2025.",
       "fun_fact_es": "'Tusen spänn' de Tjuvjakt, Fanny Avonne se publicó por primera vez en 2025.",
       "fun_fact_fr": "« Tusen spänn » de Tjuvjakt, Fanny Avonne est sorti pour la première fois en 2025.",
-      "fun_fact_nl": "'Tusen spänn' van Tjuvjakt, Fanny Avonne verscheen voor het eerst in 2025."
+      "fun_fact_nl": "'Tusen spänn' van Tjuvjakt, Fanny Avonne verscheen voor het eerst in 2025.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=3IiVWvNq8Yg"
     },
     {
       "artist": "Simon Superti",
@@ -953,7 +994,8 @@
       "fun_fact_de": "'Bullerbyn är död' von Simon Superti erschien erstmals 2025.",
       "fun_fact_es": "'Bullerbyn är död' de Simon Superti se publicó por primera vez en 2025.",
       "fun_fact_fr": "« Bullerbyn är död » de Simon Superti est sorti pour la première fois en 2025.",
-      "fun_fact_nl": "'Bullerbyn är död' van Simon Superti verscheen voor het eerst in 2025."
+      "fun_fact_nl": "'Bullerbyn är död' van Simon Superti verscheen voor het eerst in 2025.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6ZdiA-BXMfQ"
     },
     {
       "artist": "1.Cuz, Greekazo, Yei Gonzalez",
@@ -972,7 +1014,8 @@
       "fun_fact_de": "'FÖRSENT' von 1.Cuz, Greekazo, Yei Gonzalez erschien erstmals 2019.",
       "fun_fact_es": "'FÖRSENT' de 1.Cuz, Greekazo, Yei Gonzalez se publicó por primera vez en 2019.",
       "fun_fact_fr": "« FÖRSENT » de 1.Cuz, Greekazo, Yei Gonzalez est sorti pour la première fois en 2019.",
-      "fun_fact_nl": "'FÖRSENT' van 1.Cuz, Greekazo, Yei Gonzalez verscheen voor het eerst in 2019."
+      "fun_fact_nl": "'FÖRSENT' van 1.Cuz, Greekazo, Yei Gonzalez verscheen voor het eerst in 2019.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=79GGtH9PMpY"
     },
     {
       "artist": "Albatraoz, Kåren",
@@ -991,7 +1034,8 @@
       "fun_fact_de": "'Raggarbil' von Albatraoz, Kåren erschien erstmals 2020.",
       "fun_fact_es": "'Raggarbil' de Albatraoz, Kåren se publicó por primera vez en 2020.",
       "fun_fact_fr": "« Raggarbil » de Albatraoz, Kåren est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'Raggarbil' van Albatraoz, Kåren verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'Raggarbil' van Albatraoz, Kåren verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7B3YUIHNad0"
     },
     {
       "artist": "Medina",
@@ -1010,7 +1054,8 @@
       "fun_fact_de": "'Miss Decibel' von Medina erschien erstmals 2013.",
       "fun_fact_es": "'Miss Decibel' de Medina se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Miss Decibel » de Medina est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Miss Decibel' van Medina verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Miss Decibel' van Medina verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=T8xpEbRdOXI"
     },
     {
       "artist": "Elov & Beny, Sofie Svensson & Dom Där, J.O.X",
@@ -1033,7 +1078,8 @@
       "fun_fact_de": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' von Elov & Beny, Sofie Svensson & Dom Där, J.O.X erschien erstmals 2022.",
       "fun_fact_es": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' de Elov & Beny, Sofie Svensson & Dom Där, J.O.X se publicó por primera vez en 2022.",
       "fun_fact_fr": "« BUBBEL PÅ BALKONGEN - J.O.X Remix » de Elov & Beny, Sofie Svensson & Dom Där, J.O.X est sorti pour la première fois en 2022.",
-      "fun_fact_nl": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' van Elov & Beny, Sofie Svensson & Dom Där, J.O.X verscheen voor het eerst in 2022."
+      "fun_fact_nl": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' van Elov & Beny, Sofie Svensson & Dom Där, J.O.X verscheen voor het eerst in 2022.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IIkDBvpz-40"
     },
     {
       "artist": "Norlie & KKV, estraden",
@@ -1052,7 +1098,8 @@
       "fun_fact_de": "'Mer för varandra' von Norlie & KKV, estraden erschien erstmals 2018.",
       "fun_fact_es": "'Mer för varandra' de Norlie & KKV, estraden se publicó por primera vez en 2018.",
       "fun_fact_fr": "« Mer för varandra » de Norlie & KKV, estraden est sorti pour la première fois en 2018.",
-      "fun_fact_nl": "'Mer för varandra' van Norlie & KKV, estraden verscheen voor het eerst in 2018."
+      "fun_fact_nl": "'Mer för varandra' van Norlie & KKV, estraden verscheen voor het eerst in 2018.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2I-yODwVKQI"
     },
     {
       "artist": "Ansiktet",
@@ -1075,7 +1122,8 @@
       "fun_fact_de": "'Äckligt' von Ansiktet erschien erstmals 2011.",
       "fun_fact_es": "'Äckligt' de Ansiktet se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Äckligt » de Ansiktet est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Äckligt' van Ansiktet verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Äckligt' van Ansiktet verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hRCnOOD4tEg"
     },
     {
       "artist": "kent",
@@ -1098,7 +1146,8 @@
       "fun_fact_de": "'Pärlor' von kent erschien erstmals 2002.",
       "fun_fact_es": "'Pärlor' de kent se publicó por primera vez en 2002.",
       "fun_fact_fr": "« Pärlor » de kent est sorti pour la première fois en 2002.",
-      "fun_fact_nl": "'Pärlor' van kent verscheen voor het eerst in 2002."
+      "fun_fact_nl": "'Pärlor' van kent verscheen voor het eerst in 2002.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=1A10x14O8Vg"
     },
     {
       "artist": "Niklas Strömstedt",
@@ -1121,7 +1170,8 @@
       "fun_fact_de": "'Om' von Niklas Strömstedt erschien erstmals 1981.",
       "fun_fact_es": "'Om' de Niklas Strömstedt se publicó por primera vez en 1981.",
       "fun_fact_fr": "« Om » de Niklas Strömstedt est sorti pour la première fois en 1981.",
-      "fun_fact_nl": "'Om' van Niklas Strömstedt verscheen voor het eerst in 1981."
+      "fun_fact_nl": "'Om' van Niklas Strömstedt verscheen voor het eerst in 1981.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DnAmb6C3Wqk"
     },
     {
       "artist": "Victor Leksell",
@@ -1144,7 +1194,8 @@
       "fun_fact_de": "'Eld & lågor' von Victor Leksell erschien erstmals 2021.",
       "fun_fact_es": "'Eld & lågor' de Victor Leksell se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Eld & lågor » de Victor Leksell est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Eld & lågor' van Victor Leksell verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Eld & lågor' van Victor Leksell verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Caev-Vs6XCo"
     },
     {
       "artist": "A36",
@@ -1163,7 +1214,8 @@
       "fun_fact_de": "'Samma gamla vanliga' von A36 erschien erstmals 2021.",
       "fun_fact_es": "'Samma gamla vanliga' de A36 se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Samma gamla vanliga » de A36 est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Samma gamla vanliga' van A36 verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Samma gamla vanliga' van A36 verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=CEdIygk3-Qc"
     },
     {
       "artist": "Petter, Linnea Henriksson",
@@ -1186,7 +1238,8 @@
       "fun_fact_de": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' von Petter, Linnea Henriksson erschien erstmals 2016.",
       "fun_fact_es": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' de Petter, Linnea Henriksson se publicó por primera vez en 2016.",
       "fun_fact_fr": "« Se på mig nu (feat. Linnea Henriksson) - Singelversion » de Petter, Linnea Henriksson est sorti pour la première fois en 2016.",
-      "fun_fact_nl": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' van Petter, Linnea Henriksson verscheen voor het eerst in 2016."
+      "fun_fact_nl": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' van Petter, Linnea Henriksson verscheen voor het eerst in 2016.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=YyzvgTCL6DI"
     },
     {
       "artist": "Laleh",
@@ -1232,7 +1285,8 @@
       "fun_fact_de": "'Vi ska aldrig gå hem' von Molly Sandén erschien erstmals 2021.",
       "fun_fact_es": "'Vi ska aldrig gå hem' de Molly Sandén se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Vi ska aldrig gå hem » de Molly Sandén est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Vi ska aldrig gå hem' van Molly Sandén verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Vi ska aldrig gå hem' van Molly Sandén verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Zd2JtndJwPs"
     },
     {
       "artist": "Arvingarna",
@@ -1255,7 +1309,8 @@
       "fun_fact_de": "'Eloise' von Arvingarna erschien erstmals 1993.",
       "fun_fact_es": "'Eloise' de Arvingarna se publicó por primera vez en 1993.",
       "fun_fact_fr": "« Eloise » de Arvingarna est sorti pour la première fois en 1993.",
-      "fun_fact_nl": "'Eloise' van Arvingarna verscheen voor het eerst in 1993."
+      "fun_fact_nl": "'Eloise' van Arvingarna verscheen voor het eerst in 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=8Vt59Hrozio"
     },
     {
       "artist": "Mando Diao",
@@ -1278,7 +1333,8 @@
       "fun_fact_de": "'Strövtåg i hembygden' von Mando Diao erschien erstmals 2012.",
       "fun_fact_es": "'Strövtåg i hembygden' de Mando Diao se publicó por primera vez en 2012.",
       "fun_fact_fr": "« Strövtåg i hembygden » de Mando Diao est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'Strövtåg i hembygden' van Mando Diao verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'Strövtåg i hembygden' van Mando Diao verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=I6TKyz-MkvM"
     },
     {
       "artist": "Tommy Körberg",
@@ -1301,7 +1357,8 @@
       "fun_fact_de": "'Stad i ljus' von Tommy Körberg erschien erstmals 1988.",
       "fun_fact_es": "'Stad i ljus' de Tommy Körberg se publicó por primera vez en 1988.",
       "fun_fact_fr": "« Stad i ljus » de Tommy Körberg est sorti pour la première fois en 1988.",
-      "fun_fact_nl": "'Stad i ljus' van Tommy Körberg verscheen voor het eerst in 1988."
+      "fun_fact_nl": "'Stad i ljus' van Tommy Körberg verscheen voor het eerst in 1988.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=GO9VUhn1TXk"
     },
     {
       "artist": "Myra Granberg",
@@ -1320,7 +1377,8 @@
       "fun_fact_de": "'Lose my mind' von Myra Granberg erschien erstmals 2021.",
       "fun_fact_es": "'Lose my mind' de Myra Granberg se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Lose my mind » de Myra Granberg est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Lose my mind' van Myra Granberg verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Lose my mind' van Myra Granberg verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=evpHjvr2VAM"
     },
     {
       "artist": "Veronica Maggio",
@@ -1339,7 +1397,8 @@
       "fun_fact_de": "'Satan i gatan' von Veronica Maggio erschien erstmals 2011.",
       "fun_fact_es": "'Satan i gatan' de Veronica Maggio se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Satan i gatan » de Veronica Maggio est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Satan i gatan' van Veronica Maggio verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Satan i gatan' van Veronica Maggio verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RdmyCcIGkgA"
     },
     {
       "artist": "Carola",
@@ -1362,7 +1421,8 @@
       "fun_fact_de": "'Säg mig var du står' von Carola erschien erstmals 1983.",
       "fun_fact_es": "'Säg mig var du står' de Carola se publicó por primera vez en 1983.",
       "fun_fact_fr": "« Säg mig var du står » de Carola est sorti pour la première fois en 1983.",
-      "fun_fact_nl": "'Säg mig var du står' van Carola verscheen voor het eerst in 1983."
+      "fun_fact_nl": "'Säg mig var du står' van Carola verscheen voor het eerst in 1983.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=iAtvnhwxOpM"
     },
     {
       "artist": "KAJ",
@@ -1385,7 +1445,8 @@
       "fun_fact_de": "'Bara Bada Bastu' von KAJ erschien erstmals 2025.",
       "fun_fact_es": "'Bara Bada Bastu' de KAJ se publicó por primera vez en 2025.",
       "fun_fact_fr": "« Bara Bada Bastu » de KAJ est sorti pour la première fois en 2025.",
-      "fun_fact_nl": "'Bara Bada Bastu' van KAJ verscheen voor het eerst in 2025."
+      "fun_fact_nl": "'Bara Bada Bastu' van KAJ verscheen voor het eerst in 2025.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=WSh7U3m9KgA"
     },
     {
       "artist": "Miriam Bryant, Victor Leksell",
@@ -1404,7 +1465,8 @@
       "fun_fact_de": "'tystnar i luren' von Miriam Bryant, Victor Leksell erschien erstmals 2021.",
       "fun_fact_es": "'tystnar i luren' de Miriam Bryant, Victor Leksell se publicó por primera vez en 2021.",
       "fun_fact_fr": "« tystnar i luren » de Miriam Bryant, Victor Leksell est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'tystnar i luren' van Miriam Bryant, Victor Leksell verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'tystnar i luren' van Miriam Bryant, Victor Leksell verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=F5vK1bN8zmU"
     },
     {
       "artist": "Magnus Uggla",
@@ -1427,7 +1489,8 @@
       "fun_fact_de": "'Dansar aldrig nykter' von Magnus Uggla erschien erstmals 1993.",
       "fun_fact_es": "'Dansar aldrig nykter' de Magnus Uggla se publicó por primera vez en 1993.",
       "fun_fact_fr": "« Dansar aldrig nykter » de Magnus Uggla est sorti pour la première fois en 1993.",
-      "fun_fact_nl": "'Dansar aldrig nykter' van Magnus Uggla verscheen voor het eerst in 1993."
+      "fun_fact_nl": "'Dansar aldrig nykter' van Magnus Uggla verscheen voor het eerst in 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Fogv2rHBemw"
     },
     {
       "artist": "Panetoz",
@@ -1446,7 +1509,8 @@
       "fun_fact_de": "'Dansa Pausa' von Panetoz erschien erstmals 2012.",
       "fun_fact_es": "'Dansa Pausa' de Panetoz se publicó por primera vez en 2012.",
       "fun_fact_fr": "« Dansa Pausa » de Panetoz est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'Dansa Pausa' van Panetoz verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'Dansa Pausa' van Panetoz verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Sk9MSeE1l80"
     },
     {
       "artist": "Den svenska björnstammen",
@@ -1469,7 +1533,8 @@
       "fun_fact_de": "'Svalkar vinden' von Den svenska björnstammen erschien erstmals 2011.",
       "fun_fact_es": "'Svalkar vinden' de Den svenska björnstammen se publicó por primera vez en 2011.",
       "fun_fact_fr": "« Svalkar vinden » de Den svenska björnstammen est sorti pour la première fois en 2011.",
-      "fun_fact_nl": "'Svalkar vinden' van Den svenska björnstammen verscheen voor het eerst in 2011."
+      "fun_fact_nl": "'Svalkar vinden' van Den svenska björnstammen verscheen voor het eerst in 2011.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=EsKHlSmv2q8"
     },
     {
       "artist": "Hov1",
@@ -1488,7 +1553,8 @@
       "fun_fact_de": "'Mandy Moore' von Hov1 erschien erstmals 2017.",
       "fun_fact_es": "'Mandy Moore' de Hov1 se publicó por primera vez en 2017.",
       "fun_fact_fr": "« Mandy Moore » de Hov1 est sorti pour la première fois en 2017.",
-      "fun_fact_nl": "'Mandy Moore' van Hov1 verscheen voor het eerst in 2017."
+      "fun_fact_nl": "'Mandy Moore' van Hov1 verscheen voor het eerst in 2017.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_QJrLe5UIN8"
     },
     {
       "artist": "Victor Leksell",
@@ -1511,7 +1577,8 @@
       "fun_fact_de": "'Natthimlen' von Victor Leksell erschien erstmals 2024.",
       "fun_fact_es": "'Natthimlen' de Victor Leksell se publicó por primera vez en 2024.",
       "fun_fact_fr": "« Natthimlen » de Victor Leksell est sorti pour la première fois en 2024.",
-      "fun_fact_nl": "'Natthimlen' van Victor Leksell verscheen voor het eerst in 2024."
+      "fun_fact_nl": "'Natthimlen' van Victor Leksell verscheen voor het eerst in 2024.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=IjFuhT7h-ks"
     },
     {
       "artist": "Gyllene Tider",
@@ -1534,7 +1601,8 @@
       "fun_fact_de": "'Sommartider' von Gyllene Tider erschien erstmals 1982.",
       "fun_fact_es": "'Sommartider' de Gyllene Tider se publicó por primera vez en 1982.",
       "fun_fact_fr": "« Sommartider » de Gyllene Tider est sorti pour la première fois en 1982.",
-      "fun_fact_nl": "'Sommartider' van Gyllene Tider verscheen voor het eerst in 1982."
+      "fun_fact_nl": "'Sommartider' van Gyllene Tider verscheen voor het eerst in 1982.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4kVRF0hTeyQ"
     },
     {
       "artist": "Carola",
@@ -1557,7 +1625,8 @@
       "fun_fact_de": "'Främling' von Carola erschien erstmals 1983.",
       "fun_fact_es": "'Främling' de Carola se publicó por primera vez en 1983.",
       "fun_fact_fr": "« Främling » de Carola est sorti pour la première fois en 1983.",
-      "fun_fact_nl": "'Främling' van Carola verscheen voor het eerst in 1983."
+      "fun_fact_nl": "'Främling' van Carola verscheen voor het eerst in 1983.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=bSlxoRzrBMs"
     },
     {
       "artist": "Veronica Maggio",
@@ -1580,7 +1649,8 @@
       "fun_fact_de": "'Sergels torg' von Veronica Maggio erschien erstmals 2013.",
       "fun_fact_es": "'Sergels torg' de Veronica Maggio se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Sergels torg » de Veronica Maggio est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Sergels torg' van Veronica Maggio verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Sergels torg' van Veronica Maggio verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h-_UQVsoLQQ"
     },
     {
       "artist": "Kartellen, Sebbe Staxx, Dani M",
@@ -1603,7 +1673,8 @@
       "fun_fact_de": "'Mina områden' von Kartellen, Sebbe Staxx, Dani M erschien erstmals 2012.",
       "fun_fact_es": "'Mina områden' de Kartellen, Sebbe Staxx, Dani M se publicó por primera vez en 2012.",
       "fun_fact_fr": "« Mina områden » de Kartellen, Sebbe Staxx, Dani M est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'Mina områden' van Kartellen, Sebbe Staxx, Dani M verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'Mina områden' van Kartellen, Sebbe Staxx, Dani M verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=pvkIL-jxjEw"
     },
     {
       "artist": "Victor Leksell",
@@ -1626,7 +1697,8 @@
       "fun_fact_de": "'Ha dig igen' von Victor Leksell erschien erstmals 2020.",
       "fun_fact_es": "'Ha dig igen' de Victor Leksell se publicó por primera vez en 2020.",
       "fun_fact_fr": "« Ha dig igen » de Victor Leksell est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'Ha dig igen' van Victor Leksell verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'Ha dig igen' van Victor Leksell verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=FnOeFkJTvBk"
     },
     {
       "artist": "Medina",
@@ -1645,7 +1717,8 @@
       "fun_fact_de": "'Där palmerna bor' von Medina erschien erstmals 2012.",
       "fun_fact_es": "'Där palmerna bor' de Medina se publicó por primera vez en 2012.",
       "fun_fact_fr": "« Där palmerna bor » de Medina est sorti pour la première fois en 2012.",
-      "fun_fact_nl": "'Där palmerna bor' van Medina verscheen voor het eerst in 2012."
+      "fun_fact_nl": "'Där palmerna bor' van Medina verscheen voor het eerst in 2012.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SlgdoxxBVHc"
     },
     {
       "artist": "Miss Li",
@@ -1668,7 +1741,8 @@
       "fun_fact_de": "'Instruktionsboken' von Miss Li erschien erstmals 2021.",
       "fun_fact_es": "'Instruktionsboken' de Miss Li se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Instruktionsboken » de Miss Li est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Instruktionsboken' van Miss Li verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Instruktionsboken' van Miss Li verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=ZecVWQaiJ3g"
     },
     {
       "artist": "Veronica Maggio",
@@ -1687,7 +1761,8 @@
       "fun_fact_de": "'Tillfälligheter' von Veronica Maggio erschien erstmals 2019.",
       "fun_fact_es": "'Tillfälligheter' de Veronica Maggio se publicó por primera vez en 2019.",
       "fun_fact_fr": "« Tillfälligheter » de Veronica Maggio est sorti pour la première fois en 2019.",
-      "fun_fact_nl": "'Tillfälligheter' van Veronica Maggio verscheen voor het eerst in 2019."
+      "fun_fact_nl": "'Tillfälligheter' van Veronica Maggio verscheen voor het eerst in 2019.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=p34vrZoFfNo"
     },
     {
       "artist": "Victor Leksell",
@@ -1710,7 +1785,8 @@
       "fun_fact_de": "'Skriker mitt namn' von Victor Leksell erschien erstmals 2025.",
       "fun_fact_es": "'Skriker mitt namn' de Victor Leksell se publicó por primera vez en 2025.",
       "fun_fact_fr": "« Skriker mitt namn » de Victor Leksell est sorti pour la première fois en 2025.",
-      "fun_fact_nl": "'Skriker mitt namn' van Victor Leksell verscheen voor het eerst in 2025."
+      "fun_fact_nl": "'Skriker mitt namn' van Victor Leksell verscheen voor het eerst in 2025.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=g95fchz0kEI"
     },
     {
       "artist": "Gyllene Tider",
@@ -1733,7 +1809,8 @@
       "fun_fact_de": "'När vi två blir en' von Gyllene Tider erschien erstmals 1980.",
       "fun_fact_es": "'När vi två blir en' de Gyllene Tider se publicó por primera vez en 1980.",
       "fun_fact_fr": "« När vi två blir en » de Gyllene Tider est sorti pour la première fois en 1980.",
-      "fun_fact_nl": "'När vi två blir en' van Gyllene Tider verscheen voor het eerst in 1980."
+      "fun_fact_nl": "'När vi två blir en' van Gyllene Tider verscheen voor het eerst in 1980.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SFEDAyWhESM"
     },
     {
       "artist": "kent",
@@ -1756,7 +1833,8 @@
       "fun_fact_de": "'Musik Non Stop' von kent erschien erstmals 1992.",
       "fun_fact_es": "'Musik Non Stop' de kent se publicó por primera vez en 1992.",
       "fun_fact_fr": "« Musik Non Stop » de kent est sorti pour la première fois en 1992.",
-      "fun_fact_nl": "'Musik Non Stop' van kent verscheen voor het eerst in 1992."
+      "fun_fact_nl": "'Musik Non Stop' van kent verscheen voor het eerst in 1992.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4NRCR1QIhB4"
     },
     {
       "artist": "Molly Sandén",
@@ -1779,7 +1857,8 @@
       "fun_fact_de": "'Det bästa kanske inte hänt än' von Molly Sandén erschien erstmals 2019.",
       "fun_fact_es": "'Det bästa kanske inte hänt än' de Molly Sandén se publicó por primera vez en 2019.",
       "fun_fact_fr": "« Det bästa kanske inte hänt än » de Molly Sandén est sorti pour la première fois en 2019.",
-      "fun_fact_nl": "'Det bästa kanske inte hänt än' van Molly Sandén verscheen voor het eerst in 2019."
+      "fun_fact_nl": "'Det bästa kanske inte hänt än' van Molly Sandén verscheen voor het eerst in 2019.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hYof07dzXPg"
     },
     {
       "artist": "Lars Winnerbäck, Miss Li",
@@ -1802,7 +1881,8 @@
       "fun_fact_de": "'Om du lämnade mig nu' von Lars Winnerbäck, Miss Li erschien erstmals 2007.",
       "fun_fact_es": "'Om du lämnade mig nu' de Lars Winnerbäck, Miss Li se publicó por primera vez en 2007.",
       "fun_fact_fr": "« Om du lämnade mig nu » de Lars Winnerbäck, Miss Li est sorti pour la première fois en 2007.",
-      "fun_fact_nl": "'Om du lämnade mig nu' van Lars Winnerbäck, Miss Li verscheen voor het eerst in 2007."
+      "fun_fact_nl": "'Om du lämnade mig nu' van Lars Winnerbäck, Miss Li verscheen voor het eerst in 2007.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=g2yzdDAZBLI"
     },
     {
       "artist": "Tommy Nilsson",
@@ -1825,7 +1905,8 @@
       "fun_fact_de": "'Öppna din dörr' von Tommy Nilsson erschien erstmals 1994.",
       "fun_fact_es": "'Öppna din dörr' de Tommy Nilsson se publicó por primera vez en 1994.",
       "fun_fact_fr": "« Öppna din dörr » de Tommy Nilsson est sorti pour la première fois en 1994.",
-      "fun_fact_nl": "'Öppna din dörr' van Tommy Nilsson verscheen voor het eerst in 1994."
+      "fun_fact_nl": "'Öppna din dörr' van Tommy Nilsson verscheen voor het eerst in 1994.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ug9KQU6IAmY"
     },
     {
       "artist": "Miriam Bryant",
@@ -1848,7 +1929,8 @@
       "fun_fact_de": "'Ett sista glas' von Miriam Bryant erschien erstmals 2015.",
       "fun_fact_es": "'Ett sista glas' de Miriam Bryant se publicó por primera vez en 2015.",
       "fun_fact_fr": "« Ett sista glas » de Miriam Bryant est sorti pour la première fois en 2015.",
-      "fun_fact_nl": "'Ett sista glas' van Miriam Bryant verscheen voor het eerst in 2015."
+      "fun_fact_nl": "'Ett sista glas' van Miriam Bryant verscheen voor het eerst in 2015.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DbbCAFxNo6Q"
     },
     {
       "artist": "Victor Leksell",
@@ -1871,7 +1953,8 @@
       "fun_fact_de": "'Bedövning' von Victor Leksell erschien erstmals 2020.",
       "fun_fact_es": "'Bedövning' de Victor Leksell se publicó por primera vez en 2020.",
       "fun_fact_fr": "« Bedövning » de Victor Leksell est sorti pour la première fois en 2020.",
-      "fun_fact_nl": "'Bedövning' van Victor Leksell verscheen voor het eerst in 2020."
+      "fun_fact_nl": "'Bedövning' van Victor Leksell verscheen voor het eerst in 2020.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=trTEDh64CB4"
     },
     {
       "artist": "Kaliffa",
@@ -1890,7 +1973,8 @@
       "fun_fact_de": "'Helt seriöst' von Kaliffa erschien erstmals 2017.",
       "fun_fact_es": "'Helt seriöst' de Kaliffa se publicó por primera vez en 2017.",
       "fun_fact_fr": "« Helt seriöst » de Kaliffa est sorti pour la première fois en 2017.",
-      "fun_fact_nl": "'Helt seriöst' van Kaliffa verscheen voor het eerst in 2017."
+      "fun_fact_nl": "'Helt seriöst' van Kaliffa verscheen voor het eerst in 2017.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vt9NOsD3alo"
     },
     {
       "artist": "Nanne",
@@ -1913,7 +1997,8 @@
       "fun_fact_de": "'Håll om mig' von Nanne erschien erstmals 2005.",
       "fun_fact_es": "'Håll om mig' de Nanne se publicó por primera vez en 2005.",
       "fun_fact_fr": "« Håll om mig » de Nanne est sorti pour la première fois en 2005.",
-      "fun_fact_nl": "'Håll om mig' van Nanne verscheen voor het eerst in 2005."
+      "fun_fact_nl": "'Håll om mig' van Nanne verscheen voor het eerst in 2005.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SpyRZayFGug"
     },
     {
       "artist": "Veronica Maggio",
@@ -1936,7 +2021,8 @@
       "fun_fact_de": "'Trädgården en fredag' von Veronica Maggio erschien erstmals 2013.",
       "fun_fact_es": "'Trädgården en fredag' de Veronica Maggio se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Trädgården en fredag » de Veronica Maggio est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Trädgården en fredag' van Veronica Maggio verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Trädgården en fredag' van Veronica Maggio verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=uwpEKeQTqW8"
     },
     {
       "artist": "Danny Saucedo, Malcolm B",
@@ -1959,7 +2045,8 @@
       "fun_fact_de": "'Brinner i bröstet (feat. Malcolm B)' von Danny Saucedo, Malcolm B erschien erstmals 2015.",
       "fun_fact_es": "'Brinner i bröstet (feat. Malcolm B)' de Danny Saucedo, Malcolm B se publicó por primera vez en 2015.",
       "fun_fact_fr": "« Brinner i bröstet (feat. Malcolm B) » de Danny Saucedo, Malcolm B est sorti pour la première fois en 2015.",
-      "fun_fact_nl": "'Brinner i bröstet (feat. Malcolm B)' van Danny Saucedo, Malcolm B verscheen voor het eerst in 2015."
+      "fun_fact_nl": "'Brinner i bröstet (feat. Malcolm B)' van Danny Saucedo, Malcolm B verscheen voor het eerst in 2015.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=t6GekWxcZvo"
     },
     {
       "artist": "Magnus Uggla",
@@ -1982,7 +2069,8 @@
       "fun_fact_de": "'Trubaduren' von Magnus Uggla erschien erstmals 1993.",
       "fun_fact_es": "'Trubaduren' de Magnus Uggla se publicó por primera vez en 1993.",
       "fun_fact_fr": "« Trubaduren » de Magnus Uggla est sorti pour la première fois en 1993.",
-      "fun_fact_nl": "'Trubaduren' van Magnus Uggla verscheen voor het eerst in 1993."
+      "fun_fact_nl": "'Trubaduren' van Magnus Uggla verscheen voor het eerst in 1993.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=eDpNJZ_dnBM"
     },
     {
       "artist": "Tomas Ledin",
@@ -2005,7 +2093,8 @@
       "fun_fact_de": "'Sommaren är kort' von Tomas Ledin erschien erstmals 1982.",
       "fun_fact_es": "'Sommaren är kort' de Tomas Ledin se publicó por primera vez en 1982.",
       "fun_fact_fr": "« Sommaren är kort » de Tomas Ledin est sorti pour la première fois en 1982.",
-      "fun_fact_nl": "'Sommaren är kort' van Tomas Ledin verscheen voor het eerst in 1982."
+      "fun_fact_nl": "'Sommaren är kort' van Tomas Ledin verscheen voor het eerst in 1982.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TU3ivk-s-RM"
     },
     {
       "artist": "Markoolio",
@@ -2028,7 +2117,8 @@
       "fun_fact_de": "'Ingen sommar utan reggae' von Markoolio erschien erstmals 2007.",
       "fun_fact_es": "'Ingen sommar utan reggae' de Markoolio se publicó por primera vez en 2007.",
       "fun_fact_fr": "« Ingen sommar utan reggae » de Markoolio est sorti pour la première fois en 2007.",
-      "fun_fact_nl": "'Ingen sommar utan reggae' van Markoolio verscheen voor het eerst in 2007."
+      "fun_fact_nl": "'Ingen sommar utan reggae' van Markoolio verscheen voor het eerst in 2007.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-6kvT2Kbt3U"
     },
     {
       "artist": "Laleh",
@@ -2047,7 +2137,8 @@
       "fun_fact_de": "'Goliat' von Laleh erschien erstmals 2013.",
       "fun_fact_es": "'Goliat' de Laleh se publicó por primera vez en 2013.",
       "fun_fact_fr": "« Goliat » de Laleh est sorti pour la première fois en 2013.",
-      "fun_fact_nl": "'Goliat' van Laleh verscheen voor het eerst in 2013."
+      "fun_fact_nl": "'Goliat' van Laleh verscheen voor het eerst in 2013.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2z4WvIxT4w8"
     },
     {
       "artist": "Tommy Nilsson",
@@ -2070,7 +2161,8 @@
       "fun_fact_de": "'Dina färger var blå' von Tommy Nilsson erschien erstmals 1995.",
       "fun_fact_es": "'Dina färger var blå' de Tommy Nilsson se publicó por primera vez en 1995.",
       "fun_fact_fr": "« Dina färger var blå » de Tommy Nilsson est sorti pour la première fois en 1995.",
-      "fun_fact_nl": "'Dina färger var blå' van Tommy Nilsson verscheen voor het eerst in 1995."
+      "fun_fact_nl": "'Dina färger var blå' van Tommy Nilsson verscheen voor het eerst in 1995.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=2DWUpLh9AbQ"
     },
     {
       "artist": "kent",
@@ -2093,7 +2185,8 @@
       "fun_fact_de": "'Dom andra' von kent erschien erstmals 2002.",
       "fun_fact_es": "'Dom andra' de kent se publicó por primera vez en 2002.",
       "fun_fact_fr": "« Dom andra » de kent est sorti pour la première fois en 2002.",
-      "fun_fact_nl": "'Dom andra' van kent verscheen voor het eerst in 2002."
+      "fun_fact_nl": "'Dom andra' van kent verscheen voor het eerst in 2002.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=fWxUr_vDwwE"
     },
     {
       "artist": "Hov1, Einár",
@@ -2112,7 +2205,8 @@
       "fun_fact_de": "'Gamora' von Hov1, Einár erschien erstmals 2021.",
       "fun_fact_es": "'Gamora' de Hov1, Einár se publicó por primera vez en 2021.",
       "fun_fact_fr": "« Gamora » de Hov1, Einár est sorti pour la première fois en 2021.",
-      "fun_fact_nl": "'Gamora' van Hov1, Einár verscheen voor het eerst in 2021."
+      "fun_fact_nl": "'Gamora' van Hov1, Einár verscheen voor het eerst in 2021.",
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Xs1wozR8OmE"
     },
     {
       "artist": "Yasin",
