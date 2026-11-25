@@ -2208,7 +2208,7 @@
         placeRevealFunFact(axisMode);
 
         // Render top 3 guesses this round (AC 10.4.4) — hidden by CSS in axis mode
-        renderTopGuesses(players);
+        renderTopGuesses(players, taMode);
 
         // Render leaderboard with position changes
         renderRevealLeaderboard(data.leaderboard || []);
@@ -3086,18 +3086,24 @@
     /**
      * Render top 3 guesses this round
      * @param {Array} players - Players with round results
+     * @param {boolean} [taMode] - Title & Artist: rank only scorers; hide the list when nobody scored (#3605)
      */
-    function renderTopGuesses(players) {
+    function renderTopGuesses(players, taMode) {
         var container = document.getElementById('reveal-top-guesses-list');
         if (!container) return;
 
         // Sort by round_score descending, take top 3
         var sorted = players
-            .filter(function(p) { return !p.missed_round; })
+            .filter(function(p) { return !p.missed_round && (!taMode || (p.round_score || 0) > 0); })
             .sort(function(a, b) {
                 return (b.round_score || 0) - (a.round_score || 0);
             })
             .slice(0, 3);
+
+        var heading = container.previousElementSibling;
+        if (heading && heading.classList.contains('top-guesses-title')) {
+            heading.classList.toggle('hidden', taMode && sorted.length === 0);
+        }
 
         var html = '';
         sorted.forEach(function(player, index) {

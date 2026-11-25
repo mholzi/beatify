@@ -117,6 +117,7 @@ import {
     renderAdminLeaderboard,
     renderAdminResultCards,
     adminMyAccuracyText,
+    taGuessText,
     renderAdminChallengeOptions,
     buildHomePlayerTiles,
     buildHomePlayerCount,
@@ -3677,7 +3678,13 @@ function showAdminRevealView(data) {
                     if (guessEl) guessEl.textContent = '—';
                     if (accuracyEl) accuracyEl.textContent = BeatifyI18n.t('reveal.noGuessShort') || 'Missed';
                 } else {
-                    if (guessEl) guessEl.textContent = adminPlayer.guess || '—';
+                    if (guessEl) {
+                        // #3605: Title & Artist shows the submitted title/artist.
+                        guessEl.textContent = data.title_artist_mode
+                            ? (taGuessText(data.title_artist_challenge, adminPlayer.name) ||
+                                BeatifyI18n.t('reveal.noGuessShort') || 'No guess')
+                            : (adminPlayer.guess || '—');
+                    }
                     if (accuracyEl) {
                         accuracyEl.textContent = adminMyAccuracyText(adminPlayer,
                             data.title_artist_mode ? data.title_artist_challenge : null);

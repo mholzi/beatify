@@ -186,6 +186,18 @@ function taVerdictText(ta, name) {
 }
 
 /**
+ * #3605: what a player submitted in Title & Artist mode ("Title \u2014 Artist"),
+ * from REVEAL title_artist_challenge.results. Empty string when nothing was sent
+ * (race mode carries no per-player results either), so callers fall back to the
+ * localized "No guess" text instead of showing "n/a" / a bare dash.
+ */
+export function taGuessText(ta, name) {
+    var own = ((ta && ta.results) || []).filter(function(r) { return r.player === name; })[0];
+    if (!own) return '';
+    return [own.title, own.artist].filter(function(x) { return x && String(x).trim(); }).join(' \u2014 ');
+}
+
+/**
  * #3595: the admin's own result line (admin-reveal-my-accuracy). Title & Artist
  * has no year distance, so it shows the same verdict as the cards (#3589);
  * otherwise the year path: "Exact!" / "N off".
@@ -230,6 +242,10 @@ export function renderAdminResultCards(players, closestWinsMode, correctYear, ti
         var isClosest = closestWinsMode && !isMissed && bestDiff !== null && yearsOff === bestDiff;
         var closestClass = isClosest ? ' is-closest-winner' : '';
         var guessDisplay = isMissed ? '—' : (p.guess || 'n/a');
+        if (titleArtist) {
+            // #3605: Title & Artist has no year guess; show what was submitted.
+            guessDisplay = escapeHtml(taGuessText(titleArtist, p.name) || t('reveal.noGuessShort') || 'No guess');
+        }
         var yearsOffDisplay = isMissed ? t('reveal.noGuessShort') || 'Missed' :
             titleArtist ? taVerdictText(titleArtist, p.name) :
             yearsOff === 0 ? t('reveal.exact') || 'Exact!' :
