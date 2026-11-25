@@ -161,6 +161,13 @@ export function modeHintHtml(disabled, gateText, hintHtml) {
     return `<div class="wiz-mode-hint gated">🔒 ${escapeText(gateText)}</div>`;
 }
 
+// #3603: the race flag only counts while Title & Artist is on (same rule as the
+// admin state, #3591). Otherwise it is off, so a stale saved `true` can't come
+// back switched on when Title & Artist is chosen later.
+export function raceModeFor(titleArtistMode, raceMode) {
+    return titleArtistMode === true && raceMode === true;
+}
+
 export function applyGameModeTogglePrecedence(flags, key, value) {
     const next = { ...flags };
     switch (key) {
@@ -1405,6 +1412,7 @@ function _setGameModeToggle(key, value) {
     chosenIntroMode = next.introMode;
     chosenClosestWins = next.closestWinsMode;
     chosenTitleArtistMode = next.titleArtistMode;
+    chosenTitleArtistRaceMode = raceModeFor(chosenTitleArtistMode, chosenTitleArtistRaceMode);
 }
 
 const GAME_MODES = [
@@ -1608,7 +1616,7 @@ export function applyPlayStyle(styleKey) {
         m.set(style.modes.indexOf(m.key) !== -1);
     });
     chosenTitleArtistMode = coreTitleArtist;
-    chosenTitleArtistRaceMode = coreRace;
+    chosenTitleArtistRaceMode = raceModeFor(coreTitleArtist, coreRace);
     chosenPlayStyle = style.key;
     return true;
 }
@@ -2552,7 +2560,7 @@ function _persistGameSettings() {
             closestWinsMode: chosenClosestWins,
             suddenDeathMode: chosenSuddenDeath,  // Issue #827
             titleArtistMode: chosenTitleArtistMode,  // #1180
-            titleArtistRaceMode: chosenTitleArtistRaceMode,  // #3557
+            titleArtistRaceMode: chosenTitleArtistMode && chosenTitleArtistRaceMode,  // #3557, #3603
             // #2692: the six that had no path out of the wizard at all. The key
             // names match what admin/util.js `applySavedSettings` reads, which
             // is the only reason they reach the server.
@@ -2660,7 +2668,7 @@ export async function show(stepOverride) {
             if (typeof s.closestWinsMode === 'boolean') chosenClosestWins = s.closestWinsMode;
             if (typeof s.suddenDeathMode === 'boolean') chosenSuddenDeath = s.suddenDeathMode;  // Issue #827
             if (typeof s.titleArtistMode === 'boolean') chosenTitleArtistMode = s.titleArtistMode;
-            if (typeof s.titleArtistRaceMode === 'boolean') chosenTitleArtistRaceMode = s.titleArtistRaceMode;  // #3557
+            chosenTitleArtistRaceMode = raceModeFor(chosenTitleArtistMode, s.titleArtistRaceMode);  // #3557, #3603
             if (Array.isArray(s.selectedPlaylists)) {
                 s.selectedPlaylists.forEach((entry) => {
                     const path = typeof entry === 'string' ? entry : entry && entry.path;
