@@ -1,0 +1,2141 @@
+{
+  "name": "Swedish Top 100",
+  "version": "0.1",
+  "tags": [
+    "swedish",
+    "sweden",
+    "pop",
+    "scandinavian",
+    "svenska"
+  ],
+  "language": "sv",
+  "author": "Beatify Community",
+  "added_date": "2026-11-25",
+  "source": "https://open.spotify.com/playlist/0RU0A6p8rsdsprFV6fSyEo",
+  "description": "The best Swedish songs, from classic Swedish pop and rock to today's hits. Requested via the in-app playlist funnel (#3616).",
+  "songs": [
+    {
+      "artist": "Victor Leksell",
+      "title": "Svag",
+      "year": 2020,
+      "isrc": "SEBGA2000001",
+      "uri": "spotify:track:4SS4YfDAEQG0fZAe1xfgn3",
+      "uri_apple_music": "applemusic://track/1518315527",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1518315527"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/849773142",
+      "alt_artists": [
+        "Albatraoz",
+        "Miss Li",
+        "1.Cuz"
+      ],
+      "fun_fact": "'Svag' by Victor Leksell was first released in 2020.",
+      "fun_fact_de": "'Svag' von Victor Leksell erschien erstmals 2020.",
+      "fun_fact_es": "'Svag' de Victor Leksell se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« Svag » de Victor Leksell est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'Svag' van Victor Leksell verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Petra Marklund",
+      "title": "Händerna mot himlen",
+      "year": 2012,
+      "isrc": "SEWBD1206710",
+      "uri": "spotify:track:14AJI1RloVWTh8bJe9gBPM",
+      "uri_apple_music": "applemusic://track/565699721",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/565699721"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/60200351",
+      "alt_artists": [
+        "AKI",
+        "Kartellen",
+        "Mando Diao"
+      ],
+      "fun_fact": "'Händerna mot himlen' by Petra Marklund was first released in 2012.",
+      "fun_fact_de": "'Händerna mot himlen' von Petra Marklund erschien erstmals 2012.",
+      "fun_fact_es": "'Händerna mot himlen' de Petra Marklund se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Händerna mot himlen » de Petra Marklund est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Händerna mot himlen' van Petra Marklund verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Välkommen in",
+      "year": 2011,
+      "isrc": "SEUM71100344",
+      "uri": "spotify:track:5MEuFY2DxrozPEgGpR8Fji",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/44112891",
+      "alt_artists": [
+        "Ansiktet",
+        "Den svenska björnstammen",
+        "Melissa Horn"
+      ],
+      "fun_fact": "'Välkommen in' by Veronica Maggio was first released in 2011.",
+      "fun_fact_de": "'Välkommen in' von Veronica Maggio erschien erstmals 2011.",
+      "fun_fact_es": "'Välkommen in' de Veronica Maggio se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Välkommen in » de Veronica Maggio est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Välkommen in' van Veronica Maggio verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Den svenska björnstammen",
+      "title": "Vart jag mig i världen vänder",
+      "year": 2011,
+      "isrc": "SE2UI1200107",
+      "uri": "spotify:track:7nLMZKhfkFZLr9rz4VyOpF",
+      "uri_apple_music": "applemusic://track/965331243",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/965331243"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/580150102",
+      "alt_artists": [
+        "Ansiktet",
+        "Melissa Horn",
+        "Veronica Maggio"
+      ],
+      "fun_fact": "'Vart jag mig i världen vänder' by Den svenska björnstammen was first released in 2011.",
+      "fun_fact_de": "'Vart jag mig i världen vänder' von Den svenska björnstammen erschien erstmals 2011.",
+      "fun_fact_es": "'Vart jag mig i världen vänder' de Den svenska björnstammen se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Vart jag mig i världen vänder » de Den svenska björnstammen est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Vart jag mig i världen vänder' van Den svenska björnstammen verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Hov1",
+      "title": "Hon dansar vidare i livet",
+      "year": 2018,
+      "isrc": "SEUM71800176",
+      "uri": "spotify:track:1aEU7mcRDTYBB4ASpqbjYE",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/551175632",
+      "alt_artists": [
+        "1.Cuz",
+        "Kaliffa",
+        "Mares"
+      ],
+      "fun_fact": "'Hon dansar vidare i livet' by Hov1 was first released in 2018.",
+      "fun_fact_de": "'Hon dansar vidare i livet' von Hov1 erschien erstmals 2018.",
+      "fun_fact_es": "'Hon dansar vidare i livet' de Hov1 se publicó por primera vez en 2018.",
+      "fun_fact_fr": "« Hon dansar vidare i livet » de Hov1 est sorti pour la première fois en 2018.",
+      "fun_fact_nl": "'Hon dansar vidare i livet' van Hov1 verscheen voor het eerst in 2018."
+    },
+    {
+      "artist": "Molly Sandén, Victor Leksell",
+      "title": "Lost and found",
+      "year": 2024,
+      "isrc": "SEBGA2401123",
+      "uri": "spotify:track:7AIr6shgnOlUrx3StZUkce",
+      "uri_apple_music": "applemusic://track/1767550822",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1767550822"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2987617871",
+      "alt_artists": [
+        "Albin Johnsén",
+        "KAJ",
+        "Simon Superti"
+      ],
+      "fun_fact": "'Lost and found' by Molly Sandén, Victor Leksell was first released in 2024.",
+      "fun_fact_de": "'Lost and found' von Molly Sandén, Victor Leksell erschien erstmals 2024.",
+      "fun_fact_es": "'Lost and found' de Molly Sandén, Victor Leksell se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Lost and found » de Molly Sandén, Victor Leksell est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Lost and found' van Molly Sandén, Victor Leksell verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Jag kommer",
+      "year": 2011,
+      "isrc": "SEUM71100165",
+      "uri": "spotify:track:5M2y8QdDepGYMsWyxhoxQU",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/44112901",
+      "alt_artists": [
+        "Ansiktet",
+        "Den svenska björnstammen",
+        "Melissa Horn"
+      ],
+      "fun_fact": "'Jag kommer' by Veronica Maggio was first released in 2011.",
+      "fun_fact_de": "'Jag kommer' von Veronica Maggio erschien erstmals 2011.",
+      "fun_fact_es": "'Jag kommer' de Veronica Maggio se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Jag kommer » de Veronica Maggio est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Jag kommer' van Veronica Maggio verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "kent",
+      "title": "Utan dina andetag",
+      "year": 1997,
+      "isrc": "SEBMC9712030",
+      "uri": "spotify:track:5eJ314ozT4CTPlyjdsGq78",
+      "uri_apple_music": "applemusic://track/360813714",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/360813714"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/132195408",
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Arvingarna",
+        "Kapten Röd"
+      ],
+      "fun_fact": "'Utan dina andetag' by kent was first released in 1997.",
+      "fun_fact_de": "'Utan dina andetag' von kent erschien erstmals 1997.",
+      "fun_fact_es": "'Utan dina andetag' de kent se publicó por primera vez en 1997.",
+      "fun_fact_fr": "« Utan dina andetag » de kent est sorti pour la première fois en 1997.",
+      "fun_fact_nl": "'Utan dina andetag' van kent verscheen voor het eerst in 1997."
+    },
+    {
+      "artist": "Oskar Linnros",
+      "title": "Från och med Du",
+      "year": 2010,
+      "isrc": "SEUM71000245",
+      "uri": "spotify:track:6sjGsKuInpaK3uoaWGe22W",
+      "uri_apple_music": "applemusic://track/1443413717",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443413717"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/6716026",
+      "alt_artists": [
+        "Daniel Adams-Ray",
+        "Petter",
+        "September"
+      ],
+      "fun_fact": "'Från och med Du' by Oskar Linnros was first released in 2010.",
+      "fun_fact_de": "'Från och med Du' von Oskar Linnros erschien erstmals 2010.",
+      "fun_fact_es": "'Från och med Du' de Oskar Linnros se publicó por primera vez en 2010.",
+      "fun_fact_fr": "« Från och med Du » de Oskar Linnros est sorti pour la première fois en 2010.",
+      "fun_fact_nl": "'Från och med Du' van Oskar Linnros verscheen voor het eerst in 2010."
+    },
+    {
+      "artist": "Albin Lee Meldau",
+      "title": "Josefin",
+      "year": 2021,
+      "isrc": "QMBZ92364986",
+      "uri": "spotify:track:73hiGuj0dxhA1YhmSJOcMF",
+      "uri_apple_music": "applemusic://track/1698553524",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1698553524"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2376213635",
+      "alt_artists": [
+        "A36",
+        "Bolaget",
+        "Miriam Bryant"
+      ],
+      "fun_fact": "'Josefin' by Albin Lee Meldau was first released in 2021.",
+      "fun_fact_de": "'Josefin' von Albin Lee Meldau erschien erstmals 2021.",
+      "fun_fact_es": "'Josefin' de Albin Lee Meldau se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Josefin » de Albin Lee Meldau est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Josefin' van Albin Lee Meldau verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Daniel Adams-Ray",
+      "title": "Gubben i lådan",
+      "year": 2010,
+      "isrc": "SEYMV1000304",
+      "uri": "spotify:track:08bjJuoHJwfTnjNcuENOFz",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7561986",
+      "alt_artists": [
+        "Oskar Linnros",
+        "Petter",
+        "September"
+      ],
+      "fun_fact": "'Gubben i lådan' by Daniel Adams-Ray was first released in 2010.",
+      "fun_fact_de": "'Gubben i lådan' von Daniel Adams-Ray erschien erstmals 2010.",
+      "fun_fact_es": "'Gubben i lådan' de Daniel Adams-Ray se publicó por primera vez en 2010.",
+      "fun_fact_fr": "« Gubben i lådan » de Daniel Adams-Ray est sorti pour la première fois en 2010.",
+      "fun_fact_nl": "'Gubben i lådan' van Daniel Adams-Ray verscheen voor het eerst in 2010."
+    },
+    {
+      "artist": "Victor Leksell",
+      "title": "Lys på mig",
+      "year": 2025,
+      "isrc": "SEBGA2500709",
+      "uri": "spotify:track:3kbNesyQPnUreP6bD7aADS",
+      "uri_apple_music": "applemusic://track/1815465552",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1815465552"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3375614821",
+      "alt_artists": [
+        "Albin Johnsén",
+        "KAJ",
+        "Simon Superti"
+      ],
+      "fun_fact": "'Lys på mig' by Victor Leksell was first released in 2025.",
+      "fun_fact_de": "'Lys på mig' von Victor Leksell erschien erstmals 2025.",
+      "fun_fact_es": "'Lys på mig' de Victor Leksell se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Lys på mig » de Victor Leksell est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Lys på mig' van Victor Leksell verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Miss Li",
+      "title": "Komplicerad",
+      "year": 2020,
+      "isrc": "SE5HK2000139",
+      "uri": "spotify:track:4QKscNaTs47Zv3QV9o62yX",
+      "uri_apple_music": "applemusic://track/1498986793",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1498986793"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1483069852",
+      "alt_artists": [
+        "Albatraoz",
+        "Victor Leksell",
+        "1.Cuz"
+      ],
+      "fun_fact": "'Komplicerad' by Miss Li was first released in 2020.",
+      "fun_fact_de": "'Komplicerad' von Miss Li erschien erstmals 2020.",
+      "fun_fact_es": "'Komplicerad' de Miss Li se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« Komplicerad » de Miss Li est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'Komplicerad' van Miss Li verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Thomas Stenström",
+      "title": "Slå mig hårt i ansiktet",
+      "year": 2014,
+      "isrc": "SEYQH1400102",
+      "uri": "spotify:track:55qzWY5YYvMFSF36ePMY4T",
+      "uri_apple_music": "applemusic://track/1886706706",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1886706706"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3912683371",
+      "alt_artists": [
+        "Danny Saucedo",
+        "Håkan Hellström",
+        "Jakob Karlberg"
+      ],
+      "fun_fact": "'Slå mig hårt i ansiktet' by Thomas Stenström was first released in 2014.",
+      "fun_fact_de": "'Slå mig hårt i ansiktet' von Thomas Stenström erschien erstmals 2014.",
+      "fun_fact_es": "'Slå mig hårt i ansiktet' de Thomas Stenström se publicó por primera vez en 2014.",
+      "fun_fact_fr": "« Slå mig hårt i ansiktet » de Thomas Stenström est sorti pour la première fois en 2014.",
+      "fun_fact_nl": "'Slå mig hårt i ansiktet' van Thomas Stenström verscheen voor het eerst in 2014."
+    },
+    {
+      "artist": "Håkan Hellström",
+      "title": "Det kommer aldrig va över för mig",
+      "year": 2013,
+      "isrc": "SEUM71300303",
+      "uri": "spotify:track:3SjXx3rbNGk8nCho8YEoz5",
+      "uri_apple_music": "applemusic://track/957845256",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/957845256"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/65760218",
+      "alt_artists": [
+        "Medina",
+        "Tjuvjakt",
+        "AKI"
+      ],
+      "fun_fact": "'Det kommer aldrig va över för mig' by Håkan Hellström was first released in 2013.",
+      "fun_fact_de": "'Det kommer aldrig va över för mig' von Håkan Hellström erschien erstmals 2013.",
+      "fun_fact_es": "'Det kommer aldrig va över för mig' de Håkan Hellström se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Det kommer aldrig va över för mig » de Håkan Hellström est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Det kommer aldrig va över för mig' van Håkan Hellström verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Miss Li",
+      "title": "Lev nu dö sen",
+      "year": 2016,
+      "isrc": "SE5HK1600133",
+      "uri": "spotify:track:6HJasLoTKvxglAMQH8nPcD",
+      "uri_apple_music": "applemusic://track/1482605035",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1482605035"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/769164372",
+      "alt_artists": [
+        "Laleh",
+        "Yasin",
+        "Danny Saucedo"
+      ],
+      "fun_fact": "'Lev nu dö sen' by Miss Li was first released in 2016.",
+      "fun_fact_de": "'Lev nu dö sen' von Miss Li erschien erstmals 2016.",
+      "fun_fact_es": "'Lev nu dö sen' de Miss Li se publicó por primera vez en 2016.",
+      "fun_fact_fr": "« Lev nu dö sen » de Miss Li est sorti pour la première fois en 2016.",
+      "fun_fact_nl": "'Lev nu dö sen' van Miss Li verscheen voor het eerst in 2016."
+    },
+    {
+      "artist": "Victor Leksell, Einár",
+      "title": "Din låt",
+      "year": 2022,
+      "isrc": "SEBGA2100738",
+      "uri": "spotify:track:51srN26IXaHEoMUbC3mM5G",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1797387757",
+      "alt_artists": [
+        "Elov & Beny",
+        "A36",
+        "Albin Lee Meldau"
+      ],
+      "fun_fact": "'Din låt' by Victor Leksell, Einár was first released in 2022.",
+      "fun_fact_de": "'Din låt' von Victor Leksell, Einár erschien erstmals 2022.",
+      "fun_fact_es": "'Din låt' de Victor Leksell, Einár se publicó por primera vez en 2022.",
+      "fun_fact_fr": "« Din låt » de Victor Leksell, Einár est sorti pour la première fois en 2022.",
+      "fun_fact_nl": "'Din låt' van Victor Leksell, Einár verscheen voor het eerst in 2022."
+    },
+    {
+      "artist": "Veronica Maggio, Håkan Hellström",
+      "title": "Hela huset",
+      "year": 2013,
+      "isrc": "SEUM71301689",
+      "uri": "spotify:track:71CFZjdSm2WSh5S6TPd69A",
+      "uri_apple_music": "applemusic://track/957845215",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/957845215"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/70575807",
+      "alt_artists": [
+        "Håkan Hellström",
+        "Medina",
+        "Tjuvjakt"
+      ],
+      "fun_fact": "'Hela huset' by Veronica Maggio, Håkan Hellström was first released in 2013.",
+      "fun_fact_de": "'Hela huset' von Veronica Maggio, Håkan Hellström erschien erstmals 2013.",
+      "fun_fact_es": "'Hela huset' de Veronica Maggio, Håkan Hellström se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Hela huset » de Veronica Maggio, Håkan Hellström est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Hela huset' van Veronica Maggio, Håkan Hellström verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "estraden, Victor Leksell",
+      "title": "Bra för dig",
+      "year": 2019,
+      "isrc": "SEBGA1902678",
+      "uri": "spotify:track:5WWQnyxA6EC2FxNI5MhCxB",
+      "uri_apple_music": "applemusic://track/1477057499",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1477057499"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/735460542",
+      "alt_artists": [
+        "1.Cuz",
+        "Mares",
+        "Albatraoz"
+      ],
+      "fun_fact": "'Bra för dig' by estraden, Victor Leksell was first released in 2019.",
+      "fun_fact_de": "'Bra för dig' von estraden, Victor Leksell erschien erstmals 2019.",
+      "fun_fact_es": "'Bra för dig' de estraden, Victor Leksell se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Bra för dig » de estraden, Victor Leksell est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Bra för dig' van estraden, Victor Leksell verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Bolaget",
+      "title": "Kan Inte Gå",
+      "year": 2021,
+      "isrc": "SE5S62109301",
+      "uri": "spotify:track:1fIeKG6eI8FZzVL9mhlz8t",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2145850727",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Miriam Bryant"
+      ],
+      "fun_fact": "'Kan Inte Gå' by Bolaget was first released in 2021.",
+      "fun_fact_de": "'Kan Inte Gå' von Bolaget erschien erstmals 2021.",
+      "fun_fact_es": "'Kan Inte Gå' de Bolaget se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Kan Inte Gå » de Bolaget est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Kan Inte Gå' van Bolaget verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Thomas Stenström",
+      "title": "Ser du månen där du är ikväll? (Tillsammans igen)",
+      "year": 2020,
+      "isrc": "SEBGA2001461",
+      "uri": "spotify:track:4SLYrBfzgbLmiEdoKajyHL",
+      "uri_apple_music": "applemusic://track/1541685765",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1541685765"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1151705392",
+      "alt_artists": [
+        "Albatraoz",
+        "Miss Li",
+        "Victor Leksell"
+      ],
+      "fun_fact": "'Ser du månen där du är ikväll? (Tillsammans igen)' by Thomas Stenström was first released in 2020.",
+      "fun_fact_de": "'Ser du månen där du är ikväll? (Tillsammans igen)' von Thomas Stenström erschien erstmals 2020.",
+      "fun_fact_es": "'Ser du månen där du är ikväll? (Tillsammans igen)' de Thomas Stenström se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« Ser du månen där du är ikväll? (Tillsammans igen) » de Thomas Stenström est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'Ser du månen där du är ikväll? (Tillsammans igen)' van Thomas Stenström verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Stiftelsen",
+      "title": "Vart jag än går",
+      "year": 2012,
+      "isrc": "SEVST1200301",
+      "uri": "spotify:track:5hDowhxXBk5POQppBYONeO",
+      "uri_apple_music": "applemusic://track/1743799000",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1743799000"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2773462351",
+      "alt_artists": [
+        "AKI",
+        "Kartellen",
+        "Mando Diao"
+      ],
+      "fun_fact": "'Vart jag än går' by Stiftelsen was first released in 2012.",
+      "fun_fact_de": "'Vart jag än går' von Stiftelsen erschien erstmals 2012.",
+      "fun_fact_es": "'Vart jag än går' de Stiftelsen se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Vart jag än går » de Stiftelsen est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Vart jag än går' van Stiftelsen verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "Molly Sandén",
+      "title": "Sand",
+      "year": 2018,
+      "isrc": "SE4T41800103",
+      "uri": "spotify:track:7CYKovD8hNKg0w902IASMi",
+      "uri_apple_music": "applemusic://track/1367867559",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1367867559"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/479175752",
+      "alt_artists": [
+        "Hov1",
+        "1.Cuz",
+        "Kaliffa"
+      ],
+      "fun_fact": "'Sand' by Molly Sandén was first released in 2018.",
+      "fun_fact_de": "'Sand' von Molly Sandén erschien erstmals 2018.",
+      "fun_fact_es": "'Sand' de Molly Sandén se publicó por primera vez en 2018.",
+      "fun_fact_fr": "« Sand » de Molly Sandén est sorti pour la première fois en 2018.",
+      "fun_fact_nl": "'Sand' van Molly Sandén verscheen voor het eerst in 2018."
+    },
+    {
+      "artist": "Norlie & KKV",
+      "title": "Ingen annan rör mig som du",
+      "year": 2015,
+      "isrc": "SEUM71500355",
+      "uri": "spotify:track:25V8NDi9if73rYvHwDKKw5",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/134028412",
+      "alt_artists": [
+        "Danny Saucedo",
+        "Jakob Karlberg",
+        "Laleh"
+      ],
+      "fun_fact": "'Ingen annan rör mig som du' by Norlie & KKV was first released in 2015.",
+      "fun_fact_de": "'Ingen annan rör mig som du' von Norlie & KKV erschien erstmals 2015.",
+      "fun_fact_es": "'Ingen annan rör mig som du' de Norlie & KKV se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Ingen annan rör mig som du » de Norlie & KKV est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Ingen annan rör mig som du' van Norlie & KKV verscheen voor het eerst in 2015."
+    },
+    {
+      "artist": "Kapten Röd",
+      "title": "Ju Mer Dom Spottar",
+      "year": 2001,
+      "isrc": "SEVQU0111101",
+      "uri": "spotify:track:7i7zRj8jD5y2AGH4AJsdpB",
+      "uri_apple_music": "applemusic://track/1631933473",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1631933473"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1805805997",
+      "alt_artists": [
+        "Nanne",
+        "kent",
+        "Lars Winnerbäck"
+      ],
+      "fun_fact": "'Ju Mer Dom Spottar' by Kapten Röd was first released in 2001.",
+      "fun_fact_de": "'Ju Mer Dom Spottar' von Kapten Röd erschien erstmals 2001.",
+      "fun_fact_es": "'Ju Mer Dom Spottar' de Kapten Röd se publicó por primera vez en 2001.",
+      "fun_fact_fr": "« Ju Mer Dom Spottar » de Kapten Röd est sorti pour la première fois en 2001.",
+      "fun_fact_nl": "'Ju Mer Dom Spottar' van Kapten Röd verscheen voor het eerst in 2001."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "17 år",
+      "year": 2008,
+      "isrc": "SEUM70800042",
+      "uri": "spotify:track:7MzmBmyI9KkyQJaPNLdtUi",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/980590",
+      "alt_artists": [
+        "Lars Winnerbäck",
+        "Markoolio",
+        "Daniel Adams-Ray"
+      ],
+      "fun_fact": "'17 år' by Veronica Maggio was first released in 2008.",
+      "fun_fact_de": "'17 år' von Veronica Maggio erschien erstmals 2008.",
+      "fun_fact_es": "'17 år' de Veronica Maggio se publicó por primera vez en 2008.",
+      "fun_fact_fr": "« 17 år » de Veronica Maggio est sorti pour la première fois en 2008.",
+      "fun_fact_nl": "'17 år' van Veronica Maggio verscheen voor het eerst in 2008."
+    },
+    {
+      "artist": "Jakob Karlberg",
+      "title": "Fan va bra",
+      "year": 2015,
+      "isrc": "SEBGA1500100",
+      "uri": "spotify:track:4pItP9yMHJ4Klk8U6eOmLx",
+      "uri_apple_music": "applemusic://track/987419424",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/987419424"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/98911452",
+      "alt_artists": [
+        "Danny Saucedo",
+        "Norlie & KKV",
+        "Laleh"
+      ],
+      "fun_fact": "'Fan va bra' by Jakob Karlberg was first released in 2015.",
+      "fun_fact_de": "'Fan va bra' von Jakob Karlberg erschien erstmals 2015.",
+      "fun_fact_es": "'Fan va bra' de Jakob Karlberg se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Fan va bra » de Jakob Karlberg est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Fan va bra' van Jakob Karlberg verscheen voor het eerst in 2015."
+    },
+    {
+      "artist": "Tjuvjakt",
+      "title": "Tandtråd",
+      "year": 2013,
+      "isrc": "SEAMA1300132",
+      "uri": "spotify:track:1K2a8QcaPTDTZ1e4M0s8gQ",
+      "uri_apple_music": "applemusic://track/1712666821",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1712666821"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/64039591",
+      "alt_artists": [
+        "Håkan Hellström",
+        "Medina",
+        "AKI"
+      ],
+      "fun_fact": "'Tandtråd' by Tjuvjakt was first released in 2013.",
+      "fun_fact_de": "'Tandtråd' von Tjuvjakt erschien erstmals 2013.",
+      "fun_fact_es": "'Tandtråd' de Tjuvjakt se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Tandtråd » de Tjuvjakt est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Tandtråd' van Tjuvjakt verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Danny Saucedo",
+      "title": "Dör för dig",
+      "year": 2015,
+      "isrc": "SEBGA1500194",
+      "uri": "spotify:track:1J8teo08q8FlNWIJh9QFr3",
+      "uri_apple_music": "applemusic://track/1023677995",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1023677995"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/104816864",
+      "alt_artists": [
+        "Jakob Karlberg",
+        "Norlie & KKV",
+        "Laleh"
+      ],
+      "fun_fact": "'Dör för dig' by Danny Saucedo was first released in 2015.",
+      "fun_fact_de": "'Dör för dig' von Danny Saucedo erschien erstmals 2015.",
+      "fun_fact_es": "'Dör för dig' de Danny Saucedo se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Dör för dig » de Danny Saucedo est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Dör för dig' van Danny Saucedo verscheen voor het eerst in 2015."
+    },
+    {
+      "artist": "AKI, Kapten Röd",
+      "title": "När solen går ner",
+      "year": 2012,
+      "isrc": "SEUM71201340",
+      "uri": "spotify:track:68GdZAAowWDac3SkdNWOwo",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/62438839",
+      "alt_artists": [
+        "Kartellen",
+        "Mando Diao",
+        "Panetoz"
+      ],
+      "fun_fact": "'När solen går ner' by AKI, Kapten Röd was first released in 2012.",
+      "fun_fact_de": "'När solen går ner' von AKI, Kapten Röd erschien erstmals 2012.",
+      "fun_fact_es": "'När solen går ner' de AKI, Kapten Röd se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« När solen går ner » de AKI, Kapten Röd est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'När solen går ner' van AKI, Kapten Röd verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "September",
+      "title": "Mikrofonkåt",
+      "year": 2010,
+      "isrc": "SEWBD1000807",
+      "uri": "spotify:track:4oEozZqTuhEXIYmpgaiKMC",
+      "uri_apple_music": "applemusic://track/410829245",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/410829245"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/15772244",
+      "alt_artists": [
+        "Daniel Adams-Ray",
+        "Oskar Linnros",
+        "Petter"
+      ],
+      "fun_fact": "'Mikrofonkåt' by September was first released in 2010.",
+      "fun_fact_de": "'Mikrofonkåt' von September erschien erstmals 2010.",
+      "fun_fact_es": "'Mikrofonkåt' de September se publicó por primera vez en 2010.",
+      "fun_fact_fr": "« Mikrofonkåt » de September est sorti pour la première fois en 2010.",
+      "fun_fact_nl": "'Mikrofonkåt' van September verscheen voor het eerst in 2010."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Snälla bli min",
+      "year": 2011,
+      "isrc": "SEUM71100341",
+      "uri": "spotify:track:2jEPQKvz7dh1pfpRyq6G1C",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/44112951",
+      "alt_artists": [
+        "Ansiktet",
+        "Den svenska björnstammen",
+        "Melissa Horn"
+      ],
+      "fun_fact": "'Snälla bli min' by Veronica Maggio was first released in 2011.",
+      "fun_fact_de": "'Snälla bli min' von Veronica Maggio erschien erstmals 2011.",
+      "fun_fact_es": "'Snälla bli min' de Veronica Maggio se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Snälla bli min » de Veronica Maggio est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Snälla bli min' van Veronica Maggio verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Molly Sandén",
+      "title": "Rosa himmel (från \"Störst av allt\")",
+      "year": 2019,
+      "isrc": "SE4T41900102",
+      "uri": "spotify:track:3xkGJKpWrn1n6Bk2m84bJP",
+      "uri_apple_music": "applemusic://track/1456627362",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1456627362"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/650490952",
+      "alt_artists": [
+        "1.Cuz",
+        "Mares",
+        "estraden"
+      ],
+      "fun_fact": "'Rosa himmel (från \"Störst av allt\")' by Molly Sandén was first released in 2019.",
+      "fun_fact_de": "'Rosa himmel (från \"Störst av allt\")' von Molly Sandén erschien erstmals 2019.",
+      "fun_fact_es": "'Rosa himmel (från \"Störst av allt\")' de Molly Sandén se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Rosa himmel (från \"Störst av allt\") » de Molly Sandén est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Rosa himmel (från \"Störst av allt\")' van Molly Sandén verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Mares",
+      "title": "Sunnanvind",
+      "year": 2019,
+      "isrc": "SE5BU1968487",
+      "uri": "spotify:track:4GK4mydvnsodLEHWb4zJV4",
+      "uri_apple_music": "applemusic://track/1454158161",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1454158161"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/638638872",
+      "alt_artists": [
+        "1.Cuz",
+        "estraden",
+        "Albatraoz"
+      ],
+      "fun_fact": "'Sunnanvind' by Mares was first released in 2019.",
+      "fun_fact_de": "'Sunnanvind' von Mares erschien erstmals 2019.",
+      "fun_fact_es": "'Sunnanvind' de Mares se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Sunnanvind » de Mares est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Sunnanvind' van Mares verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Melissa Horn",
+      "title": "Jag saknar dig mindre och mindre",
+      "year": 2011,
+      "isrc": "SEBGA1100146",
+      "uri": "spotify:track:0atRkLynwT9JbhSQkoPdLY",
+      "uri_apple_music": "applemusic://track/1007749576",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1007749576"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/13620927",
+      "alt_artists": [
+        "Ansiktet",
+        "Den svenska björnstammen",
+        "Veronica Maggio"
+      ],
+      "fun_fact": "'Jag saknar dig mindre och mindre' by Melissa Horn was first released in 2011.",
+      "fun_fact_de": "'Jag saknar dig mindre och mindre' von Melissa Horn erschien erstmals 2011.",
+      "fun_fact_es": "'Jag saknar dig mindre och mindre' de Melissa Horn se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Jag saknar dig mindre och mindre » de Melissa Horn est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Jag saknar dig mindre och mindre' van Melissa Horn verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Miss Li",
+      "title": "X",
+      "year": 2020,
+      "isrc": "SE5HK2022170",
+      "uri": "spotify:track:4KzztXWae78R3XueX9RN6j",
+      "uri_apple_music": "applemusic://track/1612456680",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1612456680"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1673264527",
+      "alt_artists": [
+        "Albatraoz",
+        "Victor Leksell",
+        "1.Cuz"
+      ],
+      "fun_fact": "'X' by Miss Li was first released in 2020.",
+      "fun_fact_de": "'X' von Miss Li erschien erstmals 2020.",
+      "fun_fact_es": "'X' de Miss Li se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« X » de Miss Li est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'X' van Miss Li verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Bolaget",
+      "title": "Ikväll Igen",
+      "year": 2023,
+      "isrc": "SE69R2300001",
+      "uri": "spotify:track:4o5Ob60pz8QHcFKcr4MWyf",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2216278757",
+      "alt_artists": [
+        "Elov & Beny",
+        "Molly Sandén",
+        "A36"
+      ],
+      "fun_fact": "'Ikväll Igen' by Bolaget was first released in 2023.",
+      "fun_fact_de": "'Ikväll Igen' von Bolaget erschien erstmals 2023.",
+      "fun_fact_es": "'Ikväll Igen' de Bolaget se publicó por primera vez en 2023.",
+      "fun_fact_fr": "« Ikväll Igen » de Bolaget est sorti pour la première fois en 2023.",
+      "fun_fact_nl": "'Ikväll Igen' van Bolaget verscheen voor het eerst in 2023."
+    },
+    {
+      "artist": "Magnus Uggla",
+      "title": "Kung för en dag",
+      "year": 1992,
+      "isrc": "SEVBS9701020",
+      "uri": "spotify:track:6AvK18xgjLRGM2aKqe5rBW",
+      "uri_apple_music": "applemusic://track/417247914",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/417247914"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/9793245",
+      "alt_artists": [
+        "Arvingarna",
+        "Tommy Nilsson",
+        "Tommy Körberg"
+      ],
+      "fun_fact": "'Kung för en dag' by Magnus Uggla was first released in 1992.",
+      "fun_fact_de": "'Kung för en dag' von Magnus Uggla erschien erstmals 1992.",
+      "fun_fact_es": "'Kung för en dag' de Magnus Uggla se publicó por primera vez en 1992.",
+      "fun_fact_fr": "« Kung för en dag » de Magnus Uggla est sorti pour la première fois en 1992.",
+      "fun_fact_nl": "'Kung för en dag' van Magnus Uggla verscheen voor het eerst in 1992."
+    },
+    {
+      "artist": "Albin Johnsén, Kristin Amparo",
+      "title": "Din soldat",
+      "year": 2025,
+      "isrc": "SEUM72500505",
+      "uri": "spotify:track:4EdnF9XCU3d45DOcw8WTpR",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3391402771",
+      "alt_artists": [
+        "KAJ",
+        "Simon Superti",
+        "Molly Sandén"
+      ],
+      "fun_fact": "'Din soldat' by Albin Johnsén, Kristin Amparo was first released in 2025.",
+      "fun_fact_de": "'Din soldat' von Albin Johnsén, Kristin Amparo erschien erstmals 2025.",
+      "fun_fact_es": "'Din soldat' de Albin Johnsén, Kristin Amparo se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Din soldat » de Albin Johnsén, Kristin Amparo est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Din soldat' van Albin Johnsén, Kristin Amparo verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Petter, Veronica Maggio",
+      "title": "Längesen",
+      "year": 2010,
+      "isrc": "SEVLE1000104",
+      "uri": "spotify:track:5jOxJwljuC1iUY4Gtw4S5Y",
+      "uri_apple_music": "applemusic://track/1496987264",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1496987264"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/863714962",
+      "alt_artists": [
+        "Daniel Adams-Ray",
+        "Oskar Linnros",
+        "September"
+      ],
+      "fun_fact": "'Längesen' by Petter, Veronica Maggio was first released in 2010.",
+      "fun_fact_de": "'Längesen' von Petter, Veronica Maggio erschien erstmals 2010.",
+      "fun_fact_es": "'Längesen' de Petter, Veronica Maggio se publicó por primera vez en 2010.",
+      "fun_fact_fr": "« Längesen » de Petter, Veronica Maggio est sorti pour la première fois en 2010.",
+      "fun_fact_nl": "'Längesen' van Petter, Veronica Maggio verscheen voor het eerst in 2010."
+    },
+    {
+      "artist": "Thomas Stenström",
+      "title": "Andas in andas ut",
+      "year": 2023,
+      "isrc": "SEBGA2301381",
+      "uri": "spotify:track:0gF8DDkQ4AZEEgPsWL95n6",
+      "uri_apple_music": "applemusic://track/1680911854",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1680911854"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2226363037",
+      "alt_artists": [
+        "Elov & Beny",
+        "Molly Sandén",
+        "A36"
+      ],
+      "fun_fact": "'Andas in andas ut' by Thomas Stenström was first released in 2023.",
+      "fun_fact_de": "'Andas in andas ut' von Thomas Stenström erschien erstmals 2023.",
+      "fun_fact_es": "'Andas in andas ut' de Thomas Stenström se publicó por primera vez en 2023.",
+      "fun_fact_fr": "« Andas in andas ut » de Thomas Stenström est sorti pour la première fois en 2023.",
+      "fun_fact_nl": "'Andas in andas ut' van Thomas Stenström verscheen voor het eerst in 2023."
+    },
+    {
+      "artist": "Tjuvjakt, Fanny Avonne",
+      "title": "Tusen spänn",
+      "year": 2025,
+      "isrc": "SEYQH2501501",
+      "uri": "spotify:track:01RdEXps15f3VmQMV6OuTM",
+      "uri_apple_music": "applemusic://track/1811529693",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1811529693"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3346065121",
+      "alt_artists": [
+        "Albin Johnsén",
+        "KAJ",
+        "Simon Superti"
+      ],
+      "fun_fact": "'Tusen spänn' by Tjuvjakt, Fanny Avonne was first released in 2025.",
+      "fun_fact_de": "'Tusen spänn' von Tjuvjakt, Fanny Avonne erschien erstmals 2025.",
+      "fun_fact_es": "'Tusen spänn' de Tjuvjakt, Fanny Avonne se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Tusen spänn » de Tjuvjakt, Fanny Avonne est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Tusen spänn' van Tjuvjakt, Fanny Avonne verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Simon Superti",
+      "title": "Bullerbyn är död",
+      "year": 2025,
+      "isrc": "SEVQI2504001",
+      "uri": "spotify:track:1fOQl3GYdJLb6Gtzn0jdO4",
+      "uri_apple_music": "applemusic://track/1790231594",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1790231594"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3182715851",
+      "alt_artists": [
+        "Albin Johnsén",
+        "KAJ",
+        "Molly Sandén"
+      ],
+      "fun_fact": "'Bullerbyn är död' by Simon Superti was first released in 2025.",
+      "fun_fact_de": "'Bullerbyn är död' von Simon Superti erschien erstmals 2025.",
+      "fun_fact_es": "'Bullerbyn är död' de Simon Superti se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Bullerbyn är död » de Simon Superti est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Bullerbyn är död' van Simon Superti verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "1.Cuz, Greekazo, Yei Gonzalez",
+      "title": "FÖRSENT",
+      "year": 2019,
+      "isrc": "SE6I31958221",
+      "uri": "spotify:track:2A0ldcG3kavQErxfGlwJNs",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/773386832",
+      "alt_artists": [
+        "Mares",
+        "estraden",
+        "Albatraoz"
+      ],
+      "fun_fact": "'FÖRSENT' by 1.Cuz, Greekazo, Yei Gonzalez was first released in 2019.",
+      "fun_fact_de": "'FÖRSENT' von 1.Cuz, Greekazo, Yei Gonzalez erschien erstmals 2019.",
+      "fun_fact_es": "'FÖRSENT' de 1.Cuz, Greekazo, Yei Gonzalez se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« FÖRSENT » de 1.Cuz, Greekazo, Yei Gonzalez est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'FÖRSENT' van 1.Cuz, Greekazo, Yei Gonzalez verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Albatraoz, Kåren",
+      "title": "Raggarbil",
+      "year": 2020,
+      "isrc": "SE6SA2060982",
+      "uri": "spotify:track:6g9fuYOkoo3bYn8FftkoWO",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3571491771",
+      "alt_artists": [
+        "Miss Li",
+        "Victor Leksell",
+        "1.Cuz"
+      ],
+      "fun_fact": "'Raggarbil' by Albatraoz, Kåren was first released in 2020.",
+      "fun_fact_de": "'Raggarbil' von Albatraoz, Kåren erschien erstmals 2020.",
+      "fun_fact_es": "'Raggarbil' de Albatraoz, Kåren se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« Raggarbil » de Albatraoz, Kåren est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'Raggarbil' van Albatraoz, Kåren verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Medina",
+      "title": "Miss Decibel",
+      "year": 2013,
+      "isrc": "SEXVP1300104",
+      "uri": "spotify:track:2rrTjzLqStl7x5sdWSCero",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/66674995",
+      "alt_artists": [
+        "Håkan Hellström",
+        "Tjuvjakt",
+        "AKI"
+      ],
+      "fun_fact": "'Miss Decibel' by Medina was first released in 2013.",
+      "fun_fact_de": "'Miss Decibel' von Medina erschien erstmals 2013.",
+      "fun_fact_es": "'Miss Decibel' de Medina se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Miss Decibel » de Medina est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Miss Decibel' van Medina verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Elov & Beny, Sofie Svensson & Dom Där, J.O.X",
+      "title": "BUBBEL PÅ BALKONGEN - J.O.X Remix",
+      "year": 2022,
+      "isrc": "SE4W42200401",
+      "uri": "spotify:track:1xJ9dqN3EwQT4MIjRZnJB5",
+      "uri_apple_music": "applemusic://track/1819898191",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1819898191"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1796602757",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' by Elov & Beny, Sofie Svensson & Dom Där, J.O.X was first released in 2022.",
+      "fun_fact_de": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' von Elov & Beny, Sofie Svensson & Dom Där, J.O.X erschien erstmals 2022.",
+      "fun_fact_es": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' de Elov & Beny, Sofie Svensson & Dom Där, J.O.X se publicó por primera vez en 2022.",
+      "fun_fact_fr": "« BUBBEL PÅ BALKONGEN - J.O.X Remix » de Elov & Beny, Sofie Svensson & Dom Där, J.O.X est sorti pour la première fois en 2022.",
+      "fun_fact_nl": "'BUBBEL PÅ BALKONGEN - J.O.X Remix' van Elov & Beny, Sofie Svensson & Dom Där, J.O.X verscheen voor het eerst in 2022."
+    },
+    {
+      "artist": "Norlie & KKV, estraden",
+      "title": "Mer för varandra",
+      "year": 2018,
+      "isrc": "SEUM71800252",
+      "uri": "spotify:track:5GC6b6Ukc7PfwG8VfYO3ar",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/500016312",
+      "alt_artists": [
+        "Hov1",
+        "1.Cuz",
+        "Kaliffa"
+      ],
+      "fun_fact": "'Mer för varandra' by Norlie & KKV, estraden was first released in 2018.",
+      "fun_fact_de": "'Mer för varandra' von Norlie & KKV, estraden erschien erstmals 2018.",
+      "fun_fact_es": "'Mer för varandra' de Norlie & KKV, estraden se publicó por primera vez en 2018.",
+      "fun_fact_fr": "« Mer för varandra » de Norlie & KKV, estraden est sorti pour la première fois en 2018.",
+      "fun_fact_nl": "'Mer för varandra' van Norlie & KKV, estraden verscheen voor het eerst in 2018."
+    },
+    {
+      "artist": "Ansiktet",
+      "title": "Äckligt",
+      "year": 2011,
+      "isrc": "SEUM71300408",
+      "uri": "spotify:track:4vsI4DscX7T5alizDakNS8",
+      "uri_apple_music": "applemusic://track/1683354203",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1683354203"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2246260047",
+      "alt_artists": [
+        "Den svenska björnstammen",
+        "Melissa Horn",
+        "Veronica Maggio"
+      ],
+      "fun_fact": "'Äckligt' by Ansiktet was first released in 2011.",
+      "fun_fact_de": "'Äckligt' von Ansiktet erschien erstmals 2011.",
+      "fun_fact_es": "'Äckligt' de Ansiktet se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Äckligt » de Ansiktet est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Äckligt' van Ansiktet verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "kent",
+      "title": "Pärlor",
+      "year": 2002,
+      "isrc": "SEBMC0219020",
+      "uri": "spotify:track:5YCKObb1A7YIeOKzXhREwz",
+      "uri_apple_music": "applemusic://track/253700086",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/253700086"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/972104",
+      "alt_artists": [
+        "Kapten Röd",
+        "Nanne",
+        "Lars Winnerbäck"
+      ],
+      "fun_fact": "'Pärlor' by kent was first released in 2002.",
+      "fun_fact_de": "'Pärlor' von kent erschien erstmals 2002.",
+      "fun_fact_es": "'Pärlor' de kent se publicó por primera vez en 2002.",
+      "fun_fact_fr": "« Pärlor » de kent est sorti pour la première fois en 2002.",
+      "fun_fact_nl": "'Pärlor' van kent verscheen voor het eerst in 2002."
+    },
+    {
+      "artist": "Niklas Strömstedt",
+      "title": "Om",
+      "year": 1981,
+      "isrc": "SEPQA9041010",
+      "uri": "spotify:track:3tgDP0BTRP10i4HkLlAER3",
+      "uri_apple_music": "applemusic://track/1261366339",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1261366339"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/16754577",
+      "alt_artists": [
+        "Gyllene Tider",
+        "Tomas Ledin",
+        "Carola"
+      ],
+      "fun_fact": "'Om' by Niklas Strömstedt was first released in 1981.",
+      "fun_fact_de": "'Om' von Niklas Strömstedt erschien erstmals 1981.",
+      "fun_fact_es": "'Om' de Niklas Strömstedt se publicó por primera vez en 1981.",
+      "fun_fact_fr": "« Om » de Niklas Strömstedt est sorti pour la première fois en 1981.",
+      "fun_fact_nl": "'Om' van Niklas Strömstedt verscheen voor het eerst in 1981."
+    },
+    {
+      "artist": "Victor Leksell",
+      "title": "Eld & lågor",
+      "year": 2021,
+      "isrc": "SE6TS2100101",
+      "uri": "spotify:track:3DPzSNLiWNWMldxmtNO4Yw",
+      "uri_apple_music": "applemusic://track/1722483312",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1722483312"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1463811162",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'Eld & lågor' by Victor Leksell was first released in 2021.",
+      "fun_fact_de": "'Eld & lågor' von Victor Leksell erschien erstmals 2021.",
+      "fun_fact_es": "'Eld & lågor' de Victor Leksell se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Eld & lågor » de Victor Leksell est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Eld & lågor' van Victor Leksell verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "A36",
+      "title": "Samma gamla vanliga",
+      "year": 2021,
+      "isrc": "SEPQA2100088",
+      "uri": "spotify:track:4hsTQQgfBnBgtBkTGKWS1G",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1467128952",
+      "alt_artists": [
+        "Albin Lee Meldau",
+        "Bolaget",
+        "Miriam Bryant"
+      ],
+      "fun_fact": "'Samma gamla vanliga' by A36 was first released in 2021.",
+      "fun_fact_de": "'Samma gamla vanliga' von A36 erschien erstmals 2021.",
+      "fun_fact_es": "'Samma gamla vanliga' de A36 se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Samma gamla vanliga » de A36 est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Samma gamla vanliga' van A36 verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Petter, Linnea Henriksson",
+      "title": "Se på mig nu (feat. Linnea Henriksson) - Singelversion",
+      "year": 2016,
+      "isrc": "SEBGA1602150",
+      "uri": "spotify:track:7rklm17yoayxw45lpzv5uv",
+      "uri_apple_music": "applemusic://track/1151427439",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1151427439"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/132629034",
+      "alt_artists": [
+        "Laleh",
+        "Yasin",
+        "Danny Saucedo"
+      ],
+      "fun_fact": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' by Petter, Linnea Henriksson was first released in 2016.",
+      "fun_fact_de": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' von Petter, Linnea Henriksson erschien erstmals 2016.",
+      "fun_fact_es": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' de Petter, Linnea Henriksson se publicó por primera vez en 2016.",
+      "fun_fact_fr": "« Se på mig nu (feat. Linnea Henriksson) - Singelversion » de Petter, Linnea Henriksson est sorti pour la première fois en 2016.",
+      "fun_fact_nl": "'Se på mig nu (feat. Linnea Henriksson) - Singelversion' van Petter, Linnea Henriksson verscheen voor het eerst in 2016."
+    },
+    {
+      "artist": "Laleh",
+      "title": "Bara Få Va Mig Själv",
+      "year": 2016,
+      "isrc": "SE36T1600101",
+      "uri": "spotify:track:2FnUyLhe7sjXgnZlK9sc0z",
+      "uri_apple_music": "applemusic://track/1443086921",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1443086921"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/132194024",
+      "alt_artists": [
+        "Yasin",
+        "Danny Saucedo",
+        "Jakob Karlberg"
+      ],
+      "fun_fact": "'Bara Få Va Mig Själv' by Laleh was first released in 2016.",
+      "fun_fact_de": "'Bara Få Va Mig Själv' von Laleh erschien erstmals 2016.",
+      "fun_fact_es": "'Bara Få Va Mig Själv' de Laleh se publicó por primera vez en 2016.",
+      "fun_fact_fr": "« Bara Få Va Mig Själv » de Laleh est sorti pour la première fois en 2016.",
+      "fun_fact_nl": "'Bara Få Va Mig Själv' van Laleh verscheen voor het eerst in 2016."
+    },
+    {
+      "artist": "Molly Sandén",
+      "title": "Vi ska aldrig gå hem",
+      "year": 2021,
+      "isrc": "SEBGA2100591",
+      "uri": "spotify:track:7iSuirVvJsBXZ95UEd9vQ0",
+      "uri_apple_music": "applemusic://track/1586366072",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1586366072"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1497167572",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'Vi ska aldrig gå hem' by Molly Sandén was first released in 2021.",
+      "fun_fact_de": "'Vi ska aldrig gå hem' von Molly Sandén erschien erstmals 2021.",
+      "fun_fact_es": "'Vi ska aldrig gå hem' de Molly Sandén se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Vi ska aldrig gå hem » de Molly Sandén est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Vi ska aldrig gå hem' van Molly Sandén verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Arvingarna",
+      "title": "Eloise",
+      "year": 1993,
+      "isrc": "SE4WJ1500201",
+      "uri": "spotify:track:2vrr1cDXV2OZ4vrMueocHR",
+      "uri_apple_music": "applemusic://track/986766998",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/986766998"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/98754990",
+      "alt_artists": [
+        "Magnus Uggla",
+        "Tommy Nilsson",
+        "kent"
+      ],
+      "fun_fact": "'Eloise' by Arvingarna was first released in 1993.",
+      "fun_fact_de": "'Eloise' von Arvingarna erschien erstmals 1993.",
+      "fun_fact_es": "'Eloise' de Arvingarna se publicó por primera vez en 1993.",
+      "fun_fact_fr": "« Eloise » de Arvingarna est sorti pour la première fois en 1993.",
+      "fun_fact_nl": "'Eloise' van Arvingarna verscheen voor het eerst in 1993."
+    },
+    {
+      "artist": "Mando Diao",
+      "title": "Strövtåg i hembygden",
+      "year": 2012,
+      "isrc": "SEYBD1200106",
+      "uri": "spotify:track:5gzslnn0fGkJnMz2IbyMw7",
+      "uri_apple_music": "applemusic://track/1540336676",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1540336676"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1137693992",
+      "alt_artists": [
+        "The Hives",
+        "The Hellacopters",
+        "Kaiser Chiefs"
+      ],
+      "fun_fact": "'Strövtåg i hembygden' by Mando Diao was first released in 2012.",
+      "fun_fact_de": "'Strövtåg i hembygden' von Mando Diao erschien erstmals 2012.",
+      "fun_fact_es": "'Strövtåg i hembygden' de Mando Diao se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Strövtåg i hembygden » de Mando Diao est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Strövtåg i hembygden' van Mando Diao verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "Tommy Körberg",
+      "title": "Stad i ljus",
+      "year": 1988,
+      "isrc": "SEBMA9546010",
+      "uri": "spotify:track:7bVwUOySQGO2afJ0LArAMi",
+      "uri_apple_music": "applemusic://track/324174317",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/324174317"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/71399912",
+      "alt_artists": [
+        "Magnus Uggla",
+        "Arvingarna",
+        "Carola"
+      ],
+      "fun_fact": "'Stad i ljus' by Tommy Körberg was first released in 1988.",
+      "fun_fact_de": "'Stad i ljus' von Tommy Körberg erschien erstmals 1988.",
+      "fun_fact_es": "'Stad i ljus' de Tommy Körberg se publicó por primera vez en 1988.",
+      "fun_fact_fr": "« Stad i ljus » de Tommy Körberg est sorti pour la première fois en 1988.",
+      "fun_fact_nl": "'Stad i ljus' van Tommy Körberg verscheen voor het eerst in 1988."
+    },
+    {
+      "artist": "Myra Granberg",
+      "title": "Lose my mind",
+      "year": 2021,
+      "isrc": "SEBGA2100144",
+      "uri": "spotify:track:5D2ZobLrLLFcPoOWw5YE0e",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1298490022",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'Lose my mind' by Myra Granberg was first released in 2021.",
+      "fun_fact_de": "'Lose my mind' von Myra Granberg erschien erstmals 2021.",
+      "fun_fact_es": "'Lose my mind' de Myra Granberg se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Lose my mind » de Myra Granberg est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Lose my mind' van Myra Granberg verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Satan i gatan",
+      "year": 2011,
+      "isrc": "SEUM71100167",
+      "uri": "spotify:track:3q8WojYJVZsGClFGFBYdTc",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/44112881",
+      "alt_artists": [
+        "Ansiktet",
+        "Den svenska björnstammen",
+        "Melissa Horn"
+      ],
+      "fun_fact": "'Satan i gatan' by Veronica Maggio was first released in 2011.",
+      "fun_fact_de": "'Satan i gatan' von Veronica Maggio erschien erstmals 2011.",
+      "fun_fact_es": "'Satan i gatan' de Veronica Maggio se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Satan i gatan » de Veronica Maggio est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Satan i gatan' van Veronica Maggio verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Carola",
+      "title": "Säg mig var du står",
+      "year": 1983,
+      "isrc": "SEBMI8350020",
+      "uri": "spotify:track:32qGFJqweMFsGvsxRKgdjk",
+      "uri_apple_music": "applemusic://track/355675760",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/355675760"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1083186",
+      "alt_artists": [
+        "Loreen",
+        "Charlotte Perrelli",
+        "Gyllene Tider"
+      ],
+      "fun_fact": "'Säg mig var du står' by Carola was first released in 1983.",
+      "fun_fact_de": "'Säg mig var du står' von Carola erschien erstmals 1983.",
+      "fun_fact_es": "'Säg mig var du står' de Carola se publicó por primera vez en 1983.",
+      "fun_fact_fr": "« Säg mig var du står » de Carola est sorti pour la première fois en 1983.",
+      "fun_fact_nl": "'Säg mig var du står' van Carola verscheen voor het eerst in 1983."
+    },
+    {
+      "artist": "KAJ",
+      "title": "Bara Bada Bastu",
+      "year": 2025,
+      "isrc": "SEPQA2500011",
+      "uri": "spotify:track:6eIzQCYExfnNeM7KOlE3lE",
+      "uri_apple_music": "applemusic://track/1804939959",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1804939959"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3226932221",
+      "alt_artists": [
+        "Albin Johnsén",
+        "Simon Superti",
+        "Molly Sandén"
+      ],
+      "fun_fact": "'Bara Bada Bastu' by KAJ was first released in 2025.",
+      "fun_fact_de": "'Bara Bada Bastu' von KAJ erschien erstmals 2025.",
+      "fun_fact_es": "'Bara Bada Bastu' de KAJ se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Bara Bada Bastu » de KAJ est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Bara Bada Bastu' van KAJ verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Miriam Bryant, Victor Leksell",
+      "title": "tystnar i luren",
+      "year": 2021,
+      "isrc": "SE5EM2000701",
+      "uri": "spotify:track:4dxeRrYgeAQ1F0uH9g04lN",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1235026712",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'tystnar i luren' by Miriam Bryant, Victor Leksell was first released in 2021.",
+      "fun_fact_de": "'tystnar i luren' von Miriam Bryant, Victor Leksell erschien erstmals 2021.",
+      "fun_fact_es": "'tystnar i luren' de Miriam Bryant, Victor Leksell se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« tystnar i luren » de Miriam Bryant, Victor Leksell est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'tystnar i luren' van Miriam Bryant, Victor Leksell verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Magnus Uggla",
+      "title": "Dansar aldrig nykter",
+      "year": 1993,
+      "isrc": "SEVBS9301090",
+      "uri": "spotify:track:6IUQMT0yDbYnYTUO37lJZ6",
+      "uri_apple_music": "applemusic://track/1728687941",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1728687941"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2644918022",
+      "alt_artists": [
+        "Arvingarna",
+        "Tommy Nilsson",
+        "kent"
+      ],
+      "fun_fact": "'Dansar aldrig nykter' by Magnus Uggla was first released in 1993.",
+      "fun_fact_de": "'Dansar aldrig nykter' von Magnus Uggla erschien erstmals 1993.",
+      "fun_fact_es": "'Dansar aldrig nykter' de Magnus Uggla se publicó por primera vez en 1993.",
+      "fun_fact_fr": "« Dansar aldrig nykter » de Magnus Uggla est sorti pour la première fois en 1993.",
+      "fun_fact_nl": "'Dansar aldrig nykter' van Magnus Uggla verscheen voor het eerst in 1993."
+    },
+    {
+      "artist": "Panetoz",
+      "title": "Dansa Pausa",
+      "year": 2012,
+      "isrc": "SEYVL1400213",
+      "uri": "spotify:track:2gNAGt7gUiMkagkhIiDLPm",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/75169022",
+      "alt_artists": [
+        "AKI",
+        "Kartellen",
+        "Mando Diao"
+      ],
+      "fun_fact": "'Dansa Pausa' by Panetoz was first released in 2012.",
+      "fun_fact_de": "'Dansa Pausa' von Panetoz erschien erstmals 2012.",
+      "fun_fact_es": "'Dansa Pausa' de Panetoz se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Dansa Pausa » de Panetoz est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Dansa Pausa' van Panetoz verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "Den svenska björnstammen",
+      "title": "Svalkar vinden",
+      "year": 2011,
+      "isrc": "SE2UI1200102",
+      "uri": "spotify:track:4zDdZaKglOiw76QxbvWU2S",
+      "uri_apple_music": "applemusic://track/966647220",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/966647220"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/580150052",
+      "alt_artists": [
+        "Ansiktet",
+        "Melissa Horn",
+        "Veronica Maggio"
+      ],
+      "fun_fact": "'Svalkar vinden' by Den svenska björnstammen was first released in 2011.",
+      "fun_fact_de": "'Svalkar vinden' von Den svenska björnstammen erschien erstmals 2011.",
+      "fun_fact_es": "'Svalkar vinden' de Den svenska björnstammen se publicó por primera vez en 2011.",
+      "fun_fact_fr": "« Svalkar vinden » de Den svenska björnstammen est sorti pour la première fois en 2011.",
+      "fun_fact_nl": "'Svalkar vinden' van Den svenska björnstammen verscheen voor het eerst in 2011."
+    },
+    {
+      "artist": "Hov1",
+      "title": "Mandy Moore",
+      "year": 2017,
+      "isrc": "SEUM71700339",
+      "uri": "spotify:track:2vD1hN8Oxqfh4umefOVIqP",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/354196291",
+      "alt_artists": [
+        "Kaliffa",
+        "Laleh",
+        "Yasin"
+      ],
+      "fun_fact": "'Mandy Moore' by Hov1 was first released in 2017.",
+      "fun_fact_de": "'Mandy Moore' von Hov1 erschien erstmals 2017.",
+      "fun_fact_es": "'Mandy Moore' de Hov1 se publicó por primera vez en 2017.",
+      "fun_fact_fr": "« Mandy Moore » de Hov1 est sorti pour la première fois en 2017.",
+      "fun_fact_nl": "'Mandy Moore' van Hov1 verscheen voor het eerst in 2017."
+    },
+    {
+      "artist": "Victor Leksell",
+      "title": "Natthimlen",
+      "year": 2024,
+      "isrc": "SE6TS2400104",
+      "uri": "spotify:track:1ABS9QUpgdLMiNzEDiilAs",
+      "uri_apple_music": "applemusic://track/1722483619",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1722483619"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2594990452",
+      "alt_artists": [
+        "Molly Sandén",
+        "Albin Johnsén",
+        "KAJ"
+      ],
+      "fun_fact": "'Natthimlen' by Victor Leksell was first released in 2024.",
+      "fun_fact_de": "'Natthimlen' von Victor Leksell erschien erstmals 2024.",
+      "fun_fact_es": "'Natthimlen' de Victor Leksell se publicó por primera vez en 2024.",
+      "fun_fact_fr": "« Natthimlen » de Victor Leksell est sorti pour la première fois en 2024.",
+      "fun_fact_nl": "'Natthimlen' van Victor Leksell verscheen voor het eerst in 2024."
+    },
+    {
+      "artist": "Gyllene Tider",
+      "title": "Sommartider",
+      "year": 1982,
+      "isrc": "SEAME0400058",
+      "uri": "spotify:track:1d1BeKPNgaQ36wcxGqnfU3",
+      "uri_apple_music": "applemusic://track/691335578",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/691335578"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3480470",
+      "alt_artists": [
+        "Tomas Ledin",
+        "Carola",
+        "Niklas Strömstedt"
+      ],
+      "fun_fact": "'Sommartider' by Gyllene Tider was first released in 1982.",
+      "fun_fact_de": "'Sommartider' von Gyllene Tider erschien erstmals 1982.",
+      "fun_fact_es": "'Sommartider' de Gyllene Tider se publicó por primera vez en 1982.",
+      "fun_fact_fr": "« Sommartider » de Gyllene Tider est sorti pour la première fois en 1982.",
+      "fun_fact_nl": "'Sommartider' van Gyllene Tider verscheen voor het eerst in 1982."
+    },
+    {
+      "artist": "Carola",
+      "title": "Främling",
+      "year": 1983,
+      "isrc": "SEBMI8351010",
+      "uri": "spotify:track:2S8BQdQgN3sCA0uI0A3gXw",
+      "uri_apple_music": "applemusic://track/355675759",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/355675759"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1084373",
+      "alt_artists": [
+        "Loreen",
+        "Charlotte Perrelli",
+        "Gyllene Tider"
+      ],
+      "fun_fact": "'Främling' by Carola was first released in 1983.",
+      "fun_fact_de": "'Främling' von Carola erschien erstmals 1983.",
+      "fun_fact_es": "'Främling' de Carola se publicó por primera vez en 1983.",
+      "fun_fact_fr": "« Främling » de Carola est sorti pour la première fois en 1983.",
+      "fun_fact_nl": "'Främling' van Carola verscheen voor het eerst in 1983."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Sergels torg",
+      "year": 2013,
+      "isrc": "SEUM71301582",
+      "uri": "spotify:track:48ubkDBO9GAFRkn3hXFHVt",
+      "uri_apple_music": "applemusic://track/1442989441",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442989441"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1465996442",
+      "alt_artists": [
+        "Håkan Hellström",
+        "Medina",
+        "Tjuvjakt"
+      ],
+      "fun_fact": "'Sergels torg' by Veronica Maggio was first released in 2013.",
+      "fun_fact_de": "'Sergels torg' von Veronica Maggio erschien erstmals 2013.",
+      "fun_fact_es": "'Sergels torg' de Veronica Maggio se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Sergels torg » de Veronica Maggio est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Sergels torg' van Veronica Maggio verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Kartellen, Sebbe Staxx, Dani M",
+      "title": "Mina områden",
+      "year": 2012,
+      "isrc": "SEVLE1200202",
+      "uri": "spotify:track:1TFlvQ12TtF9nHmvXCaLpx",
+      "uri_apple_music": "applemusic://track/1444208060",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1444208060"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/62472269",
+      "alt_artists": [
+        "AKI",
+        "Mando Diao",
+        "Panetoz"
+      ],
+      "fun_fact": "'Mina områden' by Kartellen, Sebbe Staxx, Dani M was first released in 2012.",
+      "fun_fact_de": "'Mina områden' von Kartellen, Sebbe Staxx, Dani M erschien erstmals 2012.",
+      "fun_fact_es": "'Mina områden' de Kartellen, Sebbe Staxx, Dani M se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Mina områden » de Kartellen, Sebbe Staxx, Dani M est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Mina områden' van Kartellen, Sebbe Staxx, Dani M verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "Victor Leksell",
+      "title": "Ha dig igen",
+      "year": 2020,
+      "isrc": "SEBGA2000500",
+      "uri": "spotify:track:6FY1QdP2WeXZ73ERGaSXVN",
+      "uri_apple_music": "applemusic://track/1518315155",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1518315155"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/990822752",
+      "alt_artists": [
+        "Albatraoz",
+        "Miss Li",
+        "1.Cuz"
+      ],
+      "fun_fact": "'Ha dig igen' by Victor Leksell was first released in 2020.",
+      "fun_fact_de": "'Ha dig igen' von Victor Leksell erschien erstmals 2020.",
+      "fun_fact_es": "'Ha dig igen' de Victor Leksell se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« Ha dig igen » de Victor Leksell est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'Ha dig igen' van Victor Leksell verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Medina",
+      "title": "Där palmerna bor",
+      "year": 2012,
+      "isrc": "SEPQA2500019",
+      "uri": "spotify:track:5hsZ6loP0rseyjleWs0cZ1",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3195529151",
+      "alt_artists": [
+        "AKI",
+        "Kartellen",
+        "Mando Diao"
+      ],
+      "fun_fact": "'Där palmerna bor' by Medina was first released in 2012.",
+      "fun_fact_de": "'Där palmerna bor' von Medina erschien erstmals 2012.",
+      "fun_fact_es": "'Där palmerna bor' de Medina se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Där palmerna bor » de Medina est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Där palmerna bor' van Medina verscheen voor het eerst in 2012."
+    },
+    {
+      "artist": "Miss Li",
+      "title": "Instruktionsboken",
+      "year": 2021,
+      "isrc": "SE5HK2000154",
+      "uri": "spotify:track:7zKTQhQPCGnh2PgP93Pxsu",
+      "uri_apple_music": "applemusic://track/1584121728",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1584121728"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1483069882",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'Instruktionsboken' by Miss Li was first released in 2021.",
+      "fun_fact_de": "'Instruktionsboken' von Miss Li erschien erstmals 2021.",
+      "fun_fact_es": "'Instruktionsboken' de Miss Li se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Instruktionsboken » de Miss Li est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Instruktionsboken' van Miss Li verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Tillfälligheter",
+      "year": 2019,
+      "isrc": "SEUM71900174",
+      "uri": "spotify:track:0rBj6lYQUMHwTJ33sdj6Qz",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/760440652",
+      "alt_artists": [
+        "1.Cuz",
+        "Mares",
+        "estraden"
+      ],
+      "fun_fact": "'Tillfälligheter' by Veronica Maggio was first released in 2019.",
+      "fun_fact_de": "'Tillfälligheter' von Veronica Maggio erschien erstmals 2019.",
+      "fun_fact_es": "'Tillfälligheter' de Veronica Maggio se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Tillfälligheter » de Veronica Maggio est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Tillfälligheter' van Veronica Maggio verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Victor Leksell",
+      "title": "Skriker mitt namn",
+      "year": 2025,
+      "isrc": "SEBGA2401874",
+      "uri": "spotify:track:3jGTLWpILJexFMVibAjij9",
+      "uri_apple_music": "applemusic://track/1786615078",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1786615078"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3152485271",
+      "alt_artists": [
+        "Albin Johnsén",
+        "KAJ",
+        "Simon Superti"
+      ],
+      "fun_fact": "'Skriker mitt namn' by Victor Leksell was first released in 2025.",
+      "fun_fact_de": "'Skriker mitt namn' von Victor Leksell erschien erstmals 2025.",
+      "fun_fact_es": "'Skriker mitt namn' de Victor Leksell se publicó por primera vez en 2025.",
+      "fun_fact_fr": "« Skriker mitt namn » de Victor Leksell est sorti pour la première fois en 2025.",
+      "fun_fact_nl": "'Skriker mitt namn' van Victor Leksell verscheen voor het eerst in 2025."
+    },
+    {
+      "artist": "Gyllene Tider",
+      "title": "När vi två blir en",
+      "year": 1980,
+      "isrc": "SEAME0400037",
+      "uri": "spotify:track:2EKzS2s2VKnbQ7jxyk2WHi",
+      "uri_apple_music": "applemusic://track/693131088",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/693131088"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3480458",
+      "alt_artists": [
+        "Niklas Strömstedt",
+        "Tomas Ledin",
+        "Carola"
+      ],
+      "fun_fact": "'När vi två blir en' by Gyllene Tider was first released in 1980.",
+      "fun_fact_de": "'När vi två blir en' von Gyllene Tider erschien erstmals 1980.",
+      "fun_fact_es": "'När vi två blir en' de Gyllene Tider se publicó por primera vez en 1980.",
+      "fun_fact_fr": "« När vi två blir en » de Gyllene Tider est sorti pour la première fois en 1980.",
+      "fun_fact_nl": "'När vi två blir en' van Gyllene Tider verscheen voor het eerst in 1980."
+    },
+    {
+      "artist": "kent",
+      "title": "Musik Non Stop",
+      "year": 1992,
+      "isrc": "SEBMC9961010",
+      "uri": "spotify:track:0kNN4E7Ai5u5JprxgLJH3R",
+      "uri_apple_music": "applemusic://track/360813692",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/360813692"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/15770180",
+      "alt_artists": [
+        "Magnus Uggla",
+        "Arvingarna",
+        "Tommy Nilsson"
+      ],
+      "fun_fact": "'Musik Non Stop' by kent was first released in 1992.",
+      "fun_fact_de": "'Musik Non Stop' von kent erschien erstmals 1992.",
+      "fun_fact_es": "'Musik Non Stop' de kent se publicó por primera vez en 1992.",
+      "fun_fact_fr": "« Musik Non Stop » de kent est sorti pour la première fois en 1992.",
+      "fun_fact_nl": "'Musik Non Stop' van kent verscheen voor het eerst in 1992."
+    },
+    {
+      "artist": "Molly Sandén",
+      "title": "Det bästa kanske inte hänt än",
+      "year": 2019,
+      "isrc": "SE4T41900106",
+      "uri": "spotify:track:4NB5xE2cE0Hf8cGnzSiWM7",
+      "uri_apple_music": "applemusic://track/1463018569",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1463018569"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/677472692",
+      "alt_artists": [
+        "1.Cuz",
+        "Mares",
+        "estraden"
+      ],
+      "fun_fact": "'Det bästa kanske inte hänt än' by Molly Sandén was first released in 2019.",
+      "fun_fact_de": "'Det bästa kanske inte hänt än' von Molly Sandén erschien erstmals 2019.",
+      "fun_fact_es": "'Det bästa kanske inte hänt än' de Molly Sandén se publicó por primera vez en 2019.",
+      "fun_fact_fr": "« Det bästa kanske inte hänt än » de Molly Sandén est sorti pour la première fois en 2019.",
+      "fun_fact_nl": "'Det bästa kanske inte hänt än' van Molly Sandén verscheen voor het eerst in 2019."
+    },
+    {
+      "artist": "Lars Winnerbäck, Miss Li",
+      "title": "Om du lämnade mig nu",
+      "year": 2007,
+      "isrc": "SEUM70700862",
+      "uri": "spotify:track:17q9gSD214wClyCjqrhmgH",
+      "uri_apple_music": "applemusic://track/1442524547",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442524547"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1115403",
+      "alt_artists": [
+        "Markoolio",
+        "Nanne",
+        "Daniel Adams-Ray"
+      ],
+      "fun_fact": "'Om du lämnade mig nu' by Lars Winnerbäck, Miss Li was first released in 2007.",
+      "fun_fact_de": "'Om du lämnade mig nu' von Lars Winnerbäck, Miss Li erschien erstmals 2007.",
+      "fun_fact_es": "'Om du lämnade mig nu' de Lars Winnerbäck, Miss Li se publicó por primera vez en 2007.",
+      "fun_fact_fr": "« Om du lämnade mig nu » de Lars Winnerbäck, Miss Li est sorti pour la première fois en 2007.",
+      "fun_fact_nl": "'Om du lämnade mig nu' van Lars Winnerbäck, Miss Li verscheen voor het eerst in 2007."
+    },
+    {
+      "artist": "Tommy Nilsson",
+      "title": "Öppna din dörr",
+      "year": 1994,
+      "isrc": "SEBMC9423030",
+      "uri": "spotify:track:1eU5jMB4iYhdjQC6AS7ygy",
+      "uri_apple_music": "applemusic://track/497091239",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/497091239"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/635792",
+      "alt_artists": [
+        "Arvingarna",
+        "Magnus Uggla",
+        "kent"
+      ],
+      "fun_fact": "'Öppna din dörr' by Tommy Nilsson was first released in 1994.",
+      "fun_fact_de": "'Öppna din dörr' von Tommy Nilsson erschien erstmals 1994.",
+      "fun_fact_es": "'Öppna din dörr' de Tommy Nilsson se publicó por primera vez en 1994.",
+      "fun_fact_fr": "« Öppna din dörr » de Tommy Nilsson est sorti pour la première fois en 1994.",
+      "fun_fact_nl": "'Öppna din dörr' van Tommy Nilsson verscheen voor het eerst in 1994."
+    },
+    {
+      "artist": "Miriam Bryant",
+      "title": "Ett sista glas",
+      "year": 2015,
+      "isrc": "SE3R51500116",
+      "uri": "spotify:track:1SZDQMXX1FrA97YY7Lt3Fj",
+      "uri_apple_music": "applemusic://track/1068903649",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1068903649"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/115704502",
+      "alt_artists": [
+        "Danny Saucedo",
+        "Jakob Karlberg",
+        "Norlie & KKV"
+      ],
+      "fun_fact": "'Ett sista glas' by Miriam Bryant was first released in 2015.",
+      "fun_fact_de": "'Ett sista glas' von Miriam Bryant erschien erstmals 2015.",
+      "fun_fact_es": "'Ett sista glas' de Miriam Bryant se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Ett sista glas » de Miriam Bryant est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Ett sista glas' van Miriam Bryant verscheen voor het eerst in 2015."
+    },
+    {
+      "artist": "Victor Leksell",
+      "title": "Bedövning",
+      "year": 2020,
+      "isrc": "SEBGA2000503",
+      "uri": "spotify:track:4r3MaUVtwfSPXTsN5xX91i",
+      "uri_apple_music": "applemusic://track/1518315273",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1518315273"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/990822812",
+      "alt_artists": [
+        "Albatraoz",
+        "Miss Li",
+        "1.Cuz"
+      ],
+      "fun_fact": "'Bedövning' by Victor Leksell was first released in 2020.",
+      "fun_fact_de": "'Bedövning' von Victor Leksell erschien erstmals 2020.",
+      "fun_fact_es": "'Bedövning' de Victor Leksell se publicó por primera vez en 2020.",
+      "fun_fact_fr": "« Bedövning » de Victor Leksell est sorti pour la première fois en 2020.",
+      "fun_fact_nl": "'Bedövning' van Victor Leksell verscheen voor het eerst in 2020."
+    },
+    {
+      "artist": "Kaliffa",
+      "title": "Helt seriöst",
+      "year": 2017,
+      "isrc": "SEUM71700464",
+      "uri": "spotify:track:6uucB29G6Y7LThzNfuRkiw",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/372936491",
+      "alt_artists": [
+        "Hov1",
+        "Laleh",
+        "Yasin"
+      ],
+      "fun_fact": "'Helt seriöst' by Kaliffa was first released in 2017.",
+      "fun_fact_de": "'Helt seriöst' von Kaliffa erschien erstmals 2017.",
+      "fun_fact_es": "'Helt seriöst' de Kaliffa se publicó por primera vez en 2017.",
+      "fun_fact_fr": "« Helt seriöst » de Kaliffa est sorti pour la première fois en 2017.",
+      "fun_fact_nl": "'Helt seriöst' van Kaliffa verscheen voor het eerst in 2017."
+    },
+    {
+      "artist": "Nanne",
+      "title": "Håll om mig",
+      "year": 2005,
+      "isrc": "SEPEL0512010",
+      "uri": "spotify:track:1ncViFeYXhivtuPumssvmZ",
+      "uri_apple_music": "applemusic://track/1786463571",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1786463571"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/3151127981",
+      "alt_artists": [
+        "Lars Winnerbäck",
+        "Markoolio",
+        "Kapten Röd"
+      ],
+      "fun_fact": "'Håll om mig' by Nanne was first released in 2005.",
+      "fun_fact_de": "'Håll om mig' von Nanne erschien erstmals 2005.",
+      "fun_fact_es": "'Håll om mig' de Nanne se publicó por primera vez en 2005.",
+      "fun_fact_fr": "« Håll om mig » de Nanne est sorti pour la première fois en 2005.",
+      "fun_fact_nl": "'Håll om mig' van Nanne verscheen voor het eerst in 2005."
+    },
+    {
+      "artist": "Veronica Maggio",
+      "title": "Trädgården en fredag",
+      "year": 2013,
+      "isrc": "SEUM71301694",
+      "uri": "spotify:track:1oFoY6INRnHIpHY6ssPxBm",
+      "uri_apple_music": "applemusic://track/1442989548",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442989548"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1465996542",
+      "alt_artists": [
+        "Håkan Hellström",
+        "Medina",
+        "Tjuvjakt"
+      ],
+      "fun_fact": "'Trädgården en fredag' by Veronica Maggio was first released in 2013.",
+      "fun_fact_de": "'Trädgården en fredag' von Veronica Maggio erschien erstmals 2013.",
+      "fun_fact_es": "'Trädgården en fredag' de Veronica Maggio se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Trädgården en fredag » de Veronica Maggio est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Trädgården en fredag' van Veronica Maggio verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Danny Saucedo, Malcolm B",
+      "title": "Brinner i bröstet (feat. Malcolm B)",
+      "year": 2015,
+      "isrc": "SEBGA1500098",
+      "uri": "spotify:track:0OWWwH0IRJm3njG2ewmlWa",
+      "uri_apple_music": "applemusic://track/1023678218",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1023678218"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/104816890",
+      "alt_artists": [
+        "Jakob Karlberg",
+        "Norlie & KKV",
+        "Laleh"
+      ],
+      "fun_fact": "'Brinner i bröstet (feat. Malcolm B)' by Danny Saucedo, Malcolm B was first released in 2015.",
+      "fun_fact_de": "'Brinner i bröstet (feat. Malcolm B)' von Danny Saucedo, Malcolm B erschien erstmals 2015.",
+      "fun_fact_es": "'Brinner i bröstet (feat. Malcolm B)' de Danny Saucedo, Malcolm B se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Brinner i bröstet (feat. Malcolm B) » de Danny Saucedo, Malcolm B est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Brinner i bröstet (feat. Malcolm B)' van Danny Saucedo, Malcolm B verscheen voor het eerst in 2015."
+    },
+    {
+      "artist": "Magnus Uggla",
+      "title": "Trubaduren",
+      "year": 1993,
+      "isrc": "SEVBS9301050",
+      "uri": "spotify:track:3Ky9LkmNsqmj85J3Xrfskl",
+      "uri_apple_music": "applemusic://track/1728687918",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1728687918"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/9793256",
+      "alt_artists": [
+        "Arvingarna",
+        "Tommy Nilsson",
+        "kent"
+      ],
+      "fun_fact": "'Trubaduren' by Magnus Uggla was first released in 1993.",
+      "fun_fact_de": "'Trubaduren' von Magnus Uggla erschien erstmals 1993.",
+      "fun_fact_es": "'Trubaduren' de Magnus Uggla se publicó por primera vez en 1993.",
+      "fun_fact_fr": "« Trubaduren » de Magnus Uggla est sorti pour la première fois en 1993.",
+      "fun_fact_nl": "'Trubaduren' van Magnus Uggla verscheen voor het eerst in 1993."
+    },
+    {
+      "artist": "Tomas Ledin",
+      "title": "Sommaren är kort",
+      "year": 1982,
+      "isrc": "SEAYD8204040",
+      "uri": "spotify:track:2W7tzqjAPXG97RthXx6pNR",
+      "uri_apple_music": "applemusic://track/1830217633",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1830217633"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/93842676",
+      "alt_artists": [
+        "Gyllene Tider",
+        "Carola",
+        "Niklas Strömstedt"
+      ],
+      "fun_fact": "'Sommaren är kort' by Tomas Ledin was first released in 1982.",
+      "fun_fact_de": "'Sommaren är kort' von Tomas Ledin erschien erstmals 1982.",
+      "fun_fact_es": "'Sommaren är kort' de Tomas Ledin se publicó por primera vez en 1982.",
+      "fun_fact_fr": "« Sommaren är kort » de Tomas Ledin est sorti pour la première fois en 1982.",
+      "fun_fact_nl": "'Sommaren är kort' van Tomas Ledin verscheen voor het eerst in 1982."
+    },
+    {
+      "artist": "Markoolio",
+      "title": "Ingen sommar utan reggae",
+      "year": 2007,
+      "isrc": "SEBMA0700023",
+      "uri": "spotify:track:5YuLlTsWYK9uslUdGM83dJ",
+      "uri_apple_music": "applemusic://track/396672171",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/396672171"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/7346774",
+      "alt_artists": [
+        "Lars Winnerbäck",
+        "Nanne",
+        "Daniel Adams-Ray"
+      ],
+      "fun_fact": "'Ingen sommar utan reggae' by Markoolio was first released in 2007.",
+      "fun_fact_de": "'Ingen sommar utan reggae' von Markoolio erschien erstmals 2007.",
+      "fun_fact_es": "'Ingen sommar utan reggae' de Markoolio se publicó por primera vez en 2007.",
+      "fun_fact_fr": "« Ingen sommar utan reggae » de Markoolio est sorti pour la première fois en 2007.",
+      "fun_fact_nl": "'Ingen sommar utan reggae' van Markoolio verscheen voor het eerst in 2007."
+    },
+    {
+      "artist": "Laleh",
+      "title": "Goliat",
+      "year": 2013,
+      "isrc": "SE36T2300126",
+      "uri": "spotify:track:7qA8S7mbV9uPy9rFprdN3C",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/2125902927",
+      "alt_artists": [
+        "Håkan Hellström",
+        "Medina",
+        "Tjuvjakt"
+      ],
+      "fun_fact": "'Goliat' by Laleh was first released in 2013.",
+      "fun_fact_de": "'Goliat' von Laleh erschien erstmals 2013.",
+      "fun_fact_es": "'Goliat' de Laleh se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Goliat » de Laleh est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Goliat' van Laleh verscheen voor het eerst in 2013."
+    },
+    {
+      "artist": "Tommy Nilsson",
+      "title": "Dina färger var blå",
+      "year": 1995,
+      "isrc": "SEBMR9547010",
+      "uri": "spotify:track:2eIe720mhOM77Gfa6I4Url",
+      "uri_apple_music": "applemusic://track/258687795",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/258687795"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1058904",
+      "alt_artists": [
+        "Arvingarna",
+        "kent",
+        "Magnus Uggla"
+      ],
+      "fun_fact": "'Dina färger var blå' by Tommy Nilsson was first released in 1995.",
+      "fun_fact_de": "'Dina färger var blå' von Tommy Nilsson erschien erstmals 1995.",
+      "fun_fact_es": "'Dina färger var blå' de Tommy Nilsson se publicó por primera vez en 1995.",
+      "fun_fact_fr": "« Dina färger var blå » de Tommy Nilsson est sorti pour la première fois en 1995.",
+      "fun_fact_nl": "'Dina färger var blå' van Tommy Nilsson verscheen voor het eerst in 1995."
+    },
+    {
+      "artist": "kent",
+      "title": "Dom andra",
+      "year": 2002,
+      "isrc": "SEBMC0220010",
+      "uri": "spotify:track:1yU51sZHtxvZHlni32lgxM",
+      "uri_apple_music": "applemusic://track/1151139960",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1151139960"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/972520",
+      "alt_artists": [
+        "Kapten Röd",
+        "Nanne",
+        "Lars Winnerbäck"
+      ],
+      "fun_fact": "'Dom andra' by kent was first released in 2002.",
+      "fun_fact_de": "'Dom andra' von kent erschien erstmals 2002.",
+      "fun_fact_es": "'Dom andra' de kent se publicó por primera vez en 2002.",
+      "fun_fact_fr": "« Dom andra » de kent est sorti pour la première fois en 2002.",
+      "fun_fact_nl": "'Dom andra' van kent verscheen voor het eerst in 2002."
+    },
+    {
+      "artist": "Hov1, Einár",
+      "title": "Gamora",
+      "year": 2021,
+      "isrc": "SEUM72100196",
+      "uri": "spotify:track:2Gd0oV24QsH0zb9nKFx7s5",
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/1503453642",
+      "alt_artists": [
+        "A36",
+        "Albin Lee Meldau",
+        "Bolaget"
+      ],
+      "fun_fact": "'Gamora' by Hov1, Einár was first released in 2021.",
+      "fun_fact_de": "'Gamora' von Hov1, Einár erschien erstmals 2021.",
+      "fun_fact_es": "'Gamora' de Hov1, Einár se publicó por primera vez en 2021.",
+      "fun_fact_fr": "« Gamora » de Hov1, Einár est sorti pour la première fois en 2021.",
+      "fun_fact_nl": "'Gamora' van Hov1, Einár verscheen voor het eerst in 2021."
+    },
+    {
+      "artist": "Yasin",
+      "title": "Trakten min",
+      "year": 2016,
+      "isrc": "SEBGA1601482",
+      "uri": "spotify:track:2HuMRW4PILLHwRb21oUhdO",
+      "uri_apple_music": "applemusic://track/1118137607",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1118137607"
+      },
+      "uri_tidal": null,
+      "uri_deezer": "deezer://track/125970183",
+      "alt_artists": [
+        "Laleh",
+        "Danny Saucedo",
+        "Jakob Karlberg"
+      ],
+      "fun_fact": "'Trakten min' by Yasin was first released in 2016.",
+      "fun_fact_de": "'Trakten min' von Yasin erschien erstmals 2016.",
+      "fun_fact_es": "'Trakten min' de Yasin se publicó por primera vez en 2016.",
+      "fun_fact_fr": "« Trakten min » de Yasin est sorti pour la première fois en 2016.",
+      "fun_fact_nl": "'Trakten min' van Yasin verscheen voor het eerst in 2016."
+    }
+  ]
+}
