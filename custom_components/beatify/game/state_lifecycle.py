@@ -110,7 +110,10 @@ import asyncio
 import contextlib
 import logging
 
-from custom_components.beatify.const import MAX_CONSECUTIVE_PLAYBACK_FAILURES
+from custom_components.beatify.const import (
+    MAX_CONSECUTIVE_PLAYBACK_FAILURES,
+    SONG_STARTING_HINT_DELAY_SECONDS,
+)
 from custom_components.beatify.providers import get_provider
 
 from .playlist import get_playback_uri, get_song_uri
@@ -209,6 +212,31 @@ class RoundLifecycleMixin(GameStateBase):
                 )
                 return True
             return await self._start_round_locked(_retry_count)
+
+    async def _send_song_start_notice(self, message_type: str) -> None:
+        """Broadcast a #3604 song-start notice; never raises into the start."""
+        callback = getattr(self, "_on_song_start_notice", None)
+        if callback is None:
+            return
+        try:
+            await callback(message_type)
+        except Exception:  # noqa: BLE001 — a hint must never break a round start
+            _LOGGER.warning("Song start notice %s failed", message_type, exc_info=True)
+
+    async def _hint_slow_song_start(self) -> None:
+        """Send ``song_starting`` once the start has waited long enough (#3604).
+
+        Cancelled as soon as ``play_song`` returns, so a normal 1-2 s start
+        sends nothing. The broadcast itself is shielded: once it has begun,
+        the cancel does not cut a frame off halfway.
+        """
+        await asyncio.sleep(SONG_STARTING_HINT_DELAY_SECONDS)
+        _LOGGER.info(
+            "Round start has waited %.0fs for playback — telling the room the "
+            "next song is loading (#3604)",
+            SONG_STARTING_HINT_DELAY_SECONDS,
+        )
+        await asyncio.shield(self._send_song_start_notice("song_starting"))
 
     async def _skip_failed_intro_start(self) -> None:
         """Skip an intro round whose deferred song failed to start (#3286).
@@ -549,12 +577,30 @@ class RoundLifecycleMixin(GameStateBase):
                 )
                 await asyncio.sleep(busy)
 
-            success = await self._media_player_service.play_song(song)
+            # #3604: from round 2 on, the room waits on the previous REVEAL
+            # while the speaker starts the song, and under rate limiting that
+            # can take most of half a minute. A start still unconfirmed after
+            # SONG_STARTING_HINT_DELAY_SECONDS tells the room the next song is
+            # loading. Round 1 (LOBBY) already shows the vinyl loader via
+            # `game_starting`, and the swap/intro paths run in PLAYING.
+            slow_start_hint = None
+            if self.phase == GamePhase.REVEAL:
+                slow_start_hint = asyncio.ensure_future(self._hint_slow_song_start())
+            try:
+                success = await self._media_player_service.play_song(song)
+            finally:
+                if slow_start_hint is not None:
+                    slow_start_hint.cancel()
+                    with contextlib.suppress(asyncio.CancelledError):
+                        await slow_start_hint
             if not success:
                 # #3293: the skip/pause decision is shared with the intro
                 # round, whose deferred start fails in confirm_intro_splash.
                 self._playlist_manager.mark_played(get_playback_uri(song))  # type: ignore[arg-type]
                 if await self._skip_failed_start(song):
+                    # #3604: the room saw nothing of a skipped song before.
+                    if self.phase == GamePhase.REVEAL:
+                        await self._send_song_start_notice("song_start_failed")
                     return await self._start_round_locked(_retry_count)
                 return False
 

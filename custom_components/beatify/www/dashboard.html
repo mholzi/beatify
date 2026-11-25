@@ -642,6 +642,15 @@
                     </div>
                 </div>
             </div>
+            <!-- #3604: a round 2+ start that waits on the music service. Shown
+                 by dashboard.js on `song_starting` / `song_start_failed`,
+                 hidden again by any state that is not REVEAL. -->
+            <div id="dashboard-song-hint" class="song-hint hidden" role="status" aria-live="polite">
+                <span class="intro-wait__dot" aria-hidden="true"></span>
+                <span class="song-hint__loading" data-i18n="game.songLoading">Next song is loading…</span>
+                <small class="song-hint__loading song-hint__sub" data-i18n="game.songLoadingSlow">The music service is slow right now</small>
+                <span class="song-hint__failed" data-i18n="game.songStartFailed">That song didn't start. Trying another one…</span>
+            </div>
         </div>
 
         <!-- End view (AC 10.4.5) -->

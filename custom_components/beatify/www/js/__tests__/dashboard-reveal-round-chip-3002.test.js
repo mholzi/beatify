@@ -50,6 +50,7 @@ function coldReveal(data) {
         showView: () => {},
         stopCountdown: () => {},
         stopRevealStaging: () => {},
+        setSongStartHint: () => {},  // #3604
         debug: () => {},
         // The chip part of the real renderRevealView; that it is called from
         // there is asserted below.

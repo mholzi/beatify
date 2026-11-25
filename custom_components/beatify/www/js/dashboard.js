@@ -635,6 +635,7 @@
      */
     function showNoGameView() {
         _setTvTarget(false);
+        setSongStartHint(null);
         _scheduleRender.reset();
         if (_sceneWipeHold) _sceneWipeHold.data = null;
         _lastScenePhase = null;
@@ -679,6 +680,10 @@
             // broadcast replaces it.
             stopCountdown();
             showView('dashboard-starting');
+        } else if (data.type === 'song_starting' || data.type === 'song_start_failed') {
+            // #3604: a round 2+ start is waiting on the music service, or its
+            // song failed and the next one is being tried. The reveal stays.
+            setSongStartHint(data.type === 'song_start_failed' ? 'failed' : 'loading');
         } else if (data.type === 'song_stopped') {
             // #2554: the dashboard used to ignore this. To the room the music
             // just stopped while the timer kept running, which is
@@ -1030,7 +1035,11 @@
 
         // #2702: the beats belong to one reveal. Anything that is not REVEAL
         // ends them, which is what lets a fast next round cut the staging.
-        if (phase !== 'REVEAL') stopRevealStaging();
+        // #3604: the song-start hint belongs to the reveal it waits on.
+        if (phase !== 'REVEAL') {
+            stopRevealStaging();
+            setSongStartHint(null);
+        }
 
         // #2958: "Round 7", not "Round 7 of 266", when the game has no cap.
         // Both round chips (PLAYING and REVEAL) follow the same rule.
@@ -1168,6 +1177,23 @@
      * pinned to the round it arrived in and clears itself when the next round
      * renders.
      */
+    /**
+     * #3604: the "next song is loading" pill over the reveal view.
+     * Only a TV that is showing the reveal turns it on, so a notice that races
+     * the next PLAYING state cannot linger into a later reveal.
+     * @param {?string} mode - 'loading', 'failed', or null to hide it
+     */
+    function setSongStartHint(mode) {
+        var hint = document.getElementById('dashboard-song-hint');
+        if (!hint) return;
+        if (mode) {
+            var reveal = document.getElementById('dashboard-reveal');
+            if (!reveal || reveal.classList.contains('hidden')) return;
+        }
+        hint.classList.toggle('song-hint--failed', mode === 'failed');
+        hint.classList.toggle('hidden', !mode);
+    }
+
     function setSongStoppedChip(visible) {
         var chip = document.getElementById('dashboard-song-stopped');
         if (chip) chip.classList.toggle('hidden', !visible);

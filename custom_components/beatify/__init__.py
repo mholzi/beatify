@@ -207,6 +207,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Set up metadata update callback for fast transitions (Issue #42)
     game_state.set_metadata_update_callback(ws_handler.broadcast_metadata_update)
+    # #3604: slow / failed song-start hint on the REVEAL view.
+    game_state.set_song_start_notice_callback(ws_handler.broadcast_song_start_notice)
 
     # Connect analytics to websocket handler for error recording (Story 19.1)
     ws_handler.set_analytics(analytics)

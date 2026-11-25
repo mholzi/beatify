@@ -4137,3 +4137,60 @@ body.join-corner-open #dashboard-reveal {
     .dashboard-sound-gate-btn { font-size: var(--font-size-4xl); min-height: 72px; }
     .dashboard-sound-gate-hint { font-size: var(--font-size-2xl); }
 }
+
+/* #3604: a round 2+ start waits on the music service while the reveal stays
+   up. The pill sits bottom centre over the reveal, in the style of the intro
+   wait card (its pulsing .intro-wait__dot is reused as is), so the standings
+   stay readable. It appears and disappears without a transition; only the dot
+   moves, and not under reduced motion. */
+.song-hint {
+    position: fixed;
+    left: 50%;
+    bottom: var(--space-lg);
+    z-index: 42;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    max-width: calc(100% - 2 * var(--space-lg));
+    padding: var(--space-sm) var(--space-lg);
+    border: 1px solid rgba(0, 245, 255, 0.45);
+    border-radius: var(--radius-full);
+    background: var(--color-surface-dark);
+    box-shadow: var(--glow-secondary);
+    color: var(--color-text-white);
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-2xl);
+    white-space: nowrap;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.song-hint__sub {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-neon-muted);
+}
+
+.song-hint__failed {
+    display: none;
+}
+
+.song-hint--failed {
+    border-color: var(--color-warning-alt);
+    box-shadow: var(--glow-warning-alt);
+}
+
+.song-hint--failed .song-hint__loading {
+    display: none;
+}
+
+.song-hint--failed .song-hint__failed {
+    display: inline;
+}
+
+.song-hint--failed .intro-wait__dot {
+    background: var(--color-warning-alt);
+    box-shadow: var(--glow-warning-alt);
+}

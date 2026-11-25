@@ -86,6 +86,7 @@ beforeEach(() => {
         setSongStoppedChip: noop,
         hideJoinCorner: noop,
         stopRevealStaging: noop,
+        setSongStartHint: noop,  // #3604
         renderJoinCorner: noop,
         renderLeaderboard: noop,
         renderGhostLeague: noop,

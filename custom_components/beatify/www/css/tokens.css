@@ -119,6 +119,7 @@
     --glow-secondary: 0 0 20px var(--color-accent-secondary);
     --glow-success: 0 0 20px var(--color-success-neon);
     --glow-warning: 0 0 20px var(--color-warning);
+    --glow-warning-alt: 0 0 20px var(--color-warning-alt);  /* #3604: failed song-start pill */
     --glow-error: 0 0 20px var(--color-error);
 
     /* Effect Tokens - Shadow */

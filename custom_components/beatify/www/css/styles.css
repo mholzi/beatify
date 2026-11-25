@@ -19300,3 +19300,65 @@ body.theme-dark .your-result-stats .stat-value {
     .wiz-vis-switch,
     .wiz-vis-switch::after { transition: none; }
 }
+
+/* #3604: the phone's half of the song-start hint. A dashed cyan pill near the
+   bottom of the reveal, with the same pulsing dot as the TV's intro wait. It
+   appears and disappears without a transition; only the dot moves, and not
+   under reduced motion. */
+.reveal-song-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border: 1.5px dashed rgba(0, 245, 255, 0.55);
+    border-radius: var(--radius-full);
+    color: var(--color-text-white);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+}
+
+.reveal-song-hint__dot {
+    flex: none;
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-secondary);
+    box-shadow: 0 0 0.7em var(--color-accent-secondary);
+    animation: reveal-song-hint-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes reveal-song-hint-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.reveal-song-hint__failed {
+    display: none;
+}
+
+.reveal-song-hint--failed {
+    border-color: var(--color-warning-alt);
+}
+
+.reveal-song-hint--failed .reveal-song-hint__loading {
+    display: none;
+}
+
+.reveal-song-hint--failed .reveal-song-hint__failed {
+    display: inline;
+}
+
+.reveal-song-hint--failed .reveal-song-hint__dot {
+    background: var(--color-warning-alt);
+    box-shadow: 0 0 0.7em var(--color-warning-alt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-song-hint__dot {
+        animation: none;
+    }
+}
