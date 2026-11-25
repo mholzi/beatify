@@ -86,6 +86,11 @@ REACTION_THROTTLE_SECONDS = 8
 # certain, so skipping it costs no time.
 MAX_CONSECUTIVE_PLAYBACK_FAILURES = 2
 
+# #3604: how long a round 2+ start may wait for confirmed playback before the
+# room is told the next song is loading (`song_starting`). A normal start takes
+# 1-2 s and must show nothing, so the hint only appears for a real wait.
+SONG_STARTING_HINT_DELAY_SECONDS = 3.0
+
 # Server-side round backstop (#1865). A periodic tick ends a round whose
 # deadline passed while the phase is still PLAYING, so the game does not depend
 # on the per-round timer task surviving or on a client's countdown nudging it.

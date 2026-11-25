@@ -416,6 +416,11 @@ class GameState(
         # back to `advance_to_end` directly.
         self._on_game_end: Callable[[], Awaitable[None]] | None = None
 
+        # #3604: tells the room a round 2+ start is slow (`song_starting`) or
+        # that its song failed and the next one is tried (`song_start_failed`).
+        # Wired by the WS handler to a plain typed broadcast.
+        self._on_song_start_notice: Callable[[str], Awaitable[None]] | None = None
+
         # Volume control (Story 6.4)
         self.volume_level: float = 0.5  # Default 50%
 
@@ -750,6 +755,18 @@ class GameState(
 
         """
         self._on_metadata_update = callback
+
+    def set_song_start_notice_callback(
+        self, callback: Callable[[str], Awaitable[None]]
+    ) -> None:
+        """Set the callback that announces a slow or failed song start (#3604).
+
+        Args:
+            callback: Async function called with the message type,
+                ``"song_starting"`` or ``"song_start_failed"``.
+
+        """
+        self._on_song_start_notice = callback
 
     def _score_all_players(
         self, correct_year: int | None, all_players: list[PlayerSession]

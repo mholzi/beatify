@@ -41,6 +41,8 @@ function makeTv() {
         _scheduleRender: null,
         // Play without a speaker: the "Sound on" prompt follows the game.
         _setTvTarget: () => {},
+        // #3604: the song-start pill goes with the game.
+        setSongStartHint: () => {},
     };
     const createRenderCoalescer = evaluate(src('createRenderCoalescer'), 'createRenderCoalescer');
     scope._scheduleRender = createRenderCoalescer(

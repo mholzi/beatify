@@ -48,7 +48,7 @@ import {
 } from './player-game.js';
 
 import { closeRoundSettings } from './round-settings.js';
-import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown, startRevealStaging } from './player-reveal.js';
+import { updateRevealView, setupRevealSheets, setupRevealReportBtn, setupTitleArtistVoting, stopRevealCountdown, startRevealStaging, setSongStartHint } from './player-reveal.js';
 
 import { updateEndView, updatePausedView, handleNewGame, renderEndPlayerMessage } from './player-end.js';
 // #2648: the end screen's playlist picker owns the primary button's label.
@@ -909,6 +909,13 @@ function handleServerMessage(data) {
         if (lobbyActive || loadingActive || !joinActive) {
             showView('starting-view');
         }
+        return;
+    }
+
+    // #3604: a round 2+ start is waiting on the music service, or its song
+    // failed and the next one is tried. A pill on the reveal, no toast.
+    if (data.type === 'song_starting' || data.type === 'song_start_failed') {
+        setSongStartHint(data.type === 'song_start_failed' ? 'failed' : 'loading');
         return;
     }
 

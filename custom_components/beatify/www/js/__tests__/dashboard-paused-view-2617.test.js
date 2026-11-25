@@ -50,6 +50,8 @@ function dispatch(data) {
         // #2702: the dispatcher ends the reveal's three beats on every phase
         // that is not REVEAL.
         stopRevealStaging: () => calls.push({ fn: 'stopRevealStaging' }),
+        // #3604: and clears the song-start pill with them.
+        setSongStartHint: () => {},
         debug: () => calls.push({ fn: 'debug' }),
     };
     for (const [, renderer] of PHASES) {

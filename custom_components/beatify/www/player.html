@@ -972,6 +972,15 @@
                 <!-- Hidden placeholder kept for any residual references -->
                 <div id="reveal-leaderboard-summary" class="hidden"></div>
 
+                <!-- #3604: the next round's song is slow to start (or failed and
+                     another one is tried). Shown on `song_starting` /
+                     `song_start_failed`, gone with the next non-REVEAL state. -->
+                <div id="reveal-song-hint" class="reveal-song-hint hidden" role="status" aria-live="polite">
+                    <span class="reveal-song-hint__dot" aria-hidden="true"></span>
+                    <span class="reveal-song-hint__loading" data-i18n="game.songLoading">Next song is loading…</span>
+                    <span class="reveal-song-hint__failed" data-i18n="game.songStartFailed">That song didn't start. Trying another one…</span>
+                </div>
+
                 <!-- Report wrong data (Issue #911) -->
                 <div class="reveal-report-row">
                     <button type="button" id="reveal-report-btn" class="reveal-report-btn"

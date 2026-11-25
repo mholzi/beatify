@@ -90,6 +90,7 @@ if TYPE_CHECKING:
         _score_lock: asyncio.Lock
         _on_round_end: Callable[[], Awaitable[None]] | None
         _on_game_end: Callable[[], Awaitable[None]] | None
+        _on_song_start_notice: Callable[[str], Awaitable[None]] | None
         pre_start_hook: Callable[[Any], Awaitable[None]] | None
 
         # --- Title & Artist vote window and pause snapshot

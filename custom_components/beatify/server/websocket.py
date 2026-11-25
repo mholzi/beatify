@@ -822,6 +822,17 @@ class BeatifyWebSocketHandler:
         )
         await self.broadcast({"type": "metadata_update", "song": metadata})
 
+    async def broadcast_song_start_notice(self, message_type: str) -> None:
+        """Tell the room a round 2+ song start is slow or failed (#3604).
+
+        Wired as ``GameState.set_song_start_notice_callback``. The message is
+        ``song_starting`` (no confirmed playback after a few seconds) or
+        ``song_start_failed`` (the song was skipped, the next one is tried).
+        The TV and the phones show a small hint on the REVEAL view and drop it
+        with the next non-REVEAL state.
+        """
+        await self.broadcast({"type": message_type})
+
     # ------------------------------------------------------------------
     # Disconnect handling
     # ------------------------------------------------------------------

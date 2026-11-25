@@ -957,7 +957,26 @@ export function startRevealStaging(data) {
  * Stop and reset the reveal auto-advance countdown. Safe to call any time;
  * called from player-core on every phase that leaves REVEAL.
  */
+/**
+ * #3604: the "next song is loading" pill on the phone's reveal.
+ * Only a phone that is showing the reveal turns it on, so a notice that races
+ * the next PLAYING state cannot linger into a later reveal.
+ * @param {?string} mode - 'loading', 'failed', or null to hide it
+ */
+export function setSongStartHint(mode) {
+    var hint = document.getElementById('reveal-song-hint');
+    if (!hint) return;
+    if (mode) {
+        var view = document.getElementById('reveal-view');
+        if (!view || view.classList.contains('hidden')) return;
+    }
+    hint.classList.toggle('reveal-song-hint--failed', mode === 'failed');
+    hint.classList.toggle('hidden', !mode);
+}
+
 export function stopRevealCountdown() {
+    // #3604: leaving REVEAL ends the wait the hint was about.
+    setSongStartHint(null);
     if (_revealAdvanceTick !== null) {
         clearInterval(_revealAdvanceTick);
         _revealAdvanceTick = null;

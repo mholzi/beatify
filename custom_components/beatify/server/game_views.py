@@ -1702,6 +1702,10 @@ class StartGameplayView(BeatifyAdminView):
             game_state.set_metadata_update_callback(
                 ws_handler.broadcast_metadata_update
             )
+            # #3604: slow / failed song-start hint on the REVEAL view.
+            game_state.set_song_start_notice_callback(
+                ws_handler.broadcast_song_start_notice
+            )
 
         # Start the first round. Lowers the sudden-death floor if needed and
         # announces `game_starting` to the room — both shared with the
