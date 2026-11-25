@@ -237,6 +237,18 @@ describe('handleAdminWsMessage start-failure gating (#1402 B7)', () => {
         expect(calls.showSpeakerSetupError).toHaveLength(0);
     });
 
+    // #3607: a second start_game reaching an already-running game is success.
+    it('stays silent for ALREADY_STARTED after a start_game (#3607)', async () => {
+        const { api, calls } = await setup();
+        expect(api.sendAdminWs({ type: 'admin', action: 'start_game' })).toBe(true);
+        api.handleAdminWsMessage({
+            type: 'error', code: 'INVALID_ACTION',
+            message: 'Game already started', message_key: 'ALREADY_STARTED',
+        });
+        expect(calls.resetHomeStartButton).toBe(0);
+        expect(calls.showError).toHaveLength(0);
+    });
+
     it('a `state` message clears the pending flag so a later error is non-blocking', async () => {
         const { api, calls } = await setup();
         const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});

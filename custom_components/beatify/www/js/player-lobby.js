@@ -494,6 +494,11 @@ export function handleStartFailure(data) {
     var startBtn = document.getElementById('start-game-btn');
     if (!startBtn) return false;
 
+    // #3607: a duplicate start (the admin's other start control, a re-tap)
+    // reached a game that is already running. Not a failure: no toast, and the
+    // button stays on "Starting…" until the state broadcast leaves the lobby.
+    if (data && data.message_key === 'ALREADY_STARTED') return true;
+
     // The click handler flattened the button to a text node, so rebuild the
     // icon + label it ships with rather than leaving a bare string.
     startBtn.disabled = false;
