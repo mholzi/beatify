@@ -4,7 +4,21 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
-- Added the "Metal Festival Anthems" community playlist, 100 tracks (#3598).
+## [5.1.0-rc8] - 2026-11-25
+
+Eighth candidate for 5.1.0: fixes from the rc7 nightly test.
+
+### Added
+- **"Next song is loading" hint** (#3604): when a song takes more than 3 seconds to start, the TV and phones say so; a song that fails to start shows a short "trying another one" note.
+- **Metal Festival Anthems** community playlist, 100 tracks (#3598).
+
+### Fixed
+- **Slow music service** (#3604): a song that times out under rate limiting is skipped at once instead of trying every other link first.
+- **Title & Artist in admin and on the TV** (#3605): the admin shows the submitted guess; empty top guesses are hidden on the TV.
+- **Host joining as a player** (#3608): no "Welcome back" toast on the first arrival.
+- **Rematch** (#3607): a duplicate start after a rematch is ignored instead of showing an error.
+- **Setup wizard** (#3603): live race stays off when Title & Artist is off.
+- **Polish Rock**: 8 Apple Music links and 1 YouTube Music link fixed (#3599).
 
 ## [5.1.0-rc7] - 2026-11-24
 
