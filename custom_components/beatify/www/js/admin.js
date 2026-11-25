@@ -1726,6 +1726,20 @@ async function startGameplay() {
     const btn = document.getElementById('home-start-game');
     if (btn && btn.disabled) return;
 
+    // #3607: the button is only disabled further down, after the awaited
+    // lobby update below, so a second tap or handler arriving in that window
+    // sent a second start_game (409 ALREADY_STARTED after a rematch). Guard
+    // synchronously, release when this call settles or fails.
+    if (adminState._gameplayStartInFlight) return;
+    adminState._gameplayStartInFlight = true;
+    try {
+        await startGameplayInner(btn);
+    } finally {
+        adminState._gameplayStartInFlight = false;
+    }
+}
+
+async function startGameplayInner(btn) {
     // Rooms are created at RESET time with the settings of THAT moment; any
     // TTS/lights/device change made afterwards never reached them (songs
     // are covered by the server-side pre-start hook, configs are not — the

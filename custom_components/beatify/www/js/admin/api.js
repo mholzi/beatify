@@ -506,6 +506,14 @@ export function handleAdminWsMessage(data) {
                 // #1402 B7: gated on startPending so only a genuine start failure
                 // resets the home button. Cleared here either way.
                 startPending = false;
+                if (data.message_key === 'ALREADY_STARTED') {
+                    // #3607: a second start_game (another start control, e.g. the
+                    // admin's player-view button, or a re-tap) reached a game that
+                    // is already running. That is success: stay silent, leave the
+                    // button to the state broadcast.
+                    console.debug('[Admin WS] start_game ignored: already started');
+                    break;
+                }
                 deps.resetHomeStartButton();
                 if (data.code === 'MEDIA_PLAYER_UNAVAILABLE') {
                     // #2269: the speaker is gone. A toast names that and then
