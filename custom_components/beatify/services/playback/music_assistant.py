@@ -921,6 +921,21 @@ class MusicAssistantStrategy(PlaybackStrategy):
             # #3278: Beatify gave up on this request, Music Assistant may not
             # have. Remember it so a late arrival is recognised.
             self._note_abandoned_start(uri, song_key)
+            if self.last_failure_reason == "rate_limited":
+                # #3604: the provider is backing off, and every further
+                # candidate (or the name search) goes through the same
+                # limiter: another full budget of silence (25 s each) for a
+                # start that fails the same way. Stop walking and let the game
+                # skip to the next song, which is what state_lifecycle does
+                # with this reason anyway.
+                _LOGGER.warning(
+                    "MA playback: %s - %s timed out while the provider is "
+                    "rate limiting — not trying the remaining candidates, "
+                    "which would wait on the same limiter. (#3604)",
+                    song.get("artist"),
+                    song.get("title"),
+                )
+                return False
 
         # Last resort: let MA resolve the track from name + artist.
         #
