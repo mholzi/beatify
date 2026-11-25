@@ -1,6 +1,6 @@
 {
   "name": "Metal Festival Anthems",
-  "version": "0.2",
+  "version": "0.3",
   "tags": [
     "metal",
     "rock",
@@ -275,9 +275,9 @@
       "year": 1980,
       "isrc": "GBAJE0502019",
       "uri": "spotify:track:4n5OX6FX4jcyow16EP3LaL",
-      "uri_apple_music": "applemusic://track/1621362776",
+      "uri_apple_music": "applemusic://track/1439443126",
       "uri_apple_music_by_region": {
-        "us": "applemusic://track/1621362776"
+        "us": "applemusic://track/1439443126"
       },
       "uri_youtube_music": "https://music.youtube.com/watch?v=DjzyZjIiN5g",
       "uri_tidal": null,
