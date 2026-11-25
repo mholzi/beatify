@@ -4,6 +4,8 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+- Added Swedish Top 100 playlist, 97 tracks (#3616).
+
 ## [5.1.0-rc8] - 2026-11-25
 
 Eighth candidate for 5.1.0: fixes from the rc7 nightly test.
