@@ -577,6 +577,11 @@ var endedViewPollInFlight = false;
 // the END phase would refuse.
 var reconnectingOnPodium = false;
 
+// #3608: set when the host's first arrival on the player page reconnects by
+// the session admin.js already created. That is a handoff, not a return: the
+// host joined seconds ago, so reconnect_ack must not greet them "Welcome back".
+var adminHandoffReconnect = false;
+
 function isEndedViewShowing() {
     var el = document.getElementById('ended-view');
     // Without the element (unit tests) there is nothing to leave.
@@ -1171,10 +1176,14 @@ function handleServerMessage(data) {
     } else if (data.type === 'reconnect_ack') {
         state.joinPending = false;  // #2499
         reconnectingOnPodium = false;  // #2947
+        var wasAdminHandoff = adminHandoffReconnect;  // #3608
+        adminHandoffReconnect = false;
         if (data.success && data.name) {
             state.playerName = data.name;
             storePlayerName(data.name);
-            showWelcomeBackToast(data.name);
+            if (!wasAdminHandoff) {
+                showWelcomeBackToast(data.name);
+            }
         } else {
             clearSessionCookie();
             clearStoredPlayerName();
@@ -1630,6 +1639,7 @@ export async function resolveInitialConnection() {
         // Cookie set by the handoff above (or already by admin.js join_ack) —
         // prefer connectWithSession so we reconnect as the same player.
         if (getSessionCookie()) {
+            adminHandoffReconnect = true;  // #3608
             connectWithSession();
         } else {
             connectWebSocket(state.playerName);
