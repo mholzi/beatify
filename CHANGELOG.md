@@ -4,6 +4,20 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0-rc9] - 2026-11-26
+
+Ninth candidate for 5.1.0: fixes from the rc8 nightly test.
+
+### Added
+- **Swedish Top 100** community playlist, now 144 tracks including 47 Swedish classics (#3616, #3617).
+
+### Fixed
+- **"Next song is loading" hint on phones** (#3626): pinned to the bottom of the screen so it is visible without scrolling.
+- **Slow music service logging** (#3627): a timed-out start counts as rate limiting and is logged as a warning, without a misleading re-authentication hint.
+- **Music after the game ends** (#3628): songs that start late after end-game are stopped, on grouped speakers too.
+- **Top 100 Power Ballads**: 97 dead Tidal links removed, 4 Apple Music links fixed (#3632).
+- **Swedish Top 100**: 2 YouTube Music links fixed (#3629); **Motörhead "Road Crew"**: Apple Music link fixed (#3624).
+
 - Added Swedish Top 100 playlist, 97 tracks (#3616).
 
 ## [5.1.0-rc8] - 2026-11-25
