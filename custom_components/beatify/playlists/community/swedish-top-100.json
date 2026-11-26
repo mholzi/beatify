@@ -1,6 +1,6 @@
 {
   "name": "Swedish Top 100",
-  "version": "0.3",
+  "version": "0.4",
   "tags": [
     "swedish",
     "sweden",
@@ -2230,6 +2230,1126 @@
       "fun_fact_es": "'Trakten min' de Yasin se publicó por primera vez en 2016.",
       "fun_fact_fr": "« Trakten min » de Yasin est sorti pour la première fois en 2016.",
       "fun_fact_nl": "'Trakten min' van Yasin verscheen voor het eerst in 2016."
+    },
+    {
+      "alt_artists": [
+        "Loreen",
+        "Charlotte Perrelli",
+        "Lena Philipsson"
+      ],
+      "artist": "Carola",
+      "fun_fact": "'Tommy tycker om mig' by Carola was first released in 1984.",
+      "fun_fact_de": "„Tommy tycker om mig“ von Carola erschien erstmals 1984.",
+      "fun_fact_es": "«Tommy tycker om mig» de Carola se publicó por primera vez en 1984.",
+      "fun_fact_fr": "« Tommy tycker om mig » de Carola est sorti pour la première fois en 1984.",
+      "fun_fact_nl": "'Tommy tycker om mig' van Carola verscheen voor het eerst in 1984.",
+      "isrc": "SEBMI8411010",
+      "title": "Tommy tycker om mig",
+      "uri": "spotify:track:63vK4u4uKwRD9KVJ5nHc46",
+      "uri_apple_music": "applemusic://track/406129433",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/406129433"
+      },
+      "uri_deezer": "deezer://track/1084394",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=jUUxqMtKJt8",
+      "year": 1984
+    },
+    {
+      "alt_artists": [
+        "Kenneth & The Knutters",
+        "Drängarna",
+        "Lasse Holm"
+      ],
+      "artist": "Ronny & Ragge",
+      "fun_fact": "'Rara söta Anna' by Ronny & Ragge was first released in 1993.",
+      "fun_fact_de": "„Rara söta Anna“ von Ronny & Ragge erschien erstmals 1993.",
+      "fun_fact_es": "«Rara söta Anna» de Ronny & Ragge se publicó por primera vez en 1993.",
+      "fun_fact_fr": "« Rara söta Anna » de Ronny & Ragge est sorti pour la première fois en 1993.",
+      "fun_fact_nl": "'Rara söta Anna' van Ronny & Ragge verscheen voor het eerst in 1993.",
+      "isrc": "SEBMA9344060",
+      "title": "Rara söta Anna",
+      "uri": "spotify:track:09o8YE3Ta7YRXh5NI9HPZQ",
+      "uri_apple_music": "applemusic://track/442902296",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/442902296"
+      },
+      "uri_deezer": "deezer://track/12351640",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=L8EKDeSbLXk",
+      "year": 1993
+    },
+    {
+      "alt_artists": [
+        "Gyllene Tider",
+        "Magnus Uggla",
+        "Tomas Ledin"
+      ],
+      "artist": "Attack",
+      "fun_fact": "'Ooa hela natten' by Attack was first released in 1981.",
+      "fun_fact_de": "„Ooa hela natten“ von Attack erschien erstmals 1981.",
+      "fun_fact_es": "«Ooa hela natten» de Attack se publicó por primera vez en 1981.",
+      "fun_fact_fr": "« Ooa hela natten » de Attack est sorti pour la première fois en 1981.",
+      "fun_fact_nl": "'Ooa hela natten' van Attack verscheen voor het eerst in 1981.",
+      "isrc": "SEBGA1600489",
+      "title": "Ooa hela natten",
+      "uri": "spotify:track:2pa73fbZD7ltJ09AB0Teox",
+      "uri_apple_music": "applemusic://track/1522321964",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1522321964"
+      },
+      "uri_deezer": "deezer://track/125461304",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-LJMLISnzb0",
+      "year": 1981
+    },
+    {
+      "alt_artists": [
+        "Loreen",
+        "Charlotte Perrelli",
+        "Lena Philipsson"
+      ],
+      "artist": "Carola",
+      "fun_fact": "'Fångad av en stormvind' by Carola won Eurovision 1991 for Sweden, sung in Swedish.",
+      "fun_fact_de": "„Fångad av en stormvind“ von Carola gewann 1991 den Eurovision Song Contest für Schweden, auf Schwedisch gesungen.",
+      "fun_fact_es": "«Fångad av en stormvind» de Carola ganó Eurovisión 1991 para Suecia, cantada en sueco.",
+      "fun_fact_fr": "« Fångad av en stormvind » de Carola a remporté l'Eurovision 1991 pour la Suède, chantée en suédois.",
+      "fun_fact_nl": "'Fångad av en stormvind' van Carola won in 1991 het Eurovisie Songfestival voor Zweden, in het Zweeds gezongen.",
+      "isrc": "SEBMI9000020",
+      "title": "Fångad av en stormvind - Swedish Version",
+      "uri": "spotify:track:06xX9E1BTTwyOwyaBuszSK",
+      "uri_apple_music": "applemusic://track/355675769",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/355675769"
+      },
+      "uri_deezer": "deezer://track/13208103",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4Ml6pJqc_bw",
+      "year": 1991
+    },
+    {
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Lena Philipsson",
+        "Arvingarna"
+      ],
+      "artist": "Roger Pontare",
+      "fun_fact": "'När vindarna viskar mitt namn' by Roger Pontare was Sweden's entry at Eurovision 2000.",
+      "fun_fact_de": "„När vindarna viskar mitt namn“ von Roger Pontare war Schwedens Beitrag beim Eurovision Song Contest 2000.",
+      "fun_fact_es": "«När vindarna viskar mitt namn» de Roger Pontare fue la canción de Suecia en Eurovisión 2000.",
+      "fun_fact_fr": "« När vindarna viskar mitt namn » de Roger Pontare était la chanson de la Suède à l'Eurovision 2000.",
+      "fun_fact_nl": "'När vindarna viskar mitt namn' van Roger Pontare was de Zweedse inzending voor het Eurovisie Songfestival 2000.",
+      "isrc": "SEANF0000201",
+      "title": "När vindarna viskar mitt namn",
+      "uri": "spotify:track:1nSyBcZr8IS9wZcFyvqqE7",
+      "uri_apple_music": "applemusic://track/281977068",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/281977068"
+      },
+      "uri_deezer": "deezer://track/12930039",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=h3jRwMCRH8g",
+      "year": 2000
+    },
+    {
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Arvingarna",
+        "Kapten Röd"
+      ],
+      "artist": "kent",
+      "fun_fact": "'Kräm (så nära får ingen gå)' by kent was first released in 1996.",
+      "fun_fact_de": "„Kräm (så nära får ingen gå)“ von kent erschien erstmals 1996.",
+      "fun_fact_es": "«Kräm (så nära får ingen gå)» de kent se publicó por primera vez en 1996.",
+      "fun_fact_fr": "« Kräm (så nära får ingen gå) » de kent est sorti pour la première fois en 1996.",
+      "fun_fact_nl": "'Kräm (så nära får ingen gå)' van kent verscheen voor het eerst in 1996.",
+      "isrc": "SEBMR9672010",
+      "title": "Kräm (så nära får ingen gå)",
+      "uri": "spotify:track:6mwzXxkU8SLbIcOCqCVuOg",
+      "uri_apple_music": "applemusic://track/258643073",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/258643073"
+      },
+      "uri_deezer": "deezer://track/1050578",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Ix_Sw6wOsAM",
+      "year": 1996
+    },
+    {
+      "alt_artists": [
+        "Petter",
+        "Kartellen",
+        "Panetoz"
+      ],
+      "artist": "Fronda, ChrisLejon",
+      "fun_fact": "'Rullar fram' by Fronda, ChrisLejon was first released in 2004.",
+      "fun_fact_de": "„Rullar fram“ von Fronda, ChrisLejon erschien erstmals 2004.",
+      "fun_fact_es": "«Rullar fram» de Fronda, ChrisLejon se publicó por primera vez en 2004.",
+      "fun_fact_fr": "« Rullar fram » de Fronda, ChrisLejon est sorti pour la première fois en 2004.",
+      "fun_fact_nl": "'Rullar fram' van Fronda, ChrisLejon verscheen voor het eerst in 2004.",
+      "isrc": "SEVGT0702911",
+      "title": "Rullar fram",
+      "uri": "spotify:track:5v55pDsyrxIs6OTk3E5l69",
+      "uri_apple_music": "applemusic://track/371223424",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/371223424"
+      },
+      "uri_deezer": "deezer://track/10599387",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4Am_yWgWllM",
+      "year": 2004
+    },
+    {
+      "alt_artists": [
+        "Tomas Ledin",
+        "Björn Skifs",
+        "Magnus Uggla"
+      ],
+      "artist": "Ted Gärdestad",
+      "fun_fact": "'Himlen är oskyldigt blå' by Ted Gärdestad was first released in 1993.",
+      "fun_fact_de": "„Himlen är oskyldigt blå“ von Ted Gärdestad erschien erstmals 1993.",
+      "fun_fact_es": "«Himlen är oskyldigt blå» de Ted Gärdestad se publicó por primera vez en 1993.",
+      "fun_fact_fr": "« Himlen är oskyldigt blå » de Ted Gärdestad est sorti pour la première fois en 1993.",
+      "fun_fact_nl": "'Himlen är oskyldigt blå' van Ted Gärdestad verscheen voor het eerst in 1993.",
+      "isrc": "SEAYD9306120",
+      "title": "Himlen är oskyldigt blå",
+      "uri": "spotify:track:27TFfAFo4sE4fw04QDqJmD",
+      "uri_apple_music": "applemusic://track/1442290588",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442290588"
+      },
+      "uri_deezer": "deezer://track/4190511",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=cj_-st7eDQA",
+      "year": 1993
+    },
+    {
+      "alt_artists": [
+        "Victor Leksell",
+        "Jakob Karlberg",
+        "Hov1"
+      ],
+      "artist": "Lucianoz",
+      "fun_fact": "'Inget stoppar oss nu' by Lucianoz was first released in 2023.",
+      "fun_fact_de": "„Inget stoppar oss nu“ von Lucianoz erschien erstmals 2023.",
+      "fun_fact_es": "«Inget stoppar oss nu» de Lucianoz se publicó por primera vez en 2023.",
+      "fun_fact_fr": "« Inget stoppar oss nu » de Lucianoz est sorti pour la première fois en 2023.",
+      "fun_fact_nl": "'Inget stoppar oss nu' van Lucianoz verscheen voor het eerst in 2023.",
+      "isrc": "SEBGA2303271",
+      "title": "Inget stoppar oss nu",
+      "uri": "spotify:track:2CyOfxn9TkmBml8ZNBIcZf",
+      "uri_apple_music": "applemusic://track/1691852774",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1691852774"
+      },
+      "uri_deezer": "deezer://track/2321372335",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=XkCCcXeF07g",
+      "year": 2023
+    },
+    {
+      "alt_artists": [
+        "Miss Li",
+        "Molly Sandén",
+        "Miriam Bryant"
+      ],
+      "artist": "Linnea Henriksson",
+      "fun_fact": "'Lyckligare nu' by Linnea Henriksson was first released in 2012.",
+      "fun_fact_de": "„Lyckligare nu“ von Linnea Henriksson erschien erstmals 2012.",
+      "fun_fact_es": "«Lyckligare nu» de Linnea Henriksson se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Lyckligare nu » de Linnea Henriksson est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Lyckligare nu' van Linnea Henriksson verscheen voor het eerst in 2012.",
+      "isrc": "SEBGA1200722",
+      "title": "Lyckligare nu",
+      "uri": "spotify:track:61o5tmzK4TdftIGykP7stT",
+      "uri_apple_music": "applemusic://track/536338636",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/536338636"
+      },
+      "uri_deezer": "deezer://track/34558171",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=TTIb5yGV9DM",
+      "year": 2012
+    },
+    {
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Arvingarna",
+        "Kapten Röd"
+      ],
+      "artist": "kent",
+      "fun_fact": "'Kärleken väntar' by kent was first released in 2002.",
+      "fun_fact_de": "„Kärleken väntar“ von kent erschien erstmals 2002.",
+      "fun_fact_es": "«Kärleken väntar» de kent se publicó por primera vez en 2002.",
+      "fun_fact_fr": "« Kärleken väntar » de kent est sorti pour la première fois en 2002.",
+      "fun_fact_nl": "'Kärleken väntar' van kent verscheen voor het eerst in 2002.",
+      "isrc": "SEBMC0219060",
+      "title": "Kärleken väntar",
+      "uri": "spotify:track:6y1dfWH5Z52RJJ6UJHSfos",
+      "uri_apple_music": "applemusic://track/253700142",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/253700142"
+      },
+      "uri_deezer": "deezer://track/972112",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=syR0msLOI_w",
+      "year": 2002
+    },
+    {
+      "alt_artists": [
+        "Arvingarna",
+        "kent",
+        "Tommy Nilsson"
+      ],
+      "artist": "One More Time",
+      "fun_fact": "'Den vilda' by One More Time was first released in 1996.",
+      "fun_fact_de": "„Den vilda“ von One More Time erschien erstmals 1996.",
+      "fun_fact_es": "«Den vilda» de One More Time se publicó por primera vez en 1996.",
+      "fun_fact_fr": "« Den vilda » de One More Time est sorti pour la première fois en 1996.",
+      "fun_fact_nl": "'Den vilda' van One More Time verscheen voor het eerst in 1996.",
+      "isrc": "SEBGA9602010",
+      "title": "Den vilda",
+      "uri": "spotify:track:0TYwFP4MxszHAXAJMYhi3E",
+      "uri_apple_music": "applemusic://track/312987513",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/312987513"
+      },
+      "uri_deezer": "deezer://track/4761113",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VW9ciJcEauw",
+      "year": 1996
+    },
+    {
+      "alt_artists": [
+        "kent",
+        "Arvingarna",
+        "Mando Diao"
+      ],
+      "artist": "Sarek",
+      "fun_fact": "'Genom Eld & Vatten' by Sarek was first released in 2003.",
+      "fun_fact_de": "„Genom Eld & Vatten“ von Sarek erschien erstmals 2003.",
+      "fun_fact_es": "«Genom Eld & Vatten» de Sarek se publicó por primera vez en 2003.",
+      "fun_fact_fr": "« Genom Eld & Vatten » de Sarek est sorti pour la première fois en 2003.",
+      "fun_fact_nl": "'Genom Eld & Vatten' van Sarek verscheen voor het eerst in 2003.",
+      "isrc": "SEMDA0300903",
+      "title": "Genom Eld & Vatten",
+      "uri": "spotify:track:4wLWZx74WHOosQq5p8VVkL",
+      "uri_apple_music": "applemusic://track/1517171685",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1517171685"
+      },
+      "uri_deezer": "deezer://track/982237082",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=oK_VrQetwGc",
+      "year": 2003
+    },
+    {
+      "alt_artists": [
+        "Niklas Strömstedt",
+        "Tommy Körberg",
+        "Tomas Ledin"
+      ],
+      "artist": "Glenmark Eriksson Strömstedt, Anders Glenmark, Orup, Niklas Strömstedt",
+      "fun_fact": "'När vi gräver guld i USA' by Glenmark Eriksson Strömstedt, Anders Glenmark, Orup, Niklas Strömstedt was first released in 1994.",
+      "fun_fact_de": "„När vi gräver guld i USA“ von Glenmark Eriksson Strömstedt, Anders Glenmark, Orup, Niklas Strömstedt erschien erstmals 1994.",
+      "fun_fact_es": "«När vi gräver guld i USA» de Glenmark Eriksson Strömstedt, Anders Glenmark, Orup, Niklas Strömstedt se publicó por primera vez en 1994.",
+      "fun_fact_fr": "« När vi gräver guld i USA » de Glenmark Eriksson Strömstedt, Anders Glenmark, Orup, Niklas Strömstedt est sorti pour la première fois en 1994.",
+      "fun_fact_nl": "'När vi gräver guld i USA' van Glenmark Eriksson Strömstedt, Anders Glenmark, Orup, Niklas Strömstedt verscheen voor het eerst in 1994.",
+      "isrc": "SEPQD9520120",
+      "title": "När vi gräver guld i USA",
+      "uri": "spotify:track:3iAJRvvn8pywXZtvBNNP71",
+      "uri_apple_music": "applemusic://track/1261366345",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1261366345"
+      },
+      "uri_deezer": "deezer://track/3612396",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=7YOzs-dD8qU",
+      "year": 1994
+    },
+    {
+      "alt_artists": [
+        "Anna Book",
+        "Lasse Holm",
+        "Björn Skifs"
+      ],
+      "artist": "Michael B. Tretow",
+      "fun_fact": "'Professorn: Den makalösa manicken' by Michael B. Tretow was first released in 1986.",
+      "fun_fact_de": "„Professorn: Den makalösa manicken“ von Michael B. Tretow erschien erstmals 1986.",
+      "fun_fact_es": "«Professorn: Den makalösa manicken» de Michael B. Tretow se publicó por primera vez en 1986.",
+      "fun_fact_fr": "« Professorn: Den makalösa manicken » de Michael B. Tretow est sorti pour la première fois en 1986.",
+      "fun_fact_nl": "'Professorn: Den makalösa manicken' van Michael B. Tretow verscheen voor het eerst in 1986.",
+      "isrc": "SEBGA1600703",
+      "title": "Professorn: Den makalösa manicken",
+      "uri": "spotify:track:10EteXmTcnJLkMlkJap4Tj",
+      "uri_apple_music": "applemusic://track/1115439308",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1115439308"
+      },
+      "uri_deezer": "deezer://track/125461088",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5dgN_T4Y-Us",
+      "year": 1986
+    },
+    {
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Arvingarna",
+        "Kapten Röd"
+      ],
+      "artist": "kent",
+      "fun_fact": "'Gravitation' by kent was first released in 1996.",
+      "fun_fact_de": "„Gravitation“ von kent erschien erstmals 1996.",
+      "fun_fact_es": "«Gravitation» de kent se publicó por primera vez en 1996.",
+      "fun_fact_fr": "« Gravitation » de kent est sorti pour la première fois en 1996.",
+      "fun_fact_nl": "'Gravitation' van kent verscheen voor het eerst in 1996.",
+      "isrc": "SEBMC9625030",
+      "title": "Gravitation",
+      "uri": "spotify:track:7MYC1Le5vcjyw0yBAQGVyB",
+      "uri_apple_music": "applemusic://track/1151139954",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1151139954"
+      },
+      "uri_deezer": "deezer://track/15761164",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=c9DGA-9-Rw8",
+      "year": 1996
+    },
+    {
+      "alt_artists": [
+        "Tomas Ledin",
+        "Björn Skifs",
+        "Magnus Uggla"
+      ],
+      "artist": "Ted Gärdestad",
+      "fun_fact": "'Jag ska fånga en ängel' by Ted Gärdestad was first released in 1973.",
+      "fun_fact_de": "„Jag ska fånga en ängel“ von Ted Gärdestad erschien erstmals 1973.",
+      "fun_fact_es": "«Jag ska fånga en ängel» de Ted Gärdestad se publicó por primera vez en 1973.",
+      "fun_fact_fr": "« Jag ska fånga en ängel » de Ted Gärdestad est sorti pour la première fois en 1973.",
+      "fun_fact_nl": "'Jag ska fånga en ängel' van Ted Gärdestad verscheen voor het eerst in 1973.",
+      "isrc": "SEAYD9306040",
+      "title": "Jag ska fånga en ängel",
+      "uri": "spotify:track:3No0idjeViPyWDP4gh1YGo",
+      "uri_apple_music": "applemusic://track/1503676199",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1503676199"
+      },
+      "uri_deezer": "deezer://track/909686702",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=b0Git-tuFfU",
+      "year": 1973
+    },
+    {
+      "alt_artists": [
+        "Veronica Maggio",
+        "Håkan Hellström",
+        "Mauro Scocco"
+      ],
+      "artist": "Perikles",
+      "fun_fact": "'Var ska vi sova inatt' by Perikles was first released in 1993.",
+      "fun_fact_de": "„Var ska vi sova inatt“ von Perikles erschien erstmals 1993.",
+      "fun_fact_es": "«Var ska vi sova inatt» de Perikles se publicó por primera vez en 1993.",
+      "fun_fact_fr": "« Var ska vi sova inatt » de Perikles est sorti pour la première fois en 1993.",
+      "fun_fact_nl": "'Var ska vi sova inatt' van Perikles verscheen voor het eerst in 1993.",
+      "isrc": "SEPEL1001001",
+      "title": "Var ska vi sova inatt",
+      "uri": "spotify:track:454J9ZekfjmjWbfcpFaur3",
+      "uri_apple_music": "applemusic://track/540396907",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/540396907"
+      },
+      "uri_deezer": "deezer://track/583798092",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=_tvfrB7rmIk",
+      "year": 1993
+    },
+    {
+      "alt_artists": [
+        "Markoolio",
+        "Kenneth & The Knutters",
+        "Sean Banan"
+      ],
+      "artist": "Pistvakt",
+      "fun_fact": "'2, 4, 6, 8 Bäverhojt / 2, 4, 6, 8 Motor Way' by Pistvakt was first released in 2001.",
+      "fun_fact_de": "„2, 4, 6, 8 Bäverhojt / 2, 4, 6, 8 Motor Way“ von Pistvakt erschien erstmals 2001.",
+      "fun_fact_es": "«2, 4, 6, 8 Bäverhojt / 2, 4, 6, 8 Motor Way» de Pistvakt se publicó por primera vez en 2001.",
+      "fun_fact_fr": "« 2, 4, 6, 8 Bäverhojt / 2, 4, 6, 8 Motor Way » de Pistvakt est sorti pour la première fois en 2001.",
+      "fun_fact_nl": "'2, 4, 6, 8 Bäverhojt / 2, 4, 6, 8 Motor Way' van Pistvakt verscheen voor het eerst in 2001.",
+      "isrc": "SESQC0110100",
+      "title": "2, 4, 6, 8 Bäverhojt / 2, 4, 6, 8 Motor Way",
+      "uri": "spotify:track:07xadss9HQVQ0g3C9iryRu",
+      "uri_deezer": "deezer://track/12684759",
+      "uri_tidal": null,
+      "year": 2001,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=RmrY515S2r8"
+    },
+    {
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Niklas Strömstedt",
+        "Tomas Ledin"
+      ],
+      "artist": "Patrik Isaksson",
+      "fun_fact": "'Hos dig är jag underbar' by Patrik Isaksson was first released in 1999.",
+      "fun_fact_de": "„Hos dig är jag underbar“ von Patrik Isaksson erschien erstmals 1999.",
+      "fun_fact_es": "«Hos dig är jag underbar» de Patrik Isaksson se publicó por primera vez en 1999.",
+      "fun_fact_fr": "« Hos dig är jag underbar » de Patrik Isaksson est sorti pour la première fois en 1999.",
+      "fun_fact_nl": "'Hos dig är jag underbar' van Patrik Isaksson verscheen voor het eerst in 1999.",
+      "isrc": "SEBGA9902030",
+      "title": "Hos dig är jag underbar",
+      "uri": "spotify:track:0Dx8AhXPvKq1iRGiaAfflE",
+      "uri_apple_music": "applemusic://track/366483601",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/366483601"
+      },
+      "uri_deezer": "deezer://track/70498523",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=9vN8kodI0AQ",
+      "year": 1999
+    },
+    {
+      "alt_artists": [
+        "Drängarna",
+        "Kenneth & The Knutters",
+        "Ronny & Ragge"
+      ],
+      "artist": "Uffe Persson",
+      "fun_fact": "'Nästa Weekend' by Uffe Persson was first released in 1988.",
+      "fun_fact_de": "„Nästa Weekend“ von Uffe Persson erschien erstmals 1988.",
+      "fun_fact_es": "«Nästa Weekend» de Uffe Persson se publicó por primera vez en 1988.",
+      "fun_fact_fr": "« Nästa Weekend » de Uffe Persson est sorti pour la première fois en 1988.",
+      "fun_fact_nl": "'Nästa Weekend' van Uffe Persson verscheen voor het eerst in 1988.",
+      "isrc": "SEBGA2000401",
+      "title": "Nästa Weekend",
+      "uri": "spotify:track:5Jk7C8ukmT2GE4nq0xUOVE",
+      "uri_apple_music": "applemusic://track/1512219527",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1512219527"
+      },
+      "uri_deezer": "deezer://track/954033192",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hR6Fne4a254",
+      "year": 1988
+    },
+    {
+      "alt_artists": [
+        "Lasse Holm",
+        "Tommy Körberg",
+        "Björn Skifs"
+      ],
+      "artist": "Kalle Moraeus, Orsa Spelmän",
+      "fun_fact": "'Underbart' by Kalle Moraeus, Orsa Spelmän was first released in 2010.",
+      "fun_fact_de": "„Underbart“ von Kalle Moraeus, Orsa Spelmän erschien erstmals 2010.",
+      "fun_fact_es": "«Underbart» de Kalle Moraeus, Orsa Spelmän se publicó por primera vez en 2010.",
+      "fun_fact_fr": "« Underbart » de Kalle Moraeus, Orsa Spelmän est sorti pour la première fois en 2010.",
+      "fun_fact_nl": "'Underbart' van Kalle Moraeus, Orsa Spelmän verscheen voor het eerst in 2010.",
+      "isrc": "SEBGA0900331",
+      "title": "Underbart",
+      "uri": "spotify:track:5Tbc2O2q1NCux8F0lYiEo0",
+      "uri_apple_music": "applemusic://track/824103338",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/824103338"
+      },
+      "uri_deezer": "deezer://track/5428647",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=mtpWhjBfzD0",
+      "year": 2010
+    },
+    {
+      "alt_artists": [
+        "Tommy Nilsson",
+        "Arvingarna",
+        "Kapten Röd"
+      ],
+      "artist": "kent",
+      "fun_fact": "'Sverige' by kent was first released in 2002.",
+      "fun_fact_de": "„Sverige“ von kent erschien erstmals 2002.",
+      "fun_fact_es": "«Sverige» de kent se publicó por primera vez en 2002.",
+      "fun_fact_fr": "« Sverige » de kent est sorti pour la première fois en 2002.",
+      "fun_fact_nl": "'Sverige' van kent verscheen voor het eerst in 2002.",
+      "isrc": "SEBMC0219100",
+      "title": "Sverige",
+      "uri": "spotify:track:7lKBlBQGI23JHv77VCCdXO",
+      "uri_apple_music": "applemusic://track/253700451",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/253700451"
+      },
+      "uri_deezer": "deezer://track/972118",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Hj7C3l8YYb4",
+      "year": 2002
+    },
+    {
+      "alt_artists": [
+        "Carola",
+        "Charlotte Perrelli",
+        "Kikki Danielsson"
+      ],
+      "artist": "Lena Philipsson",
+      "fun_fact": "'Det gör ont' by Lena Philipsson won Melodifestivalen 2004 and represented Sweden at Eurovision.",
+      "fun_fact_de": "„Det gör ont“ von Lena Philipsson gewann 2004 das Melodifestivalen und vertrat Schweden beim Eurovision Song Contest.",
+      "fun_fact_es": "«Det gör ont» de Lena Philipsson ganó el Melodifestivalen 2004 y representó a Suecia en Eurovisión.",
+      "fun_fact_fr": "« Det gör ont » de Lena Philipsson a remporté le Melodifestivalen 2004 et représenté la Suède à l'Eurovision.",
+      "fun_fact_nl": "'Det gör ont' van Lena Philipsson won in 2004 het Melodifestivalen en vertegenwoordigde Zweden op het Eurovisie Songfestival.",
+      "isrc": "SEBGA0403010",
+      "title": "Det gör ont",
+      "uri": "spotify:track:2aeVGqdsF7WbKZkwhcCeqm",
+      "uri_apple_music": "applemusic://track/298209413",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/298209413"
+      },
+      "uri_deezer": "deezer://track/14488819",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5JDFnN-WYGA",
+      "year": 2004
+    },
+    {
+      "alt_artists": [
+        "Loreen",
+        "Charlotte Perrelli",
+        "Lena Philipsson"
+      ],
+      "artist": "Carola",
+      "fun_fact": "'Mickey' by Carola was first released in 1983.",
+      "fun_fact_de": "„Mickey“ von Carola erschien erstmals 1983.",
+      "fun_fact_es": "«Mickey» de Carola se publicó por primera vez en 1983.",
+      "fun_fact_fr": "« Mickey » de Carola est sorti pour la première fois en 1983.",
+      "fun_fact_nl": "'Mickey' van Carola verscheen voor het eerst in 1983.",
+      "isrc": "SEBMI8350070",
+      "title": "Mickey",
+      "uri": "spotify:track:2pLKsJoxz6zX27lIHuAXyj",
+      "uri_apple_music": "applemusic://track/355675764",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/355675764"
+      },
+      "uri_deezer": "deezer://track/1084383",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=r5rf0mEPWUA",
+      "year": 1983
+    },
+    {
+      "alt_artists": [
+        "Tomas Ledin",
+        "Björn Skifs",
+        "Magnus Uggla"
+      ],
+      "artist": "Ted Gärdestad",
+      "fun_fact": "'Sol, vind och vatten' by Ted Gärdestad was first released in 1973.",
+      "fun_fact_de": "„Sol, vind och vatten“ von Ted Gärdestad erschien erstmals 1973.",
+      "fun_fact_es": "«Sol, vind och vatten» de Ted Gärdestad se publicó por primera vez en 1973.",
+      "fun_fact_fr": "« Sol, vind och vatten » de Ted Gärdestad est sorti pour la première fois en 1973.",
+      "fun_fact_nl": "'Sol, vind och vatten' van Ted Gärdestad verscheen voor het eerst in 1973.",
+      "isrc": "SEAYD9306050",
+      "title": "Sol, vind och vatten",
+      "uri": "spotify:track:7pvNKtULtDZcEAUBCjpykV",
+      "uri_apple_music": "applemusic://track/1503676201",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1503676201"
+      },
+      "uri_deezer": "deezer://track/909686712",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=nqjJWzqvVPs",
+      "year": 1973
+    },
+    {
+      "alt_artists": [
+        "Tomas Ledin",
+        "Tommy Körberg",
+        "Magnus Uggla"
+      ],
+      "artist": "Björn Skifs",
+      "fun_fact": "'Michelangelo (Men så svara då!)' by Björn Skifs was first released in 1975.",
+      "fun_fact_de": "„Michelangelo (Men så svara då!)“ von Björn Skifs erschien erstmals 1975.",
+      "fun_fact_es": "«Michelangelo (Men så svara då!)» de Björn Skifs se publicó por primera vez en 1975.",
+      "fun_fact_fr": "« Michelangelo (Men så svara då!) » de Björn Skifs est sorti pour la première fois en 1975.",
+      "fun_fact_nl": "'Michelangelo (Men så svara då!)' van Björn Skifs verscheen voor het eerst in 1975.",
+      "isrc": "SEAMA7545060",
+      "title": "Michelangelo (Men så svara då!)",
+      "uri": "spotify:track:3qChO81Z9r3KDyIj4w1m4T",
+      "uri_apple_music": "applemusic://track/806743922",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/806743922"
+      },
+      "uri_deezer": "deezer://track/15676453",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=hxvDmlsjjyU",
+      "year": 1975
+    },
+    {
+      "alt_artists": [
+        "Kenneth & The Knutters",
+        "Ronny & Ragge",
+        "Arvingarna"
+      ],
+      "artist": "Drängarna",
+      "fun_fact": "'Vill du bli min fru' by Drängarna was first released in 1995.",
+      "fun_fact_de": "„Vill du bli min fru“ von Drängarna erschien erstmals 1995.",
+      "fun_fact_es": "«Vill du bli min fru» de Drängarna se publicó por primera vez en 1995.",
+      "fun_fact_fr": "« Vill du bli min fru » de Drängarna est sorti pour la première fois en 1995.",
+      "fun_fact_nl": "'Vill du bli min fru' van Drängarna verscheen voor het eerst in 1995.",
+      "isrc": "SEBIA9501010",
+      "title": "Vill du bli min fru",
+      "uri": "spotify:track:4ZJNkwzMJJLB7RpLzPcQtn",
+      "uri_apple_music": "applemusic://track/465322135",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/465322135"
+      },
+      "uri_deezer": "deezer://track/583663002",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=yTDYhAwBLCc",
+      "year": 1995
+    },
+    {
+      "alt_artists": [
+        "Danny Saucedo",
+        "Håkan Hellström",
+        "Jakob Karlberg"
+      ],
+      "artist": "Thomas Stenström",
+      "fun_fact": "'Forever Young' by Thomas Stenström was first released in 2014.",
+      "fun_fact_de": "„Forever Young“ von Thomas Stenström erschien erstmals 2014.",
+      "fun_fact_es": "«Forever Young» de Thomas Stenström se publicó por primera vez en 2014.",
+      "fun_fact_fr": "« Forever Young » de Thomas Stenström est sorti pour la première fois en 2014.",
+      "fun_fact_nl": "'Forever Young' van Thomas Stenström verscheen voor het eerst in 2014.",
+      "isrc": "SEYQH1400103",
+      "title": "Forever Young",
+      "uri": "spotify:track:0p5p2I8v2AfLrZuGteq25d",
+      "uri_apple_music": "applemusic://track/1886705893",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1886705893"
+      },
+      "uri_deezer": "deezer://track/3912683351",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=6sH_nX07z4w",
+      "year": 2014
+    },
+    {
+      "alt_artists": [
+        "Oskar Linnros",
+        "Håkan Hellström",
+        "Laleh"
+      ],
+      "artist": "Havet",
+      "fun_fact": "'Kyss bort allt det onda' by Havet was first released in 2017.",
+      "fun_fact_de": "„Kyss bort allt det onda“ von Havet erschien erstmals 2017.",
+      "fun_fact_es": "«Kyss bort allt det onda» de Havet se publicó por primera vez en 2017.",
+      "fun_fact_fr": "« Kyss bort allt det onda » de Havet est sorti pour la première fois en 2017.",
+      "fun_fact_nl": "'Kyss bort allt det onda' van Havet verscheen voor het eerst in 2017.",
+      "isrc": "SEYDQ1700201",
+      "title": "Kyss bort allt det onda",
+      "uri": "spotify:track:5zC3m7fsSmVtCP5f2GTX2x",
+      "uri_apple_music": "applemusic://track/1273826981",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1273826981"
+      },
+      "uri_deezer": "deezer://track/397174232",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=DCv34js8E_o",
+      "year": 2017
+    },
+    {
+      "alt_artists": [
+        "Markoolio",
+        "Albatraoz",
+        "Panetoz"
+      ],
+      "artist": "Sean Banan",
+      "fun_fact": "'Sean den förste Banan' by Sean Banan was first released in 2012.",
+      "fun_fact_de": "„Sean den förste Banan“ von Sean Banan erschien erstmals 2012.",
+      "fun_fact_es": "«Sean den förste Banan» de Sean Banan se publicó por primera vez en 2012.",
+      "fun_fact_fr": "« Sean den förste Banan » de Sean Banan est sorti pour la première fois en 2012.",
+      "fun_fact_nl": "'Sean den förste Banan' van Sean Banan verscheen voor het eerst in 2012.",
+      "isrc": "SEBGA1100586",
+      "title": "Sean den förste Banan",
+      "uri": "spotify:track:5J2UfqBylH8jDQZJnxby81",
+      "uri_apple_music": "applemusic://track/499232758",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/499232758"
+      },
+      "uri_deezer": "deezer://track/16334737",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=a5fceiuy6Po",
+      "year": 2012
+    },
+    {
+      "alt_artists": [
+        "Markoolio",
+        "Panetoz",
+        "Danny Saucedo"
+      ],
+      "artist": "Albatraoz",
+      "fun_fact": "'Albatraoz' by Albatraoz was first released in 2013.",
+      "fun_fact_de": "„Albatraoz“ von Albatraoz erschien erstmals 2013.",
+      "fun_fact_es": "«Albatraoz» de Albatraoz se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Albatraoz » de Albatraoz est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Albatraoz' van Albatraoz verscheen voor het eerst in 2013.",
+      "isrc": "SEYOK1219472",
+      "title": "Albatraoz",
+      "uri": "spotify:track:1EqYoza9iMnxB9O0TwAeOO",
+      "uri_deezer": "deezer://track/69295782",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=qQ31INpjXX0",
+      "year": 2013
+    },
+    {
+      "alt_artists": [
+        "Kartellen",
+        "Panetoz",
+        "Petter"
+      ],
+      "artist": "Grillat & Grändy",
+      "fun_fact": "'Luren i fickan' by Grillat & Grändy was first released in 2015.",
+      "fun_fact_de": "„Luren i fickan“ von Grillat & Grändy erschien erstmals 2015.",
+      "fun_fact_es": "«Luren i fickan» de Grillat & Grändy se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Luren i fickan » de Grillat & Grändy est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Luren i fickan' van Grillat & Grändy verscheen voor het eerst in 2015.",
+      "isrc": "SEXZC1500305",
+      "title": "Luren i fickan",
+      "uri": "spotify:track:3YAs2Cz1DeYEUPn5G1p9IM",
+      "uri_apple_music": "applemusic://track/995942688",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/995942688"
+      },
+      "uri_deezer": "deezer://track/100606460",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=5Su9JxhAS5A",
+      "year": 2015
+    },
+    {
+      "alt_artists": [
+        "Lasse Holm",
+        "Lena Philipsson",
+        "Carola"
+      ],
+      "artist": "Kikki Danielsson",
+      "fun_fact": "'Bra vibrationer' by Kikki Danielsson was first released in 1985.",
+      "fun_fact_de": "„Bra vibrationer“ von Kikki Danielsson erschien erstmals 1985.",
+      "fun_fact_es": "«Bra vibrationer» de Kikki Danielsson se publicó por primera vez en 1985.",
+      "fun_fact_fr": "« Bra vibrationer » de Kikki Danielsson est sorti pour la première fois en 1985.",
+      "fun_fact_nl": "'Bra vibrationer' van Kikki Danielsson verscheen voor het eerst in 1985.",
+      "isrc": "SEPQM0611410",
+      "title": "Bra vibrationer",
+      "uri": "spotify:track:0FSlaiuv4eBrrjz05jpxz6",
+      "uri_apple_music": "applemusic://track/1347066957",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1347066957"
+      },
+      "uri_deezer": "deezer://track/802874",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e6id0eZZnVw",
+      "year": 1985
+    },
+    {
+      "alt_artists": [
+        "Drängarna",
+        "Kenneth & The Knutters",
+        "Ronny & Ragge"
+      ],
+      "artist": "Svenne Rubins",
+      "fun_fact": "'En gammal Amazon' by Svenne Rubins was first released in 1994.",
+      "fun_fact_de": "„En gammal Amazon“ von Svenne Rubins erschien erstmals 1994.",
+      "fun_fact_es": "«En gammal Amazon» de Svenne Rubins se publicó por primera vez en 1994.",
+      "fun_fact_fr": "« En gammal Amazon » de Svenne Rubins est sorti pour la première fois en 1994.",
+      "fun_fact_nl": "'En gammal Amazon' van Svenne Rubins verscheen voor het eerst in 1994.",
+      "isrc": "SE3FR2300101",
+      "title": "En gammal Amazon - 2023 Master",
+      "uri": "spotify:track:4fSyd0K4fzY0ExNu0SlY11",
+      "uri_apple_music": "applemusic://track/1517171134",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1517171134"
+      },
+      "uri_deezer": "deezer://track/2789338452",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=vIEB7XmNFC8",
+      "year": 1994
+    },
+    {
+      "alt_artists": [
+        "Molly Sandén",
+        "Miriam Bryant",
+        "Petra Marklund"
+      ],
+      "artist": "Zara Larsson",
+      "fun_fact": "'Lush Life' by Zara Larsson was first released in 2015.",
+      "fun_fact_de": "„Lush Life“ von Zara Larsson erschien erstmals 2015.",
+      "fun_fact_es": "«Lush Life» de Zara Larsson se publicó por primera vez en 2015.",
+      "fun_fact_fr": "« Lush Life » de Zara Larsson est sorti pour la première fois en 2015.",
+      "fun_fact_nl": "'Lush Life' van Zara Larsson verscheen voor het eerst in 2015.",
+      "isrc": "SEWEE1500509",
+      "title": "Lush Life",
+      "uri": "spotify:track:1rIKgCH4H52lrvDcz50hS8",
+      "uri_apple_music": "applemusic://track/1201058113",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1201058113"
+      },
+      "uri_deezer": "deezer://track/144389048",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=tD4HCZe-tew",
+      "year": 2015
+    },
+    {
+      "alt_artists": [
+        "Gyllene Tider",
+        "Tomas Ledin",
+        "Arvingarna"
+      ],
+      "artist": "Angel",
+      "fun_fact": "'Sommaren i City' by Angel was first released in 1991.",
+      "fun_fact_de": "„Sommaren i City“ von Angel erschien erstmals 1991.",
+      "fun_fact_es": "«Sommaren i City» de Angel se publicó por primera vez en 1991.",
+      "fun_fact_fr": "« Sommaren i City » de Angel est sorti pour la première fois en 1991.",
+      "fun_fact_nl": "'Sommaren i City' van Angel verscheen voor het eerst in 1991.",
+      "isrc": "SEAZG9201010",
+      "title": "Sommaren i City",
+      "uri": "spotify:track:4XoOCFKvikhwp0UcpBwJsO",
+      "uri_apple_music": "applemusic://track/1442721562",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1442721562"
+      },
+      "uri_deezer": "deezer://track/4187896",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=SczUHdZaHQo",
+      "year": 1991
+    },
+    {
+      "alt_artists": [
+        "Drängarna",
+        "Ronny & Ragge",
+        "Lasse Holm"
+      ],
+      "artist": "Kenneth & The Knutters",
+      "fun_fact": "'Som en riktig man' by Kenneth & The Knutters was first released in 1991.",
+      "fun_fact_de": "„Som en riktig man“ von Kenneth & The Knutters erschien erstmals 1991.",
+      "fun_fact_es": "«Som en riktig man» de Kenneth & The Knutters se publicó por primera vez en 1991.",
+      "fun_fact_fr": "« Som en riktig man » de Kenneth & The Knutters est sorti pour la première fois en 1991.",
+      "fun_fact_nl": "'Som en riktig man' van Kenneth & The Knutters verscheen voor het eerst in 1991.",
+      "isrc": "SEBGA9102050",
+      "title": "Som en riktig man",
+      "uri": "spotify:track:1QWzq7PXckcLxBwV8MQLjH",
+      "uri_apple_music": "applemusic://track/312991149",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/312991149"
+      },
+      "uri_deezer": "deezer://track/4761296",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Kk2TIhjnUmc",
+      "year": 1991
+    },
+    {
+      "alt_artists": [
+        "Danny Saucedo",
+        "Jakob Karlberg",
+        "Petra Marklund"
+      ],
+      "artist": "Darin",
+      "fun_fact": "'Step Up' by Darin was first released in 2005.",
+      "fun_fact_de": "„Step Up“ von Darin erschien erstmals 2005.",
+      "fun_fact_es": "«Step Up» de Darin se publicó por primera vez en 2005.",
+      "fun_fact_fr": "« Step Up » de Darin est sorti pour la première fois en 2005.",
+      "fun_fact_nl": "'Step Up' van Darin verscheen voor het eerst in 2005.",
+      "isrc": "SEBMC0500079",
+      "title": "Step Up",
+      "uri": "spotify:track:5BeBfnubllFy69omQHNavT",
+      "uri_apple_music": "applemusic://track/254573171",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/254573171"
+      },
+      "uri_deezer": "deezer://track/71511479",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=zJVlnAdpAXU",
+      "year": 2005
+    },
+    {
+      "alt_artists": [
+        "Mando Diao",
+        "kent",
+        "Danny Saucedo"
+      ],
+      "artist": "GRÖNWALL",
+      "fun_fact": "'Higher' by GRÖNWALL was first released in 2009.",
+      "fun_fact_de": "„Higher“ von GRÖNWALL erschien erstmals 2009.",
+      "fun_fact_es": "«Higher» de GRÖNWALL se publicó por primera vez en 2009.",
+      "fun_fact_fr": "« Higher » de GRÖNWALL est sorti pour la première fois en 2009.",
+      "fun_fact_nl": "'Higher' van GRÖNWALL verscheen voor het eerst in 2009.",
+      "isrc": "SEBGA0900325",
+      "title": "Higher",
+      "uri": "spotify:track:5hVDznakebbR2mdmcbqoCI",
+      "uri_apple_music": "applemusic://track/347230374",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/347230374"
+      },
+      "uri_deezer": "deezer://track/4969132",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=HJAMuAGu4E8",
+      "year": 2009
+    },
+    {
+      "alt_artists": [
+        "Kikki Danielsson",
+        "Tommy Körberg",
+        "Anna Book"
+      ],
+      "artist": "Lasse Holm",
+      "fun_fact": "'Canelloni Macaroni' by Lasse Holm was first released in 1989.",
+      "fun_fact_de": "„Canelloni Macaroni“ von Lasse Holm erschien erstmals 1989.",
+      "fun_fact_es": "«Canelloni Macaroni» de Lasse Holm se publicó por primera vez en 1989.",
+      "fun_fact_fr": "« Canelloni Macaroni » de Lasse Holm est sorti pour la première fois en 1989.",
+      "fun_fact_nl": "'Canelloni Macaroni' van Lasse Holm verscheen voor het eerst in 1989.",
+      "isrc": "SEPQM0613883",
+      "title": "Canelloni Macaroni",
+      "uri": "spotify:track:5OHcIW10h97ZoIH1PCsyRH",
+      "uri_apple_music": "applemusic://track/1470064044",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1470064044"
+      },
+      "uri_deezer": "deezer://track/3615230",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=n9kP5Lf9_JQ",
+      "year": 1989
+    },
+    {
+      "alt_artists": [
+        "Lena Philipsson",
+        "Kikki Danielsson",
+        "Carola"
+      ],
+      "artist": "Anna Book",
+      "fun_fact": "'ABC' by Anna Book was first released in 1985.",
+      "fun_fact_de": "„ABC“ von Anna Book erschien erstmals 1985.",
+      "fun_fact_es": "«ABC» de Anna Book se publicó por primera vez en 1985.",
+      "fun_fact_fr": "« ABC » de Anna Book est sorti pour la première fois en 1985.",
+      "fun_fact_nl": "'ABC' van Anna Book verscheen voor het eerst in 1985.",
+      "isrc": "SEBGA1600669",
+      "title": "ABC",
+      "uri": "spotify:track:47KyjSYbTBolLgz8HNFXz5",
+      "uri_apple_music": "applemusic://track/361273574",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/361273574"
+      },
+      "uri_deezer": "deezer://track/125460722",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=VpCWux9Cjis",
+      "year": 1985
+    },
+    {
+      "alt_artists": [
+        "Arvingarna",
+        "Tommy Nilsson",
+        "Tommy Körberg"
+      ],
+      "artist": "Magnus Uggla",
+      "fun_fact": "'Jag och min far' by Magnus Uggla was first released in 2013.",
+      "fun_fact_de": "„Jag och min far“ von Magnus Uggla erschien erstmals 2013.",
+      "fun_fact_es": "«Jag och min far» de Magnus Uggla se publicó por primera vez en 2013.",
+      "fun_fact_fr": "« Jag och min far » de Magnus Uggla est sorti pour la première fois en 2013.",
+      "fun_fact_nl": "'Jag och min far' van Magnus Uggla verscheen voor het eerst in 2013.",
+      "isrc": "SE24C1200205",
+      "title": "Jag och min far",
+      "uri": "spotify:track:4GmfoKVBh1mIR6OVaMDXRK",
+      "uri_apple_music": "applemusic://track/1728246226",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1728246226"
+      },
+      "uri_deezer": "deezer://track/2641561732",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=4xB2sIZvpsY",
+      "year": 2013
+    },
+    {
+      "alt_artists": [
+        "Jakob Karlberg",
+        "Norlie & KKV",
+        "Laleh"
+      ],
+      "artist": "Danny Saucedo",
+      "fun_fact": "'Snacket på stan' by Danny Saucedo was first released in 2016.",
+      "fun_fact_de": "„Snacket på stan“ von Danny Saucedo erschien erstmals 2016.",
+      "fun_fact_es": "«Snacket på stan» de Danny Saucedo se publicó por primera vez en 2016.",
+      "fun_fact_fr": "« Snacket på stan » de Danny Saucedo est sorti pour la première fois en 2016.",
+      "fun_fact_nl": "'Snacket på stan' van Danny Saucedo verscheen voor het eerst in 2016.",
+      "isrc": "SEBGA1602613",
+      "title": "Snacket på stan",
+      "uri": "spotify:track:0rleRAsgvRKxBVf44lmcY7",
+      "uri_apple_music": "applemusic://track/1376367801",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1376367801"
+      },
+      "uri_deezer": "deezer://track/134686774",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=G5ntLNGbhvE",
+      "year": 2016
+    },
+    {
+      "alt_artists": [
+        "Carola",
+        "Charlotte Perrelli",
+        "Kikki Danielsson"
+      ],
+      "artist": "Lena Philipsson",
+      "fun_fact": "'Dansa i neon' by Lena Philipsson was first released in 1987.",
+      "fun_fact_de": "„Dansa i neon“ von Lena Philipsson erschien erstmals 1987.",
+      "fun_fact_es": "«Dansa i neon» de Lena Philipsson se publicó por primera vez en 1987.",
+      "fun_fact_fr": "« Dansa i neon » de Lena Philipsson est sorti pour la première fois en 1987.",
+      "fun_fact_nl": "'Dansa i neon' van Lena Philipsson verscheen voor het eerst in 1987.",
+      "isrc": "SEPQM0610012",
+      "title": "Dansa i neon",
+      "uri": "spotify:track:4N0NK4lCncys6hwWhtXRit",
+      "uri_apple_music": "applemusic://track/1261366357",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/1261366357"
+      },
+      "uri_deezer": "deezer://track/7239266",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=-whylI5YukA",
+      "year": 1987
+    },
+    {
+      "alt_artists": [
+        "Gyllene Tider",
+        "Tomas Ledin",
+        "Attack"
+      ],
+      "artist": "Factory",
+      "fun_fact": "'Efter plugget' by Factory was first released in 1979.",
+      "fun_fact_de": "„Efter plugget“ von Factory erschien erstmals 1979.",
+      "fun_fact_es": "«Efter plugget» de Factory se publicó por primera vez en 1979.",
+      "fun_fact_fr": "« Efter plugget » de Factory est sorti pour la première fois en 1979.",
+      "fun_fact_nl": "'Efter plugget' van Factory verscheen voor het eerst in 1979.",
+      "isrc": "SEPQM0612944",
+      "title": "Efter plugget",
+      "uri": "spotify:track:0985mUC5n2eBXsX4YEaiTg",
+      "uri_apple_music": "applemusic://track/331506432",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/331506432"
+      },
+      "uri_deezer": "deezer://track/3867041",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=Gaa82ValyJI",
+      "year": 1979
+    },
+    {
+      "alt_artists": [
+        "Niklas Strömstedt",
+        "Tomas Ledin",
+        "Håkan Hellström"
+      ],
+      "artist": "Mauro Scocco",
+      "fun_fact": "'Sarah' by Mauro Scocco was first released in 1988.",
+      "fun_fact_de": "„Sarah“ von Mauro Scocco erschien erstmals 1988.",
+      "fun_fact_es": "«Sarah» de Mauro Scocco se publicó por primera vez en 1988.",
+      "fun_fact_fr": "« Sarah » de Mauro Scocco est sorti pour la première fois en 1988.",
+      "fun_fact_nl": "'Sarah' van Mauro Scocco verscheen voor het eerst in 1988.",
+      "isrc": "SEPAS8809020",
+      "title": "Sarah",
+      "uri": "spotify:track:4uBbgoKiRzcjgjVH6FqgTS",
+      "uri_apple_music": "applemusic://track/403989917",
+      "uri_apple_music_by_region": {
+        "us": "applemusic://track/403989917"
+      },
+      "uri_deezer": "deezer://track/71488976",
+      "uri_tidal": null,
+      "uri_youtube_music": "https://music.youtube.com/watch?v=e8IdWWTlUUM",
+      "year": 1988
     }
   ]
 }
