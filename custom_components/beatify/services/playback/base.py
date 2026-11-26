@@ -125,6 +125,14 @@ class PlaybackStrategy(ABC):
         """
         return None
 
+    async def silence_late_starts(self) -> bool:
+        """The game is over: keep abandoned starts from playing later (#3628).
+
+        Only Music Assistant can have a start still in flight after Beatify
+        gave up on it, so the default does nothing and reports no watch.
+        """
+        return False
+
     def forget_pending_starts(self) -> None:
         """The game is over: stop watching for abandoned starts (#3278).
 
