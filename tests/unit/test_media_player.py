@@ -374,7 +374,7 @@ class TestMANonBlockingPlayback:
             "custom_components.beatify.services.playback.music_assistant.MA_PLAYBACK_TIMEOUT",
             0.1,
         ):
-            with caplog.at_level("ERROR"):
+            with caplog.at_level("WARNING"):  # #3627: first play logs WARNING
                 result = await svc.play_song(_make_song(title="New Song"))
 
         assert result is False

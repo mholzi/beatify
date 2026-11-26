@@ -210,7 +210,7 @@ class TestIdleTimeoutIsClassified:
         svc = _service([_make_state("idle"), _make_state("idle")])
         svc._strategy._last_slow_start = (asyncio.get_event_loop().time(), 14.6)
 
-        with caplog.at_level(logging.ERROR):
+        with caplog.at_level(logging.WARNING):  # #3627: was ERROR
             assert await _play_and_time_out(svc) is False
 
         assert svc.last_failure_reason == "rate_limited"
@@ -220,6 +220,7 @@ class TestIdleTimeoutIsClassified:
     @pytest.mark.asyncio
     async def test_without_evidence_it_stays_the_old_systemic_error(self, caplog):
         svc = _service([_make_state("idle"), _make_state("idle")])
+        svc._strategy._first_play_pending = False  # #3627: first play logs WARNING
 
         with caplog.at_level(logging.ERROR):
             assert await _play_and_time_out(svc) is False
@@ -310,3 +311,61 @@ class TestStaleTitleTimeoutIsClassified:
         assert "Rate Limiter" not in caplog.text
         assert "catalog/storefront" in caplog.text
         assert svc.last_failure_reason == "unavailable"
+
+
+class TestTimedOutStartIsThrottlingEvidence:
+    """#3627: a timed-out start counts for the window, and logs at WARNING."""
+
+    @pytest.mark.asyncio
+    async def test_a_timeout_arms_the_evidence_for_the_next_failure(self, caplog):
+        svc = _service(TestStaleTitleTimeoutIsClassified._stuck_speaker())
+        assert svc._strategy._recent_slow_start() is None
+
+        with caplog.at_level(logging.WARNING):
+            assert await _play_and_time_out(svc) is False
+
+        recent = svc._strategy._recent_slow_start()
+        assert recent is not None
+        # First failure of the burst: honest about not knowing yet.
+        assert "answering promptly" not in caplog.text
+        assert "add-on log" in caplog.text  # pointer to the MA log
+
+        caplog.clear()
+        svc._strategy._first_play_pending = False
+        with caplog.at_level(logging.WARNING):
+            assert await _play_and_time_out(svc) is False
+        # The second failure now reads the first one as evidence.
+        assert "rate-limiting us" in caplog.text
+        assert "answering promptly" not in caplog.text
+
+    @pytest.mark.asyncio
+    async def test_first_play_idle_timeout_logs_warning_not_error(self, caplog):
+        svc = _service([_make_state("idle"), _make_state("idle")])
+        with caplog.at_level(logging.WARNING):
+            assert await _play_and_time_out(svc) is False
+        records = [r for r in caplog.records if "MA playback failed" in r.message]
+        assert records
+        assert all(r.levelno == logging.WARNING for r in records)
+        assert svc.last_failure_reason == "error"  # unchanged behaviour
+
+    @pytest.mark.asyncio
+    async def test_later_idle_timeout_without_evidence_stays_error(self, caplog):
+        svc = _service([_make_state("idle"), _make_state("idle")])
+        svc._strategy._first_play_pending = False
+        with caplog.at_level(logging.WARNING):
+            assert await _play_and_time_out(svc) is False
+        records = [r for r in caplog.records if "MA playback failed" in r.message]
+        assert records
+        assert all(r.levelno == logging.ERROR for r in records)
+
+    @pytest.mark.asyncio
+    async def test_idle_timeout_with_evidence_logs_warning(self, caplog):
+        svc = _service([_make_state("idle"), _make_state("idle")])
+        svc._strategy._first_play_pending = False
+        svc._strategy._last_slow_start = (asyncio.get_event_loop().time(), 33.3)
+        with caplog.at_level(logging.WARNING):
+            assert await _play_and_time_out(svc) is False
+        records = [r for r in caplog.records if "MA playback failed" in r.message]
+        assert records
+        assert all(r.levelno == logging.WARNING for r in records)
+        assert svc.last_failure_reason == "rate_limited"

@@ -1458,6 +1458,14 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # start inside MA_THROTTLE_MEMORY_SECONDS says yes, and nothing else
         # available on this side of the boundary does. See _recent_slow_start.
         slow = self._recent_slow_start()
+        # #3627: a start that burned its whole budget is the strongest
+        # throttling signal there is, so it counts for the window like a slow
+        # success does. Recorded AFTER the lookup above: this failure is judged
+        # on what came before it, the NEXT one on this too. Without it a burst
+        # of timeouts (each ~budget long, each followed by MA still sleeping in
+        # its backoff) read as "the provider was answering promptly" until a
+        # slow success happened to land.
+        self._last_slow_start = (asyncio.get_event_loop().time(), timeout)
 
         # Hard failure: speaker is idle/unavailable/off — song won't play
         if speaker_state in ("idle", "unavailable", "off", "unknown"):
@@ -1493,7 +1501,9 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 # start already ran long and finished: the provider was
                 # answering slowly in this window, so this timeout is very
                 # likely the same backoff one step further along its curve.
-                _LOGGER.error(
+                # #3627: WARNING, not ERROR — the line itself says there is
+                # nothing to fix, and a log review reads every ERROR as a bug.
+                _LOGGER.warning(
                     "MA playback failed after %.1fs for %s (state: %s) — and a "
                     "start %.0fs ago already took %.1fs, so Music Assistant's "
                     "provider was backing off during this window. Read this as "
@@ -1518,7 +1528,12 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 # being flattened into the same word as a dead speaker.
                 self.last_failure_reason = "rate_limited"
                 return False
-            _LOGGER.error(
+            # #3627: the first start of a game has the extended cold-speaker
+            # budget and no throttling memory to judge it by (#1936), so a
+            # timeout there is ambiguous and logs at WARNING; state_lifecycle
+            # escalates to the systemic error once failures repeat (#949).
+            _log_idle_failure = _LOGGER.warning if first_play else _LOGGER.error
+            _log_idle_failure(
                 "MA playback failed after %.1fs for %s (state: %s). "
                 "Either the speaker is offline, MA's provider is unauthenticated, "
                 "or the track is not available in your provider's catalog. If this "
@@ -1647,11 +1662,14 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 _LOGGER.warning(
                     "MA playback failed after %.1fs for %s — speaker still on "
                     "prior track %r (position timestamp %s). No start in the "
-                    "last %.0fs ran long, so the provider was answering "
-                    "promptly: the track is likely not available in your "
-                    "provider's catalog/storefront, OR your provider needs "
-                    "re-authentication in MA. Skipping this song silently — "
-                    "game will try the next one. (#795, #2682)",
+                    "last %.0fs ran long or timed out, so Beatify has no sign "
+                    "of throttling yet (the first failure of a burst looks "
+                    "exactly like this): the track may not be available in "
+                    "your provider's catalog/storefront, or Music Assistant is "
+                    "backing off — check its add-on log for retries "
+                    "before re-authenticating anything. Skipping this song "
+                    "silently — game will try the next one. (#795, #2682, "
+                    "#3627)",
                     timeout,
                     uri,
                     title_before,
