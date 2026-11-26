@@ -218,3 +218,24 @@ describe('#3604 strings', () => {
         }
     });
 });
+
+describe('#3626 phone pill stays in view', () => {
+    const css = readFileSync(join(WWW_DIR, 'css', 'styles.css'), 'utf8');
+    const rule = (selector) => {
+        const at = css.indexOf(`\n${selector} {`);
+        expect(at).toBeGreaterThan(-1);
+        return css.slice(at, css.indexOf('}', at));
+    };
+
+    it('is pinned to the viewport, not inline in the scrolling reveal', () => {
+        const base = rule('.reveal-song-hint');
+        expect(base).toContain('position: fixed');
+        expect(base).toMatch(/bottom: calc\(5\.5rem/);
+        expect(base).toContain('pointer-events: none');
+    });
+
+    it('sits above the reaction bar and the admin bar when that is up', () => {
+        const admin = rule('main:has(.admin-control-bar:not(.hidden)) .reveal-song-hint');
+        expect(admin).toMatch(/bottom: calc\(5\.5rem \+ 70px/);
+    });
+});

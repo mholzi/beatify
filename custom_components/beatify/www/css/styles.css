@@ -19301,17 +19301,25 @@ body.theme-dark .your-result-stats .stat-value {
     .wiz-vis-switch::after { transition: none; }
 }
 
-/* #3604: the phone's half of the song-start hint. A dashed cyan pill near the
-   bottom of the reveal, with the same pulsing dot as the TV's intro wait. It
-   appears and disappears without a transition; only the dot moves, and not
-   under reduced motion. */
+/* #3604: the phone's half of the song-start hint. A dashed cyan pill with the
+   same pulsing dot as the TV's intro wait. It appears and disappears without a
+   transition; only the dot moves, and not under reduced motion.
+   #3626: pinned to the bottom of the viewport (above the reaction bar, and
+   above the admin bar when that is up), like the TV pill. Inline it sat after
+   the standings, 330-410 px below the fold. */
 .reveal-song-hint {
+    position: fixed;
+    left: 50%;
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    z-index: var(--z-control-bar);
+    transform: translateX(-50%);
+    pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
-    width: 100%;
-    margin-top: var(--space-md);
+    max-width: calc(100% - 2 * var(--space-md));
+    background: var(--color-surface-dark);
     padding: var(--space-sm) var(--space-md);
     border: 1.5px dashed rgba(0, 245, 255, 0.55);
     border-radius: var(--radius-full);
@@ -19319,6 +19327,11 @@ body.theme-dark .your-result-stats .stat-value {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     text-align: center;
+}
+
+/* Same lift as the reaction bar when the admin control bar is showing. */
+main:has(.admin-control-bar:not(.hidden)) .reveal-song-hint {
+    bottom: calc(5.5rem + 70px + env(safe-area-inset-bottom));
 }
 
 .reveal-song-hint__dot {
