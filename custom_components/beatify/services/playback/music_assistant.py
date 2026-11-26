@@ -104,6 +104,9 @@ MA_STALE_START_WINDOW = 300.0
 # #3278: at most this many corrections per confirmed start, so a speaker that
 # keeps flipping cannot turn the guard into a play_media loop.
 MA_STALE_START_MAX_CORRECTIONS = 3
+# #3628: at most this many stops by the post-game watch, so a speaker that
+# keeps flipping cannot turn it into a media_stop loop.
+MA_ENDGAME_MAX_STOPS = 10
 
 # #1936: the FIRST play of a game gets a third more time (25.0s → 33.3s). A
 # speaker idle for a while was measured at 10.1s to first audio (Sonos via MA,
@@ -422,6 +425,12 @@ class MusicAssistantStrategy(PlaybackStrategy):
         self._stale_guard_unsub: Any = None
         self._stale_guard_timer: asyncio.TimerHandle | None = None
         self._stale_corrections = 0
+        # #3628: the watch that outlives the game, silencing abandoned starts
+        # that land after end-game. Separate from the guard above on purpose:
+        # forget_pending_starts() tears that one down at the same moment.
+        self._endgame_unsub: Any = None
+        self._endgame_timer: asyncio.TimerHandle | None = None
+        self._endgame_stops = 0
         # #3278: a correction made while the room was meant to be silent
         # (sample stop, pause) must be stopped again once it has loaded.
         self._stop_after_correction = False
@@ -586,6 +595,105 @@ class MusicAssistantStrategy(PlaybackStrategy):
         self._stale_guard_timer = asyncio.get_running_loop().call_later(
             remaining, self._disarm_stale_guard
         )
+
+    # -- #3628: abandoned starts that land after the game ended --------------
+
+    def _disarm_endgame_watch(self) -> None:
+        """Stop the post-game silence watch (a new game starts, or it expired)."""
+        if self._endgame_unsub is not None:
+            self._endgame_unsub()
+            self._endgame_unsub = None
+        if self._endgame_timer is not None:
+            self._endgame_timer.cancel()
+            self._endgame_timer = None
+
+    def _speaker_group(self) -> list[str]:
+        """The target speaker and the members it is grouped with (#3628)."""
+        entities = [self._entity_id]
+        state = self._hass.states.get(self._entity_id)
+        members = state.attributes.get("group_members") if state else None
+        if isinstance(members, (list, tuple)):
+            entities.extend(m for m in members if isinstance(m, str))
+        return list(dict.fromkeys(entities))
+
+    async def silence_late_starts(self) -> bool:
+        """End of game: stop requests Music Assistant may still deliver (#3628).
+
+        Beatify gave up on some starts during the game (#3101/#3278/#3418), but
+        a throttled Music Assistant finishes them 30-60 s later — after the
+        podium, when the queue restore has already stopped watching. In a
+        grouped setup the late song then plays on every member. So when
+        something was abandoned inside MA_STALE_START_WINDOW:
+
+        1. cancel on the target AND its group members (stop + queue clear), and
+        2. keep a watch on all of them for the rest of the window that stops
+           any speaker the moment it plays one of those abandoned songs.
+
+        Returns True when a watch was armed. Does nothing for a game that
+        abandoned nothing, so the ordinary end-game is unchanged.
+        """
+        live = dict(self._live_abandoned_starts())
+        if not live:
+            return False
+        self._disarm_endgame_watch()
+        entities = self._speaker_group()
+        for entity_id in entities:
+            await self._cancel_pending_start(entity_id)
+
+        self._endgame_stops = 0
+
+        @callback
+        def _state_changed(ev) -> None:
+            new_state = ev.data.get("new_state")
+            if new_state is None or new_state.state != "playing":
+                return
+            if self._endgame_stops >= MA_ENDGAME_MAX_STOPS:
+                return
+            content_id = new_state.attributes.get("media_content_id") or ""
+            played_key = self._song_key(
+                {
+                    "title": new_state.attributes.get("media_title") or "",
+                    "artist": new_state.attributes.get("media_artist") or "",
+                }
+            )
+            for uri, (_, song_key) in live.items():
+                if any(t in content_id for t in uri_match_tokens(uri)) or (
+                    played_key != "|" and played_key == song_key
+                ):
+                    break
+            else:
+                return
+            self._endgame_stops += 1
+            entity_id = ev.data.get("entity_id") or self._entity_id
+            _LOGGER.warning(
+                "MA: an abandoned start landed on %s after the game ended "
+                "(now %r) — stopping it so the room stays silent. (#3628)",
+                entity_id,
+                content_id,
+            )
+            self._hass.async_create_task(self._stop_entity(entity_id))
+
+        self._endgame_unsub = async_track_state_change_event(
+            self._hass, entities, _state_changed
+        )
+        now = time.monotonic()
+        remaining = max(MA_STALE_START_WINDOW - (now - w) for w, _ in live.values())
+        self._endgame_timer = asyncio.get_running_loop().call_later(
+            remaining, self._disarm_endgame_watch
+        )
+        return True
+
+    async def _stop_entity(self, entity_id: str) -> None:
+        """Best-effort media_stop for one speaker (#3628)."""
+        try:
+            await self._hass.services.async_call(
+                "media_player",
+                "media_stop",
+                {"entity_id": entity_id},
+                blocking=False,
+            )
+        except (HomeAssistantError, ServiceNotFound, ConnectionError, OSError) as err:
+            _LOGGER.debug("MA: stop of late start on %s failed: %s", entity_id, err)
 
     async def _reissue_play(self, request: dict[str, Any]) -> None:
         """Repeat the current round's play_media request (#3278)."""
@@ -995,7 +1103,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # try_play attempt (set by that method); start_round reads it.
         return False
 
-    async def _cancel_pending_start(self) -> bool:
+    async def _cancel_pending_start(self, entity_id: str | None = None) -> bool:
         """Cancel the request Beatify just gave up on (#3101).
 
         Music Assistant retries a throttled start on its own schedule (up to
@@ -1008,6 +1116,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
         Returns True when the stop call went through.
         """
         stopped = False
+        target = entity_id or self._entity_id
         for service, label in (
             ("media_stop", "stop"),
             ("clear_playlist", "queue clear"),
@@ -1017,7 +1126,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
                     await self._hass.services.async_call(
                         "media_player",
                         service,
-                        {"entity_id": self._entity_id},
+                        {"entity_id": target},
                         blocking=False,
                     )
                 stopped = stopped or service == "media_stop"
@@ -1031,7 +1140,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
                 _LOGGER.debug(
                     "MA %s after abandoned start failed for %s: %s",
                     label,
-                    self._entity_id,
+                    target,
                     err,
                 )
         return stopped
@@ -1131,6 +1240,7 @@ class MusicAssistantStrategy(PlaybackStrategy):
         # #3278: a new start supersedes the previous one's guard; the
         # abandoned list itself survives and is checked during this wait.
         self._disarm_stale_guard()
+        self._disarm_endgame_watch()  # #3628: a new game owns the speaker
         # #1936: cold-start budget for the very first attempt of a game only.
         first_play = self._first_play_pending
         timeout = MA_PLAYBACK_TIMEOUT * (

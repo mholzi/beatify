@@ -445,6 +445,14 @@ class MediaPlayerService:
         Returns:
             True if at least one speaker got something back.
         """
+        # #3628: first cancel what Music Assistant may still deliver late and
+        # keep silencing it (target + group members); this must see the
+        # abandoned starts, so it runs before they are forgotten.
+        if self._strategy is not None:
+            try:
+                await self._strategy.silence_late_starts()
+            except Exception:  # noqa: BLE001 - never block the restore
+                _LOGGER.exception("Silencing late starts after the game failed")
         # #3278: the game is over — an abandoned start that lands now must
         # not be "corrected" into a round that no longer exists.
         if self._strategy is not None:
