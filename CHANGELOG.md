@@ -4,6 +4,18 @@ All notable changes to Beatify are documented here. For detailed release notes, 
 
 ## [Unreleased]
 
+## [5.1.0] - 2026-11-27
+
+Ready for New Year's Eve.
+
+### 🏁 First one wins
+
+Title & Artist gets a live race. Everyone guesses as often as they like, and whoever names the title or the artist first takes the points. After the reveal, the next round can start on its own after 10 or 15 seconds. Thanks to **@Muggedadscher**, whose fork started both ideas.
+
+### 🎆 New Year's Eve, fewer hiccups
+
+Three new playlists: New Year's Eve with 101 songs, Metal Festival Anthems and Swedish Top 100. Setup can hide speakers you never use. On a slow music service the game no longer gets stuck after a reveal, and a late song no longer starts after you end the game.
+
 ## [5.1.0-rc9] - 2026-11-26
 
 Ninth candidate for 5.1.0: fixes from the rc8 nightly test.

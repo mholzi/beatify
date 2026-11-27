@@ -875,6 +875,10 @@ The neon dark theme is built-in and looks stunning. Custom theming is on the roa
 
 ## What's New
 
+### v5.1.0 — Race the Room 🏁
+- **First one wins**: Title & Artist gets a live race, where whoever names the title or the artist first takes the points, and the next round can start on its own after 10 or 15 seconds (#3557, #3558)
+- **New Year's Eve, fewer hiccups**: three new playlists including New Year's Eve and Swedish Top 100, setup can hide speakers you never use, and a slow music service no longer stalls the game after a reveal (#3526, #3616, #3537, #3562)
+
 ### v5.0.1 — The whole story 📖
 - **Read the full fun fact**: on a phone, a "more" link opens the whole fun fact on the reveal (#3504)
 - **More Bond, fewer snags**: eight more James Bond theme songs with a film quiz, the answer stays on screen when the TV or a phone plays the music, and the admin page logs in over Tailscale or IPv6 again (#3449, #3520, #3512)
