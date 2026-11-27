@@ -1,6 +1,6 @@
 {
   "name": "World Cup Anthems",
-  "version": "1.16",
+  "version": "1.17",
   "tags": [
     "world-cup",
     "fifa",
@@ -162,7 +162,7 @@
       "awards_es": [],
       "awards_fr": [],
       "awards_nl": [],
-      "uri_apple_music": "applemusic://track/1673292415",
+      "uri_apple_music": null,
       "uri_youtube_music": "https://music.youtube.com/watch?v=Xp1HKM1WGXU",
       "uri_tidal": null,
       "uri_deezer": "deezer://track/2160233807",
@@ -365,7 +365,7 @@
       "isrc": null,
       "fun_fact_it": "Canzone dei paesi ospitanti di Corea/Giappone 2002, nata dalla collaborazione tra star del pop coreano e giapponese per simboleggiare il torneo condiviso.",
       "uri_apple_music_by_region": {
-        "de": "applemusic://track/539160581"
+        "de": "applemusic://track/1536120433"
       }
     },
     {
