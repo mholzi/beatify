@@ -1,6 +1,6 @@
 {
   "name": "Tomorrowland Top 1000",
-  "version": "0.75",
+  "version": "0.76",
   "tags": [
     "edm",
     "electronic",
@@ -2791,7 +2791,8 @@
         "PAWSA",
         "Ahmed Spins, Stevo Atambire",
         "Kosheen, Tinlicker"
-      ]
+      ],
+      "uri_apple_music": "applemusic://track/6829677225"
     },
     {
       "artist": "Michel Cleis, Totó La Momposina, Paul Kalkbrenner",
